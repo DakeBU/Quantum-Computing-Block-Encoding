@@ -7,3 +7,4 @@ import QuantumBlockEncoding.GHL2025
 import QuantumBlockEncoding.Literature
 import QuantumBlockEncoding.OpenProblems
 import QuantumBlockEncoding.Resources
+import QuantumBlockEncoding.RobinMatrix

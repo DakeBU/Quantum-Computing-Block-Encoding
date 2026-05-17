@@ -107,6 +107,29 @@ def sub (a b : Coeff) : Coeff := a + (-b)
 instance : HSub Coeff Coeff Coeff where
   hSub := sub
 
+/-- Evaluate a symbolic `Coeff` to a concrete `Rat` given an environment. -/
+def evalWith (env : String → Rat) : Coeff → Rat
+  | rat q => q
+  | symbol name => env name
+  | add a b => evalWith env a + evalWith env b
+  | mul a b => evalWith env a * evalWith env b
+  | neg a => -(evalWith env a)
+
+@[simp] theorem evalWith_rat (env : String → Rat) (q : Rat) :
+    evalWith env (rat q) = q := rfl
+
+@[simp] theorem evalWith_symbol (env : String → Rat) (name : String) :
+    evalWith env (symbol name) = env name := rfl
+
+@[simp] theorem evalWith_add (env : String → Rat) (a b : Coeff) :
+    evalWith env (add a b) = evalWith env a + evalWith env b := rfl
+
+@[simp] theorem evalWith_mul (env : String → Rat) (a b : Coeff) :
+    evalWith env (mul a b) = evalWith env a * evalWith env b := rfl
+
+@[simp] theorem evalWith_neg (env : String → Rat) (a : Coeff) :
+    evalWith env (neg a) = -(evalWith env a) := rfl
+
 def divNat (a : Coeff) (n : Nat) : Coeff :=
   a * Coeff.rat ((1 : Rat) / n)
 
