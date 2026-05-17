@@ -1,0 +1,9 @@
+/.lake/
+/.qbe/
+/.env
+/.DS_Store
+/runs/*/
+/runs/trials.jsonl
+/runs/trials_summary.csv
+__pycache__/
+*.pyc

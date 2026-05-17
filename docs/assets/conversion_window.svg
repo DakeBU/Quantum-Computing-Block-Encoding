@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" role="img" aria-labelledby="title desc">
+  <title id="title">Lean LaTeX Markdown conversion window</title>
+  <desc id="desc">Three synchronized panes map paper notation to explanation and Lean declarations.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1120" height="440" fill="#f8fafc"/>
+  <text x="56" y="54" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" fill="#111827">Conversion Window</text>
+  <text x="56" y="84" font-family="Inter,Arial,sans-serif" font-size="15" fill="#475569">One artifact keeps paper notation, human reasoning, and Lean declarations synchronized.</text>
+
+  <rect x="56" y="128" width="300" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="84" y="162" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#0f172a">LaTeX pane</text>
+  <text x="84" y="194" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#334155">A, U, alpha, Pi</text>
+  <text x="84" y="220" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">Exact symbols from the paper.</text>
+  <text x="84" y="241" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">No implicit oracle is allowed</text>
+  <text x="84" y="262" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">to pass without a target.</text>
+
+  <rect x="410" y="128" width="300" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="438" y="162" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#0f172a">Markdown pane</text>
+  <text x="438" y="194" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">Explains construction choices,</text>
+  <text x="438" y="215" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">ancilla layout, normalization,</text>
+  <text x="438" y="236" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">and failed assumptions.</text>
+
+  <rect x="764" y="128" width="300" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="792" y="162" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#0f172a">Lean pane</text>
+  <text x="792" y="194" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#334155">def circuitMatrix</text>
+  <text x="792" y="215" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#334155">def BlockEncoding</text>
+  <text x="792" y="236" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#334155">example : ... := rfl</text>
+
+  <path d="M356 213 H398" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M710 213 H752" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="234" y="340" width="652" height="54" rx="8" fill="#ecfdf5" stroke="#86efac"/>
+  <text x="276" y="373" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#166534">Acceptance gate:</text>
+  <text x="430" y="373" font-family="ui-monospace,Menlo,monospace" font-size="15" fill="#166534">lake build &amp;&amp; lake build Tests</text>
+  <path d="M914 298 C914 326 886 340 858 350" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
