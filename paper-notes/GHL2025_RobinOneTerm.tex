@@ -94,8 +94,10 @@ The desired final theorem is the block extraction equation
   \frac{A_k}{N_D N_f \kappa}.
 \]
 At the current stage, Lean records the target matrix, circuit labels,
-normalizer, resource counts, and proof obligations.  The next backend target is
-to define the full matrix semantics of \(U\) and the block-projection map.
+normalizer, resource counts, proof obligations, and a circuit matrix
+semantics backend with gate-level placeholders and a block-extraction target.
+The next backend target is to replace the placeholder matrices with real
+oracle implementations.
 
 \subsection{Current Lean Correspondence}
 
@@ -125,6 +127,24 @@ tracked, unproved \\
 Circuit matrix semantics &
 \texttt{QuantumBlockEncoding.CircuitSemantics} &
 started \\
+Gate matrix placeholders &
+\texttt{GHL2025.oneTermRobinGateMatrixPlaceholders} &
+defined, unproved \\
+Block projection &
+\texttt{signalSystemBlockProjection} &
+defined \\
+Robin circuit matrix semantics &
+\texttt{Examples.RobinHeat.oneTermRobinCircuitSemantics} &
+defined, zero matrices \\
+Robin block extraction target &
+\texttt{Examples.RobinHeat.oneTermRobinBlockExtractionTarget} &
+defined, unproved \\
+Circuit block encoding claim &
+\texttt{CircuitBlockEncodingClaim} &
+defined \\
+Robin circuit block claim &
+\texttt{Examples.RobinHeat.oneTermRobinCircuitBlockClaim} &
+defined, unproved \\
 \hline
 \end{tabular}
 \end{center}
@@ -141,7 +161,7 @@ The most important remaining obligations are:
 \begin{enumerate}
   \item prove the labeled gate matrices are unitary;
   \item prove the composed circuit matrix equals the paper's \(U\);
-  \item define the signal/system block projection;
+  \item replace placeholder zero matrices with real oracle implementations;
   \item prove the extracted block is \(A_k/(N_DN_f\kappa)\);
   \item prove the resource formula including all internal oracle ancillas.
 \end{enumerate}

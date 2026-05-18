@@ -10,19 +10,19 @@ matrix-semantics backend needed by `QBE-AUTO-001`.
 
 ## LaTeX Input
 
-The GHL2025 Robin theorem ultimately requires a circuit matrix \(U\) such that
+The GHL2025 Robin theorem ultimately requires a circuit matrix $U$ such that
 
-\[
+$$
   (\langle 0^a| \otimes I) U (|0^a\rangle \otimes I)
   =
   \frac{A_k}{\alpha},
   \qquad
   \alpha = N_D N_f \kappa .
-\]
+$$
 
-The paper draws \(U\) as a composition of labeled gates and oracle calls:
+The paper draws $U$ as a composition of labeled gates and oracle calls:
 
-\[
+$$
   U
   =
   (O_D^{BS})^\dagger
@@ -32,7 +32,7 @@ The paper draws \(U\) as a composition of labeled gates and oracle calls:
   \cdot R_y^{\mathrm{boundary}}
   \cdot O_{D^T}^{S}
   \cdot U_{\mathrm{indic}}.
-\]
+$$
 
 The first semantics backend target is not to prove each oracle correct, but to
 give this product a Lean matrix object once each labeled gate has a matrix.
@@ -65,13 +65,30 @@ correctness is already solved.
 
 | LaTeX / paper object | Lean declaration | Type / role | Status |
 |---|---|---|---|
-| \(2^q\) Hilbert-space dimension | `qubitDim q` | `Nat` | defined |
-| Gate matrix \(U_g\) | `GateMatrix α q` | gate label + full-space matrix + unitary obligation | defined |
+| $2^q$ Hilbert-space dimension | `qubitDim q` | `Nat` | defined |
+| Gate matrix $U_g$ | `GateMatrix α q` | gate label + full-space matrix + unitary obligation | defined |
 | Gate/matrix alignment | `gateMatricesMatchCircuit` | `Circuit → List GateMatrix → Bool` | defined |
-| Matrix product \(U_k\cdots U_1\) | `evalGateMatrices` | folds gate matrices into a circuit matrix | defined |
+| Matrix product $U_k\cdots U_1$ | `evalGateMatrices` | folds gate matrices into a circuit matrix | defined |
 | Circuit semantics | `CircuitMatrixSemantics α q` | circuit + gate matrices + product matrix | defined |
 | Block extraction target | `BlockExtractionTarget α rows cols signalDim` | matrix-level statement container | defined |
 | Unproved semantic claim | `SemanticObligation` | description/source/proved bool | defined |
+| Block projection $(\langle 0^a| \otimes I)M(|0^a\rangle \otimes I)$ | `signalSystemBlockProjection` | extracts signal×system block | defined |
+| Total circuit qubits | `totalCircuitQubits` | system + signal qubit count | defined |
+| Circuit semantics builder | `CircuitMatrixSemantics.blockExtractionTarget` | builds BlockExtractionTarget from semantics | defined |
+| Total Robin circuit qubits | `GHL2025.oneTermRobinTotalQubits` | qubit count for the Robin layout | defined |
+| U_indic placeholder matrix | `GHL2025.oneTermRobinGate_U_indic` | GateMatrix with proved := false | defined |
+| O_DT^S placeholder matrix | `GHL2025.oneTermRobinGate_O_DT_S` | GateMatrix with proved := false | defined |
+| Ry_boundary placeholder matrix | `GHL2025.oneTermRobinGate_Ry_boundary` | GateMatrix with proved := false | defined |
+| O_D^BS placeholder matrix | `GHL2025.oneTermRobinGate_O_D_BS` | GateMatrix with proved := false | defined |
+| O_f placeholder matrix | `GHL2025.oneTermRobinGate_O_f` | GateMatrix with proved := false | defined |
+| SWAP placeholder matrix | `GHL2025.oneTermRobinGate_SWAP` | GateMatrix with proved := false | defined |
+| (O_D^BS)^† placeholder matrix | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | GateMatrix with proved := false | defined |
+| All 7 placeholders | `GHL2025.oneTermRobinGateMatrixPlaceholders` | List GateMatrix | defined |
+| Placeholder alignment theorem | `GHL2025.oneTermRobinPlaceholdersMatch` | gateMatricesMatchCircuit = true | proved |
+| Robin circuit semantics | `Examples.RobinHeat.oneTermRobinCircuitSemantics` | CircuitMatrixSemantics for the Robin circuit | defined |
+| Robin block extraction target | `Examples.RobinHeat.oneTermRobinBlockExtractionTarget` | BlockExtractionTarget with unproved obligations | defined |
+| Circuit block encoding claim | `CircuitBlockEncodingClaim` | Schema bundling semantics + target + dim proof + obligation | defined |
+| Robin circuit block claim | `Examples.RobinHeat.oneTermRobinCircuitBlockClaim` | CircuitBlockEncodingClaim for Robin, takes dim proof parameter | defined |
 
 ---
 
@@ -88,18 +105,34 @@ def evalGateMatrices
 structure CircuitMatrixSemantics
 def CircuitMatrixSemantics.ofGateMatrices
 structure BlockExtractionTarget
+def signalSystemBlockProjection
+def totalCircuitQubits
+def CircuitMatrixSemantics.blockExtractionTarget
+def GHL2025.oneTermRobinTotalQubits
+def GHL2025.oneTermRobinGate_U_indic
+def GHL2025.oneTermRobinGate_O_DT_S
+def GHL2025.oneTermRobinGate_Ry_boundary
+def GHL2025.oneTermRobinGate_O_D_BS
+def GHL2025.oneTermRobinGate_O_f
+def GHL2025.oneTermRobinGate_SWAP
+def GHL2025.oneTermRobinGate_O_D_BS_dagger
+def GHL2025.oneTermRobinGateMatrixPlaceholders
+theorem GHL2025.oneTermRobinPlaceholdersMatch
+def Examples.RobinHeat.oneTermRobinCircuitSemantics
+def Examples.RobinHeat.oneTermRobinBlockExtractionTarget
+structure CircuitBlockEncodingClaim
+def Examples.RobinHeat.oneTermRobinCircuitBlockClaim
 ```
 
-Next declarations should be small and checkable:
+Next declarations should fill in the actual oracle matrices:
 
 ```lean
--- Suggested next target:
-def signalSystemBlockIndex ...
-
--- Suggested GHL-specific bridge:
-def GHL2025.oneTermRobinGateMatrixPlaceholders ...
-def GHL2025.oneTermRobinCircuitSemantics ...
-def Examples.RobinHeat.oneTermRobinBlockExtractionTarget ...
+-- Replace placeholder matrices with real oracle implementations:
+def GHL2025.indicatorOracleMatrix ...
+def GHL2025.bandedSparseAccessMatrix ...
+def GHL2025.sparseAmplitudeOracleMatrix ...
+def GHL2025.functionOracleMatrix ...
+def GHL2025.boundaryRotationMatrix ...
 ```
 
 Do not fill these with fake proofs. If the matrix equality is not proved, store
@@ -109,15 +142,19 @@ it as `SemanticObligation` or `ObligationRecord` with `proved := false`.
 
 ## Proof Obligations
 
-- [ ] Define the signal/system block projection indexing convention.
-- [ ] Assign gate matrices to `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`,
-  `O_f`, `SWAP`, and `(O_D^BS)^†`.
+- [x] Define the signal/system block projection indexing convention.
+- [x] Define `CircuitBlockEncodingClaim` schema to bundle semantics + target.
+- [x] Wire Robin circuit semantics to block extraction target via `oneTermRobinCircuitBlockClaim`.
+- [ ] Prove dimension compatibility `clog2(gridSize n) = n` for general `n`.
+- [x] Assign gate matrices to `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`,
+  `O_f`, `SWAP`, and `(O_D^BS)^†` (as placeholders with `proved := false`).
 - [ ] Prove or explicitly track unitarity of each gate matrix.
-- [ ] Prove or explicitly track that the matrix product matches the paper
-  circuit order.
+- [x] Prove or explicitly track that the matrix product matches the paper
+  circuit order (placeholders match by construction, theorem proved).
 - [ ] Prove or explicitly track block correctness:
-  \( (\langle 0^a| \otimes I) U (|0^a\rangle \otimes I)=A_k/\alpha \).
-- [ ] Update `paper-notes/GHL2025_RobinOneTerm.tex` whenever the Lean semantics
+  $(\langle 0^a| \otimes I) U (|0^a\rangle \otimes I)=A_k/\alpha$.
+- [ ] Replace placeholder zero matrices with real oracle matrices.
+- [x] Update `paper-notes/GHL2025_RobinOneTerm.tex` whenever the Lean semantics
   statement changes.
 
 ---

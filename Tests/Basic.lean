@@ -526,3 +526,122 @@ example :
       { K1 := 2, K2 := gridSize 3 - 3, gridSize := gridSize 3, kappa := 5,
         normalizerND := Coeff.symbol "N_D",
         angles := [] }) = 25 := rfl
+
+-- Cycle QBE-AUTO-002: Circuit matrix semantics backend tests
+
+-- GHL2025.oneTermRobinTotalQubits: total qubits for concrete parameters
+-- n=3: clog2 8 + (clog2 3 + clog2 1 + clog2 7 + 4) = 3 + (2+0+3+4) = 12
+example :
+    GHL2025.oneTermRobinTotalQubits { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } = 12 := rfl
+
+-- Gate matrix placeholders: length = 7 (one per circuit gate)
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGateMatrixPlaceholders p).length = 7 := rfl
+
+-- Gate matrix placeholders: each gate matches the circuit label
+example (p : GHL2025.OneTermRobinParameters) :
+    gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
+  GHL2025.oneTermRobinPlaceholdersMatch p
+
+-- Gate matrix placeholders: U_indic has proved = false
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_U_indic p).unitary.proved = false := rfl
+
+-- Gate matrix placeholders: O_D^BS has proved = false
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false := rfl
+
+-- Gate matrix placeholders: SWAP has proved = false
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = false := rfl
+
+-- oneTermRobinCircuitSemantics: gate list matches the circuit
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinCircuitSemantics n).gateListMatches =
+      GHL2025.oneTermRobinPlaceholdersMatch (Examples.RobinHeat.oneTermParameters n) := rfl
+
+-- oneTermRobinCircuitSemantics: circuit is oneTermRobinCircuit
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinCircuitSemantics n).circuit = GHL2025.oneTermRobinCircuit := rfl
+
+-- oneTermRobinBlockExtractionTarget: target matrix is robinDerivativeMatrix
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).targetMatrix =
+      Examples.RobinHeat.robinDerivativeMatrix n := rfl
+
+-- oneTermRobinBlockExtractionTarget: normalizer is the symbolic N_D * N_f * kappa
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).normalizer =
+      GHL2025.oneTermRobinNormalizer := rfl
+
+-- oneTermRobinBlockExtractionTarget: blockCorrect obligation is unproved
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).blockCorrect.proved = false := rfl
+
+-- oneTermRobinBlockExtractionTarget: blockProjection obligation is unproved
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).blockProjection.proved = false := rfl
+
+-- oneTermRobinBlockExtractionTarget: signalIndex = 0
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).signalIndex.val = 0 := rfl
+
+-- signalSystemBlockProjection: on a 4x4 identity block with signalDim=2, rows=2, cols=2, index=0
+-- The identity matrix of size 4: M(i,j) = if i = j then 1 else 0
+-- Block at index 0: M(0,0), M(0,1), M(1,0), M(1,1) → diagonal block is identity 2x2
+example :
+    signalSystemBlockProjection 2 2 2
+      (fun i j : Fin 4 => if (i : Nat) = (j : Nat) then Coeff.rat 1 else Coeff.rat 0)
+      ⟨0, by decide⟩
+      ⟨0, by decide⟩ ⟨0, by decide⟩ =
+    Coeff.rat 1 := by native_decide
+
+-- signalSystemBlockProjection: diagonal block (0,0) → off-diagonal entry is 0
+example :
+    signalSystemBlockProjection 2 2 2
+      (fun i j : Fin 4 => if (i : Nat) = (j : Nat) then Coeff.rat 1 else Coeff.rat 0)
+      ⟨0, by decide⟩
+      ⟨0, by decide⟩ ⟨1, by decide⟩ =
+    Coeff.rat 0 := by native_decide
+
+-- signalSystemBlockProjection: block at index=1, diagonal entry (0,0) → M(2,2) = 1
+example :
+    signalSystemBlockProjection 2 2 2
+      (fun i j : Fin 4 => if (i : Nat) = (j : Nat) then Coeff.rat 1 else Coeff.rat 0)
+      ⟨1, by decide⟩
+      ⟨0, by decide⟩ ⟨0, by decide⟩ =
+    Coeff.rat 1 := by native_decide
+
+-- totalCircuitQubits: system=3, signal=9 → 12
+example : totalCircuitQubits 3 9 = 12 := rfl
+
+-- CircuitBlockEncodingClaim tests
+
+-- Dimension compatibility for n=3: 2^12 = 2^9 * 2^3
+example : qubitDim (GHL2025.oneTermRobinTotalQubits (Examples.RobinHeat.oneTermParameters 3)) =
+    qubitDim ((GHL2025.oneTermRobinLayout (Examples.RobinHeat.oneTermParameters 3)).signalQubits) *
+      gridSize 3 := by native_decide
+
+-- Dimension compatibility for n=4: 2^13 = 2^9 * 2^4 (clog2 4 = 2, signal = 2+0+3+4 = 9, total = 4+9 = 13)
+example : qubitDim (GHL2025.oneTermRobinTotalQubits (Examples.RobinHeat.oneTermParameters 4)) =
+    qubitDim ((GHL2025.oneTermRobinLayout (Examples.RobinHeat.oneTermParameters 4)).signalQubits) *
+      gridSize 4 := by native_decide
+
+-- CircuitBlockEncodingClaim: circuit matches oneTermRobinCircuit for n=3
+example :
+    (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 3 (by native_decide)).semantics.circuit =
+      GHL2025.oneTermRobinCircuit := rfl
+
+-- CircuitBlockEncodingClaim: target matrix matches robinDerivativeMatrix for n=3
+example :
+    (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 3 (by native_decide)).target.targetMatrix =
+      Examples.RobinHeat.robinDerivativeMatrix 3 := rfl
+
+-- CircuitBlockEncodingClaim: blockCorrect is unproved
+example :
+    (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 3 (by native_decide)).blockCorrect.proved = false := rfl
+
+-- CircuitBlockEncodingClaim: normalizer matches oneTermRobinNormalizer for n=3
+example :
+    (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 3 (by native_decide)).target.normalizer =
+      GHL2025.oneTermRobinNormalizer := rfl

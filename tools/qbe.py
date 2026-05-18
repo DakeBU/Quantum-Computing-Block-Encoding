@@ -886,6 +886,9 @@ Human-facing correspondence rule:
 - Lean compilation alone is not enough for faithful paper-reproduction mode;
   humans must be able to compare the Lean names with the original theorem,
   equations, normalizers, register layout, and resource statement.
+- In Markdown files, use `$...$` and `$$...$$` for math.  Do not use
+  `\\(...\\)` or `\\[...\\]` delimiters in `.md` files.  LaTeX `.tex` files
+  may use normal LaTeX delimiters.
 
 Shared dialogue board:
 

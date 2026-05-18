@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.Core
+import QuantumBlockEncoding.CircuitSemantics
 import QuantumBlockEncoding.Examples.RobinHeat
 
 /-!
@@ -223,6 +224,83 @@ def robinOracleComposition (n : Nat) : RobinOracleComposition n where
 /-- Default proof-obligation bundle for the one-term Robin construction.
 All obligations are unproved. main.tex:1131-1136 --/
 def robinProofObligations : GHL2025.RobinProofObligations := {}
+
+/-! ## Circuit matrix semantics bridge --/
+
+/--
+CircuitMatrixSemantics for the one-term Robin circuit using placeholder gate matrices.
+The full-space matrix is the product of the 7 placeholder gate matrices
+(which is currently the zero matrix since all placeholders return 0).
+figure:1_term_ROBIN --/
+def oneTermRobinCircuitSemantics (n : Nat) :
+    CircuitMatrixSemantics Coeff
+      (GHL2025.oneTermRobinTotalQubits (oneTermParameters n)) where
+  circuit := GHL2025.oneTermRobinCircuit
+  gateMatrices := GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters n)
+  gateListMatches := GHL2025.oneTermRobinPlaceholdersMatch (oneTermParameters n)
+  matrix := evalGateMatrices (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters n))
+  matrix_eq_eval := by intro _ _; rfl
+
+/--
+Block-extraction target for the Robin derivative block encoding.
+States that the `(0, 0)` block of the circuit matrix should equal
+`A_k / (N_D * N_f * kappa)`.
+
+The `signalDim` is `qubitDim signalQubits` where `signalQubits` comes from the
+register layout.  `systemDim` is `gridSize n`.
+figure:1_term_ROBIN, main.tex:1131-1136 --/
+def oneTermRobinBlockExtractionTarget (n : Nat) :
+    BlockExtractionTarget Coeff (gridSize n) (gridSize n)
+      (qubitDim (GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits) where
+  unitaryMatrix := fun _ _ => Coeff.rat 0
+  targetMatrix := robinDerivativeMatrix n
+  normalizer := GHL2025.oneTermRobinNormalizer
+  signalIndex := ⟨0, by
+    show (0 : Nat) < qubitDim (GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits
+    simp only [qubitDim, gridSize, oneTermParameters,
+      GHL2025.oneTermRobinLayout, clog2_one]
+    have : ∀ k : Nat, (0 : Nat) < 2 ^ k := by
+      intro k; induction k with
+      | zero => decide
+      | succ k _ => simp [Nat.pow_succ]; omega
+    exact this _⟩
+  blockMatrix := fun _ _ => Coeff.rat 0
+  blockProjection := {
+    description := "block projection for one-term Robin: signal register at index 0"
+    source := "main.tex:1131-1136, figure:1_term_ROBIN"
+    proved := false
+  }
+  blockCorrect := {
+    description := "extracted block = robinDerivativeMatrix n / (N_D * N_f * kappa)"
+    source := "main.tex:1131-1136, Theorem:1 term robin"
+    proved := false
+  }
+
+/--
+Circuit block encoding claim for the one-term Robin construction.
+Connects the circuit matrix semantics to the block extraction target
+and records the dimension compatibility as a parameter.
+
+The caller must supply `hDim` proving that the total circuit Hilbert space
+decomposes as signalDim × systemDim.  For concrete `n` (e.g. n = 3) this
+is provable by `native_decide`.
+figure:1_term_ROBIN, main.tex:1131-1136 --/
+def oneTermRobinCircuitBlockClaim (n : Nat)
+    (hDim : qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters n)) =
+      qubitDim ((GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits) *
+        gridSize n) :
+    CircuitBlockEncodingClaim Coeff
+      (GHL2025.oneTermRobinTotalQubits (oneTermParameters n))
+      (gridSize n)
+      (qubitDim ((GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits)) where
+  semantics := oneTermRobinCircuitSemantics n
+  target := oneTermRobinBlockExtractionTarget n
+  dimCompat := hDim
+  blockCorrect := {
+    description := "one-term Robin: block extraction = A_k / (N_D * N_f * kappa)"
+    source := "main.tex:1131-1136, Theorem:1 term robin"
+    proved := false
+  }
 
 end Examples.RobinHeat
 

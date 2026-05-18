@@ -106,4 +106,103 @@ structure BlockExtractionTarget (α : Type u) [OfNat α 0] [OfNat α 1]
   blockProjection : SemanticObligation
   blockCorrect : SemanticObligation
 
+/--
+A circuit-level block encoding claim bundling a circuit matrix semantics
+with a block extraction target and a dimension compatibility proof.
+
+The `blockCorrect` obligation tracks the main mathematical claim:
+(⟨signalIdx| ⊗ I) U (|signalIdx⟩ ⊗ I) = targetMatrix / normalizer.
+This does not assert the claim is true; it records what needs proving.
+-/
+structure CircuitBlockEncodingClaim (α : Type u) [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    (qubits : Nat) (dim signalDim : Nat) where
+  semantics : CircuitMatrixSemantics α qubits
+  target : BlockExtractionTarget α dim dim signalDim
+  dimCompat : qubitDim qubits = signalDim * dim
+  blockCorrect : SemanticObligation
+
+/--
+Block projection: extract the `(signalIdx, signalIdx)` block from a
+signal × system matrix.
+
+Given a matrix M of size `(signalDim * rows) × (signalDim * cols)`,
+`signalSystemBlockIndex signalDim dim idx` maps a pair `(i, j)` of
+system indices to the compound index in the full matrix that corresponds
+to signal register value `idx` and system indices `(i, j)`.
+
+The block `(⟨signalIdx| ⊗ I) M (|signalIdx⟩ ⊗ I)` is then:
+  blockMatrix i j = M (signalIdx * rows + i) (signalIdx * cols + j)
+-/
+def signalSystemBlockProjection {α : Type u} [OfNat α 0]
+    (signalDim rows cols : Nat)
+    (M : Matrix (signalDim * rows) (signalDim * cols) α)
+    (signalIdx : Fin signalDim) :
+    Matrix rows cols α :=
+  fun i j =>
+    have hRows : signalIdx.val * rows + i.val < signalDim * rows := by
+      have h1 := i.isLt
+      have h2 := signalIdx.isLt
+      exact Nat.lt_of_succ_le (by
+        show signalIdx.val * rows + i.val + 1 ≤ signalDim * rows
+        calc signalIdx.val * rows + i.val + 1
+            ≤ signalIdx.val * rows + rows := by omega
+          _ = (signalIdx.val + 1) * rows := by
+              exact Nat.succ_mul signalIdx.val rows |>.symm
+          _ ≤ signalDim * rows := by
+              exact Nat.mul_le_mul_right rows (Nat.succ_le_of_lt h2))
+    have hCols : signalIdx.val * cols + j.val < signalDim * cols := by
+      have h1 := j.isLt
+      have h2 := signalIdx.isLt
+      exact Nat.lt_of_succ_le (by
+        show signalIdx.val * cols + j.val + 1 ≤ signalDim * cols
+        calc signalIdx.val * cols + j.val + 1
+            ≤ signalIdx.val * cols + cols := by omega
+          _ = (signalIdx.val + 1) * cols := by
+              exact Nat.succ_mul signalIdx.val cols |>.symm
+          _ ≤ signalDim * cols := by
+              exact Nat.mul_le_mul_right cols (Nat.succ_le_of_lt h2))
+    M ⟨signalIdx.val * rows + i.val, hRows⟩
+      ⟨signalIdx.val * cols + j.val, hCols⟩
+
+/--
+Total qubits needed for a circuit operating on `system` system qubits
+and `signal` signal qubits.
+-/
+def totalCircuitQubits (system signal : Nat) : Nat :=
+  system + signal
+
+/--
+Build a BlockExtractionTarget from a CircuitMatrixSemantics by computing
+the block projection. The circuit matrix is square with dimension
+`signalDim * dim`, and we extract the `(signalIdx, signalIdx)` block.
+-/
+def CircuitMatrixSemantics.blockExtractionTarget
+    {α : Type u} [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    {qubits : Nat}
+    (sem : CircuitMatrixSemantics α qubits)
+    (dim signalDim : Nat)
+    (hDim : qubitDim qubits = signalDim * dim)
+    (targetMatrix : Matrix dim dim α)
+    (normalizer : α)
+    (signalIdx : Fin signalDim) :
+    BlockExtractionTarget α dim dim signalDim where
+  unitaryMatrix := cast (by rw [hDim]) sem.matrix
+  targetMatrix := targetMatrix
+  normalizer := normalizer
+  signalIndex := signalIdx
+  blockMatrix := signalSystemBlockProjection signalDim dim dim
+    (cast (by rw [hDim]) sem.matrix) signalIdx
+  blockProjection := {
+    description := "block projection extracts the correct signal×system submatrix"
+    source := "CircuitSemantics.lean"
+    proved := false
+  }
+  blockCorrect := {
+    description := "extracted block equals targetMatrix / normalizer"
+    source := "CircuitSemantics.lean"
+    proved := false
+  }
+
 end QuantumBlockEncoding

@@ -33,6 +33,11 @@ The point of faithful mode is not only to compile Lean, but to leave a readable
 Markdown/LaTeX trail that explains which paper formula each Lean declaration
 implements.
 
+Markdown math style is strict: use `$...$` for inline math and `$$...$$` for
+display math in `.md` files. Do not use backslash-parenthesis or
+backslash-bracket math delimiters in Markdown. The `.tex` proof map may use
+normal LaTeX delimiters.
+
 ## Current Starting Point
 
 `CircuitSemantics.lean` now provides:

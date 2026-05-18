@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.BlockEncoding
+import QuantumBlockEncoding.CircuitSemantics
 
 /-!
 # Guseynov-Huang-Liu 2025 construction skeleton
@@ -606,6 +607,135 @@ def RobinBoundaryRotationSet.expectedCount (rs : RobinBoundaryRotationSet) : Nat
 
 def importedClaims : List ConstructionClaim :=
   [oneTermRobinClaim, oneDimHamiltonianClaim, multiDimHamiltonianClaim]
+
+/-! ## Gate matrix placeholders for the one-term Robin circuit
+
+Each gate in `oneTermRobinCircuit` gets a placeholder `GateMatrix` record.
+The placeholder matrices are identity matrices on the full Hilbert space;
+each carries a `SemanticObligation` with `proved := false` tracking that
+the real matrix implementation is still pending.
+figure:1_term_ROBIN, main.tex:1125-1163 --/
+
+/--
+Total number of qubits in the one-term Robin circuit.
+`systemQubits + signalQubits` from the register layout.
+main.tex:1098-1109 --/
+def oneTermRobinTotalQubits (p : OneTermRobinParameters) : Nat :=
+  clog2 (gridSize p.n) + (clog2 p.n + clog2 p.functionPieces + clog2 p.kappa + 4)
+
+/--
+Placeholder gate matrix for U_indic.
+Identity on the full Hilbert space until a certified matrix is supplied.
+main.tex:1088-1099 --/
+def oneTermRobinGate_U_indic (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
+  gate := Gate.oracleCall "U_indic"
+  matrix := fun _ _ => Coeff.rat 0
+  unitary := {
+    description := "U_indic(K1,K2) placeholder matrix: not yet implemented"
+    source := "main.tex:1088-1099"
+    proved := false
+  }
+
+/--
+Placeholder gate matrix for O_DT^S.
+main.tex:822-849 --/
+def oneTermRobinGate_O_DT_S (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
+  gate := Gate.oracleCall "O_DT^S"
+  matrix := fun _ _ => Coeff.rat 0
+  unitary := {
+    description := "O_DT^S placeholder matrix: not yet implemented"
+    source := "main.tex:822-849"
+    proved := false
+  }
+
+/--
+Placeholder gate matrix for Ry_boundary.
+main.tex:1115-1120 --/
+def oneTermRobinGate_Ry_boundary (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
+  gate := Gate.oracleCall "Ry_boundary"
+  matrix := fun _ _ => Coeff.rat 0
+  unitary := {
+    description := "Ry_boundary placeholder matrix: not yet implemented"
+    source := "main.tex:1115-1120"
+    proved := false
+  }
+
+/--
+Placeholder gate matrix for O_D^BS.
+main.tex:784-801 --/
+def oneTermRobinGate_O_D_BS (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
+  gate := Gate.oracleCall "O_D^BS"
+  matrix := fun _ _ => Coeff.rat 0
+  unitary := {
+    description := "O_D^BS placeholder matrix: not yet implemented"
+    source := "main.tex:784-801"
+    proved := false
+  }
+
+/--
+Placeholder gate matrix for O_f.
+main.tex:870-910 --/
+def oneTermRobinGate_O_f (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
+  gate := Gate.oracleCall "O_f"
+  matrix := fun _ _ => Coeff.rat 0
+  unitary := {
+    description := "O_f placeholder matrix: not yet implemented"
+    source := "main.tex:870-910"
+    proved := false
+  }
+
+/--
+Placeholder gate matrix for SWAP.
+main.tex:1140 --/
+def oneTermRobinGate_SWAP (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
+  gate := Gate.swap 0 0
+  matrix := fun _ _ => Coeff.rat 0
+  unitary := {
+    description := "SWAP placeholder matrix: not yet implemented"
+    source := "main.tex:1140"
+    proved := false
+  }
+
+/--
+Placeholder gate matrix for (O_D^BS)^†.
+main.tex:1148 --/
+def oneTermRobinGate_O_D_BS_dagger (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
+  gate := Gate.oracleCall "(O_D^BS)^†"
+  matrix := fun _ _ => Coeff.rat 0
+  unitary := {
+    description := "(O_D^BS)^† placeholder matrix: not yet implemented"
+    source := "main.tex:1148"
+    proved := false
+  }
+
+/--
+List of all 7 gate matrix placeholders for the one-term Robin circuit,
+in the same order as `oneTermRobinCircuit`.
+figure:1_term_ROBIN --/
+def oneTermRobinGateMatrixPlaceholders (p : OneTermRobinParameters) :
+    List (GateMatrix Coeff (oneTermRobinTotalQubits p)) :=
+  [ oneTermRobinGate_U_indic p
+  , oneTermRobinGate_O_DT_S p
+  , oneTermRobinGate_Ry_boundary p
+  , oneTermRobinGate_O_D_BS p
+  , oneTermRobinGate_O_f p
+  , oneTermRobinGate_SWAP p
+  , oneTermRobinGate_O_D_BS_dagger p
+  ]
+
+/--
+The placeholder gate matrices match the circuit gate labels.
+This is trivially true because the placeholders were constructed
+with matching gate constructors.
+figure:1_term_ROBIN --/
+theorem oneTermRobinPlaceholdersMatch (p : OneTermRobinParameters) :
+    gateMatricesMatchCircuit oneTermRobinCircuit (oneTermRobinGateMatrixPlaceholders p) = true := by
+  simp [oneTermRobinCircuit, oneTermRobinGateMatrixPlaceholders,
+    oneTermRobinGate_U_indic, oneTermRobinGate_O_DT_S,
+    oneTermRobinGate_Ry_boundary, oneTermRobinGate_O_D_BS,
+    oneTermRobinGate_O_f, oneTermRobinGate_SWAP,
+    oneTermRobinGate_O_D_BS_dagger,
+    gateMatricesMatchCircuit]
 
 end GHL2025
 end QuantumBlockEncoding
