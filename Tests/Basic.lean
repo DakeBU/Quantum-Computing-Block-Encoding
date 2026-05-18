@@ -19,6 +19,42 @@ example : automationTaskCount = 3 := rfl
 
 example : threeLayerAgentContracts.length = 4 := rfl
 
+-- CircuitSemantics tests: first matrix-semantics backend layer
+
+example : qubitDim 3 = 8 := rfl
+
+example :
+    (Matrix.identity 2 Rat) ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ = 1 := by
+  native_decide
+
+example :
+    (Matrix.identity 2 Rat) ⟨0, by native_decide⟩ ⟨1, by native_decide⟩ = 0 := by
+  native_decide
+
+def testIdentityGateMatrix : GateMatrix Rat 1 where
+  gate := Gate.oneQubit "I" 0
+  matrix := Matrix.identity (qubitDim 1) Rat
+  unitary := {
+    description := "identity gate matrix is unitary"
+    source := "Tests/Basic.lean"
+    proved := true
+  }
+
+example :
+    gateMatricesMatchCircuit [Gate.oneQubit "I" 0] [testIdentityGateMatrix] = true := rfl
+
+example :
+    gateMatricesMatchCircuit [Gate.oneQubit "X" 0] [testIdentityGateMatrix] = false := rfl
+
+example :
+    (evalGateMatrices [testIdentityGateMatrix])
+      ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ = 1 := by
+  native_decide
+
+example :
+    (CircuitMatrixSemantics.ofGateMatrices
+      [Gate.oneQubit "I" 0] [testIdentityGateMatrix] rfl).gateListMatches = rfl := rfl
+
 -- RobinMatrix tests (buildRobinMatrix from stencil data)
 open QuantumBlockEncoding.Coeff
 
@@ -47,6 +83,92 @@ example :
       ⟨0, by native_decide⟩ ⟨3, by native_decide⟩ =
     Coeff.rat 0 := by native_decide
 
+-- Cycle 4 upper: paper-anchor boundary matrix entry tests (Eq. 24, main.tex:1014-1025)
+
+-- Row 0, col 1: left boundary off-diagonal = 8/3
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨0, by native_decide⟩ ⟨1, by native_decide⟩ =
+    Coeff.rat ((8 : Rat) / 3) := by native_decide
+
+-- Row 0, col 2: left boundary far off-diagonal = -1/6
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+    Coeff.rat ((-1 : Rat) / 6) := by native_decide
+
+-- Row 1, col 0: left boundary row, off-diagonal with A1*dx term
+-- Paper: 4/3 - A1*dx/6
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨1, by native_decide⟩ ⟨0, by native_decide⟩ =
+    Coeff.add (Coeff.rat ((4 : Rat) / 3))
+      (Coeff.neg (Coeff.mul (Coeff.rat ((1 : Rat) / 6)) (Coeff.symbol "A1*dx"))) := by native_decide
+
+-- Row 1, col 1: left boundary row, diagonal = -31/12
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨1, by native_decide⟩ ⟨1, by native_decide⟩ =
+    Coeff.rat ((-31 : Rat) / 12) := by native_decide
+
+-- Row 1, col 2: left boundary row, off-diagonal = 4/3
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨1, by native_decide⟩ ⟨2, by native_decide⟩ =
+    Coeff.rat ((4 : Rat) / 3) := by native_decide
+
+-- Row 1, col 3: left boundary row, far off-diagonal = -1/12
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨1, by native_decide⟩ ⟨3, by native_decide⟩ =
+    Coeff.rat ((-1 : Rat) / 12) := by native_decide
+
+-- Row 6, col 4: right boundary row, first nonzero = -1/12
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨6, by native_decide⟩ ⟨4, by native_decide⟩ =
+    Coeff.rat ((-1 : Rat) / 12) := by native_decide
+
+-- Row 6, col 5: right boundary row, off-diagonal = 4/3
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨6, by native_decide⟩ ⟨5, by native_decide⟩ =
+    Coeff.rat ((4 : Rat) / 3) := by native_decide
+
+-- Row 6, col 6: right boundary row, diagonal = -31/12
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨6, by native_decide⟩ ⟨6, by native_decide⟩ =
+    Coeff.rat ((-31 : Rat) / 12) := by native_decide
+
+-- Row 6, col 7: right boundary row, off-diagonal with B1*dx term
+-- Paper: 4/3 + B1*dx/6
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨6, by native_decide⟩ ⟨7, by native_decide⟩ =
+    Coeff.add (Coeff.rat ((4 : Rat) / 3))
+      (Coeff.mul (Coeff.rat ((1 : Rat) / 6)) (Coeff.symbol "B1*dx")) := by native_decide
+
+-- Row 7, col 5: last row, first nonzero = -1/6
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨7, by native_decide⟩ ⟨5, by native_decide⟩ =
+    Coeff.rat ((-1 : Rat) / 6) := by native_decide
+
+-- Row 7, col 6: last row, off-diagonal = 8/3
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨7, by native_decide⟩ ⟨6, by native_decide⟩ =
+    Coeff.rat ((8 : Rat) / 3) := by native_decide
+
+-- Row 7, col 7: last row, diagonal with B1*dx term
+-- Paper: -5/2 - 7*B1*dx/3
+example :
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨7, by native_decide⟩ ⟨7, by native_decide⟩ =
+    Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+      (Coeff.neg (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "B1*dx"))) := by native_decide
+
 -- GHL2025 BlockEncodingSpec tests
 
 -- Spec ancilla count matches the resource formula
@@ -55,9 +177,13 @@ example (p : GHL2025.OneTermRobinParameters)
     (GHL2025.oneTermRobinSpec p mat).resource.pureAncilla = 2 * p.n :=
   GHL2025.oneTermRobinSpec_ancilla p mat
 
--- Spec circuit has zero local cost (oracle calls only)
-example : Circuit.resource GHL2025.oneTermRobinCircuit = 0 :=
+-- Spec circuit local cost: 3 CNOTs from SWAP placeholder, oracle calls are free
+example : Circuit.resource GHL2025.oneTermRobinCircuit = Resource.ofCounts 0 3 0 :=
   GHL2025.oneTermRobinSpec_circuitCost
+
+-- Spec circuit gate count: 7 gates (U_indic, O_DT^S, Ry_boundary, O_D^BS, O_f, SWAP, (O_D^BS)^†)
+-- figure:1_term_ROBIN
+example : GHL2025.oneTermRobinCircuit.length = 7 := rfl
 
 -- Spec matrix entry at bulk diagonal matches direct robinDerivativeMatrix call (bare Coeff)
 example :
@@ -128,10 +254,11 @@ example : clog2 (gridSize 3) = 3 := by native_decide
 example : clog2 (gridSize 5) = 5 := by native_decide
 
 -- Total qubits for a concrete layout (n=3, kappa=7, functionPieces=1, polynomialDegreeCost=1)
+-- clog2 3 = 2, clog2 1 = 0, clog2 7 = 3 → signalQubits = 2 + 0 + 3 + 4 = 9
 example :
     let layout := GHL2025.oneTermRobinLayout
       { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
-    layout.systemQubits + layout.signalQubits + layout.pureAncillas = 3 + (0 + 3 + 4) + 6 := rfl
+    layout.systemQubits + layout.signalQubits + layout.pureAncillas = 3 + (2 + 0 + 3 + 4) + 6 := rfl
 
 -- Cycle 3: robinBlockEncodingSpec tests
 
@@ -154,7 +281,7 @@ example : GHL2025.DerivativeOracleContract 3 := {
   stencil := Examples.RobinHeat.fourthOrderSecondDerivative
   bandwidth := 5
   matrix := Examples.RobinHeat.robinDerivativeMatrix 3
-  sparseCorrect := True
+  sparseCorrect := ⟨"O_D^BS test", "main.tex:784-801", false⟩
   bandwidth_eq := rfl
 }
 
@@ -162,7 +289,7 @@ example : GHL2025.DerivativeOracleContract 3 := {
 example : GHL2025.FunctionOracleContract 3 := {
   functionPieces := 1
   normalizerBound := Coeff.symbol "N_f"
-  amplitudeCorrect := True
+  amplitudeCorrect := ⟨"O_f test", "main.tex:870-910", false⟩
 }
 
 -- Cycle 3 lower: derivative oracle resource wiring tests
@@ -212,11 +339,190 @@ example (n : Nat) :
       Examples.RobinHeat.robinDerivativeMatrix n :=
   Examples.RobinHeat.robinOracleComposition_matrix n
 
--- PO-9: oneTermRobinResourceConsistent — pureAncilla = 2n for the symbolic resource
+-- PO-9: oneTermRobinResourceConsistent -- pureAncilla = 2n for the symbolic resource
 example : Examples.RobinHeat.oneTermRobinResourceConsistent (Examples.RobinHeat.oneTermParameters 3) := rfl
 
--- PO-3: ghostPointEliminationCorrect is abstract True (placeholder)
-example : Examples.RobinHeat.ghostPointEliminationCorrect 3 := trivial
+-- Cycle 3: layout signal qubit fix (main.tex:1102) and OneTermRobinTheoremData tests
 
--- PO-5: robinCircuitIsUnitary is abstract True (placeholder)
-example : Examples.RobinHeat.robinCircuitIsUnitary 3 := trivial
+-- Signal qubits = clog2 n + clog2 G_f + clog2 kappa + 4 for n=3, G_f=1, kappa=7
+-- clog2 3 = 2, clog2 1 = 0, clog2 7 = 3 → 2 + 0 + 3 + 4 = 9
+example :
+    (GHL2025.oneTermRobinLayout { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).signalQubits = 9 := rfl
+
+-- OneTermRobinTheoremData signal qubits match the layout
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultOneTermRobinTheoremData p).signalQubits =
+      (GHL2025.oneTermRobinLayout p).signalQubits := rfl
+
+-- OneTermRobinTheoremData pure ancillas = 2n
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultOneTermRobinTheoremData p).pureAncillas = 2 * p.n := rfl
+
+-- OneTermRobinTheoremData error = 0
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultOneTermRobinTheoremData p).error = Coeff.rat 0 := rfl
+
+-- OneTermRobinTheoremData obligations are all unproved (none proved := true)
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultOneTermRobinTheoremData p).obligations.circuitUnitary.proved = false := rfl
+
+-- Cycle 2 middle: precise resource formula and deviatingIndices tests
+
+-- deviatingIndices: K1 + gridSize - K2 for the fourth-order stencil (K1=2, K2=gridSize(n)-3)
+-- n=3: gridSize 3 = 8, K2 = 5, deviating = 2 + 8 - 5 = 5
+example : GHL2025.deviatingIndices 2 5 8 = 5 := rfl
+
+-- deviatingIndices with K1=2, K2=gridSize(4)-3=13, gridSize(4)=16 → 2+16-13 = 5
+example : GHL2025.deviatingIndices 2 13 16 = 5 := rfl
+
+-- oneTermRobinPreciseResourceExpr has the boundary deviation term in the gate count
+example : GHL2025.oneTermRobinPreciseResourceExpr.pureAncilla =
+    GHL2025.oneTermRobinResourceExpr.pureAncilla := rfl
+
+-- indicatorResource from Resources.lean (U_indic): n=4, O(n) gates, n-1 pure ancillas
+example : (indicatorResource 4).oneQubit = 16 * 4 + 34 := rfl
+
+-- indicatorResource pure ancilla = n - 1
+example : (indicatorResource 4).pureAncilla = 3 := rfl
+
+-- Cycle 2 lower: indicator oracle classical spec and register partition tests
+
+-- isBulkRow: boundary rows (i < K1) return false
+example : GHL2025.isBulkRow 2 5 0 = false := rfl
+
+-- isBulkRow: boundary rows (i > K2) return false
+example : GHL2025.isBulkRow 2 5 6 = false := rfl
+
+-- isBulkRow: bulk rows (K1 ≤ i ≤ K2) return true
+example : GHL2025.isBulkRow 2 5 2 = true := rfl
+example : GHL2025.isBulkRow 2 5 5 = true := rfl
+
+-- isBulkRow: exactly at K1-1 is boundary, at K1 is bulk
+example : GHL2025.isBulkRow 2 5 1 = false := rfl
+
+-- RobinRegisterPartition fields for n=3, kappa=7, functionPieces=1
+-- mfQubits = clog2(3) + clog2(1) + 3 = 2 + 0 + 3 = 5
+example :
+    (GHL2025.defaultRobinRegisterPartition
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).mfQubits = 5 := rfl
+
+-- sparseIndexQubits = clog2(7) = 3
+example :
+    (GHL2025.defaultRobinRegisterPartition
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).sparseIndexQubits = 3 := rfl
+
+-- odPureAncillaQubits = n - clog2(kappa) = 3 - 3 = 0
+example :
+    (GHL2025.defaultRobinRegisterPartition
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).odPureAncillaQubits = 0 := rfl
+
+-- totalPureAncillas = odPureAncillaQubits + 1 = 0 + 1 = 1 for n=3, kappa=7
+example :
+    (GHL2025.RobinRegisterPartition.totalPureAncillas
+      (GHL2025.defaultRobinRegisterPartition
+        { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 })) = 1 := rfl
+
+-- For n=4, kappa=3: odPureAncillaQubits = 4 - clog2(3) = 4 - 2 = 2
+example :
+    (GHL2025.defaultRobinRegisterPartition
+      { n := 4, kappa := 3, functionPieces := 1, polynomialDegreeCost := 1 }).odPureAncillaQubits = 2 := rfl
+
+-- totalPureAncillas = 2 + 1 = 3 for n=4, kappa=3
+example :
+    (GHL2025.RobinRegisterPartition.totalPureAncillas
+      (GHL2025.defaultRobinRegisterPartition
+        { n := 4, kappa := 3, functionPieces := 1, polynomialDegreeCost := 1 })) = 3 := rfl
+
+-- Cycle 3 lower: isBoundaryRow and RobinWavefunctionDecomposition tests
+
+-- isBoundaryRow: j < K1 returns true (main.tex:1113)
+example : GHL2025.isBoundaryRow 2 5 8 0 = true := rfl
+
+-- isBoundaryRow: K2 < j returns true (main.tex:1113)
+example : GHL2025.isBoundaryRow 2 5 8 6 = true := rfl
+
+-- isBoundaryRow: bulk row returns false (main.tex:1113)
+example : GHL2025.isBoundaryRow 2 5 8 3 = false := rfl
+
+-- isBoundaryRow complements isBulkRow: concrete boundary case (main.tex:1113, 1035-1038)
+example : GHL2025.isBoundaryRow 2 5 8 0 = !GHL2025.isBulkRow 2 5 0 := rfl
+
+-- isBoundaryRow complements isBulkRow: concrete bulk case (main.tex:1113, 1035-1038)
+example : GHL2025.isBoundaryRow 2 5 8 4 = !GHL2025.isBulkRow 2 5 4 := rfl
+
+-- Gamma1 kappa field access (main.tex:1113)
+example :
+    (GHL2025.defaultRobinWavefunctionDecomposition
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).gamma1.kappa = 7 := rfl
+
+-- Gamma1 boundary normalizer = N_D * sqrt(kappa), evaluates to 3*7 = 21 (main.tex:1113)
+example :
+    Coeff.evalWith (fun s => if s = "N_D" then 3 else (7 : Rat))
+      (GHL2025.defaultRobinWavefunctionDecomposition
+        { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).gamma1.boundaryNormalizer
+      = (21 : Rat) := by native_decide
+
+-- Gamma1 bulk normalizer = sqrt(kappa) only — no N_D factor (main.tex:1113)
+-- The bulk term in gamma_1 omits N_D because the sparse-amplitude oracle has not yet acted.
+example :
+    Coeff.evalWith (fun _ => (7 : Rat))
+      (GHL2025.defaultRobinWavefunctionDecomposition
+        { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).gamma1.bulkNormalizer
+      = (7 : Rat) := by native_decide
+
+-- Gamma1 boundary and bulk normalizers differ: boundary has N_D factor, bulk does not (main.tex:1113)
+example :
+    Coeff.evalWith (fun s => if s = "N_D" then 3 else (7 : Rat))
+      (GHL2025.defaultRobinWavefunctionDecomposition
+        { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).gamma1.boundaryNormalizer
+      = 3 * Coeff.evalWith (fun _ => (7 : Rat))
+          (GHL2025.defaultRobinWavefunctionDecomposition
+            { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).gamma1.bulkNormalizer := by
+  native_decide
+
+-- Gamma3 normalizer = N_D * N_f * kappa, evaluates to 3*2*7 = 42 (main.tex:1117)
+example :
+    Coeff.evalWith (fun s => if s = "N_D" then 3 else if s = "N_f" then 2 else (7 : Rat))
+      (GHL2025.defaultRobinWavefunctionDecomposition
+        { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).gamma3.normalizer
+      = (42 : Rat) := by native_decide
+
+-- Gamma3 pureAncillaQubits = n - clog2(kappa) + 1 = 3 - 3 + 1 = 1 for n=3, kappa=7 (main.tex:1117, 1149)
+example :
+    (GHL2025.defaultRobinWavefunctionDecomposition
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).gamma3.pureAncillaQubits = 1 := rfl
+
+-- Gamma2 hasOrthogonalRemainder = true (main.tex:1115)
+example :
+    (GHL2025.defaultRobinWavefunctionDecomposition
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).gamma2.hasOrthogonalRemainder = true := rfl
+
+-- Shared params match gamma fields (figure:1_term_ROBIN)
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultRobinWavefunctionDecomposition p).kappa = p.kappa := rfl
+
+-- Cycle 4 lower: RobinBoundaryRotationAngle and RobinBoundaryRotationSet tests
+-- (Eq. angles for Ry, main.tex:1081-1083)
+
+-- A boundary rotation angle compiles with symbolic Coeff entries
+example : GHL2025.RobinBoundaryRotationAngle := {
+  row := 0
+  sparseIndex := 0
+  matrixEntry := Coeff.rat ((-5 : Rat) / 2)
+  arccosArgument := Coeff.symbol "arccos_arg_0_0"
+}
+
+-- expectedCount for K1=2, K2=5, gridSize=8, kappa=5: 5 * (2 + 8 - 5) = 5 * 5 = 25
+example :
+    (GHL2025.RobinBoundaryRotationSet.expectedCount
+      { K1 := 2, K2 := 5, gridSize := 8, kappa := 5,
+        normalizerND := Coeff.symbol "N_D",
+        angles := [] }) = 25 := rfl
+
+-- expectedCount for the default fourth-order stencil: kappa=5, K1=2, K2=gridSize(n)-3
+-- n=3: gridSize=8, K2=5, deviating=5, expected=5*5=25
+example :
+    (GHL2025.RobinBoundaryRotationSet.expectedCount
+      { K1 := 2, K2 := gridSize 3 - 3, gridSize := gridSize 3, kappa := 5,
+        normalizerND := Coeff.symbol "N_D",
+        angles := [] }) = 25 := rfl

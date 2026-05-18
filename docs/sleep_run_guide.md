@@ -81,6 +81,36 @@ python3 tools/qbe.py sleep-run QBE-AUTO-001 \
 Use your own agent CLI flags. The only QBE-side expectation is that the command
 returns success or failure and leaves artifacts in the repository.
 
+## Faithful GHL2025 Semantics Run
+
+After the first faithful skeleton pass, the active infrastructure target is
+`QBE-AUTO-002`: the circuit matrix semantics backend needed to finish the
+GHL2025 Robin block-extraction proof statement.
+
+Run one small dry-run first:
+
+```bash
+python3 tools/qbe.py sleep-run QBE-AUTO-002 --cycles 1 --lower-count 1 --dry-run
+```
+
+Then start a Claude-only unattended run:
+
+```bash
+mkdir -p runs/logs
+nohup bash -lc '
+python3 tools/qbe.py sleep-run QBE-AUTO-002 \
+  --cycles 4 \
+  --lower-count 1 \
+  --agent-cmd '"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
+  --execute \
+  --check-each-cycle
+' > runs/logs/claude-qbe-auto-002-$(date +%Y%m%d-%H%M%S).log 2>&1 &
+```
+
+This mode is intentionally conservative: one lower worker per cycle, no
+exploratory block-encoding invention, and every Lean change must be mirrored in
+the conversion window, LaTeX proof map, or proof-obligation ledger.
+
 ## Overnight Checklist
 
 Before starting:

@@ -14,6 +14,32 @@ namespace QuantumBlockEncoding
 /-- A finite matrix represented by its entries. -/
 abbrev Matrix (rows cols : Nat) (α : Type u) := Fin rows -> Fin cols -> α
 
+namespace Matrix
+
+/-- Pointwise equality for finite matrices. -/
+def PointwiseEq {rows cols : Nat} {α : Type u}
+    (a b : Matrix rows cols α) : Prop :=
+  ∀ i j, a i j = b i j
+
+/-- The zero finite matrix. -/
+def zero (rows cols : Nat) (α : Type u) [OfNat α 0] : Matrix rows cols α :=
+  fun _ _ => 0
+
+/-- The identity finite matrix. -/
+def identity (n : Nat) (α : Type u) [OfNat α 0] [OfNat α 1] :
+    Matrix n n α :=
+  fun i j => if i = j then 1 else 0
+
+/-- Finite matrix multiplication with the project-local `Matrix` representation. -/
+def mul {rows mid cols : Nat} {α : Type u}
+    [OfNat α 0] [HAdd α α α] [HMul α α α]
+    (a : Matrix rows mid α) (b : Matrix mid cols α) :
+    Matrix rows cols α :=
+  fun i j =>
+    (List.finRange mid).foldl (fun acc k => acc + a i k * b k j) 0
+
+end Matrix
+
 /-- Number of grid points in an `n`-qubit register. -/
 def gridSize (n : Nat) : Nat := 2 ^ n
 

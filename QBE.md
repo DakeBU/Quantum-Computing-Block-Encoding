@@ -2,9 +2,9 @@
 
 ## Status
 
-- Active task: none
+- Active task: `QBE-AUTO-002`
 - Build gate: run `python3 tools/qbe.py check`
-- Primary target: Guseynov-Huang-Liu Robin block encoding skeleton
+- Primary target: Guseynov-Huang-Liu Robin block encoding, now moving from faithful skeleton to circuit matrix semantics.
 
 ## Operating Rule
 
@@ -24,6 +24,12 @@ succeeds.
 4. Log attempts with `python3 tools/qbe.py trial-log ...`.
 5. Read `docs/agent_orchestration.md`, `docs/sleep_run_guide.md`, and
    `docs/article_to_lean_workflow.md`.
+
+Faithful paper-reproduction mode must keep three views synchronized:
+
+- Lean source in `QuantumBlockEncoding/`
+- Markdown conversion windows in `conversion-windows/`
+- LaTeX proof maps in `paper-notes/`
 
 ## Automation Memory
 

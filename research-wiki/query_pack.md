@@ -5,8 +5,10 @@ session.
 
 ## Current Focus
 
-- Finish primary target skeleton into concrete Lean semantics.
-- Use `QBE-AUTO-001` as the first multi-agent proof-search target.
+- Finish the GHL2025 Robin target from faithful skeleton into concrete Lean
+  circuit matrix semantics.
+- Use `QBE-AUTO-002` for the semantics backend, then return to `QBE-AUTO-001`
+  to close the Robin block-extraction statement.
 
 ## Important Constraints
 
@@ -14,6 +16,8 @@ session.
 - New open problems need Lean-checkable acceptance tests.
 - Trial results go to `runs/trials.jsonl` and `runs/trials_summary.csv`.
 - Upper/middle/lower/reviewer agents coordinate through `runs/<run-id>/dialogue.md`.
+- Faithful paper mode must update Lean, Markdown conversion windows, and LaTeX
+  proof maps together.
 
 ## Key Docs
 

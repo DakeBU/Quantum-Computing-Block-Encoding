@@ -1,6 +1,7 @@
 import QuantumBlockEncoding.Automation
 import QuantumBlockEncoding.BlockEncoding
 import QuantumBlockEncoding.Circuit
+import QuantumBlockEncoding.CircuitSemantics
 import QuantumBlockEncoding.Core
 import QuantumBlockEncoding.Examples.RobinHeat
 import QuantumBlockEncoding.GHL2025

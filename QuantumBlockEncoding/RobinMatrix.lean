@@ -156,17 +156,6 @@ def robinDerivativeOracleResource (n : Nat) : Resource :=
 
 /-! ## Cycle 4: Named proof-obligation Props and oracle composition -/
 
-/-- PO-3: Ghost-point elimination correctness.
-Abstract Prop — states that eliminating ghost points via the Robin relation
-yields the correct boundary row coefficients. To be refined when algebraic
-simplification over `Coeff` is available. -/
-def ghostPointEliminationCorrect (_n : Nat) : Prop := True
-
-/-- PO-5: The candidate one-term Robin circuit is unitary.
-Abstract Prop — to be refined when unitary matrix semantics are added to the
-Circuit IR. -/
-def robinCircuitIsUnitary (_n : Nat) : Prop := True
-
 /-- PO-6: Block-extraction equation for the Robin derivative block encoding.
 Records the structural preconditions that are checkable now (normalizer bound,
 ancilla count, zero error) and reserves the full equation
@@ -184,20 +173,12 @@ def robinResourceBoundHolds (n : Nat) : Prop :=
   (robinBlockEncodingSpec n).resource.gates ≤
     (oneTermParameters n).polynomialDegreeCost * n * clog2 n + (oneTermParameters n).kappa * n
 
-/-- PO-8: The symbolic resource expression matches the paper's gate-count formula.
-Meta-level claim tracked in the conversion window; stated as abstract Prop. -/
-def oneTermRobinResourceExprMatchesPaper : Prop := True
-
 /-- PO-9: The concrete resource is consistent with the symbolic expression.
 Checks the decidable part: pureAncilla = 2n. -/
 def oneTermRobinResourceConsistent (p : GHL2025.OneTermRobinParameters) : Prop :=
   (GHL2025.oneTermRobinResource p).pureAncilla = 2 * p.n
 
-/-- PO-10: Pure ancilla cleanup — the 2n ancillas are returned to |0⟩ after the
-circuit. Abstract Prop, to be refined when circuit state semantics are available. -/
-def robinAncillaCleanupHolds (_n : Nat) : Prop := True
-
-/-- Bundle of oracle contracts and LCU composition Prop for the one-term Robin
+/-- Bundle of oracle contracts and LCU composition obligation for the one-term Robin
 construction. Contains:
 - derivative oracle O_D (sparse-access for the banded stencil matrix),
 - function oracle O_f (amplitude oracle for the coefficient function),
@@ -206,7 +187,9 @@ construction. Contains:
 structure RobinOracleComposition (n : Nat) where
   derivativeOracle : GHL2025.DerivativeOracleContract n
   functionOracle : GHL2025.FunctionOracleContract n
-  lcuCorrect : Prop
+  /-- Obligation: LCU composition of oracle calls yields the correct linear combination.
+  figure:1_term_ROBIN, main.tex:1131-1136 --/
+  lcuCorrect : GHL2025.ObligationRecord
   matrixCoherence : derivativeOracle.matrix = robinDerivativeMatrix n
 
 /-- PO-13/14/15: Concrete oracle composition for the Robin derivative block encoding.
@@ -217,15 +200,15 @@ def robinOracleComposition (n : Nat) : RobinOracleComposition n where
     stencil := fourthOrderSecondDerivative
     bandwidth := 5
     matrix := robinDerivativeMatrix n
-    sparseCorrect := True
+    sparseCorrect := ⟨"O_D^BS for fourth-order Robin stencil", "main.tex:784-801", false⟩
     bandwidth_eq := rfl
   }
   functionOracle := {
     functionPieces := 1
     normalizerBound := Coeff.symbol "N_f"
-    amplitudeCorrect := True
+    amplitudeCorrect := ⟨"O_f for single-piece function", "main.tex:870-910", false⟩
   }
-  lcuCorrect := True
+  lcuCorrect := ⟨"LCU composition for one-term Robin", "main.tex:1131-1136", false⟩
   matrixCoherence := rfl
 
 @[simp] theorem robinOracleComposition_bandwidth (n : Nat) :
@@ -236,6 +219,10 @@ def robinOracleComposition (n : Nat) : RobinOracleComposition n where
 
 @[simp] theorem robinOracleComposition_matrix (n : Nat) :
     (robinOracleComposition n).derivativeOracle.matrix = robinDerivativeMatrix n := rfl
+
+/-- Default proof-obligation bundle for the one-term Robin construction.
+All obligations are unproved. main.tex:1131-1136 --/
+def robinProofObligations : GHL2025.RobinProofObligations := {}
 
 end Examples.RobinHeat
 

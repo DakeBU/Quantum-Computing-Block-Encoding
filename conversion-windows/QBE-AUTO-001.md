@@ -2,7 +2,7 @@
 
 Task id: `QBE-AUTO-001`
 Created: `2026-05-17 18:16:00`
-Last updated: `2026-05-18 (cycle 4, middle formalizer — named PO Props, robinOracleComposition)`
+Last updated: `2026-05-18 (faithful mode cycle 3 middle — verified all faithful-mode priorities met, zero violations, cycle complete)`
 
 This is the controlled crossing between a paper, human explanation, and Lean.
 Do not let a symbol move from LaTeX to Lean without recording its type, role,
@@ -86,6 +86,17 @@ The construction decomposes into:
 | Bulk window | `BulkWindow` | `Core.lean` | `lower`, `upper : Nat` | defined |
 | Derivative oracle contract | `DerivativeOracleContract n` | `GHL2025.lean` | `stencil`, `bandwidth`, `matrix`, `sparseCorrect`, `bandwidth_eq` | **defined** |
 | Function oracle contract | `FunctionOracleContract n` | `GHL2025.lean` | `functionPieces`, `normalizerBound`, `amplitudeCorrect` | **defined** |
+| Proof obligation record | `ObligationRecord` | `GHL2025.lean` | `description`, `source`, `proved : Bool` | **defined** |
+| Circuit skeleton | `RobinCircuitSkeleton` | `GHL2025.lean` | 13 fields (U_indic, K1, K2, O_DT^S, O_D^BS, Ry, O_f, SWAP, merge, signal qubits) | **defined** |
+| Robin proof obligations | `RobinProofObligations` | `GHL2025.lean` | 10 obligation fields, all `proved := false` | **defined** |
+| Gamma wave-function | `RobinGamma1/2/3` | `GHL2025.lean` | Typed: kappa, K1, K2, gridSize, normalizer: Coeff, mfQubits, hasOrthogonalRemainder, pureAncillaQubits | **enriched** |
+| Wavefunction bundle | `RobinWavefunctionDecomposition` | `GHL2025.lean` | gamma1/2/3 + shared kappa/K1/K2/gridSize | **defined** |
+| Boundary predicate | `isBoundaryRow` | `GHL2025.lean` | `(K1 K2 gridSize j : Nat) → Bool`, complement of isBulkRow | **defined** |
+| Indicator oracle spec | `isBulkRow` | `GHL2025.lean` | `(K1 K2 i : Nat) → Bool`, bulk boundary test | **defined** |
+| Register partition | `RobinRegisterPartition` | `GHL2025.lean` | 6 fields matching Eq. ROBIN clarified kets | **defined** |
+| Circuit matrix semantics | `CircuitMatrixSemantics` | `CircuitSemantics.lean` | circuit + gate matrices + product matrix | **started** |
+| Gate matrix semantics | `GateMatrix` | `CircuitSemantics.lean` | gate label + full-space matrix + unitary obligation | **started** |
+| Block extraction target | `BlockExtractionTarget` | `CircuitSemantics.lean` | statement container for block projection and block correctness | **started** |
 
 ### Concrete claims registered in Lean
 
@@ -95,6 +106,8 @@ The construction decomposes into:
 | `oneDimHamiltonianClaim` | 1D PDE Hamiltonian block encoding | `GHL2025.lean` | stated (string-level) |
 | `multiDimHamiltonianClaim` | Multi-D PDE Hamiltonian block encoding | `GHL2025.lean` | stated (string-level) |
 | `oneTermRobinResourceExpr` | Resource formula for one-term Robin | `GHL2025.lean` | defined (symbolic) |
+| `oneTermRobinPreciseResourceExpr` | Precise resource with boundary deviation count | `GHL2025.lean` | **defined** |
+| `deviatingIndices` | K1 + gridSize - K2 boundary row count | `GHL2025.lean` | **defined** |
 | `oneTermRobinResource` | Concrete resource for fixed params | `GHL2025.lean` | defined (numeric) |
 | `importedClaims` | List of all claims | `GHL2025.lean` | defined |
 | `robinBlockEncodingSpec n` | Concrete BlockEncodingSpec for Robin matrix | `RobinMatrix.lean` | defined (wired) |
@@ -210,10 +223,20 @@ parameters $A_1, B_1$. This changes the matrix structure near the edges (see
 
 ### Current gap
 
-The Lean skeleton currently has `ConstructionClaim` records (string-level
-metadata) but no matrix-level definitions. The key step is to lift
-`StencilEntry` lists and `Coeff` expressions into concrete `Matrix N N α`
-values and state the block-encoding predicate against them.
+The Lean code now has concrete Robin derivative matrices and a first
+`CircuitSemantics.lean` backend for composing supplied gate matrices. The
+remaining gap is the real block-projection semantics:
+
+1. assign certified full-space matrices to the labeled gates/oracles in
+   `oneTermRobinCircuit`;
+2. define the signal/system block-indexing convention;
+3. prove, or explicitly track as an obligation, that the extracted block equals
+   `Examples.RobinHeat.robinDerivativeMatrix n / (N_D * N_f * kappa)`.
+
+Human-facing proof correspondence is now tracked in
+`paper-notes/GHL2025_RobinOneTerm.tex`; future Lean changes tied to the paper
+must update either this conversion window, that LaTeX note, or a
+`proof-obligations/` ledger.
 
 ---
 
@@ -248,24 +271,39 @@ values and state the block-encoding predicate against them.
 | `robinDerivativeNorm` | `RobinMatrix.lean` | 1-norm of Robin derivative matrix | **yes** |
 | `oneTermRobinNumericNormalizer` | `RobinMatrix.lean` | α = N_D · N_F · κ as `Rat` | **yes** |
 | `robinNormalizerBound` | `RobinMatrix.lean` | `Bool` check α ≥ ∥D_Robin∥₁ | **yes** |
-| `robinBlockEncodingPredicate` | — | block-encoding Prop for $A/\alpha$ | **no** |
-| `robinAncillaCleanup` | — | proof ancillas return to $\|0\rangle$ | **no** |
+| `robinBlockEncodingPredicate` | `RobinMatrix.lean` | PO-6: block-extraction structural preconditions | **yes** |
 | `robinBlockEncodingSpec` | `RobinMatrix.lean` | concrete `BlockEncodingSpec` wiring Robin matrix | **yes** |
 | `robinBlockEncodingSpec_pureAncilla` | `RobinMatrix.lean` | spec ancilla = 2n lemma | **yes** |
-| `DerivativeOracleContract` | `GHL2025.lean` | derivative oracle contract structure | **yes** |
-| `FunctionOracleContract` | `GHL2025.lean` | function oracle contract structure | **yes** |
-| `ghostPointEliminationCorrect` | `RobinMatrix.lean` | PO-3: ghost-point algebra correctness Prop | **yes** (abstract) |
-| `robinCircuitIsUnitary` | `RobinMatrix.lean` | PO-5: circuit unitarity Prop | **yes** (abstract) |
+| `ObligationRecord` | `GHL2025.lean` | proof obligation with `proved : Bool` (not `Prop := True`) | **yes** |
+| `RobinCircuitSkeleton` | `GHL2025.lean` | 13-field circuit skeleton matching Fig. 1_term_ROBIN | **yes** |
+| `RobinGamma1/2/3` | `GHL2025.lean` | Eq. ROBIN clarified: typed kappa/K1/K2/gridSize/normalizer fields | **yes** (enriched) |
+| `RobinWavefunctionDecomposition` | `GHL2025.lean` | gamma1/2/3 bundle + shared params | **yes** |
+| `isBoundaryRow` | `GHL2025.lean` | complement of isBulkRow | **yes** |
+| `RobinProofObligations` | `GHL2025.lean` | 10-field obligation bundle, all `proved := false` | **yes** |
+| `defaultRobinCircuitSkeleton` | `GHL2025.lean` | default circuit skeleton instance | **yes** |
+| `DerivativeOracleContract` | `GHL2025.lean` | derivative oracle contract (ObligationRecord fields) | **yes** |
+| `FunctionOracleContract` | `GHL2025.lean` | function oracle contract (ObligationRecord fields) | **yes** |
 | `robinBlockEncodingPredicate` | `RobinMatrix.lean` | PO-6: block-extraction equation Prop | **yes** (structural) |
 | `robinResourceBoundHolds` | `RobinMatrix.lean` | PO-7: resource bound decidable Prop | **yes** (concrete) |
-| `oneTermRobinResourceExprMatchesPaper` | `RobinMatrix.lean` | PO-8: symbolic-paper match Prop | **yes** (abstract) |
 | `oneTermRobinResourceConsistent` | `RobinMatrix.lean` | PO-9: concrete/symbolic consistency Prop | **yes** (concrete) |
-| `robinAncillaCleanupHolds` | `RobinMatrix.lean` | PO-10: ancilla cleanup Prop | **yes** (abstract) |
 | `RobinOracleComposition` | `RobinMatrix.lean` | oracle bundle structure (O_D + O_f + LCU) | **yes** |
 | `robinOracleComposition` | `RobinMatrix.lean` | concrete oracle bundle instance | **yes** |
 | `robinOracleComposition_bandwidth` | `RobinMatrix.lean` | oracle bandwidth = 5 lemma | **yes** (rfl) |
 | `robinOracleComposition_functionPieces` | `RobinMatrix.lean` | function pieces = 1 lemma | **yes** (rfl) |
 | `robinOracleComposition_matrix` | `RobinMatrix.lean` | oracle matrix = robinDerivativeMatrix lemma | **yes** (rfl) |
+| `robinProofObligations` | `RobinMatrix.lean` | default `RobinProofObligations` instance | **yes** |
+| `OneTermRobinTheoremData` | `GHL2025.lean` | typed theorem tuple (α, m, a) + obligations | **yes** |
+| `defaultOneTermRobinTheoremData` | `GHL2025.lean` | default theorem data from parameters | **yes** |
+| `isBulkRow` | `GHL2025.lean` | classical spec of U_indic: bulk boundary test | **yes** |
+| `RobinRegisterPartition` | `GHL2025.lean` | 6-field register partition from Eq. ROBIN clarified | **yes** |
+| `defaultRobinRegisterPartition` | `GHL2025.lean` | default register partition from parameters | **yes** |
+| `RobinRegisterPartition.totalPureAncillas` | `GHL2025.lean` | total pure ancilla qubits in partition | **yes** |
+| `SemanticObligation` | `CircuitSemantics.lean` | semantic proof obligation record independent of GHL imports | **yes** |
+| `GateMatrix` | `CircuitSemantics.lean` | one circuit gate plus its full-space matrix | **yes** |
+| `gateMatricesMatchCircuit` | `CircuitSemantics.lean` | checks circuit labels align with supplied matrices | **yes** |
+| `evalGateMatrices` | `CircuitSemantics.lean` | ordered product of gate matrices | **yes** |
+| `CircuitMatrixSemantics` | `CircuitSemantics.lean` | assembled matrix semantics for a circuit | **yes** |
+| `BlockExtractionTarget` | `CircuitSemantics.lean` | matrix-level block-extraction target with explicit obligations | **yes** |
 
 ---
 
@@ -306,13 +344,6 @@ values and state the block-encoding predicate against them.
 -- clog2(gridSize 10) = 10, oracle contract instances compile.
 --
 -- Cycle 4 additions (middle formalizer):
--- def ghostPointEliminationCorrect (_n : Nat) : Prop   -- PO-3 (abstract)
--- def robinCircuitIsUnitary (_n : Nat) : Prop           -- PO-5 (abstract)
--- def robinBlockEncodingPredicate (n : Nat) : Prop      -- PO-6 (structural)
--- def robinResourceBoundHolds (n : Nat) : Prop          -- PO-7 (decidable)
--- def oneTermRobinResourceExprMatchesPaper : Prop       -- PO-8 (abstract)
--- def oneTermRobinResourceConsistent (p : OneTermRobinParameters) : Prop  -- PO-9
--- def robinAncillaCleanupHolds (_n : Nat) : Prop        -- PO-10 (abstract)
 -- structure RobinOracleComposition (n : Nat)             -- PO-13/14/15 bundle
 -- def robinOracleComposition (n : Nat) : RobinOracleComposition n  -- concrete instance
 -- @[simp] theorem robinOracleComposition_bandwidth (n : Nat) : ... = 5 := rfl
@@ -320,6 +351,19 @@ values and state the block-encoding predicate against them.
 -- @[simp] theorem robinOracleComposition_matrix (n : Nat) : ... = robinDerivativeMatrix n := rfl
 --
 -- All declarations compile. Build clean, no sorry, no warnings.
+--
+-- Faithful-mode cycle 1 additions (upper agent):
+-- structure ObligationRecord { description : String, source : String, proved : Bool := false }
+-- structure RobinCircuitSkeleton { 13 fields matching Fig. 1_term_ROBIN }
+-- structure RobinGamma1/2/3 { Eq. ROBIN clarified wave-function components }
+-- structure RobinProofObligations { 10 obligation fields, all proved := false }
+-- def defaultRobinCircuitSkeleton (p) : RobinCircuitSkeleton
+-- Removed: ghostPointEliminationCorrect, robinCircuitIsUnitary,
+--   oneTermRobinResourceExprMatchesPaper, robinAncillaCleanupHolds (all were Prop := True)
+-- Changed: DerivativeOracleContract.sparseCorrect : Prop → ObligationRecord
+-- Changed: FunctionOracleContract.amplitudeCorrect : Prop → ObligationRecord
+-- Changed: RobinOracleComposition.lcuCorrect : Prop → ObligationRecord
+-- Removed: two trivial tests that proved Prop := True obligations by `trivial`
 ```
 
 ---
@@ -338,8 +382,9 @@ values and state the block-encoding predicate against them.
 - [ ] **PO-3**: The Robin ghost-point elimination algebra is correct:
   applying the substitution $u_{-1}, u_{-2} \to$ Robin relation to the
   standard stencil yields exactly the boundary row coefficients.
-  *Lean name*: `ghostPointEliminationCorrect n : Prop` (abstract, `True`).
-  *Status*: Prop stated, awaits algebraic simplification over `Coeff`.
+  *Lean name*: `RobinProofObligations.ghostPointElimination : ObligationRecord`
+  (`proved := false`, `source := "main.tex:989-1010"`).
+  *Status*: Tracked as honest unproved obligation. Previously was `Prop := True` (now removed).
 
 ### Block-encoding (semantic)
 
@@ -349,8 +394,9 @@ values and state the block-encoding predicate against them.
   *Status*: `robinBlockEncodingSpec n` in `RobinMatrix.lean` wires all fields.
   The `VerifiedBlockEncoding` wrapper still requires proof-producing backend.
 - [ ] **PO-5**: The candidate circuit $U$ is unitary (`VerifiedBlockEncoding.isUnitary`).
-  *Lean name*: `robinCircuitIsUnitary n : Prop` (abstract, `True`).
-  *Status*: Prop stated, awaits unitary matrix semantics in Circuit IR.
+  *Lean name*: `RobinProofObligations.circuitUnitary : ObligationRecord`
+  (`proved := false`, `source := "main.tex:1131-1136, theorem:1 term robin"`).
+  *Status*: Tracked as honest unproved obligation. Previously was `Prop := True` (now removed).
 - [ ] **PO-6**: The block extraction yields $A / \alpha$
   (`VerifiedBlockEncoding.blockCorrect`).
   *Lean name*: `robinBlockEncodingPredicate n : Prop`.
@@ -365,15 +411,17 @@ values and state the block-encoding predicate against them.
 
 - [ ] **PO-8**: `oneTermRobinResourceExpr` matches the paper's Theorem
   gate-count formula (symbolic comparison).
-  *Lean name*: `oneTermRobinResourceExprMatchesPaper : Prop` (abstract).
-  *Status*: Meta-level claim tracked in conversion window symbol map.
+  *Lean name*: `RobinProofObligations.resourceBound : ObligationRecord`
+  (`proved := false`, `source := "main.tex:1131-1136"`).
+  *Status*: Tracked as honest unproved obligation. Previously was `Prop := True` (now removed).
 - [ ] **PO-9**: `oneTermRobinResource` is consistent with `oneTermRobinResourceExpr`
   when symbolic atoms are instantiated.
   *Lean name*: `oneTermRobinResourceConsistent p : Prop` (concrete: pureAncilla = 2n).
   *Status*: Decidable part stated; full consistency needs CostExpr evaluator.
 - [ ] **PO-10**: Pure ancilla count of $2n$ is achievable with cleanup.
-  *Lean name*: `robinAncillaCleanupHolds n : Prop` (abstract, `True`).
-  *Status*: Prop stated, awaits circuit state semantics.
+  *Lean name*: `RobinProofObligations.ancillaCleanup : ObligationRecord`
+  (`proved := false`, `source := "figure:1_term_ROBIN caption, main.tex:1149"`).
+  *Status*: Tracked as honest unproved obligation. Previously was `Prop := True` (now removed).
 
 ### Normalization
 
@@ -388,16 +436,17 @@ values and state the block-encoding predicate against them.
 
 - [ ] **PO-13**: The function oracle $O_f$ contract (input: index $i$, output:
   $f(x_i)$ up to normalization) is stated.
-  *Lean name*: `FunctionOracleContract n` structure + `amplitudeCorrect : Prop` field.
+  *Lean name*: `FunctionOracleContract n` structure + `amplitudeCorrect : ObligationRecord` field.
   *Status*: Structure defined in `GHL2025.lean`. Instantiated in `robinOracleComposition`.
 - [ ] **PO-14**: The derivative oracle $O_D$ contract (sparse-access for banded
   $D_{\mathrm{Robin}}$) is stated.
-  *Lean name*: `DerivativeOracleContract n` structure + `sparseCorrect : Prop` field.
+  *Lean name*: `DerivativeOracleContract n` structure + `sparseCorrect : ObligationRecord` field.
   *Status*: Structure defined in `GHL2025.lean`. Instantiated in `robinOracleComposition`.
 - [ ] **PO-15**: The LCU composition $U = \sum_j w_j U_j$ that combines $O_D$
   and $O_f$ into the overall block encoding is stated.
-  *Lean name*: `RobinOracleComposition.lcuCorrect : Prop` field.
-  *Status*: Structure and concrete instance defined in `RobinMatrix.lean`. Prop abstract (`True`).
+  *Lean name*: `RobinOracleComposition.lcuCorrect : ObligationRecord`.
+  *Status*: Structure and concrete instance defined in `RobinMatrix.lean`.
+  `proved := false`, `source := "main.tex:1131-1136"`.
 
 ### Unstated paper assumptions (logged as potential open problems)
 
@@ -472,6 +521,95 @@ values and state the block-encoding predicate against them.
   these declarations.
   Files changed: `RobinMatrix.lean`, `conversion-windows/QBE-AUTO-001.md`.
 
+*Faithful-mode cycle 1, upper agent (2026-05-18):*
+
+- **upper**: Replaced all `Prop := True` placeholders with honest `ObligationRecord`-based
+  tracking. Added `ObligationRecord` structure (description, source, proved: Bool).
+  Added `RobinCircuitSkeleton` (13 fields matching Fig. 1_term_ROBIN), `RobinGamma1/2/3`
+  (Eq. ROBIN clarified), `RobinProofObligations` (10 obligation fields).
+  Changed `DerivativeOracleContract.sparseCorrect`, `FunctionOracleContract.amplitudeCorrect`,
+  `RobinOracleComposition.lcuCorrect` from `Prop` to `ObligationRecord`. Removed four
+  `Prop := True` definitions and two `trivial` tests. Build clean, reviewer passed.
+  Files changed: `GHL2025.lean`, `RobinMatrix.lean`, `Tests/Basic.lean`.
+
+*Faithful-mode cycle 3, upper agent (2026-05-18):*
+
+- **upper**: Fixed `oneTermRobinLayout.signalQubits` to match the paper's Theorem
+  (main.tex:1102): changed from `clog2 G_f + clog2 κ + 4` to
+  `clog2 n + clog2 G_f + clog2 κ + 4`. Added `OneTermRobinTheoremData` structure
+  capturing the exact block-encoding tuple (α, m, a) from the theorem, with
+  `defaultOneTermRobinTheoremData` wiring. Updated `oneTermRobinClaim.layout`
+  string. Added 5 new tests: signal qubit count, theorem-data/layout consistency,
+  pure ancillas, error=0, obligations unproved. Build clean, no sorry.
+  Files changed: `GHL2025.lean`, `Tests/Basic.lean`, `QBE-AUTO-001.md`.
+
+*Faithful-mode cycle 1, middle formalizer (2026-05-18):*
+
+- **middle**: Verified all acceptance criteria met. Zero `Prop := True` in project.
+  `RobinProofObligations` has 10 obligations, all `proved := false`. Updated conversion
+  window to reflect current state. No Lean code changes needed — prior cycle completed
+  all faithful-formalization requirements.
+  Files changed: `conversion-windows/QBE-AUTO-001.md`.
+
+*Faithful-mode cycle 2, middle formalizer (2026-05-18):*
+
+- **middle**: Added `deviatingIndices (K1 K2 gridSize : Nat) : Nat` (main.tex:1092-1095)
+  and `oneTermRobinPreciseResourceExpr` (main.tex:1088-1089) capturing the exact gate
+  cost formula with boundary deviation count before the O(1) simplification in the Theorem.
+  Added 5 new tests: deviatingIndices for n=3 and n=4, pureAncilla consistency between
+  precise and simplified resource exprs, indicatorResource gate/ancilla counts.
+  Build clean, no sorry, no `Prop := True`.
+  Files changed: `GHL2025.lean`, `Tests/Basic.lean`, `conversion-windows/QBE-AUTO-001.md`.
+
+*Faithful-mode cycle 2, lower agent (2026-05-18):*
+
+- **lower**: Added `isBulkRow (K1 K2 i : Nat) : Bool` — the classical specification
+  of U_indic from main.tex:1060-1065 (returns true for bulk rows K1 ≤ i ≤ K2, false
+  for boundary). Added `RobinRegisterPartition` structure with 6 typed Nat fields
+  matching the wavefunction ket labels in Eq. ROBIN clarified (main.tex:1113-1117):
+  mfQubits, indicatorQubit, sparseIndexQubits, odPureAncillaQubits, systemQubits,
+  ancillaQubit. Includes computed fields `totalQubits` and `totalPureAncillas`,
+  plus `defaultRobinRegisterPartition` constructor. Added 10 tests: 5 for isBulkRow
+  boundary/bulk classification, 5 for register partition fields. Build clean.
+  Files changed: `GHL2025.lean`, `Tests/Basic.lean`, `conversion-windows/QBE-AUTO-001.md`.
+
+*Faithful-mode cycle 3, lower agent (2026-05-18):*
+
+- **lower**: Enriched `RobinGamma1/2/3` from String-only to typed Lean data capturing
+  the actual summation structure of Eq. ROBIN clarified (main.tex:1113-1117). Each gamma
+  now has `kappa : Nat`, `K1 : Nat`, `K2 : Nat`, `gridSize : Nat`, `normalizer : Coeff`
+  fields. Gamma2/3 additionally have `hasOrthogonalRemainder : Bool`; Gamma3 has
+  `pureAncillaQubits : Nat`. Added `isBoundaryRow (K1 K2 _gridSize j : Nat) : Bool`
+  complementing `isBulkRow`. Added `RobinWavefunctionDecomposition` structure bundling
+  gamma1/2/3 with shared params, plus `defaultRobinWavefunctionDecomposition` constructor.
+  Added 9 new tests (boundary/bulk classification, complement, gamma field access,
+  normalizer eval=42, pureAncillaQubits, hasOrthogonalRemainder, shared kappa). Build clean,
+  no Prop:=True, no sorry.
+  Files changed: `GHL2025.lean`, `Tests/Basic.lean`, `conversion-windows/QBE-AUTO-001.md`.
+
+*Faithful-mode cycle 3, middle formalizer (2026-05-18):*
+
+- **middle**: Verified all faithful-mode priorities are satisfied: (1) `OneTermRobinTheoremData`
+  captures (α, m, a) from Theorem one-term block-encoding. (2) `RobinRegisterPartition` +
+  `oneTermRobinLayout` match signal = ⌈log₂n⌉+⌈log₂G_f⌉+⌈log₂κ⌉+4, pure = 2n. (3)
+  `RobinCircuitSkeleton` has all 13 fields matching Fig. 1_term_ROBIN. (4) `RobinGamma1/2/3`
+  with typed summation domains + `RobinWavefunctionDecomposition` bundle capture Eq. ROBIN
+  clarified. (5) `RobinProofObligations` has 10 `ObligationRecord` fields with source
+  anchors, all `proved := false`. Zero `Prop := True`, zero `trivial`, zero `sorry`.
+  Build clean. Cycle complete — no remaining faithful-mode priorities.
+  Files changed: `conversion-windows/QBE-AUTO-001.md`.
+
+*Cycle 4 upper agent (2026-05-18):*
+
+- **upper**: Assessed full project state. All 6 faithful-formalization priorities confirmed
+  complete. Added 13 paper-anchor boundary matrix entry tests covering every nonzero entry
+  of Eq. 24 (main.tex:1014-1025): rows 0,1 (left boundary) and rows 6,7 (right boundary)
+  of `robinDerivativeMatrix 3`, including symbolic A1*dx and B1*dx Robin ghost-point terms.
+  All tests use `by native_decide`. Build gate clean. Zero `Prop := True`, zero `trivial`,
+  zero `sorry`. The faithful formalization skeleton is complete with full paper-anchor
+  cross-validation.
+  Files changed: `Tests/Basic.lean`, `conversion-windows/QBE-AUTO-001.md`.
+
 ---
 
 ## Build Gate
@@ -480,4 +618,4 @@ values and state the block-encoding predicate against them.
 lake build && lake build Tests
 ```
 
-Last verified: `lake build && lake build Tests` passes with all prior tests + cycle 4 declarations (2026-05-18 cycle 4).
+Last verified: `lake build && lake build Tests` passes with all prior tests + cycle 4 upper paper-anchor boundary matrix entry tests (13 new tests covering all nonzero entries of Eq. 24, main.tex:1014-1025) (2026-05-18).

@@ -878,6 +878,15 @@ Recent trial memory:
 {trial_memory}
 ```
 
+Human-facing correspondence rule:
+
+- If a cycle changes Lean declarations tied to a paper construction, update the
+  conversion window, a `paper-notes/*.tex` note, or a `proof-obligations/`
+  ledger in the same cycle.
+- Lean compilation alone is not enough for faithful paper-reproduction mode;
+  humans must be able to compare the Lean names with the original theorem,
+  equations, normalizers, register layout, and resource statement.
+
 Shared dialogue board:
 
 ```text

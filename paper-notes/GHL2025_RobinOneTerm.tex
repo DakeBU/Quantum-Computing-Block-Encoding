@@ -1,0 +1,160 @@
+\section{GHL2025 One-Term Robin Block Encoding: Lean Proof Map}
+
+This note is a human-readable companion to
+\texttt{QuantumBlockEncoding/GHL2025.lean},
+\texttt{QuantumBlockEncoding/RobinMatrix.lean}, and
+\texttt{conversion-windows/QBE-AUTO-001.md}.  It is not the checked source of
+truth.  The Lean files are the source of truth; this file records the theorem
+shape, notation, and proof obligations so that a human can compare the
+formalization with the paper.
+
+\subsection{Target Operator}
+
+The one-term Robin construction block-encodes the discretized operator
+\[
+  A_k = \operatorname{diag}(f(x_0),\ldots,f(x_{N-1})) D_{\mathrm{Robin}},
+  \qquad N = 2^n .
+\]
+Here \(D_{\mathrm{Robin}}\) is the finite-difference derivative matrix after
+Robin ghost-point elimination.  In Lean:
+\[
+  D_{\mathrm{Robin}}
+  \quad\leftrightarrow\quad
+  \texttt{Examples.RobinHeat.robinDerivativeMatrix n}.
+\]
+
+\subsection{Robin Boundary Matrix}
+
+The bulk stencil is represented by
+\[
+  \texttt{Examples.RobinHeat.centralBulkEntries}
+\]
+and the boundary rows by
+\[
+  \texttt{leftBoundaryRow0},\quad
+  \texttt{leftBoundaryRow1},\quad
+  \texttt{rightBoundaryRowNm2},\quad
+  \texttt{rightBoundaryRowNm1}.
+\]
+The Lean constructor
+\[
+  \texttt{buildRobinMatrix}
+\]
+lifts these row stencils into a concrete finite matrix
+\[
+  \texttt{Matrix (gridSize n) (gridSize n) Coeff}.
+\]
+The tests in \texttt{Tests/Basic.lean} cross-check every nonzero boundary entry
+of the paper's displayed Robin matrix for \(n=3\).
+
+\subsection{Normalizer and Register Layout}
+
+The paper's one-term normalizer is
+\[
+  \alpha = N_D N_f \kappa.
+\]
+In Lean this is
+\[
+  \texttt{GHL2025.oneTermRobinNormalizer}.
+\]
+The theorem-level register layout is
+\[
+  m = \lceil \log_2 n\rceil
+    + \lceil \log_2 G_f\rceil
+    + \lceil \log_2 \kappa\rceil
+    + 4
+\]
+signal qubits and \(2n\) pure ancillas.  In Lean this is represented by
+\[
+  \texttt{GHL2025.oneTermRobinLayout}
+  \quad\text{and}\quad
+  \texttt{GHL2025.defaultOneTermRobinTheoremData}.
+\]
+
+\subsection{Circuit Skeleton}
+
+The paper circuit is recorded as the Lean data structure
+\[
+  \texttt{GHL2025.RobinCircuitSkeleton}.
+\]
+The default skeleton contains the labeled operations
+\[
+  U_{\mathrm{indic}},\quad O_{D^T}^{S},\quad R_y^{\mathrm{boundary}},
+  \quad O_D^{BS},\quad O_f,\quad \mathrm{SWAP},\quad (O_D^{BS})^\dagger .
+\]
+This is still a skeleton until each labeled gate is assigned a certified matrix
+semantics.
+
+\subsection{Block-Encoding Statement}
+
+The desired final theorem is the block extraction equation
+\[
+  (\langle 0^a| \otimes I) U (|0^a\rangle \otimes I)
+  =
+  \frac{A_k}{N_D N_f \kappa}.
+\]
+At the current stage, Lean records the target matrix, circuit labels,
+normalizer, resource counts, and proof obligations.  The next backend target is
+to define the full matrix semantics of \(U\) and the block-projection map.
+
+\subsection{Current Lean Correspondence}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Paper object & Lean declaration & Status \\
+\hline
+\(D_{\mathrm{Robin}}\) &
+\texttt{Examples.RobinHeat.robinDerivativeMatrix} &
+defined and tested \\
+\(\alpha=N_DN_f\kappa\) &
+\texttt{GHL2025.oneTermRobinNormalizer} &
+defined \\
+Theorem tuple \((\alpha,m,a)\) &
+\texttt{GHL2025.OneTermRobinTheoremData} &
+defined \\
+Fig. one-term Robin circuit &
+\texttt{GHL2025.RobinCircuitSkeleton} &
+defined as skeleton \\
+Eq. ROBIN intermediate states &
+\texttt{GHL2025.RobinGamma1/2/3} &
+typed data \\
+Proof obligations &
+\texttt{GHL2025.RobinProofObligations} &
+tracked, unproved \\
+Circuit matrix semantics &
+\texttt{QuantumBlockEncoding.CircuitSemantics} &
+started \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Open Proof Obligations}
+
+The current unproved mathematical obligations are intentionally data, not fake
+proofs:
+\[
+  \texttt{proved := false}.
+\]
+The most important remaining obligations are:
+
+\begin{enumerate}
+  \item prove the labeled gate matrices are unitary;
+  \item prove the composed circuit matrix equals the paper's \(U\);
+  \item define the signal/system block projection;
+  \item prove the extracted block is \(A_k/(N_DN_f\kappa)\);
+  \item prove the resource formula including all internal oracle ancillas.
+\end{enumerate}
+
+\subsection{Automation Rule}
+
+Every future Lean change to this formalization must update at least one of:
+\[
+  \texttt{conversion-windows/QBE-AUTO-001.md},
+  \qquad
+  \texttt{paper-notes/GHL2025\_RobinOneTerm.tex},
+  \qquad
+  \texttt{proof-obligations/}.
+\]
+This keeps the Lean proof state, the paper notation, and the human explanation
+synchronized.

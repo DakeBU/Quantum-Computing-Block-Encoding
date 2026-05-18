@@ -118,7 +118,7 @@ def leanBuildGate : AcceptanceGate where
 
 def noSorryGate : AcceptanceGate where
   name := "No new sorry by default"
-  command := "grep -R \"sorry\" QuantumBlockEncoding Tests || true"
+  command := "rg -n \"\\bsorry\\b\" QuantumBlockEncoding Tests -g '!QuantumBlockEncoding/Automation.lean' || true"
   required := false
   note := "Skeleton files may use proposition-valued obligations, but finished tasks should avoid new sorry."
 
