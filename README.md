@@ -94,13 +94,13 @@ QBE has two hybrid strategy modes:
 
 - Faithful paper reproduction: reproduce a specific paper's circuit/block
   encoding in Lean.  This is the current mode for GHL2025.  The strategy is
-  LBG-like proof-system maintenance: Lean feedback, failed proof routes, tests,
+  [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients)-like proof-system maintenance: Lean feedback, failed proof routes, tests,
   and reviewer notes are written into memory and compressed into the next
   cycle.  If a fixed lemma fails, lower agents may maintain a local
   proof-attempt population, but they must not mutate the paper construction.
 - Exploratory construction: search for new oracle or block-encoding
   constructions under a precise Lean-checkable target.  The strategy combines
-  LBG-like memory with an EoH-like candidate-evolution layer: lower agents can
+  [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients)-like memory with an [EoH](https://github.com/FeiLiu36/EoH)-like candidate-evolution layer: lower agents can
   maintain candidate circuit families, mutate or recombine them, score partial
   progress, and archive rejected designs.  Lean proof obligations remain the
   final acceptance gate.
@@ -110,56 +110,7 @@ oracle details become proof obligations.  In exploratory mode, agents may
 search, but every candidate must be tied to an acceptance predicate and logged
 as trial memory.
 
-## Design Lineage
 
-QBE is a Lean-first proof-engineering workflow for a narrow problem class:
-turning oracle assumptions in theoretical quantum algorithms into gate-level
-circuit matrices and block-encoding certificates.  The comparison below records
-similar design patterns with adjacent AI-research systems while keeping the
-task boundary explicit.
-
-| Similar pattern | Where it appears | QBE adaptation | Task boundary |
-| --- | --- | --- | --- |
-| LLM-readable workflow packets | [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) uses single-purpose `SKILL.md` files for empirical research workflows. | `tools/qbe.py run-cycle` generates task-specific role prompts for upper, middle, lower, and reviewer agents. | ARIS targets literature, experiments, reviews, and paper writing; QBE targets Lean-checked circuit/oracle formalization. |
-| Plain-file project memory | ARIS uses Markdown templates, `MANIFEST.md`, research wiki pages, and review artifacts instead of a database. | `tasks/`, `conversion-windows/`, `paper-notes/`, `proof-obligations/`, `runs/`, and `research-wiki/` are plain files that humans and agents can inspect and edit. | QBE adds a stricter Lean/LaTeX/Markdown correspondence layer because theorem proving must preserve source-paper notation. |
-| Independent review loop | ARIS uses reviewer models to check claims, experiments, citations, and writing. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, resource counts, citations, and faithful-vs-exploratory mode discipline. | In QBE, review cannot accept a claim merely because it reads well; the Lean gate and explicit proof obligations control completion. |
-| Trial memory and feedback compression | [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients) records policy attempts in `trials.jsonl`, `summary.csv`, videos, logs, and rejected directions. | QBE records proof/circuit attempts in `runs/trials.jsonl` and `runs/trials_summary.csv`; rejected constructions become proof obligations or open problems. | LBG optimizes empirical behavior of heuristic policies; QBE uses similar memory discipline to organize theorem-proving attempts whose final target is formal verification. |
-| Heuristic-system maintenance | LBG treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | Lean declarations, tests, conversion windows, proof-obligation ledgers, and trial summaries form the evolving proof system. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
-| Population-style candidate evolution | [EoH](https://github.com/FeiLiu36/EoH) evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea only in exploratory mode: maintain families of candidate circuit constructions, vary them, evaluate them against Lean-checkable obligations, and keep rejected designs as memory. | EoH is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction is accepted only when the Lean target and proof obligations are satisfied. |
-| Selection and archive pressure | EoH keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer constructions that reduce formal gaps. | Faithful paper-reproduction mode should not use evolutionary mutation to change the paper construction; EoH-like exploration belongs only after the acceptance predicate is explicit. |
-
-The analogy is:
-
-```text
-ARIS empirical paper pipeline:
-papers -> ideas -> experiments -> review -> paper
-
-Learning Beyond Gradients heuristic loop:
-state/test/log feedback -> code edit -> trial record -> summary -> next edit
-
-EoH algorithm-design loop:
-population -> mutation/crossover -> objective evaluation -> selection/archive
-
-QBE proof pipeline:
-paper/open condition -> oracle contract -> circuit matrix -> Lean check -> review -> proof map
-```
-
-The practical split is:
-
-```text
-faithfulPaper:
-LBG-like memory loop + local proof-attempt population for fixed lemmas
-
-exploratoryConstruction:
-LBG-like memory loop + EoH-like candidate population for circuit families
-```
-
-QBE's many Markdown files are therefore not decoration.  They play the same
-operational role that ARIS skills, templates, manifests, and research-wiki
-pages play: they are the stable interface between humans, agents, and the next
-cycle.  The extra QBE-specific layer is the Lean/LaTeX/Markdown conversion
-window, because a theorem-proving project must preserve the correspondence
-between source-paper notation and checked declarations.
 
 ## For Paper Authors
 
@@ -451,3 +402,54 @@ If you use ARIS in your research, please cite:
   note = {Project page: \url{https://github.com/DakeBU/Quantum-Computing-Block-Encoding}}
 }
 ```
+
+## Design Lineage
+
+QBE is a Lean-first proof-engineering workflow for a narrow problem class:
+turning oracle assumptions in theoretical quantum algorithms into gate-level
+circuit matrices and block-encoding certificates.  The comparison below records
+similar design patterns with adjacent AI-research systems while keeping the
+task boundary explicit.
+
+| Similar pattern | Where it appears | QBE adaptation | Task boundary |
+| --- | --- | --- | --- |
+| LLM-readable workflow packets | [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) uses single-purpose `SKILL.md` files for empirical research workflows. | `tools/qbe.py run-cycle` generates task-specific role prompts for upper, middle, lower, and reviewer agents. | ARIS targets literature, experiments, reviews, and paper writing; QBE targets Lean-checked circuit/oracle formalization. |
+| Plain-file project memory | ARIS uses Markdown templates, `MANIFEST.md`, research wiki pages, and review artifacts instead of a database. | `tasks/`, `conversion-windows/`, `paper-notes/`, `proof-obligations/`, `runs/`, and `research-wiki/` are plain files that humans and agents can inspect and edit. | QBE adds a stricter Lean/LaTeX/Markdown correspondence layer because theorem proving must preserve source-paper notation. |
+| Independent review loop | ARIS uses reviewer models to check claims, experiments, citations, and writing. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, resource counts, citations, and faithful-vs-exploratory mode discipline. | In QBE, review cannot accept a claim merely because it reads well; the Lean gate and explicit proof obligations control completion. |
+| Trial memory and feedback compression | [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients) records policy attempts in `trials.jsonl`, `summary.csv`, videos, logs, and rejected directions. | QBE records proof/circuit attempts in `runs/trials.jsonl` and `runs/trials_summary.csv`; rejected constructions become proof obligations or open problems. | LBG optimizes empirical behavior of heuristic policies; QBE uses similar memory discipline to organize theorem-proving attempts whose final target is formal verification. |
+| Heuristic-system maintenance | LBG treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | Lean declarations, tests, conversion windows, proof-obligation ledgers, and trial summaries form the evolving proof system. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
+| Population-style candidate evolution | [EoH](https://github.com/FeiLiu36/EoH) evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea only in exploratory mode: maintain families of candidate circuit constructions, vary them, evaluate them against Lean-checkable obligations, and keep rejected designs as memory. | EoH is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction is accepted only when the Lean target and proof obligations are satisfied. |
+| Selection and archive pressure | EoH keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer constructions that reduce formal gaps. | Faithful paper-reproduction mode should not use evolutionary mutation to change the paper construction; EoH-like exploration belongs only after the acceptance predicate is explicit. |
+
+The analogy is:
+
+```text
+ARIS empirical paper pipeline:
+papers -> ideas -> experiments -> review -> paper
+
+Learning Beyond Gradients heuristic loop:
+state/test/log feedback -> code edit -> trial record -> summary -> next edit
+
+EoH algorithm-design loop:
+population -> mutation/crossover -> objective evaluation -> selection/archive
+
+QBE proof pipeline:
+paper/open condition -> oracle contract -> circuit matrix -> Lean check -> review -> proof map
+```
+
+The practical split is:
+
+```text
+faithfulPaper:
+LBG-like memory loop + local proof-attempt population for fixed lemmas
+
+exploratoryConstruction:
+LBG-like memory loop + EoH-like candidate population for circuit families
+```
+
+QBE's many Markdown files are therefore not decoration.  They play the same
+operational role that ARIS skills, templates, manifests, and research-wiki
+pages play: they are the stable interface between humans, agents, and the next
+cycle.  The extra QBE-specific layer is the Lean/LaTeX/Markdown conversion
+window, because a theorem-proving project must preserve the correspondence
+between source-paper notation and checked declarations.
