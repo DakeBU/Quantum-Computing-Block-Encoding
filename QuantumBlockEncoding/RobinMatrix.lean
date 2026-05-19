@@ -302,6 +302,31 @@ def oneTermRobinCircuitBlockClaim (n : Nat)
     proved := false
   }
 
+/--
+Dimension compatibility for the one-term Robin circuit:
+the full Hilbert-space dimension factors as signal dimension times system
+dimension.  This is the reusable arithmetic bridge from qubit counts to the
+block-projection matrix shape.
+figure:1_term_ROBIN, main.tex:1098-1109 --/
+theorem oneTermRobinCircuitDimCompat (n : Nat) :
+    qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters n)) =
+      qubitDim ((GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits) *
+        gridSize n := by
+  simp only [qubitDim, GHL2025.oneTermRobinTotalQubits, GHL2025.oneTermRobinLayout,
+    oneTermParameters, clog2_gridSize, clog2_one]
+  simp [gridSize, Nat.pow_add, Nat.mul_comm]
+
+/--
+Default one-term Robin circuit block claim using the reusable dimension
+compatibility theorem.  The block-correctness obligation remains unproved.
+-/
+def defaultOneTermRobinCircuitBlockClaim (n : Nat) :
+    CircuitBlockEncodingClaim Coeff
+      (GHL2025.oneTermRobinTotalQubits (oneTermParameters n))
+      (gridSize n)
+      (qubitDim ((GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits)) :=
+  oneTermRobinCircuitBlockClaim n (oneTermRobinCircuitDimCompat n)
+
 end Examples.RobinHeat
 
 end QuantumBlockEncoding

@@ -89,6 +89,8 @@ correctness is already solved.
 | Robin block extraction target | `Examples.RobinHeat.oneTermRobinBlockExtractionTarget` | BlockExtractionTarget with unproved obligations | defined |
 | Circuit block encoding claim | `CircuitBlockEncodingClaim` | Schema bundling semantics + target + dim proof + obligation | defined |
 | Robin circuit block claim | `Examples.RobinHeat.oneTermRobinCircuitBlockClaim` | CircuitBlockEncodingClaim for Robin, takes dim proof parameter | defined |
+| Robin dimension theorem | `Examples.RobinHeat.oneTermRobinCircuitDimCompat` | full dimension = signal dimension × system dimension | proved |
+| Default Robin block claim | `Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim` | Robin claim using reusable dimension theorem | defined |
 
 ---
 
@@ -122,6 +124,8 @@ def Examples.RobinHeat.oneTermRobinCircuitSemantics
 def Examples.RobinHeat.oneTermRobinBlockExtractionTarget
 structure CircuitBlockEncodingClaim
 def Examples.RobinHeat.oneTermRobinCircuitBlockClaim
+theorem Examples.RobinHeat.oneTermRobinCircuitDimCompat
+def Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim
 ```
 
 Next declarations should fill in the actual oracle matrices:
@@ -145,7 +149,7 @@ it as `SemanticObligation` or `ObligationRecord` with `proved := false`.
 - [x] Define the signal/system block projection indexing convention.
 - [x] Define `CircuitBlockEncodingClaim` schema to bundle semantics + target.
 - [x] Wire Robin circuit semantics to block extraction target via `oneTermRobinCircuitBlockClaim`.
-- [ ] Prove dimension compatibility `clog2(gridSize n) = n` for general `n`.
+- [x] Prove dimension compatibility `clog2(gridSize n) = n` for general `n`.
 - [x] Assign gate matrices to `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`,
   `O_f`, `SWAP`, and `(O_D^BS)^†` (as placeholders with `proved := false`).
 - [ ] Prove or explicitly track unitarity of each gate matrix.

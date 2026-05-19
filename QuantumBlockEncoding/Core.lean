@@ -60,6 +60,45 @@ def clog2 (m : Nat) : Nat :=
 @[simp] theorem clog2_one : clog2 1 = 0 := by
   simp [clog2]
 
+/-- `log2 (2^(n+1)-1) = n`, the arithmetic fact behind `clog2_gridSize`. -/
+theorem log2_pred_two_pow_succ (n : Nat) :
+    Nat.log2 (2 ^ (n + 1) - 1) = n := by
+  let x := 2 ^ (n + 1) - 1
+  have hx : x ≠ 0 := by
+    have h : 1 ≤ x := by
+      induction n with
+      | zero => decide
+      | succ n _ =>
+          dsimp [x]
+          rw [Nat.pow_succ]
+          rw [Nat.pow_succ]
+          omega
+    omega
+  have hle : n ≤ Nat.log2 x := by
+    rw [Nat.le_log2 hx]
+    dsimp [x]
+    induction n with
+    | zero => simp
+    | succ n _ =>
+        rw [Nat.pow_succ]
+        rw [Nat.pow_succ]
+        omega
+  have hlt : Nat.log2 x < n + 1 := by
+    rw [Nat.log2_lt hx]
+    dsimp [x]
+    have h : 0 < 2 ^ (n + 1) := Nat.pow_pos (by decide : 0 < 2)
+    omega
+  exact Nat.le_antisymm (Nat.lt_succ_iff.mp hlt) hle
+
+/-- The bit-width of an `n`-qubit grid is `n`. -/
+@[simp] theorem clog2_gridSize (n : Nat) : clog2 (gridSize n) = n := by
+  cases n with
+  | zero => rfl
+  | succ n =>
+      simpa [Nat.succ_eq_add_one] using
+        (show clog2 (gridSize (n + 1)) = n + 1 by
+          simp [clog2, gridSize, log2_pred_two_pow_succ])
+
 /-- Boundary conditions tracked by this library. -/
 inductive BoundaryKind where
   | periodic

@@ -145,6 +145,12 @@ defined \\
 Robin circuit block claim &
 \texttt{Examples.RobinHeat.oneTermRobinCircuitBlockClaim} &
 defined, unproved \\
+Dimension compatibility &
+\texttt{Examples.RobinHeat.oneTermRobinCircuitDimCompat} &
+proved from \texttt{clog2\_gridSize} \\
+Default Robin block claim &
+\texttt{Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim} &
+defined, unproved \\
 \hline
 \end{tabular}
 \end{center}
@@ -165,6 +171,14 @@ The most important remaining obligations are:
   \item prove the extracted block is \(A_k/(N_DN_f\kappa)\);
   \item prove the resource formula including all internal oracle ancillas.
 \end{enumerate}
+
+The generic arithmetic bridge
+\[
+  \texttt{clog2 (gridSize n) = n}
+\]
+is now proved in Lean as \texttt{clog2\_gridSize}.  This closes the dimension
+compatibility side condition for the Robin circuit block claim, but it does not
+prove oracle unitarity or block correctness.
 
 \subsection{Automation Rule}
 

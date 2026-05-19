@@ -49,10 +49,12 @@ and `unitary.proved := false`. These must be replaced with real oracle matrices.
 |---|---|---|
 | `CircuitBlockEncodingClaim` | Schema: semantics + target + dimCompat + blockCorrect | defined |
 | `Examples.RobinHeat.oneTermRobinCircuitBlockClaim` | Robin instance, takes `hDim` proof parameter | defined |
+| `Examples.RobinHeat.oneTermRobinCircuitDimCompat` | Reusable proof that full dimension = signal dimension × system dimension | proved |
+| `Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim` | Robin instance using the reusable dimension proof | defined |
 
 | Obligation | Declaration | Status |
 |---|---|---|
-| Dimension compatibility for general `n` | `hDim` parameter of `oneTermRobinCircuitBlockClaim` | requires `clog2(gridSize n) = n` lemma |
+| Dimension compatibility for general `n` | `oneTermRobinCircuitDimCompat` using `clog2_gridSize` | proved |
 | Block correctness for Robin | `blockCorrect` field | unproved |
 
 ## Downstream Dependencies

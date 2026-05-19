@@ -253,6 +253,9 @@ example : clog2 (gridSize 2) = 2 := by native_decide
 example : clog2 (gridSize 3) = 3 := by native_decide
 example : clog2 (gridSize 5) = 5 := by native_decide
 
+-- General reusable dimension lemma for n-qubit grids
+example (n : Nat) : clog2 (gridSize n) = n := clog2_gridSize n
+
 -- Total qubits for a concrete layout (n=3, kappa=7, functionPieces=1, polynomialDegreeCost=1)
 -- clog2 3 = 2, clog2 1 = 0, clog2 7 = 3 → signalQubits = 2 + 0 + 3 + 4 = 9
 example :
@@ -632,6 +635,11 @@ example :
     (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 3 (by native_decide)).semantics.circuit =
       GHL2025.oneTermRobinCircuit := rfl
 
+-- Default CircuitBlockEncodingClaim no longer needs a per-instance native_decide dimension proof
+example :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim 3).semantics.circuit =
+      GHL2025.oneTermRobinCircuit := rfl
+
 -- CircuitBlockEncodingClaim: target matrix matches robinDerivativeMatrix for n=3
 example :
     (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 3 (by native_decide)).target.targetMatrix =
@@ -640,6 +648,9 @@ example :
 -- CircuitBlockEncodingClaim: blockCorrect is unproved
 example :
     (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 3 (by native_decide)).blockCorrect.proved = false := rfl
+
+example (n : Nat) :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim n).blockCorrect.proved = false := rfl
 
 -- CircuitBlockEncodingClaim: normalizer matches oneTermRobinNormalizer for n=3
 example :
