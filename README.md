@@ -102,6 +102,154 @@ oracle details become proof obligations.  In exploratory mode, agents may
 search, but every candidate must be tied to an acceptance predicate and logged
 as trial memory.
 
+## Design Lineage
+
+QBE is not a clone of either upstream project.  It adapts their working
+patterns to a theorem-proving target where Lean, not an empirical score, is the
+final judge.
+
+| Source pattern | In the source project | QBE adaptation |
+| --- | --- | --- |
+| [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) skills | Single-purpose `SKILL.md` files describe workflows that any LLM can execute. | `tools/qbe.py run-cycle` generates role prompts for upper, middle, lower, and reviewer agents.  The prompts are task-specific instead of global slash commands. |
+| ARIS plain files | Markdown templates, `MANIFEST.md`, research wiki, review artifacts, and no database lock-in. | `tasks/`, `conversion-windows/`, `paper-notes/`, `proof-obligations/`, `runs/`, and `research-wiki/` are all plain files that humans and agents can edit. |
+| ARIS review loops | A reviewer model checks papers, experiments, citations, and claims. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, resource counts, citations, and faithful-vs-exploratory mode discipline. |
+| [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients) trial memory | Coding agents iterate policies and record `trials.jsonl`, `summary.csv`, videos, logs, and rejected directions. | QBE records proof/circuit attempts in `runs/trials.jsonl` and `runs/trials_summary.csv`; rejected constructions become proof obligations or open problems. |
+| Heuristic-system maintenance | Code, tests, logs, and summaries form the learnable object, not neural weights. | Lean declarations, tests, conversion windows, proof-obligation ledgers, and trial summaries form the evolving proof system. |
+
+The analogy is:
+
+```text
+ARIS empirical paper pipeline:
+papers -> ideas -> experiments -> review -> paper
+
+Learning Beyond Gradients heuristic loop:
+state/test/log feedback -> code edit -> trial record -> summary -> next edit
+
+QBE proof pipeline:
+paper/open condition -> oracle contract -> circuit matrix -> Lean check -> review -> proof map
+```
+
+QBE's many Markdown files are therefore not decoration.  They play the same
+operational role that ARIS skills, templates, manifests, and research-wiki
+pages play: they are the stable interface between humans, agents, and the next
+cycle.  The extra QBE-specific layer is the Lean/LaTeX/Markdown conversion
+window, because a theorem-proving project must preserve the correspondence
+between source-paper notation and checked declarations.
+
+## For Paper Authors
+
+Use this repository when your paper says or implies an oracle such as "assume
+access to $O_A$", but the eventual quantum algorithm needs a concrete
+gate-level circuit matrix, ancilla layout, normalizer, and resource statement.
+
+There are two entry points.
+
+### Reproduce An Existing Paper
+
+Use faithful paper-reproduction mode when the construction already exists in a
+paper and you want QBE to formalize it.
+
+1. Register a task:
+
+```bash
+python3 tools/qbe.py new-task QBE-PAPER-001 \
+  --kind paperReproduction \
+  --title "Formalize my paper's block encoding" \
+  --source "arXiv:XXXX.XXXXX" \
+  --target-lean "QuantumBlockEncoding/MyPaper.lean"
+```
+
+2. Edit `tasks/QBE-PAPER-001.md` and set:
+
+```text
+Mode: `faithfulPaper`
+```
+
+Then paste the theorem, oracle definition, source equations, and expected
+resource statement into the task.
+
+3. Create the conversion window:
+
+```bash
+python3 tools/qbe.py conversion-window QBE-PAPER-001 \
+  --title "My paper oracle-to-circuit map"
+```
+
+4. Run a conservative agent loop:
+
+```bash
+python3 tools/qbe.py update-task QBE-PAPER-001 --status active --active
+python3 tools/qbe.py sleep-run QBE-PAPER-001 \
+  --cycles 3 \
+  --lower-count 1 \
+  --agent-cmd 'bash tools/qbe_claude_faithful.sh {root} {prompt}' \
+  --execute \
+  --check-each-cycle
+```
+
+Expected outputs:
+
+- Lean declarations in `QuantumBlockEncoding/MyPaper.lean`,
+- tests under `Tests/`,
+- a symbol map in `conversion-windows/QBE-PAPER-001.md`,
+- readable derivations in `paper-notes/`,
+- remaining gaps in `proof-obligations/`,
+- run memory in `runs/trials.jsonl` and `runs/trials_summary.csv`.
+
+### Search For A New Oracle Construction
+
+Use exploratory construction mode when your theoretical algorithm needs an
+oracle, but no paper gives a gate-level implementation yet.
+
+1. Draft the open problem:
+
+```bash
+python3 tools/qbe.py new-open-problem QBE-EXP-001 \
+  --title "Block encoding for my new oracle condition" \
+  --motivation "Theory assumes an oracle; no concrete circuit is known."
+```
+
+2. Create a task:
+
+```bash
+python3 tools/qbe.py new-task QBE-EXP-001 \
+  --kind exploratoryConstruction \
+  --title "Search for a circuit realizing my oracle condition" \
+  --source "open problem / arXiv:XXXX.XXXXX" \
+  --target-lean "QuantumBlockEncoding/OpenProblems.lean"
+```
+
+Edit `tasks/QBE-EXP-001.md` and set:
+
+```text
+Mode: `exploratoryConstruction`
+```
+
+3. State the Lean-checkable acceptance predicate before running agents.  A good
+target says:
+
+- the target matrix/operator,
+- the allowed ancilla registers,
+- the required block entry,
+- the normalizer,
+- the resource expression,
+- what counts as a successful circuit matrix.
+
+4. Run multiple lower agents only after the target is precise:
+
+```bash
+python3 tools/qbe.py sleep-run QBE-EXP-001 \
+  --cycles 6 \
+  --lower-count 3 \
+  --agent-cmd 'cd {root} && claude -p --permission-mode bypassPermissions --effort high "$(cat {prompt})"' \
+  --execute \
+  --check-each-cycle
+```
+
+In exploratory mode, failed attempts are first-class results.  They should be
+logged, summarized, and either turned into better lemmas or promoted into open
+problem statements.
+
 Create one prompt deck:
 
 ```bash
