@@ -137,3 +137,4 @@ block-encoding formalization lifecycle.
 | 2026-05-19 14:40:40 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260519-144040-QBE-AUTO-002-upper-handoff |
 | 2026-05-19 14:52:50 | qbe.py agent-note | `runs/20260519-143514-QBE-AUTO-002-cycle03/dialogue.md` | dialogue | Appended middle note |
 | 2026-05-19 14:52:59 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260519-145259-QBE-AUTO-002-middle-handoff |
+| 2026-05-19 18:11:46 | qbe.py init | `QBE.md` | init | Initialized QBE workflow files |

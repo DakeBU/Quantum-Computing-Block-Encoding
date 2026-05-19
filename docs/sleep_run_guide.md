@@ -26,6 +26,7 @@ Faithful paper reproduction:
 - use when reproducing GHL2025 or another cited paper,
 - keep the paper construction fixed,
 - record missing oracle details as proof obligations,
+- use `proof-attempts/` for competing proof routes of the same fixed lemma,
 - require Markdown/LaTeX updates for Lean declarations tied to the paper,
 - prefer one lower worker per cycle.
 
@@ -33,6 +34,8 @@ Exploratory construction:
 
 - use when searching for a new block encoding or oracle realization,
 - start from a precise Lean acceptance predicate,
+- use `candidate-populations/` for competing circuit families and partial
+  Lean scores,
 - let lower agents try alternative constructions in separated file scopes,
 - record failed attempts as trial memory,
 - promote repeated failures to open-problem proposals.

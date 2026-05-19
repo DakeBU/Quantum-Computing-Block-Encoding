@@ -18,6 +18,7 @@ Choose one entry and create a task:
 
 ```bash
 python3 tools/qbe.py new-task QBE-PAPER-001 \
+  --mode faithfulPaper \
   --title "Formalize explicit sparse matrix block encoding" \
   --source "Camps-Lin-Van Beeumen-Yang 2024, https://arxiv.org/abs/2203.10236" \
   --target-lean "QuantumBlockEncoding/Circuit.lean"

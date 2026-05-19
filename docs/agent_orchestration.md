@@ -32,19 +32,26 @@ Every nontrivial cycle should leave three kinds of evidence:
 - a Markdown/LaTeX correspondence update when paper notation is involved,
 - a trial record explaining what changed or why the attempt was blocked.
 
-## Two Modes
+## Two Hybrid Strategy Modes
 
 QBE deliberately separates two kinds of automation.
 
 Faithful paper-reproduction mode is used for targets such as GHL2025.  The
 agents must reproduce the paper's construction, not invent a substitute.  If a
 paper says "assume an oracle", the gap becomes a circuit-level proof
-obligation unless the paper gives enough detail to formalize the oracle.
+obligation unless the paper gives enough detail to formalize the oracle.  The
+search policy is LBG-like proof-system maintenance: record Lean feedback,
+failed proof routes, and reviewer findings; if a fixed lemma fails, keep a
+small proof-attempt population under `proof-attempts/`.
 
 Exploratory construction mode is used for new theoretical conditions where the
 paper or open problem does not already provide a gate-level block encoding.
 Agents may propose new circuit matrices, but only against an explicit
-Lean-checkable acceptance predicate.
+Lean-checkable acceptance predicate.  The search policy combines LBG-like
+memory with an EoH-like candidate-evolution layer under
+`candidate-populations/`: initialize, mutate, recombine, score partial Lean
+progress, archive, and retry.  Partial scores are search guidance; Lean proof
+obligations decide acceptance.
 
 The upper agent must identify the mode before broad lower-agent work begins.
 The reviewer rejects any cycle that silently mixes the two modes.

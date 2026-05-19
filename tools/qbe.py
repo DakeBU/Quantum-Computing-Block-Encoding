@@ -41,6 +41,8 @@ WORK_DIRS = [
     "conversion-windows",
     "paper-notes",
     "agent-briefs",
+    "proof-attempts",
+    "candidate-populations",
     "open-problem-proposals",
     "proof-obligations",
     "reviews",
@@ -252,6 +254,37 @@ session.
 Use this directory for proof-obligation ledgers extracted from papers or from
 failed Lean attempts.
 """,
+        ROOT / "proof-attempts" / "README.md": """# Proof Attempts
+
+Faithful paper-reproduction mode may use local proof-attempt populations for a
+fixed Lean theorem or lemma.  These records are for tactic/proof-script search,
+not for changing the paper construction.
+
+Each record should identify:
+
+- target theorem or lemma,
+- attempted proof route,
+- Lean error or remaining goals,
+- reusable intermediate lemma found,
+- status: rejected, promising, generalized, or proved.
+""",
+        ROOT / "candidate-populations" / "README.md": """# Candidate Populations
+
+Exploratory construction mode may maintain EoH-like populations of candidate
+oracle or block-encoding constructions.
+
+Each candidate family should identify:
+
+- target acceptance predicate,
+- construction idea,
+- Lean declarations and file scope,
+- partial score such as typechecks, dimension checks, small-case block tests,
+  normalizer progress, resource progress, and remaining obligations,
+- status: rejected, active, promising, merged, or proved.
+
+A score is only a search guide.  A construction is accepted only when the Lean
+target and proof obligations are satisfied.
+""",
         ROOT / "reviews" / "README.md": """# Reviews
 
 Cross-model or human review artifacts for proof attempts and circuit designs.
@@ -436,7 +469,7 @@ def task_template(args: argparse.Namespace) -> str:
 
 Task id: `{args.id}`
 Kind: `{args.kind}`
-Mode: `unspecified`
+Mode: `{args.mode}`
 Status: `planned`
 Created: `{now}`
 
@@ -447,6 +480,15 @@ State the oracle or block-encoding target precisely.
 State whether this is faithful paper reproduction or exploratory construction.
 Faithful tasks reproduce a cited construction.  Exploratory tasks search for a
 new construction against a Lean-checkable acceptance predicate.
+
+Hybrid strategy:
+
+- `faithfulPaper`: use Learning-Beyond-Gradients-style trial memory and, when a
+  fixed lemma fails, maintain a local proof-attempt population for proof routes.
+  Do not mutate the paper construction.
+- `exploratoryConstruction`: use Learning-Beyond-Gradients-style trial memory
+  plus EoH-style candidate populations for circuit ideas.  Candidate scores are
+  search hints only; Lean proof obligations decide acceptance.
 
 ## Source
 
@@ -889,9 +931,51 @@ def infer_task_mode(task_text: str) -> str:
     return "unspecified"
 
 
+def strategy_for_mode(mode: str) -> str:
+    if mode == "faithfulPaper":
+        return """Hybrid strategy for this mode:
+
+- Use the Learning-Beyond-Gradients-like loop as the main process: Lean
+  feedback, test failures, proof gaps, and reviewer findings are written into
+  trial memory, compressed, and used to choose the next small proof task.
+- If a lower agent fails on a fixed theorem or lemma, maintain a local
+  proof-attempt population under `proof-attempts/`: different proof routes,
+  tactic scripts, intermediate lemmas, and remaining goals may compete.
+- The population is over proof routes for the same statement, not over new
+  scientific constructions.  Do not mutate the paper's circuit or oracle.
+- A proof route can be called successful only when the Lean target builds and
+  the corresponding paper-note/conversion-window entry remains synchronized.
+"""
+    if mode == "exploratoryConstruction":
+        return """Hybrid strategy for this mode:
+
+- Use the Learning-Beyond-Gradients-like loop for memory: every candidate,
+  rejection, partial success, Lean error, and reviewer concern is logged and
+  compressed into the next cycle.
+- Use the EoH-like loop only inside the search space: maintain candidate
+  populations under `candidate-populations/`, with initialization, mutation,
+  crossover/backbone recombination, selection, and archive pressure.
+- Candidate scores are search guides: typechecking, dimension checks,
+  small-case block tests, normalizer progress, resource progress, and reduced
+  proof-obligation count.  These scores do not prove correctness.
+- A construction is accepted only when the Lean acceptance target and all
+  required proof obligations are satisfied.
+"""
+    return """Hybrid strategy for this mode:
+
+- The upper agent must classify the task before broad lower-agent work begins.
+- If this is faithful paper reproduction, use LBG-style proof maintenance and
+  local proof-attempt populations only for fixed statements.
+- If this is exploratory construction, use LBG-style memory plus EoH-like
+  candidate populations for circuit ideas after the acceptance predicate is
+  precise.
+"""
+
+
 def role_prompt(role: str, task_id: str, title: str, task_text: str, cycle: int, run_dir: Path) -> str:
     trial_memory = recent_trial_text(task_id, limit=12)
     mode = infer_task_mode(task_text)
+    strategy = strategy_for_mode(mode)
     shared = f"""Task: {task_id} - {title}
 Mode: {mode}
 Cycle: {cycle}
@@ -945,6 +1029,8 @@ Mode discipline:
 - If the mode is `unspecified`, the upper agent must classify the task before
   lower agents perform broad code changes.
 
+{strategy}
+
 Human-facing correspondence rule:
 
 - If a cycle changes Lean declarations tied to a paper construction, update the
@@ -992,6 +1078,12 @@ Produce:
 In faithful paper mode, preserve the paper construction and isolate every
 unimplemented oracle as a proof obligation.  In exploratory mode, require a
 Lean-checkable target before search begins.
+
+If a faithful-mode lower attempt fails on a fixed lemma, ask the middle agent to
+start or update a `proof-attempts/` record rather than changing the theorem.  If
+an exploratory-mode candidate family looks promising, assign separate lower
+workers to mutation, recombination, and proof-obligation reduction in disjoint
+file scopes.
 """
     elif role == "middle":
         body = """You are the middle formalization maintainer and memory manager.
@@ -1014,6 +1106,11 @@ Maintain:
 Prefer small Lean changes that keep the repository compiling.  Do not bury a
 failed oracle construction in prose; promote it to a proof obligation or open
 problem.
+
+In faithful mode, maintain proof-attempt populations only for fixed Lean
+targets.  In exploratory mode, maintain candidate-population records that track
+candidate family, partial score, changed files, remaining obligations, and next
+mutation or recombination step.
 """
     elif role == "reviewer":
         body = """You are the independent reviewer and gatekeeper.
@@ -1034,6 +1131,10 @@ Look for:
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention.  If Lean fails, localize the
 failure and suggest the next smallest repair.
+
+In faithful mode, check that proof-attempt populations did not alter the paper
+construction.  In exploratory mode, check that candidate scores are treated as
+search guidance rather than proof of correctness.
 """
     else:
         body = """You are a lower implementation worker.
@@ -1050,6 +1151,11 @@ construction tied to the acceptance predicate.
 
 Write failures clearly; a failed attempt is useful search data when it
 identifies a blocked assumption, missing lemma, or impossible file scope.
+
+In faithful mode, record failed proof scripts or lemma routes under
+`proof-attempts/` when useful.  In exploratory mode, record candidate-family
+changes under `candidate-populations/` when useful, especially when the attempt
+improves a partial Lean score but does not yet prove the target.
 """
     return f"# {role.title()} Agent Prompt\n\n{body}\n\n## Shared Context\n\n{shared}"
 
@@ -1284,6 +1390,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_task.add_argument("id")
     p_task.add_argument("--title", required=True)
     p_task.add_argument("--kind", default="paperFormalization")
+    p_task.add_argument(
+        "--mode",
+        choices=["faithfulPaper", "exploratoryConstruction", "unspecified"],
+        default="unspecified",
+    )
     p_task.add_argument("--source", default="")
     p_task.add_argument("--target-lean", default="QuantumBlockEncoding/OpenProblems.lean")
     p_task.set_defaults(func=cmd_new_task)

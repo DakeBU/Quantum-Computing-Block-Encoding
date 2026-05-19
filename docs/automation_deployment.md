@@ -30,9 +30,10 @@ lake build && lake build Tests
 The repository is allowed to contain skeletons and planned work, but completed
 claims must compile.
 
-## Two Deployment Modes
+## Two Hybrid Strategy Modes
 
-QBE supports two explicit automation modes.
+QBE supports two explicit automation modes.  Both use trial memory and Lean
+gates, but they use different search policies.
 
 ### Faithful Paper Reproduction
 
@@ -46,6 +47,8 @@ Faithful mode rules:
 
 - do not replace the paper construction with a new oracle,
 - keep every unimplemented oracle as a named proof obligation,
+- when a fixed lemma fails, record proof routes under `proof-attempts/` instead
+  of changing the statement,
 - update the Markdown/LaTeX proof map whenever Lean declarations move,
 - prefer one lower worker per cycle when the target is delicate,
 - use reviewer findings to prevent hidden oracle assumptions.
@@ -59,6 +62,10 @@ to use AI as a construction engine.
 Exploratory mode rules:
 
 - start from a precise acceptance predicate,
+- maintain candidate circuit families under `candidate-populations/` when
+  multiple construction ideas compete,
+- allow EoH-like mutation, recombination, selection, and archive pressure only
+  inside that candidate space,
 - record all failed constructions in the trial memory,
 - promote repeated failures to open-problem proposals,
 - keep reusable circuit lemmas in shared Lean modules,
