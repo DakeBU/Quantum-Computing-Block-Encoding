@@ -2,6 +2,7 @@
 
 Task id: `QBE-AUTO-002`
 Kind: `oracleRealization`
+Mode: `faithfulPaper`
 Status: `active`
 Created: `2026-05-18`
 

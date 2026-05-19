@@ -618,20 +618,57 @@ figure:1_term_ROBIN, main.tex:1125-1163 --/
 
 /--
 Total number of qubits in the one-term Robin circuit.
-`systemQubits + signalQubits` from the register layout.
+Uses the register partition total: sum of all register widths.
 main.tex:1098-1109 --/
 def oneTermRobinTotalQubits (p : OneTermRobinParameters) : Nat :=
-  clog2 (gridSize p.n) + (clog2 p.n + clog2 p.functionPieces + clog2 p.kappa + 4)
+  (defaultRobinRegisterPartition p).totalQubits
 
 /--
-Placeholder gate matrix for U_indic.
-Identity on the full Hilbert space until a certified matrix is supplied.
+Effective signal qubits: total circuit qubits minus the system register width.
+This is the number of non-system qubits in the register partition.
+main.tex:1098-1109 --/
+def effectiveRobinSignalQubits (p : OneTermRobinParameters) : Nat :=
+  (defaultRobinRegisterPartition p).totalQubits - clog2 (gridSize p.n)
+
+/--
+Bit position of the indicator qubit in the compound register.
+= ancillaQubit + systemQubits + odPureAncillaQubits + sparseIndexQubits
+= 1 + n + (n - clog2 κ) + clog2 κ = 1 + 2n
+main.tex:1113 --/
+def robinIndicatorBitPosition (p : OneTermRobinParameters) : Nat :=
+  let rp := defaultRobinRegisterPartition p
+  rp.ancillaQubit + rp.systemQubits + rp.odPureAncillaQubits + rp.sparseIndexQubits
+
+/--
+Honest U_indic matrix: controlled-X on the indicator qubit, conditioned on
+the system register being in the bulk window [K1, K2].
+For each basis state |j⟩:
+  - Extract systemVal = bits [1, 1+n) of j
+  - If K1 ≤ systemVal ≤ K2 (bulk row): flip indicator bit
+  - Otherwise (boundary row): identity
+main.tex:1088-1099 --/
+def indicatorOracleMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    let n := p.n
+    let indPos := robinIndicatorBitPosition p
+    let systemVal := (j.val >>> 1) &&& ((1 <<< n) - 1)
+    let K1 := 2
+    let K2 := gridSize n - 3
+    let isBulk := if K1 ≤ systemVal ∧ systemVal ≤ K2 then (1 : Nat) else 0
+    let expectedImage := j.val ^^^ (isBulk <<< indPos)
+    if i.val = expectedImage then Coeff.rat 1 else Coeff.rat 0
+
+/--
+Gate matrix for U_indic using the honest permutation matrix.
+Controlled-X on indicator bit at position 1+2n, conditioned on bulk membership.
+Unitarity not yet formally proved.
 main.tex:1088-1099 --/
 def oneTermRobinGate_U_indic (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "U_indic"
-  matrix := fun _ _ => Coeff.rat 0
+  matrix := indicatorOracleMatrix p
   unitary := {
-    description := "U_indic(K1,K2) placeholder matrix: not yet implemented"
+    description := "U_indic(K1,K2) honest permutation matrix: unitarity not yet proved"
     source := "main.tex:1088-1099"
     proved := false
   }
@@ -685,13 +722,41 @@ def oneTermRobinGate_O_f (p : OneTermRobinParameters) : GateMatrix Coeff (oneTer
   }
 
 /--
-Placeholder gate matrix for SWAP.
+Honest SWAP matrix: permutation matrix swapping the system register
+(n qubits at bits [1, 1+n)) with the O_D^BS register (n qubits at bits [1+n, 1+2n)).
+
+For each basis state |j⟩:
+  - Extract block1 = bits [1, 1+n) of j  (system register value)
+  - Extract block2 = bits [1+n, 1+2n) of j (O_D^BS register value)
+  - diff = block1 XOR block2
+  - Swapped index = j XOR (diff <<< 1) XOR (diff <<< (1+n))
+
+When block1 = block2 the SWAP is the identity.  All bits outside the two
+n-qubit blocks (ancilla bit 0, indicator bit 1+2n, mf MSBs) are preserved.
+
+Unitarity not yet formally proved.
+figure:1_term_ROBIN, main.tex:1140 --/
+def swapOracleMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    let n := p.n
+    let blockMask := (1 <<< n) - 1
+    let block1 := (j.val >>> 1) &&& blockMask
+    let block2 := (j.val >>> (1 + n)) &&& blockMask
+    let diff := block1 ^^^ block2
+    let swapped := j.val ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))
+    if i.val = swapped then Coeff.rat 1 else Coeff.rat 0
+
+/--
+Gate matrix for SWAP using the honest permutation matrix.
+Swaps system register (bits [1,n+1)) with O_D^BS register (bits [n+1,2n+1)).
+Unitarity not yet formally proved.
 main.tex:1140 --/
 def oneTermRobinGate_SWAP (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.swap 0 0
-  matrix := fun _ _ => Coeff.rat 0
+  matrix := swapOracleMatrix p
   unitary := {
-    description := "SWAP placeholder matrix: not yet implemented"
+    description := "SWAP honest permutation matrix: unitarity not yet proved"
     source := "main.tex:1140"
     proved := false
   }

@@ -85,6 +85,94 @@ The default skeleton contains the labeled operations
 This is still a skeleton until each labeled gate is assigned a certified matrix
 semantics.
 
+\subsection{Register Bit Layout}
+
+The circuit-level register ordering (LSB = bit 0) for the Robin circuit
+is formalized in \texttt{GHL2025.RobinRegisterPartition}.  The bit positions
+from LSB to MSB are:
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Register & Bit range & Width & Field \\
+\hline
+ancilla & [0] & 1 & \texttt{ancillaQubit} \\
+system ($j$) & [1, $1{+}n$) & $n$ & \texttt{systemQubits} \\
+od\_pure\_ancilla & [$1{+}n$, $1{+}n{+}$odPure) & $n - \lceil\log_2\kappa\rceil$ & \texttt{odPureAncillaQubits} \\
+sparse\_index ($s$) & [$1{+}n{+}$odPure, ...) & $\lceil\log_2\kappa\rceil$ & \texttt{sparseIndexQubits} \\
+indicator (ind) & at bit $1 + 2n$ & 1 & \texttt{indicatorQubit} \\
+mf & remaining MSBs & $\lceil\log_2 n\rceil + \lceil\log_2 G_f\rceil + 3$ & \texttt{mfQubits} \\
+\hline
+\end{tabular}
+\end{center}
+
+The total circuit qubits equals the register partition total:
+\[
+  \texttt{totalQubits} = 2n + \lceil\log_2 n\rceil + \lceil\log_2 G_f\rceil + 5.
+\]
+For $n=3$, $G_f=1$, $\kappa=7$: total $= 6 + 2 + 0 + 5 = 13$ qubits.
+
+\subsection{Indicator Oracle $U_{\mathrm{indic}}$ Matrix}
+
+The indicator oracle is a permutation matrix (controlled-X on the indicator
+qubit conditioned on the system register being in the bulk window):
+\[
+  U_{\mathrm{indic}} \,|\mathit{mf}\rangle|ind\rangle|s\rangle|od\rangle|j\rangle|anc\rangle
+  =
+  |\mathit{mf}\rangle|ind \oplus \mathrm{isBulk}(K_1,K_2,j)\rangle|s\rangle|od\rangle|j\rangle|anc\rangle
+\]
+where $\mathrm{isBulk}(K_1,K_2,j) = 1$ iff $K_1 \leq j \leq K_2$.
+In Lean this is recorded as
+\[
+  \texttt{GHL2025.indicatorOracleMatrix}.
+\]
+The unitarity obligation remains unproved ($\texttt{proved := false}$).
+
+\subsection{SWAP Gate Matrix}
+
+The SWAP gate exchanges two $n$-qubit register blocks in the compound index:
+the system register at bits $[1, 1+n)$ and the O$_D^{BS}$ register at bits $[1+n, 1+2n)$.
+The permutation is:
+\[
+  \mathrm{swap}(j) = j \oplus (d \ll 1) \oplus (d \ll (1+n)),
+  \qquad
+  d = (j \gg 1 \,\&\, \text{mask}) \oplus (j \gg (1{+}n) \,\&\, \text{mask})
+\]
+where mask $= (1 \ll n) - 1$.
+When the two block values are equal, the SWAP acts as the identity.
+All bits outside the two blocks are preserved.
+In Lean this is recorded as
+\[
+  \texttt{GHL2025.swapOracleMatrix}.
+\]
+The unitarity obligation remains unproved ($\texttt{proved := false}$).
+
+\subsection{Bulk Window Bounds $K_1$, $K_2$}
+
+The bulk window bounds are derived from the stencil radius:
+\[
+  K_1 = \mathrm{leftRadius} = 2, \qquad
+  K_2 = 2^n - \mathrm{rightRadius} - 1 = 2^n - 3.
+\]
+The fourth-order central second-derivative stencil
+(\texttt{fourthOrderSecondDerivative}) has $\mathrm{leftRadius} = \mathrm{rightRadius} = 2$.
+The precondition $K_2 \geq K_1$ requires $2^n \geq 5$, i.e.\ $n \geq 3$.
+
+\subsection{Signal-Qubit Counts}
+
+The project uses two signal-qubit counts:
+
+\begin{itemize}
+  \item \textbf{Theorem-level} (\texttt{oneTermRobinLayout}):
+    $m = \lceil\log_2 n\rceil + \lceil\log_2 G_f\rceil + \lceil\log_2 \kappa\rceil + 4$.
+  \item \textbf{Circuit-level} (\texttt{effectiveRobinSignalQubits}):
+    $m' = \mathrm{totalQubits} - n$.
+\end{itemize}
+
+These differ because the circuit-level count includes all non-system registers
+(ancilla, indicator, pure ancillas).  The block extraction uses $m'$ since the
+projection $(\langle 0^a| \otimes I)$ zeros out all non-system registers.
+
 \subsection{Block-Encoding Statement}
 
 The desired final theorem is the block extraction equation
@@ -151,6 +239,18 @@ proved from \texttt{clog2\_gridSize} \\
 Default Robin block claim &
 \texttt{Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim} &
 defined, unproved \\
+Register bit layout &
+\texttt{GHL2025.robinIndicatorBitPosition} &
+implemented (cycle 2) \\
+U\_indic honest matrix &
+\texttt{GHL2025.indicatorOracleMatrix} &
+implemented (cycle 2) \\
+Effective signal qubits &
+\texttt{GHL2025.effectiveRobinSignalQubits} &
+implemented (cycle 2) \\
+SWAP honest matrix &
+\texttt{GHL2025.swapOracleMatrix} &
+implemented (cycle 3) \\
 \hline
 \end{tabular}
 \end{center}

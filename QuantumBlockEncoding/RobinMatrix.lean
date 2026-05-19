@@ -246,19 +246,19 @@ Block-extraction target for the Robin derivative block encoding.
 States that the `(0, 0)` block of the circuit matrix should equal
 `A_k / (N_D * N_f * kappa)`.
 
-The `signalDim` is `qubitDim signalQubits` where `signalQubits` comes from the
-register layout.  `systemDim` is `gridSize n`.
+The `signalDim` is `qubitDim effectiveRobinSignalQubits` where
+`effectiveRobinSignalQubits` counts all non-system qubits.
+`systemDim` is `gridSize n`.
 figure:1_term_ROBIN, main.tex:1131-1136 --/
 def oneTermRobinBlockExtractionTarget (n : Nat) :
     BlockExtractionTarget Coeff (gridSize n) (gridSize n)
-      (qubitDim (GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits) where
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n))) where
   unitaryMatrix := fun _ _ => Coeff.rat 0
   targetMatrix := robinDerivativeMatrix n
   normalizer := GHL2025.oneTermRobinNormalizer
   signalIndex := ⟨0, by
-    show (0 : Nat) < qubitDim (GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits
-    simp only [qubitDim, gridSize, oneTermParameters,
-      GHL2025.oneTermRobinLayout, clog2_one]
+    show (0 : Nat) < qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n))
+    simp only [qubitDim, gridSize]
     have : ∀ k : Nat, (0 : Nat) < 2 ^ k := by
       intro k; induction k with
       | zero => decide
@@ -287,12 +287,12 @@ is provable by `native_decide`.
 figure:1_term_ROBIN, main.tex:1131-1136 --/
 def oneTermRobinCircuitBlockClaim (n : Nat)
     (hDim : qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters n)) =
-      qubitDim ((GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits) *
+      qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n)) *
         gridSize n) :
     CircuitBlockEncodingClaim Coeff
       (GHL2025.oneTermRobinTotalQubits (oneTermParameters n))
       (gridSize n)
-      (qubitDim ((GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits)) where
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n))) where
   semantics := oneTermRobinCircuitSemantics n
   target := oneTermRobinBlockExtractionTarget n
   dimCompat := hDim
@@ -308,13 +308,21 @@ the full Hilbert-space dimension factors as signal dimension times system
 dimension.  This is the reusable arithmetic bridge from qubit counts to the
 block-projection matrix shape.
 figure:1_term_ROBIN, main.tex:1098-1109 --/
+private theorem effectiveSignal_add_n_eq_total (n : Nat) :
+    GHL2025.effectiveRobinSignalQubits (oneTermParameters n) + n =
+      GHL2025.oneTermRobinTotalQubits (oneTermParameters n) := by
+  simp [GHL2025.effectiveRobinSignalQubits, GHL2025.oneTermRobinTotalQubits,
+    GHL2025.defaultRobinRegisterPartition, GHL2025.RobinRegisterPartition.totalQubits,
+    oneTermParameters, clog2_gridSize]
+  omega
+
 theorem oneTermRobinCircuitDimCompat (n : Nat) :
     qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters n)) =
-      qubitDim ((GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits) *
+      qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n)) *
         gridSize n := by
-  simp only [qubitDim, GHL2025.oneTermRobinTotalQubits, GHL2025.oneTermRobinLayout,
-    oneTermParameters, clog2_gridSize, clog2_one]
-  simp [gridSize, Nat.pow_add, Nat.mul_comm]
+  have h := effectiveSignal_add_n_eq_total n
+  simp only [qubitDim, gridSize]
+  rw [← h, Nat.pow_add]
 
 /--
 Default one-term Robin circuit block claim using the reusable dimension
@@ -324,7 +332,7 @@ def defaultOneTermRobinCircuitBlockClaim (n : Nat) :
     CircuitBlockEncodingClaim Coeff
       (GHL2025.oneTermRobinTotalQubits (oneTermParameters n))
       (gridSize n)
-      (qubitDim ((GHL2025.oneTermRobinLayout (oneTermParameters n)).signalQubits)) :=
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n))) :=
   oneTermRobinCircuitBlockClaim n (oneTermRobinCircuitDimCompat n)
 
 end Examples.RobinHeat

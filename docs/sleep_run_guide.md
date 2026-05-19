@@ -17,6 +17,30 @@ upper/middle/lower/reviewer cycles and uses Lean as the acceptance gate.
 It does not require a specific vendor. The external command can be Codex CLI,
 Claude Code, a shell wrapper, or a manual script that reads one prompt file.
 
+## Choose The Mode First
+
+Before an unattended run, decide which mode the task uses.
+
+Faithful paper reproduction:
+
+- use when reproducing GHL2025 or another cited paper,
+- keep the paper construction fixed,
+- record missing oracle details as proof obligations,
+- require Markdown/LaTeX updates for Lean declarations tied to the paper,
+- prefer one lower worker per cycle.
+
+Exploratory construction:
+
+- use when searching for a new block encoding or oracle realization,
+- start from a precise Lean acceptance predicate,
+- let lower agents try alternative constructions in separated file scopes,
+- record failed attempts as trial memory,
+- promote repeated failures to open-problem proposals.
+
+The upper prompt must state the mode.  The reviewer should reject a run that
+mixes faithful reproduction and exploratory invention without recording the
+branch.
+
 ## Dry Run
 
 Start with a dry run:

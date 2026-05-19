@@ -436,12 +436,17 @@ def task_template(args: argparse.Namespace) -> str:
 
 Task id: `{args.id}`
 Kind: `{args.kind}`
+Mode: `unspecified`
 Status: `planned`
 Created: `{now}`
 
 ## Goal
 
 State the oracle or block-encoding target precisely.
+
+State whether this is faithful paper reproduction or exploratory construction.
+Faithful tasks reproduce a cited construction.  Exploratory tasks search for a
+new construction against a Lean-checkable acceptance predicate.
 
 ## Source
 
@@ -854,9 +859,41 @@ def task_context(task_id: str) -> tuple[str, str]:
     return task_id, "No task file found. Create one with `tools/qbe.py new-task`."
 
 
+def infer_task_mode(task_text: str) -> str:
+    mode_match = re.search(r"^Mode:\s*`?([A-Za-z0-9_-]+)`?", task_text, flags=re.M)
+    if mode_match:
+        mode = mode_match.group(1)
+        if mode in {"faithfulPaper", "exploratoryConstruction", "unspecified"}:
+            return mode
+    text = task_text.lower()
+    faithful_markers = [
+        "faithful",
+        "paper-reproduction",
+        "paper reproduction",
+        "not an innovation",
+        "do not invent",
+        "primary paper target",
+    ]
+    exploratory_markers = [
+        "open problem",
+        "exploratory",
+        "construction search",
+        "new construction",
+        "innovation",
+        "candidate construction",
+    ]
+    if any(marker in text for marker in faithful_markers):
+        return "faithfulPaper"
+    if any(marker in text for marker in exploratory_markers):
+        return "exploratoryConstruction"
+    return "unspecified"
+
+
 def role_prompt(role: str, task_id: str, title: str, task_text: str, cycle: int, run_dir: Path) -> str:
     trial_memory = recent_trial_text(task_id, limit=12)
+    mode = infer_task_mode(task_text)
     shared = f"""Task: {task_id} - {title}
+Mode: {mode}
 Cycle: {cycle}
 Run directory: {rel(run_dir)}
 
@@ -877,6 +914,36 @@ Recent trial memory:
 ```text
 {trial_memory}
 ```
+
+Operating model:
+
+- QBE uses ARIS-style plain-file coordination and Learning-Beyond-Gradients-style
+  trial memory, but the scientific target is Lean-checked quantum circuit
+  matrix construction.
+- Upper is the human-facing project director: choose the cycle objective,
+  decide whether the task is faithful paper reproduction or exploratory
+  construction, and compress memory for the next cycle.
+- Middle is the workflow maintainer: synchronize Lean, Markdown, and LaTeX;
+  convert upper strategy into exact declarations, file scopes, proof
+  obligations, and lower-agent packets; maintain success/failure memory.
+- Lower agents are implementation workers: solve one assigned Lean/circuit
+  task, run the gate if they edit Lean, and report useful failures without
+  changing the scientific objective.
+- Reviewer is the gatekeeper: audit the diff, build status, hidden oracle
+  assumptions, normalizers, ancillas, resource counts, links, and Markdown math
+  discipline.
+- Lean source is authoritative for correctness.  Markdown and LaTeX are the
+  human-readable proof map.  JSONL/CSV trial logs are the process memory.
+
+Mode discipline:
+
+- In `faithfulPaper` mode, reproduce the cited paper's construction.  Do not
+  invent a replacement oracle or block encoding unless the reviewer records it
+  as a separate exploratory branch or open problem.
+- In `exploratoryConstruction` mode, propose new oracle/block-encoding
+  constructions only against a precise Lean-checkable acceptance target.
+- If the mode is `unspecified`, the upper agent must classify the task before
+  lower agents perform broad code changes.
 
 Human-facing correspondence rule:
 
@@ -904,46 +971,85 @@ python3 tools/qbe.py trial-log --task {task_id} --role {role} --kind handoff --s
 ```
 """
     if role == "upper":
-        body = """You are the upper research director.
+        body = """You are the upper research director and human-intervention window.
 
-Decide what the next cycle should optimize for.  Read the task, literature
-status, prior trials, and dialogue.  Produce:
+Read the task, literature status, prior trials, changed files, and dialogue.
+Your job is not to do broad implementation work.  Your job is to keep the
+scientific process coherent.
 
-1. One precise objective for this cycle.
-2. A decomposition into middle/lower/reviewer work.
-3. Acceptance criteria that Lean can eventually check.
-4. Directions to stop pursuing, with reasons.
-5. A compression of useful memory into the handoff.
+Produce:
 
-Do not edit many files.  Your main output is strategy and triage.
+1. Task mode for this cycle: faithful paper reproduction, exploratory
+   construction, or blocked pending human input.
+2. One precise objective.
+3. Non-goals and directions to stop pursuing, with reasons.
+4. Middle-agent instructions for conversion windows, paper notes, proof
+   obligations, and memory.
+5. Lower-agent work packets with narrow file scopes and acceptance checks.
+6. Reviewer checklist.
+7. A compressed handoff explaining what future agents should remember.
+
+In faithful paper mode, preserve the paper construction and isolate every
+unimplemented oracle as a proof obligation.  In exploratory mode, require a
+Lean-checkable target before search begins.
 """
     elif role == "middle":
-        body = """You are the middle formalization maintainer.
+        body = """You are the middle formalization maintainer and memory manager.
 
-Keep LaTeX, Markdown, and Lean synchronized.  Produce or update a conversion
-window when notation moves from a paper into Lean.  Maintain proof obligations
-instead of hiding gaps in prose.  If lower agents propose circuit ideas, map
-them to declaration names, target files, and exact acceptance predicates.
+Your job is to translate upper-level scientific strategy into executable Lean
+work while preserving a human-readable proof map.
 
-Prefer small Lean changes that keep the repository compiling.
+Maintain:
+
+1. Conversion windows: LaTeX symbols, Markdown explanations, Lean names,
+   normalizers, register layouts, and resource claims.
+2. Paper notes: readable theorem/proof sketches tied to source equations.
+3. Proof obligations: every missing circuit, oracle, lemma, bound, and resource
+   equality must be explicit.
+4. Trial memory: summarize what worked, what failed, and what should be tried
+   next.
+5. Lower-agent packets: exact declarations, target files, allowed write scope,
+   and build/test expectations.
+
+Prefer small Lean changes that keep the repository compiling.  Do not bury a
+failed oracle construction in prose; promote it to a proof obligation or open
+problem.
 """
     elif role == "reviewer":
-        body = """You are the independent reviewer.
+        body = """You are the independent reviewer and gatekeeper.
 
 Inspect the current diff, the conversion window, the task contract, and the
-trial summary.  Look for false oracle assumptions, missing normalizers,
-unstated ancilla registers, resource-count drift, and citation gaps.  Record
-actionable findings only.  If Lean fails, localize the failure.
+trial summary.  Run the requested Lean gate when practical.
+
+Look for:
+
+1. False proofs such as `Prop := True`, `trivial`, hidden `sorry`, or semantic
+   booleans marked proved without construction.
+2. Oracle assumptions that should be gate-level circuits or explicit proof
+   obligations.
+3. Normalizer, ancilla, register ordering, dimension, and resource-count drift.
+4. Markdown/LaTeX/Lean correspondence gaps, including Markdown math delimiters.
+5. Citation or source-link gaps.
+
+Classify findings as blocking or advisory.  If the current task is faithful
+paper reproduction, reject unrecorded invention.  If Lean fails, localize the
+failure and suggest the next smallest repair.
 """
     else:
-        body = """You are a lower search worker.
+        body = """You are a lower implementation worker.
 
-Try one concrete construction or proof repair.  Keep the attempt narrow:
-define one matrix/circuit schema, one lemma, one resource expression, or one
-counterexample/open-problem promotion.  Run the Lean gate if you edit Lean.
+You are assigned one concrete Lean/circuit task.  Keep the attempt narrow:
+define or repair one matrix, circuit schema, lemma, resource expression, test,
+or proof-obligation promotion.  Respect the file scope given by the upper or
+middle agent, and assume other agents may be editing nearby documentation.
 
-Write down failures clearly; failed attempts are useful search data when they
-identify a blocked assumption.
+Run the Lean gate if you edit Lean, or explain why it was not run.  Do not
+change the scientific objective.  In faithful paper mode, do not replace the
+paper construction with a new one.  In exploratory mode, keep every proposed
+construction tied to the acceptance predicate.
+
+Write failures clearly; a failed attempt is useful search data when it
+identifies a blocked assumption, missing lemma, or impossible file scope.
 """
     return f"# {role.title()} Agent Prompt\n\n{body}\n\n## Shared Context\n\n{shared}"
 

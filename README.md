@@ -90,6 +90,18 @@ The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
 - Lower agents: try concrete construction/proof paths.
 - Reviewer: checks Lean build, hidden oracle assumptions, resources, and links.
 
+QBE has two operating modes:
+
+- Faithful paper reproduction: reproduce a specific paper's circuit/block
+  encoding in Lean.  This is the current mode for GHL2025.
+- Exploratory construction: search for new oracle or block-encoding
+  constructions under a precise Lean-checkable target.
+
+In faithful mode, agents must not invent a replacement construction.  Missing
+oracle details become proof obligations.  In exploratory mode, agents may
+search, but every candidate must be tied to an acceptance predicate and logged
+as trial memory.
+
 Create one prompt deck:
 
 ```bash
@@ -129,6 +141,29 @@ Full guide:
 - [Agent orchestration](docs/agent_orchestration.md)
 - [Sleep run guide](docs/sleep_run_guide.md)
 - [Article to Lean workflow](docs/article_to_lean_workflow.md)
+
+## Faithful GHL2025 Overnight Run
+
+For the current paper-reproduction target, use `QBE-AUTO-002` as the
+infrastructure task that makes the GHL2025 circuit semantics concrete:
+
+```bash
+cd /home/nitanda_sub/mark/repos/Quantum/Quantum-Computing-Bloack-Encoding
+python3 tools/qbe.py update-task QBE-AUTO-002 --status active --active
+
+mkdir -p runs/logs
+nohup bash -lc '
+python3 tools/qbe.py sleep-run QBE-AUTO-002 \
+  --cycles 4 \
+  --lower-count 1 \
+  --agent-cmd '"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
+  --execute \
+  --check-each-cycle
+' > runs/logs/claude-qbe-auto-002-$(date +%Y%m%d-%H%M%S).log 2>&1 &
+```
+
+Use one lower worker for this faithful mode until the paper's register layout,
+matrix semantics, and block-extraction target are stable.
 
 ## Lean/LaTeX/Markdown Conversion
 

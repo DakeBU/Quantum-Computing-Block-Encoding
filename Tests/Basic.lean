@@ -532,10 +532,77 @@ example :
 
 -- Cycle QBE-AUTO-002: Circuit matrix semantics backend tests
 
--- GHL2025.oneTermRobinTotalQubits: total qubits for concrete parameters
--- n=3: clog2 8 + (clog2 3 + clog2 1 + clog2 7 + 4) = 3 + (2+0+3+4) = 12
+-- GHL2025.oneTermRobinTotalQubits: total qubits = register partition total
+-- n=3, kappa=7: mfQubits(5) + indicator(1) + sparse(3) + odPure(0) + system(3) + ancilla(1) = 13
 example :
-    GHL2025.oneTermRobinTotalQubits { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } = 12 := rfl
+    GHL2025.oneTermRobinTotalQubits { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } = 13 := rfl
+
+-- GHL2025.oneTermRobinTotalQubits for n=1: mfQubits(3) + indicator(1) + sparse(0) + odPure(1) + system(1) + ancilla(1) = 7
+example :
+    GHL2025.oneTermRobinTotalQubits { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 } = 7 := rfl
+
+-- robinIndicatorBitPosition: = 1 + n + (n - clog2 κ) + clog2 κ = 1 + 2n
+-- For n=3, κ=7: 1 + 2*3 = 7
+example :
+    GHL2025.robinIndicatorBitPosition { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } = 7 := rfl
+
+-- For n=1, κ=1: 1 + 2*1 = 3
+example :
+    GHL2025.robinIndicatorBitPosition { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 } = 3 := rfl
+
+-- effectiveRobinSignalQubits = totalQubits - clog2(gridSize n) = 13 - 3 = 10 for n=3
+example :
+    GHL2025.effectiveRobinSignalQubits { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } = 10 := rfl
+
+-- effectiveRobinSignalQubits for n=1: 7 - 1 = 6
+example :
+    GHL2025.effectiveRobinSignalQubits { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 } = 6 := rfl
+
+-- U_indic matrix: boundary row (systemVal=0, < K1=2) → identity
+-- Compound index j=0: systemVal = (0 >>> 1) &&& 7 = 0, isBulk = false, expectedImage = 0
+-- M(0, 0) = 1 (identity on boundary)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.indicatorOracleMatrix p)
+      ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- U_indic matrix: bulk row (systemVal=2, K1=2 ≤ 2 ≤ K2=5) → flips indicator
+-- Compound index j=4: systemVal = (4 >>> 1) &&& 7 = 2, isBulk = true
+-- expectedImage = 4 XOR (1 <<< 7) = 4 XOR 128 = 132
+-- M(132, 4) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.indicatorOracleMatrix p)
+      ⟨132, by native_decide⟩ ⟨4, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- U_indic matrix: M(0, 4) = 0 (row 0 is not the image of j=4)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.indicatorOracleMatrix p)
+      ⟨0, by native_decide⟩ ⟨4, by native_decide⟩ = Coeff.rat 0 := by
+  native_decide
+
+-- U_indic matrix: M(4, 132) = 0 (j=132 has systemVal=66&&&7=2 bulk, maps to 132 XOR 128 = 4, not 4 → 132)
+-- Actually j=132: systemVal = (132 >>> 1) &&& 7 = 66 &&& 7 = 2, isBulk=true, expectedImage = 132 XOR 128 = 4
+-- M(4, 132) = 1 (inverse mapping)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.indicatorOracleMatrix p)
+      ⟨4, by native_decide⟩ ⟨132, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- Dim compat: qubitDim total = qubitDim effectiveSignal * gridSize n for n=3
+-- 2^13 = 2^10 * 8 = 8192
+example : qubitDim (GHL2025.oneTermRobinTotalQubits (Examples.RobinHeat.oneTermParameters 3)) =
+    qubitDim (GHL2025.effectiveRobinSignalQubits (Examples.RobinHeat.oneTermParameters 3)) *
+      gridSize 3 := by native_decide
+
+-- Dim compat for n=1: 2^7 = 2^6 * 2 = 128
+example : qubitDim (GHL2025.oneTermRobinTotalQubits (Examples.RobinHeat.oneTermParameters 1)) =
+    qubitDim (GHL2025.effectiveRobinSignalQubits (Examples.RobinHeat.oneTermParameters 1)) *
+      gridSize 1 := by native_decide
 
 -- Gate matrix placeholders: length = 7 (one per circuit gate)
 example (p : GHL2025.OneTermRobinParameters) :
@@ -620,14 +687,15 @@ example : totalCircuitQubits 3 9 = 12 := rfl
 
 -- CircuitBlockEncodingClaim tests
 
--- Dimension compatibility for n=3: 2^12 = 2^9 * 2^3
+-- Dimension compatibility for n=3: 2^13 = 2^10 * 2^3 (register partition total = 13)
 example : qubitDim (GHL2025.oneTermRobinTotalQubits (Examples.RobinHeat.oneTermParameters 3)) =
-    qubitDim ((GHL2025.oneTermRobinLayout (Examples.RobinHeat.oneTermParameters 3)).signalQubits) *
+    qubitDim (GHL2025.effectiveRobinSignalQubits (Examples.RobinHeat.oneTermParameters 3)) *
       gridSize 3 := by native_decide
 
--- Dimension compatibility for n=4: 2^13 = 2^9 * 2^4 (clog2 4 = 2, signal = 2+0+3+4 = 9, total = 4+9 = 13)
+-- Dimension compatibility for n=4: total=14, effectiveSignal=10, gridSize=16
+-- 2^14 = 2^10 * 2^4 = 16384
 example : qubitDim (GHL2025.oneTermRobinTotalQubits (Examples.RobinHeat.oneTermParameters 4)) =
-    qubitDim ((GHL2025.oneTermRobinLayout (Examples.RobinHeat.oneTermParameters 4)).signalQubits) *
+    qubitDim (GHL2025.effectiveRobinSignalQubits (Examples.RobinHeat.oneTermParameters 4)) *
       gridSize 4 := by native_decide
 
 -- CircuitBlockEncodingClaim: circuit matches oneTermRobinCircuit for n=3
@@ -656,3 +724,107 @@ example (n : Nat) :
 example :
     (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 3 (by native_decide)).target.normalizer =
       GHL2025.oneTermRobinNormalizer := rfl
+
+-- Cycle 1 edge tests: dimension compatibility, block projection, field roundtrips
+
+-- Edge test 1: n=1 dimension compatibility (total=7, effectiveSignal=6, gridSize 1 = 2)
+example : qubitDim (GHL2025.oneTermRobinTotalQubits (Examples.RobinHeat.oneTermParameters 1)) =
+    qubitDim (GHL2025.effectiveRobinSignalQubits (Examples.RobinHeat.oneTermParameters 1)) *
+      gridSize 1 := by native_decide
+
+-- Edge test 2: oneTermRobinCircuitDimCompat for n=1 feeds into CircuitBlockEncodingClaim
+example : Examples.RobinHeat.oneTermRobinCircuitDimCompat 1 ▸
+    (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 1 (Examples.RobinHeat.oneTermRobinCircuitDimCompat 1)).dimCompat = Examples.RobinHeat.oneTermRobinCircuitDimCompat 1 := rfl
+
+-- Edge test 3: signalSystemBlockProjection on a 1x1 system (trivial block = the single entry)
+example :
+    signalSystemBlockProjection 2 1 1
+      (fun _ _ => Coeff.rat 42)
+      ⟨0, by decide⟩
+      ⟨0, by decide⟩ ⟨0, by decide⟩ =
+    Coeff.rat 42 := by native_decide
+
+-- Edge test 4: CircuitBlockEncodingClaim field-access roundtrip for n=2
+-- target matrix at bulk diagonal (2,2) for n=2 matches robinDerivativeMatrix
+example :
+    (Examples.RobinHeat.oneTermRobinCircuitBlockClaim 2 (by native_decide)).target.targetMatrix
+      ⟨2, by native_decide⟩ ⟨2, by native_decide⟩ =
+    (Examples.RobinHeat.robinDerivativeMatrix 2)
+      ⟨2, by native_decide⟩ ⟨2, by native_decide⟩ := rfl
+
+-- Edge test 5: defaultOneTermRobinCircuitBlockClaim for n=2 preserves circuit identity
+example :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim 2).semantics.circuit =
+      GHL2025.oneTermRobinCircuit := rfl
+
+-- Cycle 3: SWAP honest permutation matrix tests
+
+-- SWAP test 1: block swap for n=3
+-- Compound index j=86: systemVal = (86>>>1)&&&7 = 3, O_D^BS val = (86>>>4)&&&7 = 5
+-- Swapped: system=5, O_D^BS=3, swapped index = 58
+-- M(58, 86) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.swapOracleMatrix p)
+      ⟨58, by native_decide⟩ ⟨86, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- SWAP test 1b: M(86, 58) = 1 (reverse direction)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.swapOracleMatrix p)
+      ⟨86, by native_decide⟩ ⟨58, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- SWAP test 2: second swap pair confirms self-inverse (together with tests 1 and 1b)
+-- j=2: block1 = (2>>>1)&&&7 = 1, block2 = (2>>>4)&&&7 = 0, diff=1
+-- swapped = 2 XOR 2 XOR 16 = 16. M(16, 2) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.swapOracleMatrix p)
+      ⟨16, by native_decide⟩ ⟨2, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- j=16: block1 = 0, block2 = 1, swapped = 2. M(2, 16) = 1 (round-trip confirmed)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.swapOracleMatrix p)
+      ⟨2, by native_decide⟩ ⟨16, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- SWAP test 3: equal blocks → identity (no swap)
+-- j=54: systemVal = (54>>>1)&&&7 = 3, O_D^BS = (54>>>4)&&&7 = 3, diff=0
+-- swapped = 54
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.swapOracleMatrix p)
+      ⟨54, by native_decide⟩ ⟨54, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- SWAP test 4: preserves bits outside the two blocks
+-- j=214 = 86 | (1<<<7): sets indicator bit (bit 7)
+-- block1 = (214>>>1)&&&7 = 3, block2 = (214>>>4)&&&7 = 5
+-- swapped = 214 XOR 12 XOR 96 = 186
+-- M(186, 214) = 1 and indicator bit (bit 7) is preserved in 186
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.swapOracleMatrix p)
+      ⟨186, by native_decide⟩ ⟨214, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- Verify indicator bit is preserved: bit 7 of 186 = 1
+example : (186 >>> 7) &&& 1 = 1 := by native_decide
+
+-- Verify ancilla bit (bit 0) is preserved: ancilla=0 for j=214
+example : 214 &&& 1 = 0 := by native_decide
+example : 186 &&& 1 = 0 := by native_decide
+
+-- SWAP gate matrix uses honest matrix (not zero)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = false := rfl
+
+-- SWAP placeholder match still holds with honest matrix
+example (p : GHL2025.OneTermRobinParameters) :
+    gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
+  GHL2025.oneTermRobinPlaceholdersMatch p

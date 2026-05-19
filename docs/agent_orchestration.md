@@ -14,35 +14,92 @@ The implementation is intentionally local and inspectable:
 
 ![Three-layer agent stack](assets/agent_stack.svg)
 
+## Operational Contract
+
+The automation is a four-role process over one shared repository.  It is not a
+free-form chat room.
+
+- Lean is the correctness source of truth.
+- Markdown and LaTeX are the human proof map.
+- `runs/trials.jsonl` and `runs/trials_summary.csv` are the memory that keeps
+  later cycles from repeating failed work.
+- `runs/<run-id>/dialogue.md` is the short handoff board.
+- `python3 tools/qbe.py check` is the default gate.
+
+Every nontrivial cycle should leave three kinds of evidence:
+
+- a Lean change, test, or explicit proof obligation,
+- a Markdown/LaTeX correspondence update when paper notation is involved,
+- a trial record explaining what changed or why the attempt was blocked.
+
+## Two Modes
+
+QBE deliberately separates two kinds of automation.
+
+Faithful paper-reproduction mode is used for targets such as GHL2025.  The
+agents must reproduce the paper's construction, not invent a substitute.  If a
+paper says "assume an oracle", the gap becomes a circuit-level proof
+obligation unless the paper gives enough detail to formalize the oracle.
+
+Exploratory construction mode is used for new theoretical conditions where the
+paper or open problem does not already provide a gate-level block encoding.
+Agents may propose new circuit matrices, but only against an explicit
+Lean-checkable acceptance predicate.
+
+The upper agent must identify the mode before broad lower-agent work begins.
+The reviewer rejects any cycle that silently mixes the two modes.
+
 ## Roles
 
 Upper agent:
 
-- chooses the next objective,
-- decomposes the task,
-- rejects weak directions,
-- compresses trial memory into the next handoff.
+- acts as the human-intervention window,
+- classifies the mode,
+- chooses one cycle objective,
+- defines non-goals,
+- decomposes the task into middle/lower/reviewer packets,
+- compresses useful memory into the next handoff.
 
 Middle agent:
 
-- owns the conversion window,
-- maps LaTeX symbols to Markdown explanations and Lean declarations,
-- maintains proof obligations,
-- keeps the target small enough for lower agents.
+- owns the Lean/Markdown/LaTeX conversion layer,
+- maps paper symbols to Lean declarations,
+- maintains proof obligations and open assumptions,
+- records success and failure memory,
+- turns upper strategy into narrow lower-agent tasks.
 
 Lower agents:
 
-- try one construction path each,
-- edit Lean or supporting notes in a narrow scope,
+- implement one assigned Lean/circuit task,
+- edit only the assigned file scope,
+- add tests or proof obligations with the code change,
 - run the Lean gate if they edit Lean,
-- log both successes and useful failures.
+- report blocked attempts without changing the objective.
 
 Reviewer:
 
-- checks the diff and the build result,
+- checks the diff, build result, and docs correspondence,
 - looks for hidden oracle assumptions,
 - checks normalizers, ancillas, resource counts, and citations,
+- enforces faithful-vs-exploratory mode discipline,
 - decides whether a gap should become an open problem.
+
+## Cycle Anatomy
+
+One cycle should look like this:
+
+1. Upper reads the task, trial memory, dialogue, and current diff, then chooses
+   the exact objective and mode.
+2. Middle updates the conversion window, paper note, and proof-obligation
+   ledger, then gives lower agents concrete Lean targets.
+3. Lower agents attempt those targets in narrow file scopes and run the gate
+   when they edit Lean.
+4. Reviewer audits the result, records blocking/advisory findings, and
+   recommends the next smallest objective.
+
+If a lower agent discovers that the assignment is too broad, it should record
+the missing lemma or circuit as a proof obligation instead of inventing a new
+project direction.
 
 ## Create A Prompt Deck
 
