@@ -82,21 +82,31 @@ correctness is already solved.
 | Indicator bit position | `GHL2025.robinIndicatorBitPosition` | bit position $= 1 + 2n$ | defined (cycle 2) |
 | U_indic honest matrix | `GHL2025.indicatorOracleMatrix` | controlled-X permutation on indicator bit | defined (cycle 2) |
 | U_indic gate matrix | `GHL2025.oneTermRobinGate_U_indic` | GateMatrix with honest matrix, proved := false | defined (cycle 2 update) |
-| O_DT^S placeholder matrix | `GHL2025.oneTermRobinGate_O_DT_S` | GateMatrix with proved := false | defined |
-| Ry_boundary placeholder matrix | `GHL2025.oneTermRobinGate_Ry_boundary` | GateMatrix with proved := false | defined |
-| O_D^BS placeholder matrix | `GHL2025.oneTermRobinGate_O_D_BS` | GateMatrix with proved := false | defined |
-| O_f placeholder matrix | `GHL2025.oneTermRobinGate_O_f` | GateMatrix with proved := false | defined |
-| SWAP placeholder matrix | `GHL2025.oneTermRobinGate_SWAP` | GateMatrix with proved := false | defined (cycle 3 update: honest permutation) |
+| O_DT^S diagonal matrix | `GHL2025.sparseAmplitudeOracleDTMatrix` | diagonal encoding for bulk (indicator=1), identity for boundary (indicator=0) | defined (cycle 7) |
+| O_DT^S gate matrix | `GHL2025.oneTermRobinGate_O_DT_S` | GateMatrix with honest diagonal matrix, proved := false | defined (cycle 7 update) |
+| Ry_boundary honest matrix | `GHL2025.oneTermRobinGate_Ry_boundary` | GateMatrix with controlled R_y rotation, proved := false | defined (cycle 8 update) |
+| O_D^BS honest permutation matrix | `GHL2025.oneTermRobinGate_O_D_BS` | GateMatrix with proved := false | defined (cycle 4 update: honest permutation) |
+| O_D^BS column map | `GHL2025.robinSparseColumnMap` | col(s,i) for Robin stencil | defined (cycle 4) |
+| O_D^BS forward matrix | `GHL2025.bandedSparseAccessMatrix` | permutation $|s\rangle|i\rangle \to |s\rangle|\mathrm{col}(s,i)\rangle$ | defined (cycle 4) |
+| O_f honest matrix | `GHL2025.oneTermRobinGate_O_f` | GateMatrix with function-value diagonal matrix, proved := false | defined (cycle 6, fixed cycle 9) |
+| SWAP honest matrix | `GHL2025.oneTermRobinGate_SWAP` | GateMatrix with permutation matrix, proved := false | defined (cycle 3 update) |
 | SWAP honest matrix | `GHL2025.swapOracleMatrix` | Permutation swapping system/O_D^BS blocks | defined (cycle 3) |
-| (O_D^BS)^† placeholder matrix | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | GateMatrix with proved := false | defined |
-| All 7 placeholders | `GHL2025.oneTermRobinGateMatrixPlaceholders` | List GateMatrix | defined |
-| Placeholder alignment theorem | `GHL2025.oneTermRobinPlaceholdersMatch` | gateMatricesMatchCircuit = true | proved |
+| (O_D^BS)^† inverse permutation matrix | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | GateMatrix with proved := false | defined (cycle 4 update: inverse permutation) |
+| (O_D^BS)^† forward matrix | `GHL2025.bandedSparseAccessDaggerMatrix` | transpose of forward permutation | defined (cycle 4) |
+| All 7 gate matrices | `GHL2025.oneTermRobinGateMatrixPlaceholders` | List GateMatrix | defined |
+| Gate-list alignment theorem | `GHL2025.oneTermRobinPlaceholdersMatch` | gateMatricesMatchCircuit = true | proved |
 | Robin circuit semantics | `Examples.RobinHeat.oneTermRobinCircuitSemantics` | CircuitMatrixSemantics for the Robin circuit | defined |
 | Robin block extraction target | `Examples.RobinHeat.oneTermRobinBlockExtractionTarget` | BlockExtractionTarget with unproved obligations | defined |
 | Circuit block encoding claim | `CircuitBlockEncodingClaim` | Schema bundling semantics + target + dim proof + obligation | defined |
 | Robin circuit block claim | `Examples.RobinHeat.oneTermRobinCircuitBlockClaim` | CircuitBlockEncodingClaim for Robin, takes dim proof parameter | defined |
 | Robin dimension theorem | `Examples.RobinHeat.oneTermRobinCircuitDimCompat` | full dimension = effective signal dim × system dim | proved (cycle 2 update) |
 | Default Robin block claim | `Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim` | Robin claim using reusable dimension theorem | defined |
+| Sparse amplitude value | `GHL2025.robinSparseAmplitudeValue` | s-th nonzero stencil coefficient for each row, as Coeff | defined (cycle 5) |
+| Function value data | `GHL2025.robinFunctionValue` | symbolic f(x_j) = Coeff.symbol "f_{n}_{j}" for each grid point | defined (cycle 9) |
+| O_f diagonal matrix | `GHL2025.functionOracleMatrix` | diagonal matrix encoding f(x_j) function values on the diagonal | defined (cycle 6, fixed cycle 9) |
+| O_f honest gate matrix | `GHL2025.oneTermRobinGate_O_f` | GateMatrix with honest function value matrix, proved := false | defined (cycle 6, fixed cycle 9) |
+| Ry_boundary honest matrix | `GHL2025.boundaryRotationMatrix` | controlled R_y on ancilla for boundary rows (indicator=0) | defined (cycle 8) |
+| Ry_boundary gate matrix | `GHL2025.oneTermRobinGate_Ry_boundary` | GateMatrix with honest rotation matrix, proved := false | defined (cycle 8 update) |
 
 ---
 
@@ -132,16 +142,17 @@ structure CircuitBlockEncodingClaim
 def Examples.RobinHeat.oneTermRobinCircuitBlockClaim
 theorem Examples.RobinHeat.oneTermRobinCircuitDimCompat
 def Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim
+def GHL2025.robinSparseAmplitudeValue
+def GHL2025.robinFunctionValue
 ```
 
-Next declarations should fill in the actual oracle matrices:
+Current oracle matrix declarations:
 
 ```lean
--- Replace placeholder matrices with real oracle implementations:
 def GHL2025.indicatorOracleMatrix ...
 def GHL2025.swapOracleMatrix ...
 def GHL2025.bandedSparseAccessMatrix ...
-def GHL2025.sparseAmplitudeOracleMatrix ...
+def GHL2025.sparseAmplitudeOracleDTMatrix ...
 def GHL2025.functionOracleMatrix ...
 def GHL2025.boundaryRotationMatrix ...
 ```
@@ -158,17 +169,24 @@ it as `SemanticObligation` or `ObligationRecord` with `proved := false`.
 - [x] Wire Robin circuit semantics to block extraction target via `oneTermRobinCircuitBlockClaim`.
 - [x] Prove dimension compatibility `clog2(gridSize n) = n` for general `n`.
 - [x] Assign gate matrices to `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`,
-  `O_f`, `SWAP`, and `(O_D^BS)^†` (as placeholders with `proved := false`).
+  `O_f`, `SWAP`, and `(O_D^BS)^†` (all seven now have nonzero matrix
+  semantics; all `proved := false` for unitarity).
 - [ ] Prove or explicitly track unitarity of each gate matrix.
 - [x] Prove or explicitly track that the matrix product matches the paper
-  circuit order (placeholders match by construction, theorem proved).
+  circuit order (gate-list match by construction, theorem proved).
 - [ ] Prove or explicitly track block correctness:
   $(\langle 0^a| \otimes I) U (|0^a\rangle \otimes I)=A_k/\alpha$.
-- [ ] Replace placeholder zero matrices with real oracle matrices.
+- [x] Replace placeholder zero matrices with real oracle matrices.
 - [x] Update `paper-notes/GHL2025_RobinOneTerm.tex` whenever the Lean semantics
   statement changes.
 - [x] Edge-case tests for n=1 dim compat, n=1 circuit block claim, 1×1 block
   projection, n=2 field roundtrip, n=2 circuit identity (cycle 1 lower).
+- [x] Define `robinSparseAmplitudeValue` sparse amplitude data layer (cycle 5).
+- [x] Replace O_f placeholder with honest diagonal matrix (cycle 6).
+- [x] Replace O_DT^S placeholder with honest diagonal matrix conditioned on indicator bit (cycle 7).
+- [x] Audit and correct O_f: should encode $f(x_j)/N_f$, not derivative amplitude data. (Fixed cycle 9: O_f now uses `robinFunctionValue`)
+- [x] Implement Ry_boundary with honest nonzero matrix (cycle 8: controlled R_y rotation).
+- [ ] Replace diagonal approximations with paper's rotation structure (O_DT^S, Ry_boundary).
 
 ---
 
@@ -387,6 +405,265 @@ For $n=3, G_f=1, \kappa=7$: $m_{\text{theorem}} = 2 + 0 + 3 + 4 = 9$, $m_{\text{
 | Ancilla bit preserved (214, 186 both even) | n=3, κ=7 | native_decide | proved |
 | SWAP unitary.proved = false | n=3, κ=7 | rfl | proved |
 | Placeholder match with honest SWAP | general p | theorem | proved |
+
+---
+
+## O_D^BS Banded Sparse Access Matrix (Cycle 4)
+
+The banded sparse access oracle $O_D^{BS}$ is a permutation matrix that maps $|s\rangle|i\rangle \to |s\rangle|\mathrm{col}(s,i)\rangle$, where $\mathrm{col}(s,i)$ is the column index of the $s$-th nonzero entry in row $i$ of the Robin derivative matrix.
+
+**Column mapping** (fourth-order stencil, half-bandwidth $l=2$):
+
+$$\mathrm{col}(s, i) = \begin{cases} i - 2 + s & K_1 \leq i \leq K_2 \text{ and } s < 5 \\ s & i = 0 \text{ and } s < 3 \\ s & i = 1 \text{ and } s < 4 \\ N - 4 + s & i = N - 2 \text{ and } s < 4 \\ N - 3 + s & i = N - 1 \text{ and } s < 3 \\ i & \text{otherwise (unused sparse index, identity)} \end{cases}$$
+
+where $K_1 = 2$, $K_2 = 2^n - 3$, $N = 2^n$.
+
+**Matrix form**: permutation on $2^{\text{totalQubits}}$-dimensional space:
+
+$$M[\text{image}(j)][j] = 1, \quad M[\text{other}][j] = 0$$
+
+The image is computed by extracting system register (bits $[1, 1+n)$) and sparse index (bits $[1+n+\text{odPure}, 1+n+\text{odPure}+\text{clog2}(\kappa))$) from compound index $j$, computing $\mathrm{col}(s, i)$, and replacing the system register bits:
+
+```text
+image = j - (j & sysMask_shifted) + (col << 1)
+```
+
+**Concrete example** ($n=3, \kappa=7$, totalQubits=13):
+- Bulk row $i=4$, $s=0$: col $= 2$. System register changes from 4 to 2.
+- Bulk row $i=4$, $s=4$: col $= 6$. System register changes from 4 to 6.
+- Boundary row $i=0$, $s=0$: col $= 0$ (identity).
+- Boundary row $i=0$, $s=5$: unused, identity.
+
+---
+
+## (O_D^BS)^† Inverse Matrix (Cycle 4)
+
+For a permutation matrix $P$ where $P[\text{image}(j)][j] = 1$, the Hermitian conjugate is the transpose: $P^\dagger[j][\text{image}(j)] = 1$. The Lean implementation computes $\text{image}(i)$ for the row index and checks whether $j = \text{image}(i)$.
+
+This is the inverse permutation. For each basis state, if the forward matrix maps $|j\rangle \to |\text{image}(j)\rangle$, then the dagger maps $|\text{image}(j)\rangle \to |j\rangle$.
+
+---
+
+## Cycle 4 O_D^BS Tests
+
+| Test | Parameters | Method | Status |
+|---|---|---|---|
+| Bulk row i=4, s=0 → col=2 | n=3, κ=7 | native_decide | proved |
+| Bulk row i=4, s=4 → col=6 | n=3, κ=7 | native_decide | proved |
+| Diagonal bulk i=3, s=2 → col=3 (identity) | n=3, κ=7 | native_decide | proved |
+| Boundary row 0, s=0 → identity | n=3, κ=7 | native_decide | proved |
+| Boundary row 0, s=5 unused → identity | n=3, κ=7 | native_decide | proved |
+| Right boundary i=7, s=0 → col=5 | n=3, κ=7 | native_decide | proved |
+| Dagger transpose (8,4) = 1 (inverse of forward (4,8)) | n=3, κ=7 | native_decide | proved |
+| O_D^BS unitary.proved = false | n=3, κ=7 | rfl | proved |
+| (O_D^BS)^† unitary.proved = false | n=3, κ=7 | rfl | proved |
+| Placeholder match with honest O_D^BS | general p | theorem | proved |
+
+---
+
+## Sparse Amplitude Data Layer (Cycle 5)
+
+The function `robinSparseAmplitudeValue` provides the s-th nonzero stencil coefficient for each row of the Robin derivative matrix as a `Coeff` value. This is the data layer shared by both O_DT^S (sparse amplitude oracle, Lemma 3) and Ry_boundary (boundary-controlled rotations).
+
+The function mirrors the case structure of `robinSparseColumnMap` but returns coefficient values instead of column indices:
+
+$$\text{amplitude}(s, i) = \begin{cases}
+D_{i,i-2} = -1/12 & \text{bulk, } s=0 \\
+D_{i,i-1} = 4/3 & \text{bulk, } s=1 \\
+D_{i,i} = -5/2 & \text{bulk, } s=2 \\
+D_{i,i+1} = 4/3 & \text{bulk, } s=3 \\
+D_{i,i+2} = -1/12 & \text{bulk, } s=4 \\
+0 & \text{bulk, } s \geq 5 \\
+\text{boundary Coeff} & \text{boundary rows } 0, 1, N{-}2, N{-}1 \\
+0 & \text{unused sparse index}
+\end{cases}$$
+
+Boundary row amplitudes include the Robin correction terms:
+- Row 0, s=0: $-5/2 + (7/3) \cdot A_1 \Delta x$
+- Row 1, s=0: $4/3 - (1/6) \cdot A_1 \Delta x$
+- Row $N{-}2$, s=3: $4/3 + (1/6) \cdot B_1 \Delta x$
+- Row $N{-}1$, s=2: $-5/2 - (7/3) \cdot B_1 \Delta x$
+
+**Coherence property**: for all valid $n$, $s$, $i$:
+
+$$\texttt{robinSparseAmplitudeValue}(n, s, i) = \texttt{robinDerivativeMatrix}(n)[i][\texttt{robinSparseColumnMap}(n, s, i)]$$
+
+This is tested with `native_decide` for concrete instances.
+
+## O_f Function Oracle Diagonal Matrix (Cycle 6)
+
+The O_f gate matrix is now an honest diagonal matrix using `robinSparseAmplitudeValue` data. For each compound basis state $|j\rangle$, the matrix extracts the system register value $i$ and sparse index $s$ from the bit layout:
+
+```text
+sysVal     = (j >>> 1) & ((1 <<< n) - 1)
+sparseVal  = (j >>> (1 + n + odPure)) & ((1 <<< clog2(kappa)) - 1)
+M(j, j)    = robinSparseAmplitudeValue(n, sparseVal, sysVal)
+M(i, j)    = 0  for i ≠ j
+```
+
+This is a diagonal matrix: it encodes the derivative matrix's sparse amplitude data on the diagonal of the full Hilbert space. Whether this correctly implements the paper's O_f (Lemma 4, main.tex:870-910) is tracked by `unitary.proved := false`.
+
+**Register bit extraction** is consistent with `bandedSparseAccessMatrix`:
+- System register: bits $[1, 1+n)$
+- Sparse index: bits $[1+n+\text{odPure}, 1+n+\text{odPure}+\text{clog2}(\kappa))$
+
+**Concrete example** ($n=3, \kappa=7$, totalQubits=13):
+- Compound $j=36$: sysVal=2, sparseVal=2 → diagonal entry = $-5/2$
+- Compound $j=0$: sysVal=0, sparseVal=0 → diagonal entry = $-5/2 + (7/3) A_1 \Delta x$
+- Compound $j=60$: sysVal=6, sparseVal=3 → diagonal entry = $4/3 + (1/6) B_1 \Delta x$
+
+### Cycle 6 Lean Declaration Targets
+
+| Declaration | File | Role | Status |
+|---|---|---|---|
+| `functionOracleMatrix` | GHL2025.lean | diagonal matrix encoding amplitude data | implemented |
+| updated `oneTermRobinGate_O_f` | GHL2025.lean | uses honest diagonal matrix | updated |
+
+### Cycle 6 O_f Tests
+
+| Test | Parameters | Method | Status |
+|---|---|---|---|
+| Bulk diagonal s=2, i=2, j=36 = -5/2 | n=3, κ=7 | native_decide | proved |
+| Left boundary s=0, i=0, j=0 = -5/2 + 7/3·A1·dx | n=3, κ=7 | native_decide | proved |
+| Bulk off-diagonal s=0, i=2, j=4 = -1/12 | n=3, κ=7 | native_decide | proved |
+| Off-diagonal M(0,1) = 0 | n=3, κ=7 | native_decide | proved |
+| Off-diagonal M(36,0) = 0 | n=3, κ=7 | native_decide | proved |
+| Right boundary s=3, i=6, j=60 = 4/3 + 1/6·B1·dx | n=3, κ=7 | native_decide | proved |
+| O_f unitary.proved = false | general p | rfl | proved |
+| Placeholder match with honest O_f | general p | theorem | proved |
+
+---
+
+### Cycle 5 Tests
+
+| Test | Parameters | Method | Status |
+|---|---|---|---|
+| Bulk diagonal s=2, i=2 = -5/2 | n=3 | native_decide | proved |
+| Bulk off-diagonal s=0, i=2 = -1/12 | n=3 | native_decide | proved |
+| Bulk off-diagonal s=1, i=3 = 4/3 | n=3 | native_decide | proved |
+| Left boundary row 0, s=0 = -5/2 + 7/3·A1·dx | n=3 | native_decide | proved |
+| Left boundary row 0, s=1 = 8/3 | n=3 | native_decide | proved |
+| Left boundary row 1, s=0 = 4/3 - 1/6·A1·dx | n=3 | native_decide | proved |
+| Left boundary row 1, s=1 = -31/12 | n=3 | native_decide | proved |
+| Right boundary row 6, s=3 = 4/3 + 1/6·B1·dx | n=3 | native_decide | proved |
+| Right boundary row 7, s=2 = -5/2 - 7/3·B1·dx | n=3 | native_decide | proved |
+| Unused sparse index s=5, i=2 = 0 | n=3 | native_decide | proved |
+| Unused sparse index s=3, i=0 = 0 | n=3 | native_decide | proved |
+| Coherence: bulk s=2, i=2 | n=3 | native_decide | proved |
+| Coherence: left boundary s=0, i=0 | n=3 | native_decide | proved |
+| Coherence: right boundary s=2, i=7 | n=3 | native_decide | proved |
+| Coherence: left boundary s=0, i=1 | n=3 | native_decide | proved |
+| Coherence: right boundary s=3, i=6 | n=3 | native_decide | proved |
+
+---
+
+## O_DT^S Diagonal Matrix Conditioned on Indicator (Cycle 7)
+
+The O_DT^S gate (Lemma 3, main.tex:822--849) is now an honest diagonal matrix on the full $2^{\text{totalQubits}}$-dimensional space. For each compound basis state $|j\rangle$:
+
+- If indicator bit = 0 (boundary row): diagonal entry = `Coeff.rat 1` (identity)
+- If indicator bit = 1 (bulk row): diagonal entry = `robinSparseAmplitudeValue(n, s, i)` (amplitude data)
+- Off-diagonal entries are zero
+
+The indicator bit is extracted from the compound index at position $1 + 2n$, set by $U_{\mathrm{indic}}$. For bulk rows, the same amplitude data used by `robinSparseAmplitudeValue` appears on the diagonal. For boundary rows, the matrix acts as identity.
+
+```text
+indBit = (j >>> (1 + 2*n)) & 1
+if indBit == 0: M(j, j) = 1       (boundary: identity)
+if indBit == 1: M(j, j) = amplitude (bulk: derivative stencil data)
+M(i, j) = 0 for i ≠ j
+```
+
+**Note on paper faithfulness:** The paper's $O_{D^T}^S$ is a controlled rotation on the ancilla qubit with angle $\theta_j^s = \arcsin(D_j^{(s)}/N_D)$, not a diagonal matrix. This diagonal encoding exercises the amplitude data pathway. The rotation structure is tracked as a proof obligation (`unitary.proved := false`).
+
+### Cycle 7 Lean Declaration Targets
+
+| Declaration | File | Role | Status |
+|---|---|---|---|
+| `sparseAmplitudeOracleDTMatrix` | GHL2025.lean | diagonal matrix encoding amplitude data for bulk rows | implemented |
+| updated `oneTermRobinGate_O_DT_S` | GHL2025.lean | uses honest diagonal matrix | updated |
+
+### Cycle 7 Tests
+
+| Test | Parameters | Method | Status |
+|---|---|---|---|
+| Boundary row j=4 (indicator=0) = 1 | n=3, κ=7 | native_decide | proved |
+| Bulk row j=132 (s=0, i=2) = -1/12 | n=3, κ=7 | native_decide | proved |
+| Bulk diagonal j=164 (s=2, i=2) = -5/2 | n=3, κ=7 | native_decide | proved |
+| Off-diagonal M(132,133) = 0 | n=3, κ=7 | native_decide | proved |
+| Bulk indicator=1 with boundary data j=128 = -5/2 + 7/3·A1·dx | n=3, κ=7 | native_decide | proved |
+| O_DT^S unitary.proved = false | general p | rfl | proved |
+| Placeholder match with honest O_DT^S | general p | theorem | proved |
+
+### O_f vs O_DT^S Double Encoding Audit (Resolved in Cycle 9)
+
+**Finding (cycle 7):** Both `functionOracleMatrix` (O_f, cycle 6) and `sparseAmplitudeOracleDTMatrix` (O_DT^S, cycle 7) were using `robinSparseAmplitudeValue` as their diagonal data source. In the paper, these encode completely different quantities.
+
+**Fix (cycle 9):** O_f now uses `robinFunctionValue` (symbolic $f(x_j)$), while O_DT^S continues to use `robinSparseAmplitudeValue` (derivative stencil data). The double encoding is resolved. Both gates still carry `unitary.proved := false` because the diagonal encoding does not match the paper's rotation-based oracle structure.
+
+---
+
+## Ry_boundary Controlled Rotation Matrix (Cycle 8)
+
+The Ry_boundary gate (main.tex:1115--1120, Eq. angles for Ry) is now an honest matrix on the full $2^{\text{totalQubits}}$-dimensional Hilbert space. It applies controlled $R_y(\theta_j^s)$ rotations on the ancilla qubit (bit 0) for boundary rows:
+
+- **Bulk rows** (indicator bit $= 1$): identity — the rotation is only for boundary entries.
+- **Boundary rows** (indicator bit $= 0$): $R_y(\theta_j^s)$ on the ancilla qubit, where $\theta_j^s = \arccos(D_j^{(s)} / N_D)$.
+
+The $R_y(\theta)$ matrix entries on the ancilla qubit:
+
+$$R_y(\theta) = \begin{pmatrix} \cos(\theta/2) & -\sin(\theta/2) \\ \sin(\theta/2) & \cos(\theta/2) \end{pmatrix}$$
+
+Using the half-angle formulas:
+
+$$\cos(\theta/2) = \sqrt{\frac{1 + D_j^{(s)}/N_D}{2}}, \qquad \sin(\theta/2) = \sqrt{\frac{1 - D_j^{(s)}/N_D}{2}}$$
+
+These involve square roots and cannot be represented as exact rationals, so the Lean implementation uses symbolic `Coeff.symbol` entries:
+
+- `Coeff.symbol s!"boundary_cos_half_{sysVal}_{sparseVal}"` for $\cos(\theta_j^s/2)$
+- `Coeff.symbol s!"boundary_sin_half_{sysVal}_{sparseVal}"` for $\sin(\theta_j^s/2)$
+
+The compound index bit layout matches the existing convention: system register at bits $[1, 1+n)$, sparse index at bits $[1+n+\text{odPure}, 1+n+\text{odPure}+\text{clog2}(\kappa))$, indicator at bit $1+2n$. Only the ancilla qubit (bit 0) changes; all other bits are preserved.
+
+**Concrete example** ($n=3, \kappa=7$, totalQubits=13):
+- $j=0$: boundary row, $\text{sysVal}=0$, $\text{sparseVal}=0$, $\text{anc}=0$
+  - $M(0, 0) = \texttt{boundary\_cos\_half\_0\_0}$ (cos entry)
+  - $M(1, 0) = \texttt{boundary\_sin\_half\_0\_0}$ (sin entry)
+  - $M(0, 1) = -\texttt{boundary\_sin\_half\_0\_0}$ (neg-sin entry)
+  - $M(1, 1) = \texttt{boundary\_cos\_half\_0\_0}$ (cos entry)
+- $j=132$: bulk row (indicator=1), $M(132, 132) = 1$ (identity)
+
+### Cycle 8 Lean Declaration Targets
+
+| Declaration | File | Role | Status |
+|---|---|---|---|
+| `boundaryRotationMatrix` | GHL2025.lean | honest controlled R_y rotation for boundary rows | implemented |
+| updated `oneTermRobinGate_Ry_boundary` | GHL2025.lean | uses honest matrix, proved := false | updated |
+
+---
+
+## Cycle 10 Circuit Product and Block Extraction Pipeline
+
+Cycle 10 connects the faithful one-term Robin circuit matrix semantics to the block-extraction target without pretending that block correctness has been proved.
+
+| Paper object | Lean object | Status |
+|---|---|---|
+| Full circuit product $U$ | `Examples.RobinHeat.oneTermRobinCircuitSemantics n` | implemented as `evalGateMatrices` over all seven gate matrices |
+| Dimension factorization $2^{q}=2^{m}\cdot N$ | `Examples.RobinHeat.oneTermRobinCircuitDimCompat n` | proved from `clog2_gridSize` and register arithmetic |
+| Signal-zero block extraction | `CircuitMatrixSemantics.blockExtractionTarget` | reused generic API |
+| Robin block target | `Examples.RobinHeat.oneTermRobinBlockExtractionTarget n` | derives `unitaryMatrix` and `blockMatrix` from the circuit product |
+| Final theorem $U$ block equals $A_k/(N_DN_f\kappa)$ | `blockCorrect.proved` | still false |
+
+### Cycle 10 Test Strategy
+
+The compiled tests now check the wiring structurally:
+
+- `oneTermRobinCircuitSemantics n`.matrix is definitionally `evalGateMatrices`.
+- `oneTermRobinBlockExtractionTarget n`.unitaryMatrix is the cast circuit product.
+- `oneTermRobinBlockExtractionTarget n`.blockMatrix is `signalSystemBlockProjection` at signal index 0.
+- Existing target matrix, normalizer, signal index, and unproved-obligation tests still pass.
+
+Concrete entry-level tests of the full $n=3$ product were removed from the build gate because they force Lean to normalize entries of a $8192 \times 8192$ symbolic matrix product. Those entry checks should return as focused lemmas or proof attempts once the block-correctness proof is decomposed, not as routine CI tests.
 
 ---
 

@@ -147,7 +147,52 @@ In Lean this is recorded as
 \]
 The unitarity obligation remains unproved ($\texttt{proved := false}$).
 
-\subsection{Bulk Window Bounds $K_1$, $K_2$}
+\subsection{Banded Sparse Access Oracle $O_D^{BS}$ Matrix}
+
+The banded sparse access oracle (Lemma 1, main.tex:784--801) maps
+\[
+  O_D^{BS} |s\rangle|i\rangle = |s\rangle|\mathrm{col}(s,i)\rangle
+\]
+where $\mathrm{col}(s,i)$ is the column index of the $s$-th nonzero entry in
+row $i$ of the Robin derivative matrix, ordered by offset from left to right.
+
+For the fourth-order central second-derivative stencil (half-bandwidth $l=2$):
+\begin{itemize}
+  \item \textbf{Bulk rows} ($K_1 \leq i \leq K_2$): 5 entries at offsets $\{-2,-1,0,1,2\}$.
+    $\mathrm{col}(s,i) = i - 2 + s$ for $s < 5$; identity for $s \geq 5$.
+  \item \textbf{Left boundary row 0} (3 entries, offsets $\{0,1,2\}$):
+    $\mathrm{col}(s,0) = s$ for $s < 3$; identity for $s \geq 3$.
+  \item \textbf{Left boundary row 1} (4 entries, offsets $\{-1,0,1,2\}$):
+    $\mathrm{col}(s,1) = s$ for $s < 4$; identity for $s \geq 4$.
+  \item \textbf{Right boundary row $N{-}2$} (4 entries, offsets $\{-2,-1,0,1\}$):
+    $\mathrm{col}(s,N{-}2) = N{-}4+s$ for $s < 4$; identity for $s \geq 4$.
+  \item \textbf{Right boundary row $N{-}1$} (3 entries, offsets $\{-2,-1,0\}$):
+    $\mathrm{col}(s,N{-}1) = N{-}3+s$ for $s < 3$; identity for $s \geq 3$.
+\end{itemize}
+
+The matrix form is a permutation on $2^{\mathrm{totalQubits}}$:
+the image replaces the system register bits while preserving the sparse index and all other bits.
+
+In Lean:
+\[
+  \texttt{GHL2025.robinSparseColumnMap} \quad (\text{column mapping}),
+  \qquad
+  \texttt{GHL2025.bandedSparseAccessMatrix} \quad (\text{full permutation}).
+\]
+The unitarity obligation remains unproved ($\texttt{proved := false}$).
+
+\subsection{$(O_D^{BS})^\dagger$ Inverse Matrix}
+
+For a permutation matrix $P$ where $P[\mathrm{image}(j)][j]=1$, the Hermitian
+conjugate is the transpose $P^\dagger[j][\mathrm{image}(j)]=1$.
+The Lean implementation computes $\mathrm{image}(i)$ for the row index
+and checks whether $j = \mathrm{image}(i)$.
+
+In Lean:
+\[
+  \texttt{GHL2025.bandedSparseAccessDaggerMatrix}.
+\]
+The unitarity obligation remains unproved ($\texttt{proved := false}$).
 
 The bulk window bounds are derived from the stencil radius:
 \[
@@ -157,6 +202,34 @@ The bulk window bounds are derived from the stencil radius:
 The fourth-order central second-derivative stencil
 (\texttt{fourthOrderSecondDerivative}) has $\mathrm{leftRadius} = \mathrm{rightRadius} = 2$.
 The precondition $K_2 \geq K_1$ requires $2^n \geq 5$, i.e.\ $n \geq 3$.
+
+\subsection{Sparse Amplitude Data}
+
+The function
+\[
+  \texttt{robinSparseAmplitudeValue}(n, s, i) : \texttt{Coeff}
+\]
+returns the $s$-th nonzero stencil coefficient of row $i$ in the Robin
+derivative matrix.  This is the data layer shared by $O_{D^T}^{S}$
+(sparse amplitude oracle, Lemma 3) and $R_y^{\mathrm{boundary}}$
+(boundary-controlled rotations).
+
+The function mirrors the case structure of \texttt{robinSparseColumnMap}
+but returns coefficient values instead of column indices.  For bulk rows
+($K_1 \leq i \leq K_2$) the 5 stencil coefficients are
+$\{-1/12,\, 4/3,\, -5/2,\, 4/3,\, -1/12\}$ at offsets
+$\{-2,\,-1,\,0,\,1,\,2\}$.  Boundary rows include the Robin correction
+terms involving $A_1\Delta x$ (left) and $B_1\Delta x$ (right).
+Unused sparse indices return $\texttt{Coeff.rat}\;0$.
+
+\textbf{Coherence:} for all valid $(n, s, i)$:
+\[
+  \texttt{robinSparseAmplitudeValue}(n, s, i)
+  \;=\;
+  D_{\mathrm{Robin}}[i][\texttt{robinSparseColumnMap}(n, s, i)].
+\]
+This is tested with \texttt{native\_decide} for concrete $n = 3$ instances
+covering bulk and all four boundary row types.
 
 \subsection{Signal-Qubit Counts}
 
@@ -251,9 +324,113 @@ implemented (cycle 2) \\
 SWAP honest matrix &
 \texttt{GHL2025.swapOracleMatrix} &
 implemented (cycle 3) \\
+$O_D^{BS}$ column map &
+\texttt{GHL2025.robinSparseColumnMap} &
+implemented (cycle 4) \\
+$O_D^{BS}$ honest matrix &
+\texttt{GHL2025.bandedSparseAccessMatrix} &
+implemented (cycle 4) \\
+$(O_D^{BS})^\dagger$ matrix &
+\texttt{GHL2025.bandedSparseAccessDaggerMatrix} &
+implemented (cycle 4) \\
+Sparse amplitude data &
+\texttt{GHL2025.robinSparseAmplitudeValue} &
+implemented (cycle 5) \\
+Function value data &
+\texttt{GHL2025.robinFunctionValue} &
+implemented (cycle 9) \\
+$O_f$ gate matrix &
+\texttt{GHL2025.oneTermRobinGate_O_f} &
+honest function value diagonal, unitary unproved (cycle 6, fixed cycle 9) \\
+$O_{D^T}^S$ diagonal matrix &
+\texttt{GHL2025.sparseAmplitudeOracleDTMatrix} &
+implemented (cycle 7) \\
+$O_{D^T}^S$ gate matrix &
+\texttt{GHL2025.oneTermRobinGate_O_DT_S} &
+honest diagonal conditioned on indicator, unitary unproved (cycle 7) \\
 \hline
 \end{tabular}
 \end{center}
+
+\subsection{Function Oracle $O_f$ Diagonal Matrix}
+
+The function oracle $O_f$ (Lemma 4, main.tex:870--910) is now an honest
+diagonal matrix on the full $2^{\text{totalQubits}}$-dimensional space,
+encoding symbolic function values $f(x_j)$ on the diagonal.
+For each compound basis state $|j\rangle$, the matrix extracts the system
+register value $i$ and sets the diagonal entry to a symbolic function value:
+\[
+  O_f |j\rangle = f(x_i) \, |j\rangle,
+  \qquad
+  M[j][j] = \texttt{Coeff.symbol}\;\texttt{"f\_\{n\}\_\{i\}"},
+  \quad M[i][j] = 0 \text{ for } i \neq j.
+\]
+The bit extraction for the system register is:
+\[
+  \text{sysVal} = (j \gg 1) \,\&\, ((1 \ll n) - 1).
+\]
+The diagonal entry depends only on the grid point index $i$, not on the
+sparse index.  The $1/N_f$ normalization is absorbed into the block-encoding
+normalizer $\alpha = N_D \cdot N_f \cdot \kappa$.
+
+Whether this diagonal encoding correctly implements the paper's $O_f$ function
+oracle (which uses amplitude rotations, not diagonal encoding) is tracked by
+the $\texttt{unitary.proved := false}$ obligation.
+
+In Lean:
+\[
+  \texttt{GHL2025.robinFunctionValue},
+  \qquad
+  \texttt{GHL2025.functionOracleMatrix},
+  \qquad
+  \texttt{GHL2025.oneTermRobinGate\_O\_f}.
+\]
+
+\subsection{Sparse Amplitude Oracle $O_{D^T}^S$ Diagonal Matrix}
+
+The sparse amplitude oracle $O_{D^T}^S$ (Lemma 3, main.tex:822--849) is now an honest
+diagonal matrix conditioned on the indicator bit. For each compound basis state
+$|j\rangle$:
+\begin{itemize}
+  \item If indicator bit $= 0$ (boundary row): $M[j][j] = 1$ (identity).
+  \item If indicator bit $= 1$ (bulk row): $M[j][j] = \texttt{robinSparseAmplitudeValue}(n, s, i)$.
+  \item Off-diagonal: $M[i][j] = 0$ for $i \neq j$.
+\end{itemize}
+The indicator bit at position $1 + 2n$ is set by $U_{\mathrm{indic}}$ (gate 1).
+For bulk rows, the same amplitude data as \texttt{robinSparseAmplitudeValue} appears on the diagonal.
+For boundary rows, the matrix acts as identity.
+
+\textbf{Paper faithfulness note:} The paper's $O_{D^T}^S$ is a controlled rotation on the
+ancilla qubit with angle $\theta_j^s = \arcsin(D_j^{(s)}/N_D)$, not a diagonal matrix.
+This diagonal encoding exercises the amplitude data pathway but does not implement
+the paper's rotation structure. The obligation is tracked by
+$\texttt{unitary.proved := false}$.
+
+In Lean:
+\[
+  \texttt{GHL2025.sparseAmplitudeOracleDTMatrix},
+  \qquad
+  \texttt{GHL2025.oneTermRobinGate\_O\_DT\_S}.
+\]
+
+\subsection{$O_f$ vs $O_{D^T}^S$ Double Encoding Audit (Resolved)}
+
+Both \texttt{functionOracleMatrix} ($O_f$) and
+\texttt{sparseAmplitudeOracleDTMatrix} ($O_{D^T}^S$) previously used
+\texttt{robinSparseAmplitudeValue} as their diagonal data source,
+creating a double encoding of derivative amplitude data.
+In the paper:
+\begin{itemize}
+  \item $O_{D^T}^S$ encodes derivative stencil coefficients $D_j^{(s)}/N_D$
+    via controlled rotations on the ancilla qubit.
+  \item $O_f$ encodes function values $f(x_j)/N_f$ (Lemma 4, main.tex:870--910),
+    a completely different quantity.
+\end{itemize}
+This was corrected in cycle 9: $O_f$ now uses \texttt{robinFunctionValue}
+(symbolic function values $f(x_j)$), while $O_{D^T}^S$ continues to use
+\texttt{robinSparseAmplitudeValue} (derivative stencil data).
+Both gates carry $\texttt{unitary.proved := false}$ because the diagonal
+encoding does not match the paper's rotation-based oracle structure.
 
 \subsection{Open Proof Obligations}
 
@@ -267,10 +444,39 @@ The most important remaining obligations are:
 \begin{enumerate}
   \item prove the labeled gate matrices are unitary;
   \item prove the composed circuit matrix equals the paper's \(U\);
-  \item replace placeholder zero matrices with real oracle implementations;
+  \item replace the remaining placeholder zero matrix (Ry\_boundary) with a real oracle implementation; (done: cycle 8)
+  \item correct $O_f$ to encode function values $f(x_j)/N_f$ instead of derivative amplitude data; (done: cycle 9)
+  \item replace diagonal approximations with the paper's rotation structure ($O_{D^T}^S$, $R_y^{\text{boundary}}$);
   \item prove the extracted block is \(A_k/(N_DN_f\kappa)\);
   \item prove the resource formula including all internal oracle ancillas.
 \end{enumerate}
+
+All seven gates in the one-term Robin circuit now have nonzero matrix
+semantics in Lean: U\_indic, \(O_{D^T}^S\), \(R_y^{\text{boundary}}\),
+\(O_D^{BS}\), \(O_f\), SWAP, and \((O_D^{BS})^\dagger\).  These matrices
+are still proof-obligation carriers, not completed correctness proofs:
+their \texttt{unitary.proved} fields remain false, and the exact paper
+rotation/block-extraction theorem is still open.
+
+\subsection{Cycle 10: Circuit Product and Block Extraction Pipeline}
+
+The block-extraction target is no longer a zero placeholder.  In Lean,
+\texttt{oneTermRobinCircuitSemantics} defines the full-space matrix as
+\[
+  \texttt{evalGateMatrices (oneTermRobinGateMatrixPlaceholders p)}.
+\]
+The target \texttt{oneTermRobinBlockExtractionTarget} then obtains
+\texttt{unitaryMatrix} from this product and obtains \texttt{blockMatrix}
+by applying \texttt{signalSystemBlockProjection} to the signal-index-zero
+block.
+
+The tests intentionally check this pipeline structurally rather than asking
+Lean to normalize concrete entries of the full \(13\)-qubit matrix for \(n=3\).
+That concrete product has dimension \(8192 \times 8192\), and entry-level
+\texttt{native\_decide} checks are too expensive for routine builds.  Concrete
+entry correctness for the product is therefore part of the remaining block
+correctness proof obligation, while the compiled tests verify that the Lean
+objects are wired to the real gate product and projection API.
 
 The generic arithmetic bridge
 \[

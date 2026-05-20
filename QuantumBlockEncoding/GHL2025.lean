@@ -640,6 +640,97 @@ def robinIndicatorBitPosition (p : OneTermRobinParameters) : Nat :=
   rp.ancillaQubit + rp.systemQubits + rp.odPureAncillaQubits + rp.sparseIndexQubits
 
 /--
+Column mapping for the banded sparse access oracle O_D^BS.
+Returns the column index for sparse index s in row i of the Robin derivative matrix.
+
+For bulk rows (K1 ≤ i ≤ K2): 5 entries, col(s,i) = i - 2 + s for s < 5.
+For left boundary:
+  - Row 0 (3 entries): col(s,0) = s for s < 3
+  - Row 1 (4 entries): col(s,1) = s for s < 4
+For right boundary (N = gridSize n):
+  - Row N-2 (4 entries): col(s,N-2) = N-4+s for s < 4
+  - Row N-1 (3 entries): col(s,N-1) = N-3+s for s < 3
+For unused sparse indices (s ≥ entry count): returns i (identity on system register).
+main.tex:784-801 --/
+def robinSparseColumnMap (n s i : Nat) : Nat :=
+  let N := gridSize n
+  let K1 := 2
+  let K2 := N - 3
+  if K1 ≤ i ∧ i ≤ K2 then
+    if s < 5 then i - 2 + s else i
+  else if i = 0 then
+    if s < 3 then s else i
+  else if i = 1 then
+    if s < 4 then s else i
+  else if i = N - 2 then
+    if s < 4 then N - 4 + s else i
+  else if i = N - 1 then
+    if s < 3 then N - 3 + s else i
+  else i
+
+/--
+Sparse amplitude value: the s-th nonzero stencil coefficient of row i in the
+Robin derivative matrix, returned as a Coeff value.
+
+This is the data layer that both O_DT^S (sparse amplitude oracle, Lemma 3)
+and Ry_boundary (boundary-controlled rotations) need.  The column index
+corresponding to each (s, i) pair is given by `robinSparseColumnMap`.
+
+For the fourth-order central second-derivative stencil:
+- Bulk rows (K1 ≤ i ≤ K2): 5 entries at offsets {-2,-1,0,1,2}
+- Left boundary row 0: 3 entries with Robin correction (A1*dx term)
+- Left boundary row 1: 4 entries with Robin correction (A1*dx term)
+- Right boundary row N-2: 4 entries with Robin correction (B1*dx term)
+- Right boundary row N-1: 3 entries with Robin correction (B1*dx term)
+- Unused sparse indices (s ≥ entry count): Coeff.rat 0
+
+main.tex:822-849, 1081-1083, 1113-1117 --/
+def robinSparseAmplitudeValue (n s i : Nat) : Coeff :=
+  let N := gridSize n
+  let K1 := 2
+  let K2 := N - 3
+  if K1 ≤ i ∧ i ≤ K2 then
+    match s with
+    | 0 => Coeff.rat ((-1 : Rat) / 12)
+    | 1 => Coeff.rat ((4 : Rat) / 3)
+    | 2 => Coeff.rat ((-5 : Rat) / 2)
+    | 3 => Coeff.rat ((4 : Rat) / 3)
+    | 4 => Coeff.rat ((-1 : Rat) / 12)
+    | _ => Coeff.rat 0
+  else if i = 0 then
+    match s with
+    | 0 => Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+        (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx"))
+    | 1 => Coeff.rat ((8 : Rat) / 3)
+    | 2 => Coeff.rat ((-1 : Rat) / 6)
+    | _ => Coeff.rat 0
+  else if i = 1 then
+    match s with
+    | 0 => Coeff.add (Coeff.rat ((4 : Rat) / 3))
+        (Coeff.neg (Coeff.mul (Coeff.rat ((1 : Rat) / 6)) (Coeff.symbol "A1*dx")))
+    | 1 => Coeff.rat ((-31 : Rat) / 12)
+    | 2 => Coeff.rat ((4 : Rat) / 3)
+    | 3 => Coeff.rat ((-1 : Rat) / 12)
+    | _ => Coeff.rat 0
+  else if i = N - 2 then
+    match s with
+    | 0 => Coeff.rat ((-1 : Rat) / 12)
+    | 1 => Coeff.rat ((4 : Rat) / 3)
+    | 2 => Coeff.rat ((-31 : Rat) / 12)
+    | 3 => Coeff.add (Coeff.rat ((4 : Rat) / 3))
+        (Coeff.mul (Coeff.rat ((1 : Rat) / 6)) (Coeff.symbol "B1*dx"))
+    | _ => Coeff.rat 0
+  else if i = N - 1 then
+    match s with
+    | 0 => Coeff.rat ((-1 : Rat) / 6)
+    | 1 => Coeff.rat ((8 : Rat) / 3)
+    | 2 => Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+        (Coeff.neg (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "B1*dx")))
+    | _ => Coeff.rat 0
+  else
+    Coeff.rat 0
+
+/--
 Honest U_indic matrix: controlled-X on the indicator qubit, conditioned on
 the system register being in the bulk window [K1, K2].
 For each basis state |j⟩:
@@ -674,49 +765,192 @@ def oneTermRobinGate_U_indic (p : OneTermRobinParameters) : GateMatrix Coeff (on
   }
 
 /--
-Placeholder gate matrix for O_DT^S.
+Honest O_DT^S diagonal matrix: encodes the sparse amplitude data on the diagonal
+for bulk rows (indicator=1) and acts as identity for boundary rows (indicator=0).
+
+For each compound basis state |j⟩:
+  - If indicator bit = 0 (boundary row): diagonal entry = Coeff.rat 1 (identity)
+  - If indicator bit = 1 (bulk row): diagonal entry = robinSparseAmplitudeValue(n, s, i)
+  - Off-diagonal entries are zero.
+
+NOTE: The paper's actual O_{D^T}^S (Lemma 3, main.tex:822-849) is a controlled
+rotation on the ancilla qubit, not a diagonal matrix.  This diagonal encoding
+exercises the amplitude data pathway; the rotation structure is a proof obligation.
+main.tex:822-849 --/
+def sparseAmplitudeOracleDTMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    if i.val ≠ j.val then Coeff.rat 0
+    else
+      let n := p.n
+      let indPos := robinIndicatorBitPosition p
+      let indBit := (j.val >>> indPos) &&& 1
+      if indBit = 0 then
+        Coeff.rat 1
+      else
+        let kappa := p.kappa
+        let κbits := clog2 kappa
+        let odPure := n - κbits
+        let sysMask := (1 <<< n) - 1
+        let sysVal := (j.val >>> 1) &&& sysMask
+        let sparseStart := 1 + n + odPure
+        let sparseMask := (1 <<< κbits) - 1
+        let sparseVal := (j.val >>> sparseStart) &&& sparseMask
+        robinSparseAmplitudeValue n sparseVal sysVal
+
+/--
+Gate matrix for O_DT^S using the honest diagonal matrix.
+Diagonal entries encode robinSparseAmplitudeValue for bulk rows (indicator=1);
+identity for boundary rows (indicator=0).
+Unitarity not yet formally proved.
 main.tex:822-849 --/
 def oneTermRobinGate_O_DT_S (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "O_DT^S"
-  matrix := fun _ _ => Coeff.rat 0
+  matrix := sparseAmplitudeOracleDTMatrix p
   unitary := {
-    description := "O_DT^S placeholder matrix: not yet implemented"
+    description := "O_DT^S diagonal matrix conditioned on indicator bit: unitarity not yet proved"
     source := "main.tex:822-849"
     proved := false
   }
 
 /--
-Placeholder gate matrix for Ry_boundary.
+Honest Ry_boundary matrix: controlled R_y rotation on the ancilla qubit (bit 0),
+conditioned on the indicator bit being 0 (boundary row).
+
+For bulk rows (indicator=1): acts as identity (no rotation).
+For boundary rows (indicator=0): applies R_y(θ_j^s) on the ancilla qubit,
+where θ_j^s = arccos(D_j^(s) / N_D) (main.tex:1115-1120, Eq. angles for Ry).
+
+The R_y(θ) matrix on the ancilla qubit:
+  M(|0⟩, |0⟩) = cos(θ/2),  M(|1⟩, |0⟩) = sin(θ/2)
+  M(|0⟩, |1⟩) = -sin(θ/2), M(|1⟩, |1⟩) = cos(θ/2)
+
+Rotation entries are symbolic since the exact trigonometric values involve
+square roots: cos(θ/2) = √((1 + D/N_D)/2), sin(θ/2) = √((1 - D/N_D)/2).
+main.tex:1115-1120 --/
+def boundaryRotationMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    let n := p.n
+    let indPos := robinIndicatorBitPosition p
+    let indBit_j := (j.val >>> indPos) &&& 1
+    if indBit_j = 1 then
+      if i.val = j.val then Coeff.rat 1 else Coeff.rat 0
+    else
+      let anc_j := j.val &&& 1
+      let anc_i := i.val &&& 1
+      if i.val >>> 1 ≠ j.val >>> 1 then Coeff.rat 0
+      else
+        let kappa := p.kappa
+        let κbits := clog2 kappa
+        let odPure := n - κbits
+        let sysMask := (1 <<< n) - 1
+        let sysVal := (j.val >>> 1) &&& sysMask
+        let sparseStart := 1 + n + odPure
+        let sparseMask := (1 <<< κbits) - 1
+        let sparseVal := (j.val >>> sparseStart) &&& sparseMask
+        let cosHalf := Coeff.symbol s!"boundary_cos_half_{sysVal}_{sparseVal}"
+        let sinHalf := Coeff.symbol s!"boundary_sin_half_{sysVal}_{sparseVal}"
+        match anc_j, anc_i with
+        | 0, 0 => cosHalf
+        | 0, 1 => sinHalf
+        | 1, 0 => Coeff.neg sinHalf
+        | _, _ => cosHalf
+
+/--
+Gate matrix for Ry_boundary using the honest controlled rotation matrix.
+R_y rotation on the ancilla qubit for boundary rows (indicator=0);
+identity for bulk rows (indicator=1).
+Unitarity not yet formally proved.
 main.tex:1115-1120 --/
 def oneTermRobinGate_Ry_boundary (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "Ry_boundary"
-  matrix := fun _ _ => Coeff.rat 0
+  matrix := boundaryRotationMatrix p
   unitary := {
-    description := "Ry_boundary placeholder matrix: not yet implemented"
+    description := "Ry_boundary honest controlled rotation matrix: unitarity not yet proved"
     source := "main.tex:1115-1120"
     proved := false
   }
 
 /--
-Placeholder gate matrix for O_D^BS.
+Honest O_D^BS matrix: banded sparse access oracle permutation matrix.
+Maps |s⟩|i⟩ → |s⟩|col(s,i)⟩ by replacing the system register bits.
+Bits outside the system register are preserved.
+Unitarity not yet formally proved.
+main.tex:784-801 --/
+def bandedSparseAccessMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    let n := p.n
+    let kappa := p.kappa
+    let κbits := clog2 kappa
+    let odPure := n - κbits
+    let sysMask := (1 <<< n) - 1
+    let sysVal := (j.val >>> 1) &&& sysMask
+    let sparseStart := 1 + n + odPure
+    let sparseMask := (1 <<< κbits) - 1
+    let sparseVal := (j.val >>> sparseStart) &&& sparseMask
+    let col := robinSparseColumnMap n sparseVal sysVal
+    let expectedImage := j.val - (j.val &&& (sysMask <<< 1)) + (col <<< 1)
+    if i.val = expectedImage then Coeff.rat 1 else Coeff.rat 0
+
+/--
+Gate matrix for O_D^BS using the honest permutation matrix.
+Banded sparse access oracle mapping sparse index and row to column.
+Unitarity not yet formally proved.
 main.tex:784-801 --/
 def oneTermRobinGate_O_D_BS (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "O_D^BS"
-  matrix := fun _ _ => Coeff.rat 0
+  matrix := bandedSparseAccessMatrix p
   unitary := {
-    description := "O_D^BS placeholder matrix: not yet implemented"
+    description := "O_D^BS honest permutation matrix: unitarity not yet proved"
     source := "main.tex:784-801"
     proved := false
   }
 
 /--
-Placeholder gate matrix for O_f.
+Symbolic function value at grid point j.
+Returns Coeff.symbol "f_x_j" for each grid index.
+The paper's O_f (Lemma 4, main.tex:870-910) encodes f(x_j)/N_f;
+the 1/N_f factor is absorbed into the normalizer α = N_D · N_f · κ.
+main.tex:870-910 --/
+def robinFunctionValue (n i : Nat) : Coeff :=
+  Coeff.symbol s!"f_{n}_{i}"
+
+/--
+Honest O_f diagonal matrix: encodes function values f(x_j) on the diagonal.
+
+For each compound basis state |j⟩, extracts the system register value i
+and sets the diagonal entry to `robinFunctionValue n i` = Coeff.symbol "f_x_i".
+All off-diagonal entries are zero.  The entry depends only on the system
+register (grid point index), not on the sparse index.
+
+The paper's O_f (Lemma 4, main.tex:870-910) encodes f(x_j)/N_f via amplitude
+oracle.  The 1/N_f normalization is absorbed into the block-encoding normalizer
+α = N_D · N_f · κ.  Whether this diagonal encoding correctly implements the
+paper's rotation-based oracle is tracked by `unitary.proved := false`.
+
+main.tex:870-910 --/
+def functionOracleMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    if i.val = j.val then
+      let n := p.n
+      let sysMask := (1 <<< n) - 1
+      let sysVal := (j.val >>> 1) &&& sysMask
+      robinFunctionValue n sysVal
+    else Coeff.rat 0
+
+/--
+Gate matrix for O_f using the honest diagonal matrix.
+Diagonal entries encode function values f(x_j) via robinFunctionValue; off-diagonal entries are zero.
+Unitarity not yet formally proved.
 main.tex:870-910 --/
 def oneTermRobinGate_O_f (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "O_f"
-  matrix := fun _ _ => Coeff.rat 0
+  matrix := functionOracleMatrix p
   unitary := {
-    description := "O_f placeholder matrix: not yet implemented"
+    description := "O_f diagonal matrix using robinFunctionValue (f(x_j)): unitarity not yet proved"
     source := "main.tex:870-910"
     proved := false
   }
@@ -762,13 +996,36 @@ def oneTermRobinGate_SWAP (p : OneTermRobinParameters) : GateMatrix Coeff (oneTe
   }
 
 /--
-Placeholder gate matrix for (O_D^BS)^†.
+Inverse permutation of O_D^BS (transpose of the forward permutation matrix).
+For each i: compute image(i) using the forward mapping, then check if j = image(i).
+This is the matrix transpose of bandedSparseAccessMatrix, which equals the dagger
+for a permutation matrix.
+main.tex:1148 --/
+def bandedSparseAccessDaggerMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    let n := p.n
+    let kappa := p.kappa
+    let κbits := clog2 kappa
+    let odPure := n - κbits
+    let sysMask := (1 <<< n) - 1
+    let sysVal := (i.val >>> 1) &&& sysMask
+    let sparseStart := 1 + n + odPure
+    let sparseMask := (1 <<< κbits) - 1
+    let sparseVal := (i.val >>> sparseStart) &&& sparseMask
+    let col := robinSparseColumnMap n sparseVal sysVal
+    let image := i.val - (i.val &&& (sysMask <<< 1)) + (col <<< 1)
+    if j.val = image then Coeff.rat 1 else Coeff.rat 0
+
+/--
+Gate matrix for (O_D^BS)^† using the honest inverse permutation matrix.
+Unitarity not yet formally proved.
 main.tex:1148 --/
 def oneTermRobinGate_O_D_BS_dagger (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "(O_D^BS)^†"
-  matrix := fun _ _ => Coeff.rat 0
+  matrix := bandedSparseAccessDaggerMatrix p
   unitary := {
-    description := "(O_D^BS)^† placeholder matrix: not yet implemented"
+    description := "(O_D^BS)^† inverse permutation matrix: unitarity not yet proved"
     source := "main.tex:1148"
     proved := false
   }

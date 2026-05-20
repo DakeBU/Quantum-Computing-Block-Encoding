@@ -228,9 +228,9 @@ def robinProofObligations : GHL2025.RobinProofObligations := {}
 /-! ## Circuit matrix semantics bridge --/
 
 /--
-CircuitMatrixSemantics for the one-term Robin circuit using placeholder gate matrices.
-The full-space matrix is the product of the 7 placeholder gate matrices
-(which is currently the zero matrix since all placeholders return 0).
+CircuitMatrixSemantics for the one-term Robin circuit using honest gate matrices.
+The full-space matrix is the product of the 7 honest gate matrices computed by
+`evalGateMatrices`. All gates carry `unitary.proved := false`.
 figure:1_term_ROBIN --/
 def oneTermRobinCircuitSemantics (n : Nat) :
     CircuitMatrixSemantics Coeff
@@ -242,9 +242,35 @@ def oneTermRobinCircuitSemantics (n : Nat) :
   matrix_eq_eval := by intro _ _; rfl
 
 /--
+Dimension compatibility for the one-term Robin circuit:
+the full Hilbert-space dimension factors as signal dimension times system
+dimension.  This is the reusable arithmetic bridge from qubit counts to the
+block-projection matrix shape.
+figure:1_term_ROBIN, main.tex:1098-1109 --/
+private theorem effectiveSignal_add_n_eq_total (n : Nat) :
+    GHL2025.effectiveRobinSignalQubits (oneTermParameters n) + n =
+      GHL2025.oneTermRobinTotalQubits (oneTermParameters n) := by
+  simp [GHL2025.effectiveRobinSignalQubits, GHL2025.oneTermRobinTotalQubits,
+    GHL2025.defaultRobinRegisterPartition, GHL2025.RobinRegisterPartition.totalQubits,
+    oneTermParameters, clog2_gridSize]
+  omega
+
+theorem oneTermRobinCircuitDimCompat (n : Nat) :
+    qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters n)) =
+      qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n)) *
+        gridSize n := by
+  have h := effectiveSignal_add_n_eq_total n
+  simp only [qubitDim, gridSize]
+  rw [← h, Nat.pow_add]
+
+/--
 Block-extraction target for the Robin derivative block encoding.
 States that the `(0, 0)` block of the circuit matrix should equal
 `A_k / (N_D * N_f * kappa)`.
+
+The `unitaryMatrix` and `blockMatrix` are derived from the real circuit
+matrix product computed by `evalGateMatrices` over all 7 honest gate matrices.
+Block correctness remains unproved.
 
 The `signalDim` is `qubitDim effectiveRobinSignalQubits` where
 `effectiveRobinSignalQubits` counts all non-system qubits.
@@ -252,29 +278,21 @@ The `signalDim` is `qubitDim effectiveRobinSignalQubits` where
 figure:1_term_ROBIN, main.tex:1131-1136 --/
 def oneTermRobinBlockExtractionTarget (n : Nat) :
     BlockExtractionTarget Coeff (gridSize n) (gridSize n)
-      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n))) where
-  unitaryMatrix := fun _ _ => Coeff.rat 0
-  targetMatrix := robinDerivativeMatrix n
-  normalizer := GHL2025.oneTermRobinNormalizer
-  signalIndex := ⟨0, by
-    show (0 : Nat) < qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n))
-    simp only [qubitDim, gridSize]
-    have : ∀ k : Nat, (0 : Nat) < 2 ^ k := by
-      intro k; induction k with
-      | zero => decide
-      | succ k _ => simp [Nat.pow_succ]; omega
-    exact this _⟩
-  blockMatrix := fun _ _ => Coeff.rat 0
-  blockProjection := {
-    description := "block projection for one-term Robin: signal register at index 0"
-    source := "main.tex:1131-1136, figure:1_term_ROBIN"
-    proved := false
-  }
-  blockCorrect := {
-    description := "extracted block = robinDerivativeMatrix n / (N_D * N_f * kappa)"
-    source := "main.tex:1131-1136, Theorem:1 term robin"
-    proved := false
-  }
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n))) :=
+  (oneTermRobinCircuitSemantics n).blockExtractionTarget
+    (gridSize n)
+    (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n)))
+    (oneTermRobinCircuitDimCompat n)
+    (robinDerivativeMatrix n)
+    GHL2025.oneTermRobinNormalizer
+    ⟨0, by
+      show (0 : Nat) < qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n))
+      simp only [qubitDim, gridSize]
+      have : ∀ k : Nat, (0 : Nat) < 2 ^ k := by
+        intro k; induction k with
+        | zero => decide
+        | succ k _ => simp [Nat.pow_succ]; omega
+      exact this _⟩
 
 /--
 Circuit block encoding claim for the one-term Robin construction.
@@ -301,28 +319,6 @@ def oneTermRobinCircuitBlockClaim (n : Nat)
     source := "main.tex:1131-1136, Theorem:1 term robin"
     proved := false
   }
-
-/--
-Dimension compatibility for the one-term Robin circuit:
-the full Hilbert-space dimension factors as signal dimension times system
-dimension.  This is the reusable arithmetic bridge from qubit counts to the
-block-projection matrix shape.
-figure:1_term_ROBIN, main.tex:1098-1109 --/
-private theorem effectiveSignal_add_n_eq_total (n : Nat) :
-    GHL2025.effectiveRobinSignalQubits (oneTermParameters n) + n =
-      GHL2025.oneTermRobinTotalQubits (oneTermParameters n) := by
-  simp [GHL2025.effectiveRobinSignalQubits, GHL2025.oneTermRobinTotalQubits,
-    GHL2025.defaultRobinRegisterPartition, GHL2025.RobinRegisterPartition.totalQubits,
-    oneTermParameters, clog2_gridSize]
-  omega
-
-theorem oneTermRobinCircuitDimCompat (n : Nat) :
-    qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters n)) =
-      qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters n)) *
-        gridSize n := by
-  have h := effectiveSignal_add_n_eq_total n
-  simp only [qubitDim, gridSize]
-  rw [← h, Nat.pow_add]
 
 /--
 Default one-term Robin circuit block claim using the reusable dimension

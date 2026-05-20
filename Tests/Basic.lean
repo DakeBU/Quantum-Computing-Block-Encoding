@@ -828,3 +828,438 @@ example :
 example (p : GHL2025.OneTermRobinParameters) :
     gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
   GHL2025.oneTermRobinPlaceholdersMatch p
+
+-- Cycle 4: O_D^BS honest permutation matrix tests (banded sparse access oracle)
+
+-- O_D^BS test 1: bulk row i=4, s=0 → col=2
+-- j=8: sysVal=(8>>>1)&&&7=4, sparseVal=(8>>>4)&&&7=0, col=4-2+0=2
+-- expectedImage = 8 - 8 + 4 = 4. M(4, 8) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessMatrix p)
+      ⟨4, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- O_D^BS test 2: bulk row i=4, s=4 → col=6
+-- j=72: sysVal=4, sparseVal=4, col=4-2+4=6
+-- expectedImage = 72 - 8 + 12 = 76. M(76, 72) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessMatrix p)
+      ⟨76, by native_decide⟩ ⟨72, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- O_D^BS test 3: bulk row i=3, s=2 → col=3 (diagonal, identity)
+-- j=38: sysVal=3, sparseVal=2, col=3-2+2=3
+-- expectedImage = 38 - 6 + 6 = 38. M(38, 38) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessMatrix p)
+      ⟨38, by native_decide⟩ ⟨38, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- O_D^BS test 4: boundary row 0, s=0 → col=0 (identity)
+-- j=0: M(0, 0) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessMatrix p)
+      ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- O_D^BS test 5: boundary row 0, s=5 → unused (3 entries), col=0 (identity)
+-- j=80: sysVal=0, sparseVal=5, col=0 (identity). expectedImage=80. M(80, 80) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessMatrix p)
+      ⟨80, by native_decide⟩ ⟨80, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- O_D^BS test 6: right boundary i=7, s=0 → col=5
+-- j=14: sysVal=7, sparseVal=0, col=8-3+0=5
+-- expectedImage = 14 - 14 + 10 = 10. M(10, 14) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessMatrix p)
+      ⟨10, by native_decide⟩ ⟨14, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- O_D^BS dagger test 7: transpose of test 1
+-- Forward: M(4, 8) = 1. Dagger: M_dag(8, 4) = 1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessDaggerMatrix p)
+      ⟨8, by native_decide⟩ ⟨4, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- O_D^BS gate: unitary.proved = false
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false := rfl
+
+-- O_D^BS dagger gate: unitary.proved = false
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := rfl
+
+-- O_D^BS placeholder match still holds with honest matrices
+example (p : GHL2025.OneTermRobinParameters) :
+    gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
+  GHL2025.oneTermRobinPlaceholdersMatch p
+
+-- Cycle 5: robinSparseAmplitudeValue tests (sparse amplitude data layer)
+-- main.tex:822-849, 1081-1083, 1113-1117
+
+-- Bulk row i=2, s=2 (diagonal): amplitude = -5/2
+example : GHL2025.robinSparseAmplitudeValue 3 2 2 = Coeff.rat ((-5 : Rat) / 2) := by native_decide
+
+-- Bulk row i=2, s=0 (off-diagonal at offset -2): amplitude = -1/12
+example : GHL2025.robinSparseAmplitudeValue 3 0 2 = Coeff.rat ((-1 : Rat) / 12) := by native_decide
+
+-- Bulk row i=3, s=1 (off-diagonal at offset -1): amplitude = 4/3
+example : GHL2025.robinSparseAmplitudeValue 3 1 3 = Coeff.rat ((4 : Rat) / 3) := by native_decide
+
+-- Left boundary row 0, s=0: amplitude = -5/2 + 7/3 * A1*dx
+example : GHL2025.robinSparseAmplitudeValue 3 0 0 =
+    Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+      (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")) := by native_decide
+
+-- Left boundary row 0, s=1: amplitude = 8/3
+example : GHL2025.robinSparseAmplitudeValue 3 1 0 = Coeff.rat ((8 : Rat) / 3) := by native_decide
+
+-- Left boundary row 1, s=0: amplitude = 4/3 - 1/6 * A1*dx
+example : GHL2025.robinSparseAmplitudeValue 3 0 1 =
+    Coeff.add (Coeff.rat ((4 : Rat) / 3))
+      (Coeff.neg (Coeff.mul (Coeff.rat ((1 : Rat) / 6)) (Coeff.symbol "A1*dx"))) := by native_decide
+
+-- Left boundary row 1, s=1: amplitude = -31/12
+example : GHL2025.robinSparseAmplitudeValue 3 1 1 = Coeff.rat ((-31 : Rat) / 12) := by native_decide
+
+-- Right boundary row 6 (N-2), s=3: amplitude = 4/3 + 1/6 * B1*dx
+example : GHL2025.robinSparseAmplitudeValue 3 3 6 =
+    Coeff.add (Coeff.rat ((4 : Rat) / 3))
+      (Coeff.mul (Coeff.rat ((1 : Rat) / 6)) (Coeff.symbol "B1*dx")) := by native_decide
+
+-- Right boundary row 7 (N-1), s=2: amplitude = -5/2 - 7/3 * B1*dx
+example : GHL2025.robinSparseAmplitudeValue 3 2 7 =
+    Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+      (Coeff.neg (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "B1*dx"))) := by native_decide
+
+-- Unused sparse index: bulk row i=2, s=5 (only 5 entries) → Coeff.rat 0
+example : GHL2025.robinSparseAmplitudeValue 3 5 2 = Coeff.rat 0 := by native_decide
+
+-- Unused sparse index: boundary row 0, s=3 (only 3 entries) → Coeff.rat 0
+example : GHL2025.robinSparseAmplitudeValue 3 3 0 = Coeff.rat 0 := by native_decide
+
+-- Coherence: amplitude at (j, s) equals matrix entry at (j, robinSparseColumnMap n s j)
+-- Bulk row i=2, s=2, col=robinSparseColumnMap 3 2 2 = 2
+example :
+    GHL2025.robinSparseAmplitudeValue 3 2 2 =
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨2, by native_decide⟩
+      ⟨GHL2025.robinSparseColumnMap 3 2 2, by native_decide⟩ := by native_decide
+
+-- Coherence: left boundary row 0, s=0, col=robinSparseColumnMap 3 0 0 = 0
+example :
+    GHL2025.robinSparseAmplitudeValue 3 0 0 =
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨0, by native_decide⟩
+      ⟨GHL2025.robinSparseColumnMap 3 0 0, by native_decide⟩ := by native_decide
+
+-- Coherence: right boundary row 7, s=2, col=robinSparseColumnMap 3 2 7 = 7
+example :
+    GHL2025.robinSparseAmplitudeValue 3 2 7 =
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨7, by native_decide⟩
+      ⟨GHL2025.robinSparseColumnMap 3 2 7, by native_decide⟩ := by native_decide
+
+-- Coherence: left boundary row 1, s=0, col=robinSparseColumnMap 3 0 1 = 0
+example :
+    GHL2025.robinSparseAmplitudeValue 3 0 1 =
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨1, by native_decide⟩
+      ⟨GHL2025.robinSparseColumnMap 3 0 1, by native_decide⟩ := by native_decide
+
+-- Coherence: right boundary row 6, s=3, col=robinSparseColumnMap 3 3 6 = 7
+example :
+    GHL2025.robinSparseAmplitudeValue 3 3 6 =
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨6, by native_decide⟩
+      ⟨GHL2025.robinSparseColumnMap 3 3 6, by native_decide⟩ := by native_decide
+
+-- Cycle 6->9: O_f function oracle diagonal matrix tests (main.tex:870-910)
+-- O_f now uses robinFunctionValue (symbolic f(x_j)) instead of derivative amplitude data.
+
+-- O_f diagonal entry: sysVal=2, compound j=36
+-- j=36: sysVal=(36>>>1)&7=2. Diagonal entry = robinFunctionValue 3 2 = Coeff.symbol "f_3_2"
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleMatrix p)
+      ⟨36, by native_decide⟩ ⟨36, by native_decide⟩ =
+    Coeff.symbol "f_3_2" := by
+  native_decide
+
+-- O_f diagonal entry: sysVal=0, compound j=0
+-- j=0: sysVal=0. Diagonal entry = robinFunctionValue 3 0 = Coeff.symbol "f_3_0"
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleMatrix p)
+      ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ =
+    Coeff.symbol "f_3_0" := by
+  native_decide
+
+-- O_f diagonal entry: sysVal=2, compound j=4
+-- j=4: sysVal=(4>>>1)&7=2. Same sysVal as j=36, same function value symbol
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleMatrix p)
+      ⟨4, by native_decide⟩ ⟨4, by native_decide⟩ =
+    Coeff.symbol "f_3_2" := by
+  native_decide
+
+-- O_f off-diagonal entry: M(0, 1) = 0
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleMatrix p)
+      ⟨0, by native_decide⟩ ⟨1, by native_decide⟩ =
+    Coeff.rat 0 := by
+  native_decide
+
+-- O_f off-diagonal entry: M(36, 0) = 0
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleMatrix p)
+      ⟨36, by native_decide⟩ ⟨0, by native_decide⟩ =
+    Coeff.rat 0 := by
+  native_decide
+
+-- O_f diagonal entry: sysVal=6, compound j=60
+-- j=60: sysVal=(60>>>1)&7=6. Diagonal entry = Coeff.symbol "f_3_6"
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleMatrix p)
+      ⟨60, by native_decide⟩ ⟨60, by native_decide⟩ =
+    Coeff.symbol "f_3_6" := by
+  native_decide
+
+-- O_f diagonal entry: sysVal=7, compound j=14
+-- j=14: sysVal=(14>>>1)&7=7. Diagonal entry = Coeff.symbol "f_3_7"
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleMatrix p)
+      ⟨14, by native_decide⟩ ⟨14, by native_decide⟩ =
+    Coeff.symbol "f_3_7" := by
+  native_decide
+
+-- robinFunctionValue: different grid points produce different symbols
+example : GHL2025.robinFunctionValue 3 0 = Coeff.symbol "f_3_0" := by native_decide
+example : GHL2025.robinFunctionValue 3 2 = Coeff.symbol "f_3_2" := by native_decide
+example : GHL2025.robinFunctionValue 3 7 = Coeff.symbol "f_3_7" := by native_decide
+
+-- O_f gate: unitary.proved = false
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_f p).unitary.proved = false := rfl
+
+-- O_f placeholder match still holds with function value matrix
+example (p : GHL2025.OneTermRobinParameters) :
+    gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
+  GHL2025.oneTermRobinPlaceholdersMatch p
+
+-- ## Cycle 7: O_DT^S Diagonal Matrix Tests
+
+-- O_DT^S boundary row (indicator=0): diagonal entry = Coeff.rat 1 (identity)
+-- j=4: binary 0000000000100, bit 0=0 (anc), bits [1,4)=010 (sysVal=2),
+-- bits [4,7)=000 (sparseVal=0), bit 7=0 (indicator=0 → boundary)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTMatrix p)
+      ⟨4, by native_decide⟩ ⟨4, by native_decide⟩ =
+    Coeff.rat 1 := by
+  native_decide
+
+-- O_DT^S bulk row (indicator=1), s=0, i=2: diagonal entry = -1/12
+-- j=132: binary 0000010000100, sysVal=2, sparseVal=0, indicator=1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTMatrix p)
+      ⟨132, by native_decide⟩ ⟨132, by native_decide⟩ =
+    Coeff.rat ((-1 : Rat) / 12) := by
+  native_decide
+
+-- O_DT^S bulk row (indicator=1), s=2, i=2 (diagonal): diagonal entry = -5/2
+-- j=164: bit 7=1 (ind), bits [4,7)=010 (sparse=2), bits [1,4)=010 (sys=2), bit 0=0
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTMatrix p)
+      ⟨164, by native_decide⟩ ⟨164, by native_decide⟩ =
+    Coeff.rat ((-5 : Rat) / 2) := by
+  native_decide
+
+-- O_DT^S off-diagonal entry: M(132, 133) = 0
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTMatrix p)
+      ⟨132, by native_decide⟩ ⟨133, by native_decide⟩ =
+    Coeff.rat 0 := by
+  native_decide
+
+-- O_DT^S bulk row with boundary amplitude data (indicator=1 but sysVal=0)
+-- j=128: bit 7=1 (ind), sysVal=0, sparseVal=0 → robinSparseAmplitudeValue 3 0 0
+-- = -5/2 + 7/3*A1*dx (left boundary row 0 coefficient, despite indicator=1)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTMatrix p)
+      ⟨128, by native_decide⟩ ⟨128, by native_decide⟩ =
+    Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+      (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")) := by
+  native_decide
+
+-- O_DT^S gate: unitary.proved = false
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_DT_S p).unitary.proved = false := rfl
+
+-- O_DT^S placeholder match still holds with honest diagonal matrix
+example (p : GHL2025.OneTermRobinParameters) :
+    gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
+  GHL2025.oneTermRobinPlaceholdersMatch p
+
+-- ## Cycle 8: Ry_boundary Controlled Rotation Matrix Tests
+-- main.tex:1115-1120, Eq. angles for Ry
+
+-- Ry_boundary bulk row (indicator=1): identity
+-- j=132: bit 7=1 (indicator=1), bulk row → identity
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨132, by native_decide⟩ ⟨132, by native_decide⟩ =
+    Coeff.rat 1 := by
+  native_decide
+
+-- Ry_boundary bulk row: off-diagonal is zero
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨133, by native_decide⟩ ⟨132, by native_decide⟩ =
+    Coeff.rat 0 := by
+  native_decide
+
+-- Ry_boundary boundary row (indicator=0), anc_j=0, anc_i=0: cos(θ/2)
+-- j=0: sysVal=0, sparseVal=0, anc=0, indicator=0
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ =
+    Coeff.symbol "boundary_cos_half_0_0" := by
+  native_decide
+
+-- Ry_boundary boundary row, anc_j=0, anc_i=1: sin(θ/2)
+-- j=0, i=1: anc changes from 0→1, rest matches (i>>>1 = j>>>1 = 0)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨1, by native_decide⟩ ⟨0, by native_decide⟩ =
+    Coeff.symbol "boundary_sin_half_0_0" := by
+  native_decide
+
+-- Ry_boundary boundary row, anc_j=1, anc_i=0: -sin(θ/2)
+-- j=1, i=0: anc changes from 1→0, rest matches
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨0, by native_decide⟩ ⟨1, by native_decide⟩ =
+    Coeff.neg (Coeff.symbol "boundary_sin_half_0_0") := by
+  native_decide
+
+-- Ry_boundary boundary row, anc_j=1, anc_i=1: cos(θ/2)
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨1, by native_decide⟩ ⟨1, by native_decide⟩ =
+    Coeff.symbol "boundary_cos_half_0_0" := by
+  native_decide
+
+-- Ry_boundary: different boundary row sysVal produces different symbol
+-- j=2: indicator=(2>>>7)&1=0, sysVal=(2>>>1)&7=1, sparseVal=(2>>>4)&7=0
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨2, by native_decide⟩ ⟨2, by native_decide⟩ =
+    Coeff.symbol "boundary_cos_half_1_0" := by
+  native_decide
+
+-- Ry_boundary: different sparseVal produces different symbol
+-- j=16: indicator=0, sysVal=(16>>>1)&7=0, sparseVal=(16>>>4)&7=1
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨16, by native_decide⟩ ⟨16, by native_decide⟩ =
+    Coeff.symbol "boundary_cos_half_0_1" := by
+  native_decide
+
+-- Ry_boundary: off-diagonal between different boundary rows (different rest) = 0
+-- j=2, i=0: i>>>1=0 ≠ j>>>1=1 → 0
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationMatrix p)
+      ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+    Coeff.rat 0 := by
+  native_decide
+
+-- Ry_boundary gate: unitary.proved = false
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_Ry_boundary p).unitary.proved = false := rfl
+
+-- Ry_boundary placeholder match still holds with honest matrix
+example (p : GHL2025.OneTermRobinParameters) :
+    gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
+  GHL2025.oneTermRobinPlaceholdersMatch p
+
+-- ## Cycle 3 (QBE-AUTO-002): Pipeline upgrade — real matrix products
+
+-- unitaryMatrix is now derived from evalGateMatrices, not hardcoded zeros.
+-- Keep this as a structural test: concrete entry-level evaluation of the n=3
+-- 13-qubit product is too large for routine `lake build Tests`.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinCircuitSemantics n).matrix =
+      evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters n)) := rfl
+
+-- The block extraction target uses the circuit product as its full-space matrix.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).unitaryMatrix =
+      cast (by rw [Examples.RobinHeat.oneTermRobinCircuitDimCompat n])
+        (Examples.RobinHeat.oneTermRobinCircuitSemantics n).matrix := rfl
+
+-- blockMatrix is the signal-0 block projection of that circuit product.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).blockMatrix =
+      signalSystemBlockProjection
+        (qubitDim (GHL2025.effectiveRobinSignalQubits (Examples.RobinHeat.oneTermParameters n)))
+        (gridSize n)
+        (gridSize n)
+        (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).unitaryMatrix
+        (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).signalIndex := rfl
+
+-- Structural tests still pass: targetMatrix = robinDerivativeMatrix
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).targetMatrix =
+      Examples.RobinHeat.robinDerivativeMatrix n := rfl
+
+-- Structural tests: normalizer = oneTermRobinNormalizer
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).normalizer =
+      GHL2025.oneTermRobinNormalizer := rfl
+
+-- Structural tests: blockCorrect.proved = false
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).blockCorrect.proved = false := rfl
+
+-- Structural tests: blockProjection.proved = false
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).blockProjection.proved = false := rfl
+
+-- Structural tests: signalIndex = 0
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).signalIndex.val = 0 := rfl
+
+-- Entry-level nonzero checks for the full product are tracked as future proof
+-- obligations rather than compiled tests, because they force large symbolic
+-- matrix multiplication at n=3.
