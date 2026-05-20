@@ -90,6 +90,11 @@ The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
 - Lower agents: try concrete construction/proof paths.
 - Reviewer: checks Lean build, hidden oracle assumptions, resources, and links.
 
+Documentation-writing agents also use
+`.agents/skills/qbe-math-writing/SKILL.md`.  The skill keeps mathematical prose
+compact: definitions before theorem statements, precise justifications and
+citations, Markdown math with `$...$`/`$$...$$`, and no hidden assumptions.
+
 QBE has two hybrid strategy modes:
 
 - Faithful paper reproduction: reproduce a specific paper's circuit/block
@@ -105,10 +110,11 @@ QBE has two hybrid strategy modes:
   progress, and archive rejected designs.  Lean proof obligations remain the
   final acceptance gate.
 
-In faithful mode, agents must not invent a replacement construction.  Missing
-oracle details become proof obligations.  In exploratory mode, agents may
-search, but every candidate must be tied to an acceptance predicate and logged
-as trial memory.
+In faithful mode, agents must not invent a replacement construction or add new
+hypotheses, side conditions, or easier theorem variants.  Missing oracle
+details become proof obligations.  In exploratory mode, agents may search, but
+every candidate must be tied to the original acceptance predicate and logged as
+trial memory.
 
 
 
@@ -300,6 +306,11 @@ The conversion window has three synchronized panes:
 
 Any symbol that cannot be mapped to Lean becomes a proof obligation or an open
 problem. It should not remain an implicit oracle assumption.
+
+When updating Markdown or LaTeX, reuse existing Lean declarations and notation
+tables instead of redefining the same object in several places.  The reviewer
+agent is expected to flag duplicated definitions and prose that violates the
+math-writing skill.
 
 ## Command Reference
 

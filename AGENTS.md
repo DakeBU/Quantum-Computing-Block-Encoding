@@ -53,6 +53,9 @@ python3 tools/qbe.py trial-summary
 - Lower agents attempt one construction or proof repair each.
 - Reviewer agents check Lean build status, oracle assumptions, resources, and
   citations.
+- Documentation-writing agents use `.agents/skills/qbe-math-writing/SKILL.md`:
+  definitions before theorem statements, short claims, precise justifications,
+  and no hidden assumptions.
 
 The shared conversation board is `runs/<run-id>/dialogue.md`; persistent memory
 is `runs/trials.jsonl` plus `runs/trials_summary.csv`.
@@ -61,6 +64,10 @@ is `runs/trials.jsonl` plus `runs/trials_summary.csv`.
 
 - Do not invent citations.  Add unknown papers as candidates, then verify.
 - Do not hide a mathematical gap with prose.  Turn it into a proof obligation.
+- In faithful paper-reproduction mode, do not add hypotheses, side conditions,
+  replacement circuits, or easier theorem variants.
+- Prefer referencing existing Lean declarations and notation tables over
+  duplicating definitions across files.
 - Do not mark a planned paper as formalized until the corresponding Lean
   declarations and tests compile.
 - For new open problems, include an acceptance test precise enough that Lean can

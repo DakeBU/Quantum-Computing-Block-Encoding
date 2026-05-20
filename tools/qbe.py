@@ -945,6 +945,9 @@ def strategy_for_mode(mode: str) -> str:
   scientific constructions.  Do not mutate the paper's circuit or oracle.
 - A proof route can be called successful only when the Lean target builds and
   the corresponding paper-note/conversion-window entry remains synchronized.
+- No agent may add a hypothesis, side condition, replacement oracle, or
+  substitute circuit to make the statement easier.  If the paper step cannot
+  yet be reproduced, record the exact obstruction as a proof obligation.
 """
     if mode == "exploratoryConstruction":
         return """Hybrid strategy for this mode:
@@ -960,6 +963,8 @@ def strategy_for_mode(mode: str) -> str:
   proof-obligation count.  These scores do not prove correctness.
 - A construction is accepted only when the Lean acceptance target and all
   required proof obligations are satisfied.
+- Do not weaken the target or add assumptions to rescue a candidate.  Reject,
+  mutate, or archive the candidate while preserving the original target.
 """
     return """Hybrid strategy for this mode:
 
@@ -1022,12 +1027,17 @@ Operating model:
 Mode discipline:
 
 - In `faithfulPaper` mode, reproduce the cited paper's construction.  Do not
-  invent a replacement oracle or block encoding unless the reviewer records it
-  as a separate exploratory branch or open problem.
+  invent a replacement oracle or block encoding, and do not add assumptions,
+  side conditions, or easier variants.  If a paper step is missing or too hard,
+  record the exact proof obligation and keep `proved := false`.
 - In `exploratoryConstruction` mode, propose new oracle/block-encoding
-  constructions only against a precise Lean-checkable acceptance target.
+  constructions only against a precise Lean-checkable acceptance target.  Do
+  not weaken the target or add assumptions to make a candidate pass.
 - If the mode is `unspecified`, the upper agent must classify the task before
   lower agents perform broad code changes.
+- Prefer referencing shared Lean declarations and existing paper-note
+  definitions.  Do not duplicate a definition in another file when an existing
+  declaration or notation table can be referenced.
 
 {strategy}
 
@@ -1039,6 +1049,9 @@ Human-facing correspondence rule:
 - Lean compilation alone is not enough for faithful paper-reproduction mode;
   humans must be able to compare the Lean names with the original theorem,
   equations, normalizers, register layout, and resource statement.
+- For mathematical prose, use `.agents/skills/qbe-math-writing/SKILL.md`.
+  Keep definitions before theorem statements, justify nontrivial claims, use
+  precise citations, and avoid duplicated definitions.
 - In Markdown files, use `$...$` and `$$...$$` for math.  Do not use
   `\\(...\\)` or `\\[...\\]` delimiters in `.md` files.  LaTeX `.tex` files
   may use normal LaTeX delimiters.
@@ -1076,14 +1089,19 @@ Produce:
 7. A compressed handoff explaining what future agents should remember.
 
 In faithful paper mode, preserve the paper construction and isolate every
-unimplemented oracle as a proof obligation.  In exploratory mode, require a
-Lean-checkable target before search begins.
+unimplemented oracle as a proof obligation; do not permit new assumptions or
+replacement conditions.  In exploratory mode, require a Lean-checkable target
+before search begins and reject any target-weakening shortcut.
 
 If a faithful-mode lower attempt fails on a fixed lemma, ask the middle agent to
 start or update a `proof-attempts/` record rather than changing the theorem.  If
 an exploratory-mode candidate family looks promising, assign separate lower
 workers to mutation, recombination, and proof-obligation reduction in disjoint
 file scopes.
+
+When assigning documentation work, require the `qbe-math-writing` skill and
+ask the reviewer to check definition ordering, citation precision, and whether
+shared Lean definitions were referenced instead of duplicated.
 """
     elif role == "middle":
         body = """You are the middle formalization maintainer and memory manager.
@@ -1111,6 +1129,15 @@ In faithful mode, maintain proof-attempt populations only for fixed Lean
 targets.  In exploratory mode, maintain candidate-population records that track
 candidate family, partial score, changed files, remaining obligations, and next
 mutation or recombination step.
+
+Before assigning lower work, search for existing Lean declarations and
+paper-note definitions to reuse.  Do not create a second definition for a
+matrix, normalizer, register layout, or theorem statement when a reference to
+the existing one will do.
+
+When editing Markdown or LaTeX, follow `.agents/skills/qbe-math-writing/SKILL.md`:
+definitions before theorem statements, short claim statements, precise
+justifications, and no unannounced assumptions.
 """
     elif role == "reviewer":
         body = """You are the independent reviewer and gatekeeper.
@@ -1127,10 +1154,16 @@ Look for:
 3. Normalizer, ancilla, register ordering, dimension, and resource-count drift.
 4. Markdown/LaTeX/Lean correspondence gaps, including Markdown math delimiters.
 5. Citation or source-link gaps.
+6. Duplicated definitions that should be references to existing Lean or paper
+   note declarations.
+7. Mathematical writing violations covered by
+   `.agents/skills/qbe-math-writing/SKILL.md`, especially definitions appearing
+   after theorem statements.
 
 Classify findings as blocking or advisory.  If the current task is faithful
-paper reproduction, reject unrecorded invention.  If Lean fails, localize the
-failure and suggest the next smallest repair.
+paper reproduction, reject unrecorded invention and any added assumption or
+side condition.  If Lean fails, localize the failure and suggest the next
+smallest repair.
 
 In faithful mode, check that proof-attempt populations did not alter the paper
 construction.  In exploratory mode, check that candidate scores are treated as
@@ -1146,8 +1179,11 @@ middle agent, and assume other agents may be editing nearby documentation.
 
 Run the Lean gate if you edit Lean, or explain why it was not run.  Do not
 change the scientific objective.  In faithful paper mode, do not replace the
-paper construction with a new one.  In exploratory mode, keep every proposed
-construction tied to the acceptance predicate.
+paper construction with a new one and do not add assumptions.  In exploratory
+mode, keep every proposed construction tied to the acceptance predicate.
+
+Before defining anything, search for an existing definition to reference.
+Prefer small reusable lemmas over duplicated local encodings.
 
 Write failures clearly; a failed attempt is useful search data when it
 identifies a blocked assumption, missing lemma, or impossible file scope.
