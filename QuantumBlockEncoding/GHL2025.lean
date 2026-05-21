@@ -753,15 +753,16 @@ def indicatorOracleMatrix (p : OneTermRobinParameters) :
 /--
 Gate matrix for U_indic using the honest permutation matrix.
 Controlled-X on indicator bit at position 1+2n, conditioned on bulk membership.
-Unitarity not yet formally proved.
+Unitarity proved: indicatorOracleMatrix_is_permutation shows each row and column
+has exactly one entry equal to 1, so the matrix is a permutation matrix (hence unitary).
 main.tex:1088-1099 --/
 def oneTermRobinGate_U_indic (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "U_indic"
   matrix := indicatorOracleMatrix p
   unitary := {
-    description := "U_indic(K1,K2) honest permutation matrix: unitarity not yet proved"
+    description := "U_indic(K1,K2) permutation matrix: unitarity proved via indicatorOracleMatrix_is_permutation"
     source := "main.tex:1088-1099"
-    proved := false
+    proved := true
   }
 
 /--
@@ -873,7 +874,7 @@ def oneTermRobinGate_Ry_boundary (p : OneTermRobinParameters) : GateMatrix Coeff
   }
 
 /--
-Honest O_D^BS matrix: banded sparse access oracle permutation matrix.
+Honest O_D^BS matrix: banded sparse access oracle matrix.
 Maps |s⟩|i⟩ → |s⟩|col(s,i)⟩ by replacing the system register bits.
 Bits outside the system register are preserved.
 Unitarity not yet formally proved.
@@ -895,7 +896,7 @@ def bandedSparseAccessMatrix (p : OneTermRobinParameters) :
     if i.val = expectedImage then Coeff.rat 1 else Coeff.rat 0
 
 /--
-Gate matrix for O_D^BS using the honest permutation matrix.
+Gate matrix for O_D^BS using the honest sparse-access matrix.
 Banded sparse access oracle mapping sparse index and row to column.
 Unitarity not yet formally proved.
 main.tex:784-801 --/
@@ -903,7 +904,7 @@ def oneTermRobinGate_O_D_BS (p : OneTermRobinParameters) : GateMatrix Coeff (one
   gate := Gate.oracleCall "O_D^BS"
   matrix := bandedSparseAccessMatrix p
   unitary := {
-    description := "O_D^BS honest permutation matrix: unitarity not yet proved"
+    description := "O_D^BS sparse-access matrix: unitarity blocked until boundary column-map contract is reconciled"
     source := "main.tex:784-801"
     proved := false
   }
@@ -968,7 +969,7 @@ For each basis state |j⟩:
 When block1 = block2 the SWAP is the identity.  All bits outside the two
 n-qubit blocks (ancilla bit 0, indicator bit 1+2n, mf MSBs) are preserved.
 
-Unitarity not yet formally proved.
+Unitarity proved via swapOracleMatrix_is_permutation.
 figure:1_term_ROBIN, main.tex:1140 --/
 def swapOracleMatrix (p : OneTermRobinParameters) :
     Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
@@ -982,24 +983,44 @@ def swapOracleMatrix (p : OneTermRobinParameters) :
     if i.val = swapped then Coeff.rat 1 else Coeff.rat 0
 
 /--
+Image function for the SWAP oracle: swaps two n-qubit register blocks.
+For each basis state j, swaps block1 (bits [1,1+n)) with block2 (bits [1+n,1+2n))
+by XORing with the block difference shifted to each block position.
+main.tex:1140 --/
+def swapOracleImage (p : OneTermRobinParameters) (j : Nat) : Nat :=
+  let n := p.n
+  let blockMask := (1 <<< n) - 1
+  let block1 := (j >>> 1) &&& blockMask
+  let block2 := (j >>> (1 + n)) &&& blockMask
+  let diff := block1 ^^^ block2
+  j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))
+
+/-- swapOracleMatrix entry equals image function check. -/
+theorem swapOracleMatrix_eq_image (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p))) :
+    swapOracleMatrix p i j =
+      if i.val = swapOracleImage p j.val then Coeff.rat 1 else Coeff.rat 0 := by
+  simp [swapOracleMatrix, swapOracleImage]
+
+/--
 Gate matrix for SWAP using the honest permutation matrix.
 Swaps system register (bits [1,n+1)) with O_D^BS register (bits [n+1,2n+1)).
-Unitarity not yet formally proved.
+Unitarity proved via swapOracleMatrix_is_permutation: self-inverse ⟹ bijective ⟹ permutation.
 main.tex:1140 --/
 def oneTermRobinGate_SWAP (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.swap 0 0
   matrix := swapOracleMatrix p
   unitary := {
-    description := "SWAP honest permutation matrix: unitarity not yet proved"
+    description := "SWAP permutation matrix: unitarity proved via swapOracleMatrix_is_permutation"
     source := "main.tex:1140"
-    proved := false
+    proved := true
   }
 
 /--
-Inverse permutation of O_D^BS (transpose of the forward permutation matrix).
+Transpose-style matrix for O_D^BS, sharing the forward sparse-access image map.
 For each i: compute image(i) using the forward mapping, then check if j = image(i).
-This is the matrix transpose of bandedSparseAccessMatrix, which equals the dagger
-for a permutation matrix.
+This is the matrix transpose of bandedSparseAccessMatrix.  The inverse/unitarity
+proof is blocked until the forward boundary column-map contract is reconciled.
 main.tex:1148 --/
 def bandedSparseAccessDaggerMatrix (p : OneTermRobinParameters) :
     Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
@@ -1018,14 +1039,14 @@ def bandedSparseAccessDaggerMatrix (p : OneTermRobinParameters) :
     if j.val = image then Coeff.rat 1 else Coeff.rat 0
 
 /--
-Gate matrix for (O_D^BS)^† using the honest inverse permutation matrix.
+Gate matrix for (O_D^BS)^† using the transpose-style sparse-access matrix.
 Unitarity not yet formally proved.
 main.tex:1148 --/
 def oneTermRobinGate_O_D_BS_dagger (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "(O_D^BS)^†"
   matrix := bandedSparseAccessDaggerMatrix p
   unitary := {
-    description := "(O_D^BS)^† inverse permutation matrix: unitarity not yet proved"
+    description := "(O_D^BS)^† sparse-access transpose matrix: unitarity blocked with the forward O_D^BS contract"
     source := "main.tex:1148"
     proved := false
   }
@@ -1058,6 +1079,734 @@ theorem oneTermRobinPlaceholdersMatch (p : OneTermRobinParameters) :
     oneTermRobinGate_O_f, oneTermRobinGate_SWAP,
     oneTermRobinGate_O_D_BS_dagger,
     gateMatricesMatchCircuit]
+
+/--
+Indicator oracle image function: for each basis state j, computes the image
+by XORing the indicator bit at position indPos when the system register value
+is in the bulk window [K1, K2]. This is a self-inverse permutation.
+main.tex:1088-1099 --/
+def indicatorOracleImage (p : OneTermRobinParameters) (j : Nat) : Nat :=
+  let n := p.n
+  let indPos := robinIndicatorBitPosition p
+  let systemVal := (j >>> 1) &&& ((1 <<< n) - 1)
+  let K1 := 2
+  let K2 := gridSize n - 3
+  let isBulk := if K1 ≤ systemVal ∧ systemVal ≤ K2 then (1 : Nat) else 0
+  j ^^^ (isBulk <<< indPos)
+
+/--
+The indicator oracle matrix entry is 1 exactly when i = indicatorOracleImage j.
+main.tex:1088-1099 --/
+theorem indicatorOracleMatrix_eq_image (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p))) :
+    indicatorOracleMatrix p i j =
+      if i.val = indicatorOracleImage p j.val then Coeff.rat 1 else Coeff.rat 0 := by
+  simp [indicatorOracleMatrix, indicatorOracleImage]
+
+/--
+Self-inverse property for n=1: applying indicatorOracleImage twice returns the
+original value for all j in Fin domain (128 elements).
+Checked by native_decide over the finite Fin type.
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_self_inverse_n1 :
+    ∀ j : Fin (qubitDim (oneTermRobinTotalQubits
+      { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 })),
+      indicatorOracleImage
+        { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 }
+        (indicatorOracleImage
+          { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 } j) = j := by
+  native_decide
+
+/--
+Self-inverse property for n=3: applying indicatorOracleImage twice returns the
+original value for all j in Fin domain (8192 elements).
+Checked by native_decide over the finite Fin type.
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_self_inverse_n3 :
+    ∀ j : Fin (qubitDim (oneTermRobinTotalQubits
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 })),
+      indicatorOracleImage
+        { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+        (indicatorOracleImage
+          { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } j) = j := by
+  native_decide
+
+/--
+Injectivity for n=1: derived from self-inverse property.
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_injective_n1 {j₁ j₂ : Fin (qubitDim (oneTermRobinTotalQubits
+      { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 }))}
+    (h : indicatorOracleImage
+        { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 } j₁ =
+      indicatorOracleImage
+        { n := 1, kappa := 1, functionPieces := 1, polynomialDegreeCost := 1 } j₂) :
+    j₁ = j₂ := by
+  have h1 := indicatorOracleImage_self_inverse_n1 j₁
+  have h2 := indicatorOracleImage_self_inverse_n1 j₂
+  apply Fin.ext
+  show (j₁ : Nat) = j₂
+  rw [← h1, ← h2, h]
+
+/--
+Injectivity for n=3: derived from self-inverse property.
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_injective_n3 {j₁ j₂ : Fin (qubitDim (oneTermRobinTotalQubits
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }))}
+    (h : indicatorOracleImage
+        { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } j₁ =
+      indicatorOracleImage
+        { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } j₂) :
+    j₁ = j₂ := by
+  have h1 := indicatorOracleImage_self_inverse_n3 j₁
+  have h2 := indicatorOracleImage_self_inverse_n3 j₂
+  apply Fin.ext
+  show (j₁ : Nat) = j₂
+  rw [← h1, ← h2, h]
+
+/--
+Cycle 12 helper: (b <<< pos) &&& ((1 <<< n) - 1) = 0 when pos >= n,
+because b <<< pos has all zeros in bits [0, pos) >= [0, n).
+-/
+theorem shiftLeft_land_mask_eq_zero (b pos n : Nat) (h : pos ≥ n) :
+    (b <<< pos) &&& ((1 <<< n) - 1) = 0 := by
+  have key : ∀ i, i < n → (b <<< pos).testBit i = false := by
+    intro i hi; simp [Nat.testBit_shiftLeft]; omega
+  have all_false : ∀ i, (b <<< pos &&& (1 <<< n - 1)).testBit i = (0 : Nat).testBit i := by
+    intro i; simp only [Nat.testBit_and]
+    by_cases h1 : i < n
+    · rw [key i h1]; simp
+    · have : (1 <<< n - 1).testBit i = false := by
+        rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]; simp [h1]
+      simp [this]
+  exact Nat.eq_of_testBit_eq all_false
+
+/--
+Cycle 12 helper: XOR with a value shifted left by `pos` preserves the low `n` bits
+when `pos >= n`.  Uses AND-XOR distributivity and the zero mask lemma.
+-/
+theorem xor_shift_preserve_low (x b pos n : Nat) (h : pos ≥ n) :
+    (x ^^^ (b <<< pos)) &&& ((1 <<< n) - 1) = x &&& ((1 <<< n) - 1) := by
+  rw [Nat.and_xor_distrib_right]
+  have := shiftLeft_land_mask_eq_zero b pos n h
+  rw [this, Nat.xor_zero]
+
+/--
+Cycle 12 helper: XOR with a high-shifted value preserves low bits after right-shifting.
+((x ^^^ (b <<< pos)) >>> 1) &&& ((1 <<< n) - 1) = (x >>> 1) &&& ((1 <<< n) - 1)
+when pos >= 1 + n.
+-/
+theorem xor_shift_preserve_shift_low (x b pos n : Nat) (h : pos ≥ 1 + n) :
+    ((x ^^^ (b <<< pos)) >>> 1) &&& ((1 <<< n) - 1) =
+    (x >>> 1) &&& ((1 <<< n) - 1) := by
+  have key : ∀ i, i < n →
+      ((x ^^^ (b <<< pos)) >>> 1).testBit i = (x >>> 1).testBit i := by
+    intro i hi
+    simp only [Nat.testBit_shiftRight, Nat.testBit_xor]
+    have : (b <<< pos).testBit (1 + i) = false := by
+      simp [Nat.testBit_shiftLeft]; omega
+    simp [this]
+  have eq_bits : ∀ i,
+      ((x ^^^ (b <<< pos)) >>> 1 &&& (1 <<< n - 1)).testBit i =
+      ((x >>> 1) &&& (1 <<< n - 1)).testBit i := by
+    intro i; simp only [Nat.testBit_and]
+    by_cases h1 : i < n
+    · simp [key i h1]
+    · have : (1 <<< n - 1).testBit i = false := by
+        rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]; simp [h1]
+      simp [this]
+  exact Nat.eq_of_testBit_eq eq_bits
+
+/--
+Cycle 12: robinIndicatorBitPosition = 1 + 2*p.n, hence >= 1 + p.n.
+-/
+theorem robinIndicatorBitPosition_ge (p : OneTermRobinParameters) :
+    robinIndicatorBitPosition p ≥ 1 + p.n := by
+  unfold robinIndicatorBitPosition defaultRobinRegisterPartition
+  simp only
+  omega
+
+/--
+Cycle 12: The system register value is preserved by indicatorOracleImage.
+XORing with a bit at position indPos = 1 + 2n does not affect bits [1, 1+n).
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_systemVal_preserved (p : OneTermRobinParameters) (j : Nat) :
+    ((indicatorOracleImage p j) >>> 1) &&& ((1 <<< p.n) - 1) =
+    (j >>> 1) &&& ((1 <<< p.n) - 1) := by
+  show (j ^^^ (if (2 : Nat) ≤ (j >>> 1) &&& (1 <<< p.n - 1) ∧
+      (j >>> 1) &&& (1 <<< p.n - 1) ≤ gridSize p.n - 3 then 1 else 0) <<<
+      robinIndicatorBitPosition p) >>> 1 &&& (1 <<< p.n - 1) =
+    j >>> 1 &&& (1 <<< p.n - 1)
+  apply xor_shift_preserve_shift_low
+  exact robinIndicatorBitPosition_ge p
+
+/--
+Cycle 12: The isBulk predicate gives the same result for j and indicatorOracleImage p j,
+because isBulk only depends on the system register value, which is preserved.
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_isBulk_preserved (p : OneTermRobinParameters) (j : Nat) :
+    (if (2 : Nat) ≤ ((indicatorOracleImage p j) >>> 1) &&& ((1 <<< p.n) - 1) ∧
+        ((indicatorOracleImage p j) >>> 1) &&& ((1 <<< p.n) - 1) ≤ gridSize p.n - 3
+     then (1 : Nat) else 0) =
+    (if (2 : Nat) ≤ (j >>> 1) &&& ((1 <<< p.n) - 1) ∧
+        (j >>> 1) &&& ((1 <<< p.n) - 1) ≤ gridSize p.n - 3
+     then (1 : Nat) else 0) := by
+  have h := indicatorOracleImage_systemVal_preserved p j
+  split <;> split <;> simp_all
+
+/--
+Cycle 12: General self-inverse property for indicatorOracleImage.
+Applying the indicator oracle image twice returns the original value for all j,
+because the indicator bit is XORed twice (and isBulk is preserved).
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_self_inverse (p : OneTermRobinParameters) (j : Nat) :
+    indicatorOracleImage p (indicatorOracleImage p j) = j := by
+  simp only [indicatorOracleImage]
+  have h_pres := indicatorOracleImage_isBulk_preserved p j
+  simp only [indicatorOracleImage] at h_pres
+  rw [h_pres]
+  rw [Nat.xor_assoc, Nat.xor_self, Nat.xor_zero]
+
+/--
+Cycle 12: General injectivity for indicatorOracleImage, derived from self-inverse.
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_injective (p : OneTermRobinParameters) {j₁ j₂ : Nat}
+    (h : indicatorOracleImage p j₁ = indicatorOracleImage p j₂) :
+    j₁ = j₂ := by
+  have h1 := indicatorOracleImage_self_inverse p j₁
+  have h2 := indicatorOracleImage_self_inverse p j₂
+  rw [← h1, ← h2, h]
+
+/--
+Cycle 12: robinIndicatorBitPosition is strictly below oneTermRobinTotalQubits.
+indPos = 1 + 2n < 2n + clog2 n + clog2 fp + 5 = totalQubits, since clog2 ≥ 0 and 5 > 1.
+-/
+theorem robinIndicatorBitPosition_lt_totalQubits (p : OneTermRobinParameters) :
+    robinIndicatorBitPosition p < oneTermRobinTotalQubits p := by
+  simp only [robinIndicatorBitPosition, oneTermRobinTotalQubits,
+    RobinRegisterPartition.totalQubits, defaultRobinRegisterPartition]
+  omega
+
+/--
+Cycle 12: indicatorOracleImage preserves the qubitDim bound.
+When j < 2^totalQubits, the image is also < 2^totalQubits, because the XOR
+operand is either 0 or a single bit at position indPos < totalQubits.
+-/
+theorem indicatorOracleImage_lt (p : OneTermRobinParameters) {j : Nat}
+    (hj : j < qubitDim (oneTermRobinTotalQubits p)) :
+    indicatorOracleImage p j < qubitDim (oneTermRobinTotalQubits p) := by
+  simp only [qubitDim, gridSize] at *
+  show j ^^^ (if (2 : Nat) ≤ (j >>> 1) &&& (1 <<< p.n - 1) ∧
+      (j >>> 1) &&& (1 <<< p.n - 1) ≤ gridSize p.n - 3 then 1 else 0) <<<
+      robinIndicatorBitPosition p < 2 ^ oneTermRobinTotalQubits p
+  split
+  · apply Nat.xor_lt_two_pow hj
+    rw [Nat.one_shiftLeft]
+    exact Nat.pow_lt_pow_of_lt (by omega) (robinIndicatorBitPosition_lt_totalQubits p)
+  · simp only [Nat.zero_shiftLeft, Nat.xor_zero]; exact hj
+
+/--
+Cycle 12: Bijectivity of indicatorOracleImage on the Fin domain.
+A self-inverse function on a finite type is bijective:
+injective by cancellation, surjective because image(image(j)) = j.
+main.tex:1088-1099 --/
+theorem indicatorOracleImage_bijective (p : OneTermRobinParameters) :
+    (∀ (a b : Fin (qubitDim (oneTermRobinTotalQubits p))),
+        (⟨indicatorOracleImage p a.val, indicatorOracleImage_lt p a.2⟩ :
+          Fin (qubitDim (oneTermRobinTotalQubits p))) =
+        ⟨indicatorOracleImage p b.val, indicatorOracleImage_lt p b.2⟩ →
+        a = b) ∧
+    ∀ (y : Fin (qubitDim (oneTermRobinTotalQubits p))),
+      ∃ (x : Fin (qubitDim (oneTermRobinTotalQubits p))),
+        (⟨indicatorOracleImage p x.val, indicatorOracleImage_lt p x.2⟩ :
+          Fin (qubitDim (oneTermRobinTotalQubits p))) = y := by
+  constructor
+  · intro a b h
+    apply Fin.ext
+    exact indicatorOracleImage_injective p (Fin.ext_iff.mp h)
+  · intro y
+    refine ⟨⟨indicatorOracleImage p y.val, indicatorOracleImage_lt p y.2⟩, ?_⟩
+    apply Fin.ext
+    exact indicatorOracleImage_self_inverse p y.val
+
+/--
+Cycle 12: For each column j, there is exactly one row i with M[i][j] = 1,
+namely i = ⟨indicatorOracleImage p j.val, ...⟩.
+main.tex:1088-1099 --/
+theorem indicatorOracleMatrix_col_has_one (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p))) :
+    indicatorOracleMatrix p
+      (⟨indicatorOracleImage p j.val, indicatorOracleImage_lt p j.2⟩ :
+        Fin (qubitDim (oneTermRobinTotalQubits p))) j = Coeff.rat 1 := by
+  rw [indicatorOracleMatrix_eq_image]
+  simp
+
+/--
+Cycle 12: For each column j, any row i with M[i][j] = 1 must equal
+⟨indicatorOracleImage p j.val, ...⟩, so the 1-entry is unique per column.
+main.tex:1088-1099 --/
+theorem indicatorOracleMatrix_col_unique (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (h : indicatorOracleMatrix p i j = Coeff.rat 1) :
+    i = ⟨indicatorOracleImage p j.val, indicatorOracleImage_lt p j.2⟩ := by
+  rw [indicatorOracleMatrix_eq_image] at h
+  split at h
+  · next h_cond => exact Fin.ext h_cond
+  · next h_cond => simp at h
+
+/--
+Cycle 12: For each row i, there exists a column j with M[i][j] = 1,
+from surjectivity of indicatorOracleImage.
+main.tex:1088-1099 --/
+theorem indicatorOracleMatrix_row_has_one (p : OneTermRobinParameters)
+    (i : Fin (qubitDim (oneTermRobinTotalQubits p))) :
+    ∃ (j : Fin (qubitDim (oneTermRobinTotalQubits p))),
+      indicatorOracleMatrix p i j = Coeff.rat 1 := by
+  have h_surj := (indicatorOracleImage_bijective p).2 i
+  have ⟨⟨xval, xprop⟩, hx⟩ := h_surj
+  refine ⟨⟨xval, xprop⟩, ?_⟩
+  rw [indicatorOracleMatrix_eq_image]
+  have h_eq : i.val = indicatorOracleImage p xval := by
+    have := Fin.ext_iff.mp hx
+    simp at this
+    exact this.symm
+  simp [h_eq]
+
+/--
+Cycle 12: For each row i, the column j with M[i][j] = 1 is unique,
+from injectivity of indicatorOracleImage.
+main.tex:1088-1099 --/
+theorem indicatorOracleMatrix_row_unique (p : OneTermRobinParameters)
+    (i : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (j₁ j₂ : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (h₁ : indicatorOracleMatrix p i j₁ = Coeff.rat 1)
+    (h₂ : indicatorOracleMatrix p i j₂ = Coeff.rat 1) :
+    j₁ = j₂ := by
+  have key₁ := indicatorOracleMatrix_col_unique p i j₁ h₁
+  have key₂ := indicatorOracleMatrix_col_unique p i j₂ h₂
+  have h_inj := (indicatorOracleImage_bijective p).1
+  exact h_inj j₁ j₂ (key₁.symm.trans key₂)
+
+/--
+Cycle 12: indicatorOracleMatrix is a permutation matrix: each row has exactly
+one entry equal to 1, and each column has exactly one entry equal to 1.
+This follows from indicatorOracleImage being a bijection on the Fin domain.
+main.tex:1088-1099 --/
+theorem indicatorOracleMatrix_is_permutation (p : OneTermRobinParameters) :
+    (∀ (i : Fin (qubitDim (oneTermRobinTotalQubits p))),
+      ∃ (j : Fin (qubitDim (oneTermRobinTotalQubits p))),
+        indicatorOracleMatrix p i j = Coeff.rat 1 ∧
+        ∀ (j' : Fin (qubitDim (oneTermRobinTotalQubits p))),
+          indicatorOracleMatrix p i j' = Coeff.rat 1 → j' = j) ∧
+    (∀ (j : Fin (qubitDim (oneTermRobinTotalQubits p))),
+      ∃ (i : Fin (qubitDim (oneTermRobinTotalQubits p))),
+        indicatorOracleMatrix p i j = Coeff.rat 1 ∧
+        ∀ (i' : Fin (qubitDim (oneTermRobinTotalQubits p))),
+          indicatorOracleMatrix p i' j = Coeff.rat 1 → i' = i) := by
+  constructor
+  · intro i
+    have ⟨j, hj⟩ := indicatorOracleMatrix_row_has_one p i
+    exact ⟨j, hj, fun j' hj' => (indicatorOracleMatrix_row_unique p i j j' hj hj').symm⟩
+  · intro j
+    let row := (⟨indicatorOracleImage p j.val, indicatorOracleImage_lt p j.2⟩ :
+                  Fin (qubitDim (oneTermRobinTotalQubits p)))
+    exact ⟨row, indicatorOracleMatrix_col_has_one p j,
+           fun i' hi' => indicatorOracleMatrix_col_unique p i' j hi'⟩
+
+-- ===================== SWAP oracle unitarity proof chain =====================
+
+/--
+XOR of two values below 2^n is below 2^n.
+Proved via testBit: both inputs have false at bit n, so XOR also has false at bit n.
+-/
+theorem xor_lt_two_pow {a b n : Nat} (ha : a < 2^n) (hb : b < 2^n) : a ^^^ b < 2^n := by
+  have key : (a ^^^ b).testBit n = false := by
+    simp only [Nat.testBit_xor]
+    rw [Nat.testBit_two_pow_of_lt ha, Nat.testBit_two_pow_of_lt hb]
+  exact Nat.lt_two_pow_of_testBit_eq_false n key
+
+/--
+When x < 2^n, masking with (2^n - 1) is the identity: the low n bits capture all of x.
+-/
+theorem land_mask_eq_self {x n : Nat} (hx : x < 2^n) : x &&& ((1 <<< n) - 1) = x := by
+  have key : ∀ i, (x &&& (1 <<< n - 1)).testBit i = x.testBit i := by
+    intro i; simp only [Nat.testBit_and]
+    by_cases h1 : i < n
+    · simp [h1]
+    · have : x.testBit i = false := Nat.testBit_eq_false_of_lt_two_pow hx i
+      simp [this]
+  exact Nat.eq_of_testBit_eq key
+
+/--
+When x < 2^n, right-shifting by n yields 0 (no bits survive).
+-/
+theorem shifRight_eq_zero_of_lt {x n : Nat} (hx : x < 2^n) : x >>> n = 0 := by
+  have key : ∀ i, (x >>> n).testBit i = (0 : Nat).testBit i := by
+    intro i
+    simp only [Nat.testBit_shiftRight]
+    have : x.testBit (n + i) = false := Nat.testBit_eq_false_of_lt_two_pow hx (n + i)
+    simp [this]
+  exact Nat.eq_of_testBit_eq key
+
+/--
+SWAP-specific: totalQubits >= 1 + n, so diff <<< 1 < 2^totalQubits when diff < 2^n.
+totalQubits = 2n + clog2(n) + clog2(Gf) + 5 >= 2n + 5 > 1 + n for n >= 1.
+-/
+theorem swap_shift1_lt_totalQubits (p : OneTermRobinParameters) {diff : Nat}
+    (hd : diff < 2^p.n) :
+    diff <<< 1 < 2^(oneTermRobinTotalQubits p) := by
+  simp only [oneTermRobinTotalQubits, RobinRegisterPartition.totalQubits,
+    defaultRobinRegisterPartition]
+  rw [Nat.one_shiftLeft]
+  exact Nat.pow_lt_pow_of_lt (by omega) (by omega : 1 + p.n ≤
+    clog2 p.n + clog2 p.functionPieces + 3 + 1 + clog2 p.kappa + (p.n - clog2 p.kappa) + p.n + 1)
+
+/--
+SWAP-specific: totalQubits >= 1 + n + n = 1 + 2n, so diff <<< (1+n) < 2^totalQubits.
+-/
+theorem swap_shift1n_lt_totalQubits (p : OneTermRobinParameters) {diff : Nat}
+    (hd : diff < 2^p.n) :
+    diff <<< (1 + p.n) < 2^(oneTermRobinTotalQubits p) := by
+  simp only [oneTermRobinTotalQubits, RobinRegisterPartition.totalQubits,
+    defaultRobinRegisterPartition]
+  rw [Nat.one_shiftLeft]
+  exact Nat.pow_lt_pow_of_lt (by omega) (by omega : 1 + p.n + p.n ≤
+    clog2 p.n + clog2 p.functionPieces + 3 + 1 + clog2 p.kappa + (p.n - clog2 p.kappa) + p.n + 1)
+
+/--
+SWAP-specific: diff = block1 XOR block2 < 2^n, because block1, block2 < 2^n
+(from AND with mask) and XOR preserves the bound.
+-/
+theorem swapOracleImage_diff_lt (p : OneTermRobinParameters) (j : Nat) :
+    let n := p.n
+    let blockMask := (1 <<< n) - 1
+    let block1 := (j >>> 1) &&& blockMask
+    let block2 := (j >>> (1 + n)) &&& blockMask
+    block1 ^^^ block2 < 2^n := by
+  simp only [Nat.one_shiftLeft]
+  exact xor_lt_two_pow (Nat.lt_of_le_of_lt (Nat.and_le (j >>> 1) blockMask) (Nat.pow_lt_pow_of_lt (by omega) (by omega)))
+    (Nat.lt_of_le_of_lt (Nat.and_le (j >>> (1 + p.n)) ((1 <<< p.n) - 1)) (Nat.pow_lt_pow_of_lt (by omega) (by omega)))
+
+/--
+After swap, block1' = (result >>> 1) & mask = block2.
+Key steps: right-shift distributes over XOR, AND distributes over XOR,
+(diff <<< n) & mask = 0 by shiftLeft_land_mask_eq_zero, and XOR cancellation.
+-/
+theorem swapOracleImage_block1_eq_block2 (p : OneTermRobinParameters) (j : Nat) :
+    ((swapOracleImage p j) >>> 1) &&& ((1 <<< p.n) - 1) =
+    (j >>> (1 + p.n)) &&& ((1 <<< p.n) - 1) := by
+  simp only [swapOracleImage]
+  -- Unfold the let bindings and show equality via testBit
+  set n := p.n
+  set blockMask := (1 <<< n) - 1
+  set block1 := (j >>> 1) &&& blockMask
+  set block2 := (j >>> (1 + n)) &&& blockMask
+  set diff := block1 ^^^ block2
+  -- We need: ((j ^^^ (diff <<< 1) ^^^ (diff <<< (1+n))) >>> 1) &&& blockMask = block2
+  -- Use testBit approach
+  have h_diff_lt : diff < 2^n := by
+    exact swapOracleImage_diff_lt p j
+  have h_and : diff &&& blockMask = diff := land_mask_eq_self h_diff_lt
+  -- For each bit i < n, show the bits match
+  have key : ∀ i, i < n →
+      ((j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))) >>> 1 &&& blockMask).testBit i =
+      (block2 &&& blockMask).testBit i := by
+    intro i hi
+    simp only [Nat.testBit_and]
+    -- Left side: bit i of ((j ^^^ diff<<<1 ^^^ diff<<<(1+n)) >>> 1) when i < n
+    simp only [Nat.testBit_shiftRight]
+    simp only [Nat.testBit_xor, Nat.testBit_xor]
+    -- The XOR of three values at bit (1+i)
+    have h1 : (diff <<< 1).testBit (1 + i) = diff.testBit i := by
+      simp only [Nat.testBit_shiftLeft]; omega
+    have h2 : (diff <<< (1 + n)).testBit (1 + i) = false := by
+      simp only [Nat.testBit_shiftLeft]; omega
+    -- Right side: block2 &&& blockMask at bit i
+    have h_block2_and : (block2 &&& blockMask).testBit i = block2.testBit i := by
+      simp only [Nat.testBit_and]; simp [hi]
+    -- Now: bit (1+i) of (j ^^^ diff<<<1 ^^^ diff<<<(1+n))
+    -- = j.testBit(1+i) XOR diff<<<1.testBit(1+i) XOR diff<<<(1+n).testBit(1+i)
+    -- = j.testBit(1+i) XOR diff.testBit(i) XOR false
+    -- = j.testBit(1+i) XOR diff.testBit(i)
+    -- And block2 = (j >>> (1+n)) &&& mask
+    -- block2.testBit(i) = j.testBit(1+n+i) for i < n
+    have h_block2_bit : block2.testBit i = (j >>> (1 + n)).testBit i := by
+      simp only [Nat.testBit_and]; simp [hi]
+    rw [h1, h2]
+    -- Now the LHS at bit i is: j.testBit(1+i) XOR diff.testBit(i)
+    -- RHS at bit i is: j.testBit(1+n+i)
+    -- diff.testBit(i) = block1.testBit(i) XOR block2.testBit(i)
+    -- = j.testBit(1+i) XOR j.testBit(1+n+i)
+    -- So LHS = j.testBit(1+i) XOR (j.testBit(1+i) XOR j.testBit(1+n+i))
+    -- = (j.testBit(1+i) XOR j.testBit(1+i)) XOR j.testBit(1+n+i)
+    -- = false XOR j.testBit(1+n+i)
+    -- = j.testBit(1+n+i)
+    rw [h_block2_bit]
+    -- Show block1 bit i
+    have h_block1_bit : block1.testBit i = (j >>> 1).testBit i := by
+      simp only [Nat.testBit_and]; simp [hi]
+    -- diff.testBit(i) = block1.testBit(i) XOR block2.testBit(i)
+    rw [show diff.testBit i = block1.testBit i ^^^ block2.testBit i by
+      simp only [Nat.testBit_xor]]
+    rw [h_block1_bit, h_block2_bit]
+    simp only [Nat.testBit_shiftRight]
+    -- Now: j.testBit(1+i) XOR (j.testBit(i) XOR j.testBit(n+i))
+    -- Wait, (j >>> 1).testBit i = j.testBit(1+i) and (j >>> (1+n)).testBit i = j.testBit(1+n+i)
+    -- So: j.testBit(1+i) XOR (j.testBit(1+i) XOR j.testBit(1+n+i))
+    -- = Bool.xor_self (j.testBit(1+i)) (j.testBit(1+n+i)) = j.testBit(1+n+i)
+    rw [Bool.xor_assoc, Bool.xor_self, Bool.xor_false]
+  -- For bits i >= n, both sides have blockMask bit = false
+  have key_high : ∀ i, ¬(i < n) →
+      ((j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))) >>> 1 &&& blockMask).testBit i =
+      (block2 &&& blockMask).testBit i := by
+    intro i hi
+    simp only [Nat.testBit_and]
+    have : blockMask.testBit i = false := by
+      rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]; simp [hi]
+    simp [this]
+  have all_bits : ∀ i,
+      ((j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))) >>> 1 &&& blockMask).testBit i =
+      (block2 &&& blockMask).testBit i := by
+    intro i; by_cases h : i < n
+    · exact key i h
+    · exact key_high i h
+  exact Nat.eq_of_testBit_eq all_bits
+
+/--
+After swap, block2' = (result >>> (1+n)) & mask = block1.
+-/
+theorem swapOracleImage_block2_eq_block1 (p : OneTermRobinParameters) (j : Nat) :
+    ((swapOracleImage p j) >>> (1 + p.n)) &&& ((1 <<< p.n) - 1) =
+    (j >>> 1) &&& ((1 <<< p.n) - 1) := by
+  simp only [swapOracleImage]
+  set n := p.n
+  set blockMask := (1 <<< n) - 1
+  set block1 := (j >>> 1) &&& blockMask
+  set block2 := (j >>> (1 + n)) &&& blockMask
+  set diff := block1 ^^^ block2
+  have h_diff_lt : diff < 2^n := swapOracleImage_diff_lt p j
+  have key : ∀ i, i < n →
+      ((j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))) >>> (1 + n) &&& blockMask).testBit i =
+      (block1 &&& blockMask).testBit i := by
+    intro i hi
+    simp only [Nat.testBit_and]
+    simp only [Nat.testBit_shiftRight]
+    simp only [Nat.testBit_xor, Nat.testBit_xor]
+    -- bit (1+n+i) of the three terms
+    have h1 : (diff <<< 1).testBit (1 + n + i) = false := by
+      simp only [Nat.testBit_shiftLeft]; omega
+    have h2 : (diff <<< (1 + n)).testBit (1 + n + i) = diff.testBit i := by
+      simp only [Nat.testBit_shiftLeft]; omega
+    rw [h1, h2]
+    -- LHS bit i = j.testBit(1+n+i) XOR false XOR diff.testBit(i)
+    -- = j.testBit(1+n+i) XOR diff.testBit(i)
+    -- diff.testBit(i) = block1.testBit(i) XOR block2.testBit(i)
+    -- block1.testBit(i) = j.testBit(1+i), block2.testBit(i) = j.testBit(1+n+i)
+    -- So LHS = j.testBit(1+n+i) XOR j.testBit(1+i) XOR j.testBit(1+n+i)
+    -- = j.testBit(1+i)
+    -- And block1 &&& blockMask at bit i = block1.testBit(i) = j.testBit(1+i)
+    have h_block1_bit : block1.testBit i = (j >>> 1).testBit i := by
+      simp only [Nat.testBit_and]; simp [hi]
+    have h_block2_bit : block2.testBit i = (j >>> (1 + n)).testBit i := by
+      simp only [Nat.testBit_and]; simp [hi]
+    rw [show diff.testBit i = block1.testBit i ^^^ block2.testBit i by
+      simp only [Nat.testBit_xor]]
+    rw [h_block1_bit, h_block2_bit]
+    simp only [Nat.testBit_shiftRight]
+    rw [Bool.xor_assoc, Bool.xor_comm (j.testBit (1 + p.n + i)), Bool.xor_self, Bool.false_xor]
+  have key_high : ∀ i, ¬(i < n) →
+      ((j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))) >>> (1 + n) &&& blockMask).testBit i =
+      (block1 &&& blockMask).testBit i := by
+    intro i hi
+    simp only [Nat.testBit_and]
+    have : blockMask.testBit i = false := by
+      rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]; simp [hi]
+    simp [this]
+  have all_bits : ∀ i,
+      ((j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))) >>> (1 + n) &&& blockMask).testBit i =
+      (block1 &&& blockMask).testBit i := by
+    intro i; by_cases h : i < n
+    · exact key i h
+    · exact key_high i h
+  exact Nat.eq_of_testBit_eq all_bits
+
+/--
+SWAP self-inverse: swap(swap(j)) = j.
+After the first swap, block1' = block2, block2' = block1, so diff' = block1' XOR block2'
+= block2 XOR block1 = diff. The second swap XORs the same values again, cancelling out.
+-/
+theorem swapOracleImage_self_inverse (p : OneTermRobinParameters) (j : Nat) :
+    swapOracleImage p (swapOracleImage p j) = j := by
+  simp only [swapOracleImage]
+  set n := p.n
+  set blockMask := (1 <<< n) - 1
+  set block1 := (j >>> 1) &&& blockMask
+  set block2 := (j >>> (1 + n)) &&& blockMask
+  set diff := block1 ^^^ block2
+  set result := j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n))
+  -- For the second application, compute block1', block2', diff'
+  set block1' := (result >>> 1) &&& blockMask
+  set block2' := (result >>> (1 + n)) &&& blockMask
+  set diff' := block1' ^^^ block2'
+  -- Key facts: block1' = block2, block2' = block1
+  have h1 : block1' = block2 := swapOracleImage_block1_eq_block2 p j
+  have h2 : block2' = block1 := swapOracleImage_block2_eq_block1 p j
+  -- Therefore diff' = block2 XOR block1 = diff
+  have h_diff' : diff' = diff := by
+    simp only [← h1, ← h2]; exact (Nat.xor_comm block2 block1).symm
+  -- Second application: result XOR (diff' <<< 1) XOR (diff' <<< (1+n))
+  -- = result XOR (diff <<< 1) XOR (diff <<< (1+n))  [since diff' = diff]
+  -- = j XOR (diff<<<1) XOR (diff<<<(1+n)) XOR (diff<<<1) XOR (diff<<<(1+n))
+  -- = j  [each term cancels with itself]
+  show result ^^^ (diff' <<< 1) ^^^ (diff' <<< (1 + n)) = j
+  rw [h_diff']
+  rw [show result = j ^^^ (diff <<< 1) ^^^ (diff <<< (1 + n)) from rfl]
+  rw [Nat.xor_assoc, Nat.xor_assoc]
+  -- Now: j ^^^ ((diff <<< 1) ^^^ (diff <<< 1)) ^^^ (diff <<< (1 + n)) ^^^ (diff <<< (1 + n))
+  -- Rearrange: we need to group the matching pairs
+  have h_cancel1 : (diff <<< 1) ^^^ (diff <<< 1) = 0 := Nat.xor_self (diff <<< 1)
+  have h_cancel2 : (diff <<< (1 + n)) ^^^ (diff <<< (1 + n)) = 0 := Nat.xor_self (diff <<< (1 + n))
+  -- j ^^^ (d1 ^^^ d1) ^^^ (dn ^^^ dn) = j ^^^ 0 ^^^ 0 = j
+  rw [h_cancel1, Nat.xor_zero, h_cancel2, Nat.xor_zero]
+
+/--
+SWAP injectivity from self-inverse: if swap(j1) = swap(j2), then j1 = swap(swap(j1)) = swap(swap(j2)) = j2.
+-/
+theorem swapOracleImage_injective (p : OneTermRobinParameters) {j₁ j₂ : Nat}
+    (h : swapOracleImage p j₁ = swapOracleImage p j₂) :
+    j₁ = j₂ := by
+  have h1 := swapOracleImage_self_inverse p j₁
+  have h2 := swapOracleImage_self_inverse p j₂
+  rw [← h1, ← h2, h]
+
+/--
+SWAP image preserves the qubitDim bound.
+The image j ^^^ (diff<<<1) ^^^ (diff<<<(1+n)) is bounded by 2^totalQubits
+because XOR of values each < 2^totalQubits stays < 2^totalQubits.
+-/
+theorem swapOracleImage_lt (p : OneTermRobinParameters) {j : Nat}
+    (hj : j < qubitDim (oneTermRobinTotalQubits p)) :
+    swapOracleImage p j < qubitDim (oneTermRobinTotalQubits p) := by
+  simp only [qubitDim, swapOracleImage] at *
+  set n := p.n
+  set blockMask := (1 <<< n) - 1
+  set block1 := (j >>> 1) &&& blockMask
+  set block2 := (j >>> (1 + n)) &&& blockMask
+  set diff := block1 ^^^ block2
+  have h_diff_lt : diff < 2^n := swapOracleImage_diff_lt p j
+  have h1 := swap_shift1_lt_totalQubits p h_diff_lt
+  have h2 := swap_shift1n_lt_totalQubits p h_diff_lt
+  -- j ^^^ (diff <<< 1) < 2^totalQubits
+  have step1 := Nat.xor_lt_two_pow hj h1
+  -- (j ^^^ (diff <<< 1)) ^^^ (diff <<< (1+n)) < 2^totalQubits
+  exact Nat.xor_lt_two_pow step1 h2
+
+/--
+SWAP bijectivity on the Fin domain.
+A self-inverse function on a finite type is bijective:
+injective by cancellation, surjective because image(image(j)) = j.
+-/
+theorem swapOracleImage_bijective (p : OneTermRobinParameters) :
+    (∀ (a b : Fin (qubitDim (oneTermRobinTotalQubits p))),
+        (⟨swapOracleImage p a.val, swapOracleImage_lt p a.2⟩ :
+          Fin (qubitDim (oneTermRobinTotalQubits p))) =
+        ⟨swapOracleImage p b.val, swapOracleImage_lt p b.2⟩ →
+        a = b) ∧
+    ∀ (y : Fin (qubitDim (oneTermRobinTotalQubits p))),
+      ∃ (x : Fin (qubitDim (oneTermRobinTotalQubits p))),
+        (⟨swapOracleImage p x.val, swapOracleImage_lt p x.2⟩ :
+          Fin (qubitDim (oneTermRobinTotalQubits p))) = y := by
+  constructor
+  · intro a b h
+    apply Fin.ext
+    exact swapOracleImage_injective p (Fin.ext_iff.mp h)
+  · intro y
+    refine ⟨⟨swapOracleImage p y.val, swapOracleImage_lt p y.2⟩, ?_⟩
+    apply Fin.ext
+    exact swapOracleImage_self_inverse p y.val
+
+/--
+SWAP: For each column j, there is exactly one row i with M[i][j] = 1,
+namely i = swapOracleImage p j.val.
+-/
+theorem swapOracleMatrix_col_has_one (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p))) :
+    swapOracleMatrix p
+      (⟨swapOracleImage p j.val, swapOracleImage_lt p j.2⟩ :
+        Fin (qubitDim (oneTermRobinTotalQubits p))) j = Coeff.rat 1 := by
+  rw [swapOracleMatrix_eq_image]
+  simp
+
+/--
+SWAP: For each column j, any row i with M[i][j] = 1 must equal
+swapOracleImage p j.val, so the 1-entry is unique per column.
+-/
+theorem swapOracleMatrix_col_unique (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (h : swapOracleMatrix p i j = Coeff.rat 1) :
+    i = ⟨swapOracleImage p j.val, swapOracleImage_lt p j.2⟩ := by
+  rw [swapOracleMatrix_eq_image] at h
+  split at h
+  · next h_cond => exact Fin.ext h_cond
+  · next h_cond => simp at h
+
+/--
+SWAP: For each row i, there exists a column j with M[i][j] = 1,
+from surjectivity of swapOracleImage.
+-/
+theorem swapOracleMatrix_row_has_one (p : OneTermRobinParameters)
+    (i : Fin (qubitDim (oneTermRobinTotalQubits p))) :
+    ∃ (j : Fin (qubitDim (oneTermRobinTotalQubits p))),
+      swapOracleMatrix p i j = Coeff.rat 1 := by
+  have h_surj := (swapOracleImage_bijective p).2 i
+  have ⟨⟨xval, xprop⟩, hx⟩ := h_surj
+  refine ⟨⟨xval, xprop⟩, ?_⟩
+  rw [swapOracleMatrix_eq_image]
+  have h_eq : i.val = swapOracleImage p xval := by
+    have := Fin.ext_iff.mp hx
+    simp at this
+    exact this.symm
+  simp [h_eq]
+
+/--
+SWAP: For each row i, the column j with M[i][j] = 1 is unique,
+from injectivity of swapOracleImage.
+-/
+theorem swapOracleMatrix_row_unique (p : OneTermRobinParameters)
+    (i : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (j₁ j₂ : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (h₁ : swapOracleMatrix p i j₁ = Coeff.rat 1)
+    (h₂ : swapOracleMatrix p i j₂ = Coeff.rat 1) :
+    j₁ = j₂ := by
+  have key₁ := swapOracleMatrix_col_unique p i j₁ h₁
+  have key₂ := swapOracleMatrix_col_unique p i j₂ h₂
+  have h_inj := (swapOracleImage_bijective p).1
+  exact h_inj j₁ j₂ (key₁.symm.trans key₂)
+
+/--
+SWAP: swapOracleMatrix is a permutation matrix: each row has exactly
+one entry equal to 1, and each column has exactly one entry equal to 1.
+This follows from swapOracleImage being a bijection on the Fin domain.
+-/
+theorem swapOracleMatrix_is_permutation (p : OneTermRobinParameters) :
+    (∀ (i : Fin (qubitDim (oneTermRobinTotalQubits p))),
+      ∃ (j : Fin (qubitDim (oneTermRobinTotalQubits p))),
+        swapOracleMatrix p i j = Coeff.rat 1 ∧
+        ∀ (j' : Fin (qubitDim (oneTermRobinTotalQubits p))),
+          swapOracleMatrix p i j' = Coeff.rat 1 → j' = j) ∧
+    (∀ (j : Fin (qubitDim (oneTermRobinTotalQubits p))),
+      ∃ (i : Fin (qubitDim (oneTermRobinTotalQubits p))),
+        swapOracleMatrix p i j = Coeff.rat 1 ∧
+        ∀ (i' : Fin (qubitDim (oneTermRobinTotalQubits p))),
+          swapOracleMatrix p i' j = Coeff.rat 1 → i' = i) := by
+  constructor
+  · intro i
+    have ⟨j, hj⟩ := swapOracleMatrix_row_has_one p i
+    exact ⟨j, hj, fun j' hj' => (swapOracleMatrix_row_unique p i j j' hj hj').symm⟩
+  · intro j
+    let row := (⟨swapOracleImage p j.val, swapOracleImage_lt p j.2⟩ :
+                  Fin (qubitDim (oneTermRobinTotalQubits p)))
+    exact ⟨row, swapOracleMatrix_col_has_one p j,
+           fun i' hi' => swapOracleMatrix_col_unique p i' j hi'⟩
 
 end GHL2025
 end QuantumBlockEncoding

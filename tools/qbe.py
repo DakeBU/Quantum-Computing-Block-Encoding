@@ -945,6 +945,9 @@ def strategy_for_mode(mode: str) -> str:
   scientific constructions.  Do not mutate the paper's circuit or oracle.
 - A proof route can be called successful only when the Lean target builds and
   the corresponding paper-note/conversion-window entry remains synchronized.
+- Use `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` when a proof repeats
+  local bit arithmetic, matrix-index calculations, projection lemmas, or gate
+  obligations.  Promote repeated fragments to reusable Lean declarations.
 - No agent may add a hypothesis, side condition, replacement oracle, or
   substitute circuit to make the statement easier.  If the paper step cannot
   yet be reproduced, record the exact obstruction as a proof obligation.
@@ -958,6 +961,9 @@ def strategy_for_mode(mode: str) -> str:
 - Use the EoH-like loop only inside the search space: maintain candidate
   populations under `candidate-populations/`, with initialization, mutation,
   crossover/backbone recombination, selection, and archive pressure.
+- Represent candidates as reusable oracle/proof DAGs when possible, following
+  `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md`; do not keep only a flat
+  tactic or gate script when components can be shared.
 - Candidate scores are search guides: typechecking, dimension checks,
   small-case block tests, normalizer progress, resource progress, and reduced
   proof-obligation count.  These scores do not prove correctness.
@@ -1038,6 +1044,9 @@ Mode discipline:
 - Prefer referencing shared Lean declarations and existing paper-note
   definitions.  Do not duplicate a definition in another file when an existing
   declaration or notation table can be referenced.
+- Apply `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` when repeated
+  subproofs, gate obligations, index arithmetic, or projection arguments appear.
+  The goal is a reusable proof DAG, not a flat repeated trace.
 
 {strategy}
 
@@ -1094,7 +1103,9 @@ replacement conditions.  In exploratory mode, require a Lean-checkable target
 before search begins and reject any target-weakening shortcut.
 
 If a faithful-mode lower attempt fails on a fixed lemma, ask the middle agent to
-start or update a `proof-attempts/` record rather than changing the theorem.  If
+start or update a `proof-attempts/` record rather than changing the theorem.
+If a repeated local argument appears, ask middle to introduce a
+`qbe-hierarchical-proof-dag` block and assign lower work against that block. If
 an exploratory-mode candidate family looks promising, assign separate lower
 workers to mutation, recombination, and proof-obligation reduction in disjoint
 file scopes.
@@ -1135,6 +1146,11 @@ paper-note definitions to reuse.  Do not create a second definition for a
 matrix, normalizer, register layout, or theorem statement when a reference to
 the existing one will do.
 
+Use `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` to maintain a
+proof-DAG/reuse table whenever the same local argument would otherwise be
+proved several times.  Lower packets should target one block interface at a
+time.
+
 When editing Markdown or LaTeX, follow `.agents/skills/qbe-math-writing/SKILL.md`:
 definitions before theorem statements, short claim statements, precise
 justifications, and no unannounced assumptions.
@@ -1159,6 +1175,9 @@ Look for:
 7. Mathematical writing violations covered by
    `.agents/skills/qbe-math-writing/SKILL.md`, especially definitions appearing
    after theorem statements.
+8. Missed proof-DAG opportunities covered by
+   `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md`, especially repeated
+   local proof fragments that should be named and reused.
 
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention and any added assumption or
@@ -1184,6 +1203,9 @@ mode, keep every proposed construction tied to the acceptance predicate.
 
 Before defining anything, search for an existing definition to reference.
 Prefer small reusable lemmas over duplicated local encodings.
+
+If the assigned proof repeats a known argument, create or reuse a
+`qbe-hierarchical-proof-dag` block rather than copying the proof script.
 
 Write failures clearly; a failed attempt is useful search data when it
 identifies a blocked assumption, missing lemma, or impossible file scope.

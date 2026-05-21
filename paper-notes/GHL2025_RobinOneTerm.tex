@@ -126,7 +126,13 @@ In Lean this is recorded as
 \[
   \texttt{GHL2025.indicatorOracleMatrix}.
 \]
-The unitarity obligation remains unproved ($\texttt{proved := false}$).
+The unitarity is proved: the image function
+$\texttt{indicatorOracleImage}$ is self-inverse (XOR of a single bit
+at position $\texttt{indPos} = 1 + 2n$), hence bijective on the
+$\texttt{Fin}$ domain, and the matrix has exactly one $\texttt{Coeff.rat}\;1$
+per row and per column.  This is recorded as
+\texttt{indicatorOracleMatrix\_is\_permutation}.  The gate matrix
+obligation is now $\texttt{proved := true}$.
 
 \subsection{SWAP Gate Matrix}
 
@@ -145,7 +151,18 @@ In Lean this is recorded as
 \[
   \texttt{GHL2025.swapOracleMatrix}.
 \]
-The unitarity obligation remains unproved ($\texttt{proved := false}$).
+The unitarity proof follows the same self-inverse template as $U_{\mathrm{indic}}$:
+after swap, block1' $=$ block2 and block2' $=$ block1, so
+$d' = \text{block1}' \oplus \text{block2}' = d$, and applying the XOR pattern
+twice cancels.  The key bit-arithmetic lemmas are:
+\begin{itemize}
+  \item $(d \ll n) \,\&\, \text{mask} = 0$ when $d < 2^n$
+    (reuse \texttt{shiftLeft\_land\_mask\_eq\_zero} from the U\_indic proof-DAG).
+  \item $d \gg n = 0$ when $d < 2^n$.
+  \item Right-shift distributes over XOR.
+\end{itemize}
+The self-inverse property then yields injectivity, bijectivity on the
+$\texttt{Fin}$ domain, and the permutation-matrix theorem.
 
 \subsection{Banded Sparse Access Oracle $O_D^{BS}$ Matrix}
 
@@ -170,23 +187,32 @@ For the fourth-order central second-derivative stencil (half-bandwidth $l=2$):
     $\mathrm{col}(s,N{-}1) = N{-}3+s$ for $s < 3$; identity for $s \geq 3$.
 \end{itemize}
 
-The matrix form is a permutation on $2^{\mathrm{totalQubits}}$:
-the image replaces the system register bits while preserving the sparse index and all other bits.
+The matrix form replaces the system register bits while preserving the sparse index and all other bits.
 
 In Lean:
 \[
   \texttt{GHL2025.robinSparseColumnMap} \quad (\text{column mapping}),
   \qquad
-  \texttt{GHL2025.bandedSparseAccessMatrix} \quad (\text{full permutation}).
+  \texttt{GHL2025.bandedSparseAccessMatrix}.
 \]
-The unitarity obligation remains unproved ($\texttt{proved := false}$).
+The current column-map contract has a boundary-row non-injectivity witness:
+\[
+  \texttt{robinSparseColumnMap}\;3\;0\;0
+  =
+  \texttt{robinSparseColumnMap}\;3\;0\;1
+  =
+  \texttt{robinSparseColumnMap}\;3\;0\;2
+  =
+  0.
+\]
+Thus the permutation-matrix proof route is blocked until the paper's sparse-access oracle contract is reconciled with the Robin boundary rows.  The unitarity obligation remains unproved ($\texttt{proved := false}$).
 
 \subsection{$(O_D^{BS})^\dagger$ Inverse Matrix}
 
-For a permutation matrix $P$ where $P[\mathrm{image}(j)][j]=1$, the Hermitian
-conjugate is the transpose $P^\dagger[j][\mathrm{image}(j)]=1$.
-The Lean implementation computes $\mathrm{image}(i)$ for the row index
-and checks whether $j = \mathrm{image}(i)$.
+The Lean implementation records a transpose-style matrix by computing
+$\mathrm{image}(i)$ for the row index and checking whether
+$j = \mathrm{image}(i)$.  The full inverse-permutation statement is blocked
+by the same boundary-row issue as the forward sparse-access matrix.
 
 In Lean:
 \[
@@ -317,7 +343,7 @@ Register bit layout &
 implemented (cycle 2) \\
 U\_indic honest matrix &
 \texttt{GHL2025.indicatorOracleMatrix} &
-implemented (cycle 2) \\
+implemented (cycle 2), unitarity \textbf{proved} (run 02 cycle 02) \\
 Effective signal qubits &
 \texttt{GHL2025.effectiveRobinSignalQubits} &
 implemented (cycle 2) \\
@@ -442,7 +468,8 @@ proofs:
 The most important remaining obligations are:
 
 \begin{enumerate}
-  \item prove the labeled gate matrices are unitary;
+  \item prove the remaining 6 labeled gate matrices are unitary
+    (U\_indic unitarity proved via \texttt{indicatorOracleMatrix\_is\_permutation});
   \item prove the composed circuit matrix equals the paper's \(U\);
   \item replace the remaining placeholder zero matrix (Ry\_boundary) with a real oracle implementation; (done: cycle 8)
   \item correct $O_f$ to encode function values $f(x_j)/N_f$ instead of derivative amplitude data; (done: cycle 9)
@@ -453,8 +480,9 @@ The most important remaining obligations are:
 
 All seven gates in the one-term Robin circuit now have nonzero matrix
 semantics in Lean: U\_indic, \(O_{D^T}^S\), \(R_y^{\text{boundary}}\),
-\(O_D^{BS}\), \(O_f\), SWAP, and \((O_D^{BS})^\dagger\).  These matrices
-are still proof-obligation carriers, not completed correctness proofs:
+\(O_D^{BS}\), \(O_f\), SWAP, and \((O_D^{BS})^\dagger\).
+U\_indic unitarity is now proved via \texttt{indicatorOracleMatrix\_is\_permutation}.
+The remaining six gates are still proof-obligation carriers:
 their \texttt{unitary.proved} fields remain false, and the exact paper
 rotation/block-extraction theorem is still open.
 
@@ -485,6 +513,36 @@ The generic arithmetic bridge
 is now proved in Lean as \texttt{clog2\_gridSize}.  This closes the dimension
 compatibility side condition for the Robin circuit block claim, but it does not
 prove oracle unitarity or block correctness.
+
+\subsection{Cycle 11: Coeff.rat Arithmetic and U\_indic Bijection}
+
+\textbf{Coeff.rat arithmetic lemmas.}
+The \texttt{Coeff} type wraps rational arithmetic inside a symbolic expression
+tree.  For permutation matrices (entries in $\{0, 1\}$), the matrix product
+reduces to counting matches, but Lean must still normalize the \texttt{Coeff}
+expression tree to verify the count.  The new lemmas in \texttt{Core.lean}:
+\[
+  \texttt{evalWith\_rat\_add}: \;
+  \texttt{evalWith}\;\texttt{env}\;(\texttt{Coeff.add}\;(\texttt{rat}\;a)\;(\texttt{rat}\;b)) = a + b,
+\]
+and analogous lemmas for \texttt{rat\_mul}, \texttt{rat\_neg}, \texttt{rat\_zero},
+\texttt{rat\_one}, close the normalization gap for concrete \texttt{Coeff.rat}
+arithmetic.
+
+\textbf{U\_indic bijection stepping stone.}
+The indicator oracle $U_{\mathrm{indic}}$ is a permutation matrix: each basis
+state $|j\rangle$ maps to $|\texttt{image}(j)\rangle$, where
+\[
+  \texttt{image}(j) = j \oplus (\mathrm{isBulk}(j) \ll \texttt{indPos}).
+\]
+The mapping is self-inverse: $\texttt{image}(\texttt{image}(j)) = j$, because
+XOR with a fixed bit is an involution.  In Lean this is verified by
+\texttt{native\_decide} for concrete $n = 1$ (space $2^7 = 128$) and
+$n = 3$ (space $2^{13} = 8192$).
+
+A self-inverse function on a finite set is a bijection, and a 0/1 matrix
+induced by a bijection is a permutation matrix, which is unitary.  The
+remaining proof obligation is to formalize this chain in Lean for general~$n$.
 
 \subsection{Automation Rule}
 

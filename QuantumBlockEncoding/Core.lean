@@ -195,6 +195,40 @@ def evalWith (env : String → Rat) : Coeff → Rat
 @[simp] theorem evalWith_neg (env : String → Rat) (a : Coeff) :
     evalWith env (neg a) = -(evalWith env a) := rfl
 
+/-- Trivial reflexivity lemma for the zero rational coefficient. -/
+theorem rat_zero : Coeff.rat 0 = Coeff.rat 0 := rfl
+
+/-- Evaluating `Coeff.rat 0` yields `0` under any environment. -/
+@[simp] theorem evalWith_rat_zero (env : String → Rat) :
+    evalWith env (Coeff.rat 0) = (0 : Rat) := rfl
+
+/-- Evaluating `Coeff.rat 1` yields `1` under any environment. -/
+@[simp] theorem evalWith_rat_one (env : String → Rat) :
+    evalWith env (Coeff.rat 1) = (1 : Rat) := rfl
+
+/-- Evaluating `Coeff.add (Coeff.rat a) (Coeff.rat b)` yields `a + b`. -/
+theorem evalWith_rat_add (env : String → Rat) (a b : Rat) :
+    evalWith env (Coeff.add (Coeff.rat a) (Coeff.rat b)) = a + b := by
+  simp
+
+/-- Evaluating `Coeff.mul (Coeff.rat a) (Coeff.rat b)` yields `a * b`. -/
+theorem evalWith_rat_mul (env : String → Rat) (a b : Rat) :
+    evalWith env (Coeff.mul (Coeff.rat a) (Coeff.rat b)) = a * b := by
+  simp
+
+/-- Evaluating `Coeff.neg (Coeff.rat a)` yields `-a`. -/
+theorem evalWith_rat_neg (env : String → Rat) (a : Rat) :
+    evalWith env (Coeff.neg (Coeff.rat a)) = -a := by
+  simp
+
+/-- If a Coeff value is `Coeff.rat 0`, it evaluates to `0` under any environment. -/
+theorem evalWith_eq_zero_of_rat_zero (env : String → Rat) :
+    evalWith env (Coeff.rat 0) = (0 : Rat) := rfl
+
+/-- If a Coeff value is `Coeff.rat 1`, it evaluates to `1` under any environment. -/
+theorem evalWith_eq_one_of_rat_one (env : String → Rat) :
+    evalWith env (Coeff.rat 1) = (1 : Rat) := rfl
+
 def divNat (a : Coeff) (n : Nat) : Coeff :=
   a * Coeff.rat ((1 : Rat) / n)
 

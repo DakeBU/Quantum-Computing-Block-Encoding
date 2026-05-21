@@ -49,6 +49,10 @@ writing advice in the local source file `Math Writing Tips.pdf`.
    unproved semantic record, say so plainly and keep `proved := false`.
 6. Keep reusable definitions in shared files and reference them.  Do not
    duplicate the same definition in multiple notes or Lean modules.
+7. When a proof uses repeated local arguments, present them as reusable blocks
+   or lemmas.  The motivation is the hierarchical-prover separation of
+   Sonoda--Akiyama--Uezato, arXiv:2602.10512v2: a shared proof DAG can avoid
+   repeatedly learning and rediscovering the same subproof.
 
 ## Markdown Rules
 
@@ -70,6 +74,19 @@ writing advice in the local source file `Math Writing Tips.pdf`.
 5. Use `\DeclareMathOperator`-style operators in reusable paper notes when the
    operator recurs.
 
+## DAG-Aware Writing
+
+For proof maps and paper notes, prefer the following order:
+
+1. Define the reusable objects and interfaces.
+2. State the local lemma or proof block.
+3. State where the block is reused.
+4. State the final theorem or block-encoding claim.
+
+Avoid repeating the same proof paragraph for each reuse site.  Refer to the
+named block instead, and add a proof obligation if the block is not yet proved
+in Lean.
+
 ## Reviewer Checklist
 
 - Are all definitions introduced before use?
@@ -79,5 +96,7 @@ writing advice in the local source file `Math Writing Tips.pdf`.
 - Are any assumptions added beyond the paper or the stated Lean target?
 - Is there duplicated notation or duplicated definitions that should be
   referenced instead?
+- Is a repeated local proof flattened in prose when it should be a named Lean
+  lemma or proof-DAG block?
 - Do Markdown math delimiters follow QBE style?
 - Is the prose readable as mathematics rather than a changelog?

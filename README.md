@@ -94,6 +94,12 @@ Documentation-writing agents also use
 `.agents/skills/qbe-math-writing/SKILL.md`.  The skill keeps mathematical prose
 compact: definitions before theorem statements, precise justifications and
 citations, Markdown math with `$...$`/`$$...$$`, and no hidden assumptions.
+For repeated proof work, agents use
+`.agents/skills/qbe-hierarchical-proof-dag/SKILL.md`, which encodes the lesson
+of Sonoda--Akiyama--Uezato
+([arXiv:2602.10512v2](https://arxiv.org/abs/2602.10512)): successful theorem
+proving should reuse named proof blocks as a DAG rather than repeatedly
+flattening the same local proof trace.
 
 QBE has two hybrid strategy modes:
 

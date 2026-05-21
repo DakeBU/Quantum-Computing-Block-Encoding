@@ -81,18 +81,19 @@ correctness is already solved.
 | Effective signal qubits | `GHL2025.effectiveRobinSignalQubits` | totalQubits $- n$ | defined (cycle 2) |
 | Indicator bit position | `GHL2025.robinIndicatorBitPosition` | bit position $= 1 + 2n$ | defined (cycle 2) |
 | U_indic honest matrix | `GHL2025.indicatorOracleMatrix` | controlled-X permutation on indicator bit | defined (cycle 2) |
-| U_indic gate matrix | `GHL2025.oneTermRobinGate_U_indic` | GateMatrix with honest matrix, proved := false | defined (cycle 2 update) |
+| U_indic gate matrix | `GHL2025.oneTermRobinGate_U_indic` | GateMatrix with honest matrix, **proved := true** | proved (run 02 cycle 02) |
+| U_indic permutation proof | `GHL2025.indicatorOracleMatrix_is_permutation` | exactly one 1 per row and column | proved (run 02 cycle 02) |
 | O_DT^S diagonal matrix | `GHL2025.sparseAmplitudeOracleDTMatrix` | diagonal encoding for bulk (indicator=1), identity for boundary (indicator=0) | defined (cycle 7) |
 | O_DT^S gate matrix | `GHL2025.oneTermRobinGate_O_DT_S` | GateMatrix with honest diagonal matrix, proved := false | defined (cycle 7 update) |
 | Ry_boundary honest matrix | `GHL2025.oneTermRobinGate_Ry_boundary` | GateMatrix with controlled R_y rotation, proved := false | defined (cycle 8 update) |
-| O_D^BS honest permutation matrix | `GHL2025.oneTermRobinGate_O_D_BS` | GateMatrix with proved := false | defined (cycle 4 update: honest permutation) |
+| O_D^BS sparse-access matrix | `GHL2025.oneTermRobinGate_O_D_BS` | GateMatrix with proved := false, **bijection blocked** (non-injective column map at boundaries) | defined (cycle 4 update) |
 | O_D^BS column map | `GHL2025.robinSparseColumnMap` | col(s,i) for Robin stencil | defined (cycle 4) |
-| O_D^BS forward matrix | `GHL2025.bandedSparseAccessMatrix` | permutation $|s\rangle|i\rangle \to |s\rangle|\mathrm{col}(s,i)\rangle$ | defined (cycle 4) |
+| O_D^BS forward matrix | `GHL2025.bandedSparseAccessMatrix` | sparse-access map $|s\rangle|i\rangle \to |s\rangle|\mathrm{col}(s,i)\rangle$; boundary injectivity blocked | defined (cycle 4) |
 | O_f honest matrix | `GHL2025.oneTermRobinGate_O_f` | GateMatrix with function-value diagonal matrix, proved := false | defined (cycle 6, fixed cycle 9) |
-| SWAP honest matrix | `GHL2025.oneTermRobinGate_SWAP` | GateMatrix with permutation matrix, proved := false | defined (cycle 3 update) |
+| SWAP honest matrix | `GHL2025.oneTermRobinGate_SWAP` | GateMatrix with permutation matrix, `proved := false` | pending proof-DAG bit-slice lemmas |
 | SWAP honest matrix | `GHL2025.swapOracleMatrix` | Permutation swapping system/O_D^BS blocks | defined (cycle 3) |
-| (O_D^BS)^† inverse permutation matrix | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | GateMatrix with proved := false | defined (cycle 4 update: inverse permutation) |
-| (O_D^BS)^† forward matrix | `GHL2025.bandedSparseAccessDaggerMatrix` | transpose of forward permutation | defined (cycle 4) |
+| (O_D^BS)^† transpose-style matrix | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | GateMatrix with proved := false | defined (cycle 4 update; inverse proof blocked) |
+| (O_D^BS)^† forward matrix | `GHL2025.bandedSparseAccessDaggerMatrix` | transpose-style sparse-access matrix | defined (cycle 4) |
 | All 7 gate matrices | `GHL2025.oneTermRobinGateMatrixPlaceholders` | List GateMatrix | defined |
 | Gate-list alignment theorem | `GHL2025.oneTermRobinPlaceholdersMatch` | gateMatricesMatchCircuit = true | proved |
 | Robin circuit semantics | `Examples.RobinHeat.oneTermRobinCircuitSemantics` | CircuitMatrixSemantics for the Robin circuit | defined |
@@ -144,6 +145,11 @@ theorem Examples.RobinHeat.oneTermRobinCircuitDimCompat
 def Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim
 def GHL2025.robinSparseAmplitudeValue
 def GHL2025.robinFunctionValue
+theorem GHL2025.indicatorOracleMatrix_col_has_one
+theorem GHL2025.indicatorOracleMatrix_col_unique
+theorem GHL2025.indicatorOracleMatrix_row_has_one
+theorem GHL2025.indicatorOracleMatrix_row_unique
+theorem GHL2025.indicatorOracleMatrix_is_permutation
 ```
 
 Current oracle matrix declarations:
@@ -170,8 +176,9 @@ it as `SemanticObligation` or `ObligationRecord` with `proved := false`.
 - [x] Prove dimension compatibility `clog2(gridSize n) = n` for general `n`.
 - [x] Assign gate matrices to `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`,
   `O_f`, `SWAP`, and `(O_D^BS)^†` (all seven now have nonzero matrix
-  semantics; all `proved := false` for unitarity).
-- [ ] Prove or explicitly track unitarity of each gate matrix.
+  semantics; U_indic unitarity proved, others `proved := false`).
+- [x] Prove U_indic unitarity via bijection→permutation bridge (`indicatorOracleMatrix_is_permutation`).
+- [ ] Prove or explicitly track unitarity of remaining 6 gate matrices (O_DT^S, Ry_boundary, O_D^BS, O_f, SWAP, O_D^BS_dagger).
 - [x] Prove or explicitly track that the matrix product matches the paper
   circuit order (gate-list match by construction, theorem proved).
 - [ ] Prove or explicitly track block correctness:
@@ -440,7 +447,7 @@ image = j - (j & sysMask_shifted) + (col << 1)
 
 For a permutation matrix $P$ where $P[\text{image}(j)][j] = 1$, the Hermitian conjugate is the transpose: $P^\dagger[j][\text{image}(j)] = 1$. The Lean implementation computes $\text{image}(i)$ for the row index and checks whether $j = \text{image}(i)$.
 
-This is the inverse permutation. For each basis state, if the forward matrix maps $|j\rangle \to |\text{image}(j)\rangle$, then the dagger maps $|\text{image}(j)\rangle \to |j\rangle$.
+This is recorded as a transpose-style sparse-access matrix.  The full inverse-permutation statement is blocked until the boundary-row column map is reconciled with the paper oracle contract.
 
 ---
 
@@ -664,6 +671,43 @@ The compiled tests now check the wiring structurally:
 - Existing target matrix, normalizer, signal index, and unproved-obligation tests still pass.
 
 Concrete entry-level tests of the full $n=3$ product were removed from the build gate because they force Lean to normalize entries of a $8192 \times 8192$ symbolic matrix product. Those entry checks should return as focused lemmas or proof attempts once the block-correctness proof is decomposed, not as routine CI tests.
+
+---
+
+## Cycle 12: General U_indic Self-Inverse and Bijection
+
+Cycle 12 targets the general proof that `indicatorOracleImage` is self-inverse
+for arbitrary `p : OneTermRobinParameters`, upgrading the concrete `native_decide`
+proofs for n=1 and n=3 from cycle 11.
+
+### Proof-DAG Block: Bit-Arithmetic Reusable Lemma
+
+The key reusable lemma is `xor_high_bits_preserve_low`:
+
+For `pos >= 1 + n` and `mask = (1 <<< n) - 1`:
+$(x \oplus (b \ll \text{pos})) \mathbin{\&} \text{mask} = x \mathbin{\&} \text{mask}$
+
+This is because $b \ll \text{pos}$ has zeros in all bit positions below `pos`,
+so XOR with it leaves bits `[0, pos)` unchanged.
+
+This block is reused by all four permutation-gate bijection proofs
+(U_indic, SWAP, O_D^BS, O_D^BS_dagger).
+
+### Paper Correspondence
+
+The indicator oracle U_indic (main.tex:1088-1099) flips a single ancilla qubit
+when the system register value is in the bulk window.  Self-inverse follows from
+the fact that the indicator bit is in a disjoint register from the system value,
+so the bulk test returns the same result after the flip.
+
+| Paper step | Lean declaration | Status |
+|---|---|---|
+| U_indic preserves system register | `indicatorOracleImage_systemVal_preserved` | proved |
+| U_indic preserves bulk membership | `indicatorOracleImage_isBulk_preserved` | proved |
+| U_indic is self-inverse (general n) | `indicatorOracleImage_self_inverse` | proved |
+| U_indic is injective (general n) | `indicatorOracleImage_injective` | proved |
+| U_indic is bijective (Fin domain) | `indicatorOracleImage_bijective` | proved |
+| Reusable bit-arithmetic lemma | `shiftLeft_land_mask_eq_zero`, `xor_shift_preserve_low`, `xor_shift_preserve_shift_low` | proved |
 
 ---
 

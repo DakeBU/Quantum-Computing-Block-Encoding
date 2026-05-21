@@ -56,6 +56,10 @@ python3 tools/qbe.py trial-summary
 - Documentation-writing agents use `.agents/skills/qbe-math-writing/SKILL.md`:
   definitions before theorem statements, short claims, precise justifications,
   and no hidden assumptions.
+- Agents should use `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` when
+  a proof repeats local work.  Promote repeated bit arithmetic, matrix-index
+  calculations, projection lemmas, and gate obligations to reusable Lean blocks
+  instead of flattening them into repeated scripts.
 
 The shared conversation board is `runs/<run-id>/dialogue.md`; persistent memory
 is `runs/trials.jsonl` plus `runs/trials_summary.csv`.

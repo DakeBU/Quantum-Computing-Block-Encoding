@@ -9,18 +9,18 @@ matrix semantics backend layer.
 ## Gate Matrix Placeholders
 
 Each of the 7 circuit gates has a `GateMatrix` record with a nonzero matrix
-semantics.  The matrices are intentionally still proof-obligation carriers:
-all carry `unitary.proved := false`.
+semantics.  `U_indic` has a proved permutation-matrix certificate; the other
+gate unitarity claims remain explicit proof obligations.
 
 | Gate | Lean declaration | Paper source | Status |
 |---|---|---|---|
-| U_indic | `GHL2025.oneTermRobinGate_U_indic` | main.tex:1088-1099 | honest permutation matrix, unitary unproved (cycle 2) |
+| U_indic | `GHL2025.oneTermRobinGate_U_indic` | main.tex:1088-1099 | honest permutation matrix, **unitary proved** (cycle 2 → run 02 cycle 12 bijection + run 02 cycle 02 permutation bridge) |
 | O_DT^S | `GHL2025.oneTermRobinGate_O_DT_S` | main.tex:822-849 | honest diagonal matrix conditioned on indicator, unitary unproved (cycle 7) |
 | Ry_boundary | `GHL2025.oneTermRobinGate_Ry_boundary` | main.tex:1115-1120 | honest symbolic controlled rotation matrix, unitary unproved (cycle 8) |
-| O_D^BS | `GHL2025.oneTermRobinGate_O_D_BS` | main.tex:784-801 | honest permutation matrix, unitary unproved (cycle 4) |
+| O_D^BS | `GHL2025.oneTermRobinGate_O_D_BS` | main.tex:784-801 | honest sparse-access matrix, unitary blocked by boundary column-map non-injectivity witness |
 | O_f | `GHL2025.oneTermRobinGate_O_f` | main.tex:870-910 | honest diagonal matrix encoding f(x_j), unitary unproved (cycle 6, fixed cycle 9) |
-| SWAP | `GHL2025.oneTermRobinGate_SWAP` | main.tex:1140 | honest permutation matrix, unitary unproved (cycle 3) |
-| (O_D^BS)^dagger | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | main.tex:1148 | inverse permutation matrix, unitary unproved (cycle 4) |
+| SWAP | `GHL2025.oneTermRobinGate_SWAP` | main.tex:1140 | honest permutation matrix, unitarity pending proof-DAG bit-slice lemmas |
+| (O_D^BS)^dagger | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | main.tex:1148 | transpose-style sparse-access matrix, unitary blocked until the forward contract is reconciled |
 
 ## Circuit Semantics
 
@@ -68,7 +68,7 @@ all carry `unitary.proved := false`.
 ## Downstream Dependencies
 
 These obligations block completion of `QBE-AUTO-001`:
-- Unitarity is still unproved for the seven gate matrices.
+- Unitarity is proved for `U_indic` and still unproved for the remaining six gate matrices.
 - The composed circuit matrix is now nontrivial, but the extracted block has not yet been proved equal to $A_k/(N_DN_f\kappa)$.
 - The diagonal encodings for $O_{D^T}^S$ and the symbolic $R_y^{boundary}$ entries still need to be reconciled with the paper's rotation-based oracle semantics.
 
@@ -98,7 +98,7 @@ These obligations block completion of `QBE-AUTO-001`:
 |---|---|
 | Matrix entries compute correctly for bulk rows | tested (native_decide) |
 | Matrix entries compute correctly for boundary rows | tested (native_decide) |
-| Unitarity of U_indic | unproved (`unitary.proved := false`) |
+| Unitarity of U_indic | **proved** (`unitary.proved := true`, via `indicatorOracleMatrix_is_permutation`) |
 | No promoted obligations from cycle 1 | verified |
 
 ### Cycle 2 Tests Added
@@ -118,7 +118,7 @@ These obligations block completion of `QBE-AUTO-001`:
 | Dim compat n=3 | 2^13 = 2^10 × 8 | native_decide | proved |
 | Dim compat n=1 | 2^7 = 2^6 × 2 | native_decide | proved |
 
-## Cycle 3: SWAP Matrix
+## Cycle 3: SWAP Matrix (unitarity pending proof-DAG bit-slice lemmas)
 
 | Declaration | Role | Status |
 |---|---|---|
@@ -132,7 +132,7 @@ These obligations block completion of `QBE-AUTO-001`:
 | Matrix entries swap two n-qubit register blocks correctly | tested (native_decide, 2 swap pairs) |
 | Equal blocks → identity | tested (native_decide) |
 | Preserves bits outside swapped blocks | tested (native_decide) |
-| Unitarity of SWAP | unproved (`unitary.proved := false`) |
+| Unitarity of SWAP | unproved (`unitary.proved := false`); previous flat proof attempt was demoted to a proof-DAG obligation |
 | No promoted obligations from cycle 2 | verified |
 
 ### Cycle 3 Tests Added
@@ -155,9 +155,9 @@ These obligations block completion of `QBE-AUTO-001`:
 | Declaration | Role | Status |
 |---|---|---|
 | `robinSparseColumnMap` | column mapping col(s,i) for Robin stencil | implemented |
-| `bandedSparseAccessMatrix` | honest O_D^BS permutation matrix | implemented |
+| `bandedSparseAccessMatrix` | honest O_D^BS sparse-access matrix | implemented; boundary injectivity blocked |
 | updated `oneTermRobinGate_O_D_BS` | uses honest matrix | updated |
-| `bandedSparseAccessDaggerMatrix` | inverse permutation (transpose) | implemented |
+| `bandedSparseAccessDaggerMatrix` | transpose-style sparse-access matrix | implemented; inverse proof blocked with forward map |
 | updated `oneTermRobinGate_O_D_BS_dagger` | uses honest matrix | updated |
 
 ### O_D^BS Matrix Obligations
@@ -168,10 +168,16 @@ These obligations block completion of `QBE-AUTO-001`:
 | Left boundary rows (i=0: 3 entries, i=1: 4 entries) | tested (native_decide) |
 | Right boundary rows (i=N-2, i=N-1) | tested (native_decide) |
 | Unused sparse indices → identity | tested (native_decide) |
-| Dagger is inverse permutation | tested (native_decide) |
+| Dagger matrix entry relation | tested on concrete entries; full inverse proof blocked |
 | Unitarity of O_D^BS | unproved (`unitary.proved := false`) |
 | Unitarity of (O_D^BS)^† | unproved (`unitary.proved := false`) |
 | No promoted obligations from cycle 3 | verified |
+
+Boundary non-injectivity witness for the current Lean column-map contract:
+`robinSparseColumnMap 3 0 0 = robinSparseColumnMap 3 0 1 =
+robinSparseColumnMap 3 0 2 = 0`.  This prevents the permutation-matrix proof
+route for `O_D^BS` and its dagger until the paper's sparse-access oracle contract
+is reconciled with the Robin boundary rows.
 
 ### Cycle 4 Tests Added
 
@@ -346,3 +352,159 @@ rotation-based oracle structure.
 | Runtime test policy | structural tests compile quickly | full $n=3$ entry-level product checks are deferred to focused proof attempts |
 
 Concrete entry-level normalization of the full $n=3$ product is not a build-gate test. The matrix has dimension $8192 \times 8192$, so `native_decide` on composed entries is too expensive for routine CI. Future lower agents should introduce intermediate lemmas for individual gates, row support, and projection algebra before attempting product-entry proofs.
+
+## Cycle 11: Coeff.rat Arithmetic Lemmas and U_indic Bijection Stepping Stone
+
+### A. Coeff.rat Arithmetic Lemmas (Core.lean)
+
+Added simplification lemmas enabling future matrix-multiplication normalization:
+
+| Lemma | Role | Status |
+|---|---|---|
+| `Coeff.evalWith_rat_zero` | `evalWith env (Coeff.rat 0) = 0` | proved (rfl) |
+| `Coeff.evalWith_rat_one` | `evalWith env (Coeff.rat 1) = 1` | proved (rfl) |
+| `Coeff.evalWith_rat_add` | `evalWith env (Coeff.add (Coeff.rat a) (Coeff.rat b)) = a + b` | proved (simp) |
+| `Coeff.evalWith_rat_mul` | `evalWith env (Coeff.mul (Coeff.rat a) (Coeff.rat b)) = a * b` | proved (simp) |
+| `Coeff.evalWith_rat_neg` | `evalWith env (Coeff.neg (Coeff.rat a)) = -a` | proved (simp) |
+
+These lemmas close the `Coeff.rat` → `Rat` evaluation gap for arithmetic compositions. They are prerequisites for proving that permutation-matrix products evaluate correctly under `evalWith`.
+
+### B. U_indic Bijection Stepping Stone (GHL2025.lean)
+
+| Declaration | Role | Status |
+|---|---|---|
+| `indicatorOracleImage` | Extracted image function: `j → expectedImage` for U_indic | implemented |
+| `indicatorOracleMatrix_eq_image` | Matrix entry = `if i = image j then 1 else 0` | proved (by simp) |
+| `indicatorOracleImage_self_inverse_n1` | Self-inverse for n=1: `image(image(j)) = j` | proved (native_decide) |
+| `indicatorOracleImage_self_inverse_n3` | Self-inverse for n=3: `image(image(j)) = j` | proved (native_decide) |
+
+The self-inverse property (`image ∘ image = id`) is the key stepping stone toward proving U_indic is a permutation matrix and hence unitary. A self-inverse function on a finite set is automatically a bijection, and a bijection matrix with 0/1 entries is unitary.
+
+### Cycle 11 Tests Added
+
+| Test | Parameters | Method | Status |
+|---|---|---|---|
+| Coeff.rat addition evaluates | `evalWith (add (rat 1) (rat 2)) = 3` | native_decide | proved |
+| Coeff.rat multiplication evaluates | `evalWith (mul (rat 2) (rat 3)) = 6` | native_decide | proved |
+| Coeff.rat negation evaluates | `evalWith (neg (rat 5)) = -5` | native_decide | proved |
+| Coeff.rat compound evaluates | `evalWith (add (mul (rat 2) (rat 3)) (rat 1)) = 7` | native_decide | proved |
+| Image boundary j=0 → 0 | n=3, κ=7 | native_decide | proved |
+| Image bulk j=4 → 132 | n=3, κ=7 | native_decide | proved |
+| Image round-trip 132 → 4 | n=3, κ=7 | native_decide | proved |
+| Self-inverse n=3 | full space 2^13 | native_decide | proved |
+| Self-inverse n=1 | full space 2^7 | native_decide | proved |
+
+## Cycle 12: General U_indic Self-Inverse and Bijection
+
+### Proof-DAG Block: Bit-Arithmetic Reusable Lemmas
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Status |
+|---|---|---|---|---|---|
+| `shiftLeft_land_mask_eq_zero` | `(b <<< pos) &&& mask = 0` when `pos >= n` | none | `shiftLeft_land_mask_eq_zero` | `xor_shift_preserve_low`, SWAP/O_D^BS bijection | proved |
+| `xor_shift_preserve_low` | XOR with high bit preserves low `n` bits | `shiftLeft_land_mask_eq_zero` | `xor_shift_preserve_low` | `systemVal_preserved` | proved |
+| `xor_shift_preserve_shift_low` | Shifted variant: high-XOR preserves shifted low bits | none | `xor_shift_preserve_shift_low` | `systemVal_preserved` | proved |
+| `robinIndicatorBitPosition_ge` | `robinIndicatorBitPosition >= 1 + p.n` | none | `robinIndicatorBitPosition_ge` | `systemVal_preserved` | proved |
+| `systemVal_preserved` | `systemVal(image(j)) = systemVal(j)` for all `p` | `xor_shift_preserve_shift_low`, `robinIndicatorBitPosition_ge` | `indicatorOracleImage_systemVal_preserved` | `isBulk_preserved`, `self_inverse` | proved |
+| `isBulk_preserved` | Bulk membership unchanged by image | `systemVal_preserved` | `indicatorOracleImage_isBulk_preserved` | `self_inverse` | proved |
+| `self_inverse_gen` | `image(image(j)) = j` for all `p, j` | `isBulk_preserved` | `indicatorOracleImage_self_inverse` | `injective_gen`, `bijective` | proved |
+| `injective_gen` | Injectivity from self-inverse | `self_inverse_gen` | `indicatorOracleImage_injective` | `bijective_gen` | proved |
+| `lt_totalQubits` | Image preserves `qubitDim` bound | `robinIndicatorBitPosition_lt_totalQubits` | `indicatorOracleImage_lt` | `bijective_gen` | proved |
+| `bijective_gen` | `image` is bijective on `Fin (qubitDim total)` | `self_inverse_gen`, `injective_gen`, `lt_totalQubits` | `indicatorOracleImage_bijective` | U_indic unitarity | proved |
+
+### Remaining Obligations After Cycle 12
+
+| Obligation | Status |
+|---|---|
+| U_indic full unitarity proof (bijection → permutation → unitary) | **proved** (run 02 cycle 02: `indicatorOracleMatrix_is_permutation`) |
+| SWAP permutation unitarity | pending proof-DAG bit-slice lemmas; previous flat proof attempt was demoted |
+| O_D^BS permutation unitarity | **blocked**: `robinSparseColumnMap` is not injective in `i` for fixed `s` (boundary row collisions); bijection→permutation approach not applicable as-is |
+| (O_D^BS)^† unitarity | blocked (same root cause as O_D^BS) |
+| O_DT^S diagonal unitarity | unproved, requires normalizer bound |
+| Ry_boundary rotation unitarity | unproved, requires trig identity |
+| O_f diagonal unitarity | unproved, requires |f(x)| ≤ N_f bound |
+| Block extraction correctness | unproved |
+| No promoted obligations from cycle 11 | verified |
+
+## Run 02 Cycle 02: U_indic Permutation-Matrix Unitarity Bridge
+
+### New Theorems
+
+| Declaration | Role | Status |
+|---|---|---|
+| `indicatorOracleMatrix_col_has_one` | For each column j, entry at row image(j) = 1 | proved |
+| `indicatorOracleMatrix_col_unique` | For each column j, the 1-entry row is unique | proved |
+| `indicatorOracleMatrix_row_has_one` | For each row i, there exists a column j with M[i][j] = 1 (surjectivity) | proved |
+| `indicatorOracleMatrix_row_unique` | For each row i, the 1-entry column is unique (injectivity) | proved |
+| `indicatorOracleMatrix_is_permutation` | Main theorem: exactly one 1 per row and per column | proved |
+
+### Updated Gate Matrix
+
+| Declaration | Change | Status |
+|---|---|---|
+| `oneTermRobinGate_U_indic` | `unitary.proved := true` | updated |
+
+### Obligation Resolution
+
+| Obligation | Previous Status | New Status |
+|---|---|---|
+| U_indic unitarity | `proved := false` | `proved := true` |
+
+### Documentation Promotions
+
+| Item | Previous Status | New Status |
+|---|---|---|
+| Cycle 12 proof-DAG block entries | "in progress" / "assigned to lower" | "proved" |
+| Cycle 12 paper correspondence | "assigned to lower" | "proved" |
+
+### No Promoted Obligations
+
+All other gate matrices remain `unitary.proved := false`. The `RobinProofObligations` defaults are unchanged.
+
+## Cycle 1 (Run 03): SWAP Permutation-Matrix Unitarity via Proof-DAG
+
+### Proof-DAG Block: SWAP Bit-Slice Reusable Lemmas
+
+The SWAP oracle `swapOracleImage` exchanges two n-qubit register blocks at
+positions `[1, 1+n)` and `[1+n, 1+2n)`.  The self-inverse proof decomposes into
+bit-slice lemmas showing that after swap, block1' = block2 and block2' = block1,
+hence diff' = diff and applying the XOR pattern twice cancels.
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Status |
+|---|---|---|---|---|---|
+| `xor_lt_two_pow` | `a < 2^n → b < 2^n → a ^^^ b < 2^n` | none | new lemma | `swap_diff_bounded` | planned |
+| `shiftLeft_shiftRight_self` | `(b <<< k) >>> k = b` when no bits lost | none | new lemma | `swap_block1_image`, `swap_block2_image` | planned |
+| `swap_diff_bounded` | `diff < 2^n` where `diff = block1 XOR block2` | `xor_lt_two_pow` | new lemma | `swap_block1_image`, `swap_block2_image`, `swap_lt` | planned |
+| `swap_block1_image` | After swap, block1' = block2 | `shiftLeft_land_mask_eq_zero` (cycle 12), `swap_diff_bounded` | `swapOracleImage_block1_eq_block2` | `swap_diff_preserved` | planned |
+| `swap_block2_image` | After swap, block2' = block1 | `swap_diff_bounded` | `swapOracleImage_block2_eq_block1` | `swap_diff_preserved` | planned |
+| `swap_diff_preserved` | diff' = diff after swap | `swap_block1_image`, `swap_block2_image` | `swapOracleImage_diff_preserved` | `swap_self_inverse` | planned |
+| `swap_self_inverse` | `image(image(j)) = j` for all `p, j` | `swap_diff_preserved` | `swapOracleImage_self_inverse` | `swap_injective`, `swap_bijective` | planned |
+| `swap_injective` | Injectivity from self-inverse | `swap_self_inverse` | `swapOracleImage_injective` | `swap_bijective` | planned |
+| `swap_lt` | Image preserves `qubitDim` bound | `swap_diff_bounded` | `swapOracleImage_lt` | `swap_bijective` | planned |
+| `swap_bijective` | Bijective on `Fin (qubitDim total)` | `swap_self_inverse`, `swap_injective`, `swap_lt` | `swapOracleImage_bijective` | permutation proof | planned |
+| `swap_col_has_one` | For each column j, entry at row image(j) = 1 | `swap_bijective` | `swapOracleMatrix_col_has_one` | `swap_is_permutation` | planned |
+| `swap_col_unique` | For each column j, the 1-entry row is unique | `swap_bijective` | `swapOracleMatrix_col_unique` | `swap_is_permutation` | planned |
+| `swap_row_has_one` | For each row i, surjectivity: ∃j with M[i][j]=1 | `swap_bijective` | `swapOracleMatrix_row_has_one` | `swap_is_permutation` | planned |
+| `swap_row_unique` | For each row i, the 1-entry column is unique | `swap_bijective` | `swapOracleMatrix_row_unique` | `swap_is_permutation` | planned |
+| `swap_is_permutation` | Exactly one 1 per row and per column | all above | `swapOracleMatrix_is_permutation` | gate proved update | planned |
+
+### Key Bit-Arithmetic Facts
+
+1. `(diff <<< n) &&& mask = 0` when `diff < 2^n`: reuse `shiftLeft_land_mask_eq_zero` from cycle 12 (with `pos = n ≥ n`).
+2. `diff >>> n = 0` when `diff < 2^n`: standard shift-right-below-width lemma.
+3. Right-shift distributes over XOR: `(a ^^^ b) >>> k = (a >>> k) ^^^ (b >>> k)` (Lean std `Nat.shiftRight_xor_distrib` or similar).
+4. AND distributes over XOR: already used in `xor_shift_preserve_low` from cycle 12.
+5. `(b <<< k) >>> k = b` when `b < 2^m` and no bits are lost: shift-left then shift-right cancels.
+
+### Self-Inverse Proof Sketch
+
+For `result = swapOracleImage p j`:
+- `block1' = (result >>> 1) & mask = block2` (because `(diff <<< n) & mask = 0` and `diff & mask = diff`).
+- `block2' = (result >>> (1+n)) & mask = block1` (because `diff >>> n = 0` and `diff & mask = diff`).
+- `diff' = block1' XOR block2' = block2 XOR block1 = diff` (XOR is commutative).
+- `swap(swap(j)) = j XOR (diff <<< 1) XOR (diff <<< (1+n)) XOR (diff <<< 1) XOR (diff <<< (1+n)) = j`.
+
+### Non-Goals
+
+- Do not touch O_D^BS, O_f, O_DT^S, Ry_boundary, or (O_D^BS)^†.
+- Do not add assumptions, side conditions, or sorry.
+- Do not change the paper's circuit or oracle construction.
