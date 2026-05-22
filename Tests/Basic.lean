@@ -895,6 +895,34 @@ example :
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false := rfl
 
+-- Source-contract audit: the paper Lemma 1 contract is recorded separately
+-- from the interim column-map helper used by bandedSparseAccessMatrix.
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).inputKet =
+      "|0>^(n-l)|s>^l|i>^n" := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).outputKet =
+      "|r_si>^n|i>^n" := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).paddedZeroQubits = 0 := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).sparseIndexQubits = 3 := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).forwardCorrect.proved = false := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).daggerCleanup.proved = false := rfl
+
 -- O_D^BS dagger gate: unitary.proved = false
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := rfl

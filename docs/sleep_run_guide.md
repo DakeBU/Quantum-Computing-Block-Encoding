@@ -49,7 +49,7 @@ branch.
 Start with a dry run:
 
 ```bash
-cd /home/nitanda_sub/mark/repos/Quantum/Quantum-Computing-Bloack-Encoding
+cd /path/to/Quantum-Computing-Bloack-Encoding
 python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 2 --lower-count 2 --dry-run
 python3 tools/qbe.py trial-summary
 ```

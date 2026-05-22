@@ -4,6 +4,11 @@ This project treats a paper as a source of candidate constructions, not as an
 oracle assumption. The output target is a Lean-checked block-encoding or a
 clearly stated open problem.
 
+Local copies of a paper source may be useful while developing, but public
+project artifacts should cite the paper, arXiv URL, theorem/lemma/equation
+labels, figure labels, and repository paper notes.  Do not make the proof map
+depend on a machine-specific absolute path.
+
 ![Conversion window](assets/conversion_window.svg)
 
 ## Step 1: Pick A Literature Entry
@@ -39,10 +44,17 @@ Fill the window in this order:
 2. Symbol map: every paper symbol gets a Lean name and type/role.
 3. Oracle contract: target operator, claimed oracle behavior, ancillas, block
    entry, normalizer, and resource expression.
-4. Markdown pane: explain the construction and why it should satisfy the
+4. Source-contract audit: for every oracle/gate, write the exact input
+   registers, exact output registers, clean-ancilla condition, normalizer, and
+   Lean declaration.  If the Lean declaration is a simplified register map,
+   label it as contract drift before asking lower agents to prove it.
+5. Markdown pane: explain the construction and why it should satisfy the
    contract.
-5. Lean declaration plan: file names and declaration names.
-6. Proof obligations: anything that cannot yet be proved.
+6. Lean-to-paper proof map: after each lower-agent change, translate what Lean
+   actually proved, what failed, and what remains open back into Markdown/LaTeX
+   so reviewer and upper can compare against the original paper.
+7. Lean declaration plan: file names and declaration names.
+8. Proof obligations: anything that cannot yet be proved.
 
 ## Step 3: Decide Whether The Oracle Is Real
 
@@ -122,7 +134,11 @@ The reviewer should check:
 
 - the source paper link is present,
 - the conversion window maps every important symbol,
+- the middle-agent proof map translates both directions: paper-to-Lean before
+  work and Lean-to-Markdown/LaTeX after work,
 - no oracle assumption remains abstract unless it is explicitly an open problem,
+- no Lean oracle contract drifts from the paper's register-level
+  transformation, clean-ancilla condition, or normalizer,
 - the target Lean file builds,
 - tests cover the resource count or core declaration,
 - task status is not promoted before the build gate passes.

@@ -166,12 +166,46 @@ $\texttt{Fin}$ domain, and the permutation-matrix theorem.
 
 \subsection{Banded Sparse Access Oracle $O_D^{BS}$ Matrix}
 
-The banded sparse access oracle (Lemma 1, main.tex:784--801) maps
+The banded sparse access oracle (Lemma 1 of the GHL paper,
+arXiv:2506.20478) maps
 \[
-  O_D^{BS} |s\rangle|i\rangle = |s\rangle|\mathrm{col}(s,i)\rangle
+  \hat O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n
+  =
+  |r_{si}\rangle^n|i\rangle^n,
 \]
-where $\mathrm{col}(s,i)$ is the column index of the $s$-th nonzero entry in
-row $i$ of the Robin derivative matrix, ordered by offset from left to right.
+where $r_{si}=r_{s0}+i \bmod 2^n$ is the $s$-th banded-sparse matrix index.
+For the Robin one-term circuit, the same register-level contract is used with
+$D$ or $D^T$ and then cleaned by $(O_D^{BS})^\dagger$ after the SWAP step.
+
+\textbf{Faithfulness correction.}  The current Lean
+\texttt{bandedSparseAccessMatrix} is an interim column-map helper.  It preserves
+the sparse-index register and overwrites the system register with
+\texttt{robinSparseColumnMap}.  This is useful for testing Robin stencil
+columns, but it is not yet the paper's padded sparse-index oracle.  The
+unitarity and cleanup obligations for $O_D^{BS}$ must therefore remain open
+until the Lean register-level image formula is corrected to the paper contract.
+
+The source contract is now recorded explicitly in Lean as
+\[
+  \texttt{GHL2025.BandedSparseAccessPaperContract}.
+\]
+For one-term Robin parameters, the default instance is
+\[
+  \texttt{GHL2025.defaultBandedSparseAccessPaperContract}.
+\]
+This record stores the input ket
+\[
+  |0\rangle^{n-l}|s\rangle^l|i\rangle^n
+\]
+and the output ket
+\[
+  |r_{si}\rangle^n|i\rangle^n,
+\]
+together with three unproved obligations: the padded-width compatibility,
+the forward oracle correctness, and the cleanup by
+$(O_D^{BS})^\dagger$.  The record does not prove unitarity and does not change
+\texttt{bandedSparseAccessMatrix}; it prevents the interim helper from being
+mistaken for the paper oracle.
 
 For the fourth-order central second-derivative stencil (half-bandwidth $l=2$):
 \begin{itemize}
@@ -187,7 +221,9 @@ For the fourth-order central second-derivative stencil (half-bandwidth $l=2$):
     $\mathrm{col}(s,N{-}1) = N{-}3+s$ for $s < 3$; identity for $s \geq 3$.
 \end{itemize}
 
-The matrix form replaces the system register bits while preserving the sparse index and all other bits.
+The interim matrix form replaces the system register bits while preserving the
+sparse index and all other bits.  This sentence describes the Lean helper, not
+the final faithful oracle contract.
 
 In Lean:
 \[
@@ -205,14 +241,21 @@ The current column-map contract has a boundary-row non-injectivity witness:
   =
   0.
 \]
-Thus the permutation-matrix proof route is blocked until the paper's sparse-access oracle contract is reconciled with the Robin boundary rows.  The unitarity obligation remains unproved ($\texttt{proved := false}$).
+Thus the permutation-matrix proof route is blocked for the simplified helper.
+This should be read as a contract-drift finding, not as a missing construction
+in the GHL paper.  The unitarity obligation remains unproved
+($\texttt{proved := false}$) until the faithful padded sparse-index oracle is
+implemented.
 
 \subsection{$(O_D^{BS})^\dagger$ Inverse Matrix}
 
-The Lean implementation records a transpose-style matrix by computing
+The current Lean implementation records a transpose-style matrix by computing
 $\mathrm{image}(i)$ for the row index and checking whether
-$j = \mathrm{image}(i)$.  The full inverse-permutation statement is blocked
-by the same boundary-row issue as the forward sparse-access matrix.
+$j = \mathrm{image}(i)$.  This belongs to the interim helper.  The full
+inverse-permutation and clean-ancilla statement must be restated after
+\texttt{bandedSparseAccessMatrix} is corrected to the paper's
+$|0\rangle^{n-l}|s\rangle^l|i\rangle^n \mapsto |r_{si}\rangle^n|i\rangle^n$
+contract.
 
 In Lean:
 \[
@@ -352,13 +395,19 @@ SWAP honest matrix &
 implemented (cycle 3) \\
 $O_D^{BS}$ column map &
 \texttt{GHL2025.robinSparseColumnMap} &
-implemented (cycle 4) \\
+implemented as stencil helper (cycle 4), not final oracle contract \\
 $O_D^{BS}$ honest matrix &
 \texttt{GHL2025.bandedSparseAccessMatrix} &
-implemented (cycle 4) \\
+interim helper implemented (cycle 4), contract correction pending \\
+$O_D^{BS}$ paper contract &
+\texttt{GHL2025.BandedSparseAccessPaperContract} &
+defined, obligations unproved \\
+$O_D^{BS}$ default paper contract &
+\texttt{GHL2025.defaultBandedSparseAccessPaperContract} &
+defined for one-term Robin parameters \\
 $(O_D^{BS})^\dagger$ matrix &
 \texttt{GHL2025.bandedSparseAccessDaggerMatrix} &
-implemented (cycle 4) \\
+interim transpose helper implemented (cycle 4), faithful cleanup pending \\
 Sparse amplitude data &
 \texttt{GHL2025.robinSparseAmplitudeValue} &
 implemented (cycle 5) \\

@@ -15,13 +15,19 @@ and human explanation.
    `python3 tools/qbe.py conversion-window <task-id> --title "<title>"`.
 2. Fill the LaTeX statement exactly as used in the paper.
 3. Map every symbol to a Lean declaration or planned declaration.
-4. Add a proof-DAG/reuse map.  Inspired by
+4. Add a source-contract audit pane for faithful-paper tasks.  For every
+   oracle/gate, include the paper anchor, input registers, output registers,
+   clean ancillas, normalizer, and the Lean declaration that should implement
+   it.  Use public paper citations and stable theorem/lemma/equation/figure
+   labels; do not make public artifacts depend on a machine-specific absolute
+   path to a local source copy.
+5. Add a proof-DAG/reuse map.  Inspired by
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2, the conversion window should
    expose shared proof blocks rather than flattening the same local argument
    many times.
-5. Write a Markdown explanation of the construction.
-6. Move verified Lean code into `QuantumBlockEncoding/`.
-7. Run `python3 tools/qbe.py check`.
+6. Write a Markdown explanation of the construction.
+7. Move verified Lean code into `QuantumBlockEncoding/`.
+8. Run `python3 tools/qbe.py check`.
 
 ## Proof-DAG Pane
 
@@ -49,3 +55,7 @@ obligation or a missing-definition task.
 
 If a proof block cannot be mapped to Lean, record the exact missing interface
 and dependency.  Do not replace the paper theorem with a weaker statement.
+
+If a Lean declaration maps the wrong registers, uses a simplified oracle shape,
+or omits the paper's clean-ancilla condition, mark it as contract drift and
+assign a correction before proving unitarity or block extraction for it.

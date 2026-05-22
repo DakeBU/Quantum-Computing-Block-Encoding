@@ -17,10 +17,15 @@ finish the paper-reproduction mode for `QBE-AUTO-001`.
 ## Source
 
 - Primary paper target: Nikita Guseynov, Xiajie Huang, Nana Liu, "Quantum
-  framework for simulating linear PDEs with Robin boundary conditions".
+  framework for simulating linear PDEs with Robin boundary conditions",
+  arXiv:2506.20478.
 - Lean target: `QuantumBlockEncoding/CircuitSemantics.lean`
 - Downstream target: `QuantumBlockEncoding/GHL2025.lean` and
   `QuantumBlockEncoding/RobinMatrix.lean`
+
+Development may use local working copies of the paper, but public proof maps
+must cite the paper, arXiv URL, theorem/lemma/equation/figure labels, or bundled
+paper notes.  Do not cite machine-specific absolute source paths.
 
 ## Required Human-Facing Artifacts
 
@@ -33,6 +38,13 @@ Every cycle that changes Lean declarations must update at least one of:
 The point of faithful mode is not only to compile Lean, but to leave a readable
 Markdown/LaTeX trail that explains which paper formula each Lean declaration
 implements.
+
+Middle-agent cycles must translate in both directions:
+
+- paper/LaTeX-to-Lean before lower work, including exact registers, normalizer,
+  clean ancillas, and expected matrix/block entries;
+- Lean-to-Markdown/LaTeX after lower work, including what was proved, what
+  failed, and what remains an obligation.
 
 Markdown math style is strict: use `$...$` for inline math and `$$...$$` for
 display math in `.md` files. Do not use backslash-parenthesis or
@@ -55,6 +67,16 @@ These are intentionally small.  They are a foundation, not the final proof.
 
 ## Next Lean Targets
 
+0. Run a source-contract audit for the GHL one-term Robin gates before any more
+   unitarity proof search.  In particular, Lemma 1 defines the banded sparse
+   access oracle as
+   `O_D^BS |0>^(n-l) |s>^l |i>^n = |r_si>^n |i>^n`.
+   The current interim Lean contract for `bandedSparseAccessMatrix` instead
+   preserves the sparse-index register and overwrites the system register with
+   `col(s,i)`.  Treat this as contract drift until the register-level image
+   formula is reconciled with the paper's padded sparse-index register and
+   cleanup by `(O_D^BS)^dagger`.
+
 1. Add tests for the new matrix semantics layer.
 2. Define a block-projection/indexing convention for signal and system
    registers.
@@ -71,6 +93,8 @@ These are intentionally small.  They are a foundation, not the final proof.
 - Do not use `Prop := True`, `trivial`, or `sorry` to close semantic gaps.
 - Do not replace the paper's circuit by a different construction unless the
   reviewer explicitly records it as an exploratory-mode branch.
+- Do not prove unitarity or block extraction for a simplified Lean oracle
+  contract that does not match the paper's register-level transformation.
 
 ## Acceptance Gate
 

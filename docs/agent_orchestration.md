@@ -111,7 +111,7 @@ project direction.
 ## Create A Prompt Deck
 
 ```bash
-cd /home/nitanda_sub/mark/repos/Quantum/Quantum-Computing-Bloack-Encoding
+cd /path/to/Quantum-Computing-Bloack-Encoding
 python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 2
 ```
 

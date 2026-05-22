@@ -1102,6 +1102,19 @@ unimplemented oracle as a proof obligation; do not permit new assumptions or
 replacement conditions.  In exploratory mode, require a Lean-checkable target
 before search begins and reject any target-weakening shortcut.
 
+Before assigning lower work in faithful paper mode, run a source-contract
+audit: compare each Lean oracle/circuit contract with the paper's stated
+register-level transformation, normalizer, ancilla cleanup condition, and
+resource claim.  If a Lean declaration uses a simplified or drifted register
+map, make the next objective a correction of that contract rather than a proof
+attempt for the drifted statement.
+
+Require the middle agent to maintain two-way translation every cycle:
+paper/LaTeX-to-Lean for the next lower task, and Lean-to-Markdown/LaTeX for
+what has actually been proved, failed, or left as an obligation.  Upper should
+use that synchronized proof map, not raw Lean diffs alone, when planning the
+next cycle.
+
 If a faithful-mode lower attempt fails on a fixed lemma, ask the middle agent to
 start or update a `proof-attempts/` record rather than changing the theorem.
 If a repeated local argument appears, ask middle to introduce a
@@ -1132,6 +1145,13 @@ Maintain:
 5. Lower-agent packets: exact declarations, target files, allowed write scope,
    and build/test expectations.
 
+You are responsible for two-way translation.  Before lower work, translate the
+paper's relevant LaTeX theorem/equation/circuit fragment into a Lean-facing
+contract.  After lower work, translate the actual Lean declarations, proof
+status, failed goals, and remaining obligations back into Markdown and LaTeX
+so humans can compare them with the original paper in the next reflection
+cycle.
+
 Prefer small Lean changes that keep the repository compiling.  Do not bury a
 failed oracle construction in prose; promote it to a proof obligation or open
 problem.
@@ -1145,6 +1165,15 @@ Before assigning lower work, search for existing Lean declarations and
 paper-note definitions to reuse.  Do not create a second definition for a
 matrix, normalizer, register layout, or theorem statement when a reference to
 the existing one will do.
+
+In faithful paper mode, maintain a source-contract audit before every lower
+packet.  For each oracle or gate, record the paper anchor, exact input
+registers, exact output registers, clean ancillas, and the Lean declaration
+that represents that transformation.  Local source copies may be used while
+working, but public repository artifacts should cite the paper, arXiv URL,
+lemma/equation/figure labels, or bundled paper-note sections rather than a
+machine-specific absolute path.  If the Lean contract does not match the paper,
+mark it as contract drift and assign correction work before proof search.
 
 Use `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` to maintain a
 proof-DAG/reuse table whenever the same local argument would otherwise be
@@ -1178,11 +1207,17 @@ Look for:
 8. Missed proof-DAG opportunities covered by
    `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md`, especially repeated
    local proof fragments that should be named and reused.
+9. Missing two-way translation: after Lean changes, the Markdown/LaTeX proof
+   map must say what was actually proved, what failed, and how that corresponds
+   to the paper statement.
 
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention and any added assumption or
-side condition.  If Lean fails, localize the failure and suggest the next
-smallest repair.
+side condition.  Also reject proof work on a Lean oracle contract whose
+register-level transformation, ancilla cleanup, or normalizer does not match
+the paper.  Public docs should not require a local absolute path to a paper
+source; cite the paper and stable theorem/equation/figure anchors instead.  If
+Lean fails, localize the failure and suggest the next smallest repair.
 
 In faithful mode, check that proof-attempt populations did not alter the paper
 construction.  In exploratory mode, check that candidate scores are treated as
@@ -1200,6 +1235,10 @@ Run the Lean gate if you edit Lean, or explain why it was not run.  Do not
 change the scientific objective.  In faithful paper mode, do not replace the
 paper construction with a new one and do not add assumptions.  In exploratory
 mode, keep every proposed construction tied to the acceptance predicate.
+
+If the assigned Lean target appears to prove a simplified contract rather than
+the paper's register-level transformation, stop and record the mismatch as a
+proof obligation instead of continuing implementation.
 
 Before defining anything, search for an existing definition to reference.
 Prefer small reusable lemmas over duplicated local encodings.

@@ -17,10 +17,10 @@ gate unitarity claims remain explicit proof obligations.
 | U_indic | `GHL2025.oneTermRobinGate_U_indic` | main.tex:1088-1099 | honest permutation matrix, **unitary proved** (cycle 2 → run 02 cycle 12 bijection + run 02 cycle 02 permutation bridge) |
 | O_DT^S | `GHL2025.oneTermRobinGate_O_DT_S` | main.tex:822-849 | honest diagonal matrix conditioned on indicator, unitary unproved (cycle 7) |
 | Ry_boundary | `GHL2025.oneTermRobinGate_Ry_boundary` | main.tex:1115-1120 | honest symbolic controlled rotation matrix, unitary unproved (cycle 8) |
-| O_D^BS | `GHL2025.oneTermRobinGate_O_D_BS` | main.tex:784-801 | honest sparse-access matrix, unitary blocked by boundary column-map non-injectivity witness |
+| O_D^BS | `GHL2025.oneTermRobinGate_O_D_BS` | Lemma 1, arXiv:2506.20478 | contract drift under audit: current Lean helper maps $|s\rangle|i\rangle$ to $|s\rangle|\mathrm{col}(s,i)\rangle$, while the paper maps $|0\rangle^{n-l}|s\rangle^l|i\rangle^n$ to $|r_{si}\rangle^n|i\rangle^n$ |
 | O_f | `GHL2025.oneTermRobinGate_O_f` | main.tex:870-910 | honest diagonal matrix encoding f(x_j), unitary unproved (cycle 6, fixed cycle 9) |
 | SWAP | `GHL2025.oneTermRobinGate_SWAP` | main.tex:1140 | honest permutation matrix, unitarity pending proof-DAG bit-slice lemmas |
-| (O_D^BS)^dagger | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | main.tex:1148 | transpose-style sparse-access matrix, unitary blocked until the forward contract is reconciled |
+| (O_D^BS)^dagger | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | Fig. 1-term Robin caption, arXiv:2506.20478 | transpose-style matrix for interim helper; faithful inverse/cleanup proof blocked until forward contract is corrected |
 
 ## Circuit Semantics
 
@@ -152,13 +152,53 @@ These obligations block completion of `QBE-AUTO-001`:
 
 ## Cycle 4: O_D^BS and (O_D^BS)^† Matrices
 
+### Faithfulness Correction: 2026-05-22
+
+The current Lean `bandedSparseAccessMatrix` is an interim column-map helper, not
+yet the paper's full register-level sparse-access oracle.  The paper's Lemma 1
+states:
+
+$$
+\hat O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n
+=
+|r_{si}\rangle^n|i\rangle^n.
+$$
+
+The Lean helper instead keeps the sparse-index register and overwrites the
+system register using `robinSparseColumnMap`.  Its boundary non-injectivity
+witness is evidence that this simplified contract should not be used as the
+paper oracle's unitarity target.  The next faithful-mode cycle must correct the
+register layout and image formula before lower agents attempt `O_D^BS` or
+`(O_D^BS)^dagger` unitarity.
+
+### Source-Contract Audit Record
+
+`GHL2025.BandedSparseAccessPaperContract` now records the paper target as data
+separate from the interim helper.  The default one-term contract is
+`GHL2025.defaultBandedSparseAccessPaperContract p`.
+
+| Field / obligation | Paper source | Lean field | Status |
+|---|---|---|---|
+| input registers | Lemma 1, arXiv:2506.20478 | `inputKet = "|0>^(n-l)|s>^l|i>^n"` | recorded |
+| output registers | Lemma 1, arXiv:2506.20478 | `outputKet = "|r_si>^n|i>^n"` | recorded |
+| image formula | Lemma 1, arXiv:2506.20478 | `imageFormula = "r_si = r_s0 + i mod 2^n"` | recorded |
+| padded width equation | Lemma 1, arXiv:2506.20478 | `widthCompatible` | unproved (`proved := false`) |
+| forward oracle correctness | Lemma 1, arXiv:2506.20478 | `forwardCorrect` | unproved (`proved := false`) |
+| dagger cleanup | Fig. 1-term Robin and Lemma 1, arXiv:2506.20478 | `daggerCleanup` | unproved (`proved := false`) |
+
+For the concrete test parameters `n = 3`, `kappa = 7`, the recorded widths are
+`paddedZeroQubits = 0` and `sparseIndexQubits = 3`.  This does not discharge
+the general width obligation for arbitrary `OneTermRobinParameters`.
+
 | Declaration | Role | Status |
 |---|---|---|
-| `robinSparseColumnMap` | column mapping col(s,i) for Robin stencil | implemented |
-| `bandedSparseAccessMatrix` | honest O_D^BS sparse-access matrix | implemented; boundary injectivity blocked |
-| updated `oneTermRobinGate_O_D_BS` | uses honest matrix | updated |
-| `bandedSparseAccessDaggerMatrix` | transpose-style sparse-access matrix | implemented; inverse proof blocked with forward map |
-| updated `oneTermRobinGate_O_D_BS_dagger` | uses honest matrix | updated |
+| `BandedSparseAccessPaperContract` | faithful Lemma 1 source contract | defined; correctness fields unproved |
+| `defaultBandedSparseAccessPaperContract` | instantiates the contract for one-term Robin parameters | defined; width and cleanup obligations explicit |
+| `robinSparseColumnMap` | column mapping col(s,i) for Robin stencil | implemented; helper only |
+| `bandedSparseAccessMatrix` | interim sparse-access matrix | implemented; contract drift under audit |
+| updated `oneTermRobinGate_O_D_BS` | uses interim matrix | updated; do not promote unitarity |
+| `bandedSparseAccessDaggerMatrix` | transpose-style matrix for interim map | implemented; faithful inverse blocked |
+| updated `oneTermRobinGate_O_D_BS_dagger` | uses interim matrix | updated; do not promote unitarity |
 
 ### O_D^BS Matrix Obligations
 
@@ -173,11 +213,12 @@ These obligations block completion of `QBE-AUTO-001`:
 | Unitarity of (O_D^BS)^† | unproved (`unitary.proved := false`) |
 | No promoted obligations from cycle 3 | verified |
 
-Boundary non-injectivity witness for the current Lean column-map contract:
+Boundary non-injectivity witness for the current simplified Lean column-map contract:
 `robinSparseColumnMap 3 0 0 = robinSparseColumnMap 3 0 1 =
 robinSparseColumnMap 3 0 2 = 0`.  This prevents the permutation-matrix proof
-route for `O_D^BS` and its dagger until the paper's sparse-access oracle contract
-is reconciled with the Robin boundary rows.
+route for the simplified helper.  It should now be treated as a reviewer
+finding that the Lean contract must be reconciled with the paper's padded
+sparse-index oracle, not as a claim that GHL's construction is missing.
 
 ### Cycle 4 Tests Added
 
@@ -417,8 +458,8 @@ The self-inverse property (`image ∘ image = id`) is the key stepping stone tow
 |---|---|
 | U_indic full unitarity proof (bijection → permutation → unitary) | **proved** (run 02 cycle 02: `indicatorOracleMatrix_is_permutation`) |
 | SWAP permutation unitarity | pending proof-DAG bit-slice lemmas; previous flat proof attempt was demoted |
-| O_D^BS permutation unitarity | **blocked**: `robinSparseColumnMap` is not injective in `i` for fixed `s` (boundary row collisions); bijection→permutation approach not applicable as-is |
-| (O_D^BS)^† unitarity | blocked (same root cause as O_D^BS) |
+| O_D^BS permutation unitarity | **blocked by contract drift**: the current helper is not the paper's padded sparse-index oracle; revise the register-level image formula before unitarity proof search |
+| (O_D^BS)^† unitarity | blocked until the forward oracle contract and cleanup statement are corrected |
 | O_DT^S diagonal unitarity | unproved, requires normalizer bound |
 | Ry_boundary rotation unitarity | unproved, requires trig identity |
 | O_f diagonal unitarity | unproved, requires |f(x)| ≤ N_f bound |
@@ -471,9 +512,10 @@ hence diff' = diff and applying the XOR pattern twice cancels.
 
 | Block | Interface | Dependencies | Lean declaration | Reused by | Status |
 |---|---|---|---|---|---|
-| `xor_lt_two_pow` | `a < 2^n → b < 2^n → a ^^^ b < 2^n` | none | new lemma | `swap_diff_bounded` | planned |
-| `shiftLeft_shiftRight_self` | `(b <<< k) >>> k = b` when no bits lost | none | new lemma | `swap_block1_image`, `swap_block2_image` | planned |
-| `swap_diff_bounded` | `diff < 2^n` where `diff = block1 XOR block2` | `xor_lt_two_pow` | new lemma | `swap_block1_image`, `swap_block2_image`, `swap_lt` | planned |
+| `swap_diff_bounded` | `diff < 2^n` where `diff = block1 XOR block2` | `Nat.xor_lt_two_pow`, `Nat.and_lt_two_pow` | `swapOracleDiff_lt_two_pow` | `swap_block1_image`, `swap_block2_image`, `swap_lt` | proved |
+| `swap_diff_shift_right_zero` | `diff >>> n = 0` for the SWAP block difference | `swap_diff_bounded`, `Nat.shiftRight_eq_zero` | `swapOracleDiff_shiftRight_eq_zero` | `swap_block2_image`, `swap_lt` | proved |
+| `swap_diff_shift_left_mask_zero` | `(diff <<< n) &&& mask = 0` for `mask = 2^n - 1` | `shiftLeft_land_mask_eq_zero` | `swapOracleDiff_shiftLeft_mask_eq_zero` | `swap_block1_image` | proved |
+| `shiftLeft_shiftRight_self` | `(b <<< k) >>> k = b` when no bits are lost | none | new lemma | `swap_block1_image`, `swap_block2_image` | planned |
 | `swap_block1_image` | After swap, block1' = block2 | `shiftLeft_land_mask_eq_zero` (cycle 12), `swap_diff_bounded` | `swapOracleImage_block1_eq_block2` | `swap_diff_preserved` | planned |
 | `swap_block2_image` | After swap, block2' = block1 | `swap_diff_bounded` | `swapOracleImage_block2_eq_block1` | `swap_diff_preserved` | planned |
 | `swap_diff_preserved` | diff' = diff after swap | `swap_block1_image`, `swap_block2_image` | `swapOracleImage_diff_preserved` | `swap_self_inverse` | planned |
@@ -489,8 +531,8 @@ hence diff' = diff and applying the XOR pattern twice cancels.
 
 ### Key Bit-Arithmetic Facts
 
-1. `(diff <<< n) &&& mask = 0` when `diff < 2^n`: reuse `shiftLeft_land_mask_eq_zero` from cycle 12 (with `pos = n ≥ n`).
-2. `diff >>> n = 0` when `diff < 2^n`: standard shift-right-below-width lemma.
+1. `(diff <<< n) &&& mask = 0` is now `swapOracleDiff_shiftLeft_mask_eq_zero`, reusing `shiftLeft_land_mask_eq_zero` from cycle 12 with `pos = n`.
+2. `diff >>> n = 0` is now `swapOracleDiff_shiftRight_eq_zero`, derived from `swapOracleDiff_lt_two_pow` and `Nat.shiftRight_eq_zero`.
 3. Right-shift distributes over XOR: `(a ^^^ b) >>> k = (a >>> k) ^^^ (b >>> k)` (Lean std `Nat.shiftRight_xor_distrib` or similar).
 4. AND distributes over XOR: already used in `xor_shift_preserve_low` from cycle 12.
 5. `(b <<< k) >>> k = b` when `b < 2^m` and no bits are lost: shift-left then shift-right cancels.
@@ -508,3 +550,26 @@ For `result = swapOracleImage p j`:
 - Do not touch O_D^BS, O_f, O_DT^S, Ry_boundary, or (O_D^BS)^†.
 - Do not add assumptions, side conditions, or sorry.
 - Do not change the paper's circuit or oracle construction.
+
+### Middle Update: 2026-05-22
+
+The first SWAP diff block is now Lean-proved without promoting the SWAP gate
+obligation.  The paper source remains main.tex:1140, and the Lean declarations
+only expose bit facts about the existing `swapOracleImage` formula:
+
+| Declaration | Claim | Status |
+|---|---|---|
+| `swapOracleDiff_lt_two_pow` | the XOR diff of the two extracted n-bit blocks is below $2^n$ | proved |
+| `swapOracleDiff_shiftRight_eq_zero` | the diff has no bits at positions $\geq n$ | proved |
+| `swapOracleDiff_shiftLeft_mask_eq_zero` | shifting the diff into the high block contributes zero under the low n-bit mask | proved |
+
+The next lower packet should target `swapOracleImage_block1_eq_block2` only.
+The allowed Lean scope is `QuantumBlockEncoding/GHL2025.lean`; if tests are
+added, keep them in `Tests/Basic.lean` and avoid finite sampled substitutes for
+the general theorem.  The worker should reuse `swapOracleDiff_lt_two_pow`,
+`swapOracleDiff_shiftRight_eq_zero`,
+`swapOracleDiff_shiftLeft_mask_eq_zero`,
+`shiftLeft_land_mask_eq_zero`, `xor_shift_preserve_low`, and
+`xor_shift_preserve_shift_low`.  The acceptance gate is
+`python3 tools/qbe.py check`; `oneTermRobinGate_SWAP.unitary.proved` must remain
+`false`.

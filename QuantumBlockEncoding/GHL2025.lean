@@ -498,6 +498,62 @@ def defaultRobinCircuitSkeleton (p : OneTermRobinParameters) : RobinCircuitSkele
   kappaSignalQubits := clog2 p.kappa
   pureAncillaODRegister := p.n - clog2 p.kappa
 
+/--
+Paper-level source contract for the banded sparse-access oracle in Lemma 1.
+
+The input register is the padded sparse-index register
+`|0>^(n-l)|s>^l` followed by the row register `|i>^n`; the output is
+`|r_si>^n|i>^n`.  This record is intentionally separate from the current
+`bandedSparseAccessMatrix` helper, which overwrites the system register with a
+Robin column map and therefore does not yet implement this paper contract.
+Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478. -/
+structure BandedSparseAccessPaperContract where
+  sourceAnchor : String
+  rowRegisterQubits : Nat
+  paddedZeroQubits : Nat
+  sparseIndexQubits : Nat
+  outputAddressQubits : Nat
+  inputKet : String
+  outputKet : String
+  imageFormula : String
+  widthCompatible : ObligationRecord
+  forwardCorrect : ObligationRecord
+  daggerCleanup : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default Lemma 1 register contract for the one-term Robin parameters.
+
+The `widthCompatible` obligation stays explicit because the current parameter
+type does not enforce `clog2 kappa <= n`; faithful proofs should discharge that
+side condition or specialize to a parameter family where it is available.
+-/
+def defaultBandedSparseAccessPaperContract
+    (p : OneTermRobinParameters) : BandedSparseAccessPaperContract where
+  sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+  rowRegisterQubits := p.n
+  paddedZeroQubits := p.n - clog2 p.kappa
+  sparseIndexQubits := clog2 p.kappa
+  outputAddressQubits := p.n
+  inputKet := "|0>^(n-l)|s>^l|i>^n"
+  outputKet := "|r_si>^n|i>^n"
+  imageFormula := "r_si = r_s0 + i mod 2^n"
+  widthCompatible := {
+    description := "padded zero register plus sparse-index register has width n"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  forwardCorrect := {
+    description := "O_D^BS maps |0>^(n-l)|s>^l|i>^n to |r_si>^n|i>^n"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  daggerCleanup := {
+    description := "(O_D^BS)^dagger cleans the padded sparse-index register after SWAP"
+    source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+
 /-- Contract for the derivative oracle O_D: sparse-access oracle for the banded
 stencil matrix. Records stencil metadata, bandwidth, and a correctness obligation. main.tex:784-801 --/
 structure DerivativeOracleContract (n : Nat) where
@@ -1217,6 +1273,55 @@ theorem xor_shift_preserve_shift_low (x b pos n : Nat) (h : pos ≥ 1 + n) :
         rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]; simp [h1]
       simp [this]
   exact Nat.eq_of_testBit_eq eq_bits
+
+/--
+SWAP proof-DAG helper: the XOR difference between the two n-bit blocks is
+itself an n-bit value.
+main.tex:1140 --/
+theorem swapOracleDiff_lt_two_pow (p : OneTermRobinParameters) (j : Nat) :
+    let n := p.n
+    let blockMask := (1 <<< n) - 1
+    let block1 := (j >>> 1) &&& blockMask
+    let block2 := (j >>> (1 + n)) &&& blockMask
+    block1 ^^^ block2 < 2 ^ n := by
+  dsimp
+  apply Nat.xor_lt_two_pow
+  · apply Nat.and_lt_two_pow
+    rw [Nat.one_shiftLeft]
+    exact Nat.sub_lt (Nat.pow_pos (by decide : 0 < 2) : 0 < 2 ^ p.n) (by decide)
+  · apply Nat.and_lt_two_pow
+    rw [Nat.one_shiftLeft]
+    exact Nat.sub_lt (Nat.pow_pos (by decide : 0 < 2) : 0 < 2 ^ p.n) (by decide)
+
+/--
+SWAP proof-DAG helper: right-shifting the n-bit block difference by n removes it.
+main.tex:1140 --/
+theorem swapOracleDiff_shiftRight_eq_zero (p : OneTermRobinParameters) (j : Nat) :
+    let n := p.n
+    let blockMask := (1 <<< n) - 1
+    let block1 := (j >>> 1) &&& blockMask
+    let block2 := (j >>> (1 + n)) &&& blockMask
+    let diff := block1 ^^^ block2
+    diff >>> n = 0 := by
+  have hdiff := swapOracleDiff_lt_two_pow p j
+  dsimp at hdiff ⊢
+  exact Nat.shiftRight_eq_zero _ _ hdiff
+
+/--
+SWAP proof-DAG helper: shifting the block difference into the high block leaves
+zero in the low n-bit mask.
+main.tex:1140 --/
+theorem swapOracleDiff_shiftLeft_mask_eq_zero (p : OneTermRobinParameters) (j : Nat) :
+    let n := p.n
+    let blockMask := (1 <<< n) - 1
+    let block1 := (j >>> 1) &&& blockMask
+    let block2 := (j >>> (1 + n)) &&& blockMask
+    let diff := block1 ^^^ block2
+    (diff <<< n) &&& blockMask = 0 := by
+  dsimp
+  exact shiftLeft_land_mask_eq_zero
+    (((j >>> 1) &&& (1 <<< p.n) - 1) ^^^ ((j >>> (1 + p.n)) &&& (1 <<< p.n) - 1))
+    p.n p.n (by omega)
 
 /--
 Cycle 12: robinIndicatorBitPosition = 1 + 2*p.n, hence >= 1 + p.n.

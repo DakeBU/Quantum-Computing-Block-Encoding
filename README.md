@@ -32,7 +32,7 @@ QuantumBlockEncoding/GHL2025.lean
 ## Quick Start
 
 ```bash
-cd /home/nitanda_sub/mark/repos/Quantum/Quantum-Computing-Bloack-Encoding
+cd /path/to/Quantum-Computing-Bloack-Encoding
 
 python3 tools/qbe.py init
 python3 tools/qbe.py list-literature
@@ -274,7 +274,7 @@ For the current paper-reproduction target, use `QBE-AUTO-002` as the
 infrastructure task that makes the GHL2025 circuit semantics concrete:
 
 ```bash
-cd /home/nitanda_sub/mark/repos/Quantum/Quantum-Computing-Bloack-Encoding
+cd /path/to/Quantum-Computing-Bloack-Encoding
 python3 tools/qbe.py update-task QBE-AUTO-002 --status active --active
 
 mkdir -p runs/logs
