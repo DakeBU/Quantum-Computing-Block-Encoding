@@ -64,3 +64,16 @@ lemmas first:
 Acceptance condition: the next route must keep `oneTermRobinGate_SWAP.unitary.proved = false`
 until all named Lean declarations compile and the Markdown/LaTeX proof map is
 synchronized.
+
+## Claude Retry Stopped: 2026-05-22
+
+A later Claude retry created a fresh run deck and completed only the upper-agent
+plan before hitting quota on the middle agent.  The generated Lean edit tried to
+restart the SWAP proof by adding concrete `native_decide` checks plus a general
+`swapOracleImage_self_inverse` theorem with `sorry`.
+
+That edit was discarded.  In faithful-paper mode the main branch must not carry
+`sorry`, must not promote `oneTermRobinGate_SWAP.unitary.proved`, and must not
+replace the missing proof with finite sampled cases.  The next Codex or Claude
+run should continue from the compiled baseline and factor the bit-slice lemmas
+before attempting the full SWAP bijection/permutation bridge.
