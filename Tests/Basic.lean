@@ -819,10 +819,10 @@ example : (186 >>> 7) &&& 1 = 1 := by native_decide
 example : 214 &&& 1 = 0 := by native_decide
 example : 186 &&& 1 = 0 := by native_decide
 
--- SWAP gate matrix: proved via permutation proof.
+-- SWAP gate matrix uses an honest matrix; unitarity remains pending.
 example :
     let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
-    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = true := rfl
+    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = false := rfl
 
 -- SWAP placeholder match still holds with honest matrix
 example (p : GHL2025.OneTermRobinParameters) :
@@ -1288,31 +1288,7 @@ example (p : GHL2025.OneTermRobinParameters) :
 -- Run 02 cycle 02 recovery: SWAP image tests remain concrete until the
 -- proof-DAG bit-slice lemmas are factored into reusable general theorems.
 example (p : GHL2025.OneTermRobinParameters) :
-    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = true := rfl
-
--- SWAP proof-DAG tests: self-inverse, bijective, permutation
-
--- Self-inverse for general p
-example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
-    GHL2025.swapOracleImage p (GHL2025.swapOracleImage p j) = j :=
-  GHL2025.swapOracleImage_self_inverse p j
-
--- Bijective
-example (p : GHL2025.OneTermRobinParameters) :
-    (∀ (a b : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
-        (⟨GHL2025.swapOracleImage p a.val, GHL2025.swapOracleImage_lt p a.2⟩ :
-          Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))) =
-        ⟨GHL2025.swapOracleImage p b.val, GHL2025.swapOracleImage_lt p b.2⟩ →
-        a = b) ∧
-      ∀ (y : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
-        ∃ (x : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
-          (⟨GHL2025.swapOracleImage p x.val, GHL2025.swapOracleImage_lt p x.2⟩ :
-            Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))) = y :=
-  GHL2025.swapOracleImage_bijective p
-
--- SWAP gate matrix is now proved
-example (p : GHL2025.OneTermRobinParameters) :
-    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = true := rfl
+    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = false := rfl
 
 -- O_D^BS noninjectivity witness: the current boundary sparse-column map
 -- sends multiple boundary rows to the same column for the same sparse index.
