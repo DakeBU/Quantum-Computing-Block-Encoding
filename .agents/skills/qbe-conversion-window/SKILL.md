@@ -27,9 +27,12 @@ and human explanation.
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2, the conversion window should
    expose shared proof blocks rather than flattening the same local argument
    many times.
-7. Write a Markdown explanation of the construction.
-8. Move verified Lean code into `QuantumBlockEncoding/`.
-9. Run `python3 tools/qbe.py check`.
+7. Add a cited-results pane when the proof uses prior work or a standard fact.
+   Link to `research-wiki/cited-results/` and distinguish `paper-cited`,
+   `contract-only`, `obligation`, and `formalized` statuses.
+8. Write a Markdown explanation of the construction.
+9. Move verified Lean code into `QuantumBlockEncoding/`.
+10. Run `python3 tools/qbe.py check`.
 
 ## Proof-DAG Pane
 
@@ -61,6 +64,10 @@ and dependency.  Do not replace the paper theorem with a weaker statement.
 If a Lean declaration maps the wrong registers, uses a simplified oracle shape,
 or omits the paper's clean-ancilla condition, mark it as contract drift and
 assign a correction before proving unitarity or block extraction for it.
+
+If a claim relies on prior work, do not paraphrase it as a local theorem unless
+the cited result has a precise ledger entry and Lean status.  Missing prior
+results become proof obligations, not implicit assumptions.
 
 During Phase 1, do not expand the window into a general textbook or library
 design document.  Keep it focused on faithful paper transcript, exact Lean

@@ -52,6 +52,7 @@ WORK_DIRS = [
     "research-wiki/claims",
     "research-wiki/experiments",
     "research-wiki/graph",
+    "research-wiki/cited-results",
 ]
 
 
@@ -249,6 +250,22 @@ session.
 - Upper/middle/lower/reviewer agents coordinate through `runs/<run-id>/dialogue.md`.
 """,
         ROOT / "research-wiki" / "graph" / "edges.jsonl": "",
+        ROOT / "research-wiki" / "cited-results" / "README.md": """# Cited Results Memory
+
+This directory records external theorem, lemma, oracle, arithmetic, and
+quantum-information results that QBE papers rely on.
+
+Use it to keep three statuses distinct:
+
+- `paper-cited`: the current paper cites or invokes the result.
+- `formalized`: QBE has a Lean declaration and build-tested proof or contract.
+- `obligation`: QBE still needs to formalize or verify the result before a
+  dependent theorem can be closed.
+
+Do not treat a result as proved merely because it is standard, classical, or
+cited by a paper.  Record the source, the exact statement used, the Lean target
+or declaration, and each dependent QBE task.
+""",
         ROOT / "proof-obligations" / "README.md": """# Proof Obligations
 
 Use this directory for proof-obligation ledgers extracted from papers or from
@@ -1047,6 +1064,13 @@ Mode discipline:
 - Apply `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` when repeated
   subproofs, gate obligations, index arithmetic, or projection arguments appear.
   The goal is a reusable proof DAG, not a flat repeated trace.
+- Maintain cited-results memory for external or classical ingredients.  If a
+  paper invokes a prior theorem, arithmetic circuit, state-preparation result,
+  sparse-Hamiltonian primitive, QSVT/LCU lemma, or "standard" fact, record the
+  exact source and statement under `research-wiki/cited-results/` before using
+  it as a dependency.  Reviewer must reject uncited or hallucinated prior
+  results and any dependency marked as proved without a Lean declaration,
+  explicit contract, or proof obligation.
 
 {strategy}
 
@@ -1096,6 +1120,8 @@ Produce:
 5. Lower-agent work packets with narrow file scopes and acceptance checks.
 6. Reviewer checklist.
 7. A compressed handoff explaining what future agents should remember.
+8. Any cited prior results or classical facts that the next cycle depends on,
+   including whether they are already formalized or still obligations.
 
 In faithful paper mode, preserve the paper construction and isolate every
 unimplemented oracle as a proof obligation; do not permit new assumptions or
@@ -1134,6 +1160,11 @@ file scopes.
 When assigning documentation work, require the `qbe-math-writing` skill and
 ask the reviewer to check definition ordering, citation precision, and whether
 shared Lean definitions were referenced instead of duplicated.
+
+If the cycle relies on a result from another paper or a standard theorem, ask
+middle to update `research-wiki/cited-results/` and ask reviewer to verify that
+the result has a precise source, a statement matching the use site, and a Lean
+status that is not overstated.
 """
     elif role == "middle":
         body = """You are the middle formalization maintainer and memory manager.
@@ -1152,6 +1183,8 @@ Maintain:
    next.
 5. Lower-agent packets: exact declarations, target files, allowed write scope,
    and build/test expectations.
+6. Cited-results memory: exact external results used by this paper, their
+   source anchors, Lean status, and dependent proof blocks.
 
 You are responsible for two-way translation.  Before lower work, translate the
 paper's relevant LaTeX theorem/equation/circuit fragment into a Lean-facing
@@ -1197,6 +1230,13 @@ time.
 When editing Markdown or LaTeX, follow `.agents/skills/qbe-math-writing/SKILL.md`:
 definitions before theorem statements, short claim statements, precise
 justifications, and no unannounced assumptions.
+
+When a paper invokes a prior theorem, a "standard" result, or a classical
+subroutine, update `research-wiki/cited-results/` before lower work depends on
+it.  A cited result entry should name the source, exact statement used, Lean
+declaration or planned declaration, dependency sites, and status.  Use
+`obligation`, not `formalized`, unless the Lean target is actually present and
+build-tested.
 """
     elif role == "reviewer":
         body = """You are the independent reviewer and gatekeeper.
@@ -1224,6 +1264,9 @@ Look for:
 9. Missing two-way translation: after Lean changes, the Markdown/LaTeX proof
    map must say what was actually proved, what failed, and how that corresponds
    to the paper statement.
+10. Missing cited-results memory for prior work or "standard" facts used by the
+    paper.  Reject a dependency if the source, exact statement, Lean status, or
+    dependent use sites are vague.
 
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention and any added assumption or

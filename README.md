@@ -470,3 +470,24 @@ pages play: they are the stable interface between humans, agents, and the next
 cycle.  The extra QBE-specific layer is the Lean/LaTeX/Markdown conversion
 window, because a theorem-proving project must preserve the correspondence
 between source-paper notation and checked declarations.
+
+## Cited Result Memory
+
+Papers often use previous theorems or "standard" circuit primitives inside a
+proof.  QBE records those dependencies under
+[`research-wiki/cited-results/`](research-wiki/cited-results/) so future
+faithful-paper runs and exploratory-construction runs can reuse the same
+audited memory.
+
+The important distinction is status:
+
+- `paper-cited`: the source paper invokes the result.
+- `classic-unformalized`: the result is widely used but not yet formalized here.
+- `contract-only`: QBE has a typed interface or semantic obligation.
+- `obligation`: a dependent proof cannot close until this is formalized.
+- `formalized`: QBE has a build-tested Lean declaration for the exact statement
+  being used.
+
+Reviewer agents must reject hidden dependencies.  A prior result cannot close a
+gate-level oracle or block-encoding proof unless the cited-results ledger names
+the source, exact statement, Lean status, and dependent use sites.

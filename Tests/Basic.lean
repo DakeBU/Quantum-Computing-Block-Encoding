@@ -917,11 +917,421 @@ example :
 
 example :
     (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).cleanInputDomain.proved = false := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).addressRange.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultBandedSparseAccessPaperContract p).addressRange.proved = false := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).noSpill.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultBandedSparseAccessPaperContract p).noSpill.proved = false := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
       { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).forwardCorrect.proved = false := rfl
 
 example :
     (GHL2025.defaultBandedSparseAccessPaperContract
       { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).daggerCleanup.proved = false := rfl
+
+example :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }).unitaryExtension.proved = false := rfl
+
+-- O_D^BS paper-image skeleton: Lemma 1 extracts the padded address register
+-- separately from the row register.  For n=3, kappa=7 the padded-zero width is
+-- 0 and the whole O_D block is the sparse/address register.
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperRegisters p 8).rowValue = 4 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperRegisters p 8).sparseIndexValue = 0 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperAddress p 8 = 2 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperAddressInRange p 8 = true := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperRegisters p j).rowValue < gridSize p.n :=
+  GHL2025.bandedSparseAccessPaperRegisters_row_lt_gridSize p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.bandedSparseAccessPaperAddressInRange p j = true ↔
+      GHL2025.bandedSparseAccessPaperAddress p j < (1 <<< p.n) :=
+  GHL2025.bandedSparseAccessPaperAddressInRange_iff p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) (hn : 2 ≤ p.n) :
+    GHL2025.bandedSparseAccessPaperAddressInRange p j = true :=
+  GHL2025.bandedSparseAccessPaperAddressInRange_eq_true_of_two_le p j hn
+
+-- Bulk row i=4, s=0: paper image preserves row 4 and replaces the O_D
+-- address block by r_si = 2.  Compound index 8 becomes 40.
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperImage p 8 = 40 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperCleanInput p 8 = true := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.bandedSparseAccessPaperCleanInput p j = true ↔
+      (GHL2025.bandedSparseAccessPaperRegisters p j).paddedZeroValue = 0 :=
+  GHL2025.bandedSparseAccessPaperCleanInput_iff p j
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperImageNoSpill p 8 = true := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.bandedSparseAccessPaperImageNoSpill p j = true ↔
+      GHL2025.bandedSparseAccessPaperHighTail p
+          (GHL2025.bandedSparseAccessPaperImage p j) =
+        GHL2025.bandedSparseAccessPaperHighTail p j :=
+  GHL2025.bandedSparseAccessPaperImageNoSpill_iff p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    GHL2025.bandedSparseAccessPaperHighTail p
+        (GHL2025.bandedSparseAccessPaperImage p j) =
+      GHL2025.bandedSparseAccessPaperHighTail p j :=
+  GHL2025.bandedSparseAccessPaperImage_highTail_eq_of_address_lt p j haddr
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) (hn : 2 ≤ p.n) :
+    GHL2025.bandedSparseAccessPaperImageNoSpill p j = true :=
+  GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le p j hn
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) (hn : 2 ≤ p.n) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).imageNoSpill = true := by
+  rw [GHL2025.bandedSparseAccessPaperColumnContract_imageNoSpill_eq]
+  exact GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le p j hn
+
+example (p : GHL2025.OneTermRobinParameters)
+    (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    GHL2025.bandedSparseAccessPaperImage p j.val <
+      qubitDim (GHL2025.oneTermRobinTotalQubits p) :=
+  GHL2025.bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt
+    p j.val j.2 haddr
+
+example (p : GHL2025.OneTermRobinParameters)
+    (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    (GHL2025.bandedSparseAccessPaperImageFin p j haddr).val =
+      GHL2025.bandedSparseAccessPaperImage p j.val :=
+  GHL2025.bandedSparseAccessPaperImageFin_val p j haddr
+
+example (p : GHL2025.OneTermRobinParameters)
+    (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    GHL2025.bandedSparseAccessPaperMatrix p
+        (GHL2025.bandedSparseAccessPaperImageFin p j haddr) j =
+      Coeff.rat 1 :=
+  GHL2025.bandedSparseAccessPaperMatrix_imageFin_eq_one p j haddr
+
+example (p : GHL2025.OneTermRobinParameters)
+    (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    GHL2025.bandedSparseAccessPaperDaggerMatrix p j
+        (GHL2025.bandedSparseAccessPaperImageFin p j haddr) =
+      Coeff.rat 1 :=
+  GHL2025.bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one p j haddr
+
+example (p : GHL2025.OneTermRobinParameters)
+    (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+        (GHL2025.bandedSparseAccessPaperImageFin p j haddr) j =
+      Coeff.rat 1 :=
+  GHL2025.oneTermRobinGate_O_D_BS_imageFin_eq_one p j haddr
+
+example (p : GHL2025.OneTermRobinParameters)
+    (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix j
+        (GHL2025.bandedSparseAccessPaperImageFin p j haddr) =
+      Coeff.rat 1 :=
+  GHL2025.oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one p j haddr
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.bandedSparseAccessPaperImage p j)).rowValue =
+      (GHL2025.bandedSparseAccessPaperRegisters p j).rowValue :=
+  GHL2025.bandedSparseAccessPaperImage_rowValue_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.bandedSparseAccessPaperImage p j)).odRegisterValue =
+      GHL2025.bandedSparseAccessPaperAddress p j :=
+  GHL2025.bandedSparseAccessPaperImage_odRegisterValue_eq p j haddr
+
+-- The high-tail no-spill check is not only a zero-tail test: with the
+-- indicator tail bit set, the executable image keeps the same high tail.
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperHighTail p 136 = 1 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperHighTail p
+        (GHL2025.bandedSparseAccessPaperImage p 136) = 1 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperImageNoSpill p 136 = true := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperColumnContract p 8).imageIndex = 40 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperColumnContract p 8).rowPreserved = true := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperColumnContract p 8).addressWritten = true := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperColumnContract p 8).addressInRange = true := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperColumnContract p 8).imageNoSpill = true := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.bandedSparseAccessPaperImage p 8)).rowValue = 4 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.bandedSparseAccessPaperImage p 8)).odRegisterValue = 2 := by
+  native_decide
+
+-- Right boundary row i=7, s=0: paper image preserves row 7 and replaces the
+-- O_D address block by r_si = 5.  Compound index 14 becomes 94.
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperImage p 14 = 94 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.bandedSparseAccessPaperImage p 14)).rowValue = 7 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.bandedSparseAccessPaperImage p 14)).odRegisterValue = 5 := by
+  native_decide
+
+-- With n=4, kappa=7, the padded-zero field has width 1.  Column 32 has the
+-- padded bit set, so Lemma 1's clean-input equation does not apply directly;
+-- the full-space unitary extension remains an explicit obligation.
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 4, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperRegisters p 32).paddedZeroValue = 1 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 4, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperCleanInput p 32 = false := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 4, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperColumnContract p 32).cleanInput = false := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 4, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperColumnContract p 32).unitaryExtension.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).inputRegisters =
+      GHL2025.bandedSparseAccessPaperRegisters p j :=
+  GHL2025.bandedSparseAccessPaperColumnContract_inputRegisters_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).cleanInput =
+      GHL2025.bandedSparseAccessPaperCleanInput p j :=
+  GHL2025.bandedSparseAccessPaperColumnContract_cleanInput_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).cleanInput = true ↔
+      (GHL2025.bandedSparseAccessPaperRegisters p j).paddedZeroValue = 0 :=
+  GHL2025.bandedSparseAccessPaperColumnContract_cleanInput_iff p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).unitaryExtension.proved = false :=
+  GHL2025.bandedSparseAccessPaperColumnContract_unitaryExtension_proved_eq_false p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).imageIndex =
+      GHL2025.bandedSparseAccessPaperImage p j :=
+  GHL2025.bandedSparseAccessPaperColumnContract_imageIndex_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).addressInRange =
+      GHL2025.bandedSparseAccessPaperAddressInRange p j :=
+  GHL2025.bandedSparseAccessPaperColumnContract_addressInRange_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).imageNoSpill =
+      GHL2025.bandedSparseAccessPaperImageNoSpill p j :=
+  GHL2025.bandedSparseAccessPaperColumnContract_imageNoSpill_eq p j
+
+-- O_D^BS paper matrix skeleton: the matrix uses the paper-image column
+-- convention without promoting proof flags.
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperMatrix p)
+      ⟨40, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperMatrix p)
+      ⟨4, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 0 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperMatrix p)
+      ⟨94, by native_decide⟩ ⟨14, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- Active O_D^BS gate now uses the paper-image matrix, not the interim helper.
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS p).matrix =
+      GHL2025.bandedSparseAccessPaperMatrix p := rfl
+
+example (p : GHL2025.OneTermRobinParameters)
+    (i j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))) :
+    (GHL2025.oneTermRobinGate_O_D_BS p).matrix i j =
+      if i.val = GHL2025.bandedSparseAccessPaperImage p j.val then
+        Coeff.rat 1
+      else
+        Coeff.rat 0 := rfl
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+      ⟨40, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+      ⟨4, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 0 := by
+  native_decide
+
+-- The active dagger gate is the transpose-style matrix for the paper image.
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix =
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p := rfl
+
+example (p : GHL2025.OneTermRobinParameters)
+    (i j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix i j =
+      if j.val = GHL2025.bandedSparseAccessPaperImage p i.val then
+        Coeff.rat 1
+      else
+        Coeff.rat 0 := rfl
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperDaggerMatrix p)
+      ⟨8, by native_decide⟩ ⟨40, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix
+      ⟨8, by native_decide⟩ ⟨40, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+-- O_D^BS paper-contract obligations remain unproved.
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultBandedSparseAccessPaperContract p).widthCompatible.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultBandedSparseAccessPaperContract p).cleanInputDomain.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultBandedSparseAccessPaperContract p).forwardCorrect.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultBandedSparseAccessPaperContract p).daggerCleanup.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultBandedSparseAccessPaperContract p).unitaryExtension.proved = false := rfl
 
 -- O_D^BS dagger gate: unitary.proved = false
 example (p : GHL2025.OneTermRobinParameters) :
@@ -1085,6 +1495,216 @@ example : GHL2025.robinFunctionValue 3 7 = Coeff.symbol "f_3_7" := by native_dec
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_O_f p).unitary.proved = false := rfl
 
+-- O_f active gate matrix is the paper-image matrix skeleton.
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_f p).matrix =
+      GHL2025.functionOraclePaperMatrix p := rfl
+
+-- O_f paper-register source contract: clean workspace, system value 2.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperRegisters p 36).systemValue = 2 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperRegisters p 36).mfWorkspaceValue = 0 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperRegisters p 36).nonMFValue = 36 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperRegisters p 36).cleanWorkspace = true := by
+  native_decide
+
+-- The mf workspace starts immediately above the indicator bit.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperRegisters p ((3 <<< (GHL2025.robinIndicatorBitPosition p + 1)) + 4)).mfWorkspaceValue = 3 := by
+  native_decide
+
+-- O_f normalized clean-branch amplitude records f(x_i) times the reciprocal symbol for N_f.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.functionOracleNormalizedValue p 2 =
+      Coeff.mul (Coeff.symbol "f_3_2") (Coeff.symbol "N_f_inv") := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperImage p 36).cleanBranchSystemValue = 2 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperImage p 36).cleanBranchBasisIndex = 36 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperImage p 36).cleanBranchWorkspaceValue = 0 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperImage p 36).cleanBranchAmplitude =
+      Coeff.mul (Coeff.symbol "f_3_2") (Coeff.symbol "N_f_inv") := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperImage p 36).systemPreserved = true := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperImage p 36).cleanWorkspaceBranch = true := by
+  native_decide
+
+-- O_f paper-image bridge lemmas expose the definitional link to the extractor.
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).inputRegisters =
+      GHL2025.functionOraclePaperRegisters p j :=
+  GHL2025.functionOraclePaperImage_inputRegisters_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).cleanBranchBasisIndex =
+      (GHL2025.functionOraclePaperRegisters p j).nonMFValue :=
+  GHL2025.functionOraclePaperImage_cleanBranchBasisIndex_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).cleanBranchSystemValue =
+      (GHL2025.functionOraclePaperRegisters p j).systemValue :=
+  GHL2025.functionOraclePaperImage_cleanBranchSystemValue_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).cleanBranchWorkspaceValue = 0 :=
+  GHL2025.functionOraclePaperImage_cleanBranchWorkspaceValue_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).cleanBranchAmplitude =
+      GHL2025.functionOracleNormalizedValue p
+        (GHL2025.functionOraclePaperRegisters p j).systemValue :=
+  GHL2025.functionOraclePaperImage_cleanBranchAmplitude_eq p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).cleanWorkspaceBranch =
+      (GHL2025.functionOraclePaperRegisters p j).cleanWorkspace :=
+  GHL2025.functionOraclePaperImage_cleanWorkspaceBranch_eq p j
+
+-- O_f paper-image obligations remain unproved.
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).normalizedAmplitudeCorrect.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).orthogonalComponentCorrect.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).normalizerBound.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).unitaryCompletion.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOraclePaperImage p j).diagonalHelperIsolation.proved = false := rfl
+
+-- O_f paper matrix: the clean branch exposes f(x_i) / N_f.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperMatrix p)
+      ⟨36, by native_decide⟩ ⟨36, by native_decide⟩ =
+    Coeff.mul (Coeff.symbol "f_3_2") (Coeff.symbol "N_f_inv") := by
+  native_decide
+
+-- O_f active gate exposes the same clean-branch amplitude.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.oneTermRobinGate_O_f p).matrix
+      ⟨36, by native_decide⟩ ⟨36, by native_decide⟩ =
+    Coeff.mul (Coeff.symbol "f_3_2") (Coeff.symbol "N_f_inv") := by
+  native_decide
+
+-- O_f paper matrix: clean-workspace rows outside the branch have zero
+-- orthogonal-completion entry.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperMatrix p)
+      ⟨4, by native_decide⟩ ⟨36, by native_decide⟩ =
+    Coeff.rat 0 := by
+  native_decide
+
+-- O_f paper matrix: non-clean rows carry symbolic orthogonal-completion data.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperMatrix p)
+      ⟨772, by native_decide⟩ ⟨36, by native_decide⟩ =
+    Coeff.symbol "orth_f_entry_3_2_772_36" := by
+  native_decide
+
+-- O_f paper matrix: non-clean input columns stay symbolic even at the clean
+-- branch basis row for the same non-mf index.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOraclePaperMatrix p)
+      ⟨4, by native_decide⟩ ⟨772, by native_decide⟩ =
+    Coeff.symbol "orth_f_entry_3_2_4_772" := by
+  native_decide
+
+-- O_f paper matrix bridge lemmas pin the clean branch, clean-workspace zero
+-- rule, and non-clean input symbolic branch.
+example (p : GHL2025.OneTermRobinParameters)
+    (i j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hClean : (GHL2025.functionOraclePaperImage p j.val).cleanWorkspaceBranch = true)
+    (h : i.val = (GHL2025.functionOraclePaperImage p j.val).cleanBranchBasisIndex) :
+    GHL2025.functionOraclePaperMatrix p i j =
+      (GHL2025.functionOraclePaperImage p j.val).cleanBranchAmplitude :=
+  GHL2025.functionOraclePaperMatrix_cleanBranch_entry p i j hClean h
+
+example (p : GHL2025.OneTermRobinParameters)
+    (i j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hInputClean : (GHL2025.functionOraclePaperImage p j.val).cleanWorkspaceBranch = true)
+    (hBranch : i.val ≠ (GHL2025.functionOraclePaperImage p j.val).cleanBranchBasisIndex)
+    (hClean : (GHL2025.functionOraclePaperRegisters p i.val).mfWorkspaceValue = 0) :
+    GHL2025.functionOraclePaperMatrix p i j = Coeff.rat 0 :=
+  GHL2025.functionOraclePaperMatrix_cleanWorkspace_offBranch_zero p i j hInputClean hBranch hClean
+
+example (p : GHL2025.OneTermRobinParameters)
+    (i j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hInputNonClean : (GHL2025.functionOraclePaperImage p j.val).cleanWorkspaceBranch = false) :
+    GHL2025.functionOraclePaperMatrix p i j =
+      GHL2025.functionOracleOrthogonalEntry p
+        (GHL2025.functionOraclePaperImage p j.val).cleanBranchSystemValue i.val j.val :=
+  GHL2025.functionOraclePaperMatrix_nonCleanInput_entry p i j hInputNonClean
+
+-- O_f legacy data helper: every diagonal entry is the function value at the
+-- extracted system grid index, not sparse-amplitude data.
+example (p : GHL2025.OneTermRobinParameters)
+    (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))) :
+    (GHL2025.functionOracleMatrix p) j j =
+      GHL2025.robinFunctionValue p.n
+        ((j.val >>> 1) &&& ((1 <<< p.n) - 1)) := by
+  simp [GHL2025.functionOracleMatrix]
+
+-- O_f remains diagonal for all parameters.
+example (p : GHL2025.OneTermRobinParameters)
+    (i j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (h : i.val ≠ j.val) :
+    (GHL2025.functionOracleMatrix p) i j = Coeff.rat 0 := by
+  simp [GHL2025.functionOracleMatrix, h]
+
+-- O_f paper contract: normalizer is N_f and amplitude correctness is unproved.
+example (n : Nat) :
+    (Examples.RobinHeat.robinOracleComposition n).functionOracle.normalizerBound =
+      Coeff.symbol "N_f" := rfl
+
+example (n : Nat) :
+    (Examples.RobinHeat.robinOracleComposition n).functionOracle.amplitudeCorrect.proved =
+      false := rfl
+
 -- O_f placeholder match still holds with function value matrix
 example (p : GHL2025.OneTermRobinParameters) :
     gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
@@ -1143,7 +1763,113 @@ example :
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_O_DT_S p).unitary.proved = false := rfl
 
--- O_DT^S placeholder match still holds with honest diagonal matrix
+-- O_DT^S coefficient-normalizer relation is an explicit paper obligation.
+example :
+    GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation.proved = false := rfl
+
+-- O_DT^S Eq. (20) coefficient-normalizer contract pins the symbolic rotation
+-- entries to the sparse derivative coefficient and the N_D normalizer, without
+-- proving the analytic identities.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p 2 0).coefficient =
+      Coeff.rat ((-1 : Rat) / 12) := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p 2 0).normalizerND =
+      Coeff.symbol "N_D" := rfl
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p 2 0).ketZeroEntry =
+      Coeff.symbol "odts_cos_half_2_0" := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p 2 0).ketOneEntry =
+      Coeff.symbol "odts_sin_half_2_0" := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).coefficientRelation.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).complementRelation.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).twoByTwoUnitary.proved =
+      false := rfl
+
+-- O_DT^S active gate is rewired from the legacy diagonal helper to the
+-- faithful Lemma 3 controlled-rotation skeleton on ancilla bit 0.
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_DT_S p).matrix =
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p := rfl
+
+-- O_DT^S paper register extraction for the bulk column used by the lower packet.
+-- j=132 has indicator=1, system row=2, sparse index=0, ancilla=0.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTPaperRegisters p 132).indicatorBit = 1 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTPaperRegisters p 132).rowValue = 2 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTPaperRegisters p 132).sparseIndexValue = 0 := by
+  native_decide
+
+-- O_DT^S controlled rotation: bulk column j=132 has cos entry at row 132.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTRotationMatrix p)
+      ⟨132, by native_decide⟩ ⟨132, by native_decide⟩ =
+    Coeff.symbol "odts_cos_half_2_0" := by
+  native_decide
+
+-- O_DT^S controlled rotation: the same bulk column flips ancilla to row 133
+-- with the sine half-angle symbol.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTRotationMatrix p)
+      ⟨133, by native_decide⟩ ⟨132, by native_decide⟩ =
+    Coeff.symbol "odts_sin_half_2_0" := by
+  native_decide
+
+-- O_DT^S controlled rotation: indicator=0 columns remain identity.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTRotationMatrix p)
+      ⟨4, by native_decide⟩ ⟨4, by native_decide⟩ =
+    Coeff.rat 1 := by
+  native_decide
+
+-- O_DT^S controlled rotation: indicator=0 columns do not flip ancilla.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.sparseAmplitudeOracleDTRotationMatrix p)
+      ⟨5, by native_decide⟩ ⟨4, by native_decide⟩ =
+    Coeff.rat 0 := by
+  native_decide
+
+-- O_DT^S active gate exposes the same controlled-rotation entries.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.oneTermRobinGate_O_DT_S p).matrix
+      ⟨132, by native_decide⟩ ⟨132, by native_decide⟩ =
+    Coeff.symbol "odts_cos_half_2_0" := by
+  native_decide
+
+-- O_DT^S placeholder match still holds with the controlled-rotation matrix.
 example (p : GHL2025.OneTermRobinParameters) :
     gateMatricesMatchCircuit GHL2025.oneTermRobinCircuit (GHL2025.oneTermRobinGateMatrixPlaceholders p) = true :=
   GHL2025.oneTermRobinPlaceholdersMatch p
@@ -1230,6 +1956,128 @@ example :
     Coeff.rat 0 := by
   native_decide
 
+-- Ry_boundary source contract: register extraction pins the same fields used
+-- by the active rotation matrix.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationPaperRegisters p 16).indicatorBit = 0 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationPaperRegisters p 16).rowValue = 0 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationPaperRegisters p 16).sparseIndexValue = 1 := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationPaperRegisters p 132).indicatorBit = 1 := by
+  native_decide
+
+-- Ry_boundary angle-normalizer relation is explicit and unproved.
+example :
+    GHL2025.boundaryRotationAngleNormalizerObligation.proved = false := rfl
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationAngleNormalizerContract p 0 0).coefficient =
+      Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+        (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")) := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationAngleNormalizerContract p 0 0).normalizerND =
+      Coeff.symbol "N_D" := rfl
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationAngleNormalizerContract p 0 0).cosHalfEntry =
+      Coeff.symbol "boundary_cos_half_0_0" := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.boundaryRotationAngleNormalizerContract p 0 0).sinHalfEntry =
+      Coeff.symbol "boundary_sin_half_0_0" := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerContract p row sparse).boundaryControl.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerContract p row sparse).arccosArgumentRelation.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerContract p row sparse).cosHalfRelation.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerContract p row sparse).sinHalfRelation.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerContract p row sparse).twoByTwoUnitary.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerContract p row sparse).coefficient =
+      GHL2025.robinSparseAmplitudeValue p.n sparse row :=
+  GHL2025.boundaryRotationAngleNormalizerContract_coefficient p row sparse
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.boundaryRotationNormalizedCoefficient p 0 0 =
+      Coeff.mul
+        (Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+          (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")))
+        (Coeff.symbol "N_D_inv") := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient =
+      (GHL2025.boundaryRotationAngleNormalizerContract p row sparse).coefficient :=
+  GHL2025.boundaryRotationAngleNormalizerProofRoute_coefficient p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).arccosArgument =
+      GHL2025.boundaryRotationNormalizedCoefficient p row sparse :=
+  GHL2025.boundaryRotationAngleNormalizerProofRoute_arccosArgument p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).arccosArgumentFormula =
+      "D_j^(s) / N_D" := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficientDivision.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).realArccosSemantics.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).halfAngleSemantics.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).twoByTwoUnitary.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_Ry_boundary p).matrix =
+      GHL2025.boundaryRotationMatrix p := rfl
+
 -- Ry_boundary gate: unitary.proved = false
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_Ry_boundary p).unitary.proved = false := rfl
@@ -1287,6 +2135,35 @@ example (n : Nat) :
 -- Structural tests: signalIndex = 0
 example (n : Nat) :
     (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).signalIndex.val = 0 := rfl
+
+-- Block-projection normalizer audit: the default block claim reuses the same
+-- target object, so downstream proofs cannot silently swap the projection
+-- convention or normalizer.
+example (n : Nat) :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim n).target =
+      Examples.RobinHeat.oneTermRobinBlockExtractionTarget n := rfl
+
+example (n : Nat) :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim n).target.normalizer =
+      GHL2025.oneTermRobinNormalizer := rfl
+
+example (n : Nat) :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim n).target.signalIndex.val = 0 := rfl
+
+-- The block claim and the extracted target both keep correctness unproved.
+example (n : Nat) :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim n).blockCorrect.proved = false := rfl
+
+example (n : Nat) :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim n).target.blockProjection.proved = false := rfl
+
+example (n : Nat) :
+    (Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim n).target.blockCorrect.proved = false := rfl
+
+-- Upstream O_D^BS dagger cleanup is still an explicit paper-contract gap.
+example (n : Nat) :
+    (GHL2025.defaultBandedSparseAccessPaperContract
+      (Examples.RobinHeat.oneTermParameters n)).daggerCleanup.proved = false := rfl
 
 -- Entry-level nonzero checks for the full product are tracked as future proof
 -- obligations rather than compiled tests, because they force large symbolic

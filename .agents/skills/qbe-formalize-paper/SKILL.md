@@ -29,24 +29,29 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
    contract.  After lower-agent work, translate the actual Lean declarations,
    proof status, failed goals, and remaining obligations back into Markdown and
    LaTeX so the next upper/reviewer reflection can compare against the paper.
-5. Identify reusable proof blocks before writing Lean.  Use the lesson of
+5. Audit cited results.  If the paper uses a prior theorem, named subroutine,
+   standard lemma, or classical result, update `research-wiki/cited-results/`
+   with its source, exact statement used, Lean target, QBE status, and
+   dependent proof blocks.  Do not treat a cited result as proved unless a
+   build-tested Lean declaration exists.
+6. Identify reusable proof blocks before writing Lean.  Use the lesson of
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2: a hierarchical prover gains
    sample efficiency when repeated local arguments are represented as a proof
    DAG and solved once, rather than flattened into repeated tactic traces.
    In QBE, typical reusable blocks include dimension arithmetic, bit-slice
    extraction, block projection, gate-list alignment, sparse-index maps, and
    normalizer lemmas.
-6. Create a task:
+7. Create a task:
    `python3 tools/qbe.py new-task <id> --title "<paper construction>"`.
-7. Create a conversion window:
+8. Create a conversion window:
    `python3 tools/qbe.py conversion-window <id> --title "<paper construction>"`.
-8. Add a proof-DAG/reuse map to the conversion window: each block should have
+9. Add a proof-DAG/reuse map to the conversion window: each block should have
    an interface, dependencies, Lean declaration name, paper citation, proof
    status, and reuse sites.
-9. Add or update Lean definitions in the target file, preferring references to
+10. Add or update Lean definitions in the target file, preferring references to
    existing shared declarations over duplicate local definitions.
-10. Add at least one small test in `Tests/Basic.lean` when possible.
-11. Run `python3 tools/qbe.py check`.
+11. Add at least one small test in `Tests/Basic.lean` when possible.
+12. Run `python3 tools/qbe.py check`.
 
 ## Hierarchical Proof Policy
 
@@ -64,6 +69,8 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
 - Reviewer treats source-contract drift as blocking: a Lean proof of a
   simplified oracle is not progress on the faithful paper target until the
   register-level transformation matches the paper.
+- Reviewer treats missing cited-results memory as blocking when a proof uses
+  prior work or a "standard" fact that is not already formalized in QBE.
 - In Phase 1, reusable proof blocks are recorded when useful, but they should
   not displace completing the paper transcript and contract map.  Full library
   cleanup and generalized APIs wait for Phase 2.

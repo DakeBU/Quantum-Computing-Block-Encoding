@@ -53,6 +53,10 @@ writing advice in the local source file `Math Writing Tips.pdf`.
    or lemmas.  The motivation is the hierarchical-prover separation of
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2: a shared proof DAG can avoid
    repeatedly learning and rediscovering the same subproof.
+8. When a proof uses a prior result or a "standard" fact, cite the source and
+   link the corresponding `research-wiki/cited-results/` entry.  Do not write
+   as if the result is proved in QBE unless a build-tested Lean declaration is
+   named.
 
 ## Markdown Rules
 
@@ -93,6 +97,8 @@ in Lean.
 - Are all theorem statements short enough to read without scanning later text?
 - Does every nontrivial claim cite a paper equation, Lean declaration, or proof
   obligation?
+- Does every prior result or standard fact have a cited-results entry with an
+  honest Lean status?
 - Are any assumptions added beyond the paper or the stated Lean target?
 - Is there duplicated notation or duplicated definitions that should be
   referenced instead?

@@ -417,66 +417,67 @@ def defaultRobinWavefunctionDecomposition (p : OneTermRobinParameters) : RobinWa
 
 /-- Bundle of proof obligations for the one-term Robin block encoding.
 Each obligation references a specific claim in the paper and tracks whether
-it has been formally proved. None are proved in the current version. main.tex:1131-1136 --/
+it has been formally proved. None are proved in the current version.
+Guseynov-Huang-Liu 2025, one-term Robin theorem, arXiv:2506.20478. --/
 structure RobinProofObligations where
-  /-- U_indic is unitary. main.tex:1088-1099 --/
+  /-- U_indic is unitary and implements the bulk-window predicate. --/
   indicatorUnitary : ObligationRecord := {
     description := "U_indic(K1,K2) implements the bulk/boundary indicator correctly"
-    source := "main.tex:1088-1099"
+    source := "Guseynov-Huang-Liu 2025, U_indic definition and Fig. 1-term Robin, arXiv:2506.20478"
     proved := false
   }
-  /-- Sparse-amplitude oracle O_D^S is unitary and encodes D^(s)/N_D. main.tex:822-849 --/
+  /-- Sparse-amplitude oracle O_D^S is unitary and encodes D^(s)/N_D. --/
   sparseAmplitudeOracleCorrect : ObligationRecord := {
-    description := "O_D^S prepares amplitudes D^(s)/N_D for boundary rows"
-    source := "main.tex:822-849"
+    description := "O_DT^S prepares the D^T sparse-amplitude branch D_j^(s)/N_D from Lemma 3, Eq. (20)"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
     proved := false
   }
-  /-- Banded-sparse-access oracle O_D^BS is unitary and maps sparse to normal indexing. main.tex:784-801 --/
+  /-- Banded-sparse-access oracle O_D^BS is unitary and writes r_si. --/
   bandedSparseAccessCorrect : ObligationRecord := {
-    description := "O_D^BS maps (r_si, i) to sparse index register correctly"
-    source := "main.tex:784-801"
+    description := "O_D^BS maps |0>^(n-l)|s>^l|i>^n to |r_si>^n|i>^n and supports dagger cleanup"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478"
     proved := false
   }
-  /-- Function oracle O_f is unitary and block-encodes f(x_j)/N_f. main.tex:870-910 --/
+  /-- Function oracle O_f is unitary and block-encodes f(x_j)/N_f. --/
   functionOracleCorrect : ObligationRecord := {
     description := "O_f block-encodes the piecewise polynomial f(x) discretized on the grid"
-    source := "main.tex:870-910"
+    source := "Guseynov-Huang-Liu 2025, Lemma 4 and Fig. 1-term Robin, arXiv:2506.20478"
     proved := false
   }
-  /-- Controlled R_y angles encode boundary D_j^(s)/N_D correctly. main.tex:1115-1120 --/
+  /-- Controlled R_y angles encode boundary D_j^(s)/N_D correctly. --/
   controlledRyCorrect : ObligationRecord := {
     description := "R_y rotation angles theta_j^s = arccos(D_j^(s)/N_D) are correct"
-    source := "main.tex:1115-1120"
+    source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and boundary Ry angle formula, arXiv:2506.20478"
     proved := false
   }
-  /-- Full circuit U_Ak^(1) is unitary. Theorem:1 term robin (main.tex:1131-1136) --/
+  /-- Full circuit U_Ak^(1) is unitary. --/
   circuitUnitary : ObligationRecord := {
     description := "The full one-term Robin circuit U_Ak^(1) is unitary"
-    source := "main.tex:1131-1136, theorem:1 term robin"
+    source := "Guseynov-Huang-Liu 2025, one-term Robin theorem, arXiv:2506.20478"
     proved := false
   }
-  /-- Block extraction: (⟨0|⊗I) U (|0⟩⊗I) = A_k / (N_D * N_f * kappa). main.tex:1131-1136 --/
+  /-- Block extraction: (⟨0|⊗I) U (|0⟩⊗I) = A_k / (N_D * N_f * kappa). --/
   blockExtraction : ObligationRecord := {
     description := "Block extraction yields A_k / alpha where alpha = N_D * N_f * kappa"
-    source := "main.tex:1131-1136, theorem:1 term robin"
+    source := "Guseynov-Huang-Liu 2025, one-term Robin theorem, arXiv:2506.20478"
     proved := false
   }
-  /-- Resource bound: O(sum Q_g n log n + kappa n) gates, 2n pure ancillas. main.tex:1131-1136 --/
+  /-- Resource bound: O(sum Q_g n log n + kappa n) gates, 2n pure ancillas. --/
   resourceBound : ObligationRecord := {
     description := "Gate count O(sum_g Q_g n log n + kappa n), pure ancillas 2n"
-    source := "main.tex:1131-1136"
+    source := "Guseynov-Huang-Liu 2025, one-term Robin theorem resource claim, arXiv:2506.20478"
     proved := false
   }
   /-- Pure ancilla cleanup: 2n ancillas returned to |0⟩. figure:1_term_ROBIN caption --/
   ancillaCleanup : ObligationRecord := {
     description := "All 2n pure ancilla qubits are returned to |0⟩ state"
-    source := "figure:1_term_ROBIN caption, main.tex:1149"
+    source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin caption, arXiv:2506.20478"
     proved := false
   }
-  /-- Ghost-point elimination yields correct Robin boundary row coefficients. main.tex:989-1010 --/
+  /-- Ghost-point elimination yields correct Robin boundary row coefficients. --/
   ghostPointElimination : ObligationRecord := {
     description := "Ghost-point elimination via Robin boundary relation produces correct boundary rows"
-    source := "main.tex:989-1010"
+    source := "Guseynov-Huang-Liu 2025, Robin boundary-row derivation, arXiv:2506.20478"
     proved := false
   }
 deriving Repr, DecidableEq
@@ -516,9 +517,13 @@ structure BandedSparseAccessPaperContract where
   inputKet : String
   outputKet : String
   imageFormula : String
+  cleanInputDomain : ObligationRecord
   widthCompatible : ObligationRecord
+  addressRange : ObligationRecord
+  noSpill : ObligationRecord
   forwardCorrect : ObligationRecord
   daggerCleanup : ObligationRecord
+  unitaryExtension : ObligationRecord
 deriving Repr, DecidableEq
 
 /--
@@ -538,9 +543,24 @@ def defaultBandedSparseAccessPaperContract
   inputKet := "|0>^(n-l)|s>^l|i>^n"
   outputKet := "|r_si>^n|i>^n"
   imageFormula := "r_si = r_s0 + i mod 2^n"
+  cleanInputDomain := {
+    description := "Lemma 1 source equation applies to columns whose padded zero register is |0>^(n-l)"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
   widthCompatible := {
     description := "padded zero register plus sparse-index register has width n"
     source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  addressRange := {
+    description := "the written address r_si is an n-bit value before it is placed in the O_D^BS register"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  noSpill := {
+    description := "bandedSparseAccessPaperImage changes only the n-bit O_D^BS address register and does not spill into indicator or m_f bits"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478"
     proved := false
   }
   forwardCorrect := {
@@ -551,6 +571,11 @@ def defaultBandedSparseAccessPaperContract
   daggerCleanup := {
     description := "(O_D^BS)^dagger cleans the padded sparse-index register after SWAP"
     source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  unitaryExtension := {
+    description := "extend the Lemma 1 clean-input image to a full unitary on non-clean padded-register columns"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
     proved := false
   }
 
@@ -725,6 +750,711 @@ def robinSparseColumnMap (n s i : Nat) : Nat :=
   else i
 
 /--
+Proof-DAG block for the Lemma 1 address-range route.
+
+For the fourth-order Robin stencil, if the input row is an `n`-bit value and
+`n >= 2`, then the executable one-term column map also returns an `n`-bit
+value.  The paper-level contract still records `addressRange.proved := false`
+because the parameter-family side condition is not yet part of
+`OneTermRobinParameters`.
+-/
+theorem robinSparseColumnMap_lt_gridSize_of_row_lt
+    {n s i : Nat} (hn : 2 ≤ n) (hi : i < gridSize n) :
+    robinSparseColumnMap n s i < gridSize n := by
+  have hpow : 2 ^ 2 ≤ 2 ^ n :=
+    Nat.pow_le_pow_right (by decide : 0 < 2) hn
+  have hN4 : 4 ≤ gridSize n := by
+    simpa [gridSize] using hpow
+  unfold robinSparseColumnMap
+  by_cases hbulk : 2 ≤ i ∧ i ≤ gridSize n - 3
+  · simp [hbulk]
+    by_cases hs : s < 5
+    · simp [hs]
+      omega
+    · simp [hs, hi]
+  · simp [hbulk]
+    by_cases hi0 : i = 0
+    · simp [hi0]
+      by_cases hs : s < 3
+      · simp [hs]
+        omega
+      · simp [hs]
+        omega
+    · simp [hi0]
+      by_cases hi1 : i = 1
+      · simp [hi1]
+        by_cases hs : s < 4
+        · simp [hs]
+          omega
+        · simp [hs]
+          omega
+      · simp [hi1]
+        by_cases hiN2 : i = gridSize n - 2
+        · simp [hiN2]
+          by_cases hs : s < 4
+          · simp [hs]
+            omega
+          · simp [hs]
+            omega
+        · simp [hiN2]
+          by_cases hiN1 : i = gridSize n - 1
+          · simp [hiN1]
+            by_cases hs : s < 3
+            · simp [hs]
+              omega
+            · simp [hs]
+              omega
+          · simp [hiN1, hi]
+
+/--
+Register values used by the faithful Lemma 1 `O_D^BS` contract.
+
+The current compound-index convention stores the row register in bits
+`[1, 1+n)` and the paper's padded sparse-address register in bits
+`[1+n, 1+2n)`.  Inside that address block, the low `n - clog2 kappa` bits are
+the padded-zero workspace and the remaining bits encode the sparse index `s`.
+Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478. -/
+structure BandedSparseAccessPaperRegisters where
+  odRegisterValue : Nat
+  paddedZeroValue : Nat
+  sparseIndexValue : Nat
+  rowValue : Nat
+deriving Repr, DecidableEq
+
+/--
+Extract the Lemma 1 padded sparse-address and row registers from a compound
+basis index.  This is a source-contract skeleton only; it does not alter the
+interim `bandedSparseAccessMatrix` helper and does not prove unitarity.
+-/
+def bandedSparseAccessPaperRegisters (p : OneTermRobinParameters) (j : Nat) :
+    BandedSparseAccessPaperRegisters :=
+  let n := p.n
+  let κbits := clog2 p.kappa
+  let odPure := n - κbits
+  let nMask := (1 <<< n) - 1
+  let zeroMask := (1 <<< odPure) - 1
+  let sparseMask := (1 <<< κbits) - 1
+  let odValue := (j >>> (1 + n)) &&& nMask
+  {
+    odRegisterValue := odValue
+    paddedZeroValue := odValue &&& zeroMask
+    sparseIndexValue := (odValue >>> odPure) &&& sparseMask
+    rowValue := (j >>> 1) &&& nMask
+  }
+
+/-- The row field extracted for Lemma 1 is always an `n`-bit row value. -/
+theorem bandedSparseAccessPaperRegisters_row_lt_gridSize
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperRegisters p j).rowValue < gridSize p.n := by
+  simp [bandedSparseAccessPaperRegisters, gridSize]
+  rw [Nat.one_shiftLeft]
+  apply Nat.and_lt_two_pow
+  exact Nat.sub_lt (Nat.pow_pos (by decide : 0 < 2) : 0 < 2 ^ p.n) (by decide)
+
+/--
+Paper address value `r_si` for the one-term Robin sparse-access oracle.
+
+For the Robin stencil this reuses `robinSparseColumnMap` as the one-term
+instance of the paper's banded-sparse matrix index `r_si`.  The active gate
+matrix uses this paper-image skeleton, while the correctness obligations remain
+undischarged.
+-/
+def bandedSparseAccessPaperAddress (p : OneTermRobinParameters) (j : Nat) : Nat :=
+  let regs := bandedSparseAccessPaperRegisters p j
+  robinSparseColumnMap p.n regs.sparseIndexValue regs.rowValue
+
+/-- Executable check that the paper address `r_si` fits in the n-bit address register. -/
+def bandedSparseAccessPaperAddressInRange (p : OneTermRobinParameters) (j : Nat) : Bool :=
+  decide (bandedSparseAccessPaperAddress p j < (1 <<< p.n))
+
+/-- Boolean form of the executable `O_D^BS` address-range check. -/
+theorem bandedSparseAccessPaperAddressInRange_iff
+    (p : OneTermRobinParameters) (j : Nat) :
+    bandedSparseAccessPaperAddressInRange p j = true ↔
+      bandedSparseAccessPaperAddress p j < (1 <<< p.n) := by
+  unfold bandedSparseAccessPaperAddressInRange
+  exact decide_eq_true_iff
+
+/--
+The executable paper address is in range for the fourth-order grid regime
+`2 <= n`.  This is a reusable arithmetic block; it does not promote the
+paper-level semantic obligation.
+-/
+theorem bandedSparseAccessPaperAddress_lt_gridSize_of_two_le
+    (p : OneTermRobinParameters) (j : Nat) (hn : 2 ≤ p.n) :
+    bandedSparseAccessPaperAddress p j < gridSize p.n := by
+  unfold bandedSparseAccessPaperAddress
+  exact robinSparseColumnMap_lt_gridSize_of_row_lt hn
+    (bandedSparseAccessPaperRegisters_row_lt_gridSize p j)
+
+/--
+The executable address-range Boolean evaluates to true for the fourth-order
+grid regime `2 <= n`.  The contract flag remains false until the paper
+parameter family records this side condition.
+-/
+theorem bandedSparseAccessPaperAddressInRange_eq_true_of_two_le
+    (p : OneTermRobinParameters) (j : Nat) (hn : 2 ≤ p.n) :
+    bandedSparseAccessPaperAddressInRange p j = true := by
+  unfold bandedSparseAccessPaperAddressInRange
+  have h := bandedSparseAccessPaperAddress_lt_gridSize_of_two_le p j hn
+  simpa [gridSize, Nat.one_shiftLeft] using h
+
+/--
+Executable Lemma 1 image skeleton for `O_D^BS`.
+
+It preserves the row/system register and replaces the padded sparse-address
+register by `r_si`.  Correctness, unitarity, and dagger cleanup remain recorded
+in `defaultBandedSparseAccessPaperContract p` with `proved := false`.
+-/
+def bandedSparseAccessPaperImage (p : OneTermRobinParameters) (j : Nat) : Nat :=
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  let highTail := j / highBase
+  let address := bandedSparseAccessPaperAddress p j
+  lowPrefix + address * lowBase + highTail * highBase
+
+/--
+Bit-slice extraction as arithmetic division followed by an `n`-bit remainder.
+This keeps later register-splice proofs in ordinary arithmetic form.
+-/
+theorem bandedSparseAccessPaperRegisterValue_eq_mod
+    (x offset n : Nat) :
+    ((x >>> offset) &&& ((1 <<< n) - 1)) =
+      (x / 2 ^ offset) % 2 ^ n := by
+  apply Nat.eq_of_testBit_eq
+  intro i
+  simp only [Nat.testBit_and, Nat.testBit_shiftRight, Nat.one_shiftLeft,
+    Nat.testBit_two_pow_sub_one, Nat.testBit_mod_two_pow]
+  by_cases hi : i < n
+  · simp [hi]
+    rw [Nat.add_comm offset i, Nat.testBit_add]
+  · simp [hi]
+
+/-- The O_D^BS address block ends before the full one-term Robin basis width. -/
+theorem bandedSparseAccessPaperHighWidth_le_totalQubits
+    (p : OneTermRobinParameters) :
+    1 + 2 * p.n ≤ oneTermRobinTotalQubits p := by
+  simp only [oneTermRobinTotalQubits, RobinRegisterPartition.totalQubits,
+    defaultRobinRegisterPartition]
+  omega
+
+/--
+The low block of the paper image fits below the high-tail boundary whenever the
+written O_D^BS address is an n-bit value.
+-/
+theorem bandedSparseAccessPaperImage_lowBlock_lt_highBase_of_address_lt
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    let lowWidth := 1 + p.n
+    let highWidth := 1 + 2 * p.n
+    let lowBase := 2 ^ lowWidth
+    let highBase := 2 ^ highWidth
+    let lowPrefix := j % lowBase
+    let address := bandedSparseAccessPaperAddress p j
+    lowPrefix + address * lowBase < highBase := by
+  rw [Nat.one_shiftLeft] at haddr
+  dsimp
+  have hlowPos : 0 < 2 ^ (1 + p.n) :=
+    Nat.pow_pos (by decide : 0 < 2)
+  have hlow : j % 2 ^ (1 + p.n) < 2 ^ (1 + p.n) :=
+    Nat.mod_lt j hlowPos
+  have hbase : 2 ^ (1 + 2 * p.n) = 2 ^ (1 + p.n) * 2 ^ p.n := by
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  rw [hbase]
+  have hlt1 :
+      j % 2 ^ (1 + p.n) +
+          bandedSparseAccessPaperAddress p j * 2 ^ (1 + p.n) <
+        2 ^ (1 + p.n) +
+          bandedSparseAccessPaperAddress p j * 2 ^ (1 + p.n) := by
+    exact Nat.add_lt_add_right hlow
+      (bandedSparseAccessPaperAddress p j * 2 ^ (1 + p.n))
+  have hsucc : bandedSparseAccessPaperAddress p j + 1 ≤ 2 ^ p.n :=
+    Nat.succ_le_of_lt haddr
+  have hle :
+      (bandedSparseAccessPaperAddress p j + 1) * 2 ^ (1 + p.n) ≤
+        2 ^ p.n * 2 ^ (1 + p.n) := by
+    exact Nat.mul_le_mul_right (2 ^ (1 + p.n)) hsucc
+  have heq :
+      2 ^ (1 + p.n) +
+          bandedSparseAccessPaperAddress p j * 2 ^ (1 + p.n) =
+        (bandedSparseAccessPaperAddress p j + 1) * 2 ^ (1 + p.n) := by
+    rw [Nat.add_comm]
+    exact (Nat.succ_mul (bandedSparseAccessPaperAddress p j)
+      (2 ^ (1 + p.n))).symm
+  rw [heq] at hlt1
+  rw [Nat.mul_comm (2 ^ (1 + p.n)) (2 ^ p.n)]
+  exact Nat.lt_of_lt_of_le hlt1 hle
+
+/-- The paper image preserves the low ancilla-and-row block modulo its width. -/
+theorem bandedSparseAccessPaperImage_mod_lowBase
+    (p : OneTermRobinParameters) (j : Nat) :
+    bandedSparseAccessPaperImage p j % 2 ^ (1 + p.n) =
+      j % 2 ^ (1 + p.n) := by
+  unfold bandedSparseAccessPaperImage
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  let highTail := j / highBase
+  let address := bandedSparseAccessPaperAddress p j
+  have hbase : highBase = lowBase * 2 ^ p.n := by
+    dsimp [highBase, lowBase, highWidth, lowWidth]
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  have hlow : lowPrefix % lowBase = lowPrefix := by
+    dsimp [lowPrefix]
+    exact Nat.mod_eq_of_lt (Nat.mod_lt j (Nat.pow_pos (by decide : 0 < 2)))
+  calc
+    (lowPrefix + address * lowBase + highTail * highBase) % lowBase
+        = (lowPrefix + lowBase * address + highTail * highBase) % lowBase := by
+          rw [Nat.mul_comm address lowBase]
+    _ = (lowPrefix + lowBase * address + highTail * (lowBase * 2 ^ p.n)) % lowBase := by
+          rw [hbase]
+    _ = (lowPrefix + lowBase * (address + highTail * 2 ^ p.n)) % lowBase := by
+          congr 1
+          rw [Nat.mul_add]
+          ac_rfl
+    _ = lowPrefix % lowBase := by
+          rw [Nat.add_mul_mod_self_left]
+    _ = lowPrefix := hlow
+    _ = j % 2 ^ (1 + p.n) := by rfl
+
+/--
+After shifting past the low block, the paper image exposes the written address
+modulo the n-bit O_D^BS register.
+-/
+theorem bandedSparseAccessPaperImage_div_lowBase_mod_eq
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    bandedSparseAccessPaperImage p j / 2 ^ (1 + p.n) % 2 ^ p.n =
+      bandedSparseAccessPaperAddress p j := by
+  unfold bandedSparseAccessPaperImage
+  rw [Nat.one_shiftLeft] at haddr
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  let highTail := j / highBase
+  let address := bandedSparseAccessPaperAddress p j
+  have hlowPos : 0 < lowBase := by
+    dsimp [lowBase, lowWidth]
+    exact Nat.pow_pos (by decide : 0 < 2)
+  have hlow : lowPrefix < lowBase := by
+    dsimp [lowPrefix]
+    exact Nat.mod_lt j hlowPos
+  have hbase : highBase = lowBase * 2 ^ p.n := by
+    dsimp [highBase, lowBase, highWidth, lowWidth]
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  have himage : lowPrefix + address * lowBase + highTail * highBase =
+      lowPrefix + lowBase * (address + highTail * 2 ^ p.n) := by
+    rw [hbase]
+    rw [Nat.mul_add]
+    ac_rfl
+  have hdiv :
+      (lowPrefix + lowBase * (address + highTail * 2 ^ p.n)) / lowBase =
+        address + highTail * 2 ^ p.n := by
+    rw [Nat.add_mul_div_left _ _ hlowPos]
+    rw [Nat.div_eq_of_lt hlow]
+    simp
+  have hlowWidth : 2 ^ (1 + p.n) = lowBase := by rfl
+  rw [hlowWidth]
+  rw [himage]
+  rw [hdiv]
+  rw [Nat.add_mul_mod_self_right]
+  exact Nat.mod_eq_of_lt haddr
+
+/--
+The executable paper image remains inside the full finite basis when the input
+column is in range and the written O_D^BS address is n-bit.
+-/
+theorem bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt
+    (p : OneTermRobinParameters) (j : Nat)
+    (hj : j < qubitDim (oneTermRobinTotalQubits p))
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    bandedSparseAccessPaperImage p j < qubitDim (oneTermRobinTotalQubits p) := by
+  simp only [qubitDim, gridSize] at hj ⊢
+  unfold bandedSparseAccessPaperImage
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  let highTail := j / highBase
+  let address := bandedSparseAccessPaperAddress p j
+  have hsmall :
+      lowPrefix + address * lowBase < highBase :=
+    bandedSparseAccessPaperImage_lowBlock_lt_highBase_of_address_lt p j haddr
+  have hwidth : highWidth ≤ oneTermRobinTotalQubits p := by
+    dsimp [highWidth]
+    exact bandedSparseAccessPaperHighWidth_le_totalQubits p
+  have hpowTotal : highBase * 2 ^ (oneTermRobinTotalQubits p - highWidth) =
+      2 ^ oneTermRobinTotalQubits p := by
+    dsimp [highBase]
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  have htail_lt : highTail < 2 ^ (oneTermRobinTotalQubits p - highWidth) := by
+    dsimp [highTail]
+    apply Nat.div_lt_of_lt_mul
+    rwa [hpowTotal]
+  have htail_succ : highTail + 1 ≤ 2 ^ (oneTermRobinTotalQubits p - highWidth) :=
+    Nat.succ_le_of_lt htail_lt
+  have hblock :
+      lowPrefix + address * lowBase + highTail * highBase <
+        highBase * (highTail + 1) := by
+    rw [Nat.mul_succ, Nat.mul_comm highBase highTail]
+    omega
+  have htotal : highBase * (highTail + 1) ≤ 2 ^ oneTermRobinTotalQubits p := by
+    have hmul := Nat.mul_le_mul_left highBase htail_succ
+    rwa [hpowTotal] at hmul
+  exact Nat.lt_of_lt_of_le hblock htotal
+
+/--
+Finite-basis index for the executable Lemma 1 `O_D^BS` paper image.
+
+This constructor is available only when the source column is already in the
+full finite basis and the written `O_D^BS` address is n-bit.  It is a bridge
+from the arithmetic image function to matrix entries, not a unitarity proof.
+-/
+def bandedSparseAccessPaperImageFin
+    (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (haddr : bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    Fin (qubitDim (oneTermRobinTotalQubits p)) :=
+  ⟨bandedSparseAccessPaperImage p j.val,
+    bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt p j.val j.2 haddr⟩
+
+@[simp] theorem bandedSparseAccessPaperImageFin_val
+    (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (haddr : bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    (bandedSparseAccessPaperImageFin p j haddr).val =
+      bandedSparseAccessPaperImage p j.val := rfl
+
+/-- Register extraction from the paper image preserves the row register. -/
+theorem bandedSparseAccessPaperImage_rowValue_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperRegisters p
+      (bandedSparseAccessPaperImage p j)).rowValue =
+      (bandedSparseAccessPaperRegisters p j).rowValue := by
+  unfold bandedSparseAccessPaperRegisters
+  simp only []
+  rw [bandedSparseAccessPaperRegisterValue_eq_mod,
+    bandedSparseAccessPaperRegisterValue_eq_mod]
+  have hpow : 2 * 2 ^ p.n = 2 ^ (1 + p.n) := by
+    rw [show 1 + p.n = p.n + 1 by omega, Nat.pow_succ]
+    omega
+  have hmod := bandedSparseAccessPaperImage_mod_lowBase p j
+  rw [← hpow] at hmod
+  rw [← Nat.mod_mul_right_div_self (bandedSparseAccessPaperImage p j) 2 (2 ^ p.n)]
+  rw [← Nat.mod_mul_right_div_self j 2 (2 ^ p.n)]
+  rw [hmod]
+
+/-- Register extraction from the paper image reports the written O_D^BS address. -/
+theorem bandedSparseAccessPaperImage_odRegisterValue_eq
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (bandedSparseAccessPaperRegisters p
+      (bandedSparseAccessPaperImage p j)).odRegisterValue =
+      bandedSparseAccessPaperAddress p j := by
+  unfold bandedSparseAccessPaperRegisters
+  simp only []
+  rw [bandedSparseAccessPaperRegisterValue_eq_mod]
+  exact bandedSparseAccessPaperImage_div_lowBase_mod_eq p j haddr
+
+/-- High signal/workspace bits above the n-bit `O_D^BS` address register. -/
+def bandedSparseAccessPaperHighTail (p : OneTermRobinParameters) (j : Nat) : Nat :=
+  j >>> (1 + 2 * p.n)
+
+/--
+The arithmetic register-splice form of `bandedSparseAccessPaperImage` preserves
+all bits above the `O_D^BS` address register when the written address is n-bit.
+
+This is a proof-DAG block for Lemma 1 register safety.  It does not promote the
+paper-level `noSpill` obligation because the parameter-family side conditions
+are still tracked by `defaultBandedSparseAccessPaperContract`.
+-/
+theorem bandedSparseAccessPaperImage_highTail_eq_of_address_lt
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    bandedSparseAccessPaperHighTail p (bandedSparseAccessPaperImage p j) =
+      bandedSparseAccessPaperHighTail p j := by
+  unfold bandedSparseAccessPaperHighTail
+  rw [Nat.shiftRight_eq_div_pow, Nat.shiftRight_eq_div_pow]
+  unfold bandedSparseAccessPaperImage
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  let highTail := j / highBase
+  let address := bandedSparseAccessPaperAddress p j
+  have hhighPos : 0 < highBase := by
+    dsimp [highBase, highWidth]
+    exact Nat.pow_pos (by decide : 0 < 2)
+  have hsmall : lowPrefix + address * lowBase < highBase :=
+    bandedSparseAccessPaperImage_lowBlock_lt_highBase_of_address_lt p j haddr
+  have hdivsmall : (lowPrefix + address * lowBase) / highBase = 0 :=
+    Nat.div_eq_of_lt hsmall
+  calc
+    (lowPrefix + address * lowBase + highTail * highBase) / highBase
+        = (lowPrefix + address * lowBase + highBase * highTail) / highBase := by
+          rw [Nat.mul_comm highTail highBase]
+    _ = (lowPrefix + address * lowBase) / highBase + highTail := by
+          rw [Nat.add_mul_div_left _ _ hhighPos]
+    _ = highTail := by simp [hdivsmall]
+    _ = j / highBase := rfl
+
+/--
+Executable check that the paper-image skeleton does not write past the n-bit
+`O_D^BS` address register into the indicator or `m_f` bits above it.
+-/
+def bandedSparseAccessPaperImageNoSpill (p : OneTermRobinParameters) (j : Nat) : Bool :=
+  bandedSparseAccessPaperHighTail p (bandedSparseAccessPaperImage p j) ==
+    bandedSparseAccessPaperHighTail p j
+
+/--
+Boolean form of the executable high-tail no-spill check.
+
+The high-tail theorem above discharges this Boolean under an n-bit written
+address, while the paper-level semantic obligation remains a separate flag.
+-/
+theorem bandedSparseAccessPaperImageNoSpill_iff
+    (p : OneTermRobinParameters) (j : Nat) :
+    bandedSparseAccessPaperImageNoSpill p j = true ↔
+      bandedSparseAccessPaperHighTail p (bandedSparseAccessPaperImage p j) =
+        bandedSparseAccessPaperHighTail p j := by
+  unfold bandedSparseAccessPaperImageNoSpill
+  exact beq_iff_eq
+
+/-- The no-spill Boolean follows from the executable n-bit address bound. -/
+theorem bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    bandedSparseAccessPaperImageNoSpill p j = true := by
+  rw [bandedSparseAccessPaperImageNoSpill_iff]
+  exact bandedSparseAccessPaperImage_highTail_eq_of_address_lt p j haddr
+
+/--
+The no-spill Boolean is true in the fourth-order grid regime `2 <= n`, reusing
+the address-range proof-DAG block.  Semantic obligation flags remain false.
+-/
+theorem bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le
+    (p : OneTermRobinParameters) (j : Nat) (hn : 2 ≤ p.n) :
+    bandedSparseAccessPaperImageNoSpill p j = true := by
+  apply bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt
+  have h := bandedSparseAccessPaperAddress_lt_gridSize_of_two_le p j hn
+  simpa [gridSize, Nat.one_shiftLeft] using h
+
+/--
+Clean-domain predicate for the Lemma 1 `O_D^BS` source equation.
+
+The paper specifies columns whose padded zero register is `|0>^(n-l)`.
+Columns outside this domain still need a separate unitary-completion proof;
+the current paper-image matrix is only a Phase 1 skeleton for that full-space
+extension.
+-/
+def bandedSparseAccessPaperCleanInput (p : OneTermRobinParameters) (j : Nat) : Bool :=
+  (bandedSparseAccessPaperRegisters p j).paddedZeroValue == 0
+
+/--
+Boolean form of the Lemma 1 clean-input domain.
+
+The executable predicate is exactly the statement that the padded part of the
+`O_D^BS` sparse-address register is zero.  This only classifies columns; it
+does not prove the clean-input source equation or a unitary extension.
+-/
+theorem bandedSparseAccessPaperCleanInput_iff
+    (p : OneTermRobinParameters) (j : Nat) :
+    bandedSparseAccessPaperCleanInput p j = true ↔
+      (bandedSparseAccessPaperRegisters p j).paddedZeroValue = 0 := by
+  unfold bandedSparseAccessPaperCleanInput
+  exact beq_iff_eq
+
+/--
+Per-column audit record for the executable Lemma 1 paper image.
+
+This records the source-domain flag, the image index, and the two register
+properties expected from the paper equation.  The Boolean fields are executable
+checks for the current skeleton; they are not promoted to theorem-level
+correctness.  The obligation fields keep the clean-domain and full-unitary
+extension gaps explicit.
+-/
+structure BandedSparseAccessPaperColumnContract where
+  sourceAnchor : String
+  inputRegisters : BandedSparseAccessPaperRegisters
+  cleanInput : Bool
+  imageIndex : Nat
+  imageRegisters : BandedSparseAccessPaperRegisters
+  rowPreserved : Bool
+  addressWritten : Bool
+  addressInRange : Bool
+  imageNoSpill : Bool
+  cleanInputDomain : ObligationRecord
+  addressRange : ObligationRecord
+  noSpill : ObligationRecord
+  unitaryExtension : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default per-column contract for the `O_D^BS` paper image skeleton.
+-/
+def bandedSparseAccessPaperColumnContract
+    (p : OneTermRobinParameters) (j : Nat) :
+    BandedSparseAccessPaperColumnContract :=
+  let regs := bandedSparseAccessPaperRegisters p j
+  let image := bandedSparseAccessPaperImage p j
+  let imageRegs := bandedSparseAccessPaperRegisters p image
+  let paperContract := defaultBandedSparseAccessPaperContract p
+  {
+    sourceAnchor := paperContract.sourceAnchor
+    inputRegisters := regs
+    cleanInput := bandedSparseAccessPaperCleanInput p j
+    imageIndex := image
+    imageRegisters := imageRegs
+    rowPreserved := imageRegs.rowValue == regs.rowValue
+    addressWritten := imageRegs.odRegisterValue == bandedSparseAccessPaperAddress p j
+    addressInRange := bandedSparseAccessPaperAddressInRange p j
+    imageNoSpill := bandedSparseAccessPaperImageNoSpill p j
+    cleanInputDomain := paperContract.cleanInputDomain
+    addressRange := paperContract.addressRange
+    noSpill := paperContract.noSpill
+    unitaryExtension := paperContract.unitaryExtension
+  }
+
+/-- The per-column contract uses the shared Lemma 1 register extractor. -/
+theorem bandedSparseAccessPaperColumnContract_inputRegisters_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperColumnContract p j).inputRegisters =
+      bandedSparseAccessPaperRegisters p j := rfl
+
+/-- The per-column clean-domain flag is the executable padded-zero predicate. -/
+theorem bandedSparseAccessPaperColumnContract_cleanInput_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperColumnContract p j).cleanInput =
+      bandedSparseAccessPaperCleanInput p j := rfl
+
+/--
+The per-column clean-domain flag is true exactly on Lemma 1 clean columns.
+
+Columns with a nonzero padded register are still covered only by the explicit
+unitary-extension obligation.
+-/
+theorem bandedSparseAccessPaperColumnContract_cleanInput_iff
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperColumnContract p j).cleanInput = true ↔
+      (bandedSparseAccessPaperRegisters p j).paddedZeroValue = 0 := by
+  rw [bandedSparseAccessPaperColumnContract_cleanInput_eq]
+  exact bandedSparseAccessPaperCleanInput_iff p j
+
+/--
+The per-column audit keeps the full-space unitary extension as an open
+obligation for every column, including non-clean padded-register inputs.
+-/
+theorem bandedSparseAccessPaperColumnContract_unitaryExtension_proved_eq_false
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperColumnContract p j).unitaryExtension.proved = false := rfl
+
+/-- The per-column contract records the same image index as the paper-image skeleton. -/
+theorem bandedSparseAccessPaperColumnContract_imageIndex_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperColumnContract p j).imageIndex =
+      bandedSparseAccessPaperImage p j := rfl
+
+/-- The per-column contract records the executable n-bit address range check. -/
+theorem bandedSparseAccessPaperColumnContract_addressInRange_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperColumnContract p j).addressInRange =
+      bandedSparseAccessPaperAddressInRange p j := rfl
+
+/-- The per-column contract records the executable high-bit no-spill check. -/
+theorem bandedSparseAccessPaperColumnContract_imageNoSpill_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperColumnContract p j).imageNoSpill =
+      bandedSparseAccessPaperImageNoSpill p j := rfl
+
+/--
+Matrix entries for the faithful Lemma 1 `O_D^BS` paper-image skeleton.
+
+The column `j` has a candidate `1` entry at
+`bandedSparseAccessPaperImage p j.val`, which replaces the padded sparse-address
+register by `r_si` and preserves the row register.  This declaration is the
+active `oneTermRobinGate_O_D_BS` matrix, but it does not prove that the image is
+in range, injective, unitary, or cleaned up by the dagger.
+-/
+def bandedSparseAccessPaperMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    if i.val = bandedSparseAccessPaperImage p j.val then Coeff.rat 1 else Coeff.rat 0
+
+/-- The paper-image matrix entry is governed by `bandedSparseAccessPaperImage`. -/
+theorem bandedSparseAccessPaperMatrix_eq_image (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p))) :
+    bandedSparseAccessPaperMatrix p i j =
+      if i.val = bandedSparseAccessPaperImage p j.val then Coeff.rat 1 else Coeff.rat 0 := by
+  rfl
+
+/--
+Forward paper-image matrix entry at the finite image column.
+
+The hypotheses are the same explicit range hypotheses used to construct
+`bandedSparseAccessPaperImageFin`.  This theorem does not assert that the
+image function is injective or that the matrix is unitary.
+-/
+theorem bandedSparseAccessPaperMatrix_imageFin_eq_one
+    (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (haddr : bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    bandedSparseAccessPaperMatrix p (bandedSparseAccessPaperImageFin p j haddr) j =
+      Coeff.rat 1 := by
+  simp [bandedSparseAccessPaperMatrix, bandedSparseAccessPaperImageFin]
+
+/--
+Transpose-style matrix for the faithful Lemma 1 `O_D^BS` paper-image skeleton.
+
+The entry `M†[i,j]` is `1` exactly when column index `j` is the forward
+paper image of row index `i`.  This is only the matrix-level transpose of the
+current executable image skeleton; the inverse, unitarity, and post-SWAP cleanup
+claims remain tracked by `defaultBandedSparseAccessPaperContract p` with
+`proved := false`.
+-/
+def bandedSparseAccessPaperDaggerMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    if j.val = bandedSparseAccessPaperImage p i.val then Coeff.rat 1 else Coeff.rat 0
+
+/-- The paper-image dagger matrix is the transpose-style matrix for the image skeleton. -/
+theorem bandedSparseAccessPaperDaggerMatrix_eq_image (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p))) :
+    bandedSparseAccessPaperDaggerMatrix p i j =
+      if j.val = bandedSparseAccessPaperImage p i.val then Coeff.rat 1 else Coeff.rat 0 := by
+  rfl
+
+/--
+Transpose-style paper-image matrix entry paired with the finite forward image.
+
+This is the entry relation needed before an inverse-on-range proof.  It does
+not prove that the transpose-style matrix cleans the ancillas after SWAP.
+-/
+theorem bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one
+    (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (haddr : bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    bandedSparseAccessPaperDaggerMatrix p j (bandedSparseAccessPaperImageFin p j haddr) =
+      Coeff.rat 1 := by
+  simp [bandedSparseAccessPaperDaggerMatrix, bandedSparseAccessPaperImageFin]
+
+/--
 Sparse amplitude value: the s-th nonzero stencil coefficient of row i in the
 Robin derivative matrix, returned as a Coeff value.
 
@@ -856,19 +1586,408 @@ def sparseAmplitudeOracleDTMatrix (p : OneTermRobinParameters) :
         robinSparseAmplitudeValue n sparseVal sysVal
 
 /--
-Gate matrix for O_DT^S using the honest diagonal matrix.
-Diagonal entries encode robinSparseAmplitudeValue for bulk rows (indicator=1);
-identity for boundary rows (indicator=0).
-Unitarity not yet formally proved.
+Register values used by the faithful Lemma 3 `O_DT^S` contract.
+
+The compound-index convention stores the rotation ancilla in bit 0, the system
+row in bits `[1, 1+n)`, the padded sparse register in bits `[1+n, 1+2n)`, and
+the indicator bit at `robinIndicatorBitPosition p`.  The `nonAncillaValue`
+field is `j >>> 1`; preserving it means that only the ancilla bit may change.
+Guseynov-Huang-Liu 2025, Lemma 3, arXiv:2506.20478. -/
+structure SparseAmplitudeOracleDTPaperRegisters where
+  ancillaBit : Nat
+  indicatorBit : Nat
+  rowValue : Nat
+  sparseIndexValue : Nat
+  nonAncillaValue : Nat
+deriving Repr, DecidableEq
+
+/--
+Extract the Lemma 3 sparse-amplitude oracle registers from a compound basis
+index.  This is a source-contract skeleton for the paper's controlled rotation
+on the ancilla qubit; it leaves the legacy diagonal data helper available.
+-/
+def sparseAmplitudeOracleDTPaperRegisters (p : OneTermRobinParameters) (j : Nat) :
+    SparseAmplitudeOracleDTPaperRegisters :=
+  let n := p.n
+  let indPos := robinIndicatorBitPosition p
+  let κbits := clog2 p.kappa
+  let odPure := n - κbits
+  let sysMask := (1 <<< n) - 1
+  let sparseStart := 1 + n + odPure
+  let sparseMask := (1 <<< κbits) - 1
+  {
+    ancillaBit := j &&& 1
+    indicatorBit := (j >>> indPos) &&& 1
+    rowValue := (j >>> 1) &&& sysMask
+    sparseIndexValue := (j >>> sparseStart) &&& sparseMask
+    nonAncillaValue := j >>> 1
+  }
+
+/-- Symbolic cosine half-angle entry for the Lemma 3 O_DT^S rotation. -/
+def sparseAmplitudeOracleDTCosHalf (row sparse : Nat) : Coeff :=
+  Coeff.symbol s!"odts_cos_half_{row}_{sparse}"
+
+/-- Symbolic sine half-angle entry for the Lemma 3 O_DT^S rotation. -/
+def sparseAmplitudeOracleDTSinHalf (row sparse : Nat) : Coeff :=
+  Coeff.symbol s!"odts_sin_half_{row}_{sparse}"
+
+/--
+Explicit unresolved source obligation for the symbolic entries in the Lemma 3
+`O_DT^S` rotation skeleton.
+
+Equation (20) of Guseynov-Huang-Liu 2025 maps `|0>|s>` to an amplitude whose
+`|0>` component is `D^(s) / N_D` and whose complementary component is the
+square-root normalizer term.  The Lean symbols
+`sparseAmplitudeOracleDTCosHalf row sparse` and
+`sparseAmplitudeOracleDTSinHalf row sparse` are only placeholders until this
+coefficient/normalizer relation and the corresponding two-by-two unitarity
+identity are formalized.
+-/
+def sparseAmplitudeOracleDTCoefficientNormalizerObligation : ObligationRecord := {
+  description := "O_DT^S symbolic rotation entries match Eq. (20): D^(s)/N_D amplitude and complementary normalizer term"
+  source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+  proved := false
+}
+
+/--
+Typed Eq. (20) coefficient-normalizer contract for one `O_DT^S` rotation block.
+
+This binds the symbolic rotation entries to the concrete Robin sparse
+coefficient data and the paper's `N_D` normalizer without proving the analytic
+identities.  The three obligations stay false until Lean has a coefficient
+language with the required division, square-root, absolute-value, and unitarity
+facts.
+-/
+structure SparseAmplitudeOracleDTCoefficientNormalizerContract where
+  sourceAnchor : String
+  rowValue : Nat
+  sparseIndexValue : Nat
+  coefficient : Coeff
+  normalizerND : Coeff
+  ketZeroEntry : Coeff
+  ketOneEntry : Coeff
+  ketZeroFormula : String
+  ketOneFormula : String
+  coefficientRelation : ObligationRecord
+  complementRelation : ObligationRecord
+  twoByTwoUnitary : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default Eq. (20) coefficient-normalizer contract for a Robin row and sparse
+index.  The coefficient is `robinSparseAmplitudeValue p.n sparse row`; the
+rotation entries are the symbols used by `sparseAmplitudeOracleDTRotationMatrix`.
+-/
+def sparseAmplitudeOracleDTCoefficientNormalizerContract
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    SparseAmplitudeOracleDTCoefficientNormalizerContract where
+  sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+  rowValue := row
+  sparseIndexValue := sparse
+  coefficient := robinSparseAmplitudeValue p.n sparse row
+  normalizerND := Coeff.symbol "N_D"
+  ketZeroEntry := sparseAmplitudeOracleDTCosHalf row sparse
+  ketOneEntry := sparseAmplitudeOracleDTSinHalf row sparse
+  ketZeroFormula := "D_j^(s) / N_D"
+  ketOneFormula := "sqrt(1 - |D_j^(s)|^2 / N_D^2)"
+  coefficientRelation := {
+    description := "ket-zero rotation entry equals D_j^(s) / N_D"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+    proved := false
+  }
+  complementRelation := {
+    description := "ket-one rotation entry equals sqrt(1 - |D_j^(s)|^2 / N_D^2)"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+    proved := false
+  }
+  twoByTwoUnitary := {
+    description := "the Eq. (20) two-by-two ancilla block is unitary under the N_D bound"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+    proved := false
+  }
+
+/--
+Faithful Lemma 3 controlled-rotation skeleton for `O_DT^S`.
+
+For columns whose indicator bit is 0, the matrix acts as identity.  For columns
+whose indicator bit is 1, it preserves every non-ancilla bit and applies a
+symbolic two-by-two rotation on ancilla bit 0.  The symbols are indexed by the
+extracted row and sparse-index values; their connection to the Eq. (20)
+amplitudes determined by `robinSparseAmplitudeValue p.n sparse row / N_D`
+remains the coefficient-normalizer proof obligation.
+Guseynov-Huang-Liu 2025, Lemma 3, arXiv:2506.20478. -/
+def sparseAmplitudeOracleDTRotationMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    let regs := sparseAmplitudeOracleDTPaperRegisters p j.val
+    if regs.indicatorBit = 0 then
+      if i.val = j.val then Coeff.rat 1 else Coeff.rat 0
+    else if i.val >>> 1 ≠ regs.nonAncillaValue then
+      Coeff.rat 0
+    else
+      let cosHalf := sparseAmplitudeOracleDTCosHalf regs.rowValue regs.sparseIndexValue
+      let sinHalf := sparseAmplitudeOracleDTSinHalf regs.rowValue regs.sparseIndexValue
+      let anc_i := i.val &&& 1
+      match regs.ancillaBit, anc_i with
+      | 0, 0 => cosHalf
+      | 0, 1 => sinHalf
+      | 1, 0 => Coeff.neg sinHalf
+      | _, _ => cosHalf
+
+/--
+Gate matrix for O_DT^S using the faithful controlled-rotation skeleton.
+The legacy diagonal helper `sparseAmplitudeOracleDTMatrix` remains available as
+the coefficient-data path, but the active gate now preserves all non-ancilla
+bits and rotates bit 0 when the indicator bit is 1.  Unitarity and the
+normalizer-bound trigonometric identity are not yet formally proved.
 main.tex:822-849 --/
 def oneTermRobinGate_O_DT_S (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "O_DT^S"
-  matrix := sparseAmplitudeOracleDTMatrix p
+  matrix := sparseAmplitudeOracleDTRotationMatrix p
   unitary := {
-    description := "O_DT^S diagonal matrix conditioned on indicator bit: unitarity not yet proved"
-    source := "main.tex:822-849"
+    description := "O_DT^S controlled-rotation skeleton on ancilla bit: unitarity and normalizer bound not yet proved"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, arXiv:2506.20478"
     proved := false
   }
+
+/--
+Register values used by the faithful `Ry_boundary` source contract.
+
+The compound-index convention is the same one used by the active matrix:
+ancilla bit 0 is the rotated qubit, bits `[1, 1+n)` contain the Robin row,
+the high part of the O_D register contains sparse index `s`, and the indicator
+bit determines whether the boundary rotation is active.  The `nonAncillaValue`
+field is preserved by the controlled rotation.
+Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Eq. angles for Ry,
+arXiv:2506.20478. -/
+structure BoundaryRotationPaperRegisters where
+  ancillaBit : Nat
+  indicatorBit : Nat
+  rowValue : Nat
+  sparseIndexValue : Nat
+  nonAncillaValue : Nat
+deriving Repr, DecidableEq
+
+/--
+Extract the `Ry_boundary` register fields from a compound basis index.
+This is a source-contract skeleton; it does not prove the angle identities or
+unitarity of the symbolic rotation block.
+-/
+def boundaryRotationPaperRegisters (p : OneTermRobinParameters) (j : Nat) :
+    BoundaryRotationPaperRegisters :=
+  let n := p.n
+  let indPos := robinIndicatorBitPosition p
+  let κbits := clog2 p.kappa
+  let odPure := n - κbits
+  let sysMask := (1 <<< n) - 1
+  let sparseStart := 1 + n + odPure
+  let sparseMask := (1 <<< κbits) - 1
+  {
+    ancillaBit := j &&& 1
+    indicatorBit := (j >>> indPos) &&& 1
+    rowValue := (j >>> 1) &&& sysMask
+    sparseIndexValue := (j >>> sparseStart) &&& sparseMask
+    nonAncillaValue := j >>> 1
+  }
+
+/-- Symbolic cosine half-angle entry for the `Ry_boundary` rotation. -/
+def boundaryRotationCosHalf (row sparse : Nat) : Coeff :=
+  Coeff.symbol s!"boundary_cos_half_{row}_{sparse}"
+
+/-- Symbolic sine half-angle entry for the `Ry_boundary` rotation. -/
+def boundaryRotationSinHalf (row sparse : Nat) : Coeff :=
+  Coeff.symbol s!"boundary_sin_half_{row}_{sparse}"
+
+/--
+Explicit unresolved source obligation for the `Ry_boundary` angle/normalizer
+relation.
+
+The paper uses angles `theta_j^s = arccos(D_j^(s) / N_D)` for boundary rows.
+The Lean symbols `boundaryRotationCosHalf row sparse` and
+`boundaryRotationSinHalf row sparse` are placeholders until the half-angle
+identities and the two-by-two unitarity relation are formalized.
+-/
+def boundaryRotationAngleNormalizerObligation : ObligationRecord := {
+  description := "Ry_boundary symbolic entries match theta_j^s = arccos(D_j^(s) / N_D) and the half-angle formulas"
+  source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Eq. angles for Ry, arXiv:2506.20478"
+  proved := false
+}
+
+/--
+Typed angle/normalizer contract for one `Ry_boundary` rotation block.
+
+This binds the symbolic half-angle entries used by `boundaryRotationMatrix` to
+the Robin sparse coefficient source and the paper normalizer `N_D`.  It records
+the exact obligations without asserting the arccos relation, half-angle
+formulas, control condition, or unitarity.
+-/
+structure BoundaryRotationAngleNormalizerContract where
+  sourceAnchor : String
+  rowValue : Nat
+  sparseIndexValue : Nat
+  coefficient : Coeff
+  normalizerND : Coeff
+  thetaFormula : String
+  cosHalfEntry : Coeff
+  sinHalfEntry : Coeff
+  cosHalfFormula : String
+  sinHalfFormula : String
+  boundaryControl : ObligationRecord
+  arccosArgumentRelation : ObligationRecord
+  cosHalfRelation : ObligationRecord
+  sinHalfRelation : ObligationRecord
+  twoByTwoUnitary : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default `Ry_boundary` angle/normalizer contract for one Robin row and sparse
+index.  The coefficient is `robinSparseAmplitudeValue p.n sparse row`; the
+rotation entries are the symbols used by `boundaryRotationMatrix`.
+-/
+def boundaryRotationAngleNormalizerContract
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    BoundaryRotationAngleNormalizerContract where
+  sourceAnchor := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Eq. angles for Ry, arXiv:2506.20478"
+  rowValue := row
+  sparseIndexValue := sparse
+  coefficient := robinSparseAmplitudeValue p.n sparse row
+  normalizerND := Coeff.symbol "N_D"
+  thetaFormula := "theta_j^s = arccos(D_j^(s) / N_D)"
+  cosHalfEntry := boundaryRotationCosHalf row sparse
+  sinHalfEntry := boundaryRotationSinHalf row sparse
+  cosHalfFormula := "sqrt((1 + D_j^(s) / N_D) / 2)"
+  sinHalfFormula := "sqrt((1 - D_j^(s) / N_D) / 2)"
+  boundaryControl := {
+    description := "Ry_boundary acts only on boundary rows selected by indicator bit 0"
+    source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin, arXiv:2506.20478"
+    proved := false
+  }
+  arccosArgumentRelation := {
+    description := "theta_j^s is arccos(D_j^(s) / N_D) for the recorded Robin coefficient; blocked until Coeff has division and real arccos semantics"
+    source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
+    proved := false
+  }
+  cosHalfRelation := {
+    description := "cos(theta_j^s / 2) equals sqrt((1 + D_j^(s) / N_D) / 2); blocked until Coeff has square-root and half-angle semantics"
+    source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
+    proved := false
+  }
+  sinHalfRelation := {
+    description := "sin(theta_j^s / 2) equals sqrt((1 - D_j^(s) / N_D) / 2); blocked until Coeff has square-root and half-angle semantics"
+    source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
+    proved := false
+  }
+  twoByTwoUnitary := {
+    description := "the Ry_boundary two-by-two block is unitary under the N_D bound"
+    source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
+    proved := false
+  }
+
+/--
+The coefficient source of the `Ry_boundary` angle contract is definitionally
+the Robin sparse amplitude data layer.
+-/
+theorem boundaryRotationAngleNormalizerContract_coefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (boundaryRotationAngleNormalizerContract p row sparse).coefficient =
+      robinSparseAmplitudeValue p.n sparse row := rfl
+
+/--
+Symbolic stand-in for the paper argument `D_j^(s) / N_D`.
+
+The factor `Coeff.symbol "N_D_inv"` is not a proof that `N_D` is invertible.
+It only records the intended normalized coefficient while the required division
+semantics and nonzero normalizer condition remain explicit obligations.
+-/
+def boundaryRotationNormalizedCoefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) : Coeff :=
+  Coeff.mul (robinSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
+
+/--
+Refined proof route for the `ryb_angle_normalizer` block.
+
+This record separates the typed data already present in
+`BoundaryRotationAngleNormalizerContract` from the missing analytic semantics:
+division by `N_D`, real arccos, square roots, the paper's normalizer bound, and
+the resulting two-by-two unitarity identity.  All proof obligations stay false
+in Phase 1.
+-/
+structure BoundaryRotationAngleNormalizerProofRoute where
+  sourceAnchor : String
+  rowValue : Nat
+  sparseIndexValue : Nat
+  coefficient : Coeff
+  normalizerND : Coeff
+  arccosArgument : Coeff
+  arccosArgumentFormula : String
+  thetaFormula : String
+  cosHalfEntry : Coeff
+  sinHalfEntry : Coeff
+  cosHalfFormula : String
+  sinHalfFormula : String
+  coefficientDivision : ObligationRecord
+  realArccosSemantics : ObligationRecord
+  halfAngleSemantics : ObligationRecord
+  normalizerBound : ObligationRecord
+  twoByTwoUnitary : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default refined proof route for one `Ry_boundary` angle-normalizer block.
+
+The route keeps the construction fixed to the paper formula
+`theta_j^s = arccos(D_j^(s) / N_D)`.  It does not introduce a replacement angle
+or promote the gate-level unitarity claim.
+-/
+def boundaryRotationAngleNormalizerProofRoute
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    BoundaryRotationAngleNormalizerProofRoute :=
+  let c := boundaryRotationAngleNormalizerContract p row sparse
+  {
+    sourceAnchor := c.sourceAnchor
+    rowValue := c.rowValue
+    sparseIndexValue := c.sparseIndexValue
+    coefficient := c.coefficient
+    normalizerND := c.normalizerND
+    arccosArgument := boundaryRotationNormalizedCoefficient p row sparse
+    arccosArgumentFormula := "D_j^(s) / N_D"
+    thetaFormula := c.thetaFormula
+    cosHalfEntry := c.cosHalfEntry
+    sinHalfEntry := c.sinHalfEntry
+    cosHalfFormula := c.cosHalfFormula
+    sinHalfFormula := c.sinHalfFormula
+    coefficientDivision := {
+      description := "interpret the formal coefficient times N_D_inv as D_j^(s) / N_D"
+      source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
+      proved := false
+    }
+    realArccosSemantics := {
+      description := "connect theta_j^s to real arccos of the normalized coefficient"
+      source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
+      proved := false
+    }
+    halfAngleSemantics := {
+      description := "derive the displayed cosine and sine half-angle formulas from theta_j^s"
+      source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
+      proved := false
+    }
+    normalizerBound := {
+      description := "prove the N_D bound placing D_j^(s) / N_D in the arccos domain"
+      source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
+      proved := false
+    }
+    twoByTwoUnitary := c.twoByTwoUnitary
+  }
+
+theorem boundaryRotationAngleNormalizerProofRoute_coefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient =
+      (boundaryRotationAngleNormalizerContract p row sparse).coefficient := rfl
+
+theorem boundaryRotationAngleNormalizerProofRoute_arccosArgument
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).arccosArgument =
+      boundaryRotationNormalizedCoefficient p row sparse := rfl
 
 /--
 Honest Ry_boundary matrix: controlled R_y rotation on the ancilla qubit (bit 0),
@@ -906,8 +2025,8 @@ def boundaryRotationMatrix (p : OneTermRobinParameters) :
         let sparseStart := 1 + n + odPure
         let sparseMask := (1 <<< κbits) - 1
         let sparseVal := (j.val >>> sparseStart) &&& sparseMask
-        let cosHalf := Coeff.symbol s!"boundary_cos_half_{sysVal}_{sparseVal}"
-        let sinHalf := Coeff.symbol s!"boundary_sin_half_{sysVal}_{sparseVal}"
+        let cosHalf := boundaryRotationCosHalf sysVal sparseVal
+        let sinHalf := boundaryRotationSinHalf sysVal sparseVal
         match anc_j, anc_i with
         | 0, 0 => cosHalf
         | 0, 1 => sinHalf
@@ -925,7 +2044,7 @@ def oneTermRobinGate_Ry_boundary (p : OneTermRobinParameters) : GateMatrix Coeff
   matrix := boundaryRotationMatrix p
   unitary := {
     description := "Ry_boundary honest controlled rotation matrix: unitarity not yet proved"
-    source := "main.tex:1115-1120"
+    source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Eq. angles for Ry, arXiv:2506.20478"
     proved := false
   }
 
@@ -954,20 +2073,31 @@ def bandedSparseAccessMatrix (p : OneTermRobinParameters) :
     if i.val = expectedImage then Coeff.rat 1 else Coeff.rat 0
 
 /--
-Gate record currently wired to the interim O_D^BS column-map helper.
-This keeps the seven-gate circuit product nonzero while the faithful padded
-sparse-index oracle is tracked by `defaultBandedSparseAccessPaperContract`.
-Unitarity and block extraction must remain unproved until the active matrix
-image formula matches Lemma 1.
-main.tex:784-801 --/
+Gate record for the faithful Lemma 1 O_D^BS paper-image matrix skeleton.
+
+The matrix uses `bandedSparseAccessPaperMatrix`, which preserves the row
+register and writes `r_si` into the padded sparse-address register.  Unitarity,
+forward correctness, and block extraction remain unproved obligations.
+Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478. -/
 def oneTermRobinGate_O_D_BS (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "O_D^BS"
-  matrix := bandedSparseAccessMatrix p
+  matrix := bandedSparseAccessPaperMatrix p
   unitary := {
-    description := "O_D^BS interim column-map helper: unitarity blocked until the padded sparse-index contract is active"
-    source := "contract drift audit for Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    description := "O_D^BS paper-image matrix skeleton: unitarity and cleanup not yet proved"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
     proved := false
   }
+
+/-- Active forward `O_D^BS` gate entry at the finite paper image. -/
+theorem oneTermRobinGate_O_D_BS_imageFin_eq_one
+    (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (haddr : bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    (oneTermRobinGate_O_D_BS p).matrix
+        (bandedSparseAccessPaperImageFin p j haddr) j =
+      Coeff.rat 1 := by
+  simpa [oneTermRobinGate_O_D_BS]
+    using bandedSparseAccessPaperMatrix_imageFin_eq_one p j haddr
 
 /--
 Symbolic function value at grid point j.
@@ -979,7 +2109,237 @@ def robinFunctionValue (n i : Nat) : Coeff :=
   Coeff.symbol s!"f_{n}_{i}"
 
 /--
-Honest O_f diagonal matrix: encodes function values f(x_j) on the diagonal.
+Register values used by the paper-level function oracle `O_f` contract.
+
+The compound-index convention stores the system row in bits `[1, 1+n)` and
+stores the `m_f` function-oracle workspace immediately above the indicator bit,
+starting at `robinIndicatorBitPosition p + 1`.  This record is a source-contract
+skeleton for the paper's clean-workspace equation; it does not assert the
+amplitude relation or workspace cleanup.
+Guseynov-Huang-Liu 2025, function-oracle construction, arXiv:2506.20478. -/
+structure FunctionOraclePaperRegisters where
+  systemValue : Nat
+  mfWorkspaceValue : Nat
+  nonMFValue : Nat
+  cleanWorkspace : Bool
+deriving Repr, DecidableEq
+
+/--
+Extract the system register and the `m_f` function workspace from a compound
+basis index for the `O_f` source contract.
+
+The `nonMFValue` field is the input index with the `m_f` workspace bits cleared.
+For clean-workspace columns this is the clean-branch basis index appearing in
+the paper equation.
+-/
+def functionOraclePaperRegisters (p : OneTermRobinParameters) (j : Nat) :
+    FunctionOraclePaperRegisters :=
+  let n := p.n
+  let rp := defaultRobinRegisterPartition p
+  let sysMask := (1 <<< n) - 1
+  let mfStart := robinIndicatorBitPosition p + 1
+  let mfMask := (1 <<< rp.mfQubits) - 1
+  let mfValue := (j >>> mfStart) &&& mfMask
+  {
+    systemValue := (j >>> 1) &&& sysMask
+    mfWorkspaceValue := mfValue
+    nonMFValue := j - (j &&& (mfMask <<< mfStart))
+    cleanWorkspace := mfValue == 0
+  }
+
+/--
+Symbolic normalized clean-branch amplitude for the paper's function oracle.
+
+The reciprocal symbol records the intended factor `1 / N_f` without proving
+that `N_f` is nonzero or that the amplitude is bounded.
+-/
+def functionOracleNormalizedValue (p : OneTermRobinParameters) (i : Nat) : Coeff :=
+  Coeff.mul (robinFunctionValue p.n i) (Coeff.symbol "N_f_inv")
+
+/--
+Paper-image source contract for one column of the function oracle `O_f`.
+
+The clean branch records the displayed paper component
+`(f(x_i)/N_f)|0>^mf|i>`.  The orthogonal component and all analytic side
+conditions are tracked as false obligations; this record is not a matrix proof
+and does not promote the current diagonal helper to a faithful oracle.
+-/
+structure FunctionOraclePaperImage where
+  sourceAnchor : String
+  inputRegisters : FunctionOraclePaperRegisters
+  cleanBranchBasisIndex : Nat
+  cleanBranchSystemValue : Nat
+  cleanBranchWorkspaceValue : Nat
+  cleanBranchAmplitude : Coeff
+  orthogonalComponent : String
+  systemPreserved : Bool
+  cleanWorkspaceBranch : Bool
+  normalizedAmplitudeCorrect : ObligationRecord
+  orthogonalComponentCorrect : ObligationRecord
+  normalizerBound : ObligationRecord
+  unitaryCompletion : ObligationRecord
+  diagonalHelperIsolation : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Build the paper-level `O_f` image contract for one compound basis column.
+
+This captures the register-level target
+`|0>^mf|i> ↦ (f(x_i)/N_f)|0>^mf|i> + |orth_f(i)>` as data and keeps every
+unproved semantic claim explicit.
+-/
+def functionOraclePaperImage (p : OneTermRobinParameters) (j : Nat) :
+    FunctionOraclePaperImage :=
+  let regs := functionOraclePaperRegisters p j
+  {
+    sourceAnchor := "Guseynov-Huang-Liu 2025, function oracle O_f, arXiv:2506.20478"
+    inputRegisters := regs
+    cleanBranchBasisIndex := regs.nonMFValue
+    cleanBranchSystemValue := regs.systemValue
+    cleanBranchWorkspaceValue := 0
+    cleanBranchAmplitude := functionOracleNormalizedValue p regs.systemValue
+    orthogonalComponent := s!"orth_f_{p.n}_{regs.systemValue}"
+    systemPreserved := regs.systemValue == ((regs.nonMFValue >>> 1) &&& ((1 <<< p.n) - 1))
+    cleanWorkspaceBranch := regs.cleanWorkspace
+    normalizedAmplitudeCorrect := {
+      description := "clean O_f branch amplitude equals f(x_i) / N_f"
+      source := "Guseynov-Huang-Liu 2025, function oracle O_f, arXiv:2506.20478"
+      proved := false
+    }
+    orthogonalComponentCorrect := {
+      description := "O_f orthogonal component has zero overlap with the clean m_f workspace branch and preserves the system label"
+      source := "Guseynov-Huang-Liu 2025, function oracle O_f, arXiv:2506.20478"
+      proved := false
+    }
+    normalizerBound := {
+      description := "N_f bounds the coefficient-function amplitudes used by O_f"
+      source := "Guseynov-Huang-Liu 2025, function oracle O_f, arXiv:2506.20478"
+      proved := false
+    }
+    unitaryCompletion := {
+      description := "O_f paper image extends to a unitary with the recorded orthogonal component"
+      source := "Guseynov-Huang-Liu 2025, function oracle O_f, arXiv:2506.20478"
+      proved := false
+    }
+    diagonalHelperIsolation := {
+      description := "functionOracleMatrix is helper-only until the paper O_f image is wired to a full matrix"
+      source := "QBE-AUTO-002 O_f source-contract audit"
+      proved := false
+    }
+  }
+
+/-- Bridge lemma: the `O_f` paper image uses the shared register extractor. -/
+theorem functionOraclePaperImage_inputRegisters_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (functionOraclePaperImage p j).inputRegisters =
+      functionOraclePaperRegisters p j := rfl
+
+/-- Bridge lemma: the clean `O_f` branch clears only the `m_f` workspace bits. -/
+theorem functionOraclePaperImage_cleanBranchBasisIndex_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (functionOraclePaperImage p j).cleanBranchBasisIndex =
+      (functionOraclePaperRegisters p j).nonMFValue := rfl
+
+/-- Bridge lemma: the clean `O_f` branch preserves the extracted system value. -/
+theorem functionOraclePaperImage_cleanBranchSystemValue_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (functionOraclePaperImage p j).cleanBranchSystemValue =
+      (functionOraclePaperRegisters p j).systemValue := rfl
+
+/-- Bridge lemma: the clean `O_f` branch has zero `m_f` workspace value. -/
+theorem functionOraclePaperImage_cleanBranchWorkspaceValue_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (functionOraclePaperImage p j).cleanBranchWorkspaceValue = 0 := rfl
+
+/--
+Bridge lemma: the clean `O_f` branch amplitude is the normalized function value
+at the system value extracted from the same column.
+-/
+theorem functionOraclePaperImage_cleanBranchAmplitude_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (functionOraclePaperImage p j).cleanBranchAmplitude =
+      functionOracleNormalizedValue p (functionOraclePaperRegisters p j).systemValue := rfl
+
+/-- Bridge lemma: the clean-workspace branch flag is inherited from the extractor. -/
+theorem functionOraclePaperImage_cleanWorkspaceBranch_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (functionOraclePaperImage p j).cleanWorkspaceBranch =
+      (functionOraclePaperRegisters p j).cleanWorkspace := rfl
+
+/--
+Symbolic matrix entry for the unresolved orthogonal component of `O_f`.
+
+The paper only fixes the clean `m_f` branch amplitude
+`f(x_i) / N_f`; the remaining orthogonal completion is a unitarity obligation.
+This symbol records one placeholder entry for that unresolved completion without
+proving orthogonality, normalizer bounds, or unitarity.
+-/
+def functionOracleOrthogonalEntry
+    (p : OneTermRobinParameters) (systemValue row col : Nat) : Coeff :=
+  Coeff.symbol s!"orth_f_entry_{p.n}_{systemValue}_{row}_{col}"
+
+/--
+Faithful Phase 1 matrix skeleton for the paper-level function oracle `O_f`.
+
+For each clean-workspace input column, the clean `m_f` branch entry is the
+normalized amplitude recorded by `functionOraclePaperImage`, namely
+`f(x_i) / N_f` represented as `functionOracleNormalizedValue`.  Other
+clean-workspace output rows are zero, matching the paper statement that the
+unresolved component is orthogonal to the clean workspace branch.
+Non-clean-workspace rows carry symbolic completion entries.  For non-clean
+input columns, the paper does not fix a branch equation, so this skeleton leaves
+all entries symbolic.
+
+The symbolic completion does not prove amplitude correctness, the `N_f` bound,
+orthogonality, or unitarity; those obligations remain false in
+`functionOraclePaperImage` and the gate record.
+-/
+def functionOraclePaperMatrix (p : OneTermRobinParameters) :
+    Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
+  fun i j =>
+    let image := functionOraclePaperImage p j.val
+    if image.cleanWorkspaceBranch then
+      if i.val = image.cleanBranchBasisIndex then
+        image.cleanBranchAmplitude
+      else if (functionOraclePaperRegisters p i.val).mfWorkspaceValue = 0 then
+        Coeff.rat 0
+      else
+        functionOracleOrthogonalEntry p image.cleanBranchSystemValue i.val j.val
+    else
+      functionOracleOrthogonalEntry p image.cleanBranchSystemValue i.val j.val
+
+/-- The `O_f` paper matrix exposes the clean branch amplitude for clean input columns. -/
+theorem functionOraclePaperMatrix_cleanBranch_entry
+    (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hClean : (functionOraclePaperImage p j.val).cleanWorkspaceBranch = true)
+    (h : i.val = (functionOraclePaperImage p j.val).cleanBranchBasisIndex) :
+    functionOraclePaperMatrix p i j =
+      (functionOraclePaperImage p j.val).cleanBranchAmplitude := by
+  simp [functionOraclePaperMatrix, hClean, h]
+
+/-- Other clean-workspace rows have zero `O_f` orthogonal-completion entry. -/
+theorem functionOraclePaperMatrix_cleanWorkspace_offBranch_zero
+    (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hInputClean : (functionOraclePaperImage p j.val).cleanWorkspaceBranch = true)
+    (hBranch : i.val ≠ (functionOraclePaperImage p j.val).cleanBranchBasisIndex)
+    (hClean : (functionOraclePaperRegisters p i.val).mfWorkspaceValue = 0) :
+    functionOraclePaperMatrix p i j = Coeff.rat 0 := by
+  simp [functionOraclePaperMatrix, hInputClean, hBranch, hClean]
+
+/-- Non-clean input columns are left in the symbolic `O_f` completion branch. -/
+theorem functionOraclePaperMatrix_nonCleanInput_entry
+    (p : OneTermRobinParameters)
+    (i j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hInputNonClean : (functionOraclePaperImage p j.val).cleanWorkspaceBranch = false) :
+    functionOraclePaperMatrix p i j =
+      functionOracleOrthogonalEntry p
+        (functionOraclePaperImage p j.val).cleanBranchSystemValue i.val j.val := by
+  simp [functionOraclePaperMatrix, hInputNonClean]
+
+/--
+Helper-only O_f diagonal matrix: records function values f(x_j) on the diagonal.
 
 For each compound basis state |j⟩, extracts the system register value i
 and sets the diagonal entry to `robinFunctionValue n i` = Coeff.symbol "f_x_i".
@@ -988,8 +2348,9 @@ register (grid point index), not on the sparse index.
 
 The paper's O_f (Lemma 4, main.tex:870-910) encodes f(x_j)/N_f via amplitude
 oracle.  The 1/N_f normalization is absorbed into the block-encoding normalizer
-α = N_D · N_f · κ.  Whether this diagonal encoding correctly implements the
-paper's rotation-based oracle is tracked by `unitary.proved := false`.
+α = N_D · N_f · κ.  This diagonal matrix is not the paper image; the
+paper-level clean branch and orthogonal-component obligations are recorded by
+`functionOraclePaperImage`, and the active gate keeps `unitary.proved := false`.
 
 main.tex:870-910 --/
 def functionOracleMatrix (p : OneTermRobinParameters) :
@@ -1003,16 +2364,19 @@ def functionOracleMatrix (p : OneTermRobinParameters) :
     else Coeff.rat 0
 
 /--
-Gate matrix for O_f using the honest diagonal matrix.
-Diagonal entries encode function values f(x_j) via robinFunctionValue; off-diagonal entries are zero.
-Unitarity not yet formally proved.
-main.tex:870-910 --/
+Gate matrix for `O_f` using the faithful paper-image matrix skeleton.
+
+The active matrix now exposes the clean `m_f` branch amplitude from
+`functionOraclePaperImage`.  The legacy diagonal helper `functionOracleMatrix`
+remains available only as a function-value data check.  Unitarity, amplitude
+correctness, the `N_f` bound, and the orthogonal completion are still unproved.
+Guseynov-Huang-Liu 2025, Lemma 4 and Fig. 1-term Robin, arXiv:2506.20478. -/
 def oneTermRobinGate_O_f (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "O_f"
-  matrix := functionOracleMatrix p
+  matrix := functionOraclePaperMatrix p
   unitary := {
-    description := "O_f diagonal matrix using robinFunctionValue (f(x_j)): unitarity not yet proved"
-    source := "main.tex:870-910"
+    description := "O_f paper-image matrix skeleton: clean branch wired, orthogonal completion and unitarity not yet proved"
+    source := "Guseynov-Huang-Liu 2025, Lemma 4 and Fig. 1-term Robin, arXiv:2506.20478"
     proved := false
   }
 
@@ -1101,17 +2465,30 @@ def bandedSparseAccessDaggerMatrix (p : OneTermRobinParameters) :
     if j.val = image then Coeff.rat 1 else Coeff.rat 0
 
 /--
-Gate matrix for (O_D^BS)^† using the transpose-style sparse-access matrix.
-Unitarity not yet formally proved.
-main.tex:1148 --/
+Gate matrix for `(O_D^BS)^†` using the transpose-style paper-image matrix.
+
+This is paired with `bandedSparseAccessPaperMatrix`; it does not prove that the
+transpose is a true inverse on the relevant post-SWAP states.
+figure:1_term_ROBIN and Lemma 1, arXiv:2506.20478. -/
 def oneTermRobinGate_O_D_BS_dagger (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "(O_D^BS)^†"
-  matrix := bandedSparseAccessDaggerMatrix p
+  matrix := bandedSparseAccessPaperDaggerMatrix p
   unitary := {
-    description := "(O_D^BS)^† sparse-access transpose matrix: unitarity blocked with the forward O_D^BS contract"
-    source := "main.tex:1148"
+    description := "(O_D^BS)^† paper-image transpose matrix: cleanup and unitarity not yet proved"
+    source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Lemma 1, arXiv:2506.20478"
     proved := false
   }
+
+/-- Active `(O_D^BS)^†` gate entry paired with the finite forward image. -/
+theorem oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one
+    (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (haddr : bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    (oneTermRobinGate_O_D_BS_dagger p).matrix j
+        (bandedSparseAccessPaperImageFin p j haddr) =
+      Coeff.rat 1 := by
+  simpa [oneTermRobinGate_O_D_BS_dagger]
+    using bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one p j haddr
 
 /--
 List of all 7 gate matrix placeholders for the one-term Robin circuit,

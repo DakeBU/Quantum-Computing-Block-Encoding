@@ -208,8 +208,9 @@ and the output ket
   |r_{si}\rangle^n|i\rangle^n,
 \]
 together with three unproved obligations: the padded-width compatibility,
-the forward oracle correctness, and the cleanup by
-$(O_D^{BS})^\dagger$.  The record does not prove unitarity and does not change
+the clean-input domain, the forward oracle correctness, the cleanup by
+$(O_D^{BS})^\dagger$, and a full-unitary extension on basis columns whose
+padded register is not clean.  The record does not prove unitarity and does not change
 \texttt{bandedSparseAccessMatrix}; it prevents the interim helper from being
 mistaken for the paper oracle.
 
@@ -225,11 +226,31 @@ unproved \\
 \texttt{odbs\_extract\_registers} &
 extract the padded sparse-index register and row register from the compound
 basis index &
-planned \\
+defined skeleton \\
+\texttt{odbs\_clean\_domain} &
+check whether the padded register is $|0\rangle^{n-l}$ and record that
+non-clean columns require a unitary completion &
+defined skeleton; obligations unproved \\
+\texttt{odbs\_address\_range} &
+check that the written address $r_{si}$ is an $n$-bit value before it is
+inserted into the $O_D^{BS}$ register &
+executable check defined; obligation unproved \\
+\texttt{odbs\_no\_spill} &
+check that the image preserves the high tail above the $O_D^{BS}$ register,
+including the indicator and $m_f$ bits &
+executable check defined; obligation unproved \\
 \texttt{odbs\_forward\_image} &
 map $|0\rangle^{n-l}|s\rangle^l|i\rangle^n$ to
 $|r_{si}\rangle^n|i\rangle^n$ while preserving the row register &
-planned \\
+defined skeleton; correctness unproved \\
+\texttt{odbs\_forward\_matrix} &
+set matrix entries by the paper image, with
+$M[\operatorname{image}(j),j]=1$ &
+finite-image entry bridge proved under explicit hypotheses; injectivity unproved \\
+\texttt{odbs\_dagger\_matrix} &
+set transpose-style entries by the paper image, with
+$M^\dagger[i,j]=1$ exactly when $j=\operatorname{image}(i)$ &
+active skeleton; inverse-on-range unproved \\
 \texttt{odbs\_dagger\_cleanup} &
 clean the padded sparse-index register using $(O_D^{BS})^\dagger$ after SWAP &
 unproved \\
@@ -237,11 +258,93 @@ unproved \\
 \end{tabular}
 \end{center}
 
-The next Lean packet should introduce
-\texttt{bandedSparseAccessPaperRegisters} and
-\texttt{bandedSparseAccessPaperImage}, with tests for row preservation and
-address-register replacement at $n=3$ and $\kappa=7$.  No unitarity or cleanup
-flag should be promoted by that packet.
+Lean now defines \texttt{bandedSparseAccessPaperRegisters},
+\texttt{bandedSparseAccessPaperCleanInput},
+\texttt{bandedSparseAccessPaperColumnContract},
+\texttt{bandedSparseAccessPaperAddress}, and
+\texttt{bandedSparseAccessPaperImage}.  Lean also defines
+\texttt{bandedSparseAccessPaperAddressInRange},
+\texttt{bandedSparseAccessPaperHighTail}, and
+\texttt{bandedSparseAccessPaperImageNoSpill}.  These executable checks record
+that the written $r_{si}$ value should fit in $n$ bits and that the image should
+not spill into the indicator or $m_f$ bits above the $O_D^{BS}$ register.  Lean
+also defines
+\texttt{bandedSparseAccessPaperMatrix} and
+\texttt{bandedSparseAccessPaperDaggerMatrix} from that image function.  These
+declarations preserve the row register and replace the O$_D^{BS}$ register by
+the one-term Robin value of $r_{si}$ on the executable skeleton.  The
+per-column contract records whether the padded-zero field is clean, because
+Lemma 1 specifies only inputs of the form
+$|0\rangle^{n-l}|s\rangle^l|i\rangle^n$.  Concrete tests cover one clean bulk
+row and one boundary row at $n=3$ and $\kappa=7$, and also record a non-clean
+padded-register column at $n=4$ and $\kappa=7$ whose unitary completion remains
+unproved.  The active gate pair now uses these paper-image matrices:
+\texttt{oneTermRobinGate\_O\_D\_BS} uses
+\texttt{bandedSparseAccessPaperMatrix}, and
+\texttt{oneTermRobinGate\_O\_D\_BS\_dagger} uses
+\texttt{bandedSparseAccessPaperDaggerMatrix}.  The contract remains the
+paper's Lemma 1 map
+\[
+  |0\rangle^{n-l}|s\rangle^l|i\rangle^n
+  \longmapsto
+  |r_{si}\rangle^n|i\rangle^n.
+\]
+Lean now proves a narrow address-range block:
+\texttt{bandedSparseAccessPaperAddressInRange\_eq\_true\_of\_two\_le}
+shows that the executable address check is true under the explicit grid
+condition $2 \le n$.  This uses
+\texttt{bandedSparseAccessPaperRegisters\_row\_lt\_gridSize} for the extracted
+row field and
+\texttt{robinSparseColumnMap\_lt\_gridSize\_of\_row\_lt} for the fourth-order
+stencil column map.  This theorem is not yet a proof of the paper-level
+contract field, because \texttt{OneTermRobinParameters} does not record the
+$2 \le n$ side condition.  Lean also proves
+\texttt{bandedSparseAccessPaperImageNoSpill\_iff}, which rewrites the no-spill
+Boolean as equality of the high tails above the $O_D^{BS}$ register.  The
+address-conditional high-tail theorem
+\texttt{bandedSparseAccessPaperImage\_highTail\_eq\_of\_address\_lt} now proves
+that equality from an $n$-bit written address, and
+\texttt{bandedSparseAccessPaperImageNoSpill\_eq\_true\_of\_two\_le} supplies a
+concrete route under $2 \le n$.  The paper-level no-spill flag still remains an
+obligation because the source contract has not bundled the parameter-family
+side condition.  Lean now also proves the image-range and register-roundtrip
+block.  The theorem
+\texttt{bandedSparseAccessPaperImage\_lt\_qubitDim\_of\_address\_lt} shows that
+the executable image is below
+\texttt{qubitDim (oneTermRobinTotalQubits p)} when the source column is in that
+finite basis and the written address is $n$-bit.  The theorem
+\texttt{bandedSparseAccessPaperImage\_rowValue\_eq} proves that register
+extraction from the image preserves the row field.  The theorem
+\texttt{bandedSparseAccessPaperImage\_odRegisterValue\_eq} proves, under the
+same $n$-bit address hypothesis, that extraction from the image reports the
+written $r_{si}$ value in the $O_D^{BS}$ register.  These are executable
+register-splice facts, not a promotion of the paper-level oracle contract.
+Lean now also packages the executable image as a finite basis index through
+\texttt{bandedSparseAccessPaperImageFin} under the same source-column and
+$n$-bit address hypotheses.  The bridge theorems
+\texttt{bandedSparseAccessPaperMatrix\_imageFin\_eq\_one} and
+\texttt{oneTermRobinGate\_O\_D\_BS\_imageFin\_eq\_one} prove the forward entry
+$M[\operatorname{image}(j),j]=1$ at that finite image index.  The paired
+transpose-style theorems
+\texttt{bandedSparseAccessPaperDaggerMatrix\_imageFin\_eq\_one} and
+\texttt{oneTermRobinGate\_O\_D\_BS\_dagger\_imageFin\_eq\_one} prove the entry
+$M^\dagger[j,\operatorname{image}(j)]=1$.  These entry facts are prerequisites
+for injectivity and inverse-on-range work; they do not prove either property.
+No unitarity, clean-domain, address-range, no-spill, unitary-extension,
+forward-correctness, cleanup, or block-correctness flag is promoted.  The
+cleanup statement for $(O_D^{BS})^\dagger$ after SWAP remains an unproved
+obligation.  The focused activation tests check the forward entries
+$M[40,8]=1$ and $M[4,8]=0$, and the dagger entry $M^\dagger[8,40]=1$ for
+$n=3$ and $\kappa=7$.  The focused register-safety tests also check
+\texttt{bandedSparseAccessPaperAddressInRange} and
+\texttt{bandedSparseAccessPaperImageNoSpill} on the clean bulk column
+\texttt{j = 8}, high-tail preservation for \texttt{j = 136}, and general
+examples for the image-range, row-roundtrip, and address-roundtrip lemmas.
+The remaining fixed work for this oracle is injectivity, inverse-on-range, and
+post-SWAP cleanup.  The completed roundtrip facts must not promote
+\texttt{oneTermRobinGate\_O\_D\_BS.unitary.proved},
+\texttt{oneTermRobinGate\_O\_D\_BS\_dagger.unitary.proved},
+\texttt{forwardCorrect}, \texttt{daggerCleanup}, or any block-correctness flag.
 
 For the fourth-order central second-derivative stencil (half-bandwidth $l=2$):
 \begin{itemize}
@@ -278,26 +381,31 @@ The current column-map contract has a boundary-row non-injectivity witness:
   0.
 \]
 Thus the permutation-matrix proof route is blocked for the simplified helper.
-This should be read as a contract-drift finding, not as a missing construction
-in the GHL paper.  The unitarity obligation remains unproved
-($\texttt{proved := false}$) until the faithful padded sparse-index oracle is
-implemented.
+This should be read as a contract-drift finding for the legacy helper, not as a
+missing construction in the GHL paper.  The active paper-image skeleton is now
+wired into the gate pair, but the unitarity obligation remains unproved
+($\texttt{proved := false}$) until address range, no-spill, range,
+injectivity, inverse-on-range, and cleanup are proved for that active contract.
 
 \subsection{$(O_D^{BS})^\dagger$ Inverse Matrix}
 
-The current Lean implementation records a transpose-style matrix by computing
-$\mathrm{image}(i)$ for the row index and checking whether
-$j = \mathrm{image}(i)$.  This belongs to the interim helper.  The full
-inverse-permutation and clean-ancilla statement must be restated after
-\texttt{bandedSparseAccessMatrix} is corrected to the paper's
-$|0\rangle^{n-l}|s\rangle^l|i\rangle^n \mapsto |r_{si}\rangle^n|i\rangle^n$
-contract.
+The active Lean implementation records a transpose-style matrix by computing
+$\mathrm{image}(i)$ from the paper-image skeleton and checking whether
+$j = \mathrm{image}(i)$.  This is
+\texttt{bandedSparseAccessPaperDaggerMatrix}.  It is wired into
+\texttt{oneTermRobinGate\_O\_D\_BS\_dagger}, but Lean has not proved that it is
+an inverse on the range of the forward image, a unitary matrix, or the
+clean-ancilla operation required after SWAP.
 
 In Lean:
 \[
-  \texttt{GHL2025.bandedSparseAccessDaggerMatrix}.
+  \texttt{GHL2025.bandedSparseAccessPaperDaggerMatrix}.
 \]
 The unitarity obligation remains unproved ($\texttt{proved := false}$).
+
+The legacy helper \texttt{bandedSparseAccessDaggerMatrix} remains in Lean only
+as the transpose-style matrix for the old sparse-index helper.  It is not the
+active paper-contract dagger gate.
 
 The bulk window bounds are derived from the stencil radius:
 \[
@@ -361,9 +469,10 @@ The desired final theorem is the block extraction equation
 \]
 At the current stage, Lean records the target matrix, circuit labels,
 normalizer, resource counts, proof obligations, and a circuit matrix
-semantics backend with gate-level placeholders and a block-extraction target.
-The next backend target is to replace the placeholder matrices with real
-oracle implementations.
+semantics backend whose full-space matrix is the product of the seven current
+gate matrices.  The block-extraction target is structural: it fixes the signal
+projection, target matrix, and normalizer, while the block equation and several
+gate-level semantic claims remain unproved.
 
 \subsection{Current Lean Correspondence}
 
@@ -395,13 +504,13 @@ Circuit matrix semantics &
 started \\
 Gate matrix placeholders &
 \texttt{GHL2025.oneTermRobinGateMatrixPlaceholders} &
-defined, unproved \\
+defined; active O$_D^{BS}$ pair uses the paper-image skeleton \\
 Block projection &
 \texttt{signalSystemBlockProjection} &
 defined \\
 Robin circuit matrix semantics &
 \texttt{Examples.RobinHeat.oneTermRobinCircuitSemantics} &
-defined, zero matrices \\
+defined as an \texttt{evalGateMatrices} product \\
 Robin block extraction target &
 \texttt{Examples.RobinHeat.oneTermRobinBlockExtractionTarget} &
 defined, unproved \\
@@ -431,98 +540,450 @@ SWAP honest matrix &
 implemented (cycle 3) \\
 $O_D^{BS}$ column map &
 \texttt{GHL2025.robinSparseColumnMap} &
-implemented as stencil helper (cycle 4), not final oracle contract \\
-$O_D^{BS}$ honest matrix &
+implemented as stencil helper, reused to compute $r_{si}$ \\
+$O_D^{BS}$ legacy helper matrix &
 \texttt{GHL2025.bandedSparseAccessMatrix} &
-interim helper implemented (cycle 4), contract correction pending \\
+implemented, not the active paper oracle \\
 $O_D^{BS}$ paper contract &
 \texttt{GHL2025.BandedSparseAccessPaperContract} &
 defined, obligations unproved \\
 $O_D^{BS}$ default paper contract &
 \texttt{GHL2025.defaultBandedSparseAccessPaperContract} &
 defined for one-term Robin parameters \\
-$(O_D^{BS})^\dagger$ matrix &
+$O_D^{BS}$ clean-domain predicate &
+\texttt{GHL2025.bandedSparseAccessPaperCleanInput} &
+defined; clean-domain proof flag false \\
+$O_D^{BS}$ per-column audit &
+\texttt{GHL2025.bandedSparseAccessPaperColumnContract} &
+defined; address-range, no-spill, and unitary-extension proof flags false \\
+$O_D^{BS}$ address-range check &
+\texttt{GHL2025.bandedSparseAccessPaperAddressInRange} &
+defined executable check; proof flag false \\
+$O_D^{BS}$ high-tail no-spill check &
+\texttt{GHL2025.bandedSparseAccessPaperImageNoSpill} &
+defined executable check using \texttt{GHL2025.bandedSparseAccessPaperHighTail};
+proof flag false \\
+$O_D^{BS}$ paper-image matrix &
+\texttt{GHL2025.bandedSparseAccessPaperMatrix} &
+active skeleton; finite-image entry bridge proved under explicit hypotheses;
+injectivity and unitarity unproved \\
+$(O_D^{BS})^\dagger$ paper-image matrix &
+\texttt{GHL2025.bandedSparseAccessPaperDaggerMatrix} &
+active transpose-style skeleton; inverse-on-range and cleanup unproved \\
+$(O_D^{BS})^\dagger$ legacy helper matrix &
 \texttt{GHL2025.bandedSparseAccessDaggerMatrix} &
-interim transpose helper implemented (cycle 4), faithful cleanup pending \\
+implemented, not the active paper-contract dagger \\
 Sparse amplitude data &
 \texttt{GHL2025.robinSparseAmplitudeValue} &
 implemented (cycle 5) \\
 Function value data &
 \texttt{GHL2025.robinFunctionValue} &
 implemented (cycle 9) \\
+$O_f$ paper registers &
+\texttt{GHL2025.FunctionOraclePaperRegisters} and
+\texttt{GHL2025.functionOraclePaperRegisters} &
+defined skeleton for system, \(m_f\) workspace, non-\(m_f\) index, and clean
+workspace flag \\
+$O_f$ normalized clean-branch value &
+\texttt{GHL2025.functionOracleNormalizedValue} &
+symbolic \(f(x_i)N_f^{-1}\) contract; division and bound unproved \\
+$O_f$ paper image &
+\texttt{GHL2025.FunctionOraclePaperImage} and
+\texttt{GHL2025.functionOraclePaperImage} &
+clean branch, orthogonal component label, and false paper-image obligations
+recorded \\
+$O_f$ paper-image matrix &
+\texttt{GHL2025.functionOraclePaperMatrix} &
+active Phase 1 skeleton; clean-input \(m_f\) branch wired and completion
+unproved \\
+$O_f$ orthogonal-completion symbols &
+\texttt{GHL2025.functionOracleOrthogonalEntry} &
+symbolic non-clean workspace entries; orthogonality and unitarity unproved \\
 $O_f$ gate matrix &
 \texttt{GHL2025.oneTermRobinGate_O_f} &
-honest function value diagonal, unitary unproved (cycle 6, fixed cycle 9) \\
-$O_{D^T}^S$ diagonal matrix &
+uses \texttt{functionOraclePaperMatrix}; amplitude relation, \(N_f\) bound,
+orthogonality, and unitarity unproved \\
+$O_{D^T}^S$ diagonal helper &
 \texttt{GHL2025.sparseAmplitudeOracleDTMatrix} &
-implemented (cycle 7) \\
-$O_{D^T}^S$ gate matrix &
+implemented as legacy/data helper; not the active gate \\
+$O_{D^T}^S$ active gate matrix &
 \texttt{GHL2025.oneTermRobinGate_O_DT_S} &
-honest diagonal conditioned on indicator, unitary unproved (cycle 7) \\
+uses controlled-rotation skeleton, unitary unproved \\
+\(O_{D^T}^S\) register extraction &
+\texttt{GHL2025.sparseAmplitudeOracleDTPaperRegisters} &
+defined skeleton for Lemma 3 register fields \\
+\(O_{D^T}^S\) coefficient-normalizer contract &
+\texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract} and
+\texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation} &
+typed contract recorded; proof flags false \\
+\(O_{D^T}^S\) paper rotation matrix &
+\texttt{GHL2025.sparseAmplitudeOracleDTRotationMatrix} &
+active controlled-rotation skeleton \\
+\(R_y^{\mathrm{boundary}}\) active gate matrix &
+\texttt{GHL2025.oneTermRobinGate\_Ry\_boundary} &
+uses symbolic boundary rotation matrix, unitary unproved \\
+\(R_y^{\mathrm{boundary}}\) register extraction &
+\texttt{GHL2025.boundaryRotationPaperRegisters} &
+defined skeleton for the boundary rotation register fields \\
+\(R_y^{\mathrm{boundary}}\) angle-normalizer contract &
+\texttt{GHL2025.boundaryRotationAngleNormalizerContract} and
+\texttt{GHL2025.boundaryRotationAngleNormalizerObligation} &
+typed contract recorded; proof flags false \\
+\(R_y^{\mathrm{boundary}}\) angle-normalizer proof route &
+\texttt{GHL2025.boundaryRotationAngleNormalizerProofRoute} &
+division, arccos, half-angle, normalizer-bound, and unitarity gaps separated;
+proof flags false \\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Function Oracle $O_f$ Diagonal Matrix}
+\subsection{Boundary Rotation Angle-Normalizer Route}
 
-The function oracle $O_f$ (Lemma 4, main.tex:870--910) is now an honest
-diagonal matrix on the full $2^{\text{totalQubits}}$-dimensional space,
-encoding symbolic function values $f(x_j)$ on the diagonal.
-For each compound basis state $|j\rangle$, the matrix extracts the system
-register value $i$ and sets the diagonal entry to a symbolic function value:
+The paper sets the boundary-rotation angle by
 \[
-  O_f |j\rangle = f(x_i) \, |j\rangle,
-  \qquad
-  M[j][j] = \texttt{Coeff.symbol}\;\texttt{"f\_\{n\}\_\{i\}"},
-  \quad M[i][j] = 0 \text{ for } i \neq j.
+  \theta_j^s=\arccos\!\left(D_j^{(s)}/N_D\right).
 \]
-The bit extraction for the system register is:
-\[
-  \text{sysVal} = (j \gg 1) \,\&\, ((1 \ll n) - 1).
-\]
-The diagonal entry depends only on the grid point index $i$, not on the
-sparse index.  The $1/N_f$ normalization is absorbed into the block-encoding
-normalizer $\alpha = N_D \cdot N_f \cdot \kappa$.
+Lean now records the formal normalized coefficient in
+\texttt{GHL2025.boundaryRotationNormalizedCoefficient}.  The definition is the
+Robin sparse coefficient multiplied by the symbolic reciprocal
+\texttt{N\_D\_inv}; it is not a proof that \(N_D\) is nonzero or that the
+coefficient language has division.
 
-Whether this diagonal encoding correctly implements the paper's $O_f$ function
-oracle (which uses amplitude rotations, not diagonal encoding) is tracked by
-the $\texttt{unitary.proved := false}$ obligation.
+The record \texttt{GHL2025.BoundaryRotationAngleNormalizerProofRoute} refines
+the remaining proof obligations for \(R_y^{\mathrm{boundary}}\).  Its false
+fields name the missing division semantics, real arccos semantics, half-angle
+identities, \(N_D\) bound, and two-by-two unitarity.  The Lean theorems
+\texttt{GHL2025.boundaryRotationAngleNormalizerContract\_coefficient} and
+\texttt{GHL2025.boundaryRotationAngleNormalizerProofRoute\_arccosArgument}
+prove only definitional bridges to the existing contract data.  They do not
+promote \texttt{GHL2025.oneTermRobinGate\_Ry\_boundary.unitary.proved}.
 
-In Lean:
+\subsection{Function Oracle $O_f$ Source Contract}
+
+The function oracle $O_f$ is the coefficient-function oracle in
+Guseynov--Huang--Liu 2025, Lemma 4 and Fig.~1-term Robin,
+arXiv:2506.20478.  Its paper role is to encode the grid value
+\(f(x_i)/N_f\).  The one-term Robin normalizer records this factor as
 \[
-  \texttt{GHL2025.robinFunctionValue},
-  \qquad
-  \texttt{GHL2025.functionOracleMatrix},
-  \qquad
-  \texttt{GHL2025.oneTermRobinGate\_O\_f}.
+  \alpha = N_D N_f \kappa .
 \]
 
-\subsection{Sparse Amplitude Oracle $O_{D^T}^S$ Diagonal Matrix}
+The legacy Lean matrix \texttt{GHL2025.functionOracleMatrix} is a Phase 1
+function-value data helper.  For each
+compound basis state \(|j\rangle\), the declaration
+\texttt{GHL2025.functionOracleMatrix} extracts the system register value
+\[
+  \text{sysVal} = (j \gg 1) \,\&\, ((1 \ll n) - 1)
+\]
+and places the symbolic value
+\[
+  \texttt{GHL2025.robinFunctionValue}\;n\;\text{sysVal}
+  =
+  \texttt{Coeff.symbol}\;\texttt{"f\_\{n\}\_\{sysVal\}"}
+\]
+on the diagonal.  Off-diagonal entries are zero.  The diagonal helper depends
+only on the system grid index; it does not depend on the sparse-index register
+or on \texttt{GHL2025.robinSparseAmplitudeValue}.  It is no longer the active
+gate matrix.
 
-The sparse amplitude oracle $O_{D^T}^S$ (Lemma 3, main.tex:822--849) is now an honest
-diagonal matrix conditioned on the indicator bit. For each compound basis state
-$|j\rangle$:
+The active Lean gate now uses a paper-image matrix skeleton.  The paper-level
+coordinate-oracle branch is
+\[
+  |0\rangle^{m_f}|i\rangle
+  \longmapsto
+  \frac{f(x_i)}{N_f}|0\rangle^{m_f}|i\rangle
+  + |\mathrm{orth}_f(i)\rangle,
+\]
+where the second summand has zero overlap with the clean
+\(|0\rangle^{m_f}\) workspace branch.  Lean now records this branch as a
+source contract.  The declarations
+\texttt{GHL2025.FunctionOraclePaperRegisters} and
+\texttt{GHL2025.functionOraclePaperRegisters} extract the system value, the
+\(m_f\) workspace value, the non-\(m_f\) basis index, and a clean-workspace
+flag.  The declaration \texttt{GHL2025.functionOracleNormalizedValue} records
+\texttt{GHL2025.robinFunctionValue} multiplied by the symbolic reciprocal
+\texttt{N\_f\_inv}.  The declarations
+\texttt{GHL2025.FunctionOraclePaperImage} and
+\texttt{GHL2025.functionOraclePaperImage} record the clean branch,
+orthogonal-component label, and false obligations for normalized amplitude,
+orthogonality, the \(N_f\) bound, unitary completion, and diagonal-helper
+isolation.
+
+The declaration \texttt{GHL2025.functionOraclePaperMatrix} exposes this clean
+branch at matrix level for clean \(m_f\) input columns: it places
+\texttt{GHL2025.functionOracleNormalizedValue} on the clean \(m_f\) branch row,
+sets other clean-workspace output rows to zero, and uses
+\texttt{GHL2025.functionOracleOrthogonalEntry} for non-clean output rows.  For
+non-clean input columns, all entries remain symbolic.  The active gate
+\texttt{GHL2025.oneTermRobinGate\_O\_f} now uses this matrix.  This skeleton
+does not prove the amplitude relation, the \(N_f\) bound, orthogonality of the
+non-clean rows, or unitarity.  The Lean records that must stay false are
+\[
+  \texttt{GHL2025.oneTermRobinGate\_O\_f.unitary.proved},
+  \qquad
+  \texttt{GHL2025.FunctionOracleContract.amplitudeCorrect.proved},
+  \qquad
+  \texttt{GHL2025.RobinProofObligations.functionOracleCorrect.proved}.
+\]
+
+\begin{center}
+\begin{tabular}{p{0.22\linewidth}p{0.30\linewidth}p{0.35\linewidth}}
+\hline
+Contract item & Lean declaration & Status \\
+\hline
+grid register \(i\) &
+\texttt{functionOraclePaperRegisters};
+\texttt{functionOracleMatrix} uses the same system bits &
+paper-register extractor defined; concrete tests pass \\
+function values \(f(x_i)\) &
+\texttt{GHL2025.robinFunctionValue} &
+symbolic data source defined \\
+clean \(m_f\) workspace &
+\texttt{FunctionOraclePaperRegisters.mfWorkspaceValue} and
+\texttt{cleanWorkspace} &
+workspace field defined; action and cleanup unproved \\
+normalizer \(N_f\) &
+\texttt{FunctionOracleContract.normalizerBound} and
+\texttt{GHL2025.oneTermRobinNormalizer} &
+recorded; analytic bound unproved \\
+amplitude relation \(f(x_i)/N_f\) &
+\texttt{functionOracleNormalizedValue} and
+\texttt{FunctionOracleContract.amplitudeCorrect} &
+symbolic normalized-value contract defined; proof flag false \\
+orthogonal component &
+\texttt{FunctionOraclePaperImage.orthogonalComponent},
+\texttt{functionOracleOrthogonalEntry}, and
+\texttt{orthogonalComponentCorrect} &
+component label and symbolic non-clean rows recorded; zero-overlap proof false \\
+\(m_f\) workspace action and cleanup &
+\texttt{FunctionOraclePaperImage.cleanWorkspaceBranch} and future workspace lemma &
+width recorded; action unproved \\
+active gate skeleton &
+\texttt{GHL2025.oneTermRobinGate\_O\_f} &
+uses \texttt{functionOraclePaperMatrix}; unitarity false \\
+\hline
+\end{tabular}
+\end{center}
+
+The completed proof-DAG block \texttt{of\_paper\_image} introduced the
+paper-register extractor, normalized clean-branch value, and paper-image
+record.  The companion block \texttt{of\_paper\_matrix} introduced
+\texttt{functionOraclePaperMatrix} and rewired the active gate to it.  The
+bridge theorem
+\texttt{functionOraclePaperMatrix\_nonCleanInput\_entry} records that a
+non-clean input column stays in the symbolic completion branch even when the
+output row equals the clean-branch basis row for the same non-\(m_f\) index.
+The
+block \texttt{of\_diagonal\_helper\_isolation} now keeps
+\texttt{functionOracleMatrix} as a helper-only data path and prevents a
+unitarity proof for that diagonal helper from being mistaken for Lemma 4.
+
+The current tests pin the active gate matrix to
+\texttt{GHL2025.functionOraclePaperMatrix}, pin the Robin default normalizer bound to
+\texttt{Coeff.symbol "N\_f"}, pin the general diagonal rule
+\texttt{functionOracleMatrix p j j =
+robinFunctionValue p.n sysVal} for the extracted system index, and pin
+\texttt{amplitudeCorrect.proved = false}.  New tests also pin
+\texttt{functionOraclePaperRegisters} on a clean \(n=3,\kappa=7\) column,
+the nonclean \(m_f\) extraction example, the normalized value
+\texttt{robinFunctionValue 3 2} times \texttt{N\_f\_inv}, the clean-branch
+fields of \texttt{functionOraclePaperImage}, the clean-input branch matrix
+entry \(\texttt{functionOraclePaperMatrix}\;36\;36\), the zero entry for
+another clean-workspace output row, a symbolic non-clean output-row completion
+entry, a symbolic non-clean input-column entry at row \(4\), and all five false
+proof flags.  These are contract tests, not proofs of the amplitude-oracle
+relation.
+
+\subsection{Sparse Amplitude Oracle $O_{D^T}^S$ Contract}
+
+The sparse amplitude oracle $O_{D^T}^S$ is governed by Lemma 3 of
+Guseynov--Huang--Liu 2025, arXiv:2506.20478.  The paper oracle uses the sparse
+coefficient $D^{(s)}/N_D$ as the amplitude of the $\ket{0}$ branch:
+\[
+  \hat O_D^S\ket{0}\ket{s}
+  =
+  \frac{D^{(s)}}{N_D}\ket{0}\ket{s}
+  +
+  \sqrt{1-\frac{|D^{(s)}|^2}{N_D^2}}\ket{1}\ket{s}.
+\]
+For the one-term Robin circuit the operator is used for $D^T$, and the
+row-dependent coefficient source in Lean is
+\(\texttt{GHL2025.robinSparseAmplitudeValue}\).  The registers needed by the
+Lean contract are:
 \begin{itemize}
-  \item If indicator bit $= 0$ (boundary row): $M[j][j] = 1$ (identity).
-  \item If indicator bit $= 1$ (bulk row): $M[j][j] = \texttt{robinSparseAmplitudeValue}(n, s, i)$.
-  \item Off-diagonal: $M[i][j] = 0$ for $i \neq j$.
+  \item the ancilla bit at bit 0;
+  \item the row register in bits $[1,1+n)$;
+  \item the sparse index inside the padded $O_D$ register block;
+  \item the indicator bit at \texttt{GHL2025.robinIndicatorBitPosition}.
 \end{itemize}
-The indicator bit at position $1 + 2n$ is set by $U_{\mathrm{indic}}$ (gate 1).
-For bulk rows, the same amplitude data as \texttt{robinSparseAmplitudeValue} appears on the diagonal.
-For boundary rows, the matrix acts as identity.
+The indicator bit is set by $U_{\mathrm{indic}}$ before $O_{D^T}^S$.  The
+Lean-facing skeleton acts as identity when that bit is 0 and applies a symbolic
+two-by-two rotation on ancilla bit 0 when that bit is 1.  The symbols
+\(\texttt{GHL2025.sparseAmplitudeOracleDTCosHalf}\) and
+\(\texttt{GHL2025.sparseAmplitudeOracleDTSinHalf}\) are placeholders for the
+two entries in that block; their relation to the displayed formula is not yet
+proved.
 
-\textbf{Paper faithfulness note:} The paper's $O_{D^T}^S$ is a controlled rotation on the
-ancilla qubit with angle $\theta_j^s = \arcsin(D_j^{(s)}/N_D)$, not a diagonal matrix.
-This diagonal encoding exercises the amplitude data pathway but does not implement
-the paper's rotation structure. The obligation is tracked by
-$\texttt{unitary.proved := false}$.
+The Lean declaration \(\texttt{GHL2025.sparseAmplitudeOracleDTMatrix}\) remains
+a diagonal helper:
+\[
+  M[j][j] =
+  \begin{cases}
+    1, & \text{indicator bit } = 0,\\
+    \texttt{robinSparseAmplitudeValue}(n,s,i), & \text{indicator bit } = 1,
+  \end{cases}
+  \qquad
+  M[i][j] = 0 \quad (i \ne j).
+\]
+This helper exercises the sparse-amplitude data path, but it is not the
+faithful active oracle.  The active gate
+\(\texttt{GHL2025.oneTermRobinGate\_O\_DT\_S}\) now points to
+\(\texttt{GHL2025.sparseAmplitudeOracleDTRotationMatrix}\), which preserves all
+non-ancilla bits and changes only ancilla bit 0.
+
+The lower packet added:
+\[
+  \texttt{GHL2025.SparseAmplitudeOracleDTPaperRegisters},
+  \qquad
+  \texttt{GHL2025.sparseAmplitudeOracleDTPaperRegisters},
+  \qquad
+  \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation},
+  \qquad
+  \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract},
+  \qquad
+  \texttt{GHL2025.sparseAmplitudeOracleDTRotationMatrix}.
+\]
+For \(n=3\) and \(\kappa=7\), column 132 has indicator bit 1, row value 2,
+and sparse index 0.  The focused tests check the symbolic
+entries \(M[132,132]=\texttt{odts\_cos\_half\_2\_0}\) and
+\(M[133,132]=\texttt{odts\_sin\_half\_2\_0}\).  Column 4 has indicator bit 0,
+so the tests check identity on row 4 and no ancilla flip to
+row 5.
+
+The explicit coefficient-normalizer obligation is:
+\[
+  \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation.proved}
+  =
+  \texttt{false}.
+\]
+This obligation requires a future Lean statement proving that the symbolic
+\(\ket{0}\) entry represents \(D^{(s)}/N_D\), that the complementary entry
+matches the square-root normalizer term above, and that the resulting
+two-by-two block is unitary.  It must not be encoded as
+\(\texttt{proved := true}\) until those facts are formalized.
+
+The per-row contract
+\[
+  \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract}
+\]
+records the same obligation with the row and sparse index exposed.  For
+parameters \(p\), row \(j\), and sparse index \(s\), its coefficient field is
+\[
+  \texttt{GHL2025.robinSparseAmplitudeValue}\ p.n\ s\ j,
+\]
+its normalizer field is \(\texttt{Coeff.symbol "N\_D"}\), and its two symbolic
+entry fields are
+\(\texttt{GHL2025.sparseAmplitudeOracleDTCosHalf}\ j\ s\) and
+\(\texttt{GHL2025.sparseAmplitudeOracleDTSinHalf}\ j\ s\).  The contract has
+three false proof flags: the \(\ket{0}\) coefficient relation, the
+complementary square-root relation, and the two-by-two unitarity relation.  For
+\(n=3\), \(\kappa=7\), \(j=2\), and \(s=0\), Lean tests pin the coefficient to
+\(-1/12\), the normalizer to \(N_D\), and the symbolic entries to
+\(\texttt{odts\_cos\_half\_2\_0}\) and
+\(\texttt{odts\_sin\_half\_2\_0}\).
 
 In Lean:
 \[
   \texttt{GHL2025.sparseAmplitudeOracleDTMatrix},
   \qquad
-  \texttt{GHL2025.oneTermRobinGate\_O\_DT\_S}.
+  \texttt{GHL2025.oneTermRobinGate\_O\_DT\_S},
+  \qquad
+  \texttt{GHL2025.sparseAmplitudeOracleDTRotationMatrix}.
 \]
+
+\subsection{Boundary Rotation $R_y^{\mathrm{boundary}}$ Contract}
+
+The boundary rotation gate in Fig. 1-term Robin applies a controlled
+\(R_y(\theta_j^s)\) block on ancilla bit 0 for boundary rows.  The paper angle
+relation is
+\[
+  \theta_j^s = \arccos(D_j^{(s)}/N_D).
+\]
+The half-angle entries used by the two-by-two block are
+\[
+  \cos(\theta_j^s/2)
+  =
+  \sqrt{\frac{1 + D_j^{(s)}/N_D}{2}},
+  \qquad
+  \sin(\theta_j^s/2)
+  =
+  \sqrt{\frac{1 - D_j^{(s)}/N_D}{2}}.
+\]
+
+The Lean register contract extracts the ancilla bit, indicator bit, row value,
+sparse index, and non-ancilla rest value:
+\[
+  \texttt{GHL2025.BoundaryRotationPaperRegisters},
+  \qquad
+  \texttt{GHL2025.boundaryRotationPaperRegisters}.
+\]
+The indicator bit controls the branch: indicator value \(1\) means the matrix
+acts as identity, and indicator value \(0\) means the boundary rotation is
+active.  The coefficient source for \(D_j^{(s)}\) is
+\[
+  \texttt{GHL2025.robinSparseAmplitudeValue}\ p.n\ s\ j.
+\]
+
+The active matrix uses shared symbolic half-angle names:
+\[
+  \texttt{GHL2025.boundaryRotationCosHalf}\ j\ s,
+  \qquad
+  \texttt{GHL2025.boundaryRotationSinHalf}\ j\ s.
+\]
+These symbols do not prove the arccos relation, the half-angle formulas, or
+unitarity.  The per-row contract
+\[
+  \texttt{GHL2025.boundaryRotationAngleNormalizerContract}\ p\ j\ s
+\]
+records the coefficient, the normalizer symbol \(N_D\), the two symbolic
+entries, and five false proof flags: boundary control, arccos argument,
+cosine half-angle, sine half-angle, and two-by-two unitarity.  The global flag
+\[
+  \texttt{GHL2025.boundaryRotationAngleNormalizerObligation.proved}
+  =
+  \texttt{false}
+\]
+keeps the paper-level gap visible.
+
+For \(n=3\), \(\kappa=7\), row \(j=0\), and sparse index \(s=0\), compiled
+tests pin the coefficient to \(-5/2+(7/3)A_1dx\), the normalizer to \(N_D\),
+and the symbolic entries to \(\texttt{boundary\_cos\_half\_0\_0}\) and
+\(\texttt{boundary\_sin\_half\_0\_0}\).  The same tests confirm that all
+contract proof fields remain false and that
+\(\texttt{oneTermRobinGate\_Ry\_boundary.matrix}\) is definitionally
+\(\texttt{boundaryRotationMatrix}\).
+
+The Lean-facing proof DAG is:
+\begin{center}
+\begin{tabular}{p{0.22\textwidth}p{0.42\textwidth}p{0.22\textwidth}}
+\hline
+Block & Interface & Status \\
+\hline
+\texttt{ryb\_extract\_registers} &
+extract ancilla, indicator, row, sparse index, and non-ancilla fields &
+defined skeleton \\
+\texttt{ryb\_symbolic\_entries} &
+define the symbolic half-angle entries in the active matrix &
+active skeleton; angle relation unproved \\
+\texttt{ryb\_angle\_normalizer} &
+prove \(\theta_j^s=\arccos(D_j^{(s)}/N_D)\) and the half-angle formulas &
+typed contract recorded; proof flags false \\
+\texttt{ryb\_rotation\_unitary} &
+prove the two-by-two block is unitary under the \(N_D\) bound &
+unproved \\
+\hline
+\end{tabular}
+\end{center}
 
 \subsection{$O_f$ vs $O_{D^T}^S$ Double Encoding Audit (Resolved)}
 
@@ -534,14 +995,17 @@ In the paper:
 \begin{itemize}
   \item $O_{D^T}^S$ encodes derivative stencil coefficients $D_j^{(s)}/N_D$
     via controlled rotations on the ancilla qubit.
-  \item $O_f$ encodes function values $f(x_j)/N_f$ (Lemma 4, main.tex:870--910),
+  \item $O_f$ encodes function values $f(x_j)/N_f$
+    (Guseynov--Huang--Liu 2025, Lemma 4, arXiv:2506.20478),
     a completely different quantity.
 \end{itemize}
 This was corrected in cycle 9: $O_f$ now uses \texttt{robinFunctionValue}
-(symbolic function values $f(x_j)$), while $O_{D^T}^S$ continues to use
-\texttt{robinSparseAmplitudeValue} (derivative stencil data).
-Both gates carry $\texttt{unitary.proved := false}$ because the diagonal
-encoding does not match the paper's rotation-based oracle structure.
+(symbolic function values $f(x_j)$), while the $O_{D^T}^S$ data path continues
+to use \texttt{robinSparseAmplitudeValue} (derivative stencil data).  The
+active $O_{D^T}^S$ gate now uses the controlled-rotation skeleton, not the
+diagonal helper.  Both gates carry $\texttt{unitary.proved := false}$; for
+$O_{D^T}^S$ the remaining gap is the Lemma 3 coefficient-normalizer relation
+and the induced two-by-two unitarity identity.
 
 \subsection{Open Proof Obligations}
 
@@ -556,9 +1020,10 @@ The most important remaining obligations are:
   \item prove the remaining 6 labeled gate matrices are unitary
     (U\_indic unitarity proved via \texttt{indicatorOracleMatrix\_is\_permutation});
   \item prove the composed circuit matrix equals the paper's \(U\);
-  \item replace the remaining placeholder zero matrix (Ry\_boundary) with a real oracle implementation; (done: cycle 8)
+  \item replace the Ry\_boundary zero placeholder with a real oracle implementation; (done: cycle 8)
   \item correct $O_f$ to encode function values $f(x_j)/N_f$ instead of derivative amplitude data; (done: cycle 9)
-  \item replace diagonal approximations with the paper's rotation structure ($O_{D^T}^S$, $R_y^{\text{boundary}}$);
+  \item prove the $O_{D^T}^S$ coefficient-normalizer relation for the symbolic rotation entries from Lemma 3;
+  \item prove the $R_y^{\text{boundary}}$ angle-normalizer relation, including the arccos argument, half-angle formulas, and two-by-two unitarity;
   \item prove the extracted block is \(A_k/(N_DN_f\kappa)\);
   \item prove the resource formula including all internal oracle ancillas.
 \end{enumerate}
@@ -598,6 +1063,44 @@ The generic arithmetic bridge
 is now proved in Lean as \texttt{clog2\_gridSize}.  This closes the dimension
 compatibility side condition for the Robin circuit block claim, but it does not
 prove oracle unitarity or block correctness.
+
+\subsection{Block-Projection and Normalizer Contract}
+
+Define the signal dimension to be
+\[
+  2^{m}
+  =
+  \texttt{qubitDim}
+  \bigl(\texttt{GHL2025.effectiveRobinSignalQubits}
+  (\texttt{Examples.RobinHeat.oneTermParameters}\;n)\bigr).
+\]
+Define the system dimension to be \(N=2^n=\texttt{gridSize}\;n\).  Lean proves
+the dimension split by
+\[
+  \texttt{Examples.RobinHeat.oneTermRobinCircuitDimCompat}\;n.
+\]
+The block-extraction target uses signal index \(0\).  Its target matrix is
+\texttt{Examples.RobinHeat.robinDerivativeMatrix}\(n\), and its normalizer is
+\[
+  \texttt{GHL2025.oneTermRobinNormalizer}
+  =
+  N_D N_f \kappa.
+\]
+The evaluation lemma
+\(\texttt{GHL2025.oneTermRobinNormalizer\_eval}\) states this product for every
+symbol environment.
+
+The lower packet audited only this structural contract:
+\texttt{oneTermRobinBlockExtractionTarget} uses the cast circuit product,
+\texttt{signalSystemBlockProjection}, signal index \(0\), the Robin target
+matrix, and the normalizer above.  The compiled tests also pin
+\texttt{defaultOneTermRobinCircuitBlockClaim} to that same target.  The
+obligations \texttt{blockProjection.proved} and
+\texttt{blockCorrect.proved} remain false.  The cleanup obligation for
+\((O_D^{BS})^\dagger\) also remains false through
+\texttt{defaultBandedSparseAccessPaperContract}.  This packet did not attempt
+entry-level normalization of the full \(n=3\) product, whose dimension is
+\(8192 \times 8192\).
 
 \subsection{Cycle 11: Coeff.rat Arithmetic and U\_indic Bijection}
 

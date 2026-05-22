@@ -48,6 +48,19 @@ Development may use local working copies of the paper, but public proof maps
 must cite the paper, arXiv URL, theorem/lemma/equation/figure labels, or bundled
 paper notes.  Do not cite machine-specific absolute source paths.
 
+## Cited Results Discipline
+
+If a GHL proof step invokes prior work or a standard theorem, record it in
+`research-wiki/cited-results/GHL2025.md` before a lower agent relies on it.
+The entry must state the source, the exact statement used, the Lean declaration
+or planned declaration, the QBE status, and dependent proof blocks.
+
+Do not close a GHL obligation merely because the paper cites a previous paper or
+because a result is considered classical.  Until QBE has a build-tested Lean
+proof or a typed contract, the dependency remains an obligation.  Reviewer must
+check this ledger when auditing O_f, LCU/block-composition, state-preparation,
+arithmetic subroutines, QSVT/LCU background, and sparse-oracle claims.
+
 ## Required Human-Facing Artifacts
 
 Every cycle that changes Lean declarations must update at least one of:
@@ -111,6 +124,8 @@ These are intentionally small.  They are a foundation, not the final proof.
 4. State the exact block-extraction target for
    `Examples.RobinHeat.robinBlockEncodingSpec n`.
 5. Keep every unproved semantic claim as an obligation with `proved := false`.
+6. Keep cited-results memory synchronized for any prior theorem used by the
+   paper or by our proof plan.
 
 ## Non-Goals
 
