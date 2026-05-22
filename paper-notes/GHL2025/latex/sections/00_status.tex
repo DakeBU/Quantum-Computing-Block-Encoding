@@ -1,0 +1,48 @@
+\section{Status}
+
+The source paper is Nikita Guseynov, Xiajie Huang, and Nana Liu,
+\emph{Quantum framework for simulating linear PDEs with Robin boundary
+conditions}, arXiv:2506.20478.  The Lean source of truth is
+\Lean{QuantumBlockEncoding/GHL2025.lean}.
+
+The build gate after this export is
+\[
+  \Lean{python3 tools/qbe.py check}.
+\]
+It runs \Lean{lake build} and \Lean{lake build Tests}.
+
+\begin{longtable}{p{0.25\textwidth}p{0.42\textwidth}p{0.22\textwidth}}
+\hline
+Block & Main Lean declarations & Status \\
+\hline
+Circuit gate-list alignment &
+\Lean{oneTermRobinPlaceholdersMatch} &
+proved \\
+Dimension compatibility &
+\Lean{Examples.RobinHeat.oneTermRobinCircuitDimCompat} &
+proved \\
+Indicator oracle permutation route &
+\Lean{indicatorOracleImage\_self\_inverse},
+\Lean{indicatorOracleImage\_bijective},
+\Lean{indicatorOracleMatrix\_is\_permutation} &
+proved \\
+SWAP first bit-slice route &
+\Lean{swapOracleDiff\_lt\_two\_pow},
+\Lean{swapOracleImage\_block1\_eq\_block2} &
+proved partial block \\
+\(\ODBS\) register-safety route &
+\Lean{bandedSparseAccessPaperImage\_lt\_qubitDim\_of\_address\_lt},
+\Lean{bandedSparseAccessPaperImage\_rowValue\_eq},
+\Lean{bandedSparseAccessPaperImage\_odRegisterValue\_eq} &
+proved executable blocks \\
+\(\Uf\) clean-branch skeleton &
+\Lean{functionOraclePaperMatrix\_cleanBranch\_entry},
+\Lean{functionOraclePaperMatrix\_cleanWorkspace\_offBranch\_zero} &
+proved skeleton entries \\
+\hline
+\end{longtable}
+
+The following remain obligations: SWAP unitarity, \(\ODBS\) injectivity and
+dagger cleanup, \(\ODT\) coefficient-normalizer and rotation unitarity,
+boundary-rotation analytic identities, \(\Uf\) unitary completion, and final
+block extraction with normalizer \(N_DN_f\kappa\).

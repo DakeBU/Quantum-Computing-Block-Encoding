@@ -491,3 +491,17 @@ The important distinction is status:
 Reviewer agents must reject hidden dependencies.  A prior result cannot close a
 gate-level oracle or block-encoding proof unless the cited-results ledger names
 the source, exact statement, Lean status, and dependent use sites.
+
+## Proof Exports
+
+Compiled Lean proof blocks are exported for human reading under
+[`paper-notes/GHL2025/`](paper-notes/GHL2025/):
+
+- Markdown proof notes: `paper-notes/GHL2025/markdown/`
+- Overleaf entry point: `paper-notes/GHL2025/latex/main.tex`
+- LaTeX section files: `paper-notes/GHL2025/latex/sections/`
+
+This export is intentionally batch-based.  Lower agents may prove many small
+Lean lemmas during a 5-hour run; the middle agent should translate accepted
+proof blocks into Markdown and LaTeX once at the end of the batch, not after
+every small lemma.

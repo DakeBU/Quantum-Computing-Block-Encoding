@@ -1,0 +1,40 @@
+\section{Function Oracle Clean Branch}
+
+For a compound basis index \(j\), Lean extracts
+\[
+  i(j)=(j\gg1)\mathbin{\&}(2^n-1)
+\]
+and the \(m_f\)-workspace value.  A column is clean when that workspace value is
+zero.
+
+The symbolic normalized amplitude is
+\[
+  a_i=f(x_i)N_f^{-1}.
+\]
+In Lean this is \Lean{functionOracleNormalizedValue p i}.
+
+For a clean input column, the paper-image record stores
+\[
+  |0\rangle^{m_f}|i\rangle
+  \mapsto
+  a_i|0\rangle^{m_f}|i\rangle
+  +|\operatorname{orth}_f(i)\rangle .
+\]
+
+Lean proves the clean branch matrix entry:
+\[
+  M_{r,j}=a_{i(j)}
+\]
+when \(r\) is the clean-branch basis row.  This is
+\Lean{functionOraclePaperMatrix\_cleanBranch\_entry}.
+
+For clean input columns, every other clean-workspace output row has zero entry:
+\[
+  M_{r',j}=0.
+\]
+This is \Lean{functionOraclePaperMatrix\_cleanWorkspace\_offBranch\_zero}.
+For non-clean input columns, Lean routes entries to the symbolic completion
+branch by \Lean{functionOraclePaperMatrix\_nonCleanInput\_entry}.
+
+The \(N_f\) bound, genuine division by \(N_f\), orthogonality of the symbolic
+completion, and full unitarity of \(O_f\) remain obligations.

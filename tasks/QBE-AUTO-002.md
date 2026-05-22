@@ -85,6 +85,22 @@ display math in `.md` files. Do not use backslash-parenthesis or
 backslash-bracket math delimiters in Markdown. The `.tex` proof map may use
 normal LaTeX delimiters.
 
+## Proof Export Cadence
+
+For token efficiency, do not require a polished proof export after every small
+lower-agent lemma.  During overnight or 5-hour runs, lower agents may update
+conversion windows and proof obligations locally.  At the end of the batch,
+middle must export all newly accepted proof blocks into:
+
+- `paper-notes/GHL2025/markdown/`
+- `paper-notes/GHL2025/latex/main.tex`
+- `paper-notes/GHL2025/latex/sections/`
+
+The export should be mathematical writing, not a changelog: definitions first,
+then theorem statements, then proof explanations tied to Lean declarations.
+Reviewer should audit this export only once per batch unless a proof flag or
+oracle contract changes.
+
 ## Current Starting Point
 
 `CircuitSemantics.lean` now provides:

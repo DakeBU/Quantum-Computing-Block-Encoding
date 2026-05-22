@@ -1,0 +1,75 @@
+\section{Indicator Oracle}
+
+This section exports the compiled proof of the indicator oracle
+\(\Uindic\).  The Lean declarations are
+\Lean{indicatorOracleImage}, \Lean{indicatorOracleMatrix},
+\Lean{indicatorOracleImage\_systemVal\_preserved},
+\Lean{indicatorOracleImage\_isBulk\_preserved},
+\Lean{indicatorOracleImage\_self\_inverse},
+\Lean{indicatorOracleImage\_bijective}, and
+\Lean{indicatorOracleMatrix\_is\_permutation}.
+
+\subsection{Definitions}
+
+Let \(n=p.n\) and
+\[
+  \operatorname{indPos}=1+2n.
+\]
+For a basis index \(j\), define
+\[
+  \operatorname{sys}(j)=
+  (j\gg 1)\mathbin{\&}(2^n-1).
+\]
+Let
+\[
+  \operatorname{bulk}(j)=
+  \begin{cases}
+  1, & 2\le \operatorname{sys}(j)\le 2^n-3,\\
+  0, & \text{otherwise}.
+  \end{cases}
+\]
+The image function is
+\[
+  I(j)=j\oplus(\operatorname{bulk}(j)\ll \operatorname{indPos}).
+\]
+The matrix is
+\[
+  M_{i,j}=
+  \begin{cases}
+  1, & i=I(j),\\
+  0, & i\ne I(j).
+  \end{cases}
+\]
+
+\subsection{Proof}
+
+The bit \(\operatorname{indPos}\) is above the system register, so toggling it
+does not change the extracted system value:
+\[
+  \operatorname{sys}(I(j))=\operatorname{sys}(j).
+\]
+This is \Lean{indicatorOracleImage\_systemVal\_preserved}.  Since the bulk
+predicate depends only on the system value,
+\[
+  \operatorname{bulk}(I(j))=\operatorname{bulk}(j),
+\]
+which is \Lean{indicatorOracleImage\_isBulk\_preserved}.
+
+Therefore
+\[
+  I(I(j))
+  =j\oplus b\ll\operatorname{indPos}\oplus b\ll\operatorname{indPos}
+  =j,
+\]
+where \(b=\operatorname{bulk}(j)\).  This is
+\Lean{indicatorOracleImage\_self\_inverse}.
+
+A self-inverse map is injective.  On the finite basis domain it is surjective
+because \(I(I(y))=y\).  Lean packages these two facts as
+\Lean{indicatorOracleImage\_bijective}.  The entry characterization
+\Lean{indicatorOracleMatrix\_eq\_image} then gives exactly one \(1\)-entry in
+each row and each column.  This is
+\Lean{indicatorOracleMatrix\_is\_permutation}.
+
+Consequently \Lean{oneTermRobinGate\_U\_indic} has
+\Lean{unitary.proved = true}.

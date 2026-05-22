@@ -1,0 +1,14 @@
+\section{Next Schedule}
+
+The next multi-hour runs should use a cheaper loop:
+
+\begin{itemize}
+\item run upper, middle, and one lower agent per cycle;
+\item skip reviewer-agent calls for ordinary local proof-DAG continuation;
+\item still run \Lean{python3 tools/qbe.py check} after each cycle;
+\item run one full reviewer and proof-export pass at the end of the batch.
+\end{itemize}
+
+Use a full reviewer cycle when a proof flag changes from false to true, an
+oracle contract changes, a cited result changes status, final block extraction
+is touched, or this proof export is updated.

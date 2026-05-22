@@ -1082,6 +1082,12 @@ Human-facing correspondence rule:
 - Lean compilation alone is not enough for faithful paper-reproduction mode;
   humans must be able to compare the Lean names with the original theorem,
   equations, normalizers, register layout, and resource statement.
+- Proof-export cadence is deliberately slower than Lean search.  Do not spend
+  tokens rewriting a polished proof document after every small lower-agent
+  change.  At the end of a multi-hour batch, middle should export all newly
+  accepted Lean proof blocks into Markdown and LaTeX under `paper-notes/`,
+  with a master Overleaf `main.tex` and section files.  Reviewer should then
+  audit that the proof export matches the compiled Lean declarations.
 - For mathematical prose, use `.agents/skills/qbe-math-writing/SKILL.md`.
   Keep definitions before theorem statements, justify nontrivial claims, use
   precise citations, and avoid duplicated definitions.
@@ -1453,8 +1459,9 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             run_dir / "10_upper_director.md",
             run_dir / "20_middle_formalizer.md",
             *sorted(run_dir.glob("30_lower_searcher_*.md")),
-            run_dir / "40_reviewer.md",
         ]
+        if not args.skip_reviewer:
+            prompts.append(run_dir / "40_reviewer.md")
         if args.dry_run or not args.agent_cmd:
             print("dry run: prompt deck created, no external agent command executed")
             continue
@@ -1619,6 +1626,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep.add_argument("--execute", action="store_true")
     p_sleep.add_argument("--dry-run", action="store_true")
     p_sleep.add_argument("--check-each-cycle", action="store_true")
+    p_sleep.add_argument(
+        "--skip-reviewer",
+        action="store_true",
+        help="do not execute the reviewer agent prompt; combine with --check-each-cycle to keep the Lean build gate",
+    )
     p_sleep.set_defaults(func=cmd_sleep_run)
 
     p_note = sub.add_parser("agent-note", help="append a role-tagged note to a run dialogue board")
