@@ -1102,6 +1102,14 @@ unimplemented oracle as a proof obligation; do not permit new assumptions or
 replacement conditions.  In exploratory mode, require a Lean-checkable target
 before search begins and reject any target-weakening shortcut.
 
+Faithful paper mode has a phase order.  Phase 1 is a fast, complete paper
+transcript: map the paper's theorem, equations, circuit fragments, oracle
+contracts, register layout, normalizers, and proof steps into Lean declarations
+or explicit obligations.  Do not slow Phase 1 down with broad library
+architecture, general-purpose abstractions, or non-critical proofs.  Phase 2,
+after the transcript and contracts are complete, may reorganize shared APIs for
+teaching, reuse by other papers, and exploratory construction mode.
+
 Before assigning lower work in faithful paper mode, run a source-contract
 audit: compare each Lean oracle/circuit contract with the paper's stated
 register-level transformation, normalizer, ancilla cleanup condition, and
@@ -1151,6 +1159,12 @@ contract.  After lower work, translate the actual Lean declarations, proof
 status, failed goals, and remaining obligations back into Markdown and LaTeX
 so humans can compare them with the original paper in the next reflection
 cycle.
+
+In faithful paper mode, optimize for Phase 1 first: complete the paper transcript
+and exact Lean contracts before asking lower agents to prove non-critical
+sublemmas or to build reusable library architecture.  If a proof-route lemma is
+useful but not on the transcript critical path, record it as proof-route memory
+and schedule it later.
 
 Prefer small Lean changes that keep the repository compiling.  Do not bury a
 failed oracle construction in prose; promote it to a proof obligation or open
@@ -1219,6 +1233,11 @@ the paper.  Public docs should not require a local absolute path to a paper
 source; cite the paper and stable theorem/equation/figure anchors instead.  If
 Lean fails, localize the failure and suggest the next smallest repair.
 
+In faithful paper mode, also check phase discipline.  During Phase 1, broad
+library reorganization, non-critical proof polishing, and reusable API design
+are advisory at best; they should not displace completing the paper transcript,
+oracle contracts, and proof-obligation map.
+
 In faithful mode, check that proof-attempt populations did not alter the paper
 construction.  In exploratory mode, check that candidate scores are treated as
 search guidance rather than proof of correctness.
@@ -1235,6 +1254,11 @@ Run the Lean gate if you edit Lean, or explain why it was not run.  Do not
 change the scientific objective.  In faithful paper mode, do not replace the
 paper construction with a new one and do not add assumptions.  In exploratory
 mode, keep every proposed construction tied to the acceptance predicate.
+
+In faithful paper mode, respect phase order.  If the assigned task is part of
+Phase 1, implement only the narrow paper-transcript or contract item you were
+given.  Do not introduce broad abstractions, reorganize the library, or switch
+to a non-critical proof because it looks reusable.
 
 If the assigned Lean target appears to prove a simplified contract rather than
 the paper's register-level transformation, stop and record the mismatch as a

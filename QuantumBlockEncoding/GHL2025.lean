@@ -930,10 +930,12 @@ def oneTermRobinGate_Ry_boundary (p : OneTermRobinParameters) : GateMatrix Coeff
   }
 
 /--
-Honest O_D^BS matrix: banded sparse access oracle matrix.
-Maps |s⟩|i⟩ → |s⟩|col(s,i)⟩ by replacing the system register bits.
-Bits outside the system register are preserved.
-Unitarity not yet formally proved.
+Interim O_D^BS column-map helper, not the faithful Lemma 1 paper oracle.
+It maps |s⟩|i⟩ → |s⟩|col(s,i)⟩ by replacing the system register bits.
+Bits outside the system register are preserved.  The paper contract
+|0>^(n-l)|s>^l|i>^n -> |r_si>^n|i>^n is recorded separately in
+`defaultBandedSparseAccessPaperContract`; do not use this helper as the
+unitarity or block-extraction target for the paper oracle.
 main.tex:784-801 --/
 def bandedSparseAccessMatrix (p : OneTermRobinParameters) :
     Matrix (qubitDim (oneTermRobinTotalQubits p)) (qubitDim (oneTermRobinTotalQubits p)) Coeff :=
@@ -952,16 +954,18 @@ def bandedSparseAccessMatrix (p : OneTermRobinParameters) :
     if i.val = expectedImage then Coeff.rat 1 else Coeff.rat 0
 
 /--
-Gate matrix for O_D^BS using the honest sparse-access matrix.
-Banded sparse access oracle mapping sparse index and row to column.
-Unitarity not yet formally proved.
+Gate record currently wired to the interim O_D^BS column-map helper.
+This keeps the seven-gate circuit product nonzero while the faithful padded
+sparse-index oracle is tracked by `defaultBandedSparseAccessPaperContract`.
+Unitarity and block extraction must remain unproved until the active matrix
+image formula matches Lemma 1.
 main.tex:784-801 --/
 def oneTermRobinGate_O_D_BS (p : OneTermRobinParameters) : GateMatrix Coeff (oneTermRobinTotalQubits p) where
   gate := Gate.oracleCall "O_D^BS"
   matrix := bandedSparseAccessMatrix p
   unitary := {
-    description := "O_D^BS sparse-access matrix: unitarity blocked until boundary column-map contract is reconciled"
-    source := "main.tex:784-801"
+    description := "O_D^BS interim column-map helper: unitarity blocked until the padded sparse-index contract is active"
+    source := "contract drift audit for Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
     proved := false
   }
 
@@ -1322,6 +1326,33 @@ theorem swapOracleDiff_shiftLeft_mask_eq_zero (p : OneTermRobinParameters) (j : 
   exact shiftLeft_land_mask_eq_zero
     (((j >>> 1) &&& (1 <<< p.n) - 1) ^^^ ((j >>> (1 + p.n)) &&& (1 <<< p.n) - 1))
     p.n p.n (by omega)
+
+/--
+SWAP proof-DAG block: after `swapOracleImage`, the low n-bit register equals
+the old high n-bit register.  This is the first register-level bit-slice lemma
+needed for the eventual SWAP self-inverse/permutation proof.
+main.tex:1140 --/
+theorem swapOracleImage_block1_eq_block2 (p : OneTermRobinParameters) (j : Nat) :
+    let n := p.n
+    let blockMask := (1 <<< n) - 1
+    ((swapOracleImage p j) >>> 1) &&& blockMask =
+      (j >>> (1 + n)) &&& blockMask := by
+  dsimp [swapOracleImage]
+  apply Nat.eq_of_testBit_eq
+  intro i
+  simp only [Nat.testBit_and]
+  by_cases hi : i < p.n
+  · have hmask : ((1 <<< p.n) - 1).testBit i = true := by
+      rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]
+      simp [hi]
+    have hnle : ¬p.n ≤ i := Nat.not_le_of_gt hi
+    simp only [Nat.testBit_shiftRight, Nat.testBit_xor, Nat.testBit_shiftLeft,
+      Nat.testBit_and]
+    simp [hmask, hnle, Nat.add_comm, Nat.add_left_comm]
+  · have hmask : ((1 <<< p.n) - 1).testBit i = false := by
+      rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]
+      simp [hi]
+    simp [hmask]
 
 /--
 Cycle 12: robinIndicatorBitPosition = 1 + 2*p.n, hence >= 1 + p.n.

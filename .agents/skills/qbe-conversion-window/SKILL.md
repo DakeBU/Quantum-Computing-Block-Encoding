@@ -13,21 +13,23 @@ and human explanation.
 
 1. Create a window with:
    `python3 tools/qbe.py conversion-window <task-id> --title "<title>"`.
-2. Fill the LaTeX statement exactly as used in the paper.
-3. Map every symbol to a Lean declaration or planned declaration.
-4. Add a source-contract audit pane for faithful-paper tasks.  For every
+2. In Phase 1 faithful-paper work, treat this window as a transcript first:
+   prioritize exact paper-to-Lean mapping over library reorganization.
+3. Fill the LaTeX statement exactly as used in the paper.
+4. Map every symbol to a Lean declaration or planned declaration.
+5. Add a source-contract audit pane for faithful-paper tasks.  For every
    oracle/gate, include the paper anchor, input registers, output registers,
    clean ancillas, normalizer, and the Lean declaration that should implement
    it.  Use public paper citations and stable theorem/lemma/equation/figure
    labels; do not make public artifacts depend on a machine-specific absolute
    path to a local source copy.
-5. Add a proof-DAG/reuse map.  Inspired by
+6. Add a proof-DAG/reuse map.  Inspired by
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2, the conversion window should
    expose shared proof blocks rather than flattening the same local argument
    many times.
-6. Write a Markdown explanation of the construction.
-7. Move verified Lean code into `QuantumBlockEncoding/`.
-8. Run `python3 tools/qbe.py check`.
+7. Write a Markdown explanation of the construction.
+8. Move verified Lean code into `QuantumBlockEncoding/`.
+9. Run `python3 tools/qbe.py check`.
 
 ## Proof-DAG Pane
 
@@ -59,3 +61,8 @@ and dependency.  Do not replace the paper theorem with a weaker statement.
 If a Lean declaration maps the wrong registers, uses a simplified oracle shape,
 or omits the paper's clean-ancilla condition, mark it as contract drift and
 assign a correction before proving unitarity or block extraction for it.
+
+During Phase 1, do not expand the window into a general textbook or library
+design document.  Keep it focused on faithful paper transcript, exact Lean
+contracts, and explicit obligations.  Move general teaching/reuse material to
+Phase 2 documentation after the transcript is complete.

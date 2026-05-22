@@ -14,6 +14,27 @@ GHL2025 Robin circuit skeleton into a checkable block-encoding statement.
 This is not an innovation/open-problem task.  It is infrastructure required to
 finish the paper-reproduction mode for `QBE-AUTO-001`.
 
+## Phase Discipline
+
+This task is currently in **Phase 1: faithful paper transcript and contract
+capture**.  The immediate goal is to reproduce the paper's proof structure
+faithfully and quickly:
+
+- map every relevant theorem, lemma, equation, circuit fragment, oracle
+  contract, normalizer, register layout, and resource claim to a Lean
+  declaration or explicit proof obligation;
+- keep unproved gate-level facts as `proved := false`;
+- keep Markdown/LaTeX proof maps synchronized with the Lean declarations.
+
+Do not use Phase 1 to reorganize the whole library, introduce broad reusable
+APIs, polish non-critical proofs, or optimize for future papers.  Those belong
+to **Phase 2: library organization and reuse**, after the GHL transcript and
+contracts are complete.
+
+Proof-route populations are allowed only for fixed Lean statements whose
+failure produced useful lemmas.  They must not mutate the paper construction or
+displace the Phase 1 transcript objective.
+
 ## Source
 
 - Primary paper target: Nikita Guseynov, Xiajie Huang, Nana Liu, "Quantum
@@ -76,6 +97,11 @@ These are intentionally small.  They are a foundation, not the final proof.
    `col(s,i)`.  Treat this as contract drift until the register-level image
    formula is reconciled with the paper's padded sparse-index register and
    cleanup by `(O_D^BS)^dagger`.
+
+0a. Complete the faithful transcript/contract map before non-critical proof
+    polishing.  SWAP bit-slice lemmas are useful proof-route memory, but the
+    next critical-path work is the GHL `O_D^BS` register contract and the
+    paper-level one-term block-encoding proof map.
 
 1. Add tests for the new matrix semantics layer.
 2. Define a block-projection/indexing convention for signal and system

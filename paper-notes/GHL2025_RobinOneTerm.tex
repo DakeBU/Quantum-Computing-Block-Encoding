@@ -161,8 +161,14 @@ twice cancels.  The key bit-arithmetic lemmas are:
   \item $d \gg n = 0$ when $d < 2^n$.
   \item Right-shift distributes over XOR.
 \end{itemize}
-The self-inverse property then yields injectivity, bijectivity on the
-$\texttt{Fin}$ domain, and the permutation-matrix theorem.
+Lean has proved the first register-image block,
+\texttt{swapOracleImage\_block1\_eq\_block2}: after \texttt{swapOracleImage},
+the low $n$-bit block equals the old high $n$-bit block.  The symmetric high
+block statement \texttt{swapOracleImage\_block2\_eq\_block1} remains planned.
+Only after both block statements are proved should the self-inverse property be
+used to derive injectivity, bijectivity on the $\texttt{Fin}$ domain, and the
+permutation-matrix theorem.  The SWAP gate obligation therefore remains
+\texttt{proved := false}.
 
 \subsection{Banded Sparse Access Oracle $O_D^{BS}$ Matrix}
 
@@ -206,6 +212,36 @@ the forward oracle correctness, and the cleanup by
 $(O_D^{BS})^\dagger$.  The record does not prove unitarity and does not change
 \texttt{bandedSparseAccessMatrix}; it prevents the interim helper from being
 mistaken for the paper oracle.
+
+The Lean-facing proof DAG for this oracle is:
+\begin{center}
+\begin{tabular}{p{0.24\textwidth}p{0.40\textwidth}p{0.22\textwidth}}
+\hline
+Block & Interface & Status \\
+\hline
+\texttt{odbs\_width\_compatible} &
+the padded zero register and sparse-index register have total width $n$ &
+unproved \\
+\texttt{odbs\_extract\_registers} &
+extract the padded sparse-index register and row register from the compound
+basis index &
+planned \\
+\texttt{odbs\_forward\_image} &
+map $|0\rangle^{n-l}|s\rangle^l|i\rangle^n$ to
+$|r_{si}\rangle^n|i\rangle^n$ while preserving the row register &
+planned \\
+\texttt{odbs\_dagger\_cleanup} &
+clean the padded sparse-index register using $(O_D^{BS})^\dagger$ after SWAP &
+unproved \\
+\hline
+\end{tabular}
+\end{center}
+
+The next Lean packet should introduce
+\texttt{bandedSparseAccessPaperRegisters} and
+\texttt{bandedSparseAccessPaperImage}, with tests for row preservation and
+address-register replacement at $n=3$ and $\kappa=7$.  No unitarity or cleanup
+flag should be promoted by that packet.
 
 For the fourth-order central second-derivative stencil (half-bandwidth $l=2$):
 \begin{itemize}

@@ -12,36 +12,41 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
 
 1. Identify the exact construction: matrix target, circuit/oracle, normalizer,
    ancilla layout, resource statement.
-2. Run a source-contract audit before writing Lean: for every oracle or named
+2. Classify the phase.  In Phase 1, produce a faithful paper transcript and
+   exact Lean contract map first.  Avoid broad library organization,
+   future-paper abstractions, and non-critical proof polishing until the paper's
+   theorem/equation/circuit/oracle map is complete.  In Phase 2, reorganize
+   shared APIs and teaching/reuse structure.
+3. Run a source-contract audit before writing Lean: for every oracle or named
    gate, record the paper anchor, exact input registers, exact output registers,
    clean ancilla condition, normalizer, and resource claim.  Public artifacts
    should cite the paper, arXiv URL, theorem/lemma/equation/figure labels, or
    bundled paper-note sections, not a local absolute source path.  If the
    current Lean declaration implements a simplified register map, mark it as
    contract drift and correct that contract before proof search.
-3. Maintain two-way translation.  Before lower-agent Lean work, translate the
+4. Maintain two-way translation.  Before lower-agent Lean work, translate the
    relevant paper LaTeX theorem/equation/circuit fragment into a Lean-facing
    contract.  After lower-agent work, translate the actual Lean declarations,
    proof status, failed goals, and remaining obligations back into Markdown and
    LaTeX so the next upper/reviewer reflection can compare against the paper.
-4. Identify reusable proof blocks before writing Lean.  Use the lesson of
+5. Identify reusable proof blocks before writing Lean.  Use the lesson of
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2: a hierarchical prover gains
    sample efficiency when repeated local arguments are represented as a proof
    DAG and solved once, rather than flattened into repeated tactic traces.
    In QBE, typical reusable blocks include dimension arithmetic, bit-slice
    extraction, block projection, gate-list alignment, sparse-index maps, and
    normalizer lemmas.
-5. Create a task:
+6. Create a task:
    `python3 tools/qbe.py new-task <id> --title "<paper construction>"`.
-6. Create a conversion window:
+7. Create a conversion window:
    `python3 tools/qbe.py conversion-window <id> --title "<paper construction>"`.
-7. Add a proof-DAG/reuse map to the conversion window: each block should have
+8. Add a proof-DAG/reuse map to the conversion window: each block should have
    an interface, dependencies, Lean declaration name, paper citation, proof
    status, and reuse sites.
-8. Add or update Lean definitions in the target file, preferring references to
+9. Add or update Lean definitions in the target file, preferring references to
    existing shared declarations over duplicate local definitions.
-9. Add at least one small test in `Tests/Basic.lean` when possible.
-10. Run `python3 tools/qbe.py check`.
+10. Add at least one small test in `Tests/Basic.lean` when possible.
+11. Run `python3 tools/qbe.py check`.
 
 ## Hierarchical Proof Policy
 
@@ -59,6 +64,9 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
 - Reviewer treats source-contract drift as blocking: a Lean proof of a
   simplified oracle is not progress on the faithful paper target until the
   register-level transformation matches the paper.
+- In Phase 1, reusable proof blocks are recorded when useful, but they should
+  not displace completing the paper transcript and contract map.  Full library
+  cleanup and generalized APIs wait for Phase 2.
 
 ## Acceptance
 

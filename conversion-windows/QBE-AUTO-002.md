@@ -464,6 +464,41 @@ The interim helper maps $|s\rangle|i\rangle \to
 |s\rangle|\mathrm{col}(s,i)\rangle$, where $\mathrm{col}(s,i)$ is the column
 index of the $s$-th nonzero entry in row $i$ of the Robin derivative matrix.
 
+### O_D^BS Proof-DAG Pane
+
+The faithful paper target factors into reusable register blocks before any
+unitarity search.  The active Lean matrix still points at the interim helper,
+so every row below is either a planned declaration or an unproved obligation.
+
+| Block | Interface | Paper source | Lean declaration | Depends on | Reused by | Status |
+|---|---|---|---|---|---|---|
+| `odbs_width_compatible` | the padded zero register and sparse-index register have total width $n$ | Lemma 1, arXiv:2506.20478 | `defaultBandedSparseAccessPaperContract p`.widthCompatible | parameter-family width fact for `clog2 p.kappa <= p.n` | register extraction, paper image | unproved |
+| `odbs_extract_registers` | extract padded-zero, sparse-index, and row values from the current compound basis index | Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478 | planned `bandedSparseAccessPaperRegisters` | layout fields in `defaultRobinRegisterPartition`, `oneTermRobinTotalQubits` | paper image, cleanup | planned |
+| `odbs_forward_image` | map $|0\rangle^{n-l}|s\rangle^l|i\rangle^n$ to $|r_{si}\rangle^n|i\rangle^n$ and preserve the row register | Lemma 1, arXiv:2506.20478 | planned `bandedSparseAccessPaperImage` and `.forwardCorrect` | `odbs_width_compatible`, `odbs_extract_registers` | paper matrix entries, dagger cleanup | planned |
+| `odbs_forward_matrix` | build the permutation-style matrix from the paper image, not from `robinSparseColumnMap` on the system register | Lemma 1, arXiv:2506.20478 | planned `bandedSparseAccessPaperMatrix` | `odbs_forward_image` | `oneTermRobinGate_O_D_BS` correction | planned |
+| `odbs_dagger_cleanup` | after SWAP, $(O_D^{BS})^\dagger$ restores the padded sparse-index register when the forward-image hypotheses hold | Fig. 1-term Robin and Lemma 1, arXiv:2506.20478 | `defaultBandedSparseAccessPaperContract p`.daggerCleanup | `odbs_forward_image`, SWAP register block lemmas | block extraction | unproved |
+
+### Lower-Agent Packet
+
+Target one block: `odbs_extract_registers` plus the first executable skeleton
+for `odbs_forward_image`.  Allowed Lean write scope is
+`QuantumBlockEncoding/GHL2025.lean`; optional focused examples may go in
+`Tests/Basic.lean`.  Do not change `oneTermRobinGate_O_D_BS.unitary.proved`,
+`oneTermRobinGate_O_D_BS_dagger.unitary.proved`, or any block-correctness
+record.
+
+| Declaration | Contract |
+|---|---|
+| `bandedSparseAccessPaperRegisters` | expose the padded sparse-index register and row register used by Lemma 1 |
+| `bandedSparseAccessPaperImage` | encode the basis-image formula $|0\rangle^{n-l}|s\rangle^l|i\rangle^n \mapsto |r_{si}\rangle^n|i\rangle^n$ while preserving row bits |
+| focused tests | for `n = 3`, `kappa = 7`, show row preservation and address-register replacement on at least one bulk row and one boundary row |
+
+Acceptance remains `python3 tools/qbe.py check` plus the semantic-gap grep from
+the task contract.  If the image formula cannot be stated without a new
+parameter-family condition, leave the relevant `ObligationRecord.proved` field
+as `false` and record the missing condition as a proof obligation instead of
+adding it as an unannounced hypothesis.
+
 **Column mapping** (fourth-order stencil, half-bandwidth $l=2$):
 
 $$\mathrm{col}(s, i) = \begin{cases} i - 2 + s & K_1 \leq i \leq K_2 \text{ and } s < 5 \\ s & i = 0 \text{ and } s < 3 \\ s & i = 1 \text{ and } s < 4 \\ N - 4 + s & i = N - 2 \text{ and } s < 4 \\ N - 3 + s & i = N - 1 \text{ and } s < 3 \\ i & \text{otherwise (unused sparse index, identity)} \end{cases}$$
@@ -784,7 +819,7 @@ change `oneTermRobinGate_SWAP.unitary.proved`, which remains `false`.
 | `swap_diff_bounded` | `diff < 2^n` for the two extracted n-bit blocks | `Nat.xor_lt_two_pow`, `Nat.and_lt_two_pow` | `swapOracleDiff_lt_two_pow` | `swap_block1_image`, `swap_block2_image`, `swap_lt` | SWAP | proved |
 | `swap_diff_shift_right_zero` | `diff >>> n = 0` | `swap_diff_bounded`, `Nat.shiftRight_eq_zero` | `swapOracleDiff_shiftRight_eq_zero` | `swap_block2_image` | SWAP | proved |
 | `swap_diff_shift_left_mask_zero` | `(diff <<< n) &&& mask = 0` | `shiftLeft_land_mask_eq_zero` | `swapOracleDiff_shiftLeft_mask_eq_zero` | `swap_block1_image` | SWAP | proved |
-| `swap_block1_image` | after `swapOracleImage`, the low block equals the old high block | diff vanishing lemmas, XOR/AND distribution | `swapOracleImage_block1_eq_block2` | `swap_diff_preserved` | SWAP | next lower target |
+| `swap_block1_image` | after `swapOracleImage`, the low block equals the old high block | bit-test proof over `swapOracleImage`, `Nat.testBit_xor`, `Nat.testBit_shiftLeft`, and mask facts | `swapOracleImage_block1_eq_block2` | `swap_diff_preserved` | SWAP | proved |
 | `swap_block2_image` | after `swapOracleImage`, the high block equals the old low block | diff boundedness, shift-right lemmas | `swapOracleImage_block2_eq_block1` | `swap_diff_preserved` | SWAP | planned |
 
 The source-contract audit was completed by introducing
@@ -792,11 +827,10 @@ The source-contract audit was completed by introducing
 `bandedSparseAccessMatrix` or `bandedSparseAccessDaggerMatrix` until that
 contract is implemented as the active matrix image formula.
 
-The next lower packet should prove only `swapOracleImage_block1_eq_block2`.
-Allowed Lean write scope: `QuantumBlockEncoding/GHL2025.lean`.  Optional focused
-checks may go in `Tests/Basic.lean`.  The worker should not promote the SWAP
-unitarity obligation and should not replace the general theorem by finite
-`native_decide` samples.
+The lower packet proved only `swapOracleImage_block1_eq_block2` in
+`QuantumBlockEncoding/GHL2025.lean`.  The proof is general in `p` and `j`;
+it is not a finite `native_decide` sample.  The SWAP unitarity obligation stays
+unpromoted, so `oneTermRobinGate_SWAP.unitary.proved` remains `false`.
 
 ---
 
