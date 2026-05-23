@@ -48,6 +48,16 @@ Development may use local working copies of the paper, but public proof maps
 must cite the paper, arXiv URL, theorem/lemma/equation/figure labels, or bundled
 paper notes.  Do not cite machine-specific absolute source paths.
 
+For local agent work, the GHL2025 TeX source is archived in the sibling
+ARIS-style source store:
+
+```text
+../Auto-claude-code-research-in-sleep/paper-sources/GHL2025/main.tex
+```
+
+This local source is for planning and source-contract audits only.  Public QBE
+artifacts should cite arXiv:2506.20478 and stable paper anchors.
+
 ## Cited Results Discipline
 
 If a GHL proof step invokes prior work or a standard theorem, record it in
@@ -60,6 +70,27 @@ because a result is considered classical.  Until QBE has a build-tested Lean
 proof or a typed contract, the dependency remains an obligation.  Reviewer must
 check this ledger when auditing O_f, LCU/block-composition, state-preparation,
 arithmetic subroutines, QSVT/LCU background, and sparse-oracle claims.
+
+## Source Dependency Audit
+
+When a faithful-paper proof block fails or becomes blocked, upper and middle
+must inspect the local TeX source and bibliography around the paper statement
+before assigning more lower-agent proof search.  Classify the missing
+ingredient as one of:
+
+- `internal-paper-step`: the paper states or proves it locally;
+- `external-cited-result`: the paper relies on another paper or named
+  subroutine;
+- `classical-lean-lemma`: the missing item is ordinary arithmetic, linear
+  algebra, or finite-map reasoning that QBE should formalize directly;
+- `source-contract-gap`: the paper does not specify enough gate-level data for
+  QBE's stricter oracle contract.
+
+External or standard dependencies must be recorded in
+`research-wiki/cited-results/GHL2025.md` with exact source, statement, Lean
+status, and dependent proof blocks before lower agents rely on them.  Reviewer
+must reject invented assumptions, unstated paper conditions, or vague
+"standard result" shortcuts.
 
 ## Required Human-Facing Artifacts
 

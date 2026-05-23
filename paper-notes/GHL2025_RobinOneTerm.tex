@@ -231,6 +231,17 @@ defined skeleton \\
 check whether the padded register is $|0\rangle^{n-l}$ and record that
 non-clean columns require a unitary completion &
 defined skeleton; obligations unproved \\
+\texttt{odbs\_valid\_sparse\_branch\_domain} &
+classify row-dependent sparse branches that carry nonzero Robin stencil data &
+defined audit predicate; not the full faithful domain \\
+\texttt{odbs\_unused\_branch\_image\_rule} &
+record the missing reversible image rule for clean invalid sparse branches &
+interface defined with no proposed image; obligations unproved \\
+\texttt{odbs\_full\_clean\_domain\_extension\_contract} &
+combine valid branches and clean unused branches into one paper-level extension
+contract &
+defined obligation wrapper; nested unused-branch image remains unspecified and
+every semantic flag remains false \\
 \texttt{odbs\_address\_range} &
 check that the written address $r_{si}$ is an $n$-bit value before it is
 inserted into the $O_D^{BS}$ register &
@@ -289,6 +300,67 @@ paper's Lemma 1 map
   \longmapsto
   |r_{si}\rangle^n|i\rangle^n.
 \]
+The cycle 10 source-contract audit checked the arXiv v2 source against the
+row-dependent valid-branch predicate.  Lemma
+\texttt{Banded-sparse-access-oracle and resource cost} gives the padded-register
+map above.  The Robin one-term construction then says that zeros can be
+included in the set of nonzero elements and uses diagonal sparsity
+\(\kappa\), while Eq.~\texttt{ROBIN clarified} sums over
+\(s=0,\ldots,\kappa-1\).  Thus the Lean predicate
+\texttt{bandedSparseAccessPaperValidCleanSource} classifies branches carrying
+nonzero stencil data, but it is not a faithful standalone source-domain
+restriction.  The faithful contract still needs an unused-branch extension that
+agrees with Lemma 1 on valid branches and records injectivity, cleanup, and
+unitary extension as obligations until proved.
+
+The unused-branch contract is now explicit in Lean.  The classifier
+\texttt{bandedSparseAccessPaperUnusedSparseBranch} identifies clean padded
+columns outside the row-dependent nonzero-stencil predicate, and
+\texttt{bandedSparseAccessUnusedBranchExtensionContract\_of\_unusedBranch}
+packages the corresponding false image-rule, injectivity, cleanup, and unitary
+extension obligations.  This bridge does not choose a reversible image for
+unused branches and does not change the active paper-image matrix pair.
+
+The image-rule interface is now a separate Lean record:
+\texttt{BandedSparseAccessUnusedBranchImageRuleContract}.  Its default instance
+\texttt{bandedSparseAccessUnusedBranchImageRuleContract} records the source
+column, extracted registers, current active image, and branch classification,
+but keeps \texttt{proposedImageIndex = none}.  The fields
+\texttt{imageSpecified}, \texttt{imageFinite},
+\texttt{separatesActiveCollision}, and \texttt{validBranchAgreement} remain
+false obligations.  This is only a contract interface; it does not choose a
+replacement image or rewire the active O$_D^{BS}$ matrices.
+
+Lean now records the paper-level wrapper
+\texttt{BandedSparseAccessFullCleanDomainExtensionContract}.  This wrapper
+combines the valid-branch agreement obligation with the unused-branch image-rule
+interface, full clean-domain injectivity, dagger cleanup, and unitary extension.
+No reversible-completion theorem has been cited for this step, so the default
+wrapper keeps the nested unused-branch image unspecified
+(\texttt{proposedImageIndex = none}) and keeps every semantic field false.
+The local classifier split is now Lean-proved:
+\texttt{bandedSparseAccessPaperCleanDomainSplit\_iff} states that padded-clean
+input is exactly either a valid row-dependent sparse branch or a clean unused
+sparse branch, and
+\texttt{bandedSparseAccessPaperCleanDomainSplit\_disjoint} states that these
+two cases are disjoint.  The wrapper-facing theorem
+\texttt{bandedSparseAccessFullCleanDomainExtensionContract\_localCleanDomainSplit}
+keeps \texttt{cleanDomainSplit.proved = false}; the proof does not supply an
+unused-branch image, injectivity, cleanup, or unitarity.
+
+Cycle 14 promotes the source decision itself into Lean as
+\texttt{BandedSparseAccessUnusedZeroBranchSourceDecision} and
+\texttt{bandedSparseAccessUnusedZeroBranchSourceDecision}.  The cited-result
+key is \texttt{QBE.ODBS.UnusedZeroBranchExtension}.  The fields
+\texttt{paperImageRuleSpecified},
+\texttt{externalExtensionTheoremAccepted}, and
+\texttt{lowerProofSearchAllowed} are all false, and the dependency record has
+\texttt{proved = false}.  The theorem
+\texttt{bandedSparseAccessUnusedZeroBranchSourceDecision\_keepsFullDomainFlagsFalse}
+ties this source decision to the full clean-domain wrapper without changing the
+active $O_D^{BS}$ matrices or promoting cleanup, injectivity, unitarity, or
+block-correctness flags.
+
 Lean now proves a narrow address-range block:
 \texttt{bandedSparseAccessPaperAddressInRange\_eq\_true\_of\_two\_le}
 shows that the executable address check is true under the explicit grid
@@ -563,6 +635,13 @@ $O_D^{BS}$ high-tail no-spill check &
 \texttt{GHL2025.bandedSparseAccessPaperImageNoSpill} &
 defined executable check using \texttt{GHL2025.bandedSparseAccessPaperHighTail};
 proof flag false \\
+$O_D^{BS}$ unused-branch image-rule interface &
+\texttt{GHL2025.bandedSparseAccessUnusedBranchImageRuleContract} &
+defined with \texttt{proposedImageIndex = none}; image-rule proof flags false \\
+$O_D^{BS}$ full clean-domain extension wrapper &
+\texttt{GHL2025.bandedSparseAccessFullCleanDomainExtensionContract} &
+defined obligation wrapper; nested \texttt{proposedImageIndex = none}; no
+cited reversible-completion theorem yet; all semantic fields false \\
 $O_D^{BS}$ paper-image matrix &
 \texttt{GHL2025.bandedSparseAccessPaperMatrix} &
 active skeleton; finite-image entry bridge proved under explicit hypotheses;
@@ -616,6 +695,15 @@ defined skeleton for Lemma 3 register fields \\
 \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract} and
 \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation} &
 typed contract recorded; proof flags false \\
+\(O_{D^T}^S\) coefficient-normalizer proof route &
+\texttt{GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient} and
+\texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute} &
+normalized-coefficient stand-in recorded; analytic proof flags false \\
+shared \(N_D\) derivative normalizer contract &
+\texttt{GHL2025.DerivativeNormalizerNDContract} and
+\texttt{GHL2025.derivativeNormalizerNDContract} &
+common \(D_j^{(s)}/N_D\) source for \(O_{D^T}^S\) and boundary \(R_y\);
+analytic proof flags false \\
 \(O_{D^T}^S\) paper rotation matrix &
 \texttt{GHL2025.sparseAmplitudeOracleDTRotationMatrix} &
 active controlled-rotation skeleton \\
@@ -892,6 +980,26 @@ complementary square-root relation, and the two-by-two unitarity relation.  For
 \(\texttt{odts\_cos\_half\_2\_0}\) and
 \(\texttt{odts\_sin\_half\_2\_0}\).
 
+The refined proof-route record
+\[
+  \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute}
+\]
+keeps the same Eq.~(20) contract but exposes the next proof blocks explicitly.
+It uses
+\[
+  \texttt{GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient}
+\]
+as the symbolic stand-in for \(D_j^{(s)}/N_D\), implemented as the Robin sparse
+coefficient multiplied by \(\texttt{Coeff.symbol "N\_D\_inv"}\).  The route
+has false obligations for interpreting the division by \(N_D\), proving the
+\(N_D\) bound, interpreting the absolute-square term
+\(|D_j^{(s)}|^2/N_D^2\), proving the square-root complement, and proving the
+two-by-two unitary relation.  These fields are proof-route memory only; they
+do not promote \(\texttt{GHL2025.oneTermRobinGate\_O\_DT\_S.unitary.proved}\).
+The Lean route also has definitional bridge lemmas showing that its normalizer
+and symbolic \(\ket{0}\), \(\ket{1}\) rotation-entry fields are the same fields
+as the per-row Eq.~(20) contract.
+
 In Lean:
 \[
   \texttt{GHL2025.sparseAmplitudeOracleDTMatrix},
@@ -984,6 +1092,130 @@ unproved \\
 \hline
 \end{tabular}
 \end{center}
+
+\subsection{Shared \(N_D\) Normalizer Contract}
+
+Both the Lemma~3 oracle \(O_{D^T}^S\) and the boundary rotation
+\(R_y^{\mathrm{boundary}}\) use the normalized derivative coefficient
+\[
+  D_j^{(s)}/N_D.
+\]
+Lean now records this common dependency in
+\[
+  \texttt{GHL2025.DerivativeNormalizerNDContract},
+  \qquad
+  \texttt{GHL2025.derivativeNormalizerNDContract}\ p\ j\ s.
+\]
+The contract stores the coefficient
+\(\texttt{GHL2025.robinSparseAmplitudeValue}\ p.n\ s\ j\), the normalizer
+symbol \(\texttt{Coeff.symbol "N\_D"}\), and the formal normalized coefficient
+obtained by multiplying by \(\texttt{Coeff.symbol "N\_D\_inv"}\).
+
+This is a shared proof obligation, not an analytic proof.  Its fields for
+nonzero \(N_D\), division semantics, coefficient bound, absolute-square
+semantics, square-root complement, arccos semantics, and two-by-two unitarity
+all have \(\texttt{proved := false}\).  The bridge theorem
+\[
+  \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute\_sharedND}
+\]
+states that the \(O_{D^T}^S\) proof route uses the shared division, bound,
+absolute-square, and square-root fields.  The bridge theorem
+\[
+  \texttt{GHL2025.boundaryRotationAngleNormalizerProofRoute\_sharedND}
+\]
+states that the boundary-rotation proof route uses the shared division,
+arccos-domain, and bound fields.  Neither bridge promotes a gate-unitarity
+flag.
+
+Lean also records a source-bound view
+\[
+  \texttt{GHL2025.derivativeNormalizerNDSourceBound}\ p\ j\ s
+\]
+for the future inequality
+\[
+  |D_j^{(s)}| \le N_D .
+\]
+This view uses the same source coefficient
+\(\texttt{GHL2025.robinSparseAmplitudeValue}\ p.n\ s\ j\) and normalizer
+\(\texttt{Coeff.symbol "N\_D"}\).  The theorem
+\[
+  \texttt{GHL2025.derivativeNormalizerNDSourceBound\_coefficientBound}
+\]
+states that the view reuses the shared coefficient-bound obligation, and
+\[
+  \texttt{GHL2025.derivativeNormalizerNDSourceBound\_coefficientBound\_false}
+\]
+states that the proof flag is still false.
+
+\paragraph{Cycle 17 source-contract audit.}
+The \(O_D^{BS}\) cleanup route is currently blocked by the missing
+unused-branch image rule, so the next faithful Phase~1 packet is the shared
+\(N_D\) normalizer transcript for \(O_{D^T}^S\) and
+\(R_y^{\mathrm{boundary}}\).  The fixed Lean contract is:
+\[
+  D_j^{(s)}
+  =
+  \texttt{GHL2025.robinSparseAmplitudeValue}\ p.n\ s\ j,
+  \qquad
+  N_D = \texttt{Coeff.symbol "N\_D"} .
+\]
+The formal quotient is represented by
+\[
+  \texttt{Coeff.mul}\,
+    (\texttt{GHL2025.robinSparseAmplitudeValue}\ p.n\ s\ j)\,
+    (\texttt{Coeff.symbol "N\_D\_inv"}) ,
+\]
+inside \texttt{GHL2025.derivativeNormalizerNDContract}.  This is only a
+contract placeholder.  The obligations for nonzero \(N_D\), division
+semantics, the coefficient bound, absolute-square semantics, the
+square-root complement, arccos semantics, and two-by-two unitarity remain
+\(\texttt{proved := false}\).
+
+The next lower packet should add only missing definitional bridges or focused
+tests showing that the \(O_{D^T}^S\) and \(R_y^{\mathrm{boundary}}\) routes
+reuse this shared contract and the source-bound view.  It should not prove
+analytic inequalities, change a gate matrix, promote a unitarity flag, or
+resume \(O_D^{BS}\) cleanup proof search.
+
+Cycle~17 lower adds exactly these source-bound route bridges:
+\[
+  \texttt{GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute\_sourceBound},
+\]
+\[
+  \texttt{GHL2025.boundaryRotationAngleNormalizerProofRoute\_sourceBound},
+  \qquad
+  \texttt{GHL2025.derivativeNormalizerNDSourceBound\_sharedRoutes}.
+\]
+They state that the two proof-route records reuse the same source coefficient,
+the same \(N_D\) symbol, and the same coefficient-bound obligation.  These are
+definitional bridges only; the analytic and unitary proof flags remain
+\(\texttt{proved := false}\).
+
+\paragraph{Cycle 18 middle packet.}
+The \(O_D^{BS}\) route remains blocked by the unused zero-amplitude sparse
+branch source decision, and the shared \(N_D\) bridges for \(O_{D^T}^S\) and
+\(R_y^{\mathrm{boundary}}\) are already recorded.  The next lower packet should
+therefore stay on the function-oracle transcript and add only an \(O_f\)
+amplitude-route contract.  The existing Lean anchors are
+\[
+  \texttt{GHL2025.robinFunctionValue}\ p.n\ i,\qquad
+  \texttt{GHL2025.functionOracleNormalizedValue}\ p\ i,
+\]
+\[
+  \texttt{GHL2025.functionOraclePaperImage}\ p\ j,\qquad
+  \texttt{GHL2025.functionOraclePaperMatrix}\ p .
+\]
+The planned route names are
+\texttt{GHL2025.FunctionOracleAmplitudeProofRoute} and
+\texttt{GHL2025.functionOracleAmplitudeProofRoute}.  They should reuse the
+paper normalizer
+\[
+  \texttt{(Examples.RobinHeat.robinOracleComposition n).functionOracle.normalizerBound}
+  = \texttt{Coeff.symbol "N\_f"}
+\]
+and should keep \(N_f\) nonzero, division semantics, the \(N_f\) bound,
+orthogonality of the completion, unitary completion, and
+\texttt{FunctionOracleContract.amplitudeCorrect} as false obligations.
 
 \subsection{$O_f$ vs $O_{D^T}^S$ Double Encoding Audit (Resolved)}
 

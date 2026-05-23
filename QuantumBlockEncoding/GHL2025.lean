@@ -750,6 +750,41 @@ def robinSparseColumnMap (n s i : Nat) : Nat :=
   else i
 
 /--
+Row-dependent sparse-branch domain for the executable one-term Robin stencil.
+
+This predicate is a source-contract correction candidate for Lemma 1
+`O_D^BS`: it marks exactly the sparse indices that correspond to nonzero
+stencil entries in the same five row regions used by `robinSparseColumnMap`.
+The active matrix is not changed by this predicate; unused branches still
+remain a separate unitary-extension obligation.
+Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478.
+-/
+def robinSparseColumnBranchValid (n s i : Nat) : Bool :=
+  let N := gridSize n
+  if 2 ≤ i ∧ i ≤ N - 3 then
+    decide (s < 5)
+  else if i = 0 then
+    decide (s < 3)
+  else if i = 1 then
+    decide (s < 4)
+  else if i = N - 2 then
+    decide (s < 4)
+  else if i = N - 1 then
+    decide (s < 3)
+  else false
+
+/--
+The proposed valid-branch predicate separates the boundary unused branch that
+caused the recorded `n = 3` collision, while the current executable map still
+sends both branches to the same address.
+-/
+theorem robinSparseColumnBranchValid_boundaryUnused_n3 :
+    robinSparseColumnBranchValid 3 0 0 = true ∧
+      robinSparseColumnBranchValid 3 3 0 = false ∧
+      robinSparseColumnMap 3 0 0 = robinSparseColumnMap 3 3 0 := by
+  native_decide
+
+/--
 Proof-DAG block for the Lemma 1 address-range route.
 
 For the fourth-order Robin stencil, if the input row is an `n`-bit value and
@@ -807,6 +842,511 @@ theorem robinSparseColumnMap_lt_gridSize_of_row_lt
           · simp [hiN1, hi]
 
 /--
+Candidate reverse sparse index for the one-term Robin stencil.
+
+Given a target row `target` and a post-SWAP row `row`, this returns the sparse
+index that would make `row` address `target` in the executable fourth-order
+Robin column map.  It is only a reverse-index candidate: the checked
+roundtrip and cleanup obligations remain separate proof blocks.
+Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478.
+-/
+def robinSparseReverseColumnIndex (n target row : Nat) : Nat :=
+  let N := gridSize n
+  if row = 0 then target
+  else if row = 1 then target
+  else if 2 ≤ row ∧ row ≤ N - 3 then target + 2 - row
+  else if row = N - 2 then target - (N - 4)
+  else if row = N - 1 then target - (N - 3)
+  else target
+
+/-- Normal form for the leftmost row of the executable Robin sparse map. -/
+@[simp] theorem robinSparseColumnMap_zero (n s : Nat) :
+    robinSparseColumnMap n s 0 = if s < 3 then s else 0 := by
+  simp [robinSparseColumnMap]
+
+/-- Normal form for the second row of the executable Robin sparse map. -/
+@[simp] theorem robinSparseColumnMap_one (n s : Nat) :
+    robinSparseColumnMap n s 1 = if s < 4 then s else 1 := by
+  simp [robinSparseColumnMap]
+
+/-- Normal form for a bulk row of the executable Robin sparse map. -/
+theorem robinSparseColumnMap_bulk (n s i : Nat)
+    (hbulk : 2 ≤ i ∧ i ≤ gridSize n - 3) :
+    robinSparseColumnMap n s i = if s < 5 then i - 2 + s else i := by
+  simp [robinSparseColumnMap, hbulk]
+
+/-- Normal form for the penultimate row of the executable Robin sparse map. -/
+theorem robinSparseColumnMap_rightBoundaryPrev {n s : Nat} (hn : 3 ≤ n) :
+    robinSparseColumnMap n s (gridSize n - 2) =
+      if s < 4 then gridSize n - 4 + s else gridSize n - 2 := by
+  have hN8 : 8 ≤ gridSize n := by
+    have hpow : 2 ^ 3 ≤ 2 ^ n :=
+      Nat.pow_le_pow_right (by decide : 0 < 2) hn
+    simpa [gridSize] using hpow
+  have hnotbulk :
+      ¬(2 ≤ gridSize n - 2 ∧ gridSize n ≤ gridSize n - 3 + 2) := by
+    omega
+  have hnot0 : gridSize n - 2 ≠ 0 := by omega
+  have hnot1 : gridSize n - 2 ≠ 1 := by omega
+  simp [robinSparseColumnMap, hnotbulk, hnot0, hnot1]
+
+/-- Normal form for the last row of the executable Robin sparse map. -/
+theorem robinSparseColumnMap_rightBoundaryLast {n s : Nat} (hn : 3 ≤ n) :
+    robinSparseColumnMap n s (gridSize n - 1) =
+      if s < 3 then gridSize n - 3 + s else gridSize n - 1 := by
+  have hN8 : 8 ≤ gridSize n := by
+    have hpow : 2 ^ 3 ≤ 2 ^ n :=
+      Nat.pow_le_pow_right (by decide : 0 < 2) hn
+    simpa [gridSize] using hpow
+  have hnotbulk :
+      ¬(2 ≤ gridSize n - 1 ∧ gridSize n ≤ gridSize n - 3 + 1) := by
+    omega
+  have hnot0 : gridSize n - 1 ≠ 0 := by omega
+  have hnot1 : gridSize n - 1 ≠ 1 := by omega
+  have hnotN2 : gridSize n - 1 ≠ gridSize n - 2 := by omega
+  simp [robinSparseColumnMap, hnotbulk, hnot0, hnot1, hnotN2]
+
+/-- Reverse-index normal form for row zero. -/
+@[simp] theorem robinSparseReverseColumnIndex_zero (n target : Nat) :
+    robinSparseReverseColumnIndex n target 0 = target := by
+  simp [robinSparseReverseColumnIndex]
+
+/-- Reverse-index normal form for row one. -/
+@[simp] theorem robinSparseReverseColumnIndex_one (n target : Nat) :
+    robinSparseReverseColumnIndex n target 1 = target := by
+  simp [robinSparseReverseColumnIndex]
+
+/-- Reverse-index normal form for a bulk row. -/
+theorem robinSparseReverseColumnIndex_bulk (n target row : Nat)
+    (hbulk : 2 ≤ row ∧ row ≤ gridSize n - 3) :
+    robinSparseReverseColumnIndex n target row = target + 2 - row := by
+  have hnot0 : row ≠ 0 := by omega
+  have hnot1 : row ≠ 1 := by omega
+  simp [robinSparseReverseColumnIndex, hbulk, hnot0, hnot1]
+
+/-- Reverse-index normal form for the penultimate row. -/
+theorem robinSparseReverseColumnIndex_rightBoundaryPrev
+    {n target : Nat} (hn : 3 ≤ n) :
+    robinSparseReverseColumnIndex n target (gridSize n - 2) =
+      target - (gridSize n - 4) := by
+  have hN8 : 8 ≤ gridSize n := by
+    have hpow : 2 ^ 3 ≤ 2 ^ n :=
+      Nat.pow_le_pow_right (by decide : 0 < 2) hn
+    simpa [gridSize] using hpow
+  have hnot0 : gridSize n - 2 ≠ 0 := by omega
+  have hnot1 : gridSize n - 2 ≠ 1 := by omega
+  have hnotbulk :
+      ¬(2 ≤ gridSize n - 2 ∧ gridSize n ≤ gridSize n - 3 + 2) := by
+    omega
+  simp [robinSparseReverseColumnIndex, hnot0, hnot1, hnotbulk]
+
+/-- Reverse-index normal form for the last row. -/
+theorem robinSparseReverseColumnIndex_rightBoundaryLast
+    {n target : Nat} (hn : 3 ≤ n) :
+    robinSparseReverseColumnIndex n target (gridSize n - 1) =
+      target - (gridSize n - 3) := by
+  have hN8 : 8 ≤ gridSize n := by
+    have hpow : 2 ^ 3 ≤ 2 ^ n :=
+      Nat.pow_le_pow_right (by decide : 0 < 2) hn
+    simpa [gridSize] using hpow
+  have hnot0 : gridSize n - 1 ≠ 0 := by omega
+  have hnot1 : gridSize n - 1 ≠ 1 := by omega
+  have hnotbulk :
+      ¬(2 ≤ gridSize n - 1 ∧ gridSize n ≤ gridSize n - 3 + 1) := by
+    omega
+  have hnotN2 : gridSize n - 1 ≠ gridSize n - 2 := by omega
+  simp [robinSparseReverseColumnIndex, hnot0, hnot1, hnotbulk, hnotN2]
+
+/--
+The reverse sparse-index candidate is a left inverse for the executable
+one-term Robin column map on the three-bit sparse-index range used by the
+current one-term parameter family.
+
+This is only the arithmetic roundtrip needed by the O_D^BS post-SWAP cleanup
+route.  It does not prove uniqueness of the preimage, dagger cleanup, unitarity,
+or block correctness.
+-/
+theorem robinSparseReverseColumnRoundtrip_of_lt_eight
+    {n s i : Nat} (hn : 3 <= n) (hs : s < 8) (hi : i < gridSize n) :
+    robinSparseColumnMap n
+      (robinSparseReverseColumnIndex n i (robinSparseColumnMap n s i))
+      (robinSparseColumnMap n s i) = i := by
+  have hN8 : 8 ≤ gridSize n := by
+    have hpow : 2 ^ 3 ≤ 2 ^ n :=
+      Nat.pow_le_pow_right (by decide : 0 < 2) hn
+    simpa [gridSize] using hpow
+  have hs_cases : s = 0 ∨ s = 1 ∨ s = 2 ∨ s = 3 ∨
+      s = 4 ∨ s = 5 ∨ s = 6 ∨ s = 7 := by
+    omega
+  by_cases hi0 : i = 0
+  · subst i
+    rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      simp [robinSparseColumnMap, robinSparseReverseColumnIndex] <;>
+      omega
+  by_cases hi1 : i = 1
+  · subst i
+    have hbulk2 : 2 ≤ 2 ∧ 2 ≤ gridSize n - 3 := by omega
+    have hbulk3 : 2 ≤ 3 ∧ 3 ≤ gridSize n - 3 := by omega
+    rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      simp [robinSparseColumnMap, robinSparseReverseColumnIndex, hbulk2,
+        hbulk3] <;>
+      omega
+  by_cases hiN2 : i = gridSize n - 2
+  · subst i
+    have hrowN4 : 2 ≤ gridSize n - 4 ∧ gridSize n - 4 ≤ gridSize n - 3 := by
+      omega
+    have hrowN3 : 2 ≤ gridSize n - 3 ∧ gridSize n - 3 ≤ gridSize n - 3 := by
+      omega
+    rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+    · rw [robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 0) hn]
+      simp
+      rw [robinSparseReverseColumnIndex_bulk n (gridSize n - 2)
+        (gridSize n - 4) hrowN4]
+      have hrev : gridSize n - 2 + 2 - (gridSize n - 4) = 4 := by omega
+      rw [hrev, robinSparseColumnMap_bulk n 4 (gridSize n - 4) hrowN4]
+      simp
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 1) hn]
+      simp
+      rw [show gridSize n - 4 + 1 = gridSize n - 3 by omega]
+      rw [robinSparseReverseColumnIndex_bulk n (gridSize n - 2)
+        (gridSize n - 3) hrowN3]
+      have hrev : gridSize n - 2 + 2 - (gridSize n - 3) = 3 := by omega
+      rw [hrev, robinSparseColumnMap_bulk n 3 (gridSize n - 3) hrowN3]
+      simp
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 2) hn]
+      simp
+      rw [show gridSize n - 4 + 2 = gridSize n - 2 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 2) hn]
+      have hrev : gridSize n - 2 - (gridSize n - 4) = 2 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 2) hn]
+      simp
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 3) hn]
+      simp
+      rw [show gridSize n - 4 + 3 = gridSize n - 1 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryLast
+        (n := n) (target := gridSize n - 2) hn]
+      have hrev : gridSize n - 2 - (gridSize n - 3) = 1 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryLast (n := n) (s := 1) hn]
+      simp
+      omega
+    all_goals
+      rw [robinSparseColumnMap_rightBoundaryPrev (n := n) hn]
+      simp
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 2) hn]
+      have hrev : gridSize n - 2 - (gridSize n - 4) = 2 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 2) hn]
+      simp
+      omega
+  by_cases hiN1 : i = gridSize n - 1
+  · subst i
+    have hrowN3 : 2 ≤ gridSize n - 3 ∧ gridSize n - 3 ≤ gridSize n - 3 := by
+      omega
+    rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+    · rw [robinSparseColumnMap_rightBoundaryLast (n := n) (s := 0) hn]
+      simp
+      rw [robinSparseReverseColumnIndex_bulk n (gridSize n - 1)
+        (gridSize n - 3) hrowN3]
+      have hrev : gridSize n - 1 + 2 - (gridSize n - 3) = 4 := by omega
+      rw [hrev, robinSparseColumnMap_bulk n 4 (gridSize n - 3) hrowN3]
+      simp
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryLast (n := n) (s := 1) hn]
+      simp
+      rw [show gridSize n - 3 + 1 = gridSize n - 2 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 1) hn]
+      have hrev : gridSize n - 1 - (gridSize n - 4) = 3 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 3) hn]
+      simp
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryLast (n := n) (s := 2) hn]
+      simp
+      rw [show gridSize n - 3 + 2 = gridSize n - 1 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryLast
+        (n := n) (target := gridSize n - 1) hn]
+      have hrev : gridSize n - 1 - (gridSize n - 3) = 2 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryLast (n := n) (s := 2) hn]
+      simp
+      omega
+    all_goals
+      rw [robinSparseColumnMap_rightBoundaryLast (n := n) hn]
+      simp
+      rw [robinSparseReverseColumnIndex_rightBoundaryLast
+        (n := n) (target := gridSize n - 1) hn]
+      have hrev : gridSize n - 1 - (gridSize n - 3) = 2 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryLast (n := n) (s := 2) hn]
+      simp
+      omega
+  have hbulk : 2 ≤ i ∧ i ≤ gridSize n - 3 := by
+    omega
+  rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  · rw [robinSparseColumnMap_bulk n 0 i hbulk]
+    simp
+    by_cases hi2 : i = 2
+    · subst i
+      simp [robinSparseColumnMap, robinSparseReverseColumnIndex]
+    by_cases hi3 : i = 3
+    · subst i
+      simp [robinSparseColumnMap, robinSparseReverseColumnIndex]
+    have hrow : 2 ≤ i - 2 ∧ i - 2 ≤ gridSize n - 3 := by omega
+    rw [robinSparseReverseColumnIndex_bulk n i (i - 2) hrow]
+    have hrev : i + 2 - (i - 2) = 4 := by omega
+    rw [hrev, robinSparseColumnMap_bulk n 4 (i - 2) hrow]
+    simp
+    omega
+  · rw [robinSparseColumnMap_bulk n 1 i hbulk]
+    simp
+    by_cases hi2 : i = 2
+    · subst i
+      simp [robinSparseColumnMap, robinSparseReverseColumnIndex]
+    have hrow : 2 ≤ i - 1 ∧ i - 1 ≤ gridSize n - 3 := by omega
+    rw [show i - 2 + 1 = i - 1 by omega]
+    rw [robinSparseReverseColumnIndex_bulk n i (i - 1) hrow]
+    have hrev : i + 2 - (i - 1) = 3 := by omega
+    rw [hrev, robinSparseColumnMap_bulk n 3 (i - 1) hrow]
+    simp
+    omega
+  · rw [robinSparseColumnMap_bulk n 2 i hbulk]
+    simp
+    rw [show i - 2 + 2 = i by omega]
+    rw [robinSparseReverseColumnIndex_bulk n i i hbulk]
+    have hrev : i + 2 - i = 2 := by omega
+    rw [hrev, robinSparseColumnMap_bulk n 2 i hbulk]
+    simp
+    omega
+  · rw [robinSparseColumnMap_bulk n 3 i hbulk]
+    simp
+    by_cases hiN3 : i = gridSize n - 3
+    · subst i
+      rw [show gridSize n - 3 - 2 + 3 = gridSize n - 2 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 3) hn]
+      have hrev : gridSize n - 3 - (gridSize n - 4) = 1 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 1) hn]
+      simp
+      omega
+    have hrow : 2 ≤ i - 2 + 3 ∧ i - 2 + 3 ≤ gridSize n - 3 := by
+      omega
+    rw [robinSparseReverseColumnIndex_bulk n i (i - 2 + 3) hrow]
+    have hrev : i + 2 - (i - 2 + 3) = 1 := by omega
+    rw [hrev, robinSparseColumnMap_bulk n 1 (i - 2 + 3) hrow]
+    simp
+    omega
+  · rw [robinSparseColumnMap_bulk n 4 i hbulk]
+    simp
+    by_cases hiN3 : i = gridSize n - 3
+    · subst i
+      rw [show gridSize n - 3 - 2 + 4 = gridSize n - 1 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryLast
+        (n := n) (target := gridSize n - 3) hn]
+      have hrev : gridSize n - 3 - (gridSize n - 3) = 0 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryLast (n := n) (s := 0) hn]
+      simp
+    by_cases hiN4 : i = gridSize n - 4
+    · subst i
+      rw [show gridSize n - 4 - 2 + 4 = gridSize n - 2 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 4) hn]
+      have hrev : gridSize n - 4 - (gridSize n - 4) = 0 := by omega
+      rw [hrev, robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 0) hn]
+      simp
+    have hrow : 2 ≤ i - 2 + 4 ∧ i - 2 + 4 ≤ gridSize n - 3 := by
+      omega
+    rw [robinSparseReverseColumnIndex_bulk n i (i - 2 + 4) hrow]
+    have hrev : i + 2 - (i - 2 + 4) = 0 := by omega
+    rw [hrev, robinSparseColumnMap_bulk n 0 (i - 2 + 4) hrow]
+    simp
+    omega
+  all_goals
+    rw [robinSparseColumnMap_bulk n _ i hbulk]
+    simp
+    rw [robinSparseReverseColumnIndex_bulk n i i hbulk]
+    have hrev : i + 2 - i = 2 := by omega
+    rw [hrev, robinSparseColumnMap_bulk n 2 i hbulk]
+    simp
+    omega
+
+/--
+The reverse-index candidate stays inside the three-bit sparse register for
+columns produced by the executable one-term Robin map.
+
+This is paired with `robinSparseReverseColumnRoundtrip_of_lt_eight`; it is a
+local arithmetic block for the post-SWAP preimage route, not a uniqueness or
+dagger-cleanup proof.
+-/
+theorem robinSparseReverseColumnIndex_lt_eight_of_columnMap
+    {n s i : Nat} (hn : 3 <= n) (hs : s < 8) (hi : i < gridSize n) :
+    robinSparseReverseColumnIndex n i (robinSparseColumnMap n s i) < 8 := by
+  have hN8 : 8 ≤ gridSize n := by
+    have hpow : 2 ^ 3 ≤ 2 ^ n :=
+      Nat.pow_le_pow_right (by decide : 0 < 2) hn
+    simpa [gridSize] using hpow
+  have hs_cases : s = 0 ∨ s = 1 ∨ s = 2 ∨ s = 3 ∨
+      s = 4 ∨ s = 5 ∨ s = 6 ∨ s = 7 := by
+    omega
+  by_cases hi0 : i = 0
+  · subst i
+    rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      simp [robinSparseColumnMap, robinSparseReverseColumnIndex] <;>
+      omega
+  by_cases hi1 : i = 1
+  · subst i
+    have hbulk2 : 2 ≤ 2 ∧ 2 ≤ gridSize n - 3 := by omega
+    have hbulk3 : 2 ≤ 3 ∧ 3 ≤ gridSize n - 3 := by omega
+    rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      simp [robinSparseColumnMap, robinSparseReverseColumnIndex, hbulk2,
+        hbulk3] <;>
+      omega
+  by_cases hiN2 : i = gridSize n - 2
+  · subst i
+    have hrowN4 : 2 ≤ gridSize n - 4 ∧ gridSize n - 4 ≤ gridSize n - 3 := by
+      omega
+    have hrowN3 : 2 ≤ gridSize n - 3 ∧ gridSize n - 3 ≤ gridSize n - 3 := by
+      omega
+    rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+    · rw [robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 0) hn]
+      simp
+      rw [robinSparseReverseColumnIndex_bulk n (gridSize n - 2)
+        (gridSize n - 4) hrowN4]
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 1) hn]
+      simp
+      rw [show gridSize n - 4 + 1 = gridSize n - 3 by omega]
+      rw [robinSparseReverseColumnIndex_bulk n (gridSize n - 2)
+        (gridSize n - 3) hrowN3]
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 2) hn]
+      simp
+      rw [show gridSize n - 4 + 2 = gridSize n - 2 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 2) hn]
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryPrev (n := n) (s := 3) hn]
+      simp
+      rw [show gridSize n - 4 + 3 = gridSize n - 1 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryLast
+        (n := n) (target := gridSize n - 2) hn]
+      omega
+    all_goals
+      rw [robinSparseColumnMap_rightBoundaryPrev (n := n) hn]
+      simp
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 2) hn]
+      omega
+  by_cases hiN1 : i = gridSize n - 1
+  · subst i
+    have hrowN3 : 2 ≤ gridSize n - 3 ∧ gridSize n - 3 ≤ gridSize n - 3 := by
+      omega
+    rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+    · rw [robinSparseColumnMap_rightBoundaryLast (n := n) (s := 0) hn]
+      simp
+      rw [robinSparseReverseColumnIndex_bulk n (gridSize n - 1)
+        (gridSize n - 3) hrowN3]
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryLast (n := n) (s := 1) hn]
+      simp
+      rw [show gridSize n - 3 + 1 = gridSize n - 2 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 1) hn]
+      omega
+    · rw [robinSparseColumnMap_rightBoundaryLast (n := n) (s := 2) hn]
+      simp
+      rw [show gridSize n - 3 + 2 = gridSize n - 1 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryLast
+        (n := n) (target := gridSize n - 1) hn]
+      omega
+    all_goals
+      rw [robinSparseColumnMap_rightBoundaryLast (n := n) hn]
+      simp
+      rw [robinSparseReverseColumnIndex_rightBoundaryLast
+        (n := n) (target := gridSize n - 1) hn]
+      omega
+  have hbulk : 2 ≤ i ∧ i ≤ gridSize n - 3 := by
+    omega
+  rcases hs_cases with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  · rw [robinSparseColumnMap_bulk n 0 i hbulk]
+    simp
+    by_cases hi2 : i = 2
+    · subst i
+      simp [robinSparseReverseColumnIndex]
+    by_cases hi3 : i = 3
+    · subst i
+      simp [robinSparseReverseColumnIndex]
+    have hrow : 2 ≤ i - 2 ∧ i - 2 ≤ gridSize n - 3 := by omega
+    rw [robinSparseReverseColumnIndex_bulk n i (i - 2) hrow]
+    omega
+  · rw [robinSparseColumnMap_bulk n 1 i hbulk]
+    simp
+    by_cases hi2 : i = 2
+    · subst i
+      simp [robinSparseReverseColumnIndex]
+    have hrow : 2 ≤ i - 1 ∧ i - 1 ≤ gridSize n - 3 := by omega
+    rw [show i - 2 + 1 = i - 1 by omega]
+    rw [robinSparseReverseColumnIndex_bulk n i (i - 1) hrow]
+    omega
+  · rw [robinSparseColumnMap_bulk n 2 i hbulk]
+    simp
+    rw [show i - 2 + 2 = i by omega]
+    rw [robinSparseReverseColumnIndex_bulk n i i hbulk]
+    omega
+  · rw [robinSparseColumnMap_bulk n 3 i hbulk]
+    simp
+    by_cases hiN3 : i = gridSize n - 3
+    · subst i
+      rw [show gridSize n - 3 - 2 + 3 = gridSize n - 2 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 3) hn]
+      omega
+    have hrow : 2 ≤ i - 2 + 3 ∧ i - 2 + 3 ≤ gridSize n - 3 := by
+      omega
+    rw [robinSparseReverseColumnIndex_bulk n i (i - 2 + 3) hrow]
+    omega
+  · rw [robinSparseColumnMap_bulk n 4 i hbulk]
+    simp
+    by_cases hiN3 : i = gridSize n - 3
+    · subst i
+      rw [show gridSize n - 3 - 2 + 4 = gridSize n - 1 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryLast
+        (n := n) (target := gridSize n - 3) hn]
+      omega
+    by_cases hiN4 : i = gridSize n - 4
+    · subst i
+      rw [show gridSize n - 4 - 2 + 4 = gridSize n - 2 by omega]
+      rw [robinSparseReverseColumnIndex_rightBoundaryPrev
+        (n := n) (target := gridSize n - 4) hn]
+      omega
+    have hrow : 2 ≤ i - 2 + 4 ∧ i - 2 + 4 ≤ gridSize n - 3 := by
+      omega
+    rw [robinSparseReverseColumnIndex_bulk n i (i - 2 + 4) hrow]
+    omega
+  all_goals
+    rw [robinSparseColumnMap_bulk n _ i hbulk]
+    simp
+    rw [robinSparseReverseColumnIndex_bulk n i i hbulk]
+    omega
+
+/--
+Executable finite audit for the reverse-index candidate.
+
+For each sparse-index value below `sparseBound` and each row of the `n`-qubit
+grid, this checks that forward addressing followed by
+`robinSparseReverseColumnIndex` returns to the original row.  A true result is
+local evidence for the inverse-on-range route; it is not a semantic cleanup
+proof for `O_D^BS`.
+-/
+def robinSparseReverseColumnRoundtripCheck (n sparseBound : Nat) : Bool :=
+  (List.range sparseBound).all (fun s =>
+    (List.range (gridSize n)).all (fun i =>
+      robinSparseColumnMap n
+          (robinSparseReverseColumnIndex n i (robinSparseColumnMap n s i))
+          (robinSparseColumnMap n s i) == i))
+
+/--
 Register values used by the faithful Lemma 1 `O_D^BS` contract.
 
 The current compound-index convention stores the row register in bits
@@ -850,6 +1390,33 @@ theorem bandedSparseAccessPaperRegisters_row_lt_gridSize
   rw [Nat.one_shiftLeft]
   apply Nat.and_lt_two_pow
   exact Nat.sub_lt (Nat.pow_pos (by decide : 0 < 2) : 0 < 2 ^ p.n) (by decide)
+
+/-- The sparse-index field is the high sparse slice of the full O_D register. -/
+theorem bandedSparseAccessPaperRegisters_sparseIndexValue_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperRegisters p j).sparseIndexValue =
+      (((bandedSparseAccessPaperRegisters p j).odRegisterValue >>>
+          (p.n - clog2 p.kappa)) &&& ((1 <<< clog2 p.kappa) - 1)) := by
+  rfl
+
+/-- The padded-zero field is the low padded slice of the full O_D register. -/
+theorem bandedSparseAccessPaperRegisters_paddedZeroValue_eq
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperRegisters p j).paddedZeroValue =
+      ((bandedSparseAccessPaperRegisters p j).odRegisterValue &&&
+        ((1 <<< (p.n - clog2 p.kappa)) - 1)) := by
+  rfl
+
+/-- The extracted sparse-index field always fits in its declared bit width. -/
+theorem bandedSparseAccessPaperRegisters_sparseIndex_lt
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperRegisters p j).sparseIndexValue <
+      (1 <<< clog2 p.kappa) := by
+  rw [bandedSparseAccessPaperRegisters_sparseIndexValue_eq]
+  rw [Nat.one_shiftLeft]
+  apply Nat.and_lt_two_pow
+  exact Nat.sub_lt
+    (Nat.pow_pos (by decide : 0 < 2) : 0 < 2 ^ clog2 p.kappa) (by decide)
 
 /--
 Paper address value `r_si` for the one-term Robin sparse-access oracle.
@@ -1268,6 +1835,568 @@ def bandedSparseAccessPaperCleanInput (p : OneTermRobinParameters) (j : Nat) : B
   (bandedSparseAccessPaperRegisters p j).paddedZeroValue == 0
 
 /--
+Candidate row-dependent sparse-branch domain for a basis column of Lemma 1.
+
+This is deliberately separate from `bandedSparseAccessPaperCleanInput`.  The
+paper clean-input condition only checks the padded zero register, while this
+candidate also excludes row-boundary sparse indices that do not correspond to
+nonzero stencil entries.  No active matrix or proof flag is changed here.
+-/
+def bandedSparseAccessPaperValidSparseBranch
+    (p : OneTermRobinParameters) (j : Nat) : Bool :=
+  let regs := bandedSparseAccessPaperRegisters p j
+  robinSparseColumnBranchValid p.n regs.sparseIndexValue regs.rowValue
+
+/--
+Candidate corrected clean source domain for Lemma 1: padded-zero input plus a
+row-dependent valid sparse branch.  This is a contract-audit predicate only.
+-/
+def bandedSparseAccessPaperValidCleanSource
+    (p : OneTermRobinParameters) (j : Nat) : Bool :=
+  bandedSparseAccessPaperCleanInput p j &&
+    bandedSparseAccessPaperValidSparseBranch p j
+
+/-- The corrected source-domain candidate implies the original clean input. -/
+theorem bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true
+    (p : OneTermRobinParameters) (j : Nat)
+    (h : bandedSparseAccessPaperValidCleanSource p j = true) :
+    bandedSparseAccessPaperCleanInput p j = true := by
+  cases hclean : bandedSparseAccessPaperCleanInput p j <;>
+    cases hvalid : bandedSparseAccessPaperValidSparseBranch p j <;>
+    simp [bandedSparseAccessPaperValidCleanSource, hclean, hvalid] at h ⊢
+
+/-- The corrected source-domain candidate implies a valid sparse branch. -/
+theorem bandedSparseAccessPaperValidCleanSource_validSparseBranch_eq_true
+    (p : OneTermRobinParameters) (j : Nat)
+    (h : bandedSparseAccessPaperValidCleanSource p j = true) :
+    bandedSparseAccessPaperValidSparseBranch p j = true := by
+  cases hclean : bandedSparseAccessPaperCleanInput p j <;>
+    cases hvalid : bandedSparseAccessPaperValidSparseBranch p j <;>
+    simp [bandedSparseAccessPaperValidCleanSource, hclean, hvalid] at h ⊢
+
+/--
+The candidate corrected source domain excludes the concrete unused sparse
+branch from the recorded `n = 3`, `kappa = 7` collision without changing the
+active paper-image skeleton.
+-/
+theorem bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3 :
+    let p : OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    bandedSparseAccessPaperCleanInput p 0 = true ∧
+      bandedSparseAccessPaperCleanInput p 48 = true ∧
+      bandedSparseAccessPaperValidSparseBranch p 0 = true ∧
+      bandedSparseAccessPaperValidSparseBranch p 48 = false ∧
+      bandedSparseAccessPaperValidCleanSource p 0 = true ∧
+      bandedSparseAccessPaperValidCleanSource p 48 = false ∧
+      bandedSparseAccessPaperImage p 0 = bandedSparseAccessPaperImage p 48 := by
+  native_decide
+
+/--
+Classifier for clean padded-register columns whose sparse branch is invalid
+for the row-dependent Robin stencil.
+
+This is the source-domain side of the unused-branch extension obligation.  The
+active O_D^BS matrices are not changed by this predicate.
+-/
+def bandedSparseAccessPaperUnusedSparseBranch
+    (p : OneTermRobinParameters) (j : Nat) : Bool :=
+  bandedSparseAccessPaperCleanInput p j &&
+    !bandedSparseAccessPaperValidSparseBranch p j
+
+/-- An unused sparse branch is still in the padded clean-input domain. -/
+theorem bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true
+    (p : OneTermRobinParameters) (j : Nat)
+    (h : bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    bandedSparseAccessPaperCleanInput p j = true := by
+  cases hclean : bandedSparseAccessPaperCleanInput p j <;>
+    cases hvalid : bandedSparseAccessPaperValidSparseBranch p j <;>
+    simp [bandedSparseAccessPaperUnusedSparseBranch, hclean, hvalid] at h ⊢
+
+/-- An unused sparse branch is outside the row-dependent valid-branch classifier. -/
+theorem bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false
+    (p : OneTermRobinParameters) (j : Nat)
+    (h : bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    bandedSparseAccessPaperValidSparseBranch p j = false := by
+  cases hclean : bandedSparseAccessPaperCleanInput p j <;>
+    cases hvalid : bandedSparseAccessPaperValidSparseBranch p j <;>
+    simp [bandedSparseAccessPaperUnusedSparseBranch, hclean, hvalid] at h ⊢
+
+/--
+The executable clean padded-input domain splits into valid sparse branches and
+clean unused sparse branches.
+
+This is only the local Boolean classifier split for the source-contract audit.
+It does not choose an image for unused branches and does not promote the
+semantic `cleanDomainSplit` obligation in the full-domain wrapper.
+-/
+theorem bandedSparseAccessPaperCleanDomainSplit_iff
+    (p : OneTermRobinParameters) (j : Nat) :
+    bandedSparseAccessPaperCleanInput p j = true ↔
+      bandedSparseAccessPaperValidCleanSource p j = true ∨
+        bandedSparseAccessPaperUnusedSparseBranch p j = true := by
+  constructor
+  · intro hclean
+    cases hvalid : bandedSparseAccessPaperValidSparseBranch p j <;>
+      simp [bandedSparseAccessPaperValidCleanSource,
+        bandedSparseAccessPaperUnusedSparseBranch, hclean, hvalid]
+  · intro hsplit
+    rcases hsplit with hvalidClean | hunused
+    · exact
+        bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true
+          p j hvalidClean
+    · exact
+        bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true
+          p j hunused
+
+/--
+The two branches in `bandedSparseAccessPaperCleanDomainSplit_iff` are disjoint.
+
+This is a classifier fact only; injectivity and unitary extension for the
+eventual image rule remain separate false obligations.
+-/
+theorem bandedSparseAccessPaperCleanDomainSplit_disjoint
+    (p : OneTermRobinParameters) (j : Nat) :
+    ¬ (bandedSparseAccessPaperValidCleanSource p j = true ∧
+        bandedSparseAccessPaperUnusedSparseBranch p j = true) := by
+  intro hboth
+  have hvalid :
+      bandedSparseAccessPaperValidSparseBranch p j = true :=
+    bandedSparseAccessPaperValidCleanSource_validSparseBranch_eq_true
+      p j hboth.1
+  have hinvalid :
+      bandedSparseAccessPaperValidSparseBranch p j = false :=
+    bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false
+      p j hboth.2
+  rw [hvalid] at hinvalid
+  contradiction
+
+/--
+Interface for the missing reversible image rule on clean unused sparse branches.
+
+No paper-backed formula has been selected yet, so `proposedImageIndex` is
+`none` and every semantic claim remains an explicit false obligation.  The
+active `bandedSparseAccessPaperImage` skeleton is not changed by this record.
+-/
+structure BandedSparseAccessUnusedBranchImageRuleContract where
+  sourceAnchor : String
+  sourceIndex : Nat
+  inputRegisters : BandedSparseAccessPaperRegisters
+  activeImageIndex : Nat
+  proposedImageIndex : Option Nat
+  cleanInput : Bool
+  validSparseBranch : Bool
+  unusedSparseBranch : Bool
+  imageSpecified : ObligationRecord
+  imageFinite : ObligationRecord
+  separatesActiveCollision : ObligationRecord
+  validBranchAgreement : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default image-rule interface for one unused-branch source column.
+
+The missing reversible image is intentionally represented by `none`; later
+faithful work must replace this with a paper-compatible extension before any
+injectivity, dagger-cleanup, or unitarity proof is attempted.
+-/
+def bandedSparseAccessUnusedBranchImageRuleContract
+    (p : OneTermRobinParameters) (j : Nat) :
+    BandedSparseAccessUnusedBranchImageRuleContract where
+  sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 1 and one-term Robin zero-branch audit, arXiv:2506.20478"
+  sourceIndex := j
+  inputRegisters := bandedSparseAccessPaperRegisters p j
+  activeImageIndex := bandedSparseAccessPaperImage p j
+  proposedImageIndex := none
+  cleanInput := bandedSparseAccessPaperCleanInput p j
+  validSparseBranch := bandedSparseAccessPaperValidSparseBranch p j
+  unusedSparseBranch := bandedSparseAccessPaperUnusedSparseBranch p j
+  imageSpecified := {
+    description := "a faithful reversible image for this clean invalid sparse branch is specified separately from the active colliding image"
+    source := "QBE-AUTO-002 O_D^BS unused-branch image-rule interface"
+    proved := false
+  }
+  imageFinite := {
+    description := "the specified unused-branch image is a finite basis index in the one-term Robin Hilbert space"
+    source := "QBE-AUTO-002 O_D^BS unused-branch image-rule interface"
+    proved := false
+  }
+  separatesActiveCollision := {
+    description := "the specified unused-branch image separates the known active-image collision on clean invalid branches"
+    source := "QBE-AUTO-002 O_D^BS unused-branch image-rule interface"
+    proved := false
+  }
+  validBranchAgreement := {
+    description := "the eventual extension agrees with the Lemma 1 paper image on valid clean sparse branches"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+
+/-- The unused-branch image-rule interface is obligation-only in Phase 1. -/
+theorem bandedSparseAccessUnusedBranchImageRuleContract_flags_false
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessUnusedBranchImageRuleContract p j).proposedImageIndex = none ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).imageSpecified.proved = false ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).imageFinite.proved = false ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).separatesActiveCollision.proved = false ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).validBranchAgreement.proved = false := by
+  simp [bandedSparseAccessUnusedBranchImageRuleContract]
+
+/--
+Classifier bridge for the unused-branch image-rule interface.
+
+For a clean invalid sparse branch, Lean records the branch classification and
+keeps the image-rule target unspecified with false proof fields.
+-/
+theorem bandedSparseAccessUnusedBranchImageRuleContract_of_unusedBranch
+    (p : OneTermRobinParameters) (j : Nat)
+    (h : bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    (bandedSparseAccessUnusedBranchImageRuleContract p j).cleanInput = true ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).validSparseBranch = false ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).unusedSparseBranch = true ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).proposedImageIndex = none ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).imageSpecified.proved = false ∧
+      (bandedSparseAccessUnusedBranchImageRuleContract p j).validBranchAgreement.proved = false := by
+  have hclean :
+      bandedSparseAccessPaperCleanInput p j = true :=
+    bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true p j h
+  have hvalid :
+      bandedSparseAccessPaperValidSparseBranch p j = false :=
+    bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false p j h
+  simp [bandedSparseAccessUnusedBranchImageRuleContract, h, hclean, hvalid]
+
+/--
+Contract slot for a faithful reversible extension on unused sparse branches.
+
+GHL2025 keeps zero-amplitude sparse branches inside the kappa-wide register.
+The current active image skeleton can collide on such branches, so Phase 1
+records the missing extension as obligations instead of proving injectivity or
+unitarity for the colliding skeleton.
+-/
+structure BandedSparseAccessUnusedBranchExtensionContract where
+  sourceAnchor : String
+  inputRegisters : BandedSparseAccessPaperRegisters
+  activeImageIndex : Nat
+  cleanInput : Bool
+  validSparseBranch : Bool
+  unusedSparseBranch : Bool
+  unusedBranchImageRuleContract : BandedSparseAccessUnusedBranchImageRuleContract
+  paperAgreementOnValidBranches : ObligationRecord
+  unusedBranchImageRule : ObligationRecord
+  unusedBranchInjective : ObligationRecord
+  fullCleanDomainInjective : ObligationRecord
+  daggerCleanup : ObligationRecord
+  unitaryExtension : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default unused-branch extension contract for one O_D^BS basis column.
+
+All semantic fields remain false.  The record exists so later work can state
+the reversible completion separately from the paper image on valid branches.
+-/
+def bandedSparseAccessUnusedBranchExtensionContract
+    (p : OneTermRobinParameters) (j : Nat) :
+    BandedSparseAccessUnusedBranchExtensionContract where
+  sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 1 and one-term Robin zero-branch audit, arXiv:2506.20478"
+  inputRegisters := bandedSparseAccessPaperRegisters p j
+  activeImageIndex := bandedSparseAccessPaperImage p j
+  cleanInput := bandedSparseAccessPaperCleanInput p j
+  validSparseBranch := bandedSparseAccessPaperValidSparseBranch p j
+  unusedSparseBranch := bandedSparseAccessPaperUnusedSparseBranch p j
+  unusedBranchImageRuleContract :=
+    bandedSparseAccessUnusedBranchImageRuleContract p j
+  paperAgreementOnValidBranches := {
+    description := "the extension agrees with the Lemma 1 image on valid row-dependent sparse branches"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  unusedBranchImageRule :=
+    (bandedSparseAccessUnusedBranchImageRuleContract p j).imageSpecified
+  unusedBranchInjective := {
+    description := "the unused-branch image rule is injective on clean invalid branches"
+    source := "QBE-AUTO-002 O_D^BS unused-branch extension contract"
+    proved := false
+  }
+  fullCleanDomainInjective := {
+    description := "valid-branch and unused-branch images are jointly injective on the full clean padded domain"
+    source := "QBE-AUTO-002 O_D^BS unused-branch extension contract"
+    proved := false
+  }
+  daggerCleanup := {
+    description := "the dagger cleanup proof uses the reversible unused-branch extension where needed"
+    source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  unitaryExtension := {
+    description := "the full O_D^BS matrix extends to a unitary on valid and unused clean branches"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+
+/-- The unused-branch extension contract is obligation-only in Phase 1. -/
+theorem bandedSparseAccessUnusedBranchExtensionContract_flags_false
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessUnusedBranchExtensionContract p j).paperAgreementOnValidBranches.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchImageRule.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchInjective.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).fullCleanDomainInjective.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).daggerCleanup.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).unitaryExtension.proved = false := by
+  simp [bandedSparseAccessUnusedBranchExtensionContract,
+    bandedSparseAccessUnusedBranchImageRuleContract]
+
+/--
+The unused-branch contract classifies the recorded boundary collision without
+promoting any O_D^BS semantic proof flag.
+-/
+theorem bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3 :
+    let p : OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    bandedSparseAccessPaperValidCleanSource p 0 = true ∧
+      bandedSparseAccessPaperUnusedSparseBranch p 48 = true ∧
+      bandedSparseAccessPaperImage p 0 = bandedSparseAccessPaperImage p 48 ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p 48).unusedBranchInjective.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p 48).unitaryExtension.proved = false := by
+  native_decide
+
+/--
+Package the unused-branch classifier with the reversible-extension obligations.
+
+This is a contract bridge only: it exposes that an unused clean branch is in
+the clean padded-input domain, is outside the row-dependent valid sparse-branch
+classifier, and still has only false extension proof fields.
+-/
+theorem bandedSparseAccessUnusedBranchExtensionContract_of_unusedBranch
+    (p : OneTermRobinParameters) (j : Nat)
+    (h : bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    (bandedSparseAccessUnusedBranchExtensionContract p j).cleanInput = true ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).validSparseBranch = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).unusedSparseBranch = true ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchImageRule.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchInjective.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).fullCleanDomainInjective.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).daggerCleanup.proved = false ∧
+      (bandedSparseAccessUnusedBranchExtensionContract p j).unitaryExtension.proved = false := by
+  have hclean :
+      bandedSparseAccessPaperCleanInput p j = true :=
+    bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true p j h
+  have hvalid :
+      bandedSparseAccessPaperValidSparseBranch p j = false :=
+    bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false p j h
+  simp [bandedSparseAccessUnusedBranchExtensionContract,
+    bandedSparseAccessUnusedBranchImageRuleContract, h, hclean, hvalid]
+
+/--
+Paper-level wrapper for the full clean-domain extension obligation of
+`O_D^BS`.
+
+The paper clean domain contains every padded-zero source
+`|0>^(n-l)|s>^l|i>^n`, including zero-amplitude sparse branches.  QBE currently
+has only the active Lemma 1 image on valid row-dependent branches and a
+per-column interface for clean unused branches.  This record lifts those
+pieces into one contract without choosing a reversible unused-branch image and
+without changing the active forward or dagger matrices.
+-/
+structure BandedSparseAccessFullCleanDomainExtensionContract where
+  sourceAnchor : String
+  cleanInputPredicate : String
+  validSparseBranchPredicate : String
+  validCleanSourcePredicate : String
+  unusedSparseBranchPredicate : String
+  unusedBranchImageRuleContract :
+    Nat → BandedSparseAccessUnusedBranchImageRuleContract
+  unusedBranchExtensionContract :
+    Nat → BandedSparseAccessUnusedBranchExtensionContract
+  cleanDomainSplit : ObligationRecord
+  validBranchAgreement : ObligationRecord
+  unusedBranchImageSpecified : ObligationRecord
+  unusedBranchImageFinite : ObligationRecord
+  unusedBranchInjective : ObligationRecord
+  fullCleanDomainInjective : ObligationRecord
+  daggerCleanup : ObligationRecord
+  unitaryExtension : ObligationRecord
+
+/--
+Default full clean-domain extension contract for Lemma 1 `O_D^BS`.
+
+All semantic fields are false obligations.  The nested per-column image-rule
+contract still has `proposedImageIndex = none`, so this declaration only
+records the missing proof interface for later source-domain reconciliation.
+-/
+def bandedSparseAccessFullCleanDomainExtensionContract
+    (p : OneTermRobinParameters) :
+    BandedSparseAccessFullCleanDomainExtensionContract where
+  sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 1 and one-term Robin zero-branch audit, arXiv:2506.20478"
+  cleanInputPredicate := "bandedSparseAccessPaperCleanInput"
+  validSparseBranchPredicate := "bandedSparseAccessPaperValidSparseBranch"
+  validCleanSourcePredicate := "bandedSparseAccessPaperValidCleanSource"
+  unusedSparseBranchPredicate := "bandedSparseAccessPaperUnusedSparseBranch"
+  unusedBranchImageRuleContract := fun j =>
+    bandedSparseAccessUnusedBranchImageRuleContract p j
+  unusedBranchExtensionContract := fun j =>
+    bandedSparseAccessUnusedBranchExtensionContract p j
+  cleanDomainSplit := {
+    description := "the full padded clean domain is partitioned into valid nonzero-stencil branches and clean unused sparse branches"
+    source := "QBE-AUTO-002 O_D^BS full clean-domain extension contract"
+    proved := false
+  }
+  validBranchAgreement := {
+    description := "the full extension agrees with the Lemma 1 image on every valid clean sparse branch"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  unusedBranchImageSpecified := {
+    description := "a faithful reversible image rule is specified for every clean unused sparse branch"
+    source := "QBE-AUTO-002 O_D^BS full clean-domain extension contract"
+    proved := false
+  }
+  unusedBranchImageFinite := {
+    description := "every specified unused-branch image is a finite one-term Robin basis index"
+    source := "QBE-AUTO-002 O_D^BS full clean-domain extension contract"
+    proved := false
+  }
+  unusedBranchInjective := {
+    description := "the unused-branch image rule is injective on clean invalid sparse branches"
+    source := "QBE-AUTO-002 O_D^BS full clean-domain extension contract"
+    proved := false
+  }
+  fullCleanDomainInjective := {
+    description := "valid-branch and unused-branch images are jointly injective on the full padded clean domain"
+    source := "QBE-AUTO-002 O_D^BS full clean-domain extension contract"
+    proved := false
+  }
+  daggerCleanup := {
+    description := "the dagger cleanup proof is valid for the full padded clean domain"
+    source := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+  unitaryExtension := {
+    description := "the full clean-domain image rule extends to a unitary O_D^BS matrix"
+    source := "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478"
+    proved := false
+  }
+
+/-- The full clean-domain wrapper is obligation-only in Phase 1. -/
+theorem bandedSparseAccessFullCleanDomainExtensionContract_flags_false
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessFullCleanDomainExtensionContract p).cleanDomainSplit.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).validBranchAgreement.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageSpecified.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageFinite.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchInjective.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).fullCleanDomainInjective.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).daggerCleanup.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).unitaryExtension.proved = false ∧
+      ((bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract j).proposedImageIndex = none ∧
+      ((bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract j).imageSpecified.proved = false ∧
+      ((bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract j).imageFinite.proved = false := by
+  simp [bandedSparseAccessFullCleanDomainExtensionContract,
+    bandedSparseAccessUnusedBranchImageRuleContract]
+
+/--
+The full clean-domain wrapper reuses the existing per-column unused-branch
+classifier bridge and keeps every extension proof flag false.
+-/
+theorem bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch
+    (p : OneTermRobinParameters) (j : Nat)
+    (h : bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    ((bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract j).cleanInput = true ∧
+      ((bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract j).validSparseBranch = false ∧
+      ((bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract j).unusedSparseBranch = true ∧
+      ((bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract j).proposedImageIndex = none ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageSpecified.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).fullCleanDomainInjective.proved = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).unitaryExtension.proved = false := by
+  have hclean :
+      bandedSparseAccessPaperCleanInput p j = true :=
+    bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true p j h
+  have hvalid :
+      bandedSparseAccessPaperValidSparseBranch p j = false :=
+    bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false p j h
+  simp [bandedSparseAccessFullCleanDomainExtensionContract,
+    bandedSparseAccessUnusedBranchImageRuleContract, h, hclean, hvalid]
+
+/--
+Wrapper-facing form of the local clean-domain split audit.
+
+The classifier split is Lean-proved, while the full semantic wrapper still
+keeps `cleanDomainSplit.proved = false` because no unused-branch image rule,
+injectivity proof, or unitary extension has been supplied.
+-/
+theorem bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperCleanInput p j = true ↔
+      bandedSparseAccessPaperValidCleanSource p j = true ∨
+        bandedSparseAccessPaperUnusedSparseBranch p j = true) ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).cleanDomainSplit.proved =
+        false := by
+  exact ⟨bandedSparseAccessPaperCleanDomainSplit_iff p j, rfl⟩
+
+/--
+Lean-facing source decision for unused zero-amplitude `O_D^BS` branches.
+
+Cycle 14 records that no paper-backed image formula and no accepted external
+reversible-extension theorem currently supplies the missing image rule for
+clean unused sparse branches.  This is a blocking dependency record, not a new
+oracle construction.
+-/
+structure BandedSparseAccessUnusedZeroBranchSourceDecision where
+  sourceAnchor : String
+  citedResultKey : String
+  paperImageRuleSpecified : Bool
+  externalExtensionTheoremAccepted : Bool
+  lowerProofSearchAllowed : Bool
+  dependency : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default cycle-14 source decision for unused zero-amplitude sparse branches.
+
+The false Boolean fields deliberately prevent lower proof work from treating
+the current colliding active image as a permutation or unitary extension.
+-/
+def bandedSparseAccessUnusedZeroBranchSourceDecision :
+    BandedSparseAccessUnusedZeroBranchSourceDecision where
+  sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478"
+  citedResultKey := "QBE.ODBS.UnusedZeroBranchExtension"
+  paperImageRuleSpecified := false
+  externalExtensionTheoremAccepted := false
+  lowerProofSearchAllowed := false
+  dependency := {
+    description := "unused zero-amplitude sparse branches need a paper-backed image rule or accepted reversible-extension theorem before O_D^BS injectivity, cleanup, or unitarity proof search"
+    source := "research-wiki/cited-results/GHL2025.md: QBE.ODBS.UnusedZeroBranchExtension"
+    proved := false
+  }
+
+/-- The cycle-14 source decision is a blocking obligation, not a proof ticket. -/
+theorem bandedSparseAccessUnusedZeroBranchSourceDecision_flags_false :
+    bandedSparseAccessUnusedZeroBranchSourceDecision.paperImageRuleSpecified = false ∧
+      bandedSparseAccessUnusedZeroBranchSourceDecision.externalExtensionTheoremAccepted = false ∧
+      bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed = false ∧
+      bandedSparseAccessUnusedZeroBranchSourceDecision.dependency.proved = false := by
+  simp [bandedSparseAccessUnusedZeroBranchSourceDecision]
+
+/--
+The source decision keeps the full clean-domain wrapper in obligation mode.
+
+This ties the cited-results dependency to the existing wrapper fields without
+changing any active matrix or promoting any semantic proof flag.
+-/
+theorem bandedSparseAccessUnusedZeroBranchSourceDecision_keepsFullDomainFlagsFalse
+    (p : OneTermRobinParameters) :
+    bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed = false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageSpecified.proved =
+        false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).fullCleanDomainInjective.proved =
+        false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).daggerCleanup.proved =
+        false ∧
+      (bandedSparseAccessFullCleanDomainExtensionContract p).unitaryExtension.proved =
+        false := by
+  simp [bandedSparseAccessUnusedZeroBranchSourceDecision,
+    bandedSparseAccessFullCleanDomainExtensionContract]
+
+/--
 Boolean form of the Lemma 1 clean-input domain.
 
 The executable predicate is exactly the statement that the padded part of the
@@ -1382,6 +2511,63 @@ theorem bandedSparseAccessPaperColumnContract_imageNoSpill_eq
     (p : OneTermRobinParameters) (j : Nat) :
     (bandedSparseAccessPaperColumnContract p j).imageNoSpill =
       bandedSparseAccessPaperImageNoSpill p j := rfl
+
+/--
+The per-column audit records that the paper image preserves the row register.
+
+This is an executable register-safety fact for the Phase 1 skeleton; it does
+not promote the paper-level `forwardCorrect` obligation.
+-/
+theorem bandedSparseAccessPaperColumnContract_rowPreserved_eq_true
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperColumnContract p j).rowPreserved = true := by
+  unfold bandedSparseAccessPaperColumnContract
+  simp [bandedSparseAccessPaperImage_rowValue_eq]
+
+/--
+The per-column audit records that the paper image writes the O_D register to
+the computed address whenever that address is an n-bit value.
+-/
+theorem bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (bandedSparseAccessPaperColumnContract p j).addressWritten = true := by
+  unfold bandedSparseAccessPaperColumnContract
+  simp [bandedSparseAccessPaperImage_odRegisterValue_eq p j haddr]
+
+/-- The per-column address-range audit Boolean follows from the address bound. -/
+theorem bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (bandedSparseAccessPaperColumnContract p j).addressInRange = true := by
+  rw [bandedSparseAccessPaperColumnContract_addressInRange_eq]
+  exact (bandedSparseAccessPaperAddressInRange_iff p j).2 haddr
+
+/-- The per-column no-spill audit Boolean follows from the address bound. -/
+theorem bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (bandedSparseAccessPaperColumnContract p j).imageNoSpill = true := by
+  rw [bandedSparseAccessPaperColumnContract_imageNoSpill_eq]
+  exact bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt p j haddr
+
+/--
+Reusable per-column register-safety package for the active Lemma 1 image
+skeleton.  The package is deliberately conditional on the existing n-bit
+address hypothesis, so it does not hide the paper parameter-family obligation.
+-/
+theorem bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (bandedSparseAccessPaperColumnContract p j).rowPreserved = true ∧
+      (bandedSparseAccessPaperColumnContract p j).addressWritten = true ∧
+      (bandedSparseAccessPaperColumnContract p j).addressInRange = true ∧
+      (bandedSparseAccessPaperColumnContract p j).imageNoSpill = true := by
+  exact ⟨
+    bandedSparseAccessPaperColumnContract_rowPreserved_eq_true p j,
+    bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt p j haddr,
+    bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt p j haddr,
+    bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt p j haddr⟩
 
 /--
 Matrix entries for the faithful Lemma 1 `O_D^BS` paper-image skeleton.
@@ -1515,6 +2701,170 @@ def robinSparseAmplitudeValue (n s i : Nat) : Coeff :=
     | _ => Coeff.rat 0
   else
     Coeff.rat 0
+
+/--
+Shared Phase-1 contract for every paper route that uses the normalized
+derivative coefficient `D_j^(s) / N_D`.
+
+Both Lemma 3 `O_DT^S` and the boundary `R_y` angle formulas use the same
+coefficient source and the same normalizer symbol `N_D`.  This record keeps
+the common analytic gaps in one Lean object: nonzero normalizer, division
+semantics, coefficient bound, absolute-square semantics, square-root
+complement, arccos semantics, and two-by-two unitarity.  It is a contract
+only; every obligation is false in Phase 1.
+Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), Fig. 1-term Robin, and boundary
+rotation equations, arXiv:2506.20478.
+-/
+structure DerivativeNormalizerNDContract where
+  sourceAnchor : String
+  rowValue : Nat
+  sparseIndexValue : Nat
+  coefficient : Coeff
+  normalizerND : Coeff
+  normalizedCoefficient : Coeff
+  normalizedCoefficientFormula : String
+  nonzeroNormalizer : ObligationRecord
+  divisionSemantics : ObligationRecord
+  coefficientBound : ObligationRecord
+  absSquareSemantics : ObligationRecord
+  sqrtComplementSemantics : ObligationRecord
+  arccosSemantics : ObligationRecord
+  twoByTwoUnitary : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default shared `N_D` normalizer contract for one Robin coefficient.
+
+The normalized coefficient is represented by multiplying the sparse derivative
+coefficient by the formal symbol `N_D_inv`.  This is not a proof that `N_D` is
+nonzero or that a division operation has been interpreted.
+-/
+def derivativeNormalizerNDContract
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    DerivativeNormalizerNDContract where
+  sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), Fig. 1-term Robin, and boundary Ry equations, arXiv:2506.20478"
+  rowValue := row
+  sparseIndexValue := sparse
+  coefficient := robinSparseAmplitudeValue p.n sparse row
+  normalizerND := Coeff.symbol "N_D"
+  normalizedCoefficient :=
+    Coeff.mul (robinSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
+  normalizedCoefficientFormula := "D_j^(s) / N_D"
+  nonzeroNormalizer := {
+    description := "prove N_D is nonzero before interpreting D_j^(s) / N_D"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+    proved := false
+  }
+  divisionSemantics := {
+    description := "interpret the formal coefficient times N_D_inv as D_j^(s) / N_D"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+    proved := false
+  }
+  coefficientBound := {
+    description := "prove the N_D bound needed for normalized derivative coefficients"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), and boundary Ry equations, arXiv:2506.20478"
+    proved := false
+  }
+  absSquareSemantics := {
+    description := "interpret |D_j^(s)|^2 / N_D^2 for Eq. (20)"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+    proved := false
+  }
+  sqrtComplementSemantics := {
+    description := "prove the square-root complementary amplitude from the N_D bound"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
+    proved := false
+  }
+  arccosSemantics := {
+    description := "place D_j^(s) / N_D in the real arccos domain for boundary Ry"
+    source := "Guseynov-Huang-Liu 2025, boundary Ry angle equations, arXiv:2506.20478"
+    proved := false
+  }
+  twoByTwoUnitary := {
+    description := "prove the two-by-two rotation block is unitary under the N_D bound"
+    source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), and boundary Ry equations, arXiv:2506.20478"
+    proved := false
+  }
+
+theorem derivativeNormalizerNDContract_coefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDContract p row sparse).coefficient =
+      robinSparseAmplitudeValue p.n sparse row := rfl
+
+theorem derivativeNormalizerNDContract_normalizerND
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDContract p row sparse).normalizerND =
+      Coeff.symbol "N_D" := rfl
+
+theorem derivativeNormalizerNDContract_normalizedCoefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDContract p row sparse).normalizedCoefficient =
+      Coeff.mul (robinSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv") := rfl
+
+/--
+Phase-1 source/bound view for the shared `N_D` normalizer contract.
+
+This does not prove the analytic inequality.  It only packages the exact
+coefficient source and the paper normalizer symbol used by the future bound
+obligation, so `O_DT^S` and `Ry_boundary` can point to the same fixed
+interface.
+-/
+structure DerivativeNormalizerNDSourceBound where
+  sourceAnchor : String
+  rowValue : Nat
+  sparseIndexValue : Nat
+  sourceCoefficient : Coeff
+  normalizerND : Coeff
+  boundFormula : String
+  coefficientBound : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default source/bound interface for the paper statement
+`|D_j^(s)| <= N_D`.
+
+The coefficient and obligation are reused from `derivativeNormalizerNDContract`;
+the obligation remains false until the coefficient semantics and analytic
+normalizer bound are formalized.
+-/
+def derivativeNormalizerNDSourceBound
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    DerivativeNormalizerNDSourceBound :=
+  let nd := derivativeNormalizerNDContract p row sparse
+  {
+    sourceAnchor := nd.sourceAnchor
+    rowValue := nd.rowValue
+    sparseIndexValue := nd.sparseIndexValue
+    sourceCoefficient := nd.coefficient
+    normalizerND := nd.normalizerND
+    boundFormula := "|D_j^(s)| <= N_D"
+    coefficientBound := nd.coefficientBound
+  }
+
+theorem derivativeNormalizerNDSourceBound_sourceCoefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient =
+      robinSparseAmplitudeValue p.n sparse row := rfl
+
+theorem derivativeNormalizerNDSourceBound_normalizerND
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDSourceBound p row sparse).normalizerND =
+      Coeff.symbol "N_D" := rfl
+
+theorem derivativeNormalizerNDSourceBound_boundFormula
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDSourceBound p row sparse).boundFormula =
+      "|D_j^(s)| <= N_D" := rfl
+
+theorem derivativeNormalizerNDSourceBound_coefficientBound
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDSourceBound p row sparse).coefficientBound =
+      (derivativeNormalizerNDContract p row sparse).coefficientBound := rfl
+
+theorem derivativeNormalizerNDSourceBound_coefficientBound_false
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDSourceBound p row sparse).coefficientBound.proved =
+      false := rfl
 
 /--
 Honest U_indic matrix: controlled-X on the indicator qubit, conditioned on
@@ -1705,6 +3055,120 @@ def sparseAmplitudeOracleDTCoefficientNormalizerContract
     source := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
     proved := false
   }
+
+/--
+Symbolic stand-in for the Lemma 3 normalized coefficient `D_j^(s) / N_D`.
+
+The factor `Coeff.symbol "N_D_inv"` records the intended division by `N_D`.
+It is not a proof that `N_D` is nonzero or that the coefficient lies in the
+unit interval required by Eq. (20); those remain separate obligations.
+-/
+def sparseAmplitudeOracleDTNormalizedCoefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) : Coeff :=
+  Coeff.mul (robinSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
+
+/--
+Refined proof route for the `odts_coeff_normalizer` block.
+
+This record separates the typed Eq. (20) data from the analytic obligations:
+division by `N_D`, the paper's normalizer bound, the absolute-square term, the
+complementary square root, and the two-by-two unitarity identity.  All proof
+obligations stay false in Phase 1.
+-/
+structure SparseAmplitudeOracleDTCoefficientNormalizerProofRoute where
+  sourceAnchor : String
+  rowValue : Nat
+  sparseIndexValue : Nat
+  coefficient : Coeff
+  normalizerND : Coeff
+  normalizedCoefficient : Coeff
+  normalizedCoefficientFormula : String
+  ketZeroEntry : Coeff
+  ketOneEntry : Coeff
+  ketZeroFormula : String
+  ketOneFormula : String
+  coefficientDivision : ObligationRecord
+  normalizerBound : ObligationRecord
+  absSquareSemantics : ObligationRecord
+  sqrtComplementSemantics : ObligationRecord
+  twoByTwoUnitary : ObligationRecord
+deriving Repr, DecidableEq
+
+/--
+Default refined proof route for one `O_DT^S` Eq. (20) coefficient-normalizer
+block.  The route keeps the construction fixed to the paper's controlled
+rotation and does not promote the gate-level unitarity claim.
+-/
+def sparseAmplitudeOracleDTCoefficientNormalizerProofRoute
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    SparseAmplitudeOracleDTCoefficientNormalizerProofRoute :=
+  let c := sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse
+  let nd := derivativeNormalizerNDContract p row sparse
+  {
+    sourceAnchor := c.sourceAnchor
+    rowValue := c.rowValue
+    sparseIndexValue := c.sparseIndexValue
+    coefficient := c.coefficient
+    normalizerND := nd.normalizerND
+    normalizedCoefficient := nd.normalizedCoefficient
+    normalizedCoefficientFormula := nd.normalizedCoefficientFormula
+    ketZeroEntry := c.ketZeroEntry
+    ketOneEntry := c.ketOneEntry
+    ketZeroFormula := c.ketZeroFormula
+    ketOneFormula := c.ketOneFormula
+    coefficientDivision := nd.divisionSemantics
+    normalizerBound := nd.coefficientBound
+    absSquareSemantics := nd.absSquareSemantics
+    sqrtComplementSemantics := nd.sqrtComplementSemantics
+    twoByTwoUnitary := c.twoByTwoUnitary
+  }
+
+theorem sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_coefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+      (sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).coefficient := rfl
+
+theorem sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizerND
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerND =
+      (sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).normalizerND := rfl
+
+theorem sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizedCoefficient
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizedCoefficient =
+      sparseAmplitudeOracleDTNormalizedCoefficient p row sparse := rfl
+
+theorem sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sharedND
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
+      (derivativeNormalizerNDContract p row sparse).coefficientBound ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficientDivision =
+      (derivativeNormalizerNDContract p row sparse).divisionSemantics ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).absSquareSemantics =
+      (derivativeNormalizerNDContract p row sparse).absSquareSemantics ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).sqrtComplementSemantics =
+      (derivativeNormalizerNDContract p row sparse).sqrtComplementSemantics := by
+  exact ⟨rfl, rfl, rfl, rfl⟩
+
+theorem sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sourceBound
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+      (derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerND =
+      (derivativeNormalizerNDSourceBound p row sparse).normalizerND ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
+      (derivativeNormalizerNDSourceBound p row sparse).coefficientBound := by
+  exact ⟨rfl, rfl, rfl⟩
+
+theorem sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketZeroEntry
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).ketZeroEntry =
+      (sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).ketZeroEntry := rfl
+
+theorem sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketOneEntry
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).ketOneEntry =
+      (sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).ketOneEntry := rfl
 
 /--
 Faithful Lemma 3 controlled-rotation skeleton for `O_DT^S`.
@@ -1943,39 +3407,28 @@ def boundaryRotationAngleNormalizerProofRoute
     (p : OneTermRobinParameters) (row sparse : Nat) :
     BoundaryRotationAngleNormalizerProofRoute :=
   let c := boundaryRotationAngleNormalizerContract p row sparse
+  let nd := derivativeNormalizerNDContract p row sparse
   {
     sourceAnchor := c.sourceAnchor
     rowValue := c.rowValue
     sparseIndexValue := c.sparseIndexValue
     coefficient := c.coefficient
-    normalizerND := c.normalizerND
-    arccosArgument := boundaryRotationNormalizedCoefficient p row sparse
-    arccosArgumentFormula := "D_j^(s) / N_D"
+    normalizerND := nd.normalizerND
+    arccosArgument := nd.normalizedCoefficient
+    arccosArgumentFormula := nd.normalizedCoefficientFormula
     thetaFormula := c.thetaFormula
     cosHalfEntry := c.cosHalfEntry
     sinHalfEntry := c.sinHalfEntry
     cosHalfFormula := c.cosHalfFormula
     sinHalfFormula := c.sinHalfFormula
-    coefficientDivision := {
-      description := "interpret the formal coefficient times N_D_inv as D_j^(s) / N_D"
-      source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
-      proved := false
-    }
-    realArccosSemantics := {
-      description := "connect theta_j^s to real arccos of the normalized coefficient"
-      source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
-      proved := false
-    }
+    coefficientDivision := nd.divisionSemantics
+    realArccosSemantics := nd.arccosSemantics
     halfAngleSemantics := {
       description := "derive the displayed cosine and sine half-angle formulas from theta_j^s"
       source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
       proved := false
     }
-    normalizerBound := {
-      description := "prove the N_D bound placing D_j^(s) / N_D in the arccos domain"
-      source := "Guseynov-Huang-Liu 2025, Eq. angles for Ry, arXiv:2506.20478"
-      proved := false
-    }
+    normalizerBound := nd.coefficientBound
     twoByTwoUnitary := c.twoByTwoUnitary
   }
 
@@ -1988,6 +3441,36 @@ theorem boundaryRotationAngleNormalizerProofRoute_arccosArgument
     (p : OneTermRobinParameters) (row sparse : Nat) :
     (boundaryRotationAngleNormalizerProofRoute p row sparse).arccosArgument =
       boundaryRotationNormalizedCoefficient p row sparse := rfl
+
+theorem boundaryRotationAngleNormalizerProofRoute_sharedND
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound =
+      (derivativeNormalizerNDContract p row sparse).coefficientBound ∧
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).coefficientDivision =
+      (derivativeNormalizerNDContract p row sparse).divisionSemantics ∧
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).realArccosSemantics =
+      (derivativeNormalizerNDContract p row sparse).arccosSemantics := by
+  exact ⟨rfl, rfl, rfl⟩
+
+theorem boundaryRotationAngleNormalizerProofRoute_sourceBound
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient =
+      (derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient ∧
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerND =
+      (derivativeNormalizerNDSourceBound p row sparse).normalizerND ∧
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound =
+      (derivativeNormalizerNDSourceBound p row sparse).coefficientBound := by
+  exact ⟨rfl, rfl, rfl⟩
+
+theorem derivativeNormalizerNDSourceBound_sharedRoutes
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+      (boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerND =
+      (boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerND ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
+      (boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound := by
+  exact ⟨rfl, rfl, rfl⟩
 
 /--
 Honest Ry_boundary matrix: controlled R_y rotation on the ancilla qubit (bit 0),
@@ -2098,6 +3581,36 @@ theorem oneTermRobinGate_O_D_BS_imageFin_eq_one
       Coeff.rat 1 := by
   simpa [oneTermRobinGate_O_D_BS]
     using bandedSparseAccessPaperMatrix_imageFin_eq_one p j haddr
+
+/--
+Concrete source-contract obstruction for the active `O_D^BS` paper-image
+skeleton.
+
+For the one-term parameters `n = 3`, `kappa = 7`, boundary row `0` has only
+three nonzero Robin stencil entries.  The current clean-domain predicate still
+admits sparse index `3`; both sparse indices `0` and `3` therefore write the
+same address and the active matrix has a `1` in row `0` for both source columns
+`0` and `48`.  This is a Lean-checked blocker for promoting injectivity or
+unitarity of the current skeleton, not a replacement for the paper contract.
+-/
+theorem oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3 :
+    let p : OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    bandedSparseAccessPaperCleanInput p 0 = true ∧
+      bandedSparseAccessPaperCleanInput p 48 = true ∧
+      (bandedSparseAccessPaperRegisters p 0).rowValue = 0 ∧
+      (bandedSparseAccessPaperRegisters p 48).rowValue = 0 ∧
+      (bandedSparseAccessPaperRegisters p 0).sparseIndexValue = 0 ∧
+      (bandedSparseAccessPaperRegisters p 48).sparseIndexValue = 3 ∧
+      bandedSparseAccessPaperAddress p 0 = 0 ∧
+      bandedSparseAccessPaperAddress p 48 = 0 ∧
+      bandedSparseAccessPaperImage p 0 = bandedSparseAccessPaperImage p 48 ∧
+      (oneTermRobinGate_O_D_BS p).matrix
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ = Coeff.rat 1 ∧
+      (oneTermRobinGate_O_D_BS p).matrix
+          ⟨0, by native_decide⟩ ⟨48, by native_decide⟩ = Coeff.rat 1 ∧
+      0 ≠ 48 := by
+  native_decide
 
 /--
 Symbolic function value at grid point j.
@@ -2491,6 +4004,132 @@ theorem oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one
     using bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one p j haddr
 
 /--
+Post-SWAP dagger entry from an explicitly supplied paper-image preimage.
+
+The hypothesis `hpre` is the whole inverse-on-range input for this lemma:
+it does not prove that such a `pre` exists, that it is unique, or that the
+dagger cleans the padded sparse-index register.  The post-SWAP relation is
+recorded by `hpost` for the cleanup proof-DAG interface, but the matrix entry
+itself is just the active transpose-style paper-image entry.
+-/
+theorem oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage
+    (p : OneTermRobinParameters)
+    (source post pre : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hpost : post.val =
+      swapOracleImage p
+        (bandedSparseAccessPaperImage p source.val))
+    (hpre : post.val = bandedSparseAccessPaperImage p pre.val) :
+    (oneTermRobinGate_O_D_BS_dagger p).matrix pre post = Coeff.rat 1 := by
+  have _postSwapWitness :
+      post.val = swapOracleImage p (bandedSparseAccessPaperImage p source.val) := hpost
+  simp [oneTermRobinGate_O_D_BS_dagger, bandedSparseAccessPaperDaggerMatrix, hpre]
+
+/--
+Proof-carrying interface for a supplied post-SWAP cleanup preimage.
+
+The fields intentionally include the hypotheses that are not yet derived:
+`postSwap`, `preimage`, `preCleanInput`, and `preAddressBound`.  The record only
+packages consequences of those inputs: the active dagger entry and executable
+register-cleanup checks for the chosen preimage.  Existence, uniqueness, and
+the paper-level `daggerCleanup` obligation remain open.
+-/
+structure BandedSparseAccessPostSwapCleanup
+    (p : OneTermRobinParameters)
+    (source post pre : Fin (qubitDim (oneTermRobinTotalQubits p))) where
+  postSwap :
+    post.val = swapOracleImage p (bandedSparseAccessPaperImage p source.val)
+  preimage : post.val = bandedSparseAccessPaperImage p pre.val
+  preCleanInput : bandedSparseAccessPaperCleanInput p pre.val = true
+  preAddressBound : bandedSparseAccessPaperAddress p pre.val < (1 <<< p.n)
+  daggerEntry : (oneTermRobinGate_O_D_BS_dagger p).matrix pre post = Coeff.rat 1
+  preRowPreserved :
+    (bandedSparseAccessPaperColumnContract p pre.val).rowPreserved = true
+  preAddressWritten :
+    (bandedSparseAccessPaperColumnContract p pre.val).addressWritten = true
+  preAddressInRange :
+    (bandedSparseAccessPaperColumnContract p pre.val).addressInRange = true
+  preImageNoSpill :
+    (bandedSparseAccessPaperColumnContract p pre.val).imageNoSpill = true
+  postRow_eq_preRow :
+    (bandedSparseAccessPaperRegisters p post.val).rowValue =
+      (bandedSparseAccessPaperRegisters p pre.val).rowValue
+  postOd_eq_preAddress :
+    (bandedSparseAccessPaperRegisters p post.val).odRegisterValue =
+      bandedSparseAccessPaperAddress p pre.val
+
+/--
+Build the post-SWAP cleanup witness from an explicitly supplied preimage.
+
+This is the fixed inverse-on-range interface for the next cleanup proof: it
+does not construct the preimage and does not promote any semantic proof flag.
+-/
+def bandedSparseAccessPostSwapCleanup_of_preimage
+    (p : OneTermRobinParameters)
+    (source post pre : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hpost : post.val =
+      swapOracleImage p
+        (bandedSparseAccessPaperImage p source.val))
+    (hpre : post.val = bandedSparseAccessPaperImage p pre.val)
+    (hclean : bandedSparseAccessPaperCleanInput p pre.val = true)
+    (haddr : bandedSparseAccessPaperAddress p pre.val < (1 <<< p.n)) :
+    BandedSparseAccessPostSwapCleanup p source post pre := by
+  let hsafety :=
+    bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt
+      p pre.val haddr
+  exact {
+    postSwap := hpost
+    preimage := hpre
+    preCleanInput := hclean
+    preAddressBound := haddr
+    daggerEntry :=
+      oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage
+        p source post pre hpost hpre
+    preRowPreserved := hsafety.1
+    preAddressWritten := hsafety.2.1
+    preAddressInRange := hsafety.2.2.1
+    preImageNoSpill := hsafety.2.2.2
+    postRow_eq_preRow := by
+      rw [hpre]
+      exact bandedSparseAccessPaperImage_rowValue_eq p pre.val
+    postOd_eq_preAddress := by
+      rw [hpre]
+      exact bandedSparseAccessPaperImage_odRegisterValue_eq p pre.val haddr
+  }
+
+/--
+Reusable image witness for the active Lemma 1 `O_D^BS` gate pair.
+
+This packages the forward entry, transpose-style dagger entry, row roundtrip,
+written-address roundtrip, and no-spill Boolean under the explicit n-bit
+address hypothesis.  It is not an injectivity, inverse uniqueness, cleanup, or
+unitarity proof.
+-/
+theorem oneTermRobinGate_O_D_BS_imageFin_entrySafety
+    (p : OneTermRobinParameters)
+    (j : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (haddr : bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    (oneTermRobinGate_O_D_BS p).matrix
+        (bandedSparseAccessPaperImageFin p j haddr) j = Coeff.rat 1 ∧
+      (oneTermRobinGate_O_D_BS_dagger p).matrix j
+        (bandedSparseAccessPaperImageFin p j haddr) = Coeff.rat 1 ∧
+      (bandedSparseAccessPaperRegisters p
+        (bandedSparseAccessPaperImage p j.val)).rowValue =
+          (bandedSparseAccessPaperRegisters p j.val).rowValue ∧
+      (bandedSparseAccessPaperRegisters p
+        (bandedSparseAccessPaperImage p j.val)).odRegisterValue =
+          bandedSparseAccessPaperAddress p j.val ∧
+      bandedSparseAccessPaperImageNoSpill p j.val = true := by
+  constructor
+  · exact oneTermRobinGate_O_D_BS_imageFin_eq_one p j haddr
+  constructor
+  · exact oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one p j haddr
+  constructor
+  · exact bandedSparseAccessPaperImage_rowValue_eq p j.val
+  constructor
+  · exact bandedSparseAccessPaperImage_odRegisterValue_eq p j.val haddr
+  · exact bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt p j.val haddr
+
+/--
 List of all 7 gate matrix placeholders for the one-term Robin circuit,
 in the same order as `oneTermRobinCircuit`.
 figure:1_term_ROBIN --/
@@ -2704,6 +4343,51 @@ theorem swapOracleDiff_shiftLeft_mask_eq_zero (p : OneTermRobinParameters) (j : 
     (((j >>> 1) &&& (1 <<< p.n) - 1) ^^^ ((j >>> (1 + p.n)) &&& (1 <<< p.n) - 1))
     p.n p.n (by omega)
 
+/-- Shifting a bounded value into a register block keeps it inside the total basis width. -/
+theorem shiftLeft_lt_two_pow_of_lt
+    {x width shift total : Nat}
+    (hx : x < 2 ^ width) (hblock : width + shift ≤ total) :
+    x <<< shift < 2 ^ total := by
+  rw [Nat.shiftLeft_eq]
+  have hmul : x * 2 ^ shift < 2 ^ width * 2 ^ shift :=
+    Nat.mul_lt_mul_of_pos_right hx (Nat.pow_pos (by decide : 0 < 2))
+  have hpow : 2 ^ width * 2 ^ shift = 2 ^ (width + shift) := by
+    rw [← Nat.pow_add]
+  have hle : 2 ^ (width + shift) ≤ 2 ^ total :=
+    Nat.pow_le_pow_right (by decide : 0 < 2) hblock
+  exact Nat.lt_of_lt_of_le (by simpa [hpow] using hmul) hle
+
+/--
+SWAP proof-DAG range block: the image of the register-block SWAP stays inside
+the same full finite basis.  This is only a range lemma; SWAP unitarity remains
+an explicit obligation.
+-/
+theorem swapOracleImage_lt_qubitDim
+    (p : OneTermRobinParameters) {j : Nat}
+    (hj : j < qubitDim (oneTermRobinTotalQubits p)) :
+    swapOracleImage p j < qubitDim (oneTermRobinTotalQubits p) := by
+  simp only [qubitDim, gridSize] at hj ⊢
+  unfold swapOracleImage
+  let n := p.n
+  let blockMask := (1 <<< n) - 1
+  let block1 := (j >>> 1) &&& blockMask
+  let block2 := (j >>> (1 + n)) &&& blockMask
+  let diff := block1 ^^^ block2
+  have hdiff : diff < 2 ^ p.n := by
+    have h := swapOracleDiff_lt_two_pow p j
+    simpa [n, blockMask, block1, block2, diff] using h
+  have hshiftLow : diff <<< 1 < 2 ^ oneTermRobinTotalQubits p :=
+    shiftLeft_lt_two_pow_of_lt hdiff (by
+      have hhigh := bandedSparseAccessPaperHighWidth_le_totalQubits p
+      omega)
+  have hxorLow : j ^^^ (diff <<< 1) < 2 ^ oneTermRobinTotalQubits p :=
+    Nat.xor_lt_two_pow hj hshiftLow
+  have hshiftHigh : diff <<< (1 + n) < 2 ^ oneTermRobinTotalQubits p :=
+    shiftLeft_lt_two_pow_of_lt hdiff (by
+      have hhigh := bandedSparseAccessPaperHighWidth_le_totalQubits p
+      omega)
+  exact Nat.xor_lt_two_pow hxorLow hshiftHigh
+
 /--
 SWAP proof-DAG block: after `swapOracleImage`, the low n-bit register equals
 the old high n-bit register.  This is the first register-level bit-slice lemma
@@ -2730,6 +4414,826 @@ theorem swapOracleImage_block1_eq_block2 (p : OneTermRobinParameters) (j : Nat) 
       rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]
       simp [hi]
     simp [hmask]
+
+/--
+SWAP proof-DAG block: after `swapOracleImage`, the high n-bit register equals
+the old low n-bit register.  This is the symmetric register equation paired
+with `swapOracleImage_block1_eq_block2`; it is still only a bit-slice block,
+not a SWAP unitarity proof.
+main.tex:1140 --/
+theorem swapOracleImage_block2_eq_block1 (p : OneTermRobinParameters) (j : Nat) :
+    let n := p.n
+    let blockMask := (1 <<< n) - 1
+    ((swapOracleImage p j) >>> (1 + n)) &&& blockMask =
+      (j >>> 1) &&& blockMask := by
+  dsimp [swapOracleImage]
+  apply Nat.eq_of_testBit_eq
+  intro i
+  simp only [Nat.testBit_and]
+  by_cases hi : i < p.n
+  · have hmask : ((1 <<< p.n) - 1).testBit i = true := by
+      rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]
+      simp [hi]
+    have hmaskHigh : ((1 <<< p.n) - 1).testBit (i + p.n) = false := by
+      rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]
+      have hle : p.n ≤ i + p.n := by omega
+      simp [Nat.not_lt.mpr hle]
+    have hshift : 1 ≤ i + (p.n + 1) := by omega
+    simp only [Nat.testBit_shiftRight, Nat.testBit_xor, Nat.testBit_shiftLeft,
+      Nat.testBit_and]
+    simp [hmask, hmaskHigh, hshift, Nat.add_comm, Nat.add_left_comm, Nat.add_assoc]
+    by_cases hlow : j.testBit (i + 1)
+    · by_cases hhigh : j.testBit (i + (p.n + 1)) <;> simp [hlow, hhigh]
+    · by_cases hhigh : j.testBit (i + (p.n + 1)) <;> simp [hlow, hhigh]
+  · have hmask : ((1 <<< p.n) - 1).testBit i = false := by
+      rw [Nat.one_shiftLeft, Nat.testBit_two_pow_sub_one]
+      simp [hi]
+    simp [hmask]
+
+/--
+After the active Lemma 1 paper image and the SWAP gate, the system-row register
+contains the paper address `r_si`.  This is a post-SWAP register equation under
+the same n-bit address hypothesis used by the finite image bridge; it does not
+construct a dagger preimage or promote cleanup.
+-/
+theorem bandedSparseAccessPaperPostSwap_rowValue_eq_address
+    (p : OneTermRobinParameters) (j : Nat)
+    (haddr : bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (bandedSparseAccessPaperRegisters p
+      (swapOracleImage p (bandedSparseAccessPaperImage p j))).rowValue =
+      bandedSparseAccessPaperAddress p j := by
+  have hswap :=
+    swapOracleImage_block1_eq_block2 p (bandedSparseAccessPaperImage p j)
+  have himage := bandedSparseAccessPaperImage_odRegisterValue_eq p j haddr
+  unfold bandedSparseAccessPaperRegisters at hswap himage ⊢
+  simpa using hswap.trans himage
+
+/--
+After the active Lemma 1 paper image and the SWAP gate, the O_D register
+contains the original row value.  This is the second post-SWAP register
+equation needed before inverse-on-range cleanup search.
+-/
+theorem bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue
+    (p : OneTermRobinParameters) (j : Nat) :
+    (bandedSparseAccessPaperRegisters p
+      (swapOracleImage p (bandedSparseAccessPaperImage p j))).odRegisterValue =
+      (bandedSparseAccessPaperRegisters p j).rowValue := by
+  have hswap :=
+    swapOracleImage_block2_eq_block1 p (bandedSparseAccessPaperImage p j)
+  have himage := bandedSparseAccessPaperImage_rowValue_eq p j
+  unfold bandedSparseAccessPaperRegisters at hswap himage ⊢
+  simpa using hswap.trans himage
+
+/--
+After the active paper image and SWAP, the post-SWAP column is still a finite
+basis index whenever the source column is finite and the written paper address
+is n-bit.  This does not prove inverse-on-range or cleanup.
+-/
+theorem bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt
+    (p : OneTermRobinParameters)
+    (source : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (haddr : bandedSparseAccessPaperAddress p source.val < (1 <<< p.n)) :
+    swapOracleImage p (bandedSparseAccessPaperImage p source.val) <
+      qubitDim (oneTermRobinTotalQubits p) := by
+  have himage :
+      bandedSparseAccessPaperImage p source.val <
+        qubitDim (oneTermRobinTotalQubits p) :=
+    bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt
+      p source.val source.2 haddr
+  exact swapOracleImage_lt_qubitDim p himage
+
+/--
+Replace the `O_D^BS` n-bit register of a compound index while preserving the
+low ancilla/system block and all high-tail bits.
+
+This is the local splice used to build a post-SWAP cleanup preimage candidate.
+It does not assert that the chosen `odValue` is the correct reverse address.
+-/
+def bandedSparseAccessPaperSpliceODRegister
+    (p : OneTermRobinParameters) (j odValue : Nat) : Nat :=
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  j % lowBase + odValue * lowBase + (j / highBase) * highBase
+
+/-- The paper image is the O_D-register splice with the computed paper address. -/
+theorem bandedSparseAccessPaperImage_eq_splice
+    (p : OneTermRobinParameters) (j : Nat) :
+    bandedSparseAccessPaperImage p j =
+      bandedSparseAccessPaperSpliceODRegister p j
+        (bandedSparseAccessPaperAddress p j) := by
+  rfl
+
+/-- The spliced low-and-O_D block fits below the high-tail boundary for n-bit O_D values. -/
+theorem bandedSparseAccessPaperSpliceODRegister_lowBlock_lt_highBase_of_odValue_lt
+    (p : OneTermRobinParameters) (j odValue : Nat)
+    (hod : odValue < (1 <<< p.n)) :
+    let lowWidth := 1 + p.n
+    let highWidth := 1 + 2 * p.n
+    let lowBase := 2 ^ lowWidth
+    let highBase := 2 ^ highWidth
+    let lowPrefix := j % lowBase
+    lowPrefix + odValue * lowBase < highBase := by
+  rw [Nat.one_shiftLeft] at hod
+  dsimp
+  have hlowPos : 0 < 2 ^ (1 + p.n) :=
+    Nat.pow_pos (by decide : 0 < 2)
+  have hlow : j % 2 ^ (1 + p.n) < 2 ^ (1 + p.n) :=
+    Nat.mod_lt j hlowPos
+  have hbase : 2 ^ (1 + 2 * p.n) = 2 ^ (1 + p.n) * 2 ^ p.n := by
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  rw [hbase]
+  have hlt1 :
+      j % 2 ^ (1 + p.n) + odValue * 2 ^ (1 + p.n) <
+        2 ^ (1 + p.n) + odValue * 2 ^ (1 + p.n) := by
+    exact Nat.add_lt_add_right hlow (odValue * 2 ^ (1 + p.n))
+  have hsucc : odValue + 1 ≤ 2 ^ p.n := Nat.succ_le_of_lt hod
+  have hle :
+      (odValue + 1) * 2 ^ (1 + p.n) ≤ 2 ^ p.n * 2 ^ (1 + p.n) := by
+    exact Nat.mul_le_mul_right (2 ^ (1 + p.n)) hsucc
+  have heq :
+      2 ^ (1 + p.n) + odValue * 2 ^ (1 + p.n) =
+        (odValue + 1) * 2 ^ (1 + p.n) := by
+    rw [Nat.add_comm]
+    exact (Nat.succ_mul odValue (2 ^ (1 + p.n))).symm
+  rw [heq] at hlt1
+  rw [Nat.mul_comm (2 ^ (1 + p.n)) (2 ^ p.n)]
+  exact Nat.lt_of_lt_of_le hlt1 hle
+
+/-- Splicing an O_D value preserves the low ancilla-and-row block. -/
+theorem bandedSparseAccessPaperSpliceODRegister_mod_lowBase
+    (p : OneTermRobinParameters) (j odValue : Nat) :
+    bandedSparseAccessPaperSpliceODRegister p j odValue % 2 ^ (1 + p.n) =
+      j % 2 ^ (1 + p.n) := by
+  unfold bandedSparseAccessPaperSpliceODRegister
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  have hbase : highBase = lowBase * 2 ^ p.n := by
+    dsimp [highBase, lowBase, highWidth, lowWidth]
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  have hlow : lowPrefix % lowBase = lowPrefix := by
+    dsimp [lowPrefix]
+    exact Nat.mod_eq_of_lt (Nat.mod_lt j (Nat.pow_pos (by decide : 0 < 2)))
+  calc
+    (lowPrefix + odValue * lowBase + j / highBase * highBase) % lowBase
+        = (lowPrefix + lowBase * odValue + j / highBase * highBase) % lowBase := by
+          rw [Nat.mul_comm odValue lowBase]
+    _ = (lowPrefix + lowBase * odValue + j / highBase * (lowBase * 2 ^ p.n)) %
+          lowBase := by
+          rw [hbase]
+    _ = (lowPrefix + lowBase * (odValue + j / highBase * 2 ^ p.n)) % lowBase := by
+          congr 1
+          rw [Nat.mul_add]
+          ac_rfl
+    _ = lowPrefix % lowBase := by
+          rw [Nat.add_mul_mod_self_left]
+    _ = lowPrefix := hlow
+    _ = j % 2 ^ (1 + p.n) := by rfl
+
+/-- Splicing an n-bit O_D value exposes that value when the O_D register is extracted. -/
+theorem bandedSparseAccessPaperSpliceODRegister_div_lowBase_mod_eq
+    (p : OneTermRobinParameters) (j odValue : Nat)
+    (hod : odValue < (1 <<< p.n)) :
+    bandedSparseAccessPaperSpliceODRegister p j odValue / 2 ^ (1 + p.n) %
+        2 ^ p.n =
+      odValue := by
+  unfold bandedSparseAccessPaperSpliceODRegister
+  rw [Nat.one_shiftLeft] at hod
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  have hlowPos : 0 < lowBase := by
+    dsimp [lowBase, lowWidth]
+    exact Nat.pow_pos (by decide : 0 < 2)
+  have hlow : lowPrefix < lowBase := by
+    dsimp [lowPrefix]
+    exact Nat.mod_lt j hlowPos
+  have hbase : highBase = lowBase * 2 ^ p.n := by
+    dsimp [highBase, lowBase, highWidth, lowWidth]
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  have hsplice : lowPrefix + odValue * lowBase + j / highBase * highBase =
+      lowPrefix + lowBase * (odValue + j / highBase * 2 ^ p.n) := by
+    rw [hbase]
+    rw [Nat.mul_add]
+    ac_rfl
+  have hdiv :
+      (lowPrefix + lowBase * (odValue + j / highBase * 2 ^ p.n)) / lowBase =
+        odValue + j / highBase * 2 ^ p.n := by
+    rw [Nat.add_mul_div_left _ _ hlowPos]
+    rw [Nat.div_eq_of_lt hlow]
+    simp
+  have hlowWidth : 2 ^ (1 + p.n) = lowBase := by rfl
+  rw [hlowWidth]
+  rw [hsplice]
+  rw [hdiv]
+  rw [Nat.add_mul_mod_self_right]
+  exact Nat.mod_eq_of_lt hod
+
+/-- Splicing preserves the row field. -/
+theorem bandedSparseAccessPaperSpliceODRegister_rowValue_eq
+    (p : OneTermRobinParameters) (j odValue : Nat) :
+    (bandedSparseAccessPaperRegisters p
+      (bandedSparseAccessPaperSpliceODRegister p j odValue)).rowValue =
+      (bandedSparseAccessPaperRegisters p j).rowValue := by
+  unfold bandedSparseAccessPaperRegisters
+  simp only []
+  rw [bandedSparseAccessPaperRegisterValue_eq_mod,
+    bandedSparseAccessPaperRegisterValue_eq_mod]
+  have hpow : 2 * 2 ^ p.n = 2 ^ (1 + p.n) := by
+    rw [show 1 + p.n = p.n + 1 by omega, Nat.pow_succ]
+    omega
+  have hmod := bandedSparseAccessPaperSpliceODRegister_mod_lowBase p j odValue
+  rw [← hpow] at hmod
+  rw [← Nat.mod_mul_right_div_self
+    (bandedSparseAccessPaperSpliceODRegister p j odValue) 2 (2 ^ p.n)]
+  rw [← Nat.mod_mul_right_div_self j 2 (2 ^ p.n)]
+  rw [hmod]
+
+/-- Splicing an n-bit value into the O_D block makes that value the extracted O_D register. -/
+theorem bandedSparseAccessPaperSpliceODRegister_odRegisterValue_eq
+    (p : OneTermRobinParameters) (j odValue : Nat)
+    (hod : odValue < (1 <<< p.n)) :
+    (bandedSparseAccessPaperRegisters p
+      (bandedSparseAccessPaperSpliceODRegister p j odValue)).odRegisterValue =
+      odValue := by
+  unfold bandedSparseAccessPaperRegisters
+  simp only []
+  rw [bandedSparseAccessPaperRegisterValue_eq_mod]
+  exact bandedSparseAccessPaperSpliceODRegister_div_lowBase_mod_eq p j odValue hod
+
+/-- Splicing an n-bit O_D value preserves all bits above the O_D register. -/
+theorem bandedSparseAccessPaperSpliceODRegister_div_highBase_eq_of_odValue_lt
+    (p : OneTermRobinParameters) (j odValue : Nat)
+    (hod : odValue < (1 <<< p.n)) :
+    bandedSparseAccessPaperSpliceODRegister p j odValue / 2 ^ (1 + 2 * p.n) =
+      j / 2 ^ (1 + 2 * p.n) := by
+  unfold bandedSparseAccessPaperSpliceODRegister
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  have hhighPos : 0 < highBase := by
+    dsimp [highBase, highWidth]
+    exact Nat.pow_pos (by decide : 0 < 2)
+  have hsmall : lowPrefix + odValue * lowBase < highBase :=
+    bandedSparseAccessPaperSpliceODRegister_lowBlock_lt_highBase_of_odValue_lt
+      p j odValue hod
+  calc
+    (lowPrefix + odValue * lowBase + j / highBase * highBase) / highBase
+        = (lowPrefix + odValue * lowBase + highBase * (j / highBase)) /
+            highBase := by
+          rw [Nat.mul_comm (j / highBase) highBase]
+    _ = (lowPrefix + odValue * lowBase) / highBase + j / highBase := by
+          rw [Nat.add_mul_div_left _ _ hhighPos]
+    _ = j / highBase := by simp [Nat.div_eq_of_lt hsmall]
+    _ = j / 2 ^ (1 + 2 * p.n) := by rfl
+
+/--
+Splicing an n-bit O_D value into a finite compound basis index preserves the
+full finite-basis range.  This is the range counterpart of the splice register
+equations and does not assert that the chosen O_D value is semantically correct.
+-/
+theorem bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt
+    (p : OneTermRobinParameters) (j odValue : Nat)
+    (hj : j < qubitDim (oneTermRobinTotalQubits p))
+    (hod : odValue < (1 <<< p.n)) :
+    bandedSparseAccessPaperSpliceODRegister p j odValue <
+      qubitDim (oneTermRobinTotalQubits p) := by
+  simp only [qubitDim, gridSize] at hj ⊢
+  unfold bandedSparseAccessPaperSpliceODRegister
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let highBase := 2 ^ highWidth
+  let lowPrefix := j % lowBase
+  have hsmall :
+      lowPrefix + odValue * lowBase < highBase :=
+    bandedSparseAccessPaperSpliceODRegister_lowBlock_lt_highBase_of_odValue_lt
+      p j odValue hod
+  have hwidth : highWidth ≤ oneTermRobinTotalQubits p := by
+    dsimp [highWidth]
+    exact bandedSparseAccessPaperHighWidth_le_totalQubits p
+  have hpowTotal : highBase * 2 ^ (oneTermRobinTotalQubits p - highWidth) =
+      2 ^ oneTermRobinTotalQubits p := by
+    dsimp [highBase]
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  have htail_lt : j / highBase < 2 ^ (oneTermRobinTotalQubits p - highWidth) := by
+    apply Nat.div_lt_of_lt_mul
+    rwa [hpowTotal]
+  have htail_succ :
+      j / highBase + 1 ≤ 2 ^ (oneTermRobinTotalQubits p - highWidth) :=
+    Nat.succ_le_of_lt htail_lt
+  have hblock :
+      lowPrefix + odValue * lowBase + j / highBase * highBase <
+        highBase * (j / highBase + 1) := by
+    rw [Nat.mul_succ, Nat.mul_comm highBase (j / highBase)]
+    omega
+  have htotal :
+      highBase * (j / highBase + 1) ≤ 2 ^ oneTermRobinTotalQubits p := by
+    have hmul := Nat.mul_le_mul_left highBase htail_succ
+    rwa [hpowTotal] at hmul
+  exact Nat.lt_of_lt_of_le hblock htotal
+
+/-- Replacing the O_D block twice is the same as keeping the second replacement. -/
+theorem bandedSparseAccessPaperSpliceODRegister_splice_of_odValue_lt
+    (p : OneTermRobinParameters) (j odValue newODValue : Nat)
+    (hod : odValue < (1 <<< p.n)) :
+    bandedSparseAccessPaperSpliceODRegister p
+        (bandedSparseAccessPaperSpliceODRegister p j odValue) newODValue =
+      bandedSparseAccessPaperSpliceODRegister p j newODValue := by
+  have hmod := bandedSparseAccessPaperSpliceODRegister_mod_lowBase p j odValue
+  have hdiv :=
+    bandedSparseAccessPaperSpliceODRegister_div_highBase_eq_of_odValue_lt
+      p j odValue hod
+  unfold bandedSparseAccessPaperSpliceODRegister at hmod hdiv ⊢
+  simp only [] at hmod hdiv ⊢
+  rw [hmod, hdiv]
+
+/-- Reconstructing an index from its low, O_D, and high blocks gives the same index. -/
+theorem bandedSparseAccessPaperSpliceODRegister_self
+    (p : OneTermRobinParameters) (j : Nat) :
+    bandedSparseAccessPaperSpliceODRegister p j
+      (bandedSparseAccessPaperRegisters p j).odRegisterValue = j := by
+  unfold bandedSparseAccessPaperSpliceODRegister
+  let lowWidth := 1 + p.n
+  let highWidth := 1 + 2 * p.n
+  let lowBase := 2 ^ lowWidth
+  let midBase := 2 ^ p.n
+  let highBase := 2 ^ highWidth
+  have hbase : highBase = lowBase * midBase := by
+    dsimp [highBase, lowBase, midBase, highWidth, lowWidth]
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  have hod : (bandedSparseAccessPaperRegisters p j).odRegisterValue =
+      (j / lowBase) % midBase := by
+    unfold bandedSparseAccessPaperRegisters
+    dsimp [lowBase, midBase, lowWidth]
+    rw [bandedSparseAccessPaperRegisterValue_eq_mod]
+  have hmodH :
+      j % highBase = j % lowBase + ((j / lowBase) % midBase) * lowBase := by
+    have hdecomp := Nat.mod_add_div (j % highBase) lowBase
+    have hmodLow : j % highBase % lowBase = j % lowBase := by
+      rw [hbase]
+      exact Nat.mod_mul_right_mod j lowBase midBase
+    have hdivMid : j % highBase / lowBase = j / lowBase % midBase := by
+      rw [hbase]
+      exact Nat.mod_mul_right_div_self j lowBase midBase
+    rw [← hdecomp, hmodLow, hdivMid]
+    ac_rfl
+  calc
+    j % lowBase + (bandedSparseAccessPaperRegisters p j).odRegisterValue * lowBase +
+          j / highBase * highBase
+        = j % lowBase + ((j / lowBase) % midBase) * lowBase +
+          j / highBase * highBase := by rw [hod]
+    _ = j % highBase + j / highBase * highBase := by rw [hmodH]
+    _ = j := by
+      rw [Nat.mul_comm (j / highBase) highBase]
+      exact Nat.mod_add_div j highBase
+
+/-- Clean `O_D^BS` register value whose padded-low part is zero and sparse part is `sparseValue`. -/
+def bandedSparseAccessPaperCleanODValue
+    (p : OneTermRobinParameters) (sparseValue : Nat) : Nat :=
+  sparseValue <<< (p.n - clog2 p.kappa)
+
+/-- The clean O_D value has zeroes in the padded low slice. -/
+theorem bandedSparseAccessPaperCleanODValue_paddedZero_eq_zero
+    (p : OneTermRobinParameters) (sparseValue : Nat) :
+    bandedSparseAccessPaperCleanODValue p sparseValue &&&
+        ((1 <<< (p.n - clog2 p.kappa)) - 1) = 0 := by
+  unfold bandedSparseAccessPaperCleanODValue
+  exact shiftLeft_land_mask_eq_zero sparseValue (p.n - clog2 p.kappa)
+    (p.n - clog2 p.kappa) (by omega)
+
+/-- A clean sparse value fits in the n-bit O_D register when the sparse width fits in n. -/
+theorem bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt
+    (p : OneTermRobinParameters) {sparseValue : Nat}
+    (hwidth : clog2 p.kappa ≤ p.n)
+    (hsparse : sparseValue < 2 ^ clog2 p.kappa) :
+    bandedSparseAccessPaperCleanODValue p sparseValue < (1 <<< p.n) := by
+  unfold bandedSparseAccessPaperCleanODValue
+  rw [Nat.shiftLeft_eq, Nat.one_shiftLeft]
+  have hpow : 2 ^ p.n = 2 ^ clog2 p.kappa * 2 ^ (p.n - clog2 p.kappa) := by
+    rw [← Nat.pow_add]
+    congr 1
+    omega
+  rw [hpow]
+  exact Nat.mul_lt_mul_of_pos_right hsparse (Nat.pow_pos (by decide : 0 < 2))
+
+/-- Extracting the sparse slice from a clean O_D value recovers the sparse value. -/
+theorem bandedSparseAccessPaperCleanODValue_sparseIndex_eq
+    (p : OneTermRobinParameters) {sparseValue : Nat}
+    (hsparse : sparseValue < 2 ^ clog2 p.kappa) :
+    ((bandedSparseAccessPaperCleanODValue p sparseValue >>>
+          (p.n - clog2 p.kappa)) &&& ((1 <<< clog2 p.kappa) - 1)) =
+      sparseValue := by
+  rw [bandedSparseAccessPaperRegisterValue_eq_mod]
+  unfold bandedSparseAccessPaperCleanODValue
+  rw [Nat.shiftLeft_eq]
+  rw [Nat.mul_div_left sparseValue (Nat.pow_pos (by decide : 0 < 2))]
+  exact Nat.mod_eq_of_lt hsparse
+
+/--
+The reverse sparse index used by the post-SWAP cleanup candidate fits in the
+three-bit sparse register for the one-term Robin parameter family.
+-/
+theorem bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow
+    (p : OneTermRobinParameters) (source : Nat)
+    (hn : 3 ≤ p.n) (hκbits : clog2 p.kappa = 3) :
+    robinSparseReverseColumnIndex p.n
+        (bandedSparseAccessPaperRegisters p source).rowValue
+        (bandedSparseAccessPaperAddress p source) <
+      2 ^ clog2 p.kappa := by
+  let regs := bandedSparseAccessPaperRegisters p source
+  have hsourceSparsePow : regs.sparseIndexValue < 2 ^ clog2 p.kappa := by
+    have h := bandedSparseAccessPaperRegisters_sparseIndex_lt p source
+    rw [Nat.one_shiftLeft] at h
+    simpa [regs] using h
+  have hsourceSparseLt8 : regs.sparseIndexValue < 8 := by
+    have h := hsourceSparsePow
+    rw [hκbits] at h
+    simpa using h
+  have hrowLt : regs.rowValue < gridSize p.n := by
+    simpa [regs] using bandedSparseAccessPaperRegisters_row_lt_gridSize p source
+  have hreverseLt8 :
+      robinSparseReverseColumnIndex p.n regs.rowValue
+        (bandedSparseAccessPaperAddress p source) < 8 := by
+    have h :=
+      robinSparseReverseColumnIndex_lt_eight_of_columnMap
+        (n := p.n) (s := regs.sparseIndexValue) (i := regs.rowValue)
+        hn hsourceSparseLt8 hrowLt
+    simpa [regs, bandedSparseAccessPaperAddress] using h
+  rw [hκbits]
+  simpa [regs] using hreverseLt8
+
+/--
+The clean O_D register value spliced into the post-SWAP preimage candidate is
+n-bit for the one-term Robin parameter family.
+-/
+theorem bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow
+    (p : OneTermRobinParameters) (source : Nat)
+    (hn : 3 ≤ p.n) (hκbits : clog2 p.kappa = 3) :
+    bandedSparseAccessPaperCleanODValue p
+        (robinSparseReverseColumnIndex p.n
+          (bandedSparseAccessPaperRegisters p source).rowValue
+          (bandedSparseAccessPaperAddress p source)) <
+      (1 <<< p.n) := by
+  have hreverse :
+      robinSparseReverseColumnIndex p.n
+          (bandedSparseAccessPaperRegisters p source).rowValue
+          (bandedSparseAccessPaperAddress p source) <
+        2 ^ clog2 p.kappa :=
+    bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow
+      p source hn hκbits
+  have hwidth : clog2 p.kappa ≤ p.n := by
+    rw [hκbits]
+    omega
+  exact bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt
+    p hwidth hreverse
+
+/--
+Candidate clean preimage for the column reached by
+`O_D^BS`, SWAP, and then `(O_D^BS)^dagger`.
+
+The candidate keeps the post-SWAP row and high-tail bits, and replaces the
+`O_D^BS` register by a clean padded register whose sparse field is the reverse
+column candidate for the original source row.  The separate Boolean audit below
+checks whether this candidate is actually a paper-image preimage.
+-/
+def bandedSparseAccessPaperPostSwapPreimageCandidate
+    (p : OneTermRobinParameters) (source : Nat) : Nat :=
+  let regs := bandedSparseAccessPaperRegisters p source
+  let post := swapOracleImage p (bandedSparseAccessPaperImage p source)
+  let reverseSparse :=
+    robinSparseReverseColumnIndex p.n regs.rowValue
+      (bandedSparseAccessPaperAddress p source)
+  bandedSparseAccessPaperSpliceODRegister p post
+    (bandedSparseAccessPaperCleanODValue p reverseSparse)
+
+/--
+Executable audit for the post-SWAP preimage candidate.
+
+It checks three local facts: the candidate maps by the active paper-image
+skeleton to the post-SWAP column, the candidate is in the clean padded domain,
+and the candidate address is n-bit.  Even when this Boolean is true for a
+finite parameter scan, the paper-level dagger cleanup and unitarity flags
+remain unproved.
+-/
+def bandedSparseAccessPaperPostSwapPreimageCandidateChecks
+    (p : OneTermRobinParameters) (source : Nat) : Bool :=
+  let post := swapOracleImage p (bandedSparseAccessPaperImage p source)
+  let pre := bandedSparseAccessPaperPostSwapPreimageCandidate p source
+  (bandedSparseAccessPaperImage p pre == post) &&
+    bandedSparseAccessPaperCleanInput p pre &&
+    bandedSparseAccessPaperAddressInRange p pre
+
+/--
+The post-SWAP preimage candidate passes the executable image, clean-domain, and
+address-range checks for clean one-term Robin source columns.
+
+The assumptions keep the current Phase 1 contract explicit: the source column is
+in the finite basis, the source padded register is clean, and the one-term
+family uses a three-bit sparse register (`kappa = 7`, `clog2 kappa = 3`).  This
+does not prove uniqueness, dagger cleanup, unitarity, or block extraction.
+-/
+theorem bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource
+    (p : OneTermRobinParameters) (source : Nat)
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : source < qubitDim (oneTermRobinTotalQubits p))
+    (hclean : bandedSparseAccessPaperCleanInput p source = true) :
+    bandedSparseAccessPaperPostSwapPreimageCandidateChecks p source = true := by
+  have _sourceFinite := hsource
+  have _sourceClean := (bandedSparseAccessPaperCleanInput_iff p source).1 hclean
+  have _kappaValue := hkappa
+  let regs := bandedSparseAccessPaperRegisters p source
+  let post := swapOracleImage p (bandedSparseAccessPaperImage p source)
+  let reverseSparse :=
+    robinSparseReverseColumnIndex p.n regs.rowValue
+      (bandedSparseAccessPaperAddress p source)
+  let cleanOD := bandedSparseAccessPaperCleanODValue p reverseSparse
+  let pre := bandedSparseAccessPaperPostSwapPreimageCandidate p source
+  have htwo : 2 ≤ p.n := by omega
+  have haddrSource : bandedSparseAccessPaperAddress p source < (1 <<< p.n) := by
+    have h := bandedSparseAccessPaperAddress_lt_gridSize_of_two_le p source htwo
+    simpa [gridSize, Nat.one_shiftLeft] using h
+  have hsourceSparsePow : regs.sparseIndexValue < 2 ^ clog2 p.kappa := by
+    have h := bandedSparseAccessPaperRegisters_sparseIndex_lt p source
+    rw [Nat.one_shiftLeft] at h
+    simpa [regs] using h
+  have hsourceSparseLt8 : regs.sparseIndexValue < 8 := by
+    have h := hsourceSparsePow
+    rw [hκbits] at h
+    simpa using h
+  have hrowLt : regs.rowValue < gridSize p.n := by
+    simpa [regs] using bandedSparseAccessPaperRegisters_row_lt_gridSize p source
+  have hreverseLt8 : reverseSparse < 8 := by
+    have h :=
+      robinSparseReverseColumnIndex_lt_eight_of_columnMap
+        (n := p.n) (s := regs.sparseIndexValue) (i := regs.rowValue)
+        hn hsourceSparseLt8 hrowLt
+    simpa [reverseSparse, regs, bandedSparseAccessPaperAddress] using h
+  have hreversePow : reverseSparse < 2 ^ clog2 p.kappa := by
+    rw [hκbits]
+    simpa using hreverseLt8
+  have hwidth : clog2 p.kappa ≤ p.n := by
+    rw [hκbits]
+    omega
+  have hcleanODBound : cleanOD < (1 <<< p.n) :=
+    bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt p hwidth hreversePow
+  have hpre_eq : pre = bandedSparseAccessPaperSpliceODRegister p post cleanOD := by
+    simp [pre, bandedSparseAccessPaperPostSwapPreimageCandidate, post,
+      cleanOD, reverseSparse, regs]
+  have hpreRow : (bandedSparseAccessPaperRegisters p pre).rowValue =
+      (bandedSparseAccessPaperRegisters p post).rowValue := by
+    rw [hpre_eq]
+    exact bandedSparseAccessPaperSpliceODRegister_rowValue_eq p post cleanOD
+  have hpreOD : (bandedSparseAccessPaperRegisters p pre).odRegisterValue = cleanOD := by
+    rw [hpre_eq]
+    exact bandedSparseAccessPaperSpliceODRegister_odRegisterValue_eq
+      p post cleanOD hcleanODBound
+  have hpreSparse :
+      (bandedSparseAccessPaperRegisters p pre).sparseIndexValue = reverseSparse := by
+    rw [bandedSparseAccessPaperRegisters_sparseIndexValue_eq]
+    rw [hpreOD]
+    exact bandedSparseAccessPaperCleanODValue_sparseIndex_eq p hreversePow
+  have hpreClean : bandedSparseAccessPaperCleanInput p pre = true := by
+    rw [bandedSparseAccessPaperCleanInput_iff]
+    rw [bandedSparseAccessPaperRegisters_paddedZeroValue_eq]
+    rw [hpreOD]
+    exact bandedSparseAccessPaperCleanODValue_paddedZero_eq_zero p reverseSparse
+  have hpreAddressRange : bandedSparseAccessPaperAddressInRange p pre = true :=
+    bandedSparseAccessPaperAddressInRange_eq_true_of_two_le p pre htwo
+  have hpostRow : (bandedSparseAccessPaperRegisters p post).rowValue =
+      bandedSparseAccessPaperAddress p source := by
+    dsimp [post]
+    exact bandedSparseAccessPaperPostSwap_rowValue_eq_address p source haddrSource
+  have hpostOd : (bandedSparseAccessPaperRegisters p post).odRegisterValue =
+      regs.rowValue := by
+    dsimp [post, regs]
+    exact bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue p source
+  have hround :
+      robinSparseColumnMap p.n reverseSparse
+        (bandedSparseAccessPaperAddress p source) = regs.rowValue := by
+    have h :=
+      robinSparseReverseColumnRoundtrip_of_lt_eight
+        (n := p.n) (s := regs.sparseIndexValue) (i := regs.rowValue)
+        hn hsourceSparseLt8 hrowLt
+    simpa [reverseSparse, regs, bandedSparseAccessPaperAddress] using h
+  have hroundUnfold :
+      robinSparseColumnMap p.n reverseSparse
+        (robinSparseColumnMap p.n
+          (bandedSparseAccessPaperRegisters p source).sparseIndexValue
+          (bandedSparseAccessPaperRegisters p source).rowValue) =
+        regs.rowValue := by
+    simpa [bandedSparseAccessPaperAddress, regs] using hround
+  have hpreAddress : bandedSparseAccessPaperAddress p pre =
+      (bandedSparseAccessPaperRegisters p post).odRegisterValue := by
+    simp [bandedSparseAccessPaperAddress, hpreSparse, hpreRow, hpostRow,
+      hroundUnfold, hpostOd]
+  have hpreImage : bandedSparseAccessPaperImage p pre = post := by
+    rw [bandedSparseAccessPaperImage_eq_splice]
+    rw [hpreAddress]
+    rw [hpre_eq]
+    rw [bandedSparseAccessPaperSpliceODRegister_splice_of_odValue_lt p post cleanOD
+      (bandedSparseAccessPaperRegisters p post).odRegisterValue hcleanODBound]
+    exact bandedSparseAccessPaperSpliceODRegister_self p post
+  change ((bandedSparseAccessPaperImage p pre == post) &&
+      bandedSparseAccessPaperCleanInput p pre &&
+      bandedSparseAccessPaperAddressInRange p pre) = true
+  simp [hpreImage, hpreClean, hpreAddressRange]
+
+/--
+The clean post-SWAP preimage candidate is a finite basis index for finite clean
+one-term Robin source columns.  This only discharges the `Fin` constructor
+premise for the conditional cleanup witness; uniqueness and semantic cleanup
+remain open.
+-/
+theorem bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource
+    (p : OneTermRobinParameters)
+    (source : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hclean : bandedSparseAccessPaperCleanInput p source.val = true) :
+    bandedSparseAccessPaperPostSwapPreimageCandidate p source.val <
+      qubitDim (oneTermRobinTotalQubits p) := by
+  have _kappaValue := hkappa
+  have _sourceClean := hclean
+  let regs := bandedSparseAccessPaperRegisters p source.val
+  let post := swapOracleImage p (bandedSparseAccessPaperImage p source.val)
+  let reverseSparse :=
+    robinSparseReverseColumnIndex p.n regs.rowValue
+      (bandedSparseAccessPaperAddress p source.val)
+  let cleanOD := bandedSparseAccessPaperCleanODValue p reverseSparse
+  let pre := bandedSparseAccessPaperPostSwapPreimageCandidate p source.val
+  have htwo : 2 ≤ p.n := by omega
+  have haddrSource : bandedSparseAccessPaperAddress p source.val < (1 <<< p.n) := by
+    have h := bandedSparseAccessPaperAddress_lt_gridSize_of_two_le
+      p source.val htwo
+    simpa [gridSize, Nat.one_shiftLeft] using h
+  have hpostRange :
+      post < qubitDim (oneTermRobinTotalQubits p) := by
+    dsimp [post]
+    exact bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt
+      p source haddrSource
+  have hcleanODBound : cleanOD < (1 <<< p.n) := by
+    dsimp [cleanOD, reverseSparse, regs]
+    exact bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow
+      p source.val hn hκbits
+  have hpre_eq : pre =
+      bandedSparseAccessPaperSpliceODRegister p post cleanOD := by
+    simp [pre, bandedSparseAccessPaperPostSwapPreimageCandidate, post,
+      cleanOD, reverseSparse, regs]
+  have hpreRange :
+      pre < qubitDim (oneTermRobinTotalQubits p) := by
+    rw [hpre_eq]
+    exact bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt
+      p post cleanOD hpostRange hcleanODBound
+  simpa [pre] using hpreRange
+
+/--
+Instantiate the conditional post-SWAP cleanup witness with the clean-source
+preimage candidate.
+
+The finite `post` and `pre` range facts remain explicit hypotheses.  This
+wrapper converts the accepted Boolean candidate audit into the supplied
+preimage equality, clean-domain proof, and n-bit address bound required by
+`bandedSparseAccessPostSwapCleanup_of_preimage`.  It does not prove finite
+range, uniqueness, semantic dagger cleanup, or unitarity.
+-/
+theorem bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate
+    (p : OneTermRobinParameters)
+    (source : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hn : 3 <= p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hclean : bandedSparseAccessPaperCleanInput p source.val = true)
+    (hpostRange :
+      swapOracleImage p (bandedSparseAccessPaperImage p source.val) <
+        qubitDim (oneTermRobinTotalQubits p))
+    (hpreRange :
+      bandedSparseAccessPaperPostSwapPreimageCandidate p source.val <
+        qubitDim (oneTermRobinTotalQubits p)) :
+    BandedSparseAccessPostSwapCleanup p source
+      ⟨swapOracleImage p (bandedSparseAccessPaperImage p source.val), hpostRange⟩
+      ⟨bandedSparseAccessPaperPostSwapPreimageCandidate p source.val, hpreRange⟩ := by
+  let postNat := swapOracleImage p (bandedSparseAccessPaperImage p source.val)
+  let preNat := bandedSparseAccessPaperPostSwapPreimageCandidate p source.val
+  have haudit :=
+    bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource
+      p source.val hn hkappa hκbits source.2 hclean
+  have hparts :
+      (bandedSparseAccessPaperImage p preNat == postNat) = true ∧
+        bandedSparseAccessPaperCleanInput p preNat = true ∧
+        bandedSparseAccessPaperAddressInRange p preNat = true := by
+    simpa [bandedSparseAccessPaperPostSwapPreimageCandidateChecks, preNat,
+      postNat, Bool.and_assoc] using haudit
+  have hpreImage : bandedSparseAccessPaperImage p preNat = postNat :=
+    beq_iff_eq.mp hparts.1
+  have haddr : bandedSparseAccessPaperAddress p preNat < (1 <<< p.n) :=
+    (bandedSparseAccessPaperAddressInRange_iff p preNat).1 hparts.2.2
+  exact bandedSparseAccessPostSwapCleanup_of_preimage p source
+    ⟨postNat, hpostRange⟩ ⟨preNat, hpreRange⟩
+    (by rfl)
+    (by simpa [postNat, preNat] using hpreImage.symm)
+    hparts.2.1 haddr
+
+/--
+Instantiate the clean-source post-SWAP cleanup witness without caller-supplied
+finite-range premises.  The theorem only supplies the `Fin` range proofs for
+the already conditional candidate witness; it does not prove uniqueness,
+dagger cleanup, SWAP unitarity, or either O_D^BS unitarity flag.
+-/
+theorem bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange
+    (p : OneTermRobinParameters)
+    (source : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hn : 3 <= p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hclean : bandedSparseAccessPaperCleanInput p source.val = true) :
+    BandedSparseAccessPostSwapCleanup p source
+      ⟨swapOracleImage p (bandedSparseAccessPaperImage p source.val),
+        by
+          have htwo : 2 ≤ p.n := by omega
+          have haddrSource :
+              bandedSparseAccessPaperAddress p source.val < (1 <<< p.n) := by
+            have h := bandedSparseAccessPaperAddress_lt_gridSize_of_two_le
+              p source.val htwo
+            simpa [gridSize, Nat.one_shiftLeft] using h
+          exact bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt
+            p source haddrSource⟩
+      ⟨bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+        bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource
+          p source hn hkappa hκbits hclean⟩ := by
+  have htwo : 2 ≤ p.n := by omega
+  have haddrSource :
+      bandedSparseAccessPaperAddress p source.val < (1 <<< p.n) := by
+    have h := bandedSparseAccessPaperAddress_lt_gridSize_of_two_le
+      p source.val htwo
+    simpa [gridSize, Nat.one_shiftLeft] using h
+  have hpostRange :
+      swapOracleImage p (bandedSparseAccessPaperImage p source.val) <
+        qubitDim (oneTermRobinTotalQubits p) :=
+    bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt
+      p source haddrSource
+  have hpreRange :
+      bandedSparseAccessPaperPostSwapPreimageCandidate p source.val <
+        qubitDim (oneTermRobinTotalQubits p) :=
+    bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource
+      p source hn hkappa hκbits hclean
+  exact bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate
+    p source hn hkappa hκbits hclean hpostRange hpreRange
+
+/--
+Feed the row-dependent valid-clean-source predicate into the existing
+post-SWAP cleanup candidate wrapper.
+
+The predicate `bandedSparseAccessPaperValidCleanSource` is only a Phase 1
+source-domain classifier.  This theorem records that it supplies the clean
+padded-register hypothesis required by the cleanup candidate.  It does not
+prove source-domain completeness, unused-branch unitary extension, preimage
+uniqueness, semantic dagger cleanup, or either O_D^BS unitarity flag.
+-/
+theorem bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange
+    (p : OneTermRobinParameters)
+    (source : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hn : 3 <= p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hvalid : bandedSparseAccessPaperValidCleanSource p source.val = true) :
+    BandedSparseAccessPostSwapCleanup p source
+      ⟨swapOracleImage p (bandedSparseAccessPaperImage p source.val),
+        by
+          have htwo : 2 ≤ p.n := by omega
+          have haddrSource :
+              bandedSparseAccessPaperAddress p source.val < (1 <<< p.n) := by
+            have h := bandedSparseAccessPaperAddress_lt_gridSize_of_two_le
+              p source.val htwo
+            simpa [gridSize, Nat.one_shiftLeft] using h
+          exact bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt
+            p source haddrSource⟩
+      ⟨bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+        by
+          have hclean :
+              bandedSparseAccessPaperCleanInput p source.val = true :=
+            bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true
+              p source.val hvalid
+          exact
+            bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource
+              p source hn hkappa hκbits hclean⟩ := by
+  have hclean :
+      bandedSparseAccessPaperCleanInput p source.val = true :=
+    bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true
+      p source.val hvalid
+  exact bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange
+    p source hn hkappa hκbits hclean
 
 /--
 Cycle 12: robinIndicatorBitPosition = 1 + 2*p.n, hence >= 1 + p.n.

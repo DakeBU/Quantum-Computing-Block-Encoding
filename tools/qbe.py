@@ -24,6 +24,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+LOCAL_PAPER_SOURCE_ROOT = ROOT.parent / "Auto-claude-code-research-in-sleep" / "paper-sources"
 STATE_DIR = ROOT / ".qbe"
 STATE_FILE = STATE_DIR / "state.json"
 MANIFEST = ROOT / "MANIFEST.md"
@@ -948,6 +949,34 @@ def infer_task_mode(task_text: str) -> str:
     return "unspecified"
 
 
+def local_paper_source_context(task_text: str) -> str:
+    """Return optional local paper-source hints for agent prompts.
+
+    Public QBE artifacts should cite stable paper anchors, not these local
+    paths.  The hints are for private agent workspaces where TeX sources are
+    already available.
+    """
+    candidates: list[tuple[str, Path]] = []
+    if "GHL2025" in task_text or "Guseynov" in task_text or "2506.20478" in task_text:
+        candidates.append(("GHL2025", LOCAL_PAPER_SOURCE_ROOT / "GHL2025"))
+    rows = []
+    for key, path in candidates:
+        main_tex = path / "main.tex"
+        if main_tex.exists():
+            rows.append(f"- {key}: `{path.relative_to(ROOT.parent)}/main.tex`")
+    if not rows:
+        return (
+            "No local paper-source archive was detected for this task.  If a "
+            "paper source is needed, middle should record the missing source "
+            "as an artifact gap rather than guessing a proof step."
+        )
+    return "\n".join(rows) + (
+        "\nUse these local TeX files only as working sources.  Public proof "
+        "maps must cite arXiv, theorem/lemma/equation/figure anchors, or "
+        "bundled paper-note sections, not machine-specific absolute paths."
+    )
+
+
 def strategy_for_mode(mode: str) -> str:
     if mode == "faithfulPaper":
         return """Hybrid strategy for this mode:
@@ -1004,6 +1033,7 @@ def role_prompt(role: str, task_id: str, title: str, task_text: str, cycle: int,
     trial_memory = recent_trial_text(task_id, limit=12)
     mode = infer_task_mode(task_text)
     strategy = strategy_for_mode(mode)
+    paper_sources = local_paper_source_context(task_text)
     shared = f"""Task: {task_id} - {title}
 Mode: {mode}
 Cycle: {cycle}
@@ -1025,6 +1055,12 @@ Recent trial memory:
 
 ```text
 {trial_memory}
+```
+
+Local paper-source archive for agent work:
+
+```text
+{paper_sources}
 ```
 
 Operating model:
@@ -1071,6 +1107,12 @@ Mode discipline:
   it as a dependency.  Reviewer must reject uncited or hallucinated prior
   results and any dependency marked as proved without a Lean declaration,
   explicit contract, or proof obligation.
+- Treat repeated proof failure in faithful-paper mode as a source-dependency
+  signal.  Upper and middle should re-read the local TeX source and its
+  bibliography around the failing theorem before assigning more lower proof
+  search.  If the paper relies on an external result, middle must add a
+  precise cited-results entry and lower must not invent the missing theorem or
+  add a new assumption.
 
 {strategy}
 
@@ -1148,6 +1190,13 @@ register-level transformation, normalizer, ancilla cleanup condition, and
 resource claim.  If a Lean declaration uses a simplified or drifted register
 map, make the next objective a correction of that contract rather than a proof
 attempt for the drifted statement.
+
+When a faithful-paper proof block fails or becomes blocked, run a source
+dependency audit before assigning more lower proof search: inspect the local
+TeX source around the statement, inspect nearby citations and bibliography
+entries, decide whether the missing ingredient is internal, external, or a QBE
+contract gap, and require middle to update `research-wiki/cited-results/` or
+`proof-obligations/` before lower agents continue.
 
 Require the middle agent to maintain two-way translation every cycle:
 paper/LaTeX-to-Lean for the next lower task, and Lean-to-Markdown/LaTeX for
@@ -1228,6 +1277,15 @@ lemma/equation/figure labels, or bundled paper-note sections rather than a
 machine-specific absolute path.  If the Lean contract does not match the paper,
 mark it as contract drift and assign correction work before proof search.
 
+Also maintain a source-dependency audit for blocked proof steps.  Re-read the
+local TeX source and its bibliography around the failing proof block.  Classify
+the missing ingredient as one of: an internal paper step that needs a Lean
+interface, an external cited theorem/subroutine that needs a cited-results
+entry, a classical fact that needs a named Lean lemma, or a genuine source
+contract gap.  Do not send lower agents to continue tactic search until this
+classification is written into the conversion window or proof-obligation
+ledger.
+
 Use `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` to maintain a
 proof-DAG/reuse table whenever the same local argument would otherwise be
 proved several times.  Lower packets should target one block interface at a
@@ -1273,6 +1331,10 @@ Look for:
 10. Missing cited-results memory for prior work or "standard" facts used by the
     paper.  Reject a dependency if the source, exact statement, Lean status, or
     dependent use sites are vague.
+11. Missing source-dependency audit after a faithful-paper proof block gets
+    stuck.  Reviewer should ask whether middle re-read the local TeX source and
+    bibliography, whether the failure is internal/external/contractual, and
+    whether the next lower packet is justified by that classification.
 
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention and any added assumption or

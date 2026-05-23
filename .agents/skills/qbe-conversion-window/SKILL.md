@@ -30,9 +30,14 @@ and human explanation.
 7. Add a cited-results pane when the proof uses prior work or a standard fact.
    Link to `research-wiki/cited-results/` and distinguish `paper-cited`,
    `contract-only`, `obligation`, and `formalized` statuses.
-8. Write a Markdown explanation of the construction.
-9. Move verified Lean code into `QuantumBlockEncoding/`.
-10. Run `python3 tools/qbe.py check`.
+8. Add a source-dependency audit pane after any faithful-paper proof block gets
+   stuck.  Use `.agents/skills/qbe-source-dependency-audit/SKILL.md` to record
+   whether the missing ingredient is an internal paper step, external cited
+   result, classical Lean lemma, or source-contract gap.  The next lower-agent
+   packet must follow this classification.
+9. Write a Markdown explanation of the construction.
+10. Move verified Lean code into `QuantumBlockEncoding/`.
+11. Run `python3 tools/qbe.py check`.
 
 ## Proof-DAG Pane
 
@@ -60,6 +65,11 @@ obligation or a missing-definition task.
 
 If a proof block cannot be mapped to Lean, record the exact missing interface
 and dependency.  Do not replace the paper theorem with a weaker statement.
+
+If a proof block repeatedly fails, do not keep issuing the same lower-agent
+proof-search packet.  Re-read the local TeX source and bibliography, classify
+the dependency, and add either a cited-results entry, a local Lean lemma target,
+or a source-contract obligation.
 
 If a Lean declaration maps the wrong registers, uses a simplified oracle shape,
 or omits the paper's clean-ancilla condition, mark it as contract drift and

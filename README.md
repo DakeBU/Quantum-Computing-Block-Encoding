@@ -492,6 +492,25 @@ Reviewer agents must reject hidden dependencies.  A prior result cannot close a
 gate-level oracle or block-encoding proof unless the cited-results ledger names
 the source, exact statement, Lean status, and dependent use sites.
 
+## Source Dependency Audits
+
+For faithful-paper reproduction, QBE treats repeated Lean failure as a signal
+to re-read the source paper before spending more lower-agent proof search.
+Middle and upper agents should inspect the local TeX source, nearby citations,
+and bibliography, then classify the missing ingredient as an internal paper
+step, external cited result, classical Lean lemma, or source-contract gap.
+
+Local TeX sources can be kept in the sibling ARIS-style archive
+`../Auto-claude-code-research-in-sleep/paper-sources/`.  For GHL2025, agents
+use `paper-sources/GHL2025/main.tex` as a private working source.  Public QBE
+documents should still cite arXiv links and theorem/lemma/equation/figure
+anchors, not local machine paths.
+
+If the audit finds an external or standard result, the cited-results ledger
+must be updated before lower agents rely on it.  If it finds a source-contract
+gap, the relevant proof flags remain false until the gap is resolved by a
+paper-backed contract or a precisely recorded external theorem.
+
 ## Proof Exports
 
 Compiled Lean proof blocks are exported for human reading under

@@ -1240,6 +1240,23 @@ example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
       GHL2025.bandedSparseAccessPaperImageNoSpill p j :=
   GHL2025.bandedSparseAccessPaperColumnContract_imageNoSpill_eq p j
 
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).rowPreserved = true :=
+  GHL2025.bandedSparseAccessPaperColumnContract_rowPreserved_eq_true p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).addressWritten = true :=
+  GHL2025.bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt p j haddr
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (GHL2025.bandedSparseAccessPaperColumnContract p j).rowPreserved = true ∧
+      (GHL2025.bandedSparseAccessPaperColumnContract p j).addressWritten = true ∧
+      (GHL2025.bandedSparseAccessPaperColumnContract p j).addressInRange = true ∧
+      (GHL2025.bandedSparseAccessPaperColumnContract p j).imageNoSpill = true :=
+  GHL2025.bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt p j haddr
+
 -- O_D^BS paper matrix skeleton: the matrix uses the paper-image column
 -- convention without promoting proof flags.
 example :
@@ -1315,6 +1332,390 @@ example :
       { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
     (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix
       ⟨8, by native_decide⟩ ⟨40, by native_decide⟩ = Coeff.rat 1 := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters)
+    (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j.val < (1 <<< p.n)) :
+    (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+        (GHL2025.bandedSparseAccessPaperImageFin p j haddr) j = Coeff.rat 1 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix j
+        (GHL2025.bandedSparseAccessPaperImageFin p j haddr) = Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperImageNoSpill p j.val = true := by
+  have h := GHL2025.oneTermRobinGate_O_D_BS_imageFin_entrySafety p j haddr
+  exact ⟨h.1, h.2.1, h.2.2.2.2⟩
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperCleanInput p 0 = true ∧
+      GHL2025.bandedSparseAccessPaperCleanInput p 48 = true ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 =
+        GHL2025.bandedSparseAccessPaperImage p 48 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+          ⟨0, by native_decide⟩ ⟨48, by native_decide⟩ = Coeff.rat 1 ∧
+      0 ≠ 48 := by
+  native_decide
+
+example :
+    GHL2025.robinSparseColumnBranchValid 3 0 0 = true ∧
+      GHL2025.robinSparseColumnBranchValid 3 3 0 = false ∧
+      GHL2025.robinSparseColumnMap 3 0 0 =
+        GHL2025.robinSparseColumnMap 3 3 0 :=
+  GHL2025.robinSparseColumnBranchValid_boundaryUnused_n3
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperCleanInput p 0 = true ∧
+      GHL2025.bandedSparseAccessPaperCleanInput p 48 = true ∧
+      GHL2025.bandedSparseAccessPaperValidSparseBranch p 0 = true ∧
+      GHL2025.bandedSparseAccessPaperValidSparseBranch p 48 = false ∧
+      GHL2025.bandedSparseAccessPaperValidCleanSource p 0 = true ∧
+      GHL2025.bandedSparseAccessPaperValidCleanSource p 48 = false ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 =
+        GHL2025.bandedSparseAccessPaperImage p 48 :=
+  GHL2025.bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (h : GHL2025.bandedSparseAccessPaperValidCleanSource p j = true) :
+    GHL2025.bandedSparseAccessPaperCleanInput p j = true :=
+  GHL2025.bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true p j h
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (h : GHL2025.bandedSparseAccessPaperValidCleanSource p j = true) :
+    GHL2025.bandedSparseAccessPaperValidSparseBranch p j = true :=
+  GHL2025.bandedSparseAccessPaperValidCleanSource_validSparseBranch_eq_true p j h
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperUnusedSparseBranch p 48 = true ∧
+      GHL2025.bandedSparseAccessPaperValidCleanSource p 48 = false := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (h : GHL2025.bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    GHL2025.bandedSparseAccessPaperCleanInput p j = true :=
+  GHL2025.bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true p j h
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (h : GHL2025.bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    GHL2025.bandedSparseAccessPaperValidSparseBranch p j = false :=
+  GHL2025.bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false p j h
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchImageRule.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchInjective.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unitaryExtension.proved = false := by
+  have h :=
+    GHL2025.bandedSparseAccessUnusedBranchExtensionContract_flags_false p j
+  exact ⟨h.2.1, h.2.2.1, h.2.2.2.2.2⟩
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).proposedImageIndex = none ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).imageSpecified.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).imageFinite.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).separatesActiveCollision.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).validBranchAgreement.proved = false :=
+  GHL2025.bandedSparseAccessUnusedBranchImageRuleContract_flags_false p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchImageRuleContract.proposedImageIndex = none ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchImageRuleContract.imageSpecified.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchImageRuleContract.validBranchAgreement.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchImageRule.proved = false := by
+  simp [GHL2025.bandedSparseAccessUnusedBranchExtensionContract,
+    GHL2025.bandedSparseAccessUnusedBranchImageRuleContract]
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (h : GHL2025.bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).cleanInput = true ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).validSparseBranch = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unusedSparseBranch = true ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unusedBranchImageRule.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p j).unitaryExtension.proved = false := by
+  have hcontract :=
+    GHL2025.bandedSparseAccessUnusedBranchExtensionContract_of_unusedBranch
+      p j h
+  exact ⟨hcontract.1, hcontract.2.1, hcontract.2.2.1,
+    hcontract.2.2.2.1, hcontract.2.2.2.2.2.2.2⟩
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (h : GHL2025.bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).cleanInput = true ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).validSparseBranch = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).unusedSparseBranch = true ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).proposedImageIndex = none ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).imageSpecified.proved = false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).validBranchAgreement.proved = false :=
+  GHL2025.bandedSparseAccessUnusedBranchImageRuleContract_of_unusedBranch p j h
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperValidCleanSource p 0 = true ∧
+      GHL2025.bandedSparseAccessPaperUnusedSparseBranch p 48 = true ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 =
+        GHL2025.bandedSparseAccessPaperImage p 48 ∧
+      (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p 48).unitaryExtension.proved = false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
+  have h := GHL2025.bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3
+  exact ⟨h.1, h.2.1, h.2.2.1, h.2.2.2.2, rfl, rfl⟩
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hpost : post.val =
+      GHL2025.swapOracleImage p
+        (GHL2025.bandedSparseAccessPaperImage p source.val))
+    (hpre : post.val = GHL2025.bandedSparseAccessPaperImage p pre.val) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post = Coeff.rat 1 :=
+  GHL2025.oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage
+    p source post pre hpost hpre
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hpost : post.val =
+      GHL2025.swapOracleImage p
+        (GHL2025.bandedSparseAccessPaperImage p source.val))
+    (hpre : post.val = GHL2025.bandedSparseAccessPaperImage p pre.val)
+    (hclean : GHL2025.bandedSparseAccessPaperCleanInput p pre.val = true)
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p pre.val < (1 <<< p.n)) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post = Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperCleanInput p pre.val = true ∧
+      (GHL2025.bandedSparseAccessPaperColumnContract p pre.val).imageNoSpill = true ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p post.val).odRegisterValue =
+        GHL2025.bandedSparseAccessPaperAddress p pre.val := by
+  let witness :=
+    GHL2025.bandedSparseAccessPostSwapCleanup_of_preimage
+      p source post pre hpost hpre hclean haddr
+  exact ⟨witness.daggerEntry, witness.preCleanInput,
+    witness.preImageNoSpill, witness.postOd_eq_preAddress⟩
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.swapOracleImage p (GHL2025.bandedSparseAccessPaperImage p 8) = 68 ∧
+      GHL2025.bandedSparseAccessPaperImage p 68 = 68 ∧
+      GHL2025.bandedSparseAccessPaperCleanInput p 68 = true ∧
+      (GHL2025.bandedSparseAccessPaperColumnContract p 68).imageNoSpill = true := by
+  native_decide
+
+example :
+    GHL2025.robinSparseReverseColumnIndex 3 4
+        (GHL2025.robinSparseColumnMap 3 0 4) = 4 := by
+  native_decide
+
+example :
+    GHL2025.robinSparseReverseColumnRoundtripCheck 3 8 = true := by
+  native_decide
+
+example :
+    GHL2025.robinSparseReverseColumnRoundtripCheck 4 8 = true := by
+  native_decide
+
+example {n s i : Nat} (hn : 3 ≤ n) (hs : s < 8) (hi : i < gridSize n) :
+    GHL2025.robinSparseColumnMap n
+      (GHL2025.robinSparseReverseColumnIndex n i
+        (GHL2025.robinSparseColumnMap n s i))
+      (GHL2025.robinSparseColumnMap n s i) = i :=
+  GHL2025.robinSparseReverseColumnRoundtrip_of_lt_eight hn hs hi
+
+example {n s i : Nat} (hn : 3 ≤ n) (hs : s < 8) (hi : i < gridSize n) :
+    GHL2025.robinSparseReverseColumnIndex n i
+        (GHL2025.robinSparseColumnMap n s i) < 8 :=
+  GHL2025.robinSparseReverseColumnIndex_lt_eight_of_columnMap hn hs hi
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p 8 = 68 ∧
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks p 8 = true := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (List.range (qubitDim (GHL2025.oneTermRobinTotalQubits p))).all
+      (fun source =>
+        GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks p source) =
+      true := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (source : Nat)
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : source < qubitDim (GHL2025.oneTermRobinTotalQubits p))
+    (hclean : GHL2025.bandedSparseAccessPaperCleanInput p source = true) :
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks p source = true :=
+  GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource
+    p source hn hkappa hκbits hsource hclean
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hclean : GHL2025.bandedSparseAccessPaperCleanInput p source.val = true)
+    (hpostRange :
+      GHL2025.swapOracleImage p (GHL2025.bandedSparseAccessPaperImage p source.val) <
+        qubitDim (GHL2025.oneTermRobinTotalQubits p))
+    (hpreRange :
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val <
+        qubitDim (GHL2025.oneTermRobinTotalQubits p)) :
+    GHL2025.BandedSparseAccessPostSwapCleanup p source
+      ⟨GHL2025.swapOracleImage p
+          (GHL2025.bandedSparseAccessPaperImage p source.val), hpostRange⟩
+      ⟨GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+        hpreRange⟩ :=
+  GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate
+    p source hn hkappa hκbits hclean hpostRange hpreRange
+
+example (p : GHL2025.OneTermRobinParameters) {j : Nat}
+    (hj : j < qubitDim (GHL2025.oneTermRobinTotalQubits p)) :
+    GHL2025.swapOracleImage p j <
+      qubitDim (GHL2025.oneTermRobinTotalQubits p) :=
+  GHL2025.swapOracleImage_lt_qubitDim p hj
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p source.val < (1 <<< p.n)) :
+    GHL2025.swapOracleImage p
+        (GHL2025.bandedSparseAccessPaperImage p source.val) <
+      qubitDim (GHL2025.oneTermRobinTotalQubits p) :=
+  GHL2025.bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt
+    p source haddr
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hclean : GHL2025.bandedSparseAccessPaperCleanInput p source.val = true) :
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val <
+      qubitDim (GHL2025.oneTermRobinTotalQubits p) :=
+  GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource
+    p source hn hkappa hκbits hclean
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hclean : GHL2025.bandedSparseAccessPaperCleanInput p source.val = true) :
+    GHL2025.bandedSparseAccessPaperCleanInput p
+        (GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val) =
+      true := by
+  let witness :=
+    GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange
+      p source hn hkappa hκbits hclean
+  exact witness.preCleanInput
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hvalid : GHL2025.bandedSparseAccessPaperValidCleanSource p source.val = true) :
+    GHL2025.bandedSparseAccessPaperCleanInput p
+        (GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val) =
+      true := by
+  let witness :=
+    GHL2025.bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange
+      p source hn hkappa hκbits hvalid
+  exact witness.preCleanInput
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨8, by native_decide⟩
+    GHL2025.bandedSparseAccessPaperValidCleanSource p source.val = true ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix
+        ⟨GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+          by native_decide⟩
+        ⟨GHL2025.swapOracleImage p
+            (GHL2025.bandedSparseAccessPaperImage p source.val),
+          by native_decide⟩ = Coeff.rat 1 := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨8, by native_decide⟩
+  constructor
+  · native_decide
+  · let witness :=
+      GHL2025.bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange
+        p source (by native_decide) rfl (by native_decide) (by native_decide)
+    exact witness.daggerEntry
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨8, by native_decide⟩
+    GHL2025.swapOracleImage p
+        (GHL2025.bandedSparseAccessPaperImage p source.val) <
+        qubitDim (GHL2025.oneTermRobinTotalQubits p) ∧
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val <
+        qubitDim (GHL2025.oneTermRobinTotalQubits p) := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨8, by native_decide⟩
+  constructor
+  · have haddr : GHL2025.bandedSparseAccessPaperAddress p source.val < (1 <<< p.n) := by
+      native_decide
+    exact GHL2025.bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt
+      p source haddr
+  · exact
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource
+        p source (by native_decide) rfl (by native_decide) (by native_decide)
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨8, by native_decide⟩
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix
+        ⟨GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+          by native_decide⟩
+        ⟨GHL2025.swapOracleImage p
+            (GHL2025.bandedSparseAccessPaperImage p source.val),
+          by native_decide⟩ = Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperCleanInput p
+        (GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val) =
+          true := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨8, by native_decide⟩
+  let witness :=
+    GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate
+      p source (by native_decide) rfl (by native_decide) (by native_decide)
+      (by native_decide) (by native_decide)
+  exact ⟨witness.daggerEntry, witness.preCleanInput⟩
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    let n := p.n
+    let blockMask := (1 <<< n) - 1
+    ((GHL2025.swapOracleImage p j) >>> (1 + n)) &&& blockMask =
+      (j >>> 1) &&& blockMask :=
+  GHL2025.swapOracleImage_block2_eq_block1 p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (haddr : GHL2025.bandedSparseAccessPaperAddress p j < (1 <<< p.n)) :
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.swapOracleImage p (GHL2025.bandedSparseAccessPaperImage p j))).rowValue =
+      GHL2025.bandedSparseAccessPaperAddress p j :=
+  GHL2025.bandedSparseAccessPaperPostSwap_rowValue_eq_address p j haddr
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.swapOracleImage p (GHL2025.bandedSparseAccessPaperImage p j))).odRegisterValue =
+      (GHL2025.bandedSparseAccessPaperRegisters p j).rowValue :=
+  GHL2025.bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue p j
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.bandedSparseAccessPaperRegisters p
+      (GHL2025.swapOracleImage p (GHL2025.bandedSparseAccessPaperImage p 8))).rowValue = 2 ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p
+        (GHL2025.swapOracleImage p (GHL2025.bandedSparseAccessPaperImage p 8))).odRegisterValue = 4 := by
   native_decide
 
 -- O_D^BS paper-contract obligations remain unproved.
@@ -1805,6 +2206,158 @@ example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
     (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).twoByTwoUnitary.proved =
       false := rfl
 
+-- O_DT^S Eq. (20) proof-route record separates the normalized coefficient
+-- stand-in from the ND-bound, absolute-square, square-root complement, and
+-- two-by-two-unitary obligations.  All proof flags remain false.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient p 2 0 =
+      Coeff.mul (Coeff.rat ((-1 : Rat) / 12)) (Coeff.symbol "N_D_inv") := by
+  native_decide
+
+-- Shared N_D normalizer contract used by O_DT^S and Ry_boundary proof routes.
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.derivativeNormalizerNDContract p 2 0).coefficient =
+      Coeff.rat ((-1 : Rat) / 12) := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.derivativeNormalizerNDContract p 2 0).normalizerND =
+      Coeff.symbol "N_D" := rfl
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.derivativeNormalizerNDContract p 2 0).normalizedCoefficient =
+      Coeff.mul (Coeff.rat ((-1 : Rat) / 12)) (Coeff.symbol "N_D_inv") := by
+  native_decide
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDContract p row sparse).nonzeroNormalizer.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDContract p row sparse).divisionSemantics.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDContract p row sparse).coefficientBound.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDContract p row sparse).absSquareSemantics.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDContract p row sparse).sqrtComplementSemantics.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDContract p row sparse).arccosSemantics.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDContract p row sparse).twoByTwoUnitary.proved =
+      false := rfl
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.derivativeNormalizerNDSourceBound p 2 0).sourceCoefficient =
+      Coeff.rat ((-1 : Rat) / 12) := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.derivativeNormalizerNDSourceBound p 2 0).normalizerND =
+      Coeff.symbol "N_D" := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDSourceBound p row sparse).boundFormula =
+      "|D_j^(s)| <= N_D" :=
+  GHL2025.derivativeNormalizerNDSourceBound_boundFormula p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDSourceBound p row sparse).coefficientBound =
+      (GHL2025.derivativeNormalizerNDContract p row sparse).coefficientBound :=
+  GHL2025.derivativeNormalizerNDSourceBound_coefficientBound p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDSourceBound p row sparse).coefficientBound.proved =
+      false :=
+  GHL2025.derivativeNormalizerNDSourceBound_coefficientBound_false p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).coefficient :=
+  GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_coefficient
+    p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerND =
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).normalizerND :=
+  GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizerND
+    p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizedCoefficient =
+      GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient p row sparse :=
+  GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizedCoefficient
+    p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).ketZeroEntry =
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).ketZeroEntry :=
+  GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketZeroEntry
+    p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).ketOneEntry =
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract p row sparse).ketOneEntry :=
+  GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketOneEntry
+    p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
+      (GHL2025.derivativeNormalizerNDContract p row sparse).coefficientBound ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficientDivision =
+      (GHL2025.derivativeNormalizerNDContract p row sparse).divisionSemantics ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).absSquareSemantics =
+      (GHL2025.derivativeNormalizerNDContract p row sparse).absSquareSemantics ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).sqrtComplementSemantics =
+      (GHL2025.derivativeNormalizerNDContract p row sparse).sqrtComplementSemantics :=
+  GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sharedND p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+      (GHL2025.derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerND =
+      (GHL2025.derivativeNormalizerNDSourceBound p row sparse).normalizerND ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
+      (GHL2025.derivativeNormalizerNDSourceBound p row sparse).coefficientBound :=
+  GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sourceBound
+    p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficientDivision.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).absSquareSemantics.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).sqrtComplementSemantics.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).twoByTwoUnitary.proved =
+      false := rfl
+
 -- O_DT^S active gate is rewired from the legacy diagonal helper to the
 -- faithful Lemma 3 controlled-rotation skeleton on ancilla bit 0.
 example (p : GHL2025.OneTermRobinParameters) :
@@ -2055,6 +2608,33 @@ example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
       "D_j^(s) / N_D" := rfl
 
 example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound =
+      (GHL2025.derivativeNormalizerNDContract p row sparse).coefficientBound ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficientDivision =
+      (GHL2025.derivativeNormalizerNDContract p row sparse).divisionSemantics ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).realArccosSemantics =
+      (GHL2025.derivativeNormalizerNDContract p row sparse).arccosSemantics :=
+  GHL2025.boundaryRotationAngleNormalizerProofRoute_sharedND p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient =
+      (GHL2025.derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerND =
+      (GHL2025.derivativeNormalizerNDSourceBound p row sparse).normalizerND ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound =
+      (GHL2025.derivativeNormalizerNDSourceBound p row sparse).coefficientBound :=
+  GHL2025.boundaryRotationAngleNormalizerProofRoute_sourceBound p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerND =
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerND ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound :=
+  GHL2025.derivativeNormalizerNDSourceBound_sharedRoutes p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
     (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficientDivision.proved =
       false := rfl
 
@@ -2164,6 +2744,119 @@ example (n : Nat) :
 example (n : Nat) :
     (GHL2025.defaultBandedSparseAccessPaperContract
       (Examples.RobinHeat.oneTermParameters n)).daggerCleanup.proved = false := rfl
+
+-- O_D^BS full clean-domain extension remains an obligation-only wrapper.
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).fullCleanDomainInjective.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).daggerCleanup.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unitaryExtension.proved =
+      false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+      j).proposedImageIndex = none := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+      j).imageSpecified.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).cleanDomainSplit.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).validBranchAgreement.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageSpecified.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageFinite.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchInjective.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).fullCleanDomainInjective.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).daggerCleanup.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unitaryExtension.proved = false ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).imageSpecified.proved = false ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).imageFinite.proved = false :=
+  GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_flags_false p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat)
+    (h : GHL2025.bandedSparseAccessPaperUnusedSparseBranch p j = true) :
+    ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+      j).cleanInput = true ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).validSparseBranch = false ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).unusedSparseBranch = true ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).proposedImageIndex = none ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageSpecified.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).fullCleanDomainInjective.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unitaryExtension.proved = false :=
+  GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch p j h
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.bandedSparseAccessPaperCleanInput p j = true ↔
+      GHL2025.bandedSparseAccessPaperValidCleanSource p j = true ∨
+        GHL2025.bandedSparseAccessPaperUnusedSparseBranch p j = true :=
+  GHL2025.bandedSparseAccessPaperCleanDomainSplit_iff p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    ¬ (GHL2025.bandedSparseAccessPaperValidCleanSource p j = true ∧
+        GHL2025.bandedSparseAccessPaperUnusedSparseBranch p j = true) :=
+  GHL2025.bandedSparseAccessPaperCleanDomainSplit_disjoint p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessPaperCleanInput p j = true ↔
+      GHL2025.bandedSparseAccessPaperValidCleanSource p j = true ∨
+        GHL2025.bandedSparseAccessPaperUnusedSparseBranch p j = true) ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).cleanDomainSplit.proved =
+        false :=
+  GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit p j
+
+example :
+    GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.citedResultKey =
+      "QBE.ODBS.UnusedZeroBranchExtension" := rfl
+
+example :
+    GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.paperImageRuleSpecified = false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.externalExtensionTheoremAccepted =
+        false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.dependency.proved = false :=
+  GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_flags_false
+
+example (p : GHL2025.OneTermRobinParameters) :
+    GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageSpecified.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).fullCleanDomainInjective.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).daggerCleanup.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unitaryExtension.proved =
+        false :=
+  GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsFullDomainFlagsFalse p
+
+-- Active O_D^BS matrices are unchanged by the full clean-domain wrapper.
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS p).matrix =
+      GHL2025.bandedSparseAccessPaperMatrix p := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix =
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := rfl
 
 -- Entry-level nonzero checks for the full product are tracked as future proof
 -- obligations rather than compiled tests, because they force large symbolic

@@ -88,13 +88,20 @@ correctness is already solved.
 | O_DT^S paper register extraction | `GHL2025.SparseAmplitudeOracleDTPaperRegisters`, `GHL2025.sparseAmplitudeOracleDTPaperRegisters` | extract ancilla bit, indicator bit, row register, sparse-index register, and non-ancilla bits for Lemma 3 | defined skeleton |
 | O_DT^S symbolic rotation entries | `GHL2025.sparseAmplitudeOracleDTCosHalf`, `GHL2025.sparseAmplitudeOracleDTSinHalf` | symbols for the two entries in the ancilla rotation block | defined; coefficient-normalizer relation unproved |
 | O_DT^S coefficient-normalizer contract | `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract`, `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation` | Eq. (20) requires the $|0\rangle$ amplitude to be $D^{(s)}/N_D$ with a complementary normalizer term | typed contract recorded; proof flags false |
+| O_DT^S coefficient-normalizer proof route | `GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient`, `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute` | separates the $D_j^{(s)}/N_D$ stand-in from the $N_D$ bound, absolute-square, square-root complement, and two-by-two unitarity obligations | typed proof-route record; proof flags false |
+| Shared derivative $N_D$ contract | `GHL2025.DerivativeNormalizerNDContract`, `GHL2025.derivativeNormalizerNDContract` | common source for normalized coefficient $D_j^{(s)}/N_D$ used by Lemma 3 Eq. (20) and boundary $R_y$ angles | typed shared contract; nonzero, division, coefficient-bound, absolute-square, square-root, arccos, and two-by-two-unitary flags false |
 | O_DT^S paper rotation matrix | `GHL2025.sparseAmplitudeOracleDTRotationMatrix` | identity when the indicator bit is 0; controlled rotation on ancilla bit 0 when the indicator bit is 1 | active skeleton |
 | Ry_boundary honest matrix | `GHL2025.oneTermRobinGate_Ry_boundary` | GateMatrix with controlled R_y rotation, proved := false | defined (cycle 8 update) |
 | Ry_boundary paper register extraction | `GHL2025.BoundaryRotationPaperRegisters`, `GHL2025.boundaryRotationPaperRegisters` | extract ancilla bit, indicator bit, row register, sparse-index register, and non-ancilla bits for the boundary rotation | defined skeleton |
 | Ry_boundary symbolic rotation entries | `GHL2025.boundaryRotationCosHalf`, `GHL2025.boundaryRotationSinHalf` | symbols for $\cos(\theta_j^s/2)$ and $\sin(\theta_j^s/2)$ | defined; angle relation unproved |
 | Ry_boundary angle-normalizer contract | `GHL2025.BoundaryRotationAngleNormalizerContract`, `GHL2025.boundaryRotationAngleNormalizerContract`, `GHL2025.boundaryRotationAngleNormalizerObligation` | records $\theta_j^s=\arccos(D_j^{(s)}/N_D)$ and half-angle formulas as false proof obligations | typed contract recorded; proof flags false |
+| Ry_boundary angle-normalizer proof route | `GHL2025.boundaryRotationNormalizedCoefficient`, `GHL2025.boundaryRotationAngleNormalizerProofRoute` | separates the $D_j^{(s)}/N_D$ stand-in from division, arccos, half-angle, $N_D$-bound, and two-by-two-unitary obligations | typed proof-route record; shared $N_D$ fields linked; proof flags false |
 | O_D^BS active paper-image matrix | `GHL2025.oneTermRobinGate_O_D_BS` | GateMatrix using the Lemma 1 paper-image skeleton, proved := false | active skeleton (run 03 cycle 2 lower) |
 | O_D^BS column map | `GHL2025.robinSparseColumnMap` | $\mathrm{col}(s,i)$ helper for Robin stencil entries, reused to compute the one-term value of $r_{si}$ | defined (cycle 4; helper only) |
+| O_D^BS valid sparse branch | `GHL2025.robinSparseColumnBranchValid`, `GHL2025.bandedSparseAccessPaperValidSparseBranch`, `GHL2025.bandedSparseAccessPaperValidCleanSource` | row-dependent predicate for the sparse indices that correspond to nonzero stencil entries before any injectivity/unitarity route | defined contract-correction candidate; active matrix and proof flags unchanged |
+| O_D^BS unused-branch extension contract | `GHL2025.bandedSparseAccessPaperUnusedSparseBranch`, `GHL2025.BandedSparseAccessUnusedBranchExtensionContract`, `GHL2025.bandedSparseAccessUnusedBranchExtensionContract` | classifies clean padded-register branches outside the row-dependent nonzero-stencil predicate and records the missing reversible extension obligations | defined contract slot; all extension proof flags false; active matrix and gate list unchanged |
+| O_D^BS unused-branch image-rule interface | `GHL2025.BandedSparseAccessUnusedBranchImageRuleContract`, `GHL2025.bandedSparseAccessUnusedBranchImageRuleContract` | records that no faithful reversible image has been selected yet for clean invalid sparse branches | defined with `proposedImageIndex = none`; image-rule, finite-image, collision-separation, and valid-branch-agreement flags false |
+| O_D^BS full clean-domain extension wrapper | `GHL2025.BandedSparseAccessFullCleanDomainExtensionContract`, `GHL2025.bandedSparseAccessFullCleanDomainExtensionContract`, `GHL2025.bandedSparseAccessPaperCleanDomainSplit_iff`, `GHL2025.bandedSparseAccessPaperCleanDomainSplit_disjoint`, `GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit` | paper-level wrapper that combines valid-branch agreement, the unused-branch image-rule interface, full clean-domain injectivity, dagger cleanup, and unitary extension; local Boolean split partitions clean padded input into valid or unused branches | wrapper defined as an obligation map; local classifier split proved; nested `proposedImageIndex = none`; every semantic field false; active matrices unchanged |
 | O_D^BS legacy helper matrix | `GHL2025.bandedSparseAccessMatrix` | old map $|s\rangle|i\rangle \to |s\rangle|\mathrm{col}(s,i)\rangle$; not the active paper oracle | defined (cycle 4; helper only) |
 | O_f active gate matrix | `GHL2025.oneTermRobinGate_O_f` | GateMatrix wired to `functionOraclePaperMatrix`, proved := false | active paper-image skeleton; clean input branch wired |
 | SWAP honest matrix | `GHL2025.oneTermRobinGate_SWAP` | GateMatrix with permutation matrix, `proved := false` | pending proof-DAG bit-slice lemmas |
@@ -125,6 +132,7 @@ correctness is already solved.
 | O_D^BS paper register extraction | `GHL2025.BandedSparseAccessPaperRegisters`, `GHL2025.bandedSparseAccessPaperRegisters` | extracts the full O_D register, padded-zero field, sparse index, and row value from the compound basis index | defined skeleton (run 03 cycle 1 middle) |
 | O_D^BS clean input predicate | `GHL2025.bandedSparseAccessPaperCleanInput` | checks whether the padded-zero field is actually $0^{n-l}$ for the Lemma 1 source equation | defined; domain obligation unproved |
 | O_D^BS per-column audit | `GHL2025.BandedSparseAccessPaperColumnContract`, `GHL2025.bandedSparseAccessPaperColumnContract` | records clean-domain flag, image index, row preservation, address write, address-range check, no-spill check, and false obligations for one basis column | defined skeleton |
+| O_D^BS per-column audit bridge | `GHL2025.bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt` | packages the executable row-preservation, address-write, address-range, and no-spill booleans under the existing n-bit-address hypothesis | proved bridge; semantic flags remain false |
 | O_D^BS paper address | `GHL2025.bandedSparseAccessPaperAddress` | one-term Robin instance of $r_{si}$ from the extracted sparse index and row value | defined skeleton; correctness unproved |
 | O_D^BS address-range check | `GHL2025.bandedSparseAccessPaperAddressInRange` | executable check that $r_{si}$ fits in the n-bit paper address register | defined; proof flag false |
 | O_D^BS row range block | `GHL2025.bandedSparseAccessPaperRegisters_row_lt_gridSize` | extracted row register is an n-bit row value | proved |
@@ -134,6 +142,11 @@ correctness is already solved.
 | O_D^BS image roundtrip block | `GHL2025.bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt`, `GHL2025.bandedSparseAccessPaperImage_rowValue_eq`, `GHL2025.bandedSparseAccessPaperImage_odRegisterValue_eq` | proves finite-basis range plus row and written-address extraction for the executable image under the stated range hypotheses | proved as executable register block; semantic flags remain false |
 | O_D^BS finite image index | `GHL2025.bandedSparseAccessPaperImageFin`, `GHL2025.bandedSparseAccessPaperImageFin_val` | turns the executable image into a `Fin` index only when the source column is in range and the written address is n-bit | proved bridge; semantic flags remain false |
 | O_D^BS image entry bridge | `GHL2025.bandedSparseAccessPaperMatrix_imageFin_eq_one`, `GHL2025.bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one`, `GHL2025.oneTermRobinGate_O_D_BS_imageFin_eq_one`, `GHL2025.oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one` | proves the forward entry $M[\mathrm{image}(j),j]=1$ and transpose entry $M^\dagger[j,\mathrm{image}(j)]=1$ at the finite image index | proved entry bridge; injectivity, inverse, cleanup, and unitarity still unproved |
+| O_D^BS entry-safety witness | `GHL2025.oneTermRobinGate_O_D_BS_imageFin_entrySafety` | packages the active forward entry, active dagger entry, row roundtrip, address roundtrip, and no-spill check under the explicit n-bit address hypothesis | proved executable witness; inverse uniqueness, cleanup, and unitarity still unproved |
+| O_D^BS boundary unused sparse collision | `GHL2025.oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3` | Lean-checked source-contract obstruction: for $n=3,\kappa=7$, row $0$ with sparse indices $0$ and $3$ are clean under the current predicate and both map to address $0$ | proved concrete collision; blocks injectivity/unitarity promotion for the current skeleton |
+| O_D^BS post-SWAP register equations | `GHL2025.bandedSparseAccessPaperPostSwap_rowValue_eq_address`, `GHL2025.bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue` | after applying SWAP to the paper image, the system register contains $r_{si}$ and the O_D register contains the original row | proved register block; source-domain uniqueness, cleanup, and unitarity still unproved |
+| O_D^BS post-SWAP cleanup witness | `GHL2025.BandedSparseAccessPostSwapCleanup`, `GHL2025.bandedSparseAccessPostSwapCleanup_of_preimage`, `GHL2025.bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange` | packages a supplied post-SWAP preimage, clean-input hypothesis, n-bit address bound, active dagger entry, and executable row/address/no-spill cleanup checks | conditional witness and valid-clean-source wrapper proved; source-domain uniqueness and `daggerCleanup` still unproved |
+| O_D^BS post-SWAP preimage candidate check | `GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource` | proves the candidate maps to the post-SWAP column and is clean/address-in-range for finite clean sources with $3 \le n$, $\kappa=7$, and $\lceil\log_2\kappa\rceil=3$ | proved executable audit; uniqueness, dagger cleanup, and unitarity still unproved |
 | O_D^BS no-spill check | `GHL2025.bandedSparseAccessPaperHighTail`, `GHL2025.bandedSparseAccessPaperImageNoSpill` | executable check that the paper image preserves bits above the O_D register | defined; proof flag false |
 | O_D^BS no-spill proof block | `GHL2025.bandedSparseAccessPaperImage_highTail_eq_of_address_lt`, `GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt`, `GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le` | proves the executable high-tail/no-spill check from an n-bit written address, and from $2 \le n$ via the address-range block | proved as register-safety block; semantic `noSpill.proved` flag remains false |
 | O_D^BS no-spill Boolean bridge | `GHL2025.bandedSparseAccessPaperImageNoSpill_iff` | rewrites the Boolean no-spill check as equality of high tails | proved |
@@ -198,6 +211,32 @@ def GHL2025.defaultBandedSparseAccessPaperContract
 structure GHL2025.BandedSparseAccessPaperRegisters
 def GHL2025.bandedSparseAccessPaperRegisters
 def GHL2025.bandedSparseAccessPaperCleanInput
+def GHL2025.robinSparseColumnBranchValid
+theorem GHL2025.robinSparseColumnBranchValid_boundaryUnused_n3
+def GHL2025.bandedSparseAccessPaperValidSparseBranch
+def GHL2025.bandedSparseAccessPaperValidCleanSource
+theorem GHL2025.bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true
+theorem GHL2025.bandedSparseAccessPaperValidCleanSource_validSparseBranch_eq_true
+theorem GHL2025.bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3
+def GHL2025.bandedSparseAccessPaperUnusedSparseBranch
+theorem GHL2025.bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true
+theorem GHL2025.bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false
+theorem GHL2025.bandedSparseAccessPaperCleanDomainSplit_iff
+theorem GHL2025.bandedSparseAccessPaperCleanDomainSplit_disjoint
+structure GHL2025.BandedSparseAccessUnusedBranchImageRuleContract
+def GHL2025.bandedSparseAccessUnusedBranchImageRuleContract
+theorem GHL2025.bandedSparseAccessUnusedBranchImageRuleContract_flags_false
+theorem GHL2025.bandedSparseAccessUnusedBranchImageRuleContract_of_unusedBranch
+structure GHL2025.BandedSparseAccessUnusedBranchExtensionContract
+def GHL2025.bandedSparseAccessUnusedBranchExtensionContract
+theorem GHL2025.bandedSparseAccessUnusedBranchExtensionContract_flags_false
+theorem GHL2025.bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3
+theorem GHL2025.bandedSparseAccessUnusedBranchExtensionContract_of_unusedBranch
+structure GHL2025.BandedSparseAccessFullCleanDomainExtensionContract
+def GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+theorem GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_flags_false
+theorem GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch
+theorem GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit
 structure GHL2025.BandedSparseAccessPaperColumnContract
 def GHL2025.bandedSparseAccessPaperColumnContract
 theorem GHL2025.robinSparseColumnMap_lt_gridSize_of_row_lt
@@ -224,12 +263,51 @@ theorem GHL2025.bandedSparseAccessPaperImageNoSpill_iff
 theorem GHL2025.bandedSparseAccessPaperImage_highTail_eq_of_address_lt
 theorem GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt
 theorem GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le
+theorem GHL2025.bandedSparseAccessPaperColumnContract_rowPreserved_eq_true
+theorem GHL2025.bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt
+theorem GHL2025.bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt
+theorem GHL2025.bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt
+theorem GHL2025.bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt
 def GHL2025.bandedSparseAccessPaperMatrix
 def GHL2025.bandedSparseAccessPaperDaggerMatrix
 theorem GHL2025.bandedSparseAccessPaperMatrix_imageFin_eq_one
 theorem GHL2025.bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one
 theorem GHL2025.oneTermRobinGate_O_D_BS_imageFin_eq_one
 theorem GHL2025.oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one
+theorem GHL2025.oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3
+theorem GHL2025.shiftLeft_lt_two_pow_of_lt
+theorem GHL2025.swapOracleImage_block1_eq_block2
+theorem GHL2025.swapOracleImage_block2_eq_block1
+theorem GHL2025.swapOracleImage_lt_qubitDim
+theorem GHL2025.bandedSparseAccessPaperPostSwap_rowValue_eq_address
+theorem GHL2025.bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue
+theorem GHL2025.bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt
+theorem GHL2025.oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage
+structure GHL2025.BandedSparseAccessPostSwapCleanup
+def GHL2025.bandedSparseAccessPostSwapCleanup_of_preimage
+def GHL2025.robinSparseReverseColumnIndex
+theorem GHL2025.robinSparseColumnMap_zero
+theorem GHL2025.robinSparseColumnMap_one
+theorem GHL2025.robinSparseColumnMap_bulk
+theorem GHL2025.robinSparseColumnMap_rightBoundaryPrev
+theorem GHL2025.robinSparseColumnMap_rightBoundaryLast
+theorem GHL2025.robinSparseReverseColumnRoundtrip_of_lt_eight
+theorem GHL2025.robinSparseReverseColumnIndex_lt_eight_of_columnMap
+def GHL2025.robinSparseReverseColumnRoundtripCheck
+def GHL2025.bandedSparseAccessPaperSpliceODRegister
+theorem GHL2025.bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt
+def GHL2025.bandedSparseAccessPaperCleanODValue
+theorem GHL2025.bandedSparseAccessPaperCleanODValue_paddedZero_eq_zero
+theorem GHL2025.bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt
+theorem GHL2025.bandedSparseAccessPaperCleanODValue_sparseIndex_eq
+theorem GHL2025.bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow
+theorem GHL2025.bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow
+def GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate
+def GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks
+theorem GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource
+theorem GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource
+theorem GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate
+theorem GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange
 structure GHL2025.SparseAmplitudeOracleDTPaperRegisters
 def GHL2025.sparseAmplitudeOracleDTPaperRegisters
 def GHL2025.sparseAmplitudeOracleDTCosHalf
@@ -373,7 +451,10 @@ isBulk     = (K1 <= system_val) && (system_val <= K2)
 perm(j)    = j XOR (isBulk << (1 + 2*n))
 ```
 
-This is a unitary permutation matrix (self-inverse), but the `unitary.proved` obligation remains `false` until a formal unitarity proof is supplied.
+Current Lean status: the formal permutation proof has been supplied, and
+`oneTermRobinGate_U_indic.unitary.proved = true`.  This historical Cycle 2
+section is retained only as the original construction transcript; the active
+status is the symbol map and proof-obligation ledger above.
 
 ---
 
@@ -385,7 +466,7 @@ This is a unitary permutation matrix (self-inverse), but the `unitary.proved` ob
 | `indicatorOracleMatrix` | GHL2025.lean | honest U_indic permutation matrix | implemented |
 | updated `oneTermRobinTotalQubits` | GHL2025.lean | uses register partition total | fixed |
 | `effectiveRobinSignalQubits` | GHL2025.lean | signal dim including visible ancillas | implemented |
-| updated `oneTermRobinGate_U_indic` | GHL2025.lean | uses honest matrix, proved := false | fixed |
+| updated `oneTermRobinGate_U_indic` | GHL2025.lean | uses honest matrix, `unitary.proved = true` | proved |
 | updated `oneTermRobinCircuitDimCompat` | RobinMatrix.lean | uses effectiveRobinSignalQubits | fixed |
 | updated downstream declarations | RobinMatrix.lean | block claim etc. | fixed |
 
@@ -550,8 +631,8 @@ is no longer only prose:
 
 | Oracle / gate | Paper anchor | Input registers | Output registers | Clean ancillas / cleanup | Lean declaration | Status |
 |---|---|---|---|---|---|---|
-| $O_D^{BS}$ | Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478 | padded sparse-index register $|0\rangle^{n-l}|s\rangle^l$ and row register $|i\rangle^n$ | address register $|r_{si}\rangle^n$ and preserved row register $|i\rangle^n$ | clean padded-zero domain, width compatibility, address range, no spill into higher signal bits, injectivity, full-unitary extension, and forward correctness recorded as obligations | `GHL2025.oneTermRobinGate_O_D_BS`, `GHL2025.bandedSparseAccessPaperMatrix`, `GHL2025.defaultBandedSparseAccessPaperContract`, `GHL2025.bandedSparseAccessPaperColumnContract` | active matrix skeleton; finite-image entry bridge proved under explicit hypotheses; obligations unproved |
-| $(O_D^{BS})^\dagger$ | Fig. 1-term Robin and Lemma 1, arXiv:2506.20478 | post-SWAP address/row registers from the same paper layout | padded sparse-index register cleaned back to $|0\rangle^{n-l}|s\rangle^l$ where applicable | `daggerCleanup.proved = false`; inverse-on-range and unitarity unproved | `GHL2025.oneTermRobinGate_O_D_BS_dagger`, `GHL2025.bandedSparseAccessPaperDaggerMatrix` | active transpose-style skeleton; cleanup obligation only |
+| $O_D^{BS}$ | Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478 | padded sparse-index register $|0\rangle^{n-l}|s\rangle^l$ and row register $|i\rangle^n$ | address register $|r_{si}\rangle^n$ and preserved row register $|i\rangle^n$ | clean padded-zero domain, width compatibility, address range, no spill into higher signal bits, injectivity, full-unitary extension, and forward correctness recorded as obligations | `GHL2025.oneTermRobinGate_O_D_BS`, `GHL2025.bandedSparseAccessPaperMatrix`, `GHL2025.defaultBandedSparseAccessPaperContract`, `GHL2025.bandedSparseAccessPaperColumnContract` | active matrix skeleton; finite-image entry bridge, entry-safety witness, post-SWAP register equations, reverse-index theorem, clean-source candidate audit, finite-range cleanup wrapper, and boundary unused-sparse collision witness proved under explicit hypotheses; semantic obligations unproved |
+| $(O_D^{BS})^\dagger$ | Fig. 1-term Robin and Lemma 1, arXiv:2506.20478 | post-SWAP address/row registers from the same paper layout | padded sparse-index register cleaned back to $|0\rangle^{n-l}|s\rangle^l$ where applicable | `daggerCleanup.proved = false`; inverse-on-range existence, uniqueness, and unitarity unproved | `GHL2025.oneTermRobinGate_O_D_BS_dagger`, `GHL2025.bandedSparseAccessPaperDaggerMatrix`, `GHL2025.BandedSparseAccessPostSwapCleanup` | active transpose-style skeleton; conditional supplied-preimage cleanup witness proved, but full cleanup obligation remains false |
 | Current Lean helper | implementation aid, not a paper source | sparse index plus system row in the current bit layout | sparse index preserved, system overwritten by `robinSparseColumnMap` | no faithful cleanup theorem | `GHL2025.bandedSparseAccessMatrix` | contract drift; helper only |
 
 The default contract uses `paddedZeroQubits = p.n - clog2 p.kappa` and
@@ -568,6 +649,23 @@ Boolean is bridged to high-tail equality, and the executable high-tail equality
 is now proved from an n-bit written address.  The paper-level `noSpill` flag
 still remains false because the source contract has not yet bundled the
 parameter-family side condition.
+
+The post-SWAP route now has a proved Boolean clean-source audit
+`bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource`, finite
+post/pre range inputs, and a no-extra-range conditional witness
+`bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange`.  These
+declarations still do not prove uniqueness, do not provide a full unitary
+extension, and do not set `daggerCleanup.proved`.
+
+The current clean-domain predicate also admits unused sparse-index branches at
+boundary rows.  Lean now proves the concrete collision
+`oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3`: for $n=3$ and
+$\kappa=7$, source columns $0$ and $48$ are both clean, have row value $0$,
+use sparse indices $0$ and $3$, and both map to the same active paper-image
+row.  This is a source-contract obstruction for the current skeleton's
+injectivity and unitarity route.  It does not change the paper theorem; it
+forces the next lower packet to reconcile Lemma 1's sparse-index domain or a
+reversible extension for unused branches before any proof-flag promotion.
 
 The interim helper maps $|s\rangle|i\rangle \to
 |s\rangle|\mathrm{col}(s,i)\rangle$, where $\mathrm{col}(s,i)$ is the column
@@ -586,14 +684,25 @@ and block extraction.
 | `odbs_width_compatible` | the padded zero register and sparse-index register have total width $n$ | Lemma 1, arXiv:2506.20478 | `defaultBandedSparseAccessPaperContract p`.widthCompatible | parameter-family width fact for `clog2 p.kappa <= p.n` | register extraction, paper image | unproved |
 | `odbs_extract_registers` | extract padded-zero, sparse-index, full O_D register, and row values from the current compound basis index | Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478 | `bandedSparseAccessPaperRegisters` | layout fields in `defaultRobinRegisterPartition`, `oneTermRobinTotalQubits` | paper image, cleanup | defined skeleton; concrete tests pass |
 | `odbs_clean_domain` | distinguish columns satisfying the paper input $|0\rangle^{n-l}|s\rangle^l|i\rangle^n$ from non-clean padded-register columns requiring a unitary completion | Lemma 1, arXiv:2506.20478 | `bandedSparseAccessPaperCleanInput`, `bandedSparseAccessPaperColumnContract`, `.cleanInputDomain`, `.unitaryExtension` | `odbs_extract_registers` | paper image, forward matrix, unitarity route | defined skeleton; proof flags false |
+| `odbs_valid_sparse_branch_domain` | distinguish row-dependent sparse indices that correspond to nonzero Robin stencil branches from unused boundary branches | Lemma 1, arXiv:2506.20478; row counts from the Robin one-term stencil transcript | `robinSparseColumnBranchValid`, `bandedSparseAccessPaperValidSparseBranch`, `bandedSparseAccessPaperValidCleanSource`, `bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3` | `odbs_clean_domain`, `odbs_boundary_unused_collision` | future source-domain reconciliation or reversible extension audit | contract-correction candidate defined; collision source `48` excluded, active matrix and semantic flags unchanged |
+| `odbs_unused_branch_extension_contract` | record the reversible extension obligations for clean but invalid zero-amplitude sparse branches | Lemma 1 and one-term Robin zero-branch audit, arXiv:2506.20478 | `bandedSparseAccessPaperUnusedSparseBranch`, `BandedSparseAccessUnusedBranchExtensionContract`, `bandedSparseAccessUnusedBranchExtensionContract`, `bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3` | `odbs_valid_sparse_branch_domain`, `odbs_boundary_unused_collision` | future injectivity, cleanup, and unitary-extension routes | contract slot defined; all extension proof flags false; active matrices unchanged |
+| `odbs_unused_branch_image_rule` | specify, or explicitly leave missing, the reversible image rule for clean invalid sparse branches | Lemma 1 and one-term Robin zero-branch audit, arXiv:2506.20478 | `BandedSparseAccessUnusedBranchImageRuleContract`, `bandedSparseAccessUnusedBranchImageRuleContract`, `bandedSparseAccessUnusedBranchImageRuleContract_flags_false`, `bandedSparseAccessUnusedBranchImageRuleContract_of_unusedBranch` | `odbs_unused_branch_extension_contract`, `odbs_valid_sparse_branch_domain` | full clean-domain injectivity, dagger cleanup, and unitary-extension routes | interface defined with no proposed image; all image-rule proof flags false; active matrices unchanged |
+| `odbs_full_clean_domain_extension_contract` | lift the per-column unused-branch image-rule interface into a paper-level full clean-domain contract | Lemma 1 and the one-term Robin zero-branch audit, arXiv:2506.20478; no external reversible-completion theorem recorded | `BandedSparseAccessFullCleanDomainExtensionContract`, `bandedSparseAccessFullCleanDomainExtensionContract`, `bandedSparseAccessFullCleanDomainExtensionContract_flags_false`, `bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch`, `bandedSparseAccessPaperCleanDomainSplit_iff`, `bandedSparseAccessPaperCleanDomainSplit_disjoint`, `bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit` | `odbs_unused_branch_image_rule`, `odbs_valid_sparse_branch_domain`, `odbs_boundary_unused_collision` | injectivity, dagger cleanup, and unitary-extension routes | wrapper defined; local clean-domain classifier split proved; nested `proposedImageIndex = none`; all semantic flags false; active matrices unchanged |
 | `odbs_address_range` | check and then prove that the written $r_{si}$ value fits in the n-bit output address register | Lemma 1, arXiv:2506.20478 | `bandedSparseAccessPaperAddressInRange`, `.addressRange` | `odbs_extract_registers`, `bandedSparseAccessPaperAddress` | no-spill, forward image, unitarity route | executable check defined; proof flag false |
 | `odbs_address_range_n_ge_2` | prove the executable address-range check once the paper parameter family supplies $2 \le n$ | Lemma 1, arXiv:2506.20478 | `bandedSparseAccessPaperAddressInRange_eq_true_of_two_le`, `bandedSparseAccessPaperAddress_lt_gridSize_of_two_le` | row extraction, `robinSparseColumnMap_lt_gridSize_of_row_lt` | no-spill, forward image, unitarity route | proved under explicit side condition; proof flag false |
 | `odbs_no_spill` | check and then prove that the image only changes bits $[1+n,1+2n)$ and preserves indicator and $m_f$ bits above that register | Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478 | `bandedSparseAccessPaperHighTail`, `bandedSparseAccessPaperImageNoSpill`, `bandedSparseAccessPaperImageNoSpill_iff`, `bandedSparseAccessPaperImage_highTail_eq_of_address_lt`, `bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt`, `bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le`, `.noSpill` | `odbs_address_range`, `odbs_forward_image` | forward matrix, dagger cleanup, block extraction | executable no-spill proved from address range and $2 \le n$; semantic proof flag false |
 | `odbs_forward_image` | map $|0\rangle^{n-l}|s\rangle^l|i\rangle^n$ to $|r_{si}\rangle^n|i\rangle^n$ and preserve the row register | Lemma 1, arXiv:2506.20478 | `bandedSparseAccessPaperAddress`, `bandedSparseAccessPaperImage`, and `.forwardCorrect` | `odbs_width_compatible`, `odbs_extract_registers` | paper matrix entries, dagger cleanup | defined skeleton; `.forwardCorrect.proved = false` |
 | `odbs_forward_matrix` | build the permutation-style matrix from the paper image, not from `robinSparseColumnMap` on the system register | Lemma 1, arXiv:2506.20478 | `bandedSparseAccessPaperMatrix` | `odbs_forward_image` | `oneTermRobinGate_O_D_BS` | active skeleton; finite-image entry bridge proved under explicit hypotheses; injectivity unproved |
+| `odbs_boundary_unused_collision` | exhibit that the current clean-domain skeleton is not injective on all sparse-index branches at boundary rows | Lemma 1, arXiv:2506.20478 and Robin boundary stencil row counts | `oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3`, `robinSparseColumnBranchValid_boundaryUnused_n3` | `bandedSparseAccessPaperCleanInput`, `bandedSparseAccessPaperAddress`, active forward matrix | source-contract correction packet, unitarity route guard | proved concrete obstruction for $n=3,\kappa=7$; valid-branch candidate separates it; no proof flags promoted |
 | `odbs_dagger_matrix` | build the transpose-style matrix paired with the paper image skeleton | Fig. 1-term Robin and Lemma 1, arXiv:2506.20478 | `bandedSparseAccessPaperDaggerMatrix` | `odbs_forward_image` | `oneTermRobinGate_O_D_BS_dagger` | active skeleton; inverse-on-range unproved |
 | `odbs_image_fin_entry_bridge` | under source-column range and n-bit address hypotheses, build the finite image index and prove the forward and dagger entries at that index are $1$ | Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478 | `bandedSparseAccessPaperImageFin`, `bandedSparseAccessPaperMatrix_imageFin_eq_one`, `bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one`, `oneTermRobinGate_O_D_BS_imageFin_eq_one`, `oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one` | `odbs_image_range_of_address_range`, active paper matrices | injectivity route, inverse-on-range route | proved as entry bridge; semantic flags false |
-| `odbs_dagger_cleanup` | after SWAP, $(O_D^{BS})^\dagger$ restores the padded sparse-index register when the forward-image hypotheses hold | Fig. 1-term Robin and Lemma 1, arXiv:2506.20478 | `defaultBandedSparseAccessPaperContract p`.daggerCleanup | `odbs_forward_image`, SWAP register block lemmas | block extraction | unproved |
+| `odbs_entry_safety_witness` | package active forward/dagger entries, row/address roundtrip, and no-spill facts under the n-bit address hypothesis | Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478 | `oneTermRobinGate_O_D_BS_imageFin_entrySafety` | `odbs_image_fin_entry_bridge`, row/address/no-spill blocks | inverse-on-range and cleanup route | proved executable witness; semantic flags false |
+| `odbs_post_swap_registers` | after `swapOracleImage (bandedSparseAccessPaperImage p j)`, prove the system row register is $r_{si}$ and the O_D register is the original row | Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478 | `swapOracleImage_block2_eq_block1`, `bandedSparseAccessPaperPostSwap_rowValue_eq_address`, `bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue` | `odbs_image_row_roundtrip`, `odbs_image_address_roundtrip`, SWAP block equations | dagger cleanup route, inverse-on-range route | proved as register equations; semantic cleanup flag false |
+| `odbs_post_swap_range` | prove the post-SWAP column is still inside the finite full basis | Fig. 1-term Robin SWAP and Lemma 1, arXiv:2506.20478 | `shiftLeft_lt_two_pow_of_lt`, `swapOracleImage_lt_qubitDim`, `bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt` | SWAP diff bound, paper-image range | finite post constructor for cleanup witness | proved range block; SWAP unitarity flag false |
+| `odbs_reverse_sparse_index` | recover a three-bit sparse index that maps the post-SWAP row back to the source row in the one-term family | Lemma 1, arXiv:2506.20478 | `robinSparseReverseColumnIndex`, `robinSparseReverseColumnRoundtrip_of_lt_eight`, `robinSparseReverseColumnIndex_lt_eight_of_columnMap` | row normalizers and $3 \le n$, $s < 8$ bounds | clean-source preimage candidate | proved arithmetic block; no uniqueness or cleanup flag |
+| `odbs_preimage_candidate_clean_source` | prove the Boolean image, clean-domain, and address-range audit for the spliced post-SWAP candidate | Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478 | `bandedSparseAccessPaperPostSwapPreimageCandidate`, `bandedSparseAccessPaperPostSwapPreimageCandidateChecks`, `bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource` | reverse-index block, splice lemmas, clean O_D value lemmas | supplied-preimage cleanup witness | proved under explicit $3 \le n$, $\kappa=7$, `clog2 p.kappa = 3`, finite-source, and clean-input hypotheses; semantic flags false |
+| `odbs_preimage_candidate_range` | prove the spliced clean reverse-index candidate is inside the finite full basis | Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478 | `bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt`, `bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow`, `bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow`, `bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource` | post-SWAP range, reverse-index bound, clean O_D bound | finite pre constructor for cleanup witness | proved under explicit $3 \le n$, $\kappa=7$, `clog2 p.kappa = 3`, and clean-source hypotheses; semantic flags false |
+| `odbs_dagger_cleanup` | after SWAP, $(O_D^{BS})^\dagger$ restores the padded sparse-index register when the forward-image hypotheses hold | Fig. 1-term Robin and Lemma 1, arXiv:2506.20478 | `BandedSparseAccessPostSwapCleanup`, `bandedSparseAccessPostSwapCleanup_of_preimage`, `bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate`, `bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange`, `bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange`, `defaultBandedSparseAccessPaperContract p`.daggerCleanup | `odbs_forward_image`, SWAP register block lemmas, clean-source candidate audit, finite post/pre range, valid-clean-source bridge | block extraction | no-extra-range conditional witness proved; valid-clean-source wrapper proved; uniqueness, full cleanup, and semantic flag remain unproved |
 | `block_projection_normalizer` | extract the signal-index-zero system block of the composed circuit product and compare it with $A_k/(N_DN_f\kappa)$ | Theorem 1-term Robin and Fig. 1-term Robin, arXiv:2506.20478 | `Examples.RobinHeat.oneTermRobinBlockExtractionTarget`, `signalSystemBlockProjection`, `GHL2025.oneTermRobinNormalizer` | active gate matrices, dimension split, O_D^BS cleanup obligations | final block-correctness theorem | structural tests compiled; correctness unproved |
 
 ### Lower Packet Results
@@ -1000,6 +1109,35 @@ Audit only the O_f paper-matrix rewire and the synchronized proof map:
 | unresolved completion | non-clean rows and non-clean input columns remain symbolic through `functionOracleOrthogonalEntry` |
 | proof flags | no amplitude, normalizer, orthogonality, or unitarity obligation was promoted |
 
+### 2026-05-23 Middle Lower Packet: O_f $N_f$ Amplitude Route
+
+The source-contract audit now blocks `O_D^BS` proof search on the unused
+zero-amplitude sparse branches, while the shared $N_D$ source-bound bridges for
+`O_{D^T}^S` and `R_y^{boundary}` have been added.  The next faithful Phase 1
+packet should stay on the O_f transcript and record the $N_f$ amplitude route
+without changing the active matrix.
+
+Definitions to reuse:
+
+| Paper object | Lean anchor | Status |
+|---|---|---|
+| $f(x_i)$ | `robinFunctionValue p.n i` | symbolic function-value source |
+| $f(x_i)/N_f$ | `functionOracleNormalizedValue p i` | symbolic `N_f_inv` stand-in |
+| clean branch | `functionOraclePaperImage p j` | paper-image record already wired |
+| active O_f matrix | `functionOraclePaperMatrix p` | do not change |
+| paper normalizer $N_f$ | `(Examples.RobinHeat.robinOracleComposition n).functionOracle.normalizerBound` | `Coeff.symbol "N_f"` |
+| amplitude and completion flags | `normalizedAmplitudeCorrect`, `orthogonalComponentCorrect`, `normalizerBound`, `unitaryCompletion`, `FunctionOracleContract.amplitudeCorrect` | all remain false |
+
+Lower-facing contract:
+
+| Field | Contract |
+|---|---|
+| block interface | `of_nf_amplitude_route` records how the clean-branch amplitude, normalizer symbol, and false obligations flow from the O_f paper image into the theorem-level function-oracle obligation |
+| planned Lean names | `FunctionOracleAmplitudeProofRoute`, `functionOracleAmplitudeProofRoute`, and bridge theorems to the existing O_f declarations |
+| allowed edits | `QuantumBlockEncoding/GHL2025.lean`, focused tests in `Tests/Basic.lean`, and this proof map if Lean declarations are added |
+| forbidden edits | no new function-value source, no replacement O_f matrix, no proof of $N_f$ nonzero/division/bounds, no orthogonality or unitarity promotion, and no `O_D^BS` proof search |
+| build gate | `python3 tools/qbe.py check` with all O_f proof flags still false |
+
 ---
 
 ### Cycle 5 Tests
@@ -1069,6 +1207,7 @@ row-dependent coefficient source is
 | derivative coefficient | `GHL2025.robinSparseAmplitudeValue p.n sparseVal rowVal` | symbolic value for $D_j^{(s)}$ before the $N_D$ normalizer is discharged | data helper defined |
 | rotation entries | `sparseAmplitudeOracleDTCosHalf`, `sparseAmplitudeOracleDTSinHalf` | represent the two symbolic entries of the ancilla rotation block | defined; Eq. (20) relation unproved |
 | coefficient-normalizer contract | `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract`, `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation` | bind the symbolic entries to `robinSparseAmplitudeValue`, $N_D$, $D_j^{(s)}/N_D$, and the complementary normalizer term from Eq. (20) | typed contract recorded; proof fields remain `proved := false` |
+| coefficient-normalizer proof route | `GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient`, `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute` | expose the formal $D_j^{(s)}/N_D$ stand-in and the remaining $N_D$-bound, absolute-square, square-root complement, and unitarity proof blocks | typed route recorded; proof fields remain `proved := false` |
 | active gate matrix | `GHL2025.oneTermRobinGate_O_DT_S` | use `sparseAmplitudeOracleDTRotationMatrix` instead of the diagonal helper | rewired by definitional equality |
 
 The symbol names `odts_cos_half_{row}_{sparse}` and
@@ -1083,7 +1222,8 @@ completed two-by-two block is unitary.
 |---|---|---|---|---|---|---|
 | `odts_extract_registers` | extract ancilla bit, indicator bit, row value, sparse-index value, and non-ancilla rest bits from a compound basis index | Lemma 3 and Fig. 1-term Robin, arXiv:2506.20478 | `SparseAmplitudeOracleDTPaperRegisters`, `sparseAmplitudeOracleDTPaperRegisters` | `defaultRobinRegisterPartition`, `robinIndicatorBitPosition` | rotation matrix entries, active gate tests | defined skeleton; concrete tests pass |
 | `odts_rotation_entries` | define symbolic rotation entries controlled by the sparse coefficient while preserving all non-ancilla bits | Lemma 3, Eq. (20), arXiv:2506.20478 | `sparseAmplitudeOracleDTCosHalf`, `sparseAmplitudeOracleDTSinHalf`, `sparseAmplitudeOracleDTRotationMatrix` | `odts_extract_registers`, `robinSparseAmplitudeValue` | `oneTermRobinGate_O_DT_S`, block extraction | active skeleton; coefficient relation unproved |
-| `odts_coeff_normalizer` | prove the symbolic entries match $D_j^{(s)}/N_D$ and the complementary normalizer term from Eq. (20) | Lemma 3, Eq. (20), arXiv:2506.20478 | `sparseAmplitudeOracleDTCoefficientNormalizerContract`, `sparseAmplitudeOracleDTCoefficientNormalizerObligation` | `robinSparseAmplitudeValue`, future $N_D$ bound | `odts_rotation_unitary`, block extraction | typed contract recorded; analytic identities unproved |
+| `shared_nd_normalizer` | record the shared normalized coefficient $D_j^{(s)}/N_D$ and the common nonzero, division, coefficient-bound, absolute-square, square-root, arccos, and two-by-two-unitary obligations | Lemma 3, Eq. (20), and boundary Ry equations, arXiv:2506.20478 | `DerivativeNormalizerNDContract`, `derivativeNormalizerNDContract`, `DerivativeNormalizerNDSourceBound`, `derivativeNormalizerNDSourceBound` | `robinSparseAmplitudeValue` | `odts_coeff_normalizer`, `ryb_angle_normalizer` | typed contract recorded; source-bound view proved by definitional bridges; all analytic proof flags false |
+| `odts_coeff_normalizer` | prove the symbolic entries match $D_j^{(s)}/N_D$ and the complementary normalizer term from Eq. (20) | Lemma 3, Eq. (20), arXiv:2506.20478 | `sparseAmplitudeOracleDTCoefficientNormalizerContract`, `sparseAmplitudeOracleDTNormalizedCoefficient`, `sparseAmplitudeOracleDTCoefficientNormalizerProofRoute`, `sparseAmplitudeOracleDTCoefficientNormalizerObligation` | `shared_nd_normalizer`, future absolute-square/square-root semantics | `odts_rotation_unitary`, block extraction | typed contract and proof route recorded; shared $N_D$ bridges proved; analytic identities unproved |
 | `odts_active_gate_rewire` | active gate matrix is definitionally equal to the rotation skeleton, not the diagonal helper | Fig. 1-term Robin, arXiv:2506.20478 | `oneTermRobinGate_O_DT_S` | `odts_rotation_entries` | circuit product, block target | proved by `rfl` |
 | `odts_rotation_unitary` | prove the symbolic two-by-two blocks are unitary under the paper normalizer bound | Lemma 3, Eq. (20), arXiv:2506.20478 | gate `unitary` field and future theorem | `odts_coeff_normalizer` | final gate unitarity | unproved; `unitary.proved = false` |
 
@@ -1131,6 +1271,95 @@ symbols are `odts_cos_half_2_0` and `odts_sin_half_2_0`.
 Do not promote the O_DT^S gate unitarity flag until `odts_coeff_normalizer` is
 replaced by a Lean theorem or a finer obligation record that states the paper's
 $N_D$ bound and Eq. (20) amplitude identities.
+
+### Middle Packet: Eq. (20) Proof-Route Refinement
+
+The refined route keeps the same paper contract and adds no new gate behavior.
+The declaration
+`GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient p row sparse` records the
+formal stand-in
+`robinSparseAmplitudeValue p.n sparse row * N_D_inv` for $D_j^{(s)}/N_D$.
+The declaration
+`GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse`
+then splits the remaining analytic work into fixed proof blocks:
+
+| Field | Meaning | Status |
+|---|---|---|
+| `normalizedCoefficient` | symbolic stand-in for $D_j^{(s)}/N_D$ | defined |
+| `coefficientDivision` | interpret the stand-in as division by $N_D$ | `proved := false` |
+| `normalizerBound` | prove the $N_D$ bound needed by Eq. (20) | `proved := false` |
+| `absSquareSemantics` | interpret $|D_j^{(s)}|^2/N_D^2$ | `proved := false` |
+| `sqrtComplementSemantics` | prove the $|1\rangle$ entry equals $\sqrt{1-|D_j^{(s)}|^2/N_D^2}$ | `proved := false` |
+| `twoByTwoUnitary` | reuse the contract's two-by-two unitarity obligation | `proved := false` |
+
+Focused tests pin the normalized coefficient at $n=3$, $\kappa=7$, row $2$,
+sparse index $0$ to
+`Coeff.mul (Coeff.rat (-1/12)) (Coeff.symbol "N_D_inv")` and check each new
+proof-route flag is false.
+
+Lower cycle 15 added field-alignment lemmas showing that the proof route
+reuses the per-row contract's `normalizerND`, `ketZeroEntry`, and
+`ketOneEntry` fields.  These are definitional bridges only; the division,
+$N_D$ bound, square-root complement, and unitarity flags remain false.
+
+Cycle 16 added the shared declaration
+`GHL2025.derivativeNormalizerNDContract p row sparse`.  The `O_DT^S` proof
+route now takes its division, $N_D$-bound, absolute-square, and square-root
+obligation records from that shared contract.  The bridge theorem
+`GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sharedND`
+checks this reuse without promoting any analytic proof flag.
+
+Lower cycle 16 added the source-bound view
+`GHL2025.derivativeNormalizerNDSourceBound p row sparse`.  It records the
+future bound formula $|D_j^{(s)}| \le N_D$ using source coefficient
+`robinSparseAmplitudeValue p.n sparse row` and normalizer `Coeff.symbol "N_D"`.
+The Lean bridge
+`GHL2025.derivativeNormalizerNDSourceBound_coefficientBound` proves that the
+view reuses the shared `coefficientBound` obligation, and
+`GHL2025.derivativeNormalizerNDSourceBound_coefficientBound_false` keeps the
+bound flag false.
+
+### Cycle 17 Middle Packet: Shared $N_D$ Source-Contract Audit
+
+The current upper decision blocks more $O_D^{BS}$ cleanup proof search until a
+paper-backed unused-branch image rule or an exact reversible-extension theorem
+is supplied.  The active Phase 1 target therefore moves to the shared
+normalizer transcript used by $O_{D^T}^S$ and
+$R_y^{\mathrm{boundary}}$.
+
+Definition.  The shared coefficient source for both routes is
+`GHL2025.robinSparseAmplitudeValue p.n sparse row`.  The shared normalizer
+symbol is `Coeff.symbol "N_D"`, and the shared normalized-coefficient stand-in
+is the formal `N_D_inv` product used by
+`GHL2025.derivativeNormalizerNDContract p row sparse`.
+
+The audit fixes the source-to-Lean contract as follows.
+
+| Proof-DAG block | Paper anchor | Lean declaration | Consumers | Required status |
+|---|---|---|---|---|
+| `shared_nd_coefficient_source` | Lemma 3, Eq. (20), and boundary $R_y$ equations, arXiv:2506.20478 | `derivativeNormalizerNDContract_coefficient`, `derivativeNormalizerNDSourceBound_sourceCoefficient`, `sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sourceBound`, `boundaryRotationAngleNormalizerProofRoute_sourceBound`, `derivativeNormalizerNDSourceBound_sharedRoutes` | `odts_coeff_normalizer`, `ryb_angle_normalizer` | definitional bridge only |
+| `shared_nd_formal_division` | Lemma 3, Eq. (20), arXiv:2506.20478 | `DerivativeNormalizerNDContract.divisionSemantics`, `sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sharedND`, `boundaryRotationAngleNormalizerProofRoute_sharedND` | Eq. (20) $|0\rangle$ entry and boundary arccos argument | `proved = false` |
+| `shared_nd_bound` | Lemma 3, Eq. (20), and boundary $R_y$ equations, arXiv:2506.20478 | `DerivativeNormalizerNDSourceBound`, `derivativeNormalizerNDSourceBound_coefficientBound_false` | square-root complement, arccos domain, two-by-two unitarity | `proved = false` |
+| `shared_nd_abs_sqrt` | Lemma 3, Eq. (20), arXiv:2506.20478 | `DerivativeNormalizerNDContract.absSquareSemantics`, `DerivativeNormalizerNDContract.sqrtComplementSemantics` | `O_{D^T}^S` complementary amplitude | `proved = false` |
+| `shared_nd_arccos` | boundary $R_y$ angle equations, arXiv:2506.20478 | `DerivativeNormalizerNDContract.arccosSemantics` | `Ry_boundary` arccos argument | `proved = false` |
+
+Lower cycle 17 packet:
+
+| Item | Instruction |
+|---|---|
+| Target block | one bridge/test packet for `shared_nd_coefficient_source` and false-flag preservation |
+| Allowed Lean files | `QuantumBlockEncoding/GHL2025.lean`, `Tests/Basic.lean` |
+| Allowed docs | `conversion-windows/QBE-AUTO-002.md`, `proof-obligations/QBE-AUTO-002.md`, `paper-notes/GHL2025_RobinOneTerm.tex`, `research-wiki/cited-results/GHL2025.md` |
+| Required bridges | add only definitional field bridges tying `DerivativeNormalizerNDContract` and `DerivativeNormalizerNDSourceBound` to the existing $O_{D^T}^S$ and $R_y$ proof-route records, if a bridge is missing |
+| Forbidden work | no analytic proof of nonzero $N_D$, division, coefficient bounds, absolute-square, square-root, arccos, half-angle, two-by-two unitarity, and no $O_D^{BS}$ cleanup or block-extraction work |
+| Acceptance | `python3 tools/qbe.py check`; grep guard from the task contract; all shared normalizer and route proof flags remain `proved = false` |
+
+Lower cycle 17 adds the missing source-bound bridges
+`sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sourceBound`,
+`boundaryRotationAngleNormalizerProofRoute_sourceBound`, and
+`derivativeNormalizerNDSourceBound_sharedRoutes`.  They prove only definitional
+field reuse for the coefficient, $N_D$ symbol, and shared bound-obligation
+record; the analytic proof flags remain false.
 
 ### O_f vs O_DT^S Double Encoding Audit (Resolved in Cycle 9)
 
@@ -1215,7 +1444,8 @@ relations, and two-by-two unitarity.
 |---|---|---|---|---|---|---|
 | `ryb_extract_registers` | extract ancilla bit, indicator bit, row value, sparse-index value, and non-ancilla rest bits | Fig. 1-term Robin, arXiv:2506.20478 | `BoundaryRotationPaperRegisters`, `boundaryRotationPaperRegisters` | `defaultRobinRegisterPartition`, `robinIndicatorBitPosition` | rotation matrix entries, contract tests | defined skeleton; concrete tests pass |
 | `ryb_symbolic_entries` | define the symbolic half-angle entries used by the active matrix | Eq. angles for Ry, arXiv:2506.20478 | `boundaryRotationCosHalf`, `boundaryRotationSinHalf`, `boundaryRotationMatrix` | `ryb_extract_registers`, `robinSparseAmplitudeValue` | `oneTermRobinGate_Ry_boundary`, block extraction | active skeleton; angle relation unproved |
-| `ryb_angle_normalizer` | prove $\theta_j^s=\arccos(D_j^{(s)}/N_D)$ and the two half-angle formulas | Eq. angles for Ry, arXiv:2506.20478 | `BoundaryRotationAngleNormalizerContract`, `boundaryRotationAngleNormalizerObligation` | `robinSparseAmplitudeValue`, future $N_D$ bound | `ryb_rotation_unitary`, block extraction | typed contract recorded; proof flags false |
+| `shared_nd_normalizer` | record the shared normalized coefficient $D_j^{(s)}/N_D$ and the common nonzero, division, coefficient-bound, absolute-square, square-root, arccos, and two-by-two-unitary obligations | Lemma 3, Eq. (20), and boundary Ry equations, arXiv:2506.20478 | `DerivativeNormalizerNDContract`, `derivativeNormalizerNDContract`, `DerivativeNormalizerNDSourceBound`, `derivativeNormalizerNDSourceBound` | `robinSparseAmplitudeValue` | `odts_coeff_normalizer`, `ryb_angle_normalizer` | typed contract recorded; source-bound view proved by definitional bridges; all analytic proof flags false |
+| `ryb_angle_normalizer` | prove $\theta_j^s=\arccos(D_j^{(s)}/N_D)$ and the two half-angle formulas | Eq. angles for Ry, arXiv:2506.20478 | `BoundaryRotationAngleNormalizerContract`, `boundaryRotationAngleNormalizerObligation`, `boundaryRotationAngleNormalizerProofRoute` | `shared_nd_normalizer`, future half-angle theorem | `ryb_rotation_unitary`, block extraction | typed contract recorded; shared $N_D$ bridges proved; proof flags false |
 | `ryb_active_gate_rewire` | active gate matrix is definitionally the boundary rotation matrix | Fig. 1-term Robin, arXiv:2506.20478 | `oneTermRobinGate_Ry_boundary` | `ryb_symbolic_entries` | circuit product | proved by `rfl` |
 | `ryb_rotation_unitary` | prove each two-by-two boundary block is unitary under the paper normalizer bound | Eq. angles for Ry, arXiv:2506.20478 | future theorem or obligation | `ryb_angle_normalizer` | final gate unitarity | unproved; `unitary.proved = false` |
 
@@ -1284,6 +1514,14 @@ row`, and
 `GHL2025.boundaryRotationAngleNormalizerProofRoute_arccosArgument` proves that
 the route's arccos argument is the normalized-coefficient stand-in.  This
 packet does not change `GHL2025.oneTermRobinGate_Ry_boundary.unitary.proved`.
+
+Cycle 16 links this route to the same
+`GHL2025.derivativeNormalizerNDContract p row sparse` used by `O_DT^S`.  The
+route obtains its division, arccos-domain, and $N_D$-bound obligation records
+from the shared contract, and
+`GHL2025.boundaryRotationAngleNormalizerProofRoute_sharedND` records that
+bridge.  The half-angle and gate-unitarity obligations remain local to the
+boundary rotation route and are still false.
 
 ---
 
@@ -1375,7 +1613,8 @@ change `oneTermRobinGate_SWAP.unitary.proved`, which remains `false`.
 | `swap_diff_shift_right_zero` | `diff >>> n = 0` | `swap_diff_bounded`, `Nat.shiftRight_eq_zero` | `swapOracleDiff_shiftRight_eq_zero` | `swap_block2_image` | SWAP | proved |
 | `swap_diff_shift_left_mask_zero` | `(diff <<< n) &&& mask = 0` | `shiftLeft_land_mask_eq_zero` | `swapOracleDiff_shiftLeft_mask_eq_zero` | `swap_block1_image` | SWAP | proved |
 | `swap_block1_image` | after `swapOracleImage`, the low block equals the old high block | bit-test proof over `swapOracleImage`, `Nat.testBit_xor`, `Nat.testBit_shiftLeft`, and mask facts | `swapOracleImage_block1_eq_block2` | `swap_diff_preserved` | SWAP | proved |
-| `swap_block2_image` | after `swapOracleImage`, the high block equals the old low block | diff boundedness, shift-right lemmas | `swapOracleImage_block2_eq_block1` | `swap_diff_preserved` | SWAP | planned |
+| `swap_block2_image` | after `swapOracleImage`, the high block equals the old low block | bit-test proof over `swapOracleImage`, n-bit mask facts | `swapOracleImage_block2_eq_block1` | `swap_diff_preserved`, O_D^BS post-SWAP register equations | SWAP | proved |
+| `swap_lt` | image preserves the full `qubitDim` bound | `swap_diff_bounded`, register-width inequality | `swapOracleImage_lt_qubitDim` | post-SWAP finite range, future `swap_bijective` | SWAP | proved; unitarity flag false |
 
 The source-contract audit introduced `BandedSparseAccessPaperContract`, and the
 active O_D^BS gate pair now uses `bandedSparseAccessPaperMatrix` and
@@ -1383,10 +1622,11 @@ active O_D^BS gate pair now uses `bandedSparseAccessPaperMatrix` and
 for the legacy `bandedSparseAccessMatrix` or `bandedSparseAccessDaggerMatrix`
 as if those helpers were the paper oracle.
 
-The lower packet proved only `swapOracleImage_block1_eq_block2` in
-`QuantumBlockEncoding/GHL2025.lean`.  The proof is general in `p` and `j`;
-it is not a finite `native_decide` sample.  The SWAP unitarity obligation stays
-unpromoted, so `oneTermRobinGate_SWAP.unitary.proved` remains `false`.
+The post-SWAP register packet now proves both `swapOracleImage_block1_eq_block2`
+and `swapOracleImage_block2_eq_block1` in `QuantumBlockEncoding/GHL2025.lean`.
+Both proofs are general in `p` and `j`; they are not finite `native_decide`
+samples.  The SWAP unitarity obligation stays unpromoted, so
+`oneTermRobinGate_SWAP.unitary.proved` remains `false`.
 
 ---
 
@@ -1453,6 +1693,15 @@ and `daggerCleanup.proved` remain false.
 | `odbs_image_no_spill_of_address_range` | prove high-tail preservation for `bandedSparseAccessPaperImage` from the n-bit address hypothesis | `bandedSparseAccessPaperImageNoSpill_iff`, address range | `bandedSparseAccessPaperImage_highTail_eq_of_address_lt`, `bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt`, `bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le` | forward matrix, dagger cleanup, block extraction | O_D^BS | proved as executable block; semantic flag false |
 | `odbs_image_range_of_address_range` | show the paper image stays inside the full finite basis dimension | original column bound, n-bit address range, `bandedSparseAccessPaperHighWidth_le_totalQubits`, `bandedSparseAccessPaperImage_lowBlock_lt_highBase_of_address_lt` | `bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt` | matrix finite-domain route, injectivity | O_D^BS | proved as executable range block; semantic flags false |
 | `odbs_image_fin_entry_bridge` | construct the finite image index and prove the forward and dagger entries at that index | `odbs_image_range_of_address_range`, active matrix definitions | `bandedSparseAccessPaperImageFin`, `bandedSparseAccessPaperMatrix_imageFin_eq_one`, `bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one`, `oneTermRobinGate_O_D_BS_imageFin_eq_one`, `oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one` | injectivity, inverse-on-range, cleanup route | O_D^BS | proved as executable entry bridge; semantic flags false |
+| `odbs_column_audit_safety` | package the per-column audit booleans for row preservation, address write, address range, and no-spill | `odbs_image_row_roundtrip`, `odbs_image_address_roundtrip`, `odbs_image_no_spill_of_address_range` | `bandedSparseAccessPaperColumnContract_rowPreserved_eq_true`, `bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt`, `bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt`, `bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt`, `bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt` | inverse-on-range route, cleanup packet | O_D^BS | proved executable audit bridge; semantic flags false |
+| `odbs_entry_safety_witness` | package the paired active-gate entries with row/address roundtrip and no-spill facts under the n-bit address hypothesis | `odbs_image_fin_entry_bridge`, `odbs_image_row_roundtrip`, `odbs_image_address_roundtrip`, `odbs_image_no_spill_of_address_range` | `oneTermRobinGate_O_D_BS_imageFin_entrySafety` | inverse-on-range route, cleanup packet | O_D^BS | proved executable witness; semantic flags false |
+| `odbs_post_swap_column` | prove the column reached by applying SWAP to the finite forward image is still in the full finite basis, without proving SWAP unitarity | `bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt`, `swapOracleImage_lt_qubitDim` | `bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt` | finite post constructor, dagger inverse packet | O_D^BS + SWAP | proved range block; no gate flag promotion |
+| `odbs_post_swap_registers` | prove that the post-SWAP system register contains $r_{si}$ and the post-SWAP O_D register contains the original row | `swapOracleImage_block1_eq_block2`, `swapOracleImage_block2_eq_block1`, `odbs_image_row_roundtrip`, `odbs_image_address_roundtrip` | `bandedSparseAccessPaperPostSwap_rowValue_eq_address`, `bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue` | cleanup-register proof, inverse-on-range route | O_D^BS + SWAP | proved register equations; no preimage or cleanup flag promotion |
+| `odbs_reverse_sparse_index` | compute the sparse index that would make the post-SWAP row address the original source row | `robinSparseColumnMap`, Lemma 1 register interpretation | `robinSparseColumnMap_zero`, `robinSparseColumnMap_one`, `robinSparseColumnMap_bulk`, `robinSparseColumnMap_rightBoundaryPrev`, `robinSparseColumnMap_rightBoundaryLast`, `robinSparseReverseColumnIndex`, `robinSparseReverseColumnRoundtrip_of_lt_eight`, `robinSparseReverseColumnRoundtripCheck` | preimage candidate, inverse-on-range route | O_D^BS + SWAP | reverse candidate defined; general arithmetic roundtrip proved for $3 \le n$, $s < 8$, and $i < 2^n$; no uniqueness or cleanup flag |
+| `odbs_post_swap_preimage_candidate` | splice a clean reverse sparse register into the post-SWAP column and audit image, clean-domain, address-range, and finite-range checks | `odbs_reverse_sparse_index`, `swapOracleImage`, `bandedSparseAccessPaperImage`, clean-domain audit, splice range | `bandedSparseAccessPaperSpliceODRegister`, `bandedSparseAccessPaperCleanODValue`, `bandedSparseAccessPaperPostSwapPreimageCandidate`, `bandedSparseAccessPaperPostSwapPreimageCandidateChecks`, `bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource`, `bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource` | supplied-preimage cleanup witness, inverse-on-range route | O_D^BS + SWAP | clean-source Boolean audit and finite range proved under explicit one-term hypotheses; all finite columns for $n=3,\kappa=7$ still pass in tests; uniqueness and semantic cleanup remain unproved |
+| `odbs_dagger_entry_of_post_swap_preimage` | if a cleanup candidate `pre` satisfies `post.val = bandedSparseAccessPaperImage p pre.val`, then the active dagger has entry $1$ from post-SWAP column `post` to `pre` | `bandedSparseAccessPaperDaggerMatrix`, `oneTermRobinGate_O_D_BS_dagger` | `oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage` | cleanup-register proof | (O_D^BS)^† | proved as a conditional entry bridge; existence, uniqueness, and cleanup registers remain obligations |
+| `odbs_post_swap_cleanup_registers` | for a supplied clean preimage, package the active dagger entry and executable row/address/no-spill cleanup checks | `odbs_dagger_entry_of_post_swap_preimage`, clean-domain audit, address-range audit | `BandedSparseAccessPostSwapCleanup`, `bandedSparseAccessPostSwapCleanup_of_preimage`, `bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange` | block extraction | (O_D^BS)^† | no-extra-range conditional witness proved for the candidate; source-domain uniqueness and full cleanup remain obligations |
+| `odbs_post_swap_cleanup_contract` | bundle the dagger entry, cleanup registers, and false semantic flags into the source-contract audit | previous three post-SWAP blocks plus a future source-domain uniqueness theorem | future full cleanup contract; current `BandedSparseAccessPostSwapCleanup` is only conditional | final block-correctness theorem | (O_D^BS)^† | obligation; `daggerCleanup.proved` remains false |
 | `odbs_image_row_roundtrip` | show image extraction reports the preserved row | `bandedSparseAccessPaperRegisterValue_eq_mod`, `bandedSparseAccessPaperImage_mod_lowBase` | `bandedSparseAccessPaperImage_rowValue_eq` | forward correctness, cleanup route | O_D^BS | proved unconditionally for the executable splice |
 | `odbs_image_address_roundtrip` | show image extraction reports the written address under the n-bit address hypothesis | `bandedSparseAccessPaperRegisterValue_eq_mod`, `bandedSparseAccessPaperImage_div_lowBase_mod_eq` | `bandedSparseAccessPaperImage_odRegisterValue_eq` | forward correctness, cleanup route | O_D^BS | proved as executable register block; semantic flags false |
 
@@ -1468,6 +1717,754 @@ The packet must leave `oneTermRobinGate_O_D_BS.unitary.proved`,
 `defaultBandedSparseAccessPaperContract p`.forwardCorrect.proved,
 `.daggerCleanup.proved`, `.noSpill.proved`, and all block-correctness flags
 equal to `false`.
+
+---
+
+## 2026-05-23 Middle Update: O_D^BS Entry-Safety Witness
+
+The current cycle adds one reusable proof-DAG block for the active Lemma 1 gate
+pair.  The paper-to-Lean contract is unchanged: the source equation is still
+represented by
+`bandedSparseAccessPaperImage` and the active matrices
+`bandedSparseAccessPaperMatrix` and `bandedSparseAccessPaperDaggerMatrix`:
+
+$$
+O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n
+=
+|r_{si}\rangle^n|i\rangle^n .
+$$
+
+The Lean-to-paper status is:
+
+| Item | Lean declaration | Status |
+|---|---|---|
+| paired active entries | `oneTermRobinGate_O_D_BS_imageFin_entrySafety` | proves the active forward entry and active dagger entry at the finite image index under the explicit n-bit address hypothesis |
+| register roundtrip | same theorem, using `bandedSparseAccessPaperImage_rowValue_eq` and `bandedSparseAccessPaperImage_odRegisterValue_eq` | records that the executable image preserves the row and writes the intended O_D address |
+| no-spill bridge | same theorem, using `bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt` | records high-tail preservation under the explicit n-bit address hypothesis |
+| remaining cleanup gap | `defaultBandedSparseAccessPaperContract p`.daggerCleanup | still `proved := false`; the witness does not prove inverse uniqueness or post-SWAP cleanup |
+
+This earlier inverse-on-range packet is superseded by the cycle 9 collision
+audit.  The next lower packet should not attempt uniqueness over the current
+clean-domain skeleton.  It should first state a corrected valid sparse-branch
+domain or a reversible unused-branch extension, then leave the semantic proof
+flags false until that source contract is reviewed.
+
+---
+
+## 2026-05-23 Middle Update: Post-SWAP Register Equations
+
+The upper cycle requested register equations before reverse-index or preimage
+search.  The paper-to-Lean contract is still Lemma 1 followed by the SWAP gate
+from Fig. 1-term Robin:
+
+$$
+O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n
+=
+|r_{si}\rangle^n|i\rangle^n,
+\qquad
+\mathrm{SWAP}(|r_{si}\rangle^n|i\rangle^n)
+=
+|i\rangle^n|r_{si}\rangle^n .
+$$
+
+With the current bit order, the system row register is the low n-bit block and
+the O_D register is the high n-bit block.  Lean now proves:
+
+| Claim | Lean declaration | Status |
+|---|---|---|
+| SWAP sends the high n-bit block to the low n-bit block | `swapOracleImage_block1_eq_block2` | proved |
+| SWAP sends the low n-bit block to the high n-bit block | `swapOracleImage_block2_eq_block1` | proved |
+| after SWAP of the paper image, the system row value is $r_{si}$ | `bandedSparseAccessPaperPostSwap_rowValue_eq_address` | proved under `bandedSparseAccessPaperAddress p j < (1 <<< p.n)` |
+| after SWAP of the paper image, the O_D register value is the original row | `bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue` | proved |
+
+These declarations do not construct a clean dagger preimage and do not promote
+`daggerCleanup.proved`, either O_D^BS gate unitarity flag, or SWAP unitarity.
+
+---
+
+## 2026-05-23 Middle Lower Packet: Post-SWAP Dagger Cleanup Interface
+
+This packet fixes the Lean-facing contract for the next lower worker.  It does
+not ask for broad unitarity of $O_D^{BS}$, SWAP, or $(O_D^{BS})^\dagger$.
+It only isolates the inverse-on-range step needed before the paper cleanup
+claim can be attempted.
+
+Definitions for the packet:
+
+- `source : Fin (qubitDim (oneTermRobinTotalQubits p))` is a clean Lemma 1
+  input column.
+- `haddr : bandedSparseAccessPaperAddress p source.val < (1 <<< p.n)` is the
+  explicit n-bit address hypothesis.
+- `forward = bandedSparseAccessPaperImageFin p source haddr` is the finite
+  forward image already covered by `oneTermRobinGate_O_D_BS_imageFin_entrySafety`.
+- `post` is the finite column whose value is
+  `swapOracleImage p forward.val`.
+- `pre` is the cleanup-source candidate for the dagger.  The packet must not
+  assume `pre = source`; after SWAP the system and $O_D^{BS}$ registers have
+  exchanged roles.
+
+The fixed lower target is:
+
+```lean
+theorem oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage
+    (p : OneTermRobinParameters)
+    (source post pre : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hpost : post.val =
+      swapOracleImage p
+        (bandedSparseAccessPaperImage p source.val))
+    (hpre : post.val = bandedSparseAccessPaperImage p pre.val) :
+    (oneTermRobinGate_O_D_BS_dagger p).matrix pre post = Coeff.rat 1
+```
+
+This theorem is intentionally conditional.  It says that the active
+transpose-style dagger uses the paper-image preimage supplied by `hpre`.
+It does not prove that such a `pre` exists, that it is unique, or that its
+registers have been cleaned.  Those are the next proof-DAG blocks.
+
+The lower packet may add only focused support needed by that theorem:
+
+| Target | Required declaration | Acceptance |
+|---|---|---|
+| post-SWAP column packaging | `bandedSparseAccessPaperPostSwapImageFin` only if the theorem needs a finite `post` constructor | local range proof for one SWAP output; no SWAP bijection or unitarity proof |
+| dagger entry from supplied preimage | `oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage` | proved from the active `bandedSparseAccessPaperDaggerMatrix`; no semantic flag promoted |
+| proof-attempt record | `proof-attempts/QBE-AUTO-002-odbs-post-swap-cleanup.md` if the theorem or range packaging fails | include the exact failed statement, Lean goals, and reusable lemma candidates |
+
+Allowed write scope is `QuantumBlockEncoding/GHL2025.lean`,
+`Tests/Basic.lean`, `proof-attempts/`, and synchronized proof-map updates in
+this file or `proof-obligations/QBE-AUTO-002.md`.  Do not edit the legacy
+`bandedSparseAccessMatrix`, the circuit gate list, `CircuitSemantics.lean`,
+or `RobinMatrix.lean` for this packet.
+
+Acceptance guard:
+
+- `oneTermRobinGate_O_D_BS.unitary.proved = false`
+- `oneTermRobinGate_O_D_BS_dagger.unitary.proved = false`
+- `(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved = false`
+- block-correctness flags remain `false`
+
+### 2026-05-23 Lower Update: Post-SWAP Dagger Entry
+
+Lean now contains
+`GHL2025.oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage`.  The theorem
+uses the supplied preimage equality
+`post.val = bandedSparseAccessPaperImage p pre.val` to prove the active
+transpose-style dagger entry
+`(oneTermRobinGate_O_D_BS_dagger p).matrix pre post = Coeff.rat 1`.
+
+This is deliberately weaker than cleanup.  The existence and uniqueness of
+`pre`, the post-SWAP register-cleanup statement, and
+`(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved` remain open.
+
+### 2026-05-23 Lower Update: Conditional Post-SWAP Cleanup Witness
+
+Lean now also contains `GHL2025.BandedSparseAccessPostSwapCleanup` and
+`GHL2025.bandedSparseAccessPostSwapCleanup_of_preimage`.  This is still a
+conditional interface: it assumes the post-SWAP column equality, a supplied
+paper-image preimage, clean padded input for that preimage, and the n-bit
+address bound for that preimage.
+
+Under those explicit hypotheses, the witness proves the active dagger matrix
+entry, the executable per-column row/address/no-spill audit booleans, and the
+post column register extraction facts obtained by rewriting through
+`bandedSparseAccessPaperImage`.  It does not construct `pre`, prove uniqueness,
+prove SWAP unitarity, or promote
+`(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved`.
+
+For the concrete check `n = 3`, `kappa = 7`, source column `8` reaches post
+column `68` after `O_D^BS` and SWAP, and `68` is a clean supplied preimage for
+the active paper-image skeleton.  This validates the interface on one focused
+column without changing the paper contract.
+
+### 2026-05-23 Lower Update: Reverse-Index Candidate Audit
+
+Lean now contains the reverse-index candidate
+`GHL2025.robinSparseReverseColumnIndex`.  For a target row and a post-SWAP row,
+it returns the sparse index that would make the executable Robin sparse-column
+map address the target.  The finite audit
+`GHL2025.robinSparseReverseColumnRoundtripCheck` checks this roundtrip over a
+bounded sparse-index domain and all rows of the selected grid.
+
+Lean also contains a post-SWAP preimage candidate:
+`GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate`.  It preserves the
+post-SWAP low row block and high-tail bits, then writes a clean padded
+`O_D^BS` register whose sparse field is the reverse-index candidate.  The
+Boolean `GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks`
+verifies that this candidate maps to the post-SWAP column under
+`bandedSparseAccessPaperImage`, is clean, and has an n-bit address.
+
+`Tests/Basic.lean` proves the reverse-index scan for $n=3$ and $n=4$ with
+three-bit sparse indices, the source `8` candidate `68` at $n=3,\kappa=7$, and
+the full finite-source candidate scan for $n=3,\kappa=7$.  These are executable
+checks for the inverse-on-range route only.  They do not prove uniqueness,
+general cleanup, SWAP unitarity, or either O_D^BS unitary flag, and
+`(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved` remains
+false.
+
+### 2026-05-23 Middle Update: Reverse-Index Generalization Handoff
+
+The lower packet produced a useful candidate population, but the general
+reverse-index theorem has not been proved.  The finite scans stay recorded as
+tests, not semantic cleanup.  The proof-route memory is now
+`proof-attempts/QBE-AUTO-002-odbs-reverse-roundtrip.md`.
+
+The next lower target is one fixed theorem:
+
+```lean
+theorem robinSparseReverseColumnRoundtrip_of_lt_eight
+    {n s i : Nat} (hn : 3 <= n) (hs : s < 8) (hi : i < gridSize n) :
+    robinSparseColumnMap n
+      (robinSparseReverseColumnIndex n i (robinSparseColumnMap n s i))
+      (robinSparseColumnMap n s i) = i
+```
+
+The source contract for this theorem is still Lemma 1:
+
+$$
+O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n
+=
+|r_{si}\rangle^n|i\rangle^n .
+$$
+
+The theorem only targets the Robin sparse-column arithmetic needed to construct
+a post-SWAP clean preimage candidate.  It must not promote
+`(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved`,
+`oneTermRobinGate_O_D_BS.unitary.proved`,
+`oneTermRobinGate_O_D_BS_dagger.unitary.proved`, SWAP unitarity, or block
+correctness.
+
+Allowed lower write scope is `QuantumBlockEncoding/GHL2025.lean`,
+`Tests/Basic.lean`, `proof-attempts/`, and synchronized updates to this
+conversion window or `proof-obligations/QBE-AUTO-002.md`.  The lower packet
+should case split on the five branches of `robinSparseColumnMap` and reuse
+`robinSparseColumnMap_lt_gridSize_of_row_lt` where it helps, but it should not
+rewrite the active paper-image contract or the legacy helper matrices.
+
+### 2026-05-23 Lower Update: Reverse-Index Roundtrip Proved
+
+Lean now proves the fixed arithmetic target:
+
+```lean
+theorem robinSparseReverseColumnRoundtrip_of_lt_eight
+    {n s i : Nat} (hn : 3 <= n) (hs : s < 8) (hi : i < gridSize n) :
+    robinSparseColumnMap n
+      (robinSparseReverseColumnIndex n i (robinSparseColumnMap n s i))
+      (robinSparseColumnMap n s i) = i
+```
+
+The proof adds row-normalization blocks for the five executable
+`robinSparseColumnMap` regions and the matching `robinSparseReverseColumnIndex`
+regions.  This discharges only the reverse sparse-index arithmetic for the
+three-bit sparse-index range used by the current one-term Robin parameter
+family.  It does not prove preimage uniqueness, clean-preimage existence,
+dagger cleanup, SWAP unitarity, either $O_D^{BS}$ unitary flag, or block
+correctness.
+
+---
+
+## 2026-05-23 Middle Lower Packet: Clean-Source Preimage Candidate Audit
+
+The next lower packet should use the proved reverse-index theorem to replace
+the finite candidate scans by one fixed clean-source theorem for the one-term
+Robin parameter family.  The source anchor is still GHL2025, Lemma 1 and
+Fig. 1-term Robin, arXiv:2506.20478:
+
+$$
+O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n
+=
+|r_{si}\rangle^n|i\rangle^n .
+$$
+
+The packet must keep the one-term assumptions explicit.  The current Robin
+family has $\kappa=7$ and `clog2 kappa = 3`, so the sparse-index field has the
+same $s < 8$ range used by
+`robinSparseReverseColumnRoundtrip_of_lt_eight`.
+
+The fixed Lean target is:
+
+```lean
+theorem bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource
+    (p : OneTermRobinParameters) (source : Nat)
+    (hn : 3 <= p.n)
+    (hkappa : p.kappa = 7)
+    (hclog : clog2 p.kappa = 3)
+    (hsource : source < qubitDim (oneTermRobinTotalQubits p))
+    (hclean : bandedSparseAccessPaperCleanInput p source = true) :
+    bandedSparseAccessPaperPostSwapPreimageCandidateChecks p source = true
+```
+
+Definitions for the packet:
+
+- `source` is a finite basis column satisfying the Lemma 1 clean padded-input
+  condition.
+- `post = swapOracleImage p (bandedSparseAccessPaperImage p source)` is the
+  column reached after the active paper-image skeleton and SWAP.
+- `pre = bandedSparseAccessPaperPostSwapPreimageCandidate p source` is the
+  candidate obtained by splicing a clean $O_D^{BS}$ register whose sparse field
+  is `robinSparseReverseColumnIndex p.n sourceRow postRow`.
+
+The theorem should prove exactly the three Boolean checks already present in
+`bandedSparseAccessPaperPostSwapPreimageCandidateChecks`: candidate image
+equality, clean padded input, and n-bit address range.  It must not prove
+uniqueness, SWAP unitarity, dagger unitarity, or the semantic field
+`(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved`.
+
+### Proof-DAG Update
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `odbs_reverse_sparse_index` | recover a sparse index that maps the post-SWAP row back to the original source row for the three-bit one-term family | row-normalization lemmas, `3 <= n`, `s < 8`, row range | `robinSparseReverseColumnRoundtrip_of_lt_eight` | preimage candidate theorem | O_D^BS + SWAP | proved |
+| `odbs_preimage_candidate_clean_source` | prove the Boolean candidate audit for every clean source column in the one-term family | `odbs_reverse_sparse_index`, `bandedSparseAccessPaperSpliceODRegister`, `bandedSparseAccessPaperCleanODValue`, address-range theorem | `bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource` | cleanup witness instantiation | O_D^BS + SWAP + $(O_D^{BS})^\dagger$ | proved executable audit; no flag promotion |
+| `odbs_cleanup_witness_instantiation` | convert the Boolean audit into a finite supplied preimage and feed `bandedSparseAccessPostSwapCleanup_of_preimage` | clean-source candidate audit, explicit finite range for `post` and `pre`, conditional cleanup witness | `bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate`, `bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange` | block extraction cleanup route | $(O_D^{BS})^\dagger$ | no-extra-range conditional wrapper proved; uniqueness and semantic cleanup flag remain open |
+
+Allowed lower write scope is `QuantumBlockEncoding/GHL2025.lean`,
+`Tests/Basic.lean`, `proof-attempts/`, and synchronized updates to this
+conversion window or `proof-obligations/QBE-AUTO-002.md`.  The worker may add
+local bit-splice lemmas for `bandedSparseAccessPaperSpliceODRegister` and
+`bandedSparseAccessPaperCleanODValue`.  Do not edit the legacy
+`bandedSparseAccessMatrix`, the active gate list, `CircuitSemantics.lean`,
+`RobinMatrix.lean`, or any proof flag.
+
+If the theorem fails, append
+`proof-attempts/QBE-AUTO-002-odbs-clean-preimage-candidate.md` with the exact
+failed statement, the remaining Lean goals, and the smallest reusable
+bit-slice lemma candidates.  Do not replace the target by another finite
+`native_decide` scan.
+
+---
+
+### 2026-05-23 Middle Sync: Clean-Source Candidate Audit Accepted
+
+The lower result now compiles as
+`bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource`.  The
+Lean theorem proves the executable Boolean audit for finite clean source
+columns in the one-term family:
+
+- the candidate maps to `swapOracleImage p (bandedSparseAccessPaperImage p source)`;
+- the candidate padded $O_D^{BS}$ register is clean;
+- the candidate address passes `bandedSparseAccessPaperAddressInRange`.
+
+The theorem uses only the Lemma 1 source contract plus Lean-local arithmetic
+blocks.  It does not construct a `Fin` value for the candidate preimage, does
+not prove uniqueness, and does not promote `daggerCleanup.proved`.
+
+The follow-up lower packet now adds the interface that turns this Boolean audit
+into the existing conditional witness once finite post and pre columns are
+available:
+
+```lean
+theorem bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate
+    (p : OneTermRobinParameters)
+    (source : Fin (qubitDim (oneTermRobinTotalQubits p)))
+    (hn : 3 <= p.n) (hkappa : p.kappa = 7) (hclog : clog2 p.kappa = 3)
+    (hclean : bandedSparseAccessPaperCleanInput p source.val = true)
+    (hpostRange :
+      swapOracleImage p (bandedSparseAccessPaperImage p source.val) <
+        qubitDim (oneTermRobinTotalQubits p))
+    (hpreRange :
+      bandedSparseAccessPaperPostSwapPreimageCandidate p source.val <
+        qubitDim (oneTermRobinTotalQubits p)) :
+    BandedSparseAccessPostSwapCleanup p source
+      ⟨swapOracleImage p (bandedSparseAccessPaperImage p source.val), hpostRange⟩
+      ⟨bandedSparseAccessPaperPostSwapPreimageCandidate p source.val, hpreRange⟩
+```
+
+If the post-SWAP range proof is the blocker, split it out as
+`bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt`.  If the
+candidate range proof is the blocker, split it out as
+`bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource`.
+Both support lemmas must keep the hypotheses explicit and must not change any
+oracle matrix or proof flag.
+
+### 2026-05-23 Lower Update: Conditional Candidate Witness
+
+`bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate` now compiles with
+the signature above.  It keeps the finite-range facts as inputs and uses
+`bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource` to
+extract:
+
+- the candidate preimage equality;
+- the candidate clean padded-register condition;
+- the candidate n-bit address bound.
+
+The theorem then invokes `bandedSparseAccessPostSwapCleanup_of_preimage`.
+This is a typed conditional witness only: `daggerCleanup.proved`, SWAP
+unitarity, both `O_D^BS` unitarity flags, and inverse uniqueness remain open.
+
+### 2026-05-23 Middle Handoff: Finite-Range Cleanup Inputs
+
+The cleanup wrapper is now synchronized with Lean, so the next fixed lower
+packet should remove the two remaining external `Fin` range premises needed to
+instantiate it.  The source contract remains GHL2025 Lemma 1 and Fig. 1-term
+Robin, arXiv:2506.20478; no oracle matrix or proof flag should change.
+
+Target the following interfaces, in this order:
+
+| Block | Lean declaration | Required statement | Dependencies | Status |
+|---|---|---|---|---|
+| `odbs_post_swap_range` | `swapOracleImage_lt_qubitDim`, `bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt` | for a finite clean source and an n-bit `O_D^BS` address, `swapOracleImage p (bandedSparseAccessPaperImage p source.val)` is still below `qubitDim (oneTermRobinTotalQubits p)` | `bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt`, SWAP bit-slice range lemmas | proved; SWAP unitarity flag false |
+| `odbs_preimage_candidate_range` | `bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource` | for a finite clean source in the one-term family, the clean reverse-index preimage candidate is below `qubitDim (oneTermRobinTotalQubits p)` | post-SWAP range, splice high-tail preservation, `bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt` | proved under explicit one-term hypotheses |
+| `odbs_cleanup_witness_without_external_ranges` | `bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange` | instantiate the accepted cleanup witness without caller-supplied `hpostRange` and `hpreRange` | the two range lemmas above plus the accepted clean-source candidate audit | proved as a conditional witness; uniqueness and semantic cleanup remain open |
+
+The lower packet must keep `daggerCleanup.proved`, SWAP unitarity, both
+`O_D^BS` unitarity flags, and block-correctness flags false.  If the SWAP range
+lemma fails, record the exact failed bit-slice statement under
+`proof-attempts/` and do not replace the target by another finite scan.
+
+### 2026-05-23 Lower Update: Finite-Range Cleanup Inputs
+
+Lean now proves the two range inputs needed by the clean-source candidate
+cleanup witness.  `swapOracleImage_lt_qubitDim` proves that the SWAP image
+preserves the full finite basis bound using the existing SWAP diff bound and
+the register-width inequality.  Combining it with
+`bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt` gives
+`bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt`.
+
+For the candidate preimage, `bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt`
+packages the finite-range arithmetic for replacing the O_D register.  The
+one-term reverse sparse index and clean O_D value are bounded by
+`bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow` and
+`bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow`; together they prove
+`bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource`.
+The wrapper `bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange`
+uses these range lemmas to call the prior conditional cleanup witness without
+external `Fin` premises.  It still does not prove uniqueness, full
+`daggerCleanup`, SWAP unitarity, either O_D^BS unitarity flag, or block
+correctness.
+
+### 2026-05-23 Middle Sync: Boundary Unused Sparse Collision
+
+The next injectivity route is blocked by a Lean-checked source-contract
+collision in the active skeleton:
+
+```lean
+theorem GHL2025.oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3
+```
+
+For the one-term parameters $n=3$ and $\kappa=7$, the source columns $0$ and
+$48$ both satisfy `bandedSparseAccessPaperCleanInput`.  They have the same row
+value $0$, but sparse indices $0$ and $3$.  Boundary row $0$ has only three
+Robin stencil entries, so sparse index $3$ is an unused branch and the current
+`robinSparseColumnMap` returns address $0$ for both branches.  Consequently
+`bandedSparseAccessPaperImage` sends both source columns to the same image, and
+the active gate matrix has a $1$ in row $0$ for both columns.
+
+This proves an obstruction for the current full clean-domain skeleton, not a
+new construction.  The next lower packet should not try to prove injectivity or
+unitarity for this skeleton.  It should instead produce one source-contract
+correction proposal, with no proof-flag promotion:
+
+| Option | Lean-facing contract | Required audit |
+|---|---|---|
+| restrict Lemma 1 sparse-domain branches | add an explicit valid sparse-index predicate for row-dependent nonzero branches before the image/injectivity theorem | cite the paper anchor or mark contract drift if the paper does not state this restriction |
+| reversible extension for unused branches | keep the current clean-domain predicate but define a separate unitary-extension image for unused sparse branches | prove it agrees with Lemma 1 on valid sparse branches and leaves `forwardCorrect`, `daggerCleanup`, and unitarity flags false until fully proved |
+
+The accepted lower packet must update this conversion window and
+`proof-obligations/QBE-AUTO-002.md`, and it must keep
+`oneTermRobinGate_O_D_BS.unitary.proved`,
+`oneTermRobinGate_O_D_BS_dagger.unitary.proved`, and
+`(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved` false.
+
+### 2026-05-23 Lower Update: Valid Sparse-Branch Domain Candidate
+
+Lean now contains the row-dependent predicate
+`GHL2025.robinSparseColumnBranchValid`.  It follows the five one-term Robin
+stencil regions already used by `GHL2025.robinSparseColumnMap`: row $0$ has
+three valid sparse branches, row $1$ has four, bulk rows have five, row
+$N-2$ has four, and row $N-1$ has three.
+
+The paper-column predicates
+`GHL2025.bandedSparseAccessPaperValidSparseBranch` and
+`GHL2025.bandedSparseAccessPaperValidCleanSource` lift this row-dependent
+branch check to the Lemma 1 register extractor.  They are contract-audit
+predicates only.  The active `bandedSparseAccessPaperMatrix`, dagger matrix,
+gate list, and all semantic proof flags are unchanged.
+
+The audit theorem
+`GHL2025.bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3`
+shows that the earlier collision columns `0` and `48` remain clean under
+`bandedSparseAccessPaperCleanInput`, but the candidate corrected source domain
+accepts column `0` and rejects column `48`.  This supports the
+row-dependent-domain correction option.  It does not prove that the paper
+states this restriction for all rows, and it does not prove injectivity,
+cleanup, or unitarity.
+
+### 2026-05-23 Middle Source-Contract Audit: Unused Branches
+
+The paper source does not support using `bandedSparseAccessPaperValidCleanSource`
+as the full faithful source domain by itself.  The relevant anchors are:
+
+| Paper anchor | Contract effect |
+|---|---|
+| GHL2025, Lemma `Banded-sparse-access-oracle and resource cost`, arXiv:2506.20478v2 | Defines $\hat O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n = |r_{si}\rangle^n|i\rangle^n$ for a $2^l$-sparse banded matrix, with $s$ living in the padded sparse-index register. |
+| GHL2025, Remark `sparsity maximum`, arXiv:2506.20478v2 | Uses the largest diagonal sparsity index for the Robin example. |
+| GHL2025, one-term Robin construction before Theorem `One-term block-encoding`, arXiv:2506.20478v2 | States that zeros can be included in the set of nonzero elements, so the construction uses diagonal sparsity $\kappa$. |
+| GHL2025, Eq. `ROBIN clarified`, arXiv:2506.20478v2 | Sums over $s=0,\dots,\kappa-1$ in the boundary and bulk wavefunction slices. |
+
+Therefore the row-dependent valid-branch predicate is useful as an audit of
+which branches carry nonzero Robin stencil data, but treating it as a hard
+domain restriction would drop zero-amplitude sparse branches that the paper
+keeps in the $\kappa$-wide register.  In faithful mode this is contract drift.
+
+The current Lean state should be read as follows:
+
+| Lean item | Faithful status |
+|---|---|
+| `robinSparseColumnBranchValid` | classifies nonzero row-dependent stencil branches; it is not the full Lemma 1 source domain |
+| `bandedSparseAccessPaperValidCleanSource` | audit predicate, not wired into the active matrix |
+| `oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3` | proves the current full clean-domain skeleton is not injective |
+| `bandedSparseAccessPaperImage` | active Lemma 1 image skeleton on all clean padded sparse-register branches, but its unused-branch behavior is not yet a faithful unitary extension |
+
+The next lower work should introduce a contract for the unused-branch extension
+instead of proving injectivity for the current colliding skeleton.  The
+extension must agree with Lemma 1 on branches represented by
+`robinSparseColumnBranchValid`; for invalid zero-amplitude branches it must
+record a separate injective, reversible image rule or keep that rule as an
+explicit `proved := false` obligation.  It must not change
+`oneTermRobinGate_O_D_BS`, `oneTermRobinGate_O_D_BS_dagger`, the gate list, or
+any unitarity, dagger-cleanup, or block-correctness flag.
+
+### Next Lower Packet: O_D^BS Unused-Branch Extension Contract
+
+Allowed write scope:
+
+| Path | Allowed edits |
+|---|---|
+| `QuantumBlockEncoding/GHL2025.lean` | add source-domain and unused-branch extension contract declarations only |
+| `Tests/Basic.lean` | focused tests for the new contract fields and false proof flags |
+| `conversion-windows/QBE-AUTO-002.md` and `proof-obligations/QBE-AUTO-002.md` | synchronize the contract map |
+| `research-wiki/cited-results/GHL2025.md` | keep the cited-result status at `contract-only` or `obligation` |
+| `proof-attempts/` | record failed fixed theorem attempts |
+
+Do not edit `CircuitSemantics.lean`, `RobinMatrix.lean`, the active gate list,
+or the legacy helper matrices in this packet.
+
+Target declarations:
+
+| Target | Required interface | Acceptance |
+|---|---|---|
+| unused-branch classifier | `bandedSparseAccessPaperUnusedSparseBranch p j` or equivalent | true exactly when the padded input is clean and the row-dependent sparse branch is invalid |
+| extension contract record | `BandedSparseAccessUnusedBranchExtensionContract` or equivalent | records paper agreement on valid branches, unused-branch injectivity, full clean-domain injectivity, dagger cleanup, and unitary extension as `ObligationRecord` fields with `proved := false` |
+| collision classification theorem | theorem over the $n=3,\kappa=7$ collision columns | column `0` is valid, column `48` is unused, both remain clean under `bandedSparseAccessPaperCleanInput`, and no proof flag changes |
+| active-matrix guard tests | tests by `rfl` or `native_decide` | active forward/dagger matrices and all O_D^BS, SWAP, dagger-cleanup, and block-correctness flags remain unchanged |
+
+The lower packet succeeds only if `python3 tools/qbe.py check`, `lake build`,
+and `lake build Tests` pass.  It should also run the semantic-gap grep from the
+task contract and report any hits without hiding them.
+
+### 2026-05-23 Lower Update: Unused-Branch Extension Contract
+
+Lean now has the first contract slot for the faithful unused-branch extension:
+`bandedSparseAccessPaperUnusedSparseBranch` classifies columns that satisfy the
+clean padded-register condition but fail the row-dependent nonzero-stencil
+predicate.  The record `BandedSparseAccessUnusedBranchExtensionContract` stores
+the current active image index plus false obligations for valid-branch
+agreement, the unused-branch image rule, unused-branch injectivity, full
+clean-domain injectivity, dagger cleanup, and unitary extension.
+
+The theorem
+`bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3` keeps
+the boundary collision visible: for $n=3,\kappa=7$, column `0` is valid, column
+`48` is an unused branch, and the active image still collides.  This is a
+contract map, not a new proof of correctness.  The active forward and dagger
+gate matrices, `daggerCleanup.proved`, both O_D^BS unitarity flags, SWAP
+unitarity, and block correctness remain unchanged and false where previously
+false.
+
+The cleanup route also has a narrow bridge
+`bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange`.  It
+extracts the clean padded-register hypothesis from
+`bandedSparseAccessPaperValidCleanSource` and reuses the existing cleanup
+candidate wrapper.  It does not prove that the valid-clean-source predicate is
+the full faithful domain, and it does not discharge the unused-branch extension
+obligations.
+
+### 2026-05-23 Middle Update: Unused-Branch Contract Bridge
+
+Lean now also has
+`bandedSparseAccessUnusedBranchExtensionContract_of_unusedBranch`.  This is a
+small proof-DAG bridge for the next reversible-extension packet.  For any
+column satisfying `bandedSparseAccessPaperUnusedSparseBranch p j = true`, it
+packages the following facts:
+
+| Fact | Status |
+|---|---|
+| the column is still in the clean padded-input domain | proved by the classifier bridge |
+| the row-dependent valid sparse-branch classifier is false | proved by the classifier bridge |
+| the contract marks this column as an unused sparse branch | proved by unfolding the contract |
+| `unusedBranchImageRule`, `unusedBranchInjective`, `fullCleanDomainInjective`, `daggerCleanup`, and `unitaryExtension` | all remain `proved := false` |
+
+This bridge does not choose a reversible image for the unused branch.  It only
+prevents later work from treating an unused clean branch as either non-clean or
+already handled by the valid-branch cleanup route.
+
+### Next Lower Packet: O_D^BS Unused-Branch Image Rule
+
+The next fixed lower packet should target one interface: a candidate image rule
+for unused zero-amplitude sparse branches.  The paper contract remains Lemma 1,
+but the current active image is known to collide on unused boundary branches, so
+the image rule must be recorded separately from `bandedSparseAccessPaperImage`.
+
+Allowed write scope:
+
+| Path | Allowed edits |
+|---|---|
+| `QuantumBlockEncoding/GHL2025.lean` | add only declarations for the unused-branch image-rule interface and its false obligations |
+| `Tests/Basic.lean` | add focused classifier, false-flag, and active-matrix guard tests |
+| `conversion-windows/QBE-AUTO-002.md`, `proof-obligations/QBE-AUTO-002.md`, and `research-wiki/cited-results/GHL2025.md` | synchronize the contract map and cited-results status |
+| `proof-attempts/` | record a failed fixed image-rule theorem if Lean exposes an obstruction |
+
+Required contract shape:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `odbs_unused_branch_classifier_bridge` | expose clean-input, invalid-branch, unused-branch, and false extension fields from the unused classifier | `bandedSparseAccessPaperUnusedSparseBranch` | `bandedSparseAccessUnusedBranchExtensionContract_of_unusedBranch` | unused image rule, injectivity audit | O_D^BS | proved contract bridge; no flag promotion |
+| `odbs_unused_branch_image_rule` | specify or leave explicit the reversible image rule for clean invalid sparse branches | classifier bridge, source audit for zero-amplitude branches | `BandedSparseAccessUnusedBranchImageRuleContract`, `bandedSparseAccessUnusedBranchImageRuleContract` | full clean-domain injectivity, dagger cleanup | O_D^BS | interface defined with `proposedImageIndex = none`; proof flags false; no active matrix rewrite |
+| `odbs_valid_branch_agreement` | prove the extension agrees with Lemma 1 on valid sparse branches | `bandedSparseAccessPaperValidCleanSource`, active paper image | planned agreement theorem or obligation field | final O_D^BS cleanup route | O_D^BS | obligation |
+
+The lower packet must not prove injectivity, unitarity, dagger cleanup, or block
+correctness by using the current colliding active image.  If no faithful image
+rule can be justified from the paper, record that as an obligation rather than
+choosing a replacement construction.
+
+### Lower Update: Unused-Branch Image-Rule Interface
+
+Lean now defines `BandedSparseAccessUnusedBranchImageRuleContract` and
+`bandedSparseAccessUnusedBranchImageRuleContract`.  The contract exposes the
+source column, extracted registers, current active image, and branch
+classification, but keeps `proposedImageIndex = none` because this cycle did
+not identify a paper-backed reversible image for unused branches.
+
+The theorem `bandedSparseAccessUnusedBranchImageRuleContract_flags_false`
+pins the image-rule, finite-image, collision-separation, and valid-branch
+agreement fields at `proved = false`.  The theorem
+`bandedSparseAccessUnusedBranchImageRuleContract_of_unusedBranch` bridges the
+unused-branch classifier into this image-rule interface.  The existing
+`BandedSparseAccessUnusedBranchExtensionContract` now carries this nested
+image-rule contract, while `bandedSparseAccessPaperImage`,
+`bandedSparseAccessPaperMatrix`, and both active O_D^BS gates are unchanged.
+
+### 2026-05-23 Middle Sync: Full Clean-Domain Contract Packet
+
+The per-column image-rule interface is now synchronized.  The next lower packet
+should lift it into a paper-level full clean-domain contract, not into a proof
+of injectivity.  The source contract remains GHL2025 Lemma 1:
+
+$$
+O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n
+=
+|r_{si}\rangle^n|i\rangle^n .
+$$
+
+The paper also keeps zero-amplitude sparse branches inside the $\kappa$-wide
+register in the one-term Robin construction, so the wrapper must track both
+valid row-dependent branches and clean unused branches.  No cited sparse-oracle
+completion theorem has been recorded.  Therefore the wrapper must keep the
+unused-branch image formula unspecified and all semantic fields false.
+
+Allowed write scope for lower:
+
+| Path | Allowed edits |
+|---|---|
+| `QuantumBlockEncoding/GHL2025.lean` | add a paper-level full clean-domain extension contract wrapper only; do not rewrite `bandedSparseAccessPaperImage`, matrices, gates, or proof flags |
+| `Tests/Basic.lean` | add focused false-flag, nested-contract, and active-matrix guard tests |
+| `conversion-windows/QBE-AUTO-002.md`, `proof-obligations/QBE-AUTO-002.md`, `paper-notes/GHL2025_RobinOneTerm.tex`, `research-wiki/cited-results/GHL2025.md` | synchronize the contract map and cited-results status |
+| `proof-attempts/` | record any failed fixed theorem attempt if the wrapper proof exposes a reusable subgoal |
+
+Accepted Lean-facing contract:
+
+| Target | Required interface | Acceptance |
+|---|---|---|
+| full clean-domain wrapper record | `structure BandedSparseAccessFullCleanDomainExtensionContract` | fields include the Lemma 1 source anchor, classifier names for `cleanInput`, `validSparseBranch`, `validCleanSource`, `unusedSparseBranch`, per-column nested contracts, and `ObligationRecord` fields for valid-branch agreement, unused-branch image specified/finite, unused-branch injectivity, full clean-domain injectivity, dagger cleanup, and unitary extension |
+| default wrapper | `def bandedSparseAccessFullCleanDomainExtensionContract (p : OneTermRobinParameters)` | reuses the existing per-column classifiers and contracts; keeps every unused-branch image unspecified through nested `proposedImageIndex = none`; active O_D^BS matrix declarations are unchanged |
+| false-flag theorem | `theorem bandedSparseAccessFullCleanDomainExtensionContract_flags_false` | proves every new semantic obligation has `proved = false`; also exposes that the nested image-rule contract still has `proposedImageIndex = none` and false image-rule flags |
+| guard theorem or tests | focused tests in `Tests/Basic.lean` | pin `(oneTermRobinGate_O_D_BS p).unitary.proved = false`, `(oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false`, `(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved = false`, and that active matrices still use `bandedSparseAccessPaperMatrix` and `bandedSparseAccessPaperDaggerMatrix` |
+
+If the lower packet wants to use a general reversible-extension theorem to fill
+the unused branches, it must first add a new cited-results ledger entry with
+status `paper-cited`, `classic-unformalized`, or `obligation`.  Without that
+source, the full clean-domain wrapper is only an explicit obligation map.
+
+### 2026-05-23 Middle Sync: Full Clean-Domain Wrapper Accepted
+
+The lower result now matches the requested Phase 1 contract shape.  Lean defines
+`BandedSparseAccessFullCleanDomainExtensionContract` and
+`bandedSparseAccessFullCleanDomainExtensionContract`; the wrapper combines the
+clean padded-input predicate, the valid nonzero-stencil branch classifier, the
+unused-branch classifier, the nested unused-branch image-rule contract, and
+paper-level obligations for agreement, finite images, injectivity, dagger
+cleanup, and unitary extension.
+
+The accepted wrapper does not choose an image for unused zero-amplitude sparse
+branches.  The nested image-rule contract still has
+`proposedImageIndex = none`, and
+`bandedSparseAccessFullCleanDomainExtensionContract_flags_false` proves that
+all new semantic fields remain `proved = false`.  The bridge
+`bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch` only
+translates an unused-branch classifier proof into the wrapper interface; it
+does not repair the active-image collision.
+
+| Accepted item | Lean declaration | Status |
+|---|---|---|
+| full clean-domain wrapper | `BandedSparseAccessFullCleanDomainExtensionContract`, `bandedSparseAccessFullCleanDomainExtensionContract` | defined obligation map |
+| false-flag guard | `bandedSparseAccessFullCleanDomainExtensionContract_flags_false` | proved; no proof-flag promotion |
+| unused-branch wrapper bridge | `bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch` | proved classifier bridge; no image formula |
+| local clean-domain split | `bandedSparseAccessPaperCleanDomainSplit_iff`, `bandedSparseAccessPaperCleanDomainSplit_disjoint`, `bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit` | clean padded input splits into valid or unused branches; semantic `cleanDomainSplit.proved` remains false |
+| active matrix guard | tests in `Tests/Basic.lean` | forward/dagger matrices still use `bandedSparseAccessPaperMatrix` and `bandedSparseAccessPaperDaggerMatrix` |
+
+Next lower work should not attempt O_D^BS injectivity, unitarity, dagger cleanup,
+or block correctness until a paper-backed unused-branch image formula or a
+recorded external reversible-extension result exists in
+`research-wiki/cited-results/GHL2025.md`.
+
+---
+
+## 2026-05-23 Middle Dependency Decision: Unused Zero-Amplitude Branches
+
+This cycle performs the source-contract audit requested by upper.  The
+decision is a human-blocking obligation, not a proof-search packet.  The
+current public source anchors are GHL2025 Lemma 1 and Fig. 1-term Robin,
+arXiv:2506.20478, plus the QBE source-domain audit that zero-amplitude sparse
+branches remain inside the $\kappa$-wide sparse register in the one-term Robin
+construction.
+
+The accepted dependency status is recorded in
+`research-wiki/cited-results/GHL2025.md` as
+`QBE.ODBS.UnusedZeroBranchExtension` with status `obligation`.  No external
+reversible-extension theorem is accepted for this step.  Therefore no lower
+agent should use a generic completion theorem, injectivity argument, or
+permutation-matrix route to close O_D^BS until a human supplies an exact source
+or approves a new cited result.
+
+Required Lean-facing state:
+
+| Item | Required state |
+|---|---|
+| source decision record | `bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed = false` and `dependency.proved = false` |
+| active forward matrix | `oneTermRobinGate_O_D_BS p`.matrix remains `bandedSparseAccessPaperMatrix p` |
+| active dagger matrix | `oneTermRobinGate_O_D_BS_dagger p`.matrix remains `bandedSparseAccessPaperDaggerMatrix p` |
+| unused-branch image choice | `BandedSparseAccessUnusedBranchImageRuleContract.proposedImageIndex = none` |
+| full clean-domain wrapper | all semantic fields in `BandedSparseAccessFullCleanDomainExtensionContract` remain `proved = false` |
+| O_D^BS flags | forward correctness, dagger cleanup, and both O_D^BS unitarity flags remain `false` |
+| block extraction | `blockProjection.proved` and `blockCorrect.proved` remain `false` |
+
+Proof-DAG dependency row:
+
+| Block | Interface | Paper source | Lean declaration | Depends on | Reused by | Status |
+|---|---|---|---|---|---|---|
+| `odbs_unused_zero_branch_source_decision` | decide whether clean zero-amplitude sparse branches have a faithful reversible image rule, or mark the dependency as human-blocking | GHL2025 Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478; cited-results row `QBE.ODBS.UnusedZeroBranchExtension` | `BandedSparseAccessUnusedZeroBranchSourceDecision`, `bandedSparseAccessUnusedZeroBranchSourceDecision`, `bandedSparseAccessUnusedZeroBranchSourceDecision_flags_false`, `BandedSparseAccessUnusedBranchImageRuleContract.proposedImageIndex`, `BandedSparseAccessFullCleanDomainExtensionContract.unusedBranchImageSpecified`, `BandedSparseAccessFullCleanDomainExtensionContract.fullCleanDomainInjective` | source-domain audit, unused-branch classifier, full clean-domain wrapper | O_D^BS injectivity, dagger cleanup, unitary extension, final block extraction | obligation; compiled Lean guard keeps `lowerProofSearchAllowed = false`; no lower proof packet until a source-backed image rule or exact reversible-extension theorem is supplied |
+
+Lower-agent packet status:
+
+| Scope | Instruction |
+|---|---|
+| Lean edits | none assigned for injectivity, dagger cleanup, unitarity, or block extraction |
+| Allowed future source packet | add only a cited-results-backed image-rule contract for unused zero-amplitude sparse branches, then keep all proof flags false until reviewer accepts the source contract |
+| Disallowed route | do not prove a permutation/unitarity theorem over the current colliding active image; `oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3` remains the guard |
+| Required gate for any future Lean packet | `python3 tools/qbe.py check` plus `lake build && lake build Tests` |
+
+This resolves the cycle-14 middle responsibility: the current state is
+synchronized as a blocked dependency decision rather than an executable lower
+proof target.
 
 ---
 
