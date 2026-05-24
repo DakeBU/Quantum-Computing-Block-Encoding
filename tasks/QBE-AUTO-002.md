@@ -35,6 +35,60 @@ Proof-route populations are allowed only for fixed Lean statements whose
 failure produced useful lemmas.  They must not mutate the paper construction or
 displace the Phase 1 transcript objective.
 
+## Current Critical Correction: O_D^BS Sparse Slots
+
+Before any more `O_D^BS` unitarity, dagger-cleanup, or block-extraction proof
+search, fix the active formal target.
+
+The previous run treated the concrete theorem
+`oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3` as evidence for a
+paper-level unused-branch image gap.  The source audit now shows that this is
+too strong: the collision is evidence against the current **row-dependent Lean
+address model**, not against the paper theorem.
+
+Paper anchors:
+
+- Lemma `Diagonal sparsity`: the sparse index $s$ denotes a band/diagonal slot
+  chosen from the first-row band pattern.
+- Lemma `Banded-sparse-access-oracle`: the oracle uses
+  $r_{si}=r_{s0}+i \bmod 2^n$ and maps
+  $|0\rangle^{n-l}|s\rangle^l|i\rangle^n$ to
+  $|r_{si}\rangle^n|i\rangle^n$.
+- Remark `sparsity maximum`: the Robin heat example has $\kappa=7$ diagonal
+  slots, including two boundary-effect diagonals.
+- Before Theorem `1 term robin`: zeros may be included and the theorem sums
+  over $s=0,\dots,\kappa-1$.
+
+Faithful interpretation for this task:
+
+- `O_D^BS` must use a global sparse-slot/diagonal-offset enumeration.
+- Boundary or zero-amplitude entries should have coefficient value `0` in the
+  amplitude layer; their sparse slots must not be deleted from the clean
+  source domain and must not be folded to an identity address.
+- `robinSparseColumnMap` may remain as a rejected-model or matrix-entry helper,
+  but it must not be the active paper address for `O_D^BS` unless it is
+  refactored to implement the global formula $r_{s0}+i \bmod 2^n$.
+- The compiled collision witness should become a regression test for the old
+  row-dependent model, not a blocker that lower agents keep trying to prove
+  around.
+
+Next lower packets should implement this correction in order:
+
+1. Introduce a paper-faithful global diagonal-offset table for the one-term
+   Robin $\kappa=7$ construction.
+2. Define the paper address from that table, e.g. an address equivalent to
+   $r_{s0}+i \bmod 2^n$.
+3. Rewire `bandedSparseAccessPaperAddress`/`bandedSparseAccessPaperImage` to
+   the global-slot model only after middle records the source-contract map.
+4. Add tests showing that the old collision is absent in the corrected active
+   image while the old row-dependent helper still has its rejected-model
+   witness.
+5. Only then resume injectivity, dagger cleanup, and unitarity proof work.
+
+Do not spend this run on writing polish or broad library organization.  The
+documentation updates required in this run are only the minimal Lean/Markdown/
+LaTeX synchronization needed to record the corrected faithful contract.
+
 ## Source
 
 - Primary paper target: Nikita Guseynov, Xiajie Huang, Nana Liu, "Quantum
@@ -92,6 +146,12 @@ status, and dependent proof blocks before lower agents rely on them.  Reviewer
 must reject invented assumptions, unstated paper conditions, or vague
 "standard result" shortcuts.
 
+If the local TeX source contains a proof or proof sketch, middle must translate
+that proof structure before lower agents continue.  Each source proof step must
+be mapped to an existing Lean declaration, a planned local Lean lemma, an
+external cited-results row, or an explicit source-contract gap.  Upper should
+plan from this proof-translation map every cycle.
+
 ## Required Human-Facing Artifacts
 
 Every cycle that changes Lean declarations must update at least one of:
@@ -132,6 +192,41 @@ then theorem statements, then proof explanations tied to Lean declarations.
 Reviewer should audit this export only once per batch unless a proof flag or
 oracle contract changes.
 
+## Project-Paper Cadence
+
+The GHL2025 LaTeX proof export is not the final top-level paper by itself.  It
+is a case-study appendix for the project article:
+
+```text
+Auto-Lean-in-Sleep: Block Encoding for Quantum Computing
+```
+
+The main article should explain the automation system for Lean-checked
+gate-level block-encoding proof work: upper/middle/lower/reviewer roles,
+trial memory, source-dependency audit, proof-attempt memory, and the difference
+between faithful paper reproduction and exploratory oracle construction.
+GHL2025 is the first detailed appendix case.
+
+Writing cadence:
+
+- During Lean-heavy 6-hour cycles, do not spend lower-agent time polishing the
+  project article.
+- Middle should keep only the minimal conversion-window/proof-obligation notes
+  required for correctness and traceability.
+- After the 6-hour Lean-heavy loop completes, the final upper/middle/reviewer
+  audit may update the project-paper appendix map and figure todo list.
+- Full article-writing, figure drafting, and Overleaf-style polish are separate
+  writing batches after proof-state stabilization.
+
+Design references for the article:
+
+- YuanheZ/lean-stat-learning-theory: use as a style reference for Lean theorem
+  paper organization, appendices, and Lean-code exposition.
+- ARIS: use as a style reference for automation-system exposition and rich
+  diagrams.
+- Learning Beyond Gradients: cite and compare the hierarchical iteration and
+  memory-loop idea.
+
 ## Current Starting Point
 
 `CircuitSemantics.lean` now provides:
@@ -158,7 +253,22 @@ These are intentionally small.  They are a foundation, not the final proof.
    formula is reconciled with the paper's padded sparse-index register and
    cleanup by `(O_D^BS)^dagger`.
 
-0a. Complete the faithful transcript/contract map before non-critical proof
+0a. Correct the active `O_D^BS` address model as described in **Current
+    Critical Correction: O_D^BS Sparse Slots**.  This is the top priority for
+    the next 6-hour run.  Lower agents must not continue proving the old
+    row-dependent unused-branch extension blocker as if it were a paper gap.
+
+0a-fix. The 2026-05-24 6-hour run implemented the global sparse-slot address
+        route, but final review found stale active-route guards that still
+        freeze `QBE.ODBS.UnusedZeroBranchExtension` as the active blocker.
+        The next run must retire those stale guards from
+        `oneTermRobinBlockEncodingProofRoute` and tests.  Keep the old
+        row-dependent collision only as rejected-model memory, and make active
+        O_D^BS blockers refer to the global-slot source, restricted inverse/
+        cleanup interfaces, encoded out-of-range sparse values such as
+        `s = 7` for `kappa = 7`, or a precise full-space extension theorem.
+
+0b. Complete the faithful transcript/contract map before non-critical proof
     polishing.  SWAP bit-slice lemmas are useful proof-route memory, but the
     next critical-path work is the GHL `O_D^BS` register contract and the
     paper-level one-term block-encoding proof map.

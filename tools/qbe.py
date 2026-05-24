@@ -1113,6 +1113,20 @@ Mode discipline:
   search.  If the paper relies on an external result, middle must add a
   precise cited-results entry and lower must not invent the missing theorem or
   add a new assumption.
+- Faithful proof translation invariant: if the source TeX contains a proof or
+  proof sketch for the target statement, upper and middle must translate that
+  proof structure before declaring the Lean task blocked.  Each proof sentence
+  or displayed equation should be classified as an existing Lean declaration,
+  a new local Lean lemma, an external cited result, or a source-contract gap.
+  A `source-contract-gap` classification is acceptable only after the local TeX
+  and nearby citations have been checked and no paper-backed gate-level
+  ingredient has been found.
+- Sparse-oracle faithfulness invariant: do not confuse sparse-register slots
+  with nonzero coefficient values.  If the paper uses a fixed diagonal/band
+  enumeration and says zero entries can be included, the index oracle still
+  carries those slots; the coefficient or amplitude layer supplies zero.  A
+  Lean image function that deletes such slots or folds them to an identity
+  address is contract drift, not a paper proof gap.
 
 {strategy}
 
@@ -1130,6 +1144,13 @@ Human-facing correspondence rule:
   accepted Lean proof blocks into Markdown and LaTeX under `paper-notes/`,
   with a master Overleaf `main.tex` and section files.  Reviewer should then
   audit that the proof export matches the compiled Lean declarations.
+- Project-paper cadence: the paper-specific LaTeX export is an appendix input
+  to the larger article "Auto-Lean-in-Sleep: Block Encoding for Quantum
+  Computing".  During Lean-heavy cycles, do not spend lower-agent effort on
+  article polish.  In the final upper/middle/reviewer audit after a multi-hour
+  batch, middle may update the appendix map, project-paper outline, and figure
+  todo list so the compiled proof work can later be folded into the main
+  article efficiently.
 - For mathematical prose, use `.agents/skills/qbe-math-writing/SKILL.md`.
   Keep definitions before theorem statements, justify nontrivial claims, use
   precise citations, and avoid duplicated definitions.
@@ -1197,6 +1218,12 @@ TeX source around the statement, inspect nearby citations and bibliography
 entries, decide whether the missing ingredient is internal, external, or a QBE
 contract gap, and require middle to update `research-wiki/cited-results/` or
 `proof-obligations/` before lower agents continue.
+
+For paper statements that already have a TeX proof or proof sketch, require
+middle to produce a proof-translation packet: list the source proof steps,
+their Lean targets or existing declarations, and the exact external results
+needed.  The next lower packet should implement one item from this map, not a
+free-form search around the theorem.
 
 Require the middle agent to maintain two-way translation every cycle:
 paper/LaTeX-to-Lean for the next lower task, and Lean-to-Markdown/LaTeX for
@@ -1286,6 +1313,12 @@ contract gap.  Do not send lower agents to continue tactic search until this
 classification is written into the conversion window or proof-obligation
 ledger.
 
+When the paper contains a proof, translate the proof before planning lower
+work.  A middle packet should name the proof paragraph/equation anchors, list
+the proof steps in order, and map each step to an existing Lean declaration, a
+new local lemma target, an external cited-result row, or an explicit
+source-contract gap.  This proof-translation map is the input to lower agents.
+
 Use `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` to maintain a
 proof-DAG/reuse table whenever the same local argument would otherwise be
 proved several times.  Lower packets should target one block interface at a
@@ -1335,6 +1368,10 @@ Look for:
     stuck.  Reviewer should ask whether middle re-read the local TeX source and
     bibliography, whether the failure is internal/external/contractual, and
     whether the next lower packet is justified by that classification.
+12. Missing proof-translation map when the source TeX already contains a proof
+    or proof sketch.  Reviewer should reject broad lower proof search unless
+    middle mapped the paper proof steps to Lean declarations, local lemma
+    targets, cited-results entries, or explicit contract gaps.
 
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention and any added assumption or

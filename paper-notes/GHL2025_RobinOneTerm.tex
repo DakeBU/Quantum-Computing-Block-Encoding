@@ -161,14 +161,20 @@ twice cancels.  The key bit-arithmetic lemmas are:
   \item $d \gg n = 0$ when $d < 2^n$.
   \item Right-shift distributes over XOR.
 \end{itemize}
-Lean has proved the first register-image block,
-\texttt{swapOracleImage\_block1\_eq\_block2}: after \texttt{swapOracleImage},
-the low $n$-bit block equals the old high $n$-bit block.  The symmetric high
-block statement \texttt{swapOracleImage\_block2\_eq\_block1} remains planned.
-Only after both block statements are proved should the self-inverse property be
-used to derive injectivity, bijectivity on the $\texttt{Fin}$ domain, and the
-permutation-matrix theorem.  The SWAP gate obligation therefore remains
-\texttt{proved := false}.
+Lean has proved both register-image blocks:
+\texttt{swapOracleImage\_block1\_eq\_block2} proves that after
+\texttt{swapOracleImage} the low $n$-bit block equals the old high $n$-bit
+block, and \texttt{swapOracleImage\_block2\_eq\_block1} proves the symmetric
+high-block statement.  Lean also proves
+\texttt{swapOracleImage\_lt\_qubitDim}, which keeps the image inside the full
+finite basis.  The accepted self-inverse block adds
+\texttt{swapOracleDiff}, \texttt{swapOracleDiff\_preserved},
+\texttt{xor\_two\_shifted\_masks\_cancel}, and
+\texttt{swapOracleImage\_self\_inverse}.  The finite permutation bridge then
+proves \texttt{swapOracleImage\_injective},
+\texttt{swapOracleImage\_bijective}, row and column uniqueness for
+\texttt{swapOracleMatrix}, and \texttt{swapOracleMatrix\_is\_permutation}.
+The SWAP gate obligation is now \texttt{proved := true}.
 
 \subsection{Banded Sparse Access Oracle $O_D^{BS}$ Matrix}
 
@@ -609,7 +615,8 @@ Effective signal qubits &
 implemented (cycle 2) \\
 SWAP honest matrix &
 \texttt{GHL2025.swapOracleMatrix} &
-implemented (cycle 3) \\
+implemented (cycle 3), unitarity \textbf{proved} by
+\texttt{GHL2025.swapOracleMatrix\_is\_permutation} \\
 $O_D^{BS}$ column map &
 \texttt{GHL2025.robinSparseColumnMap} &
 implemented as stencil helper, reused to compute $r_{si}$ \\
@@ -1191,6 +1198,45 @@ the same \(N_D\) symbol, and the same coefficient-bound obligation.  These are
 definitional bridges only; the analytic and unitary proof flags remain
 \(\texttt{proved := false}\).
 
+\paragraph{Current shared \(N_D\) guard.}
+Middle rechecked Lemma~3, Eq.~(20), the boundary \(R_y\) angle equation, and
+Fig.~1-term Robin before assigning more proof search.  Lean now records the
+guard
+\[
+  \texttt{GHL2025.derivativeNormalizerNDSharedRoute\_flags\_false}.
+\]
+This theorem packages the current fixed route state: nonzero \(N_D\), division
+semantics, the coefficient bound, absolute-square semantics, square-root
+semantics, arccos semantics, half-angle semantics, and two-by-two unitarity
+remain false where they occur.  It also keeps
+\[
+  \texttt{GHL2025.oneTermRobinGate\_O\_DT\_S.unitary.proved}
+  =
+  \texttt{false},
+  \qquad
+  \texttt{GHL2025.oneTermRobinGate\_Ry\_boundary.unitary.proved}
+  =
+  \texttt{false}.
+\]
+This is proof-state synchronization, not an analytic theorem.
+
+\paragraph{Middle closeout for the packaged guard.}
+After the lower guard
+\[
+  \texttt{GHL2025.derivativeNormalizerNDSharedRoute\_sourceBoundAndFlags}
+\]
+compiled, middle re-audited Lemma~3, Eq.~(20), Eq.~\texttt{angles for Ry},
+and Fig.~1-term Robin.  The source contract is unchanged: both
+\(O_{D^T}^{S}\) and \(R_y^{\mathrm{boundary}}\) use the same coefficient
+source \(D_j^{(s)}\), the same normalizer \(N_D\), and the same bound
+\(N_D \geq \|D\|_{\max}\).  Lean records this only as typed route
+synchronization through \texttt{DerivativeNormalizerNDContract} and
+\texttt{DerivativeNormalizerNDSourceBound}.  Nonzero division, coefficient
+bounds, absolute-square semantics, square-root semantics, arccos semantics,
+half-angle identities, and two-by-two unitarity remain proof obligations.
+Neither affected gate-unitarity flag, nor any LCU or block-extraction flag, is
+promoted by this guard.
+
 \paragraph{Cycle 18 middle packet.}
 The \(O_D^{BS}\) route remains blocked by the unused zero-amplitude sparse
 branch source decision, and the shared \(N_D\) bridges for \(O_{D^T}^S\) and
@@ -1216,6 +1262,20 @@ paper normalizer
 and should keep \(N_f\) nonzero, division semantics, the \(N_f\) bound,
 orthogonality of the completion, unitary completion, and
 \texttt{FunctionOracleContract.amplitudeCorrect} as false obligations.
+
+\paragraph{Cycle 18 lower packet.}
+Lean now records the cited amplitude-oracle theorem as
+\texttt{GHL2025.FunctionOracleExternalAmplitudeSourceContract} with default
+\texttt{GHL2025.functionOracleExternalAmplitudeSourceContract}.  This transcript
+names GHL2025 Theorem ``Amplitude-oracle for piece-wise polynomial function'',
+Eq.~``coordinate oracle'', and the cited source arXiv:2411.01131.  The guard
+\texttt{GHL2025.functionOracleExternalAmplitudeSourceContract\_flags\_false}
+keeps the resource claim, external theorem formalization, nonzero \(N_f\),
+division semantics, theorem-amplitude correctness, and closure booleans false.
+The bridge
+\texttt{GHL2025.functionOracleAmplitudeProofRoute\_externalSourceContract}
+ties the per-column \(O_f\) amplitude route to this transcript without changing
+\texttt{GHL2025.functionOraclePaperMatrix} or promoting any analytic proof flag.
 
 \subsection{$O_f$ vs $O_{D^T}^S$ Double Encoding Audit (Resolved)}
 
@@ -1264,7 +1324,8 @@ All seven gates in the one-term Robin circuit now have nonzero matrix
 semantics in Lean: U\_indic, \(O_{D^T}^S\), \(R_y^{\text{boundary}}\),
 \(O_D^{BS}\), \(O_f\), SWAP, and \((O_D^{BS})^\dagger\).
 U\_indic unitarity is now proved via \texttt{indicatorOracleMatrix\_is\_permutation}.
-The remaining six gates are still proof-obligation carriers:
+SWAP unitarity is proved via \texttt{swapOracleMatrix\_is\_permutation}.
+The remaining five gates are still proof-obligation carriers:
 their \texttt{unitary.proved} fields remain false, and the exact paper
 rotation/block-extraction theorem is still open.
 
@@ -1333,6 +1394,479 @@ obligations \texttt{blockProjection.proved} and
 \texttt{defaultBandedSparseAccessPaperContract}.  This packet did not attempt
 entry-level normalization of the full \(n=3\) product, whose dimension is
 \(8192 \times 8192\).
+
+\subsection{Theorem-Level Proof-Route Contract}
+
+Define the Phase 1 route
+\[
+  \texttt{Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute}\;n.
+\]
+This Lean object packages the theorem tuple
+\texttt{GHL2025.defaultOneTermRobinTheoremData}, the circuit product
+\texttt{oneTermRobinCircuitSemantics}, the signal-index-zero target
+\texttt{oneTermRobinBlockExtractionTarget}, the circuit block claim, the
+Robin oracle composition record, and the cited-source blockers for
+\(O_D^{BS}\) and \(O_f\).
+
+The route records the normalizer agreement
+\[
+  \texttt{theoremData.alpha}
+  =
+  \texttt{blockClaim.target.normalizer}
+  =
+  \texttt{GHL2025.oneTermRobinNormalizer},
+\]
+which is the symbolic coefficient \(N_D N_f \kappa\).  It also records that
+the target matrix is \texttt{robinDerivativeMatrix}\(n\) and that the block
+projection uses signal index \(0\).
+
+The layout audit separates two counts.  The theorem-level block-encoding tuple
+uses
+\[
+  m_{\mathrm{theorem}}
+  =
+  \lceil\log_2 n\rceil+\lceil\log_2 G_f\rceil
+  +\lceil\log_2\kappa\rceil+4
+\]
+signal qubits and \(2n\) pure ancillas, as recorded by
+\texttt{defaultOneTermRobinTheoremData}.  The concrete matrix projection uses
+\texttt{effectiveRobinSignalQubits}, because the projection zeros every
+non-system wire in the register partition.  Lean proves
+\[
+  \texttt{effectiveRobinSignalQubits}
+  =
+  \texttt{oneTermRobinLayout.signalQubits}
+  + \texttt{odPureAncillaQubits} + 1.
+\]
+This bridge is recorded by
+\texttt{effectiveRobinSignalQubits\_eq\_layout\_signal\_plus\_visibleWorkspace}
+and the route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_layoutProjectionAudit}.  It is not
+a proof of pure-ancilla cleanup or block correctness; the corresponding flags
+remain false.
+
+The guard theorem
+\[
+  \texttt{Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute\_flags\_false}
+\]
+keeps the theorem in obligation mode.  In particular, the block-projection and
+block-correctness obligations remain false, the full circuit-unitarity
+obligation remains false, \(O_D^{BS}\) cleanup and unitary extension remain
+false, the unused-zero-branch source decision still has lower proof search
+disabled, the prior sparse-access source still does not close the unused-branch
+extension, the \(O_f\) external theorem remains an obligation, and the LCU
+composition field remains false.  This route is a synchronization contract for
+future proof work, not a proof of the block-encoding equation.
+
+\subsection{Historical Source Decision for the Row-Dependent Helper}
+
+The historical row-dependent sparse-branch blocker is the cited-results obligation
+\texttt{QBE.ODBS.UnusedZeroBranchExtension}.  It covers clean padded
+\(O_D^{BS}\) inputs whose sparse index is included in the Robin
+\(\kappa\)-wide enumeration but whose amplitude is zero for the row-dependent
+stencil.  This subsection is retained as rejected-model memory; it is no
+longer the active lower target for \(O_D^{BS}\).
+
+The current source transcript has three parts.  Lemma 1 of GHL2025 records the
+padded sparse-access map
+\[
+  O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n
+  =
+  |r_{si}\rangle^n|i\rangle^n.
+\]
+The one-term Robin text records that zeros may be included in the sparse
+enumeration, and Eq.~\texttt{ROBIN clarified} uses
+\(s=0,\ldots,\kappa-1\).  The figure caption asks
+\((O_D^{BS})^\dagger\) to restore the padded sparse-index register after SWAP.
+None of these source fragments gives an injective reversible image for clean
+unused zero-amplitude branches.
+
+Lean records this source decision through
+\texttt{bandedSparseAccessUnusedZeroBranchSourceDecision},
+\texttt{bandedSparseAccessRobinZeroInclusionSourceContract}, and the theorem
+route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsNoLowerProofSearch}.  The
+guard state is that lower proof search is disabled, the unused-branch image
+slot is still \texttt{none}, and the \(O_D^{BS}\) forward-correctness,
+dagger-cleanup, unitary-extension, LCU, and block-correctness flags remain
+false.
+
+The active route below supersedes this guard for new lower work.  New
+\(O_D^{BS}\) packets should use
+\texttt{bandedSparseAccessPaperGlobalSlotSource} and the global address
+\(r_{si}=r_{s0}+i \bmod 2^n\), not the row-dependent valid-branch predicate.
+
+The active \(O_D^{BS}\) address correction now separates this historical
+row-dependent source-decision guard from the paper address used by the matrix
+skeleton.  Lean defines \texttt{oneTermRobinGlobalSparseOffset} for the seven
+one-term Robin slots and
+\texttt{oneTermRobinGlobalSparseAddress} for
+\(r_{si}=r_{s0}+i \bmod 2^n\).  The active
+\texttt{bandedSparseAccessPaperAddress} uses this global-slot address, while
+\texttt{bandedSparseAccessRowDependentPaperAddress} and
+\texttt{bandedSparseAccessRowDependentPaperImage} preserve the old helper as a
+rejected-model regression.  The theorem
+\texttt{oneTermRobinGate\_O\_D\_BS\_globalSparseBoundaryNoCollision\_n3}
+checks that the old \(n=3\) boundary columns \(0\) and \(48\) no longer collide
+in the corrected active image; no forward-correctness, cleanup, unitarity, LCU,
+or block-correctness flag is promoted.
+
+\subsection{Cycle 1 Middle Source-Dependency Audit}
+
+The cycle-1 middle audit did not find a new source-backed image rule for clean
+unused zero-amplitude sparse branches.  The public anchors remain Lemma
+\texttt{Banded-sparse-access}, Theorem \texttt{1 term robin}, Eq.\
+\texttt{ROBIN clarified}, Fig.\ \texttt{1 term ROBIN}, and the cited prior PDE
+sparse-access primitive.
+
+The proof map is therefore unchanged.  Lemma 1 supplies the padded
+sparse-access equation, the Robin text keeps zeros in the sparse range
+\(s=0,\ldots,\kappa-1\), and the figure asks the dagger to restore the padded
+register.  None of those source fragments supplies an injective reversible
+image for clean unused branches.
+
+The Lean route records this as a guard contract through
+\texttt{bandedSparseAccessUnusedZeroBranchSourceDecision},
+\texttt{bandedSparseAccessRobinZeroInclusionSourceContract}, and
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsNoLowerProofSearch}.  The
+next lower packet is restricted to source-transcript or false-flag guard work
+unless a source supplies an exact unused-branch image formula or a named
+reversible-extension theorem.
+
+\subsection{Cycle 1 Middle Final Handoff}
+
+The final middle handoff for cycle 1 keeps the same source-dependency
+classification.  Lemma~\texttt{Banded-sparse-access} supplies the padded
+register equation for \(O_D^{BS}\), Eq.~\texttt{ROBIN clarified} keeps
+\(s=0,\ldots,\kappa-1\) in the Robin transcript, and Fig.~\texttt{1 term ROBIN}
+requires the dagger cleanup after SWAP.  The inspected source still does not
+give an injective reversible image for clean unused zero-amplitude sparse
+branches.
+
+The Lean proof route is therefore a guard route.  The declarations
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsPaperContractTranscript},
+\texttt{oneTermRobinBlockEncodingProofRoute\_sourceDecisionImageSlotsBlocked},
+\texttt{oneTermRobinBlockEncodingProofRoute\_activeOdbsGatePairWiring},
+\texttt{oneTermRobinBlockEncodingProofRoute\_activeOdbsGatePairPublicSources},
+\texttt{oneTermRobinBlockEncodingProofRoute\_blockProjectionNormalizerAudit},
+and
+\texttt{oneTermRobinBlockEncodingProofRoute\_sourceBlockerKeepsFinalFlagsFalse}
+may be used only to preserve the transcript and the false proof flags.  They
+do not prove injectivity, dagger cleanup, unitarity, LCU composition, or the
+final block-extraction equation.
+
+\subsection{Cycle 1 Post-Lower Source-Gate Freeze}
+
+The lower guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_sourceGateFreeze} packages the
+same source decision without adding a new source theorem.  It records that
+lower proof search is disabled, the direct and full-wrapper unused-branch
+image slots are both \texttt{none}, the active forward and dagger
+\(O_D^{BS}\) gates still point to the paper-image matrices, the block target
+uses signal index \(0\) and normalizer \(N_DN_f\kappa\), and the final theorem
+flags remain false.
+
+Two focused tests make the blocker visible at the matrix-entry level.  Source
+column \(8\) checks that the active paper-image matrix follows Lemma~1 and has
+entry \((40,8)=1\), while the legacy helper still has its historical
+\((4,8)=1\) entry.  Source columns \(0\) and \(48\) now check the corrected
+active global-slot image: the old row-dependent helper collides on these
+columns, while the active paper-image skeleton separates them.  These tests
+separate the active paper contract from the legacy helper and preserve the
+remaining proof obligations; they do not prove injectivity, cleanup, unitarity,
+LCU composition, or block extraction.
+
+\subsection{Cycle 1 Route-Collision Guard}
+
+The route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_activeCollisionBlocked\_n3}
+ties the historical row-dependent boundary collision to the theorem-level
+false flags while also recording that the corrected active global-slot image
+separates the old boundary columns \(0\) and \(48\).  It keeps the
+dagger-cleanup, unitary-extension, LCU, and final block-extraction flags false.
+
+This declaration is a guard, not a source theorem.  It may be used only as
+rejected-model memory for the old row-dependent helper.
+
+\subsection{Cycle 1 Contract-Drift and Projection Freeze}
+
+The route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_contractDriftColumn8Blocked\_n3}
+keeps the active \(O_D^{BS}\) paper-image matrix separated from the legacy
+helper.  For the \(n=3,\kappa=7\) regression, source column \(8\) follows
+Lemma~\texttt{Banded-sparse-access} and maps to row \(40\) in the active gate,
+while the old helper still has its row-\(4\) entry.  This is only a
+contract-drift guard; it does not prove injectivity, dagger cleanup, unitarity,
+LCU closure, or block extraction.
+
+The route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_projectionSourceFreeze} packages
+the signal-index-zero projection target with the same source blocker.  It
+records the normalizer \(N_DN_f\kappa\), keeps the block-projection and
+block-correctness obligations false, keeps the theorem-level circuit-unitary
+and block-extraction obligations false, keeps LCU correctness false, and keeps
+lower proof search disabled.
+
+The source-dependency classification for the active route has changed.  The
+old row-dependent unused-branch route remains a historical
+\texttt{contract-drift} audit.  The current missing ingredient is a
+\texttt{classical-lean-lemma}: finite bit-slice arithmetic and finite-map
+injectivity for \texttt{bandedSparseAccessPaperImage} on
+\texttt{bandedSparseAccessPaperGlobalSlotSource}.
+
+\subsection{Cycle 1 Wrapper-Slot Freeze}
+
+The route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_sourceDecisionWrapperSlotsBlocked\_n3}
+records that the concrete boundary column \(48\) still has no unused-branch
+image rule.  The direct
+\texttt{bandedSparseAccessUnusedBranchImageRuleContract} slot and the full
+clean-domain wrapper slot both keep \texttt{proposedImageIndex = none}; their
+image-specified obligations remain false.  The same guard keeps block
+correctness and LCU correctness false.
+
+This is a wrapper-level audit of the existing source-contract gap.  It does
+not alter either active \(O_D^{BS}\) matrix and does not prove injectivity,
+dagger cleanup, unitarity, LCU closure, or block extraction.
+
+\subsection{Cycle 1 Prior-PDE Source-Anchor Guard}
+
+The route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_priorPDESourceAnchorsTranscript}
+keeps the source import from the prior PDE sparse-access construction
+synchronized with the one-term Robin route.  It records the public
+arXiv:2405.12855v3 anchor, Definition~6, Lemma~1, the appendix source anchor,
+and the decomposition text
+\[
+  O_A^{BS} = U^{SUM}(U_A^{(l)} \otimes I^n).
+\]
+The same guard keeps the prior resource claim unproved, keeps the
+Robin-specific unused-branch image rule absent, and keeps lower proof search
+disabled.
+
+This source-anchor guard is not a reversible-extension theorem.  It preserves
+the cited transcript for the padded sparse-access primitive, but it does not
+specify an injective image for clean unused zero-amplitude sparse branches and
+does not promote any \(O_D^{BS}\), LCU, or block-extraction flag.
+
+\subsection{Cycle 1 Seven-Gate Flag Freeze}
+
+The route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_gateUnitaryFlags} keeps the active
+seven-gate matrix product synchronized with Fig.~\texttt{fig:1 term ROBIN}.
+The frozen flag vector is
+\[
+  [\texttt{true},\texttt{false},\texttt{false},\texttt{false},
+   \texttt{false},\texttt{true},\texttt{false}].
+\]
+The true entries are the local permutation certificates for
+\(U_{\mathrm{indic}}\) and SWAP.  The false entries are
+\(O_{D^T}^{S}\), \(R_y^{\mathrm{boundary}}\), \(O_D^{BS}\), \(O_f\), and
+\((O_D^{BS})^\dagger\).  The same guard keeps lower \(O_D^{BS}\) proof search
+disabled and keeps the theorem-level circuit-unitary and block-correctness
+flags false.
+
+This is a proof-state guard.  It does not add an unused-branch image rule,
+does not alter either active \(O_D^{BS}\) matrix, and does not prove
+injectivity, dagger cleanup, unitarity, LCU closure, or block extraction.
+
+\subsection{Cycle 1 Global-Source Cleanup Wrapper}
+
+The active \(O_D^{BS}\) source predicate is now
+\texttt{bandedSparseAccessPaperGlobalSlotSource}: the padded input to the
+\(O_D^{BS}\) register is clean, and the encoded sparse slot satisfies
+\(s<\kappa\).  This is the Lean-facing form of Lemma~\texttt{Banded-sparse-access},
+the zero-inclusion paragraph before Theorem~\texttt{1 term robin}, and
+Remark~\texttt{sparsity maximum}.
+
+The wrapper
+\texttt{bandedSparseAccessPostSwapCleanup\_of\_globalSlotSourceCandidate\_noRange}
+feeds this active global-source predicate into the existing conditional
+post-SWAP cleanup candidate.  The wrapper first extracts the clean padded-input
+fact and then reuses
+\texttt{bandedSparseAccessPostSwapCleanup\_of\_cleanSourceCandidate\_noRange}.
+It is a conditional cleanup witness only: it does not prove preimage
+uniqueness, the semantic \texttt{daggerCleanup} obligation, either
+\(O_D^{BS}\) unitarity flag, LCU correctness, or block extraction.
+
+The focused regression uses the \(n=3,\kappa=7\) source column \(48\).  That
+column is accepted by the active global-source predicate and rejected by the
+old row-dependent valid-source predicate, so the test confirms that the
+cleanup route no longer depends on deleting zero-amplitude boundary slots from
+the sparse register.
+
+\subsection{Cycle 1 Global-Source Inverse Interface}
+
+Lean now records the active inverse route as the obligation interface
+\texttt{BandedSparseAccessGlobalSlotInverseOnRangeContract}, with default
+record \texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract}.  The
+theorem
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_of\_globalSlotSource}
+proves that a global-source column satisfies the executable candidate checks,
+while keeping \texttt{inverseOnRange.proved},
+\texttt{uniquePreimage.proved},
+\texttt{imageInjectiveOnGlobalSource.proved},
+\texttt{daggerCleanup.proved}, and \texttt{unitaryExtension.proved} false.
+
+The next lower packet should prove one fixed injectivity or unique-preimage
+lemma over \texttt{bandedSparseAccessPaperGlobalSlotSource}.  It must not
+promote \(O_D^{BS}\) cleanup, either \(O_D^{BS}\) unitarity flag, LCU
+correctness, or final block extraction.
+
+\subsection{Cycle 1 Post-SWAP Unique-Preimage Block}
+
+Lean now proves the finite active-source uniqueness step for the corrected
+\(O_D^{BS}\) route.  The declaration
+\texttt{bandedSparseAccessPaperPostSwapPreimageCandidate\_sparseIndex\_eq}
+states that the candidate preimage writes the reverse global sparse slot into
+the clean padded \(O_D^{BS}\) register.  The declaration
+\texttt{bandedSparseAccessPaperPostSwapPreimageCandidate\_globalSlotSource\_of\_globalSlotSource}
+then proves that the candidate is itself in
+\texttt{bandedSparseAccessPaperGlobalSlotSource}.
+
+The theorem
+\texttt{bandedSparseAccessPaperPostSwapPreimageCandidate\_unique\_on\_globalSlotSource}
+uses the active image-injectivity block to show that any active global-source
+preimage of
+\[
+  \texttt{swapOracleImage}\ p\,
+  (\texttt{bandedSparseAccessPaperImage}\ p\ \texttt{source.val})
+\]
+is equal to the named candidate.  This is the Lean finite-register proof
+needed by the cleanup route after Lemma~\texttt{Banded-sparse-access} and
+Fig.~\texttt{fig:1 term ROBIN}.
+
+No semantic obligation flag changes in this step.  The fields
+\texttt{inverseOnRange.proved}, \texttt{uniquePreimage.proved},
+\texttt{imageInjectiveOnGlobalSource.proved}, \texttt{daggerCleanup.proved},
+and \texttt{unitaryExtension.proved} in
+\texttt{BandedSparseAccessGlobalSlotInverseOnRangeContract} remain false.
+The next proof-map step is a reviewed bridge from this compiled finite theorem
+to the cleanup contract; it must not prove \(O_D^{BS}\) unitarity, LCU
+correctness, or block extraction.
+
+\subsection{Cycle 1 Cleanup-Contract Map}
+
+Middle re-audited the GHL2025 source anchors before assigning the next
+cleanup-contract packet: Lemma~\texttt{Diagonal sparsity},
+Lemma~\texttt{Banded-sparse-access-oracle},
+Remark~\texttt{sparsity maximum}, the zero-inclusion paragraph before
+Theorem~\texttt{1 term robin}, Eq.~\texttt{eq: ROBIN clarified}, and
+Fig.~\texttt{fig:1 term ROBIN}.  These anchors give the global sparse-slot
+map
+\[
+  \ket{0}^{n-l}\ket{s}^l\ket{i}^n
+  \mapsto
+  \ket{r_{si}}^n\ket{i}^n,
+  \qquad
+  r_{si}=r_{s0}+i \bmod 2^n,
+\]
+and the circuit-level use of \((O_D^{BS})^\dagger\) after SWAP.  They do not
+provide a separate QBE theorem that promotes the semantic cleanup flag.
+
+The lower target for this packet is the non-promoting Lean theorem
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_cleanupContractMap}.
+For an active global-source column, it should combine
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_daggerCleanupBridge}
+with
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_uniquePreimageBridge}.
+The theorem should expose the contract post-SWAP target, the candidate
+preimage, the \texttt{BandedSparseAccessPostSwapCleanup} witness, uniqueness
+among active global-source preimages, and the transpose-style dagger matrix
+entry.  It must keep \texttt{daggerCleanup.proved},
+\texttt{unitaryExtension.proved}, both \(O_D^{BS}\) unitarity flags, LCU
+correctness, circuit unitarity, block projection, and block correctness false.
+
+\textbf{Lower cleanup-contract wrapper.}
+Lean now defines
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_cleanupContractMap}.
+For an active global-source column, the theorem returns the contract
+post-SWAP target, the candidate preimage, a
+\texttt{BandedSparseAccessPostSwapCleanup} witness, active-source uniqueness
+for any preimage of the same post-SWAP target, and the transpose-style dagger
+matrix entry.  It is only a wrapper over the existing dagger-cleanup bridge
+and unique-preimage bridge; the \texttt{inverseOnRange},
+\texttt{uniquePreimage}, \texttt{imageInjectiveOnGlobalSource},
+\texttt{daggerCleanup}, and \texttt{unitaryExtension} proof flags remain
+false.
+
+\textbf{Default paper-contract cleanup bridge.}
+Lean now defines
+\texttt{defaultBandedSparseAccessPaperContract\_cleanupRouteBridge}.  The
+theorem consumes
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_cleanupContractMap}
+and re-exposes the same post-SWAP cleanup route through
+\texttt{defaultBandedSparseAccessPaperContract}.  For an active global-source
+column it returns the post-SWAP target, the candidate preimage, a
+\texttt{BandedSparseAccessPostSwapCleanup} witness, active-source uniqueness
+for the candidate, and the transpose-style dagger matrix entry.
+
+This is still a proof-state bridge, not a semantic cleanup proof.  The default
+paper-contract fields \texttt{daggerCleanup.proved} and
+\texttt{unitaryExtension.proved} remain false, and both active \(O_D^{BS}\)
+gate-unitarity flags remain false.  The next step must decide the exact scope
+of any semantic cleanup theorem before attempting to promote a proof flag.
+The regression
+\texttt{defaultBandedSparseAccessPaperContract\_cleanupRouteBridge\_boundaryColumn\_n3}
+specializes the bridge to the historical boundary column \(48\): that column
+is active for \texttt{bandedSparseAccessPaperGlobalSlotSource}, rejected by the
+old row-dependent source classifier, and still leaves the cleanup and unitarity
+flags false.
+
+\textbf{Off-candidate dagger-zero bridge.}
+Lean now defines
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_daggerOffCandidate\_zero}.
+For the contract post-SWAP target, the theorem proves that an active
+global-source row different from the named candidate has entry \(0\) in the
+transpose-style \((O_D^{BS})^\dagger\) matrix.  It uses the compiled
+active-source unique-preimage bridge and the definition of
+\texttt{bandedSparseAccessPaperDaggerMatrix}.
+
+This is still a restricted active-domain matrix-entry fact.  It is not a
+full-space inverse theorem and it does not promote
+\texttt{daggerCleanup.proved}, either \(O_D^{BS}\) unitarity flag, LCU
+correctness, circuit unitarity, block projection, or block correctness.
+
+\textbf{Restricted dagger-column cleanup.}
+Lean now defines
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_restrictedDaggerColumnCleanup}.
+For the contract post-SWAP target, the theorem packages the named candidate
+preimage, the \texttt{BandedSparseAccessPostSwapCleanup} witness, the
+candidate dagger entry \(1\), and zero dagger entries for every other row in
+\texttt{bandedSparseAccessPaperGlobalSlotSource}.  The scope is exactly this
+active global-source column.  It does not cover non-clean rows, encoded sparse
+values outside \(s<\kappa\), a full clean-domain reversible extension, or a
+full-space inverse theorem.
+
+Lean now defines
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_restrictedDaggerColumnIndicator}
+and the theorem-route wrapper
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsRestrictedDaggerColumnIndicator}.
+For each active global-source row \texttt{other}, the entry is
+\[
+  \begin{cases}
+    1, & \text{if }\texttt{other.val = pre.val},\\
+    0, & \text{otherwise}.
+  \end{cases}
+\]
+The proof reuses the restricted cleanup theorem and keeps
+\texttt{daggerCleanup.proved}, \texttt{unitaryExtension.proved}, both
+\(O_D^{BS}\) unitarity flags, LCU correctness, circuit unitarity, block
+projection, and block correctness false.
+
+\textbf{Cleanup-scope decision.}
+Lean now defines
+\texttt{BandedSparseAccessCleanupScopeDecision} and
+\texttt{bandedSparseAccessCleanupScopeDecision}.  The selected cleanup theorem
+scope is the active global-source predicate
+\texttt{bandedSparseAccessPaperGlobalSlotSource}, with current evidence
+\texttt{bandedSparseAccessGlobalSlotInverseOnRangeContract\_restrictedDaggerColumnIndicator}.
+The route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsCleanupScopeDecision}
+synchronizes this decision with the one-term Robin proof route.  It explicitly
+does not select a full clean-domain theorem or a full-space theorem, and it
+keeps semantic cleanup promotion, \(O_D^{BS}\) unitary extension, LCU
+correctness, and block correctness false.
 
 \subsection{Cycle 11: Coeff.rat Arithmetic and U\_indic Bijection}
 

@@ -511,6 +511,13 @@ must be updated before lower agents rely on it.  If it finds a source-contract
 gap, the relevant proof flags remain false until the gap is resolved by a
 paper-backed contract or a precisely recorded external theorem.
 
+When the source TeX contains a proof or proof sketch, QBE also requires a proof
+translation map.  Middle agents should break the source proof into steps and
+map each step to an existing Lean declaration, a new local lemma, an external
+cited result, or a source-contract gap.  Upper agents plan lower work from this
+map so faithful-paper mode remains a translation of the paper proof rather
+than unconstrained tactic search.
+
 ## Proof Exports
 
 Compiled Lean proof blocks are exported for human reading under

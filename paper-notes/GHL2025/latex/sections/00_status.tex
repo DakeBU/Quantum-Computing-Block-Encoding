@@ -26,10 +26,11 @@ Indicator oracle permutation route &
 \Lean{indicatorOracleImage\_bijective},
 \Lean{indicatorOracleMatrix\_is\_permutation} &
 proved \\
-SWAP first bit-slice route &
-\Lean{swapOracleDiff\_lt\_two\_pow},
-\Lean{swapOracleImage\_block1\_eq\_block2} &
-proved partial block \\
+SWAP permutation route &
+\Lean{swapOracleImage\_self\_inverse},
+\Lean{swapOracleImage\_bijective},
+\Lean{swapOracleMatrix\_is\_permutation} &
+proved; SWAP \Lean{unitary.proved := true} \\
 \(\ODBS\) register-safety route &
 \Lean{bandedSparseAccessPaperImage\_lt\_qubitDim\_of\_address\_lt},
 \Lean{bandedSparseAccessPaperImage\_rowValue\_eq},
@@ -39,10 +40,106 @@ proved executable blocks \\
 \Lean{functionOraclePaperMatrix\_cleanBranch\_entry},
 \Lean{functionOraclePaperMatrix\_cleanWorkspace\_offBranch\_zero} &
 proved skeleton entries \\
+\(\Uf\) cited amplitude source transcript &
+\Lean{FunctionOracleExternalAmplitudeSourceContract},
+\Lean{functionOracleExternalAmplitudeSourceContract},
+\Lean{functionOracleExternalAmplitudeSourceContract\_flags\_false} &
+typed transcript; source-side flags false \\
+\(\Uf\) \(N_f\) amplitude route &
+\Lean{FunctionOracleAmplitudeProofRoute},
+\Lean{functionOracleAmplitudeProofRoute},
+\Lean{functionOracleAmplitudeProofRoute\_sourceAnchor},
+\Lean{functionOracleAmplitudeProofRoute\_externalSourceContract},
+\Lean{functionOracleAmplitudeProofRoute\_flags\_false} &
+typed contract route; analytic flags false \\
+\(\Uf\) cited amplitude theorem &
+\Lean{research-wiki/cited-results/GHL2025.md} row
+\Lean{GL2024.Thm5.AmplitudeOracle} &
+external cited-result recorded as an obligation \\
+\(\ODBS\) cited prior primitive &
+\Lean{research-wiki/cited-results/GHL2025.md} row
+\Lean{GHL2024.PDE.Def6Lemma1.ODBS} &
+external cited-result recorded; cleanup, unitarity, and final block
+obligations remain open \\
+\(\ODBS\) global-slot source predicate &
+\Lean{bandedSparseAccessPaperSparseIndexInKappa},
+\Lean{bandedSparseAccessPaperGlobalSlotSource},
+\Lean{bandedSparseAccessPaperGlobalSlotSource\_boundaryColumns\_n3},
+\Lean{bandedSparseAccessPaperGlobalSlotSource\_encodedOutOfRange\_n3} &
+active source is padded clean input with \(s<\kappa\); old columns \(0\) and
+\(48\) are both active global sources, while encoded \(s=7\) is out of range
+when \(\kappa=7\) \\
+\(\ODBS\) source-gate freeze guards &
+\Lean{oneTermRobinBlockEncodingProofRoute\_sourceGateFreeze};
+focused tests at source columns \(8\), \(0\), and \(48\) &
+active paper-image wiring and false flags pinned; row-dependent contract drift
+is rejected-model memory; no semantic flag promoted \\
+\(\ODBS\) source-decision freeze guard &
+\Lean{oneTermRobinBlockEncodingProofRoute\_sourceDecisionOnlyFreeze\_n3} &
+transcript identity, empty image slot, rejected row-dependent collision,
+active/legacy separation, signal-index-zero target, and false theorem flags
+synchronized for the \(n=3,\kappa=7\) audit \\
+\(\ODBS\) wrapper-slot freeze guard &
+\Lean{oneTermRobinBlockEncodingProofRoute\_sourceDecisionWrapperSlotsBlocked\_n3} &
+direct and full clean-domain wrapper image slots for boundary column \(48\)
+remain \Lean{none}; image-specified, block-correctness, and LCU flags remain
+false \\
+Seven-gate flag freeze guard &
+\Lean{oneTermRobinGateMatrixPlaceholders\_unitaryFlags},
+\Lean{oneTermRobinBlockEncodingProofRoute\_gateUnitaryFlags} &
+active gate flags remain
+\([\Lean{true},\Lean{false},\Lean{false},\Lean{false},\Lean{false},\Lean{true},\Lean{false}]\);
+only \(U_{\mathrm{indic}}\) and SWAP are locally proved, and theorem-level
+circuit-unitary and block flags remain false \\
+Seven-gate order-and-flag freeze guard &
+\Lean{oneTermRobinGateMatrixPlaceholders\_gateList},
+\Lean{oneTermRobinBlockEncodingProofRoute\_gateListAndFlags} &
+active matrix labels match Fig.~1-term Robin order while preserving the same
+flag vector and disabled \(\ODBS\) source decision \\
+One-term theorem route &
+\Lean{Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute},
+\Lean{oneTermRobinBlockEncodingProofRoute\_flags\_false},
+\Lean{oneTermRobinBlockEncodingProofRoute\_odbsSourceBlockers} &
+theorem-level wiring compiled; semantic blockers remain false \\
+Theorem layout/projection audit &
+\Lean{defaultOneTermRobinTheoremData\_signalQubits\_eq\_layout},
+\Lean{defaultOneTermRobinTheoremData\_pureAncillas\_eq\_resource},
+\Lean{effectiveRobinSignalQubits\_eq\_layout\_signal\_plus\_visibleWorkspace},
+\Lean{oneTermRobinBlockEncodingProofRoute\_layoutProjectionAudit} &
+theorem signal and \(2n\) pure-ancilla counts are separated from the full
+non-system projection dimension; cleanup and block flags remain false \\
+Block-projection claim guard &
+\Lean{oneTermRobinBlockEncodingProofRoute\_claimBlockCorrectFalse},
+\Lean{oneTermRobinBlockEncodingProofRoute\_signalZeroBlockIndices} &
+circuit-claim block correctness, target projection, and target block equation
+remain false; signal-zero row and column offsets are pinned \\
 \hline
 \end{longtable}
 
-The following remain obligations: SWAP unitarity, \(\ODBS\) injectivity and
-dagger cleanup, \(\ODT\) coefficient-normalizer and rotation unitarity,
-boundary-rotation analytic identities, \(\Uf\) unitary completion, and final
-block extraction with normalizer \(N_DN_f\kappa\).
+The following remain obligations: \(\ODBS\) injectivity and dagger cleanup,
+\(\ODT\) coefficient-normalizer and rotation unitarity,
+boundary-rotation analytic identities, \(\Uf\) nonzero \(N_f\), division
+semantics, normalizer bound, orthogonal completion, theorem-level amplitude
+correctness, unitary completion, and final block extraction with normalizer
+\(N_DN_f\kappa\).  The circuit-claim and target-level block flags are both
+explicitly false.  The current active \(\ODBS\) source domain is
+\Lean{bandedSparseAccessPaperGlobalSlotSource};
+\Lean{QBE.ODBS.UnusedZeroBranchExtension} is retained only as rejected-model
+memory for the old row-dependent helper.
+
+The latest \(\ODBS\) guards are regression checks, not semantic closure.
+Source column \(8\) separates the active Lemma 1 paper-image matrix from the
+legacy helper, while source columns \(0\) and \(48\) now witness the rejected
+row-dependent collision and the corrected active global-slot separation.  The guard
+\Lean{oneTermRobinBlockEncodingProofRoute\_sourceDecisionOnlyFreeze\_n3}
+packages these facts with the empty unused-branch image slot and the false
+theorem flags.  The newer guard
+\Lean{oneTermRobinBlockEncodingProofRoute\_sourceDecisionWrapperSlotsBlocked\_n3}
+adds the wrapper-level check for the same column \(48\): both the direct
+image-rule contract and the full clean-domain wrapper still have
+\Lean{proposedImageIndex = none}.
+The guard
+\Lean{oneTermRobinBlockEncodingProofRoute\_gateListAndFlags} also pins the
+active matrix order to \Lean{oneTermRobinCircuit}, so future source-contract
+packets cannot silently reorder the seven gates while preserving the same
+false-flag vector.

@@ -528,3 +528,645 @@ block-encoding formalization lifecycle.
 | 2026-05-23 13:32:17 | qbe.py run-cycle | `runs/20260523-133217-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
 | 2026-05-23 13:35:00 | qbe.py agent-note | `runs/20260523-133217-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
 | 2026-05-23 13:35:03 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-133503-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 13:43:57 | qbe.py agent-note | `runs/20260523-133217-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 13:43:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-134358-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 13:46:09 | qbe.py agent-note | `runs/20260523-133217-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 13:46:13 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-134613-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 13:47:09 | qbe.py run-cycle | `runs/20260523-134709-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 13:49:09 | qbe.py agent-note | `runs/20260523-134709-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 13:49:13 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-134913-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 13:52:58 | qbe.py agent-note | `runs/20260523-134709-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 13:53:02 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-135302-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 13:56:06 | qbe.py agent-note | `runs/20260523-134709-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 13:56:10 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-135610-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 13:56:37 | qbe.py run-cycle | `runs/20260523-135637-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 13:59:31 | qbe.py agent-note | `runs/20260523-135637-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 13:59:37 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-135937-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 14:06:46 | qbe.py agent-note | `runs/20260523-135637-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 14:06:50 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-140650-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 14:08:33 | qbe.py agent-note | `runs/20260523-135637-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 14:08:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-140833-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 14:09:01 | qbe.py run-cycle | `runs/20260523-140901-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 14:10:43 | qbe.py agent-note | `runs/20260523-140901-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 14:10:46 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-141046-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 14:13:49 | qbe.py agent-note | `runs/20260523-140901-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 14:13:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-141354-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 14:17:51 | qbe.py agent-note | `runs/20260523-140901-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 14:17:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-141758-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 14:18:52 | qbe.py run-cycle | `runs/20260523-141852-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 14:21:24 | qbe.py agent-note | `runs/20260523-141852-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 14:21:29 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-142129-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 14:24:17 | qbe.py agent-note | `runs/20260523-141852-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 14:24:21 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-142421-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 14:28:21 | qbe.py agent-note | `runs/20260523-141852-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 14:28:25 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-142825-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 14:29:41 | qbe.py run-cycle | `runs/20260523-142941-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 14:33:19 | qbe.py agent-note | `runs/20260523-142941-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 14:33:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-143323-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 14:40:03 | qbe.py agent-note | `runs/20260523-142941-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 14:40:08 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-144008-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 14:47:28 | qbe.py agent-note | `runs/20260523-142941-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 14:47:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-144728-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 14:48:44 | qbe.py run-cycle | `runs/20260523-144844-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 14:51:30 | qbe.py agent-note | `runs/20260523-144844-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 14:51:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-145130-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 14:58:36 | qbe.py agent-note | `runs/20260523-144844-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 14:58:36 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-145836-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 15:08:22 | qbe.py agent-note | `runs/20260523-144844-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 15:08:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-150828-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 15:09:14 | qbe.py run-cycle | `runs/20260523-150914-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 15:12:14 | qbe.py agent-note | `runs/20260523-150914-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 15:12:20 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-151220-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 15:20:13 | qbe.py agent-note | `runs/20260523-150914-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 15:20:18 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-152018-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 15:22:25 | qbe.py agent-note | `runs/20260523-150914-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 15:22:25 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-152225-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 15:22:55 | qbe.py run-cycle | `runs/20260523-152255-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 15:24:44 | qbe.py agent-note | `runs/20260523-152255-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 15:24:48 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-152448-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 15:31:25 | qbe.py agent-note | `runs/20260523-152255-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 15:31:29 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-153129-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 15:38:55 | qbe.py agent-note | `runs/20260523-152255-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 15:39:08 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-153908-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 15:39:58 | qbe.py run-cycle | `runs/20260523-153958-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 15:42:17 | qbe.py agent-note | `runs/20260523-153958-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 15:42:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-154223-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 15:47:21 | qbe.py agent-note | `runs/20260523-153958-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 15:47:24 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-154724-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 16:00:27 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-160027-QBE-AUTO-002-lower-attempt |
+| 2026-05-23 16:00:34 | qbe.py agent-note | `runs/20260523-153958-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 16:00:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-160043-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 16:02:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-160216-QBE-AUTO-002-lower-build |
+| 2026-05-23 16:02:43 | qbe.py run-cycle | `runs/20260523-160243-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 16:05:07 | qbe.py agent-note | `runs/20260523-160243-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 16:05:11 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-160511-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 16:09:08 | qbe.py agent-note | `runs/20260523-160243-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 16:09:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-160912-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 16:12:21 | qbe.py agent-note | `runs/20260523-160243-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 16:12:27 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-161227-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 16:13:10 | qbe.py run-cycle | `runs/20260523-161310-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 16:15:14 | qbe.py agent-note | `runs/20260523-161310-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 16:15:18 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-161518-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 16:17:54 | qbe.py agent-note | `runs/20260523-161310-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 16:17:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-161758-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 16:21:04 | qbe.py agent-note | `runs/20260523-161310-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 16:21:10 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-162110-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 16:21:46 | qbe.py run-cycle | `runs/20260523-162146-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 16:23:56 | qbe.py agent-note | `runs/20260523-162146-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 16:24:03 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-162403-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 16:28:40 | qbe.py agent-note | `runs/20260523-162146-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 16:28:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-162844-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 16:32:19 | qbe.py agent-note | `runs/20260523-162146-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 16:32:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-163223-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 16:32:49 | qbe.py run-cycle | `runs/20260523-163249-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 16:35:43 | qbe.py agent-note | `runs/20260523-163249-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 16:35:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-163543-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 16:40:16 | qbe.py agent-note | `runs/20260523-163249-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 16:40:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-164016-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 16:42:28 | qbe.py agent-note | `runs/20260523-163249-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 16:42:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-164233-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 16:43:04 | qbe.py run-cycle | `runs/20260523-164303-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 16:45:57 | qbe.py agent-note | `runs/20260523-164303-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 16:46:02 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-164602-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 16:50:03 | qbe.py agent-note | `runs/20260523-164303-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 16:50:07 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-165006-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 16:56:14 | qbe.py agent-note | `runs/20260523-164303-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 16:56:21 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-165621-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 16:56:59 | qbe.py run-cycle | `runs/20260523-165659-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 16:58:40 | qbe.py agent-note | `runs/20260523-165659-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 16:58:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-165844-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 17:01:18 | qbe.py agent-note | `runs/20260523-165659-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 17:01:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-170123-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 17:04:29 | qbe.py agent-note | `runs/20260523-165659-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 17:04:34 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-170434-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 17:05:10 | qbe.py run-cycle | `runs/20260523-170510-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 17:07:46 | qbe.py agent-note | `runs/20260523-170510-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 17:07:53 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-170753-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 17:10:48 | qbe.py agent-note | `runs/20260523-170510-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 17:10:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-171052-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 17:15:12 | qbe.py agent-note | `runs/20260523-170510-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 17:15:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-171516-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 17:16:06 | qbe.py run-cycle | `runs/20260523-171606-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 17:17:58 | qbe.py agent-note | `runs/20260523-171606-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 17:18:02 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-171802-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 17:20:46 | qbe.py agent-note | `runs/20260523-171606-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 17:20:50 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-172050-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 17:23:12 | qbe.py agent-note | `runs/20260523-171606-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 17:23:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-172312-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 17:23:56 | qbe.py run-cycle | `runs/20260523-172356-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 17:26:04 | qbe.py agent-note | `runs/20260523-172356-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 17:26:10 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-172610-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 17:30:35 | qbe.py agent-note | `runs/20260523-172356-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 17:30:40 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-173040-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 17:33:33 | qbe.py agent-note | `runs/20260523-172356-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 17:33:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-173333-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 17:34:11 | qbe.py run-cycle | `runs/20260523-173411-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 17:36:28 | qbe.py agent-note | `runs/20260523-173411-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 17:36:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-173632-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 17:39:18 | qbe.py agent-note | `runs/20260523-173411-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 17:39:22 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-173922-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 17:41:40 | qbe.py agent-note | `runs/20260523-173411-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 17:41:40 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-174140-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 17:42:18 | qbe.py run-cycle | `runs/20260523-174218-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 17:44:28 | qbe.py agent-note | `runs/20260523-174218-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 17:44:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-174433-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 17:48:14 | qbe.py agent-note | `runs/20260523-174218-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 17:48:18 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-174818-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 17:51:50 | qbe.py agent-note | `runs/20260523-174218-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 17:51:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-175154-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 17:52:31 | qbe.py run-cycle | `runs/20260523-175231-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 17:55:12 | qbe.py agent-note | `runs/20260523-175231-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 17:55:17 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-175517-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 17:57:50 | qbe.py agent-note | `runs/20260523-175231-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 17:57:50 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-175750-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 18:02:54 | qbe.py agent-note | `runs/20260523-175231-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 18:02:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-180258-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 18:03:34 | qbe.py run-cycle | `runs/20260523-180333-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 18:06:37 | qbe.py agent-note | `runs/20260523-180333-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 18:06:41 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-180641-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 18:09:24 | qbe.py agent-note | `runs/20260523-180333-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 18:09:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-180928-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 18:14:52 | qbe.py agent-note | `runs/20260523-180333-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 18:14:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-181452-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 18:15:38 | qbe.py run-cycle | `runs/20260523-181538-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 18:18:15 | qbe.py agent-note | `runs/20260523-181538-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 18:18:15 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-181815-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 18:22:45 | qbe.py agent-note | `runs/20260523-181538-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 18:22:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-182249-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 18:25:14 | qbe.py agent-note | `runs/20260523-181538-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 18:25:14 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-182514-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 18:25:47 | qbe.py run-cycle | `runs/20260523-182546-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 18:27:28 | qbe.py agent-note | `runs/20260523-182546-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 18:27:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-182732-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 18:31:29 | qbe.py agent-note | `runs/20260523-182546-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 18:31:36 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-183136-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 18:34:46 | qbe.py agent-note | `runs/20260523-182546-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 18:34:53 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-183453-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 18:35:26 | qbe.py run-cycle | `runs/20260523-183526-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 18:37:26 | qbe.py agent-note | `runs/20260523-183526-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 18:37:31 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-183731-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 18:41:51 | qbe.py agent-note | `runs/20260523-183526-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 18:41:55 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-184155-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 18:46:53 | qbe.py agent-note | `runs/20260523-183526-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 18:46:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-184657-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 18:47:48 | qbe.py run-cycle | `runs/20260523-184748-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 18:50:37 | qbe.py agent-note | `runs/20260523-184748-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 18:50:42 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-185042-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 18:54:00 | qbe.py agent-note | `runs/20260523-184748-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 18:54:06 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-185406-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 18:57:54 | qbe.py agent-note | `runs/20260523-184748-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 18:57:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-185757-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 18:58:29 | qbe.py run-cycle | `runs/20260523-185829-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 19:01:55 | qbe.py agent-note | `runs/20260523-185829-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 19:01:59 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-190159-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 19:04:47 | qbe.py agent-note | `runs/20260523-185829-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 19:04:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-190447-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 19:12:14 | qbe.py agent-note | `runs/20260523-185829-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 19:12:14 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-191214-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 19:12:50 | qbe.py run-cycle | `runs/20260523-191250-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 19:17:19 | qbe.py agent-note | `runs/20260523-191250-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 19:17:19 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-191719-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 19:25:41 | qbe.py agent-note | `runs/20260523-191250-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 19:25:41 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-192541-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 19:29:25 | qbe.py agent-note | `runs/20260523-191250-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 19:29:29 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-192929-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 19:30:09 | qbe.py run-cycle | `runs/20260523-193009-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 19:32:01 | qbe.py agent-note | `runs/20260523-193009-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 19:32:07 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-193207-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 19:35:40 | qbe.py agent-note | `runs/20260523-193009-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 19:35:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-193545-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 19:41:37 | qbe.py agent-note | `runs/20260523-193009-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-23 19:41:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-194143-QBE-AUTO-002-lower-handoff |
+| 2026-05-23 19:42:25 | qbe.py run-cycle | `runs/20260523-194225-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-23 19:44:18 | qbe.py agent-note | `runs/20260523-194225-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-23 19:44:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-194423-QBE-AUTO-002-upper-handoff |
+| 2026-05-23 19:47:38 | qbe.py agent-note | `runs/20260523-194225-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-23 19:47:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-194743-QBE-AUTO-002-middle-handoff |
+| 2026-05-23 19:52:37 | qbe.py agent-note | `runs/20260523-194225-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended reviewer note |
+| 2026-05-23 19:52:42 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260523-195242-QBE-AUTO-002-reviewer-handoff |
+| 2026-05-24 01:17:40 | qbe.py run-cycle | `runs/20260524-011739-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 01:20:17 | qbe.py agent-note | `runs/20260524-011739-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 01:20:22 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-012022-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 01:25:36 | qbe.py agent-note | `runs/20260524-011739-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 01:25:41 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-012541-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 01:29:29 | qbe.py agent-note | `runs/20260524-011739-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 01:29:36 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-012936-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 01:30:09 | qbe.py run-cycle | `runs/20260524-013009-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 01:32:28 | qbe.py agent-note | `runs/20260524-013009-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 01:32:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-013232-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 01:38:02 | qbe.py agent-note | `runs/20260524-013009-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 01:38:06 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-013806-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 01:40:39 | qbe.py agent-note | `runs/20260524-013009-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 01:40:39 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-014039-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 01:41:04 | qbe.py run-cycle | `runs/20260524-014104-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 01:42:55 | qbe.py agent-note | `runs/20260524-014104-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 01:42:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-014256-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 01:45:18 | qbe.py agent-note | `runs/20260524-014104-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 01:45:21 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-014521-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 01:49:06 | qbe.py agent-note | `runs/20260524-014104-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 01:49:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-014912-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 01:49:39 | qbe.py run-cycle | `runs/20260524-014939-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 01:52:46 | qbe.py agent-note | `runs/20260524-014939-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 01:52:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-015249-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 01:56:52 | qbe.py agent-note | `runs/20260524-014939-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 01:56:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-015652-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 02:00:31 | qbe.py agent-note | `runs/20260524-014939-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 02:00:34 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-020034-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 02:01:10 | qbe.py run-cycle | `runs/20260524-020110-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 02:03:23 | qbe.py agent-note | `runs/20260524-020110-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 02:03:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-020323-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 02:05:37 | qbe.py agent-note | `runs/20260524-020110-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 02:05:41 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-020541-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 02:10:23 | qbe.py agent-note | `runs/20260524-020110-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 02:10:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-021028-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 02:11:03 | qbe.py run-cycle | `runs/20260524-021103-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 02:13:11 | qbe.py agent-note | `runs/20260524-021103-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 02:13:11 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-021311-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 02:16:55 | qbe.py agent-note | `runs/20260524-021103-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 02:16:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-021658-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 02:22:08 | qbe.py agent-note | `runs/20260524-021103-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 02:22:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-022212-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 02:22:53 | qbe.py run-cycle | `runs/20260524-022253-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 02:24:36 | qbe.py agent-note | `runs/20260524-022253-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 02:24:55 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-022455-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 02:27:21 | qbe.py agent-note | `runs/20260524-022253-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 02:27:24 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-022724-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 02:32:59 | qbe.py agent-note | `runs/20260524-022253-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 02:33:06 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-023306-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 02:33:42 | qbe.py run-cycle | `runs/20260524-023342-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 02:35:57 | qbe.py agent-note | `runs/20260524-023342-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 02:36:01 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-023601-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 02:39:45 | qbe.py agent-note | `runs/20260524-023342-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 02:39:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-023949-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 02:44:30 | qbe.py agent-note | `runs/20260524-023342-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 02:44:36 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-024436-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 02:45:37 | qbe.py run-cycle | `runs/20260524-024537-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 02:47:08 | qbe.py agent-note | `runs/20260524-024537-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 02:47:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-024712-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 02:50:12 | qbe.py agent-note | `runs/20260524-024537-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 02:50:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-025016-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 02:53:13 | qbe.py agent-note | `runs/20260524-024537-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 02:53:17 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-025317-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 02:53:46 | qbe.py run-cycle | `runs/20260524-025346-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 02:55:33 | qbe.py agent-note | `runs/20260524-025346-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 02:55:38 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-025538-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 02:58:35 | qbe.py agent-note | `runs/20260524-025346-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 02:58:39 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-025839-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 03:02:27 | qbe.py agent-note | `runs/20260524-025346-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 03:02:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-030232-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 03:03:17 | qbe.py run-cycle | `runs/20260524-030317-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 03:06:05 | qbe.py agent-note | `runs/20260524-030317-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 03:06:11 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-030611-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 03:09:00 | qbe.py agent-note | `runs/20260524-030317-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 03:09:05 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-030905-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 03:13:33 | qbe.py agent-note | `runs/20260524-030317-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 03:13:39 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-031339-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 03:14:11 | qbe.py run-cycle | `runs/20260524-031411-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 03:15:39 | qbe.py agent-note | `runs/20260524-031411-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 03:15:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-031545-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 03:19:40 | qbe.py agent-note | `runs/20260524-031411-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 03:19:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-031944-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 03:24:43 | qbe.py agent-note | `runs/20260524-031411-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 03:24:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-032443-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 03:25:30 | qbe.py run-cycle | `runs/20260524-032530-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 03:28:12 | qbe.py agent-note | `runs/20260524-032530-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 03:28:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-032816-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 03:31:18 | qbe.py agent-note | `runs/20260524-032530-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 03:31:22 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-033122-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 03:35:10 | qbe.py agent-note | `runs/20260524-032530-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 03:35:15 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-033515-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 03:35:52 | qbe.py run-cycle | `runs/20260524-033552-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 03:37:47 | qbe.py agent-note | `runs/20260524-033552-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 03:37:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-033747-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 03:41:59 | qbe.py agent-note | `runs/20260524-033552-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 03:42:04 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-034204-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 03:45:20 | qbe.py agent-note | `runs/20260524-033552-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 03:45:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-034523-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 03:45:57 | qbe.py run-cycle | `runs/20260524-034557-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 03:48:42 | qbe.py agent-note | `runs/20260524-034557-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 03:48:42 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-034842-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 03:51:35 | qbe.py agent-note | `runs/20260524-034557-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 03:51:35 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-035135-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 03:55:48 | qbe.py agent-note | `runs/20260524-034557-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 03:55:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-035552-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 03:56:28 | qbe.py run-cycle | `runs/20260524-035628-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 03:58:44 | qbe.py agent-note | `runs/20260524-035628-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 03:58:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-035849-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 04:02:08 | qbe.py agent-note | `runs/20260524-035628-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 04:02:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-040212-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 04:06:52 | qbe.py agent-note | `runs/20260524-035628-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 04:06:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-040656-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 04:07:36 | qbe.py run-cycle | `runs/20260524-040736-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 04:09:29 | qbe.py agent-note | `runs/20260524-040736-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 04:09:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-040933-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 04:12:34 | qbe.py agent-note | `runs/20260524-040736-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 04:12:38 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-041238-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 04:15:05 | qbe.py agent-note | `runs/20260524-040736-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 04:15:09 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-041509-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 04:15:38 | qbe.py run-cycle | `runs/20260524-041538-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 04:17:57 | qbe.py agent-note | `runs/20260524-041538-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 04:18:01 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-041801-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 04:22:17 | qbe.py agent-note | `runs/20260524-041538-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 04:22:17 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-042217-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 04:26:49 | qbe.py agent-note | `runs/20260524-041538-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 04:26:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-042649-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 04:27:17 | qbe.py run-cycle | `runs/20260524-042717-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 04:29:36 | qbe.py agent-note | `runs/20260524-042717-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 04:29:39 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-042939-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 04:35:15 | qbe.py agent-note | `runs/20260524-042717-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 04:35:19 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-043519-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 04:39:06 | qbe.py agent-note | `runs/20260524-042717-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 04:39:09 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-043909-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 04:39:49 | qbe.py run-cycle | `runs/20260524-043949-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 04:42:07 | qbe.py agent-note | `runs/20260524-043949-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 04:42:11 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-044211-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 04:44:58 | qbe.py agent-note | `runs/20260524-043949-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 04:45:01 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-044501-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 04:49:27 | qbe.py agent-note | `runs/20260524-043949-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 04:49:27 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-044927-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 04:50:02 | qbe.py run-cycle | `runs/20260524-045001-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 04:51:46 | qbe.py agent-note | `runs/20260524-045001-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 04:51:50 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-045150-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 04:54:47 | qbe.py agent-note | `runs/20260524-045001-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 04:54:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-045447-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 04:58:37 | qbe.py agent-note | `runs/20260524-045001-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 04:58:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-045843-QBE-AUTO-002-lower-attempt |
+| 2026-05-24 04:58:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-045847-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 04:59:23 | qbe.py run-cycle | `runs/20260524-045923-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 05:01:30 | qbe.py agent-note | `runs/20260524-045923-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 05:01:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-050130-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 05:04:11 | qbe.py agent-note | `runs/20260524-045923-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 05:04:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-050412-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 05:07:56 | qbe.py agent-note | `runs/20260524-045923-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 05:07:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-050756-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 05:08:40 | qbe.py run-cycle | `runs/20260524-050839-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 05:10:37 | qbe.py agent-note | `runs/20260524-050839-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 05:10:41 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-051041-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 05:15:49 | qbe.py agent-note | `runs/20260524-050839-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 05:15:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-051554-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 05:20:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-052047-QBE-AUTO-002-lower-attempt |
+| 2026-05-24 05:20:52 | qbe.py agent-note | `runs/20260524-050839-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 05:20:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-052056-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 05:22:04 | qbe.py run-cycle | `runs/20260524-052204-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 05:23:54 | qbe.py agent-note | `runs/20260524-052204-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 05:23:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-052354-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 05:26:33 | qbe.py agent-note | `runs/20260524-052204-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 05:26:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-052633-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 05:31:13 | qbe.py agent-note | `runs/20260524-052204-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 05:31:20 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-053120-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 05:32:00 | qbe.py run-cycle | `runs/20260524-053200-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 05:33:50 | qbe.py agent-note | `runs/20260524-053200-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 05:33:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-053354-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 05:39:23 | qbe.py agent-note | `runs/20260524-053200-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 05:39:26 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-053926-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 05:44:28 | qbe.py agent-note | `runs/20260524-053200-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 05:44:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-054428-QBE-AUTO-002-lower-attempt |
+| 2026-05-24 05:44:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-054432-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 05:45:05 | qbe.py run-cycle | `runs/20260524-054505-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 05:46:48 | qbe.py agent-note | `runs/20260524-054505-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 05:46:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-054654-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 05:49:43 | qbe.py agent-note | `runs/20260524-054505-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 05:49:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-054947-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 05:53:42 | qbe.py agent-note | `runs/20260524-054505-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 05:53:46 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-055346-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 05:54:23 | qbe.py run-cycle | `runs/20260524-055423-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 05:56:25 | qbe.py agent-note | `runs/20260524-055423-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 05:56:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-055628-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 06:00:21 | qbe.py agent-note | `runs/20260524-055423-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 06:00:26 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-060026-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 06:02:32 | qbe.py agent-note | `runs/20260524-055423-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 06:02:35 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-060235-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 06:03:06 | qbe.py run-cycle | `runs/20260524-060306-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 06:05:30 | qbe.py agent-note | `runs/20260524-060306-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 06:05:35 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-060535-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 06:08:20 | qbe.py agent-note | `runs/20260524-060306-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 06:08:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-060823-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 06:13:28 | qbe.py agent-note | `runs/20260524-060306-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 06:13:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-061328-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 06:14:20 | qbe.py run-cycle | `runs/20260524-061420-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 06:16:21 | qbe.py agent-note | `runs/20260524-061420-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 06:16:25 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-061625-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 06:20:13 | qbe.py agent-note | `runs/20260524-061420-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 06:20:13 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-062013-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 06:25:11 | qbe.py agent-note | `runs/20260524-061420-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 06:25:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-062516-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 06:25:54 | qbe.py run-cycle | `runs/20260524-062554-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 06:28:03 | qbe.py agent-note | `runs/20260524-062554-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 06:28:08 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-062808-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 06:35:39 | qbe.py agent-note | `runs/20260524-062554-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 06:35:46 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-063546-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 06:39:34 | qbe.py agent-note | `runs/20260524-062554-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 06:39:38 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-063938-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 06:40:13 | qbe.py run-cycle | `runs/20260524-064013-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 06:42:31 | qbe.py agent-note | `runs/20260524-064013-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 06:42:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-064231-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 06:45:28 | qbe.py agent-note | `runs/20260524-064013-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 06:45:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-064528-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 06:47:17 | qbe.py agent-note | `runs/20260524-064013-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 06:47:20 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-064720-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 06:47:52 | qbe.py run-cycle | `runs/20260524-064752-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 06:50:06 | qbe.py agent-note | `runs/20260524-064752-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 06:50:10 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-065010-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 06:55:28 | qbe.py agent-note | `runs/20260524-064752-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 06:55:31 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-065531-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 06:59:40 | qbe.py agent-note | `runs/20260524-064752-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 06:59:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-065944-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 07:00:24 | qbe.py run-cycle | `runs/20260524-070024-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 07:02:13 | qbe.py agent-note | `runs/20260524-070024-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 07:02:17 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-070217-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 07:07:53 | qbe.py agent-note | `runs/20260524-070024-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 07:07:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-070756-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 07:13:25 | qbe.py agent-note | `runs/20260524-070024-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 07:13:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-071330-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 07:14:06 | qbe.py run-cycle | `runs/20260524-071406-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 07:15:44 | qbe.py agent-note | `runs/20260524-071406-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 07:15:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-071547-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 07:21:05 | qbe.py agent-note | `runs/20260524-071406-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 07:21:08 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-072108-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 07:21:37 | qbe.py agent-note | `runs/20260524-071406-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 07:25:09 | qbe.py agent-note | `runs/20260524-071406-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 07:25:14 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-072514-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 07:26:40 | qbe.py run-cycle | `runs/20260524-072640-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 07:28:52 | qbe.py agent-note | `runs/20260524-072640-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 07:28:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-072852-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 07:34:40 | qbe.py agent-note | `runs/20260524-072640-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 07:34:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-073447-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 07:39:01 | qbe.py agent-note | `runs/20260524-072640-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended reviewer note |
+| 2026-05-24 07:39:04 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-073904-QBE-AUTO-002-reviewer-handoff |
+| 2026-05-24 14:35:17 | qbe.py run-cycle | `runs/20260524-143517-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 14:37:03 | qbe.py agent-note | `runs/20260524-143517-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 14:37:06 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-143706-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 14:43:45 | qbe.py agent-note | `runs/20260524-143517-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 14:43:50 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-144350-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 15:01:57 | qbe.py agent-note | `runs/20260524-143517-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 15:02:00 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-150200-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 15:03:40 | qbe.py agent-note | `runs/20260524-143517-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 15:03:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-150343-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 15:04:06 | qbe.py run-cycle | `runs/20260524-150406-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 15:06:59 | qbe.py agent-note | `runs/20260524-150406-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 15:07:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-150712-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 15:18:25 | qbe.py agent-note | `runs/20260524-150406-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 15:18:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-151830-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 15:24:16 | qbe.py agent-note | `runs/20260524-150406-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 15:24:19 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-152419-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 15:25:06 | qbe.py run-cycle | `runs/20260524-152506-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 15:27:24 | qbe.py agent-note | `runs/20260524-152506-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 15:27:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-152728-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 15:40:09 | qbe.py agent-note | `runs/20260524-152506-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 15:40:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-154016-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 15:46:29 | qbe.py agent-note | `runs/20260524-152506-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 15:46:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-154633-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 15:47:01 | qbe.py run-cycle | `runs/20260524-154701-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 15:50:51 | qbe.py agent-note | `runs/20260524-154701-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 15:50:55 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-155055-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 15:57:38 | qbe.py agent-note | `runs/20260524-154701-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 15:57:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-155745-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 16:04:00 | qbe.py agent-note | `runs/20260524-154701-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 16:04:04 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-160404-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 16:04:25 | qbe.py run-cycle | `runs/20260524-160425-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 16:06:57 | qbe.py agent-note | `runs/20260524-160425-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 16:07:02 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-160702-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 16:11:48 | qbe.py agent-note | `runs/20260524-160425-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 16:11:48 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-161148-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 16:19:59 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-161959-QBE-AUTO-002-lower-attempt |
+| 2026-05-24 16:20:06 | qbe.py agent-note | `runs/20260524-160425-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 16:20:10 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-162010-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 16:20:35 | qbe.py run-cycle | `runs/20260524-162035-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 16:22:30 | qbe.py agent-note | `runs/20260524-162035-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 16:22:37 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-162237-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 16:28:00 | qbe.py agent-note | `runs/20260524-162035-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 16:28:00 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-162800-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 16:37:08 | qbe.py agent-note | `runs/20260524-162035-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 16:37:13 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-163713-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 16:37:50 | qbe.py run-cycle | `runs/20260524-163749-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 16:40:04 | qbe.py agent-note | `runs/20260524-163749-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 16:40:04 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-164004-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 16:45:59 | qbe.py agent-note | `runs/20260524-163749-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 16:46:03 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-164603-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 16:51:38 | qbe.py agent-note | `runs/20260524-163749-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 16:51:46 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-165146-QBE-AUTO-002-lower-attempt |
+| 2026-05-24 16:51:50 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-165150-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 16:52:30 | qbe.py run-cycle | `runs/20260524-165230-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 16:55:10 | qbe.py agent-note | `runs/20260524-165230-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 16:55:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-165516-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 17:03:23 | qbe.py agent-note | `runs/20260524-165230-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 17:03:29 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-170329-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 17:10:10 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-171010-QBE-AUTO-002-lower-attempt |
+| 2026-05-24 17:10:19 | qbe.py agent-note | `runs/20260524-165230-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 17:10:26 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-171026-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 17:11:02 | qbe.py run-cycle | `runs/20260524-171102-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 17:13:21 | qbe.py agent-note | `runs/20260524-171102-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 17:13:25 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-171325-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 17:19:24 | qbe.py agent-note | `runs/20260524-171102-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 17:19:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-171930-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 17:25:19 | qbe.py agent-note | `runs/20260524-171102-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 17:25:19 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-172519-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 17:26:54 | qbe.py agent-note | `runs/20260524-171102-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 17:26:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-172654-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 17:27:17 | qbe.py run-cycle | `runs/20260524-172717-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 17:30:17 | qbe.py agent-note | `runs/20260524-172717-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 17:30:21 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-173021-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 17:34:41 | qbe.py agent-note | `runs/20260524-172717-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 17:34:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-173445-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 17:41:43 | qbe.py agent-note | `runs/20260524-172717-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 17:41:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-174143-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 17:42:14 | qbe.py run-cycle | `runs/20260524-174214-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 17:43:49 | qbe.py agent-note | `runs/20260524-174214-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 17:44:01 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-174401-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 17:47:11 | qbe.py agent-note | `runs/20260524-174214-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 17:47:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-174716-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 17:49:27 | qbe.py agent-note | `runs/20260524-174214-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 17:49:27 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-174927-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 17:49:47 | qbe.py run-cycle | `runs/20260524-174947-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 17:53:53 | qbe.py agent-note | `runs/20260524-174947-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 17:53:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-175357-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 18:01:26 | qbe.py agent-note | `runs/20260524-174947-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 18:01:27 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-180127-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 18:08:27 | qbe.py agent-note | `runs/20260524-174947-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 18:08:31 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-180831-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 18:09:04 | qbe.py run-cycle | `runs/20260524-180904-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 18:12:21 | qbe.py agent-note | `runs/20260524-180904-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 18:12:21 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-181221-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 18:16:07 | qbe.py agent-note | `runs/20260524-180904-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 18:16:13 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-181613-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 18:21:25 | qbe.py agent-note | `runs/20260524-180904-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 18:21:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-182128-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 18:22:01 | qbe.py run-cycle | `runs/20260524-182201-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 18:24:06 | qbe.py agent-note | `runs/20260524-182201-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 18:24:11 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-182411-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 18:30:40 | qbe.py agent-note | `runs/20260524-182201-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 18:30:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-183045-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 18:37:54 | qbe.py agent-note | `runs/20260524-182201-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 18:37:59 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-183759-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 18:38:37 | qbe.py run-cycle | `runs/20260524-183836-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 18:41:45 | qbe.py agent-note | `runs/20260524-183836-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 18:41:51 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-184151-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 18:47:43 | qbe.py agent-note | `runs/20260524-183836-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 18:47:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-184749-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 18:54:04 | qbe.py agent-note | `runs/20260524-183836-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 18:54:09 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-185409-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 18:54:46 | qbe.py run-cycle | `runs/20260524-185446-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 18:57:25 | qbe.py agent-note | `runs/20260524-185446-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 18:57:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-185732-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 19:05:51 | qbe.py agent-note | `runs/20260524-185446-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 19:05:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-190557-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 19:12:36 | qbe.py agent-note | `runs/20260524-185446-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 19:12:40 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-191240-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 19:13:10 | qbe.py run-cycle | `runs/20260524-191310-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 19:15:02 | qbe.py agent-note | `runs/20260524-191310-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 19:15:07 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-191507-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 19:20:47 | qbe.py agent-note | `runs/20260524-191310-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 19:20:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-192052-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 19:26:40 | qbe.py agent-note | `runs/20260524-191310-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 19:26:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-192644-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 19:27:18 | qbe.py run-cycle | `runs/20260524-192718-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 19:29:51 | qbe.py agent-note | `runs/20260524-192718-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 19:29:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-192957-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 19:36:04 | qbe.py agent-note | `runs/20260524-192718-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 19:36:09 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-193609-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 19:41:27 | qbe.py agent-note | `runs/20260524-192718-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 19:41:31 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-194131-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 19:41:58 | qbe.py run-cycle | `runs/20260524-194158-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 19:43:46 | qbe.py agent-note | `runs/20260524-194158-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 19:43:51 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-194351-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 19:49:49 | qbe.py agent-note | `runs/20260524-194158-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 19:49:53 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-194953-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 19:55:06 | qbe.py agent-note | `runs/20260524-194158-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 19:55:10 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-195510-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 19:55:50 | qbe.py run-cycle | `runs/20260524-195550-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 19:57:40 | qbe.py agent-note | `runs/20260524-195550-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 19:57:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-195743-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 19:59:00 | qbe.py agent-note | `runs/20260524-195550-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 19:59:03 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-195903-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 20:06:08 | qbe.py agent-note | `runs/20260524-195550-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 20:06:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-200612-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 20:11:20 | qbe.py agent-note | `runs/20260524-195550-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 20:11:27 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-201127-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 20:11:27 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-201127-QBE-AUTO-002-lower-attempt |
+| 2026-05-24 20:11:51 | qbe.py run-cycle | `runs/20260524-201151-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 20:14:39 | qbe.py agent-note | `runs/20260524-201151-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 20:14:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-201445-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 20:19:13 | qbe.py agent-note | `runs/20260524-201151-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 20:19:17 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-201917-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 20:25:44 | qbe.py agent-note | `runs/20260524-201151-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 20:25:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-202549-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 20:26:30 | qbe.py run-cycle | `runs/20260524-202630-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 20:29:02 | qbe.py agent-note | `runs/20260524-202630-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 20:29:07 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-202906-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 20:29:54 | qbe.py agent-note | `runs/20260524-202630-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 20:30:01 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-203001-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 20:34:49 | qbe.py agent-note | `runs/20260524-202630-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 20:34:53 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-203453-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 20:42:22 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-204222-QBE-AUTO-002-lower-attempt |
+| 2026-05-24 20:42:31 | qbe.py agent-note | `runs/20260524-202630-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-05-24 20:42:35 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-204235-QBE-AUTO-002-lower-handoff |
+| 2026-05-24 20:43:02 | qbe.py run-cycle | `runs/20260524-204302-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-24 20:46:53 | qbe.py agent-note | `runs/20260524-204302-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-24 20:46:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-204657-QBE-AUTO-002-upper-handoff |
+| 2026-05-24 20:51:33 | qbe.py agent-note | `runs/20260524-204302-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-05-24 20:51:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-205145-QBE-AUTO-002-middle-handoff |
+| 2026-05-24 20:56:12 | qbe.py agent-note | `runs/20260524-204302-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended reviewer note |
+| 2026-05-24 20:56:22 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260524-205622-QBE-AUTO-002-reviewer-handoff |
+| 2026-05-25 01:35:05 | qbe.py run-cycle | `runs/20260525-013505-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-05-25 01:37:53 | qbe.py agent-note | `runs/20260525-013505-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-05-25 01:37:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260525-013757-QBE-AUTO-002-upper-handoff |

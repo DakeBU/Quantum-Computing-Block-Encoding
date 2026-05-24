@@ -51,6 +51,38 @@ example :
       ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ = 1 := by
   native_decide
 
+def testDiagonalGateMatrix : GateMatrix Rat 1 where
+  gate := Gate.oneQubit "D" 0
+  matrix := fun i j =>
+    if i = j then
+      if i.val = 0 then (2 : Rat) else (3 : Rat)
+    else 0
+  unitary := {
+    description := "non-unitary diagonal test matrix for product order only"
+    source := "Tests/Basic.lean"
+    proved := false
+  }
+
+def testFlipGateMatrix : GateMatrix Rat 1 where
+  gate := Gate.oneQubit "X" 0
+  matrix := fun i j => if i.val + j.val = 1 then (1 : Rat) else 0
+  unitary := {
+    description := "flip test matrix for product order only"
+    source := "Tests/Basic.lean"
+    proved := false
+  }
+
+-- evalGateMatrices uses circuit order `[D, X]` as the product `X * D`.
+example :
+    (evalGateMatrices [testDiagonalGateMatrix, testFlipGateMatrix])
+      ⟨0, by native_decide⟩ ⟨1, by native_decide⟩ = (3 : Rat) := by
+  native_decide
+
+example :
+    (evalGateMatrices [testDiagonalGateMatrix, testFlipGateMatrix])
+      ⟨1, by native_decide⟩ ⟨0, by native_decide⟩ = (2 : Rat) := by
+  native_decide
+
 example :
     (CircuitMatrixSemantics.ofGateMatrices
       [Gate.oneQubit "I" 0] [testIdentityGateMatrix] rfl).gateListMatches = rfl := rfl
@@ -621,9 +653,47 @@ example (p : GHL2025.OneTermRobinParameters) :
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false := rfl
 
--- SWAP unitarity remains a proof-DAG obligation.
+-- SWAP unitarity is backed by the finite permutation-matrix bridge.
 example (p : GHL2025.OneTermRobinParameters) :
-    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = false := rfl
+    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = true := rfl
+
+-- SWAP image arithmetic is self-inverse and feeds the finite permutation proof.
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.swapOracleImage p (GHL2025.swapOracleImage p j) = j :=
+  GHL2025.swapOracleImage_self_inverse p j
+
+-- The reusable SWAP difference block is preserved after one image application.
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.swapOracleDiff p (GHL2025.swapOracleImage p j) =
+      GHL2025.swapOracleDiff p j :=
+  GHL2025.swapOracleDiff_preserved p j
+
+-- SWAP image is a finite-basis bijection.
+example (p : GHL2025.OneTermRobinParameters) :
+    (∀ (a b : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+        (⟨GHL2025.swapOracleImage p a.val, GHL2025.swapOracleImage_lt_qubitDim p a.2⟩ :
+          Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))) =
+        ⟨GHL2025.swapOracleImage p b.val, GHL2025.swapOracleImage_lt_qubitDim p b.2⟩ →
+        a = b) ∧
+      ∀ (y : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+        ∃ (x : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          (⟨GHL2025.swapOracleImage p x.val, GHL2025.swapOracleImage_lt_qubitDim p x.2⟩ :
+            Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))) = y :=
+  GHL2025.swapOracleImage_bijective p
+
+-- SWAP matrix has exactly one 1-entry in each row and column.
+example (p : GHL2025.OneTermRobinParameters) :
+    (∀ (i : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      ∃ (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+        GHL2025.swapOracleMatrix p i j = Coeff.rat 1 ∧
+        ∀ (j' : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.swapOracleMatrix p i j' = Coeff.rat 1 → j' = j) ∧
+    (∀ (j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      ∃ (i : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+        GHL2025.swapOracleMatrix p i j = Coeff.rat 1 ∧
+        ∀ (i' : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.swapOracleMatrix p i' j = Coeff.rat 1 → i' = i) :=
+  GHL2025.swapOracleMatrix_is_permutation p
 
 -- oneTermRobinCircuitSemantics: gate list matches the circuit
 example (n : Nat) :
@@ -656,6 +726,12 @@ example (n : Nat) :
 example (n : Nat) :
     (Examples.RobinHeat.oneTermRobinBlockExtractionTarget n).signalIndex.val = 0 := rfl
 
+-- signal-system index convention: signal block 1 with a 2-row system starts at row 2.
+example : signalSystemBlockRowIndex 2 1 1 = 3 := rfl
+
+-- signal-system index convention: rectangular column stride uses the column count.
+example : signalSystemBlockColIndex 3 1 2 = 5 := rfl
+
 -- signalSystemBlockProjection: on a 4x4 identity block with signalDim=2, rows=2, cols=2, index=0
 -- The identity matrix of size 4: M(i,j) = if i = j then 1 else 0
 -- Block at index 0: M(0,0), M(0,1), M(1,0), M(1,1) → diagonal block is identity 2x2
@@ -681,6 +757,22 @@ example :
       ⟨1, by decide⟩
       ⟨0, by decide⟩ ⟨0, by decide⟩ =
     Coeff.rat 1 := by native_decide
+
+-- signalSystemBlockProjection: index 1 shifts both row and column by one 2x2 block.
+example :
+    signalSystemBlockProjection 3 2 2
+      (fun i j : Fin 6 => i.val * 10 + j.val)
+      ⟨1, by decide⟩
+      ⟨1, by decide⟩ ⟨0, by decide⟩ =
+    32 := by native_decide
+
+-- signalSystemBlockProjection: rectangular rows/cols use separate row and column strides.
+example :
+    signalSystemBlockProjection 2 2 3
+      (fun i : Fin 4 => fun j : Fin 6 => i.val * 10 + j.val)
+      ⟨1, by decide⟩
+      ⟨0, by decide⟩ ⟨2, by decide⟩ =
+    25 := by native_decide
 
 -- totalCircuitQubits: system=3, signal=9 → 12
 example : totalCircuitQubits 3 9 = 12 := rfl
@@ -819,10 +911,10 @@ example : (186 >>> 7) &&& 1 = 1 := by native_decide
 example : 214 &&& 1 = 0 := by native_decide
 example : 186 &&& 1 = 0 := by native_decide
 
--- SWAP gate matrix uses an honest matrix; unitarity remains pending.
+-- SWAP gate matrix uses an honest matrix with a finite permutation certificate.
 example :
     let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
-    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = false := rfl
+    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = true := rfl
 
 -- SWAP placeholder match still holds with honest matrix
 example (p : GHL2025.OneTermRobinParameters) :
@@ -992,6 +1084,23 @@ example :
       { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
     GHL2025.bandedSparseAccessPaperImage p 8 = 40 := by
   native_decide
+
+-- Contract-drift guard: the active O_D^BS gate uses the Lemma 1 paper-image
+-- matrix, not the legacy helper that overwrites the system register by
+-- robinSparseColumnMap.  For column 8 the paper image is row 40, while the
+-- helper has its historical row-4 entry.
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperImage p 8 = 40 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+        ⟨40, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+        ⟨4, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 0 ∧
+      (GHL2025.bandedSparseAccessMatrix p)
+        ⟨4, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false :=
+  GHL2025.oneTermRobinGate_O_D_BS_contractDrift_column8_n3
 
 example :
     let p : GHL2025.OneTermRobinParameters :=
@@ -1348,16 +1457,46 @@ example (p : GHL2025.OneTermRobinParameters)
 example :
     let p : GHL2025.OneTermRobinParameters :=
       { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperCleanInput p 48 = true ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p 48).sparseIndexValue < p.kappa ∧
+      ∃ image : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)),
+        image.val = GHL2025.bandedSparseAccessPaperImage p 48 ∧
+          (GHL2025.oneTermRobinGate_O_D_BS p).matrix image ⟨48, by native_decide⟩ =
+            Coeff.rat 1 ∧
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix
+            ⟨48, by native_decide⟩ image = Coeff.rat 1 ∧
+          GHL2025.bandedSparseAccessPaperImageNoSpill p 48 = true ∧
+          (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  have hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p 48 = true := by
+    native_decide
+  have h :=
+    GHL2025.oneTermRobinGate_O_D_BS_globalSlotSource_entrySafety
+      p ⟨48, by native_decide⟩ (by decide) hsource
+  rcases h with ⟨hclean, hsparse, image, hval, hforward, hdagger, _hrow,
+    _hod, hnospill, hforwardFlag, hdaggerFlag⟩
+  exact ⟨hclean, hsparse, image, hval, hforward, hdagger, hnospill,
+    hforwardFlag, hdaggerFlag⟩
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
     GHL2025.bandedSparseAccessPaperCleanInput p 0 = true ∧
       GHL2025.bandedSparseAccessPaperCleanInput p 48 = true ∧
-      GHL2025.bandedSparseAccessPaperImage p 0 =
+      GHL2025.bandedSparseAccessPaperAddress p 0 = 6 ∧
+      GHL2025.bandedSparseAccessPaperAddress p 48 = 1 ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 = 96 ∧
+      GHL2025.bandedSparseAccessPaperImage p 48 = 16 ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 ≠
         GHL2025.bandedSparseAccessPaperImage p 48 ∧
       (GHL2025.oneTermRobinGate_O_D_BS p).matrix
-          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ = Coeff.rat 1 ∧
+          ⟨96, by native_decide⟩ ⟨0, by native_decide⟩ = Coeff.rat 1 ∧
       (GHL2025.oneTermRobinGate_O_D_BS p).matrix
-          ⟨0, by native_decide⟩ ⟨48, by native_decide⟩ = Coeff.rat 1 ∧
-      0 ≠ 48 := by
-  native_decide
+          ⟨16, by native_decide⟩ ⟨48, by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false :=
+  GHL2025.oneTermRobinGate_O_D_BS_globalSparseBoundaryNoCollision_n3
 
 example :
     GHL2025.robinSparseColumnBranchValid 3 0 0 = true ∧
@@ -1372,12 +1511,35 @@ example :
     GHL2025.bandedSparseAccessPaperCleanInput p 0 = true ∧
       GHL2025.bandedSparseAccessPaperCleanInput p 48 = true ∧
       GHL2025.bandedSparseAccessPaperValidSparseBranch p 0 = true ∧
-      GHL2025.bandedSparseAccessPaperValidSparseBranch p 48 = false ∧
+    GHL2025.bandedSparseAccessPaperValidSparseBranch p 48 = false ∧
       GHL2025.bandedSparseAccessPaperValidCleanSource p 0 = true ∧
       GHL2025.bandedSparseAccessPaperValidCleanSource p 48 = false ∧
-      GHL2025.bandedSparseAccessPaperImage p 0 =
+      GHL2025.bandedSparseAccessRowDependentPaperImage p 0 =
+        GHL2025.bandedSparseAccessRowDependentPaperImage p 48 ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 ≠
         GHL2025.bandedSparseAccessPaperImage p 48 :=
   GHL2025.bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperGlobalSlotSource p 0 = true ∧
+      GHL2025.bandedSparseAccessPaperGlobalSlotSource p 48 = true ∧
+      GHL2025.bandedSparseAccessPaperValidCleanSource p 48 = false ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 ≠
+        GHL2025.bandedSparseAccessPaperImage p 48 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false :=
+  GHL2025.bandedSparseAccessPaperGlobalSlotSource_boundaryColumns_n3
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    GHL2025.bandedSparseAccessPaperCleanInput p 112 = true ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p 112).sparseIndexValue = 7 ∧
+      GHL2025.bandedSparseAccessPaperSparseIndexInKappa p 112 = false ∧
+      GHL2025.bandedSparseAccessPaperGlobalSlotSource p 112 = false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false :=
+  GHL2025.bandedSparseAccessPaperGlobalSlotSource_encodedOutOfRange_n3
 
 example (p : GHL2025.OneTermRobinParameters) (j : Nat)
     (h : GHL2025.bandedSparseAccessPaperValidCleanSource p j = true) :
@@ -1458,13 +1620,16 @@ example :
       { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
     GHL2025.bandedSparseAccessPaperValidCleanSource p 0 = true ∧
       GHL2025.bandedSparseAccessPaperUnusedSparseBranch p 48 = true ∧
-      GHL2025.bandedSparseAccessPaperImage p 0 =
+      GHL2025.bandedSparseAccessRowDependentPaperImage p 0 =
+        GHL2025.bandedSparseAccessRowDependentPaperImage p 48 ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 ≠
         GHL2025.bandedSparseAccessPaperImage p 48 ∧
       (GHL2025.bandedSparseAccessUnusedBranchExtensionContract p 48).unitaryExtension.proved = false ∧
       (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
       (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
   have h := GHL2025.bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3
-  exact ⟨h.1, h.2.1, h.2.2.1, h.2.2.2.2, rfl, rfl⟩
+  exact ⟨h.1, h.2.1, h.2.2.1, h.2.2.2.1,
+    h.2.2.2.2.2, rfl, rfl⟩
 
 example (p : GHL2025.OneTermRobinParameters)
     (source post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
@@ -1618,6 +1783,957 @@ example (p : GHL2025.OneTermRobinParameters)
     GHL2025.bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange
       p source hn hkappa hκbits hvalid
   exact witness.preCleanInput
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    GHL2025.bandedSparseAccessPaperCleanInput p
+        (GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val) =
+      true := by
+  let witness :=
+    GHL2025.bandedSparseAccessPostSwapCleanup_of_globalSlotSourceCandidate_noRange
+      p source hn hkappa hκbits hsource
+  exact witness.preCleanInput
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true ∧
+      GHL2025.bandedSparseAccessPaperValidCleanSource p source.val = false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix
+        ⟨GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+          by native_decide⟩
+        ⟨GHL2025.swapOracleImage p
+            (GHL2025.bandedSparseAccessPaperImage p source.val),
+          by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  have witness :=
+    GHL2025.bandedSparseAccessPostSwapCleanup_of_globalSlotSourceCandidate_noRange
+      p source (by native_decide) rfl (by native_decide) (by native_decide)
+  exact ⟨by native_decide, by native_decide, witness.daggerEntry, rfl, rfl⟩
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks p source.val =
+      true :=
+  GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_globalSlotSource
+    p source.val hn hkappa hκbits source.2 hsource
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val <
+      qubitDim (GHL2025.oneTermRobinTotalQubits p) :=
+  GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_globalSlotSource
+    p source hn hkappa hκbits hsource
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p source.val).sourceInGlobalDomain =
+        true ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p source.val).candidateChecks =
+        true ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p source.val).inverseOnRange.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p source.val).uniquePreimage.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p source.val).imageInjectiveOnGlobalSource.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p source.val).daggerCleanup.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p source.val).unitaryExtension.proved =
+        false :=
+  GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_of_globalSlotSource
+    p source.val hn hkappa hκbits source.2 hsource
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true)
+    (hpreSource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre.val = true)
+    (hpreImage :
+      GHL2025.bandedSparseAccessPaperImage p pre.val =
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).postSwapImageIndex) :
+    pre.val =
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).candidatePreimageIndex ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).sourceInGlobalDomain = true ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).candidateChecks = true ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).inverseOnRange.proved = false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).uniquePreimage.proved = false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).imageInjectiveOnGlobalSource.proved = false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).daggerCleanup.proved = false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).unitaryExtension.proved = false :=
+  GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_uniquePreimageBridge
+    p source pre hn hkappa hκbits hsource hpreSource hpreImage
+
+example {s : Nat} (hs : s < 7) :
+    GHL2025.oneTermRobinGlobalSparseInverseSlot s < 7 :=
+  GHL2025.oneTermRobinGlobalSparseInverseSlot_lt_seven hs
+
+example {s : Nat} (hs : s < 7) :
+    GHL2025.oneTermRobinGlobalSparseInverseSlot
+        (GHL2025.oneTermRobinGlobalSparseInverseSlot s) = s :=
+  GHL2025.oneTermRobinGlobalSparseInverseSlot_involutive_of_lt_seven hs
+
+example {s t : Nat} (hs : s < 7) (ht : t < 7)
+    (h : GHL2025.oneTermRobinGlobalSparseInverseSlot s =
+      GHL2025.oneTermRobinGlobalSparseInverseSlot t) :
+    s = t :=
+  GHL2025.oneTermRobinGlobalSparseInverseSlot_injective_of_lt_seven hs ht h
+
+example {n s t i : Nat} (hn : 3 ≤ n) (hs : s < 7) (ht : t < 7)
+    (hi : i < gridSize n)
+    (h :
+      GHL2025.oneTermRobinGlobalSparseAddress n t
+          (GHL2025.oneTermRobinGlobalSparseAddress n s i) = i) :
+    t = GHL2025.oneTermRobinGlobalSparseInverseSlot s :=
+  GHL2025.oneTermRobinGlobalSparseAddress_inverseSlot_unique_of_lt_seven
+    hn hs ht hi h
+
+example {n s t i : Nat} (hn : 3 ≤ n) (hs : s < 7) (ht : t < 7)
+    (hi : i < gridSize n)
+    (h :
+      GHL2025.oneTermRobinGlobalSparseAddress n s i =
+        GHL2025.oneTermRobinGlobalSparseAddress n t i) :
+    s = t :=
+  GHL2025.oneTermRobinGlobalSparseAddress_same_row_injective_of_lt_seven
+    hn hs ht hi h
+
+example :
+    (4 : Nat) = GHL2025.oneTermRobinGlobalSparseInverseSlot 0 :=
+  GHL2025.oneTermRobinGlobalSparseAddress_inverseSlot_unique_of_lt_seven
+    (n := 3) (s := 0) (t := 4) (i := 0)
+    (by decide) (by decide) (by decide) (by native_decide) (by native_decide)
+
+example (p : GHL2025.OneTermRobinParameters) {j₁ j₂ : Nat}
+    (hkappa : p.kappa = 7)
+    (hsource₁ : GHL2025.bandedSparseAccessPaperGlobalSlotSource p j₁ = true)
+    (hsource₂ : GHL2025.bandedSparseAccessPaperGlobalSlotSource p j₂ = true)
+    (h :
+      GHL2025.oneTermRobinGlobalSparseInverseSlot
+          (GHL2025.bandedSparseAccessPaperRegisters p j₁).sparseIndexValue =
+        GHL2025.oneTermRobinGlobalSparseInverseSlot
+          (GHL2025.bandedSparseAccessPaperRegisters p j₂).sparseIndexValue) :
+    (GHL2025.bandedSparseAccessPaperRegisters p j₁).sparseIndexValue =
+      (GHL2025.bandedSparseAccessPaperRegisters p j₂).sparseIndexValue :=
+  GHL2025.bandedSparseAccessPaperGlobalSlotSource_inverseSlot_injective
+    p hkappa hsource₁ hsource₂ h
+
+example (p : GHL2025.OneTermRobinParameters) {j₁ j₂ : Nat}
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7)
+    (hsource₁ : GHL2025.bandedSparseAccessPaperGlobalSlotSource p j₁ = true)
+    (hsource₂ : GHL2025.bandedSparseAccessPaperGlobalSlotSource p j₂ = true)
+    (hrow :
+      (GHL2025.bandedSparseAccessPaperRegisters p j₁).rowValue =
+        (GHL2025.bandedSparseAccessPaperRegisters p j₂).rowValue)
+    (haddr :
+      GHL2025.bandedSparseAccessPaperAddress p j₁ =
+        GHL2025.bandedSparseAccessPaperAddress p j₂) :
+    (GHL2025.bandedSparseAccessPaperRegisters p j₁).sparseIndexValue =
+      (GHL2025.bandedSparseAccessPaperRegisters p j₂).sparseIndexValue :=
+  GHL2025.bandedSparseAccessPaperAddress_same_row_injective_of_globalSlotSource
+    p hn hkappa hsource₁ hsource₂ hrow haddr
+
+example (p : GHL2025.OneTermRobinParameters)
+    (j₁ j₂ : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource₁ : GHL2025.bandedSparseAccessPaperGlobalSlotSource p j₁.val = true)
+    (hsource₂ : GHL2025.bandedSparseAccessPaperGlobalSlotSource p j₂.val = true)
+    (himage :
+      GHL2025.bandedSparseAccessPaperImage p j₁.val =
+        GHL2025.bandedSparseAccessPaperImage p j₂.val) :
+    j₁ = j₂ :=
+  GHL2025.bandedSparseAccessPaperImage_injective_on_globalSlotSource
+    p j₁ j₂ hn hkappa hκbits hsource₁ hsource₂ himage
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true)
+    (hpreSource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre.val = true)
+    (hpreImage :
+      GHL2025.bandedSparseAccessPaperImage p pre.val =
+        GHL2025.swapOracleImage p
+          (GHL2025.bandedSparseAccessPaperImage p source.val)) :
+    pre.val =
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val :=
+  GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_unique_on_globalSlotSource
+    p source pre hn hkappa hκbits hsource hpreSource hpreImage
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    let pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+        by native_decide⟩
+    GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true ∧
+      pre.val =
+        GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  let pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+      by native_decide⟩
+  constructor
+  · native_decide
+  · exact
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_unique_on_globalSlotSource
+        p source pre (by native_decide) rfl (by native_decide)
+        (by native_decide) (by native_decide) (by native_decide)
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let c := GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p 48
+    c.sourceInGlobalDomain = true ∧
+      c.candidateChecks = true ∧
+      c.inverseOnRange.proved = false ∧
+      c.uniquePreimage.proved = false ∧
+      c.imageInjectiveOnGlobalSource.proved = false ∧
+      c.daggerCleanup.proved = false ∧
+      c.unitaryExtension.proved = false := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    let pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+        by native_decide⟩
+    let c := GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+      source.val
+    pre.val = c.candidatePreimageIndex ∧
+      c.sourceInGlobalDomain = true ∧
+      c.candidateChecks = true ∧
+      c.inverseOnRange.proved = false ∧
+      c.uniquePreimage.proved = false ∧
+      c.imageInjectiveOnGlobalSource.proved = false ∧
+      c.daggerCleanup.proved = false ∧
+      c.unitaryExtension.proved = false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  let pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p source.val,
+      by native_decide⟩
+  exact
+    GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_uniquePreimageBridge
+      p source pre (by native_decide) rfl (by native_decide)
+      (by native_decide) (by native_decide) (by native_decide)
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).candidateChecks = true ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).daggerCleanup.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).unitaryExtension.proved = false := by
+  have h :=
+    GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerCleanupBridge
+      p source hn hkappa hκbits hsource
+  rcases h with
+    ⟨post, pre, hcleanup, _hpost, _hpre, hentry, hchecks, hdaggerFlag,
+      hunitaryFlag⟩
+  exact ⟨post, pre, hcleanup, hentry, hchecks, hdaggerFlag, hunitaryFlag⟩
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        post.val =
+          (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).postSwapImageIndex ∧
+        pre.val =
+          (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).candidatePreimageIndex ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).daggerCleanup.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).unitaryExtension.proved = false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  have h :=
+    GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerCleanupBridge
+      p source (by native_decide) rfl (by native_decide) (by native_decide)
+  rcases h with
+    ⟨post, pre, hcleanup, hpost, hpre, hentry, _hchecks, hdaggerFlag,
+      hunitaryFlag⟩
+  exact ⟨post, pre, hcleanup, hpost, hpre, hentry, hdaggerFlag, hunitaryFlag⟩
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        post.val =
+          (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).postSwapImageIndex ∧
+        pre.val =
+          (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).candidatePreimageIndex ∧
+        GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre.val = true ∧
+        (∀ (pre' : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre'.val = true →
+          GHL2025.bandedSparseAccessPaperImage p pre'.val = post.val →
+          pre'.val = pre.val) ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).candidateChecks = true ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).inverseOnRange.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).uniquePreimage.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).imageInjectiveOnGlobalSource.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).daggerCleanup.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).unitaryExtension.proved = false :=
+  GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_cleanupContractMap
+    p source hn hkappa hκbits hsource
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre.val = true ∧
+        (∀ (pre' : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre'.val = true →
+          GHL2025.bandedSparseAccessPaperImage p pre'.val = post.val →
+          pre'.val = pre.val) ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).daggerCleanup.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).unitaryExtension.proved = false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  rcases
+      GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_cleanupContractMap
+        p source (by native_decide) rfl (by native_decide) (by native_decide)
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, hpreSource, hunique, hentry,
+      _hchecks, _hinverseFlag, _huniqueFlag, _himageFlag, hdaggerFlag,
+      hunitaryFlag⟩
+  exact ⟨post, pre, hcleanup, hpreSource, hunique, hentry, hdaggerFlag,
+    hunitaryFlag⟩
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre.val = true ∧
+        (∀ (pre' : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre'.val = true →
+          GHL2025.bandedSparseAccessPaperImage p pre'.val = post.val →
+          pre'.val = pre.val) ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (GHL2025.defaultBandedSparseAccessPaperContract p).daggerCleanup.proved =
+          false ∧
+        (GHL2025.defaultBandedSparseAccessPaperContract p).unitaryExtension.proved =
+          false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
+  rcases
+      GHL2025.defaultBandedSparseAccessPaperContract_cleanupRouteBridge
+        p source hn hkappa hκbits hsource
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, hpreSource, hunique, hentry,
+      hpaperCleanupFlag, hpaperUnitaryFlag, hforwardUnitaryFlag,
+      hdaggerUnitaryFlag⟩
+  exact ⟨post, pre, hcleanup, hpreSource, hunique, hentry,
+    hpaperCleanupFlag, hpaperUnitaryFlag, hforwardUnitaryFlag,
+    hdaggerUnitaryFlag⟩
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre.val = true ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (GHL2025.defaultBandedSparseAccessPaperContract p).daggerCleanup.proved =
+          false ∧
+        (GHL2025.defaultBandedSparseAccessPaperContract p).unitaryExtension.proved =
+          false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  rcases
+      GHL2025.defaultBandedSparseAccessPaperContract_cleanupRouteBridge
+        p source (by native_decide) rfl (by native_decide) (by native_decide)
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, hpreSource, _hunique, hentry,
+      hpaperCleanupFlag, hpaperUnitaryFlag, hforwardUnitaryFlag,
+      hdaggerUnitaryFlag⟩
+  exact ⟨post, pre, hcleanup, hpreSource, hentry, hpaperCleanupFlag,
+    hpaperUnitaryFlag, hforwardUnitaryFlag, hdaggerUnitaryFlag⟩
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true ∧
+        GHL2025.bandedSparseAccessPaperValidCleanSource p source.val = false ∧
+        GHL2025.bandedSparseAccessPaperGlobalSlotSource p pre.val = true ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (GHL2025.defaultBandedSparseAccessPaperContract p).daggerCleanup.proved =
+          false ∧
+        (GHL2025.defaultBandedSparseAccessPaperContract p).unitaryExtension.proved =
+          false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  rcases
+      GHL2025.defaultBandedSparseAccessPaperContract_cleanupRouteBridge_boundaryColumn_n3
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, hsource, hvalidRejected,
+      hpreSource, _hunique, hentry, hpaperCleanupFlag, hpaperUnitaryFlag,
+      hforwardUnitaryFlag, hdaggerUnitaryFlag⟩
+  exact ⟨post, pre, hcleanup, hsource, hvalidRejected, hpreSource, hentry,
+    hpaperCleanupFlag, hpaperUnitaryFlag, hforwardUnitaryFlag,
+    hdaggerUnitaryFlag⟩
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source other post : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true)
+    (hotherSource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p other.val = true)
+    (hpost :
+      post.val =
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).postSwapImageIndex)
+    (hne :
+      other.val ≠
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).candidatePreimageIndex) :
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix other post =
+        Coeff.rat 0 ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).daggerCleanup.proved = false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).unitaryExtension.proved = false :=
+  GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerOffCandidate_zero
+    p source other post hn hkappa hκbits hsource hotherSource hpost hne
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    let post : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨(GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).postSwapImageIndex, by native_decide⟩
+    (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix source post =
+        Coeff.rat 0 ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).daggerCleanup.proved = false ∧
+      (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+          source.val).unitaryExtension.proved = false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  let post : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨(GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+        source.val).postSwapImageIndex, by native_decide⟩
+  exact
+    GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerOffCandidate_zero
+      p source source post (by native_decide) rfl (by native_decide)
+      (by native_decide) (by native_decide) rfl (by native_decide)
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (∀ (other : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p other.val = true →
+          other.val ≠ pre.val →
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix other post =
+            Coeff.rat 0) ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).daggerCleanup.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).unitaryExtension.proved = false ∧
+        (GHL2025.defaultBandedSparseAccessPaperContract p).daggerCleanup.proved =
+          false ∧
+        (GHL2025.defaultBandedSparseAccessPaperContract p).unitaryExtension.proved =
+          false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
+  rcases
+      GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnCleanup
+        p source hn hkappa hκbits hsource
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, _hpreSource, hentry, hzero,
+      hcontractCleanupFlag, hcontractUnitaryFlag, hpaperCleanupFlag,
+      hpaperUnitaryFlag, hforwardUnitaryFlag, hdaggerUnitaryFlag,
+      _htheoremCircuitFlag, _htheoremBlockFlag⟩
+  exact ⟨post, pre, hcleanup, hentry, hzero, hcontractCleanupFlag,
+    hcontractUnitaryFlag, hpaperCleanupFlag, hpaperUnitaryFlag,
+    hforwardUnitaryFlag, hdaggerUnitaryFlag⟩
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix pre post =
+          Coeff.rat 1 ∧
+        (∀ (other : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p other.val = true →
+          other.val ≠ pre.val →
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix other post =
+            Coeff.rat 0) ∧
+        (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.circuitUnitary.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+          false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  rcases
+      GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnCleanup
+        p source (by native_decide) rfl (by native_decide) (by native_decide)
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, _hpreSource, hentry, hzero,
+      _hcontractCleanupFlag, _hcontractUnitaryFlag, _hpaperCleanupFlag,
+      _hpaperUnitaryFlag, hforwardUnitaryFlag, hdaggerUnitaryFlag,
+      htheoremCircuitFlag, htheoremBlockFlag⟩
+  rcases Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_flags_false 3 with
+    ⟨hblockProjection, hblockCorrect, _hrouteBlockExtraction,
+      _hrouteCircuitUnitary, _hrouteSparseCleanup, _hrouteSparseUnitary,
+      _hunusedBlocked, _hpriorOpen, _hrobinOpen, _hrobinLower,
+      _hfunctionSource, _hfunctionAmp, hlcu⟩
+  exact ⟨post, pre, hcleanup, hentry, hzero, hforwardUnitaryFlag,
+    hdaggerUnitaryFlag, hblockProjection, hblockCorrect, htheoremCircuitFlag,
+    htheoremBlockFlag, hlcu⟩
+
+example (p : GHL2025.OneTermRobinParameters)
+    (source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)))
+    (hn : 3 ≤ p.n) (hkappa : p.kappa = 7) (hκbits : clog2 p.kappa = 3)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource p source.val = true) :
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        (∀ (other : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p other.val = true →
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix other post =
+            if other.val = pre.val then Coeff.rat 1 else Coeff.rat 0) ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).inverseOnRange.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).uniquePreimage.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).imageInjectiveOnGlobalSource.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).daggerCleanup.proved = false ∧
+        (GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract p
+            source.val).unitaryExtension.proved = false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := by
+  rcases
+      GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator
+        p source hn hkappa hκbits hsource
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, _hpreSource, hindicator,
+      hinverseFlag, huniqueFlag, himageFlag, hcontractCleanupFlag,
+      hcontractUnitaryFlag, _hpaperCleanupFlag, _hpaperUnitaryFlag,
+      hforwardUnitaryFlag, hdaggerUnitaryFlag, _htheoremCircuitFlag,
+      _htheoremBlockFlag⟩
+  exact ⟨post, pre, hcleanup, hindicator, hinverseFlag, huniqueFlag,
+    himageFlag, hcontractCleanupFlag, hcontractUnitaryFlag,
+    hforwardUnitaryFlag, hdaggerUnitaryFlag⟩
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        (∀ (other : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p other.val = true →
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix other post =
+            if other.val = pre.val then Coeff.rat 1 else Coeff.rat 0) ∧
+        (GHL2025.oneTermRobinGate_O_D_BS p).unitary.proved = false ∧
+        (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.circuitUnitary.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+          false := by
+  let p : GHL2025.OneTermRobinParameters :=
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  rcases
+      GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator
+        p source (by native_decide) rfl (by native_decide) (by native_decide)
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, _hpreSource, hindicator,
+      _hinverseFlag, _huniqueFlag, _himageFlag, _hcontractCleanupFlag,
+      _hcontractUnitaryFlag, _hpaperCleanupFlag, _hpaperUnitaryFlag,
+      hforwardUnitaryFlag, hdaggerUnitaryFlag, htheoremCircuitFlag,
+      htheoremBlockFlag⟩
+  rcases Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_flags_false 3 with
+    ⟨hblockProjection, hblockCorrect, _hrouteBlockExtraction,
+      _hrouteCircuitUnitary, _hrouteSparseCleanup, _hrouteSparseUnitary,
+      _hunusedBlocked, _hpriorOpen, _hrobinOpen, _hrobinLower,
+      _hfunctionSource, _hfunctionAmp, hlcu⟩
+  exact ⟨post, pre, hcleanup, hindicator, hforwardUnitaryFlag,
+    hdaggerUnitaryFlag, hblockProjection, hblockCorrect, htheoremCircuitFlag,
+    htheoremBlockFlag, hlcu⟩
+
+example (n : Nat)
+    (source : Fin
+      (qubitDim
+        (GHL2025.oneTermRobinTotalQubits
+          (Examples.RobinHeat.oneTermParameters n))))
+    (hn : 3 <= n)
+    (hsource : GHL2025.bandedSparseAccessPaperGlobalSlotSource
+      (Examples.RobinHeat.oneTermParameters n) source.val = true) :
+    ∃ (post pre : Fin
+        (qubitDim
+          (GHL2025.oneTermRobinTotalQubits
+            (Examples.RobinHeat.oneTermParameters n)))),
+      GHL2025.BandedSparseAccessPostSwapCleanup
+        (Examples.RobinHeat.oneTermParameters n) source post pre ∧
+        (∀ (other : Fin
+          (qubitDim
+            (GHL2025.oneTermRobinTotalQubits
+              (Examples.RobinHeat.oneTermParameters n)))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource
+            (Examples.RobinHeat.oneTermParameters n) other.val = true →
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger
+              (Examples.RobinHeat.oneTermParameters n)).matrix other post =
+            if other.val = pre.val then Coeff.rat 1 else Coeff.rat 0) ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+          false := by
+  rcases
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsRestrictedDaggerColumnIndicator
+        n source hn hsource
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, _hpreSource, hindicator,
+      _hcontractIdentity, hcleanupOpen, hunitaryOpen, _hforwardUnitaryFlag,
+      _hdaggerUnitaryFlag, _hcircuitUnitary, _hblockExtraction,
+      _hblockProjection, hblockCorrect, hlcu, _hlowerBlocked⟩
+  exact ⟨post, pre, hcleanup, hindicator, hcleanupOpen, hunitaryOpen,
+    hblockCorrect, hlcu⟩
+
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        (∀ (other : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p other.val = true →
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix other post =
+            if other.val = pre.val then Coeff.rat 1 else Coeff.rat 0) ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.circuitUnitary.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.lowerProofSearchAllowed =
+          false := by
+  let p := Examples.RobinHeat.oneTermParameters 3
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  rcases
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsRestrictedDaggerColumnIndicator
+        3 source (by native_decide) (by native_decide)
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, _hpreSource, hindicator,
+      _hcontractIdentity, _hcleanupOpen, _hunitaryOpen, _hforwardUnitaryFlag,
+      _hdaggerUnitaryFlag, hcircuitUnitary, hblockExtraction,
+      hblockProjection, hblockCorrect, hlcu, hlowerBlocked⟩
+  exact ⟨post, pre, hcleanup, hindicator, hcircuitUnitary, hblockExtraction,
+    hblockProjection, hblockCorrect, hlcu, hlowerBlocked⟩
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.bandedSparseAccessCleanupScopeDecision p).selectedScope =
+        GHL2025.BandedSparseAccessCleanupScope.activeGlobalSource ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).selectedPredicate =
+        "bandedSparseAccessPaperGlobalSlotSource" ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).selectedEvidence =
+        "bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator" ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).fullCleanDomainSelected =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).fullSpaceSelected =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).semanticCleanupPromotionAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).paperContractCleanup.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).fullCleanDomainCleanup.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).fullSpaceUnitaryExtension.proved =
+        false :=
+  GHL2025.bandedSparseAccessCleanupScopeDecision_activeGlobalSource p
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.bandedSparseAccessCleanupScopeDecision p).selectedScope =
+        GHL2025.BandedSparseAccessCleanupScope.activeGlobalSource ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).fullSpaceSelected =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).fullSpaceUnitaryExtension.proved =
+        false ∧
+      GHL2025.bandedSparseAccessPriorPDESourceContract.oracleEquation =
+        "O_A^BS |0>^(n-l)|s>^l|i>^n = |r_si>^n|i>^n" ∧
+      GHL2025.bandedSparseAccessPriorPDESourceContract.resourceClaim.proved =
+        false ∧
+      GHL2025.bandedSparseAccessPriorPDESourceContract.robinUnusedBranchImageRule =
+        none ∧
+      GHL2025.bandedSparseAccessPriorPDESourceContract.closesUnusedZeroBranchExtension =
+        false ∧
+      GHL2025.bandedSparseAccessPriorPDESourceContract.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.defaultBandedSparseAccessPaperContract p).unitaryExtension.proved =
+        false :=
+  GHL2025.bandedSparseAccessCleanupScopeDecision_priorPDESourceTranscriptGuard p
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.bandedSparseAccessCleanupScopeDecision p).selectedScope =
+        GHL2025.BandedSparseAccessCleanupScope.activeGlobalSource ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).fullCleanDomainSelected =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).semanticCleanupPromotionAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision p).fullCleanDomainCleanup.proved =
+        false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).proposedImageIndex =
+        none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).imageSpecified.proved = false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageSpecified.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).fullCleanDomainInjective.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).daggerCleanup.proved =
+        false ∧
+      (GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unitaryExtension.proved =
+        false :=
+  GHL2025.bandedSparseAccessCleanupScopeDecision_fullCleanDomainImageRuleBlocked p j
+
+example (n : Nat) :
+    (GHL2025.bandedSparseAccessCleanupScopeDecision
+        (Examples.RobinHeat.oneTermParameters n)).selectedScope =
+        GHL2025.BandedSparseAccessCleanupScope.activeGlobalSource ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision
+        (Examples.RobinHeat.oneTermParameters n)).fullCleanDomainSelected =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision
+        (Examples.RobinHeat.oneTermParameters n)).fullSpaceSelected =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision
+        (Examples.RobinHeat.oneTermParameters n)).semanticCleanupPromotionAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false := by
+  rcases
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsCleanupScopeDecision n
+      with
+    ⟨hscope, _hpredicate, _hevidence, hfullClean, hfullSpace, hpromotion,
+      _hpaperCleanup, _hfullCleanCleanup, _hfullSpaceUnitary,
+      _hcontractIdentity, hcleanupOpen, hunitaryOpen, hblockCorrect, hlcu,
+      hlowerBlocked⟩
+  exact ⟨hscope, hfullClean, hfullSpace, hpromotion, hcleanupOpen,
+    hunitaryOpen, hblockCorrect, hlcu, hlowerBlocked⟩
+
+example (n j : Nat) :
+    (GHL2025.bandedSparseAccessCleanupScopeDecision
+        (Examples.RobinHeat.oneTermParameters n)).selectedScope =
+        GHL2025.BandedSparseAccessCleanupScope.activeGlobalSource ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision
+        (Examples.RobinHeat.oneTermParameters n)).fullCleanDomainSelected =
+        false ∧
+      (GHL2025.bandedSparseAccessCleanupScopeDecision
+        (Examples.RobinHeat.oneTermParameters n)).semanticCleanupPromotionAllowed =
+        false ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+        (Examples.RobinHeat.oneTermParameters n)).unusedBranchImageRuleContract
+        j).proposedImageIndex = none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false := by
+  rcases
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsFullCleanDomainImageRuleBlocked
+        n j
+      with
+    ⟨hscope, hfullClean, hpromotion, _hfullCleanCleanup, hwrappedSlot,
+      _hwrappedImage, _hunusedImage, _hfullCleanInjective, _hwrapperCleanup,
+      _hwrapperUnitary, hlowerBlocked, hcleanupOpen, hunitaryOpen,
+      hblockCorrect, hlcu⟩
+  exact ⟨hscope, hfullClean, hpromotion, hwrappedSlot, hlowerBlocked,
+    hcleanupOpen, hunitaryOpen, hblockCorrect, hlcu⟩
+
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+      ⟨48, by native_decide⟩
+    ∃ (post pre : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+      GHL2025.BandedSparseAccessPostSwapCleanup p source post pre ∧
+        (∀ (other : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p))),
+          GHL2025.bandedSparseAccessPaperGlobalSlotSource p other.val = true →
+          (GHL2025.oneTermRobinGate_O_D_BS_dagger p).matrix other post =
+            if other.val = pre.val then Coeff.rat 1 else Coeff.rat 0) ∧
+        (GHL2025.bandedSparseAccessCleanupScopeDecision p).selectedScope =
+          GHL2025.BandedSparseAccessCleanupScope.activeGlobalSource ∧
+        (GHL2025.bandedSparseAccessCleanupScopeDecision p).selectedPredicate =
+          "bandedSparseAccessPaperGlobalSlotSource" ∧
+        (GHL2025.bandedSparseAccessCleanupScopeDecision p).selectedEvidence =
+          "bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator" ∧
+        (GHL2025.bandedSparseAccessCleanupScopeDecision p).semanticCleanupPromotionAllowed =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.daggerCleanup.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.unitaryExtension.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.circuitUnitary.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+          false ∧
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.lowerProofSearchAllowed =
+          false := by
+  let p := Examples.RobinHeat.oneTermParameters 3
+  let source : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits p)) :=
+    ⟨48, by native_decide⟩
+  rcases
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupInterface
+        3 source (by native_decide) (by native_decide)
+      with
+    ⟨post, pre, hcleanup, _hpost, _hpre, _hpreSource, hindicator,
+      hscope, hpredicate, hevidence, hpromotion, _hfullClean, _hfullSpace,
+      hcleanupOpen, hunitaryOpen, _hforwardUnitary, _hdaggerUnitary,
+      hcircuitUnitary, hblockExtraction, hblockProjection, hblockCorrect,
+      hlcu, hlowerBlocked⟩
+  exact ⟨post, pre, hcleanup, hindicator, hscope, hpredicate, hevidence,
+    hpromotion, hcleanupOpen, hunitaryOpen, hcircuitUnitary, hblockExtraction,
+    hblockProjection, hblockCorrect, hlcu, hlowerBlocked⟩
 
 example :
     let p : GHL2025.OneTermRobinParameters :=
@@ -2105,6 +3221,129 @@ example (n : Nat) :
 example (n : Nat) :
     (Examples.RobinHeat.robinOracleComposition n).functionOracle.amplitudeCorrect.proved =
       false := rfl
+
+-- O_f external amplitude source contract: GL2024 Theorem 5 is recorded as a
+-- source transcript only, not as a proof of the analytic O_f obligations.
+example :
+    GHL2025.functionOracleExternalAmplitudeSourceContract.sourceAnchor =
+      "GHL2025 Theorem 'Amplitude-oracle for piece-wise polynomial function' and Eq. 'coordinate oracle', arXiv:2506.20478; cited source arXiv:2411.01131" :=
+  GHL2025.functionOracleExternalAmplitudeSourceContract_sourceAnchor
+
+example :
+    GHL2025.functionOracleExternalAmplitudeSourceContract.normalizerNf =
+      Coeff.symbol "N_f" := rfl
+
+example :
+    GHL2025.functionOracleExternalAmplitudeSourceContract.resourceClaim.proved = false ∧
+      GHL2025.functionOracleExternalAmplitudeSourceContract.externalTheoremFormalized.proved = false ∧
+      GHL2025.functionOracleExternalAmplitudeSourceContract.nonzeroNormalizer.proved = false ∧
+      GHL2025.functionOracleExternalAmplitudeSourceContract.divisionSemantics.proved = false ∧
+      GHL2025.functionOracleExternalAmplitudeSourceContract.theoremAmplitudeCorrect.proved = false ∧
+      GHL2025.functionOracleExternalAmplitudeSourceContract.closesNormalizerBound = false ∧
+      GHL2025.functionOracleExternalAmplitudeSourceContract.closesOrthogonalCompletion = false ∧
+      GHL2025.functionOracleExternalAmplitudeSourceContract.closesUnitaryCompletion = false ∧
+      GHL2025.functionOracleExternalAmplitudeSourceContract.closesFunctionOracleContract = false :=
+  GHL2025.functionOracleExternalAmplitudeSourceContract_flags_false
+
+-- O_f amplitude route: the clean-branch amplitude and N_f contract are only
+-- packaged, not proved.
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).sourceAnchor =
+      "GHL2025 Theorem 'Amplitude-oracle for piece-wise polynomial function' and Eq. 'coordinate oracle', arXiv:2506.20478; cited source arXiv:2411.01131" :=
+  GHL2025.functionOracleAmplitudeProofRoute_sourceAnchor p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).sourceFunctionValue =
+      GHL2025.robinFunctionValue p.n
+        (GHL2025.functionOraclePaperRegisters p j).systemValue :=
+  GHL2025.functionOracleAmplitudeProofRoute_sourceFunctionValue p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).normalizedAmplitude =
+      GHL2025.functionOracleNormalizedValue p
+        (GHL2025.functionOraclePaperRegisters p j).systemValue :=
+  GHL2025.functionOracleAmplitudeProofRoute_normalizedAmplitude p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).normalizerNf =
+      Coeff.symbol "N_f" :=
+  GHL2025.functionOracleAmplitudeProofRoute_normalizerNf p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).cleanBranchAmplitude =
+      (GHL2025.functionOraclePaperImage p j).cleanBranchAmplitude ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).cleanBranchBasisIndex =
+      (GHL2025.functionOraclePaperImage p j).cleanBranchBasisIndex ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).cleanWorkspaceBranch =
+      (GHL2025.functionOraclePaperImage p j).cleanWorkspaceBranch :=
+  GHL2025.functionOracleAmplitudeProofRoute_paperImage p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).normalizedAmplitudeCorrect =
+      (GHL2025.functionOraclePaperImage p j).normalizedAmplitudeCorrect ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).normalizerBound =
+      (GHL2025.functionOraclePaperImage p j).normalizerBound ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).orthogonalComponentCorrect =
+      (GHL2025.functionOraclePaperImage p j).orthogonalComponentCorrect ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).unitaryCompletion =
+      (GHL2025.functionOraclePaperImage p j).unitaryCompletion :=
+  GHL2025.functionOracleAmplitudeProofRoute_obligations_reuse_paperImage p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).sourceAnchor =
+      GHL2025.functionOracleExternalAmplitudeSourceContract.sourceAnchor ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).normalizerNf =
+      GHL2025.functionOracleExternalAmplitudeSourceContract.normalizerNf ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).normalizedAmplitudeFormula =
+      GHL2025.functionOracleExternalAmplitudeSourceContract.cleanBranchFormula ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).nonzeroNormalizer =
+      GHL2025.functionOracleExternalAmplitudeSourceContract.nonzeroNormalizer ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).divisionSemantics =
+      GHL2025.functionOracleExternalAmplitudeSourceContract.divisionSemantics ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).theoremAmplitudeCorrect =
+      GHL2025.functionOracleExternalAmplitudeSourceContract.theoremAmplitudeCorrect :=
+  GHL2025.functionOracleAmplitudeProofRoute_externalSourceContract p j
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).normalizedAmplitudeCorrect.proved = false ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).nonzeroNormalizer.proved = false ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).divisionSemantics.proved = false ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).normalizerBound.proved = false ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).orthogonalComponentCorrect.proved = false ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).unitaryCompletion.proved = false ∧
+    (GHL2025.functionOracleAmplitudeProofRoute p j).theoremAmplitudeCorrect.proved = false :=
+  GHL2025.functionOracleAmplitudeProofRoute_flags_false p j
+
+-- Combined O_f source transcript guard: the cited theorem transcript and the
+-- per-column amplitude route stay obligation-only.
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.functionOracleExternalAmplitudeSourceContract.externalTheoremFormalized.proved =
+      false :=
+  (GHL2025.functionOracleAmplitudeProofRoute_externalSourceAndFlags p j).2.1.2.1
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute p j).theoremAmplitudeCorrect.proved =
+      false := by
+  rcases GHL2025.functionOracleAmplitudeProofRoute_externalSourceAndFlags p j with
+    ⟨_, _, _, _, _, _, _, _, hTheoremAmplitude⟩
+  exact hTheoremAmplitude
+
+example (n : Nat) :
+    (GHL2025.functionOracleAmplitudeProofRoute
+        (Examples.RobinHeat.oneTermParameters n) 0).theoremNormalizer =
+      (Examples.RobinHeat.robinOracleComposition n).functionOracle.normalizerBound := rfl
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleAmplitudeProofRoute p 36).sourceFunctionValue =
+      Coeff.symbol "f_3_2" := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.functionOracleAmplitudeProofRoute p 36).cleanBranchAmplitude =
+      Coeff.mul (Coeff.symbol "f_3_2") (Coeff.symbol "N_f_inv") := by
+  native_decide
 
 -- O_f placeholder match still holds with function value matrix
 example (p : GHL2025.OneTermRobinParameters) :
@@ -2635,6 +3874,68 @@ example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
   GHL2025.derivativeNormalizerNDSourceBound_sharedRoutes p row sparse
 
 example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    (GHL2025.derivativeNormalizerNDContract p row sparse).nonzeroNormalizer.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).divisionSemantics.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).coefficientBound.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).absSquareSemantics.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).sqrtComplementSemantics.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).arccosSemantics.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).twoByTwoUnitary.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficientDivision.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).absSquareSemantics.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).sqrtComplementSemantics.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).twoByTwoUnitary.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficientDivision.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).realArccosSemantics.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).halfAngleSemantics.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).twoByTwoUnitary.proved = false ∧
+    (GHL2025.oneTermRobinGate_O_DT_S p).unitary.proved = false ∧
+    (GHL2025.oneTermRobinGate_Ry_boundary p).unitary.proved = false :=
+  GHL2025.derivativeNormalizerNDSharedRoute_flags_false p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
+    ((GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+        (GHL2025.derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient ∧
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerND =
+        (GHL2025.derivativeNormalizerNDSourceBound p row sparse).normalizerND ∧
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
+        (GHL2025.derivativeNormalizerNDSourceBound p row sparse).coefficientBound) ∧
+    ((GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient =
+        (GHL2025.derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient ∧
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerND =
+        (GHL2025.derivativeNormalizerNDSourceBound p row sparse).normalizerND ∧
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound =
+        (GHL2025.derivativeNormalizerNDSourceBound p row sparse).coefficientBound) ∧
+    ((GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+        (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient ∧
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerND =
+        (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerND ∧
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
+        (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound) ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).nonzeroNormalizer.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).divisionSemantics.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).coefficientBound.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).absSquareSemantics.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).sqrtComplementSemantics.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).arccosSemantics.proved = false ∧
+    (GHL2025.derivativeNormalizerNDContract p row sparse).twoByTwoUnitary.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficientDivision.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).absSquareSemantics.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).sqrtComplementSemantics.proved = false ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).twoByTwoUnitary.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficientDivision.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).realArccosSemantics.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).halfAngleSemantics.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound.proved = false ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).twoByTwoUnitary.proved = false ∧
+    (GHL2025.oneTermRobinGate_O_DT_S p).unitary.proved = false ∧
+    (GHL2025.oneTermRobinGate_Ry_boundary p).unitary.proved = false :=
+  GHL2025.derivativeNormalizerNDSharedRoute_sourceBoundAndFlags p row sparse
+
+example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
     (GHL2025.boundaryRotationAngleNormalizerProofRoute p row sparse).coefficientDivision.proved =
       false := rfl
 
@@ -2843,6 +4144,663 @@ example (p : GHL2025.OneTermRobinParameters) :
         false :=
   GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsFullDomainFlagsFalse p
 
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).proposedImageIndex =
+        none ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).imageSpecified.proved =
+        false ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).imageSpecified.proved = false ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract p).unusedBranchImageRuleContract
+        j).separatesActiveCollision.proved = false :=
+  GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsImageRuleUnspecified p j
+
+example (p : GHL2025.OneTermRobinParameters) :
+    GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.defaultBandedSparseAccessPaperContract p).forwardCorrect.proved =
+        false ∧
+      (GHL2025.defaultBandedSparseAccessPaperContract p).daggerCleanup.proved =
+        false ∧
+      (GHL2025.defaultBandedSparseAccessPaperContract p).unitaryExtension.proved =
+        false :=
+  GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsPaperContractFlagsFalse p
+
+example :
+    GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.zerosIncludedInSparseEnumeration =
+        true ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.unusedBranchImageRule =
+        none ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.unusedBranchImageIndex =
+        none ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.reversibleExtensionTheorem =
+        none ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.closesUnusedZeroBranchExtension =
+        false ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.lowerProofSearchAllowed =
+        false ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.imageRuleObligation.proved =
+        false ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.reversibleExtensionObligation.proved =
+        false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false :=
+  GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract_blocks_unusedZeroBranch
+
+example (p : GHL2025.OneTermRobinParameters) (j : Nat) :
+    GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.zerosIncludedInSparseEnumeration =
+        true ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.unusedBranchImageIndex =
+        none ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.reversibleExtensionTheorem =
+        none ∧
+      GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).proposedImageIndex =
+        none ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p j).imageSpecified.proved =
+        false :=
+  GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract_keepsImageRuleUnspecified p j
+
+example :
+    GHL2025.bandedSparseAccessPriorPDESourceContract.oracleEquation =
+      "O_A^BS |0>^(n-l)|s>^l|i>^n = |r_si>^n|i>^n" :=
+  GHL2025.bandedSparseAccessPriorPDESourceContract_oracleEquation
+
+example :
+    GHL2025.bandedSparseAccessPriorPDESourceContract.robinUnusedBranchImageRule =
+        none ∧
+      GHL2025.bandedSparseAccessPriorPDESourceContract.closesUnusedZeroBranchExtension =
+        false ∧
+      GHL2025.bandedSparseAccessPriorPDESourceContract.lowerProofSearchAllowed =
+        false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false :=
+  GHL2025.bandedSparseAccessPriorPDESourceContract_blocks_unusedZeroBranch
+
+example :
+    GHL2025.bandedSparseAccessPriorPDESourceContract.resourceClaim.proved =
+      false :=
+  GHL2025.bandedSparseAccessPriorPDESourceContract_resource_unproved
+
+-- Theorem-level one-term proof-route contract.
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.alpha =
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.normalizer :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_normalizer n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.targetMatrix =
+      Examples.RobinHeat.robinDerivativeMatrix n :=
+  (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).targetMatrixMatchesSpec
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex.val =
+      0 :=
+  (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).signalIndexZero
+
+example (n : Nat) (i j : Fin (gridSize n)) :
+    signalSystemBlockRowIndex (gridSize n)
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex.val
+        i.val = i.val ∧
+      signalSystemBlockColIndex (gridSize n)
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex.val
+        j.val = j.val :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_signalZeroBlockIndices n i j
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target =
+        Examples.RobinHeat.oneTermRobinBlockExtractionTarget n ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.semantics =
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.targetMatrix =
+        Examples.RobinHeat.robinDerivativeMatrix n ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex.val =
+        0 :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockTarget n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target =
+        Examples.RobinHeat.oneTermRobinBlockExtractionTarget n ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.unitaryMatrix =
+        cast (by rw [Examples.RobinHeat.oneTermRobinCircuitDimCompat n])
+          (Examples.RobinHeat.oneTermRobinCircuitSemantics n).matrix ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockMatrix =
+        signalSystemBlockProjection
+          (qubitDim (GHL2025.effectiveRobinSignalQubits
+            (Examples.RobinHeat.oneTermParameters n)))
+          (gridSize n)
+          (gridSize n)
+          (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.unitaryMatrix
+          (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.targetMatrix =
+        Examples.RobinHeat.robinDerivativeMatrix n ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.normalizer =
+        GHL2025.oneTermRobinNormalizer ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex.val =
+        0 ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockProjection.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockProjectionNormalizerAudit n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.circuit =
+        GHL2025.oneTermRobinCircuit ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices =
+        GHL2025.oneTermRobinGateMatrixPlaceholders (Examples.RobinHeat.oneTermParameters n) ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateListMatches =
+        GHL2025.oneTermRobinPlaceholdersMatch (Examples.RobinHeat.oneTermParameters n) ∧
+      Matrix.PointwiseEq
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.matrix
+        (evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders
+            (Examples.RobinHeat.oneTermParameters n))) ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.semantics =
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_circuitProduct n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockProjection.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_claimBlockCorrectFalse n
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultOneTermRobinTheoremData p).signalQubits =
+      (GHL2025.oneTermRobinLayout p).signalQubits :=
+  GHL2025.defaultOneTermRobinTheoremData_signalQubits_eq_layout p
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultOneTermRobinTheoremData p).pureAncillas =
+      (GHL2025.oneTermRobinLayout p).pureAncillas :=
+  GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_layout p
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.defaultOneTermRobinTheoremData p).pureAncillas =
+      (GHL2025.oneTermRobinResource p).pureAncilla :=
+  GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_resource p
+
+example (p : GHL2025.OneTermRobinParameters) :
+    GHL2025.effectiveRobinSignalQubits p =
+      (GHL2025.oneTermRobinLayout p).signalQubits +
+        (GHL2025.defaultRobinRegisterPartition p).odPureAncillaQubits + 1 :=
+  GHL2025.effectiveRobinSignalQubits_eq_layout_signal_plus_visibleWorkspace p
+
+example (p : GHL2025.OneTermRobinParameters) :
+    GHL2025.effectiveRobinSignalQubits p =
+      (GHL2025.defaultOneTermRobinTheoremData p).signalQubits +
+        (GHL2025.defaultRobinRegisterPartition p).odPureAncillaQubits + 1 :=
+  GHL2025.effectiveRobinSignalQubits_eq_theoremData_signal_plus_visibleWorkspace p
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.signalQubits =
+        (GHL2025.oneTermRobinLayout (Examples.RobinHeat.oneTermParameters n)).signalQubits ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.pureAncillas =
+        (GHL2025.oneTermRobinLayout (Examples.RobinHeat.oneTermParameters n)).pureAncillas ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.pureAncillas =
+        (GHL2025.oneTermRobinResource (Examples.RobinHeat.oneTermParameters n)).pureAncilla ∧
+      GHL2025.effectiveRobinSignalQubits (Examples.RobinHeat.oneTermParameters n) =
+        (GHL2025.oneTermRobinLayout (Examples.RobinHeat.oneTermParameters n)).signalQubits +
+          (GHL2025.defaultRobinRegisterPartition
+            (Examples.RobinHeat.oneTermParameters n)).odPureAncillaQubits + 1 ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.resourceBound.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.ancillaCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockProjection.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_layoutProjectionAudit n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.circuit =
+      GHL2025.oneTermRobinCircuit :=
+  (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitWired
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockProjection.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.blockExtraction.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.closesUnusedZeroBranchExtension =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.closesUnusedZeroBranchExtension =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).functionOracleSource.closesFunctionOracleContract =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.functionOracle.amplitudeCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_flags_false n
+
+example (n j : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).functionOracleSource =
+        GHL2025.functionOracleExternalAmplitudeSourceContract ∧
+      (GHL2025.functionOracleAmplitudeProofRoute
+        (Examples.RobinHeat.oneTermParameters n) j).normalizerNf =
+        (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).functionOracleSource.normalizerNf ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).functionOracleSource.externalTheoremFormalized.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).functionOracleSource.closesFunctionOracleContract =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.functionOracle.amplitudeCorrect.proved =
+        false ∧
+      (GHL2025.oneTermRobinGate_O_f
+        (Examples.RobinHeat.oneTermParameters n)).unitary.proved = false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false := by
+  rcases
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags
+        n j
+      with
+    ⟨hsourceIdentity, _hsourceAnchor, hnormalizer, _hformula, _hnonzeroEq,
+      _hdivisionEq, _htheoremEq, _hresource, hexternal, _hsourceNonzero,
+      _hsourceDivision, _hsourceTheorem, _hclosesBound, _hclosesOrthogonal,
+      _hclosesUnitary, hclosesContract, _hnormalized, _hnonzero, _hdivision,
+      _hbound, _horthogonal, _hunitary, _hrouteTheorem, _hgate, _hmatrix,
+      hgateUnitary, hfunctionAmp, hlcu, _hblockProjection, hblockCorrect,
+      _hblockExtraction⟩
+  exact ⟨hsourceIdentity, hnormalizer, hexternal, hclosesContract,
+    hfunctionAmp, hgateUnitary, hlcu, hblockCorrect⟩
+
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).circuitSemantics.gateMatrices.get
+      ⟨4, by
+        simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+          Examples.RobinHeat.oneTermRobinCircuitSemantics,
+          GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).gate =
+        Gate.oracleCall "O_f") ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).circuitSemantics.gateMatrices.get
+      ⟨4, by
+        simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+          Examples.RobinHeat.oneTermRobinCircuitSemantics,
+          GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix =
+        GHL2025.functionOraclePaperMatrix p) ∧
+      (GHL2025.functionOracleAmplitudeProofRoute p 36).theoremAmplitudeCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  rcases
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags
+        3 36
+      with
+    ⟨_hsourceIdentity, _hsourceAnchor, _hnormalizer, _hformula, _hnonzeroEq,
+      _hdivisionEq, _htheoremEq, _hresource, _hexternal, _hsourceNonzero,
+      _hsourceDivision, _hsourceTheorem, _hclosesBound, _hclosesOrthogonal,
+      _hclosesUnitary, _hclosesContract, _hnormalized, _hnonzero, _hdivision,
+      _hbound, _horthogonal, _hunitary, hrouteTheorem, hgate, hmatrix,
+      _hgateUnitary, _hfunctionAmp, _hlcu, _hblockProjection, _hblockCorrect,
+      hblockExtraction⟩
+  exact ⟨hgate, hmatrix, hrouteTheorem, hblockExtraction⟩
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.citedResultKey =
+        "QBE.ODBS.UnusedZeroBranchExtension" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.robinUnusedBranchImageRule =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.unusedBranchImageRule =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.closesUnusedZeroBranchExtension =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.forwardCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsSourceBlockers n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.zerosIncludedInSparseEnumeration =
+        true ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.unusedBranchImageRule =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.unusedBranchImageIndex =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.reversibleExtensionTheorem =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.closesUnusedZeroBranchExtension =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_robinZeroInclusionTranscript n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.zerosIncludedInSparseEnumeration =
+        true ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.unusedBranchImageRule =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.forwardCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS (Examples.RobinHeat.oneTermParameters n)).unitary.proved =
+        false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger
+        (Examples.RobinHeat.oneTermParameters n)).unitary.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_robinZeroInclusionKeepsOdbsBlocked n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.oracleEquation =
+        "O_A^BS |0>^(n-l)|s>^l|i>^n = |r_si>^n|i>^n" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.resourceClaim.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.robinUnusedBranchImageRule =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_priorPDESourceTranscript n
+
+example (n j : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract
+        (Examples.RobinHeat.oneTermParameters n) j).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+        (Examples.RobinHeat.oneTermParameters n)).unusedBranchImageRuleContract
+        j).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+        (Examples.RobinHeat.oneTermParameters n)).unusedBranchImageRuleContract
+        j).imageSpecified.proved = false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.forwardCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsNoLowerProofSearch n j
+
+example (n j : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.citedResultKey =
+        "QBE.ODBS.UnusedZeroBranchExtension" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.paperImageRuleSpecified =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.externalExtensionTheoremAccepted =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract
+        (Examples.RobinHeat.oneTermParameters n) j).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+        (Examples.RobinHeat.oneTermParameters n)).unusedBranchImageRuleContract
+        j).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+        (Examples.RobinHeat.oneTermParameters n)).unusedBranchImageRuleContract
+        j).imageSpecified.proved = false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.forwardCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sourceDecisionImageSlotsBlocked n j
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS (Examples.RobinHeat.oneTermParameters n)).unitary.proved =
+        false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger
+        (Examples.RobinHeat.oneTermParameters n)).unitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairBlocked n
+
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.dependency.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.imageRuleObligation.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS (Examples.RobinHeat.oneTermParameters n)).unitary.proved =
+        false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger
+        (Examples.RobinHeat.oneTermParameters n)).unitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.blockExtraction.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sourceBlockerKeepsFinalFlagsFalse n
+
+-- Guard-only regression: the block-projection audit and source-blocker audit
+-- must keep the theorem route on signal index 0, the paper normalizer, and
+-- false final semantic flags at the same time.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.normalizer =
+        GHL2025.oneTermRobinNormalizer ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex.val =
+        0 ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockProjection.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.blockExtraction.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_projectionSourceFreeze n
+
+-- Source-anchor guard: the unused-zero-branch decision cites public QBE/paper
+-- anchors and remains a blocker, not a local-source proof ticket.
+example :
+    GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.sourceAnchor =
+        "Guseynov-Huang-Liu 2025, Lemma 1 and Fig. 1-term Robin, arXiv:2506.20478" ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.citedResultKey =
+        "QBE.ODBS.UnusedZeroBranchExtension" ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.dependency.source =
+        "research-wiki/cited-results/GHL2025.md: QBE.ODBS.UnusedZeroBranchExtension" ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.paperImageRuleSpecified =
+        false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.externalExtensionTheoremAccepted =
+        false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false ∧
+      GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.dependency.proved =
+        false :=
+  ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- Lower source-contract guard: the audited unused branch stays blocked in the
+-- source decision, the image slot, and the theorem-level route at once.
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p 48).proposedImageIndex =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.unitaryExtension.proved =
+        false :=
+  ⟨rfl, rfl, rfl, rfl⟩
+
+-- Concrete regression guard for the recorded n=3 boundary unused-branch
+-- rejected-model collision: the active image is now separated, while the
+-- source blocker, image slot, and final theorem-route flags remain false.
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    GHL2025.bandedSparseAccessPaperImage p 0 ≠
+        GHL2025.bandedSparseAccessPaperImage p 48 ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p 48).proposedImageIndex =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.dependency.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false := by
+  native_decide
+
+-- The active matrix collision itself remains tied to the disabled source
+-- decision through rejected-model memory.  The active image has separate rows;
+-- this is a regression guard, not an injectivity theorem.
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+        ⟨96, by native_decide⟩ ⟨0, by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+        ⟨16, by native_decide⟩ ⟨48, by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p 48).proposedImageIndex =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.unitaryExtension.proved =
+        false := by
+  native_decide
+
+-- Named route guard for the same concrete rejected-model collision: active
+-- image separation remains tied to false theorem-route flags, not a proof of
+-- full O_D^BS semantics.
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    GHL2025.bandedSparseAccessRowDependentPaperImage p 0 =
+        GHL2025.bandedSparseAccessRowDependentPaperImage p 48 ∧
+      GHL2025.bandedSparseAccessPaperImage p 0 ≠
+        GHL2025.bandedSparseAccessPaperImage p 48 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+          ⟨96, by native_decide⟩ ⟨0, by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.oneTermRobinGate_O_D_BS p).matrix
+          ⟨16, by native_decide⟩ ⟨48, by native_decide⟩ = Coeff.rat 1 ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract p 48).proposedImageIndex =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.unitaryExtension.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeCollisionBlocked_n3
+
+-- The theorem route also carries the column-8 active-vs-legacy separation:
+-- active O_D^BS uses the Lemma 1 paper-image row, while proof search stays
+-- disabled and block correctness remains false.
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    GHL2025.bandedSparseAccessPaperImage p 8 = 40 ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).circuitSemantics.gateMatrices.get
+        ⟨3, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix
+          ⟨40, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 1) ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).circuitSemantics.gateMatrices.get
+        ⟨3, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix
+          ⟨4, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 0) ∧
+      (GHL2025.bandedSparseAccessMatrix p)
+          ⟨4, by native_decide⟩ ⟨8, by native_decide⟩ = Coeff.rat 1 ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_contractDriftColumn8Blocked_n3
+
+-- Guard-only packet: the theorem route consumes the audited O_D^BS source
+-- records exactly, rather than carrying an alternate source decision.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision =
+        GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource =
+        GHL2025.bandedSparseAccessPriorPDESourceContract ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource =
+        GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sourceTranscriptIdentity n
+
+-- The theorem route exposes the source obligations as unproved blockers,
+-- without changing any active O_D^BS matrix or block-extraction flag.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.dependency.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.imageRuleObligation.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).robinZeroInclusionSource.reversibleExtensionObligation.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.resourceClaim.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockProjection.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sourceObligationsFalse n
+
 -- Active O_D^BS matrices are unchanged by the full clean-domain wrapper.
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_O_D_BS p).matrix =
@@ -2857,6 +4815,350 @@ example (p : GHL2025.OneTermRobinParameters) :
 
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_O_D_BS_dagger p).unitary.proved = false := rfl
+
+-- The seven-gate placeholder list still carries the blocked O_D^BS pair in
+-- the Fig. 1-term Robin positions used by the circuit product.
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGateMatrixPlaceholders p).get
+        ⟨3, by simp [GHL2025.oneTermRobinGateMatrixPlaceholders]⟩ =
+      GHL2025.oneTermRobinGate_O_D_BS p := rfl
+
+example (p : GHL2025.OneTermRobinParameters) :
+    (GHL2025.oneTermRobinGateMatrixPlaceholders p).get
+        ⟨6, by simp [GHL2025.oneTermRobinGateMatrixPlaceholders]⟩ =
+      GHL2025.oneTermRobinGate_O_D_BS_dagger p := rfl
+
+-- The theorem-route circuit semantics carries the same blocked active gate
+-- pair in the product; this is a wiring guard, not a semantic proof.
+example (n : Nat) :
+    (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨3, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix =
+        GHL2025.bandedSparseAccessPaperMatrix (Examples.RobinHeat.oneTermParameters n)) ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨6, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix =
+        GHL2025.bandedSparseAccessPaperDaggerMatrix (Examples.RobinHeat.oneTermParameters n)) ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨3, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).unitary.proved =
+        false) ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨6, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).unitary.proved =
+        false) := by
+  exact ⟨rfl, rfl, rfl, rfl⟩
+
+example (n : Nat) :
+    (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨3, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).gate =
+        Gate.oracleCall "O_D^BS") ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨3, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix =
+        GHL2025.bandedSparseAccessPaperMatrix (Examples.RobinHeat.oneTermParameters n)) ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨3, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).unitary.proved =
+        false) ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨6, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).gate =
+        Gate.oracleCall "(O_D^BS)^†") ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨6, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix =
+        GHL2025.bandedSparseAccessPaperDaggerMatrix (Examples.RobinHeat.oneTermParameters n)) ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨6, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).unitary.proved =
+        false) ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairWiring n
+
+-- The active O_D^BS gate-pair obligations cite public paper anchors and keep
+-- proof search disabled.
+example (n : Nat) :
+    (GHL2025.oneTermRobinGate_O_D_BS
+        (Examples.RobinHeat.oneTermParameters n)).unitary.source =
+        "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478" ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger
+        (Examples.RobinHeat.oneTermParameters n)).unitary.source =
+        "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Lemma 1, arXiv:2506.20478" ∧
+      (GHL2025.oneTermRobinGate_O_D_BS
+        (Examples.RobinHeat.oneTermParameters n)).unitary.proved =
+        false ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger
+        (Examples.RobinHeat.oneTermParameters n)).unitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairPublicSources n
+
+-- Source-gate freeze guard: the blocked O_D^BS source decision, image slots,
+-- active matrices, block target, and final theorem flags remain synchronized.
+example (n j : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract
+        (Examples.RobinHeat.oneTermParameters n) j).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+        (Examples.RobinHeat.oneTermParameters n)).unusedBranchImageRuleContract
+        j).proposedImageIndex = none ∧
+      (GHL2025.oneTermRobinGate_O_D_BS
+        (Examples.RobinHeat.oneTermParameters n)).unitary.source =
+        "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478" ∧
+      (GHL2025.oneTermRobinGate_O_D_BS_dagger
+        (Examples.RobinHeat.oneTermParameters n)).unitary.source =
+        "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Lemma 1, arXiv:2506.20478" ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨3, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix =
+        GHL2025.bandedSparseAccessPaperMatrix (Examples.RobinHeat.oneTermParameters n)) ∧
+      (((Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.get
+        ⟨6, by
+          simp [Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute,
+            Examples.RobinHeat.oneTermRobinCircuitSemantics,
+            GHL2025.oneTermRobinGateMatrixPlaceholders]⟩).matrix =
+        GHL2025.bandedSparseAccessPaperDaggerMatrix (Examples.RobinHeat.oneTermParameters n)) ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.normalizer =
+        GHL2025.oneTermRobinNormalizer ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex.val =
+        0 ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sourceGateFreeze n j
+
+-- Seven-gate route flag guard: only U_indic and SWAP are marked proved; all
+-- paper-oracle gate flags and theorem-level closure flags remain blocked.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.map
+        (fun gateMatrix => gateMatrix.unitary.proved) =
+        [true, false, false, false, false, true, false] ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateUnitaryFlags n
+
+-- Gate-list and flag freeze guard: the route keeps the Fig. 1-term Robin gate
+-- order synchronized with the current proof-state vector.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.map
+        (fun gateMatrix => gateMatrix.gate) =
+        GHL2025.oneTermRobinCircuit ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.map
+        (fun gateMatrix => gateMatrix.unitary.proved) =
+        [true, false, false, false, false, true, false] ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateListAndFlags n
+
+-- Gate/projection freeze guard: the Fig. 1-term Robin gate order, proof-state
+-- vector, signal-zero target, and final false flags stay synchronized.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.map
+        (fun gateMatrix => gateMatrix.gate) =
+        GHL2025.oneTermRobinCircuit ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).circuitSemantics.gateMatrices.map
+        (fun gateMatrix => gateMatrix.unitary.proved) =
+        [true, false, false, false, false, true, false] ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.normalizer =
+        GHL2025.oneTermRobinNormalizer ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.signalIndex.val =
+        0 ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockProjection.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).theoremData.obligations.blockExtraction.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateProjectionFreeze n
+
+-- The theorem route carries the Lemma 1 O_D^BS ket/register transcript and
+-- keeps the paper-contract proof flags false.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.sourceAnchor =
+        "Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.rowRegisterQubits =
+        (Examples.RobinHeat.oneTermParameters n).n ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.paddedZeroQubits =
+        (Examples.RobinHeat.oneTermParameters n).n -
+          clog2 (Examples.RobinHeat.oneTermParameters n).kappa ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.sparseIndexQubits =
+        clog2 (Examples.RobinHeat.oneTermParameters n).kappa ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.outputAddressQubits =
+        (Examples.RobinHeat.oneTermParameters n).n ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.inputKet =
+        "|0>^(n-l)|s>^l|i>^n" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.outputKet =
+        "|r_si>^n|i>^n" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.imageFormula =
+        "r_si = r_s0 + i mod 2^n" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.cleanInputDomain.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.widthCompatible.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.addressRange.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.noSpill.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.forwardCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsPaperContractTranscript n
+
+-- Concrete source-decision freeze: the n=3 blocker, source transcripts,
+-- projection target, and final theorem flags remain synchronized.
+example :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision =
+        GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).priorSparseAccessSource =
+        GHL2025.bandedSparseAccessPriorPDESourceContract ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).robinZeroInclusionSource =
+        GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract
+        (Examples.RobinHeat.oneTermParameters 3) 48).proposedImageIndex = none ∧
+      GHL2025.bandedSparseAccessPaperImage (Examples.RobinHeat.oneTermParameters 3) 0 ≠
+        GHL2025.bandedSparseAccessPaperImage (Examples.RobinHeat.oneTermParameters 3) 48 ∧
+      GHL2025.bandedSparseAccessPaperImage (Examples.RobinHeat.oneTermParameters 3) 8 =
+        40 ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.normalizer =
+        GHL2025.oneTermRobinNormalizer ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.signalIndex.val =
+        0 ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.dependency.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).robinZeroInclusionSource.imageRuleObligation.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).robinZeroInclusionSource.reversibleExtensionObligation.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).priorSparseAccessSource.resourceClaim.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).sparseAccessContract.unitaryExtension.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.circuitUnitary.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sourceDecisionOnlyFreeze_n3
+
+-- The concrete source-decision freeze keeps both the direct and full-wrapper
+-- unused-branch image slots empty for the recorded boundary column.
+example :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.paperImageRuleSpecified =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.externalExtensionTheoremAccepted =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract
+        (Examples.RobinHeat.oneTermParameters 3) 48).proposedImageIndex = none ∧
+      (GHL2025.bandedSparseAccessUnusedBranchImageRuleContract
+        (Examples.RobinHeat.oneTermParameters 3) 48).imageSpecified.proved = false ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+        (Examples.RobinHeat.oneTermParameters 3)).unusedBranchImageRuleContract
+        48).proposedImageIndex = none ∧
+      ((GHL2025.bandedSparseAccessFullCleanDomainExtensionContract
+        (Examples.RobinHeat.oneTermParameters 3)).unusedBranchImageRuleContract
+        48).imageSpecified.proved = false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sourceDecisionWrapperSlotsBlocked_n3
+
+-- The theorem route uses the default Lemma 1 O_D^BS contract object itself,
+-- and keeps its semantic proof flags false.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract =
+        GHL2025.defaultBandedSparseAccessPaperContract (Examples.RobinHeat.oneTermParameters n) ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.forwardCorrect.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.daggerCleanup.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).sparseAccessContract.unitaryExtension.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sparseAccessContractIdentity n
+
+-- The theorem route preserves the public anchors and decomposition transcript
+-- for the prior PDE sparse-access source, without unblocking O_D^BS proof
+-- search.
+example (n : Nat) :
+    (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.sourceAnchor =
+        "Guseynov-Huang-Liu 2024, arXiv:2405.12855v3, Definition 6, Lemma 1, Appendix Banded-sparse-access" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.definitionAnchor =
+        "Definition 6: Banded-sparse-access" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.lemmaAnchor =
+        "Lemma 1: Banded-sparse-access resource bound" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.appendixAnchor =
+        "Appendix: Explicit quantum circuit construction for O_A^BS" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.circuitDecomposition =
+        "O_A^BS = U^SUM (U_A^(l) tensor I^n)" ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.resourceClaim.proved =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.robinUnusedBranchImageRule =
+        none ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).priorSparseAccessSource.lowerProofSearchAllowed =
+        false ∧
+      (Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n).unusedZeroBranchDecision.lowerProofSearchAllowed =
+        false :=
+  Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_priorPDESourceAnchorsTranscript n
 
 -- Entry-level nonzero checks for the full product are tracked as future proof
 -- obligations rather than compiled tests, because they force large symbolic
@@ -2883,10 +5185,9 @@ example (p : GHL2025.OneTermRobinParameters) :
 example (p : GHL2025.OneTermRobinParameters) :
     (GHL2025.oneTermRobinGate_U_indic p).unitary.proved = true := rfl
 
--- Run 02 cycle 02 recovery: SWAP image tests remain concrete until the
--- proof-DAG bit-slice lemmas are factored into reusable general theorems.
+-- SWAP finite permutation bridge is compiled.
 example (p : GHL2025.OneTermRobinParameters) :
-    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = false := rfl
+    (GHL2025.oneTermRobinGate_SWAP p).unitary.proved = true := rfl
 
 -- O_D^BS noninjectivity witness: the current boundary sparse-column map
 -- sends multiple boundary rows to the same column for the same sparse index.

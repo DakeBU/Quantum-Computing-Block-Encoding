@@ -35,9 +35,12 @@ and human explanation.
    whether the missing ingredient is an internal paper step, external cited
    result, classical Lean lemma, or source-contract gap.  The next lower-agent
    packet must follow this classification.
-9. Write a Markdown explanation of the construction.
-10. Move verified Lean code into `QuantumBlockEncoding/`.
-11. Run `python3 tools/qbe.py check`.
+9. If the source paper contains a proof, add a proof-translation pane.  List
+   each source proof step and map it to an existing Lean declaration, planned
+   local lemma, cited-results dependency, or source-contract gap.
+10. Write a Markdown explanation of the construction.
+11. Move verified Lean code into `QuantumBlockEncoding/`.
+12. Run `python3 tools/qbe.py check`.
 
 ## Proof-DAG Pane
 
@@ -70,6 +73,10 @@ If a proof block repeatedly fails, do not keep issuing the same lower-agent
 proof-search packet.  Re-read the local TeX source and bibliography, classify
 the dependency, and add either a cited-results entry, a local Lean lemma target,
 or a source-contract obligation.
+
+If the paper already provides a proof, the window should show how the proof is
+being translated.  Do not let a lower-agent packet skip directly from theorem
+statement to tactic search without a source-proof-step map.
 
 If a Lean declaration maps the wrong registers, uses a simplified oracle shape,
 or omits the paper's clean-ancilla condition, mark it as contract drift and

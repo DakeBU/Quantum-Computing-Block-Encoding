@@ -11,6 +11,13 @@ Lean declarations:
 - `swapOracleDiff_shiftRight_eq_zero`
 - `swapOracleDiff_shiftLeft_mask_eq_zero`
 - `swapOracleImage_block1_eq_block2`
+- `swapOracleImage_block2_eq_block1`
+- `swapOracleImage_lt_qubitDim`
+- `swapOracleDiff`
+- `swapOracleImage_eq_xor_diff`
+- `swapOracleDiff_preserved`
+- `xor_two_shifted_masks_cancel`
+- `swapOracleImage_self_inverse`
 
 ## Definitions
 
@@ -73,13 +80,43 @@ $$
 
 This is `swapOracleImage_block1_eq_block2`.
 
-## Not Proved Yet
-
-The symmetric block identity
+Lean also proves the symmetric block identity:
 
 $$
-b_2(S(j))=b_1(j)
+b_2(S(j))=b_1(j).
 $$
 
-is not yet proved.  Therefore the full SWAP self-inverse theorem,
-bijection/permutation theorem, and gate unitarity remain obligations.
+This is `swapOracleImage_block2_eq_block1`.
+
+The finite-range lemma
+`swapOracleImage_lt_qubitDim` proves that the SWAP image stays inside the same
+full basis whenever the input index is inside the full basis.  This is a range
+block only; it is not a bijection proof.
+
+Lean then names the block difference as `swapOracleDiff`, proves that
+`swapOracleImage` is exactly XOR by that difference in the two register
+positions, and proves that the difference is preserved by one SWAP application:
+
+$$
+d(S(j))=d(j).
+$$
+
+This is `swapOracleDiff_preserved`.  The local Boolean cancellation lemma
+`xor_two_shifted_masks_cancel` proves that applying the two shifted masks twice
+returns the original basis index.  Together these give the self-inverse theorem
+
+$$
+S(S(j))=j
+$$
+
+as `swapOracleImage_self_inverse`.
+
+## Finite Permutation Bridge
+
+Lean now packages `swapOracleImage` as a map on
+`Fin (qubitDim (oneTermRobinTotalQubits p))`, derives injectivity and
+surjectivity from `swapOracleImage_self_inverse` and
+`swapOracleImage_lt_qubitDim`, and proves the row and column uniqueness lemmas
+for `swapOracleMatrix`.  The gate-level field
+`(GHL2025.oneTermRobinGate_SWAP p).unitary.proved` is `true`, backed by
+`GHL2025.swapOracleMatrix_is_permutation`.

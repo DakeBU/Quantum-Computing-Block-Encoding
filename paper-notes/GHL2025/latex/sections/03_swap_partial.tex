@@ -37,5 +37,8 @@ Using these facts, Lean proves the first register identity:
 \]
 This is \Lean{swapOracleImage\_block1\_eq\_block2}.
 
-The symmetric identity \(b_2(S(j))=b_1(j)\), the self-inverse theorem, the
-bijection theorem, and SWAP unitarity remain obligations.
+Lean also proves the symmetric identity \(b_2(S(j))=b_1(j)\), the
+self-inverse theorem, the finite-basis bijection, and the row and column
+uniqueness lemmas for \Lean{swapOracleMatrix}.  The permutation theorem is
+\Lean{swapOracleMatrix\_is\_permutation}, and the SWAP gate field is now
+\Lean{unitary.proved := true}.

@@ -122,14 +122,60 @@ structure CircuitBlockEncodingClaim (α : Type u) [OfNat α 0] [OfNat α 1]
   dimCompat : qubitDim qubits = signalDim * dim
   blockCorrect : SemanticObligation
 
+/-- Compound row index for a signal value and a system-row index. -/
+def signalSystemBlockRowIndex (rows : Nat) (signalIdx systemIdx : Nat) : Nat :=
+  signalIdx * rows + systemIdx
+
+/-- Compound column index for a signal value and a system-column index. -/
+def signalSystemBlockColIndex (cols : Nat) (signalIdx systemIdx : Nat) : Nat :=
+  signalIdx * cols + systemIdx
+
+@[simp] theorem signalSystemBlockRowIndex_zero (rows systemIdx : Nat) :
+    signalSystemBlockRowIndex rows 0 systemIdx = systemIdx := by
+  simp [signalSystemBlockRowIndex]
+
+@[simp] theorem signalSystemBlockColIndex_zero (cols systemIdx : Nat) :
+    signalSystemBlockColIndex cols 0 systemIdx = systemIdx := by
+  simp [signalSystemBlockColIndex]
+
+/-- The row compound index stays inside a signal × row matrix. -/
+theorem signalSystemBlockRowIndex_lt {signalDim rows : Nat}
+    (signalIdx : Fin signalDim) (i : Fin rows) :
+    signalSystemBlockRowIndex rows signalIdx.val i.val < signalDim * rows := by
+  exact Nat.lt_of_succ_le (by
+    show signalSystemBlockRowIndex rows signalIdx.val i.val + 1 ≤ signalDim * rows
+    calc signalSystemBlockRowIndex rows signalIdx.val i.val + 1
+        ≤ signalIdx.val * rows + rows := by
+            simp [signalSystemBlockRowIndex]
+            omega
+      _ = (signalIdx.val + 1) * rows := by
+          exact Nat.succ_mul signalIdx.val rows |>.symm
+      _ ≤ signalDim * rows := by
+          exact Nat.mul_le_mul_right rows (Nat.succ_le_of_lt signalIdx.isLt))
+
+/-- The column compound index stays inside a signal × column matrix. -/
+theorem signalSystemBlockColIndex_lt {signalDim cols : Nat}
+    (signalIdx : Fin signalDim) (j : Fin cols) :
+    signalSystemBlockColIndex cols signalIdx.val j.val < signalDim * cols := by
+  exact Nat.lt_of_succ_le (by
+    show signalSystemBlockColIndex cols signalIdx.val j.val + 1 ≤ signalDim * cols
+    calc signalSystemBlockColIndex cols signalIdx.val j.val + 1
+        ≤ signalIdx.val * cols + cols := by
+            simp [signalSystemBlockColIndex]
+            omega
+      _ = (signalIdx.val + 1) * cols := by
+          exact Nat.succ_mul signalIdx.val cols |>.symm
+      _ ≤ signalDim * cols := by
+          exact Nat.mul_le_mul_right cols (Nat.succ_le_of_lt signalIdx.isLt))
+
 /--
 Block projection: extract the `(signalIdx, signalIdx)` block from a
 signal × system matrix.
 
-Given a matrix M of size `(signalDim * rows) × (signalDim * cols)`,
-`signalSystemBlockIndex signalDim dim idx` maps a pair `(i, j)` of
-system indices to the compound index in the full matrix that corresponds
-to signal register value `idx` and system indices `(i, j)`.
+Given a matrix M of size `(signalDim * rows) × (signalDim * cols)`, the helpers
+`signalSystemBlockRowIndex` and `signalSystemBlockColIndex` map a pair `(i, j)`
+of system indices to the compound row and column indices in the full matrix
+that correspond to signal register value `idx` and system indices `(i, j)`.
 
 The block `(⟨signalIdx| ⊗ I) M (|signalIdx⟩ ⊗ I)` is then:
   blockMatrix i j = M (signalIdx * rows + i) (signalIdx * cols + j)
@@ -140,30 +186,20 @@ def signalSystemBlockProjection {α : Type u} [OfNat α 0]
     (signalIdx : Fin signalDim) :
     Matrix rows cols α :=
   fun i j =>
-    have hRows : signalIdx.val * rows + i.val < signalDim * rows := by
-      have h1 := i.isLt
-      have h2 := signalIdx.isLt
-      exact Nat.lt_of_succ_le (by
-        show signalIdx.val * rows + i.val + 1 ≤ signalDim * rows
-        calc signalIdx.val * rows + i.val + 1
-            ≤ signalIdx.val * rows + rows := by omega
-          _ = (signalIdx.val + 1) * rows := by
-              exact Nat.succ_mul signalIdx.val rows |>.symm
-          _ ≤ signalDim * rows := by
-              exact Nat.mul_le_mul_right rows (Nat.succ_le_of_lt h2))
-    have hCols : signalIdx.val * cols + j.val < signalDim * cols := by
-      have h1 := j.isLt
-      have h2 := signalIdx.isLt
-      exact Nat.lt_of_succ_le (by
-        show signalIdx.val * cols + j.val + 1 ≤ signalDim * cols
-        calc signalIdx.val * cols + j.val + 1
-            ≤ signalIdx.val * cols + cols := by omega
-          _ = (signalIdx.val + 1) * cols := by
-              exact Nat.succ_mul signalIdx.val cols |>.symm
-          _ ≤ signalDim * cols := by
-              exact Nat.mul_le_mul_right cols (Nat.succ_le_of_lt h2))
-    M ⟨signalIdx.val * rows + i.val, hRows⟩
-      ⟨signalIdx.val * cols + j.val, hCols⟩
+    M ⟨signalSystemBlockRowIndex rows signalIdx.val i.val,
+        signalSystemBlockRowIndex_lt signalIdx i⟩
+      ⟨signalSystemBlockColIndex cols signalIdx.val j.val,
+        signalSystemBlockColIndex_lt signalIdx j⟩
+
+@[simp] theorem signalSystemBlockProjection_apply {α : Type u} [OfNat α 0]
+    {signalDim rows cols : Nat}
+    (M : Matrix (signalDim * rows) (signalDim * cols) α)
+    (signalIdx : Fin signalDim) (i : Fin rows) (j : Fin cols) :
+    signalSystemBlockProjection signalDim rows cols M signalIdx i j =
+      M ⟨signalSystemBlockRowIndex rows signalIdx.val i.val,
+          signalSystemBlockRowIndex_lt signalIdx i⟩
+        ⟨signalSystemBlockColIndex cols signalIdx.val j.val,
+          signalSystemBlockColIndex_lt signalIdx j⟩ := rfl
 
 /--
 Total qubits needed for a circuit operating on `system` system qubits

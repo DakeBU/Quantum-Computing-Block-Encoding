@@ -24,6 +24,11 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
    bundled paper-note sections, not a local absolute source path.  If the
    current Lean declaration implements a simplified register map, mark it as
    contract drift and correct that contract before proof search.
+   For sparse-access oracles, distinguish index slots from coefficient values:
+   if the paper includes zero-amplitude entries in a fixed sparse enumeration,
+   keep the sparse slot in the oracle domain and put the zero in the amplitude
+   layer.  Do not delete the slot or fold it to an identity image unless the
+   paper explicitly states that register-level rule.
 4. Maintain two-way translation.  Before lower-agent Lean work, translate the
    relevant paper LaTeX theorem/equation/circuit fragment into a Lean-facing
    contract.  After lower-agent work, translate the actual Lean declarations,
@@ -42,24 +47,29 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
    lemma, or source-contract gap.  Lower agents may continue only after that
    classification is written into the conversion window or proof-obligation
    ledger.
-7. Identify reusable proof blocks before writing Lean.  Use the lesson of
+7. If the source TeX contains a proof or proof sketch, translate the proof
+   structure before lower work.  Each source proof step should map to an
+   existing Lean declaration, a new local lemma target, an external cited-result
+   row, or a source-contract gap.  This map, not free-form theorem search, is
+   the lower-agent work queue.
+8. Identify reusable proof blocks before writing Lean.  Use the lesson of
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2: a hierarchical prover gains
    sample efficiency when repeated local arguments are represented as a proof
    DAG and solved once, rather than flattened into repeated tactic traces.
    In QBE, typical reusable blocks include dimension arithmetic, bit-slice
    extraction, block projection, gate-list alignment, sparse-index maps, and
    normalizer lemmas.
-8. Create a task:
+9. Create a task:
    `python3 tools/qbe.py new-task <id> --title "<paper construction>"`.
-9. Create a conversion window:
+10. Create a conversion window:
    `python3 tools/qbe.py conversion-window <id> --title "<paper construction>"`.
-10. Add a proof-DAG/reuse map to the conversion window: each block should have
+11. Add a proof-DAG/reuse map to the conversion window: each block should have
    an interface, dependencies, Lean declaration name, paper citation, proof
    status, and reuse sites.
-11. Add or update Lean definitions in the target file, preferring references to
+12. Add or update Lean definitions in the target file, preferring references to
    existing shared declarations over duplicate local definitions.
-12. Add at least one small test in `Tests/Basic.lean` when possible.
-13. Run `python3 tools/qbe.py check`.
+13. Add at least one small test in `Tests/Basic.lean` when possible.
+14. Run `python3 tools/qbe.py check`.
 
 ## Hierarchical Proof Policy
 
@@ -77,6 +87,8 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
 - Reviewer treats source-contract drift as blocking: a Lean proof of a
   simplified oracle is not progress on the faithful paper target until the
   register-level transformation matches the paper.
+- Reviewer treats sparse-slot deletion as contract drift when the paper uses a
+  fixed diagonal/band enumeration and merely sets some coefficients to zero.
 - Reviewer treats missing cited-results memory as blocking when a proof uses
   prior work or a "standard" fact that is not already formalized in QBE.
 - Reviewer treats missing source-dependency audit as blocking after a
