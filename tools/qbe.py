@@ -1089,6 +1089,18 @@ Mode discipline:
   invent a replacement oracle or block encoding, and do not add assumptions,
   side conditions, or easier variants.  If a paper step is missing or too hard,
   record the exact proof obligation and keep `proved := false`.
+- In faithful paper theorem-closure cycles, distinguish the current paper's own
+  proof contribution from primitives it explicitly cites.  External oracle,
+  state-preparation, arithmetic, and LCU/block-composition results may be used
+  as precise typed contracts with `SemanticObligation`s and cited-results rows.
+  Do not redirect the main lower packet into recursively proving a cited paper
+  unless the task explicitly asks for contract formalization.  First close the
+  current paper theorem under those contracts.
+- Also distinguish source branches before declaring a source-contract gap.  If
+  a displayed equation writes only the boundary branch and hides the bulk branch
+  in `+ ...`, do not compare a bulk finite example against the displayed
+  boundary endpoint.  Upper and middle must split boundary and bulk transcript
+  targets, then assign lower work to the branch-correct target.
 - In `exploratoryConstruction` mode, propose new oracle/block-encoding
   constructions only against a precise Lean-checkable acceptance target.  Do
   not weaken the target or add assumptions to make a candidate pass.
@@ -1107,6 +1119,9 @@ Mode discipline:
   it as a dependency.  Reviewer must reject uncited or hallucinated prior
   results and any dependency marked as proved without a Lean declaration,
   explicit contract, or proof obligation.
+- A cited-results row is enough for faithful theorem closure only when it is a
+  precise contract and is not marked proved.  It is not enough for gate-level
+  completion of that cited primitive; that belongs to a later task.
 - Treat repeated proof failure in faithful-paper mode as a source-dependency
   signal.  Upper and middle should re-read the local TeX source and its
   bibliography around the failing theorem before assigning more lower proof
@@ -1121,6 +1136,12 @@ Mode discipline:
   A `source-contract-gap` classification is acceptable only after the local TeX
   and nearby citations have been checked and no paper-backed gate-level
   ingredient has been found.
+- Branch-correctness invariant: a focused finite example must satisfy the same
+  branch conditions as the source line it is used to check.  For GHL-style
+  boundary/bulk decompositions with thresholds `K_1` and `K_2`, boundary lines
+  require `j < K_1` or `K_2 < j`, while bulk lines require
+  `K_1 <= j <= K_2`.  A mismatch here is a planning bug to correct, not a
+  theorem failure or a human convention request.
 - Sparse-oracle faithfulness invariant: do not confuse sparse-register slots
   with nonzero coefficient values.  If the paper uses a fixed diagonal/band
   enumeration and says zero entries can be included, the index oracle still
@@ -1218,6 +1239,12 @@ TeX source around the statement, inspect nearby citations and bibliography
 entries, decide whether the missing ingredient is internal, external, or a QBE
 contract gap, and require middle to update `research-wiki/cited-results/` or
 `proof-obligations/` before lower agents continue.
+If the missing ingredient is external and the cited contract is already precise,
+upper and middle should continue the current paper theorem conditionally on the
+contract instead of spending the cycle proving the external theorem.
+If the apparent blocker came from comparing a focused finite example to the
+wrong source branch, middle should reassign lower work to a branch-correct
+finite target instead of freezing the theorem route.
 
 For paper statements that already have a TeX proof or proof sketch, require
 middle to produce a proof-translation packet: list the source proof steps,
@@ -1280,6 +1307,18 @@ and exact Lean contracts before asking lower agents to prove non-critical
 sublemmas or to build reusable library architecture.  If a proof-route lemma is
 useful but not on the transcript critical path, record it as proof-route memory
 and schedule it later.
+
+For faithful theorem-closure mode, the current paper's theorem should close
+under precise cited contracts before agents recursively formalize the cited
+oracle/state-preparation/LCU papers.  Upper and middle must regulate this every
+cycle: external cited work is backlog unless the active paper theorem cannot be
+stated conditionally on a precise contract.
+
+Upper and middle must also regulate branch selection every cycle.  A finite
+example chosen for a displayed boundary formula must actually be a boundary
+case, and a finite example chosen for a bulk formula must be tied to the bulk
+part of the paper proof, including any `+ ...` branch that the source omits
+from the display.
 
 Prefer small Lean changes that keep the repository compiling.  Do not bury a
 failed oracle construction in prose; promote it to a proof obligation or open

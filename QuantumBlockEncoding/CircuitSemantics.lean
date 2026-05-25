@@ -58,6 +58,173 @@ def evalGateMatrices {α : Type u} [OfNat α 0] [OfNat α 1]
   gates.foldl (fun acc gateMatrix => Matrix.mul gateMatrix.matrix acc)
     (Matrix.identity (qubitDim qubits) α)
 
+namespace Matrix
+
+/--
+Evaluate one symbolic matrix-product entry as a concrete finite Rat fold.
+
+The project-local `Coeff` matrices are syntactic, so a raw `Matrix.mul` entry
+does not simplify away zero summands.  This lemma moves the finite product
+entry through `Coeff.evalWith`, where later path-isolation proofs can use
+ordinary rational arithmetic without expanding the whole symbolic expression.
+-/
+theorem evalWith_foldl_add_mul
+    (env : String → Rat) {rows mid cols : Nat}
+    (A : Matrix rows mid Coeff) (B : Matrix mid cols Coeff)
+    (i : Fin rows) (j : Fin cols) (ks : List (Fin mid)) (acc : Coeff) :
+    Coeff.evalWith env
+        (ks.foldl (fun acc k => acc + A i k * B k j) acc) =
+      ks.foldl
+        (fun acc k => acc + Coeff.evalWith env (A i k) *
+          Coeff.evalWith env (B k j))
+        (Coeff.evalWith env acc) := by
+  induction ks generalizing acc with
+  | nil => rfl
+  | cons k ks ih =>
+      simp [List.foldl_cons, ih, Coeff.evalWith]
+
+/--
+Evaluate one entry of `Matrix.mul` by evaluating each path contribution.
+
+This is the local matrix-semantics block needed before a focused Robin
+seven-gate path proof can avoid syntactic `Coeff.add` blow-up.
+-/
+theorem evalWith_mul_apply
+    (env : String → Rat) {rows mid cols : Nat}
+    (A : Matrix rows mid Coeff) (B : Matrix mid cols Coeff)
+    (i : Fin rows) (j : Fin cols) :
+    Coeff.evalWith env (Matrix.mul A B i j) =
+      (List.finRange mid).foldl
+        (fun acc k => acc + Coeff.evalWith env (A i k) *
+          Coeff.evalWith env (B k j))
+        0 := by
+  unfold Matrix.mul
+  rw [evalWith_foldl_add_mul]
+  rfl
+
+private theorem foldl_add_zero_of_all_zero {β : Type u}
+    (ks : List β) (f : β → Rat) (acc : Rat)
+    (hzero : ∀ k, k ∈ ks → f k = 0) :
+    ks.foldl (fun acc k => acc + f k) acc = acc := by
+  induction ks generalizing acc with
+  | nil => rfl
+  | cons k ks ih =>
+      have hkzero : f k = 0 := hzero k (by simp)
+      have htail : ∀ k', k' ∈ ks → f k' = 0 := by
+        intro k' hk'
+        exact hzero k' (by simp [hk'])
+      calc
+        (k :: ks).foldl (fun acc k => acc + f k) acc =
+            ks.foldl (fun acc k => acc + f k) (acc + f k) := rfl
+        _ = ks.foldl (fun acc k => acc + f k) acc := by
+            rw [hkzero, Rat.add_zero]
+        _ = acc := ih acc htail
+
+private theorem foldl_add_unique_of_nodup {β : Type u} [DecidableEq β]
+    (ks : List β) (f : β → Rat) (k0 : β)
+    (hnodup : ks.Nodup)
+    (hmem : k0 ∈ ks)
+    (hzero : ∀ k, k ∈ ks → k ≠ k0 → f k = 0) :
+    ks.foldl (fun acc k => acc + f k) 0 = f k0 := by
+  induction ks with
+  | nil => cases hmem
+  | cons k ks ih =>
+      rw [List.nodup_cons] at hnodup
+      rcases hnodup with ⟨hk_not_mem, hks_nodup⟩
+      rw [List.mem_cons] at hmem
+      rcases hmem with hhead | htailmem
+      · subst hhead
+        have htail_zero : ∀ k', k' ∈ ks → f k' = 0 := by
+          intro k' hk'
+          have hne : k' ≠ k0 := by
+            intro h_eq
+            apply hk_not_mem
+            simpa [h_eq] using hk'
+          exact hzero k' (by simp [hk']) hne
+        calc
+          (k0 :: ks).foldl (fun acc k => acc + f k) 0 =
+              ks.foldl (fun acc k => acc + f k) (0 + f k0) := rfl
+          _ = ks.foldl (fun acc k => acc + f k) (f k0) := by
+              rw [Rat.zero_add]
+          _ = f k0 := foldl_add_zero_of_all_zero ks f (f k0) htail_zero
+      · have hk_zero : f k = 0 := by
+          have hne : k ≠ k0 := by
+            intro h_eq
+            apply hk_not_mem
+            simpa [h_eq] using htailmem
+          exact hzero k (by simp) hne
+        have htail_zero : ∀ k', k' ∈ ks → k' ≠ k0 → f k' = 0 := by
+          intro k' hk' hne
+          exact hzero k' (by simp [hk']) hne
+        calc
+          (k :: ks).foldl (fun acc k => acc + f k) 0 =
+              ks.foldl (fun acc k => acc + f k) (0 + f k) := rfl
+          _ = ks.foldl (fun acc k => acc + f k) 0 := by
+              rw [hk_zero, Rat.zero_add]
+          _ = f k0 := ih hks_nodup htailmem htail_zero
+
+private theorem nodup_map_of_injective {α : Type u} {β : Type v}
+    [DecidableEq β] {f : α → β} (hf : Function.Injective f)
+    {xs : List α} (hxs : xs.Nodup) :
+    (xs.map f).Nodup := by
+  induction xs with
+  | nil => simp
+  | cons x xs ih =>
+      rw [List.nodup_cons] at hxs
+      rcases hxs with ⟨hx_not_mem, hxs_nodup⟩
+      change (f x :: xs.map f).Nodup
+      rw [List.nodup_cons]
+      constructor
+      · intro hmem
+        rcases List.mem_map.mp hmem with ⟨y, hy_mem, hy_eq⟩
+        apply hx_not_mem
+        have hxy : y = x := hf hy_eq
+        simpa [hxy] using hy_mem
+      · exact ih hxs_nodup
+
+private theorem finRange_nodup (n : Nat) : (List.finRange n).Nodup := by
+  induction n with
+  | zero => simp [List.finRange_zero]
+  | succ n ih =>
+      rw [List.finRange_succ]
+      rw [List.nodup_cons]
+      constructor
+      · intro hmem
+        rcases List.mem_map.mp hmem with ⟨k, _hk_mem, hk_zero⟩
+        exact Fin.succ_ne_zero k hk_zero
+      · apply nodup_map_of_injective
+        · intro a b h
+          apply Fin.eq_of_val_eq
+          have hv := congrArg (fun x : Fin (n + 1) => x.val) h
+          simpa using Nat.succ.inj hv
+        · exact ih
+
+/--
+Evaluate one matrix-product entry when all evaluated paths except `k0` vanish.
+
+This is the reusable path-isolation block for later Robin gamma3 work: a
+theorem about the seven-gate product can first prove zero-support facts for all
+unwanted intermediate states, then reduce the evaluated product to the single
+surviving contribution.
+-/
+theorem evalWith_mul_unique_path
+    (env : String → Rat) {rows mid cols : Nat}
+    (A : Matrix rows mid Coeff) (B : Matrix mid cols Coeff)
+    (i : Fin rows) (j : Fin cols) (k0 : Fin mid)
+    (hzero : ∀ k : Fin mid, k ≠ k0 →
+      Coeff.evalWith env (A i k) * Coeff.evalWith env (B k j) = 0) :
+    Coeff.evalWith env (Matrix.mul A B i j) =
+      Coeff.evalWith env (A i k0) * Coeff.evalWith env (B k0 j) := by
+  rw [evalWith_mul_apply]
+  exact foldl_add_unique_of_nodup (List.finRange mid)
+    (fun k => Coeff.evalWith env (A i k) * Coeff.evalWith env (B k j))
+    k0 (finRange_nodup mid) (List.mem_finRange k0)
+    (by
+      intro k _hmem hne
+      exact hzero k hne)
+
+end Matrix
+
 /--
 Circuit-level matrix semantics assembled from gate-level matrices.
 
@@ -121,6 +288,32 @@ structure CircuitBlockEncodingClaim (α : Type u) [OfNat α 0] [OfNat α 1]
   target : BlockExtractionTarget α dim dim signalDim
   dimCompat : qubitDim qubits = signalDim * dim
   blockCorrect : SemanticObligation
+
+/--
+Typed contract for a finite-dimensional LCU/block-composition step.
+
+This is intentionally contract-only: it states the exact matrix objects and
+obligations that a later theorem must connect, without treating a cited LCU
+result or a paper theorem as a Lean proof.
+-/
+structure FiniteBlockCompositionContract (α : Type u) [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    (qubits dim signalDim : Nat) where
+  sourceAnchor : String
+  lcuSourceAnchor : String
+  theoremAnchor : String
+  claim : CircuitBlockEncodingClaim α qubits dim signalDim
+  expectedTarget : BlockExtractionTarget α dim dim signalDim
+  targetMatrix : Matrix dim dim α
+  normalizer : α
+  claimTargetMatches : claim.target = expectedTarget
+  targetMatrixMatches : expectedTarget.targetMatrix = targetMatrix
+  targetNormalizerMatches : expectedTarget.normalizer = normalizer
+  circuitUnitary : SemanticObligation
+  lcuComposition : SemanticObligation
+  blockProjection : SemanticObligation
+  normalizedBlockEquality : SemanticObligation
+  finalExtraction : SemanticObligation
 
 /-- Compound row index for a signal value and a system-row index. -/
 def signalSystemBlockRowIndex (rows : Nat) (signalIdx systemIdx : Nat) : Nat :=

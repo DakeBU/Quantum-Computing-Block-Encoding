@@ -35,10 +35,93 @@ Proof-route populations are allowed only for fixed Lean statements whose
 failure produced useful lemmas.  They must not mutate the paper construction or
 displace the Phase 1 transcript objective.
 
-## Current Critical Correction: O_D^BS Sparse Slots
+## Current Run Directive: GHL Theorem Closure Under Cited Contracts
 
-Before any more `O_D^BS` unitarity, dagger-cleanup, or block-extraction proof
-search, fix the active formal target.
+The 2026-05-25 next run is a hard pivot from route-guard maintenance and
+recursive oracle formalization to theorem transcript closure for GHL2025
+Theorem `1 term robin`, at the proof granularity of the paper itself.
+
+Boundary of the faithful target:
+
+- Close the theorem route for the paper's own contribution under precise typed
+  contracts for cited primitives.
+- Do not spend this run proving the cited papers' full gate-level implementations
+  of $O_D^{BS}$, $O_f$, derivative-amplitude state preparation, or standard
+  LCU/block-composition.  Those are backlog contract-formalization tasks after
+  the GHL2025 theorem transcript is closed.
+- Do not count an external cited contract as a missing GHL2025 proof unless the
+  contract statement is absent, ambiguous, or inconsistent with the GHL source.
+- The previous run's focused `gamma3` endpoint audit used `j = 5` for
+  `n = 3`, `K_1 = 2`, `K_2 = 5`.  This is a **bulk endpoint**, while the
+  displayed `gamma3` line in Eq. `ROBIN clarified` explicitly writes the
+  boundary branch `0 <= j < K_1` or `K_2 < j < 2^n` and hides the bulk branch in
+  `+ ...`.  Do not treat the resulting indicator mismatch (`228` versus `84`)
+  as a human projection convention before correcting this branch mismatch.
+- The main open internal issue for the next batch is branch-correct transcript
+  closure: prove or contract-map the displayed boundary branch using a boundary
+  entry, then separately state the bulk branch omitted by `+ ...` using the
+  `U_indic` bulk rule.  Only after branch-correct endpoints are in Lean should
+  lower agents resume product-to-coefficient search.
+
+The objective of the next 6-hour batch is:
+
+1. Treat the source proof around Theorem `1 term robin`, Eq. `ROBIN clarified`,
+   Fig. `1 term ROBIN`, Lemma `Banded-sparse-access-oracle`, Lemma
+   `Sparse-amplitude-oracle for a banded-sparse matrix`, and Theorem
+   `Amplitude-oracle for piece-wise polynomial function` as the active proof
+   transcript.
+2. Map that transcript to the existing Lean route
+   `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute`, reusing existing
+   declarations instead of defining another route record.
+3. State cited oracle/subroutine results as precise typed contracts and
+   `SemanticObligation`s when QBE has not yet formalized the cited paper.  Then
+   continue the GHL2025 theorem route conditionally on those contracts.  This
+   run should not recursively formalize all cited papers before closing the
+   GHL2025 transcript.
+4. Push lower agents toward one fixed theorem-facing target at a time:
+   theorem data, register layout, normalizer, target matrix, gate list, external
+   oracle contracts, block-projection convention, and final false-obligation
+   ledger.  Lower agents should not spend this batch on broad reusable APIs,
+   article polish, or additional rejected-model guards unless a build failure
+   requires it.
+5. Promote a `proved` flag only when the corresponding Lean theorem is actually
+   build-tested.  Otherwise keep the flag false and add the exact contract or
+   cited dependency to the proof transcript.
+6. Correct the finite-example focus before any lower product proof: boundary
+   statements must use a boundary `j`, and bulk statements must use a bulk `j`
+   together with the bulk term hidden in `+ ...`.  A branch mismatch is a
+   planning error, not a source-contract gap.
+
+For this batch, middle must begin each lower packet from a source-proof
+translation table:
+
+| Source item | Lean destination |
+|---|---|
+| Theorem `1 term robin` statement | `oneTermRobinBlockEncodingProofRoute` theorem data and block target |
+| Eq. `ROBIN clarified` states $\gamma_1,\gamma_2,\gamma_3$ | theorem-transcript/gamma-route lemmas on the existing route |
+| Displayed `gamma3` boundary branch | boundary-focused endpoint theorem, e.g. choose `j < K_1` or `K_2 < j` |
+| Omitted `gamma3` bulk branch `+ ...` | separate bulk transcript theorem using `U_indic` indicator `1` |
+| Fig. `1 term ROBIN` gate order | `oneTermRobinCircuit`, `circuitSemantics`, and gate-list matching lemmas |
+| Lemma `Banded-sparse-access-oracle` | active global-slot `O_D^BS` contract plus cleanup obligation |
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix` | derivative-amplitude oracle contract |
+| Theorem `Amplitude-oracle for piece-wise polynomial function` | `functionOracleSource` contract and cited-results entry |
+| LCU/block-encoding composition used by the theorem | finite block-composition contract or explicit obligation |
+
+Reviewer should reject cycles that only add another status/guard theorem while
+leaving this table unmapped or disconnected from the existing route.
+Reviewer should also reject cycles that redirect the main lower packet to
+gate-level proof of a cited primitive before the paper-internal
+projection/register convention is resolved or explicitly recorded as the next
+source-backed contract.
+Reviewer should reject any cycle that continues the old `j = 5` endpoint
+`228` versus `84` product search without first classifying it as the omitted
+bulk branch and introducing a separate boundary-focused target for the
+displayed Eq. `ROBIN clarified` branch.
+
+## Completed Correction Memory: O_D^BS Sparse Slots
+
+Keep the following as active faithfulness memory, not as the main objective for
+the next batch unless contract drift reappears.
 
 The previous run treated the concrete theorem
 `oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3` as evidence for a
@@ -72,7 +155,9 @@ Faithful interpretation for this task:
   row-dependent model, not a blocker that lower agents keep trying to prove
   around.
 
-Next lower packets should implement this correction in order:
+This correction was implemented during the 2026-05-24 and 2026-05-25 runs.
+Future lower packets should only revisit it when a theorem-facing target still
+references the old row-dependent model:
 
 1. Introduce a paper-faithful global diagonal-offset table for the one-term
    Robin $\kappa=7$ construction.
@@ -85,9 +170,10 @@ Next lower packets should implement this correction in order:
    witness.
 5. Only then resume injectivity, dagger cleanup, and unitarity proof work.
 
-Do not spend this run on writing polish or broad library organization.  The
-documentation updates required in this run are only the minimal Lean/Markdown/
-LaTeX synchronization needed to record the corrected faithful contract.
+Do not spend the current run on writing polish or broad library organization.
+The documentation updates required in this run are only the minimal
+Lean/Markdown/LaTeX synchronization needed to keep the theorem transcript
+human-checkable.
 
 ## Source
 
@@ -243,46 +329,40 @@ These are intentionally small.  They are a foundation, not the final proof.
 
 ## Next Lean Targets
 
-0. Run a source-contract audit for the GHL one-term Robin gates before any more
-   unitarity proof search.  In particular, Lemma 1 defines the banded sparse
-   access oracle as
-   `O_D^BS |0>^(n-l) |s>^l |i>^n = |r_si>^n |i>^n`.
-   The current interim Lean contract for `bandedSparseAccessMatrix` instead
-   preserves the sparse-index register and overwrites the system register with
-   `col(s,i)`.  Treat this as contract drift until the register-level image
-   formula is reconciled with the paper's padded sparse-index register and
-   cleanup by `(O_D^BS)^dagger`.
-
-0a. Correct the active `O_D^BS` address model as described in **Current
-    Critical Correction: O_D^BS Sparse Slots**.  This is the top priority for
-    the next 6-hour run.  Lower agents must not continue proving the old
-    row-dependent unused-branch extension blocker as if it were a paper gap.
-
-0a-fix. The 2026-05-24 6-hour run implemented the global sparse-slot address
-        route, but final review found stale active-route guards that still
-        freeze `QBE.ODBS.UnusedZeroBranchExtension` as the active blocker.
-        The next run must retire those stale guards from
-        `oneTermRobinBlockEncodingProofRoute` and tests.  Keep the old
-        row-dependent collision only as rejected-model memory, and make active
-        O_D^BS blockers refer to the global-slot source, restricted inverse/
-        cleanup interfaces, encoded out-of-range sparse values such as
-        `s = 7` for `kappa = 7`, or a precise full-space extension theorem.
-
-0b. Complete the faithful transcript/contract map before non-critical proof
-    polishing.  SWAP bit-slice lemmas are useful proof-route memory, but the
-    next critical-path work is the GHL `O_D^BS` register contract and the
-    paper-level one-term block-encoding proof map.
-
-1. Add tests for the new matrix semantics layer.
-2. Define a block-projection/indexing convention for signal and system
-   registers.
-3. Connect `GHL2025.oneTermRobinCircuit` to `CircuitMatrixSemantics` through
-   gate-level matrix placeholders with honest `SemanticObligation` records.
-4. State the exact block-extraction target for
-   `Examples.RobinHeat.robinBlockEncodingSpec n`.
-5. Keep every unproved semantic claim as an obligation with `proved := false`.
-6. Keep cited-results memory synchronized for any prior theorem used by the
-   paper or by our proof plan.
+0. Correct the branch mismatch in the focused `gamma3` route.  The old
+   endpoint pair `228` versus `84` came from using bulk `j = 5` against the
+   displayed boundary branch of Eq. `ROBIN clarified`.  Reclassify that audit as
+   an omitted-bulk-branch memory item, not a human projection convention.
+1. Add a boundary-focused `gamma3` transcript target using a concrete boundary
+   column (`j < K_1` or `K_2 < j`) so the clean indicator `0` in the displayed
+   Eq. `ROBIN clarified` branch is branch-correct.
+2. Add a separate bulk-focused `gamma3` transcript target for a bulk column
+   such as `j = 5`, explicitly tied to the `+ ...` branch and the
+   `U_indic` indicator `1` rule.  Do not force the bulk endpoint to equal the
+   boundary clean endpoint.
+3. Complete the source-proof translation table for Theorem `1 term robin` and
+   Eq. `ROBIN clarified`, using the local TeX source for planning and public
+   paper anchors for committed notes.
+4. On the existing `oneTermRobinBlockEncodingProofRoute`, add or complete the
+   smallest theorem-facing Lean declarations that assert the transcript is
+   wired to:
+   - the Robin target matrix;
+   - normalizer $\mathcal{N}_D\mathcal{N}_f\kappa$;
+   - ancilla count $\lceil\log_2 n\rceil+\lceil\log_2 G_f\rceil+
+     \lceil\log_2\kappa\rceil+4$ and the stated pure ancilla ledger;
+   - Fig. `1 term ROBIN` gate order;
+   - Eq. `ROBIN clarified` gamma-state route;
+   - external `O_D^BS`, derivative-amplitude, `O_f`, and LCU contracts.
+5. If a missing ingredient is from a cited result, create or refine the typed
+   contract and cited-results entry, then continue the GHL theorem route
+   conditionally on that contract.  Do not stall this batch by recursively
+   proving the cited paper.
+6. If a missing ingredient is local finite arithmetic, projection indexing, or
+   matrix multiplication bookkeeping, make it a narrow lower-agent Lean target
+   and run `lake build && lake build Tests`.
+7. Keep all unproved semantic claims as obligations with `proved := false`.
+   The output is successful only if the faithful transcript is more connected
+   to the Lean route than at the start of the batch.
 
 ## Non-Goals
 

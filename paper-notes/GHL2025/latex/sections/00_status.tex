@@ -69,21 +69,21 @@ obligations remain open \\
 active source is padded clean input with \(s<\kappa\); old columns \(0\) and
 \(48\) are both active global sources, while encoded \(s=7\) is out of range
 when \(\kappa=7\) \\
-\(\ODBS\) source-gate freeze guards &
-\Lean{oneTermRobinBlockEncodingProofRoute\_sourceGateFreeze};
-focused tests at source columns \(8\), \(0\), and \(48\) &
-active paper-image wiring and false flags pinned; row-dependent contract drift
-is rejected-model memory; no semantic flag promoted \\
-\(\ODBS\) source-decision freeze guard &
-\Lean{oneTermRobinBlockEncodingProofRoute\_sourceDecisionOnlyFreeze\_n3} &
-transcript identity, empty image slot, rejected row-dependent collision,
-active/legacy separation, signal-index-zero target, and false theorem flags
-synchronized for the \(n=3,\kappa=7\) audit \\
-\(\ODBS\) wrapper-slot freeze guard &
-\Lean{oneTermRobinBlockEncodingProofRoute\_sourceDecisionWrapperSlotsBlocked\_n3} &
-direct and full clean-domain wrapper image slots for boundary column \(48\)
-remain \Lean{none}; image-specified, block-correctness, and LCU flags remain
-false \\
+\(\ODBS\) active global-slot route guards &
+\Lean{oneTermRobinBlockEncodingProofRoute\_odbsActiveGlobalSlotBlockers},
+\Lean{oneTermRobinBlockEncodingProofRoute\_odbsActiveGlobalSlotGateFreeze},
+\Lean{oneTermRobinBlockEncodingProofRoute\_activeOdbsGatePairBlocked} &
+active paper-image wiring is pinned to
+\Lean{bandedSparseAccessPaperGlobalSlotSource}; full clean-domain cleanup,
+full-space unitarity, and semantic promotion remain false \\
+\(\ODBS\) rejected row-dependent regression &
+\Lean{oneTermRobinBlockEncodingProofRoute\_rejectedRowDependentCollisionRegression\_n3} &
+old row-dependent collision is retained only as regression memory; it is not an
+active blocker \\
+\(\ODBS\) encoded out-of-range guard &
+\Lean{oneTermRobinBlockEncodingProofRoute\_encodedOutOfRangeSparseSlot\_n3} &
+clean encoded sparse value \(s=7\) is outside the active source range when
+\(\kappa=7\); cleanup and unitarity remain false \\
 Seven-gate flag freeze guard &
 \Lean{oneTermRobinGateMatrixPlaceholders\_unitaryFlags},
 \Lean{oneTermRobinBlockEncodingProofRoute\_gateUnitaryFlags} &
@@ -95,12 +95,18 @@ Seven-gate order-and-flag freeze guard &
 \Lean{oneTermRobinGateMatrixPlaceholders\_gateList},
 \Lean{oneTermRobinBlockEncodingProofRoute\_gateListAndFlags} &
 active matrix labels match Fig.~1-term Robin order while preserving the same
-flag vector and disabled \(\ODBS\) source decision \\
+flag vector and active global-source cleanup scope \\
+Derivative and boundary route bridge &
+\Lean{oneTermRobinBlockEncodingProofRoute\_derivativeBoundaryContractMap} &
+\(\ODT\) and boundary \(R_y\) share the same \(D_j^{(s)}/N_D\) source route
+in gate slots 1 and 2; analytic and gate-unitarity flags remain false \\
 One-term theorem route &
 \Lean{Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute},
 \Lean{oneTermRobinBlockEncodingProofRoute\_flags\_false},
-\Lean{oneTermRobinBlockEncodingProofRoute\_odbsSourceBlockers} &
-theorem-level wiring compiled; semantic blockers remain false \\
+\Lean{oneTermRobinBlockEncodingProofRoute\_theoremTranscriptDependencies},
+\Lean{oneTermRobinBlockEncodingProofRoute\_theoremTranscriptActiveCleanupMap} &
+theorem-level transcript and active-source cleanup evidence are compiled;
+semantic blockers remain false \\
 Theorem layout/projection audit &
 \Lean{defaultOneTermRobinTheoremData\_signalQubits\_eq\_layout},
 \Lean{defaultOneTermRobinTheoremData\_pureAncillas\_eq\_resource},
@@ -113,6 +119,73 @@ Block-projection claim guard &
 \Lean{oneTermRobinBlockEncodingProofRoute\_signalZeroBlockIndices} &
 circuit-claim block correctness, target projection, and target block equation
 remain false; signal-zero row and column offsets are pinned \\
+Ak target matrix &
+\Lean{Examples.RobinHeat.oneTermRobinAkMatrix},
+\Lean{oneTermRobinAkMatrix\_apply} &
+theorem target entries are now \(f(x_i)D_{ij}\); the derivative matrix remains
+the derivative-oracle factor \\
+Finite composition contract &
+\Lean{FiniteBlockCompositionContract},
+\Lean{Examples.RobinHeat.oneTermRobinFiniteBlockCompositionContract},
+\Lean{oneTermRobinBlockEncodingProofRoute\_finiteBlockCompositionContractMap} &
+theorem target, \Lean{oneTermRobinAkMatrix}, and normalizer are wired; circuit
+unitarity, LCU, projection, normalized block equality, and final extraction
+remain false \\
+Gamma3 factor-entry ledger &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3FactorEntryLedger} &
+target entry, clean \(\Uf\) entry, \(\ODT\) ket-zero entry, boundary \(R_y\)
+ket-zero entry, and active global-source \(\ODBS\) dagger entry are packaged
+for the future signal-block theorem; semantic flags remain false \\
+Gamma3 product-entry bridge &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3SignalBlockProductEntry} &
+the signal-zero block entry is identified with the seven-gate
+\Lean{evalGateMatrices} product entry; coefficient equality to the Ak target
+remains false \\
+Gamma3 Ak coefficient-entry contract &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3AkCoefficientEntryContract} &
+the product entry, Ak target entry, expanded \(f(x_i)D_{ij}\) entry, and
+factor-entry ledger are synchronized; semantic flags remain false \\
+Gamma3 product-to-coefficient interface &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3ProductToCoefficientInterface},
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation} &
+the remaining exact entry theorem is named; the obligation is compiled with
+\Lean{proved = false} \\
+Gamma3 projection path audit &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3ProjectionPathAudit\_n3} &
+the current signal-zero helper maps \((2,5)\) to full \((2,5)\), but the
+executable path does not match the clean gamma3 ledger; no semantic flag is
+promoted \\
+Gamma3 paper-basis layout &
+\Lean{oneTermRobinGamma3PaperBasisIndex},
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3PaperBasisLayout\_n3} &
+Eq.~\texttt{ROBIN clarified} clean ket order is mapped to full endpoints
+\((4,10)\) for the focused sparse-slot-zero branch; no semantic flag is
+promoted \\
+Gamma3 paper-basis path audit &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3PaperBasisPathAudit\_n3} &
+the slot-zero path from column \(10\) reaches row \(198\), not row \(4\);
+the first mismatch is the \(\ODBS\) address writing \(3\) for row \(5\), slot
+\(0\) \\
+Gamma3 sparse-slot alignment &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3SparseSlotAlignment\_n3} &
+the coefficient \(D_{2,5}\) uses global sparse slot \(5\), with clean endpoints
+\(90\) and \(84\); semantic flags remain false \\
+Gamma3 projection-slot convention map &
+\Lean{oneTermRobinGamma3ProjectionSlotConventionObligation},
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3ProjectionSlotConventionMap\_n3} &
+the source-contract gap is named with \Lean{proved = false}; generic projection
+endpoints remain \((2,5)\), while slot-\(5\) clean endpoints are \((84,90)\) \\
+Gamma3 slot-\(5\) path audit &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3Slot5PathAudit\_n3} &
+the full circuit path from column \(90\) reaches row \(228\), not clean row
+\(84\); the next blocker is a projection/register convention \\
+Gamma3 projection/register convention decision &
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3Slot5ProjectionRegisterAudit\_n3},
+\Lean{oneTermRobinGamma3ProjectionRegisterConventionDecision\_n3},
+\Lean{oneTermRobinGamma3ProjectionRegisterConventionDecision\_n3\_transcript} &
+endpoint \(228\) differs from clean endpoint \(84\) first in the indicator bit
+and also in sparse index; product search is blocked until a convention is
+stated \\
 \hline
 \end{longtable}
 
@@ -121,25 +194,195 @@ The following remain obligations: \(\ODBS\) injectivity and dagger cleanup,
 boundary-rotation analytic identities, \(\Uf\) nonzero \(N_f\), division
 semantics, normalizer bound, orthogonal completion, theorem-level amplitude
 correctness, unitary completion, and final block extraction with normalizer
-\(N_DN_f\kappa\).  The circuit-claim and target-level block flags are both
-explicitly false.  The current active \(\ODBS\) source domain is
+\(N_DN_f\kappa\).  The finite matrix composition contract for
+Theorem~\texttt{1 term robin} is also still false: the paper gives the theorem
+statement, Eq.~\texttt{ROBIN clarified}, Fig.~\texttt{1 term ROBIN}, and the
+block-encoding definition, but QBE still needs an exact finite theorem before
+any LCU or final-extraction flag can be promoted.  The gamma3 factor-entry
+ledger, product-entry bridge, Ak coefficient-entry contract, and
+product-to-coefficient interface are synchronized dependency maps: they do not
+prove the coefficient equality to \Lean{oneTermRobinAkMatrix} divided by
+\(N_DN_f\kappa\) or close normalized block equality.  The circuit-claim and
+target-level block flags are both explicitly false.  The current active
+\(\ODBS\) source domain is
 \Lean{bandedSparseAccessPaperGlobalSlotSource};
 \Lean{QBE.ODBS.UnusedZeroBranchExtension} is retained only as rejected-model
 memory for the old row-dependent helper.
 
+Target-matrix drift has been corrected at the transcript level.
+Theorem~\texttt{1 term robin} and Eq.~\texttt{ROBIN clarified} target
+\(A_k\), whose entries are \(f(x_i)D_{ij}\), and the active Lean block target
+now uses \Lean{oneTermRobinAkMatrix n}.  The Robin-specific projection/layout
+bridge is now compiled as
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3PaperBasisLayout\_n3}.
+Eq.~\texttt{ROBIN clarified} places the trailing ancilla at Lean bit \(0\) and
+the system register in bits \([1,1+n)\), so the clean paper-basis index is
+\((s \ll (1+n+odPure)) + (j \ll 1)\).  For \(n=3,\kappa=7\), this is
+\((s \ll 4) + (j \ll 1)\), giving full endpoints \((4,10)\) for the focused
+sparse-slot-zero system entry \((2,5)\).  The paper-basis path audit now
+compiles as
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3PaperBasisPathAudit\_n3}.
+The slot-zero path from column \(10\) reaches row \(198\), not row \(4\),
+because \(\ODBS\) writes address \(3\) for row \(5\), slot \(0\).  The
+sparse-slot alignment and projection-slot convention map now compile as
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3SparseSlotAlignment\_n3}
+and
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3ProjectionSlotConventionMap\_n3}.
+They record that \(D_{2,5}\) uses slot \(5\), with clean endpoints \(90\) and
+\(84\), while the generic signal-zero projection endpoints remain \(5\) and
+\(2\).  The slot-\(5\) path audit now compiles as
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3Slot5PathAudit\_n3}.  The
+full Fig.~\texttt{1 term ROBIN} path from column \(90\) reaches row \(228\),
+not row \(84\).  The field-level audit and middle decision now compile as
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3Slot5ProjectionRegisterAudit\_n3}
+and
+\Lean{oneTermRobinGamma3ProjectionRegisterConventionDecision\_n3}.  The first
+endpoint mismatch is the indicator bit, and the sparse index also differs.
+Product-to-coefficient proof search is blocked until a precise
+projection/register convention is stated.  Normalized-block equality, LCU
+correctness, cleanup, unitarity, block correctness, and final extraction
+remain false.
+
 The latest \(\ODBS\) guards are regression checks, not semantic closure.
-Source column \(8\) separates the active Lemma 1 paper-image matrix from the
-legacy helper, while source columns \(0\) and \(48\) now witness the rejected
-row-dependent collision and the corrected active global-slot separation.  The guard
-\Lean{oneTermRobinBlockEncodingProofRoute\_sourceDecisionOnlyFreeze\_n3}
-packages these facts with the empty unused-branch image slot and the false
-theorem flags.  The newer guard
-\Lean{oneTermRobinBlockEncodingProofRoute\_sourceDecisionWrapperSlotsBlocked\_n3}
-adds the wrapper-level check for the same column \(48\): both the direct
-image-rule contract and the full clean-domain wrapper still have
-\Lean{proposedImageIndex = none}.
+The active theorem route no longer carries unused-zero-branch source fields;
+it uses \Lean{cleanupScopeDecision} with selected predicate
+\Lean{bandedSparseAccessPaperGlobalSlotSource}.  Source column \(8\) separates
+the active Lemma 1 paper-image matrix from the legacy helper, source columns
+\(0\) and \(48\) record the rejected row-dependent collision only as
+regression memory, and
+\Lean{oneTermRobinBlockEncodingProofRoute\_encodedOutOfRangeSparseSlot\_n3}
+records the encoded \(s=7\) out-of-range guard for \(\kappa=7\).
 The guard
 \Lean{oneTermRobinBlockEncodingProofRoute\_gateListAndFlags} also pins the
 active matrix order to \Lean{oneTermRobinCircuit}, so future source-contract
 packets cannot silently reorder the seven gates while preserving the same
 false-flag vector.
+
+The 2026-05-25 middle source-dependency audit classifies the remaining
+full-domain \(\ODBS\) cleanup gap as a source-contract gap, not as a Lean
+tactic target.  The compiled active-source cleanup map may be reused for
+columns satisfying \Lean{bandedSparseAccessPaperGlobalSlotSource}, but clean
+encoded sparse values outside \(s<\kappa\) still need an exact image rule, and
+full-space unitarity still needs a precise reversible-extension theorem or
+cited-results entry.
+
+The 2026-05-25 middle gamma3 equality audit classifies the remaining focused
+product-to-coefficient step as a QBE-local finite matrix/projection attempt.
+The source paper gives the theorem, Eq.~\texttt{ROBIN clarified},
+Fig.~\texttt{1 term ROBIN}, and the block-encoding definition, but no separate
+finite entry proof.  Cited oracle and LCU rows remain contract-only.
+
+The 2026-05-25 projection path audit refines that blocker: the current generic
+signal-zero helper treats the system as the low-order \(n\) bits, while the
+paper ket order and Lean Robin extractors place a clean trailing ancilla below
+the system register.  This is projection contract drift, not an oracle gap.
+The compiled paper-basis bridge fixes the slot-zero endpoints to \((4,10)\),
+and the compiled path audit shows that this slot-zero path reaches row \(198\),
+not row \(4\).  The next finite obligation is sparse-slot alignment for the
+target coefficient, not unique-path multiplication.
+
+The 2026-05-25 projection-slot convention map now compiles as
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3ProjectionSlotConventionMap\_n3}.
+It records that the coefficient \(D_{2,5}\) uses global sparse slot \(5\), with
+slot-specific clean endpoints \(90\) and \(84\), while the generic
+signal-zero projection endpoints remain \(5\) and \(2\).  The source-contract
+obligation
+\Lean{oneTermRobinGamma3ProjectionSlotConventionObligation} remains false.
+
+The 2026-05-25 slot-\(5\) path audit now compiles as
+\Lean{oneTermRobinBlockEncodingProofRoute\_gamma3Slot5PathAudit\_n3}.  It
+records that the clean subchain \(90 \to 42 \to 84\) is not the full seven-gate
+path; the actual path is
+\[
+  90 \to 218 \to 218 \to 218 \to 170 \to 170 \to 212 \to 228.
+\]
+Row \(228\) has the final dagger entry, while row \(84\) has zero at that
+column.  The next finite target is a projection/register field audit, not
+product multiplication.  No oracle, LCU, projection, block-correctness, or
+final-extraction flag has been promoted.
+
+The 2026-05-25 projection/register decision now compiles as
+\Lean{oneTermRobinGamma3ProjectionRegisterConventionDecision\_n3}.  It records
+that row \(228\) and row \(84\) agree on the system row, padded-zero field,
+trailing ancilla bit, \(m_f\) cleanliness, and active-source predicate, but the
+indicator bit is \(1\) versus \(0\) and the sparse index is \(6\) versus \(5\).
+The required convention remains a source-contract gap with
+\Lean{proved = false}, and \Lean{productSearchBlocked = true}.
+
+Middle selected sparse-register summation as the next convention target,
+because Eq.~\texttt{ROBIN clarified} writes the \(\gamma_3\) branch as a sum
+over \(s=0,\dots,\kappa-1\).  The planned Lean target is
+\Lean{oneTermRobinGamma3SparseRegisterSummationConvention\_n3}.  It must reuse
+the compiled endpoint audit, keep the indicator mismatch explicit, and must not
+promote product-to-coefficient, LCU, cleanup, unitarity, projection,
+block-correctness, normalized equality, or final-extraction flags.
+
+The sparse-register summation convention now compiles as
+\Lean{oneTermRobinGamma3SparseRegisterSummationConvention\_n3}, with transcript
+theorem
+\Lean{oneTermRobinGamma3SparseRegisterSummationConvention\_n3\_transcript}.
+It records sparse-register summation as the chosen source-backed convention for
+the focused \(n=3\), system-entry \((2,5)\) gamma3 audit.  The record keeps
+the clean Eq.~\texttt{ROBIN clarified} endpoint \(84\) and the full
+Fig.~\texttt{1 term ROBIN} endpoint \(228\) separate: both have system row
+\(2\), but the clean endpoint has indicator \(0\) and sparse index \(5\),
+while the full endpoint has indicator \(1\) and sparse index \(6\).
+
+This compiled convention is still a contract map.  It does not prove that the
+current block projection implements sparse-register summation, and it does not
+handle the indicator mismatch.  The field
+\Lean{indicatorMismatchObligation.proved = false} remains the next explicit
+projection/register obligation before any gamma3 product-to-coefficient proof
+search resumes.
+
+\subsection{2026-05-25 Gamma3 Indicator-Field Gap}
+
+The lower indicator-field check now compiles as
+\Lean{oneTermRobinGamma3SparseRegisterSummation\_indicatorGap\_n3}.  It reuses
+the sparse-register summation convention and records that this convention does
+not explain the indicator bit: the clean endpoint \(84\) has indicator \(0\),
+while the full endpoint \(228\) has indicator \(1\).  The system row still
+agrees, and the sparse-index mismatch remains secondary evidence.
+
+The next proof-map target is an exact indicator projection/register convention
+for the same endpoint pair.  It must be tied to Eq.~\texttt{ROBIN clarified},
+Fig.~\texttt{1 term ROBIN}, and Definition~\texttt{def:block-encoding}.  Until
+that convention is stated, product-to-coefficient search, LCU correctness,
+block projection, block correctness, normalized block equality, and final
+extraction remain false.
+
+\subsection{2026-05-25 Gamma3 Indicator Projection Freeze}
+
+The indicator projection convention now compiles as
+\Lean{oneTermRobinGamma3IndicatorProjectionConvention\_n3}, with transcript
+theorem
+\Lean{oneTermRobinGamma3IndicatorProjectionConvention\_n3\_transcript}.  The
+source audit around Eq.~\texttt{ROBIN clarified},
+Fig.~\texttt{1 term ROBIN}, Definition~\texttt{def:block-encoding}, and the
+\(U_{\mathrm{indic}}\) paragraph found no stated rule that resets, ignores,
+sums over, or permutes the indicator field after the seven-gate path.  The
+Lean record therefore keeps
+\Lean{indicatorRelationSpecifiedBySource = false},
+\Lean{humanInputRequired = true}, and
+\Lean{conventionObligation.proved = false}.
+
+This is the active theorem-facing blocker for the focused \(n=3\),
+system-entry \((2,5)\) gamma3 route.  Product-to-coefficient search must remain
+parked until a source-backed indicator projection/register rule replaces that
+false obligation.  The LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, and final-extraction flags remain false.
+
+The bulk-indicator source audit now compiles as
+\Lean{oneTermRobinGamma3BulkIndicatorSourceAudit\_n3}, with transcript theorem
+\Lean{oneTermRobinGamma3BulkIndicatorSourceAudit\_n3\_transcript}.  For the
+focused column \(j=5\), the paper's \(U_{\mathrm{indic}}\) rule applies
+because \(K_1=2\) and \(K_2=5\), so the source-backed indicator value is \(1\).
+Lean records that endpoint \(228\) matches this source value, while clean
+endpoint \(84\) has indicator \(0\).
+
+This does not close the projection/register gap.  It makes the gap sharper:
+a future convention must explain how the theorem-level block treats the
+source-backed indicator \(1\) at endpoint \(228\); it must not silently reset
+that field to \(0\).  Product-to-coefficient equality, LCU correctness,
+cleanup, unitarity, block projection, block correctness, normalized equality,
+and final extraction remain false.

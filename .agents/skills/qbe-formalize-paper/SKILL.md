@@ -39,6 +39,10 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
    with its source, exact statement used, Lean target, QBE status, and
    dependent proof blocks.  Do not treat a cited result as proved unless a
    build-tested Lean declaration exists.
+   In faithful theorem-closure mode, a precise cited-results contract is enough
+   to continue closing the current paper's theorem conditionally on that
+   contract.  Do not redirect the main cycle into recursively proving the cited
+   paper unless the task explicitly switches to contract formalization.
 6. When a faithful-paper proof block fails, run
    `.agents/skills/qbe-source-dependency-audit/SKILL.md` before assigning more
    lower-agent tactic search.  Middle should read the local TeX source and
@@ -52,6 +56,12 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
    existing Lean declaration, a new local lemma target, an external cited-result
    row, or a source-contract gap.  This map, not free-form theorem search, is
    the lower-agent work queue.
+   When a displayed equation is split by cases, choose finite examples from the
+   same case.  For boundary/bulk decompositions, a boundary display must use
+   `j < K_1` or `K_2 < j`, while a bulk target must use
+   `K_1 <= j <= K_2` and cite the bulk branch, including any `+ ...` term that
+   is not expanded in the display.  A branch mismatch is a planning error to
+   fix before proof search.
 8. Identify reusable proof blocks before writing Lean.  Use the lesson of
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2: a hierarchical prover gains
    sample efficiency when repeated local arguments are represented as a proof
@@ -87,10 +97,18 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
 - Reviewer treats source-contract drift as blocking: a Lean proof of a
   simplified oracle is not progress on the faithful paper target until the
   register-level transformation matches the paper.
+- Reviewer treats branch drift as blocking: a finite Lean example must satisfy
+  the same boundary, bulk, case-split, and summation conditions as the paper
+  line it is meant to formalize.  Do not let lower agents turn a branch
+  mismatch into a human convention request.
 - Reviewer treats sparse-slot deletion as contract drift when the paper uses a
   fixed diagonal/band enumeration and merely sets some coefficients to zero.
 - Reviewer treats missing cited-results memory as blocking when a proof uses
   prior work or a "standard" fact that is not already formalized in QBE.
+- Reviewer treats unnecessary recursion into cited papers as blocking for a
+  faithful theorem-closure cycle: once the external theorem is recorded as a
+  precise unproved contract, lower agents should return to the current paper's
+  theorem route.
 - Reviewer treats missing source-dependency audit as blocking after a
   faithful-paper proof block gets stuck.  It is not enough to say "Lean failed";
   middle must identify whether the missing ingredient is in the local paper,

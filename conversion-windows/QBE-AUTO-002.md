@@ -41,9 +41,10 @@ give this product a Lean matrix object once each labeled gate has a matrix.
 
 ## Markdown Explanation
 
-The previous faithful-mode cycles represented the Robin circuit as Lean data:
+The faithful-mode transcript represents the Robin circuit as Lean data:
 
-- target matrix: `Examples.RobinHeat.robinDerivativeMatrix`
+- theorem target matrix: `Examples.RobinHeat.oneTermRobinAkMatrix`
+- derivative factor matrix: `Examples.RobinHeat.robinDerivativeMatrix`
 - circuit labels: `GHL2025.oneTermRobinCircuit`
 - theorem tuple: `GHL2025.OneTermRobinTheoremData`
 - obligations: `GHL2025.RobinProofObligations`
@@ -886,7 +887,7 @@ passes both checks, while the corresponding obligations remain false.
 The `block_projection_normalizer` packet is a structural contract audit for the
 final one-term block-extraction target, not a proof of the block equation.
 Compiled tests verify that the target uses the composed circuit product, signal
-index $0$, system matrix `Examples.RobinHeat.robinDerivativeMatrix n`, and
+index $0$, theorem target matrix `Examples.RobinHeat.oneTermRobinAkMatrix n`, and
 normalizer `GHL2025.oneTermRobinNormalizer = N_DN_f\kappa`, with both block
 obligations still unproved.
 
@@ -906,7 +907,7 @@ equation or promote `blockProjection` or `blockCorrect`.
 | Full-space matrix | `Examples.RobinHeat.oneTermRobinCircuitSemantics n`.matrix is `evalGateMatrices (GHL2025.oneTermRobinGateMatrixPlaceholders (Examples.RobinHeat.oneTermParameters n))` |
 | Dimension split | `Examples.RobinHeat.oneTermRobinCircuitDimCompat n` proves $2^q = 2^m \cdot 2^n$ using the current signal/system convention |
 | Signal register | `qubitDim (GHL2025.effectiveRobinSignalQubits (Examples.RobinHeat.oneTermParameters n))` |
-| System register | `gridSize n`, with target matrix `Examples.RobinHeat.robinDerivativeMatrix n` |
+| System register | `gridSize n`, with theorem target matrix `Examples.RobinHeat.oneTermRobinAkMatrix n` |
 | Projection convention | `signalSystemBlockProjection` extracts the `(0,0)` signal block of the cast circuit matrix using `signalSystemBlockRowIndex` and `signalSystemBlockColIndex` |
 | Normalizer | `GHL2025.oneTermRobinNormalizer`, whose evaluation lemma is `GHL2025.oneTermRobinNormalizer_eval` |
 | Clean ancilla status | O_D^BS dagger cleanup remains `(defaultBandedSparseAccessPaperContract p).daggerCleanup.proved = false` |
@@ -2691,7 +2692,7 @@ Definitions used by the route:
 | theorem proof-route contract | `Examples.RobinHeat.OneTermRobinBlockEncodingProofRoute` | defined |
 | default route | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute n` | defined |
 | normalizer bridge | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_normalizer` | proved by stored route field |
-| block-target bridge | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockTarget` | proves the route reuses `oneTermRobinBlockExtractionTarget n`, the same circuit semantics object, target `robinDerivativeMatrix n`, and signal index $0$ |
+| block-target bridge | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockTarget` | proves the route reuses `oneTermRobinBlockExtractionTarget n`, the same circuit semantics object, target `oneTermRobinAkMatrix n`, and signal index $0$ |
 | false-flag guard | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_flags_false` | proved; no semantic flag promoted |
 | O_D^BS source-blocker guard | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsSourceBlockers` | proved; packages the unused-branch source decision, prior PDE transcript, and false O_D^BS contract flags |
 | O_D^BS route source-transcript identity | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sourceTranscriptIdentity` | proved; route uses exactly the audited unused-zero-branch decision, prior PDE transcript, and Robin zero-inclusion transcript, with lower proof search disabled |
@@ -2805,7 +2806,7 @@ Definitions for the audit:
 | block row index | `signalSystemBlockRowIndex N signalIndex.val i` | reads the row at offset `signalIndex.val * N + i` |
 | block column index | `signalSystemBlockColIndex N signalIndex.val j` | reads the column at offset `signalIndex.val * N + j` |
 | block projection | `signalSystemBlockProjection S N N` | uses the row and column index helpers for the selected signal block |
-| target matrix | `Examples.RobinHeat.robinDerivativeMatrix n` | the one-term Robin derivative matrix |
+| target matrix | `Examples.RobinHeat.oneTermRobinAkMatrix n` | the one-term Robin theorem matrix with entries $f(x_i)D_{ij}$ |
 | normalizer | `GHL2025.oneTermRobinNormalizer` | symbolic $N_DN_f\kappa$ |
 
 Source-dependency classification:
@@ -3546,7 +3547,7 @@ Current Lean-to-paper translation:
 | `oneTermRobinBlockEncodingProofRoute_odbsPaperContractTranscript` | the theorem route carries Lemma 1's padded input/output ket transcript | compiled guard; semantic fields false |
 | `oneTermRobinBlockEncodingProofRoute_sourceDecisionImageSlotsBlocked` | direct and full-wrapper unused-branch image slots have no proposed image | compiled guard; no image rule selected |
 | `oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairWiring` and `oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairPublicSources` | the active forward/dagger matrices remain the paper-image skeletons with public anchors | compiled guard; both unitarity flags false |
-| `oneTermRobinBlockEncodingProofRoute_blockProjectionNormalizerAudit` | the block target still uses signal index $0$, `robinDerivativeMatrix n`, and normalizer $N_DN_f\kappa$ | compiled guard; block flags false |
+| `oneTermRobinBlockEncodingProofRoute_blockProjectionNormalizerAudit` | the block target still uses signal index $0$, `oneTermRobinAkMatrix n`, and normalizer $N_DN_f\kappa$ | compiled guard; block flags false |
 | `oneTermRobinBlockEncodingProofRoute_sourceBlockerKeepsFinalFlagsFalse` | the source blocker propagates to circuit-unitary, block-extraction, block-correctness, and LCU closure flags | compiled guard; final flags false |
 
 Next lower packet:
@@ -5564,3 +5565,2749 @@ Lower-agent packet:
 | statement shape | for all `n`, expose the route source anchor, theorem normalizer equality, gate-list/order guard, block target normalizer and signal-index-zero fields, the O_D^BS source records, the O_f source record, and false guards for O_D^BS cleanup/unitary, O_f amplitude correctness, LCU correctness, circuit unitarity, block projection, block correctness, and block extraction |
 | required dependencies | reuse `oneTermRobinBlockEncodingProofRoute_gateProjectionFreeze`, `oneTermRobinBlockEncodingProofRoute_flags_false`, `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupInterface` only as a source-domain guard, and `oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags` only as an O_f transcript guard |
 | forbidden work | do not edit active matrices, do not change `oneTermRobinNormalizer`, do not promote `daggerCleanup`, `unitaryExtension`, any active gate unitary flag except already-proved `U_indic` and SWAP, `FunctionOracleContract.amplitudeCorrect`, `lcuCorrect`, `blockProjection`, `blockCorrect`, circuit unitarity, resource bounds, or final block extraction |
+
+### 2026-05-25 Middle Active O_D^BS Route Retire Sync
+
+Middle retired the stale theorem-route field
+`unusedZeroBranchDecision` from
+`Examples.RobinHeat.OneTermRobinBlockEncodingProofRoute`.  The historical
+row-dependent collision remains in Lean as rejected-model memory through
+`oneTermRobinBlockEncodingProofRoute_rejectedRowDependentCollisionRegression_n3`,
+but it is no longer an active proof-route field or active test target.
+
+Definitions for the active route:
+
+| Object | Lean declaration | Status |
+|---|---|---|
+| active cleanup-scope selector | `cleanupScopeDecision : GHL2025.BandedSparseAccessCleanupScopeDecision` on `OneTermRobinBlockEncodingProofRoute` | route field; selected scope is `activeGlobalSource` |
+| active source predicate | `bandedSparseAccessPaperGlobalSlotSource` | active domain for restricted cleanup interface |
+| restricted dagger-column interface | `oneTermRobinBlockEncodingProofRoute_odbsRestrictedDaggerColumnIndicator` | compiled; active-source only |
+| active blocker package | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers` | compiled guard; full clean-domain and full-space cleanup remain false |
+| active gate freeze | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotGateFreeze` | compiled guard over active matrices and final false flags |
+| rejected-model regression | `oneTermRobinBlockEncodingProofRoute_rejectedRowDependentCollisionRegression_n3` | compiled regression only; not an active blocker |
+
+Proof-translation map:
+
+| Source step | Classification | Current Lean declaration | Remaining obligation |
+|---|---|---|---|
+| Lemma `Banded-sparse-access-oracle` uses $r_{si}=r_{s0}+i \bmod 2^n$ | `internal-paper-step` plus source contract | `bandedSparseAccessPaperGlobalSlotSource`, `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers` | full clean-domain cleanup and full-space unitarity |
+| The zero-inclusion paragraph keeps $s=0,\dots,\kappa-1$ | `internal-paper-step` | `QBE.ODBS.GlobalSparseSlotAddress`, rejected regression theorem for the old helper | zero coefficients remain amplitude-layer obligations |
+| Fig. `fig:1 term ROBIN` applies SWAP then $(O_D^{BS})^\dagger$ | `classical-lean-lemma` on active-source rows | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupInterface` | semantic `daggerCleanup.proved` remains false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `odbs_active_global_slot_blockers` | expose active global-source cleanup scope, full clean-domain wrapper blockers, and final false flags | cleanup-scope decision, full clean-domain wrapper, route false flags | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers` | theorem-route audit and next transcript bridge | $O_D^{BS}$ and $(O_D^{BS})^\dagger$ | compiled guard; no semantic flag promoted |
+| `odbs_rejected_row_dependent_regression` | keep the old row-dependent collision as regression memory while active image separates the same columns | row-dependent helper, corrected global-slot image | `oneTermRobinBlockEncodingProofRoute_rejectedRowDependentCollisionRegression_n3` | reviewer check only | $O_D^{BS}$ | compiled regression; not an active blocker |
+
+Lower-agent packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies` remains the next guard-only theorem unless upper selects another transcript block |
+| required reuse | use the active declarations `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers`, `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupInterface`, `oneTermRobinBlockEncodingProofRoute_gateProjectionFreeze`, and `oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags` |
+| forbidden route | do not use `QBE.ODBS.UnusedZeroBranchExtension`, `unusedZeroBranchDecision`, `bandedSparseAccessPaperValidCleanSource`, or row-dependent image helpers as an active theorem-route blocker |
+| forbidden promotion | keep `daggerCleanup`, full-space unitary extension, O_D^BS gate unitarity, O_f amplitude correctness, LCU correctness, circuit unitarity, block projection, block correctness, and final block extraction false |
+
+### 2026-05-25 Middle Theorem Transcript Guard
+
+Middle re-read the local source around Lemma `Banded-sparse-access`, the
+zero-inclusion paragraph before Theorem `1 term robin`, Eq. `ROBIN clarified`,
+and Fig. `1 term ROBIN`.  The source-contract classification is unchanged:
+the active $O_D^{BS}$ route uses the global slot equation
+$r_{si}=r_{s0}+i \bmod 2^n$, while full clean-domain cleanup and full-space
+unitarity remain obligations.
+
+Lean-to-paper sync:
+
+| Paper item | Lean declaration | Status |
+|---|---|---|
+| Theorem `1 term robin` source and normalizer $N_DN_f\kappa$ | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies` | compiled guard; no block equation proved |
+| Fig. `1 term ROBIN` gate order and current gate flags | `oneTermRobinBlockEncodingProofRoute_gateProjectionFreeze` reused by the transcript guard | compiled; only `U_indic` and SWAP are marked proved |
+| Lemma `Banded-sparse-access` and global sparse slots | `oneTermRobinBlockEncodingProofRoute_odbsPaperContractTranscript`, `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers` | compiled source route; cleanup and unitarity false |
+| $O_f$ amplitude source | `oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags` reused by the transcript guard | external-source guard; amplitude correctness false |
+| final LCU/block extraction | `CircuitBlockEncodingClaim`, `BlockExtractionTarget` fields in the transcript guard | all final theorem flags false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_theorem_transcript_route` | expose the theorem source anchor, normalizer, gate order, active $O_D^{BS}$ source scope, $O_f$ source, and false final flags | gate projection freeze, O_D^BS paper transcript, O_f external-source guard, route false flags | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies` | reviewer audit before block-extraction work | full route | compiled guard; no semantic flag promoted |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | choose one downstream finite-dimensional block-projection or cleanup interface only after upper selects it |
+| allowed reuse | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies` is now the theorem-level dependency checkpoint |
+| forbidden route | no active proof search against `QBE.ODBS.UnusedZeroBranchExtension`, `bandedSparseAccessPaperValidCleanSource`, or row-dependent image helpers |
+| required status | keep all O_D^BS cleanup/unitary, O_f amplitude, LCU, circuit-unitary, block-projection, block-correctness, resource, ancilla-cleanup, and final extraction flags false until a matching Lean theorem is added |
+
+### 2026-05-25 Lower Transcript Guard Regression
+
+Lower reused
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies`
+as the fixed theorem-level checkpoint.  No new source dependency was introduced.
+
+Lean-to-paper sync:
+
+| Paper item | Lean regression | Status |
+|---|---|---|
+| Theorem `1 term robin` remains a transcript, not a proved block encoding | `Tests/Basic.lean` example destructures `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies` | compiled test; no semantic flag promoted |
+| $O_D^{BS}$ cleanup and unitary extension | same test checks `daggerCleanup.proved = false` and `unitaryExtension.proved = false` | remains open |
+| $O_f$, LCU, circuit unitarity, block projection, block correctness, and final extraction | same test checks the corresponding route fields are false | remains open |
+
+### 2026-05-25 Middle Active Cleanup Contract Map
+
+Middle re-read the local GHL2025 source anchors for Lemma
+`Banded-sparse-access`, the zero-inclusion paragraph before Theorem
+`1 term robin`, Eq. `ROBIN clarified`, and Fig. `1 term ROBIN`.  The source
+classification for the next cleanup block is:
+
+| Source step | Classification | Lean declaration | Remaining obligation |
+|---|---|---|---|
+| Lemma `Banded-sparse-access` gives $r_{si}=r_{s0}+i \bmod 2^n$ on the clean padded source | `internal-paper-step` plus local finite-register reasoning | `bandedSparseAccessPaperGlobalSlotSource`, `bandedSparseAccessGlobalSlotInverseOnRangeContract_cleanupContractMap` | no full clean-domain image rule |
+| Fig. `1 term ROBIN` says $(O_D^{BS})^\dagger$ returns the upper register and clean padded ancillas | `classical-lean-lemma` on the active global-source domain | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap` | semantic `daggerCleanup.proved` remains false |
+| Branches outside the active global-source predicate, including full clean-domain or full-space extension | `source-contract-gap` or `external-cited-result` depending on the chosen theorem | `bandedSparseAccessFullCleanDomainExtensionContract`, `bandedSparseAccessCleanupScopeDecision` | exact image rule or cited reversible-extension theorem required |
+
+Lean-to-paper sync:
+
+| Paper item | Lean declaration | Status |
+|---|---|---|
+| Post-SWAP active-source inverse candidate | `bandedSparseAccessGlobalSlotInverseOnRangeContract_cleanupContractMap` | compiled local proof-DAG block |
+| Theorem-route exposure of that cleanup map | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap` | compiled guard; active-source only |
+| Boundary regression column `48` for $n=3,\kappa=7$ | `Tests/Basic.lean` example consuming the theorem-route cleanup map | compiled; old row-dependent valid-source predicate not used |
+| Cleanup and final theorem flags | fields in `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap` | all remain false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `odbs_active_cleanup_contract_map` | expose post-SWAP cleanup witness, candidate preimage, active-source uniqueness, dagger entry, and false semantic flags | global-slot image injectivity, post-SWAP candidate checks, restricted cleanup bridge, cleanup-scope decision | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap` | next theorem-route audit before any cleanup promotion | $O_D^{BS}$ and $(O_D^{BS})^\dagger$ | compiled guard; no semantic flag promoted |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | do not reprove the active cleanup map; consume `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap` only if upper selects a downstream cleanup or block-projection guard |
+| allowed scope | if another guard is needed, keep it in `QuantumBlockEncoding/RobinMatrix.lean` plus focused `Tests/Basic.lean` examples |
+| forbidden route | do not use `QBE.ODBS.UnusedZeroBranchExtension`, `bandedSparseAccessPaperValidCleanSource`, or row-dependent image helpers as active blockers |
+| forbidden promotion | keep `daggerCleanup`, full-space unitarity, O_D^BS gate unitarity, O_f amplitude correctness, LCU correctness, circuit unitarity, block projection, block correctness, resource bounds, ancilla cleanup, and final extraction false |
+
+### 2026-05-25 Middle Theorem Transcript Active Cleanup Map
+
+Middle added the downstream guard requested by upper:
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap`.
+It consumes
+`oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap`
+and records the same active-source post-SWAP cleanup evidence inside the
+Theorem `1 term robin` transcript context.
+
+Source-contract audit:
+
+| Source step | Classification | Lean declaration | Remaining obligation |
+|---|---|---|---|
+| Lemma `Banded-sparse-access` gives $r_{si}=r_{s0}+i \bmod 2^n$ on the clean padded source | `internal-paper-step` plus local finite-register reasoning | `bandedSparseAccessPaperGlobalSlotSource`, `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | full clean-domain image rule remains unstated |
+| Fig. `1 term ROBIN` applies SWAP then $(O_D^{BS})^\dagger$ to restore the sparse-index/padded-zero register | `classical-lean-lemma` on active global-source rows | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap`, then `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | semantic `daggerCleanup.proved` remains false |
+| Theorem `1 term robin` uses normalizer $\mathcal{N}_D\mathcal{N}_f\kappa$ and $O_f$ | transcript dependency, with $O_f$ still external | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies` reused by the new bridge | $O_f$ amplitude correctness, LCU, and block extraction remain obligations |
+
+Lean-to-paper sync:
+
+| Paper item | Lean declaration | Status |
+|---|---|---|
+| active-source cleanup evidence | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | compiled guard; restricted to `bandedSparseAccessPaperGlobalSlotSource` |
+| theorem source, normalizer, and circuit order | same theorem, via `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies` | compiled transcript guard |
+| $O_D^{BS}$ sparse-address formula | same theorem records `"r_si = r_s0 + i mod 2^n"` | source contract only |
+| $O_f$ source | same theorem records `functionOracleExternalAmplitudeSourceContract` | external-source guard only |
+| final semantic flags | same theorem records cleanup, unitary, LCU, circuit-unitary, projection, block-correctness, and extraction flags false | no semantic promotion |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_transcript_active_cleanup_map` | expose the active $O_D^{BS}$ post-SWAP cleanup map together with theorem source, normalizer, circuit order, $O_f$ source, and false final flags | `odbs_active_cleanup_contract_map`, theorem transcript dependencies | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | next cleanup/projection audit packet | $O_D^{BS}$, SWAP, $(O_D^{BS})^\dagger$, and theorem route | compiled guard; no semantic flag promoted |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | do not reprove `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap`; consume it only if upper selects a cleanup-to-projection bridge |
+| allowed reuse | use `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` as the theorem-level checkpoint for active-source cleanup evidence |
+| forbidden route | no active proof search against `QBE.ODBS.UnusedZeroBranchExtension`, `bandedSparseAccessPaperValidCleanSource`, or row-dependent image helpers |
+| required status | keep all O_D^BS cleanup/unitary, O_f amplitude, LCU, circuit-unitary, block-projection, block-correctness, resource, ancilla-cleanup, and final extraction flags false |
+
+### 2026-05-25 Lower Active Route Guard Retirement
+
+Lower retired the remaining theorem-route fields that made the old
+row-dependent unused-zero-branch decision look active.  The standalone source
+contracts for the prior PDE primitive and Robin zero inclusion remain in
+`GHL2025.lean` and in cited-results memory, but
+`Examples.RobinHeat.OneTermRobinBlockEncodingProofRoute` no longer contains
+`priorSparseAccessSource`, `robinZeroInclusionSource`, or route proof fields
+about `closesUnusedZeroBranchExtension`.
+
+Definitions for the active route:
+
+| Object | Lean declaration | Status |
+|---|---|---|
+| Active sparse source | `GHL2025.bandedSparseAccessPaperGlobalSlotSource` | global-slot source predicate |
+| Restricted cleanup interface | `GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator` | compiled over active global-source rows |
+| Route cleanup decision | `GHL2025.bandedSparseAccessCleanupScopeDecision` | selects active global source; no semantic promotion |
+| Out-of-range encoded sparse slot | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3` | compiled guard for clean encoded $s = 7$ when $\kappa = 7$ |
+| Rejected row-dependent collision | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_rejectedRowDependentCollisionRegression_n3` | regression memory only |
+
+Lean-to-paper sync:
+
+| Paper item | Lean route | Status |
+|---|---|---|
+| Lemma `Banded-sparse-access` uses fixed sparse slots $s = 0,\dots,\kappa-1$ | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers` | active blocker uses global-slot source |
+| Clean encoded value $s = 7$ for $\kappa = 7$ is outside the paper source range | `oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3` | compiled route guard; cleanup still false |
+| Old boundary collision from the row-dependent helper | `oneTermRobinBlockEncodingProofRoute_rejectedRowDependentCollisionRegression_n3` | not an active blocker |
+| Final theorem flags | `oneTermRobinBlockEncodingProofRoute_flags_false` | still false; unused-zero-branch source fields removed from the tuple |
+
+No semantic flag was promoted.  The next active $O_D^{BS}$ work should use the
+global-slot source, the restricted inverse/cleanup interfaces, the encoded
+out-of-range sparse-slot guard, or a precise full-space extension theorem.
+
+### 2026-05-25 Middle Paper-Export Supersession Sync
+
+Middle synchronized the paper-note and proof-export status files after the
+active-route retirement.  The proof maps now name the current theorem-route
+guards instead of removed source-decision guards:
+
+| Paper/export item | Current Lean declaration | Status |
+|---|---|---|
+| active global-slot route | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers`, `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotGateFreeze` | active route guards; no semantic flag promoted |
+| theorem transcript with cleanup map | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies`, `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | compiled transcript guards |
+| encoded out-of-range sparse value | `oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3` | clean encoded $s = 7$ is outside the active source range for $\kappa = 7$ |
+| rejected row-dependent collision | `oneTermRobinBlockEncodingProofRoute_rejectedRowDependentCollisionRegression_n3` | regression memory only |
+
+Proof-DAG status:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_export_status_sync` | keep Markdown/LaTeX proof maps aligned with the active global-slot route and retired source-decision fields | lower active-route retirement, theorem transcript active cleanup map, cited-results rows | paper notes only; no new Lean declaration | reviewer audit and next upper handoff | $O_D^{BS}$ theorem route | synchronized; no semantic flag promoted |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | no lower proof-search target is assigned by this sync |
+| allowed reuse | future lower packets may consume `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap`, `oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3`, or a precise full-space extension theorem if upper selects one |
+| forbidden route | do not revive `QBE.ODBS.UnusedZeroBranchExtension`, removed source-decision route fields, `bandedSparseAccessPaperValidCleanSource`, or row-dependent image helpers as active blockers |
+| required status | keep O_D^BS cleanup/unitary, O_f amplitude, LCU, circuit-unitary, block-projection, block-correctness, resource, ancilla-cleanup, and final extraction flags false |
+
+### 2026-05-25 Lower Eq. ROBIN Gamma Transcript Guard
+
+Lower added the guard-only theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript`.
+It consumes the theorem-level active cleanup map and exposes the three
+`gamma` records from `GHL2025.defaultRobinWavefunctionDecomposition` inside the
+one-term theorem route.
+
+Lean-to-paper sync:
+
+| Paper item | Lean declaration | Status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` defines the $\gamma_1$, $\gamma_2$, and $\gamma_3$ transcript | `GHL2025.defaultRobinWavefunctionDecomposition` fields in `oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript` | compiled guard |
+| The $\gamma_3$ normalizer is $N_DN_f\kappa$ | `gamma.gamma3.normalizer = GHL2025.oneTermRobinNormalizer` and theorem-route alpha/target-normalizer equalities | compiled structural equality |
+| Fig. `fig:1 term ROBIN` active cleanup evidence | theorem consumes `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | active global-source only |
+| $O_f$ source | theorem keeps `functionOracleExternalAmplitudeSourceContract` | external-source guard; amplitude correctness false |
+| final semantic flags | theorem records sparse cleanup, sparse unitarity, O_f amplitude, LCU, circuit unitarity, block projection, block correctness, and extraction as false | no semantic promotion |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma_transcript_route` | expose Eq. `ROBIN clarified` gamma data together with active cleanup evidence and final false flags | theorem transcript active cleanup map, default wavefunction decomposition, O_f source transcript | `oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript` | next cleanup/projection audit packet | full route | compiled guard; no semantic flag promoted |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | do not reprove the gamma transcript guard; consume it only for a selected cleanup-to-projection or theorem-route audit |
+| forbidden route | no active proof search against `QBE.ODBS.UnusedZeroBranchExtension`, `bandedSparseAccessPaperValidCleanSource`, or row-dependent image helpers |
+| required status | keep all O_D^BS cleanup/unitary, O_f amplitude, LCU, circuit-unitary, block-projection, block-correctness, resource, ancilla-cleanup, and final extraction flags false |
+
+### 2026-05-25 Middle Full-Domain O_D^BS Cleanup Audit
+
+Middle re-read the source anchors for Lemma `Diagonal sparsity`, Lemma
+`Banded-sparse-access`, the zero-inclusion paragraph before Theorem
+`1 term robin`, Eq. `ROBIN clarified`, Fig. `1 term ROBIN`, and the cited
+prior PDE sparse-access primitive.  The active theorem route remains faithful
+on the paper source domain $s=0,\dots,\kappa-1$, but the source does not give a
+full clean-domain image rule for encoded sparse-register values outside that
+range, such as the clean encoded value $s=7$ when $\kappa=7$.
+
+Definitions for this audit:
+
+| Object | Meaning | Lean declaration | Status |
+|---|---|---|---|
+| active paper source | clean padded input with sparse index $s<\kappa$ | `bandedSparseAccessPaperGlobalSlotSource` | compiled predicate |
+| active cleanup evidence | post-SWAP cleanup witness and active-source unique preimage | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | compiled guard; no semantic promotion |
+| encoded out-of-range clean value | clean padded sparse register with encoded $s=7$ for $\kappa=7$ | `oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3` | compiled blocker guard |
+| full clean-domain wrapper | contract slot for clean branches beyond the active source | `bandedSparseAccessFullCleanDomainExtensionContract` | false obligations |
+
+Source-proof translation for the cleanup gap:
+
+| Source proof item | Classification | Lean destination | Remaining obligation |
+|---|---|---|---|
+| Lemma `Diagonal sparsity` and its following remark define a global sparse slot by adding the row index modulo $2^n$ | `internal-paper-step` already translated | `oneTermRobinGlobalSparseAddress`, corrected `bandedSparseAccessPaperAddress` | no row-dependent helper may be used as active address |
+| Lemma `Banded-sparse-access` states $O_D^{BS}|0\rangle^{n-l}|s\rangle^l|i\rangle^n=|r_{si}\rangle^n|i\rangle^n$ | `internal-paper-step` plus cited primitive | `BandedSparseAccessPaperContract`, `bandedSparseAccessPaperImage`, active gate entries | contract-only; no unitary or cleanup flag promoted |
+| The zero-inclusion paragraph before Theorem `1 term robin` permits zeros and uses $s=0,\dots,\kappa-1$ | `internal-paper-step` | `bandedSparseAccessPaperGlobalSlotSource`, gamma transcript guard | zero coefficients belong to the amplitude layer |
+| Fig. `1 term ROBIN` applies SWAP and $(O_D^{BS})^\dagger$ to restore sparse-index and padded-zero registers | `classical-lean-lemma` only on active source | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | active-source evidence does not define all clean encoded branches |
+| Full clean-domain cleanup outside `bandedSparseAccessPaperGlobalSlotSource` | `source-contract-gap` | `bandedSparseAccessFullCleanDomainExtensionContract` | exact image rule is missing |
+| Full-space reversible extension or O_D^BS unitarity | `external-cited-result` if imported from the prior PDE primitive; otherwise `source-contract-gap` | cited-results row `GHL2024.PDE.Def6Lemma1.ODBS` or a new QBE reversible-extension contract | no proof search until the exact theorem is recorded |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `odbs_active_source_cleanup_map` | active-source post-SWAP cleanup witness and unique preimage | global-slot image injectivity, cleanup contract map | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` | gamma transcript and future projection audits | $O_D^{BS}$, SWAP, $(O_D^{BS})^\dagger$ | compiled guard |
+| `odbs_full_clean_domain_image_rule` | choose a total reversible image rule for clean padded columns not satisfying $s<\kappa$ | source audit or cited reversible-extension theorem | no accepted theorem; wrapper is `bandedSparseAccessFullCleanDomainExtensionContract` | any cleanup promotion | $O_D^{BS}$ and dagger | blocked source-contract gap |
+| `one_term_block_projection_dependency_map` | list exact contracts needed before block projection can be promoted | active cleanup guard, O_f source contract, LCU row | no new Lean target in this packet | reviewer and next lower packet | full route | documentation-only packet allowed |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | `one_term_block_projection_dependency_map` as a contract-only packet; do not attempt cleanup, injectivity, unitarity, or block-extraction proof search |
+| declarations to consume | `oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript`, `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap`, `oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3`, `bandedSparseAccessFullCleanDomainExtensionContract`, `functionOracleExternalAmplitudeSourceContract`, and the `CircuitBlockEncodingClaim` false fields |
+| allowed write scope | `conversion-windows/QBE-AUTO-002.md`, `proof-obligations/QBE-AUTO-002.md`, `research-wiki/cited-results/GHL2025.md`; Lean only if adding a new false-flag contract or guard explicitly named by upper |
+| forbidden route | no revival of `bandedSparseAccessPaperValidCleanSource`, row-dependent image helpers, or historical unused-zero route fields as active blockers |
+| required status | keep `daggerCleanup`, `unitaryExtension`, O_D^BS gate unitarity, O_f amplitude correctness, LCU, circuit unitarity, block projection, block correctness, resource-bound, ancilla-cleanup, and final extraction false |
+
+### 2026-05-25 Lower Block-Projection Dependency Map
+
+Lower added the guard-only theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockProjectionDependencyMap`.
+It consumes the gamma transcript, the active-source cleanup map, the full
+clean-domain blocker, the external `O_f` source contract, and the
+`CircuitBlockEncodingClaim` block fields.
+
+Lean-to-paper sync:
+
+| Paper item | Lean declaration | Status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` supplies the $\gamma_3$ normalizer $N_DN_f\kappa$ | `oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript` consumed by `oneTermRobinBlockEncodingProofRoute_blockProjectionDependencyMap` | compiled dependency guard |
+| Fig. `fig:1 term ROBIN` cleanup path uses active-source $O_D^{BS}$ evidence | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` consumed by the new guard | active-source only; no semantic cleanup promotion |
+| Clean encoded sparse value $s=7$ for $\kappa=7$ is outside the active source | `oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3` consumed by the focused test | full clean-domain image rule still missing |
+| Final signal-zero block projection | `CircuitBlockEncodingClaim`, `BlockExtractionTarget`, `signalSystemBlockProjection` fields in the new guard | contract-only; `blockProjection`, `blockCorrect`, and block extraction false |
+| Final LCU/block closure | cited rows `LCU.StandardBlockEncoding` and `GHL2025.Theorem1.BlockEncoding` | obligation; no finite-dimensional closure theorem accepted |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_block_projection_dependency_map` | collect exact dependencies before any signal-block proof can be attempted | gamma transcript, active-source cleanup map, full clean-domain blocker, O_f external source, LCU/block closure rows | `oneTermRobinBlockEncodingProofRoute_blockProjectionDependencyMap` | reviewer audit and future block theorem packet | full route | compiled guard; all semantic flags remain false |
+
+The focused `Tests/Basic.lean` example uses source column `48` for
+$n=3,\kappa=7$ and also consumes the encoded out-of-range column `112`.  No
+matrix, normalizer, source predicate, cited-result status, or `proved` flag was
+changed.
+
+### 2026-05-25 Middle Derivative/Boundary Contract Route
+
+Middle re-read GHL2025 Lemma `Sparse-amplitude-oracle for a banded-sparse
+matrix`, Eq. `amplitude_oracle_D`, Eq. `angles for Ry`, Fig. `fig:1 term
+ROBIN`, and Eq. `ROBIN clarified`.  The source gives one shared coefficient
+source $D_j^{(s)}$ and one shared normalizer $N_D$ for the bulk
+`O_DT^S` route and the boundary `Ry_boundary` route.  The analytic
+division, square-root, arccos, half-angle, and two-by-two unitarity facts are
+not proved in QBE.
+
+Definitions for this route:
+
+| Object | Meaning | Lean declaration | Status |
+|---|---|---|---|
+| shared derivative normalizer source | coefficient $D_j^{(s)}$, normalizer symbol $N_D$, and bound obligation | `derivativeNormalizerNDSourceBound` | contract-only |
+| bulk sparse-amplitude route | Eq. `amplitude_oracle_D` controlled rotation data | `sparseAmplitudeOracleDTCoefficientNormalizerProofRoute` | source fields compiled; analytic flags false |
+| boundary rotation route | Eq. `angles for Ry` arccos and half-angle data | `boundaryRotationAngleNormalizerProofRoute` | source fields compiled; analytic flags false |
+| shared route guard | common coefficient, common $N_D$, common bound obligation, and false flags | `derivativeNormalizerNDSharedRoute_sourceBoundAndFlags` | compiled guard |
+| theorem-route bridge | connects the shared route to gate slots 1 and 2 of `oneTermRobinBlockEncodingProofRoute` | `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` | compiled guard; no semantic flag promoted |
+
+Source-proof translation:
+
+| Source proof item | Classification | Lean destination | Remaining obligation |
+|---|---|---|---|
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix` states the clean branch $D^{(s)}/N_D$ and complementary square-root branch | `external-cited-result` imported by GHL2025 plus local contract | `sparseAmplitudeOracleDTCoefficientNormalizerProofRoute`, `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` | nonzero $N_D$, division semantics, coefficient bound, absolute-square semantics, square-root semantics, and two-by-two unitarity |
+| Eq. `angles for Ry` states $\theta_j^s=\arccos(D_j^{(s)}/N_D)$ on boundary rows | `internal-paper-step` plus classical analytic obligations | `boundaryRotationAngleNormalizerProofRoute`, `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` | real arccos semantics, half-angle identities, coefficient bound, and two-by-two unitarity |
+| Fig. `fig:1 term ROBIN` puts `O_DT^S` and `Ry_boundary` immediately after `U_indic` | `internal-paper-step` | route gate slots 1 and 2 in `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` | gate unitarity for both gates remains false |
+| Eq. `ROBIN clarified` uses the same $N_D$ in the $\gamma_1$, $\gamma_2$, and $\gamma_3$ transcript | transcript dependency | `oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript` and the new derivative/boundary bridge | final LCU, projection, and block extraction remain false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_derivative_boundary_contract_map` | expose shared $D_j^{(s)}/N_D$ source fields, Fig. 1-term Robin gate slots for `O_DT^S` and `Ry_boundary`, and false analytic/final flags | `derivativeNormalizerNDSharedRoute_sourceBoundAndFlags`, gate projection freeze, route false flags | `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` | future full gate-contract ledger or theorem-route audit | `O_DT^S`, `Ry_boundary` | compiled guard; no semantic flag promoted |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | if upper selects another guard, make it a full gate-contract ledger that consumes `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap`, `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap`, and `oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags` |
+| allowed write scope | `QuantumBlockEncoding/RobinMatrix.lean`, `Tests/Basic.lean`, and synchronized notes in `conversion-windows/QBE-AUTO-002.md`, `proof-obligations/QBE-AUTO-002.md`, and `research-wiki/cited-results/GHL2025.md` |
+| required reuse | do not restate the `O_DT^S` or `Ry_boundary` source contracts; reuse `derivativeNormalizerNDSharedRoute_sourceBoundAndFlags` and the theorem-route bridge |
+| forbidden promotions | keep nonzero $N_D$, division, coefficient-bound, absolute-square, square-root, arccos, half-angle, `O_DT^S` unitary, `Ry_boundary` unitary, O_D^BS cleanup/unitary, O_f amplitude correctness, LCU, projection, block correctness, resource-bound, ancilla-cleanup, and final extraction false |
+
+### 2026-05-25 Lower Full Gate-Contract Ledger
+
+Lower added the guard-only theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_fullGateContractLedger`.
+It consumes the existing theorem-route bridges for `O_DT^S` and `Ry_boundary`,
+the active-source $O_D^{BS}$ cleanup map, and the external `O_f` source
+transcript.  The declaration is a ledger for Fig. `fig:1 term ROBIN`; it does
+not change any gate matrix, source predicate, normalizer, cited-result status,
+or semantic `proved` flag.
+
+Lean-to-paper sync:
+
+| Paper item | Lean declaration | Status |
+|---|---|---|
+| Fig. `fig:1 term ROBIN` seven-gate order | `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger` gate-slot fields | compiled guard |
+| `U_indic` and SWAP local permutation gates | slot 0 and slot 5 fields in the new ledger | unitary flags already true |
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix` and Eq. `amplitude_oracle_D` | `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` consumed by the ledger | source fields compiled; analytic flags false |
+| Eq. `angles for Ry` | `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` consumed by the ledger | arccos, half-angle, and unitarity remain obligations |
+| Lemma `Banded-sparse-access` and Fig. cleanup path | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap` consumed by the ledger | active-source cleanup evidence only |
+| Theorem `Amplitude-oracle for piece-wise polynomial function` | `oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags` consumed by the ledger | external-source transcript; `O_f` amplitude correctness false |
+| LCU and final block extraction | route false fields in the new ledger | obligation; no block proof promoted |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_full_gate_contract_ledger` | collect all seven Fig. `1 term ROBIN` gate contracts and final false flags in one theorem-route guard | derivative/boundary bridge, active-source cleanup map, external `O_f` source transcript, projection false-field guards | `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger` | reviewer audit and future theorem-route closure packet | full route | compiled guard; all paper-oracle and final semantic flags remain false |
+
+The focused `Tests/Basic.lean` example specializes the ledger to $n=3$,
+source column `48`, row `2`, sparse slot `1`, and `O_f` column `36`.  It checks
+the proof-state vector `[true, false, false, false, false, true, false]`,
+the theorem-route gate slots, the shared `O_DT^S`/`Ry_boundary` coefficient
+source, the external `O_f` transcript, and the false LCU/projection/extraction
+flags.
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | do not reprove the full gate-contract ledger; consume it only for a selected theorem-transcript closure or block-projection dependency audit |
+| required reuse | use `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger` as the compiled Fig. `1 term ROBIN` gate-contract checkpoint |
+| forbidden promotions | keep nonzero $N_D$, division, coefficient-bound, absolute-square, square-root, arccos, half-angle, `O_DT^S` unitary, `Ry_boundary` unitary, $O_D^{BS}$ cleanup/unitarity, `O_f` amplitude correctness, LCU correctness, block projection, block correctness, resource-bound, ancilla-cleanup, and final extraction false |
+
+### 2026-05-25 Middle Theorem Transcript Closure Packet
+
+Middle added the guard-only theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptClosurePacket`.
+It consumes the current theorem transcript dependencies, layout/projection
+audit, block-projection dependency map, and full Fig. `1 term ROBIN`
+gate-contract ledger.  This is a closure checkpoint for Phase 1 transcript
+coverage, not a semantic proof.
+
+Lean-to-paper closure map:
+
+| Source item | Lean declaration | Status |
+|---|---|---|
+| Theorem `1 term robin` source anchor and normalizer $N_DN_f\kappa$ | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies` consumed by `oneTermRobinBlockEncodingProofRoute_theoremTranscriptClosurePacket` | compiled structural guard |
+| Theorem signal count and pure-ancilla ledger | `oneTermRobinBlockEncodingProofRoute_layoutProjectionAudit` consumed by the closure packet | resource-bound and ancilla-cleanup flags remain false |
+| Eq. `eq: ROBIN clarified` $\gamma_3$ normalizer | `oneTermRobinBlockEncodingProofRoute_blockProjectionDependencyMap` and `oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript` | compiled dependency guard; no block equation proved |
+| Fig. `fig:1 term ROBIN` seven-gate order | `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger` consumed by the closure packet | proof-state vector `[true, false, false, false, false, true, false]` remains fixed |
+| Lemma `Banded-sparse-access` | `sparseAccessContract.sourceAnchor`, image formula `r_si = r_s0 + i mod 2^n`, and active global-source cleanup scope in the closure packet | cleanup and unitary extension false |
+| Theorem `Amplitude-oracle for piece-wise polynomial function` and cited GL2024 theorem | `functionOracleSource = functionOracleExternalAmplitudeSourceContract` and `citedSourceAnchor = "Guseynov-Liu 2024, arXiv:2411.01131, Theorem 5"` | external-source transcript only; function-oracle correctness false |
+| LCU/block closure | `oracleComposition.lcuCorrect`, `blockProjection`, `blockCorrect`, and final `blockExtraction` fields in the closure packet | all remain false |
+
+Source-dependency classification for this checkpoint:
+
+| Blocker | Classification | Current Lean artifact | Required next step |
+|---|---|---|---|
+| derivative and boundary analytic facts | `classical-lean-lemma` plus source contracts | `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` and full ledger | prove nonzero/division/bound/square-root/arccos/half-angle and two-by-two unitarity before gate promotion |
+| full clean-domain $O_D^{BS}$ cleanup | `source-contract-gap` | `bandedSparseAccessFullCleanDomainExtensionContract`, consumed false by the closure packet | choose an exact image rule or keep cleanup false |
+| full-space $O_D^{BS}$ unitarity | `external-cited-result` only if a precise prior theorem is recorded; otherwise `source-contract-gap` | cited-results row `GHL2024.PDE.Def6Lemma1.ODBS` | add an exact reversible-extension theorem before proof search |
+| $O_f$ amplitude correctness | `external-cited-result` | cited-results row `GL2024.Thm5.AmplitudeOracle` and typed source contract | formalize or contract GL2024 theorem before any `O_f` promotion |
+| finite-dimensional LCU/block extraction | `external-cited-result` or local theorem obligation | cited-results rows `LCU.StandardBlockEncoding` and `GHL2025.Theorem1.BlockEncoding` | state the exact finite matrix composition theorem |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_theorem_transcript_closure_packet` | collect theorem data, layout/resource ledger, gamma normalizer, gate ledger, source anchors, and final false obligations | theorem transcript dependencies, layout projection audit, block-projection dependency map, full gate-contract ledger, cited-results rows | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptClosurePacket` | reviewer audit and next upper objective selection | full route | compiled guard; no semantic flag promoted |
+
+Focused test:
+
+| Test specialization | Checked facts |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source column `48`, row `2`, sparse slot `1`, `O_f` column `36` | source anchor, GL2024 cited source anchor, signal-count layout bridge, seven-gate proof-state vector, shared derivative/boundary coefficient source, resource/ancilla false flags, LCU false flag, block-projection false flag, and final extraction false flag |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | do not reprove the closure packet; use it as the Phase 1 theorem-transcript checkpoint |
+| allowed next theorem target | if upper continues theorem closure, choose one explicit false dependency from the closure packet: full clean-domain image rule, finite LCU/block-composition contract, `O_f` external theorem contract, or a local two-by-two rotation lemma |
+| forbidden promotions | keep $O_D^{BS}$ cleanup/unitarity, `O_DT^S` unitarity, `Ry_boundary` unitarity, `O_f` amplitude correctness, LCU correctness, circuit unitarity, block projection, block correctness, resource-bound, ancilla-cleanup, and final extraction false until the named Lean theorem builds |
+
+### 2026-05-25 Lower Finite LCU/Block-Composition Contract
+
+Lower added the typed contract
+`Examples.RobinHeat.oneTermRobinFiniteBlockCompositionContract`.  The contract
+uses the existing `defaultOneTermRobinCircuitBlockClaim`, the existing
+`oneTermRobinBlockExtractionTarget`, the Robin target matrix, and the
+normalizer $N_DN_f\kappa$.  It is the Lean-facing form of the
+finite-dimensional LCU/block-composition dependency used by Theorem
+`1 term robin`; it is not a proof of the dependency.
+
+Lean-to-paper map:
+
+| Source item | Lean declaration | Status |
+|---|---|---|
+| Theorem `1 term robin` target block | `oneTermRobinFiniteBlockCompositionContract.expectedTarget = oneTermRobinBlockExtractionTarget n` | compiled contract |
+| Target matrix $A_k$ | `oneTermRobinFiniteBlockCompositionContract.targetMatrix = oneTermRobinAkMatrix n` | compiled structural equality |
+| Normalizer $N_DN_f\kappa$ | `oneTermRobinFiniteBlockCompositionContract.normalizer = GHL2025.oneTermRobinNormalizer` | compiled structural equality |
+| LCU/block-composition step | `FiniteBlockCompositionContract.lcuComposition` | obligation, `proved = false` |
+| Final signal-block equation | `normalizedBlockEquality`, `blockProjection`, and `finalExtraction` fields | obligations, all `proved = false` |
+
+Route guard:
+
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_finiteBlockCompositionContractMap`
+consumes `oneTermRobinBlockEncodingProofRoute_theoremTranscriptClosurePacket`.
+It checks that the finite-composition contract is wired to the same route-level
+`CircuitBlockEncodingClaim`, while keeping the route-level LCU,
+circuit-unitary, block-projection, block-correctness, and final-extraction
+flags false.
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Status |
+|---|---|---|---|---|---|
+| `one_term_finite_block_composition_contract` | state the finite matrix LCU/block-composition dependency for the theorem route | theorem transcript closure packet, `CircuitBlockEncodingClaim`, `BlockExtractionTarget`, cited row `LCU.StandardBlockEncoding` | `oneTermRobinBlockEncodingProofRoute_finiteBlockCompositionContractMap` | future finite LCU proof or accepted theorem contract | compiled guard; no semantic flag promoted |
+
+Focused test:
+
+| Test specialization | Checked facts |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source column `48`, row `2`, sparse slot `1`, `O_f` column `36` | LCU cited-source anchor, contract-to-route claim equality, contract LCU flag false, route LCU flag false, route block-correctness flags false, and final extraction false |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | choose a single remaining false dependency: a full clean-domain $O_D^{BS}$ image rule, the exact finite LCU theorem behind this contract, the GL2024 `O_f` external theorem contract, or one local two-by-two rotation lemma |
+| forbidden promotions | keep $O_D^{BS}$ cleanup/unitarity, `O_DT^S` unitarity, `Ry_boundary` unitarity, `O_f` amplitude correctness, LCU correctness, circuit unitarity, block projection, block correctness, resource-bound, ancilla-cleanup, and final extraction false until the named Lean theorem builds |
+
+### 2026-05-25 Middle Finite LCU Source-Proof Translation Packet
+
+Middle re-read the GHL2025 source around Theorem `1 term robin`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, the paragraph immediately
+before the theorem, and Definition `def:block-encoding`.  The source gives the
+theorem statement, the three $\gamma$ slices, the circuit order, and the
+normalizer $N_DN_f\kappa$.  It does not contain a separate paragraph proving
+the finite signal-block equality from the product of the seven gate matrices.
+For QBE, that missing finite matrix step remains a contract-only dependency.
+
+Source-proof translation for the finite composition step:
+
+| Source proof step | Classification | Lean destination | Status |
+|---|---|---|---|
+| Theorem `1 term robin` states an $(N_DN_f\kappa,\lceil\log_2 n\rceil+\lceil\log_2 G_f\rceil+\lceil\log_2\kappa\rceil+4,0)$ block-encoding of $A_k$ | `internal-paper-step` statement | `oneTermRobinBlockEncodingProofRoute_theoremTranscriptClosurePacket`, `oneTermRobinFiniteBlockCompositionContract.normalizer` | compiled transcript; final block proof false |
+| Eq. `eq: ROBIN clarified` gives the $\gamma_3$ clean branch with coefficient $f(x_i)D_i^{(s)}/(N_DN_f\kappa)$ | `internal-paper-step` proof sketch plus local finite matrix obligation | `oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript`, `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | transcript compiled; equality obligation false |
+| Fig. `fig:1 term ROBIN` fixes the gate product whose signal-zero block should be projected | `internal-paper-step` circuit fragment | `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger`, `oneTermRobinFiniteBlockCompositionContract.circuitUnitary` | gate order compiled; five gate-unitarity flags false |
+| Definition `def:block-encoding` fixes the projection convention for the zero signal and pure ancillas | `internal-paper-step` plus `classical-lean-lemma` indexing | `CircuitBlockEncodingClaim`, `BlockExtractionTarget`, `signalSystemBlockProjection` | definitions present; projection proof false |
+| General LCU/block-composition background used to justify finite block closure | `external-cited-result` and exact QBE theorem obligation | cited-results row `LCU.StandardBlockEncoding`, `FiniteBlockCompositionContract.lcuComposition` | contract-only; no accepted theorem closes it |
+| Absence of an explicit finite matrix proof paragraph in the source | `source-contract-gap` for QBE's stricter matrix backend | `oneTermRobinFiniteBlockCompositionContract.finalExtraction` | keep `proved = false` until a precise theorem is added |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_finite_composition_exact_theorem` | if all seven gate semantics, cleanup, amplitude, and projection obligations hold, then the signal-zero block equals `oneTermRobinAkMatrix n / GHL2025.oneTermRobinNormalizer` | finite contract map, gamma transcript, gate ledger, block projection index lemmas, cited row `LCU.StandardBlockEncoding` | planned theorem extending `oneTermRobinFiniteBlockCompositionContract` | final theorem closure only | full route | not started; exact statement required before proof search |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | state, but do not prove by shortcut, a theorem-facing contract map for the exact finite matrix composition theorem that consumes `oneTermRobinBlockEncodingProofRoute_finiteBlockCompositionContractMap` |
+| allowed write scope | `QuantumBlockEncoding/CircuitSemantics.lean`, `QuantumBlockEncoding/RobinMatrix.lean`, `Tests/Basic.lean`, and this conversion window only |
+| required source anchors | cite GHL2025 Theorem `1 term robin`, Eq. `eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, Definition `def:block-encoding`, and cited-results row `LCU.StandardBlockEncoding` |
+| required false fields | expose `circuitUnitary`, `lcuComposition`, `blockProjection`, `normalizedBlockEquality`, `finalExtraction`, route `oracleComposition.lcuCorrect`, route `blockCorrect`, and theorem `blockExtraction` as false |
+| forbidden work | do not promote LCU, projection, block-correctness, circuit-unitarity, resource-bound, ancilla-cleanup, or final-extraction flags |
+| build expectation | run `python3 tools/qbe.py check` and keep the forbidden-shortcut scan clean |
+
+### 2026-05-25 Lower Exact Finite Composition Interface
+
+Lower stated the theorem-facing interface for the exact finite matrix
+composition step without promoting any semantic flag.
+
+New Lean declarations:
+
+| Source item | Lean declaration | Status |
+|---|---|---|
+| The missing finite theorem behind Theorem `1 term robin`, Eq. `eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, Definition `def:block-encoding`, and cited row `LCU.StandardBlockEncoding` | `Examples.RobinHeat.oneTermRobinFiniteCompositionExactTheoremObligation` | compiled `SemanticObligation`, `proved = false` |
+| Route-to-contract map for the exact finite theorem interface | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_finiteCompositionExactTheoremInterface` | consumes `oneTermRobinBlockEncodingProofRoute_finiteBlockCompositionContractMap`; all final flags false |
+
+Lean-to-paper map:
+
+| Paper/proof object | Lean object exposed by the interface | Status |
+|---|---|---|
+| Signal-zero projection convention from Definition `def:block-encoding` | `contract.expectedTarget.blockMatrix = signalSystemBlockProjection ... contract.expectedTarget.unitaryMatrix contract.expectedTarget.signalIndex` and the specialized matrix-entry equality for `i,j` | compiled projection object; proof obligation false |
+| Target matrix $A_k$ | `contract.targetMatrix = oneTermRobinAkMatrix n` | compiled structural equality |
+| Normalizer $N_DN_f\kappa$ | `contract.normalizer = GHL2025.oneTermRobinNormalizer` | compiled structural equality |
+| Eq. `eq: ROBIN clarified` final clean-branch equality | `contract.normalizedBlockEquality` | obligation, `proved = false` |
+| Final block-extraction closure | `contract.finalExtraction` and route `theoremData.obligations.blockExtraction` | obligations, both `proved = false` |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_finite_composition_exact_theorem` | expose the exact matrix projection and target-normalizer objects required before proving finite LCU/block closure | finite contract map, block projection index API, layout/resource false ledger, cited row `LCU.StandardBlockEncoding` | `oneTermRobinBlockEncodingProofRoute_finiteCompositionExactTheoremInterface` | future finite composition proof | full route | compiled interface; no semantic flag promoted |
+
+Focused test:
+
+| Test specialization | Checked facts |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source column `48`, row `2`, sparse slot `1`, `O_f` column `36`, block entry `(2,5)` | exact theorem source anchor, exact theorem false flag, block-projection entry object, signal index zero, normalized-block and final-extraction contract flags false, resource/ancilla/final route flags false |
+
+Remaining next step: prove or contract one real dependency feeding this
+interface, such as all gate unitarity, the signal-block equality from Eq.
+`eq: ROBIN clarified`, or the cited finite LCU/block-composition theorem.  Do
+not promote LCU, projection, block correctness, resource-bound,
+ancilla-cleanup, or final extraction from this interface alone.
+
+### 2026-05-25 Middle Gamma3 Signal-Block Entry Obligation
+
+Middle refined the exact finite-composition interface into one fixed
+entry-level obligation.  The source step is the $\gamma_3$ line of Eq.
+`eq: ROBIN clarified`: after the Fig. `fig:1 term ROBIN` gate product, the
+signal-zero block entry should match the clean branch coefficient
+$f(x_i)D_i^{(s)}/(N_DN_f\kappa)$ and therefore the corresponding entry of
+`oneTermRobinAkMatrix n` normalized by `GHL2025.oneTermRobinNormalizer`.
+
+New Lean declarations:
+
+| Source item | Lean declaration | Status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` $\gamma_3$ clean branch, Definition `def:block-encoding` signal-zero projection | `Examples.RobinHeat.oneTermRobinGamma3SignalBlockEntryObligation` | compiled `SemanticObligation`, `proved = false` |
+| Route map from the exact finite-composition interface to the $\gamma_3$ entry target | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockEntryObligationMap` | compiled guard; consumes `oneTermRobinBlockEncodingProofRoute_finiteCompositionExactTheoremInterface`; all final flags false |
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Lean target | Status |
+|---|---|---|---|
+| Entry equality between the signal-zero projected circuit matrix and the Eq. `eq: ROBIN clarified` $\gamma_3$ clean coefficient | `classical-lean-lemma` after oracle contracts close | `oneTermRobinGamma3SignalBlockEntryObligation`, `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | exact obligation named; proof false |
+| Use of LCU/block-composition to turn the entry equality into the final theorem | `external-cited-result` plus exact QBE theorem obligation | cited-results row `LCU.StandardBlockEncoding`, `oneTermRobinFiniteCompositionExactTheoremObligation` | contract-only; proof false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_signal_block_entry` | prove each entry of the signal-zero projection equals the Eq. `eq: ROBIN clarified` $\gamma_3$ clean coefficient and hence the normalized Robin target entry | exact finite interface, gamma transcript, oracle amplitude contracts, active O_D^BS cleanup, block projection index API | `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockEntryObligationMap` | future finite composition proof | full route | compiled obligation map; no semantic flag promoted |
+
+Focused test:
+
+| Test specialization | Checked facts |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source column `48`, row `2`, sparse slot `1`, `O_f` column `36`, block entry `(2,5)` | gamma3-entry obligation source and false flag, gamma3 normalizer equals `GHL2025.oneTermRobinNormalizer`, contract normalizer matches gamma3, signal-block entry object is exposed, normalized-block and final-extraction flags false |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | choose one dependency feeding `oneTermRobinGamma3SignalBlockEntryObligation`: a local entry theorem after gate contracts, one remaining gate-unitarity contract, or the exact finite LCU theorem contract |
+| forbidden promotions | do not promote LCU correctness, block projection, block correctness, resource-bound, ancilla-cleanup, final extraction, or any oracle semantic flag unless the corresponding exact Lean theorem builds |
+
+### 2026-05-25 Lower Gamma3 Target-Entry Data
+
+Lower added the target-entry side of the fixed $\gamma_3$ signal-block
+obligation.  The new guard does not prove the projected circuit entry equals
+the target entry.  It records the RHS data needed by the future entry theorem:
+for fixed system indices `i,j`, the target entry is
+`robinDerivativeMatrix n i j`, and the normalizer is the same
+$N_DN_f\kappa$ value used by the $\gamma_3$ transcript.
+
+New Lean declaration:
+
+| Source item | Lean declaration | Status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` $\gamma_3$ target-entry side and Theorem `1 term robin` target matrix $A_k$ | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData` | compiled guard; consumes `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockEntryObligationMap`; all equality and extraction flags remain false |
+
+Lean-to-paper map:
+
+| Paper/proof object | Lean object exposed by the guard | Status |
+|---|---|---|
+| Target matrix $A_k$ entry | `contract.expectedTarget.targetMatrix i j = robinDerivativeMatrix n i j` and `contract.targetMatrix i j = robinDerivativeMatrix n i j` | compiled structural entry data |
+| Normalizer in the $\gamma_3$ line | `contract.expectedTarget.normalizer = gamma.gamma3.normalizer` and `contract.normalizer = gamma.gamma3.normalizer` | compiled structural normalizer data |
+| Signal-zero block entry object | `contract.expectedTarget.blockMatrix i j = contract.expectedTarget.unitaryMatrix ...` | inherited from the gamma3 entry map; equality to target entry unproved |
+| Future entry equality | `contract.normalizedBlockEquality` and `oneTermRobinGamma3SignalBlockEntryObligation` | obligations, both `proved = false` |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_target_entry_data` | expose the target-entry and normalizer RHS for the fixed signal-block entry theorem | gamma3 signal-block entry map, finite composition contract, target matrix declaration | `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData` | future finite entry theorem for `oneTermRobinGamma3SignalBlockEntryObligation` | full route | compiled guard; no semantic flag promoted |
+
+Focused test:
+
+| Test specialization | Checked facts |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source column `48`, row `2`, sparse slot `1`, `O_f` column `36`, block entry `(2,5)` | target-entry structural equalities, gamma3 normalizer match, signal-block entry object, normalized-block and final-extraction flags false |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | prove or contract one actual equality feeding the entry theorem, such as a closed gate-product entry after the remaining gate contracts are available |
+| forbidden promotions | do not promote `normalizedBlockEquality`, `blockProjection`, `blockCorrect`, LCU correctness, or final extraction from this target-entry data alone |
+
+### 2026-05-25 Middle Post-Lower Gamma3 Packet
+
+Middle re-read the local GHL2025 source around Theorem `1 term robin`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, Lemma
+`Banded-sparse-access-oracle`, Lemma `Sparse-amplitude-oracle for a
+banded-sparse matrix`, and Theorem `Amplitude-oracle for piece-wise polynomial
+function`.  The lower result
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`
+is a faithful target-side guard: it exposes `robinDerivativeMatrix n i j` and
+the $N_DN_f\kappa$ normalizer, but it does not prove that the signal-zero
+projected circuit entry equals that target entry.
+
+Source-proof translation table for the next fixed packet:
+
+| Source proof step | Classification | Existing Lean anchor | Next lower contract |
+|---|---|---|---|
+| Eq. `eq: ROBIN clarified` $\gamma_3$ line contributes the factor $f(x_i)/N_f$ through $O_f$ | `internal-paper-step` plus external theorem transcript | `functionOraclePaperMatrix_cleanBranch_entry`, `functionOraclePaperImage_cleanBranchAmplitude_eq`, `FunctionOracleAmplitudeProofRoute` | route-level gate-slot bridge for the clean `O_f` matrix entry |
+| Theorem `Amplitude-oracle for piece-wise polynomial function`, Eq. `coordinate oracle` supplies the clean workspace branch and orthogonal remainder | `external-cited-result` already recorded | cited-results row `GL2024.Thm5.AmplitudeOracle`, `functionOracleExternalAmplitudeSourceContract` | keep analytic correctness and unitary flags false |
+| Fig. `fig:1 term ROBIN` fixes `O_f` as gate slot 4 in the seven-gate product | `internal-paper-step` circuit fragment | `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger` | expose slot 4 matrix as `functionOraclePaperMatrix` |
+| Eq. `eq: ROBIN clarified` target entry is the normalized Robin matrix entry | `internal-paper-step` target transcript | `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData` | reuse this RHS data; do not restate the target matrix |
+| Final signal-zero block equality | `classical-lean-lemma` after gate contracts close | `oneTermRobinGamma3SignalBlockEntryObligation`, `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | remains false after this packet |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | add `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_ofCleanFunctionOracleEntry` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed test file | `Tests/Basic.lean` |
+| allowed notes | update this conversion window or `proof-obligations/QBE-AUTO-002.md` only if the Lean declaration changes shape |
+| input declarations | `GHL2025.functionOraclePaperMatrix_cleanBranch_entry`, `GHL2025.functionOraclePaperImage_cleanBranchAmplitude_eq`, `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger`, `oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags` |
+| expected interface | for `i j : Fin (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters n)))`, clean-workspace hypothesis `hClean`, and clean-branch-row hypothesis `hBranch`, prove that gate slot 4 of `oneTermRobinBlockEncodingProofRoute n` has entry `(functionOraclePaperImage (oneTermParameters n) j.val).cleanBranchAmplitude`, and expose the same entry as `functionOracleNormalizedValue` at the extracted system value |
+| required false flags | preserve `functionOracleSource.closesFunctionOracleContract = false`, `oracleComposition.functionOracle.amplitudeCorrect.proved = false`, `oracleComposition.lcuCorrect.proved = false`, `blockClaim.target.blockProjection.proved = false`, `blockClaim.target.blockCorrect.proved = false`, and `theoremData.obligations.blockExtraction.proved = false` |
+| focused test | specialize to `n = 3`, clean `O_f` source column `36`, clean branch row `36`, and check the route gate-slot entry equals `functionOracleNormalizedValue p 2` while every required flag remains false |
+| forbidden work | do not attempt the full seven-gate matrix product, do not promote `normalizedBlockEquality`, and do not treat `GL2024.Thm5.AmplitudeOracle` as formalized |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_of_clean_entry` | expose the route-level `O_f` clean-branch matrix entry as $f(x_i)/N_f$ | `functionOraclePaperMatrix_cleanBranch_entry`, Fig. `fig:1 term ROBIN` gate slot 4, cited row `GL2024.Thm5.AmplitudeOracle` | `oneTermRobinBlockEncodingProofRoute_ofCleanFunctionOracleEntry` | future `one_term_gamma3_signal_block_entry` | `O_f` | compiled guard; no semantic flag promoted |
+
+### 2026-05-25 Lower O_f Clean-Entry Bridge
+
+Lower added the fixed route-level bridge for the clean branch of $O_f$.
+For fixed full-basis indices `i` and `j`, the theorem assumes that column `j`
+is on the clean $m_f$ branch and that row `i` is the corresponding clean
+branch row.  It then exposes gate slot 4 of
+`oneTermRobinBlockEncodingProofRoute n` as the `O_f` matrix entry supplied by
+`GHL2025.functionOracleAmplitudeProofRoute`.
+
+New Lean declaration:
+
+| Source item | Lean declaration | Status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` factor $f(x_i)/N_f$ through the Fig. `fig:1 term ROBIN` $O_f$ gate | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_ofCleanFunctionOracleEntry` | compiled guard; consumes `GHL2025.functionOraclePaperMatrix_cleanBranch_entry` and `oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags` |
+
+Lean-to-paper map:
+
+| Paper/proof object | Lean object exposed by the guard | Status |
+|---|---|---|
+| $O_f$ clean branch amplitude | gate slot 4 entry equals `(GHL2025.functionOracleAmplitudeProofRoute p j.val).cleanBranchAmplitude` | compiled under clean-branch hypotheses |
+| normalized function value | the same entry equals `(GHL2025.functionOracleAmplitudeProofRoute p j.val).normalizedAmplitude`, which is the symbolic $f(x_i)/N_f$ transcript | compiled; nonzero $N_f$ and division semantics remain obligations |
+| external amplitude theorem | `functionOracleSource.closesFunctionOracleContract = false` and cited row `GL2024.Thm5.AmplitudeOracle` | still an external obligation |
+| final theorem dependencies | route `amplitudeCorrect`, `lcuCorrect`, block projection, block correctness, and block extraction flags | all remain false |
+
+Focused test:
+
+| Test specialization | Checked facts |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, clean `O_f` column `36`, clean branch row `36`, system value `2` | route gate-slot entry equals `Coeff.mul (Coeff.symbol "f_3_2") (Coeff.symbol "N_f_inv")`; clean branch metadata is exposed; `O_f` unitary, amplitude correctness, LCU, block projection, and final extraction remain false |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | choose one remaining factor in the future `one_term_gamma3_signal_block_entry` theorem, such as the derivative-amplitude entry, an active $O_D^{BS}$ cleanup-to-entry bridge, or the exact finite LCU theorem interface |
+| forbidden promotions | keep $O_f$ amplitude correctness, $O_f$ unitarity, $N_f$ nonzero/division/bound obligations, LCU correctness, block projection, block correctness, and final extraction false until their exact Lean theorems build |
+
+### 2026-05-25 Middle Derivative-Amplitude Entry Packet
+
+Middle re-read the GHL2025 source around Lemma `Sparse-amplitude-oracle for a
+banded-sparse matrix`, Eq. `eq: amplitude_oracle_D`, the boundary-angle
+paragraph Eq. `eq:angles for Ry`, Eq. `eq: ROBIN clarified`, and Fig.
+`fig:1 term ROBIN`.  The next fixed dependency for the future
+`one_term_gamma3_signal_block_entry` theorem is the derivative factor
+$D_i^{(s)}/N_D$.  The active Lean route already contains the shared source
+contract through
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap`;
+the missing small bridge is the route-level matrix-entry exposure for gate
+slot 1, and optionally the analogous gate-slot 2 boundary entry shape.
+
+Source-proof translation table:
+
+| Source proof step | Classification | Existing Lean anchor | Next lower contract |
+|---|---|---|---|
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix`, Eq. `eq: amplitude_oracle_D`, supplies the ket-zero amplitude $D^{(s)}/N_D$ for the derivative sparse-amplitude oracle | `internal-paper-step` with contract-only analytic fields | `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute`, `GHL2025.sparseAmplitudeOracleDTRotationMatrix` | expose the route gate-slot 1 ket-zero matrix entry as `.ketZeroEntry` under indicator-1 and ancilla-0 hypotheses |
+| Eq. `eq: ROBIN clarified` $\gamma_2$ and $\gamma_3$ lines carry the derivative factor forward into the normalized target coefficient | `internal-paper-step` plus future finite entry lemma | `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`, `oneTermRobinGamma3SignalBlockEntryObligation` | reuse the RHS data; do not restate the target matrix |
+| Eq. `eq:angles for Ry` supplies the boundary controlled-rotation angle $\theta_j^s=\arccos(D_j^{(s)}/N_D)$ | `internal-paper-step` with analytic obligations | `GHL2025.boundaryRotationAngleNormalizerProofRoute`, `GHL2025.boundaryRotationMatrix` | optional route gate-slot 2 ket-zero boundary-entry bridge; keep arccos and half-angle obligations false |
+| Fig. `fig:1 term ROBIN` fixes `O_DT^S` as gate slot 1 and `Ry_boundary` as gate slot 2 | `internal-paper-step` circuit fragment | `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger`, `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` | expose the existing slot matrices; do not reorder the gate list |
+| Equivalence between the symbolic ket-zero entries and real normalized coefficients | `classical-lean-lemma` after coefficient semantics exist | `DerivativeNormalizerNDContract`, `derivativeNormalizerNDSourceBound` | remains false after this packet |
+| Two-by-two rotation unitarity for `O_DT^S` and `Ry_boundary` | `classical-lean-lemma` after normalizer bounds and trigonometric semantics | `sparseAmplitudeOracleDTCoefficientNormalizerProofRoute.twoByTwoUnitary`, `boundaryRotationAngleNormalizerProofRoute.twoByTwoUnitary` | remains false after this packet |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | add `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odtsKetZeroEntry` |
+| optional paired target | add `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_boundaryKetZeroEntry` only if the `O_DT^S` bridge is already stable in the same small patch |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed test file | `Tests/Basic.lean` |
+| allowed notes | update this conversion window or `proof-obligations/QBE-AUTO-002.md` only if the theorem signature changes |
+| input declarations | `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap`, `GHL2025.sparseAmplitudeOracleDTPaperRegisters`, `GHL2025.sparseAmplitudeOracleDTRotationMatrix`, `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketZeroEntry`, `GHL2025.boundaryRotationPaperRegisters`, `GHL2025.boundaryRotationMatrix`, `GHL2025.boundaryRotationAngleNormalizerProofRoute` |
+| expected `O_DT^S` interface | for full-basis `i j`, let `regs := GHL2025.sparseAmplitudeOracleDTPaperRegisters p j.val`; under `regs.indicatorBit = 1`, `regs.ancillaBit = 0`, `i.val >>> 1 = regs.nonAncillaValue`, and `i.val &&& 1 = 0`, prove that route gate slot 1 has entry `(GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p regs.rowValue regs.sparseIndexValue).ketZeroEntry` |
+| optional boundary interface | for full-basis `i j`, let `regs := GHL2025.boundaryRotationPaperRegisters p j.val`; under `regs.indicatorBit = 0`, `regs.ancillaBit = 0`, `i.val >>> 1 = regs.nonAncillaValue`, and `i.val &&& 1 = 0`, prove that route gate slot 2 has entry `(GHL2025.boundaryRotationAngleNormalizerProofRoute p regs.rowValue regs.sparseIndexValue).cosHalfEntry` |
+| required false flags | preserve `O_DT^S` unitarity, `Ry_boundary` unitarity, shared `N_D` nonzero/division/bound/square-root/arccos/half-angle/two-by-two flags, `O_f` amplitude correctness, LCU correctness, block projection, block correctness, and block extraction as false |
+| focused test | specialize to `n = 3`, `O_DT^S` bulk column `132` with row `132`, and check slot 1 entry equals `Coeff.symbol "odts_cos_half_2_0"` while the required flags remain false; if adding the boundary target, specialize to boundary column `0` and row `0` with entry `Coeff.symbol "boundary_cos_half_0_0"` |
+| forbidden work | do not attempt the full seven-gate product, do not prove trigonometric identities, do not promote analytic or gate-unitarity flags, and do not revisit rejected row-dependent `O_D^BS` blockers |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_odts_ket_zero_entry` | expose the route-level `O_DT^S` ket-zero branch matrix entry as the Eq. `eq: amplitude_oracle_D` symbolic $D^{(s)}/N_D$ slot | derivative/boundary contract map, `sparseAmplitudeOracleDTRotationMatrix`, cited row `GHL2025.Lemma3.ODTS` | planned `oneTermRobinBlockEncodingProofRoute_odtsKetZeroEntry` | future `one_term_gamma3_signal_block_entry` | `O_DT^S` | planned bridge; no semantic flag promotion allowed |
+| `one_term_boundary_ket_zero_entry` | expose the route-level boundary `R_y` ket-zero branch entry as the Eq. `eq:angles for Ry` cosine half-angle slot | derivative/boundary contract map, `boundaryRotationMatrix`, cited row `GHL2025.RyBoundary` | optional planned `oneTermRobinBlockEncodingProofRoute_boundaryKetZeroEntry` | future boundary half of `one_term_gamma3_signal_block_entry` | `Ry_boundary` | optional bridge; no analytic or unitarity flag promotion allowed |
+
+### 2026-05-25 Lower O_DT^S Ket-Zero Entry Bridge
+
+Lower added the fixed route-level bridge for the ket-zero branch of
+`O_DT^S`.  For fixed full-basis rows `i,j`, the theorem assumes that the
+`O_DT^S` paper register extractor for column `j` has indicator bit `1`,
+ancilla bit `0`, matching non-ancilla row bits, and target ancilla bit `0`.
+Under those hypotheses, gate slot 1 of
+`oneTermRobinBlockEncodingProofRoute n` has exactly the ket-zero symbolic
+entry recorded by `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute`.
+
+New Lean declaration:
+
+| Source item | Lean declaration | Status |
+|---|---|---|
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix`, Eq. `eq: amplitude_oracle_D`, as used in Eq. `eq: ROBIN clarified` | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odtsKetZeroEntry` | compiled guard; consumes `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap` and `GHL2025.sparseAmplitudeOracleDTRotationMatrix` |
+
+Lean-to-paper map:
+
+| Paper/proof object | Lean object exposed by the guard | Status |
+|---|---|---|
+| `O_DT^S` route gate | gate slot 1 is `Gate.oracleCall "O_DT^S"` | compiled structural guard |
+| ket-zero derivative amplitude | gate slot 1 entry equals `(GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p regs.rowValue regs.sparseIndexValue).ketZeroEntry` | compiled under register hypotheses |
+| symbolic normalized derivative coefficient | `sparseAmplitudeOracleDTNormalizedCoefficient p regs.rowValue regs.sparseIndexValue` | exposed; division by $N_D$ remains an obligation |
+| analytic and unitary obligations | coefficient division, $N_D$ bound, absolute-square semantics, square-root complement, two-by-two unitarity, and gate unitarity | all remain `false` |
+| final theorem dependencies | route LCU, block projection, block correctness, and block extraction flags | all remain `false` |
+
+Focused test:
+
+| Test specialization | Checked facts |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, `O_DT^S` column `132`, row `132`, row value `2`, sparse slot `0` | route gate-slot entry equals `Coeff.symbol "odts_cos_half_2_0"`; normalized-coefficient bridge is exposed; `O_DT^S` unitarity, LCU, block projection, and block extraction remain false |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | choose the analogous boundary `R_y` ket-zero entry bridge, an active $O_D^{BS}$ cleanup-to-entry bridge, or another single remaining factor for `one_term_gamma3_signal_block_entry` |
+| forbidden promotions | keep shared $N_D$ analytic fields, `O_DT^S` and `Ry_boundary` unitarity, $O_f$ amplitude correctness, LCU correctness, block projection, block correctness, normalized block equality, final extraction, and theorem block extraction false until their exact Lean theorems build |
+
+### 2026-05-25 Middle Boundary-Rotation Entry Packet
+
+Middle re-read the GHL2025 source around the zero-inclusion paragraph before
+Theorem `1 term robin`, Eq. `eq:angles for Ry`, Eq. `eq: ROBIN clarified`,
+and Fig. `fig:1 term ROBIN`.  The accepted lower declaration
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odtsKetZeroEntry`
+covers the bulk derivative-amplitude gate slot.  The next fixed dependency for
+the future `one_term_gamma3_signal_block_entry` theorem is the matching
+boundary branch: gate slot 2 must expose the symbolic
+`Ry_boundary` ket-zero entry recorded by
+`GHL2025.boundaryRotationAngleNormalizerProofRoute`.
+
+Source-proof translation table:
+
+| Source proof step | Classification | Existing Lean anchor | Next lower contract |
+|---|---|---|---|
+| Eq. `eq:angles for Ry` defines $\theta_j^s = \arccos(D_j^{(s)}/N_D)$ for boundary rows and sparse slots $s=0,\dots,\kappa-1$ | `internal-paper-step` with analytic obligations | `GHL2025.boundaryRotationAngleNormalizerProofRoute`, `GHL2025.derivativeNormalizerNDContract` | expose the route gate-slot 2 ket-zero matrix entry as `.cosHalfEntry` under indicator-0 and ancilla-0 hypotheses |
+| Fig. `fig:1 term ROBIN` applies `Ry_boundary` after `O_DT^S` and before `O_D^BS` | `internal-paper-step` circuit fragment | `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap`, `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger` | keep slot 2 fixed as `Gate.oracleCall "Ry_boundary"` with matrix `boundaryRotationMatrix`; do not reorder the gate list |
+| Eq. `eq: ROBIN clarified` carries the boundary derivative coefficient into the $\gamma_2$ and $\gamma_3$ transcript | `internal-paper-step` plus future finite entry lemma | `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`, `oneTermRobinGamma3SignalBlockEntryObligation` | reuse the existing target-entry and normalizer data; do not restate the Robin target matrix |
+| Half-angle, arccos, and two-by-two unitarity facts for the symbolic entries | `classical-lean-lemma` after coefficient semantics exist | `BoundaryRotationAngleNormalizerProofRoute.halfAngleSemantics`, `.realArccosSemantics`, `.twoByTwoUnitary` | remain false after this packet |
+| Final signal-zero block equality and LCU/block-composition closure | `external-cited-result` plus QBE theorem obligation | cited-results rows `LCU.StandardBlockEncoding` and `GHL2025.Theorem1.BlockEncoding` | remain false after this packet |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | add `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_boundaryKetZeroEntry` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed test file | `Tests/Basic.lean` |
+| allowed notes | update this conversion window or `proof-obligations/QBE-AUTO-002.md` only if the theorem signature changes |
+| input declarations | `oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap`, `oneTermRobinBlockEncodingProofRoute_fullGateContractLedger`, `GHL2025.boundaryRotationPaperRegisters`, `GHL2025.boundaryRotationMatrix`, `GHL2025.boundaryRotationAngleNormalizerProofRoute` |
+| expected interface | for full-basis `i j`, let `p := oneTermParameters n` and `regs := GHL2025.boundaryRotationPaperRegisters p j.val`; under `regs.indicatorBit = 0`, `regs.ancillaBit = 0`, `i.val >>> 1 = regs.nonAncillaValue`, and `i.val &&& 1 = 0`, prove that route gate slot 2 has entry `(GHL2025.boundaryRotationAngleNormalizerProofRoute p regs.rowValue regs.sparseIndexValue).cosHalfEntry` |
+| required false flags | preserve `Ry_boundary` unitarity, shared `N_D` nonzero/division/bound/arccos/half-angle/two-by-two flags, `O_DT^S` unitarity, $O_f$ amplitude correctness, $O_D^{BS}$ cleanup/unitarity, LCU correctness, block projection, block correctness, normalized block equality, final extraction, and theorem block extraction as false |
+| focused test | specialize to `n = 3`, boundary `Ry_boundary` column `0`, row `0`, and check the route gate-slot 2 entry equals `Coeff.symbol "boundary_cos_half_0_0"` while the required flags remain false |
+| forbidden work | do not attempt the full seven-gate product, do not prove arccos or half-angle identities, do not promote analytic or gate-unitarity flags, and do not revisit rejected row-dependent `O_D^BS` blockers |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_boundary_ket_zero_entry` | expose the route-level boundary `R_y` ket-zero branch matrix entry as the Eq. `eq:angles for Ry` symbolic cosine half-angle slot | derivative/boundary contract map, `boundaryRotationMatrix`, cited row `GHL2025.RyBoundary` | `oneTermRobinBlockEncodingProofRoute_boundaryKetZeroEntry` | future `one_term_gamma3_signal_block_entry` | `Ry_boundary` | compiled bridge; no analytic or unitarity flag promoted |
+
+### 2026-05-25 Lower Boundary-Rotation Ket-Zero Entry Bridge
+
+Lower added the route-level gate-slot 2 bridge for `Ry_boundary`.  For
+full-basis indices `i,j`, the theorem uses
+`GHL2025.boundaryRotationPaperRegisters p j.val`; under
+`indicatorBit = 0`, `ancillaBit = 0`, matching non-ancilla bits, and output
+ancilla bit `0`, it proves that the slot-2 matrix entry in
+`oneTermRobinBlockEncodingProofRoute n` is the
+`cosHalfEntry` of
+`GHL2025.boundaryRotationAngleNormalizerProofRoute`.
+
+Source-proof translation update:
+
+| Source proof step | Lean declaration | Status |
+|---|---|---|
+| Eq. `eq:angles for Ry` boundary branch $\theta_j^s = \arccos(D_j^{(s)}/N_D)$ | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_boundaryKetZeroEntry` | compiled entry bridge; arccos and half-angle semantics remain false |
+| Fig. `fig:1 term ROBIN` gate slot 2 | theorem returns slot-2 gate `Gate.oracleCall "Ry_boundary"` and uses `GHL2025.boundaryRotationMatrix` | compiled structural bridge; no gate reordering |
+| Shared $N_D$ analytic route | theorem carries `DerivativeNormalizerNDContract` and `BoundaryRotationAngleNormalizerProofRoute` false flags | nonzero, division, bound, arccos, half-angle, and two-by-two unitarity remain obligations |
+| Downstream theorem closure | route flags for $O_D^{BS}$ cleanup/unitarity, $O_f$, LCU, projection, block correctness, and block extraction | still false |
+
+Focused test:
+
+| Test site | What it checks |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, boundary column `0`, row `0` | route gate-slot 2 entry equals `Coeff.symbol "boundary_cos_half_0_0"` and the required analytic, gate-unitarity, cleanup, $O_f$, LCU, projection, block-correctness, and extraction flags remain false |
+
+### 2026-05-25 Middle Gamma3 Factor-Entry Ledger
+
+Middle joined the accepted single-factor bridges into one theorem-facing
+ledger for the future `one_term_gamma3_signal_block_entry` proof.  The source
+step is the $\gamma_3$ line of Eq. `eq: ROBIN clarified`, read together with
+Fig. `fig:1 term ROBIN`: the final signal-zero entry is supposed to collect
+the $O_{D^T}^S$ derivative factor, the boundary `Ry_boundary` factor, the
+active `O_D^BS` cleanup route, and the clean $O_f$ branch into the normalized
+target entry $f(x_i)D_i^{(s)}/(N_DN_f\kappa)$.
+
+The new Lean declaration is a ledger, not a proof of the finite gate product.
+It does not multiply the seven matrices, prove the LCU step, or promote any
+oracle correctness flag.
+
+| Source proof step | Classification | Lean declaration | Status |
+|---|---|---|---|
+| Eq. `eq: ROBIN clarified` $\gamma_3$ target entry and normalizer $N_DN_f\kappa$ | `internal-paper-step` target transcript | `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData` | reused |
+| $O_f$ clean branch contributes $f(x_i)/N_f$ | `internal-paper-step` plus external theorem transcript | `oneTermRobinBlockEncodingProofRoute_ofCleanFunctionOracleEntry`, cited row `GL2024.Thm5.AmplitudeOracle` | reused; $O_f$ analytic flags false |
+| `O_DT^S` ket-zero branch contributes the symbolic derivative factor | `internal-paper-step` with analytic obligations | `oneTermRobinBlockEncodingProofRoute_odtsKetZeroEntry`, cited row `GHL2025.Lemma3.ODTS` | reused; $N_D$ flags false |
+| `Ry_boundary` ket-zero branch contributes the boundary symbolic factor | `internal-paper-step` with analytic obligations | `oneTermRobinBlockEncodingProofRoute_boundaryKetZeroEntry`, cited row `GHL2025.RyBoundary` | reused; arccos and half-angle flags false |
+| Active `O_D^BS` after SWAP has a restricted global-source dagger entry | `classical-lean-lemma` on the audited active source scope | `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap` | reused; semantic cleanup and unitary flags false |
+| Finite signal-zero product equals the normalized target entry | `external-cited-result` plus exact QBE theorem obligation | `oneTermRobinGamma3SignalBlockEntryObligation`, `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality`, cited row `LCU.StandardBlockEncoding` | remains false |
+
+New Lean declaration:
+
+| Lean declaration | Interface | Status |
+|---|---|---|
+| `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger` | packages the target-entry data, clean $O_f$ entry, `O_DT^S` ket-zero entry, `Ry_boundary` ket-zero entry, active `O_D^BS` dagger cleanup entry, and the final false flags | compiled guard; no semantic flag promoted |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_factor_entry_ledger` | expose all currently compiled factor-entry bridges that feed the future signal-zero block entry theorem | gamma3 target data, clean `O_f` bridge, `O_DT^S` bridge, `Ry_boundary` bridge, active global-source `O_D^BS` cleanup map, finite composition contract | `oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger` | future `one_term_gamma3_signal_block_entry` | full route | compiled ledger; normalized block equality and final extraction false |
+
+Focused test:
+
+| Test site | What it checks |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source column `48`, clean $O_f$ column `36`, `O_DT^S` column `132`, boundary column `0`, target entry `(2,5)` | the ledger exposes $O_f$ entry `Coeff.mul (Coeff.symbol "f_3_2") (Coeff.symbol "N_f_inv")`, `O_DT^S` entry `Coeff.symbol "odts_cos_half_2_0"`, boundary entry `Coeff.symbol "boundary_cos_half_0_0"`, the active `O_D^BS` dagger entry `Coeff.rat 1`, and the false normalized-block, LCU, cleanup-promotion, and extraction flags |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | choose one exact missing theorem feeding `oneTermRobinGamma3SignalBlockEntryObligation`: either the finite product entry theorem, a full active-source cleanup promotion theorem, or one remaining oracle correctness theorem |
+| source anchors | GHL2025 Theorem `1 term robin`, Eq. `eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, Lemma `Banded-sparse-access-oracle`, Lemma `Sparse-amplitude-oracle for a banded-sparse matrix`, Theorem `Amplitude-oracle for piece-wise polynomial function`, and cited-results row `LCU.StandardBlockEncoding` |
+| forbidden promotions | do not promote normalized block equality, LCU correctness, block projection, block correctness, circuit unitarity, $O_D^{BS}$ cleanup or unitarity, $O_f$ amplitude correctness, or final extraction unless the exact Lean theorem builds |
+
+### 2026-05-25 Lower Gamma3 Signal-Block Product Entry
+
+Lower added the finite-product entry bridge for the future
+`one_term_gamma3_signal_block_entry` theorem.  The new theorem consumes the
+gamma3 factor-entry ledger and proves the local matrix-semantics step: the
+signal-zero block entry exposed by the finite-composition contract is the
+corresponding entry of `evalGateMatrices` over
+`GHL2025.oneTermRobinGateMatrixPlaceholders`.
+
+This is not the coefficient theorem.  It does not evaluate the large symbolic
+matrix product, multiply the five factor entries into
+$f(x_i)D_i^{(s)}/(N_DN_f\kappa)$, or promote any LCU, oracle-correctness,
+projection, cleanup, or extraction flag.
+
+| Source proof step | Classification | Lean declaration | Status |
+|---|---|---|---|
+| Fig. `fig:1 term ROBIN` fixes the seven-gate product whose signal-zero block is used in Definition `def:block-encoding` | `classical-lean-lemma` over the local matrix backend | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry` | compiled; exposes the `evalGateMatrices` entry |
+| Eq. `eq: ROBIN clarified` gamma3 coefficient equality for that product entry | `external-cited-result` plus future local finite-entry theorem | `oneTermRobinGamma3SignalBlockEntryObligation`, `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | still `proved = false` |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_signal_block_product_entry` | identify the signal-zero block entry with the seven-gate `evalGateMatrices` product entry | gamma3 factor-entry ledger, block projection indices, circuit semantics product | `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry` | future `one_term_gamma3_signal_block_entry` | full route | compiled bridge; normalized block equality and final extraction false |
+
+Focused test:
+
+| Test site | What it checks |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source column `48`, target entry `(2,5)` | the finite contract block entry is the cast `evalGateMatrices` product entry for the seven Fig. `fig:1 term ROBIN` gate matrices; gate list and unitary-flag list remain synchronized; normalized-block, LCU, and extraction flags remain false |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | choose a genuine remaining theorem feeding the coefficient equality: either a finite product-to-factor multiplication theorem under the existing factor-entry hypotheses, a full active-source cleanup promotion theorem, or a narrow oracle correctness theorem whose exact contract already has typed hypotheses |
+| forbidden promotions | keep `oneTermRobinGamma3SignalBlockEntryObligation`, `contract.normalizedBlockEquality`, LCU correctness, block correctness, cleanup, unitarity, and final extraction false unless an exact Lean theorem proves them |
+
+### 2026-05-25 Middle Target-Matrix Drift Audit
+
+Definition first: the paper target for Theorem `1 term robin` is the
+one-term matrix $A_k$ with entries
+
+$$
+  (A_k)_{ij} = f(x_i) D_{ij}.
+$$
+
+This follows from the theorem statement, which names the discretized version
+of $A_k \sim f(x)\partial^m/\partial x^m$, and from the $\gamma_3$ line of
+Eq. `eq: ROBIN clarified`, which contains the coefficient
+$f(x_i)(D)_i^{(s)}$ divided by $N_DN_f\kappa$.  At this pre-rewire audit
+point, the Lean route still used `robinDerivativeMatrix n` as the block target in
+`oneTermRobinBlockExtractionTarget`, `oneTermRobinFiniteBlockCompositionContract`,
+`oneTermRobinBlockEncodingProofRoute.targetMatrixMatchesSpec`, and
+`oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`.
+
+This was source-contract drift.  Lower agents should not try to prove the
+finite product-to-factor theorem against `robinDerivativeMatrix n` alone.
+The next theorem-facing contract must introduce the row-scaled target and then
+rewire the existing route to that target while keeping every semantic flag
+false.
+
+Source-proof translation table:
+
+| Source proof step | Classification | Existing Lean anchor | Next lower contract |
+|---|---|---|---|
+| Theorem `1 term robin` states a block-encoding of the discretized $A_k \sim f(x)\partial^m/\partial x^m$ | pre-rewire `source-contract-gap` | `oneTermRobinBlockEncodingProofRoute`, `oneTermRobinBlockExtractionTarget`, `oneTermRobinFiniteBlockCompositionContract` | define `oneTermRobinAkMatrix n` and make the block target use it |
+| Eq. `eq: ROBIN clarified` $\gamma_3$ line carries $f(x_i)(D)_i^{(s)}/(N_DN_f\kappa)$ | `internal-paper-step` | `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`, `functionOracleNormalizedValue`, `robinSparseAmplitudeValue` | expose target entries as `Coeff.mul (GHL2025.robinFunctionValue n i.val) (robinDerivativeMatrix n i j)` |
+| Theorem `Amplitude-oracle for piece-wise polynomial function`, Eq. `eq:coordinate oracle`, supplies the clean $f(x_i)/N_f$ branch | `external-cited-result` already ledgered | `GHL2025.functionOracleAmplitudeProofRoute`, cited row `GL2024.Thm5.AmplitudeOracle` | reuse the existing function-value symbol; do not introduce a second function-value definition |
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix` supplies the $D$ factor | `internal-paper-step` with analytic obligations | `GHL2025.robinSparseAmplitudeValue`, `robinDerivativeMatrix n` | keep derivative oracle data separate from the final $A_k$ target |
+| LCU/block-encoding composition uses the theorem target block | `external-cited-result` plus QBE finite theorem obligation | `LCU.StandardBlockEncoding`, `oneTermRobinFiniteBlockCompositionContract` | update `targetMatrix` and normalized-block descriptions from derivative-only to $A_k$ |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | introduce `Examples.RobinHeat.oneTermRobinAkMatrix` and rewire the theorem route target from `robinDerivativeMatrix n` to that matrix |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed test file | `Tests/Basic.lean` |
+| allowed notes | update this conversion window or `proof-obligations/QBE-AUTO-002.md` if names or signatures differ |
+| matrix definition | `def oneTermRobinAkMatrix (n : Nat) : Matrix (gridSize n) (gridSize n) Coeff := fun i j => Coeff.mul (GHL2025.robinFunctionValue n i.val) (robinDerivativeMatrix n i j)` |
+| required rewiring | `oneTermRobinBlockExtractionTarget`, `oneTermRobinFiniteBlockCompositionContract.targetMatrix`, `OneTermRobinBlockEncodingProofRoute.targetMatrixMatchesSpec`, `oneTermRobinBlockEncodingProofRoute_blockTarget`, `oneTermRobinBlockEncodingProofRoute_blockProjectionNormalizerAudit`, `oneTermRobinBlockEncodingProofRoute_blockProjectionDependencyMap`, `oneTermRobinBlockEncodingProofRoute_finiteCompositionExactTheoremInterface`, `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockEntryObligationMap`, `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`, `oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger`, and tests that pre-rewire asserted derivative-only target entries |
+| required false flags | preserve `normalizedBlockEquality`, `lcuComposition`, `finalExtraction`, route `lcuCorrect`, circuit unitarity, `O_D^BS` cleanup/unitarity, `O_f` amplitude correctness, block projection, block correctness, and theorem block extraction as false |
+| focused tests | at minimum, specialize to $n=3$ and a fixed `i j`; check `oneTermRobinAkMatrix 3 i j = Coeff.mul (GHL2025.robinFunctionValue 3 i.val) (robinDerivativeMatrix 3 i j)`, check the finite-composition contract and block target use `oneTermRobinAkMatrix 3`, and keep the previous false-flag assertions |
+| forbidden work | do not attempt the full seven-gate product, do not prove the analytic `O_f` theorem, do not promote LCU or block-correctness flags, and do not add a new proof-route record |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_ak_target_matrix` | row-scaled theorem target with entries $f(x_i)D_{ij}$ | `GHL2025.robinFunctionValue`, `robinDerivativeMatrix`, Theorem `1 term robin`, Eq. `eq: ROBIN clarified` | planned `oneTermRobinAkMatrix` | block target, finite composition contract, gamma3 target entry data | theorem target | planned correction; no semantic flag promotion allowed |
+
+### 2026-05-25 Lower Ak Target Matrix Rewire
+
+Lower introduced the row-scaled theorem target
+`Examples.RobinHeat.oneTermRobinAkMatrix`.  The definition follows Theorem
+`1 term robin` and Eq. `eq: ROBIN clarified`:
+
+$$
+  (A_k)_{ij} = f(x_i)D_{ij}.
+$$
+
+The Lean declaration is
+`oneTermRobinAkMatrix n i j = Coeff.mul (GHL2025.robinFunctionValue n i.val) (robinDerivativeMatrix n i j)`.
+The derivative-oracle coherence remains tied to `robinDerivativeMatrix n`; only
+the theorem-facing block target and finite-composition contract were rewired.
+
+| Source proof step | Classification | Lean declaration | Status |
+|---|---|---|---|
+| Theorem `1 term robin` block-encodes $A_k \sim f(x)\partial^m/\partial x^m$ | `source-contract-gap` corrected in the Lean transcript | `Examples.RobinHeat.oneTermRobinAkMatrix` | compiled definition |
+| Eq. `eq: ROBIN clarified` $\gamma_3$ coefficient has $f(x_i)D_{ij}$ over $N_DN_f\kappa$ | `internal-paper-step` target transcript | `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`, `oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger` | rewired to `oneTermRobinAkMatrix`; finite coefficient equality still false |
+| LCU/block-composition target block | `external-cited-result` plus QBE finite theorem obligation | `oneTermRobinFiniteBlockCompositionContract` | target matrix and normalized-block description now name `oneTermRobinAkMatrix`; flags remain false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_ak_target_matrix` | row-scaled theorem target with entries $f(x_i)D_{ij}$ | `GHL2025.robinFunctionValue`, `robinDerivativeMatrix`, Theorem `1 term robin`, Eq. `eq: ROBIN clarified` | `Examples.RobinHeat.oneTermRobinAkMatrix`, `oneTermRobinAkMatrix_apply` | block target, finite composition contract, gamma3 target entry data | theorem target | compiled; no semantic flag promoted |
+
+Focused tests:
+
+| Test site | What it checks |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, target entry `(2,5)` | `oneTermRobinAkMatrix` expands to `Coeff.mul (GHL2025.robinFunctionValue 3 2) (robinDerivativeMatrix 3 i j)` |
+| `Tests/Basic.lean`, route and circuit-claim structural guards | `oneTermRobinBlockExtractionTarget`, `defaultOneTermRobinCircuitBlockClaim`, and `oneTermRobinBlockEncodingProofRoute` use `oneTermRobinAkMatrix`; block, LCU, cleanup, unitarity, and final extraction flags remain false |
+
+Next lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | choose one remaining coefficient-equality bridge against `oneTermRobinAkMatrix`, preferably a narrow finite product-to-factor multiplication theorem under the existing factor-entry hypotheses |
+| forbidden promotions | keep `oneTermRobinGamma3SignalBlockEntryObligation`, `contract.normalizedBlockEquality`, LCU correctness, block correctness, cleanup, unitarity, and final extraction false unless an exact Lean theorem proves them |
+
+### 2026-05-25 Middle Gamma3 Ak Coefficient-Entry Contract Packet
+
+Definition first: the active theorem target is now
+`Examples.RobinHeat.oneTermRobinAkMatrix`, with entries
+
+$$
+  (A_k)_{ij}=f(x_i)D_{ij}.
+$$
+
+The next lower target is a contract bridge, not the final coefficient proof.
+It should connect the existing signal-zero product entry to the existing
+factor-entry ledger and to the Ak target entry, while keeping the normalized
+block equality and all semantic flags false.
+
+Source-proof translation table:
+
+| Source proof step | Classification | Existing Lean anchor | Next lower contract |
+|---|---|---|---|
+| Theorem `1 term robin` targets the discretized operator $A_k \sim f(x)\partial^m/\partial x^m$ | `internal-paper-step`, now corrected in Lean | `Examples.RobinHeat.oneTermRobinAkMatrix`, `oneTermRobinBlockExtractionTarget`, `oneTermRobinFiniteBlockCompositionContract` | reuse the Ak target; do not introduce a second target matrix |
+| Eq. `eq: ROBIN clarified` $\gamma_3$ clean branch contains $f(x_i)(D)_i^{(s)}/(N_DN_f\kappa)$ | `internal-paper-step` with analytic oracle obligations | `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`, `oneTermRobinAkMatrix_apply` | expose the target entry as `Coeff.mul (GHL2025.robinFunctionValue n i.val) (robinDerivativeMatrix n i j)` |
+| Fig. `fig:1 term ROBIN` fixes the seven-gate product entry | `classical-lean-lemma` over the local matrix backend | `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry` | reuse this product-entry bridge instead of restating the product |
+| The clean $O_f$, $O_{D^T}^S$, `Ry_boundary`, and active $O_D^{BS}$ entries feed the same $\gamma_3$ branch | mixed internal transcript plus existing cited contracts | `oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger`, cited rows `GL2024.Thm5.AmplitudeOracle`, `GHL2025.Lemma3.ODTS`, `GHL2025.RyBoundary`, and `QBE.ODBS.GlobalSparseSlotAddress` | package the already compiled factor entries; do not prove analytic oracle correctness |
+| The finite product entry equals the normalized Ak coefficient | `external-cited-result` plus exact QBE theorem obligation | `oneTermRobinGamma3SignalBlockEntryObligation`, `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality`, cited row `LCU.StandardBlockEncoding` | keep `proved = false`; the lower packet only sharpens the contract |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | add one theorem-facing guard, suggested name `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed test file | `Tests/Basic.lean` |
+| allowed notes | update this conversion window or `proof-obligations/QBE-AUTO-002.md` only if the theorem signature changes |
+| required reuse | call `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry`, `oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger`, and `oneTermRobinAkMatrix_apply`; do not create a new route record or a new function-value definition |
+| expected interface | under the same hypotheses as `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry`, return the product block entry, the Ak target entry, its expansion as `Coeff.mul (GHL2025.robinFunctionValue n i.val) (robinDerivativeMatrix n i j)`, the already ledgered factor entries, and the final false obligation flags |
+| required false flags | preserve `oneTermRobinGamma3SignalBlockEntryObligation.proved`, `contract.normalizedBlockEquality.proved`, `contract.lcuComposition.proved`, `contract.finalExtraction.proved`, route `lcuCorrect`, `O_f` amplitude correctness, `O_DT^S` and `Ry_boundary` unitarity, $O_D^{BS}$ cleanup/unitarity, block projection, block correctness, circuit unitarity, and theorem block extraction as false |
+| focused test | specialize to $n=3$, source column `48`, clean $O_f$ column `36`, `O_DT^S` column `132`, boundary column `0`, and target entry `(2,5)`; check the contract exposes `oneTermRobinAkMatrix 3 i j = Coeff.mul (GHL2025.robinFunctionValue 3 2) (robinDerivativeMatrix 3 i j)`, the product-entry object, and the false flags |
+| forbidden work | do not evaluate the full symbolic seven-gate product, do not prove LCU composition or oracle analytic correctness, do not promote cleanup/unitarity/block flags, and do not revisit the rejected row-dependent $O_D^{BS}$ helper |
+
+Source-dependency audit:
+
+| Missing ingredient | Classification | Next action |
+|---|---|---|
+| Product-entry-to-factor multiplication for the full seven-gate route | `classical-lean-lemma` plus exact QBE finite-matrix theorem obligation | record a narrow contract first; later prove only after the product/factor hypotheses are fixed |
+| $O_f$ clean amplitude correctness and $N_f$ bound | `external-cited-result` | use cited row `GL2024.Thm5.AmplitudeOracle`; keep QBE status below `formalized` |
+| $D/N_D$ derivative and boundary angle semantics | `internal-paper-step` with analytic obligations | use rows `GHL2025.Lemma3.ODTS` and `GHL2025.RyBoundary`; keep analytic flags false |
+| Active global-source $O_D^{BS}$ cleanup beyond the restricted entry | `source-contract-gap` for full cleanup, `classical-lean-lemma` only on the active-source entry already compiled | use `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap`; do not promote `daggerCleanup` |
+| LCU/block extraction from entry contracts to theorem closure | `external-cited-result` plus QBE theorem obligation | use `LCU.StandardBlockEncoding` ledger row and `oneTermRobinFiniteBlockCompositionContract`; keep final flags false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_ak_coefficient_entry_contract` | synchronize the product entry, Ak target entry, expanded $f(x_i)D_{ij}$ entry, and factor-entry ledger for one fixed gamma3 coefficient target | `gamma3SignalBlockProductEntry`, `gamma3FactorEntryLedger`, `oneTermRobinAkMatrix_apply`, cited rows for $O_f$, $O_{D^T}^S$, `Ry_boundary`, $O_D^{BS}$, and LCU | planned `oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract` | future `one_term_gamma3_signal_block_entry` finite equality theorem | full route | planned contract; all semantic flags must remain false |
+
+### 2026-05-25 Lower Gamma3 Ak Coefficient-Entry Contract
+
+The contract bridge is now compiled as
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract`.
+It reuses the signal-zero product-entry bridge, the factor-entry ledger, and
+`oneTermRobinAkMatrix_apply` to expose the Ak target entry
+
+$$
+  (A_k)_{ij}=f(x_i)D_{ij}.
+$$
+
+The declaration returns the product block entry, the route product matrix, the
+Fig. `fig:1 term ROBIN` gate-list and unitary-flag ledger, the Ak target entry
+and its expansion as `Coeff.mul (GHL2025.robinFunctionValue n i.val)
+(robinDerivativeMatrix n i j)`, plus the already ledgered $O_f$,
+$O_{D^T}^S$, `Ry_boundary`, and active $O_D^{BS}$ entries.
+
+Compiled focused test:
+
+| Test site | What it checks |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source `48`, clean $O_f$ column `36`, `O_DT^S` column `132`, boundary column `0`, target entry `(2,5)` | the contract exposes the product-entry object, the Ak expansion with `GHL2025.robinFunctionValue 3 2`, the three single-gate factor entries, and false final flags |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_ak_coefficient_entry_contract` | synchronize the product entry, Ak target entry, expanded $f(x_i)D_{ij}$ entry, and factor-entry ledger for one fixed gamma3 coefficient target | `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry`, `oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger`, `oneTermRobinAkMatrix_apply`, cited rows for $O_f$, $O_{D^T}^S$, `Ry_boundary`, $O_D^{BS}$, and LCU | `oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract` | future finite gamma3 equality theorem | full route | compiled contract; no semantic flag promoted |
+
+Remaining obligation: the finite product-to-coefficient theorem is still
+`oneTermRobinGamma3SignalBlockEntryObligation` together with
+`oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality`; both
+remain `proved = false`.  LCU composition, $O_f$ amplitude correctness,
+$O_{D^T}^S$ and `Ry_boundary` unitarity, $O_D^{BS}$ cleanup and unitarity,
+block projection, block correctness, circuit unitarity, and final extraction
+also remain false.
+
+### 2026-05-25 Middle Gamma3 Product-To-Coefficient Interface Packet
+
+Definition first: the next fixed theorem-facing target is the finite
+product-to-coefficient interface for the $\gamma_3$ clean branch.  It starts
+from the compiled contract
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract`
+and should name exactly what is still missing: the projected seven-gate product
+entry must equal the normalized Ak coefficient from Eq.
+`eq: ROBIN clarified`.
+
+The coefficient target is
+
+$$
+  \frac{(A_k)_{ij}}{N_DN_f\kappa}
+  =
+  \frac{f(x_i)D_{ij}}{N_DN_f\kappa}.
+$$
+
+Source-proof translation table:
+
+| Source proof step | Classification | Existing Lean anchor | Next lower contract |
+|---|---|---|---|
+| Theorem `1 term robin` names a block-encoding of $A_k \sim f(x)\partial^m/\partial x^m$ with normalizer $N_DN_f\kappa$ | `internal-paper-step` | `oneTermRobinAkMatrix`, `oneTermRobinFiniteBlockCompositionContract`, `oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract` | reuse the Ak target and normalizer; do not introduce a second target or normalizer |
+| Eq. `eq: ROBIN clarified` $\gamma_3$ clean branch gives $f(x_i)(D)_i^{(s)}/(N_DN_f\kappa)$ | `internal-paper-step` plus analytic oracle obligations | `oneTermRobinAkMatrix_apply`, `oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData`, `GHL2025.robinSparseAmplitudeValue`, `GHL2025.functionOracleNormalizedValue` | state the normalized coefficient interface against the existing Ak entry and factor ledger |
+| Fig. `fig:1 term ROBIN` fixes the seven-gate matrix product and signal-zero projection | `classical-lean-lemma` over the matrix backend | `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry`, `evalGateMatrices`, `signalSystemBlockRowIndex`, `signalSystemBlockColIndex` | expose a local finite product-to-factor theorem target; avoid full symbolic search unless the hypotheses are fixed |
+| Clean $O_f$, $O_{D^T}^S$, `Ry_boundary`, and active $O_D^{BS}$ entries provide the factor ledger | mixed internal transcript plus cited contracts | `oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger`, cited rows `GL2024.Thm5.AmplitudeOracle`, `GHL2025.Lemma3.ODTS`, `GHL2025.RyBoundary`, `QBE.ODBS.GlobalSparseSlotAddress` | consume the ledger only as contract data; keep analytic and cleanup flags false |
+| Finite entry equality and final block extraction | QBE-local theorem obligation with `LCU.StandardBlockEncoding` as contract-only background | `oneTermRobinGamma3SignalBlockEntryObligation`, `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | add a named interface or guard toward this equality; do not mark it proved |
+
+Source-dependency audit:
+
+| Missing ingredient | Classification | Next action |
+|---|---|---|
+| Multiplication of the compiled product-entry object into the normalized Ak coefficient | `classical-lean-lemma` plus exact finite-matrix obligation | lower should state a narrow Lean interface, suggested name `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface` |
+| $O_f$ clean amplitude and $N_f$ inverse semantics | `external-cited-result` | reuse `GL2024.Thm5.AmplitudeOracle` as an obligation; do not promote `amplitudeCorrect` |
+| $D/N_D$ coefficient, boundary angle, and half-angle semantics | `internal-paper-step` with analytic obligations | reuse `GHL2025.Lemma3.ODTS` and `GHL2025.RyBoundary`; keep unitarity and analytic flags false |
+| Active global-source $O_D^{BS}$ cleanup beyond the restricted entry | `source-contract-gap` for full cleanup | reuse only `oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap`; do not promote `daggerCleanup` |
+| LCU/block extraction from entry equality to theorem closure | `external-cited-result` plus QBE theorem obligation | keep `LCU.StandardBlockEncoding` contract-only and final extraction false |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed Lean target | add one guard or obligation interface toward the finite product-to-coefficient theorem, suggested name `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed test file | `Tests/Basic.lean` |
+| required reuse | consume `oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract`; do not restate the route, target matrix, gate list, factor ledger, or function-value definition |
+| expected interface | under the same hypotheses as `oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract`, return the product block entry, the Ak entry expansion, the factor-entry data, a named product-to-coefficient `SemanticObligation` or theorem-facing equality target, and all final false flags |
+| focused test | specialize to $n=3$, source column `48`, clean $O_f$ column `36`, `O_DT^S` column `132`, boundary column `0`, and target entry `(2,5)`; check the new interface references the compiled Ak coefficient contract and leaves normalized-block, LCU, cleanup, unitarity, projection, block-correctness, and extraction flags false |
+| forbidden work | do not evaluate the full symbolic seven-gate product broadly, do not prove analytic oracle correctness, do not promote `oneTermRobinGamma3SignalBlockEntryObligation`, `normalizedBlockEquality`, `lcuComposition`, cleanup, unitarity, block projection, block correctness, circuit unitarity, or final extraction |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_product_to_coefficient_interface` | name the exact finite entry theorem connecting the projected seven-gate product entry to $(A_k)_{ij}/(N_DN_f\kappa)$ | `gamma3AkCoefficientEntryContract`, factor ledger, Ak target, block projection indices, contract-only LCU background | planned `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface` | future proof of `oneTermRobinGamma3SignalBlockEntryObligation` | full route | planned interface; all semantic flags must remain false |
+
+### 2026-05-25 Lower Gamma3 Product-To-Coefficient Interface
+
+The interface is now compiled as
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface`.
+It introduces the named false obligation
+`Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation n i j`
+for the remaining finite entry theorem.
+
+Definition first:
+
+$$
+  \frac{(A_k)_{ij}}{N_DN_f\kappa}
+  =
+  \frac{f(x_i)D_{ij}}{N_DN_f\kappa}
+$$
+
+is still not proved.  The Lean interface consumes
+`oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract` and
+returns the signal-zero product entry, the Ak entry expansion, inherited
+factor-entry data for $O_f$, $O_{D^T}^S$, `Ry_boundary`, and active
+$O_D^{BS}$, plus the final false flags.
+
+Compiled focused test:
+
+| Test site | What it checks |
+|---|---|
+| `Tests/Basic.lean`, $n=3$, source `48`, clean $O_f$ column `36`, `O_DT^S` column `132`, boundary column `0`, target entry `(2,5)` | the product-to-coefficient obligation is false, the product-entry object is exposed, `oneTermRobinAkMatrix 3 i j` expands with `GHL2025.robinFunctionValue 3 2`, and normalized-block, LCU, projection, cleanup, unitarity, block-correctness, circuit-unitarity, and extraction flags remain false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_product_to_coefficient_interface` | names the exact finite entry theorem connecting the projected seven-gate product entry to $(A_k)_{ij}/(N_DN_f\kappa)$ | `oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract`, `oneTermRobinAkMatrix_apply`, factor ledger, projection index helpers, cited row `LCU.StandardBlockEncoding` | `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface`, `oneTermRobinGamma3ProductToCoefficientObligation` | future proof of `oneTermRobinGamma3SignalBlockEntryObligation` | full route | compiled interface; all semantic flags false |
+
+### 2026-05-25 Middle Exact Gamma3 Equality Proof-Attempt Packet
+
+Definition first: the current Lean route has reached the fixed obligation
+`Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation n i j`.
+The source statement to reproduce is the entry form of the block-encoding
+claim for the $\gamma_3$ clean branch:
+
+$$
+  \bigl(\langle 0| \otimes I\bigr)U_{A_k}^{(1)}
+  \bigl(|0\rangle \otimes I\bigr)_{ij}
+  =
+  \frac{(A_k)_{ij}}{N_DN_f\kappa}
+  =
+  \frac{f(x_i)D_{ij}}{N_DN_f\kappa}.
+$$
+
+The source TeX gives this as Theorem `1 term robin`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Definition
+`def:block-encoding`.  It does not contain a separate finite entry proof for
+the seven-gate matrix product.  Therefore the remaining proof attempt is
+classified as a QBE-local finite matrix/projection lemma, not as an external
+oracle theorem.
+
+Source-proof translation table:
+
+| Source proof step | Classification | Existing Lean anchor | Next lower target |
+|---|---|---|---|
+| Theorem `1 term robin` states a block-encoding of $A_k$ with normalizer $N_DN_f\kappa$ | `internal-paper-step` | `oneTermRobinFiniteCompositionExactTheoremObligation`, `oneTermRobinFiniteBlockCompositionContract`, `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface` | attempt the exact entry equality against the existing contract; do not add a new route |
+| Eq. `eq: ROBIN clarified` gives the $\gamma_3$ coefficient $f(x_i)(D)_i^{(s)}/(N_DN_f\kappa)$ | `internal-paper-step` plus oracle obligations | `oneTermRobinAkMatrix_apply`, `functionOracleNormalizedValue`, `sparseAmplitudeOracleDTNormalizedCoefficient`, `oneTermRobinGamma3ProductToCoefficientObligation` | expose whether the current symbolic entries already contain the needed $N_D^{-1}$, $N_f^{-1}$, and $\kappa^{-1}$ factors |
+| Fig. `fig:1 term ROBIN` fixes the gate order and signal-zero projection | `classical-lean-lemma` over the matrix backend | `evalGateMatrices`, `oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry`, `signalSystemBlockRowIndex`, `signalSystemBlockColIndex` | for the focused $n=3$ entry, isolate the product path or record the exact remaining unfolded goal |
+| $O_f$, $O_{D^T}^S$, `Ry_boundary`, and active $O_D^{BS}$ supply factor entries | cited contracts plus internal transcript | `oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger`, cited rows `GL2024.Thm5.AmplitudeOracle`, `GHL2025.Lemma3.ODTS`, `GHL2025.RyBoundary`, `QBE.ODBS.GlobalSparseSlotAddress` | consume only as entry data; do not promote analytic, cleanup, or unitarity flags |
+| LCU/block-encoding background justifies the theorem shape | `external-cited-result` plus QBE finite theorem obligation | cited row `LCU.StandardBlockEncoding`, `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | keep contract-only status until the exact finite matrix theorem compiles |
+
+Source-dependency audit for the next proof attempt:
+
+| Missing ingredient | Classification | Required action |
+|---|---|---|
+| Focused seven-gate product entry equals the normalized Ak coefficient | `classical-lean-lemma` plus exact finite matrix obligation | lower should try one focused theorem, suggested name `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientEquality_n3`, using the same $n=3$ indices as the compiled test |
+| Symbolic quotient convention for $1/(N_DN_f\kappa)$ | `internal-paper-step`; possible Lean contract gap if no current `Coeff` expression names the $\kappa^{-1}$ factor | if the equality cannot even be stated without inventing notation, record the missing normalized-coefficient expression as an obligation instead of adding an ad hoc quotient |
+| $O_f$ clean amplitude and $N_f^{-1}$ semantics | `external-cited-result` | rely only on `GL2024.Thm5.AmplitudeOracle` as an obligation; keep `amplitudeCorrect.proved = false` |
+| $D/N_D$ and boundary half-angle semantics | `internal-paper-step` with analytic obligations | reuse `GHL2025.Lemma3.ODTS` and `GHL2025.RyBoundary`; keep gate unitarity and analytic flags false |
+| Full block extraction after the entry equality | `external-cited-result` plus QBE finite theorem obligation | keep `LCU.StandardBlockEncoding` contract-only and final extraction false |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed theorem-facing target | try one focused equality attempt for `oneTermRobinGamma3ProductToCoefficientObligation 3 i j`, suggested declaration `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientEquality_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean`, `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`, and this obligation ledger if the attempt blocks |
+| required reuse | start from `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface`; do not restate the theorem route, target matrix, gate list, factor ledger, or function-value definition |
+| focused indices | $n=3$, source column `48`, clean $O_f$ column `36`, `O_DT^S` column `132`, boundary column `0`, target entry `(2,5)` |
+| success criterion | either compile a real equality or path-isolation lemma that materially advances the product-to-coefficient proof, or record the exact Lean goal and missing interface in the proof-attempt file |
+| forbidden work | do not add another false-flag guard as the main result; do not promote `oneTermRobinGamma3ProductToCoefficientObligation`, `oneTermRobinGamma3SignalBlockEntryObligation`, `normalizedBlockEquality`, `lcuComposition`, cleanup, unitarity, block projection, block correctness, circuit unitarity, or final extraction |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_exact_entry_equality_attempt` | focused finite equality or path-isolation lemma for the $n=3$ gamma3 clean-branch entry | `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface`, `evalGateMatrices`, projection indices, factor-entry ledger, Ak target | planned `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientEquality_n3` or recorded blocked proof attempt | future proof of `oneTermRobinGamma3ProductToCoefficientObligation` and `oneTermRobinGamma3SignalBlockEntryObligation` | full route | next lower proof attempt; all semantic flags remain false |
+
+### 2026-05-25 Lower Evaluated Product Block Attempt
+
+Definition first: `Matrix.evalWith_mul_apply` is now the local matrix-semantics
+block for one evaluated product step.  For `Coeff` matrices $A$ and $B$, it
+rewrites an evaluated product entry as the finite Rat fold over intermediate
+basis states:
+
+$$
+  \operatorname{evalWith}((AB)_{ij})
+  =
+  \sum_k \operatorname{evalWith}(A_{ik})
+       \operatorname{evalWith}(B_{kj}).
+$$
+
+This is a path-isolation prerequisite for the focused $\gamma_3$ equality.  A
+direct Lean probe of the full $n=3$ seven-gate product entry timed out after
+30 seconds, so the direct unfold route remains blocked.
+
+Remaining blockers are recorded in
+`proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`: the route still
+needs a stepwise seven-gate path lemma, a normalized quotient convention for
+$(A_k)_{ij}/(N_DN_f\kappa)$, and contract bridges from the symbolic
+`O_DT^S`/`Ry_boundary` rotation entries to the normalized derivative
+coefficients.  No semantic flag was promoted.
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `matrix_eval_single_product_step` | evaluate one `Coeff` matrix-product entry as a finite Rat path fold | `Matrix.mul`, `Coeff.evalWith`, `List.finRange` | `Matrix.evalWith_mul_apply` | future `one_term_gamma3_exact_entry_equality_attempt` path isolation | matrix backend | compiled; does not prove the Robin seven-gate equality |
+
+### 2026-05-25 Middle Post-Lower Matrix Eval DAG Packet
+
+No new external theorem is accepted.  The lower result
+`QuantumBlockEncoding.Matrix.evalWith_mul_apply` is a reusable matrix-backend
+block, not a Robin-specific product proof.  The direct full-entry probe for the
+$n=3$ gamma3 target timed out, so the next lower step should not unfold the
+seven-gate product globally.
+
+Source-dependency audit:
+
+| Missing ingredient | Classification | Lean status | Next action |
+|---|---|---|---|
+| One-step evaluated product expansion | `classical-lean-lemma` | `Matrix.evalWith_mul_apply` compiled | reuse as a proof-DAG block |
+| Unique intermediate path in an evaluated matrix product | `classical-lean-lemma` | `Matrix.evalWith_mul_unique_path` compiled | reuse as the one-step unique-path block before specializing to Robin |
+| Focused $n=3$ gamma3 seven-gate path | QBE-local finite matrix obligation | blocked until intermediate-state sequence and zero-support facts are isolated | apply the unique-path lemma on the fixed entry data |
+| Normalized coefficient convention for $(A_k)_{ij}/(N_DN_f\kappa)$ | `internal-paper-step` with Lean contract gap if unstated | still open | record the exact missing quotient interface if the path lemma reaches the coefficient side |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `matrix_eval_single_product_step` | evaluate one `Coeff` matrix-product entry as a finite Rat path fold | `Matrix.mul`, `Coeff.evalWith`, `List.finRange` | `Matrix.evalWith_mul_apply` | product path isolation | matrix backend | compiled |
+| `matrix_eval_unique_product_path` | if every evaluated path contribution except one index is zero, reduce the product entry to that surviving factor product | `Matrix.evalWith_mul_apply`, finite `List.finRange` fold arithmetic over `Rat` | `Matrix.evalWith_mul_unique_path` | focused $n=3$ gamma3 equality attempt | matrix backend | compiled; semantic flags stay false |
+| `one_term_gamma3_n3_path_application` | apply the unique-path lemma, or record the exact missing support facts, for source `48` and target entry `(2,5)` | product-to-coefficient interface, factor ledger, projection indices, unique-path lemma | planned `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientEquality_n3` or proof-attempt record | future `oneTermRobinGamma3ProductToCoefficientObligation` proof | full route | open; choose the intermediate-state sequence and prove gate-by-gate zero-support facts |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed first target | add a generic evaluated-product unique-path lemma, suggested name `QuantumBlockEncoding.Matrix.evalWith_mul_unique_path` |
+| target file | `QuantumBlockEncoding/CircuitSemantics.lean` |
+| allowed Robin application | after the generic lemma compiles, either add a focused application or update `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` with the exact support facts still missing for the $n=3$ data |
+| focused Robin data | $n=3$, source column `48`, clean $O_f$ column `36`, `O_DT^S` column `132`, boundary column `0`, target entry `(2,5)` |
+| required reuse | start from `Matrix.evalWith_mul_apply` and `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface`; do not restate the route or gate ledger |
+| forbidden work | do not unfold the full seven-gate product globally; do not promote product-to-coefficient, signal-block, LCU, cleanup, unitarity, projection, block-correctness, circuit-unitarity, normalized equality, or final-extraction flags |
+
+### 2026-05-25 Lower Unique-Path Product Block Attempt
+
+Definition first: `QuantumBlockEncoding.Matrix.evalWith_mul_unique_path`
+is compiled in `QuantumBlockEncoding/CircuitSemantics.lean`.  For one
+`Coeff` matrix product, it reduces the evaluated entry to a chosen
+intermediate contribution when every other evaluated contribution is zero.
+`Tests/Basic.lean` checks the lemma on the existing two-by-two symbolic
+diagonal/flip product.
+
+This is a generic path-isolation block for the future $\gamma_3$ equality, not
+the Robin seven-gate coefficient theorem.  No product-to-coefficient,
+signal-block, LCU, cleanup, unitarity, projection, block-correctness,
+circuit-unitarity, normalized equality, or final-extraction flag was promoted.
+The next Robin-specific packet should fix the six intermediate states in the
+Fig. `fig:1 term ROBIN` product and prove zero-support facts for the unwanted
+paths without unfolding the full $2^{13}$ product.
+
+### 2026-05-25 Middle Gamma3 $n=3$ Path-State Audit
+
+Definition first: for the focused specialization
+`p = Examples.RobinHeat.oneTermParameters 3`, the active matrix product is
+
+$$
+  (O_D^{BS})^\dagger\cdot \mathrm{SWAP}\cdot O_f\cdot
+  O_D^{BS}\cdot R_y^{\mathrm{boundary}}\cdot O_{D^T}^{S}\cdot
+  U_{\mathrm{indic}}.
+$$
+
+The current signal-zero projection uses
+`signalSystemBlockRowIndex (gridSize 3) 0 2 = 2` and
+`signalSystemBlockColIndex (gridSize 3) 0 5 = 5`.  The concrete
+full-space entry under audit is therefore row `2`, column `5`.
+
+Source-proof translation and Lean state facts:
+
+| Source or Lean item | Concrete $n=3$ state fact | Classification | Next use |
+|---|---|---|---|
+| Fig. `fig:1 term ROBIN` gate order | gate order is `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`, `O_f`, `SWAP`, `(O_D^BS)^dagger` | existing Lean declaration | reuse `oneTermRobinGateMatrixPlaceholders` and `evalGateMatrices` |
+| Block projection convention | projected entry `(i,j)=(2,5)` is full entry `(2,5)` because the signal index is `0` | `classical-lean-lemma` plus projection audit | prove a named projection-layout audit before unique-path search |
+| Forward branch from full column `5` | `U_indic` sends `5` to `133`; the ket-zero `O_DT^S` branch sends `133` to `132` with `-odts_sin_half_2_0`; `Ry_boundary` is identity at `132`; `O_D^BS` keeps `132`; clean `O_f` keeps `132`; `SWAP` sends `132` to `160`; `(O_D^BS)^dagger` sends `160` to row `192`, and its row-`2` entry at column `160` is zero | `block-projection/register-layout gap` | do not treat this as the desired gamma3 clean path |
+| Existing `O_D^BS` source witness `48` | `bandedSparseAccessPaperImage p 48 = 16`, clean `O_f` at `16` has system value `0`, `SWAP 16 = 2`, and the dagger cleanup preimage is `18` with dagger entry `(18,2)=1` | compiled ledger witness, not one product path | keep as active-source cleanup data only |
+| Existing clean `O_f` witness `36` | clean branch amplitude is `f_3_2 * N_f_inv`, but it is not the clean `O_f` column reached from source `48` or from projected column `5` | ledger witness | do not use as a unique intermediate state without a projection-layout bridge |
+| Existing `O_DT^S` witness `132` | `(132,132)` gives `odts_cos_half_2_0`; the projected-column forward branch reaches `(132,133)` with a sine-sign entry instead | ledger witness | lower must decide whether the block projection or initial ancilla convention is wrong for this branch |
+| Existing `Ry_boundary` witness `0` | `(0,0)` gives `boundary_cos_half_0_0`; the projected-column forward branch has indicator bit `1` at `132`, so the boundary gate is identity there | ledger witness | do not multiply it into the projected-column path yet |
+| Backward branch from final row `2` | the previous dagger column must be `bandedSparseAccessPaperImage p 2 = 114`; the previous SWAP column is `30`; the clean `O_f` amplitude at `30` is for system value `7`; the `O_D^BS` preimage of `30` is `78` | reverse path audit | this reverse path does not start from projected column `5` |
+
+Source-dependency audit:
+
+| Missing ingredient | Classification | Required action |
+|---|---|---|
+| Coherent seven-gate path for the focused projected entry `(2,5)` using the ledger columns `48`, `36`, `132`, and `0` | `block-projection/register-layout gap` | lower should first prove a focused projection/path audit, not a product-to-coefficient equality |
+| The relation between `signalSystemBlockRowIndex`/`signalSystemBlockColIndex` and the paper ket order in Eq. `eq: ROBIN clarified` | `source-contract-gap` until a Lean register-layout interface is written | state a theorem-facing layout convention for the clean gamma3 branch before applying `Matrix.evalWith_mul_unique_path` |
+| Zero-support facts for a future coherent path | `classical-lean-lemma` | after the layout audit, prove one gate-adjacent support lemma at a time |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | add one focused path-state audit theorem, suggested name `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProjectionPathAudit_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean` and `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` |
+| required facts | expose the full entry `(2,5)`, the forward sequence `5 -> 133 -> 132 -> 132 -> 132 -> 132 -> 160 -> 192`, the source-`48` cleanup sequence `48 -> 16 -> 16 -> 2 -> 18`, and the reverse row-`2` sequence `2 <- 114 <- 30 <- 78` |
+| required reuse | use the existing route, `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface`, `Matrix.evalWith_mul_unique_path`, and the existing image/register extractors; do not create a second route record |
+| success criterion | compile the path audit or record the exact Lean statement that cannot yet be expressed; this should decide whether the next lower theorem is a projection-layout bridge or a gate-by-gate zero-support lemma |
+| forbidden work | do not unfold the full seven-gate product globally; do not multiply the ledger entries as though they are one path; do not promote product-to-coefficient, signal-block, LCU, cleanup, unitarity, projection, block-correctness, circuit-unitarity, normalized equality, or final-extraction flags |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_projection_register_path_audit` | decide whether the focused block-projection entry and the compiled factor-entry ledger describe one coherent seven-gate path | `signalSystemBlockRowIndex`, `signalSystemBlockColIndex`, `indicatorOracleImage`, `bandedSparseAccessPaperImage`, `functionOraclePaperImage`, `swapOracleImage`, `bandedSparseAccessPaperDaggerMatrix`, `Matrix.evalWith_mul_unique_path` | planned `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionPathAudit_n3` | future `one_term_gamma3_n3_path_application` | full route | queued; semantic flags stay false |
+
+### 2026-05-25 Lower Gamma3 Projection Path Audit
+
+Definition first: `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProjectionPathAudit_n3`
+is now a compiled path-state audit for the fixed $n=3$ entry.  It records that
+the signal-zero projection sends system entry $(2,5)$ to the full entry
+$(2,5)$, while the executable forward branch from full column `5` runs
+
+$$
+5 \to 133 \to 132 \to 132 \to 132 \to 132 \to 160,
+$$
+
+and the final dagger matrix has row `2`, column `160` equal to `0`.  The audit
+also records the separate active-source cleanup witness
+`48 -> 16 -> 2` with preimage candidate `18`, the mismatch facts `18 != 2`
+and `16 != 36`, the standalone clean `O_f` witness at column `36`, the
+standalone `O_DT^S` cosine witness at `(132,132)`, the standalone
+`Ry_boundary` witness at `(0,0)`, and the reverse row-`2` chain
+`2 <- 114 <- 30 <- 78`.
+
+This closes the lower packet as a mismatch audit, not as a product theorem.
+`Tests/Basic.lean` now checks the high-signal audit facts, and all semantic
+flags remain false: product-to-coefficient, LCU, cleanup, unitarity,
+projection, block correctness, circuit unitarity, normalized equality, and
+final extraction are still obligations.
+
+Next theorem-facing step: write a register-layout bridge explaining how the
+paper ket order in Eq. `ROBIN clarified` selects the clean gamma3 branch before
+applying `Matrix.evalWith_mul_unique_path`.  Do not multiply the old ledger
+entries as one path.
+
+### 2026-05-25 Middle Projection Layout Contract-Drift Packet
+
+Definition first: Eq. `eq: ROBIN clarified` writes the $\gamma_3$ clean basis
+state in paper ket order as
+
+$$
+  |0\rangle^{m_f+1}|s\rangle^{\lceil\log_2\kappa\rceil}
+  |0\rangle^{n-\lceil\log_2\kappa\rceil}|j\rangle^n|0\rangle .
+$$
+
+The current generic block helper
+`signalSystemBlockProjection` uses the tensor convention
+`fullIndex = signalIndex * gridSize n + systemIndex`.  For signal index `0`,
+the focused entry `(2,5)` is therefore the full entry `(2,5)`.  This convention
+does not match the Lean Robin register extractors for the paper ket above:
+the trailing paper ancilla is Lean bit `0`, and the system register occupies
+bits `[1, 1+n)`.  This is projection contract drift in the theorem-facing
+target, not an oracle theorem and not a failed unique-path tactic.
+
+Paper-to-Lean basis map for the next lower packet:
+
+| Paper ket factor | Lean bit range (LSB convention) | Value in the clean $\gamma_3$ branch | Planned bridge |
+|---|---|---|---|
+| trailing $|0\rangle^1$ | bit `0` | `0` | the full basis index must be even |
+| $|j\rangle^n$ | bits `[1, 1+n)` | system value `j` | contributes `j <<< 1` |
+| $|0\rangle^{n-\lceil\log_2\kappa\rceil}$ | bits `[1+n, 1+n+odPure)` | `0` | no contribution |
+| $|s\rangle^{\lceil\log_2\kappa\rceil}$ | bits `[1+n+odPure, 1+n+odPure+sparse)` | sparse slot `s` | contributes `s <<< (1+n+odPure)` |
+| upper/indicator $|0\rangle^1$ | bit `1+n+odPure+sparse` | `0` | no contribution |
+| $|0\rangle^{m_f}$ | high bits above the indicator | `0` | no contribution |
+
+Thus the paper clean-basis index that should be audited before any path
+isolation is
+
+$$
+  \operatorname{paperCleanIndex}(s,j)
+  =
+  (s \ll (1+n+odPure)) + (j \ll 1),
+  \qquad odPure = n-\lceil\log_2\kappa\rceil .
+$$
+
+For the active focused data `n = 3`, `kappa = 7`, and hence `odPure = 0`,
+this specializes to `paperCleanIndex s j = (s <<< 4) + (j <<< 1)`.  In
+particular the zero-sparse clean system entries would use full indices `4`
+and `10` for system values `2` and `5`, not the current projected full indices
+`2` and `5`.
+
+Source-dependency audit:
+
+| Missing ingredient | Classification | Evidence | Required action |
+|---|---|---|---|
+| Current block helper treats the system register as the least-significant `n` bits | `contract-drift` | compiled `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionPathAudit_n3` shows `(2,5)` projects to full `(2,5)` and the path misses the row-`2` branch | introduce a Robin-specific layout bridge or projection index contract |
+| Paper ket order places a trailing ancilla below the system register | `internal-paper-step` plus local register arithmetic | Eq. `eq: ROBIN clarified` and the existing `GHL2025.*PaperRegisters` extractors | prove the paper clean-basis index formula against the existing extractors |
+| Coherent seven-gate path after layout correction | QBE-local finite matrix obligation | not yet selected | after the layout bridge compiles, choose the adjacent states and only then apply `Matrix.evalWith_mul_unique_path` |
+
+Lower packet:
+
+| Field | Instruction |
+|---|---|
+| fixed target | add a narrow Robin-specific projection/layout contract, suggested declaration `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean` and `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` |
+| required output | define or expose the clean paper-basis index formula for `n=3`; prove it places ancilla bit `0` at zero, extracts system values through the existing `GHL2025` register extractors, and differs from the current `signalSystemBlockProjection` full indices for the focused `(2,5)` entry |
+| required reuse | reuse `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionPathAudit_n3`, `oneTermRobinBlockExtractionTarget_signalZeroBlockIndices`, `GHL2025.functionOraclePaperRegisters`, `GHL2025.sparseAmplitudeOracleDTPaperRegisters`, and `GHL2025.boundaryRotationPaperRegisters`; do not create a second theorem route |
+| blocked work | do not apply `Matrix.evalWith_mul_unique_path` to the seven-gate product until the coherent full row/column indices are fixed |
+| forbidden promotion | keep product-to-coefficient, signal-block, LCU, cleanup, unitarity, projection, block correctness, circuit unitarity, normalized equality, and final extraction false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_projection_register_path_audit` | expose the current mismatching full-entry path for `(2,5)` | projection index helpers and gate image functions | `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionPathAudit_n3` | layout bridge | full route | compiled mismatch audit |
+| `one_term_gamma3_paper_basis_layout` | map Eq. `ROBIN clarified` ket order into the Lean bit layout before path isolation | paper ket order, `RobinRegisterPartition`, existing register extractors, current path audit | planned `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3` | future coherent path and unique-path application | projection/layout | queued; semantic flags must stay false |
+
+### 2026-05-25 Lower Gamma3 Paper-Basis Layout
+
+Definition first: `Examples.RobinHeat.oneTermRobinGamma3PaperBasisIndex p s j`
+is the clean Eq. `eq: ROBIN clarified` basis index used for the current
+layout audit:
+
+$$
+  (s \ll (1+n+odPure)) + (j \ll 1),
+  \qquad odPure = n-\lceil\log_2\kappa\rceil .
+$$
+
+The compiled theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3`
+specializes this definition to `n = 3`, `kappa = 7`, sparse slot `0`, and
+system entry `(2,5)`.  It records that the paper-basis full indices are
+`(4,10)`, while the current generic `signalSystemBlockProjection` full indices
+are `(2,5)`.
+
+The theorem also checks the existing `GHL2025` register extractors on those
+paper-basis indices.  The row index `4` and column index `10` have clean
+`O_D^BS` global-slot source registers, sparse slot `0`, padded-zero value `0`,
+clean `O_f` workspace, and system values `2` and `5`.  Applying
+`U_indic` to the paper-basis column `10` gives `138`, whose
+`O_{D^T}^S` register extraction has indicator bit `1`, ancilla bit `0`, row
+value `5`, and sparse slot `0`.
+
+This is only a layout/index contract.  It does not select the final coherent
+seven-gate path, does not apply `Matrix.evalWith_mul_unique_path`, and does
+not promote product-to-coefficient, signal-block, LCU, cleanup, unitarity,
+projection, block correctness, circuit unitarity, normalized equality, or
+final extraction.
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_paper_basis_layout` | translate Eq. `ROBIN clarified` clean ket order into concrete Lean full-basis indices for the focused `n=3` branch | paper ket order, `oneTermRobinGamma3PaperBasisIndex`, `signalSystemBlockRowIndex`, `signalSystemBlockColIndex`, `GHL2025` register extractors | `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3` | future coherent path and unique-path application | projection/layout | compiled; semantic flags unchanged |
+
+Next lower packet: choose the adjacent full-space states starting from the
+paper-basis column `10` and target row `4`, or record a blocked path if the
+theorem-facing block projection must be refactored before such a path can be
+stated.
+
+### 2026-05-25 Middle Gamma3 Layout Sync
+
+Definition first: the compiled layout bridge fixes only the clean paper-basis
+endpoints for the focused $\gamma_3$ branch.  It does not yet say that the
+seven-gate Fig. `fig:1 term ROBIN` product carries column `10` to row `4`.
+
+Source-proof translation for the next lower packet:
+
+| Source item | Lean destination | Current status |
+|---|---|---|
+| Theorem `1 term robin` states a block-encoding of $A_k$ with normalizer $N_DN_f\kappa$ | `oneTermRobinBlockEncodingProofRoute`, `oneTermRobinFiniteBlockCompositionContract`, `oneTermRobinAkMatrix` | transcript wired; final equality false |
+| Eq. `eq: ROBIN clarified` clean $\gamma_3$ ket order | `oneTermRobinGamma3PaperBasisIndex`, `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3` | compiled for `n = 3`, sparse slot `0`, system `(2,5)` with endpoints `(4,10)` |
+| Fig. `fig:1 term ROBIN` gate order | `oneTermRobinCircuit`, `evalGateMatrices`, `oneTermRobinBlockEncodingProofRoute_gateListAndFlags` | order pinned; coherent path not selected |
+| Lemma `Banded-sparse-access-oracle` | active global-slot `O_D^BS` contract and cleanup obligations | restricted active-source data available; cleanup and unitarity false |
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix` | `oneTermRobinGate_O_DT_S` and derivative amplitude contracts | contract-only; analytic equality false |
+| Theorem `Amplitude-oracle for piece-wise polynomial function` | `oneTermRobinGate_O_f`, `FunctionOracleAmplitudeProofRoute`, cited row `GL2024.Thm5.AmplitudeOracle` | contract-only; amplitude correctness false |
+| LCU/block extraction step | `oneTermRobinFiniteBlockCompositionContract`, `oneTermRobinGamma3ProductToCoefficientObligation` | finite entry theorem open; normalized block equality false |
+
+Source-dependency classification:
+
+| Ingredient | Classification | Consequence |
+|---|---|---|
+| Clean $\gamma_3$ endpoint indices `(4,10)` | `internal-paper-step` plus `classical-lean-lemma` | compiled layout bridge may be reused |
+| Adjacent seven-gate path from column `10` to row `4` | QBE-local finite matrix obligation | lower should audit executable gate images before applying `Matrix.evalWith_mul_unique_path` |
+| Generic signal-zero projection `(2,5)` | `contract-drift` for the focused paper ket layout | do not multiply old factor ledger entries as one path |
+| Oracle analytic factors and LCU composition | external or contract-only dependencies already in cited-results | do not promote semantic flags |
+
+Lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | add one path-state audit, suggested declaration `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisPathAudit_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean`, `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`, and this conversion window |
+| required reuse | start from `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3`, `oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface`, the active gate image functions, and `oneTermRobinGateMatrixPlaceholders`; do not create another route record |
+| required output | list the adjacent full-space states for the Fig. `fig:1 term ROBIN` order starting at column `10` and ending at candidate row `4`; if the path misses row `4`, record the first mismatching gate/register and classify whether the next repair is a projection-layout interface or a gate-entry support lemma |
+| blocked work | do not apply `Matrix.evalWith_mul_unique_path` to the seven-gate product until this path audit selects coherent adjacent states and support facts |
+| forbidden promotion | keep product-to-coefficient, signal-block, LCU, cleanup, unitarity, projection, block correctness, circuit unitarity, normalized equality, and final extraction false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_paper_basis_layout` | translate Eq. `ROBIN clarified` clean ket order into concrete Lean full-basis indices | paper ket order, `oneTermRobinGamma3PaperBasisIndex`, `GHL2025` register extractors | `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3` | path-state audit | projection/layout | compiled |
+| `one_term_gamma3_paper_basis_path_audit` | determine whether the Fig. `1 term ROBIN` gate sequence has a coherent path from column `10` to row `4` | layout bridge, active gate images, product-to-coefficient interface | planned `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisPathAudit_n3` | future unique-path application | full route | queued; semantic flags false |
+
+### 2026-05-25 Lower Gamma3 Paper-Basis Path Audit
+
+Definition first: the focused paper-basis endpoints are the clean
+Eq. `eq: ROBIN clarified` indices from
+`oneTermRobinGamma3PaperBasisIndex`.  For `n = 3`, `kappa = 7`, sparse slot
+`0`, and system entry `(2,5)`, the endpoints are full row `4` and full column
+`10`.
+
+The compiled theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisPathAudit_n3`
+audits the active Fig. `fig:1 term ROBIN` gate images from column `10`.
+The ket-zero branch follows:
+
+$$
+10 \xrightarrow{U_{\mathrm{indic}}} 138
+   \xrightarrow{O_{D^T}^{S}} 138
+   \xrightarrow{R_y^{\mathrm{boundary}}} 138
+   \xrightarrow{O_D^{BS}} 186
+   \xrightarrow{O_f} 186
+   \xrightarrow{\mathrm{SWAP}} 214
+   \xrightarrow{(O_D^{BS})^\dagger} 198 .
+$$
+
+The theorem also records the ket-one side branch through `139`, `187`, and
+`215`.  The target row `4` has dagger entry `0` at column `214`, while row
+`198` has dagger entry `1`.
+
+The first decisive mismatch is the active `O_D^BS` step.  At column `138`,
+the extracted row is `5` and sparse slot is `0`; the global sparse-slot address
+writes `3` into the `O_D^BS` address register.  After SWAP, the system field is
+therefore `3`, not the target paper row `2`.  This is a register-index
+alignment obligation, not a failure of the generic unique-path lemma.
+
+Updated source-dependency classification:
+
+| Missing ingredient | Classification | Required action |
+|---|---|---|
+| Sparse-slot choice for the target system entry `(2,5)` | `internal-paper-step` plus local finite-register arithmetic | map the paper coefficient $D_{ij}$ to the correct sparse slot before applying unique-path multiplication |
+| Adjacent path for sparse slot `0` from column `10` to row `4` | QBE-local finite matrix audit | compiled as a mismatch: the active path reaches row `198`, and row `4` is zero at the final dagger column |
+| Zero-support facts for a coherent path | `classical-lean-lemma` | postpone until the correct sparse-slot/index convention is selected |
+| Product-to-coefficient and final extraction flags | contract-only or external dependencies | remain false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_paper_basis_path_audit` | executable adjacent-state audit for the full entry `(4,10)` under the active seven-gate matrices | paper-basis layout bridge, active gate image functions, `oneTermRobinGateMatrixPlaceholders` | `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisPathAudit_n3` | sparse-slot/index alignment before unique-path proof | full route | compiled mismatch audit; semantic flags false |
+
+### 2026-05-25 Middle Sparse-Slot Alignment Packet
+
+Definition first: for a fixed matrix entry $(i,j)$, the active Lemma
+`Banded-sparse-access-oracle` address route must use a sparse slot $s$ with
+
+$$
+  r_{sj} = i.
+$$
+
+In the current Lean global-slot table, this means
+`GHL2025.oneTermRobinGlobalSparseAddress n s j = i`.  The lower path audit
+used sparse slot `0` for the focused system entry `(2,5)`.  That slot has
+offset `-2`, so it sends source row `5` to address `3`; the compiled path
+therefore reaches row `198`, not the paper clean row `4`.
+
+For the same focused entry at `n = 3`, the candidate slot for the coefficient
+from source column `5` to target row `2` is the `-3` global slot, namely slot
+`5`.  This is a finite register-index obligation, not an external cited
+theorem and not a reason to change the global sparse-slot table.
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Required action |
+|---|---|---|
+| Sparse slot for the coefficient $D_{2,5}$ in the focused path | `internal-paper-step` plus `classical-lean-lemma` | compile a slot-alignment bridge showing which global slot maps column `5` to row `2` |
+| Relation between sparse-slot summation in Eq. `eq: ROBIN clarified` and the signal projection convention | `source-contract-gap` until a Lean-facing projection-slot contract is written | state whether the theorem route uses a slot-specific clean basis endpoint, a sparse-register projection/sum, or another existing route convention |
+| Unique-path multiplication for a coherent path | `classical-lean-lemma` | postpone until the slot and endpoint convention are fixed |
+
+Lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | add a slot-alignment audit, suggested declaration `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean`, `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`, and this conversion window |
+| required facts | show `GHL2025.oneTermRobinGlobalSparseAddress 3 0 5 = 3`, show the candidate slot for target row `2` is `5`, expose the corresponding clean paper-basis column via `oneTermRobinGamma3PaperBasisIndex`, and keep the old slot-0 path audit as mismatch evidence |
+| required reuse | reuse `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisPathAudit_n3`, `oneTermRobinGamma3PaperBasisIndex`, `GHL2025.oneTermRobinGlobalSparseAddress`, and the active route declarations; do not introduce another route record or sparse-offset table |
+| blocked work | do not apply `Matrix.evalWith_mul_unique_path` to the seven-gate product until the sparse slot and block-projection endpoint convention are synchronized |
+| forbidden promotion | keep product-to-coefficient, signal-block, LCU, cleanup, unitarity, projection, block correctness, circuit unitarity, normalized equality, and final extraction false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_paper_basis_path_audit` | executable adjacent-state audit for the slot-0 full entry `(4,10)` | paper-basis layout bridge and active gate images | `oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisPathAudit_n3` | sparse-slot alignment | full route | compiled mismatch audit |
+| `one_term_gamma3_sparse_slot_alignment` | map a target matrix entry $(i,j)$ to the global sparse slot used by the paper coefficient before choosing a unique product path | global sparse-slot table, Eq. `eq: ROBIN clarified`, path audit | planned `oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3` | future coherent path audit and unique-path application | projection/layout | queued; semantic flags must stay false |
+
+## 2026-05-25 Lower Sparse-Slot Alignment Audit
+
+Definition first: for the focused coefficient $D_{2,5}$, the global sparse
+slot must satisfy
+
+$$
+  r_{s,5}=2.
+$$
+
+The compiled Lean declaration
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3`
+records the finite slot calculation against the existing global-slot table.
+Slot `0` remains the accepted negative path audit:
+`GHL2025.oneTermRobinGlobalSparseAddress 3 0 5 = 3`.  Slot `5` is the
+coefficient slot for this entry:
+`GHL2025.oneTermRobinGlobalSparseAddress 3 5 5 = 2`.
+
+The slot-specific clean paper-basis endpoints are:
+
+| Object | Lean value | Role |
+|---|---:|---|
+| `oneTermRobinGamma3PaperBasisIndex p 5 5` | `90` | clean source column for slot `5`, system column `5` |
+| `oneTermRobinGamma3PaperBasisIndex p 5 2` | `84` | clean row endpoint for slot `5`, system row `2` |
+| `GHL2025.bandedSparseAccessPaperImage p 90` | `42` | active `O_D^BS` image after writing address `2` |
+| `GHL2025.swapOracleImage p 42` | `84` | SWAP exposes the target row endpoint for the slot-specific clean branch |
+
+The theorem also checks that the slot-specific clean source has row value `5`,
+padded-zero value `0`, sparse-index value `5`, and
+`GHL2025.bandedSparseAccessPaperGlobalSlotSource p 90 = true`.  It preserves
+the slot-zero mismatch evidence through the existing path audit columns:
+`GHL2025.bandedSparseAccessPaperImage p 138 = 186`, row `186` has
+`O_D^BS` register value `3`, and the target row `4` has final dagger entry
+`0` at column `214`.
+
+No theorem-level semantic flag was promoted.  In particular,
+`oneTermRobinGamma3ProductToCoefficientObligation.proved`,
+`lcuCorrect.proved`, `blockProjection.proved`, `blockCorrect.proved`, and
+`blockExtraction.proved` remain `false`.
+
+Updated source-dependency classification:
+
+| Missing ingredient | Classification | Status |
+|---|---|---|
+| sparse slot for $D_{2,5}$ | `internal-paper-step` plus finite register arithmetic | compiled as `oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3` |
+| relation between the slot-specific clean branch and theorem-level block projection | `source-contract-gap` until a Lean-facing projection-slot convention is stated | still open |
+| unique-path multiplication for the seven-gate product | `classical-lean-lemma` | blocked until the projection-slot endpoint is fixed |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_sparse_slot_alignment` | map $D_{2,5}$ to the global sparse slot before path isolation | global sparse-slot table, slot-zero path audit, `oneTermRobinGamma3PaperBasisIndex` | `oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3` | projection-slot convention and coherent path audit | projection/layout | compiled; semantic flags false |
+
+## 2026-05-25 Middle Projection-Slot Convention Map
+
+Definition first: the focused coefficient path for $D_{2,5}$ uses the global
+sparse slot $s=5$, since the compiled active address table gives
+$r_{5,5}=2$.  The clean slot-specific basis states are not the same as the
+generic signal-zero projection endpoints.
+
+Lean now names the missing convention as
+`Examples.RobinHeat.oneTermRobinGamma3ProjectionSlotConventionObligation`.
+The focused map
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3`
+records:
+
+| Object | Lean value | Role |
+|---|---:|---|
+| generic projected row | `2` | current `signalSystemBlockRowIndex` endpoint for system row `2` |
+| generic projected column | `5` | current `signalSystemBlockColIndex` endpoint for system column `5` |
+| slot-`5` clean row | `84` | Eq. `eq: ROBIN clarified` clean row endpoint for sparse slot `5`, system row `2` |
+| slot-`5` clean column | `90` | Eq. `eq: ROBIN clarified` clean source endpoint for sparse slot `5`, system column `5` |
+| active sparse address | `2` | `GHL2025.oneTermRobinGlobalSparseAddress 3 5 5` |
+| active O_D^BS image | `42` | `GHL2025.bandedSparseAccessPaperImage p 90` |
+| post-SWAP slot endpoint | `84` | `GHL2025.swapOracleImage p 42` |
+
+The new Lean map is a contract map, not a product proof.  It keeps
+`oneTermRobinGamma3ProjectionSlotConventionObligation.proved`,
+`oneTermRobinGamma3ProductToCoefficientObligation.proved`, LCU correctness,
+block projection, block correctness, and final extraction all false.
+
+Source-proof translation update:
+
+| Source item | Lean destination | Current status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` sums $\gamma_3$ over sparse slots | `oneTermRobinGamma3ProjectionSlotConventionObligation` | source-contract gap named; convention still false |
+| Lemma `Banded-sparse-access-oracle` requires $r_{s,j}=i$ for the coefficient slot | `oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3` and `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3` | slot `5` and endpoints `90 -> 42 -> 84` compiled |
+| Definition `def:block-encoding` signal projection | `signalSystemBlockRowIndex`, `signalSystemBlockColIndex`, `oneTermRobinFiniteBlockCompositionContract` | generic endpoints remain `(2,5)` and are not yet the slot-specific endpoints |
+| Fig. `fig:1 term ROBIN` seven-gate path | planned slot-`5` path audit | blocked until the next lower packet audits adjacent states from column `90` to row `84` |
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Required action |
+|---|---|---|
+| relation between the slot-`5` clean branch and theorem-level block projection or sparse-register summation | `source-contract-gap` plus `internal-paper-step` | keep the new projection-slot obligation false until the convention is stated as an exact theorem |
+| adjacent Fig. `fig:1 term ROBIN` states for the slot-`5` branch | `classical-lean-lemma` | lower should audit the executable path from `90` through the seven active gate images |
+| product-to-coefficient equality | QBE-local finite matrix theorem plus contract-only oracle factors | do not apply `Matrix.evalWith_mul_unique_path` until the slot-`5` path and zero-support facts are fixed |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | add a slot-`5` path audit, suggested declaration `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean`, `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`, and this conversion window |
+| required reuse | start from `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3`, `oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3`, the active gate image functions, and `oneTermRobinGateMatrixPlaceholders`; do not create another route record or sparse-offset table |
+| required output | list the adjacent states through `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`, `O_f`, SWAP, and `(O_D^BS)^dagger` for source column `90` and candidate row `84`; if the path misses row `84`, name the first mismatching gate and register field |
+| blocked work | do not promote the projection-slot convention, product-to-coefficient theorem, LCU, cleanup, unitarity, projection, block correctness, circuit unitarity, normalized equality, or final extraction |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_sparse_slot_alignment` | map $D_{2,5}$ to the global sparse slot before path isolation | global sparse-slot table and Eq. `eq: ROBIN clarified` | `oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3` | projection-slot convention map | projection/layout | compiled |
+| `one_term_gamma3_projection_slot_convention` | relate a slot-specific clean branch to the theorem-level block projection or sparse-register summation | Eq. `eq: ROBIN clarified`, Definition `def:block-encoding`, active global-slot O_D^BS contract | `oneTermRobinGamma3ProjectionSlotConventionObligation`, `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3` | slot-`5` path audit and future product-to-coefficient theorem | projection/layout | contract map compiled; semantic flags false |
+
+## 2026-05-25 Lower Slot-5 Path Audit
+
+Definition first: the slot-`5` clean branch for the focused coefficient
+$D_{2,5}$ starts at full column `90` and has the clean slot endpoint `84`
+before the full Fig. `fig:1 term ROBIN` gate order is applied.
+
+The compiled declaration
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3`
+records the adjacent states for the actual seven-gate path.  The ket-zero
+branch follows
+
+$$
+90 \to 218 \to 218 \to 218 \to 170 \to 170 \to 212 \to 228.
+$$
+
+The ket-one side branch follows
+
+$$
+90 \to 218 \to 219 \to 219 \to 171 \to 171 \to 213 \to 229.
+$$
+
+The clean endpoint chain `90 -> 42 -> 84` is still compiled, but it is not the
+full Fig. `fig:1 term ROBIN` path because `U_indic` first flips the indicator
+bit for system column `5`.  The final dagger column `212` has entry `1` at row
+`228` and entry `0` at the slot-specific clean row `84`.  The final row `228`
+has sparse-index value `6`, while the clean row `84` has sparse-index value
+`5`.  Thus the path audit does not close the product-to-coefficient equality;
+it names the remaining projection/register convention mismatch.
+
+No theorem-level semantic flag was promoted.  The projection-slot convention,
+product-to-coefficient obligation, LCU correctness, block projection, block
+correctness, and final extraction remain `false`.
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Status |
+|---|---|---|
+| adjacent Fig. `fig:1 term ROBIN` states for the slot-`5` branch | `classical-lean-lemma` | compiled as `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` |
+| relation between the slot-specific clean endpoint and the theorem-level projection or sparse-register summation | `source-contract-gap` plus `internal-paper-step` | still open as `oneTermRobinGamma3ProjectionSlotConventionObligation` |
+| product-to-coefficient equality | QBE-local finite matrix theorem plus contract-only oracle factors | blocked until the projection/register convention explains row `228` versus clean row `84` |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_slot5_path_audit` | adjacent-state audit for source column `90` through all seven Fig. `fig:1 term ROBIN` gates | slot alignment, projection-slot map, active gate images | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | future projection/register convention and product-to-coefficient theorem | full route | compiled; semantic flags false |
+
+## 2026-05-25 Middle Slot-5 Projection/Register Audit Packet
+
+Definition first: the compiled slot-`5` audit separates two paths that must not
+be multiplied together without an explicit projection convention.  The clean
+`O_D^BS` and SWAP subchain for the coefficient $D_{2,5}$ is
+
+$$
+90 \xrightarrow{O_D^{BS}} 42 \xrightarrow{\mathrm{SWAP}} 84,
+$$
+
+while the full Fig. `fig:1 term ROBIN` circuit first applies `U_indic` and
+then follows
+
+$$
+90 \to 218 \to 218 \to 218 \to 170 \to 170 \to 212 \to 228
+$$
+
+on the ket-zero branch.  The compiled theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3`
+records that row `228` has final dagger entry `1` at column `212`, while the
+slot-specific clean row `84` has entry `0` at that column.  It also records
+that the final row has sparse-index value `6`, whereas the clean row has
+sparse-index value `5`.
+
+Source-proof audit: Middle re-read Theorem `1 term robin`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, Lemma
+`Banded-sparse-access-oracle`, Lemma `Sparse-amplitude-oracle for a
+banded-sparse matrix`, and Definition `def:block-encoding`.  The source gives
+the clean $\gamma_3$ ket, the sparse-slot summation, the $U_{\mathrm{indic}}$
+bulk/boundary split, the `O_D^BS` address rule, and the statement that
+$(O_D^{BS})^\dagger$ returns the upper $n$-qubit register to sparse indexing.
+It does not give a separate finite basis-index proof that identifies the
+post-dagger full row `228` with the clean slot-`5` row `84`, nor does it state
+a projection convention that sums or quotients over the sparse-index register
+after the full seven-gate product.  This is therefore not ready for more
+unique-path tactic search.
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Required action |
+|---|---|---|
+| relation between full circuit endpoint `228` and clean Eq. `eq: ROBIN clarified` endpoint `84` | `source-contract-gap` plus `internal-paper-step` | state a Lean-facing projection/register convention before product multiplication |
+| register-field comparison for `90`, `218`, `170`, `212`, `228`, and `84` | `classical-lean-lemma` | compile a focused audit showing exactly which paper fields agree and which field first disagrees |
+| possible sparse-register summation or basis-permutation bridge | `source-contract-gap` until the convention is stated | keep `oneTermRobinGamma3ProjectionSlotConventionObligation.proved = false` |
+| product-to-coefficient equality | QBE-local finite matrix theorem plus contract-only oracle factors | blocked until the projection/register convention is fixed |
+
+No cited-results row is changed by this audit.  The existing external rows
+`GL2024.Thm5.AmplitudeOracle`, `GHL2025.Lemma3.ODTS`, `GHL2025.RyBoundary`,
+`QBE.ODBS.GlobalSparseSlotAddress`, and `LCU.StandardBlockEncoding` remain
+contract-only or obligation rows and must not be used to promote flags.
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | add a projection/register field audit, suggested declaration `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean`, `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`, and this conversion window |
+| required reuse | start from `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3`, `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3`, `oneTermRobinGamma3ProjectionSlotConventionObligation`, and the existing `GHL2025` register extractors; do not create another route record, sparse-offset table, or projection target |
+| required output | compare the indicator bit, trailing ancilla bit, system row, padded `O_D^BS` zero field, sparse-index value, `m_f` clean workspace, and active-source predicate for the clean row `84`, full endpoint `228`, and adjacent states `90`, `218`, `170`, and `212`; name the first field that prevents using row `84` as the final seven-gate endpoint |
+| blocked work | do not apply `Matrix.evalWith_mul_unique_path` or state the final gamma3 product equality until this register audit either supplies a precise basis bridge or records a source-contract gap that needs human direction |
+| forbidden promotion | keep projection-slot convention, product-to-coefficient, signal-block, LCU, cleanup, unitarity, projection, block correctness, circuit unitarity, normalized equality, and final extraction false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_slot5_path_audit` | adjacent-state audit for source column `90` through all seven Fig. `fig:1 term ROBIN` gates | slot alignment, projection-slot map, active gate images | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | projection/register audit | full route | compiled mismatch audit |
+| `one_term_gamma3_slot5_projection_register_audit` | compare the post-dagger endpoint with the clean Eq. `ROBIN clarified` endpoint at the register-field level | slot-`5` path audit, projection-slot convention map, GHL2025 register extractors | planned `oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3` | future basis bridge or source-contract decision | projection/layout | queued; semantic flags false |
+
+## 2026-05-25 Lower Projection/Register Audit Result
+
+Definition first: `Examples.RobinHeat.oneTermRobinGamma3Slot5ProjectionRegisterAuditCheck_n3`
+is the executable register-field audit for the focused $D_{2,5}$ slot-`5`
+branch.  It checks the states `90`, `218`, `170`, `212`, `228`, and `84`
+against the shared `GHL2025` register extractors for indicator bit, trailing
+ancilla bit, system row, padded `O_D^BS` zero field, sparse-index value,
+`m_f` workspace, and the active global-slot source predicate.
+
+The named theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3`
+now compiles.  It records that the audit check is `true` and keeps
+`oneTermRobinGamma3ProjectionSlotConventionObligation`,
+`oneTermRobinGamma3ProductToCoefficientObligation`, LCU correctness, block
+projection, block correctness, and final extraction false.
+
+The field comparison is:
+
+| State | Indicator | Ancilla | System row | Padded zero | Sparse index | `m_f` clean | Active source |
+|---:|---:|---:|---:|---:|---:|---|---|
+| `90` | `0` | `0` | `5` | `0` | `5` | `true` | `true` |
+| `218` | `1` | `0` | `5` | `0` | `5` | `true` | `true` |
+| `170` | `1` | `0` | `5` | `0` | `2` | `true` | `true` |
+| `212` | `1` | `0` | `2` | `0` | `5` | `true` | `true` |
+| final endpoint `228` | `1` | `0` | `2` | `0` | `6` | `true` | `true` |
+| clean endpoint `84` | `0` | `0` | `2` | `0` | `5` | `true` | `true` |
+
+The first final-vs-clean mismatch in the requested comparison order is the
+indicator bit: row `228` has indicator `1`, while row `84` has indicator `0`.
+The sparse-index field also disagrees (`6` versus `5`).  Therefore row `84`
+cannot be used as the final seven-gate endpoint until the theorem transcript
+states an explicit projection/register convention or sparse-register summation
+bridge.  No product-to-coefficient or semantic flag was promoted.
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_slot5_projection_register_audit` | compare the post-dagger endpoint with the clean Eq. `ROBIN clarified` endpoint at the register-field level | slot-`5` path audit, projection-slot convention map, GHL2025 register extractors | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3` | future projection/register convention or source-contract decision | projection/layout | compiled; semantic flags false |
+
+## 2026-05-25 Middle Projection/Register Convention Decision
+
+Definition first: the focused gamma3 endpoint comparison is now a named
+decision record, not a product-multiplication target.  The Lean declaration
+`Examples.RobinHeat.oneTermRobinGamma3ProjectionRegisterConventionDecision_n3`
+records the source-contract gap exposed by the compiled register audit.  Its
+transcript theorem is
+`Examples.RobinHeat.oneTermRobinGamma3ProjectionRegisterConventionDecision_n3_transcript`.
+
+The decision record keeps the following facts synchronized:
+
+| Object | Lean value | Role |
+|---|---:|---|
+| clean Eq. `ROBIN clarified` endpoint | `84` | slot-`5` clean branch endpoint for $D_{2,5}$ |
+| full seven-gate endpoint | `228` | endpoint reached by the actual Fig. `fig:1 term ROBIN` ket-zero path |
+| first mismatching field | indicator bit `1` versus `0` | prevents using row `84` as the final seven-gate endpoint |
+| second mismatching field | sparse index `6` versus `5` | prevents a simple endpoint identification |
+| local audit check | `true` | `oneTermRobinGamma3Slot5ProjectionRegisterAuditCheck_n3` compiled |
+| product search | blocked | `productSearchBlocked = true` |
+
+Source-proof translation update:
+
+| Source item | Lean destination | Status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` clean $\gamma_3$ ket | `oneTermRobinGamma3PaperBasisIndex`, `oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3` | clean slot-`5` endpoints `90` and `84` compiled |
+| Fig. `fig:1 term ROBIN` seven-gate path | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | full path reaches `228`, not `84` |
+| Register-field comparison for `228` and `84` | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3` | first mismatch is the indicator bit; sparse index also differs |
+| Projection/register convention relating `228` to `84` | `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3.requiredDecision` | source-contract gap; `proved = false` |
+| Product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation` | blocked until the convention is stated |
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Required action |
+|---|---|---|
+| convention relating the full endpoint `228` to the clean endpoint `84` | `source-contract-gap` plus `internal-paper-step` | human or upper-agent direction must choose an exact Lean-facing convention: sparse-register summation, basis permutation, or revised block-projection layout |
+| finite product-to-coefficient equality | QBE-local finite matrix theorem | do not resume `Matrix.evalWith_mul_unique_path` until the convention is fixed |
+| external oracle and LCU facts | existing cited-results obligations | no cited-results status changes in this decision |
+
+Lower packet status:
+
+| Field | Requirement |
+|---|---|
+| current lower product search | blocked |
+| allowed next work before human direction | keep docs, proof-obligation ledger, and cited-results memory synchronized; no product multiplication |
+| allowed next work after a convention is chosen | state one exact Lean theorem for the chosen convention and only then re-open a focused gamma3 product path |
+| forbidden promotion | keep projection-slot convention, product-to-coefficient, signal-block, LCU, cleanup, unitarity, projection, block correctness, circuit unitarity, normalized equality, and final extraction false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_slot5_projection_register_audit` | compare the post-dagger endpoint with the clean Eq. `ROBIN clarified` endpoint at the register-field level | slot-`5` path audit, projection-slot convention map, GHL2025 register extractors | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3` | convention decision | projection/layout | compiled; semantic flags false |
+| `one_term_gamma3_projection_register_convention_decision` | block product proof search until the endpoint convention is stated exactly | projection/register audit, source-proof audit, false semantic flags | `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3`, `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3_transcript` | future convention theorem or human decision | projection/layout | compiled; product search blocked |
+
+## 2026-05-25 Middle Human Direction Request
+
+The active lower population for the focused $\gamma_3$ coefficient is frozen.
+The compiled decision record shows that the full Fig. `fig:1 term ROBIN`
+endpoint `228` cannot be identified with the clean Eq. `eq: ROBIN clarified`
+endpoint `84` by the current projection convention: the first mismatching
+field is the indicator bit, and the sparse-index field also differs.
+
+Source-backed choices that would unblock a fixed Lean target:
+
+| Choice | Required Lean-facing statement | Allowed next lower target |
+|---|---|---|
+| sparse-register summation | state exactly which sparse-register values are summed or projected after the seven-gate product and how this recovers the clean $\gamma_3$ branch | one finite entry theorem using that summation convention |
+| basis-permutation bridge | state a basis map that sends the full endpoint `228` to the clean endpoint `84` while preserving the paper block-encoding convention | one basis-bridge theorem, then a product-entry theorem |
+| revised block-projection layout | replace the current signal/system projection endpoint convention with a paper-register-compatible convention tied to Definition `def:block-encoding` | one projection-layout theorem, then a product-entry theorem |
+
+Until one of these statements is selected from the source or approved by human
+direction, lower agents must not apply `Matrix.evalWith_mul_unique_path` to
+the gamma3 product and must not promote projection-slot convention,
+product-to-coefficient, signal-block equality, LCU correctness, cleanup,
+unitarity, block projection, block correctness, circuit unitarity, normalized
+block equality, or final extraction.
+
+## 2026-05-25 Middle Upper-Directive Sync
+
+Definition first: the active theorem-facing blocker is the convention record
+`Examples.RobinHeat.oneTermRobinGamma3ProjectionRegisterConventionDecision_n3`.
+It is the only current Lean-facing target for the focused gamma3 projection
+problem.  It records the source-contract gap exposed by the slot-`5`
+register audit and keeps `productSearchBlocked = true`.
+
+The upper directive after the lower convention recheck is therefore translated
+as follows.
+
+| Source item | Lean destination | Middle status |
+|---|---|---|
+| Theorem `1 term robin` block-encoding statement | `oneTermRobinBlockEncodingProofRoute`, `oneTermRobinFiniteBlockCompositionContract`, `oneTermRobinGamma3ProductToCoefficientObligation` | transcript wired; product-to-coefficient and final block flags false |
+| Eq. `eq: ROBIN clarified` gamma3 clean branch | `oneTermRobinGamma3PaperBasisIndex`, `oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3` | slot-`5` clean endpoints `90` and `84` compiled for the focused $D_{2,5}$ entry |
+| Fig. `fig:1 term ROBIN` seven-gate path | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | executable path reaches endpoint `228`, not clean endpoint `84` |
+| Register-field comparison for endpoints `228` and `84` | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3` | first mismatch is the indicator bit; sparse-index field also differs |
+| Projection/register convention relating full endpoint `228` to clean endpoint `84` | `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3.requiredDecision` | open source-contract gap; `proved = false` |
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Action before lower proof search |
+|---|---|---|
+| exact relation between the full Fig. `fig:1 term ROBIN` endpoint `228` and the clean Eq. `eq: ROBIN clarified` endpoint `84` | `source-contract-gap` plus `internal-paper-step` | choose or state one source-backed convention: sparse-register summation, basis permutation, or revised block-projection layout |
+| another seven-gate product multiplication attempt | QBE-local finite matrix theorem | blocked until the convention statement exists |
+| external oracle, state-preparation, and LCU facts | existing cited-results obligations | no status change; use only as contract-only background |
+
+Lower-agent packet status:
+
+| Field | Requirement |
+|---|---|
+| current lower product population | frozen |
+| allowed write scope before convention selection | documentation/proof-obligation/proof-attempt synchronization only |
+| allowed Lean target after convention selection | one exact theorem for the chosen convention, then one focused product-entry theorem |
+| forbidden promotion | keep projection-slot convention, product-to-coefficient, signal-block equality, LCU correctness, cleanup, unitarity, block projection, block correctness, circuit unitarity, normalized block equality, and final extraction false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_projection_register_convention_decision` | stop product proof search until the paper-register convention is stated exactly | slot-`5` path audit, register-field audit, source-proof audit | `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3`, `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3_transcript` | future convention theorem or human direction | projection/layout | compiled; semantic flags false |
+
+## 2026-05-25 Middle Chosen Convention Packet
+
+Definition first: the next convention target is sparse-register summation, not
+a basis permutation and not an immediate replacement of the whole block
+projection.  This is the only choice with a direct paper anchor in Eq.
+`eq: ROBIN clarified`, which writes the $\gamma_3$ contribution as a sum over
+$s=0,\dots,\kappa-1$ and gives the theorem normalizer
+$\mathcal{N}_D\mathcal{N}_f\kappa$.  No inspected source anchor states a
+basis map from endpoint `228` to endpoint `84`, and no inspected source anchor
+states a different finite block-projection index formula.
+
+The chosen convention is still a contract, not a proof.  The source supports
+summation over the sparse slot, while the compiled audit also found an
+indicator-bit mismatch.  The lower theorem must therefore name the indicator
+field explicitly instead of hiding it inside the sparse summation.
+
+Source-proof translation update:
+
+| Source item | Lean destination | Middle decision |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` $\gamma_3$ line sums over $s=0,\dots,\kappa-1$ | planned `oneTermRobinGamma3SparseRegisterSummationConvention_n3` | choose sparse-register summation as the next convention statement |
+| Fig. `fig:1 term ROBIN` seven-gate path for slot `5` | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | endpoint `228` is the actual ket-zero endpoint |
+| Clean Eq. `eq: ROBIN clarified` slot-`5` endpoint | `oneTermRobinGamma3PaperBasisIndex`, `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3` | endpoint `84` remains the clean transcript endpoint |
+| Register-field comparison | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3` | system row, trailing ancilla, padded zero, `m_f` clean workspace, and active source agree; indicator and sparse index differ |
+| Definition `def:block-encoding` | `oneTermRobinFiniteBlockCompositionContract`, `BlockExtractionTarget` | final top-left block equality is still not proved |
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Action before product proof |
+|---|---|---|
+| summing or projecting the sparse register for the $\gamma_3$ branch | `internal-paper-step` needing a Lean interface | state the sparse-register summation convention as a theorem-facing contract |
+| treating the indicator-bit mismatch under that convention | `source-contract-gap` until the convention names this field | the lower target must record whether the summed projection includes or separately handles the indicator branch |
+| seven-gate product-to-coefficient equality | QBE-local finite matrix theorem | remains blocked until the convention theorem compiles |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | state `Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummationConvention_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean`, `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`, and this conversion window |
+| required reuse | `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3`, `oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3`, `oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3`, and `oneTermRobinBlockEncodingProofRoute` |
+| statement content | select sparse-register summation as the convention; prove or record the endpoint field facts for `228` and `84`; state explicitly how the indicator mismatch is handled or keep it as a named false obligation |
+| blocked work | no new seven-gate multiplication and no `Matrix.evalWith_mul_unique_path` application until this convention statement exists |
+| forbidden promotion | keep projection-slot convention, product-to-coefficient, signal-block equality, LCU correctness, cleanup, unitarity, block projection, block correctness, circuit unitarity, normalized block equality, and final extraction false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_projection_register_convention_decision` | stop product proof search until the paper-register convention is stated exactly | slot-`5` path audit, register-field audit, source-proof audit | `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3`, `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3_transcript` | chosen sparse-register summation convention | projection/layout | compiled; semantic flags false |
+| `one_term_gamma3_sparse_register_summation_convention` | choose the paper-backed sparse-register summation interface and expose the remaining indicator-field obligation | Eq. `ROBIN clarified`, convention decision, slot-`5` register audit | planned `oneTermRobinGamma3SparseRegisterSummationConvention_n3` | future gamma3 product-to-coefficient theorem | projection/layout | queued; semantic flags must stay false |
+
+## 2026-05-25 Lower Sparse-Register Summation Convention
+
+Definition first: the chosen convention is now a compiled Lean record,
+`Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummationConvention_n3`,
+with transcript theorem
+`Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummationConvention_n3_transcript`.
+It selects sparse-register summation for the focused $n=3$, system-entry
+$(2,5)$ gamma3 audit because Eq. `eq: ROBIN clarified` sums the gamma3 branch
+over $s=0,\dots,\kappa-1$.
+
+The convention record is not a block-encoding proof.  It keeps the endpoint
+facts from the prior audit:
+
+| Endpoint | System row | Indicator | Sparse index | Role |
+|---:|---:|---:|---:|---|
+| clean endpoint `84` | `2` | `0` | `5` | Eq. `eq: ROBIN clarified` slot-`5` clean row |
+| full endpoint `228` | `2` | `1` | `6` | actual Fig. `fig:1 term ROBIN` ket-zero endpoint |
+
+The sparse-register summation choice is compiled, but it explicitly does not
+handle the indicator mismatch.  The new field
+`indicatorMismatchObligation.proved = false` states that a separate
+projection/register convention must explain the indicator field before any
+product-to-coefficient theorem can proceed.
+
+Source-proof translation update:
+
+| Source item | Lean destination | Status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` sum over sparse slots | `oneTermRobinGamma3SparseRegisterSummationConvention_n3.chosenConvention` | compiled as sparse-register summation |
+| slot-`5` clean endpoint | `oneTermRobinGamma3SparseRegisterSummationConvention_n3.cleanEndpoint` | compiled as `84` |
+| full Fig. `fig:1 term ROBIN` endpoint | `oneTermRobinGamma3SparseRegisterSummationConvention_n3.fullEndpoint` | compiled as `228` |
+| indicator mismatch | `oneTermRobinGamma3SparseRegisterSummationConvention_n3.indicatorMismatchObligation` | open; `proved = false` |
+| product-to-coefficient equality | `oneTermRobinGamma3ProductToCoefficientObligation` | still blocked |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_sparse_register_summation_convention` | choose the paper-backed sparse-register summation interface and expose the remaining indicator-field obligation | Eq. `ROBIN clarified`, convention decision, slot-`5` register audit | `oneTermRobinGamma3SparseRegisterSummationConvention_n3`, `oneTermRobinGamma3SparseRegisterSummationConvention_n3_transcript` | future gamma3 product-to-coefficient theorem | projection/layout | compiled; semantic flags false |
+
+## 2026-05-25 Lower Indicator-Field Gap
+
+After sparse-register summation was selected, the next lower pass added the
+focused theorem
+`Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3`.
+This theorem does not introduce a new route record.  It reuses the compiled
+summation convention and records that sparse-register summation alone does not
+handle the indicator-bit mismatch.
+
+Compiled facts:
+
+| Field | Clean endpoint `84` | Full endpoint `228` | Status |
+|---|---:|---:|---|
+| system row | `2` | `2` | agrees |
+| indicator bit | `0` | `1` | open gap |
+| sparse index | `5` | `6` | secondary mismatch |
+
+The indicator mismatch remains
+`oneTermRobinGamma3SparseRegisterSummationConvention_n3.indicatorMismatchObligation`
+with `proved = false`.  Product-to-coefficient search, LCU correctness, block
+projection, block correctness, normalized block equality, and final extraction
+remain blocked.
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_field_gap` | expose that sparse-register summation does not absorb the indicator field | sparse-register summation convention and slot-`5` audit | `oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3` | next convention decision for the indicator projection/register field | projection/layout | compiled; all theorem flags false |
+
+## 2026-05-25 Middle Indicator-Field Convention Packet
+
+Definition first: the active blocker is now the indicator-field convention
+after sparse-register summation, not the sparse-register summation choice
+itself. The compiled theorem
+`Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3`
+records that sparse-register summation leaves the full endpoint `228` with
+indicator `1`, while the clean Eq. `eq: ROBIN clarified` endpoint `84` has
+indicator `0`.
+
+Source-proof translation update:
+
+| Source item | Lean destination | Middle status |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` $\gamma_3$ line sums over $s=0,\dots,\kappa-1$ | `oneTermRobinGamma3SparseRegisterSummationConvention_n3` | compiled contract map; not a block projection proof |
+| Fig. `fig:1 term ROBIN` applies `U_indic` before the derivative and sparse-access gates | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` and `oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3` | full endpoint `228` keeps indicator `1` |
+| Eq. `eq: ROBIN clarified` writes the clean $\gamma_3$ branch with clean workspace and indicator field | `oneTermRobinGamma3SparseRegisterSummationConvention_n3.cleanIndicator` | clean endpoint `84` has indicator `0` |
+| Indicator-field convention after sparse-register summation | planned `oneTermRobinGamma3IndicatorProjectionConvention_n3` or a renamed equivalent | open source-contract gap; must be stated before product multiplication resumes |
+| Gamma3 product-to-coefficient equality | `oneTermRobinGamma3ProductToCoefficientObligation` | still blocked |
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Action before lower proof search |
+|---|---|---|
+| whether the theorem-level projection sums, ignores, resets, or otherwise relates the indicator field after sparse-register summation | `source-contract-gap` plus `internal-paper-step` | inspect the source anchors around Eq. `eq: ROBIN clarified` and Fig. `fig:1 term ROBIN`, then state one exact Lean convention or keep a named false obligation |
+| seven-gate product-to-coefficient equality | QBE-local finite matrix theorem | remains blocked until the indicator convention compiles |
+| external oracle, function-amplitude, derivative-amplitude, and LCU facts | existing cited-results obligations | no status change; do not use them to close this indicator gap |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | state `Examples.RobinHeat.oneTermRobinGamma3IndicatorProjectionConvention_n3`, or the same interface under a clearly equivalent name |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed support files | `Tests/Basic.lean`, `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`, this conversion window, and `proof-obligations/QBE-AUTO-002.md` |
+| required reuse | `oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3`, `oneTermRobinGamma3SparseRegisterSummationConvention_n3`, `oneTermRobinGamma3ProjectionRegisterConventionDecision_n3`, `oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3`, and `oneTermRobinBlockEncodingProofRoute` |
+| statement content | record the indicator field explicitly: either give a source-backed projection/summation convention that relates indicator `1` at endpoint `228` to indicator `0` at endpoint `84`, or keep a source-contract obligation with `proved = false` |
+| blocked work | no new seven-gate multiplication, no full product unfolding, and no `Matrix.evalWith_mul_unique_path` application |
+| forbidden promotion | keep projection-slot convention, indicator convention, product-to-coefficient, signal-block equality, LCU correctness, cleanup, unitarity, block projection, block correctness, circuit unitarity, normalized block equality, and final extraction false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_field_gap` | expose that sparse-register summation does not absorb the indicator bit | sparse-register summation convention, slot-`5` projection/register audit | `oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3` | indicator projection convention | projection/layout | compiled; all theorem flags false |
+| `one_term_gamma3_indicator_projection_convention` | state how the theorem-level block convention treats the indicator field after sparse-register summation | indicator-field gap, Eq. `ROBIN clarified`, Fig. `1 term ROBIN`, Definition `def:block-encoding` | planned `oneTermRobinGamma3IndicatorProjectionConvention_n3` | future gamma3 product-to-coefficient theorem | projection/layout | queued; product search blocked |
+
+## 2026-05-25 Lower Indicator Projection Convention Result
+
+The lower pass checked the source anchors around Eq. `eq: ROBIN clarified`,
+Fig. `fig:1 term ROBIN`, the paragraph defining $U_{\text{indic}}$, and
+Definition `def:block-encoding`.  The source states that $U_{\text{indic}}$
+sets the indicator qubit to $\ket{1}$ on the bulk region, and Eq.
+`eq: ROBIN clarified` writes the clean $\gamma_3$ branch with the relevant
+workspace in the zero state.  No nearby source line states a reset, summation,
+or basis-permutation rule that identifies the full endpoint `228` with the
+clean endpoint `84`.
+
+Lean now records this as
+`Examples.RobinHeat.oneTermRobinGamma3IndicatorProjectionConvention_n3`, with
+transcript theorem
+`Examples.RobinHeat.oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript`.
+The convention record reuses
+`oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3`,
+`oneTermRobinGamma3SparseRegisterSummationConvention_n3`, and
+`oneTermRobinGamma3ProjectionRegisterConventionDecision_n3`.
+
+Compiled facts:
+
+| Field | Value |
+|---|---|
+| clean endpoint | `84` |
+| full endpoint | `228` |
+| clean indicator | `0` |
+| full indicator | `1` |
+| indicator relation specified by source | `false` |
+| convention obligation | `proved = false` |
+| product search | blocked |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_projection_convention` | make the missing indicator-field convention a named source-contract obligation | indicator-field gap, sparse-register summation convention, projection/register decision, source anchors | `oneTermRobinGamma3IndicatorProjectionConvention_n3`, `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | future gamma3 product-to-coefficient theorem | projection/layout | compiled; `conventionObligation.proved = false` |
+
+No semantic flag was promoted.  Product-to-coefficient equality, LCU
+correctness, block projection, block correctness, normalized equality, and
+final extraction remain false.
+
+## 2026-05-25 Middle Post-Indicator Projection Sync
+
+Middle accepts the compiled indicator convention as a faithful transcript
+artifact, not as a proof of the gamma3 coefficient route.  The active source
+dependency classification is:
+
+| Missing ingredient | Classification | Lean artifact | Status |
+|---|---|---|---|
+| relation between full endpoint `228` and clean endpoint `84` in the indicator field | `source-contract-gap` plus `internal-paper-step` | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | named obligation; `proved = false` |
+| endpoint field facts for `84` and `228` | `classical-lean-lemma` over compiled register extractors | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | compiled |
+| gamma3 product-to-coefficient equality | QBE-local finite matrix theorem | `oneTermRobinGamma3ProductToCoefficientObligation` | blocked until the convention obligation is replaced by a source-backed rule |
+
+No cited-results status changes in this sync.  The existing rows for `O_D^BS`,
+`O_{D^T}^S`, `O_f`, boundary rotations, and finite block composition remain
+contract-only or obligation entries as before.
+
+Next allowed packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | replace or refine `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` only if a source-backed rule is found |
+| required source anchors | GHL2025 Eq. `eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, Definition `def:block-encoding`, and the $U_{\mathrm{indic}}$ paragraph |
+| forbidden work | do not restart product multiplication, LCU closure, block projection, block correctness, cleanup, unitarity, normalized equality, or final extraction while the convention obligation is false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_projection_convention` | keep the missing indicator-field relation as a named theorem-facing source-contract obligation | indicator-field gap, sparse-register summation convention, projection/register decision, source anchors | `oneTermRobinGamma3IndicatorProjectionConvention_n3`, `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | future gamma3 product-to-coefficient theorem | projection/layout | compiled; `conventionObligation.proved = false` |
+
+## 2026-05-25 Middle Source-Dependency Freeze
+
+Middle rechecked the source anchors around the active blocker: Theorem
+`theorem: 1 term robin`, Eq. `eq: ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Definition `def:block-encoding`, and the paragraph defining
+$U_{\mathrm{indic}}$.  The source supports the sparse-register summation over
+$s=0,\dots,\kappa-1$ and states that $U_{\mathrm{indic}}$ sets the indicator
+qubit to $1$ on the bulk region.  It does not state a theorem-level projection
+rule that resets, ignores, sums over, or permutes the indicator field after the
+seven-gate path.
+
+Source-proof translation freeze:
+
+| Source proof item | Lean destination | Classification | Current status |
+|---|---|---|---|
+| Eq. `eq: ROBIN clarified` $\gamma_3$ line sums over sparse slots | `oneTermRobinGamma3SparseRegisterSummationConvention_n3` | `internal-paper-step` with Lean interface | compiled; does not close block projection |
+| Fig. `fig:1 term ROBIN` routes through $U_{\mathrm{indic}}$ before the derivative and sparse-access gates | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | `classical-lean-lemma` audit of the fixed endpoint | compiled; full endpoint is `228` |
+| Clean $\gamma_3$ endpoint from Eq. `eq: ROBIN clarified` | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | `classical-lean-lemma` over register extractors | compiled; clean endpoint is `84` |
+| Indicator relation between endpoints `228` and `84` | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | `source-contract-gap` plus `internal-paper-step` | named obligation; `proved = false` |
+| Gamma3 product-to-coefficient equality | `oneTermRobinGamma3ProductToCoefficientObligation` | QBE-local finite matrix theorem | blocked while the indicator convention obligation is false |
+
+Proof-DAG status:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_projection_convention` | make the missing indicator-field relation a named theorem-facing source-contract obligation | sparse-register summation, indicator-field gap, source anchors, block-encoding definition | `oneTermRobinGamma3IndicatorProjectionConvention_n3`, `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | future gamma3 product-to-coefficient theorem only after a source-backed rule is supplied | projection/layout | compiled; product search blocked |
+
+Next lower-agent constraint:
+
+| Field | Requirement |
+|---|---|
+| allowed target | only replace or refine `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` if a source-backed projection/register rule is found |
+| blocked target | do not resume `oneTermRobinGamma3ProductToCoefficientObligation`, full seven-gate multiplication, LCU closure, block projection, block correctness, cleanup, unitarity, normalized equality, or final extraction |
+| cited-result status | no cited-results row is upgraded; `O_D^BS`, `O_{D^T}^S`, $O_f$, boundary rotations, and finite block composition remain `contract-only` or `obligation` |
+
+## 2026-05-25 Middle Human-Input Freeze for Gamma3 Indicator
+
+Middle rechecked the active source anchors after the lower source recheck:
+Theorem `theorem: 1 term robin`, Eq. `eq: ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Definition `def:block-encoding`, and the
+$U_{\mathrm{indic}}$ paragraph.  The source gives the sparse-register
+summation and the indicator-setting step, but it does not give a projection
+rule that relates full endpoint `228` to clean endpoint `84` in the indicator
+field.
+
+The Lean contract now makes this explicit:
+`Examples.RobinHeat.oneTermRobinGamma3IndicatorProjectionConvention_n3`
+has `indicatorRelationSpecifiedBySource = false`,
+`humanInputRequired = true`, and
+`conventionObligation.proved = false`.  This is a faithful transcript
+artifact, not a semantic proof.
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Lean artifact | Required action |
+|---|---|---|---|
+| indicator relation between endpoint `228` and endpoint `84` after sparse-register summation | `source-contract-gap` plus `internal-paper-step` | `oneTermRobinGamma3IndicatorProjectionConvention_n3.humanInputRequired` and `.conventionObligation` | human or source-backed convention required before lower proof search resumes |
+| endpoint field arithmetic | `classical-lean-lemma` | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | compiled and reusable |
+| gamma3 product-to-coefficient equality | QBE-local finite matrix theorem | `oneTermRobinGamma3ProductToCoefficientObligation` | blocked while the convention obligation is false |
+
+Lower-agent packet status:
+
+| Field | Requirement |
+|---|---|
+| allowed work | only replace the false indicator convention obligation with a source-backed rule, or wait for human direction |
+| forbidden work | no gamma3 product multiplication, no cited-oracle proof search, no LCU closure, no cleanup or unitarity promotion, no block projection, no block correctness, no normalized equality, and no final extraction |
+| reviewer check | reject any packet that treats sparse-register summation alone as a proof of the indicator relation |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_projection_convention` | expose that the source does not specify the indicator relation after sparse-register summation and require human/source-backed direction | sparse-register summation convention, indicator-field gap, source anchors, block-encoding definition | `oneTermRobinGamma3IndicatorProjectionConvention_n3`, `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | future gamma3 product-to-coefficient theorem only after a convention is supplied | projection/layout | compiled; `humanInputRequired = true`; product search blocked |
+
+## 2026-05-25 Lower Bulk-Indicator Source Audit
+
+Lower refined the indicator-field blocker without changing the semantic
+objective.  For the focused $n=3$ coefficient route, the source column is
+`5`, and the paper's bulk window is $K_1=2$, $K_2=5$.  Thus the
+$U_{\mathrm{indic}}$ paragraph source-backs indicator value `1` for that
+column.  This matches the full Fig. `fig:1 term ROBIN` endpoint `228`; it
+does not match the clean Eq. `eq: ROBIN clarified` endpoint `84`.
+
+Lean records this as
+`Examples.RobinHeat.oneTermRobinGamma3BulkIndicatorSourceAudit_n3`, with
+transcript theorem
+`Examples.RobinHeat.oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript`.
+
+Compiled facts:
+
+| Field | Value |
+|---|---|
+| focused source column | `5` |
+| bulk window | `K1 = 2`, `K2 = 5` |
+| `GHL2025.isBulkRow 2 5 5` | `true` |
+| source-backed bulk indicator | `1` |
+| full endpoint indicator | `1` |
+| clean endpoint indicator | `0` |
+| source reset/projection rule found | `false` |
+| convention obligation | `proved = false` |
+
+Classification update:
+
+| Ingredient | Classification | Lean artifact | Status |
+|---|---|---|---|
+| bulk-column indicator value for focused source column `5` | `internal-paper-step` plus finite register audit | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3` | compiled; source-backed value is `1` |
+| relation between endpoint `228` and endpoint `84` | `source-contract-gap` plus `internal-paper-step` | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | still false |
+| gamma3 product-to-coefficient equality | QBE-local finite matrix theorem | `oneTermRobinGamma3ProductToCoefficientObligation` | still blocked |
+
+This audit refines the previous freeze: the indicator value at endpoint `228`
+is source-consistent for the focused bulk column, so a future convention should
+not silently reset it to `0`.  Product multiplication, LCU closure, cleanup,
+unitarity, block projection, block correctness, normalized equality, and final
+extraction remain forbidden while the endpoint relation is unspecified.
+
+## 2026-05-25 Middle Bulk-Indicator Source Sync
+
+Middle accepts
+`Examples.RobinHeat.oneTermRobinGamma3BulkIndicatorSourceAudit_n3` as a
+source-backed refinement of the active gamma3 blocker.  This changes the
+classification of the endpoint `228` indicator value: it is not stray register
+noise.  For the focused system column `5`, the GHL2025 $U_{\mathrm{indic}}$
+paragraph sets the bulk indicator to `1`, and Lean records that endpoint `228`
+matches that value while endpoint `84` does not.
+
+Source-proof translation update:
+
+| Source proof item | Lean destination | Classification | Current status |
+|---|---|---|---|
+| $U_{\mathrm{indic}}$ sets the indicator to `1` for $K_1 \leq j \leq K_2$ | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3` | `internal-paper-step` plus finite register audit | compiled for $j=5$, $K_1=2$, $K_2=5$ |
+| full Fig. `fig:1 term ROBIN` endpoint keeps that bulk indicator | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript` | `classical-lean-lemma` over register extractors | compiled; endpoint `228` has indicator `1` |
+| clean Eq. `eq: ROBIN clarified` endpoint has clean indicator | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | `classical-lean-lemma` over register extractors | compiled; endpoint `84` has indicator `0` |
+| relation between endpoint `228` and endpoint `84` | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | `source-contract-gap` plus `internal-paper-step` | still false; human/source-backed convention required |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_bulk_indicator_source_audit` | prove that the focused column is bulk and that endpoint `228`'s indicator `1` is source-backed | $U_{\mathrm{indic}}$ paragraph, sparse-register convention, indicator convention | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3`, `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript` | future indicator projection convention only after a source-backed relation is supplied | projection/layout | compiled; all theorem flags false |
+
+Next lower-agent packet:
+
+| Field | Requirement |
+|---|---|
+| allowed work | only supply a source-backed projection/register rule relating endpoint `228` to endpoint `84`, or keep the human-input blocker |
+| required reuse | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript`, `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript`, and `oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3` |
+| forbidden inference | do not reset the indicator from `1` to `0` without a source-backed rule; the compiled bulk audit says endpoint `228`'s `1` is source-consistent |
+| still blocked | gamma3 product multiplication, LCU closure, cleanup, unitarity, block projection, block correctness, normalized equality, and final extraction |
+
+## 2026-05-25 Middle Final Human-Input Freeze
+
+Middle re-read the public source anchors for the active blocker: GHL2025
+Theorem `theorem: 1 term robin`, Eq. `eq: ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Definition `def:block-encoding`, and the
+$U_{\mathrm{indic}}$ paragraph.  The source supports the clean displayed
+$\gamma_3$ branch, the sparse-slot sum over $s=0,\dots,\kappa-1$, and the
+bulk indicator value `1` for the focused column `5`.  The source does not
+state a theorem-level rule that resets, ignores, sums over, or permutes that
+indicator field to identify full endpoint `228` with clean endpoint `84`.
+
+Source-proof translation freeze:
+
+| Source proof item | Lean destination | Classification | Current status |
+|---|---|---|---|
+| Eq. `eq: ROBIN clarified` $\gamma_3$ branch with clean workspace | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | `classical-lean-lemma` over register extractors plus transcript contract | compiled; clean endpoint `84` has indicator `0` |
+| Eq. `eq: ROBIN clarified` sparse-slot sum | `oneTermRobinGamma3SparseRegisterSummationConvention_n3` | `internal-paper-step` with Lean interface | compiled; does not handle the indicator field |
+| $U_{\mathrm{indic}}$ sets the bulk indicator for $K_1 \leq j \leq K_2$ | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3` | `internal-paper-step` plus finite register audit | compiled for $K_1=2$, $K_2=5$, $j=5$; full endpoint `228` has indicator `1` |
+| Relation between endpoints `228` and `84` in the indicator field | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | `source-contract-gap` plus paper-local convention gap | false obligation; human or source-backed convention required |
+| Gamma3 product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation` | QBE-local finite matrix theorem | blocked while the indicator convention obligation is false |
+
+Lower packet status:
+
+| Field | Requirement |
+|---|---|
+| allowed work | no implementation packet; only a human/source-backed projection-register convention may replace `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` |
+| forbidden work | no product multiplication, no `Matrix.evalWith_mul_unique_path` application, no cited-oracle proof search, no LCU closure, no cleanup or unitarity promotion, no block projection, no block correctness, no normalized equality, and no final extraction |
+| cited-results status | unchanged; external rows remain `contract-only` or `obligation` and cannot close this paper-local indicator relation |
+| reviewer check | reject any packet that treats endpoint `228`'s indicator `1` as removable register noise or uses sparse-register summation alone to hide the indicator mismatch |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_bulk_indicator_source_audit` | record that endpoint `228`'s indicator `1` is source-backed for focused bulk column `5` | $U_{\mathrm{indic}}$ paragraph, sparse-register convention, indicator convention | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3`, `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript` | future indicator convention only after a source-backed endpoint relation is supplied | projection/layout | compiled; all semantic flags false |
+| `one_term_gamma3_indicator_human_freeze` | stop theorem-facing product work until the endpoint indicator relation is supplied by source or human direction | bulk indicator audit, indicator convention false obligation, source anchors | `oneTermRobinGamma3IndicatorProjectionConvention_n3.humanInputRequired` | future gamma3 product-to-coefficient theorem | projection/layout | active blocker; no lower packet queued |
+
+## 2026-05-25 Middle Cycle Closure: Gamma3 Indicator Blocker
+
+Middle rechecked the current Lean transcript against GHL2025 Theorem
+`theorem: 1 term robin`, Eq. `eq: ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Definition `def:block-encoding`, Lemma
+`Banded-sparse-access-oracle`, Lemma `Sparse-amplitude-oracle for a
+banded-sparse matrix`, Theorem `Amplitude-oracle for piece-wise polynomial
+function`, and the $U_{\mathrm{indic}}$ paragraph.  The source anchors support
+the theorem data, sparse-slot summation, cited-oracle contracts, and the
+bulk-indicator value `1` for focused column `5`.  They do not state a
+projection/register rule identifying the full endpoint `228` with the clean
+endpoint `84` in the indicator field.
+
+Source-contract audit:
+
+| Source item | Lean destination | Classification | Status |
+|---|---|---|---|
+| Theorem `theorem: 1 term robin` statement | `oneTermRobinBlockEncodingProofRoute`, `OneTermRobinTheoremData`, `oneTermRobinBlockExtractionTarget` | internal paper theorem under cited contracts | compiled route data; final extraction false |
+| Eq. `eq: ROBIN clarified` $\gamma_3$ branch | `oneTermRobinGamma3SparseRegisterSummationConvention_n3` and `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | internal paper step plus projection convention gap | sparse summation compiled; indicator relation false |
+| Fig. `fig:1 term ROBIN` seven-gate path | `oneTermRobinCircuit`, `oneTermRobinBlockEncodingProofRoute_gateListAndFlags`, `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | internal paper circuit plus classical finite audit | compiled; path reaches `228` |
+| $U_{\mathrm{indic}}$ bulk rule for $j=5$ | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3` | internal paper step plus classical finite audit | compiled; indicator `1` is source-backed |
+| clean endpoint `84` versus full endpoint `228` | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | source-contract gap plus paper-local convention gap | false; `humanInputRequired = true` |
+| Lemma `Banded-sparse-access-oracle` | `QBE.ODBS.GlobalSparseSlotAddress` cited-results row and active O_D^BS contracts | contract-only external/imported primitive | no promotion |
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix` | `GHL2025.Lemma3.ODTS` cited-results row and `oneTermRobinGate_O_DT_S` | contract-only primitive | no promotion |
+| Theorem `Amplitude-oracle for piece-wise polynomial function` | `GL2024.Thm5.AmplitudeOracle` cited-results row and `functionOracleSource` contract | external cited result | no promotion |
+| finite LCU/block composition | `LCU.StandardBlockEncoding`, `FiniteBlockCompositionContract` | contract-only external/classical theorem interface | no promotion |
+
+Proof-translation map for the active blocker:
+
+| Proof step | Lean artifact | Result |
+|---|---|---|
+| Eq. `eq: ROBIN clarified` sums the $\gamma_3$ branch over sparse slots | `oneTermRobinGamma3SparseRegisterSummationConvention_n3_transcript` | compiled contract map |
+| Fig. `fig:1 term ROBIN` routes the slot-`5` branch through $U_{\mathrm{indic}}$ | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | compiled endpoint audit |
+| $U_{\mathrm{indic}}$ sets the focused bulk indicator to `1` | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript` | compiled source-backed fact |
+| Eq. `eq: ROBIN clarified` displays the clean endpoint with indicator `0` | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | compiled clean-endpoint fact |
+| source relation between indicator `1` at `228` and indicator `0` at `84` | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | missing; false obligation |
+
+Lower-agent packet status:
+
+| Field | Requirement |
+|---|---|
+| packet decision | no implementation packet is queued from middle while `humanInputRequired = true` |
+| only allowed next work | provide one source-backed or human-approved projection/register convention replacing `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` |
+| required reuse | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript`, `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript`, `oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3`, and `oneTermRobinBlockEncodingProofRoute` |
+| forbidden work | no gamma3 product multiplication, cited-oracle proof search, cleanup promotion, unitarity promotion, LCU closure, block projection, block correctness, normalized equality, or final extraction |
+| reviewer check | reject any packet that treats endpoint `228`'s indicator `1` as removable register noise or closes the gap using sparse-register summation alone |
+
+Proof-DAG closure:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_human_freeze` | preserve the source-backed indicator mismatch and stop theorem-facing product work | source anchors, sparse summation, bulk indicator audit, indicator convention false obligation | `oneTermRobinGamma3IndicatorProjectionConvention_n3`, `oneTermRobinGamma3BulkIndicatorSourceAudit_n3` | future gamma3 product-to-coefficient theorem after convention decision | projection/layout | active blocker; no semantic flags promoted |
+
+No cited-results row changes in this closure.  Existing external rows remain
+`contract-only` or `obligation`; none may be used to close the paper-local
+indicator relation.
+
+## 2026-05-25 Middle Source-Audit Handoff: Indicator Convention
+
+Middle rechecked the active source anchors for the focused $n=3$ gamma3
+coefficient: GHL2025 Theorem `theorem: 1 term robin`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, Definition
+`def:block-encoding`, and the paragraph defining $U_{\mathrm{indic}}$.  These
+anchors support three facts already represented in Lean: Eq.
+`eq: ROBIN clarified` writes the gamma3 branch as a sparse-slot sum, Fig.
+`fig:1 term ROBIN` routes the focused branch through $U_{\mathrm{indic}}$, and
+$U_{\mathrm{indic}}$ sets the indicator to `1` for the focused bulk column
+`5`.  The source still does not state a theorem-level projection/register rule
+that relates endpoint `228` with indicator `1` to endpoint `84` with indicator
+`0`.
+
+Source-proof translation checkpoint:
+
+| Source proof item | Lean destination | Classification | Status |
+|---|---|---|---|
+| Eq. `eq: ROBIN clarified` sparse-slot gamma3 sum | `oneTermRobinGamma3SparseRegisterSummationConvention_n3` | `internal-paper-step` | compiled contract map; not a block-projection proof |
+| Fig. `fig:1 term ROBIN` focused seven-gate route | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | `classical-lean-lemma` | compiled endpoint audit; full endpoint is `228` |
+| $U_{\mathrm{indic}}$ bulk rule for focused column `5` | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3` | `internal-paper-step` plus finite audit | compiled; endpoint `228` indicator `1` is source-backed |
+| Clean endpoint in Eq. `eq: ROBIN clarified` | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | `classical-lean-lemma` | compiled; endpoint `84` has indicator `0` |
+| Relation between endpoints `228` and `84` in the indicator field | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | `source-contract-gap` plus paper-local convention gap | false; `humanInputRequired = true` |
+
+Lower packet decision:
+
+| Field | Requirement |
+|---|---|
+| queued implementation packet | none |
+| only accepted next input | a source-backed or human-approved projection/register convention explaining how the theorem-level block handles the source-backed indicator `1` at endpoint `228` relative to clean endpoint `84` |
+| required reuse if such a convention arrives | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript`, `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript`, `oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3`, and `oneTermRobinBlockEncodingProofRoute` |
+| forbidden while false | no gamma3 product multiplication, no `Matrix.evalWith_mul_unique_path` use on the product, no cited-oracle proof search, and no cleanup, unitarity, LCU, block-projection, block-correctness, normalized-equality, or final-extraction promotion |
+
+Proof-DAG checkpoint:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_source_backed_freeze` | preserve the source-backed indicator mismatch and prevent product search from hiding it | Eq. `eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, $U_{\mathrm{indic}}$ paragraph, sparse-register summation convention | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3`, `oneTermRobinGamma3IndicatorProjectionConvention_n3` | future gamma3 product-to-coefficient theorem after convention decision | projection/layout | active blocker; no semantic flags promoted |
+
+## 2026-05-25 Middle Source-Dependency Closure: No Lower Packet
+
+Middle rechecked the active source anchors against the compiled Lean transcript:
+GHL2025 Theorem `theorem: 1 term robin`, Eq. `eq: ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Definition `def:block-encoding`, the paragraph defining
+$U_{\mathrm{indic}}(K_1,K_2)$, Lemma `Banded-sparse-access-oracle`, Lemma
+`Sparse-amplitude-oracle for a banded-sparse matrix`, and Theorem
+`Amplitude-oracle for piece-wise polynomial function`.  The source still
+supports the sparse-slot sum and the source-backed bulk indicator value `1`
+for focused column `5`; it does not state a projection/register rule relating
+full endpoint `228` with clean endpoint `84` in the indicator field.
+
+Source-proof translation checkpoint:
+
+| Source proof item | Lean destination | Classification | Status |
+|---|---|---|---|
+| The one-term theorem normalizer and theorem data | `oneTermRobinBlockEncodingProofRoute`, `OneTermRobinTheoremData`, `oneTermRobinBlockExtractionTarget` | internal paper theorem under cited contracts | compiled route data; final extraction false |
+| Eq. `eq: ROBIN clarified` sparse-slot gamma3 sum | `oneTermRobinGamma3SparseRegisterSummationConvention_n3` | `internal-paper-step` | compiled contract map; not a block-projection proof |
+| Fig. `fig:1 term ROBIN` focused seven-gate route | `oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3` | `classical-lean-lemma` | compiled endpoint audit; full endpoint is `228` |
+| $U_{\mathrm{indic}}$ bulk rule for focused column `5` | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3` | `internal-paper-step` plus finite audit | compiled; endpoint `228` indicator `1` is source-backed |
+| Eq. `eq: ROBIN clarified` clean displayed endpoint | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript` | `classical-lean-lemma` over register extractors | compiled; endpoint `84` indicator is `0` |
+| Relation between endpoints `228` and `84` in the indicator field | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | `source-contract-gap` plus paper-local convention gap | false; `humanInputRequired = true` |
+| Lemma `Banded-sparse-access-oracle` | `QBE.ODBS.GlobalSparseSlotAddress` and active `O_D^BS` contracts | external/imported contract | no promotion |
+| Lemma `Sparse-amplitude-oracle for a banded-sparse matrix` | `GHL2025.Lemma3.ODTS` and `oneTermRobinGate_O_DT_S` | contract-only primitive | no promotion |
+| Theorem `Amplitude-oracle for piece-wise polynomial function` | `GL2024.Thm5.AmplitudeOracle` and `functionOracleSource` | external cited result | no promotion |
+| finite block-composition step | `LCU.StandardBlockEncoding` and `FiniteBlockCompositionContract` | contract-only interface | no promotion |
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Current Lean artifact | Required action |
+|---|---|---|---|
+| theorem-level indicator relation between endpoint `228` and endpoint `84` | `source-contract-gap` plus `internal-paper-step` | `oneTermRobinGamma3IndicatorProjectionConvention_n3.humanInputRequired = true` and `.conventionObligation.proved = false` | supply one source-backed or human-approved projection/register convention before proof search resumes |
+| endpoint field arithmetic and source-backed bulk indicator | `classical-lean-lemma` plus `internal-paper-step` | `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript`, `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript` | reusable; does not close the convention |
+| gamma3 product-to-coefficient equality | QBE-local finite matrix theorem | `oneTermRobinGamma3ProductToCoefficientObligation` | blocked while the convention obligation is false |
+
+Lower-agent packet decision:
+
+| Field | Requirement |
+|---|---|
+| queued implementation packet | none |
+| only accepted next change | replace `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` with one exact source-backed or human-approved convention |
+| required reuse if a convention is supplied | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript`, `oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript`, `oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3`, and `oneTermRobinBlockEncodingProofRoute` |
+| forbidden while false | no gamma3 product multiplication, no `Matrix.evalWith_mul_unique_path` use on the full product, no cited-oracle proof search, and no cleanup, unitarity, LCU, block-projection, block-correctness, normalized-equality, or final-extraction promotion |
+| reviewer check | reject any packet that treats endpoint `228`'s indicator `1` as removable register noise or uses sparse-register summation alone to hide the indicator mismatch |
+
+Proof-DAG checkpoint:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_indicator_source_backed_freeze` | preserve the source-backed indicator mismatch and prevent product search from hiding it | Eq. `eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, $U_{\mathrm{indic}}$ paragraph, sparse-register summation convention | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3`, `oneTermRobinGamma3IndicatorProjectionConvention_n3` | future gamma3 product-to-coefficient theorem after convention decision | projection/layout | active blocker; no semantic flags promoted |
+
+No cited-results row is upgraded in this closure.  Existing rows for
+`QBE.ODBS.GlobalSparseSlotAddress`, `GHL2025.Lemma3.ODTS`,
+`GHL2025.RyBoundary`, `GL2024.Thm5.AmplitudeOracle`,
+`LCU.StandardBlockEncoding`, and `GHL2025.Theorem1.BlockEncoding` remain
+`contract-only` or `obligation`, and none closes the paper-local indicator
+relation.

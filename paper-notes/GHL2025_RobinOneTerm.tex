@@ -22,6 +22,13 @@ Robin ghost-point elimination.  In Lean:
   \quad\leftrightarrow\quad
   \texttt{Examples.RobinHeat.robinDerivativeMatrix n}.
 \]
+The theorem-facing matrix is the row-scaled target
+\[
+  A_k
+  \quad\leftrightarrow\quad
+  \texttt{Examples.RobinHeat.oneTermRobinAkMatrix n},
+\]
+whose entries are \(f(x_i)D_{ij}\).
 
 \subsection{Robin Boundary Matrix}
 
@@ -562,6 +569,9 @@ Paper object & Lean declaration & Status \\
 \(D_{\mathrm{Robin}}\) &
 \texttt{Examples.RobinHeat.robinDerivativeMatrix} &
 defined and tested \\
+\(A_k=\operatorname{diag}(f)D_{\mathrm{Robin}}\) &
+\texttt{Examples.RobinHeat.oneTermRobinAkMatrix} &
+defined and wired as theorem target \\
 \(\alpha=N_DN_f\kappa\) &
 \texttt{GHL2025.oneTermRobinNormalizer} &
 defined \\
@@ -1237,12 +1247,17 @@ half-angle identities, and two-by-two unitarity remain proof obligations.
 Neither affected gate-unitarity flag, nor any LCU or block-extraction flag, is
 promoted by this guard.
 
-\paragraph{Cycle 18 middle packet.}
-The \(O_D^{BS}\) route remains blocked by the unused zero-amplitude sparse
-branch source decision, and the shared \(N_D\) bridges for \(O_{D^T}^S\) and
-\(R_y^{\mathrm{boundary}}\) are already recorded.  The next lower packet should
-therefore stay on the function-oracle transcript and add only an \(O_f\)
-amplitude-route contract.  The existing Lean anchors are
+\paragraph{Cycle 18 middle packet, superseded \(O_D^{BS}\) status.}
+At this point the \(O_D^{BS}\) route was still recorded through the unused
+zero-amplitude sparse-branch source decision.  That status is historical.  The
+active route after the global sparse-slot correction uses
+\texttt{bandedSparseAccessPaperGlobalSlotSource} and the cleanup-scope decision
+record; the old row-dependent decision remains rejected-model memory only.
+
+The shared \(N_D\) bridges for \(O_{D^T}^S\) and
+\(R_y^{\mathrm{boundary}}\) were already recorded.  The next lower packet at
+that point therefore stayed on the function-oracle transcript and added only
+an \(O_f\) amplitude-route contract.  The existing Lean anchors were
 \[
   \texttt{GHL2025.robinFunctionValue}\ p.n\ i,\qquad
   \texttt{GHL2025.functionOracleNormalizedValue}\ p\ i,
@@ -1309,8 +1324,8 @@ proofs:
 The most important remaining obligations are:
 
 \begin{enumerate}
-  \item prove the remaining 6 labeled gate matrices are unitary
-    (U\_indic unitarity proved via \texttt{indicatorOracleMatrix\_is\_permutation});
+  \item prove the remaining five labeled gate matrices are unitary
+    (U\_indic and SWAP are already proved permutation matrices);
   \item prove the composed circuit matrix equals the paper's \(U\);
   \item replace the Ry\_boundary zero placeholder with a real oracle implementation; (done: cycle 8)
   \item correct $O_f$ to encode function values $f(x_j)/N_f$ instead of derivative amplitude data; (done: cycle 9)
@@ -1373,7 +1388,7 @@ the dimension split by
   \texttt{Examples.RobinHeat.oneTermRobinCircuitDimCompat}\;n.
 \]
 The block-extraction target uses signal index \(0\).  Its target matrix is
-\texttt{Examples.RobinHeat.robinDerivativeMatrix}\(n\), and its normalizer is
+\texttt{Examples.RobinHeat.oneTermRobinAkMatrix}\(n\), and its normalizer is
 \[
   \texttt{GHL2025.oneTermRobinNormalizer}
   =
@@ -1385,8 +1400,8 @@ symbol environment.
 
 The lower packet audited only this structural contract:
 \texttt{oneTermRobinBlockExtractionTarget} uses the cast circuit product,
-\texttt{signalSystemBlockProjection}, signal index \(0\), the Robin target
-matrix, and the normalizer above.  The compiled tests also pin
+\texttt{signalSystemBlockProjection}, signal index \(0\), the row-scaled
+Robin target matrix, and the normalizer above.  The compiled tests also pin
 \texttt{defaultOneTermRobinCircuitBlockClaim} to that same target.  The
 obligations \texttt{blockProjection.proved} and
 \texttt{blockCorrect.proved} remain false.  The cleanup obligation for
@@ -1405,8 +1420,8 @@ This Lean object packages the theorem tuple
 \texttt{GHL2025.defaultOneTermRobinTheoremData}, the circuit product
 \texttt{oneTermRobinCircuitSemantics}, the signal-index-zero target
 \texttt{oneTermRobinBlockExtractionTarget}, the circuit block claim, the
-Robin oracle composition record, and the cited-source blockers for
-\(O_D^{BS}\) and \(O_f\).
+Robin oracle composition record, the active \(O_D^{BS}\) cleanup-scope
+decision, and the cited-source blocker for \(O_f\).
 
 The route records the normalizer agreement
 \[
@@ -1417,7 +1432,7 @@ The route records the normalizer agreement
   \texttt{GHL2025.oneTermRobinNormalizer},
 \]
 which is the symbolic coefficient \(N_D N_f \kappa\).  It also records that
-the target matrix is \texttt{robinDerivativeMatrix}\(n\) and that the block
+the target matrix is \texttt{oneTermRobinAkMatrix}\(n\) and that the block
 projection uses signal index \(0\).
 
 The layout audit separates two counts.  The theorem-level block-encoding tuple
@@ -1452,11 +1467,12 @@ The guard theorem
 keeps the theorem in obligation mode.  In particular, the block-projection and
 block-correctness obligations remain false, the full circuit-unitarity
 obligation remains false, \(O_D^{BS}\) cleanup and unitary extension remain
-false, the unused-zero-branch source decision still has lower proof search
-disabled, the prior sparse-access source still does not close the unused-branch
-extension, the \(O_f\) external theorem remains an obligation, and the LCU
-composition field remains false.  This route is a synchronization contract for
-future proof work, not a proof of the block-encoding equation.
+false, the cleanup scope is restricted to
+\texttt{bandedSparseAccessPaperGlobalSlotSource}, full clean-domain cleanup
+and full-space unitarity are not selected, the \(O_f\) external theorem remains
+an obligation, and the LCU composition field remains false.  This route is a
+synchronization contract for future proof work, not a proof of the
+block-encoding equation.
 
 \subsection{Historical Source Decision for the Row-Dependent Helper}
 
@@ -1481,20 +1497,24 @@ enumeration, and Eq.~\texttt{ROBIN clarified} uses
 None of these source fragments gives an injective reversible image for clean
 unused zero-amplitude branches.
 
-Lean records this source decision through
-\texttt{bandedSparseAccessUnusedZeroBranchSourceDecision},
-\texttt{bandedSparseAccessRobinZeroInclusionSourceContract}, and the theorem
-route guard
-\texttt{oneTermRobinBlockEncodingProofRoute\_odbsNoLowerProofSearch}.  The
-guard state is that lower proof search is disabled, the unused-branch image
-slot is still \texttt{none}, and the \(O_D^{BS}\) forward-correctness,
-dagger-cleanup, unitary-extension, LCU, and block-correctness flags remain
-false.
+Older Lean cycles recorded this source decision through
+\texttt{bandedSparseAccessUnusedZeroBranchSourceDecision} and
+\texttt{bandedSparseAccessRobinZeroInclusionSourceContract}.  Those records
+remain available as separate transcript memory, but the theorem route no
+longer stores them as active fields.  The current route records the active
+cleanup scope through \texttt{bandedSparseAccessCleanupScopeDecision}; its
+semantic-cleanup promotion, \(O_D^{BS}\) dagger-cleanup, unitary-extension,
+LCU, and block-correctness flags remain false.
 
 The active route below supersedes this guard for new lower work.  New
 \(O_D^{BS}\) packets should use
 \texttt{bandedSparseAccessPaperGlobalSlotSource} and the global address
 \(r_{si}=r_{s0}+i \bmod 2^n\), not the row-dependent valid-branch predicate.
+
+The subsequent source-decision subsections in this historical cycle are
+therefore superseded unless they explicitly cite the active global-slot
+cleanup scope.  They should be read as rejected-model or transcript memory,
+not as lower-agent packets for the current active route.
 
 The active \(O_D^{BS}\) address correction now separates this historical
 row-dependent source-decision guard from the paper address used by the matrix
@@ -1543,7 +1563,8 @@ requires the dagger cleanup after SWAP.  The inspected source still does not
 give an injective reversible image for clean unused zero-amplitude sparse
 branches.
 
-The Lean proof route is therefore a guard route.  The declarations
+The historical Lean proof route was therefore a guard route.  Older
+declarations such as
 \texttt{oneTermRobinBlockEncodingProofRoute\_odbsPaperContractTranscript},
 \texttt{oneTermRobinBlockEncodingProofRoute\_sourceDecisionImageSlotsBlocked},
 \texttt{oneTermRobinBlockEncodingProofRoute\_activeOdbsGatePairWiring},
@@ -1551,20 +1572,20 @@ The Lean proof route is therefore a guard route.  The declarations
 \texttt{oneTermRobinBlockEncodingProofRoute\_blockProjectionNormalizerAudit},
 and
 \texttt{oneTermRobinBlockEncodingProofRoute\_sourceBlockerKeepsFinalFlagsFalse}
-may be used only to preserve the transcript and the false proof flags.  They
-do not prove injectivity, dagger cleanup, unitarity, LCU composition, or the
-final block-extraction equation.
+belong to that superseded guard route.  Current lower work should use the
+active global-source declarations recorded in the 2026-05-25 sync instead.
+The historical guards did not prove injectivity, dagger cleanup, unitarity, LCU
+composition, or the final block-extraction equation.
 
-\subsection{Cycle 1 Post-Lower Source-Gate Freeze}
+\subsection{Cycle 1 Post-Lower Source-Gate Freeze (Historical)}
 
-The lower guard
+The historical lower guard
 \texttt{oneTermRobinBlockEncodingProofRoute\_sourceGateFreeze} packages the
-same source decision without adding a new source theorem.  It records that
-lower proof search is disabled, the direct and full-wrapper unused-branch
-image slots are both \texttt{none}, the active forward and dagger
-\(O_D^{BS}\) gates still point to the paper-image matrices, the block target
-uses signal index \(0\) and normalizer \(N_DN_f\kappa\), and the final theorem
-flags remain false.
+same source decision without adding a new source theorem.  This route has been
+retired from the active theorem tuple.  The current replacement is the
+cleanup-scope route through
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsActiveGlobalSlotBlockers} and
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsActiveGlobalSlotGateFreeze}.
 
 Two focused tests make the blocker visible at the matrix-entry level.  Source
 column \(8\) checks that the active paper-image matrix follows Lemma~1 and has
@@ -1599,13 +1620,13 @@ while the old helper still has its row-\(4\) entry.  This is only a
 contract-drift guard; it does not prove injectivity, dagger cleanup, unitarity,
 LCU closure, or block extraction.
 
-The route guard
+The historical route guard
 \texttt{oneTermRobinBlockEncodingProofRoute\_projectionSourceFreeze} packages
 the signal-index-zero projection target with the same source blocker.  It
 records the normalizer \(N_DN_f\kappa\), keeps the block-projection and
 block-correctness obligations false, keeps the theorem-level circuit-unitary
-and block-extraction obligations false, keeps LCU correctness false, and keeps
-lower proof search disabled.
+and block-extraction obligations false, and keeps LCU correctness false.  The
+active route no longer uses this source blocker as a proof-search switch.
 
 The source-dependency classification for the active route has changed.  The
 old row-dependent unused-branch route remains a historical
@@ -1614,12 +1635,13 @@ old row-dependent unused-branch route remains a historical
 injectivity for \texttt{bandedSparseAccessPaperImage} on
 \texttt{bandedSparseAccessPaperGlobalSlotSource}.
 
-\subsection{Cycle 1 Wrapper-Slot Freeze}
+\subsection{Cycle 1 Wrapper-Slot Freeze (Historical)}
 
-The route guard
+The historical route guard
 \texttt{oneTermRobinBlockEncodingProofRoute\_sourceDecisionWrapperSlotsBlocked\_n3}
-records that the concrete boundary column \(48\) still has no unused-branch
-image rule.  The direct
+recorded that the concrete boundary column \(48\) still had no unused-branch
+image rule in the row-dependent route.  This is now rejected-model memory, not
+the active \(O_D^{BS}\) blocker.  The direct
 \texttt{bandedSparseAccessUnusedBranchImageRuleContract} slot and the full
 clean-domain wrapper slot both keep \texttt{proposedImageIndex = none}; their
 image-specified obligations remain false.  The same guard keeps block
@@ -1662,9 +1684,9 @@ The frozen flag vector is
 The true entries are the local permutation certificates for
 \(U_{\mathrm{indic}}\) and SWAP.  The false entries are
 \(O_{D^T}^{S}\), \(R_y^{\mathrm{boundary}}\), \(O_D^{BS}\), \(O_f\), and
-\((O_D^{BS})^\dagger\).  The same guard keeps lower \(O_D^{BS}\) proof search
-disabled and keeps the theorem-level circuit-unitary and block-correctness
-flags false.
+\((O_D^{BS})^\dagger\).  The same guard keeps the active global-source cleanup
+scope from promoting any \(O_D^{BS}\) semantic theorem and keeps the
+theorem-level circuit-unitary and block-correctness flags false.
 
 This is a proof-state guard.  It does not add an unused-branch image rule,
 does not alter either active \(O_D^{BS}\) matrix, and does not prove
@@ -1897,6 +1919,592 @@ $n = 3$ (space $2^{13} = 8192$).
 A self-inverse function on a finite set is a bijection, and a 0/1 matrix
 induced by a bijection is a permutation matrix, which is unitary.  The
 remaining proof obligation is to formalize this chain in Lean for general~$n$.
+
+\subsection{2026-05-25 Active Route Retirement Sync}
+
+The theorem-route record no longer carries the historical
+\texttt{unusedZeroBranchDecision}, \texttt{priorSparseAccessSource}, or
+\texttt{robinZeroInclusionSource} fields.  Those source contracts remain
+separate cited-results and transcript memory, but the active \(O_D^{BS}\)
+route is now the global sparse-slot source selected by
+\texttt{bandedSparseAccessCleanupScopeDecision}.
+
+The current active route declarations are
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsActiveGlobalSlotBlockers},
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsActiveGlobalSlotGateFreeze},
+\texttt{oneTermRobinBlockEncodingProofRoute\_theoremTranscriptDependencies},
+and
+\texttt{oneTermRobinBlockEncodingProofRoute\_theoremTranscriptActiveCleanupMap}.
+For the \(n=3,\kappa=7\) regression,
+\texttt{oneTermRobinBlockEncodingProofRoute\_encodedOutOfRangeSparseSlot\_n3}
+records that a clean encoded sparse value \(s=7\) is outside the active source
+range, while
+\texttt{oneTermRobinBlockEncodingProofRoute\_rejectedRowDependentCollisionRegression\_n3}
+keeps the old row-dependent collision as rejected-model memory only.
+
+No semantic flag is promoted by this retirement.  The active route still keeps
+\texttt{daggerCleanup.proved}, \texttt{unitaryExtension.proved}, \(O_f\)
+amplitude correctness, LCU correctness, circuit unitarity, block projection,
+block correctness, resource bounds, ancilla cleanup, and final block
+extraction false.
+
+\subsection{2026-05-25 Derivative and Boundary Route Bridge}
+
+The theorem-route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_derivativeBoundaryContractMap}
+connects the existing \(O_{D^T}^{S}\) and boundary \(R_y\) source contracts to
+\texttt{oneTermRobinBlockEncodingProofRoute}.  It consumes
+\texttt{derivativeNormalizerNDSharedRoute\_sourceBoundAndFlags} and records
+that the two routes use the same coefficient source \(D_j^{(s)}\), the same
+normalizer symbol \(N_D\), and the same normalizer-bound obligation.
+
+The guard also pins the Fig.~1-term Robin gate positions: gate slot 1 is
+\(O_{D^T}^{S}\), and gate slot 2 is the boundary \(R_y\) rotation.  It does
+not prove the analytic identities behind Eq.~(20) or Eq.~\texttt{angles for
+Ry}; nonzero division by \(N_D\), coefficient bounds, absolute-square and
+square-root semantics, arccos semantics, half-angle identities, and
+two-by-two unitarity remain proof obligations.  The theorem-level circuit
+unitarity, \(O_f\) amplitude correctness, LCU correctness, projection,
+block-correctness, and final extraction flags remain false.
+
+\subsection{2026-05-25 Theorem Transcript Closure Packet}
+
+The guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_theoremTranscriptClosurePacket}
+is the current Phase~1 closure checkpoint for Theorem~\texttt{1 term robin}.
+It consumes the theorem source transcript, the layout/projection audit, the
+block-projection dependency map, and the full Fig.~\texttt{1 term ROBIN}
+gate-contract ledger.
+
+The packet records the paper source anchor, the Lemma~\texttt{Banded-sparse-access}
+image formula \(r_{si}=r_{s0}+i \bmod 2^n\), the GL2024 cited source anchor
+for \(O_f\), the theorem normalizer \(N_DN_f\kappa\), the theorem signal-count
+and \(2n\) pure-ancilla ledger, the signal-index-zero block convention, and
+the seven-gate proof-state vector
+\[
+  [\texttt{true},\texttt{false},\texttt{false},
+    \texttt{false},\texttt{false},\texttt{true},\texttt{false}].
+\]
+It also records that the \(O_{D^T}^{S}\) and boundary \(R_y\) routes share the
+same coefficient source \(D_j^{(s)}\).
+
+This is not a semantic block-encoding proof.  The closure packet keeps the
+resource-bound proof, ancilla cleanup, \(O_D^{BS}\) cleanup and unitary
+extension, \(O_f\) amplitude correctness, LCU correctness, circuit unitarity,
+block projection, block correctness, and final block extraction false.  Future
+lower packets should select one of these false dependencies explicitly rather
+than repeating the theorem-transcript wiring work.
+
+\subsection{2026-05-25 Finite Composition Contract}
+
+Lean now defines
+\texttt{oneTermRobinFiniteBlockCompositionContract} and the route guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_finiteBlockCompositionContractMap}.
+The contract is the current Lean-facing form of the finite matrix step behind
+Theorem~\texttt{1 term robin}.  It stores the existing circuit claim, the
+target \texttt{oneTermRobinBlockExtractionTarget}, the matrix
+\texttt{oneTermRobinAkMatrix n}, and the normalizer \(N_DN_f\kappa\).
+
+The source audit for this contract uses Theorem~\texttt{1 term robin},
+Eq.~\texttt{ROBIN clarified}, Fig.~\texttt{1 term ROBIN}, and the paper's
+block-encoding definition.  These anchors provide the theorem statement, the
+\(\gamma_3\) clean coefficient, the seven-gate circuit order, and the
+zero-signal projection convention.  The source does not give a separate finite
+matrix proof that the product of the seven gate matrices has the required
+signal-zero block.  QBE therefore records this step as a contract-only
+obligation, with the cited-results row \texttt{LCU.StandardBlockEncoding}
+serving only as background until an exact finite theorem is accepted.
+
+The contract fields
+\texttt{circuitUnitary}, \texttt{lcuComposition}, \texttt{blockProjection},
+\texttt{normalizedBlockEquality}, and \texttt{finalExtraction} all remain
+false.  The route-level LCU correctness, circuit unitarity, block projection,
+block correctness, resource-bound proof, ancilla cleanup, and final extraction
+also remain false.
+
+\subsection{2026-05-25 Derivative-Amplitude Entry Packet}
+
+The next fixed entry bridge concerns the derivative factor in the
+\(\gamma_3\) route.  Lemma~\texttt{Sparse-amplitude-oracle for a
+banded-sparse matrix} and Eq.~\texttt{amplitude\_oracle\_D} supply the
+ket-zero amplitude \(D^{(s)}/N_D\) for \(O_{D^T}^{S}\).  Eq.~\texttt{angles
+for Ry} supplies the boundary rotation angle
+\(\theta_j^s = \arccos(D_j^{(s)}/N_D)\).  Fig.~\texttt{1 term ROBIN} fixes
+these as gate slots 1 and 2 in the Lean route.
+
+The existing guard
+\texttt{oneTermRobinBlockEncodingProofRoute\_derivativeBoundaryContractMap}
+already pins the two gate slots and shares the same \(D_j^{(s)}\) source and
+\(N_D\) normalizer record.  The next lower target is a narrower entry bridge:
+\texttt{oneTermRobinBlockEncodingProofRoute\_odtsKetZeroEntry}.  Under the
+indicator-one and ancilla-zero hypotheses for a full-basis column, it should
+show that route gate slot 1 has entry
+\[
+  \texttt{sparseAmplitudeOracleDTCoefficientNormalizerProofRoute.ketZeroEntry}.
+\]
+If this theorem is stable, the same patch may add
+\texttt{oneTermRobinBlockEncodingProofRoute\_boundaryKetZeroEntry}, exposing
+the gate-slot 2 boundary entry
+\[
+  \texttt{BoundaryRotationAngleNormalizerProofRoute.cosHalfEntry}.
+\]
+
+These entry bridges are transcript links only.  They do not prove division by
+\(N_D\), the \(N_D\) bound, square-root semantics, arccos semantics,
+half-angle identities, two-by-two unitarity, the full seven-gate product, LCU
+composition, block projection, or final extraction.
+
+\subsection{2026-05-25 Boundary-Rotation Entry Packet}
+
+The declaration
+\texttt{oneTermRobinBlockEncodingProofRoute\_odtsKetZeroEntry} now covers the
+gate-slot 1 derivative-amplitude entry.  The next fixed theorem-facing packet
+is the analogous gate-slot 2 bridge for the boundary rotation.  Eq.~\texttt{angles for Ry} defines
+\[
+  \theta_j^s = \arccos(D_j^{(s)}/N_D)
+\]
+for boundary rows and sparse slots, while Fig.~\texttt{1 term ROBIN} places
+\(\mathrm{Ry}_{\mathrm{boundary}}\) immediately after \(O_{D^T}^{S}\) in the
+seven-gate route.
+
+The lower bridge
+\texttt{oneTermRobinBlockEncodingProofRoute\_boundaryKetZeroEntry} now compiles.
+For full basis indices \(i,j\), let
+\[
+  \texttt{regs}
+  =
+  \texttt{GHL2025.boundaryRotationPaperRegisters p j.val}.
+\]
+Under the hypotheses
+\(\texttt{regs.indicatorBit = 0}\),
+\(\texttt{regs.ancillaBit = 0}\),
+\(\texttt{i.val >>> 1 = regs.nonAncillaValue}\), and
+\(\texttt{i.val \&\&\& 1 = 0}\), the bridge shows that route gate slot
+2 has entry
+\[
+  \texttt{BoundaryRotationAngleNormalizerProofRoute.cosHalfEntry}.
+\]
+This statement is a transcript bridge only.  It leaves the arccos semantics,
+half-angle formulas, \(N_D\) bound, two-by-two unitarity, LCU composition,
+block projection, normalized block equality, and final extraction false.
+
+The focused Lean regression specializes to \(n=3\), boundary column \(0\), and
+boundary row \(0\).  It checks that route gate slot 2 equals
+\[
+  \texttt{Coeff.symbol "boundary\_cos\_half\_0\_0"}.
+\]
+The same test records that \(O_{D^T}^{S}\) unitarity, boundary-rotation
+unitarity, \(O_D^{BS}\) cleanup and unitarity, \(O_f\) amplitude correctness,
+LCU correctness, projection, block correctness, and theorem extraction all
+remain unproved obligations.
+
+\subsection{2026-05-25 Gamma3 Factor-Entry Ledger}
+
+The declaration
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3FactorEntryLedger}
+packages the currently compiled entry bridges for the future
+\(\gamma_3\) signal-block theorem.  It consumes
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3TargetEntryData},
+\texttt{oneTermRobinBlockEncodingProofRoute\_ofCleanFunctionOracleEntry},
+\texttt{oneTermRobinBlockEncodingProofRoute\_odtsKetZeroEntry},
+\texttt{oneTermRobinBlockEncodingProofRoute\_boundaryKetZeroEntry}, and
+\texttt{oneTermRobinBlockEncodingProofRoute\_odbsActiveGlobalSourceCleanupContractMap}.
+
+The source anchors are Theorem~\texttt{1 term robin},
+Eq.~\texttt{ROBIN clarified}, Fig.~\texttt{1 term ROBIN},
+Lemma~\texttt{Banded-sparse-access-oracle},
+Lemma~\texttt{Sparse-amplitude-oracle for a banded-sparse matrix}, and
+Theorem~\texttt{Amplitude-oracle for piece-wise polynomial function}.  The
+ledger exposes the target entry and normalizer \(N_DN_f\kappa\), the clean
+\(O_f\) entry \(f(x_i)/N_f\), the \(O_{D^T}^{S}\) ket-zero symbolic entry,
+the boundary \(R_y\) ket-zero symbolic entry, and the active global-source
+\((O_D^{BS})^\dagger\) cleanup entry.
+
+This is still a transcript ledger.  It does not prove the finite product of
+the seven gate matrices, the normalized block equality, the LCU composition
+step, full \(O_D^{BS}\) cleanup, \(O_f\) amplitude correctness, circuit
+unitarity, block projection, block correctness, or final extraction.  The
+focused Lean regression at \(n=3\) checks the entries
+\texttt{f\_3\_2 * N\_f\_inv},
+\texttt{odts\_cos\_half\_2\_0},
+\texttt{boundary\_cos\_half\_0\_0}, and the active dagger entry
+\texttt{Coeff.rat 1}, while keeping all semantic flags false.
+
+\subsection{2026-05-25 Ak Target-Matrix Rewire}
+
+The theorem target is the one-term matrix \(A_k\), not the derivative matrix
+\(D\) alone.  The paper states Theorem~\texttt{1 term robin} for the
+discretized operator \(A_k \sim f(x)\partial^m/\partial x^m\), and the
+\(\gamma_3\) line of Eq.~\texttt{ROBIN clarified} has coefficient
+\[
+  \frac{f(x_i)(D)_i^{(s)}}{N_DN_f\kappa}.
+\]
+Thus the Lean target must expose entries
+\[
+  (A_k)_{ij}=f(x_i)D_{ij}.
+\]
+
+The drift is now corrected in the Lean transcript.  The declaration
+\texttt{oneTermRobinAkMatrix} uses the existing
+\texttt{GHL2025.robinFunctionValue} and \texttt{robinDerivativeMatrix}, and
+\texttt{oneTermRobinAkMatrix\_apply} exposes the entry formula above.  The
+block-extraction target, finite-composition contract, theorem route, and
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3TargetEntryData} now point
+to this row-scaled matrix.
+
+This correction is still Phase~1 transcript work.  It does not promote
+\(\Uf\) amplitude correctness, LCU composition, normalized block equality,
+block projection, block correctness, cleanup, unitarity, or final extraction.
+The follow-on contract
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3AkCoefficientEntryContract}
+now compiles and synchronizes this Ak entry with the product-entry and
+factor-entry ledgers while leaving all semantic flags false.
+
+\subsection{2026-05-25 Gamma3 Product-To-Coefficient Interface}
+
+The declaration
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3ProductToCoefficientInterface}
+now names the remaining finite entry theorem for the \(\gamma_3\) branch.
+It consumes
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3AkCoefficientEntryContract}
+and introduces
+\texttt{oneTermRobinGamma3ProductToCoefficientObligation}.  The source target
+is the entry equality
+\[
+  \bigl(\langle 0| \otimes I\bigr)U_{A_k}^{(1)}
+  \bigl(|0\rangle \otimes I\bigr)_{ij}
+  =
+  \frac{(A_k)_{ij}}{N_DN_f\kappa}
+  =
+  \frac{f(x_i)D_{ij}}{N_DN_f\kappa}.
+\]
+
+This interface is not a proof of the equality.  It exposes the signal-zero
+product entry, the Ak expansion \(A_{k,ij}=f(x_i)D_{ij}\), the inherited
+factor entries for \(O_f\), \(O_{D^T}^{S}\), \(R_y^{\mathrm{boundary}}\), and
+the active global-source \(O_D^{BS}\) cleanup entry.  It also records that
+LCU composition, normalized block equality, cleanup, unitarity, projection,
+block correctness, circuit unitarity, and final extraction remain false.
+
+The next lower packet is a focused proof attempt, not another guard.  It
+should use the \(n=3\) specialization with source column \(48\), clean
+\(O_f\) column \(36\), \(O_{D^T}^{S}\) column \(132\), boundary column \(0\),
+and target entry \((2,5)\).  An accepted result is either a compiled equality
+or path-isolation lemma that materially advances the finite product proof.  If
+the equality cannot yet be stated or proved, lower must update
+\texttt{proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md} with the
+exact Lean goal and missing interface.  No semantic flag may be promoted in
+that attempt.
+
+\subsection{2026-05-25 Gamma3 Projection Layout Audit}
+
+The focused product attempt exposed a projection-layout drift before the
+unique-path lemma could be applied.  The compiled declaration
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3ProjectionPathAudit\_n3}
+shows that the current generic block helper sends the system entry
+\((2,5)\) to the full matrix entry \((2,5)\).  Along the executable gate
+images, the forward branch from full column \(5\) reaches the final dagger
+column \(160\), where row \(2\) has entry \(0\).  The previously ledgered
+columns \(48\), \(36\), \(132\), and \(0\) are therefore separate source and
+factor witnesses, not one seven-gate path for the projected entry.
+
+The paper ket order in Eq.~\texttt{ROBIN clarified} explains the mismatch.
+The clean \(\gamma_3\) ket has the form
+\[
+  |0\rangle^{m_f+1}|s\rangle^{\lceil\log_2\kappa\rceil}
+  |0\rangle^{n-\lceil\log_2\kappa\rceil}|j\rangle^n|0\rangle .
+\]
+In the Lean register layout, the rightmost paper ancilla is bit \(0\), and
+the system register occupies bits \([1,1+n)\).  Thus a clean paper-basis index
+has the form
+\[
+  (s \ll (1+n+odPure)) + (j \ll 1),
+  \qquad odPure=n-\lceil\log_2\kappa\rceil .
+\]
+For \(n=3\) and \(\kappa=7\), this becomes
+\[
+  (s \ll 4) + (j \ll 1).
+\]
+The zero-sparse system values \(2\) and \(5\) therefore correspond to full
+indices \(4\) and \(10\), not to \(2\) and \(5\).
+
+This is classified as contract drift in the Lean projection convention.  The
+Robin-specific layout bridge has now compiled as
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3PaperBasisLayout\_n3}.  It
+proves the paper clean-basis index formula against the existing register
+extractors for the focused \(n=3\), \(\kappa=7\), sparse-slot-zero branch, and
+it records the full endpoints \((4,10)\).
+
+The next lower packet should audit the Fig.~\texttt{1 term ROBIN} path from
+column \(10\) to row \(4\), suggested as
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3PaperBasisPathAudit\_n3}.
+It should list the adjacent states through
+\(U_{\mathrm{indic}}\), \(O_{D^T}^{S}\), \(R_y^{\mathrm{boundary}}\),
+\(O_D^{BS}\), \(O_f\), SWAP, and \((O_D^{BS})^\dagger\) before applying
+\texttt{Matrix.evalWith\_mul\_unique\_path}.  Product-to-coefficient,
+signal-block, LCU, cleanup, unitarity, projection, block correctness, circuit
+unitarity, normalized equality, and final extraction remain false.
+
+\subsection{2026-05-25 Gamma3 Paper-Basis Path Audit}
+
+The compiled declaration
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3PaperBasisPathAudit\_n3}
+audits the Fig.~\texttt{1 term ROBIN} gate order at the paper-basis endpoint
+\((4,10)\) for the focused \(n=3\), \(\kappa=7\), sparse-slot-zero branch.
+The ket-zero branch from column \(10\) is
+\[
+10 \xrightarrow{U_{\mathrm{indic}}} 138
+   \xrightarrow{O_{D^T}^{S}} 138
+   \xrightarrow{R_y^{\mathrm{boundary}}} 138
+   \xrightarrow{O_D^{BS}} 186
+   \xrightarrow{O_f} 186
+   \xrightarrow{\mathrm{SWAP}} 214
+   \xrightarrow{(O_D^{BS})^\dagger} 198 .
+\]
+The final dagger column is \(214\).  Row \(198\) has dagger entry \(1\), while
+the paper clean row \(4\) has dagger entry \(0\).
+
+The first decisive mismatch is the active \(O_D^{BS}\) address.  At column
+\(138\), the extracted row is \(5\) and the sparse slot is \(0\), so the
+global sparse-slot address writes \(3\).  After SWAP, the visible system field
+is \(3\), not the target paper row \(2\).  The next proof obligation is
+therefore to map the paper coefficient \(D_{ij}\) to the correct sparse slot
+or projection convention before applying
+\texttt{Matrix.evalWith\_mul\_unique\_path}.  Product-to-coefficient,
+signal-block, LCU, cleanup, unitarity, projection, block correctness, circuit
+unitarity, normalized equality, and final extraction remain false.
+
+For the focused entry \(D_{2,5}\), the next lower packet should first audit the
+global sparse slot satisfying \(r_{s,5}=2\).  The slot-zero audit is retained as
+negative evidence: it proves \(r_{0,5}=3\) in the active global-slot table and
+therefore cannot be multiplied into the desired coefficient path.  This is a
+finite register-index obligation and a projection-slot contract question; it
+is not a new external theorem.
+
+\subsection{2026-05-25 Gamma3 Projection-Slot Convention}
+
+The focused coefficient \(D_{2,5}\) uses sparse slot \(5\), since the active
+global sparse-address table gives \(r_{5,5}=2\).  Lean records this
+projection-slot handoff in
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3ProjectionSlotConventionMap\_n3}.
+The compiled endpoint facts are
+\[
+  \text{generic projection endpoints }(2,5),
+  \qquad
+  \text{slot-}5\text{ clean endpoints }(84,90),
+\]
+with
+\[
+  O_D^{BS}(90)=42,
+  \qquad
+  \mathrm{SWAP}(42)=84,
+  \qquad
+  U_{\mathrm{indic}}(90)=218 .
+\]
+The corresponding source-contract obligation is
+\texttt{oneTermRobinGamma3ProjectionSlotConventionObligation}.  It asks for
+the theorem-level convention that relates a slot-specific clean branch in
+Eq.~\texttt{ROBIN clarified} to the block projection or sparse-register
+summation in Definition~\texttt{def:block-encoding}.  This obligation is
+compiled with \texttt{proved = false}.
+
+The next lower packet should audit the Fig.~\texttt{1 term ROBIN} gate path
+for source column \(90\) and candidate row \(84\).  It should not promote the
+projection-slot convention, product-to-coefficient equality, LCU composition,
+cleanup, unitarity, block projection, block correctness, circuit unitarity,
+normalized equality, or final extraction.
+
+\subsection{2026-05-25 Gamma3 Slot-5 Path Audit}
+
+The compiled declaration
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3Slot5PathAudit\_n3}
+audits the Fig.~\texttt{1 term ROBIN} gate order for the slot-\(5\)
+coefficient path of \(D_{2,5}\).  The clean sparse-access subchain is
+\[
+  90 \xrightarrow{O_D^{BS}} 42 \xrightarrow{\mathrm{SWAP}} 84,
+\]
+but this is not the full circuit path, because
+\(U_{\mathrm{indic}}\) is the first gate in Fig.~\texttt{1 term ROBIN}.  The
+ket-zero branch through the seven active gates is
+\[
+  90 \to 218 \to 218 \to 218 \to 170 \to 170 \to 212 \to 228.
+\]
+The final dagger entry at row \(228\), column \(212\) is \(1\), while the entry
+at the clean slot-\(5\) row \(84\), column \(212\) is \(0\).  The final row
+has sparse-index value \(6\), while the clean row has sparse-index value \(5\).
+
+Middle re-read Theorem~\texttt{1 term robin}, Eq.~\texttt{ROBIN clarified},
+Fig.~\texttt{1 term ROBIN}, Lemma~\texttt{Banded-sparse-access-oracle}, Lemma
+\texttt{Sparse-amplitude-oracle for a banded-sparse matrix}, and
+Definition~\texttt{def:block-encoding}.  The source gives the clean
+\(\gamma_3\) ket and the circuit, but it does not include a finite
+basis-index proof that identifies row \(228\) with row \(84\), nor does it
+state a sparse-register summation or basis-permutation convention after the
+full seven-gate product.  The remaining blocker is therefore a
+projection/register source-contract gap plus local register arithmetic, not a
+new external theorem and not another product-fold search.
+
+The next lower packet should compile a field-level audit, suggested as
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3Slot5ProjectionRegisterAudit\_n3}.
+It should compare the indicator bit, trailing ancilla bit, system value,
+padded \(\ODBS\) zero field, sparse-index value, \(m_f\) clean workspace, and
+active-source predicate for states \(90\), \(218\), \(170\), \(212\), \(228\),
+and \(84\).  Product-to-coefficient, signal-block, LCU, cleanup, unitarity,
+projection, block correctness, circuit unitarity, normalized equality, and
+final extraction remain false.
+
+\subsection{2026-05-25 Gamma3 Projection/Register Decision}
+
+The requested field-level audit now compiles as
+\texttt{oneTermRobinBlockEncodingProofRoute\_gamma3Slot5ProjectionRegisterAudit\_n3}.
+It compares the full Fig.~\texttt{1 term ROBIN} endpoint \(228\) with the
+clean Eq.~\texttt{ROBIN clarified} endpoint \(84\) for the focused
+slot-\(5\) coefficient of \(D_{2,5}\).  The comparison records that the
+system row, padded \(\ODBS\) zero field, trailing ancilla bit, \(m_f\)
+clean-workspace predicate, and active-source predicate agree.  The first
+mismatch in the requested comparison order is the indicator bit:
+row \(228\) has indicator \(1\), while row \(84\) has indicator \(0\).
+The sparse-index field also differs, with row \(228\) carrying sparse index
+\(6\) and row \(84\) carrying sparse index \(5\).
+
+Middle promoted this result only to a decision record,
+\texttt{oneTermRobinGamma3ProjectionRegisterConventionDecision\_n3}, with
+transcript theorem
+\texttt{oneTermRobinGamma3ProjectionRegisterConventionDecision\_n3\_transcript}.
+The record states that the required convention is still a source-contract gap
+and that product search is blocked.  It does not prove the
+\(\gamma_3\) product-to-coefficient equality, normalized block equality, LCU
+composition, cleanup, unitarity, block projection, block correctness, circuit
+unitarity, or final extraction.
+
+The next action is not another lower-agent multiplication attempt.  A source
+or human decision must first choose one exact Lean-facing convention relating
+the full endpoint \(228\) to the clean endpoint \(84\): a sparse-register
+summation rule, a basis-permutation bridge, or a revised block-projection
+layout.  After that convention is fixed as a theorem statement, lower work may
+resume on a single product-to-coefficient target.
+
+\subsection{2026-05-25 Gamma3 Sparse-Register Summation Convention}
+
+The chosen convention statement now compiles as
+\texttt{oneTermRobinGamma3SparseRegisterSummationConvention\_n3}, with
+transcript theorem
+\texttt{oneTermRobinGamma3SparseRegisterSummationConvention\_n3\_transcript}.
+It selects sparse-register summation for the focused \(n=3\), system-entry
+\((2,5)\) gamma3 audit because Eq.~\texttt{ROBIN clarified} writes the
+\(\gamma_3\) branch as a sum over \(s=0,\dots,\kappa-1\).
+
+The compiled record keeps the endpoint facts explicit:
+\[
+\begin{array}{c|ccc}
+\text{endpoint} & \text{system row} & \text{indicator} & \text{sparse index} \\
+\hline
+84 & 2 & 0 & 5 \\
+228 & 2 & 1 & 6
+\end{array}
+\]
+The convention is therefore only a contract map.  It does not prove that the
+current block projection implements sparse-register summation, and it does not
+absorb the indicator mismatch.  The field
+\texttt{indicatorMismatchObligation.proved = false} remains the next explicit
+projection/register obligation before any gamma3 product-to-coefficient proof
+search resumes.
+
+\subsection{2026-05-25 Gamma3 Indicator-Field Gap}
+
+The lower indicator-field check now compiles as
+\texttt{oneTermRobinGamma3SparseRegisterSummation\_indicatorGap\_n3}.  It
+reuses the sparse-register summation convention and records that this
+convention does not explain the indicator bit: the clean endpoint \(84\) has
+indicator \(0\), while the full endpoint \(228\) has indicator \(1\).  The
+system row still agrees, and the sparse-index mismatch remains secondary
+evidence.
+
+The next proof-map target is an exact indicator projection/register convention
+for the same endpoint pair.  It must be tied to Eq.~\texttt{ROBIN clarified},
+Fig.~\texttt{1 term ROBIN}, and Definition~\texttt{def:block-encoding}.  Until
+that convention is stated, product-to-coefficient search, LCU correctness,
+block projection, block correctness, normalized block equality, and final
+extraction remain false.
+
+\subsection{2026-05-25 Gamma3 Indicator Projection Convention}
+
+The indicator projection convention now compiles as
+\texttt{oneTermRobinGamma3IndicatorProjectionConvention\_n3}, with transcript
+theorem
+\texttt{oneTermRobinGamma3IndicatorProjectionConvention\_n3\_transcript}.
+The source audit reread Eq.~\texttt{ROBIN clarified},
+Fig.~\texttt{1 term ROBIN}, the paragraph defining
+$U_{\mathrm{indic}}$, and Definition~\texttt{def:block-encoding}.  These
+anchors specify the clean $\gamma_3$ branch and the fact that
+$U_{\mathrm{indic}}$ sets the bulk indicator, but they do not state a reset,
+summation, or basis-permutation rule for the indicator field after
+sparse-register summation.
+
+\[
+\begin{array}{c|cc}
+\text{field} & \text{clean endpoint }84 & \text{full endpoint }228 \\
+\hline
+\text{indicator} & 0 & 1 \\
+\text{source relation specified} & \multicolumn{2}{c}{\text{false}} \\
+\end{array}
+\]
+
+The compiled record therefore keeps
+\texttt{conventionObligation.proved = false}.  This is classified as a
+source-contract gap plus an internal paper-step interface, not as a finite
+matrix multiplication problem.  The next lower packet must either replace this
+false obligation with one source-backed projection/register rule, or keep the
+gamma3 product-to-coefficient route blocked.  No LCU, projection,
+block-correctness, normalized equality, cleanup, unitarity, or final-extraction
+flag is promoted by this convention record.
+
+\subsection{2026-05-25 Gamma3 Human-Input Freeze}
+
+The middle source-dependency audit now treats the indicator-field relation as a
+human or source-backed convention decision.  The Lean record
+\texttt{oneTermRobinGamma3IndicatorProjectionConvention\_n3} has
+\texttt{indicatorRelationSpecifiedBySource = false},
+\texttt{humanInputRequired = true}, and
+\texttt{conventionObligation.proved = false}.  This states that the current
+GHL2025 transcript does not specify how the theorem-level projection should
+relate the full endpoint \(228\), where the indicator is \(1\), to the clean
+endpoint \(84\), where the indicator is \(0\).
+
+The next accepted lower step must supply one source-backed projection/register
+rule for this indicator field or leave the gamma3 product-to-coefficient proof
+blocked.  Sparse-register summation alone is not a proof of the indicator
+relation.
+
+\subsection{2026-05-25 Gamma3 Bulk-Indicator Source Audit}
+
+The focused source-column audit now compiles as
+\texttt{oneTermRobinGamma3BulkIndicatorSourceAudit\_n3}, with transcript
+theorem
+\texttt{oneTermRobinGamma3BulkIndicatorSourceAudit\_n3\_transcript}.  For the
+focused \(n=3\) gamma3 entry, the source column is \(j=5\).  The paper's
+\(U_{\mathrm{indic}}\) paragraph sets the indicator qubit to \(1\) for the
+bulk window \(K_1 \leq j \leq K_2\).  In the active one-term Robin audit,
+\(K_1=2\) and \(K_2=5\), so Lean records \(j=5\) as a bulk column.
+
+\[
+\begin{array}{c|ccc}
+\text{endpoint} & \text{indicator} & \text{matches source bulk indicator} & \text{role} \\
+\hline
+228 & 1 & \text{true} & \text{full Fig.~\texttt{1 term ROBIN} endpoint} \\
+84 & 0 & \text{false} & \text{clean Eq.~\texttt{ROBIN clarified} endpoint}
+\end{array}
+\]
+
+This audit refines the source-contract gap.  The indicator \(1\) at endpoint
+\(228\) is source-backed, not an artifact of the Lean encoding.  The remaining
+missing ingredient is still the projection/register rule that relates the full
+endpoint \(228\) to the clean endpoint \(84\).  The record keeps
+\texttt{sourceStatesResetRule = false},
+\texttt{conventionObligationProved = false}, and
+\texttt{productSearchBlocked = true}.  Product-to-coefficient equality, LCU
+composition, cleanup, unitarity, block projection, block correctness,
+normalized equality, and final extraction remain false.
 
 \subsection{Automation Rule}
 
