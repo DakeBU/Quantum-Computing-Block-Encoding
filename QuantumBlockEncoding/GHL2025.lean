@@ -3565,12 +3565,87 @@ def robinSparseAmplitudeValue (n s i : Nat) : Coeff :=
     Coeff.rat 0
 
 /--
+Global sparse-slot coefficient source for the one-term Robin table.
+
+Unlike `robinSparseAmplitudeValue`, the sparse index is interpreted through
+the active global slot table used by `oneTermRobinGlobalSparseAddress`.
+Thus slot `2` is the zero-offset diagonal slot in every row. Boundary slots
+that are present in the global sparse register but absent from the Robin row
+carry coefficient `0`; the slot itself is not deleted.
+Guseynov-Huang-Liu 2025, Lemma `Diagonal sparsity`, Lemma
+`Banded-sparse-access-oracle`, the zero-inclusion paragraph before Theorem
+`1 term robin`, and Eq. `ROBIN clarified`, arXiv:2506.20478.
+-/
+def robinGlobalSparseAmplitudeValue (n s i : Nat) : Coeff :=
+  let N := gridSize n
+  let K1 := 2
+  let K2 := N - 3
+  if K1 ≤ i ∧ i ≤ K2 then
+    match s with
+    | 0 => Coeff.rat ((-1 : Rat) / 12)
+    | 1 => Coeff.rat ((4 : Rat) / 3)
+    | 2 => Coeff.rat ((-5 : Rat) / 2)
+    | 3 => Coeff.rat ((4 : Rat) / 3)
+    | 4 => Coeff.rat ((-1 : Rat) / 12)
+    | _ => Coeff.rat 0
+  else if i = 0 then
+    match s with
+    | 2 => Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+        (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx"))
+    | 3 => Coeff.rat ((8 : Rat) / 3)
+    | 4 => Coeff.rat ((-1 : Rat) / 6)
+    | _ => Coeff.rat 0
+  else if i = 1 then
+    match s with
+    | 1 => Coeff.add (Coeff.rat ((4 : Rat) / 3))
+        (Coeff.neg (Coeff.mul (Coeff.rat ((1 : Rat) / 6)) (Coeff.symbol "A1*dx")))
+    | 2 => Coeff.rat ((-31 : Rat) / 12)
+    | 3 => Coeff.rat ((4 : Rat) / 3)
+    | 4 => Coeff.rat ((-1 : Rat) / 12)
+    | _ => Coeff.rat 0
+  else if i = N - 2 then
+    match s with
+    | 0 => Coeff.rat ((-1 : Rat) / 12)
+    | 1 => Coeff.rat ((4 : Rat) / 3)
+    | 2 => Coeff.rat ((-31 : Rat) / 12)
+    | 3 => Coeff.add (Coeff.rat ((4 : Rat) / 3))
+        (Coeff.mul (Coeff.rat ((1 : Rat) / 6)) (Coeff.symbol "B1*dx"))
+    | _ => Coeff.rat 0
+  else if i = N - 1 then
+    match s with
+    | 0 => Coeff.rat ((-1 : Rat) / 6)
+    | 1 => Coeff.rat ((8 : Rat) / 3)
+    | 2 => Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+        (Coeff.neg (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "B1*dx")))
+    | _ => Coeff.rat 0
+  else
+    Coeff.rat 0
+
+/-- Focused boundary regression: global slot `2` is the row-`0` diagonal. -/
+theorem robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3 :
+    robinGlobalSparseAmplitudeValue 3 2 0 =
+      Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+        (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")) := by
+  native_decide
+
+/--
+The focused global slot is not the old row-local sparse entry.
+
+This records the contract drift found by the gamma3 boundary packet without
+promoting any analytic normalizer or block-encoding flag.
+-/
+theorem robinGlobalSparseAmplitudeValue_boundarySlot2_differs_rowLocal_n3 :
+    robinGlobalSparseAmplitudeValue 3 2 0 ≠
+      robinSparseAmplitudeValue 3 2 0 := by
+  native_decide
+
+/--
 Shared Phase-1 contract for every paper route that uses the normalized
 derivative coefficient `D_j^(s) / N_D`.
 
 Both Lemma 3 `O_DT^S` and the boundary `R_y` angle formulas use the same
-coefficient source and the same normalizer symbol `N_D`.  This record keeps
-the common analytic gaps in one Lean object: nonzero normalizer, division
+global sparse-slot coefficient source and the same normalizer symbol `N_D`.
+This record keeps the common analytic gaps in one Lean object: nonzero normalizer, division
 semantics, coefficient bound, absolute-square semantics, square-root
 complement, arccos semantics, and two-by-two unitarity.  It is a contract
 only; every obligation is false in Phase 1.
@@ -3607,10 +3682,10 @@ def derivativeNormalizerNDContract
   sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), Fig. 1-term Robin, and boundary Ry equations, arXiv:2506.20478"
   rowValue := row
   sparseIndexValue := sparse
-  coefficient := robinSparseAmplitudeValue p.n sparse row
+  coefficient := robinGlobalSparseAmplitudeValue p.n sparse row
   normalizerND := Coeff.symbol "N_D"
   normalizedCoefficient :=
-    Coeff.mul (robinSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
+    Coeff.mul (robinGlobalSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
   normalizedCoefficientFormula := "D_j^(s) / N_D"
   nonzeroNormalizer := {
     description := "prove N_D is nonzero before interpreting D_j^(s) / N_D"
@@ -3651,7 +3726,7 @@ def derivativeNormalizerNDContract
 theorem derivativeNormalizerNDContract_coefficient
     (p : OneTermRobinParameters) (row sparse : Nat) :
     (derivativeNormalizerNDContract p row sparse).coefficient =
-      robinSparseAmplitudeValue p.n sparse row := rfl
+      robinGlobalSparseAmplitudeValue p.n sparse row := rfl
 
 theorem derivativeNormalizerNDContract_normalizerND
     (p : OneTermRobinParameters) (row sparse : Nat) :
@@ -3661,7 +3736,7 @@ theorem derivativeNormalizerNDContract_normalizerND
 theorem derivativeNormalizerNDContract_normalizedCoefficient
     (p : OneTermRobinParameters) (row sparse : Nat) :
     (derivativeNormalizerNDContract p row sparse).normalizedCoefficient =
-      Coeff.mul (robinSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv") := rfl
+      Coeff.mul (robinGlobalSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv") := rfl
 
 /--
 Phase-1 source/bound view for the shared `N_D` normalizer contract.
@@ -3706,7 +3781,7 @@ def derivativeNormalizerNDSourceBound
 theorem derivativeNormalizerNDSourceBound_sourceCoefficient
     (p : OneTermRobinParameters) (row sparse : Nat) :
     (derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient =
-      robinSparseAmplitudeValue p.n sparse row := rfl
+      robinGlobalSparseAmplitudeValue p.n sparse row := rfl
 
 theorem derivativeNormalizerNDSourceBound_normalizerND
     (p : OneTermRobinParameters) (row sparse : Nat) :
@@ -3886,8 +3961,8 @@ structure SparseAmplitudeOracleDTCoefficientNormalizerContract where
 deriving Repr, DecidableEq
 
 /--
-Default Eq. (20) coefficient-normalizer contract for a Robin row and sparse
-index.  The coefficient is `robinSparseAmplitudeValue p.n sparse row`; the
+Default Eq. (20) coefficient-normalizer contract for a Robin row and global
+sparse slot. The coefficient is `robinGlobalSparseAmplitudeValue p.n sparse row`; the
 rotation entries are the symbols used by `sparseAmplitudeOracleDTRotationMatrix`.
 -/
 def sparseAmplitudeOracleDTCoefficientNormalizerContract
@@ -3896,7 +3971,7 @@ def sparseAmplitudeOracleDTCoefficientNormalizerContract
   sourceAnchor := "Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), arXiv:2506.20478"
   rowValue := row
   sparseIndexValue := sparse
-  coefficient := robinSparseAmplitudeValue p.n sparse row
+  coefficient := robinGlobalSparseAmplitudeValue p.n sparse row
   normalizerND := Coeff.symbol "N_D"
   ketZeroEntry := sparseAmplitudeOracleDTCosHalf row sparse
   ketOneEntry := sparseAmplitudeOracleDTSinHalf row sparse
@@ -3927,7 +4002,7 @@ unit interval required by Eq. (20); those remain separate obligations.
 -/
 def sparseAmplitudeOracleDTNormalizedCoefficient
     (p : OneTermRobinParameters) (row sparse : Nat) : Coeff :=
-  Coeff.mul (robinSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
+  Coeff.mul (robinGlobalSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
 
 /--
 Refined proof route for the `odts_coeff_normalizer` block.
@@ -4039,7 +4114,7 @@ For columns whose indicator bit is 0, the matrix acts as identity.  For columns
 whose indicator bit is 1, it preserves every non-ancilla bit and applies a
 symbolic two-by-two rotation on ancilla bit 0.  The symbols are indexed by the
 extracted row and sparse-index values; their connection to the Eq. (20)
-amplitudes determined by `robinSparseAmplitudeValue p.n sparse row / N_D`
+amplitudes determined by `robinGlobalSparseAmplitudeValue p.n sparse row / N_D`
 remains the coefficient-normalizer proof obligation.
 Guseynov-Huang-Liu 2025, Lemma 3, arXiv:2506.20478. -/
 def sparseAmplitudeOracleDTRotationMatrix (p : OneTermRobinParameters) :
@@ -4166,8 +4241,8 @@ structure BoundaryRotationAngleNormalizerContract where
 deriving Repr, DecidableEq
 
 /--
-Default `Ry_boundary` angle/normalizer contract for one Robin row and sparse
-index.  The coefficient is `robinSparseAmplitudeValue p.n sparse row`; the
+Default `Ry_boundary` angle/normalizer contract for one Robin row and global
+sparse slot. The coefficient is `robinGlobalSparseAmplitudeValue p.n sparse row`; the
 rotation entries are the symbols used by `boundaryRotationMatrix`.
 -/
 def boundaryRotationAngleNormalizerContract
@@ -4176,7 +4251,7 @@ def boundaryRotationAngleNormalizerContract
   sourceAnchor := "Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Eq. angles for Ry, arXiv:2506.20478"
   rowValue := row
   sparseIndexValue := sparse
-  coefficient := robinSparseAmplitudeValue p.n sparse row
+  coefficient := robinGlobalSparseAmplitudeValue p.n sparse row
   normalizerND := Coeff.symbol "N_D"
   thetaFormula := "theta_j^s = arccos(D_j^(s) / N_D)"
   cosHalfEntry := boundaryRotationCosHalf row sparse
@@ -4211,12 +4286,12 @@ def boundaryRotationAngleNormalizerContract
 
 /--
 The coefficient source of the `Ry_boundary` angle contract is definitionally
-the Robin sparse amplitude data layer.
+the Robin global sparse-slot amplitude data layer.
 -/
 theorem boundaryRotationAngleNormalizerContract_coefficient
     (p : OneTermRobinParameters) (row sparse : Nat) :
     (boundaryRotationAngleNormalizerContract p row sparse).coefficient =
-      robinSparseAmplitudeValue p.n sparse row := rfl
+      robinGlobalSparseAmplitudeValue p.n sparse row := rfl
 
 /--
 Symbolic stand-in for the paper argument `D_j^(s) / N_D`.
@@ -4227,7 +4302,7 @@ semantics and nonzero normalizer condition remain explicit obligations.
 -/
 def boundaryRotationNormalizedCoefficient
     (p : OneTermRobinParameters) (row sparse : Nat) : Coeff :=
-  Coeff.mul (robinSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
+  Coeff.mul (robinGlobalSparseAmplitudeValue p.n sparse row) (Coeff.symbol "N_D_inv")
 
 /--
 Refined proof route for the `ryb_angle_normalizer` block.
@@ -4333,6 +4408,25 @@ theorem derivativeNormalizerNDSourceBound_sharedRoutes
     (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).normalizerBound =
       (boundaryRotationAngleNormalizerProofRoute p row sparse).normalizerBound := by
   exact ⟨rfl, rfl, rfl⟩
+
+/--
+Bridge showing that the shared `N_D` route is now sourced from the active
+global sparse-slot coefficient table.
+
+This only wires coefficient data through the existing contracts. It does not
+prove the analytic division, arccos, half-angle, or unitarity obligations.
+-/
+theorem robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes
+    (p : OneTermRobinParameters) (row sparse : Nat) :
+    (derivativeNormalizerNDSourceBound p row sparse).sourceCoefficient =
+      robinGlobalSparseAmplitudeValue p.n sparse row ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+      robinGlobalSparseAmplitudeValue p.n sparse row ∧
+    (boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient =
+      robinGlobalSparseAmplitudeValue p.n sparse row ∧
+    (sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p row sparse).coefficient =
+      (boundaryRotationAngleNormalizerProofRoute p row sparse).coefficient := by
+  exact ⟨rfl, rfl, rfl, rfl⟩
 
 /--
 Honest Ry_boundary matrix: controlled R_y rotation on the ancilla qubit (bit 0),

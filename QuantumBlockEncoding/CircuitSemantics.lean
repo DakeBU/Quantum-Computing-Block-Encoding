@@ -120,6 +120,28 @@ private theorem foldl_add_zero_of_all_zero {β : Type u}
             rw [hkzero, Rat.add_zero]
         _ = acc := ih acc htail
 
+/--
+Evaluate one matrix-product entry as zero when every evaluated path contribution
+is zero.
+
+This is the zero-support companion to `evalWith_mul_unique_path`.  It lets
+paper-specific product proofs avoid expanding a large symbolic `Coeff` fold
+when they have already isolated gate-local support facts.
+-/
+theorem evalWith_mul_eq_zero_of_all_paths_zero
+    (env : String → Rat) {rows mid cols : Nat}
+    (A : Matrix rows mid Coeff) (B : Matrix mid cols Coeff)
+    (i : Fin rows) (j : Fin cols)
+    (hzero : ∀ k : Fin mid,
+      Coeff.evalWith env (A i k) * Coeff.evalWith env (B k j) = 0) :
+    Coeff.evalWith env (Matrix.mul A B i j) = 0 := by
+  rw [evalWith_mul_apply]
+  exact foldl_add_zero_of_all_zero (List.finRange mid)
+    (fun k => Coeff.evalWith env (A i k) * Coeff.evalWith env (B k j))
+    0 (by
+      intro k _hmem
+      exact hzero k)
+
 private theorem foldl_add_unique_of_nodup {β : Type u} [DecidableEq β]
     (ks : List β) (f : β → Rat) (k0 : β)
     (hnodup : ks.Nodup)
@@ -223,7 +245,56 @@ theorem evalWith_mul_unique_path
       intro k _hmem hne
       exact hzero k hne)
 
+/--
+Evaluating a symbolic matrix after multiplying on the right by the identity
+recovers the evaluated entry.
+
+The statement is evaluation-level, not syntactic: `Coeff` deliberately stores
+matrix products as explicit fold expressions, so the raw `Coeff` term still
+contains zero summands.
+-/
+theorem evalWith_mul_identity_right_apply
+    (env : String → Rat) {n : Nat}
+    (A : Matrix n n Coeff) (i j : Fin n) :
+    Coeff.evalWith env (Matrix.mul A (Matrix.identity n Coeff) i j) =
+      Coeff.evalWith env (A i j) := by
+  rw [evalWith_mul_unique_path env A (Matrix.identity n Coeff) i j j]
+  · simp [Matrix.identity, Coeff.evalWith]
+  · intro k hk
+    simp [Matrix.identity, hk, Coeff.evalWith]
+
+/--
+Entry-level bridge for square matrix casts along a dimension equality.
+
+This keeps paper-specific finite-entry proofs from unfolding a large casted
+matrix when the only content is that the row and column values are unchanged.
+-/
+theorem cast_square_apply {α : Type u} {m n : Nat} (h : m = n)
+    (M : Matrix m m α) (i j : Fin n) :
+    (((cast (by rw [h]) M) : Matrix n n α) i j) =
+      M ⟨i.val, by subst h; exact i.isLt⟩
+        ⟨j.val, by subst h; exact j.isLt⟩ := by
+  subst h
+  rfl
+
 end Matrix
+
+/--
+Evaluation-level single-gate reduction for `evalGateMatrices`.
+
+This is the entry helper for prepared composite gates: the matrix semantics of
+a singleton gate list evaluates to the supplied gate matrix entry, even though
+the underlying symbolic `Coeff` expression is still a folded multiplication by
+the identity matrix.
+-/
+theorem evalWith_evalGateMatrices_single
+    (env : String → Rat) {qubits : Nat}
+    (gateMatrix : GateMatrix Coeff qubits)
+    (i j : Fin (qubitDim qubits)) :
+    Coeff.evalWith env ((evalGateMatrices [gateMatrix]) i j) =
+      Coeff.evalWith env (gateMatrix.matrix i j) := by
+  dsimp [evalGateMatrices]
+  exact Matrix.evalWith_mul_identity_right_apply env gateMatrix.matrix i j
 
 /--
 Circuit-level matrix semantics assembled from gate-level matrices.
@@ -256,6 +327,73 @@ def ofGateMatrices {α : Type u} [OfNat α 0] [OfNat α 1]
 end CircuitMatrixSemantics
 
 /--
+Typed target for relating an active circuit-matrix entry to a prepared
+composition entry.
+
+This is intentionally only an interface.  It records the two matrix entries
+and the exact equality a paper-specific composition backend must prove; it
+does not assert that the active circuit already contains the prepared blocks.
+-/
+structure PreparedCircuitEntryTarget
+    (α : Type u) (activeDim preparedDim : Nat) where
+  activeMatrix : Matrix activeDim activeDim α
+  preparedMatrix : Matrix preparedDim preparedDim α
+  activeRow : Fin activeDim
+  activeCol : Fin activeDim
+  preparedRow : Fin preparedDim
+  preparedCol : Fin preparedDim
+  activeEntry : α
+  activeEntry_eq : activeEntry = activeMatrix activeRow activeCol
+  preparedEntry : α
+  preparedEntry_eq : preparedEntry = preparedMatrix preparedRow preparedCol
+  activeSource : SemanticObligation
+  preparedComposition : SemanticObligation
+
+namespace PreparedCircuitEntryTarget
+
+/-- The prepared-composition equality required by the target. -/
+def entryEqualityStatement {α : Type u} {activeDim preparedDim : Nat}
+    (target : PreparedCircuitEntryTarget α activeDim preparedDim) : Prop :=
+  target.activeEntry = target.preparedEntry
+
+/-- The same equality stated directly on the backing matrices. -/
+def matrixEntryEqualityStatement {α : Type u} {activeDim preparedDim : Nat}
+    (target : PreparedCircuitEntryTarget α activeDim preparedDim) : Prop :=
+  target.activeMatrix target.activeRow target.activeCol =
+    target.preparedMatrix target.preparedRow target.preparedCol
+
+/--
+The cached entry equality is equivalent to the backing matrix-entry equality.
+
+Paper-specific targets can prove whichever side their local backend exposes
+without changing the semantic obligation being tracked.
+-/
+theorem entryEqualityStatement_iff_matrixEntryEqualityStatement
+    {α : Type u} {activeDim preparedDim : Nat}
+    (target : PreparedCircuitEntryTarget α activeDim preparedDim) :
+    target.entryEqualityStatement ↔
+      target.matrixEntryEqualityStatement := by
+  unfold entryEqualityStatement matrixEntryEqualityStatement
+  constructor
+  · intro hentry
+    calc
+      target.activeMatrix target.activeRow target.activeCol =
+          target.activeEntry := target.activeEntry_eq.symm
+      _ = target.preparedEntry := hentry
+      _ = target.preparedMatrix target.preparedRow target.preparedCol :=
+          target.preparedEntry_eq
+  · intro hmatrix
+    calc
+      target.activeEntry =
+          target.activeMatrix target.activeRow target.activeCol :=
+            target.activeEntry_eq
+      _ = target.preparedMatrix target.preparedRow target.preparedCol :=
+          hmatrix
+      _ = target.preparedEntry := target.preparedEntry_eq.symm
+
+end PreparedCircuitEntryTarget
+
+/--
 A paper-level block-extraction target against a concrete circuit matrix.
 
 The current project can now state the missing equation in matrix terms.  The
@@ -272,6 +410,146 @@ structure BlockExtractionTarget (α : Type u) [OfNat α 0] [OfNat α 1]
   blockMatrix : Matrix rows cols α
   blockProjection : SemanticObligation
   blockCorrect : SemanticObligation
+
+/--
+Fold a finite family of branch contributions into one projected block entry.
+
+This is deliberately minimal: it provides a typed target for paper-specific
+projection/summation proofs without assuming commutativity, a ring structure,
+or a normal form for symbolic coefficients.
+-/
+def blockExtractionBranchContributionSum {α : Type u} [OfNat α 0]
+    [HAdd α α α] {branchDim : Nat}
+    (branchContribution : Fin branchDim → α) : α :=
+  (List.finRange branchDim).foldl
+    (fun acc branch => acc + branchContribution branch) 0
+
+/--
+Typed interface for decomposing one block-extracted matrix entry into finite
+branch contributions.
+
+The interface records the candidate contribution family and the exact
+block-entry and branch-sum propositions that must be proved.  It is not itself
+a proof that the family is sourced from the backend or that the branch sum
+equals the block entry; those remain explicit semantic obligations.
+-/
+structure BlockExtractionBranchContributionTarget
+    (α : Type u) [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    (rows cols signalDim branchDim : Nat) where
+  extractionTarget : BlockExtractionTarget α rows cols signalDim
+  systemRow : Fin rows
+  systemCol : Fin cols
+  selectedBranch : Fin branchDim
+  branchContribution : Fin branchDim → α
+  selectedContribution : α
+  selectedContribution_eq :
+    selectedContribution = branchContribution selectedBranch
+  branchSum : α
+  branchSum_eq :
+    branchSum = blockExtractionBranchContributionSum branchContribution
+  blockEntry : α
+  blockEntry_eq : blockEntry = extractionTarget.blockMatrix systemRow systemCol
+  backendSource : SemanticObligation
+  selectedBranchCorrect : SemanticObligation
+  branchSummationCorrect : SemanticObligation
+
+namespace BlockExtractionBranchContributionTarget
+
+/-- The selected-branch identity exposed by the target. -/
+def selectedBranchStatement {α : Type u} [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    {rows cols signalDim branchDim : Nat}
+    (target :
+      BlockExtractionBranchContributionTarget α rows cols signalDim branchDim) :
+    Prop :=
+  target.selectedContribution =
+    target.branchContribution target.selectedBranch
+
+/-- The projection/summation theorem still required for the target. -/
+def projectionSummationStatement {α : Type u} [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    {rows cols signalDim branchDim : Nat}
+    (target :
+      BlockExtractionBranchContributionTarget α rows cols signalDim branchDim) :
+    Prop :=
+  target.blockEntry = target.branchSum
+
+/--
+The backend expansion theorem needed to close `projectionSummationStatement`.
+
+This version is stated directly in terms of the extraction target's block
+matrix entry and the candidate branch-contribution fold.  It is useful as a
+proof-DAG interface because paper-specific projection backends can target this
+statement without depending on the record's cached `blockEntry` and `branchSum`
+fields.
+-/
+def backendExpansionStatement {α : Type u} [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    {rows cols signalDim branchDim : Nat}
+    (target :
+      BlockExtractionBranchContributionTarget α rows cols signalDim branchDim) :
+    Prop :=
+  target.extractionTarget.blockMatrix target.systemRow target.systemCol =
+    blockExtractionBranchContributionSum target.branchContribution
+
+theorem selectedBranchStatement_of_eq {α : Type u} [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    {rows cols signalDim branchDim : Nat}
+    (target :
+      BlockExtractionBranchContributionTarget α rows cols signalDim branchDim) :
+    target.selectedBranchStatement := by
+  exact target.selectedContribution_eq
+
+theorem projectionSummationStatement_iff_backendExpansionStatement
+    {α : Type u} [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    {rows cols signalDim branchDim : Nat}
+    (target :
+      BlockExtractionBranchContributionTarget α rows cols signalDim branchDim) :
+    target.projectionSummationStatement ↔
+      target.backendExpansionStatement := by
+  unfold projectionSummationStatement backendExpansionStatement
+  constructor
+  · intro hprojection
+    calc
+      target.extractionTarget.blockMatrix target.systemRow target.systemCol =
+          target.blockEntry := target.blockEntry_eq.symm
+      _ = target.branchSum := hprojection
+      _ = blockExtractionBranchContributionSum target.branchContribution :=
+          target.branchSum_eq
+  · intro hexpansion
+    calc
+      target.blockEntry =
+          target.extractionTarget.blockMatrix target.systemRow target.systemCol :=
+            target.blockEntry_eq
+      _ = blockExtractionBranchContributionSum target.branchContribution :=
+          hexpansion
+      _ = target.branchSum := target.branchSum_eq.symm
+
+theorem projectionSummationStatement_of_backendExpansionStatement
+    {α : Type u} [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    {rows cols signalDim branchDim : Nat}
+    (target :
+      BlockExtractionBranchContributionTarget α rows cols signalDim branchDim)
+    (hexpansion : target.backendExpansionStatement) :
+    target.projectionSummationStatement :=
+  (projectionSummationStatement_iff_backendExpansionStatement target).2
+    hexpansion
+
+theorem backendExpansionStatement_of_projectionSummationStatement
+    {α : Type u} [OfNat α 0] [OfNat α 1]
+    [HAdd α α α] [HMul α α α]
+    {rows cols signalDim branchDim : Nat}
+    (target :
+      BlockExtractionBranchContributionTarget α rows cols signalDim branchDim)
+    (hprojection : target.projectionSummationStatement) :
+    target.backendExpansionStatement :=
+  (projectionSummationStatement_iff_backendExpansionStatement target).1
+    hprojection
+
+end BlockExtractionBranchContributionTarget
 
 /--
 A circuit-level block encoding claim bundling a circuit matrix semantics

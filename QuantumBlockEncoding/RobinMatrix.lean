@@ -5618,6 +5618,14747 @@ theorem oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript :
     oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript
   native_decide
 
+/--
+Branch-correct source map for the focused `n = 3` gamma3 transcript.
+
+The older endpoint audit compared the bulk column `j = 5` against the
+displayed boundary summand of Eq. `ROBIN clarified`.  This record keeps that
+bulk audit as omitted-branch memory and introduces a boundary-focused endpoint
+with `j = 0`, where `U_indic` leaves the indicator at `0`.  It is a transcript
+map only; both branch product obligations remain false.
+-/
+structure OneTermRobinGamma3BranchCorrectSourceMap where
+  sourceAnchor : String
+  K1 : Nat
+  K2 : Nat
+  boundaryColumn : Nat
+  boundaryColumnIsBoundary : Bool
+  boundaryColumnIsBulk : Bool
+  boundaryEndpoint : Nat
+  boundaryAfterIndic : Nat
+  boundaryIndicator : Nat
+  boundaryBranchIsDisplayed : Bool
+  bulkColumn : Nat
+  bulkColumnIsBoundary : Bool
+  bulkColumnIsBulk : Bool
+  bulkCleanEndpoint : Nat
+  bulkFullEndpoint : Nat
+  bulkIndicator : Nat
+  bulkBranchIsOmittedByDisplay : Bool
+  oldEndpointMismatchWasBranchMismatch : Bool
+  oldHumanProjectionFreezeSuperseded : Bool
+  boundaryProductObligation : SemanticObligation
+  bulkProductObligation : SemanticObligation
+  lowerBoundaryPacketAllowed : Bool
+  lowerBulkPacketAllowed : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+
+/--
+Compiled branch-correct gamma3 transcript for `n = 3`.
+
+The boundary target uses `j = 0`, satisfying the displayed condition
+`0 <= j < K1`.  The old `j = 5` target satisfies `K1 <= j <= K2`, so it belongs
+to the omitted bulk summand hidden by `+ ...`.  Lower proof search may now
+target one branch-specific product interface at a time, but no theorem-level
+semantic flag is promoted here.
+-/
+def oneTermRobinGamma3BranchCorrectSourceMap_n3 :
+    OneTermRobinGamma3BranchCorrectSourceMap :=
+  let p := oneTermParameters 3
+  let boundaryRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let boundaryCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let bulkRow : Fin (gridSize 3) := ⟨2, by native_decide⟩
+  let bulkCol : Fin (gridSize 3) := ⟨5, by native_decide⟩
+  let boundaryEndpoint := oneTermRobinGamma3PaperBasisIndex p 0 boundaryCol.val
+  let boundaryAfterIndic := GHL2025.indicatorOracleImage p boundaryEndpoint
+  let bulkAudit := oneTermRobinGamma3BulkIndicatorSourceAudit_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified gamma3 line, U_indic paragraph, and Fig. 1-term ROBIN, arXiv:2506.20478"
+    K1 := 2
+    K2 := gridSize p.n - 3
+    boundaryColumn := boundaryCol.val
+    boundaryColumnIsBoundary :=
+      GHL2025.isBoundaryRow 2 (gridSize p.n - 3) (gridSize p.n)
+        boundaryCol.val
+    boundaryColumnIsBulk :=
+      GHL2025.isBulkRow 2 (gridSize p.n - 3) boundaryCol.val
+    boundaryEndpoint := boundaryEndpoint
+    boundaryAfterIndic := boundaryAfterIndic
+    boundaryIndicator :=
+      (GHL2025.sparseAmplitudeOracleDTPaperRegisters p boundaryAfterIndic).indicatorBit
+    boundaryBranchIsDisplayed := true
+    bulkColumn := bulkAudit.focusedSystemColumn
+    bulkColumnIsBoundary :=
+      GHL2025.isBoundaryRow 2 (gridSize p.n - 3) (gridSize p.n)
+        bulkAudit.focusedSystemColumn
+    bulkColumnIsBulk := bulkAudit.isBulkColumn
+    bulkCleanEndpoint := bulkAudit.cleanEndpoint
+    bulkFullEndpoint := bulkAudit.fullEndpoint
+    bulkIndicator := bulkAudit.fullIndicator
+    bulkBranchIsOmittedByDisplay := true
+    oldEndpointMismatchWasBranchMismatch := true
+    oldHumanProjectionFreezeSuperseded := true
+    boundaryProductObligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3 boundaryRow boundaryCol
+    bulkProductObligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3 bulkRow bulkCol
+    lowerBoundaryPacketAllowed := true
+    lowerBulkPacketAllowed := true
+    lcuCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved
+    blockProjectionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved
+    blockCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved
+    finalExtractionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved
+  }
+
+/--
+Transcript theorem for the branch-correct gamma3 source map.
+
+This theorem is the handoff boundary between the old bulk endpoint audit and
+the next lower packet.  It proves only branch classification and endpoint
+facts; the boundary and bulk product-to-coefficient obligations, LCU
+composition, projection, block correctness, and final extraction stay false.
+-/
+theorem oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript :
+    let p := oneTermParameters 3
+    let branch := oneTermRobinGamma3BranchCorrectSourceMap_n3
+    branch.K1 = 2 ∧
+      branch.K2 = 5 ∧
+      branch.boundaryColumn = 0 ∧
+      GHL2025.isBoundaryRow branch.K1 branch.K2 (gridSize p.n)
+        branch.boundaryColumn = true ∧
+      branch.boundaryColumnIsBoundary = true ∧
+      GHL2025.isBulkRow branch.K1 branch.K2 branch.boundaryColumn = false ∧
+      branch.boundaryColumnIsBulk = false ∧
+      branch.boundaryEndpoint = 0 ∧
+      GHL2025.indicatorOracleImage p branch.boundaryEndpoint =
+        branch.boundaryAfterIndic ∧
+      branch.boundaryAfterIndic = 0 ∧
+      (GHL2025.sparseAmplitudeOracleDTPaperRegisters p
+        branch.boundaryAfterIndic).indicatorBit = 0 ∧
+      branch.boundaryIndicator = 0 ∧
+      branch.boundaryBranchIsDisplayed = true ∧
+      branch.bulkColumn = 5 ∧
+      GHL2025.isBoundaryRow branch.K1 branch.K2 (gridSize p.n)
+        branch.bulkColumn = false ∧
+      branch.bulkColumnIsBoundary = false ∧
+      GHL2025.isBulkRow branch.K1 branch.K2 branch.bulkColumn = true ∧
+      branch.bulkColumnIsBulk = true ∧
+      branch.bulkCleanEndpoint = 84 ∧
+      branch.bulkFullEndpoint = 228 ∧
+      branch.bulkIndicator = 1 ∧
+      branch.bulkBranchIsOmittedByDisplay = true ∧
+      branch.oldEndpointMismatchWasBranchMismatch = true ∧
+      branch.oldHumanProjectionFreezeSuperseded = true ∧
+      branch.boundaryProductObligation.proved = false ∧
+      branch.bulkProductObligation.proved = false ∧
+      branch.lowerBoundaryPacketAllowed = true ∧
+      branch.lowerBulkPacketAllowed = true ∧
+      branch.lcuCorrectProved = false ∧
+      branch.blockProjectionProved = false ∧
+      branch.blockCorrectProved = false ∧
+      branch.finalExtractionProved = false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _bulk := oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript
+  native_decide
+
+/--
+Boundary-focused path audit for the displayed gamma3 branch at `n = 3`.
+
+The branch-correct source map chooses the boundary column `j = 0`, so
+`U_indic` leaves the indicator bit at `0`.  For the target entry `(0, 0)`,
+the sparse slot that maps the source column back to row `0` is slot `2`
+(offset `0`), not slot `0` (offset `6`).  This theorem records the resulting
+slot-`2` clean path through the Fig. 1-term Robin gate images.  It is only a
+path-state audit: the product-to-coefficient obligation and all block-encoding
+semantic flags remain false.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3 :
+    let p := oneTermParameters 3
+    let fullDim := qubitDim (GHL2025.oneTermRobinTotalQubits p)
+    let branch := oneTermRobinGamma3BranchCorrectSourceMap_n3
+    let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let slot0Col := oneTermRobinGamma3PaperBasisIndex p 0 sysCol.val
+    let slot2Col := oneTermRobinGamma3PaperBasisIndex p 2 sysCol.val
+    let slot2Row := oneTermRobinGamma3PaperBasisIndex p 2 sysRow.val
+    let afterIndic := GHL2025.indicatorOracleImage p slot2Col
+    let afterOdbs := GHL2025.bandedSparseAccessPaperImage p afterIndic
+    let afterSwap := GHL2025.swapOracleImage p afterOdbs
+    let daggerEndpoint :=
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p slot2Col
+    let row0 : Fin fullDim := ⟨0, by native_decide⟩
+    let row1 : Fin fullDim := ⟨1, by native_decide⟩
+    let row32 : Fin fullDim := ⟨32, by native_decide⟩
+    let row33 : Fin fullDim := ⟨33, by native_decide⟩
+    branch.boundaryColumn = sysCol.val ∧
+      branch.boundaryColumnIsBoundary = true ∧
+      branch.boundaryColumnIsBulk = false ∧
+      branch.boundaryEndpoint = slot0Col ∧
+      branch.boundaryAfterIndic = slot0Col ∧
+      branch.boundaryIndicator = 0 ∧
+      branch.boundaryBranchIsDisplayed = true ∧
+      slot0Col = 0 ∧
+      GHL2025.oneTermRobinGlobalSparseAddress 3 0 sysCol.val = 6 ∧
+      GHL2025.oneTermRobinGlobalSparseAddress 3 2 sysCol.val = sysRow.val ∧
+      GHL2025.oneTermRobinGlobalSparseAddress 3 2 sysCol.val ≠
+        GHL2025.oneTermRobinGlobalSparseAddress 3 0 sysCol.val ∧
+      slot2Col = 32 ∧
+      slot2Row = 32 ∧
+      slot2Col ≠ slot0Col ∧
+      GHL2025.bandedSparseAccessPaperImage p slot0Col = 96 ∧
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p slot0Col =
+        76 ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p 76).rowValue = 6 ∧
+      afterIndic = slot2Col ∧
+      GHL2025.indicatorOracleMatrix p row32 row32 = Coeff.rat 1 ∧
+      (GHL2025.sparseAmplitudeOracleDTPaperRegisters p afterIndic).indicatorBit =
+        0 ∧
+      (GHL2025.sparseAmplitudeOracleDTPaperRegisters p afterIndic).ancillaBit =
+        0 ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p afterIndic).rowValue =
+        sysCol.val ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p afterIndic).sparseIndexValue =
+        2 ∧
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row32 row32 =
+        Coeff.rat 1 ∧
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row33 row32 =
+        Coeff.rat 0 ∧
+      GHL2025.boundaryRotationMatrix p row32 row32 =
+        Coeff.symbol "boundary_cos_half_0_2" ∧
+      GHL2025.boundaryRotationMatrix p row33 row32 =
+        Coeff.symbol "boundary_sin_half_0_2" ∧
+      afterOdbs = 0 ∧
+      GHL2025.bandedSparseAccessPaperMatrix p row0 row32 =
+        Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperMatrix p row1 row33 =
+        Coeff.rat 1 ∧
+      (GHL2025.functionOraclePaperImage p afterOdbs).cleanBranchBasisIndex =
+        afterOdbs ∧
+      (GHL2025.functionOraclePaperImage p afterOdbs).cleanBranchSystemValue =
+        sysRow.val ∧
+      (GHL2025.functionOraclePaperImage p afterOdbs).cleanBranchAmplitude =
+        Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv") ∧
+      GHL2025.functionOraclePaperMatrix p row0 row0 =
+        Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv") ∧
+      GHL2025.functionOraclePaperMatrix p row1 row1 =
+        Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv") ∧
+      afterSwap = 0 ∧
+      GHL2025.swapOracleMatrix p row0 row0 = Coeff.rat 1 ∧
+      GHL2025.swapOracleMatrix p row1 row1 = Coeff.rat 1 ∧
+      daggerEndpoint = slot2Row ∧
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p (slot2Col + 1) =
+        slot2Row + 1 ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row32 row0 =
+        Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row33 row1 =
+        Coeff.rat 1 ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p daggerEndpoint).rowValue =
+        sysRow.val ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p daggerEndpoint).paddedZeroValue =
+        0 ∧
+      (GHL2025.bandedSparseAccessPaperRegisters p daggerEndpoint).sparseIndexValue =
+        2 ∧
+      GHL2025.bandedSparseAccessPaperGlobalSlotSource p daggerEndpoint =
+        true ∧
+      branch.boundaryProductObligation.proved = false ∧
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved =
+        false ∧
+      branch.lcuCorrectProved = false ∧
+      branch.blockProjectionProved = false ∧
+      branch.blockCorrectProved = false ∧
+      branch.finalExtractionProved = false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _branch := oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript
+  native_decide
+
+/--
+Bulk-specific interface for the omitted gamma3 product branch.
+
+The old focused column `j = 5` is bulk for `n = 3`, `K1 = 2`, and `K2 = 5`.
+It therefore belongs to the summand hidden by the `+ ...` in Eq.
+`ROBIN clarified`, not to the displayed boundary branch.  This interface uses
+the source-backed full endpoint with indicator `1`; it does not compare that
+endpoint with the displayed boundary endpoint and does not prove the final
+product-to-coefficient theorem.
+-/
+structure OneTermRobinGamma3BulkProductInterface where
+  sourceAnchor : String
+  systemRow : Nat
+  systemColumn : Nat
+  sparseSlot : Nat
+  K1 : Nat
+  K2 : Nat
+  bulkColumnIsBulk : Bool
+  bulkBranchIsOmittedByDisplay : Bool
+  fullEndpointUsed : Bool
+  cleanBoundaryEndpointComparisonUsed : Bool
+  cleanSource : Nat
+  afterIndic : Nat
+  sourceBulkIndicator : Nat
+  afterOdtsKetZero : Nat
+  afterOdtsKetOne : Nat
+  afterRyKetZero : Nat
+  afterRyKetOne : Nat
+  afterOdbsKetZero : Nat
+  afterOdbsKetOne : Nat
+  afterOfKetZero : Nat
+  afterOfKetOne : Nat
+  afterSwapKetZero : Nat
+  afterSwapKetOne : Nat
+  daggerKetZeroEndpoint : Nat
+  daggerKetOneEndpoint : Nat
+  ketZeroFactors : List Coeff
+  adjacentKetOneFactors : List Coeff
+  productObligation : SemanticObligation
+  indicatorProjectionConvention : SemanticObligation
+  uniquePathSupportObligation : SemanticObligation
+  exactProductEqualityProved : Bool
+  derivativeAmplitudeNormalizerProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+
+/--
+Compiled product interface for the omitted bulk branch at `n = 3`, system
+entry `(2,5)`, and global sparse slot `5`.
+
+The factor list follows the Fig. 1-term Robin gate order
+`U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`, `O_f`, `SWAP`,
+`O_D^BS†`.  Because the column is bulk, `U_indic` sets the indicator bit to
+`1`, `O_DT^S` supplies the derivative-amplitude factor, and
+`Ry_boundary` acts as identity.
+-/
+def oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3 :
+    OneTermRobinGamma3BulkProductInterface :=
+  let p := oneTermParameters 3
+  let sysRow : Fin (gridSize 3) := ⟨2, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨5, by native_decide⟩
+  let bulkAudit := oneTermRobinGamma3BulkIndicatorSourceAudit_n3
+  let cleanSource := oneTermRobinGamma3PaperBasisIndex p 5 sysCol.val
+  let afterIndic := GHL2025.indicatorOracleImage p cleanSource
+  let afterOdtsKetOne := afterIndic + 1
+  let afterOdbsKetZero := GHL2025.bandedSparseAccessPaperImage p afterIndic
+  let afterOdbsKetOne := GHL2025.bandedSparseAccessPaperImage p afterOdtsKetOne
+  let afterSwapKetZero := GHL2025.swapOracleImage p afterOdbsKetZero
+  let afterSwapKetOne := GHL2025.swapOracleImage p afterOdbsKetOne
+  let daggerKetZeroEndpoint :=
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p afterIndic
+  let daggerKetOneEndpoint :=
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p afterOdtsKetOne
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified omitted gamma3 bulk branch, U_indic paragraph, Fig. 1-term ROBIN, and Theorem one-term block-encoding, arXiv:2506.20478"
+    systemRow := sysRow.val
+    systemColumn := sysCol.val
+    sparseSlot := 5
+    K1 := bulkAudit.K1
+    K2 := bulkAudit.K2
+    bulkColumnIsBulk := bulkAudit.isBulkColumn
+    bulkBranchIsOmittedByDisplay := true
+    fullEndpointUsed := true
+    cleanBoundaryEndpointComparisonUsed := false
+    cleanSource := cleanSource
+    afterIndic := afterIndic
+    sourceBulkIndicator := bulkAudit.sourceBulkIndicator
+    afterOdtsKetZero := afterIndic
+    afterOdtsKetOne := afterOdtsKetOne
+    afterRyKetZero := afterIndic
+    afterRyKetOne := afterOdtsKetOne
+    afterOdbsKetZero := afterOdbsKetZero
+    afterOdbsKetOne := afterOdbsKetOne
+    afterOfKetZero := afterOdbsKetZero
+    afterOfKetOne := afterOdbsKetOne
+    afterSwapKetZero := afterSwapKetZero
+    afterSwapKetOne := afterSwapKetOne
+    daggerKetZeroEndpoint := daggerKetZeroEndpoint
+    daggerKetOneEndpoint := daggerKetOneEndpoint
+    ketZeroFactors := [
+      Coeff.rat 1,
+      Coeff.symbol "odts_cos_half_5_5",
+      Coeff.rat 1,
+      Coeff.rat 1,
+      Coeff.mul (Coeff.symbol "f_3_5") (Coeff.symbol "N_f_inv"),
+      Coeff.rat 1,
+      Coeff.rat 1
+    ]
+    adjacentKetOneFactors := [
+      Coeff.rat 1,
+      Coeff.symbol "odts_sin_half_5_5",
+      Coeff.rat 1,
+      Coeff.rat 1,
+      Coeff.mul (Coeff.symbol "f_3_5") (Coeff.symbol "N_f_inv"),
+      Coeff.rat 1,
+      Coeff.rat 1
+    ]
+    productObligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol
+    indicatorProjectionConvention :=
+      oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation
+    uniquePathSupportObligation := {
+      description :=
+        "bulk gamma3 unique-path support: prove all evaluated seven-gate product paths from column 90 to full endpoint 228 vanish except the ket-zero bulk path through slot 5"
+      source :=
+        "GHL2025 Eq. ROBIN clarified omitted gamma3 bulk branch and Fig. 1-term ROBIN; QBE bulk branch audit"
+      proved := false
+    }
+    exactProductEqualityProved := false
+    derivativeAmplitudeNormalizerProved :=
+      (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p 5 5).twoByTwoUnitary.proved
+    productToCoefficientProved :=
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved
+    lcuCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved
+    blockProjectionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved
+    blockCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved
+    finalExtractionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved
+  }
+
+/--
+Transcript theorem for the omitted bulk product interface.
+
+This theorem proves only branch classification, endpoint data, and the
+gate-factor ledger for the source-backed bulk path.  The unique-path support,
+indicator projection convention, product-to-coefficient equality, LCU
+composition, block projection, block correctness, and final extraction remain
+false obligations.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3_transcript :
+    let p := oneTermParameters 3
+    let fullDim := qubitDim (GHL2025.oneTermRobinTotalQubits p)
+    let interface :=
+      oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3
+    let sysRow : Fin (gridSize 3) := ⟨2, by native_decide⟩
+    let sysCol : Fin (gridSize 3) := ⟨5, by native_decide⟩
+    let row90 : Fin fullDim := ⟨90, by native_decide⟩
+    let row170 : Fin fullDim := ⟨170, by native_decide⟩
+    let row171 : Fin fullDim := ⟨171, by native_decide⟩
+    let row212 : Fin fullDim := ⟨212, by native_decide⟩
+    let row213 : Fin fullDim := ⟨213, by native_decide⟩
+    let row218 : Fin fullDim := ⟨218, by native_decide⟩
+    let row219 : Fin fullDim := ⟨219, by native_decide⟩
+    let row228 : Fin fullDim := ⟨228, by native_decide⟩
+    let row229 : Fin fullDim := ⟨229, by native_decide⟩
+    interface.sourceAnchor =
+        "GHL2025 Eq. ROBIN clarified omitted gamma3 bulk branch, U_indic paragraph, Fig. 1-term ROBIN, and Theorem one-term block-encoding, arXiv:2506.20478" ∧
+      interface.systemRow = sysRow.val ∧
+      interface.systemColumn = sysCol.val ∧
+      interface.sparseSlot = 5 ∧
+      interface.K1 = 2 ∧
+      interface.K2 = 5 ∧
+      GHL2025.isBulkRow interface.K1 interface.K2 interface.systemColumn =
+        true ∧
+      interface.bulkColumnIsBulk = true ∧
+      interface.bulkBranchIsOmittedByDisplay = true ∧
+      interface.fullEndpointUsed = true ∧
+      interface.cleanBoundaryEndpointComparisonUsed = false ∧
+      GHL2025.oneTermRobinGlobalSparseAddress 3 interface.sparseSlot
+        interface.systemColumn = interface.systemRow ∧
+      interface.cleanSource = 90 ∧
+      interface.afterIndic = 218 ∧
+      interface.sourceBulkIndicator = 1 ∧
+      (GHL2025.sparseAmplitudeOracleDTPaperRegisters p
+        interface.afterIndic).indicatorBit = interface.sourceBulkIndicator ∧
+      interface.afterOdtsKetZero = 218 ∧
+      interface.afterOdtsKetOne = 219 ∧
+      interface.afterRyKetZero = 218 ∧
+      interface.afterRyKetOne = 219 ∧
+      interface.afterOdbsKetZero = 170 ∧
+      interface.afterOdbsKetOne = 171 ∧
+      interface.afterOfKetZero = 170 ∧
+      interface.afterOfKetOne = 171 ∧
+      interface.afterSwapKetZero = 212 ∧
+      interface.afterSwapKetOne = 213 ∧
+      interface.daggerKetZeroEndpoint = 228 ∧
+      interface.daggerKetOneEndpoint = 229 ∧
+      GHL2025.oneTermRobinCircuit.length = interface.ketZeroFactors.length ∧
+      interface.ketZeroFactors = [
+        Coeff.rat 1,
+        Coeff.symbol "odts_cos_half_5_5",
+        Coeff.rat 1,
+        Coeff.rat 1,
+        Coeff.mul (Coeff.symbol "f_3_5") (Coeff.symbol "N_f_inv"),
+        Coeff.rat 1,
+        Coeff.rat 1
+      ] ∧
+      GHL2025.oneTermRobinCircuit.length =
+        interface.adjacentKetOneFactors.length ∧
+      interface.adjacentKetOneFactors = [
+        Coeff.rat 1,
+        Coeff.symbol "odts_sin_half_5_5",
+        Coeff.rat 1,
+        Coeff.rat 1,
+        Coeff.mul (Coeff.symbol "f_3_5") (Coeff.symbol "N_f_inv"),
+        Coeff.rat 1,
+        Coeff.rat 1
+      ] ∧
+      GHL2025.indicatorOracleMatrix p row218 row90 = Coeff.rat 1 ∧
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row218 row218 =
+        Coeff.symbol "odts_cos_half_5_5" ∧
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row219 row218 =
+        Coeff.symbol "odts_sin_half_5_5" ∧
+      GHL2025.boundaryRotationMatrix p row218 row218 = Coeff.rat 1 ∧
+      GHL2025.boundaryRotationMatrix p row219 row219 = Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperMatrix p row170 row218 = Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperMatrix p row171 row219 = Coeff.rat 1 ∧
+      GHL2025.functionOraclePaperMatrix p row170 row170 =
+        Coeff.mul (Coeff.symbol "f_3_5") (Coeff.symbol "N_f_inv") ∧
+      GHL2025.functionOraclePaperMatrix p row171 row171 =
+        Coeff.mul (Coeff.symbol "f_3_5") (Coeff.symbol "N_f_inv") ∧
+      GHL2025.swapOracleMatrix p row212 row170 = Coeff.rat 1 ∧
+      GHL2025.swapOracleMatrix p row213 row171 = Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row228 row212 =
+        Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row229 row213 =
+        Coeff.rat 1 ∧
+      interface.productObligation.source =
+        "GHL2025 Eq. ROBIN clarified gamma3 line, Theorem one-term block-encoding, Fig. 1-term ROBIN, Definition def:block-encoding; cited-results row LCU.StandardBlockEncoding" ∧
+      interface.productObligation.proved = false ∧
+      interface.indicatorProjectionConvention.proved = false ∧
+      interface.uniquePathSupportObligation.proved = false ∧
+      interface.exactProductEqualityProved = false ∧
+      interface.derivativeAmplitudeNormalizerProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _branch := oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript
+  have _bulk := oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript
+  native_decide
+
+/--
+Boundary-specific interface for the next gamma3 product theorem.
+
+The displayed boundary branch of Eq. `ROBIN clarified` at `n = 3`, `(i,j) =
+(0,0)` uses sparse slot `2`.  The compiled path audit isolates the seven
+Fig. 1-term Robin factors for the ket-zero branch, but this record does not
+claim that the full matrix product has already been reduced to that path.
+The unique-path support facts and product-to-coefficient equality remain false
+obligations.
+-/
+structure OneTermRobinGamma3BoundaryProductInterface where
+  sourceAnchor : String
+  systemRow : Nat
+  systemColumn : Nat
+  sparseSlot : Nat
+  cleanSource : Nat
+  afterIndic : Nat
+  afterOdtsKetZero : Nat
+  afterRyKetZero : Nat
+  afterRyKetOne : Nat
+  afterOdbsKetZero : Nat
+  afterOdbsKetOne : Nat
+  afterOfKetZero : Nat
+  afterOfKetOne : Nat
+  afterSwapKetZero : Nat
+  afterSwapKetOne : Nat
+  daggerKetZeroEndpoint : Nat
+  daggerKetOneEndpoint : Nat
+  ketZeroFactors : List Coeff
+  adjacentKetOneFactors : List Coeff
+  productObligation : SemanticObligation
+  projectionSlotConvention : SemanticObligation
+  uniquePathSupportObligation : SemanticObligation
+  exactProductEqualityProved : Bool
+  boundaryRotationNormalizerProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+
+/--
+Compiled boundary product interface for the `n = 3`, `(0,0)`, sparse-slot-`2`
+gamma3 packet.
+
+The factor list follows the gate order
+`U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`, `O_f`, `SWAP`,
+`O_D^BS†`.  The ket-zero branch factors are recorded, but applying
+`Matrix.evalWith_mul_unique_path` is left to the next finite support proof.
+-/
+def oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3 :
+    OneTermRobinGamma3BoundaryProductInterface :=
+  let p := oneTermParameters 3
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let cleanSource := oneTermRobinGamma3PaperBasisIndex p 2 sysCol.val
+  let afterIndic := GHL2025.indicatorOracleImage p cleanSource
+  let afterOdbsKetZero := GHL2025.bandedSparseAccessPaperImage p afterIndic
+  let afterOdbsKetOne := GHL2025.bandedSparseAccessPaperImage p (afterIndic + 1)
+  let afterSwapKetZero := GHL2025.swapOracleImage p afterOdbsKetZero
+  let afterSwapKetOne := GHL2025.swapOracleImage p afterOdbsKetOne
+  let daggerKetZeroEndpoint :=
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p cleanSource
+  let daggerKetOneEndpoint :=
+    GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p (cleanSource + 1)
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified displayed gamma3 boundary branch, Fig. 1-term ROBIN, and Theorem one-term block-encoding, arXiv:2506.20478"
+    systemRow := sysRow.val
+    systemColumn := sysCol.val
+    sparseSlot := 2
+    cleanSource := cleanSource
+    afterIndic := afterIndic
+    afterOdtsKetZero := afterIndic
+    afterRyKetZero := afterIndic
+    afterRyKetOne := afterIndic + 1
+    afterOdbsKetZero := afterOdbsKetZero
+    afterOdbsKetOne := afterOdbsKetOne
+    afterOfKetZero := afterOdbsKetZero
+    afterOfKetOne := afterOdbsKetOne
+    afterSwapKetZero := afterSwapKetZero
+    afterSwapKetOne := afterSwapKetOne
+    daggerKetZeroEndpoint := daggerKetZeroEndpoint
+    daggerKetOneEndpoint := daggerKetOneEndpoint
+    ketZeroFactors := [
+      Coeff.rat 1,
+      Coeff.rat 1,
+      Coeff.symbol "boundary_cos_half_0_2",
+      Coeff.rat 1,
+      Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv"),
+      Coeff.rat 1,
+      Coeff.rat 1
+    ]
+    adjacentKetOneFactors := [
+      Coeff.rat 1,
+      Coeff.rat 0,
+      Coeff.symbol "boundary_sin_half_0_2",
+      Coeff.rat 1,
+      Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv"),
+      Coeff.rat 1,
+      Coeff.rat 1
+    ]
+    productObligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol
+    projectionSlotConvention :=
+      oneTermRobinGamma3ProjectionSlotConventionObligation 3 sysRow sysCol
+    uniquePathSupportObligation := {
+      description :=
+        "boundary gamma3 unique-path support: prove all evaluated seven-gate product paths from column 32 to row 32 vanish except the ket-zero path through slot 2"
+      source :=
+        "GHL2025 Eq. ROBIN clarified displayed gamma3 boundary branch and Fig. 1-term ROBIN; QBE boundary path audit"
+      proved := false
+    }
+    exactProductEqualityProved := false
+    boundaryRotationNormalizerProved :=
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p 0 2).twoByTwoUnitary.proved
+    productToCoefficientProved :=
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved
+    lcuCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved
+    blockProjectionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved
+    blockCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved
+    finalExtractionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved
+  }
+
+/--
+Transcript theorem for the boundary product interface.
+
+This proves the branch-specific data and factor list used by the next
+unique-path product attempt.  It deliberately keeps the unique-path support
+obligation, product-to-coefficient obligation, projection-slot convention, LCU
+composition, block projection, block correctness, and final extraction false.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3_transcript :
+    let p := oneTermParameters 3
+    let fullDim := qubitDim (GHL2025.oneTermRobinTotalQubits p)
+    let interface :=
+      oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3
+    let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let row0 : Fin fullDim := ⟨0, by native_decide⟩
+    let row1 : Fin fullDim := ⟨1, by native_decide⟩
+    let row32 : Fin fullDim := ⟨32, by native_decide⟩
+    let row33 : Fin fullDim := ⟨33, by native_decide⟩
+    interface.systemRow = sysRow.val ∧
+      interface.systemColumn = sysCol.val ∧
+      interface.sparseSlot = 2 ∧
+      GHL2025.oneTermRobinGlobalSparseAddress 3 interface.sparseSlot
+        interface.systemColumn = interface.systemRow ∧
+      interface.cleanSource = 32 ∧
+      interface.afterIndic = 32 ∧
+      interface.afterOdtsKetZero = 32 ∧
+      interface.afterRyKetZero = 32 ∧
+      interface.afterRyKetOne = 33 ∧
+      interface.afterOdbsKetZero = 0 ∧
+      interface.afterOdbsKetOne = 1 ∧
+      interface.afterOfKetZero = 0 ∧
+      interface.afterOfKetOne = 1 ∧
+      interface.afterSwapKetZero = 0 ∧
+      interface.afterSwapKetOne = 1 ∧
+      interface.daggerKetZeroEndpoint = 32 ∧
+      interface.daggerKetOneEndpoint = 33 ∧
+      GHL2025.oneTermRobinCircuit.length = interface.ketZeroFactors.length ∧
+      interface.ketZeroFactors = [
+        Coeff.rat 1,
+        Coeff.rat 1,
+        Coeff.symbol "boundary_cos_half_0_2",
+        Coeff.rat 1,
+        Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv"),
+        Coeff.rat 1,
+        Coeff.rat 1
+      ] ∧
+      GHL2025.oneTermRobinCircuit.length =
+        interface.adjacentKetOneFactors.length ∧
+      interface.adjacentKetOneFactors = [
+        Coeff.rat 1,
+        Coeff.rat 0,
+        Coeff.symbol "boundary_sin_half_0_2",
+        Coeff.rat 1,
+        Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv"),
+        Coeff.rat 1,
+        Coeff.rat 1
+      ] ∧
+      GHL2025.indicatorOracleMatrix p row32 row32 = Coeff.rat 1 ∧
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row32 row32 =
+        Coeff.rat 1 ∧
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row33 row32 =
+        Coeff.rat 0 ∧
+      GHL2025.boundaryRotationMatrix p row32 row32 =
+        Coeff.symbol "boundary_cos_half_0_2" ∧
+      GHL2025.boundaryRotationMatrix p row33 row32 =
+        Coeff.symbol "boundary_sin_half_0_2" ∧
+      GHL2025.bandedSparseAccessPaperMatrix p row0 row32 = Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperMatrix p row1 row33 = Coeff.rat 1 ∧
+      GHL2025.functionOraclePaperMatrix p row0 row0 =
+        Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv") ∧
+      GHL2025.functionOraclePaperMatrix p row1 row1 =
+        Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv") ∧
+      GHL2025.swapOracleMatrix p row0 row0 = Coeff.rat 1 ∧
+      GHL2025.swapOracleMatrix p row1 row1 = Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row32 row0 =
+        Coeff.rat 1 ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row33 row1 =
+        Coeff.rat 1 ∧
+      interface.productObligation.source =
+        "GHL2025 Eq. ROBIN clarified gamma3 line, Theorem one-term block-encoding, Fig. 1-term ROBIN, Definition def:block-encoding; cited-results row LCU.StandardBlockEncoding" ∧
+      interface.productObligation.proved = false ∧
+      interface.projectionSlotConvention.proved = false ∧
+      interface.uniquePathSupportObligation.proved = false ∧
+      interface.exactProductEqualityProved = false ∧
+      interface.boundaryRotationNormalizerProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _path :=
+    oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3
+  native_decide
+
+/--
+Boundary unique-path support audit for the displayed `n = 3` gamma3 branch.
+
+This record is intentionally narrower than the final product theorem.  It
+proves the concrete adjacent-branch zero entries currently available from the
+gate skeletons, then names the first missing global support interface needed
+before `Matrix.evalWith_mul_unique_path` can isolate the full seven-gate
+product.
+-/
+structure OneTermRobinGamma3BoundaryUniquePathSupportAudit where
+  sourceAnchor : String
+  systemRow : Nat
+  systemColumn : Nat
+  sparseSlot : Nat
+  sourceColumn : Nat
+  targetRow : Nat
+  survivingKetZeroPath : List Nat
+  adjacentKetOnePath : List Nat
+  odtsKetOneProbeEntry : Coeff
+  adjacentOfTargetEntry : Coeff
+  adjacentDaggerTargetEntry : Coeff
+  adjacentBranchKilledAtOf : Bool
+  adjacentBranchKilledAtDagger : Bool
+  firstMissingGateIndex : Nat
+  firstMissingSupportRows : String
+  firstMissingSupportColumn : Nat
+  firstMissingMatrixEntry : String
+  supportComplete : Bool
+  uniquePathSupportObligation : SemanticObligation
+  productObligation : SemanticObligation
+  projectionSlotConvention : SemanticObligation
+  exactProductEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+
+/--
+Compiled audit for the first boundary unique-path support packet.
+
+The target path is the ket-zero branch
+`32 -> 32 -> 32 -> 32 -> 0 -> 0 -> 0 -> 32`.  The adjacent
+boundary-rotation ket-one branch reaches the row-`33` endpoint, and its
+contribution to target row `32` is killed by concrete zero entries in the
+current `O_f` and dagger matrices.  The remaining all-other-path support
+theorem is still an explicit false obligation.
+-/
+def oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupportAudit_n3 :
+    OneTermRobinGamma3BoundaryUniquePathSupportAudit :=
+  let p := oneTermParameters 3
+  let fullDim := qubitDim (GHL2025.oneTermRobinTotalQubits p)
+  let interface :=
+    oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3
+  let row0 : Fin fullDim := ⟨0, by native_decide⟩
+  let row1 : Fin fullDim := ⟨1, by native_decide⟩
+  let row32 : Fin fullDim := ⟨32, by native_decide⟩
+  let row33 : Fin fullDim := ⟨33, by native_decide⟩
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified displayed gamma3 boundary branch, Fig. 1-term ROBIN, and Theorem one-term block-encoding, arXiv:2506.20478"
+    systemRow := interface.systemRow
+    systemColumn := interface.systemColumn
+    sparseSlot := interface.sparseSlot
+    sourceColumn := interface.cleanSource
+    targetRow := interface.daggerKetZeroEndpoint
+    survivingKetZeroPath := [
+      interface.cleanSource,
+      interface.afterIndic,
+      interface.afterOdtsKetZero,
+      interface.afterRyKetZero,
+      interface.afterOdbsKetZero,
+      interface.afterOfKetZero,
+      interface.afterSwapKetZero,
+      interface.daggerKetZeroEndpoint
+    ]
+    adjacentKetOnePath := [
+      interface.cleanSource,
+      interface.afterIndic,
+      interface.afterOdtsKetZero,
+      interface.afterRyKetOne,
+      interface.afterOdbsKetOne,
+      interface.afterOfKetOne,
+      interface.afterSwapKetOne,
+      interface.daggerKetOneEndpoint
+    ]
+    odtsKetOneProbeEntry :=
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row33 row32
+    adjacentOfTargetEntry :=
+      GHL2025.functionOraclePaperMatrix p row0 row1
+    adjacentDaggerTargetEntry :=
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row32 row1
+    adjacentBranchKilledAtOf := true
+    adjacentBranchKilledAtDagger := true
+    firstMissingGateIndex := 3
+    firstMissingSupportRows := "all intermediate rows k not in {0,1} after O_D^BS"
+    firstMissingSupportColumn := interface.cleanSource
+    firstMissingMatrixEntry :=
+      "(O_D^BS * Ry_boundary * O_DT^S * U_indic)[k,32]"
+    supportComplete := false
+    uniquePathSupportObligation := interface.uniquePathSupportObligation
+    productObligation := interface.productObligation
+    projectionSlotConvention := interface.projectionSlotConvention
+    exactProductEqualityProved := interface.exactProductEqualityProved
+    productToCoefficientProved := interface.productToCoefficientProved
+    lcuCorrectProved := interface.lcuCorrectProved
+    blockProjectionProved := interface.blockProjectionProved
+    blockCorrectProved := interface.blockCorrectProved
+    finalExtractionProved := interface.finalExtractionProved
+  }
+
+/--
+First boundary unique-path support result.
+
+This theorem compiles the concrete zero entries for the adjacent ket-one branch
+and records the remaining missing prefix-support theorem.  It deliberately does
+not prove the all-path support condition, does not apply
+`Matrix.evalWith_mul_unique_path` to the seven-gate product, and does not
+promote any product, projection, LCU, block-correctness, or extraction flag.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupport_n3 :
+    let p := oneTermParameters 3
+    let fullDim := qubitDim (GHL2025.oneTermRobinTotalQubits p)
+    let audit :=
+      oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupportAudit_n3
+    let row0 : Fin fullDim := ⟨0, by native_decide⟩
+    let row1 : Fin fullDim := ⟨1, by native_decide⟩
+    let row32 : Fin fullDim := ⟨32, by native_decide⟩
+    let row33 : Fin fullDim := ⟨33, by native_decide⟩
+    audit.systemRow = 0 ∧
+      audit.systemColumn = 0 ∧
+      audit.sparseSlot = 2 ∧
+      audit.sourceColumn = 32 ∧
+      audit.targetRow = 32 ∧
+      audit.survivingKetZeroPath = [32, 32, 32, 32, 0, 0, 0, 32] ∧
+      audit.adjacentKetOnePath = [32, 32, 32, 33, 1, 1, 1, 33] ∧
+      audit.odtsKetOneProbeEntry = Coeff.rat 0 ∧
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row33 row32 =
+        Coeff.rat 0 ∧
+      audit.adjacentOfTargetEntry = Coeff.rat 0 ∧
+      GHL2025.functionOraclePaperMatrix p row0 row1 = Coeff.rat 0 ∧
+      audit.adjacentDaggerTargetEntry = Coeff.rat 0 ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row32 row1 =
+        Coeff.rat 0 ∧
+      audit.adjacentBranchKilledAtOf = true ∧
+      audit.adjacentBranchKilledAtDagger = true ∧
+      audit.firstMissingGateIndex = 3 ∧
+      audit.firstMissingSupportRows =
+        "all intermediate rows k not in {0,1} after O_D^BS" ∧
+      audit.firstMissingSupportColumn = 32 ∧
+      audit.firstMissingMatrixEntry =
+        "(O_D^BS * Ry_boundary * O_DT^S * U_indic)[k,32]" ∧
+      audit.supportComplete = false ∧
+      audit.uniquePathSupportObligation.proved = false ∧
+      audit.productObligation.proved = false ∧
+      audit.projectionSlotConvention.proved = false ∧
+      audit.exactProductEqualityProved = false ∧
+      audit.productToCoefficientProved = false ∧
+      audit.lcuCorrectProved = false ∧
+      audit.blockProjectionProved = false ∧
+      audit.blockCorrectProved = false ∧
+      audit.finalExtractionProved = false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _interface :=
+    oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3_transcript
+  have _path :=
+    oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3
+  native_decide
+
+/-- Parameters for the focused `n = 3` displayed-boundary gamma3 prefix packet. -/
+abbrev oneTermRobinGamma3BoundaryPrefixParameters_n3 :
+    GHL2025.OneTermRobinParameters :=
+  oneTermParameters 3
+
+/-- Full matrix dimension for the focused boundary gamma3 prefix packet. -/
+abbrev oneTermRobinGamma3BoundaryPrefixDim_n3 : Nat :=
+  qubitDim (GHL2025.oneTermRobinTotalQubits
+    oneTermRobinGamma3BoundaryPrefixParameters_n3)
+
+/-- Full source column `32` for the focused boundary gamma3 prefix packet. -/
+abbrev oneTermRobinGamma3BoundaryPrefixSource_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨32, by native_decide⟩
+
+/-- Prefix row `0`, the ket-zero image after the forward `O_D^BS` gate. -/
+abbrev oneTermRobinGamma3BoundaryPrefixRow0_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨0, by native_decide⟩
+
+/-- Prefix row `1`, the adjacent ket-one image after the forward `O_D^BS` gate. -/
+abbrev oneTermRobinGamma3BoundaryPrefixRow1_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨1, by native_decide⟩
+
+private abbrev oneTermRobinGamma3BoundaryPrefixRow33_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨33, by native_decide⟩
+
+/-- Two-gate prefix `O_DT^S * U_indic` for the displayed-boundary gamma3 packet. -/
+def oneTermRobinGamma3BoundaryDUPrefixMatrix_n3 :
+    Matrix oneTermRobinGamma3BoundaryPrefixDim_n3
+      oneTermRobinGamma3BoundaryPrefixDim_n3 Coeff :=
+  let p := oneTermRobinGamma3BoundaryPrefixParameters_n3
+  Matrix.mul (GHL2025.sparseAmplitudeOracleDTRotationMatrix p)
+    (GHL2025.indicatorOracleMatrix p)
+
+/-- Three-gate prefix `Ry_boundary * O_DT^S * U_indic`. -/
+def oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3 :
+    Matrix oneTermRobinGamma3BoundaryPrefixDim_n3
+      oneTermRobinGamma3BoundaryPrefixDim_n3 Coeff :=
+  let p := oneTermRobinGamma3BoundaryPrefixParameters_n3
+  Matrix.mul (GHL2025.boundaryRotationMatrix p)
+    oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+
+/-- Four-gate prefix `O_D^BS * Ry_boundary * O_DT^S * U_indic`. -/
+def oneTermRobinGamma3BoundaryPrefixMatrix_n3 :
+    Matrix oneTermRobinGamma3BoundaryPrefixDim_n3
+      oneTermRobinGamma3BoundaryPrefixDim_n3 Coeff :=
+  let p := oneTermRobinGamma3BoundaryPrefixParameters_n3
+  Matrix.mul (GHL2025.bandedSparseAccessPaperMatrix p)
+    oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+
+private theorem oneTermRobinGamma3BoundaryIndicatorSource_support_n3
+    (q : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : q ≠ oneTermRobinGamma3BoundaryPrefixSource_n3) :
+    GHL2025.indicatorOracleMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        q oneTermRobinGamma3BoundaryPrefixSource_n3 = Coeff.rat 0 := by
+  unfold GHL2025.indicatorOracleMatrix
+  change
+    (if q.val =
+      (32 ^^^
+        ((if 2 ≤ ((32 >>> 1) &&&
+                ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ∧
+              ((32 >>> 1) &&&
+                  ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ≤
+                gridSize oneTermRobinGamma3BoundaryPrefixParameters_n3.n - 3 then
+            (1 : Nat) else 0) <<<
+          GHL2025.robinIndicatorBitPosition
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)) then
+        Coeff.rat 1 else Coeff.rat 0) = Coeff.rat 0
+  have hExpected :
+      (32 ^^^
+        ((if 2 ≤ ((32 >>> 1) &&&
+                ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ∧
+              ((32 >>> 1) &&&
+                  ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ≤
+                gridSize oneTermRobinGamma3BoundaryPrefixParameters_n3.n - 3 then
+            (1 : Nat) else 0) <<<
+          GHL2025.robinIndicatorBitPosition
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)) = 32 := by
+    native_decide
+  rw [hExpected]
+  have hval : q.val ≠ 32 := by
+    intro hv
+    exact h (Fin.eq_of_val_eq hv)
+  simp [hval]
+
+private theorem oneTermRobinGamma3BoundaryODTSSource_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i ≠ oneTermRobinGamma3BoundaryPrefixSource_n3) :
+    GHL2025.sparseAmplitudeOracleDTRotationMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixSource_n3 = Coeff.rat 0 := by
+  unfold GHL2025.sparseAmplitudeOracleDTRotationMatrix
+  have hIndicator :
+      (GHL2025.sparseAmplitudeOracleDTPaperRegisters
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 32).indicatorBit = 0 := by
+    native_decide
+  simp [hIndicator]
+  have hval : i.val ≠ 32 := by
+    intro hv
+    exact h (Fin.eq_of_val_eq hv)
+  simp [hval]
+
+private theorem oneTermRobinGamma3BoundaryRySource_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h32 : i ≠ oneTermRobinGamma3BoundaryPrefixSource_n3)
+    (h33 : i ≠ oneTermRobinGamma3BoundaryPrefixRow33_n3) :
+    GHL2025.boundaryRotationMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixSource_n3 = Coeff.rat 0 := by
+  unfold GHL2025.boundaryRotationMatrix
+  have hInd :
+      ((32 >>> GHL2025.robinIndicatorBitPosition
+          oneTermRobinGamma3BoundaryPrefixParameters_n3) &&& 1) = 0 := by
+    native_decide
+  simp [hInd]
+  by_cases hshift : i.val >>> 1 = 16
+  · have hval : i.val = 32 ∨ i.val = 33 := by
+      omega
+    cases hval with
+    | inl hv => exact False.elim (h32 (Fin.eq_of_val_eq hv))
+    | inr hv => exact False.elim (h33 (Fin.eq_of_val_eq hv))
+  · simp [hshift]
+
+private theorem oneTermRobinGamma3BoundaryODBSCol32_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3) :
+    GHL2025.bandedSparseAccessPaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixSource_n3 = Coeff.rat 0 := by
+  unfold GHL2025.bandedSparseAccessPaperMatrix
+  have himage :
+      GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 32 = 0 := by
+    native_decide
+  rw [himage]
+  have hval : i.val ≠ 0 := by
+    intro hv
+    exact h (Fin.eq_of_val_eq hv)
+  simp [hval]
+
+private theorem oneTermRobinGamma3BoundaryODBSCol33_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i ≠ oneTermRobinGamma3BoundaryPrefixRow1_n3) :
+    GHL2025.bandedSparseAccessPaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow33_n3 = Coeff.rat 0 := by
+  unfold GHL2025.bandedSparseAccessPaperMatrix
+  have himage :
+      GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 33 = 1 := by
+    native_decide
+  rw [himage]
+  have hval : i.val ≠ 1 := by
+    intro hv
+    exact h (Fin.eq_of_val_eq hv)
+  simp [hval]
+
+/--
+The two-gate boundary prefix has no evaluated support away from source column
+`32`.
+
+This is an evaluated-matrix support theorem.  It does not simplify the raw
+symbolic `Coeff` fold and does not promote the product-to-coefficient
+obligation.
+-/
+theorem oneTermRobinGamma3BoundaryDUPrefixSupport_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi : i ≠ oneTermRobinGamma3BoundaryPrefixSource_n3) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixSource_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q = oneTermRobinGamma3BoundaryPrefixSource_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryODTSSource_support_n3 i hi]
+  · simp [oneTermRobinGamma3BoundaryIndicatorSource_support_n3 q hq]
+
+/--
+The three-gate boundary prefix has evaluated support only in rows `32` and `33`.
+-/
+theorem oneTermRobinGamma3BoundaryRDUPrefixSupport_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi32 : i ≠ oneTermRobinGamma3BoundaryPrefixSource_n3)
+    (hi33 : i ≠ oneTermRobinGamma3BoundaryPrefixRow33_n3) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixSource_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q = oneTermRobinGamma3BoundaryPrefixSource_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryRySource_support_n3 i hi32 hi33]
+  · simp [oneTermRobinGamma3BoundaryDUPrefixSupport_n3 env q hq]
+
+/--
+Boundary prefix support for the displayed gamma3 branch at `n = 3`.
+
+For the branch-correct source column `32`, the evaluated four-gate prefix
+`O_D^BS * Ry_boundary * O_DT^S * U_indic` can land only in rows `0` and `1`.
+This is the missing prefix-support block named by the previous audit.  It does
+not prove the seven-gate product equality, projection-slot convention, LCU
+composition, block projection, block correctness, or final extraction.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi0 : i ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3)
+    (hi1 : i ≠ oneTermRobinGamma3BoundaryPrefixRow1_n3) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixSource_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq32 : q = oneTermRobinGamma3BoundaryPrefixSource_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryODBSCol32_support_n3 i hi0]
+  · by_cases hq33 : q = oneTermRobinGamma3BoundaryPrefixRow33_n3
+    · subst q
+      simp [oneTermRobinGamma3BoundaryODBSCol33_support_n3 i hi1]
+    · simp [oneTermRobinGamma3BoundaryRDUPrefixSupport_n3 env q hq32 hq33]
+
+/-- Two-gate suffix `SWAP * O_f` for the displayed-boundary gamma3 packet. -/
+def oneTermRobinGamma3BoundaryOfSwapMatrix_n3 :
+    Matrix oneTermRobinGamma3BoundaryPrefixDim_n3
+      oneTermRobinGamma3BoundaryPrefixDim_n3 Coeff :=
+  let p := oneTermRobinGamma3BoundaryPrefixParameters_n3
+  Matrix.mul (GHL2025.swapOracleMatrix p) (GHL2025.functionOraclePaperMatrix p)
+
+/-- Three-gate suffix `(O_D^BS)^† * SWAP * O_f`. -/
+def oneTermRobinGamma3BoundarySuffixMatrix_n3 :
+    Matrix oneTermRobinGamma3BoundaryPrefixDim_n3
+      oneTermRobinGamma3BoundaryPrefixDim_n3 Coeff :=
+  let p := oneTermRobinGamma3BoundaryPrefixParameters_n3
+  Matrix.mul (GHL2025.bandedSparseAccessPaperDaggerMatrix p)
+    oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+
+/--
+Full seven-gate matrix for the focused displayed-boundary gamma3 packet.
+
+This is only the finite matrix product for the branch-correct `n = 3`,
+row-`32`, column-`32` support proof.  It does not promote any semantic
+obligation on the theorem route.
+-/
+def oneTermRobinGamma3BoundarySevenGateMatrix_n3 :
+    Matrix oneTermRobinGamma3BoundaryPrefixDim_n3
+      oneTermRobinGamma3BoundaryPrefixDim_n3 Coeff :=
+  Matrix.mul oneTermRobinGamma3BoundarySuffixMatrix_n3
+    oneTermRobinGamma3BoundaryPrefixMatrix_n3
+
+private theorem oneTermRobinGamma3BoundarySwapRow0_support_n3
+    (k : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hk : k ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3) :
+    GHL2025.swapOracleMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 k = Coeff.rat 0 := by
+  rw [GHL2025.swapOracleMatrix_eq_image]
+  have hnot :
+      ¬ oneTermRobinGamma3BoundaryPrefixRow0_n3.val =
+        GHL2025.swapOracleImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val := by
+    intro himage
+    have hkval : k.val = oneTermRobinGamma3BoundaryPrefixRow0_n3.val := by
+      calc
+        k.val =
+            GHL2025.swapOracleImage
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              (GHL2025.swapOracleImage
+                oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val) := by
+              exact (GHL2025.swapOracleImage_self_inverse
+                oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val).symm
+        _ =
+            GHL2025.swapOracleImage
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3.val := by
+              rw [← himage]
+        _ = oneTermRobinGamma3BoundaryPrefixRow0_n3.val := by
+              native_decide
+    exact hk (Fin.eq_of_val_eq hkval)
+  simp [hnot]
+
+private theorem oneTermRobinGamma3BoundaryDaggerRow32_support_n3
+    (k : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hk : k ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3) :
+    GHL2025.bandedSparseAccessPaperDaggerMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3 k = Coeff.rat 0 := by
+  rw [GHL2025.bandedSparseAccessPaperDaggerMatrix_eq_image]
+  have himage :
+      GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3.val =
+          oneTermRobinGamma3BoundaryPrefixRow0_n3.val := by
+    native_decide
+  have hnot :
+      ¬ k.val =
+        GHL2025.bandedSparseAccessPaperImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3.val := by
+    intro hkImage
+    have hkval : k.val = oneTermRobinGamma3BoundaryPrefixRow0_n3.val := by
+      simpa [himage] using hkImage
+    exact hk (Fin.eq_of_val_eq hkval)
+  simp [hnot]
+
+/--
+After `O_f` and `SWAP`, the adjacent ket-one column has no evaluated support at
+row `0`.
+
+This is the suffix-side companion to the prefix support theorem.  It uses the
+compiled clean-workspace zero entry `O_f[0,1] = 0` and SWAP row-`0` support
+instead of expanding the full symbolic product.
+-/
+theorem oneTermRobinGamma3BoundaryOfSwapRow0Col1_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow1_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro k
+  by_cases hk : k = oneTermRobinGamma3BoundaryPrefixRow0_n3
+  · subst k
+    have hOf :
+        GHL2025.functionOraclePaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow1_n3 = Coeff.rat 0 := by
+      native_decide
+    simp [hOf]
+  · simp [oneTermRobinGamma3BoundarySwapRow0_support_n3 k hk]
+
+/--
+The suffix `(O_D^BS)^† * SWAP * O_f` kills the adjacent row-`1` branch when the
+target row is the boundary row `32`.
+-/
+theorem oneTermRobinGamma3BoundarySuffixRow32Col1_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySuffixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixRow1_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundarySuffixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro k
+  by_cases hk : k = oneTermRobinGamma3BoundaryPrefixRow0_n3
+  · subst k
+    simp [oneTermRobinGamma3BoundaryOfSwapRow0Col1_zero_n3 env]
+  · simp [oneTermRobinGamma3BoundaryDaggerRow32_support_n3 k hk]
+
+/--
+Seven-gate support for the displayed `n = 3` gamma3 boundary branch.
+
+For the full product written as `suffix * prefix`, every evaluated contribution
+from source column `32` to target row `32` vanishes unless the intermediate row
+between the prefix and suffix is row `0`.  Rows outside `{0,1}` are killed by
+the compiled prefix-support theorem; row `1` is killed by the suffix-side
+`O_f`/SWAP/dagger support above.  Product-to-coefficient, projection, LCU,
+block-correctness, and final-extraction obligations remain false.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateSupport_n3
+    (env : String → Rat)
+    (q : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hq0 : q ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3) :
+    Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySuffixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3 q) *
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundaryPrefixMatrix_n3 q
+          oneTermRobinGamma3BoundaryPrefixSource_n3) = 0 := by
+  by_cases hq1 : q = oneTermRobinGamma3BoundaryPrefixRow1_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundarySuffixRow32Col1_zero_n3 env]
+  · have hprefix :=
+      oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3
+        env q hq0 hq1
+    simp [hprefix]
+
+/--
+One-step unique-path reduction for the focused seven-gate boundary entry.
+
+This applies the generic evaluated-product reducer to the already isolated
+row-`0` intermediate branch.  It is not the gamma3 coefficient theorem and it
+does not change any `proved` flag.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateUniquePath_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySuffixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) *
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3) := by
+  unfold oneTermRobinGamma3BoundarySevenGateMatrix_n3
+  apply Matrix.evalWith_mul_unique_path
+  intro q hq
+  exact
+    oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateSupport_n3
+      env q hq
+
+/--
+The two-gate `O_DT^S * U_indic` prefix contributes unit amplitude on the
+boundary source column `32`.
+-/
+theorem oneTermRobinGamma3BoundaryDUPrefixEntryEval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3) = 1 := by
+  unfold oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.sparseAmplitudeOracleDTRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          (GHL2025.indicatorOracleMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryPrefixSource_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3) =
+        Coeff.evalWith env
+          (GHL2025.sparseAmplitudeOracleDTRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3) *
+        Coeff.evalWith env
+          (GHL2025.indicatorOracleMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      simp [oneTermRobinGamma3BoundaryIndicatorSource_support_n3 q hq]
+    _ = 1 := by
+      have hOdts :
+          GHL2025.sparseAmplitudeOracleDTRotationMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixSource_n3
+              oneTermRobinGamma3BoundaryPrefixSource_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      have hIndic :
+          GHL2025.indicatorOracleMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixSource_n3
+              oneTermRobinGamma3BoundaryPrefixSource_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      simp [hOdts, hIndic]
+
+/--
+The three-gate `Ry_boundary * O_DT^S * U_indic` prefix contributes the
+boundary half-angle cosine on source column `32`.
+-/
+theorem oneTermRobinGamma3BoundaryRDUPrefixEntryEval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      env "boundary_cos_half_0_2" := by
+  unfold oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.boundaryRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3) =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      simp [oneTermRobinGamma3BoundaryDUPrefixSupport_n3 env q hq]
+    _ = env "boundary_cos_half_0_2" := by
+      have hRy :
+          GHL2025.boundaryRotationMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixSource_n3
+              oneTermRobinGamma3BoundaryPrefixSource_n3 =
+            Coeff.symbol "boundary_cos_half_0_2" := by
+        native_decide
+      simp [hRy, oneTermRobinGamma3BoundaryDUPrefixEntryEval_n3 env]
+
+/--
+The four-gate prefix entry from source column `32` to row `0` is the boundary
+half-angle cosine.
+-/
+theorem oneTermRobinGamma3BoundaryPrefixEntryEval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      env "boundary_cos_half_0_2" := by
+  unfold oneTermRobinGamma3BoundaryPrefixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.bandedSparseAccessPaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3) =
+        Coeff.evalWith env
+          (GHL2025.bandedSparseAccessPaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      by_cases hq33 : q = oneTermRobinGamma3BoundaryPrefixRow33_n3
+      · subst q
+        have hOdbs :
+            GHL2025.bandedSparseAccessPaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                oneTermRobinGamma3BoundaryPrefixRow0_n3
+                oneTermRobinGamma3BoundaryPrefixRow33_n3 =
+              Coeff.rat 0 :=
+          oneTermRobinGamma3BoundaryODBSCol33_support_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3 (by native_decide)
+        simp [hOdbs]
+      · simp [oneTermRobinGamma3BoundaryRDUPrefixSupport_n3 env q hq hq33]
+    _ = env "boundary_cos_half_0_2" := by
+      have hOdbs :
+          GHL2025.bandedSparseAccessPaperMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              oneTermRobinGamma3BoundaryPrefixSource_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      simp [hOdbs, oneTermRobinGamma3BoundaryRDUPrefixEntryEval_n3 env]
+
+/--
+The `SWAP * O_f` suffix prefix on row/column `0` contributes the clean
+function-oracle amplitude `f_3_0 * N_f_inv`.
+-/
+theorem oneTermRobinGamma3BoundaryOfSwapEntryEval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      env "f_3_0" * env "N_f_inv" := by
+  unfold oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.swapOracleMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          (GHL2025.functionOraclePaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (GHL2025.swapOracleMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) *
+        Coeff.evalWith env
+          (GHL2025.functionOraclePaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      simp [oneTermRobinGamma3BoundarySwapRow0_support_n3 q hq]
+    _ = env "f_3_0" * env "N_f_inv" := by
+      have hSwap :
+          GHL2025.swapOracleMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      have hOf :
+          GHL2025.functionOraclePaperMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+            Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv") := by
+        native_decide
+      simp [hSwap, hOf]
+
+/--
+The three-gate suffix entry from row `32` to the row-`0` intermediate state is
+the clean function-oracle amplitude.
+-/
+theorem oneTermRobinGamma3BoundarySuffixEntryEval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySuffixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      env "f_3_0" * env "N_f_inv" := by
+  unfold oneTermRobinGamma3BoundarySuffixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.bandedSparseAccessPaperDaggerMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (GHL2025.bandedSparseAccessPaperDaggerMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      simp [oneTermRobinGamma3BoundaryDaggerRow32_support_n3 q hq]
+    _ = env "f_3_0" * env "N_f_inv" := by
+      have hDagger :
+          GHL2025.bandedSparseAccessPaperDaggerMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixSource_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      simp [hDagger, oneTermRobinGamma3BoundaryOfSwapEntryEval_n3 env]
+
+/--
+Evaluated seven-gate product entry for the displayed boundary `gamma3` packet.
+
+This proves the finite row-`32`, column-`32` branch product after the compiled
+unique-path reduction.  It is still only the branch product evaluation: the
+paper-level product-to-`A_k` coefficient theorem, sparse-register projection
+convention, LCU composition, block projection, block correctness, and final
+extraction remain separate false obligations.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      (env "f_3_0" * env "N_f_inv") * env "boundary_cos_half_0_2" := by
+  rw [oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateUniquePath_n3 env]
+  rw [oneTermRobinGamma3BoundarySuffixEntryEval_n3 env]
+  rw [oneTermRobinGamma3BoundaryPrefixEntryEval_n3 env]
+
+/--
+Focused false bridge for the displayed boundary `gamma3` branch.
+
+The compiled seven-gate product contributes the `Ry_boundary` half-angle entry
+`boundary_cos_half_0_2`.  Eq. `ROBIN clarified` needs the normalized
+derivative coefficient `D_0^(2) / N_D`.  The paper angle line states
+`theta_0^2 = arccos(D_0^(2) / N_D)`, so identifying the half-angle matrix entry
+itself with the normalized coefficient is a separate source-contract gap.
+This record names that gap without changing any matrix convention or promoting
+the product-to-coefficient theorem.
+-/
+structure OneTermRobinGamma3BoundaryRyCoefficientBridge where
+  sourceAnchor : String
+  systemRow : Nat
+  systemColumn : Nat
+  sparseSlot : Nat
+  cosHalfEntry : Coeff
+  normalizedCoefficient : Coeff
+  normalizedCoefficientFormula : String
+  thetaFormula : String
+  cosHalfFormula : String
+  angleConventionObligation : SemanticObligation
+  productObligation : SemanticObligation
+  boundaryCoefficientDivisionProved : Bool
+  boundaryArccosSemanticsProved : Bool
+  boundaryHalfAngleSemanticsProved : Bool
+  boundaryNormalizerBoundProved : Bool
+  boundaryTwoByTwoUnitaryProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled focused bridge for the `n = 3`, row-`0`, column-`0`, global-slot-`2`
+boundary branch.
+
+The bridge records exactly the factor mismatch left after
+`oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3`.
+It keeps the `R_y` angle convention, product-to-coefficient equality, LCU,
+projection, block correctness, and final extraction as false obligations.
+-/
+def oneTermRobinGamma3BoundaryRyCoefficientBridge_n3 :
+    OneTermRobinGamma3BoundaryRyCoefficientBridge :=
+  let p := oneTermParameters 3
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let angleRoute := GHL2025.boundaryRotationAngleNormalizerProofRoute p 0 2
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. angles for Ry, Eq. ROBIN clarified, Fig. 1-term ROBIN, arXiv:2506.20478"
+    systemRow := sysRow.val
+    systemColumn := sysCol.val
+    sparseSlot := 2
+    cosHalfEntry := Coeff.symbol "boundary_cos_half_0_2"
+    normalizedCoefficient := GHL2025.boundaryRotationNormalizedCoefficient p 0 2
+    normalizedCoefficientFormula := "D_0^(2) / N_D"
+    thetaFormula := angleRoute.thetaFormula
+    cosHalfFormula := angleRoute.cosHalfFormula
+    angleConventionObligation := {
+      description :=
+        "justify identifying boundary_cos_half_0_2 with the normalized coefficient D_0^(2) / N_D for the displayed boundary gamma3 branch"
+      source :=
+        "GHL2025 Eq. angles for Ry and Eq. ROBIN clarified, arXiv:2506.20478; source-contract gap recorded in cited-results row GHL2025.RyBoundary.AngleConventionBoundarySlot2"
+      proved := false
+    }
+    productObligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol
+    boundaryCoefficientDivisionProved :=
+      angleRoute.coefficientDivision.proved
+    boundaryArccosSemanticsProved :=
+      angleRoute.realArccosSemantics.proved
+    boundaryHalfAngleSemanticsProved :=
+      angleRoute.halfAngleSemantics.proved
+    boundaryNormalizerBoundProved :=
+      angleRoute.normalizerBound.proved
+    boundaryTwoByTwoUnitaryProved :=
+      angleRoute.twoByTwoUnitary.proved
+    productToCoefficientProved :=
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved
+    lcuCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved
+    blockProjectionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved
+    blockCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved
+    finalExtractionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved
+  }
+
+/--
+Transcript theorem for the focused boundary `R_y` coefficient bridge.
+
+This theorem proves only the typed wiring of the source-contract gap.  The
+bridge obligation and every theorem-level semantic flag remain false.
+-/
+theorem oneTermRobinGamma3BoundaryRyCoefficientBridge_n3_transcript :
+    let p := oneTermParameters 3
+    let bridge := oneTermRobinGamma3BoundaryRyCoefficientBridge_n3
+    bridge.sourceAnchor =
+        "GHL2025 Eq. angles for Ry, Eq. ROBIN clarified, Fig. 1-term ROBIN, arXiv:2506.20478" ∧
+      bridge.systemRow = 0 ∧
+      bridge.systemColumn = 0 ∧
+      bridge.sparseSlot = 2 ∧
+      bridge.cosHalfEntry = Coeff.symbol "boundary_cos_half_0_2" ∧
+      bridge.normalizedCoefficient =
+        GHL2025.boundaryRotationNormalizedCoefficient p 0 2 ∧
+      bridge.normalizedCoefficient =
+        Coeff.mul (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0)
+          (Coeff.symbol "N_D_inv") ∧
+      bridge.normalizedCoefficient =
+        Coeff.mul
+          (Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+            (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")))
+          (Coeff.symbol "N_D_inv") ∧
+      bridge.normalizedCoefficientFormula = "D_0^(2) / N_D" ∧
+      bridge.thetaFormula = "theta_j^s = arccos(D_j^(s) / N_D)" ∧
+      bridge.cosHalfFormula = "sqrt((1 + D_j^(s) / N_D) / 2)" ∧
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p 0 2).cosHalfEntry =
+        bridge.cosHalfEntry ∧
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p 0 2).arccosArgument =
+        bridge.normalizedCoefficient ∧
+      bridge.angleConventionObligation.proved = false ∧
+      bridge.productObligation.proved = false ∧
+      bridge.boundaryCoefficientDivisionProved = false ∧
+      bridge.boundaryArccosSemanticsProved = false ∧
+      bridge.boundaryHalfAngleSemanticsProved = false ∧
+      bridge.boundaryNormalizerBoundProved = false ∧
+      bridge.boundaryTwoByTwoUnitaryProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false ∧
+      (oneTermRobinGamma3ProductToCoefficientObligation
+        3 ⟨0, by native_decide⟩ ⟨0, by native_decide⟩).proved = false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _product :=
+    oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3
+      (fun _ => 0)
+  have _shared :=
+    GHL2025.robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes
+      (oneTermParameters 3) 0 2
+  native_decide
+
+/--
+Human/source decision packet for the boundary `R_y` angle convention.
+
+The focused bridge proves that the compiled seven-gate product uses the
+standard `R_y` half-angle entry `boundary_cos_half_0_2`, while Eq. `ROBIN
+clarified` needs the normalized coefficient `D_0^(2) / N_D`.  This packet is
+the theorem-facing freeze requested by the source audit: product-to-coefficient
+search stays blocked until a paper-backed convention or human decision supplies
+the missing rule.
+-/
+structure OneTermRobinGamma3BoundaryRyAngleConventionDecision where
+  sourceAnchor : String
+  bridge : OneTermRobinGamma3BoundaryRyCoefficientBridge
+  standardRyMatrixConvention : String
+  paperCoefficientNeed : String
+  sourceSpecifiesDirectHalfAngleCoefficientRule : Bool
+  humanInputRequired : Bool
+  acceptedSourceBackedOptions : String
+  productSearchBlocked : Bool
+  decisionObligation : SemanticObligation
+  angleConventionObligationProved : Bool
+  boundaryHalfAngleSemanticsProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled decision packet for the focused boundary branch at `n = 3`.
+
+This declaration does not choose a new matrix convention.  It records that the
+source currently supports only the bridge obligation, and that lower product
+proof search must wait for either a source-backed half-angle convention or an
+accepted decision to keep the standard `R_y` entry as an explicit theorem gap.
+-/
+def oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3 :
+    OneTermRobinGamma3BoundaryRyAngleConventionDecision :=
+  let bridge := oneTermRobinGamma3BoundaryRyCoefficientBridge_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. angles for Ry, Eq. ROBIN clarified, Fig. 1-term ROBIN, arXiv:2506.20478"
+    bridge := bridge
+    standardRyMatrixConvention :=
+      "boundary_cos_half_0_2 is the cos(theta_0^2 / 2) matrix entry"
+    paperCoefficientNeed :=
+      "the displayed gamma3 coefficient uses D_0^(2) / N_D"
+    sourceSpecifiesDirectHalfAngleCoefficientRule := false
+    humanInputRequired := true
+    acceptedSourceBackedOptions :=
+      "either keep standard Ry and leave the coefficient bridge as a theorem gap, or supply an author/paper-backed boundary amplitude-preparation convention"
+    productSearchBlocked := true
+    decisionObligation := {
+      description :=
+        "choose a source-backed boundary Ry matrix convention before proving the displayed gamma3 product-to-coefficient equality"
+      source :=
+        "GHL2025 Eq. angles for Ry and Eq. ROBIN clarified; QBE bridge oneTermRobinGamma3BoundaryRyCoefficientBridge_n3"
+      proved := false
+    }
+    angleConventionObligationProved :=
+      bridge.angleConventionObligation.proved
+    boundaryHalfAngleSemanticsProved :=
+      bridge.boundaryHalfAngleSemanticsProved
+    productToCoefficientProved :=
+      bridge.productToCoefficientProved
+    lcuCorrectProved :=
+      bridge.lcuCorrectProved
+    blockProjectionProved :=
+      bridge.blockProjectionProved
+    blockCorrectProved :=
+      bridge.blockCorrectProved
+    finalExtractionProved :=
+      bridge.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the boundary `R_y` angle-convention decision packet.
+
+Only the source-backed decision boundary is checked here.  The bridge
+obligation, product-to-coefficient theorem, LCU composition, block projection,
+block correctness, and final extraction remain false.
+-/
+theorem oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript :
+    let p := oneTermParameters 3
+    let decision := oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3
+    decision.sourceAnchor =
+        "GHL2025 Eq. angles for Ry, Eq. ROBIN clarified, Fig. 1-term ROBIN, arXiv:2506.20478" ∧
+      decision.bridge = oneTermRobinGamma3BoundaryRyCoefficientBridge_n3 ∧
+      decision.bridge.cosHalfEntry = Coeff.symbol "boundary_cos_half_0_2" ∧
+      decision.bridge.normalizedCoefficient =
+        GHL2025.boundaryRotationNormalizedCoefficient p 0 2 ∧
+      decision.bridge.normalizedCoefficient =
+        Coeff.mul (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0)
+          (Coeff.symbol "N_D_inv") ∧
+      decision.standardRyMatrixConvention =
+        "boundary_cos_half_0_2 is the cos(theta_0^2 / 2) matrix entry" ∧
+      decision.paperCoefficientNeed =
+        "the displayed gamma3 coefficient uses D_0^(2) / N_D" ∧
+      decision.sourceSpecifiesDirectHalfAngleCoefficientRule = false ∧
+      decision.humanInputRequired = true ∧
+      decision.acceptedSourceBackedOptions =
+        "either keep standard Ry and leave the coefficient bridge as a theorem gap, or supply an author/paper-backed boundary amplitude-preparation convention" ∧
+      decision.productSearchBlocked = true ∧
+      decision.decisionObligation.proved = false ∧
+      decision.angleConventionObligationProved = false ∧
+      decision.boundaryHalfAngleSemanticsProved = false ∧
+      decision.productToCoefficientProved = false ∧
+      decision.lcuCorrectProved = false ∧
+      decision.blockProjectionProved = false ∧
+      decision.blockCorrectProved = false ∧
+      decision.finalExtractionProved = false ∧
+      decision.bridge.angleConventionObligation.proved = false ∧
+      decision.bridge.productObligation.proved = false ∧
+      (oneTermRobinGamma3ProductToCoefficientObligation
+        3 ⟨0, by native_decide⟩ ⟨0, by native_decide⟩).proved = false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _bridge :=
+    oneTermRobinGamma3BoundaryRyCoefficientBridge_n3_transcript
+  native_decide
+
+/--
+Lower-packet guard for the boundary `R_y` decision freeze.
+
+This record is deliberately non-semantic.  It packages the current source
+decision state so future lower packets can test that product-to-coefficient
+proof search is disabled until a source-backed convention or human decision is
+recorded.  Source-backed convention work and reviewer audit remain allowed.
+-/
+structure OneTermRobinGamma3BoundaryRyLowerPacketGuard where
+  sourceAnchor : String
+  decision : OneTermRobinGamma3BoundaryRyAngleConventionDecision
+  lowerProductProofPacketAllowed : Bool
+  sourceBackedConventionPacketAllowed : Bool
+  reviewerAuditAllowed : Bool
+  guardReason : String
+  bridgeObligationProved : Bool
+  decisionObligationProved : Bool
+  boundaryHalfAngleSemanticsProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled lower-packet guard for the focused `n = 3` boundary branch.
+
+The guard does not choose an angle convention.  It only freezes lower
+product-to-coefficient proof search around the existing decision packet while
+preserving the option to add a source-backed convention packet.
+-/
+def oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3 :
+    OneTermRobinGamma3BoundaryRyLowerPacketGuard :=
+  let decision := oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3
+  {
+    sourceAnchor := decision.sourceAnchor
+    decision := decision
+    lowerProductProofPacketAllowed := false
+    sourceBackedConventionPacketAllowed := true
+    reviewerAuditAllowed := true
+    guardReason :=
+      "product-to-coefficient search is blocked until the boundary Ry angle convention has source-backed or human input"
+    bridgeObligationProved :=
+      decision.bridge.angleConventionObligation.proved
+    decisionObligationProved :=
+      decision.decisionObligation.proved
+    boundaryHalfAngleSemanticsProved :=
+      decision.boundaryHalfAngleSemanticsProved
+    productToCoefficientProved :=
+      decision.productToCoefficientProved
+    lcuCorrectProved :=
+      decision.lcuCorrectProved
+    blockProjectionProved :=
+      decision.blockProjectionProved
+    blockCorrectProved :=
+      decision.blockCorrectProved
+    finalExtractionProved :=
+      decision.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the lower-packet guard.
+
+The theorem checks only the freeze state and false semantic flags.  It is a
+guard against accidentally resuming the focused product proof before the
+boundary `R_y` convention gap is resolved.
+-/
+theorem oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3_transcript :
+    let guard := oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3
+    guard.sourceAnchor =
+        "GHL2025 Eq. angles for Ry, Eq. ROBIN clarified, Fig. 1-term ROBIN, arXiv:2506.20478" ∧
+      guard.decision =
+        oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3 ∧
+      guard.decision.humanInputRequired = true ∧
+      guard.decision.productSearchBlocked = true ∧
+      guard.lowerProductProofPacketAllowed = false ∧
+      guard.sourceBackedConventionPacketAllowed = true ∧
+      guard.reviewerAuditAllowed = true ∧
+      guard.guardReason =
+        "product-to-coefficient search is blocked until the boundary Ry angle convention has source-backed or human input" ∧
+      guard.bridgeObligationProved = false ∧
+      guard.decisionObligationProved = false ∧
+      guard.boundaryHalfAngleSemanticsProved = false ∧
+      guard.productToCoefficientProved = false ∧
+      guard.lcuCorrectProved = false ∧
+      guard.blockProjectionProved = false ∧
+      guard.blockCorrectProved = false ∧
+      guard.finalExtractionProved = false ∧
+      guard.decision.bridge.angleConventionObligation.proved = false ∧
+      guard.decision.decisionObligation.proved = false ∧
+      (oneTermRobinGamma3ProductToCoefficientObligation
+        3 ⟨0, by native_decide⟩ ⟨0, by native_decide⟩).proved = false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _decision :=
+    oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript
+  native_decide
+
+/--
+Source-backed correction decision for the focused boundary `R_y` route.
+
+The local GHL2025 text states `theta_j^s = arccos(D_j^(s) / N_D)`, but the
+paper uses the standard one-qubit `R_y` convention elsewhere and the companion
+implementation computes boundary correction angles as `2 * arccos(...)`.
+Therefore the next faithful lower packet should use the corrected input angle
+`2 * arccos(D_j^(s) / N_D)` with the standard `R_y` matrix.  This decision only
+unblocks product-to-coefficient work; it does not promote the product, LCU,
+projection, block-correctness, unitarity, or final-extraction flags.
+-/
+structure OneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision where
+  sourceAnchor : String
+  localPaperFormula : String
+  priorPaperFormula : String
+  companionCodeFormula : String
+  standardRyConventionSource : String
+  correctedThetaFormula : String
+  bridge : OneTermRobinGamma3BoundaryRyCoefficientBridge
+  correctedAngleSourceBacked : Bool
+  useStandardRyMatrixConvention : Bool
+  directCoefficientEntryAllowed : Bool
+  productSearchBlocked : Bool
+  lowerProductProofPacketAllowed : Bool
+  reviewerAuditAllowed : Bool
+  semanticFlagsRemainFalseUntilLeanProof : Bool
+  productObligation : SemanticObligation
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled corrected-angle decision for the `n = 3`, row-`0`, slot-`2`
+boundary branch.
+
+This records the source audit result needed before the next lower packet: the
+boundary rotation should be represented as the standard `R_y` gate with input
+angle `2 * arccos(D_0^(2) / N_D)`, so its clean ket-zero entry is the normalized
+coefficient.  All theorem-facing semantic claims remain unproved.
+-/
+def oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3 :
+    OneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision :=
+  let bridge := oneTermRobinGamma3BoundaryRyCoefficientBridge_n3
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. angles for Ry, Fig. 1-term ROBIN, arXiv:2506.20478; GHL 2024 arXiv:2405.12855 Appendix O_p^S; companion repository Hamiltonian_of_1D_Heat_Equation.py"
+    localPaperFormula :=
+      "theta_j^s = arccos(D_j^(s) / N_D)"
+    priorPaperFormula :=
+      "theta_s = 2 arccos((p^m)^(s) / sqrt(N_p^m)) for the standard Ry sparse-amplitude oracle"
+    companionCodeFormula :=
+      "theta = 2 * np.arccos(boundary_coefficient / normalizer)"
+    standardRyConventionSource :=
+      "companion repository README and fundamental_gates_unitary.py define ry(parameter) with cos(parameter/2) and sin(parameter/2)"
+    correctedThetaFormula :=
+      "theta_j^s = 2 arccos(D_j^(s) / N_D)"
+    bridge := bridge
+    correctedAngleSourceBacked := true
+    useStandardRyMatrixConvention := true
+    directCoefficientEntryAllowed := true
+    productSearchBlocked := false
+    lowerProductProofPacketAllowed := true
+    reviewerAuditAllowed := true
+    semanticFlagsRemainFalseUntilLeanProof := true
+    productObligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol
+    productToCoefficientProved :=
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved
+    lcuCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved
+    blockProjectionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved
+    blockCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved
+    finalExtractionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved
+  }
+
+/--
+Transcript theorem for the corrected-angle source decision.
+
+The theorem checks only the decision state.  It explicitly leaves the
+product-to-coefficient theorem and all downstream semantic flags false.
+-/
+theorem oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3_transcript :
+    let decision := oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3
+    decision.localPaperFormula =
+        "theta_j^s = arccos(D_j^(s) / N_D)" ∧
+      decision.priorPaperFormula =
+        "theta_s = 2 arccos((p^m)^(s) / sqrt(N_p^m)) for the standard Ry sparse-amplitude oracle" ∧
+      decision.companionCodeFormula =
+        "theta = 2 * np.arccos(boundary_coefficient / normalizer)" ∧
+      decision.standardRyConventionSource =
+        "companion repository README and fundamental_gates_unitary.py define ry(parameter) with cos(parameter/2) and sin(parameter/2)" ∧
+      decision.correctedThetaFormula =
+        "theta_j^s = 2 arccos(D_j^(s) / N_D)" ∧
+      decision.bridge = oneTermRobinGamma3BoundaryRyCoefficientBridge_n3 ∧
+      decision.bridge.cosHalfEntry = Coeff.symbol "boundary_cos_half_0_2" ∧
+      decision.bridge.normalizedCoefficient =
+        GHL2025.boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2 ∧
+      decision.correctedAngleSourceBacked = true ∧
+      decision.useStandardRyMatrixConvention = true ∧
+      decision.directCoefficientEntryAllowed = true ∧
+      decision.productSearchBlocked = false ∧
+      decision.lowerProductProofPacketAllowed = true ∧
+      decision.reviewerAuditAllowed = true ∧
+      decision.semanticFlagsRemainFalseUntilLeanProof = true ∧
+      decision.productObligation.proved = false ∧
+      decision.productToCoefficientProved = false ∧
+      decision.lcuCorrectProved = false ∧
+      decision.blockProjectionProved = false ∧
+      decision.blockCorrectProved = false ∧
+      decision.finalExtractionProved = false := by
+  have _bridge :=
+    oneTermRobinGamma3BoundaryRyCoefficientBridge_n3_transcript
+  native_decide
+
+/--
+Corrected-angle coefficient interface for the focused boundary branch.
+
+The record is deliberately conditional: the source-backed angle correction
+allows the `Ry_boundary` clean entry to be treated as the normalized boundary
+coefficient, but the product-to-coefficient theorem and all block-encoding
+semantics remain false until separate Lean theorems prove them.
+-/
+structure OneTermRobinGamma3BoundaryCorrectedCoefficientInterface where
+  sourceAnchor : String
+  decision : OneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision
+  productEntryFactor : Coeff
+  normalizedCoefficient : Coeff
+  correctedEntryHypothesis : SemanticObligation
+  productObligation : SemanticObligation
+  correctedAngleSourceBacked : Bool
+  coefficientInterfaceCompiled : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled interface for replacing the boundary free factor by the corrected
+normalized coefficient in the `n = 3`, row-`0`, column-`0`, slot-`2` branch.
+-/
+def oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3 :
+    OneTermRobinGamma3BoundaryCorrectedCoefficientInterface :=
+  let decision := oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  {
+    sourceAnchor := decision.sourceAnchor
+    decision := decision
+    productEntryFactor := Coeff.symbol "boundary_cos_half_0_2"
+    normalizedCoefficient :=
+      GHL2025.boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2
+    correctedEntryHypothesis := {
+      description :=
+        "under the corrected angle theta_0^2 = 2 arccos(D_0^(2) / N_D), the boundary R_y ket-zero entry is the normalized coefficient D_0^(2) / N_D"
+      source :=
+        "GHL2025 Eq. angles for Ry, Fig. 1-term ROBIN, arXiv:2506.20478; GHL 2024 arXiv:2405.12855 Appendix O_p^S; companion Robin heat implementation"
+      proved := false
+    }
+    productObligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol
+    correctedAngleSourceBacked := decision.correctedAngleSourceBacked
+    coefficientInterfaceCompiled := true
+    productToCoefficientProved :=
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved
+    lcuCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved
+    blockProjectionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved
+    blockCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved
+    finalExtractionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved
+  }
+
+/--
+Transcript theorem for the corrected-angle coefficient interface.
+
+This checks that the interface uses the global sparse-slot normalized
+coefficient and that every theorem-facing semantic claim remains unproved.
+-/
+theorem oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3_transcript :
+    let interface := oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3
+    interface.decision =
+        oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3 ∧
+      interface.productEntryFactor = Coeff.symbol "boundary_cos_half_0_2" ∧
+      interface.normalizedCoefficient =
+        GHL2025.boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2 ∧
+      interface.normalizedCoefficient =
+        Coeff.mul (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0)
+          (Coeff.symbol "N_D_inv") ∧
+      interface.correctedEntryHypothesis.proved = false ∧
+      interface.productObligation.proved = false ∧
+      interface.correctedAngleSourceBacked = true ∧
+      interface.coefficientInterfaceCompiled = true ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false := by
+  have _decision :=
+    oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3_transcript
+  have _shared :=
+    GHL2025.robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes
+      (oneTermParameters 3) 0 2
+  native_decide
+
+/--
+Conditional evaluated-product interface for the corrected boundary angle.
+
+Once the corrected-angle entry hypothesis is supplied for the environment, the
+compiled seven-gate boundary product is expressed using
+`boundaryRotationNormalizedCoefficient` rather than the unresolved free symbol.
+This is not the final product-to-coefficient theorem.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedAngle_n3
+    (env : String → Rat)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      (env "f_3_0" * env "N_f_inv") *
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2) := by
+  rw [oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3 env,
+    hentry]
+
+/--
+Expanded corrected-angle product entry for the displayed boundary branch.
+
+This is the strongest local coefficient statement currently available for the
+focused `n = 3`, `(0,0)`, slot-`2` packet.  Under the corrected-entry
+hypothesis, the seven-gate product is the clean `O_f` amplitude times the
+global-slot boundary coefficient normalized by `N_D`.  The theorem deliberately
+does not insert the theorem-level sparse-summation/`kappa` factor or promote the
+product-to-coefficient obligation.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3
+    (env : String → Rat)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      Coeff.evalWith env
+        (Coeff.mul
+          (Coeff.mul (GHL2025.robinFunctionValue 3 0)
+            (Coeff.symbol "N_f_inv"))
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) := by
+  rw [oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedAngle_n3
+    env hentry]
+  have hname :
+      (toString "f_" ++ Nat.repr 3 ++ toString "_" ++ Nat.repr 0) =
+        "f_3_0" := by
+    native_decide
+  simp [GHL2025.robinFunctionValue, hname]
+
+/--
+The focused boundary target entry uses the same global slot-`2` coefficient.
+
+This closes the local stencil-side comparison for `(A_k)_{0,0}`.  The remaining
+gap is not the Robin matrix entry; it is the theorem-level quotient/projection
+convention that must turn the branch-local product into
+`(A_k)_{0,0}/(N_D N_f kappa)`.
+-/
+theorem oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3 :
+    let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    oneTermRobinAkMatrix 3 sysRow sysCol =
+      Coeff.mul (GHL2025.robinFunctionValue 3 0)
+        (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0) := by
+  native_decide
+
+/--
+Precise remaining obstruction for the focused boundary product-to-coefficient
+route.
+
+The corrected-angle product has been reduced to
+`(f_3_0 * N_f_inv) * (D_0^(2) * N_D_inv)`, and the target entry has been
+identified as `f_3_0 * D_0^(2)`.  What is still missing is an exact Lean
+convention relating this branch-local product to the theorem's normalized block
+entry with normalizer `N_D * N_f * kappa`, including the sparse-register
+summation/projection factor.  This record keeps the theorem-facing obligation
+false instead of changing the scientific contract.
+-/
+structure OneTermRobinGamma3BoundaryProductToCoefficientObstruction where
+  sourceAnchor : String
+  productEntryFormula : String
+  akEntryFormula : String
+  correctedEntryHypothesis : SemanticObligation
+  normalizedQuotientConvention : SemanticObligation
+  sparseRegisterProjectionConvention : SemanticObligation
+  productObligation : SemanticObligation
+  productEntryExpanded : Bool
+  akEntryMatched : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled obstruction packet for `oneTermRobinGamma3ProductToCoefficientObligation
+3 0 0`.
+-/
+def oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3 :
+    OneTermRobinGamma3BoundaryProductToCoefficientObstruction :=
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let interface := oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified displayed gamma3 boundary branch, Theorem one-term block-encoding, Fig. 1-term ROBIN, and Definition def:block-encoding, arXiv:2506.20478"
+    productEntryFormula :=
+      "under the corrected-entry hypothesis, product[32,32] = (f_3_0 * N_f_inv) * (D_0^(2) * N_D_inv)"
+    akEntryFormula :=
+      "(oneTermRobinAkMatrix 3)[0,0] = f_3_0 * D_0^(2)"
+    correctedEntryHypothesis := interface.correctedEntryHypothesis
+    normalizedQuotientConvention := {
+      description :=
+        "state the exact symbolic convention relating N_D_inv and N_f_inv to division by the theorem normalizer N_D*N_f*kappa for the focused boundary entry"
+      source :=
+        "GHL2025 Eq. ROBIN clarified and Theorem one-term block-encoding normalizer N_D*N_f*kappa, arXiv:2506.20478"
+      proved := false
+    }
+    sparseRegisterProjectionConvention := {
+      description :=
+        "account for the sparse-register summation/projection factor that turns a branch-local slot-2 contribution into the normalized block entry with kappa in the denominator"
+      source :=
+        "GHL2025 Eq. ROBIN clarified sparse-slot sum s=0..kappa-1 and Definition def:block-encoding, arXiv:2506.20478"
+      proved := false
+    }
+    productObligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol
+    productEntryExpanded := true
+    akEntryMatched := true
+    productToCoefficientProved :=
+      (oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol).proved
+    lcuCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved
+    blockProjectionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved
+    blockCorrectProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved
+    finalExtractionProved :=
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved
+  }
+
+/--
+Transcript theorem for the focused boundary product-to-coefficient obstruction.
+
+This theorem records the smallest remaining Lean-local obstruction after the
+corrected-angle expansion and target-entry comparison.  It keeps all semantic
+flags false.
+-/
+theorem oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3_transcript :
+    let obstruction :=
+      oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3
+    obstruction.productEntryFormula =
+        "under the corrected-entry hypothesis, product[32,32] = (f_3_0 * N_f_inv) * (D_0^(2) * N_D_inv)" ∧
+      obstruction.akEntryFormula =
+        "(oneTermRobinAkMatrix 3)[0,0] = f_3_0 * D_0^(2)" ∧
+      obstruction.correctedEntryHypothesis.proved = false ∧
+      obstruction.normalizedQuotientConvention.proved = false ∧
+      obstruction.sparseRegisterProjectionConvention.proved = false ∧
+      obstruction.productObligation.proved = false ∧
+      obstruction.productEntryExpanded = true ∧
+      obstruction.akEntryMatched = true ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false ∧
+      (oneTermRobinGamma3ProductToCoefficientObligation
+        3 ⟨0, by native_decide⟩ ⟨0, by native_decide⟩).proved = false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _interface :=
+    oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3_transcript
+  have _ak := oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3
+  native_decide
+
+/--
+Theorem-level normalizer/projection convention packet for the focused
+boundary `gamma3` product route.
+
+The preceding local theorems have reduced the branch product to
+`(f_3_0 * N_f_inv) * (D_0^(2) * N_D_inv)` and the target entry to
+`f_3_0 * D_0^(2)`.  This packet ties those facts to the theorem normalizer
+`N_D*N_f*kappa`, while keeping the quotient interpretation of `N_D_inv`,
+`N_f_inv`, and the sparse-register `kappa` projection as explicit false
+obligations.
+-/
+structure OneTermRobinGamma3BoundaryNormalizerProjectionConvention where
+  sourceAnchor : String
+  obstruction : OneTermRobinGamma3BoundaryProductToCoefficientObstruction
+  branchLocalProduct : Coeff
+  targetEntry : Coeff
+  targetEntryLocalFormula : Coeff
+  theoremNormalizer : Coeff
+  finiteCompositionNormalizer : Coeff
+  normalizerFormula : String
+  quotientConventionFormula : String
+  sparseProjectionFormula : String
+  quotientConvention : SemanticObligation
+  sparseProjectionConvention : SemanticObligation
+  productObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  quotientConventionProved : Bool
+  sparseProjectionConventionProved : Bool
+  productToCoefficientProved : Bool
+  finiteCompositionNormalizedEqualityProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled normalizer/projection convention interface for
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+This is a typed convention packet, not the final product-to-coefficient proof.
+It records that the finite-composition contract uses the same normalizer
+`GHL2025.oneTermRobinNormalizer`, and that the remaining work is the symbolic
+inverse convention plus the sparse-register projection factor contributing the
+`kappa` denominator.
+-/
+def oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3 :
+    OneTermRobinGamma3BoundaryNormalizerProjectionConvention :=
+  let p := oneTermParameters 3
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let obstruction := oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3
+  let contract := oneTermRobinFiniteBlockCompositionContract 3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified displayed gamma3 boundary branch, Theorem one-term block-encoding, Definition def:block-encoding, and Fig. 1-term ROBIN, arXiv:2506.20478"
+    obstruction := obstruction
+    branchLocalProduct :=
+      Coeff.mul
+        (Coeff.mul (GHL2025.robinFunctionValue 3 0)
+          (Coeff.symbol "N_f_inv"))
+        (GHL2025.boundaryRotationNormalizedCoefficient p 0 2)
+    targetEntry :=
+      oneTermRobinAkMatrix 3 sysRow sysCol
+    targetEntryLocalFormula :=
+      Coeff.mul (GHL2025.robinFunctionValue 3 0)
+        (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0)
+    theoremNormalizer := GHL2025.oneTermRobinNormalizer
+    finiteCompositionNormalizer := contract.normalizer
+    normalizerFormula := "N_D*N_f*kappa"
+    quotientConventionFormula :=
+      "N_D_inv and N_f_inv represent the N_D*N_f part of division by the theorem normalizer"
+    sparseProjectionFormula :=
+      "the sparse-register summation/projection contributes the remaining 1/kappa factor for the focused slot-2 boundary branch"
+    quotientConvention := obstruction.normalizedQuotientConvention
+    sparseProjectionConvention := obstruction.sparseRegisterProjectionConvention
+    productObligation := obstruction.productObligation
+    finiteCompositionNormalizedEquality := contract.normalizedBlockEquality
+    quotientConventionProved := obstruction.normalizedQuotientConvention.proved
+    sparseProjectionConventionProved :=
+      obstruction.sparseRegisterProjectionConvention.proved
+    productToCoefficientProved := obstruction.productToCoefficientProved
+    finiteCompositionNormalizedEqualityProved :=
+      contract.normalizedBlockEquality.proved
+    lcuCorrectProved := obstruction.lcuCorrectProved
+    blockProjectionProved := obstruction.blockProjectionProved
+    blockCorrectProved := obstruction.blockCorrectProved
+    finalExtractionProved := obstruction.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the focused normalizer/projection convention packet.
+
+The theorem checks the wiring to the compiled obstruction, the target-entry
+comparison, and the finite-composition normalizer.  All theorem-facing semantic
+claims remain false.
+-/
+theorem oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3_transcript :
+    let p := oneTermParameters 3
+    let convention :=
+      oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3
+    let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    convention.sourceAnchor =
+        "GHL2025 Eq. ROBIN clarified displayed gamma3 boundary branch, Theorem one-term block-encoding, Definition def:block-encoding, and Fig. 1-term ROBIN, arXiv:2506.20478" ∧
+      convention.obstruction =
+        oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3 ∧
+      convention.branchLocalProduct =
+        Coeff.mul
+          (Coeff.mul (GHL2025.robinFunctionValue 3 0)
+            (Coeff.symbol "N_f_inv"))
+          (GHL2025.boundaryRotationNormalizedCoefficient p 0 2) ∧
+      convention.targetEntry =
+        oneTermRobinAkMatrix 3 sysRow sysCol ∧
+      convention.targetEntryLocalFormula =
+        Coeff.mul (GHL2025.robinFunctionValue 3 0)
+          (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0) ∧
+      convention.targetEntry = convention.targetEntryLocalFormula ∧
+      convention.theoremNormalizer = GHL2025.oneTermRobinNormalizer ∧
+      convention.finiteCompositionNormalizer =
+        (oneTermRobinFiniteBlockCompositionContract 3).normalizer ∧
+      convention.finiteCompositionNormalizer =
+        GHL2025.oneTermRobinNormalizer ∧
+      convention.theoremNormalizer = convention.finiteCompositionNormalizer ∧
+      convention.normalizerFormula = "N_D*N_f*kappa" ∧
+      convention.quotientConventionFormula =
+        "N_D_inv and N_f_inv represent the N_D*N_f part of division by the theorem normalizer" ∧
+      convention.sparseProjectionFormula =
+        "the sparse-register summation/projection contributes the remaining 1/kappa factor for the focused slot-2 boundary branch" ∧
+      convention.quotientConvention =
+        convention.obstruction.normalizedQuotientConvention ∧
+      convention.sparseProjectionConvention =
+        convention.obstruction.sparseRegisterProjectionConvention ∧
+      convention.productObligation =
+        oneTermRobinGamma3ProductToCoefficientObligation 3 sysRow sysCol ∧
+      convention.finiteCompositionNormalizedEquality =
+        (oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality ∧
+      convention.quotientConvention.proved = false ∧
+      convention.sparseProjectionConvention.proved = false ∧
+      convention.productObligation.proved = false ∧
+      convention.finiteCompositionNormalizedEquality.proved = false ∧
+      convention.quotientConventionProved = false ∧
+      convention.sparseProjectionConventionProved = false ∧
+      convention.productToCoefficientProved = false ∧
+      convention.finiteCompositionNormalizedEqualityProved = false ∧
+      convention.lcuCorrectProved = false ∧
+      convention.blockProjectionProved = false ∧
+      convention.blockCorrectProved = false ∧
+      convention.finalExtractionProved = false ∧
+      (oneTermRobinGamma3ProductToCoefficientObligation
+        3 ⟨0, by native_decide⟩ ⟨0, by native_decide⟩).proved = false ∧
+      (oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).oracleComposition.lcuCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockProjection.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).blockClaim.target.blockCorrect.proved =
+        false ∧
+      (oneTermRobinBlockEncodingProofRoute 3).theoremData.obligations.blockExtraction.proved =
+        false := by
+  have _obstruction :=
+    oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3_transcript
+  have _contract :=
+    oneTermRobinFiniteBlockCompositionContract_transcript 3
+  have _ak := oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3
+  native_decide
+
+/--
+Middle-agent split target for the next focused boundary `gamma3` packet.
+
+The existing normalizer/projection convention already identifies the two
+remaining blockers.  This record makes them explicit as separate lower-agent
+targets while reusing the same theorem route:
+
+* symbolic inverse semantics for `N_D_inv` and `N_f_inv`;
+* the sparse-register projection factor that contributes `1/kappa`.
+
+It is still a convention packet, not a proof of the product-to-coefficient
+obligation.
+-/
+structure OneTermRobinGamma3BoundaryNormalizerSplitTarget where
+  sourceAnchor : String
+  convention : OneTermRobinGamma3BoundaryNormalizerProjectionConvention
+  symbolicInverseFormula : String
+  kappaProjectionFormula : String
+  symbolicInverseObligation : SemanticObligation
+  kappaProjectionObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  branchLocalProduct : Coeff
+  targetEntry : Coeff
+  theoremNormalizer : Coeff
+  symbolicInverseProved : Bool
+  kappaProjectionProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Lean-facing lower packet target after the boundary normalizer/projection
+convention compiled.
+
+The target keeps the fixed theorem-facing obligation
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, but it splits the
+next proof work into two non-overlapping subgoals: the symbolic inverse
+interpretation of `N_D_inv`/`N_f_inv`, and the sparse-register `kappa`
+projection factor.  All semantic flags remain false.
+-/
+def oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3 :
+    OneTermRobinGamma3BoundaryNormalizerSplitTarget :=
+  let convention := oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified gamma3 denominator N_D*N_f*kappa and Definition def:block-encoding, arXiv:2506.20478"
+    convention := convention
+    symbolicInverseFormula :=
+      "N_D_inv and N_f_inv supply only the N_D*N_f inverse factors in the corrected boundary product"
+    kappaProjectionFormula :=
+      "the sparse-register projection/summation supplies the separate 1/kappa factor for the focused slot-2 branch"
+    symbolicInverseObligation := convention.quotientConvention
+    kappaProjectionObligation := convention.sparseProjectionConvention
+    finiteCompositionNormalizedEquality :=
+      convention.finiteCompositionNormalizedEquality
+    productObligation := convention.productObligation
+    branchLocalProduct := convention.branchLocalProduct
+    targetEntry := convention.targetEntry
+    theoremNormalizer := convention.theoremNormalizer
+    symbolicInverseProved := convention.quotientConvention.proved
+    kappaProjectionProved := convention.sparseProjectionConvention.proved
+    normalizedBlockEqualityProved :=
+      convention.finiteCompositionNormalizedEquality.proved
+    productToCoefficientProved := convention.productToCoefficientProved
+    lcuCorrectProved := convention.lcuCorrectProved
+    blockProjectionProved := convention.blockProjectionProved
+    blockCorrectProved := convention.blockCorrectProved
+    finalExtractionProved := convention.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the split target.  It checks that the two named
+sub-obligations are exactly the fields of the compiled
+normalizer/projection convention and that no semantic flag has been promoted.
+-/
+theorem oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3_transcript :
+    let target := oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3
+    target.sourceAnchor =
+        "GHL2025 Eq. ROBIN clarified gamma3 denominator N_D*N_f*kappa and Definition def:block-encoding, arXiv:2506.20478" ∧
+      target.convention =
+        oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3 ∧
+      target.symbolicInverseFormula =
+        "N_D_inv and N_f_inv supply only the N_D*N_f inverse factors in the corrected boundary product" ∧
+      target.kappaProjectionFormula =
+        "the sparse-register projection/summation supplies the separate 1/kappa factor for the focused slot-2 branch" ∧
+      target.symbolicInverseObligation =
+        target.convention.quotientConvention ∧
+      target.kappaProjectionObligation =
+        target.convention.sparseProjectionConvention ∧
+      target.finiteCompositionNormalizedEquality =
+        target.convention.finiteCompositionNormalizedEquality ∧
+      target.productObligation =
+        target.convention.productObligation ∧
+      target.branchLocalProduct =
+        target.convention.branchLocalProduct ∧
+      target.targetEntry =
+        target.convention.targetEntry ∧
+      target.theoremNormalizer =
+        target.convention.theoremNormalizer ∧
+      target.symbolicInverseObligation.proved = false ∧
+      target.kappaProjectionObligation.proved = false ∧
+      target.finiteCompositionNormalizedEquality.proved = false ∧
+      target.productObligation.proved = false ∧
+      target.symbolicInverseProved = false ∧
+      target.kappaProjectionProved = false ∧
+      target.normalizedBlockEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false := by
+  have _convention :=
+    oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3_transcript
+  native_decide
+
+/--
+Conditional symbolic-inverse evaluation for the focused boundary branch.
+
+This proves the local algebraic part of the split target: if the coefficient
+environment interprets `N_D_inv` and `N_f_inv` as right inverses of `N_D` and
+`N_f`, then the corrected branch-local product recovers the target entry after
+multiplication by the `N_D*N_f` part of the theorem normalizer.  The lemma does
+not supply those inverse hypotheses and does not account for the separate
+`1/kappa` sparse-register projection factor.
+-/
+theorem oneTermRobinGamma3BoundarySymbolicInverseEval_n3
+    (env : String → Rat)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1) :
+    Coeff.evalWith env
+        oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.branchLocalProduct *
+      (env "N_D" * env "N_f") =
+    Coeff.evalWith env
+        oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.targetEntry := by
+  have htarget :
+      oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.targetEntry =
+        Coeff.mul (GHL2025.robinFunctionValue 3 0)
+          (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0) := by
+    native_decide
+  rw [htarget]
+  simp [oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3,
+    oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3,
+    GHL2025.boundaryRotationNormalizedCoefficient]
+  calc
+    ((env "f_3_0" * env "N_f_inv") *
+          (Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0) *
+            env "N_D_inv")) *
+        (env "N_D" * env "N_f")
+        = env "f_3_0" *
+            (env "N_f_inv" *
+              (Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0) *
+                (env "N_D_inv" * (env "N_D" * env "N_f")))) := by
+            simp [Rat.mul_assoc]
+    _ = env "f_3_0" *
+            (env "N_f_inv" *
+              (Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0) *
+                ((env "N_D_inv" * env "N_D") * env "N_f"))) := by
+            rw [← Rat.mul_assoc (env "N_D_inv") (env "N_D") (env "N_f")]
+    _ = env "f_3_0" *
+            (env "N_f_inv" *
+              (Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0) *
+                env "N_f")) := by
+            rw [hND]
+            simp [Rat.one_mul]
+    _ = env "f_3_0" *
+            (env "N_f_inv" *
+              (env "N_f" *
+                Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0))) := by
+            rw [Rat.mul_comm
+              (Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0))
+              (env "N_f")]
+    _ = env "f_3_0" *
+            ((env "N_f_inv" * env "N_f") *
+              Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0)) := by
+            rw [Rat.mul_assoc (env "N_f_inv") (env "N_f")
+              (Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0))]
+    _ = env "f_3_0" *
+            Coeff.evalWith env (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0) := by
+            rw [hNF]
+            simp [Rat.one_mul]
+
+/--
+Transcript packet for the symbolic-inverse half of the boundary split target.
+
+The conditional evaluation lemma above is compiled, but the theorem route still
+needs actual inverse semantics for the environment and still needs the separate
+`kappa` projection factor.  The product-to-coefficient and block-composition
+flags therefore remain false.
+-/
+structure OneTermRobinGamma3BoundarySymbolicInverseSemantics where
+  sourceAnchor : String
+  splitTarget : OneTermRobinGamma3BoundaryNormalizerSplitTarget
+  normalizerPartFormula : String
+  ndInverseHypothesis : String
+  nfInverseHypothesis : String
+  conditionalEvalLemma : String
+  symbolicInverseObligation : SemanticObligation
+  kappaProjectionObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  conditionalEvalCompiled : Bool
+  symbolicInverseProved : Bool
+  kappaProjectionProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled symbolic-inverse packet for the focused boundary branch.
+
+This reuses `oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3` and reduces
+only the `N_D_inv`/`N_f_inv` algebra under explicit environment hypotheses.
+It does not prove the sparse-register `1/kappa` projection or the final
+product-to-coefficient obligation.
+-/
+def oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3 :
+    OneTermRobinGamma3BoundarySymbolicInverseSemantics :=
+  let target := oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified gamma3 denominator N_D*N_f*kappa, arXiv:2506.20478"
+    splitTarget := target
+    normalizerPartFormula :=
+      "branchLocalProduct * (N_D*N_f) = targetEntry under N_D_inv*N_D=1 and N_f_inv*N_f=1"
+    ndInverseHypothesis := "env N_D_inv * env N_D = 1"
+    nfInverseHypothesis := "env N_f_inv * env N_f = 1"
+    conditionalEvalLemma :=
+      "oneTermRobinGamma3BoundarySymbolicInverseEval_n3"
+    symbolicInverseObligation := target.symbolicInverseObligation
+    kappaProjectionObligation := target.kappaProjectionObligation
+    finiteCompositionNormalizedEquality :=
+      target.finiteCompositionNormalizedEquality
+    productObligation := target.productObligation
+    conditionalEvalCompiled := true
+    symbolicInverseProved := target.symbolicInverseProved
+    kappaProjectionProved := target.kappaProjectionProved
+    normalizedBlockEqualityProved := target.normalizedBlockEqualityProved
+    productToCoefficientProved := target.productToCoefficientProved
+    lcuCorrectProved := target.lcuCorrectProved
+    blockProjectionProved := target.blockProjectionProved
+    blockCorrectProved := target.blockCorrectProved
+    finalExtractionProved := target.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the symbolic-inverse packet.
+
+It confirms that the new packet consumes exactly the split target's symbolic
+inverse obligation and leaves the `kappa` projection and theorem-level
+composition obligations unproved.
+-/
+theorem oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3_transcript :
+    let semantics :=
+      oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3
+    let target := oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3
+    semantics.sourceAnchor =
+        "GHL2025 Eq. ROBIN clarified gamma3 denominator N_D*N_f*kappa, arXiv:2506.20478" ∧
+      semantics.splitTarget = target ∧
+      semantics.normalizerPartFormula =
+        "branchLocalProduct * (N_D*N_f) = targetEntry under N_D_inv*N_D=1 and N_f_inv*N_f=1" ∧
+      semantics.ndInverseHypothesis = "env N_D_inv * env N_D = 1" ∧
+      semantics.nfInverseHypothesis = "env N_f_inv * env N_f = 1" ∧
+      semantics.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundarySymbolicInverseEval_n3" ∧
+      semantics.symbolicInverseObligation =
+        target.symbolicInverseObligation ∧
+      semantics.kappaProjectionObligation =
+        target.kappaProjectionObligation ∧
+      semantics.finiteCompositionNormalizedEquality =
+        target.finiteCompositionNormalizedEquality ∧
+      semantics.productObligation = target.productObligation ∧
+      semantics.conditionalEvalCompiled = true ∧
+      semantics.symbolicInverseObligation.proved = false ∧
+      semantics.kappaProjectionObligation.proved = false ∧
+      semantics.finiteCompositionNormalizedEquality.proved = false ∧
+      semantics.productObligation.proved = false ∧
+      semantics.symbolicInverseProved = false ∧
+      semantics.kappaProjectionProved = false ∧
+      semantics.normalizedBlockEqualityProved = false ∧
+      semantics.productToCoefficientProved = false ∧
+      semantics.lcuCorrectProved = false ∧
+      semantics.blockProjectionProved = false ∧
+      semantics.blockCorrectProved = false ∧
+      semantics.finalExtractionProved = false := by
+  have _target :=
+    oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3_transcript
+  native_decide
+
+/--
+Uniform sparse-register preparation obligation for the focused boundary
+`gamma3` route.
+
+GHL2025 Eq. `arbitrary sparcity` defines `H_W^(kappa)` as the state
+preparation that gives each sparse slot amplitude `1/sqrt(kappa)`.  For the
+boundary product-to-coefficient route, the missing projection convention is
+that the preparation amplitude and the matching sparse-register projection
+contribute the remaining `1/kappa` factor.  This obligation records that
+source dependency without treating the cited implementation as formalized.
+-/
+def oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3 :
+    SemanticObligation where
+  description :=
+    "uniform sparse-register preparation/projection supplies the remaining 1/kappa factor for the focused gamma3 boundary slot"
+  source :=
+    "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified, Fig. 1-term ROBIN; Shukla-Vedula 2024 uniform superposition state preparation cited for implementation cost"
+  proved := false
+
+/--
+Middle-agent packet target for the sparse-register `kappa` projection factor.
+
+The symbolic `N_D_inv`/`N_f_inv` algebra now has a compiled conditional lemma.
+This target isolates the remaining source/projection convention: the sparse
+register is prepared by `H_W^(kappa)` with amplitude `1/sqrt(kappa)`, and the
+matching projection onto the focused slot contributes another `1/sqrt(kappa)`.
+The packet is intentionally contract-only; it does not prove the projection
+factor or the product-to-coefficient theorem.
+-/
+structure OneTermRobinGamma3BoundaryKappaProjectionTarget where
+  sourceAnchor : String
+  splitTarget : OneTermRobinGamma3BoundaryNormalizerSplitTarget
+  symbolicInverseSemantics : OneTermRobinGamma3BoundarySymbolicInverseSemantics
+  citedResultId : String
+  hWFormula : String
+  preparationAmplitudeFormula : String
+  projectionAmplitudeFormula : String
+  productProjectionFormula : String
+  focusedKappa : Nat
+  focusedSparseSlot : Nat
+  focusedSystemRow : Nat
+  focusedSystemColumn : Nat
+  sourceBasisIndex : Nat
+  targetBasisIndex : Nat
+  theoremNormalizer : Coeff
+  kappaSymbol : Coeff
+  uniformPreparationObligation : SemanticObligation
+  kappaProjectionObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  symbolicInverseConditionalLemmaCompiled : Bool
+  dependsOnUniformPreparationCitation : Bool
+  uniformPreparationProved : Bool
+  kappaProjectionProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled sparse-register `kappa` projection target for the focused boundary
+entry `(0,0)` and global sparse slot `2`.
+
+This is the next lower-agent packet target after
+`oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3`.  It keeps all
+theorem-facing obligations false and records that the sparse-register factor
+depends on the `H_W^(kappa)` uniform-preparation contract rather than on a new
+gate-level proof in this batch.
+-/
+def oneTermRobinGamma3BoundaryKappaProjectionTarget_n3 :
+    OneTermRobinGamma3BoundaryKappaProjectionTarget :=
+  let p := oneTermParameters 3
+  let splitTarget := oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3
+  let inverseSemantics := oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3
+  let sourceIndex := oneTermRobinGamma3PaperBasisIndex p 2 0
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 boundary summand, Fig. 1-term ROBIN, and Definition def:block-encoding, arXiv:2506.20478"
+    splitTarget := splitTarget
+    symbolicInverseSemantics := inverseSemantics
+    citedResultId := "ShuklaVedula2024.HWkappaUniformSuperposition"
+    hWFormula :=
+      "H_W^(kappa)|0>^ceil(log2 kappa) = (1/sqrt(kappa)) * sum_{s=0}^{kappa-1} |s>"
+    preparationAmplitudeFormula := "1/sqrt(kappa)"
+    projectionAmplitudeFormula := "1/sqrt(kappa)"
+    productProjectionFormula := "1/kappa"
+    focusedKappa := p.kappa
+    focusedSparseSlot := 2
+    focusedSystemRow := 0
+    focusedSystemColumn := 0
+    sourceBasisIndex := sourceIndex
+    targetBasisIndex := sourceIndex
+    theoremNormalizer := splitTarget.theoremNormalizer
+    kappaSymbol := Coeff.symbol "kappa"
+    uniformPreparationObligation :=
+      oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3
+    kappaProjectionObligation := splitTarget.kappaProjectionObligation
+    finiteCompositionNormalizedEquality :=
+      splitTarget.finiteCompositionNormalizedEquality
+    productObligation := splitTarget.productObligation
+    symbolicInverseConditionalLemmaCompiled :=
+      inverseSemantics.conditionalEvalCompiled
+    dependsOnUniformPreparationCitation := true
+    uniformPreparationProved :=
+      oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3.proved
+    kappaProjectionProved := splitTarget.kappaProjectionProved
+    normalizedBlockEqualityProved := splitTarget.normalizedBlockEqualityProved
+    productToCoefficientProved := splitTarget.productToCoefficientProved
+    lcuCorrectProved := splitTarget.lcuCorrectProved
+    blockProjectionProved := splitTarget.blockProjectionProved
+    blockCorrectProved := splitTarget.blockCorrectProved
+    finalExtractionProved := splitTarget.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the sparse-register `kappa` projection target.
+
+The theorem only checks packet wiring: the focused sparse slot is `2`, the
+source and target clean basis index is `32`, the cited uniform-preparation
+dependency is named, and all product/composition/projection flags remain false.
+-/
+theorem oneTermRobinGamma3BoundaryKappaProjectionTarget_n3_transcript :
+    let target := oneTermRobinGamma3BoundaryKappaProjectionTarget_n3
+    target.sourceAnchor =
+        "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 boundary summand, Fig. 1-term ROBIN, and Definition def:block-encoding, arXiv:2506.20478" ∧
+      target.splitTarget =
+        oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3 ∧
+      target.symbolicInverseSemantics =
+        oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3 ∧
+      target.citedResultId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      target.hWFormula =
+        "H_W^(kappa)|0>^ceil(log2 kappa) = (1/sqrt(kappa)) * sum_{s=0}^{kappa-1} |s>" ∧
+      target.preparationAmplitudeFormula = "1/sqrt(kappa)" ∧
+      target.projectionAmplitudeFormula = "1/sqrt(kappa)" ∧
+      target.productProjectionFormula = "1/kappa" ∧
+      target.focusedKappa = 7 ∧
+      target.focusedSparseSlot = 2 ∧
+      target.focusedSystemRow = 0 ∧
+      target.focusedSystemColumn = 0 ∧
+      target.sourceBasisIndex = 32 ∧
+      target.targetBasisIndex = 32 ∧
+      target.theoremNormalizer =
+        oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.theoremNormalizer ∧
+      target.kappaSymbol = Coeff.symbol "kappa" ∧
+      target.uniformPreparationObligation =
+        oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3 ∧
+      target.kappaProjectionObligation =
+        target.splitTarget.kappaProjectionObligation ∧
+      target.finiteCompositionNormalizedEquality =
+        target.splitTarget.finiteCompositionNormalizedEquality ∧
+      target.productObligation = target.splitTarget.productObligation ∧
+      target.symbolicInverseConditionalLemmaCompiled = true ∧
+      target.dependsOnUniformPreparationCitation = true ∧
+      target.uniformPreparationObligation.proved = false ∧
+      target.kappaProjectionObligation.proved = false ∧
+      target.finiteCompositionNormalizedEquality.proved = false ∧
+      target.productObligation.proved = false ∧
+      target.uniformPreparationProved = false ∧
+      target.kappaProjectionProved = false ∧
+      target.normalizedBlockEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false := by
+  have _split :=
+    oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3_transcript
+  have _inverse :=
+    oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3_transcript
+  native_decide
+
+/--
+Conditional sparse-register `kappa` projection evaluation for the focused
+boundary branch.
+
+This combines the already compiled `N_D_inv`/`N_f_inv` cancellation lemma with
+a separate symbolic `kappa_inv` projection factor.  Under explicit environment
+hypotheses, the projected branch-local product multiplied by the theorem
+normalizer evaluates to the target entry.  The theorem does not prove that the
+circuit actually prepares or projects the sparse register with amplitude
+`1/sqrt(kappa)`; that source/projection convention remains an obligation.
+-/
+theorem oneTermRobinGamma3BoundaryKappaProjectionEval_n3
+    (env : String → Rat)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1) :
+    Coeff.evalWith env
+        (Coeff.mul
+          oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          (Coeff.symbol "kappa_inv")) *
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.theoremNormalizer =
+    Coeff.evalWith env
+        oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.targetEntry := by
+  have hsymbolic :
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.branchLocalProduct *
+        (env "N_D" * env "N_f") =
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.targetEntry :=
+    oneTermRobinGamma3BoundarySymbolicInverseEval_n3 env hND hNF
+  have hfields :
+      oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget =
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3 ∧
+        oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.theoremNormalizer =
+          GHL2025.oneTermRobinNormalizer := by
+    native_decide
+  rcases hfields with ⟨hsplit, hnormalizer⟩
+  rw [hsplit, hnormalizer]
+  simp [GHL2025.oneTermRobinNormalizer]
+  calc
+    (Coeff.evalWith env
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.branchLocalProduct *
+        env "kappa_inv") *
+        (env "N_D" * env "N_f" * env "kappa")
+      = Coeff.evalWith env
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.branchLocalProduct *
+          (env "kappa_inv" *
+            (env "N_D" * env "N_f" * env "kappa")) := by
+          exact Rat.mul_assoc _ _ _
+    _ = Coeff.evalWith env
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.branchLocalProduct *
+          ((env "N_D" * env "N_f") *
+            (env "kappa_inv" * env "kappa")) := by
+          congr 1
+          calc
+            env "kappa_inv" *
+                (env "N_D" * env "N_f" * env "kappa")
+              = (env "kappa_inv" * (env "N_D" * env "N_f")) *
+                  env "kappa" := by
+                  exact (Rat.mul_assoc _ _ _).symm
+            _ = ((env "N_D" * env "N_f") * env "kappa_inv") *
+                  env "kappa" := by
+                  rw [Rat.mul_comm (env "kappa_inv")
+                    (env "N_D" * env "N_f")]
+            _ = (env "N_D" * env "N_f") *
+                  (env "kappa_inv" * env "kappa") := by
+                  exact Rat.mul_assoc _ _ _
+    _ = (Coeff.evalWith env
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.branchLocalProduct *
+          (env "N_D" * env "N_f")) *
+        (env "kappa_inv" * env "kappa") := by
+          exact (Rat.mul_assoc _ _ _).symm
+    _ = Coeff.evalWith env
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.targetEntry *
+        (env "kappa_inv" * env "kappa") := by
+          rw [hsymbolic]
+    _ = Coeff.evalWith env
+          oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.targetEntry := by
+          rw [hkappa]
+          simp
+
+/--
+Compiled packet for the conditional `kappa_inv` projection evaluation.
+
+The packet records the Lean algebra that would finish the normalizer part once
+the sparse-register preparation/projection convention is available.  It keeps
+the uniform-preparation, projection, finite-composition, and theorem-facing
+product obligations false.
+-/
+structure OneTermRobinGamma3BoundaryKappaProjectionSemantics where
+  sourceAnchor : String
+  projectionTarget : OneTermRobinGamma3BoundaryKappaProjectionTarget
+  projectedBranchProduct : Coeff
+  projectionFactor : Coeff
+  kappaInverseHypothesis : String
+  conditionalEvalLemma : String
+  uniformPreparationObligation : SemanticObligation
+  kappaProjectionObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  symbolicInverseConditionalLemmaCompiled : Bool
+  kappaProjectionConditionalLemmaCompiled : Bool
+  uniformPreparationProved : Bool
+  kappaProjectionProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Boundary `gamma3` sparse-register projection packet for `n = 3`.
+
+The field `projectedBranchProduct` is the corrected branch-local product
+multiplied by a symbolic `kappa_inv` factor.  The compiled evaluation lemma
+checks only rational cancellation under explicit environment hypotheses; it is
+not a gate-level proof of `H_W^(kappa)` or block projection.
+-/
+def oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3 :
+    OneTermRobinGamma3BoundaryKappaProjectionSemantics :=
+  let target := oneTermRobinGamma3BoundaryKappaProjectionTarget_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 denominator N_D*N_f*kappa, Fig. 1-term ROBIN, and Definition def:block-encoding, arXiv:2506.20478"
+    projectionTarget := target
+    projectedBranchProduct :=
+      Coeff.mul target.splitTarget.branchLocalProduct (Coeff.symbol "kappa_inv")
+    projectionFactor := Coeff.symbol "kappa_inv"
+    kappaInverseHypothesis := "env kappa_inv * env kappa = 1"
+    conditionalEvalLemma :=
+      "oneTermRobinGamma3BoundaryKappaProjectionEval_n3"
+    uniformPreparationObligation := target.uniformPreparationObligation
+    kappaProjectionObligation := target.kappaProjectionObligation
+    finiteCompositionNormalizedEquality :=
+      target.finiteCompositionNormalizedEquality
+    productObligation := target.productObligation
+    symbolicInverseConditionalLemmaCompiled :=
+      target.symbolicInverseConditionalLemmaCompiled
+    kappaProjectionConditionalLemmaCompiled := true
+    uniformPreparationProved := target.uniformPreparationProved
+    kappaProjectionProved := target.kappaProjectionProved
+    normalizedBlockEqualityProved := target.normalizedBlockEqualityProved
+    productToCoefficientProved := target.productToCoefficientProved
+    lcuCorrectProved := target.lcuCorrectProved
+    blockProjectionProved := target.blockProjectionProved
+    blockCorrectProved := target.blockCorrectProved
+    finalExtractionProved := target.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the conditional sparse-register projection packet.
+
+It checks that the packet reuses the middle-agent target, names
+`oneTermRobinGamma3BoundaryKappaProjectionEval_n3` as the compiled algebra
+lemma, and preserves all semantic proof flags as false.
+-/
+theorem oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3_transcript :
+    let semantics := oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3
+    let target := oneTermRobinGamma3BoundaryKappaProjectionTarget_n3
+    semantics.sourceAnchor =
+        "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 denominator N_D*N_f*kappa, Fig. 1-term ROBIN, and Definition def:block-encoding, arXiv:2506.20478" ∧
+      semantics.projectionTarget = target ∧
+      semantics.projectedBranchProduct =
+        Coeff.mul target.splitTarget.branchLocalProduct
+          (Coeff.symbol "kappa_inv") ∧
+      semantics.projectionFactor = Coeff.symbol "kappa_inv" ∧
+      semantics.kappaInverseHypothesis =
+        "env kappa_inv * env kappa = 1" ∧
+      semantics.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      semantics.uniformPreparationObligation =
+        target.uniformPreparationObligation ∧
+      semantics.kappaProjectionObligation =
+        target.kappaProjectionObligation ∧
+      semantics.finiteCompositionNormalizedEquality =
+        target.finiteCompositionNormalizedEquality ∧
+      semantics.productObligation = target.productObligation ∧
+      semantics.symbolicInverseConditionalLemmaCompiled = true ∧
+      semantics.kappaProjectionConditionalLemmaCompiled = true ∧
+      semantics.uniformPreparationObligation.proved = false ∧
+      semantics.kappaProjectionObligation.proved = false ∧
+      semantics.finiteCompositionNormalizedEquality.proved = false ∧
+      semantics.productObligation.proved = false ∧
+      semantics.uniformPreparationProved = false ∧
+      semantics.kappaProjectionProved = false ∧
+      semantics.normalizedBlockEqualityProved = false ∧
+      semantics.productToCoefficientProved = false ∧
+      semantics.lcuCorrectProved = false ∧
+      semantics.blockProjectionProved = false ∧
+      semantics.blockCorrectProved = false ∧
+      semantics.finalExtractionProved = false := by
+  have _target :=
+    oneTermRobinGamma3BoundaryKappaProjectionTarget_n3_transcript
+  native_decide
+
+/--
+Source-backed projection contract for the inserted `kappa_inv` factor.
+
+The compiled cancellation lemma treats `Coeff.symbol "kappa_inv"` as an
+explicit factor in the projected branch product.  This contract records the
+paper-facing source of that factor: `H_W^(kappa)` prepares the sparse register
+with amplitude `1/sqrt(kappa)` on the focused slot, and the matching
+block-projection bra contributes the second `1/sqrt(kappa)`.  The actual
+state-preparation circuit, projection convention, normalized block equality,
+and focused product-to-coefficient equality remain obligations.
+-/
+structure OneTermRobinGamma3BoundaryProjectionSourceContract where
+  sourceAnchor : String
+  kappaSemantics : OneTermRobinGamma3BoundaryKappaProjectionSemantics
+  citedResultId : String
+  preparationFormula : String
+  preparationAmplitudeFormula : String
+  projectionAmplitudeFormula : String
+  combinedProjectionFormula : String
+  focusedKappa : Nat
+  focusedSparseSlot : Nat
+  sourceBasisIndex : Nat
+  targetBasisIndex : Nat
+  projectionFactor : Coeff
+  projectedBranchProduct : Coeff
+  uniformPreparationObligation : SemanticObligation
+  matchingProjectionObligation : SemanticObligation
+  projectionFactorSemantics : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  conditionalEvalLemma : String
+  sourceContractCompiled : Bool
+  uniformPreparationProved : Bool
+  matchingProjectionProved : Bool
+  projectionFactorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled source/projection contract for the focused boundary branch.
+
+This packet connects the existing conditional `kappa_inv` algebra to the
+paper source and the cited uniform-state-preparation result.  It deliberately
+does not prove that the circuit supplies the factor; the relevant fields remain
+false obligations for a later block-projection packet.
+-/
+def oneTermRobinGamma3BoundaryProjectionSourceContract_n3 :
+    OneTermRobinGamma3BoundaryProjectionSourceContract :=
+  let semantics := oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3
+  let target := semantics.projectionTarget
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 denominator N_D*N_f*kappa, Fig. 1-term ROBIN, Definition def:block-encoding, and Shukla-Vedula 2024, arXiv:2506.20478"
+    kappaSemantics := semantics
+    citedResultId := target.citedResultId
+    preparationFormula := target.hWFormula
+    preparationAmplitudeFormula := target.preparationAmplitudeFormula
+    projectionAmplitudeFormula := target.projectionAmplitudeFormula
+    combinedProjectionFormula := target.productProjectionFormula
+    focusedKappa := target.focusedKappa
+    focusedSparseSlot := target.focusedSparseSlot
+    sourceBasisIndex := target.sourceBasisIndex
+    targetBasisIndex := target.targetBasisIndex
+    projectionFactor := semantics.projectionFactor
+    projectedBranchProduct := semantics.projectedBranchProduct
+    uniformPreparationObligation := semantics.uniformPreparationObligation
+    matchingProjectionObligation := semantics.kappaProjectionObligation
+    projectionFactorSemantics := {
+      description :=
+        "identify the product of H_W^(kappa) preparation and matching sparse-register projection amplitudes with Coeff.symbol \"kappa_inv\" for focused boundary slot 2"
+      source :=
+        "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified, Definition def:block-encoding, and cited result ShuklaVedula2024.HWkappaUniformSuperposition"
+      proved := false
+    }
+    finiteCompositionNormalizedEquality :=
+      semantics.finiteCompositionNormalizedEquality
+    productObligation := semantics.productObligation
+    conditionalEvalLemma := semantics.conditionalEvalLemma
+    sourceContractCompiled := true
+    uniformPreparationProved := semantics.uniformPreparationProved
+    matchingProjectionProved := semantics.kappaProjectionProved
+    projectionFactorSemanticsProved := false
+    normalizedBlockEqualityProved := semantics.normalizedBlockEqualityProved
+    productToCoefficientProved := semantics.productToCoefficientProved
+    lcuCorrectProved := semantics.lcuCorrectProved
+    blockProjectionProved := semantics.blockProjectionProved
+    blockCorrectProved := semantics.blockCorrectProved
+    finalExtractionProved := semantics.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the boundary projection source contract.
+
+It checks that the contract reuses the compiled `kappa_inv` packet, points to
+the cited uniform-preparation row, fixes the focused slot data, and leaves all
+semantic obligations false.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript :
+    let contract := oneTermRobinGamma3BoundaryProjectionSourceContract_n3
+    let semantics := oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3
+    contract.kappaSemantics = semantics ∧
+      contract.citedResultId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      contract.preparationFormula =
+        "H_W^(kappa)|0>^ceil(log2 kappa) = (1/sqrt(kappa)) * sum_{s=0}^{kappa-1} |s>" ∧
+      contract.preparationAmplitudeFormula = "1/sqrt(kappa)" ∧
+      contract.projectionAmplitudeFormula = "1/sqrt(kappa)" ∧
+      contract.combinedProjectionFormula = "1/kappa" ∧
+      contract.focusedKappa = 7 ∧
+      contract.focusedSparseSlot = 2 ∧
+      contract.sourceBasisIndex = 32 ∧
+      contract.targetBasisIndex = 32 ∧
+      contract.projectionFactor = Coeff.symbol "kappa_inv" ∧
+      contract.projectedBranchProduct =
+        Coeff.mul
+          oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          (Coeff.symbol "kappa_inv") ∧
+      contract.uniformPreparationObligation =
+        semantics.uniformPreparationObligation ∧
+      contract.matchingProjectionObligation =
+        semantics.kappaProjectionObligation ∧
+      contract.finiteCompositionNormalizedEquality =
+        semantics.finiteCompositionNormalizedEquality ∧
+      contract.productObligation = semantics.productObligation ∧
+      contract.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      contract.sourceContractCompiled = true ∧
+      contract.uniformPreparationObligation.proved = false ∧
+      contract.matchingProjectionObligation.proved = false ∧
+      contract.projectionFactorSemantics.proved = false ∧
+      contract.finiteCompositionNormalizedEquality.proved = false ∧
+      contract.productObligation.proved = false ∧
+      contract.uniformPreparationProved = false ∧
+      contract.matchingProjectionProved = false ∧
+      contract.projectionFactorSemanticsProved = false ∧
+      contract.normalizedBlockEqualityProved = false ∧
+      contract.productToCoefficientProved = false ∧
+      contract.lcuCorrectProved = false ∧
+      contract.blockProjectionProved = false ∧
+      contract.blockCorrectProved = false ∧
+      contract.finalExtractionProved = false := by
+  have _semantics :=
+    oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3_transcript
+  native_decide
+
+/--
+Finite index check for the boundary projection-factor packet.
+
+This theorem proves only the local bookkeeping part of the sparse-register
+projection factor: the prepared sparse slot and the projected sparse slot are
+the same focused slot `2`, and both use the clean basis index generated by
+`oneTermRobinGamma3PaperBasisIndex`.  It does not prove the amplitude of
+`H_W^(kappa)`, the matching projection amplitude, or the block-composition
+equality.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionFactorIndex_n3 :
+    let p := oneTermParameters 3
+    let contract := oneTermRobinGamma3BoundaryProjectionSourceContract_n3
+    contract.focusedSparseSlot = 2 ∧
+      contract.sourceBasisIndex = oneTermRobinGamma3PaperBasisIndex p 2 0 ∧
+      contract.targetBasisIndex = oneTermRobinGamma3PaperBasisIndex p 2 0 ∧
+      contract.sourceBasisIndex = contract.targetBasisIndex ∧
+      contract.sourceBasisIndex = 32 ∧
+      contract.targetBasisIndex = 32 ∧
+      contract.projectionFactor = Coeff.symbol "kappa_inv" ∧
+      contract.projectedBranchProduct =
+        Coeff.mul
+          oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          (Coeff.symbol "kappa_inv") ∧
+      contract.projectionFactorSemantics.proved = false ∧
+      contract.uniformPreparationObligation.proved = false ∧
+      contract.matchingProjectionObligation.proved = false ∧
+      contract.finiteCompositionNormalizedEquality.proved = false ∧
+      contract.productObligation.proved = false := by
+  have _contract :=
+    oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript
+  native_decide
+
+/--
+Finite projection-factor interface for the inserted `kappa_inv` factor.
+
+The source contract says where the factor must come from.  This packet adds the
+finite Lean-side index interface: the preparation and projection are both
+focused on sparse slot `2` and clean basis index `32`, so the only remaining
+meaning of `Coeff.symbol "kappa_inv"` is the amplitude theorem for the
+uniform sparse-register preparation and its matching block projection.
+-/
+structure OneTermRobinGamma3BoundaryProjectionFactorSemantics where
+  sourceAnchor : String
+  sourceContract : OneTermRobinGamma3BoundaryProjectionSourceContract
+  finiteIndexLemma : String
+  preparedSparseSlot : Nat
+  projectedSparseSlot : Nat
+  preparedBasisIndex : Nat
+  projectedBasisIndex : Nat
+  preparedAndProjectedSlotAgree : Bool
+  preparedAndProjectedBasisAgree : Bool
+  preparationAmplitudeFormula : String
+  projectionAmplitudeFormula : String
+  combinedProjectionFormula : String
+  projectionFactor : Coeff
+  projectedBranchProduct : Coeff
+  factorSemanticsObligation : SemanticObligation
+  uniformPreparationObligation : SemanticObligation
+  matchingProjectionObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  conditionalEvalLemma : String
+  sourceContractCompiled : Bool
+  finiteIndexLemmaCompiled : Bool
+  exactRemainingObstruction : String
+  uniformPreparationProved : Bool
+  matchingProjectionProved : Bool
+  projectionFactorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled finite projection-factor interface for the focused boundary branch.
+
+This declaration reduces the projection-source gap to the exact missing
+semantic theorem: QBE still has to prove that the cited `H_W^(kappa)`
+preparation and the matching block projection contribute the symbolic factor
+`kappa_inv`.  The finite slot and basis-index alignment is build-tested here.
+-/
+def oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3 :
+    OneTermRobinGamma3BoundaryProjectionFactorSemantics :=
+  let contract := oneTermRobinGamma3BoundaryProjectionSourceContract_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 boundary branch, Definition def:block-encoding, and Shukla-Vedula 2024, arXiv:2506.20478"
+    sourceContract := contract
+    finiteIndexLemma :=
+      "oneTermRobinGamma3BoundaryProjectionFactorIndex_n3"
+    preparedSparseSlot := contract.focusedSparseSlot
+    projectedSparseSlot := contract.focusedSparseSlot
+    preparedBasisIndex := contract.sourceBasisIndex
+    projectedBasisIndex := contract.targetBasisIndex
+    preparedAndProjectedSlotAgree := true
+    preparedAndProjectedBasisAgree := true
+    preparationAmplitudeFormula := contract.preparationAmplitudeFormula
+    projectionAmplitudeFormula := contract.projectionAmplitudeFormula
+    combinedProjectionFormula := contract.combinedProjectionFormula
+    projectionFactor := contract.projectionFactor
+    projectedBranchProduct := contract.projectedBranchProduct
+    factorSemanticsObligation := contract.projectionFactorSemantics
+    uniformPreparationObligation := contract.uniformPreparationObligation
+    matchingProjectionObligation := contract.matchingProjectionObligation
+    finiteCompositionNormalizedEquality :=
+      contract.finiteCompositionNormalizedEquality
+    productObligation := contract.productObligation
+    conditionalEvalLemma := contract.conditionalEvalLemma
+    sourceContractCompiled := contract.sourceContractCompiled
+    finiteIndexLemmaCompiled := true
+    exactRemainingObstruction :=
+      "prove that H_W^(kappa) preparation and matching sparse-slot projection contribute Coeff.symbol \"kappa_inv\" for focused slot 2"
+    uniformPreparationProved := contract.uniformPreparationProved
+    matchingProjectionProved := contract.matchingProjectionProved
+    projectionFactorSemanticsProved :=
+      contract.projectionFactorSemanticsProved
+    normalizedBlockEqualityProved :=
+      contract.normalizedBlockEqualityProved
+    productToCoefficientProved := contract.productToCoefficientProved
+    lcuCorrectProved := contract.lcuCorrectProved
+    blockProjectionProved := contract.blockProjectionProved
+    blockCorrectProved := contract.blockCorrectProved
+    finalExtractionProved := contract.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the finite projection-factor interface.
+
+The theorem checks the compiled index lemma, the focused sparse slot, the clean
+basis index, the projected branch product, and every false semantic flag.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3_transcript :
+    let factor := oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3
+    let contract := oneTermRobinGamma3BoundaryProjectionSourceContract_n3
+    factor.sourceAnchor =
+        "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 boundary branch, Definition def:block-encoding, and Shukla-Vedula 2024, arXiv:2506.20478" ∧
+      factor.sourceContract = contract ∧
+      factor.finiteIndexLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorIndex_n3" ∧
+      factor.preparedSparseSlot = 2 ∧
+      factor.projectedSparseSlot = 2 ∧
+      factor.preparedBasisIndex = 32 ∧
+      factor.projectedBasisIndex = 32 ∧
+      factor.preparedAndProjectedSlotAgree = true ∧
+      factor.preparedAndProjectedBasisAgree = true ∧
+      factor.preparationAmplitudeFormula = "1/sqrt(kappa)" ∧
+      factor.projectionAmplitudeFormula = "1/sqrt(kappa)" ∧
+      factor.combinedProjectionFormula = "1/kappa" ∧
+      factor.projectionFactor = Coeff.symbol "kappa_inv" ∧
+      factor.projectedBranchProduct = contract.projectedBranchProduct ∧
+      factor.factorSemanticsObligation =
+        contract.projectionFactorSemantics ∧
+      factor.uniformPreparationObligation =
+        contract.uniformPreparationObligation ∧
+      factor.matchingProjectionObligation =
+        contract.matchingProjectionObligation ∧
+      factor.finiteCompositionNormalizedEquality =
+        contract.finiteCompositionNormalizedEquality ∧
+      factor.productObligation = contract.productObligation ∧
+      factor.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      factor.sourceContractCompiled = true ∧
+      factor.finiteIndexLemmaCompiled = true ∧
+      factor.exactRemainingObstruction =
+        "prove that H_W^(kappa) preparation and matching sparse-slot projection contribute Coeff.symbol \"kappa_inv\" for focused slot 2" ∧
+      factor.factorSemanticsObligation.proved = false ∧
+      factor.uniformPreparationObligation.proved = false ∧
+      factor.matchingProjectionObligation.proved = false ∧
+      factor.finiteCompositionNormalizedEquality.proved = false ∧
+      factor.productObligation.proved = false ∧
+      factor.uniformPreparationProved = false ∧
+      factor.matchingProjectionProved = false ∧
+      factor.projectionFactorSemanticsProved = false ∧
+      factor.normalizedBlockEqualityProved = false ∧
+      factor.productToCoefficientProved = false ∧
+      factor.lcuCorrectProved = false ∧
+      factor.blockProjectionProved = false ∧
+      factor.blockCorrectProved = false ∧
+      factor.finalExtractionProved = false := by
+  have _contract :=
+    oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript
+  have _index :=
+    oneTermRobinGamma3BoundaryProjectionFactorIndex_n3
+  native_decide
+
+/--
+Smallest current obstruction for proving the focused projection factor.
+
+The finite slot and basis-index interface is compiled, and the conditional
+`kappa_inv` cancellation lemma is compiled.  What remains is not another
+finite-index calculation: QBE still needs a formal source for the
+`H_W^(kappa)` per-slot amplitude and a matching block-projection convention
+for the same sparse slot.  This packet separates those two obligations while
+keeping the product-to-coefficient route false.
+-/
+structure OneTermRobinGamma3BoundaryProjectionFactorObstruction where
+  sourceAnchor : String
+  factorSemantics : OneTermRobinGamma3BoundaryProjectionFactorSemantics
+  citedUniformPreparationId : String
+  citedUniformPreparationNeed : String
+  matchingProjectionNeed : String
+  symbolicFactorNeed : String
+  uniformPreparationObligation : SemanticObligation
+  matchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  finiteIndexLemma : String
+  conditionalEvalLemma : String
+  finiteIndexLemmaCompiled : Bool
+  conditionalEvalCompiled : Bool
+  citedUniformPreparationProved : Bool
+  matchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled obstruction packet for the projection-factor semantics of the focused
+boundary branch.
+
+This is deliberately not a proof of `kappa_inv`.  It records that the cited
+uniform-preparation amplitude and the QBE matching projection convention are
+the two separate missing ingredients before the existing conditional algebra
+can feed the product-to-coefficient route.
+-/
+def oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3 :
+    OneTermRobinGamma3BoundaryProjectionFactorObstruction :=
+  let factor := oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 boundary branch, Definition def:block-encoding, and Shukla-Vedula 2024, arXiv:2506.20478"
+    factorSemantics := factor
+    citedUniformPreparationId := factor.sourceContract.citedResultId
+    citedUniformPreparationNeed :=
+      "formalize or contract-map the H_W^(kappa) per-slot amplitude 1/sqrt(kappa) for focused sparse slot 2"
+    matchingProjectionNeed :=
+      "state the QBE block-projection convention that the bra onto the same sparse slot contributes the second 1/sqrt(kappa) factor"
+    symbolicFactorNeed :=
+      "identify the product of the two amplitudes with Coeff.symbol \"kappa_inv\" before using oneTermRobinGamma3BoundaryKappaProjectionEval_n3"
+    uniformPreparationObligation := factor.uniformPreparationObligation
+    matchingProjectionObligation := factor.matchingProjectionObligation
+    factorSemanticsObligation := factor.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      factor.finiteCompositionNormalizedEquality
+    productObligation := factor.productObligation
+    finiteIndexLemma := factor.finiteIndexLemma
+    conditionalEvalLemma := factor.conditionalEvalLemma
+    finiteIndexLemmaCompiled := factor.finiteIndexLemmaCompiled
+    conditionalEvalCompiled :=
+      factor.sourceContract.kappaSemantics.kappaProjectionConditionalLemmaCompiled
+    citedUniformPreparationProved := factor.uniformPreparationProved
+    matchingProjectionProved := factor.matchingProjectionProved
+    factorSemanticsProved := factor.projectionFactorSemanticsProved
+    normalizedBlockEqualityProved := factor.normalizedBlockEqualityProved
+    productToCoefficientProved := factor.productToCoefficientProved
+    lcuCorrectProved := factor.lcuCorrectProved
+    blockProjectionProved := factor.blockProjectionProved
+    blockCorrectProved := factor.blockCorrectProved
+    finalExtractionProved := factor.finalExtractionProved
+    exactRemainingObstruction :=
+      "missing semantic theorem for H_W^(kappa) amplitude times matching sparse-slot projection equals Coeff.symbol \"kappa_inv\""
+  }
+
+/--
+Transcript theorem for the projection-factor obstruction packet.
+
+The theorem confirms that the obstruction reuses the compiled finite
+projection-factor interface and does not promote product equality, LCU,
+projection, block correctness, normalized equality, or final extraction.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3_transcript :
+    let obstruction :=
+      oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3
+    let factor := oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3
+    obstruction.factorSemantics = factor ∧
+      obstruction.citedUniformPreparationId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      obstruction.citedUniformPreparationNeed =
+        "formalize or contract-map the H_W^(kappa) per-slot amplitude 1/sqrt(kappa) for focused sparse slot 2" ∧
+      obstruction.matchingProjectionNeed =
+        "state the QBE block-projection convention that the bra onto the same sparse slot contributes the second 1/sqrt(kappa) factor" ∧
+      obstruction.symbolicFactorNeed =
+        "identify the product of the two amplitudes with Coeff.symbol \"kappa_inv\" before using oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      obstruction.uniformPreparationObligation =
+        factor.uniformPreparationObligation ∧
+      obstruction.matchingProjectionObligation =
+        factor.matchingProjectionObligation ∧
+      obstruction.factorSemanticsObligation =
+        factor.factorSemanticsObligation ∧
+      obstruction.finiteCompositionNormalizedEquality =
+        factor.finiteCompositionNormalizedEquality ∧
+      obstruction.productObligation = factor.productObligation ∧
+      obstruction.finiteIndexLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorIndex_n3" ∧
+      obstruction.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      obstruction.finiteIndexLemmaCompiled = true ∧
+      obstruction.conditionalEvalCompiled = true ∧
+      obstruction.uniformPreparationObligation.proved = false ∧
+      obstruction.matchingProjectionObligation.proved = false ∧
+      obstruction.factorSemanticsObligation.proved = false ∧
+      obstruction.finiteCompositionNormalizedEquality.proved = false ∧
+      obstruction.productObligation.proved = false ∧
+      obstruction.citedUniformPreparationProved = false ∧
+      obstruction.matchingProjectionProved = false ∧
+      obstruction.factorSemanticsProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false ∧
+      obstruction.exactRemainingObstruction =
+        "missing semantic theorem for H_W^(kappa) amplitude times matching sparse-slot projection equals Coeff.symbol \"kappa_inv\"" := by
+  have _factor :=
+    oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3_transcript
+  native_decide
+
+/--
+Local matching-projection convention for the focused boundary branch.
+
+The projection-factor obstruction has already separated the cited
+`H_W^(kappa)` preparation amplitude from QBE's matching block-projection
+convention.  This packet records only the local convention side: the projected
+bra is the same sparse slot `2` and the same clean basis index `32` used by the
+prepared branch.  It does not prove that the bra contributes amplitude
+`1/sqrt(kappa)` and does not identify the two amplitude factors with
+`Coeff.symbol "kappa_inv"`.
+-/
+structure OneTermRobinGamma3BoundaryMatchingProjectionConvention where
+  sourceAnchor : String
+  obstruction : OneTermRobinGamma3BoundaryProjectionFactorObstruction
+  sourceContract : OneTermRobinGamma3BoundaryProjectionSourceContract
+  factorSemantics : OneTermRobinGamma3BoundaryProjectionFactorSemantics
+  focusedSparseSlot : Nat
+  preparedBasisIndex : Nat
+  projectedBasisIndex : Nat
+  projectionBraFormula : String
+  projectionKetFormula : String
+  matchingProjectionNeed : String
+  matchingProjectionObligation : SemanticObligation
+  uniformPreparationObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  finiteIndexLemma : String
+  conditionalEvalLemma : String
+  finiteIndexLemmaCompiled : Bool
+  obstructionPacketCompiled : Bool
+  matchingProjectionConventionCompiled : Bool
+  uniformPreparationProved : Bool
+  matchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled local matching-projection convention for sparse slot `2`.
+
+The convention reuses the compiled projection-factor obstruction and finite
+index lemma.  It narrows the local missing ingredient to the semantic theorem
+that the block projection onto the matching sparse slot contributes the second
+`1/sqrt(kappa)` amplitude.
+-/
+def oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3 :
+    OneTermRobinGamma3BoundaryMatchingProjectionConvention :=
+  let obstruction := oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3
+  let factor := oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, arXiv:2506.20478"
+    obstruction := obstruction
+    sourceContract := factor.sourceContract
+    factorSemantics := factor
+    focusedSparseSlot := factor.projectedSparseSlot
+    preparedBasisIndex := factor.preparedBasisIndex
+    projectedBasisIndex := factor.projectedBasisIndex
+    projectionBraFormula :=
+      "matching block-projection bra selects sparse slot 2 at clean basis index 32 and should contribute 1/sqrt(kappa)"
+    projectionKetFormula :=
+      "H_W^(kappa) prepares sparse slot 2 at clean basis index 32 with amplitude 1/sqrt(kappa)"
+    matchingProjectionNeed := obstruction.matchingProjectionNeed
+    matchingProjectionObligation := obstruction.matchingProjectionObligation
+    uniformPreparationObligation := obstruction.uniformPreparationObligation
+    factorSemanticsObligation := obstruction.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      obstruction.finiteCompositionNormalizedEquality
+    productObligation := obstruction.productObligation
+    finiteIndexLemma := obstruction.finiteIndexLemma
+    conditionalEvalLemma := obstruction.conditionalEvalLemma
+    finiteIndexLemmaCompiled := obstruction.finiteIndexLemmaCompiled
+    obstructionPacketCompiled := true
+    matchingProjectionConventionCompiled := true
+    uniformPreparationProved := obstruction.citedUniformPreparationProved
+    matchingProjectionProved := obstruction.matchingProjectionProved
+    factorSemanticsProved := obstruction.factorSemanticsProved
+    normalizedBlockEqualityProved := obstruction.normalizedBlockEqualityProved
+    productToCoefficientProved := obstruction.productToCoefficientProved
+    lcuCorrectProved := obstruction.lcuCorrectProved
+    blockProjectionProved := obstruction.blockProjectionProved
+    blockCorrectProved := obstruction.blockCorrectProved
+    finalExtractionProved := obstruction.finalExtractionProved
+  }
+
+/--
+Transcript theorem for the matching-projection convention packet.
+
+The theorem checks the local slot and basis-index wiring and confirms that the
+matching projection, projection-factor semantics, finite normalized equality,
+product-to-coefficient equality, and downstream block-encoding claims remain
+unproved.
+-/
+theorem oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript :
+    let convention :=
+      oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3
+    let obstruction :=
+      oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3
+    let factor := oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3
+    convention.sourceAnchor =
+        "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, arXiv:2506.20478" ∧
+      convention.obstruction = obstruction ∧
+      convention.sourceContract =
+        oneTermRobinGamma3BoundaryProjectionSourceContract_n3 ∧
+      convention.factorSemantics = factor ∧
+      convention.focusedSparseSlot = 2 ∧
+      convention.preparedBasisIndex = 32 ∧
+      convention.projectedBasisIndex = 32 ∧
+      convention.preparedBasisIndex = convention.projectedBasisIndex ∧
+      convention.projectionBraFormula =
+        "matching block-projection bra selects sparse slot 2 at clean basis index 32 and should contribute 1/sqrt(kappa)" ∧
+      convention.projectionKetFormula =
+        "H_W^(kappa) prepares sparse slot 2 at clean basis index 32 with amplitude 1/sqrt(kappa)" ∧
+      convention.matchingProjectionNeed =
+        obstruction.matchingProjectionNeed ∧
+      convention.matchingProjectionObligation =
+        obstruction.matchingProjectionObligation ∧
+      convention.uniformPreparationObligation =
+        obstruction.uniformPreparationObligation ∧
+      convention.factorSemanticsObligation =
+        obstruction.factorSemanticsObligation ∧
+      convention.finiteCompositionNormalizedEquality =
+        obstruction.finiteCompositionNormalizedEquality ∧
+      convention.productObligation = obstruction.productObligation ∧
+      convention.finiteIndexLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorIndex_n3" ∧
+      convention.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      convention.finiteIndexLemmaCompiled = true ∧
+      convention.obstructionPacketCompiled = true ∧
+      convention.matchingProjectionConventionCompiled = true ∧
+      convention.uniformPreparationObligation.proved = false ∧
+      convention.matchingProjectionObligation.proved = false ∧
+      convention.factorSemanticsObligation.proved = false ∧
+      convention.finiteCompositionNormalizedEquality.proved = false ∧
+      convention.productObligation.proved = false ∧
+      convention.uniformPreparationProved = false ∧
+      convention.matchingProjectionProved = false ∧
+      convention.factorSemanticsProved = false ∧
+      convention.normalizedBlockEqualityProved = false ∧
+      convention.productToCoefficientProved = false ∧
+      convention.lcuCorrectProved = false ∧
+      convention.blockProjectionProved = false ∧
+      convention.blockCorrectProved = false ∧
+      convention.finalExtractionProved = false := by
+  have _obstruction :=
+    oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3_transcript
+  have _index :=
+    oneTermRobinGamma3BoundaryProjectionFactorIndex_n3
+  native_decide
+
+/--
+Symbolic product check for the two sparse-register amplitude factors.
+
+This is only coefficient algebra: if an environment interprets the two
+`1/sqrt(kappa)` factors as `sqrt_kappa_inv` and their product as
+`kappa_inv`, then the symbolic product evaluates to `kappa_inv`.  It does not
+prove the cited uniform-preparation amplitude or the matching projection
+amplitude.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3
+    (env : String → Rat)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    Coeff.evalWith env
+        (Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv")) =
+      Coeff.evalWith env (Coeff.symbol "kappa_inv") := by
+  simp [hkappaSqrt]
+
+/--
+Smallest current obstruction for the matching-projection amplitude packet.
+
+The local convention already fixes the projected bra to sparse slot `2` and
+clean basis index `32`.  This packet separates the remaining amplitude work:
+the ket-side `1/sqrt(kappa)` factor is an external contract through
+`H_W^(kappa)`, the bra-side `1/sqrt(kappa)` factor is a local QBE
+block-projection obligation, and the product must be identified with the
+symbolic factor `kappa_inv` before the conditional normalizer lemma can close
+the focused product route.
+-/
+structure OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction where
+  sourceAnchor : String
+  matchingConvention : OneTermRobinGamma3BoundaryMatchingProjectionConvention
+  preparationAmplitudeFormula : String
+  matchingProjectionAmplitudeFormula : String
+  combinedProjectionFormula : String
+  symbolicProductFormula : String
+  preparationAmplitudeFactor : Coeff
+  matchingProjectionAmplitudeFactor : Coeff
+  combinedAmplitudeFactor : Coeff
+  expectedProjectionFactor : Coeff
+  uniformPreparationObligation : SemanticObligation
+  matchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  finiteIndexLemma : String
+  conditionalEvalLemma : String
+  symbolicProductEvalLemma : String
+  matchingProjectionConventionCompiled : Bool
+  finiteIndexLemmaCompiled : Bool
+  conditionalEvalCompiled : Bool
+  symbolicProductEvalCompiled : Bool
+  uniformPreparationProved : Bool
+  matchingProjectionAmplitudeProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled obstruction packet for the focused matching-projection amplitude.
+
+This reuses the matching-projection convention and adds the smallest symbolic
+factor interface needed by the next proof block.  It does not prove either
+`1/sqrt(kappa)` amplitude and keeps product equality, finite normalized
+equality, LCU, block projection, block correctness, and final extraction
+false.
+-/
+def oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3 :
+    OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction :=
+  let convention := oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3
+  let halfFactor := Coeff.symbol "sqrt_kappa_inv"
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    matchingConvention := convention
+    preparationAmplitudeFormula :=
+      convention.sourceContract.preparationAmplitudeFormula
+    matchingProjectionAmplitudeFormula :=
+      convention.sourceContract.projectionAmplitudeFormula
+    combinedProjectionFormula :=
+      convention.sourceContract.combinedProjectionFormula
+    symbolicProductFormula :=
+      "sqrt_kappa_inv * sqrt_kappa_inv = kappa_inv"
+    preparationAmplitudeFactor := halfFactor
+    matchingProjectionAmplitudeFactor := halfFactor
+    combinedAmplitudeFactor := Coeff.mul halfFactor halfFactor
+    expectedProjectionFactor := convention.factorSemantics.projectionFactor
+    uniformPreparationObligation :=
+      convention.uniformPreparationObligation
+    matchingProjectionObligation :=
+      convention.matchingProjectionObligation
+    factorSemanticsObligation :=
+      convention.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      convention.finiteCompositionNormalizedEquality
+    productObligation := convention.productObligation
+    finiteIndexLemma := convention.finiteIndexLemma
+    conditionalEvalLemma := convention.conditionalEvalLemma
+    symbolicProductEvalLemma :=
+      "oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3"
+    matchingProjectionConventionCompiled :=
+      convention.matchingProjectionConventionCompiled
+    finiteIndexLemmaCompiled := convention.finiteIndexLemmaCompiled
+    conditionalEvalCompiled := convention.obstruction.conditionalEvalCompiled
+    symbolicProductEvalCompiled := true
+    uniformPreparationProved := convention.uniformPreparationProved
+    matchingProjectionAmplitudeProved :=
+      convention.matchingProjectionProved
+    factorSemanticsProved := convention.factorSemanticsProved
+    normalizedBlockEqualityProved := convention.normalizedBlockEqualityProved
+    productToCoefficientProved := convention.productToCoefficientProved
+    lcuCorrectProved := convention.lcuCorrectProved
+    blockProjectionProved := convention.blockProjectionProved
+    blockCorrectProved := convention.blockCorrectProved
+    finalExtractionProved := convention.finalExtractionProved
+    exactRemainingObstruction :=
+      "prove the matching projection bra contributes sqrt_kappa_inv and combine it with the external H_W^(kappa) ket amplitude to justify Coeff.symbol \"kappa_inv\""
+  }
+
+/--
+Transcript theorem for the matching-projection amplitude obstruction.
+
+The theorem checks that the obstruction is downstream of the compiled
+matching-projection convention and that it introduces no semantic promotion.
+-/
+theorem oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3_transcript :
+    let obstruction :=
+      oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3
+    let convention :=
+      oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3
+    obstruction.matchingConvention = convention ∧
+      obstruction.preparationAmplitudeFormula = "1/sqrt(kappa)" ∧
+      obstruction.matchingProjectionAmplitudeFormula = "1/sqrt(kappa)" ∧
+      obstruction.combinedProjectionFormula = "1/kappa" ∧
+      obstruction.symbolicProductFormula =
+        "sqrt_kappa_inv * sqrt_kappa_inv = kappa_inv" ∧
+      obstruction.preparationAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      obstruction.matchingProjectionAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      obstruction.combinedAmplitudeFactor =
+        Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv") ∧
+      obstruction.expectedProjectionFactor =
+        Coeff.symbol "kappa_inv" ∧
+      obstruction.uniformPreparationObligation =
+        convention.uniformPreparationObligation ∧
+      obstruction.matchingProjectionObligation =
+        convention.matchingProjectionObligation ∧
+      obstruction.factorSemanticsObligation =
+        convention.factorSemanticsObligation ∧
+      obstruction.finiteCompositionNormalizedEquality =
+        convention.finiteCompositionNormalizedEquality ∧
+      obstruction.productObligation = convention.productObligation ∧
+      obstruction.finiteIndexLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorIndex_n3" ∧
+      obstruction.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      obstruction.symbolicProductEvalLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3" ∧
+      obstruction.matchingProjectionConventionCompiled = true ∧
+      obstruction.finiteIndexLemmaCompiled = true ∧
+      obstruction.conditionalEvalCompiled = true ∧
+      obstruction.symbolicProductEvalCompiled = true ∧
+      obstruction.uniformPreparationObligation.proved = false ∧
+      obstruction.matchingProjectionObligation.proved = false ∧
+      obstruction.factorSemanticsObligation.proved = false ∧
+      obstruction.finiteCompositionNormalizedEquality.proved = false ∧
+      obstruction.productObligation.proved = false ∧
+      obstruction.uniformPreparationProved = false ∧
+      obstruction.matchingProjectionAmplitudeProved = false ∧
+      obstruction.factorSemanticsProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false ∧
+      obstruction.exactRemainingObstruction =
+        "prove the matching projection bra contributes sqrt_kappa_inv and combine it with the external H_W^(kappa) ket amplitude to justify Coeff.symbol \"kappa_inv\"" := by
+  have _convention :=
+    oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript
+  have _product :=
+    oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3
+      (fun _ => 0) (by simp)
+  native_decide
+
+/--
+Focused contract for the bra-side matching projection amplitude.
+
+The preceding obstruction already separates the cited ket amplitude from the
+local projection side.  This packet gives the local side a precise interface:
+the block-projection bra is the clean branch for sparse slot `2`, basis index
+`32`, and its expected amplitude factor is the symbol `sqrt_kappa_inv`.
+It is still a contract, not a projection theorem, so all semantic flags remain
+false.
+-/
+structure OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract where
+  sourceAnchor : String
+  amplitudeObstruction :
+    OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction
+  matchingConvention : OneTermRobinGamma3BoundaryMatchingProjectionConvention
+  focusedSparseSlot : Nat
+  preparedBasisIndex : Nat
+  projectedBasisIndex : Nat
+  projectionBraFormula : String
+  expectedBraAmplitudeFormula : String
+  matchingProjectionAmplitudeFactor : Coeff
+  routeMatchingProjectionObligation : SemanticObligation
+  amplitudeContractObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  productObligation : SemanticObligation
+  finiteIndexLemma : String
+  symbolicProductEvalLemma : String
+  amplitudeContractCompiled : Bool
+  finiteIndexLemmaCompiled : Bool
+  symbolicProductEvalCompiled : Bool
+  uniformPreparationProved : Bool
+  matchingProjectionAmplitudeProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled bra-side projection-amplitude contract for the focused boundary
+route.
+
+This is the QBE-local complement to the cited
+`H_W^(kappa)` preparation-amplitude contract.  It narrows the remaining
+block-projection obligation to one finite branch and one expected symbolic
+amplitude factor.
+-/
+def oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3 :
+    OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract :=
+  let obstruction :=
+    oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3
+  let convention := obstruction.matchingConvention
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, and Fig. 1-term ROBIN, arXiv:2506.20478"
+    amplitudeObstruction := obstruction
+    matchingConvention := convention
+    focusedSparseSlot := convention.focusedSparseSlot
+    preparedBasisIndex := convention.preparedBasisIndex
+    projectedBasisIndex := convention.projectedBasisIndex
+    projectionBraFormula :=
+      "bra <0| on the sparse-register preparation block, restricted to sparse slot 2 and clean basis index 32"
+    expectedBraAmplitudeFormula := obstruction.matchingProjectionAmplitudeFormula
+    matchingProjectionAmplitudeFactor :=
+      obstruction.matchingProjectionAmplitudeFactor
+    routeMatchingProjectionObligation :=
+      obstruction.matchingProjectionObligation
+    amplitudeContractObligation := {
+      description :=
+        "prove the matching block-projection bra for sparse slot 2 and clean basis index 32 contributes Coeff.symbol \"sqrt_kappa_inv\""
+      source :=
+        "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, and Fig. 1-term ROBIN"
+      proved := false
+    }
+    factorSemanticsObligation := obstruction.factorSemanticsObligation
+    productObligation := obstruction.productObligation
+    finiteIndexLemma := obstruction.finiteIndexLemma
+    symbolicProductEvalLemma := obstruction.symbolicProductEvalLemma
+    amplitudeContractCompiled := true
+    finiteIndexLemmaCompiled := obstruction.finiteIndexLemmaCompiled
+    symbolicProductEvalCompiled := obstruction.symbolicProductEvalCompiled
+    uniformPreparationProved := obstruction.uniformPreparationProved
+    matchingProjectionAmplitudeProved :=
+      obstruction.matchingProjectionAmplitudeProved
+    factorSemanticsProved := obstruction.factorSemanticsProved
+    normalizedBlockEqualityProved :=
+      obstruction.normalizedBlockEqualityProved
+    productToCoefficientProved := obstruction.productToCoefficientProved
+    lcuCorrectProved := obstruction.lcuCorrectProved
+    blockProjectionProved := obstruction.blockProjectionProved
+    blockCorrectProved := obstruction.blockCorrectProved
+    finalExtractionProved := obstruction.finalExtractionProved
+    exactRemainingObstruction :=
+      "prove the finite block-projection bra amplitude sqrt_kappa_inv for sparse slot 2, then combine it with the cited ket amplitude through oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3"
+  }
+
+/--
+Transcript theorem for the focused bra-side projection-amplitude contract.
+
+It checks that the new contract is downstream of the existing obstruction,
+uses the same slot and basis index, exposes the expected `sqrt_kappa_inv`
+factor, and preserves all false theorem-facing obligations.
+-/
+theorem oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript :
+    let contract :=
+      oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3
+    let obstruction :=
+      oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3
+    let convention :=
+      oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3
+    contract.amplitudeObstruction = obstruction ∧
+      contract.matchingConvention = convention ∧
+      contract.focusedSparseSlot = 2 ∧
+      contract.preparedBasisIndex = 32 ∧
+      contract.projectedBasisIndex = 32 ∧
+      contract.preparedBasisIndex = contract.projectedBasisIndex ∧
+      contract.projectionBraFormula =
+        "bra <0| on the sparse-register preparation block, restricted to sparse slot 2 and clean basis index 32" ∧
+      contract.expectedBraAmplitudeFormula = "1/sqrt(kappa)" ∧
+      contract.matchingProjectionAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      contract.routeMatchingProjectionObligation =
+        obstruction.matchingProjectionObligation ∧
+      contract.amplitudeContractObligation.description =
+        "prove the matching block-projection bra for sparse slot 2 and clean basis index 32 contributes Coeff.symbol \"sqrt_kappa_inv\"" ∧
+      contract.amplitudeContractObligation.source =
+        "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, and Fig. 1-term ROBIN" ∧
+      contract.amplitudeContractObligation.proved = false ∧
+      contract.factorSemanticsObligation =
+        obstruction.factorSemanticsObligation ∧
+      contract.productObligation = obstruction.productObligation ∧
+      contract.finiteIndexLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorIndex_n3" ∧
+      contract.symbolicProductEvalLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3" ∧
+      contract.amplitudeContractCompiled = true ∧
+      contract.finiteIndexLemmaCompiled = true ∧
+      contract.symbolicProductEvalCompiled = true ∧
+      contract.routeMatchingProjectionObligation.proved = false ∧
+      contract.factorSemanticsObligation.proved = false ∧
+      contract.productObligation.proved = false ∧
+      contract.uniformPreparationProved = false ∧
+      contract.matchingProjectionAmplitudeProved = false ∧
+      contract.factorSemanticsProved = false ∧
+      contract.normalizedBlockEqualityProved = false ∧
+      contract.productToCoefficientProved = false ∧
+      contract.lcuCorrectProved = false ∧
+      contract.blockProjectionProved = false ∧
+      contract.blockCorrectProved = false ∧
+      contract.finalExtractionProved = false ∧
+      contract.exactRemainingObstruction =
+        "prove the finite block-projection bra amplitude sqrt_kappa_inv for sparse slot 2, then combine it with the cited ket amplitude through oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3" := by
+  have _obstruction :=
+    oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3_transcript
+  have _index :=
+    oneTermRobinGamma3BoundaryProjectionFactorIndex_n3
+  native_decide
+
+/--
+Phase-1 projection-amplitude semantics for the focused boundary branch.
+
+The bra-side matching projection amplitude has now been narrowed to the
+symbol `sqrt_kappa_inv`, and the ket-side amplitude remains the cited
+`H_W^(kappa)` contract.  This packet accepts both as explicit contracts for
+the current GHL theorem transcript, while keeping the actual amplitude,
+factor-semantics, finite-composition, and product-to-coefficient obligations
+false.
+-/
+structure OneTermRobinGamma3BoundaryProjectionAmplitudeSemantics where
+  sourceAnchor : String
+  amplitudeContract :
+    OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract
+  citedUniformPreparationId : String
+  focusedSparseSlot : Nat
+  cleanBasisIndex : Nat
+  ketAmplitudeFormula : String
+  braAmplitudeFormula : String
+  symbolicProductFormula : String
+  ketAmplitudeFactor : Coeff
+  braAmplitudeFactor : Coeff
+  combinedAmplitudeFactor : Coeff
+  expectedProjectionFactor : Coeff
+  productHypothesisFormula : String
+  conditionalProductEvalLemma : String
+  uniformPreparationObligation : SemanticObligation
+  braAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  ketAmplitudeAcceptedAsContract : Bool
+  braAmplitudeAcceptedAsContract : Bool
+  amplitudeContractCompiled : Bool
+  conditionalProductEvalCompiled : Bool
+  uniformPreparationProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled projection-amplitude semantics packet for the focused `gamma3`
+boundary branch.
+
+This is not a proof of the sparse-register amplitude.  It is the precise
+Phase-1 contract interface needed before the route can use the symbolic product
+lemma and later discharge `factorSemanticsObligation`.
+-/
+def oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3 :
+    OneTermRobinGamma3BoundaryProjectionAmplitudeSemantics :=
+  let contract := oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3
+  let obstruction := contract.amplitudeObstruction
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    amplitudeContract := contract
+    citedUniformPreparationId :=
+      contract.matchingConvention.sourceContract.citedResultId
+    focusedSparseSlot := contract.focusedSparseSlot
+    cleanBasisIndex := contract.preparedBasisIndex
+    ketAmplitudeFormula := obstruction.preparationAmplitudeFormula
+    braAmplitudeFormula := contract.expectedBraAmplitudeFormula
+    symbolicProductFormula := obstruction.symbolicProductFormula
+    ketAmplitudeFactor := obstruction.preparationAmplitudeFactor
+    braAmplitudeFactor := contract.matchingProjectionAmplitudeFactor
+    combinedAmplitudeFactor :=
+      Coeff.mul obstruction.preparationAmplitudeFactor
+        contract.matchingProjectionAmplitudeFactor
+    expectedProjectionFactor := obstruction.expectedProjectionFactor
+    productHypothesisFormula :=
+      "env sqrt_kappa_inv * env sqrt_kappa_inv = env kappa_inv"
+    conditionalProductEvalLemma :=
+      "oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3"
+    uniformPreparationObligation :=
+      obstruction.uniformPreparationObligation
+    braAmplitudeObligation := contract.amplitudeContractObligation
+    routeMatchingProjectionObligation :=
+      contract.routeMatchingProjectionObligation
+    factorSemanticsObligation := contract.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      obstruction.finiteCompositionNormalizedEquality
+    productObligation := contract.productObligation
+    ketAmplitudeAcceptedAsContract := true
+    braAmplitudeAcceptedAsContract := true
+    amplitudeContractCompiled := contract.amplitudeContractCompiled
+    conditionalProductEvalCompiled := true
+    uniformPreparationProved := contract.uniformPreparationProved
+    braAmplitudeProved := contract.matchingProjectionAmplitudeProved
+    routeMatchingProjectionProved :=
+      contract.routeMatchingProjectionObligation.proved
+    factorSemanticsProved := contract.factorSemanticsProved
+    normalizedBlockEqualityProved := contract.normalizedBlockEqualityProved
+    productToCoefficientProved := contract.productToCoefficientProved
+    lcuCorrectProved := contract.lcuCorrectProved
+    blockProjectionProved := contract.blockProjectionProved
+    blockCorrectProved := contract.blockCorrectProved
+    finalExtractionProved := contract.finalExtractionProved
+    exactRemainingObstruction :=
+      "use the accepted ket and bra amplitude contracts plus the conditional product lemma only after the projection-factor semantics obligation is discharged"
+  }
+
+/--
+Conditional product evaluation for the accepted sparse-register amplitude
+contracts.
+
+The theorem only performs symbolic coefficient algebra.  It does not prove the
+cited `H_W^(kappa)` ket amplitude, the QBE matching bra amplitude, or the
+factor-semantics obligation.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3
+    (env : String → Rat)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let semantics :=
+      oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+    Coeff.evalWith env semantics.combinedAmplitudeFactor =
+      Coeff.evalWith env semantics.expectedProjectionFactor := by
+  exact
+    oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3
+      env hkappaSqrt
+
+/--
+Transcript theorem for the projection-amplitude semantics packet.
+
+It verifies that the packet consumes the existing bra-side amplitude contract,
+accepts the ket and bra amplitudes only as Phase-1 contracts, and keeps all
+semantic proof flags false.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3_transcript :
+    let semantics :=
+      oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+    let contract :=
+      oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3
+    semantics.amplitudeContract = contract ∧
+      semantics.citedUniformPreparationId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      semantics.focusedSparseSlot = 2 ∧
+      semantics.cleanBasisIndex = 32 ∧
+      semantics.ketAmplitudeFormula = "1/sqrt(kappa)" ∧
+      semantics.braAmplitudeFormula = "1/sqrt(kappa)" ∧
+      semantics.symbolicProductFormula =
+        "sqrt_kappa_inv * sqrt_kappa_inv = kappa_inv" ∧
+      semantics.ketAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      semantics.braAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      semantics.combinedAmplitudeFactor =
+        Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv") ∧
+      semantics.expectedProjectionFactor = Coeff.symbol "kappa_inv" ∧
+      semantics.productHypothesisFormula =
+        "env sqrt_kappa_inv * env sqrt_kappa_inv = env kappa_inv" ∧
+      semantics.conditionalProductEvalLemma =
+        "oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3" ∧
+      semantics.uniformPreparationObligation =
+        contract.amplitudeObstruction.uniformPreparationObligation ∧
+      semantics.braAmplitudeObligation =
+        contract.amplitudeContractObligation ∧
+      semantics.routeMatchingProjectionObligation =
+        contract.routeMatchingProjectionObligation ∧
+      semantics.factorSemanticsObligation =
+        contract.factorSemanticsObligation ∧
+      semantics.finiteCompositionNormalizedEquality =
+        contract.amplitudeObstruction.finiteCompositionNormalizedEquality ∧
+      semantics.productObligation = contract.productObligation ∧
+      semantics.ketAmplitudeAcceptedAsContract = true ∧
+      semantics.braAmplitudeAcceptedAsContract = true ∧
+      semantics.amplitudeContractCompiled = true ∧
+      semantics.conditionalProductEvalCompiled = true ∧
+      semantics.uniformPreparationObligation.proved = false ∧
+      semantics.braAmplitudeObligation.proved = false ∧
+      semantics.routeMatchingProjectionObligation.proved = false ∧
+      semantics.factorSemanticsObligation.proved = false ∧
+      semantics.finiteCompositionNormalizedEquality.proved = false ∧
+      semantics.productObligation.proved = false ∧
+      semantics.uniformPreparationProved = false ∧
+      semantics.braAmplitudeProved = false ∧
+      semantics.routeMatchingProjectionProved = false ∧
+      semantics.factorSemanticsProved = false ∧
+      semantics.normalizedBlockEqualityProved = false ∧
+      semantics.productToCoefficientProved = false ∧
+      semantics.lcuCorrectProved = false ∧
+      semantics.blockProjectionProved = false ∧
+      semantics.blockCorrectProved = false ∧
+      semantics.finalExtractionProved = false ∧
+      semantics.exactRemainingObstruction =
+        "use the accepted ket and bra amplitude contracts plus the conditional product lemma only after the projection-factor semantics obligation is discharged" := by
+  have _contract :=
+    oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript
+  have _product :=
+    oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3
+      (fun _ => 0) (by simp)
+  native_decide
+
+/--
+Conditional factor-semantics evaluation for the accepted sparse-register
+amplitude contracts.
+
+This combines the local symbolic product lemma for the two
+`sqrt_kappa_inv` factors with the existing conditional `kappa_inv`
+normalizer lemma.  The hypotheses are explicit coefficient-environment
+semantics; the theorem does not prove the cited `H_W^(kappa)` amplitude, the
+matching projection amplitude, or the theorem-facing product obligation.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3
+    (env : String → Rat)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let semantics :=
+      oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+    Coeff.evalWith env
+        (Coeff.mul
+          oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          semantics.combinedAmplitudeFactor) *
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.theoremNormalizer =
+    Coeff.evalWith env
+        oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.targetEntry := by
+  dsimp
+  have hfactor :
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.combinedAmplitudeFactor =
+        Coeff.evalWith env (Coeff.symbol "kappa_inv") :=
+    oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3
+      env hkappaSqrt
+  have hkappaEval :
+      Coeff.evalWith env
+          (Coeff.mul
+            oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+            (Coeff.symbol "kappa_inv")) *
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.theoremNormalizer =
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.targetEntry :=
+    oneTermRobinGamma3BoundaryKappaProjectionEval_n3 env hND hNF hkappa
+  calc
+    Coeff.evalWith env
+        (Coeff.mul
+          oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.combinedAmplitudeFactor) *
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.theoremNormalizer
+        =
+      Coeff.evalWith env
+        (Coeff.mul
+          oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          (Coeff.symbol "kappa_inv")) *
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.theoremNormalizer := by
+          simp [Coeff.evalWith, hfactor]
+    _ =
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.targetEntry :=
+          hkappaEval
+
+/--
+Compiled packet for the conditional factor-semantics bridge.
+
+The packet records that the accepted ket and bra amplitude contracts can feed
+the existing `kappa_inv` normalizer lemma only under the explicit product
+hypothesis.  It keeps all amplitude, factor-semantics, finite-composition, and
+product-to-coefficient proof flags false.
+-/
+structure OneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics where
+  sourceAnchor : String
+  projectionAmplitudeSemantics :
+    OneTermRobinGamma3BoundaryProjectionAmplitudeSemantics
+  projectedBranchProduct : Coeff
+  expectedTargetEntry : Coeff
+  theoremNormalizer : Coeff
+  factorHypothesisFormula : String
+  conditionalFactorEvalLemma : String
+  productEvalLemma : String
+  kappaProjectionEvalLemma : String
+  uniformPreparationObligation : SemanticObligation
+  braAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  conditionalProductEvalCompiled : Bool
+  kappaProjectionEvalCompiled : Bool
+  conditionalFactorEvalCompiled : Bool
+  uniformPreparationProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Factor-semantics bridge for the focused boundary `gamma3` packet.
+
+The projected branch product uses the two accepted `sqrt_kappa_inv` amplitude
+contracts directly.  The conditional lemma shows that this product has the same
+normalizer behavior as the earlier inserted `kappa_inv` factor when the
+environment supplies the product identity.
+-/
+def oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3 :
+    OneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics :=
+  let semantics := oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+  let target := oneTermRobinGamma3BoundaryKappaProjectionTarget_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified gamma3 denominator N_D*N_f*kappa, Definition def:block-encoding, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    projectionAmplitudeSemantics := semantics
+    projectedBranchProduct :=
+      Coeff.mul target.splitTarget.branchLocalProduct
+        semantics.combinedAmplitudeFactor
+    expectedTargetEntry := target.splitTarget.targetEntry
+    theoremNormalizer := target.theoremNormalizer
+    factorHypothesisFormula :=
+      "env sqrt_kappa_inv * env sqrt_kappa_inv = env kappa_inv"
+    conditionalFactorEvalLemma :=
+      "oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3"
+    productEvalLemma :=
+      semantics.conditionalProductEvalLemma
+    kappaProjectionEvalLemma :=
+      "oneTermRobinGamma3BoundaryKappaProjectionEval_n3"
+    uniformPreparationObligation := semantics.uniformPreparationObligation
+    braAmplitudeObligation := semantics.braAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      semantics.routeMatchingProjectionObligation
+    factorSemanticsObligation := semantics.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      semantics.finiteCompositionNormalizedEquality
+    productObligation := semantics.productObligation
+    conditionalProductEvalCompiled :=
+      semantics.conditionalProductEvalCompiled
+    kappaProjectionEvalCompiled := true
+    conditionalFactorEvalCompiled := true
+    uniformPreparationProved := semantics.uniformPreparationProved
+    braAmplitudeProved := semantics.braAmplitudeProved
+    routeMatchingProjectionProved :=
+      semantics.routeMatchingProjectionProved
+    factorSemanticsProved := semantics.factorSemanticsProved
+    normalizedBlockEqualityProved :=
+      semantics.normalizedBlockEqualityProved
+    productToCoefficientProved := semantics.productToCoefficientProved
+    lcuCorrectProved := semantics.lcuCorrectProved
+    blockProjectionProved := semantics.blockProjectionProved
+    blockCorrectProved := semantics.blockCorrectProved
+    finalExtractionProved := semantics.finalExtractionProved
+    exactRemainingObstruction :=
+      "discharge the actual ket amplitude, bra amplitude, factor-semantics, finite-composition, and focused product-to-coefficient obligations before promoting the route"
+  }
+
+/--
+Transcript theorem for the conditional factor-semantics bridge.
+
+It checks the bridge wiring and confirms that no amplitude, projection,
+finite-composition, product-to-coefficient, LCU, block-correctness, or final
+extraction flag has been promoted.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3_transcript :
+    let factor :=
+      oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3
+    let semantics :=
+      oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+    let target := oneTermRobinGamma3BoundaryKappaProjectionTarget_n3
+    factor.projectionAmplitudeSemantics = semantics ∧
+      factor.projectedBranchProduct =
+        Coeff.mul target.splitTarget.branchLocalProduct
+          semantics.combinedAmplitudeFactor ∧
+      factor.expectedTargetEntry = target.splitTarget.targetEntry ∧
+      factor.theoremNormalizer = target.theoremNormalizer ∧
+      factor.factorHypothesisFormula =
+        "env sqrt_kappa_inv * env sqrt_kappa_inv = env kappa_inv" ∧
+      factor.conditionalFactorEvalLemma =
+        "oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3" ∧
+      factor.productEvalLemma =
+        "oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3" ∧
+      factor.kappaProjectionEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      factor.uniformPreparationObligation =
+        semantics.uniformPreparationObligation ∧
+      factor.braAmplitudeObligation =
+        semantics.braAmplitudeObligation ∧
+      factor.routeMatchingProjectionObligation =
+        semantics.routeMatchingProjectionObligation ∧
+      factor.factorSemanticsObligation =
+        semantics.factorSemanticsObligation ∧
+      factor.finiteCompositionNormalizedEquality =
+        semantics.finiteCompositionNormalizedEquality ∧
+      factor.productObligation = semantics.productObligation ∧
+      factor.conditionalProductEvalCompiled = true ∧
+      factor.kappaProjectionEvalCompiled = true ∧
+      factor.conditionalFactorEvalCompiled = true ∧
+      factor.uniformPreparationObligation.proved = false ∧
+      factor.braAmplitudeObligation.proved = false ∧
+      factor.routeMatchingProjectionObligation.proved = false ∧
+      factor.factorSemanticsObligation.proved = false ∧
+      factor.finiteCompositionNormalizedEquality.proved = false ∧
+      factor.productObligation.proved = false ∧
+      factor.uniformPreparationProved = false ∧
+      factor.braAmplitudeProved = false ∧
+      factor.routeMatchingProjectionProved = false ∧
+      factor.factorSemanticsProved = false ∧
+      factor.normalizedBlockEqualityProved = false ∧
+      factor.productToCoefficientProved = false ∧
+      factor.lcuCorrectProved = false ∧
+      factor.blockProjectionProved = false ∧
+      factor.blockCorrectProved = false ∧
+      factor.finalExtractionProved = false ∧
+      factor.exactRemainingObstruction =
+        "discharge the actual ket amplitude, bra amplitude, factor-semantics, finite-composition, and focused product-to-coefficient obligations before promoting the route" := by
+  have _semantics :=
+    oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3_transcript
+  have _factorEval :=
+    oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3
+      (fun _ => 1) (by simp) (by simp) (by simp) (by simp)
+  native_decide
+
+/--
+Source-backed contract map for the factor-semantics obligation.
+
+The conditional factor bridge is already compiled.  This packet records the
+four remaining sources that must be supplied before the bridge can discharge
+the actual factor-semantics obligation: the cited ket amplitude, the local bra
+projection amplitude, the symbolic square-root product hypothesis, and the
+finite normalized block-composition equality.  It keeps the theorem-facing
+obligation false.
+-/
+structure OneTermRobinGamma3BoundaryFactorSemanticsContractMap where
+  sourceAnchor : String
+  factorBridge : OneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics
+  projectedBranchProduct : Coeff
+  expectedTargetEntry : Coeff
+  theoremNormalizer : Coeff
+  conditionalFactorEvalLemma : String
+  productEvalLemma : String
+  kappaProjectionEvalLemma : String
+  ketAmplitudeObligation : SemanticObligation
+  braAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  productHypothesisObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  requiredHypothesesFormula : String
+  factorSemanticsContractMapped : Bool
+  conditionalFactorEvalCompiled : Bool
+  ketAmplitudeProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  productHypothesisProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled contract map for the focused boundary factor-semantics obligation.
+
+This is a Phase-1 transcript object.  It says precisely what would make
+`oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3` usable as the
+factor-semantics step, while preserving the false status of the real semantic
+obligations.
+-/
+def oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3 :
+    OneTermRobinGamma3BoundaryFactorSemanticsContractMap :=
+  let factor :=
+    oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, Definition def:block-encoding, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    factorBridge := factor
+    projectedBranchProduct := factor.projectedBranchProduct
+    expectedTargetEntry := factor.expectedTargetEntry
+    theoremNormalizer := factor.theoremNormalizer
+    conditionalFactorEvalLemma := factor.conditionalFactorEvalLemma
+    productEvalLemma := factor.productEvalLemma
+    kappaProjectionEvalLemma := factor.kappaProjectionEvalLemma
+    ketAmplitudeObligation := factor.uniformPreparationObligation
+    braAmplitudeObligation := factor.braAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      factor.routeMatchingProjectionObligation
+    productHypothesisObligation := {
+      description :=
+        "interpret sqrt_kappa_inv * sqrt_kappa_inv as kappa_inv for the focused boundary sparse slot 2"
+      source :=
+        "GHL2025 Eq. arbitrary sparcity and Definition def:block-encoding; QBE coefficient-environment convention"
+      proved := false
+    }
+    factorSemanticsObligation := factor.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      factor.finiteCompositionNormalizedEquality
+    productObligation := factor.productObligation
+    requiredHypothesesFormula :=
+      "N_D_inv*N_D=1, N_f_inv*N_f=1, kappa_inv*kappa=1, and sqrt_kappa_inv*sqrt_kappa_inv=kappa_inv"
+    factorSemanticsContractMapped := true
+    conditionalFactorEvalCompiled := factor.conditionalFactorEvalCompiled
+    ketAmplitudeProved := factor.uniformPreparationProved
+    braAmplitudeProved := factor.braAmplitudeProved
+    routeMatchingProjectionProved := factor.routeMatchingProjectionProved
+    productHypothesisProved := false
+    factorSemanticsProved := factor.factorSemanticsProved
+    normalizedBlockEqualityProved := factor.normalizedBlockEqualityProved
+    productToCoefficientProved := factor.productToCoefficientProved
+    lcuCorrectProved := factor.lcuCorrectProved
+    blockProjectionProved := factor.blockProjectionProved
+    blockCorrectProved := factor.blockCorrectProved
+    finalExtractionProved := factor.finalExtractionProved
+    exactRemainingObstruction :=
+      "supply source-backed ket amplitude, bra amplitude, square-root product, and finite normalized block-composition semantics before proving the focused product obligation"
+  }
+
+/--
+Conditional evaluation through the contract-map fields.
+
+The theorem does not prove the source obligations.  It only shows that if the
+environment supplies the four stated coefficient hypotheses, then the contract
+map's projected branch product normalizes to the expected target entry.
+-/
+theorem oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3
+    (env : String → Rat)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let contract :=
+      oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    Coeff.evalWith env contract.projectedBranchProduct *
+      Coeff.evalWith env contract.theoremNormalizer =
+    Coeff.evalWith env contract.expectedTargetEntry := by
+  simpa [oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3]
+    using
+      (oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3
+        env hND hNF hkappa hkappaSqrt)
+
+/--
+Transcript theorem for the focused factor-semantics contract map.
+
+It checks that the map is downstream of the compiled factor bridge, separates
+the ket, bra, product-hypothesis, and finite-composition blockers, and keeps
+all semantic proof flags false.
+-/
+theorem oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript :
+    let contract :=
+      oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    let factor :=
+      oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3
+    contract.sourceAnchor =
+        "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, Definition def:block-encoding, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478" ∧
+      contract.factorBridge = factor ∧
+      contract.projectedBranchProduct = factor.projectedBranchProduct ∧
+      contract.expectedTargetEntry = factor.expectedTargetEntry ∧
+      contract.theoremNormalizer = factor.theoremNormalizer ∧
+      contract.conditionalFactorEvalLemma =
+        "oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3" ∧
+      contract.productEvalLemma =
+        "oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3" ∧
+      contract.kappaProjectionEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      contract.ketAmplitudeObligation =
+        factor.uniformPreparationObligation ∧
+      contract.braAmplitudeObligation =
+        factor.braAmplitudeObligation ∧
+      contract.routeMatchingProjectionObligation =
+        factor.routeMatchingProjectionObligation ∧
+      contract.productHypothesisObligation.description =
+        "interpret sqrt_kappa_inv * sqrt_kappa_inv as kappa_inv for the focused boundary sparse slot 2" ∧
+      contract.productHypothesisObligation.source =
+        "GHL2025 Eq. arbitrary sparcity and Definition def:block-encoding; QBE coefficient-environment convention" ∧
+      contract.productHypothesisObligation.proved = false ∧
+      contract.factorSemanticsObligation =
+        factor.factorSemanticsObligation ∧
+      contract.finiteCompositionNormalizedEquality =
+        factor.finiteCompositionNormalizedEquality ∧
+      contract.productObligation = factor.productObligation ∧
+      contract.requiredHypothesesFormula =
+        "N_D_inv*N_D=1, N_f_inv*N_f=1, kappa_inv*kappa=1, and sqrt_kappa_inv*sqrt_kappa_inv=kappa_inv" ∧
+      contract.factorSemanticsContractMapped = true ∧
+      contract.conditionalFactorEvalCompiled = true ∧
+      contract.ketAmplitudeObligation.proved = false ∧
+      contract.braAmplitudeObligation.proved = false ∧
+      contract.routeMatchingProjectionObligation.proved = false ∧
+      contract.factorSemanticsObligation.proved = false ∧
+      contract.finiteCompositionNormalizedEquality.proved = false ∧
+      contract.productObligation.proved = false ∧
+      contract.ketAmplitudeProved = false ∧
+      contract.braAmplitudeProved = false ∧
+      contract.routeMatchingProjectionProved = false ∧
+      contract.productHypothesisProved = false ∧
+      contract.factorSemanticsProved = false ∧
+      contract.normalizedBlockEqualityProved = false ∧
+      contract.productToCoefficientProved = false ∧
+      contract.lcuCorrectProved = false ∧
+      contract.blockProjectionProved = false ∧
+      contract.blockCorrectProved = false ∧
+      contract.finalExtractionProved = false ∧
+      contract.exactRemainingObstruction =
+        "supply source-backed ket amplitude, bra amplitude, square-root product, and finite normalized block-composition semantics before proving the focused product obligation" := by
+  have _factor :=
+    oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3_transcript
+  have _eval :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3
+      (fun _ => 1) (by simp) (by simp) (by simp) (by simp)
+  native_decide
+
+/--
+Source map for the remaining bra-side projection-amplitude obstruction.
+
+The focused projection-amplitude contract already fixes sparse slot `2`,
+clean basis index `32`, and the expected factor `sqrt_kappa_inv`.  What is
+still missing is not another finite index lemma: QBE has not yet introduced
+the concrete sparse-register preparation/projection matrix, or an equivalent
+adjoint-entry contract, that would make the bra amplitude a Lean theorem.
+-/
+structure OneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap where
+  sourceAnchor : String
+  amplitudeContract :
+    OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract
+  factorContractMap : OneTermRobinGamma3BoundaryFactorSemanticsContractMap
+  focusedSparseSlot : Nat
+  cleanBasisIndex : Nat
+  projectionBraEntryFormula : String
+  requiredSemanticObject : String
+  requiredAdjointEntry : String
+  expectedBraAmplitudeFactor : Coeff
+  finiteIndexLemma : String
+  amplitudeContractObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  finiteIndexLemmaCompiled : Bool
+  braAmplitudeSourceMapped : Bool
+  directBraAmplitudeProofAvailable : Bool
+  amplitudeContractProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled source map for the focused bra-side amplitude packet.
+
+This is the smaller obstruction requested by the lower packet.  It records the
+precise semantic object needed to prove the local bra amplitude, instead of
+pretending that the current block-projection API already supplies it.
+-/
+def oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3 :
+    OneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap :=
+  let amplitudeContract :=
+    oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3
+  let factorContract :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    amplitudeContract := amplitudeContract
+    factorContractMap := factorContract
+    focusedSparseSlot := amplitudeContract.focusedSparseSlot
+    cleanBasisIndex := amplitudeContract.projectedBasisIndex
+    projectionBraEntryFormula :=
+      "<0| H_W^(kappa)^dagger |2> = 1/sqrt(kappa), embedded at clean basis index 32"
+    requiredSemanticObject :=
+      "sparse-register H_W^(kappa) preparation matrix, its dagger, or an equivalent block-projection bra-entry contract"
+    requiredAdjointEntry :=
+      "the focused bra projection entry from sparse slot 2 to the clean sparse-register branch is Coeff.symbol \"sqrt_kappa_inv\""
+    expectedBraAmplitudeFactor :=
+      amplitudeContract.matchingProjectionAmplitudeFactor
+    finiteIndexLemma := amplitudeContract.finiteIndexLemma
+    amplitudeContractObligation :=
+      amplitudeContract.amplitudeContractObligation
+    routeMatchingProjectionObligation :=
+      amplitudeContract.routeMatchingProjectionObligation
+    factorSemanticsObligation :=
+      amplitudeContract.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      factorContract.finiteCompositionNormalizedEquality
+    productObligation := amplitudeContract.productObligation
+    finiteIndexLemmaCompiled := amplitudeContract.finiteIndexLemmaCompiled
+    braAmplitudeSourceMapped := true
+    directBraAmplitudeProofAvailable := false
+    amplitudeContractProved :=
+      amplitudeContract.amplitudeContractObligation.proved
+    routeMatchingProjectionProved :=
+      amplitudeContract.routeMatchingProjectionObligation.proved
+    factorSemanticsProved := amplitudeContract.factorSemanticsProved
+    normalizedBlockEqualityProved :=
+      factorContract.normalizedBlockEqualityProved
+    productToCoefficientProved :=
+      amplitudeContract.productToCoefficientProved
+    lcuCorrectProved := amplitudeContract.lcuCorrectProved
+    blockProjectionProved := amplitudeContract.blockProjectionProved
+    blockCorrectProved := amplitudeContract.blockCorrectProved
+    finalExtractionProved := amplitudeContract.finalExtractionProved
+    exactRemainingObstruction :=
+      "introduce or cite a typed H_W^(kappa) dagger/projection-entry semantic contract before proving the bra amplitude; the current block-projection target only fixes indices"
+  }
+
+/--
+Transcript theorem for the bra-side projection-amplitude source map.
+
+This theorem checks only the source mapping and false-flag discipline.  It does
+not prove the `H_W^(kappa)` adjoint entry, the block-projection amplitude, the
+factor-semantics obligation, finite normalized equality, or the focused
+product-to-coefficient theorem.
+-/
+theorem oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3_transcript :
+    let sourceMap :=
+      oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3
+    let amplitudeContract :=
+      oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3
+    let factorContract :=
+      oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    sourceMap.amplitudeContract = amplitudeContract ∧
+      sourceMap.factorContractMap = factorContract ∧
+      sourceMap.focusedSparseSlot = 2 ∧
+      sourceMap.cleanBasisIndex = 32 ∧
+      sourceMap.projectionBraEntryFormula =
+        "<0| H_W^(kappa)^dagger |2> = 1/sqrt(kappa), embedded at clean basis index 32" ∧
+      sourceMap.requiredSemanticObject =
+        "sparse-register H_W^(kappa) preparation matrix, its dagger, or an equivalent block-projection bra-entry contract" ∧
+      sourceMap.requiredAdjointEntry =
+        "the focused bra projection entry from sparse slot 2 to the clean sparse-register branch is Coeff.symbol \"sqrt_kappa_inv\"" ∧
+      sourceMap.expectedBraAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      sourceMap.finiteIndexLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorIndex_n3" ∧
+      sourceMap.amplitudeContractObligation =
+        amplitudeContract.amplitudeContractObligation ∧
+      sourceMap.routeMatchingProjectionObligation =
+        amplitudeContract.routeMatchingProjectionObligation ∧
+      sourceMap.factorSemanticsObligation =
+        amplitudeContract.factorSemanticsObligation ∧
+      sourceMap.finiteCompositionNormalizedEquality =
+        factorContract.finiteCompositionNormalizedEquality ∧
+      sourceMap.productObligation = amplitudeContract.productObligation ∧
+      sourceMap.finiteIndexLemmaCompiled = true ∧
+      sourceMap.braAmplitudeSourceMapped = true ∧
+      sourceMap.directBraAmplitudeProofAvailable = false ∧
+      sourceMap.amplitudeContractObligation.proved = false ∧
+      sourceMap.routeMatchingProjectionObligation.proved = false ∧
+      sourceMap.factorSemanticsObligation.proved = false ∧
+      sourceMap.finiteCompositionNormalizedEquality.proved = false ∧
+      sourceMap.productObligation.proved = false ∧
+      sourceMap.amplitudeContractProved = false ∧
+      sourceMap.routeMatchingProjectionProved = false ∧
+      sourceMap.factorSemanticsProved = false ∧
+      sourceMap.normalizedBlockEqualityProved = false ∧
+      sourceMap.productToCoefficientProved = false ∧
+      sourceMap.lcuCorrectProved = false ∧
+      sourceMap.blockProjectionProved = false ∧
+      sourceMap.blockCorrectProved = false ∧
+      sourceMap.finalExtractionProved = false ∧
+      sourceMap.exactRemainingObstruction =
+        "introduce or cite a typed H_W^(kappa) dagger/projection-entry semantic contract before proving the bra amplitude; the current block-projection target only fixes indices" := by
+  have _amplitude :=
+    oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript
+  have _factor :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript
+  have _index := oneTermRobinGamma3BoundaryProjectionFactorIndex_n3
+  native_decide
+
+/--
+Typed contract for the focused `H_W^(kappa)` dagger projection entry.
+
+The source map already identified the missing semantic object.  This contract
+turns that object into a Lean-facing interface for the exact entry needed by
+the boundary gamma3 route: the bra projection from sparse slot `2` to the
+clean sparse-register branch contributes `sqrt_kappa_inv` at clean basis
+index `32`.  It is accepted only as a Phase-1 contract; the actual matrix
+entry theorem and all downstream semantic obligations remain false.
+-/
+structure OneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract where
+  sourceAnchor : String
+  braSourceMap : OneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap
+  factorContractMap : OneTermRobinGamma3BoundaryFactorSemanticsContractMap
+  focusedSparseSlot : Nat
+  cleanBasisIndex : Nat
+  sparseRegisterBra : Nat
+  sparseRegisterKet : Nat
+  entryFormula : String
+  embeddedEntryFormula : String
+  expectedEntry : Coeff
+  sourceContractObligation : SemanticObligation
+  sourceMapBraAmplitudeObligation : SemanticObligation
+  factorMapBraAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  contractAcceptedAsTypedInterface : Bool
+  sourceMapWired : Bool
+  factorMapWired : Bool
+  daggerEntryProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled Phase-1 contract for the focused bra projection entry.
+
+The contract is downstream of
+`oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3` and rewires
+the same bra-amplitude obligation into
+`oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3`.  It does not prove
+the entry of `H_W^(kappa)^dagger`; it records the precise contract that a
+future semantic matrix theorem must instantiate.
+-/
+def oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3 :
+    OneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract :=
+  let sourceMap :=
+    oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3
+  let factorMap :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Definition def:block-encoding, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    braSourceMap := sourceMap
+    factorContractMap := factorMap
+    focusedSparseSlot := sourceMap.focusedSparseSlot
+    cleanBasisIndex := sourceMap.cleanBasisIndex
+    sparseRegisterBra := 0
+    sparseRegisterKet := sourceMap.focusedSparseSlot
+    entryFormula :=
+      "<0|H_W^(kappa)^dagger|2> = 1/sqrt(kappa)"
+    embeddedEntryFormula :=
+      "the focused entry is embedded at clean basis index 32 and represented by Coeff.symbol \"sqrt_kappa_inv\""
+    expectedEntry := sourceMap.expectedBraAmplitudeFactor
+    sourceContractObligation := {
+      description :=
+        "instantiate the focused H_W^(kappa) dagger projection-entry contract <0|H_W^(kappa)^dagger|2> = 1/sqrt(kappa)"
+      source :=
+        "GHL2025 Eq. arbitrary sparcity, Definition def:block-encoding, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and QBE matching-projection contract"
+      proved := false
+    }
+    sourceMapBraAmplitudeObligation :=
+      sourceMap.amplitudeContractObligation
+    factorMapBraAmplitudeObligation := factorMap.braAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      sourceMap.routeMatchingProjectionObligation
+    factorSemanticsObligation := factorMap.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      factorMap.finiteCompositionNormalizedEquality
+    productObligation := factorMap.productObligation
+    contractAcceptedAsTypedInterface := true
+    sourceMapWired := true
+    factorMapWired := true
+    daggerEntryProved := false
+    braAmplitudeProved := sourceMap.amplitudeContractProved
+    routeMatchingProjectionProved :=
+      sourceMap.routeMatchingProjectionProved
+    factorSemanticsProved := factorMap.factorSemanticsProved
+    normalizedBlockEqualityProved :=
+      factorMap.normalizedBlockEqualityProved
+    productToCoefficientProved := factorMap.productToCoefficientProved
+    lcuCorrectProved := factorMap.lcuCorrectProved
+    blockProjectionProved := factorMap.blockProjectionProved
+    blockCorrectProved := factorMap.blockCorrectProved
+    finalExtractionProved := factorMap.finalExtractionProved
+    exactRemainingObstruction :=
+      "instantiate this projection-entry contract with an actual H_W^(kappa) dagger matrix theorem or equivalent block-projection theorem before discharging the bra-amplitude and factor-semantics obligations"
+  }
+
+/--
+Transcript theorem for the focused `H_W^(kappa)` dagger entry contract.
+
+This checks that the new contract is wired to both the bra-source map and the
+factor-semantics contract map.  The entry is still a contract-only interface:
+the actual dagger entry, bra amplitude, factor semantics, finite normalized
+equality, product-to-coefficient theorem, and final extraction remain false.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3_transcript :
+    let entry :=
+      oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3
+    let sourceMap :=
+      oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3
+    let factorMap :=
+      oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    entry.braSourceMap = sourceMap ∧
+      entry.factorContractMap = factorMap ∧
+      entry.focusedSparseSlot = 2 ∧
+      entry.cleanBasisIndex = 32 ∧
+      entry.sparseRegisterBra = 0 ∧
+      entry.sparseRegisterKet = 2 ∧
+      entry.entryFormula =
+        "<0|H_W^(kappa)^dagger|2> = 1/sqrt(kappa)" ∧
+      entry.embeddedEntryFormula =
+        "the focused entry is embedded at clean basis index 32 and represented by Coeff.symbol \"sqrt_kappa_inv\"" ∧
+      entry.expectedEntry = Coeff.symbol "sqrt_kappa_inv" ∧
+      entry.sourceContractObligation.description =
+        "instantiate the focused H_W^(kappa) dagger projection-entry contract <0|H_W^(kappa)^dagger|2> = 1/sqrt(kappa)" ∧
+      entry.sourceContractObligation.proved = false ∧
+      entry.sourceMapBraAmplitudeObligation =
+        sourceMap.amplitudeContractObligation ∧
+      entry.factorMapBraAmplitudeObligation =
+        factorMap.braAmplitudeObligation ∧
+      entry.factorMapBraAmplitudeObligation =
+        entry.sourceMapBraAmplitudeObligation ∧
+      entry.routeMatchingProjectionObligation =
+        sourceMap.routeMatchingProjectionObligation ∧
+      entry.factorSemanticsObligation =
+        factorMap.factorSemanticsObligation ∧
+      entry.finiteCompositionNormalizedEquality =
+        factorMap.finiteCompositionNormalizedEquality ∧
+      entry.productObligation = factorMap.productObligation ∧
+      entry.contractAcceptedAsTypedInterface = true ∧
+      entry.sourceMapWired = true ∧
+      entry.factorMapWired = true ∧
+      entry.daggerEntryProved = false ∧
+      entry.sourceMapBraAmplitudeObligation.proved = false ∧
+      entry.factorMapBraAmplitudeObligation.proved = false ∧
+      entry.routeMatchingProjectionObligation.proved = false ∧
+      entry.factorSemanticsObligation.proved = false ∧
+      entry.finiteCompositionNormalizedEquality.proved = false ∧
+      entry.productObligation.proved = false ∧
+      entry.braAmplitudeProved = false ∧
+      entry.routeMatchingProjectionProved = false ∧
+      entry.factorSemanticsProved = false ∧
+      entry.normalizedBlockEqualityProved = false ∧
+      entry.productToCoefficientProved = false ∧
+      entry.lcuCorrectProved = false ∧
+      entry.blockProjectionProved = false ∧
+      entry.blockCorrectProved = false ∧
+      entry.finalExtractionProved = false ∧
+      entry.exactRemainingObstruction =
+        "instantiate this projection-entry contract with an actual H_W^(kappa) dagger matrix theorem or equivalent block-projection theorem before discharging the bra-amplitude and factor-semantics obligations" := by
+  have _source :=
+    oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3_transcript
+  have _factor :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript
+  native_decide
+
+/--
+Embedded-entry interface for the focused `H_W^(kappa)^dagger` contract.
+
+The preceding contract names the required local sparse-register entry
+`<0|H_W^(kappa)^dagger|2>`.  This packet refines that contract to the exact
+finite layout used by the boundary gamma3 route for `n = 3`: the sparse
+register has width `ceil(log2 kappa) = 3`, local column `2` is in the
+`kappa = 7` source domain and the eight-dimensional register, and the ambient
+clean branch is basis index `32`.  It still does not define the
+`H_W^(kappa)` matrix or prove the entry.
+-/
+structure OneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface where
+  sourceAnchor : String
+  entryContract : OneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract
+  focusedSparseSlot : Nat
+  focusedKappa : Nat
+  sparseRegisterQubits : Nat
+  sparseRegisterDimension : Nat
+  localBraIndex : Nat
+  localKetIndex : Nat
+  ambientCleanBasisIndex : Nat
+  localEntryFormula : String
+  ambientEmbeddingFormula : String
+  expectedLocalEntry : Coeff
+  expectedEmbeddedEntry : Coeff
+  sourceContractObligation : SemanticObligation
+  sourceMapBraAmplitudeObligation : SemanticObligation
+  factorMapBraAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  localKetWithinKappa : Bool
+  localKetWithinSparseDimension : Bool
+  ambientIndexCompiled : Bool
+  refinesProjectionEntryContract : Bool
+  concreteHWKappaMatrixAvailable : Bool
+  localEntryProved : Bool
+  embeddedEntryProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled embedded-entry interface for the focused boundary branch.
+
+This is the strict local interface that a future concrete
+`H_W^(kappa)^dagger` matrix theorem should instantiate.  It is narrower than
+the source map because the local sparse-register entry, the `kappa = 7`
+domain check, the `2^3 = 8` ambient sparse-register dimension, and the clean
+gamma3 basis index are all fixed and build-tested.
+-/
+def oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3 :
+    OneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface :=
+  let p := oneTermParameters 3
+  let entry :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Definition def:block-encoding, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    entryContract := entry
+    focusedSparseSlot := entry.focusedSparseSlot
+    focusedKappa := p.kappa
+    sparseRegisterQubits := clog2 p.kappa
+    sparseRegisterDimension := 2 ^ (clog2 p.kappa)
+    localBraIndex := entry.sparseRegisterBra
+    localKetIndex := entry.sparseRegisterKet
+    ambientCleanBasisIndex :=
+      oneTermRobinGamma3PaperBasisIndex p entry.sparseRegisterKet 0
+    localEntryFormula :=
+      "<0|H_W^(kappa)^dagger|2> = 1/sqrt(kappa)"
+    ambientEmbeddingFormula :=
+      "slot 2 with system column 0 is embedded as oneTermRobinGamma3PaperBasisIndex p 2 0 = 32"
+    expectedLocalEntry := entry.expectedEntry
+    expectedEmbeddedEntry := entry.expectedEntry
+    sourceContractObligation := entry.sourceContractObligation
+    sourceMapBraAmplitudeObligation := entry.sourceMapBraAmplitudeObligation
+    factorMapBraAmplitudeObligation := entry.factorMapBraAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      entry.routeMatchingProjectionObligation
+    factorSemanticsObligation := entry.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      entry.finiteCompositionNormalizedEquality
+    productObligation := entry.productObligation
+    localKetWithinKappa := decide (entry.sparseRegisterKet < p.kappa)
+    localKetWithinSparseDimension :=
+      decide (entry.sparseRegisterKet < 2 ^ (clog2 p.kappa))
+    ambientIndexCompiled := true
+    refinesProjectionEntryContract := true
+    concreteHWKappaMatrixAvailable := false
+    localEntryProved := false
+    embeddedEntryProved := false
+    braAmplitudeProved := entry.braAmplitudeProved
+    routeMatchingProjectionProved := entry.routeMatchingProjectionProved
+    factorSemanticsProved := entry.factorSemanticsProved
+    normalizedBlockEqualityProved := entry.normalizedBlockEqualityProved
+    productToCoefficientProved := entry.productToCoefficientProved
+    lcuCorrectProved := entry.lcuCorrectProved
+    blockProjectionProved := entry.blockProjectionProved
+    blockCorrectProved := entry.blockCorrectProved
+    finalExtractionProved := entry.finalExtractionProved
+    exactRemainingObstruction :=
+      "instantiate the local sparse-register matrix entry row 0 column 2 of H_W^(kappa)^dagger, embedded at clean gamma3 basis index 32, before discharging the bra-amplitude and factor-semantics obligations"
+  }
+
+/--
+Transcript theorem for the embedded-entry interface.
+
+This theorem proves only finite layout wiring for the focused interface.  It
+does not prove the `H_W^(kappa)^dagger` matrix entry, the bra amplitude, the
+factor-semantics obligation, finite normalized equality, or the focused
+product-to-coefficient theorem.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript :
+    let interface :=
+      oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3
+    let entry :=
+      oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3
+    let p := oneTermParameters 3
+    interface.entryContract = entry ∧
+      interface.focusedSparseSlot = 2 ∧
+      interface.focusedKappa = 7 ∧
+      interface.sparseRegisterQubits = 3 ∧
+      interface.sparseRegisterDimension = 8 ∧
+      interface.localBraIndex = 0 ∧
+      interface.localKetIndex = 2 ∧
+      interface.ambientCleanBasisIndex =
+        oneTermRobinGamma3PaperBasisIndex p 2 0 ∧
+      interface.ambientCleanBasisIndex = 32 ∧
+      interface.localEntryFormula =
+        "<0|H_W^(kappa)^dagger|2> = 1/sqrt(kappa)" ∧
+      interface.ambientEmbeddingFormula =
+        "slot 2 with system column 0 is embedded as oneTermRobinGamma3PaperBasisIndex p 2 0 = 32" ∧
+      interface.expectedLocalEntry = Coeff.symbol "sqrt_kappa_inv" ∧
+      interface.expectedEmbeddedEntry = Coeff.symbol "sqrt_kappa_inv" ∧
+      interface.sourceContractObligation =
+        entry.sourceContractObligation ∧
+      interface.sourceMapBraAmplitudeObligation =
+        entry.sourceMapBraAmplitudeObligation ∧
+      interface.factorMapBraAmplitudeObligation =
+        entry.factorMapBraAmplitudeObligation ∧
+      interface.factorMapBraAmplitudeObligation =
+        interface.sourceMapBraAmplitudeObligation ∧
+      interface.routeMatchingProjectionObligation =
+        entry.routeMatchingProjectionObligation ∧
+      interface.factorSemanticsObligation =
+        entry.factorSemanticsObligation ∧
+      interface.finiteCompositionNormalizedEquality =
+        entry.finiteCompositionNormalizedEquality ∧
+      interface.productObligation = entry.productObligation ∧
+      interface.localKetWithinKappa = true ∧
+      interface.localKetWithinSparseDimension = true ∧
+      interface.ambientIndexCompiled = true ∧
+      interface.refinesProjectionEntryContract = true ∧
+      interface.concreteHWKappaMatrixAvailable = false ∧
+      interface.localEntryProved = false ∧
+      interface.embeddedEntryProved = false ∧
+      interface.sourceContractObligation.proved = false ∧
+      interface.sourceMapBraAmplitudeObligation.proved = false ∧
+      interface.factorMapBraAmplitudeObligation.proved = false ∧
+      interface.routeMatchingProjectionObligation.proved = false ∧
+      interface.factorSemanticsObligation.proved = false ∧
+      interface.finiteCompositionNormalizedEquality.proved = false ∧
+      interface.productObligation.proved = false ∧
+      interface.braAmplitudeProved = false ∧
+      interface.routeMatchingProjectionProved = false ∧
+      interface.factorSemanticsProved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.exactRemainingObstruction =
+        "instantiate the local sparse-register matrix entry row 0 column 2 of H_W^(kappa)^dagger, embedded at clean gamma3 basis index 32, before discharging the bra-amplitude and factor-semantics obligations" := by
+  have _entry :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3_transcript
+  native_decide
+
+/--
+Conditional adjoint-entry lemma for the focused `H_W^(kappa)` slot.
+
+If a sparse-register preparation matrix has clean-column entry
+`H_W^(kappa)[2,0] = sqrt_kappa_inv`, and the local adjoint-entry convention
+identifies the dagger entry with that clean-column entry, then the focused
+row-`0`, column-`2` dagger entry has the expected value.  This is only the
+local matrix-entry algebra; it does not provide the cited uniform-column
+contract or a concrete `H_W^(kappa)` matrix.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3
+    (H Hdagger : Matrix 8 8 Coeff)
+    (hUniform :
+      H ⟨2, by native_decide⟩ ⟨0, by native_decide⟩ =
+        Coeff.symbol "sqrt_kappa_inv")
+    (hAdjoint :
+      Hdagger ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+        H ⟨2, by native_decide⟩ ⟨0, by native_decide⟩) :
+    Hdagger ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+      Coeff.symbol "sqrt_kappa_inv" := by
+  rw [hAdjoint, hUniform]
+
+/--
+Uniform-column and adjoint-entry contract split for the focused dagger entry.
+
+The embedded interface fixes the local row and column.  This record splits
+the remaining semantic source into the cited clean-column amplitude
+`H_W^(kappa)[2,0] = 1/sqrt(kappa)` and the QBE adjoint-entry convention that
+turns that column entry into the bra-side dagger entry.  Both source inputs
+remain obligations; the only compiled theorem is the conditional entry lemma
+above.
+-/
+structure OneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract where
+  sourceAnchor : String
+  embeddedInterface :
+    OneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface
+  focusedSparseSlot : Nat
+  focusedKappa : Nat
+  sparseRegisterDimension : Nat
+  uniformColumnRowIndex : Nat
+  uniformColumnColIndex : Nat
+  daggerRowIndex : Nat
+  daggerColIndex : Nat
+  ambientCleanBasisIndex : Nat
+  uniformColumnFormula : String
+  adjointEntryFormula : String
+  conditionalEntryLemma : String
+  expectedUniformColumnEntry : Coeff
+  expectedDaggerEntry : Coeff
+  uniformColumnObligation : SemanticObligation
+  adjointEntryConventionObligation : SemanticObligation
+  sourceContractObligation : SemanticObligation
+  sourceMapBraAmplitudeObligation : SemanticObligation
+  factorMapBraAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  uniformColumnContractMapped : Bool
+  adjointEntryConventionMapped : Bool
+  conditionalEntryLemmaCompiled : Bool
+  concreteHWKappaMatrixAvailable : Bool
+  uniformColumnProved : Bool
+  adjointEntryConventionProved : Bool
+  daggerEntryProved : Bool
+  embeddedEntryProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled contract split for row `0`, column `2` of `H_W^(kappa)^dagger`.
+
+This refines the embedded-entry interface without proving the uniform
+preparation result or the adjoint-entry convention.  The compiled conditional
+lemma records exactly what a future concrete sparse-register matrix theorem
+must instantiate.
+-/
+def oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3 :
+    OneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract :=
+  let interface :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Definition def:block-encoding, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    embeddedInterface := interface
+    focusedSparseSlot := interface.focusedSparseSlot
+    focusedKappa := interface.focusedKappa
+    sparseRegisterDimension := interface.sparseRegisterDimension
+    uniformColumnRowIndex := interface.localKetIndex
+    uniformColumnColIndex := interface.localBraIndex
+    daggerRowIndex := interface.localBraIndex
+    daggerColIndex := interface.localKetIndex
+    ambientCleanBasisIndex := interface.ambientCleanBasisIndex
+    uniformColumnFormula :=
+      "H_W^(kappa)[2,0] = 1/sqrt(kappa)"
+    adjointEntryFormula :=
+      "H_W^(kappa)^dagger[0,2] = H_W^(kappa)[2,0]"
+    conditionalEntryLemma :=
+      "oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3"
+    expectedUniformColumnEntry := interface.expectedLocalEntry
+    expectedDaggerEntry := interface.expectedLocalEntry
+    uniformColumnObligation := {
+      description :=
+        "instantiate the clean-column uniform sparse-register entry H_W^(kappa)[2,0] = 1/sqrt(kappa) for kappa = 7"
+      source :=
+        "GHL2025 Eq. arbitrary sparcity and Shukla-Vedula 2024, arXiv:2506.20478"
+      proved := false
+    }
+    adjointEntryConventionObligation := {
+      description :=
+        "provide the QBE adjoint-entry convention identifying H_W^(kappa)^dagger[0,2] with H_W^(kappa)[2,0]"
+      source :=
+        "QBE matrix-semantics convention for the sparse-register H_W^(kappa) preparation block"
+      proved := false
+    }
+    sourceContractObligation := interface.sourceContractObligation
+    sourceMapBraAmplitudeObligation :=
+      interface.sourceMapBraAmplitudeObligation
+    factorMapBraAmplitudeObligation :=
+      interface.factorMapBraAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      interface.routeMatchingProjectionObligation
+    factorSemanticsObligation := interface.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      interface.finiteCompositionNormalizedEquality
+    productObligation := interface.productObligation
+    uniformColumnContractMapped := true
+    adjointEntryConventionMapped := true
+    conditionalEntryLemmaCompiled := true
+    concreteHWKappaMatrixAvailable :=
+      interface.concreteHWKappaMatrixAvailable
+    uniformColumnProved := false
+    adjointEntryConventionProved := false
+    daggerEntryProved := false
+    embeddedEntryProved := interface.embeddedEntryProved
+    braAmplitudeProved := interface.braAmplitudeProved
+    routeMatchingProjectionProved :=
+      interface.routeMatchingProjectionProved
+    factorSemanticsProved := interface.factorSemanticsProved
+    normalizedBlockEqualityProved :=
+      interface.normalizedBlockEqualityProved
+    productToCoefficientProved :=
+      interface.productToCoefficientProved
+    lcuCorrectProved := interface.lcuCorrectProved
+    blockProjectionProved := interface.blockProjectionProved
+    blockCorrectProved := interface.blockCorrectProved
+    finalExtractionProved := interface.finalExtractionProved
+    exactRemainingObstruction :=
+      "instantiate an actual H_W^(kappa) matrix or equivalent projection-entry theorem supplying the uniform-column entry and adjoint-entry convention; then apply oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3"
+  }
+
+/--
+Transcript theorem for the uniform-column contract split.
+
+The theorem checks that the split is tied to the embedded-entry interface, that
+the compiled conditional entry lemma has the expected shape, and that all
+semantic proof flags remain false.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript :
+    let contract :=
+      oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3
+    let interface :=
+      oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3
+    contract.embeddedInterface = interface ∧
+      contract.focusedSparseSlot = 2 ∧
+      contract.focusedKappa = 7 ∧
+      contract.sparseRegisterDimension = 8 ∧
+      contract.uniformColumnRowIndex = 2 ∧
+      contract.uniformColumnColIndex = 0 ∧
+      contract.daggerRowIndex = 0 ∧
+      contract.daggerColIndex = 2 ∧
+      contract.ambientCleanBasisIndex = 32 ∧
+      contract.uniformColumnFormula =
+        "H_W^(kappa)[2,0] = 1/sqrt(kappa)" ∧
+      contract.adjointEntryFormula =
+        "H_W^(kappa)^dagger[0,2] = H_W^(kappa)[2,0]" ∧
+      contract.conditionalEntryLemma =
+        "oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3" ∧
+      contract.expectedUniformColumnEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      contract.expectedDaggerEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      contract.uniformColumnObligation.description =
+        "instantiate the clean-column uniform sparse-register entry H_W^(kappa)[2,0] = 1/sqrt(kappa) for kappa = 7" ∧
+      contract.uniformColumnObligation.proved = false ∧
+      contract.adjointEntryConventionObligation.description =
+        "provide the QBE adjoint-entry convention identifying H_W^(kappa)^dagger[0,2] with H_W^(kappa)[2,0]" ∧
+      contract.adjointEntryConventionObligation.proved = false ∧
+      contract.sourceContractObligation =
+        interface.sourceContractObligation ∧
+      contract.sourceMapBraAmplitudeObligation =
+        interface.sourceMapBraAmplitudeObligation ∧
+      contract.factorMapBraAmplitudeObligation =
+        interface.factorMapBraAmplitudeObligation ∧
+      contract.routeMatchingProjectionObligation =
+        interface.routeMatchingProjectionObligation ∧
+      contract.factorSemanticsObligation =
+        interface.factorSemanticsObligation ∧
+      contract.finiteCompositionNormalizedEquality =
+        interface.finiteCompositionNormalizedEquality ∧
+      contract.productObligation = interface.productObligation ∧
+      contract.uniformColumnContractMapped = true ∧
+      contract.adjointEntryConventionMapped = true ∧
+      contract.conditionalEntryLemmaCompiled = true ∧
+      contract.concreteHWKappaMatrixAvailable = false ∧
+      contract.uniformColumnProved = false ∧
+      contract.adjointEntryConventionProved = false ∧
+      contract.daggerEntryProved = false ∧
+      contract.embeddedEntryProved = false ∧
+      contract.sourceContractObligation.proved = false ∧
+      contract.sourceMapBraAmplitudeObligation.proved = false ∧
+      contract.factorMapBraAmplitudeObligation.proved = false ∧
+      contract.routeMatchingProjectionObligation.proved = false ∧
+      contract.factorSemanticsObligation.proved = false ∧
+      contract.finiteCompositionNormalizedEquality.proved = false ∧
+      contract.productObligation.proved = false ∧
+      contract.braAmplitudeProved = false ∧
+      contract.routeMatchingProjectionProved = false ∧
+      contract.factorSemanticsProved = false ∧
+      contract.normalizedBlockEqualityProved = false ∧
+      contract.productToCoefficientProved = false ∧
+      contract.lcuCorrectProved = false ∧
+      contract.blockProjectionProved = false ∧
+      contract.blockCorrectProved = false ∧
+      contract.finalExtractionProved = false ∧
+      contract.exactRemainingObstruction =
+        "instantiate an actual H_W^(kappa) matrix or equivalent projection-entry theorem supplying the uniform-column entry and adjoint-entry convention; then apply oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3" := by
+  have _interface :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript
+  have _entry :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3
+      ((fun _ _ => Coeff.symbol "sqrt_kappa_inv") : Matrix 8 8 Coeff)
+      ((fun _ _ => Coeff.symbol "sqrt_kappa_inv") : Matrix 8 8 Coeff)
+      rfl
+      rfl
+  native_decide
+
+/--
+Local transpose-style dagger for the focused symbolic `H_W^(kappa)` matrix.
+
+The current `Coeff` backend is a symbolic real-coefficient matrix layer with no
+conjugation operation.  For this Phase-1 packet the only needed adjoint fact is
+therefore the focused transpose entry used by the row-`0`, column-`2` boundary
+route.
+-/
+def oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3
+    (H : Matrix 8 8 Coeff) : Matrix 8 8 Coeff :=
+  fun row col => H col row
+
+/--
+Focused adjoint-entry convention for the boundary `H_W^(kappa)` packet.
+
+This proves only the matrix-interface convention
+`H_W^(kappa)^dagger[0,2] = H_W^(kappa)[2,0]` for the local transpose-style
+dagger.  It does not provide the cited clean-column amplitude.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3
+    (H : Matrix 8 8 Coeff) :
+    oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+      H ⟨2, by native_decide⟩ ⟨0, by native_decide⟩ :=
+  rfl
+
+/--
+Focused dagger-entry theorem under the external uniform-column contract.
+
+The adjoint-entry convention is now supplied by the local transpose-style
+matrix interface; the theorem remains conditional on the clean-column
+amplitude from the cited `H_W^(kappa)` state-preparation contract.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      H ⟨2, by native_decide⟩ ⟨0, by native_decide⟩ =
+        Coeff.symbol "sqrt_kappa_inv") :
+    oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+      Coeff.symbol "sqrt_kappa_inv" :=
+  oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3 H
+    (oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H)
+    hUniform
+    (oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3 H)
+
+/--
+Adjoint-entry convention packet for the focused `H_W^(kappa)` dagger entry.
+
+This refines `oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3`
+by supplying the QBE local transpose-style adjoint convention for row `0`,
+column `2`.  The Shukla--Vedula clean-column amplitude remains contract-only,
+so the full dagger entry and all downstream product/block obligations remain
+false.
+-/
+structure OneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention where
+  sourceAnchor : String
+  uniformColumnContract :
+    OneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract
+  focusedSparseSlot : Nat
+  focusedKappa : Nat
+  sparseRegisterDimension : Nat
+  uniformColumnRowIndex : Nat
+  uniformColumnColIndex : Nat
+  daggerRowIndex : Nat
+  daggerColIndex : Nat
+  transposeMatrixDefinition : String
+  transposeEntryConventionLemma : String
+  conditionalDaggerEntryLemma : String
+  expectedUniformColumnEntry : Coeff
+  expectedDaggerEntry : Coeff
+  uniformColumnObligation : SemanticObligation
+  adjointEntryConventionObligation : SemanticObligation
+  sourceContractObligation : SemanticObligation
+  sourceMapBraAmplitudeObligation : SemanticObligation
+  factorMapBraAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  transposeMatrixAvailable : Bool
+  transposeEntryConventionCompiled : Bool
+  conditionalDaggerEntryFromTransposeCompiled : Bool
+  uniformColumnContractMapped : Bool
+  adjointEntryConventionProved : Bool
+  uniformColumnProved : Bool
+  daggerEntryProved : Bool
+  embeddedEntryProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled local adjoint-entry convention for the focused boundary branch.
+
+Only the local transpose convention is proved here.  The uniform clean-column
+entry remains an external cited contract, so this packet cannot discharge the
+bra-amplitude or focused product-to-coefficient obligations by itself.
+-/
+def oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3 :
+    OneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention :=
+  let contract :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Definition def:block-encoding, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and QBE transpose-style symbolic matrix convention"
+    uniformColumnContract := contract
+    focusedSparseSlot := contract.focusedSparseSlot
+    focusedKappa := contract.focusedKappa
+    sparseRegisterDimension := contract.sparseRegisterDimension
+    uniformColumnRowIndex := contract.uniformColumnRowIndex
+    uniformColumnColIndex := contract.uniformColumnColIndex
+    daggerRowIndex := contract.daggerRowIndex
+    daggerColIndex := contract.daggerColIndex
+    transposeMatrixDefinition :=
+      "oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H row col = H col row"
+    transposeEntryConventionLemma :=
+      "oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3"
+    conditionalDaggerEntryLemma :=
+      "oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3"
+    expectedUniformColumnEntry := contract.expectedUniformColumnEntry
+    expectedDaggerEntry := contract.expectedDaggerEntry
+    uniformColumnObligation := contract.uniformColumnObligation
+    adjointEntryConventionObligation := {
+      description :=
+        "QBE transpose-style symbolic dagger convention gives H_W^(kappa)^dagger[0,2] = H_W^(kappa)[2,0]"
+      source :=
+        "oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3"
+      proved := true
+    }
+    sourceContractObligation := contract.sourceContractObligation
+    sourceMapBraAmplitudeObligation :=
+      contract.sourceMapBraAmplitudeObligation
+    factorMapBraAmplitudeObligation :=
+      contract.factorMapBraAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      contract.routeMatchingProjectionObligation
+    factorSemanticsObligation := contract.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      contract.finiteCompositionNormalizedEquality
+    productObligation := contract.productObligation
+    transposeMatrixAvailable := true
+    transposeEntryConventionCompiled := true
+    conditionalDaggerEntryFromTransposeCompiled := true
+    uniformColumnContractMapped := contract.uniformColumnContractMapped
+    adjointEntryConventionProved := true
+    uniformColumnProved := contract.uniformColumnProved
+    daggerEntryProved := false
+    embeddedEntryProved := contract.embeddedEntryProved
+    braAmplitudeProved := contract.braAmplitudeProved
+    routeMatchingProjectionProved :=
+      contract.routeMatchingProjectionProved
+    factorSemanticsProved := contract.factorSemanticsProved
+    normalizedBlockEqualityProved :=
+      contract.normalizedBlockEqualityProved
+    productToCoefficientProved :=
+      contract.productToCoefficientProved
+    lcuCorrectProved := contract.lcuCorrectProved
+    blockProjectionProved := contract.blockProjectionProved
+    blockCorrectProved := contract.blockCorrectProved
+    finalExtractionProved := contract.finalExtractionProved
+    exactRemainingObstruction :=
+      "instantiate the external uniform-column entry H_W^(kappa)[2,0] = sqrt_kappa_inv before using the compiled transpose convention to prove the focused dagger entry and bra-amplitude obligation"
+  }
+
+/--
+Transcript theorem for the local adjoint-entry convention packet.
+
+The QBE transpose-style convention is now compiled and marked proved in this
+local packet.  The external uniform-column source, full dagger entry,
+bra-amplitude route, factor semantics, finite normalized equality, focused
+product theorem, and all block-correctness flags remain false.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3_transcript :
+    let convention :=
+      oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3
+    let contract :=
+      oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3
+    convention.uniformColumnContract = contract ∧
+      convention.focusedSparseSlot = 2 ∧
+      convention.focusedKappa = 7 ∧
+      convention.sparseRegisterDimension = 8 ∧
+      convention.uniformColumnRowIndex = 2 ∧
+      convention.uniformColumnColIndex = 0 ∧
+      convention.daggerRowIndex = 0 ∧
+      convention.daggerColIndex = 2 ∧
+      convention.transposeMatrixDefinition =
+        "oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H row col = H col row" ∧
+      convention.transposeEntryConventionLemma =
+        "oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3" ∧
+      convention.conditionalDaggerEntryLemma =
+        "oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3" ∧
+      convention.expectedUniformColumnEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      convention.expectedDaggerEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      convention.uniformColumnObligation =
+        contract.uniformColumnObligation ∧
+      convention.uniformColumnObligation.proved = false ∧
+      convention.adjointEntryConventionObligation.description =
+        "QBE transpose-style symbolic dagger convention gives H_W^(kappa)^dagger[0,2] = H_W^(kappa)[2,0]" ∧
+      convention.adjointEntryConventionObligation.source =
+        "oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3" ∧
+      convention.adjointEntryConventionObligation.proved = true ∧
+      convention.sourceContractObligation =
+        contract.sourceContractObligation ∧
+      convention.sourceMapBraAmplitudeObligation =
+        contract.sourceMapBraAmplitudeObligation ∧
+      convention.factorMapBraAmplitudeObligation =
+        contract.factorMapBraAmplitudeObligation ∧
+      convention.routeMatchingProjectionObligation =
+        contract.routeMatchingProjectionObligation ∧
+      convention.factorSemanticsObligation =
+        contract.factorSemanticsObligation ∧
+      convention.finiteCompositionNormalizedEquality =
+        contract.finiteCompositionNormalizedEquality ∧
+      convention.productObligation = contract.productObligation ∧
+      convention.transposeMatrixAvailable = true ∧
+      convention.transposeEntryConventionCompiled = true ∧
+      convention.conditionalDaggerEntryFromTransposeCompiled = true ∧
+      convention.uniformColumnContractMapped = true ∧
+      convention.adjointEntryConventionProved = true ∧
+      convention.uniformColumnProved = false ∧
+      convention.daggerEntryProved = false ∧
+      convention.embeddedEntryProved = false ∧
+      convention.sourceContractObligation.proved = false ∧
+      convention.sourceMapBraAmplitudeObligation.proved = false ∧
+      convention.factorMapBraAmplitudeObligation.proved = false ∧
+      convention.routeMatchingProjectionObligation.proved = false ∧
+      convention.factorSemanticsObligation.proved = false ∧
+      convention.finiteCompositionNormalizedEquality.proved = false ∧
+      convention.productObligation.proved = false ∧
+      convention.braAmplitudeProved = false ∧
+      convention.routeMatchingProjectionProved = false ∧
+      convention.factorSemanticsProved = false ∧
+      convention.normalizedBlockEqualityProved = false ∧
+      convention.productToCoefficientProved = false ∧
+      convention.lcuCorrectProved = false ∧
+      convention.blockProjectionProved = false ∧
+      convention.blockCorrectProved = false ∧
+      convention.finalExtractionProved = false ∧
+      convention.exactRemainingObstruction =
+        "instantiate the external uniform-column entry H_W^(kappa)[2,0] = sqrt_kappa_inv before using the compiled transpose convention to prove the focused dagger entry and bra-amplitude obligation" := by
+  have _contract :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript
+  have _transpose :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3
+      ((fun _ _ => Coeff.symbol "sqrt_kappa_inv") : Matrix 8 8 Coeff)
+  have _conditional :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3
+      ((fun _ _ => Coeff.symbol "sqrt_kappa_inv") : Matrix 8 8 Coeff)
+      rfl
+  native_decide
+
+/--
+External clean-column contract bridge for the focused `H_W^(kappa)` entry.
+
+This packet accepts the GHL2025 Eq. `arbitrary sparcity` clean-column entry
+only as a typed external contract through the existing Shukla--Vedula cited
+row.  It then records that the accepted entry is the exact hypothesis consumed
+by the compiled transpose-style dagger bridge.  No cited theorem is formalized
+and no product, projection, LCU, block-correctness, or final-extraction flag is
+promoted.
+-/
+structure OneTermRobinGamma3BoundaryHWKappaCleanColumnContract where
+  sourceAnchor : String
+  adjointConvention :
+    OneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention
+  citedResultId : String
+  focusedSparseSlot : Nat
+  focusedKappa : Nat
+  sparseRegisterDimension : Nat
+  uniformColumnRowIndex : Nat
+  uniformColumnColIndex : Nat
+  daggerRowIndex : Nat
+  daggerColIndex : Nat
+  uniformColumnFormula : String
+  citedUniformSuperpositionFormula : String
+  conditionalDaggerEntryLemma : String
+  expectedUniformColumnEntry : Coeff
+  expectedDaggerEntry : Coeff
+  uniformColumnObligation : SemanticObligation
+  adjointEntryConventionObligation : SemanticObligation
+  sourceContractObligation : SemanticObligation
+  sourceMapBraAmplitudeObligation : SemanticObligation
+  factorMapBraAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  externalCleanColumnAcceptedAsContract : Bool
+  cleanColumnFeedsTransposeBridge : Bool
+  conditionalDaggerEntryBridgeCompiled : Bool
+  uniformColumnProved : Bool
+  adjointEntryConventionProved : Bool
+  daggerEntryProved : Bool
+  embeddedEntryProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled clean-column contract bridge for the focused boundary branch.
+
+The bridge records the external contract
+`H_W^(kappa)[2,0] = sqrt_kappa_inv` and ties it to the already-compiled
+transpose convention.  The clean-column source remains `contract-only`; the
+actual dagger entry and downstream bra-amplitude route remain unproved.
+-/
+def oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3 :
+    OneTermRobinGamma3BoundaryHWKappaCleanColumnContract :=
+  let convention :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity and Fig. 1-term ROBIN; cited-results row ShuklaVedula2024.HWkappaUniformSuperposition; arXiv:2506.20478"
+    adjointConvention := convention
+    citedResultId := "ShuklaVedula2024.HWkappaUniformSuperposition"
+    focusedSparseSlot := convention.focusedSparseSlot
+    focusedKappa := convention.focusedKappa
+    sparseRegisterDimension := convention.sparseRegisterDimension
+    uniformColumnRowIndex := convention.uniformColumnRowIndex
+    uniformColumnColIndex := convention.uniformColumnColIndex
+    daggerRowIndex := convention.daggerRowIndex
+    daggerColIndex := convention.daggerColIndex
+    uniformColumnFormula :=
+      "H_W^(kappa)[2,0] = 1/sqrt(kappa)"
+    citedUniformSuperpositionFormula :=
+      "H_W^(kappa)|0> = kappa^{-1/2} sum_{s=0}^{kappa-1} |s>"
+    conditionalDaggerEntryLemma :=
+      "oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3"
+    expectedUniformColumnEntry := convention.expectedUniformColumnEntry
+    expectedDaggerEntry := convention.expectedDaggerEntry
+    uniformColumnObligation := convention.uniformColumnObligation
+    adjointEntryConventionObligation :=
+      convention.adjointEntryConventionObligation
+    sourceContractObligation := convention.sourceContractObligation
+    sourceMapBraAmplitudeObligation :=
+      convention.sourceMapBraAmplitudeObligation
+    factorMapBraAmplitudeObligation :=
+      convention.factorMapBraAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      convention.routeMatchingProjectionObligation
+    factorSemanticsObligation := convention.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      convention.finiteCompositionNormalizedEquality
+    productObligation := convention.productObligation
+    externalCleanColumnAcceptedAsContract := true
+    cleanColumnFeedsTransposeBridge := true
+    conditionalDaggerEntryBridgeCompiled := true
+    uniformColumnProved := convention.uniformColumnProved
+    adjointEntryConventionProved :=
+      convention.adjointEntryConventionProved
+    daggerEntryProved := convention.daggerEntryProved
+    embeddedEntryProved := convention.embeddedEntryProved
+    braAmplitudeProved := convention.braAmplitudeProved
+    routeMatchingProjectionProved :=
+      convention.routeMatchingProjectionProved
+    factorSemanticsProved := convention.factorSemanticsProved
+    normalizedBlockEqualityProved :=
+      convention.normalizedBlockEqualityProved
+    productToCoefficientProved :=
+      convention.productToCoefficientProved
+    lcuCorrectProved := convention.lcuCorrectProved
+    blockProjectionProved := convention.blockProjectionProved
+    blockCorrectProved := convention.blockCorrectProved
+    finalExtractionProved := convention.finalExtractionProved
+    exactRemainingObstruction :=
+      "connect the external clean-column contract to the bra-amplitude and factor-semantics obligations, or formalize the cited H_W^(kappa) preparation theorem before marking the dagger entry proved"
+  }
+
+/--
+The clean-column contract is exactly the hypothesis consumed by the transpose
+dagger bridge.
+
+This theorem is conditional on a matrix satisfying the external clean-column
+entry.  It does not prove that any concrete `H_W^(kappa)` matrix satisfies that
+entry.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      H ⟨oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3.uniformColumnRowIndex,
+          by native_decide⟩
+        ⟨oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3.uniformColumnColIndex,
+          by native_decide⟩ =
+        oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3.expectedUniformColumnEntry) :
+    oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        ⟨oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3.daggerRowIndex,
+          by native_decide⟩
+        ⟨oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3.daggerColIndex,
+          by native_decide⟩ =
+      oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3.expectedDaggerEntry := by
+  simpa [oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3]
+    using
+      oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3
+        H hUniform
+
+/--
+Transcript theorem for the clean-column contract bridge.
+
+The theorem checks that the bridge uses the Shukla--Vedula cited row as a
+contract-only source, feeds the accepted entry through the transpose lemma, and
+keeps the theorem-facing semantic flags false.
+-/
+theorem oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3_transcript :
+    let bridge :=
+      oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3
+    let convention :=
+      oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3
+    bridge.adjointConvention = convention ∧
+      bridge.citedResultId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      bridge.focusedSparseSlot = 2 ∧
+      bridge.focusedKappa = 7 ∧
+      bridge.sparseRegisterDimension = 8 ∧
+      bridge.uniformColumnRowIndex = 2 ∧
+      bridge.uniformColumnColIndex = 0 ∧
+      bridge.daggerRowIndex = 0 ∧
+      bridge.daggerColIndex = 2 ∧
+      bridge.uniformColumnFormula =
+        "H_W^(kappa)[2,0] = 1/sqrt(kappa)" ∧
+      bridge.citedUniformSuperpositionFormula =
+        "H_W^(kappa)|0> = kappa^{-1/2} sum_{s=0}^{kappa-1} |s>" ∧
+      bridge.conditionalDaggerEntryLemma =
+        "oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3" ∧
+      bridge.expectedUniformColumnEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      bridge.expectedDaggerEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      bridge.uniformColumnObligation =
+        convention.uniformColumnObligation ∧
+      bridge.uniformColumnObligation.proved = false ∧
+      bridge.adjointEntryConventionObligation =
+        convention.adjointEntryConventionObligation ∧
+      bridge.adjointEntryConventionObligation.proved = true ∧
+      bridge.sourceContractObligation =
+        convention.sourceContractObligation ∧
+      bridge.sourceMapBraAmplitudeObligation =
+        convention.sourceMapBraAmplitudeObligation ∧
+      bridge.factorMapBraAmplitudeObligation =
+        convention.factorMapBraAmplitudeObligation ∧
+      bridge.routeMatchingProjectionObligation =
+        convention.routeMatchingProjectionObligation ∧
+      bridge.factorSemanticsObligation =
+        convention.factorSemanticsObligation ∧
+      bridge.finiteCompositionNormalizedEquality =
+        convention.finiteCompositionNormalizedEquality ∧
+      bridge.productObligation = convention.productObligation ∧
+      bridge.externalCleanColumnAcceptedAsContract = true ∧
+      bridge.cleanColumnFeedsTransposeBridge = true ∧
+      bridge.conditionalDaggerEntryBridgeCompiled = true ∧
+      bridge.uniformColumnProved = false ∧
+      bridge.adjointEntryConventionProved = true ∧
+      bridge.daggerEntryProved = false ∧
+      bridge.embeddedEntryProved = false ∧
+      bridge.sourceContractObligation.proved = false ∧
+      bridge.sourceMapBraAmplitudeObligation.proved = false ∧
+      bridge.factorMapBraAmplitudeObligation.proved = false ∧
+      bridge.routeMatchingProjectionObligation.proved = false ∧
+      bridge.factorSemanticsObligation.proved = false ∧
+      bridge.finiteCompositionNormalizedEquality.proved = false ∧
+      bridge.productObligation.proved = false ∧
+      bridge.braAmplitudeProved = false ∧
+      bridge.routeMatchingProjectionProved = false ∧
+      bridge.factorSemanticsProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false ∧
+      bridge.exactRemainingObstruction =
+        "connect the external clean-column contract to the bra-amplitude and factor-semantics obligations, or formalize the cited H_W^(kappa) preparation theorem before marking the dagger entry proved" := by
+  have _convention :=
+    oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3_transcript
+  have _feed :=
+    oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3
+      ((fun row col =>
+        if row.val = 2 ∧ col.val = 0 then
+          Coeff.symbol "sqrt_kappa_inv"
+        else
+          Coeff.rat 0) : Matrix 8 8 Coeff)
+      (by native_decide)
+  native_decide
+
+/--
+Route contract from the accepted clean-column input to the existing bra
+amplitude and factor-semantics obligations.
+
+The clean-column bridge supplies a conditional focused dagger entry under the
+external Shukla--Vedula uniform-column contract.  This packet records that the
+same entry is exactly the bra-side amplitude source needed by
+`oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3` and the same
+bra-amplitude obligation consumed by
+`oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3`.  It is still only a
+route contract: the external clean-column theorem, the actual bra amplitude,
+factor semantics, finite normalized equality, and product-to-coefficient
+obligation remain false.
+-/
+structure OneTermRobinGamma3BoundaryCleanColumnBraRouteContract where
+  sourceAnchor : String
+  cleanColumnContract : OneTermRobinGamma3BoundaryHWKappaCleanColumnContract
+  braSourceMap : OneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap
+  factorContractMap : OneTermRobinGamma3BoundaryFactorSemanticsContractMap
+  citedResultId : String
+  focusedSparseSlot : Nat
+  focusedKappa : Nat
+  sparseRegisterDimension : Nat
+  cleanBasisIndex : Nat
+  uniformColumnRowIndex : Nat
+  uniformColumnColIndex : Nat
+  daggerRowIndex : Nat
+  daggerColIndex : Nat
+  cleanColumnEntryFormula : String
+  daggerEntryFormula : String
+  braProjectionEntryFormula : String
+  conditionalDaggerEntryLemma : String
+  bridgeLemma : String
+  expectedUniformColumnEntry : Coeff
+  expectedDaggerEntry : Coeff
+  expectedBraAmplitudeFactor : Coeff
+  uniformColumnObligation : SemanticObligation
+  sourceContractObligation : SemanticObligation
+  sourceMapBraAmplitudeObligation : SemanticObligation
+  factorMapBraAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  externalCleanColumnAcceptedAsContract : Bool
+  cleanColumnFeedsDaggerEntry : Bool
+  sourceMapWired : Bool
+  factorMapWired : Bool
+  braRouteContractMapped : Bool
+  uniformColumnProved : Bool
+  daggerEntryProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled clean-column to bra-route contract for the focused boundary branch.
+
+This declaration connects the contract-only clean-column bridge to the exact
+bra-amplitude and factor-semantics fields already present in the route.  It
+does not prove the Shukla--Vedula clean-column input or discharge the internal
+projection-amplitude obligation.
+-/
+def oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3 :
+    OneTermRobinGamma3BoundaryCleanColumnBraRouteContract :=
+  let cleanColumn :=
+    oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3
+  let sourceMap :=
+    oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3
+  let factorMap :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Definition def:block-encoding, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    cleanColumnContract := cleanColumn
+    braSourceMap := sourceMap
+    factorContractMap := factorMap
+    citedResultId := cleanColumn.citedResultId
+    focusedSparseSlot := cleanColumn.focusedSparseSlot
+    focusedKappa := cleanColumn.focusedKappa
+    sparseRegisterDimension := cleanColumn.sparseRegisterDimension
+    cleanBasisIndex := sourceMap.cleanBasisIndex
+    uniformColumnRowIndex := cleanColumn.uniformColumnRowIndex
+    uniformColumnColIndex := cleanColumn.uniformColumnColIndex
+    daggerRowIndex := cleanColumn.daggerRowIndex
+    daggerColIndex := cleanColumn.daggerColIndex
+    cleanColumnEntryFormula := cleanColumn.uniformColumnFormula
+    daggerEntryFormula :=
+      "H_W^(kappa)^dagger[0,2] = sqrt_kappa_inv under the accepted clean-column contract"
+    braProjectionEntryFormula := sourceMap.projectionBraEntryFormula
+    conditionalDaggerEntryLemma := cleanColumn.conditionalDaggerEntryLemma
+    bridgeLemma :=
+      "oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3"
+    expectedUniformColumnEntry := cleanColumn.expectedUniformColumnEntry
+    expectedDaggerEntry := cleanColumn.expectedDaggerEntry
+    expectedBraAmplitudeFactor := sourceMap.expectedBraAmplitudeFactor
+    uniformColumnObligation := cleanColumn.uniformColumnObligation
+    sourceContractObligation := cleanColumn.sourceContractObligation
+    sourceMapBraAmplitudeObligation :=
+      sourceMap.amplitudeContractObligation
+    factorMapBraAmplitudeObligation := factorMap.braAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      sourceMap.routeMatchingProjectionObligation
+    factorSemanticsObligation := factorMap.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      factorMap.finiteCompositionNormalizedEquality
+    productObligation := factorMap.productObligation
+    externalCleanColumnAcceptedAsContract :=
+      cleanColumn.externalCleanColumnAcceptedAsContract
+    cleanColumnFeedsDaggerEntry := cleanColumn.cleanColumnFeedsTransposeBridge
+    sourceMapWired := true
+    factorMapWired := true
+    braRouteContractMapped := true
+    uniformColumnProved := cleanColumn.uniformColumnProved
+    daggerEntryProved := cleanColumn.daggerEntryProved
+    braAmplitudeProved := sourceMap.amplitudeContractProved
+    routeMatchingProjectionProved :=
+      sourceMap.routeMatchingProjectionProved
+    factorSemanticsProved := factorMap.factorSemanticsProved
+    normalizedBlockEqualityProved := factorMap.normalizedBlockEqualityProved
+    productToCoefficientProved := factorMap.productToCoefficientProved
+    lcuCorrectProved := factorMap.lcuCorrectProved
+    blockProjectionProved := factorMap.blockProjectionProved
+    blockCorrectProved := factorMap.blockCorrectProved
+    finalExtractionProved := factorMap.finalExtractionProved
+    exactRemainingObstruction :=
+      "supply the external clean-column theorem and an internal projection-entry theorem before marking the bra amplitude or factor semantics proved"
+  }
+
+/--
+The clean-column bridge feeds the expected bra-amplitude factor conditionally.
+
+This theorem only rewrites the existing transpose bridge through the new route
+contract.  The uniform-column hypothesis remains external.
+-/
+theorem oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      H ⟨oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3.uniformColumnRowIndex,
+          by native_decide⟩
+        ⟨oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3.uniformColumnColIndex,
+          by native_decide⟩ =
+        oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3.expectedUniformColumnEntry) :
+    oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        ⟨oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3.daggerRowIndex,
+          by native_decide⟩
+        ⟨oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3.daggerColIndex,
+          by native_decide⟩ =
+      oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3.expectedBraAmplitudeFactor := by
+  simpa [oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3]
+    using
+      oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3
+        H hUniform
+
+/--
+Transcript theorem for the clean-column to bra-route contract.
+
+This checks that the route points at the same bra-amplitude obligation in the
+source map and the factor-semantics contract map, while every semantic proof
+flag remains false.
+-/
+theorem oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3_transcript :
+    let route :=
+      oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3
+    let cleanColumn :=
+      oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3
+    let sourceMap :=
+      oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3
+    let factorMap :=
+      oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    route.cleanColumnContract = cleanColumn ∧
+      route.braSourceMap = sourceMap ∧
+      route.factorContractMap = factorMap ∧
+      route.citedResultId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      route.focusedSparseSlot = 2 ∧
+      route.focusedKappa = 7 ∧
+      route.sparseRegisterDimension = 8 ∧
+      route.cleanBasisIndex = 32 ∧
+      route.uniformColumnRowIndex = 2 ∧
+      route.uniformColumnColIndex = 0 ∧
+      route.daggerRowIndex = 0 ∧
+      route.daggerColIndex = 2 ∧
+      route.cleanColumnEntryFormula =
+        "H_W^(kappa)[2,0] = 1/sqrt(kappa)" ∧
+      route.daggerEntryFormula =
+        "H_W^(kappa)^dagger[0,2] = sqrt_kappa_inv under the accepted clean-column contract" ∧
+      route.braProjectionEntryFormula =
+        "<0| H_W^(kappa)^dagger |2> = 1/sqrt(kappa), embedded at clean basis index 32" ∧
+      route.conditionalDaggerEntryLemma =
+        "oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3" ∧
+      route.bridgeLemma =
+        "oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3" ∧
+      route.expectedUniformColumnEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      route.expectedDaggerEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      route.expectedBraAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      route.uniformColumnObligation =
+        cleanColumn.uniformColumnObligation ∧
+      route.sourceContractObligation =
+        cleanColumn.sourceContractObligation ∧
+      route.sourceMapBraAmplitudeObligation =
+        sourceMap.amplitudeContractObligation ∧
+      route.factorMapBraAmplitudeObligation =
+        factorMap.braAmplitudeObligation ∧
+      route.sourceMapBraAmplitudeObligation =
+        route.factorMapBraAmplitudeObligation ∧
+      route.sourceMapBraAmplitudeObligation =
+        cleanColumn.sourceMapBraAmplitudeObligation ∧
+      route.factorMapBraAmplitudeObligation =
+        cleanColumn.factorMapBraAmplitudeObligation ∧
+      route.routeMatchingProjectionObligation =
+        sourceMap.routeMatchingProjectionObligation ∧
+      route.factorSemanticsObligation =
+        factorMap.factorSemanticsObligation ∧
+      route.finiteCompositionNormalizedEquality =
+        factorMap.finiteCompositionNormalizedEquality ∧
+      route.productObligation = factorMap.productObligation ∧
+      route.externalCleanColumnAcceptedAsContract = true ∧
+      route.cleanColumnFeedsDaggerEntry = true ∧
+      route.sourceMapWired = true ∧
+      route.factorMapWired = true ∧
+      route.braRouteContractMapped = true ∧
+      route.uniformColumnObligation.proved = false ∧
+      route.sourceContractObligation.proved = false ∧
+      route.sourceMapBraAmplitudeObligation.proved = false ∧
+      route.factorMapBraAmplitudeObligation.proved = false ∧
+      route.routeMatchingProjectionObligation.proved = false ∧
+      route.factorSemanticsObligation.proved = false ∧
+      route.finiteCompositionNormalizedEquality.proved = false ∧
+      route.productObligation.proved = false ∧
+      route.uniformColumnProved = false ∧
+      route.daggerEntryProved = false ∧
+      route.braAmplitudeProved = false ∧
+      route.routeMatchingProjectionProved = false ∧
+      route.factorSemanticsProved = false ∧
+      route.normalizedBlockEqualityProved = false ∧
+      route.productToCoefficientProved = false ∧
+      route.lcuCorrectProved = false ∧
+      route.blockProjectionProved = false ∧
+      route.blockCorrectProved = false ∧
+      route.finalExtractionProved = false ∧
+      route.exactRemainingObstruction =
+        "supply the external clean-column theorem and an internal projection-entry theorem before marking the bra amplitude or factor semantics proved" := by
+  have _clean :=
+    oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3_transcript
+  have _source :=
+    oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3_transcript
+  have _factor :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript
+  have _feed :=
+    oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3
+      ((fun row col =>
+        if row.val = 2 ∧ col.val = 0 then
+          Coeff.symbol "sqrt_kappa_inv"
+        else
+          Coeff.rat 0) : Matrix 8 8 Coeff)
+      (by native_decide)
+  native_decide
+
+/--
+Under-contract route from the clean-column bra factor to factor semantics.
+
+The route records that the clean-column-to-bra bridge supplies the bra-side
+factor expected by the factor-semantics contract map.  It also keeps the
+external uniform amplitude, ket amplitude, square-root product convention,
+finite normalized equality, and focused product theorem as explicit false
+obligations.
+-/
+structure OneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute where
+  sourceAnchor : String
+  cleanColumnRoute : OneTermRobinGamma3BoundaryCleanColumnBraRouteContract
+  factorContractMap : OneTermRobinGamma3BoundaryFactorSemanticsContractMap
+  focusedSparseSlot : Nat
+  cleanBasisIndex : Nat
+  uniformColumnRowIndex : Nat
+  uniformColumnColIndex : Nat
+  daggerRowIndex : Nat
+  daggerColIndex : Nat
+  expectedUniformColumnEntry : Coeff
+  expectedBraAmplitudeFactor : Coeff
+  projectedBranchProduct : Coeff
+  expectedTargetEntry : Coeff
+  theoremNormalizer : Coeff
+  cleanColumnFeedLemma : String
+  factorEvalLemma : String
+  requiredHypothesesFormula : String
+  uniformColumnObligation : SemanticObligation
+  ketAmplitudeObligation : SemanticObligation
+  braAmplitudeObligation : SemanticObligation
+  routeMatchingProjectionObligation : SemanticObligation
+  productHypothesisObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  externalCleanColumnAcceptedAsContract : Bool
+  braFactorRouteWired : Bool
+  factorMapWired : Bool
+  conditionalBraFactorCompiled : Bool
+  conditionalFactorEvalCompiled : Bool
+  cleanColumnToFactorRouteMapped : Bool
+  uniformColumnProved : Bool
+  ketAmplitudeProved : Bool
+  braAmplitudeProved : Bool
+  routeMatchingProjectionProved : Bool
+  productHypothesisProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled clean-column to factor-semantics route for the focused boundary
+branch.
+
+This declaration is not a proof of the Shukla--Vedula preparation theorem or
+the final product-to-coefficient obligation.  It only connects the clean
+bra-factor route to the already compiled conditional factor-map evaluation.
+-/
+def oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3 :
+    OneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute :=
+  let cleanRoute :=
+    oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3
+  let factorMap :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. arbitrary sparcity, Definition def:block-encoding, Eq. ROBIN clarified boundary branch, Fig. 1-term ROBIN, and Shukla-Vedula 2024, arXiv:2506.20478"
+    cleanColumnRoute := cleanRoute
+    factorContractMap := factorMap
+    focusedSparseSlot := cleanRoute.focusedSparseSlot
+    cleanBasisIndex := cleanRoute.cleanBasisIndex
+    uniformColumnRowIndex := cleanRoute.uniformColumnRowIndex
+    uniformColumnColIndex := cleanRoute.uniformColumnColIndex
+    daggerRowIndex := cleanRoute.daggerRowIndex
+    daggerColIndex := cleanRoute.daggerColIndex
+    expectedUniformColumnEntry := cleanRoute.expectedUniformColumnEntry
+    expectedBraAmplitudeFactor := cleanRoute.expectedBraAmplitudeFactor
+    projectedBranchProduct := factorMap.projectedBranchProduct
+    expectedTargetEntry := factorMap.expectedTargetEntry
+    theoremNormalizer := factorMap.theoremNormalizer
+    cleanColumnFeedLemma :=
+      "oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3"
+    factorEvalLemma :=
+      "oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3"
+    requiredHypothesesFormula :=
+      "external clean-column H_W[k=2,0]=sqrt_kappa_inv; N_D_inv*N_D=1; N_f_inv*N_f=1; kappa_inv*kappa=1; sqrt_kappa_inv*sqrt_kappa_inv=kappa_inv"
+    uniformColumnObligation := cleanRoute.uniformColumnObligation
+    ketAmplitudeObligation := factorMap.ketAmplitudeObligation
+    braAmplitudeObligation := factorMap.braAmplitudeObligation
+    routeMatchingProjectionObligation :=
+      factorMap.routeMatchingProjectionObligation
+    productHypothesisObligation := factorMap.productHypothesisObligation
+    factorSemanticsObligation := factorMap.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      factorMap.finiteCompositionNormalizedEquality
+    productObligation := factorMap.productObligation
+    externalCleanColumnAcceptedAsContract :=
+      cleanRoute.externalCleanColumnAcceptedAsContract
+    braFactorRouteWired := cleanRoute.braRouteContractMapped
+    factorMapWired := cleanRoute.factorMapWired
+    conditionalBraFactorCompiled := cleanRoute.cleanColumnFeedsDaggerEntry
+    conditionalFactorEvalCompiled :=
+      factorMap.conditionalFactorEvalCompiled
+    cleanColumnToFactorRouteMapped := true
+    uniformColumnProved := cleanRoute.uniformColumnProved
+    ketAmplitudeProved := factorMap.ketAmplitudeProved
+    braAmplitudeProved := factorMap.braAmplitudeProved
+    routeMatchingProjectionProved :=
+      factorMap.routeMatchingProjectionProved
+    productHypothesisProved := factorMap.productHypothesisProved
+    factorSemanticsProved := factorMap.factorSemanticsProved
+    normalizedBlockEqualityProved :=
+      factorMap.normalizedBlockEqualityProved
+    productToCoefficientProved := factorMap.productToCoefficientProved
+    lcuCorrectProved := factorMap.lcuCorrectProved
+    blockProjectionProved := factorMap.blockProjectionProved
+    blockCorrectProved := factorMap.blockCorrectProved
+    finalExtractionProved := factorMap.finalExtractionProved
+    exactRemainingObstruction :=
+      "supply the external clean-column theorem, ket amplitude, square-root product convention, finite normalized equality, and focused product theorem before promoting factor semantics"
+  }
+
+/--
+Conditional evaluation for the clean-column to factor-semantics route.
+
+The theorem explicitly consumes the external clean-column hypothesis and the
+coefficient-environment hypotheses.  It proves only the local conditional
+bridge and the already compiled factor-map evaluation under those contracts.
+-/
+theorem oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3
+    (env : String → Rat)
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      H
+        ⟨oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3.uniformColumnRowIndex,
+          by native_decide⟩
+        ⟨oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3.uniformColumnColIndex,
+          by native_decide⟩ =
+        oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3.expectedUniformColumnEntry)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let route :=
+      oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3
+    oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        ⟨route.daggerRowIndex, by native_decide⟩
+        ⟨route.daggerColIndex, by native_decide⟩ =
+      route.expectedBraAmplitudeFactor ∧
+    Coeff.evalWith env route.projectedBranchProduct *
+      Coeff.evalWith env route.theoremNormalizer =
+    Coeff.evalWith env route.expectedTargetEntry := by
+  constructor
+  · simpa [oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3]
+      using
+        oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3
+          H
+          (by
+            simpa [oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3]
+              using hUniform)
+  · simpa [oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3]
+      using
+        oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3
+          env hND hNF hkappa hkappaSqrt
+
+/--
+Transcript theorem for the clean-column to factor-semantics route.
+
+It checks that the route connects the clean-column bra factor to the factor
+contract map and preserves all theorem-facing semantic flags as false.
+-/
+theorem oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3_transcript :
+    let route :=
+      oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3
+    let cleanRoute :=
+      oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3
+    let factorMap :=
+      oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    route.cleanColumnRoute = cleanRoute ∧
+      route.factorContractMap = factorMap ∧
+      route.focusedSparseSlot = 2 ∧
+      route.cleanBasisIndex = 32 ∧
+      route.uniformColumnRowIndex = 2 ∧
+      route.uniformColumnColIndex = 0 ∧
+      route.daggerRowIndex = 0 ∧
+      route.daggerColIndex = 2 ∧
+      route.expectedUniformColumnEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      route.expectedBraAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      route.projectedBranchProduct =
+        factorMap.projectedBranchProduct ∧
+      route.expectedTargetEntry = factorMap.expectedTargetEntry ∧
+      route.theoremNormalizer = factorMap.theoremNormalizer ∧
+      route.cleanColumnFeedLemma =
+        "oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3" ∧
+      route.factorEvalLemma =
+        "oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3" ∧
+      route.uniformColumnObligation =
+        cleanRoute.uniformColumnObligation ∧
+      route.ketAmplitudeObligation =
+        factorMap.ketAmplitudeObligation ∧
+      route.braAmplitudeObligation =
+        factorMap.braAmplitudeObligation ∧
+      route.braAmplitudeObligation =
+        cleanRoute.factorMapBraAmplitudeObligation ∧
+      route.routeMatchingProjectionObligation =
+        factorMap.routeMatchingProjectionObligation ∧
+      route.productHypothesisObligation =
+        factorMap.productHypothesisObligation ∧
+      route.factorSemanticsObligation =
+        factorMap.factorSemanticsObligation ∧
+      route.finiteCompositionNormalizedEquality =
+        factorMap.finiteCompositionNormalizedEquality ∧
+      route.productObligation = factorMap.productObligation ∧
+      route.externalCleanColumnAcceptedAsContract = true ∧
+      route.braFactorRouteWired = true ∧
+      route.factorMapWired = true ∧
+      route.conditionalBraFactorCompiled = true ∧
+      route.conditionalFactorEvalCompiled = true ∧
+      route.cleanColumnToFactorRouteMapped = true ∧
+      route.uniformColumnObligation.proved = false ∧
+      route.ketAmplitudeObligation.proved = false ∧
+      route.braAmplitudeObligation.proved = false ∧
+      route.routeMatchingProjectionObligation.proved = false ∧
+      route.productHypothesisObligation.proved = false ∧
+      route.factorSemanticsObligation.proved = false ∧
+      route.finiteCompositionNormalizedEquality.proved = false ∧
+      route.productObligation.proved = false ∧
+      route.uniformColumnProved = false ∧
+      route.ketAmplitudeProved = false ∧
+      route.braAmplitudeProved = false ∧
+      route.routeMatchingProjectionProved = false ∧
+      route.productHypothesisProved = false ∧
+      route.factorSemanticsProved = false ∧
+      route.normalizedBlockEqualityProved = false ∧
+      route.productToCoefficientProved = false ∧
+      route.lcuCorrectProved = false ∧
+      route.blockProjectionProved = false ∧
+      route.blockCorrectProved = false ∧
+      route.finalExtractionProved = false ∧
+      route.exactRemainingObstruction =
+        "supply the external clean-column theorem, ket amplitude, square-root product convention, finite normalized equality, and focused product theorem before promoting factor semantics" := by
+  have _clean :=
+    oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3_transcript
+  have _factor :=
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript
+  have _eval :=
+    oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3
+      (fun _ => 1)
+      ((fun row col =>
+        if row.val = 2 ∧ col.val = 0 then
+          Coeff.symbol "sqrt_kappa_inv"
+        else
+          Coeff.rat 0) : Matrix 8 8 Coeff)
+      (by native_decide)
+      (by simp) (by simp) (by simp) (by simp)
+  native_decide
+
+/--
+Product-under-contracts route for the focused boundary branch.
+
+The clean-column factor-semantics route already supplies the conditional
+coefficient calculation.  This packet ties that route to the fixed
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` and names the exact
+remaining bridge: the finite block-composition contract must identify the
+projected branch product with the theorem's normalized block entry.  No
+semantic proof flag is promoted here.
+-/
+structure OneTermRobinGamma3BoundaryProductUnderContractsRoute where
+  sourceAnchor : String
+  cleanColumnFactorRoute :
+    OneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute
+  focusedSystemRow : Nat
+  focusedSystemColumn : Nat
+  focusedSparseSlot : Nat
+  cleanBasisIndex : Nat
+  expectedBraAmplitudeFactor : Coeff
+  projectedBranchProduct : Coeff
+  expectedTargetEntry : Coeff
+  theoremNormalizer : Coeff
+  conditionalEvalLemma : String
+  fixedProductObligationName : String
+  requiredContractsFormula : String
+  uniformColumnObligation : SemanticObligation
+  ketAmplitudeObligation : SemanticObligation
+  braAmplitudeObligation : SemanticObligation
+  productHypothesisObligation : SemanticObligation
+  factorSemanticsObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productBridgeObligation : SemanticObligation
+  productObligation : SemanticObligation
+  externalCleanColumnAcceptedAsContract : Bool
+  ketAmplitudeAcceptedAsContract : Bool
+  braAmplitudeAcceptedAsContract : Bool
+  coefficientHypothesesExplicit : Bool
+  conditionalEvalCompiled : Bool
+  productUnderContractsMapped : Bool
+  uniformColumnProved : Bool
+  ketAmplitudeProved : Bool
+  braAmplitudeProved : Bool
+  productHypothesisProved : Bool
+  factorSemanticsProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productBridgeProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled product-under-contracts route for
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+The route uses the clean-column factor-semantics calculation as its local
+coefficient engine, then records the remaining theorem-facing bridge to the
+finite block-composition contract.  The product obligation remains false.
+-/
+def oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3 :
+    OneTermRobinGamma3BoundaryProductUnderContractsRoute :=
+  let route := oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified boundary gamma3 branch, Theorem one-term block-encoding, Definition def:block-encoding, Fig. 1-term ROBIN, and cited LCU.StandardBlockEncoding"
+    cleanColumnFactorRoute := route
+    focusedSystemRow := 0
+    focusedSystemColumn := 0
+    focusedSparseSlot := route.focusedSparseSlot
+    cleanBasisIndex := route.cleanBasisIndex
+    expectedBraAmplitudeFactor := route.expectedBraAmplitudeFactor
+    projectedBranchProduct := route.projectedBranchProduct
+    expectedTargetEntry := route.expectedTargetEntry
+    theoremNormalizer := route.theoremNormalizer
+    conditionalEvalLemma :=
+      "oneTermRobinGamma3BoundaryProductUnderContractsEval_n3"
+    fixedProductObligationName :=
+      "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0"
+    requiredContractsFormula :=
+      "external H_W clean-column and ket amplitudes; N_D_inv, N_f_inv, kappa_inv, and sqrt_kappa_inv coefficient identities; finite normalized block equality"
+    uniformColumnObligation := route.uniformColumnObligation
+    ketAmplitudeObligation := route.ketAmplitudeObligation
+    braAmplitudeObligation := route.braAmplitudeObligation
+    productHypothesisObligation := route.productHypothesisObligation
+    factorSemanticsObligation := route.factorSemanticsObligation
+    finiteCompositionNormalizedEquality :=
+      route.finiteCompositionNormalizedEquality
+    productBridgeObligation := {
+      description :=
+        "bridge the conditional clean-column factor route to the exact projected block entry used by oneTermRobinGamma3ProductToCoefficientObligation 3 0 0"
+      source :=
+        "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified, and LCU.StandardBlockEncoding cited-results row"
+      proved := false
+    }
+    productObligation := route.productObligation
+    externalCleanColumnAcceptedAsContract :=
+      route.externalCleanColumnAcceptedAsContract
+    ketAmplitudeAcceptedAsContract := true
+    braAmplitudeAcceptedAsContract := true
+    coefficientHypothesesExplicit := true
+    conditionalEvalCompiled := route.conditionalFactorEvalCompiled
+    productUnderContractsMapped := true
+    uniformColumnProved := route.uniformColumnProved
+    ketAmplitudeProved := route.ketAmplitudeProved
+    braAmplitudeProved := route.braAmplitudeProved
+    productHypothesisProved := route.productHypothesisProved
+    factorSemanticsProved := route.factorSemanticsProved
+    normalizedBlockEqualityProved := route.normalizedBlockEqualityProved
+    productBridgeProved := false
+    productToCoefficientProved := route.productToCoefficientProved
+    lcuCorrectProved := route.lcuCorrectProved
+    blockProjectionProved := route.blockProjectionProved
+    blockCorrectProved := route.blockCorrectProved
+    finalExtractionProved := route.finalExtractionProved
+    exactRemainingObstruction :=
+      "the conditional coefficient route is compiled, but QBE still needs finite normalized block equality and a projection/product bridge before marking oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 proved"
+  }
+
+/--
+Conditional product-under-contracts evaluation for the focused boundary route.
+
+This is only the Lean-local algebra under explicit contracts.  It reuses
+`oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3` and does
+not prove the finite block-composition bridge or the product-to-coefficient
+obligation.
+-/
+theorem oneTermRobinGamma3BoundaryProductUnderContractsEval_n3
+    (env : String → Rat)
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      H
+        ⟨oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3.cleanColumnFactorRoute.uniformColumnRowIndex,
+          by native_decide⟩
+        ⟨oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3.cleanColumnFactorRoute.uniformColumnColIndex,
+          by native_decide⟩ =
+        oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3.cleanColumnFactorRoute.expectedUniformColumnEntry)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let productRoute :=
+      oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        ⟨productRoute.cleanColumnFactorRoute.daggerRowIndex,
+          by native_decide⟩
+        ⟨productRoute.cleanColumnFactorRoute.daggerColIndex,
+          by native_decide⟩ =
+      productRoute.expectedBraAmplitudeFactor ∧
+    Coeff.evalWith env productRoute.projectedBranchProduct *
+      Coeff.evalWith env productRoute.theoremNormalizer =
+    Coeff.evalWith env productRoute.expectedTargetEntry := by
+  simpa [oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3]
+    using
+      oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3
+        env H hUniform hND hNF hkappa hkappaSqrt
+
+/--
+Transcript theorem for the product-under-contracts route.
+
+The theorem confirms that the new packet starts from the clean-column factor
+route, points at the fixed boundary product obligation, and leaves the
+finite-composition bridge and product-to-coefficient theorem unproved.
+-/
+theorem oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3_transcript :
+    let productRoute :=
+      oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    let factorRoute :=
+      oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3
+    productRoute.cleanColumnFactorRoute = factorRoute ∧
+      productRoute.focusedSystemRow = 0 ∧
+      productRoute.focusedSystemColumn = 0 ∧
+      productRoute.focusedSparseSlot = 2 ∧
+      productRoute.cleanBasisIndex = 32 ∧
+      productRoute.expectedBraAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      productRoute.projectedBranchProduct =
+        factorRoute.projectedBranchProduct ∧
+      productRoute.expectedTargetEntry =
+        factorRoute.expectedTargetEntry ∧
+      productRoute.theoremNormalizer =
+        GHL2025.oneTermRobinNormalizer ∧
+      productRoute.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryProductUnderContractsEval_n3" ∧
+      productRoute.fixedProductObligationName =
+        "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0" ∧
+      productRoute.uniformColumnObligation =
+        factorRoute.uniformColumnObligation ∧
+      productRoute.ketAmplitudeObligation =
+        factorRoute.ketAmplitudeObligation ∧
+      productRoute.braAmplitudeObligation =
+        factorRoute.braAmplitudeObligation ∧
+      productRoute.productHypothesisObligation =
+        factorRoute.productHypothesisObligation ∧
+      productRoute.factorSemanticsObligation =
+        factorRoute.factorSemanticsObligation ∧
+      productRoute.finiteCompositionNormalizedEquality =
+        factorRoute.finiteCompositionNormalizedEquality ∧
+      productRoute.productObligation =
+        oneTermRobinGamma3ProductToCoefficientObligation
+          3 ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ ∧
+      productRoute.productBridgeObligation.proved = false ∧
+      productRoute.productObligation.proved = false ∧
+      productRoute.externalCleanColumnAcceptedAsContract = true ∧
+      productRoute.ketAmplitudeAcceptedAsContract = true ∧
+      productRoute.braAmplitudeAcceptedAsContract = true ∧
+      productRoute.coefficientHypothesesExplicit = true ∧
+      productRoute.conditionalEvalCompiled = true ∧
+      productRoute.productUnderContractsMapped = true ∧
+      productRoute.uniformColumnObligation.proved = false ∧
+      productRoute.ketAmplitudeObligation.proved = false ∧
+      productRoute.braAmplitudeObligation.proved = false ∧
+      productRoute.productHypothesisObligation.proved = false ∧
+      productRoute.factorSemanticsObligation.proved = false ∧
+      productRoute.finiteCompositionNormalizedEquality.proved = false ∧
+      productRoute.uniformColumnProved = false ∧
+      productRoute.ketAmplitudeProved = false ∧
+      productRoute.braAmplitudeProved = false ∧
+      productRoute.productHypothesisProved = false ∧
+      productRoute.factorSemanticsProved = false ∧
+      productRoute.normalizedBlockEqualityProved = false ∧
+      productRoute.productBridgeProved = false ∧
+      productRoute.productToCoefficientProved = false ∧
+      productRoute.lcuCorrectProved = false ∧
+      productRoute.blockProjectionProved = false ∧
+      productRoute.blockCorrectProved = false ∧
+      productRoute.finalExtractionProved = false ∧
+      productRoute.exactRemainingObstruction =
+        "the conditional coefficient route is compiled, but QBE still needs finite normalized block equality and a projection/product bridge before marking oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 proved" := by
+  have _route :=
+    oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3_transcript
+  have _eval :=
+    oneTermRobinGamma3BoundaryProductUnderContractsEval_n3
+      (fun _ => 1)
+      ((fun row col =>
+        if row.val = 2 ∧ col.val = 0 then
+          Coeff.symbol "sqrt_kappa_inv"
+        else
+          Coeff.rat 0) : Matrix 8 8 Coeff)
+      (by native_decide)
+      (by simp) (by simp) (by simp) (by simp)
+  native_decide
+
+/--
+Finite signal-block index lemma for the focused product/projection bridge.
+
+The conditional product route works with the branch basis index `32`, where
+sparse slot `2` and system column `0` are embedded in the full circuit basis.
+The finite block-composition contract, however, exposes the signal-zero block
+entry at compound row and column `0` for the `(0,0)` system entry.  This lemma
+records that finite indexing fact without claiming that the branch product has
+already been summed into the block entry.
+-/
+theorem oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3 :
+    let p := oneTermParameters 3
+    let contract := oneTermRobinFiniteBlockCompositionContract 3
+    let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let blockRow : Fin
+        (qubitDim (GHL2025.effectiveRobinSignalQubits p) * gridSize 3) :=
+      ⟨signalSystemBlockRowIndex (gridSize 3)
+          contract.expectedTarget.signalIndex.val sysRow.val,
+        signalSystemBlockRowIndex_lt
+          contract.expectedTarget.signalIndex sysRow⟩
+    let blockCol : Fin
+        (qubitDim (GHL2025.effectiveRobinSignalQubits p) * gridSize 3) :=
+      ⟨signalSystemBlockColIndex (gridSize 3)
+          contract.expectedTarget.signalIndex.val sysCol.val,
+        signalSystemBlockColIndex_lt
+          contract.expectedTarget.signalIndex sysCol⟩
+    contract.expectedTarget.blockMatrix sysRow sysCol =
+        contract.expectedTarget.unitaryMatrix blockRow blockCol ∧
+      blockRow.val = 0 ∧
+      blockCol.val = 0 ∧
+      oneTermRobinGamma3PaperBasisIndex p 2 0 = 32 ∧
+      oneTermRobinGamma3BoundaryPrefixSource_n3.val = 32 ∧
+      blockRow.val ≠ oneTermRobinGamma3BoundaryPrefixSource_n3.val ∧
+      blockCol.val ≠ oneTermRobinGamma3BoundaryPrefixSource_n3.val := by
+  exact ⟨rfl, by native_decide, by native_decide, by native_decide,
+    by native_decide, by native_decide, by native_decide⟩
+
+/--
+Finite projection/product bridge packet for the focused boundary branch.
+
+This consumes `oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3` and
+connects it to the exact finite block-composition entry interface.  The
+compiled part is the index bridge: the signal-zero block entry is the full
+unitary entry at compound row and column `0`, while the branch-local product
+has been calculated at the embedded sparse-slot basis index `32`.  The missing
+field is now explicit: QBE still needs a branch-decomposition/projection theorem
+identifying the route's projected branch product with the finite signal-zero
+block entry before the product obligation can be promoted.
+-/
+structure OneTermRobinGamma3BoundaryFiniteProjectionProductBridge where
+  sourceAnchor : String
+  productRoute : OneTermRobinGamma3BoundaryProductUnderContractsRoute
+  focusedSystemRow : Nat
+  focusedSystemColumn : Nat
+  focusedSparseSlot : Nat
+  signalIndexValue : Nat
+  signalBlockRowIndex : Nat
+  signalBlockColumnIndex : Nat
+  branchBasisIndex : Nat
+  signalBlockEntryFormula : String
+  branchProductEntryFormula : String
+  projectedBranchProduct : Coeff
+  expectedTargetEntry : Coeff
+  theoremNormalizer : Coeff
+  finiteBlockEntryIndexLemma : String
+  conditionalProductEvalLemma : String
+  absentProjectionField : String
+  productBridgeObligation : SemanticObligation
+  branchDecompositionObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  signalBlockEntryObligation : SemanticObligation
+  productObligation : SemanticObligation
+  finiteBlockIndexCompiled : Bool
+  conditionalProductEvalCompiled : Bool
+  productRouteConsumed : Bool
+  branchBasisMatchesSignalBlockIndex : Bool
+  productBridgeProved : Bool
+  branchDecompositionProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled finite projection/product bridge for
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+The bridge deliberately does not assert that the branch-local product is the
+finite block entry.  It records the exact indexing mismatch and names the
+missing branch-decomposition theorem as the current Lean-local obstruction.
+-/
+def oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3 :
+    OneTermRobinGamma3BoundaryFiniteProjectionProductBridge :=
+  let p := oneTermParameters 3
+  let productRoute :=
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+  let contract := oneTermRobinFiniteBlockCompositionContract 3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and LCU.StandardBlockEncoding cited-results row"
+    productRoute := productRoute
+    focusedSystemRow := 0
+    focusedSystemColumn := 0
+    focusedSparseSlot := productRoute.focusedSparseSlot
+    signalIndexValue := contract.expectedTarget.signalIndex.val
+    signalBlockRowIndex :=
+      signalSystemBlockRowIndex (gridSize 3)
+        contract.expectedTarget.signalIndex.val 0
+    signalBlockColumnIndex :=
+      signalSystemBlockColIndex (gridSize 3)
+        contract.expectedTarget.signalIndex.val 0
+    branchBasisIndex := oneTermRobinGamma3PaperBasisIndex p 2 0
+    signalBlockEntryFormula :=
+      "contract.expectedTarget.blockMatrix[0,0] = contract.expectedTarget.unitaryMatrix[0,0]"
+    branchProductEntryFormula :=
+      "focused branch product was computed at full basis entry [32,32] before sparse-register projection/summation"
+    projectedBranchProduct := productRoute.projectedBranchProduct
+    expectedTargetEntry := productRoute.expectedTargetEntry
+    theoremNormalizer := productRoute.theoremNormalizer
+    finiteBlockEntryIndexLemma :=
+      "oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3"
+    conditionalProductEvalLemma :=
+      productRoute.conditionalEvalLemma
+    absentProjectionField :=
+      "branch-decomposition/projection theorem identifying the route's projectedBranchProduct with the finite signal-zero block entry"
+    productBridgeObligation := productRoute.productBridgeObligation
+    branchDecompositionObligation := {
+      description :=
+        "provide the finite branch-decomposition/projection theorem from the slot-2 projected branch product to the signal-zero block entry (0,0)"
+      source :=
+        "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE finite matrix-semantics route"
+      proved := false
+    }
+    finiteCompositionNormalizedEquality :=
+      productRoute.finiteCompositionNormalizedEquality
+    signalBlockEntryObligation :=
+      oneTermRobinGamma3SignalBlockEntryObligation 3
+    productObligation := productRoute.productObligation
+    finiteBlockIndexCompiled := true
+    conditionalProductEvalCompiled := productRoute.conditionalEvalCompiled
+    productRouteConsumed := true
+    branchBasisMatchesSignalBlockIndex :=
+      decide (oneTermRobinGamma3PaperBasisIndex p 2 0 =
+        signalSystemBlockColIndex (gridSize 3)
+          contract.expectedTarget.signalIndex.val 0)
+    productBridgeProved := productRoute.productBridgeProved
+    branchDecompositionProved := false
+    normalizedBlockEqualityProved := productRoute.normalizedBlockEqualityProved
+    productToCoefficientProved := productRoute.productToCoefficientProved
+    lcuCorrectProved := productRoute.lcuCorrectProved
+    blockProjectionProved := productRoute.blockProjectionProved
+    blockCorrectProved := productRoute.blockCorrectProved
+    finalExtractionProved := productRoute.finalExtractionProved
+    exactRemainingObstruction :=
+      "finite block index is compiled, but QBE still needs the branch-decomposition/projection theorem that sends the slot-2 projected branch product into the signal-zero block entry before oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 can be proved"
+  }
+
+/--
+Transcript theorem for the finite projection/product bridge packet.
+
+This checks that the bridge consumes the active product-under-contracts route,
+that the finite signal block uses row and column `0` while the focused branch
+uses basis index `32`, and that all theorem-facing proof flags remain false.
+-/
+theorem oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript :
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let productRoute :=
+      oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    bridge.productRoute = productRoute ∧
+      bridge.focusedSystemRow = 0 ∧
+      bridge.focusedSystemColumn = 0 ∧
+      bridge.focusedSparseSlot = 2 ∧
+      bridge.signalIndexValue = 0 ∧
+      bridge.signalBlockRowIndex = 0 ∧
+      bridge.signalBlockColumnIndex = 0 ∧
+      bridge.branchBasisIndex = 32 ∧
+      bridge.signalBlockEntryFormula =
+        "contract.expectedTarget.blockMatrix[0,0] = contract.expectedTarget.unitaryMatrix[0,0]" ∧
+      bridge.branchProductEntryFormula =
+        "focused branch product was computed at full basis entry [32,32] before sparse-register projection/summation" ∧
+      bridge.projectedBranchProduct =
+        productRoute.projectedBranchProduct ∧
+      bridge.expectedTargetEntry =
+        productRoute.expectedTargetEntry ∧
+      bridge.theoremNormalizer =
+        productRoute.theoremNormalizer ∧
+      bridge.finiteBlockEntryIndexLemma =
+        "oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3" ∧
+      bridge.conditionalProductEvalLemma =
+        "oneTermRobinGamma3BoundaryProductUnderContractsEval_n3" ∧
+      bridge.absentProjectionField =
+        "branch-decomposition/projection theorem identifying the route's projectedBranchProduct with the finite signal-zero block entry" ∧
+      bridge.productBridgeObligation =
+        productRoute.productBridgeObligation ∧
+      bridge.branchDecompositionObligation.description =
+        "provide the finite branch-decomposition/projection theorem from the slot-2 projected branch product to the signal-zero block entry (0,0)" ∧
+      bridge.branchDecompositionObligation.proved = false ∧
+      bridge.finiteCompositionNormalizedEquality =
+        productRoute.finiteCompositionNormalizedEquality ∧
+      bridge.signalBlockEntryObligation =
+        oneTermRobinGamma3SignalBlockEntryObligation 3 ∧
+      bridge.productObligation = productRoute.productObligation ∧
+      bridge.finiteBlockIndexCompiled = true ∧
+      bridge.conditionalProductEvalCompiled = true ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.branchBasisMatchesSignalBlockIndex = false ∧
+      bridge.productBridgeObligation.proved = false ∧
+      bridge.finiteCompositionNormalizedEquality.proved = false ∧
+      bridge.signalBlockEntryObligation.proved = false ∧
+      bridge.productObligation.proved = false ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false ∧
+      bridge.exactRemainingObstruction =
+        "finite block index is compiled, but QBE still needs the branch-decomposition/projection theorem that sends the slot-2 projected branch product into the signal-zero block entry before oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 can be proved" := by
+  have _product :=
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3_transcript
+  have _index :=
+    oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3
+  native_decide
+
+/--
+Branch-decomposition interface for the focused slot-`2` boundary product.
+
+The finite projection bridge proves only the index fact: Definition
+`def:block-encoding` reads the signal-zero block entry at full `[0,0]`, while
+the branch-local route is attached to the embedded sparse-slot entry
+`[32,32]`.  This packet names the missing finite theorem that must decompose
+the signal-zero entry into sparse-branch contributions and identify the
+slot-`2` contribution with the route's projected branch product.
+
+It is an obstruction/interface record, not a proof of the branch sum.  All
+theorem-facing proof flags therefore remain false.
+-/
+structure OneTermRobinGamma3BoundaryBranchDecompositionSlot2 where
+  sourceAnchor : String
+  finiteBridge : OneTermRobinGamma3BoundaryFiniteProjectionProductBridge
+  focusedSystemRow : Nat
+  focusedSystemColumn : Nat
+  focusedSparseSlot : Nat
+  signalBlockRowIndex : Nat
+  signalBlockColumnIndex : Nat
+  branchRowIndex : Nat
+  branchColumnIndex : Nat
+  signalBlockEntryFormula : String
+  branchProductEntryFormula : String
+  branchSumProjectionFormula : String
+  requiredProjectionSummationTheorem : String
+  absentProjectionField : String
+  projectedBranchProduct : Coeff
+  expectedTargetEntry : Coeff
+  theoremNormalizer : Coeff
+  finiteBlockEntryIndexLemma : String
+  conditionalProductEvalLemma : String
+  productBridgeObligation : SemanticObligation
+  branchDecompositionObligation : SemanticObligation
+  projectionSummationObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  signalBlockEntryObligation : SemanticObligation
+  productObligation : SemanticObligation
+  branchDecompositionInterfaceCompiled : Bool
+  finiteIndexCompiled : Bool
+  conditionalProductEvalCompiled : Bool
+  productRouteConsumed : Bool
+  signalBlockEntryMatchesBranchEntry : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  branchDecompositionProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled branch-decomposition interface for the fixed boundary branch.
+
+The record consumes `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3`
+and makes the next missing theorem precise: QBE needs a finite branch-sum or
+projection-summation theorem that sends the slot-`2` projected branch product
+at `[32,32]` into the signal-zero block entry `[0,0]`.  No semantic flag is
+promoted.
+-/
+def oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3 :
+    OneTermRobinGamma3BoundaryBranchDecompositionSlot2 :=
+  let bridge := oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified boundary gamma3 branch, Definition def:block-encoding, Fig. 1-term ROBIN, and QBE finite projection/summation interface"
+    finiteBridge := bridge
+    focusedSystemRow := bridge.focusedSystemRow
+    focusedSystemColumn := bridge.focusedSystemColumn
+    focusedSparseSlot := bridge.focusedSparseSlot
+    signalBlockRowIndex := bridge.signalBlockRowIndex
+    signalBlockColumnIndex := bridge.signalBlockColumnIndex
+    branchRowIndex := bridge.branchBasisIndex
+    branchColumnIndex := bridge.branchBasisIndex
+    signalBlockEntryFormula := bridge.signalBlockEntryFormula
+    branchProductEntryFormula := bridge.branchProductEntryFormula
+    branchSumProjectionFormula :=
+      "signal-zero entry [0,0] must be expanded as the sparse-branch projection/summation whose slot-2 contribution is the branch product at [32,32]"
+    requiredProjectionSummationTheorem :=
+      "finite branch-decomposition/projection theorem: slot-2 projectedBranchProduct at [32,32] contributes to contract.expectedTarget.blockMatrix[0,0]"
+    absentProjectionField := bridge.absentProjectionField
+    projectedBranchProduct := bridge.projectedBranchProduct
+    expectedTargetEntry := bridge.expectedTargetEntry
+    theoremNormalizer := bridge.theoremNormalizer
+    finiteBlockEntryIndexLemma := bridge.finiteBlockEntryIndexLemma
+    conditionalProductEvalLemma := bridge.conditionalProductEvalLemma
+    productBridgeObligation := bridge.productBridgeObligation
+    branchDecompositionObligation := bridge.branchDecompositionObligation
+    projectionSummationObligation := {
+      description :=
+        "state and prove the finite projection/summation theorem from slot-2 branch product [32,32] to signal-zero block entry [0,0]"
+      source :=
+        "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE finite matrix semantics"
+      proved := false
+    }
+    finiteCompositionNormalizedEquality :=
+      bridge.finiteCompositionNormalizedEquality
+    signalBlockEntryObligation := bridge.signalBlockEntryObligation
+    productObligation := bridge.productObligation
+    branchDecompositionInterfaceCompiled := true
+    finiteIndexCompiled := bridge.finiteBlockIndexCompiled
+    conditionalProductEvalCompiled := bridge.conditionalProductEvalCompiled
+    productRouteConsumed := bridge.productRouteConsumed
+    signalBlockEntryMatchesBranchEntry :=
+      decide (bridge.signalBlockRowIndex = bridge.branchBasisIndex ∧
+        bridge.signalBlockColumnIndex = bridge.branchBasisIndex)
+    projectionSummationProved := false
+    productBridgeProved := bridge.productBridgeProved
+    branchDecompositionProved := bridge.branchDecompositionProved
+    normalizedBlockEqualityProved := bridge.normalizedBlockEqualityProved
+    productToCoefficientProved := bridge.productToCoefficientProved
+    lcuCorrectProved := bridge.lcuCorrectProved
+    blockProjectionProved := bridge.blockProjectionProved
+    blockCorrectProved := bridge.blockCorrectProved
+    finalExtractionProved := bridge.finalExtractionProved
+    exactRemainingObstruction :=
+      "missing finite branch-decomposition/projection-summation theorem identifying the slot-2 projected branch product [32,32] with its contribution to the signal-zero block entry [0,0]"
+  }
+
+/--
+Transcript theorem for the slot-`2` branch-decomposition interface.
+
+The theorem checks that the packet starts from the finite projection bridge,
+keeps the signal-zero entry `[0,0]` separate from the branch-local entry
+`[32,32]`, and leaves the projection-summation theorem and all semantic flags
+false.
+-/
+theorem oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript :
+    let packet :=
+      oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    packet.finiteBridge = bridge ∧
+      packet.focusedSystemRow = 0 ∧
+      packet.focusedSystemColumn = 0 ∧
+      packet.focusedSparseSlot = 2 ∧
+      packet.signalBlockRowIndex = 0 ∧
+      packet.signalBlockColumnIndex = 0 ∧
+      packet.branchRowIndex = 32 ∧
+      packet.branchColumnIndex = 32 ∧
+      packet.signalBlockEntryFormula =
+        "contract.expectedTarget.blockMatrix[0,0] = contract.expectedTarget.unitaryMatrix[0,0]" ∧
+      packet.branchProductEntryFormula =
+        "focused branch product was computed at full basis entry [32,32] before sparse-register projection/summation" ∧
+      packet.branchSumProjectionFormula =
+        "signal-zero entry [0,0] must be expanded as the sparse-branch projection/summation whose slot-2 contribution is the branch product at [32,32]" ∧
+      packet.requiredProjectionSummationTheorem =
+        "finite branch-decomposition/projection theorem: slot-2 projectedBranchProduct at [32,32] contributes to contract.expectedTarget.blockMatrix[0,0]" ∧
+      packet.absentProjectionField =
+        "branch-decomposition/projection theorem identifying the route's projectedBranchProduct with the finite signal-zero block entry" ∧
+      packet.projectedBranchProduct = bridge.projectedBranchProduct ∧
+      packet.expectedTargetEntry = bridge.expectedTargetEntry ∧
+      packet.theoremNormalizer = bridge.theoremNormalizer ∧
+      packet.finiteBlockEntryIndexLemma =
+        "oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3" ∧
+      packet.conditionalProductEvalLemma =
+        "oneTermRobinGamma3BoundaryProductUnderContractsEval_n3" ∧
+      packet.productBridgeObligation =
+        bridge.productBridgeObligation ∧
+      packet.branchDecompositionObligation =
+        bridge.branchDecompositionObligation ∧
+      packet.projectionSummationObligation.description =
+        "state and prove the finite projection/summation theorem from slot-2 branch product [32,32] to signal-zero block entry [0,0]" ∧
+      packet.projectionSummationObligation.proved = false ∧
+      packet.finiteCompositionNormalizedEquality =
+        bridge.finiteCompositionNormalizedEquality ∧
+      packet.signalBlockEntryObligation =
+        bridge.signalBlockEntryObligation ∧
+      packet.productObligation = bridge.productObligation ∧
+      packet.branchDecompositionInterfaceCompiled = true ∧
+      packet.finiteIndexCompiled = true ∧
+      packet.conditionalProductEvalCompiled = true ∧
+      packet.productRouteConsumed = true ∧
+      packet.signalBlockEntryMatchesBranchEntry = false ∧
+      packet.projectionSummationProved = false ∧
+      packet.productBridgeObligation.proved = false ∧
+      packet.branchDecompositionObligation.proved = false ∧
+      packet.finiteCompositionNormalizedEquality.proved = false ∧
+      packet.signalBlockEntryObligation.proved = false ∧
+      packet.productObligation.proved = false ∧
+      packet.productBridgeProved = false ∧
+      packet.branchDecompositionProved = false ∧
+      packet.normalizedBlockEqualityProved = false ∧
+      packet.productToCoefficientProved = false ∧
+      packet.lcuCorrectProved = false ∧
+      packet.blockProjectionProved = false ∧
+      packet.blockCorrectProved = false ∧
+      packet.finalExtractionProved = false ∧
+      packet.exactRemainingObstruction =
+        "missing finite branch-decomposition/projection-summation theorem identifying the slot-2 projected branch product [32,32] with its contribution to the signal-zero block entry [0,0]" := by
+  have _bridge :=
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript
+  native_decide
+
+/--
+Typed projection-summation target for the focused slot-`2` boundary packet.
+
+The earlier branch-decomposition record names the missing theorem in prose.
+This target exposes the actual coefficient objects that the theorem must
+relate: the signal-zero block entry selected by Definition `def:block-encoding`
+and the compiled branch-local seven-gate matrix entry at `[32,32]`.  The record
+does not assert that these entries are equal or that the branch contribution has
+already been summed into the signal-zero block.
+-/
+structure OneTermRobinGamma3BoundaryProjectionSummationTarget where
+  sourceAnchor : String
+  branchPacket : OneTermRobinGamma3BoundaryBranchDecompositionSlot2
+  focusedSystemRow : Nat
+  focusedSystemColumn : Nat
+  focusedSparseSlot : Nat
+  signalBlockRowIndex : Nat
+  signalBlockColumnIndex : Nat
+  branchRowIndex : Nat
+  branchColumnIndex : Nat
+  signalBlockEntry : Coeff
+  signalUnitaryEntry : Coeff
+  branchMatrixEntry : Coeff
+  projectedBranchProduct : Coeff
+  expectedTargetEntry : Coeff
+  theoremNormalizer : Coeff
+  signalBlockEntryFormula : String
+  signalUnitaryEntryFormula : String
+  branchMatrixEntryFormula : String
+  projectionSummationStatement : String
+  signalBlockEntryEqualityLemma : String
+  branchEntryEvalLemma : String
+  requiredBranchEntrySelectionTheorem : String
+  missingProjectionSummationField : String
+  projectionSummationObligation : SemanticObligation
+  branchEntrySelectionObligation : SemanticObligation
+  productBridgeObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  typedProjectionSummationTargetCompiled : Bool
+  signalBlockEntryTyped : Bool
+  branchMatrixEntryTyped : Bool
+  branchEntrySelectionProved : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled typed target for the missing branch projection/summation theorem.
+
+The signal-zero block entry is taken from the finite block-composition
+contract, while the branch entry is the local seven-gate boundary matrix entry
+at the slot-`2` basis index.  The missing theorem is now a typed bridge between
+these two `Coeff` objects rather than only a string-level obligation.
+-/
+def oneTermRobinGamma3BoundaryProjectionSummationTarget_n3 :
+    OneTermRobinGamma3BoundaryProjectionSummationTarget :=
+  let packet := oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3
+  let p := oneTermParameters 3
+  let contract := oneTermRobinFiniteBlockCompositionContract 3
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let blockRow : Fin
+      (qubitDim (GHL2025.effectiveRobinSignalQubits p) * gridSize 3) :=
+    ⟨signalSystemBlockRowIndex (gridSize 3)
+        contract.expectedTarget.signalIndex.val sysRow.val,
+      signalSystemBlockRowIndex_lt
+        contract.expectedTarget.signalIndex sysRow⟩
+  let blockCol : Fin
+      (qubitDim (GHL2025.effectiveRobinSignalQubits p) * gridSize 3) :=
+    ⟨signalSystemBlockColIndex (gridSize 3)
+        contract.expectedTarget.signalIndex.val sysCol.val,
+      signalSystemBlockColIndex_lt
+        contract.expectedTarget.signalIndex sysCol⟩
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE finite projection/summation interface"
+    branchPacket := packet
+    focusedSystemRow := packet.focusedSystemRow
+    focusedSystemColumn := packet.focusedSystemColumn
+    focusedSparseSlot := packet.focusedSparseSlot
+    signalBlockRowIndex := packet.signalBlockRowIndex
+    signalBlockColumnIndex := packet.signalBlockColumnIndex
+    branchRowIndex := packet.branchRowIndex
+    branchColumnIndex := packet.branchColumnIndex
+    signalBlockEntry := contract.expectedTarget.blockMatrix sysRow sysCol
+    signalUnitaryEntry := contract.expectedTarget.unitaryMatrix blockRow blockCol
+    branchMatrixEntry :=
+      oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+    projectedBranchProduct := packet.projectedBranchProduct
+    expectedTargetEntry := packet.expectedTargetEntry
+    theoremNormalizer := packet.theoremNormalizer
+    signalBlockEntryFormula :=
+      "contract.expectedTarget.blockMatrix[0,0]"
+    signalUnitaryEntryFormula :=
+      "contract.expectedTarget.unitaryMatrix[0,0]"
+    branchMatrixEntryFormula :=
+      "oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32]"
+    projectionSummationStatement :=
+      "prove that the sparse-register projection/summation sends the selected slot-2 branch contribution into the signal-zero block entry"
+    signalBlockEntryEqualityLemma :=
+      "oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3"
+    branchEntryEvalLemma :=
+      "oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3"
+    requiredBranchEntrySelectionTheorem :=
+      "branch-matrix entry [32,32] evaluates to the projectedBranchProduct used by the product route under the explicit coefficient contracts"
+    missingProjectionSummationField :=
+      "finite matrix semantics field expanding contract.expectedTarget.blockMatrix[0,0] as the sparse-branch sum and selecting slot 2"
+    projectionSummationObligation := packet.projectionSummationObligation
+    branchEntrySelectionObligation := {
+      description :=
+        "connect the typed branch matrix entry oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32] to projectedBranchProduct under the existing coefficient contracts"
+      source :=
+        "GHL2025 Eq. ROBIN clarified boundary gamma3 branch and QBE oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3"
+      proved := false
+    }
+    productBridgeObligation := packet.productBridgeObligation
+    finiteCompositionNormalizedEquality :=
+      packet.finiteCompositionNormalizedEquality
+    productObligation := packet.productObligation
+    typedProjectionSummationTargetCompiled := true
+    signalBlockEntryTyped := true
+    branchMatrixEntryTyped := true
+    branchEntrySelectionProved := false
+    projectionSummationProved := packet.projectionSummationProved
+    productBridgeProved := packet.productBridgeProved
+    normalizedBlockEqualityProved := packet.normalizedBlockEqualityProved
+    productToCoefficientProved := packet.productToCoefficientProved
+    lcuCorrectProved := packet.lcuCorrectProved
+    blockProjectionProved := packet.blockProjectionProved
+    blockCorrectProved := packet.blockCorrectProved
+    finalExtractionProved := packet.finalExtractionProved
+    exactRemainingObstruction :=
+      "typed signal block entry and branch matrix entry are exposed, but QBE still lacks the projection/summation theorem selecting the slot-2 contribution in contract.expectedTarget.blockMatrix[0,0]"
+  }
+
+/--
+The typed signal-block entry in the projection-summation target is the full
+unitary entry selected by Definition `def:block-encoding`.
+
+This proves only the already-compiled finite block index fact for the new typed
+target.  It does not prove that the branch entry contributes to that block
+entry.
+-/
+theorem
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3 :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalBlockEntry =
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry := by
+  rcases oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3 with
+    ⟨hentry, _hrow, _hcol, _hbasis, _hsource, _hrowNe, _hcolNe⟩
+  simpa [oneTermRobinGamma3BoundaryProjectionSummationTarget_n3] using hentry
+
+/--
+Transcript theorem for the typed projection-summation target.
+
+The theorem checks that the target keeps the signal block entry `[0,0]` and the
+branch matrix entry `[32,32]` as typed coefficient objects, names the existing
+evaluation lemma, and leaves branch selection, projection-summation, normalized
+equality, and product-to-coefficient flags false.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript :
+    let target :=
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3
+    let packet :=
+      oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3
+    target.branchPacket = packet ∧
+      target.focusedSystemRow = packet.focusedSystemRow ∧
+      target.focusedSystemColumn = packet.focusedSystemColumn ∧
+      target.focusedSparseSlot = packet.focusedSparseSlot ∧
+      target.signalBlockEntryFormula =
+        "contract.expectedTarget.blockMatrix[0,0]" ∧
+      target.signalUnitaryEntryFormula =
+        "contract.expectedTarget.unitaryMatrix[0,0]" ∧
+      target.branchMatrixEntryFormula =
+        "oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32]" ∧
+      target.projectionSummationStatement =
+        "prove that the sparse-register projection/summation sends the selected slot-2 branch contribution into the signal-zero block entry" ∧
+      target.signalBlockEntryEqualityLemma =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3" ∧
+      target.branchEntryEvalLemma =
+        "oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3" ∧
+      target.requiredBranchEntrySelectionTheorem =
+        "branch-matrix entry [32,32] evaluates to the projectedBranchProduct used by the product route under the explicit coefficient contracts" ∧
+      target.missingProjectionSummationField =
+        "finite matrix semantics field expanding contract.expectedTarget.blockMatrix[0,0] as the sparse-branch sum and selecting slot 2" ∧
+      target.projectionSummationObligation =
+        packet.projectionSummationObligation ∧
+      target.projectionSummationObligation.proved = false ∧
+      target.branchEntrySelectionObligation.description =
+        "connect the typed branch matrix entry oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32] to projectedBranchProduct under the existing coefficient contracts" ∧
+      target.branchEntrySelectionObligation.proved = false ∧
+      target.productBridgeObligation = packet.productBridgeObligation ∧
+      target.finiteCompositionNormalizedEquality =
+        packet.finiteCompositionNormalizedEquality ∧
+      target.productObligation = packet.productObligation ∧
+      target.typedProjectionSummationTargetCompiled = true ∧
+      target.signalBlockEntryTyped = true ∧
+      target.branchMatrixEntryTyped = true ∧
+      target.branchEntrySelectionProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.productBridgeProved = false ∧
+      target.normalizedBlockEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      target.productBridgeObligation.proved = false ∧
+      target.finiteCompositionNormalizedEquality.proved = false ∧
+      target.productObligation.proved = false ∧
+      target.exactRemainingObstruction =
+        "typed signal block entry and branch matrix entry are exposed, but QBE still lacks the projection/summation theorem selecting the slot-2 contribution in contract.expectedTarget.blockMatrix[0,0]" := by
+  have _packet :=
+    oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Conditional branch-entry selection packet for the focused slot-`2` boundary
+target.
+
+The selected local branch entry is the seven-gate matrix entry at `[32,32]`.
+The route's `projectedBranchProduct` already includes the two sparse-register
+projection amplitudes, so the compiled theorem below multiplies the selected
+branch entry by the existing projection-amplitude factor.  The theorem is still
+conditional on the corrected boundary-rotation entry; it does not prove the
+projection/summation theorem from the signal-zero block entry `[0,0]`.
+-/
+structure OneTermRobinGamma3BoundaryBranchEntrySelection where
+  sourceAnchor : String
+  projectionTarget : OneTermRobinGamma3BoundaryProjectionSummationTarget
+  focusedSparseSlot : Nat
+  branchRowIndex : Nat
+  branchColumnIndex : Nat
+  projectionAmplitudeFactor : Coeff
+  selectedBranchEntryFormula : String
+  routeProjectedProductFormula : String
+  correctedEntryHypothesis : SemanticObligation
+  ketAmplitudeObligation : SemanticObligation
+  braAmplitudeObligation : SemanticObligation
+  branchEntrySelectionObligation : SemanticObligation
+  projectionSummationObligation : SemanticObligation
+  productBridgeObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  conditionalBranchEntrySelectionLemma : String
+  conditionalBranchEntrySelectionCompiled : Bool
+  branchEntrySelectionProved : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled branch-entry selection interface for the focused projection target.
+
+This packet reuses the typed projection-summation target and records the
+conditional local theorem that selects the branch entry `[32,32]` and feeds it
+to the route product after the sparse-register projection-amplitude factor is
+attached.  All source obligations and theorem-facing flags remain false.
+-/
+def oneTermRobinGamma3BoundaryBranchEntrySelection_n3 :
+    OneTermRobinGamma3BoundaryBranchEntrySelection :=
+  let target := oneTermRobinGamma3BoundaryProjectionSummationTarget_n3
+  let amplitude := oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+  let corrected := oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Eq. ROBIN clarified boundary gamma3 branch, Eq. arbitrary sparcity, Definition def:block-encoding, Fig. 1-term ROBIN, and Shukla-Vedula contract row"
+    projectionTarget := target
+    focusedSparseSlot := target.focusedSparseSlot
+    branchRowIndex := target.branchRowIndex
+    branchColumnIndex := target.branchColumnIndex
+    projectionAmplitudeFactor := amplitude.combinedAmplitudeFactor
+    selectedBranchEntryFormula :=
+      "eval(oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32] * sqrt_kappa_inv*sqrt_kappa_inv)"
+    routeProjectedProductFormula :=
+      "eval(projectedBranchProduct) for oneTermRobinGamma3BoundaryProjectionSummationTarget_n3"
+    correctedEntryHypothesis := corrected.correctedEntryHypothesis
+    ketAmplitudeObligation := amplitude.uniformPreparationObligation
+    braAmplitudeObligation := amplitude.braAmplitudeObligation
+    branchEntrySelectionObligation := target.branchEntrySelectionObligation
+    projectionSummationObligation := target.projectionSummationObligation
+    productBridgeObligation := target.productBridgeObligation
+    finiteCompositionNormalizedEquality :=
+      target.finiteCompositionNormalizedEquality
+    productObligation := target.productObligation
+    conditionalBranchEntrySelectionLemma :=
+      "oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3"
+    conditionalBranchEntrySelectionCompiled := true
+    branchEntrySelectionProved := false
+    projectionSummationProved := target.projectionSummationProved
+    productBridgeProved := target.productBridgeProved
+    normalizedBlockEqualityProved := target.normalizedBlockEqualityProved
+    productToCoefficientProved := target.productToCoefficientProved
+    lcuCorrectProved := target.lcuCorrectProved
+    blockProjectionProved := target.blockProjectionProved
+    blockCorrectProved := target.blockCorrectProved
+    finalExtractionProved := target.finalExtractionProved
+    exactRemainingObstruction :=
+      "conditional branch-entry selection is compiled, but the corrected Ry entry, sparse-register amplitudes, and signal-block projection/summation theorem remain obligations"
+  }
+
+/--
+Conditional branch-entry selection for the focused projection target.
+
+Under the corrected `Ry_boundary` entry hypothesis, the selected seven-gate
+entry `[32,32]`, multiplied by the existing sparse-register projection
+amplitude factor, evaluates to the route's typed `projectedBranchProduct`.
+This is not the signal-block projection/summation theorem.
+-/
+theorem oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3
+    (env : String → Rat)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) :
+    let selection := oneTermRobinGamma3BoundaryBranchEntrySelection_n3
+    Coeff.evalWith env
+        (Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3)
+          selection.projectionAmplitudeFactor) =
+      Coeff.evalWith env selection.projectionTarget.projectedBranchProduct := by
+  dsimp
+  rw [show oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionTarget.projectedBranchProduct =
+      Coeff.mul
+        (Coeff.mul
+          (Coeff.mul (GHL2025.robinFunctionValue 3 0)
+            (Coeff.symbol "N_f_inv"))
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2))
+        oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.combinedAmplitudeFactor by
+    rfl]
+  rw [show oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor =
+      oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.combinedAmplitudeFactor by
+    rfl]
+  simp only [Coeff.evalWith_mul]
+  rw [oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3
+    env hentry]
+  simp [Coeff.evalWith_mul, Rat.mul_assoc]
+
+/--
+Transcript theorem for the branch-entry selection packet.
+
+The theorem records the new conditional local lemma and checks that the actual
+branch-entry selection, projection/summation, product bridge, normalized
+equality, and product-to-coefficient obligations remain unproved.
+-/
+theorem oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript :
+    let selection := oneTermRobinGamma3BoundaryBranchEntrySelection_n3
+    let target := oneTermRobinGamma3BoundaryProjectionSummationTarget_n3
+    selection.projectionTarget = target ∧
+      selection.focusedSparseSlot = 2 ∧
+      selection.branchRowIndex = 32 ∧
+      selection.branchColumnIndex = 32 ∧
+      selection.projectionAmplitudeFactor =
+        oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.combinedAmplitudeFactor ∧
+      selection.projectionAmplitudeFactor =
+        Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv") ∧
+      selection.selectedBranchEntryFormula =
+        "eval(oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32] * sqrt_kappa_inv*sqrt_kappa_inv)" ∧
+      selection.routeProjectedProductFormula =
+        "eval(projectedBranchProduct) for oneTermRobinGamma3BoundaryProjectionSummationTarget_n3" ∧
+      selection.correctedEntryHypothesis =
+        oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3.correctedEntryHypothesis ∧
+      selection.correctedEntryHypothesis.proved = false ∧
+      selection.ketAmplitudeObligation =
+        oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.uniformPreparationObligation ∧
+      selection.ketAmplitudeObligation.proved = false ∧
+      selection.braAmplitudeObligation =
+        oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.braAmplitudeObligation ∧
+      selection.braAmplitudeObligation.proved = false ∧
+      selection.branchEntrySelectionObligation =
+        target.branchEntrySelectionObligation ∧
+      selection.projectionSummationObligation =
+        target.projectionSummationObligation ∧
+      selection.productBridgeObligation =
+        target.productBridgeObligation ∧
+      selection.finiteCompositionNormalizedEquality =
+        target.finiteCompositionNormalizedEquality ∧
+      selection.productObligation = target.productObligation ∧
+      selection.conditionalBranchEntrySelectionLemma =
+        "oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3" ∧
+      selection.conditionalBranchEntrySelectionCompiled = true ∧
+      selection.branchEntrySelectionObligation.proved = false ∧
+      selection.projectionSummationObligation.proved = false ∧
+      selection.productBridgeObligation.proved = false ∧
+      selection.finiteCompositionNormalizedEquality.proved = false ∧
+      selection.productObligation.proved = false ∧
+      selection.branchEntrySelectionProved = false ∧
+      selection.projectionSummationProved = false ∧
+      selection.productBridgeProved = false ∧
+      selection.normalizedBlockEqualityProved = false ∧
+      selection.productToCoefficientProved = false ∧
+      selection.lcuCorrectProved = false ∧
+      selection.blockProjectionProved = false ∧
+      selection.blockCorrectProved = false ∧
+      selection.finalExtractionProved = false ∧
+      selection.exactRemainingObstruction =
+        "conditional branch-entry selection is compiled, but the corrected Ry entry, sparse-register amplitudes, and signal-block projection/summation theorem remain obligations" := by
+  have _target :=
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript
+  have _selection :=
+    oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3
+  dsimp
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Typed obstruction for the remaining finite projection/summation step.
+
+The selected slot-`2` contribution is now a concrete `Coeff`: the branch-local
+entry `[32,32]` multiplied by the two sparse-register projection amplitudes.
+What QBE still lacks is a finite matrix-semantics field that presents the
+signal-zero entry `[0,0]` as a sum over sparse-branch contributions and then
+selects the slot-`2` summand.  This record names that missing field without
+asserting the sum.
+-/
+structure OneTermRobinGamma3BoundaryProjectionSummationObstruction where
+  sourceAnchor : String
+  branchEntrySelection : OneTermRobinGamma3BoundaryBranchEntrySelection
+  projectionTarget : OneTermRobinGamma3BoundaryProjectionSummationTarget
+  slotDomain : List Nat
+  slotDomainCardinality : Nat
+  focusedSparseSlot : Nat
+  focusedSlotInDomain : Bool
+  signalBlockEntry : Coeff
+  selectedBranchEntry : Coeff
+  projectionAmplitudeFactor : Coeff
+  selectedSlotContribution : Coeff
+  selectedSlotContributionFormula : String
+  sparseBranchSumFormula : String
+  branchContributionFamilyInterface : String
+  requiredBranchContributionField : String
+  requiredSelectedSlotTheorem : String
+  requiredProjectionSummationTheorem : String
+  branchEntrySelectionLemma : String
+  selectedSlotEvalLemma : String
+  correctedEntryHypothesis : SemanticObligation
+  ketAmplitudeObligation : SemanticObligation
+  braAmplitudeObligation : SemanticObligation
+  projectionSummationObligation : SemanticObligation
+  productBridgeObligation : SemanticObligation
+  finiteCompositionNormalizedEquality : SemanticObligation
+  productObligation : SemanticObligation
+  typedInterfaceCompiled : Bool
+  selectedSlotContributionTyped : Bool
+  selectedSlotEvalCompiled : Bool
+  branchContributionFamilyAvailable : Bool
+  sparseBranchSumExpansionAvailable : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+deriving Repr, DecidableEq
+
+/--
+Compiled typed obstruction for the focused boundary projection/summation
+bridge.
+
+The object is the next theorem-facing interface for
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`: it records the
+slot domain `0, ..., 6`, identifies slot `2`, and exposes the selected
+contribution as a typed coefficient.  The sparse-branch contribution family
+itself is absent from the current finite matrix semantics.
+-/
+def oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3 :
+    OneTermRobinGamma3BoundaryProjectionSummationObstruction :=
+  let selection := oneTermRobinGamma3BoundaryBranchEntrySelection_n3
+  let target := oneTermRobinGamma3BoundaryProjectionSummationTarget_n3
+  let slots := [0, 1, 2, 3, 4, 5, 6]
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE finite projection/summation interface"
+    branchEntrySelection := selection
+    projectionTarget := target
+    slotDomain := slots
+    slotDomainCardinality := slots.length
+    focusedSparseSlot := 2
+    focusedSlotInDomain := slots.contains 2
+    signalBlockEntry := target.signalBlockEntry
+    selectedBranchEntry := target.branchMatrixEntry
+    projectionAmplitudeFactor := selection.projectionAmplitudeFactor
+    selectedSlotContribution :=
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3)
+        selection.projectionAmplitudeFactor
+    selectedSlotContributionFormula :=
+      "oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32] * sqrt_kappa_inv * sqrt_kappa_inv"
+    sparseBranchSumFormula :=
+      "contract.expectedTarget.blockMatrix[0,0] = sum_{s=0}^{6} branchContribution(s)"
+    branchContributionFamilyInterface :=
+      "branchContribution : Fin 7 -> Coeff"
+    requiredBranchContributionField :=
+      "finite matrix semantics must provide branchContribution : Fin 7 -> Coeff for the signal-zero entry"
+    requiredSelectedSlotTheorem :=
+      "branchContribution[2] = selectedSlotContribution"
+    requiredProjectionSummationTheorem :=
+      "signalBlockEntry = Finset.univ.sum branchContribution"
+    branchEntrySelectionLemma :=
+      "oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3"
+    selectedSlotEvalLemma :=
+      "oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3"
+    correctedEntryHypothesis := selection.correctedEntryHypothesis
+    ketAmplitudeObligation := selection.ketAmplitudeObligation
+    braAmplitudeObligation := selection.braAmplitudeObligation
+    projectionSummationObligation := selection.projectionSummationObligation
+    productBridgeObligation := selection.productBridgeObligation
+    finiteCompositionNormalizedEquality :=
+      selection.finiteCompositionNormalizedEquality
+    productObligation := selection.productObligation
+    typedInterfaceCompiled := true
+    selectedSlotContributionTyped := true
+    selectedSlotEvalCompiled := true
+    branchContributionFamilyAvailable := false
+    sparseBranchSumExpansionAvailable := false
+    projectionSummationProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the selected slot-2 contribution is typed and conditionally evaluated, but finite matrix semantics lacks branchContribution : Fin 7 -> Coeff and the summation theorem identifying signalBlockEntry with the sparse-branch sum"
+  }
+
+/--
+The new obstruction reuses the accepted branch-entry selection lemma.
+
+Under the corrected boundary-rotation entry hypothesis, the typed selected
+slot contribution evaluates to the route's projected branch product.  This
+still does not prove that the signal-zero block entry is the sparse-branch sum.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3
+    (env : String → Rat)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) :
+    let obstruction :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+    Coeff.evalWith env obstruction.selectedSlotContribution =
+      Coeff.evalWith env obstruction.projectionTarget.projectedBranchProduct := by
+  change
+    Coeff.evalWith env
+        (Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) =
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct
+  exact oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3 env hentry
+
+/--
+Transcript theorem for the typed projection/summation obstruction.
+
+The theorem checks that the sparse-slot domain and selected contribution are
+typed, names the exact missing branch-contribution family, and keeps every
+projection, block-composition, and theorem-facing flag false.
+-/
+theorem oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3_transcript :
+    let obstruction :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+    let selection := oneTermRobinGamma3BoundaryBranchEntrySelection_n3
+    let target := oneTermRobinGamma3BoundaryProjectionSummationTarget_n3
+    obstruction.branchEntrySelection = selection ∧
+      obstruction.projectionTarget = target ∧
+      obstruction.slotDomain = [0, 1, 2, 3, 4, 5, 6] ∧
+      obstruction.slotDomainCardinality = 7 ∧
+      obstruction.focusedSparseSlot = 2 ∧
+      obstruction.focusedSlotInDomain = true ∧
+      obstruction.signalBlockEntry = target.signalBlockEntry ∧
+      obstruction.selectedBranchEntry = target.branchMatrixEntry ∧
+      obstruction.projectionAmplitudeFactor =
+        selection.projectionAmplitudeFactor ∧
+      obstruction.selectedSlotContribution =
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3)
+          selection.projectionAmplitudeFactor ∧
+      obstruction.selectedSlotContributionFormula =
+        "oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32] * sqrt_kappa_inv * sqrt_kappa_inv" ∧
+      obstruction.sparseBranchSumFormula =
+        "contract.expectedTarget.blockMatrix[0,0] = sum_{s=0}^{6} branchContribution(s)" ∧
+      obstruction.branchContributionFamilyInterface =
+        "branchContribution : Fin 7 -> Coeff" ∧
+      obstruction.requiredBranchContributionField =
+        "finite matrix semantics must provide branchContribution : Fin 7 -> Coeff for the signal-zero entry" ∧
+      obstruction.requiredSelectedSlotTheorem =
+        "branchContribution[2] = selectedSlotContribution" ∧
+      obstruction.requiredProjectionSummationTheorem =
+        "signalBlockEntry = Finset.univ.sum branchContribution" ∧
+      obstruction.branchEntrySelectionLemma =
+        "oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3" ∧
+      obstruction.selectedSlotEvalLemma =
+        "oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3" ∧
+      obstruction.correctedEntryHypothesis =
+        selection.correctedEntryHypothesis ∧
+      obstruction.ketAmplitudeObligation =
+        selection.ketAmplitudeObligation ∧
+      obstruction.braAmplitudeObligation =
+        selection.braAmplitudeObligation ∧
+      obstruction.projectionSummationObligation =
+        selection.projectionSummationObligation ∧
+      obstruction.productBridgeObligation =
+        selection.productBridgeObligation ∧
+      obstruction.finiteCompositionNormalizedEquality =
+        selection.finiteCompositionNormalizedEquality ∧
+      obstruction.productObligation = selection.productObligation ∧
+      obstruction.typedInterfaceCompiled = true ∧
+      obstruction.selectedSlotContributionTyped = true ∧
+      obstruction.selectedSlotEvalCompiled = true ∧
+      obstruction.branchContributionFamilyAvailable = false ∧
+      obstruction.sparseBranchSumExpansionAvailable = false ∧
+      obstruction.projectionSummationProved = false ∧
+      obstruction.productBridgeProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false ∧
+      obstruction.projectionSummationObligation.proved = false ∧
+      obstruction.productBridgeObligation.proved = false ∧
+      obstruction.finiteCompositionNormalizedEquality.proved = false ∧
+      obstruction.productObligation.proved = false ∧
+      obstruction.exactRemainingObstruction =
+        "the selected slot-2 contribution is typed and conditionally evaluated, but finite matrix semantics lacks branchContribution : Fin 7 -> Coeff and the summation theorem identifying signalBlockEntry with the sparse-branch sum" := by
+  have _selection :=
+    oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript
+  have _eval :=
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3
+  dsimp [oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl⟩
+
+/--
+Focused sparse slot for the branch-contribution interface.
+
+The source boundary branch of Eq. `ROBIN clarified` uses the global sparse
+slot `2` for system entry `(0,0)` in the finite `n = 3`, `κ = 7` witness.
+-/
+def oneTermRobinGamma3BoundaryBranchContributionFocusedSlot : Fin 7 :=
+  ⟨2, by native_decide⟩
+
+/--
+Typed sparse-branch sum over the seven one-term Robin sparse slots.
+
+This is intentionally a project-local `List.finRange` fold instead of a
+`Finset.sum`, because `Coeff` is a syntactic coefficient language rather than
+an additive commutative monoid.  It provides the Lean type that the missing
+projection/summation theorem must target.
+-/
+def oneTermRobinGamma3BoundaryBranchContributionSum
+    (branchContribution : Fin 7 → Coeff) : Coeff :=
+  (List.finRange 7).foldl (fun acc s => acc + branchContribution s) 0
+
+/--
+Placeholder branch-contribution family for the focused projection/summation
+interface.
+
+Only slot `2` is identified with the already compiled selected contribution.
+The other slots remain opaque symbolic placeholders; this definition does not
+assert that their sum is the signal-zero block entry.
+-/
+def oneTermRobinGamma3BoundaryBranchContributionPlaceholder_n3
+    (obstruction : OneTermRobinGamma3BoundaryProjectionSummationObstruction) :
+    Fin 7 → Coeff :=
+  fun s =>
+    if s = oneTermRobinGamma3BoundaryBranchContributionFocusedSlot then
+      obstruction.selectedSlotContribution
+    else
+      Coeff.symbol "gamma3_boundary_other_branch"
+
+/--
+Typed branch-contribution family required by the finite projection/summation
+bridge.
+
+The record supplies the missing shape
+`branchContribution : Fin 7 -> Coeff`, proves only the selected slot-`2`
+identity, and leaves the statement
+`signalBlockEntry = branchContributionSum` as a typed unproved proposition.
+-/
+structure OneTermRobinGamma3BoundaryBranchContributionFamily where
+  sourceAnchor : String
+  projectionObstruction :
+    OneTermRobinGamma3BoundaryProjectionSummationObstruction
+  branchContribution : Fin 7 → Coeff
+  focusedSparseSlot : Fin 7
+  selectedSlotContribution : Coeff
+  selectedSlotStatement : Prop
+  signalBlockEntry : Coeff
+  branchContributionSum : Coeff
+  projectionSummationStatement : Prop
+  selectedSlotTheorem : String
+  projectionSummationTheoremTarget : String
+  branchContributionFamilyAvailable : Bool
+  selectedSlotStatementTyped : Bool
+  selectedSlotProved : Bool
+  projectionSummationStatementTyped : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Compiled branch-contribution family for the focused `n = 3` boundary branch.
+
+This turns the previous string-level interface into a typed Lean family.  It
+does not prove that the signal-zero block entry is the sparse-branch sum.
+-/
+def oneTermRobinGamma3BoundaryBranchContributionFamily_n3 :
+    OneTermRobinGamma3BoundaryBranchContributionFamily :=
+  let obstruction :=
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+  let branchContribution :=
+    oneTermRobinGamma3BoundaryBranchContributionPlaceholder_n3 obstruction
+  let focusedSlot :=
+    oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+  let branchSum :=
+    oneTermRobinGamma3BoundaryBranchContributionSum branchContribution
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding and Eq. ROBIN clarified boundary gamma3 branch; QBE finite projection/summation branch-contribution interface"
+    projectionObstruction := obstruction
+    branchContribution := branchContribution
+    focusedSparseSlot := focusedSlot
+    selectedSlotContribution := obstruction.selectedSlotContribution
+    selectedSlotStatement :=
+      branchContribution focusedSlot = obstruction.selectedSlotContribution
+    signalBlockEntry := obstruction.signalBlockEntry
+    branchContributionSum := branchSum
+    projectionSummationStatement := obstruction.signalBlockEntry = branchSum
+    selectedSlotTheorem :=
+      "oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3"
+    projectionSummationTheoremTarget :=
+      "oneTermRobinGamma3BoundaryBranchContribution_sum_n3"
+    branchContributionFamilyAvailable := true
+    selectedSlotStatementTyped := true
+    selectedSlotProved := true
+    projectionSummationStatementTyped := true
+    projectionSummationProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "branchContribution : Fin 7 -> Coeff is typed and slot 2 is selected, but finite matrix semantics still lacks a proof that signalBlockEntry is the branchContributionSum"
+  }
+
+/--
+The typed branch-contribution family selects the accepted slot-`2`
+contribution.
+
+This is only the local selected-slot identity.  It is not the sparse-branch
+summation theorem for the signal-zero block entry.
+-/
+theorem oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3 :
+    oneTermRobinGamma3BoundaryBranchContributionFamily_n3.selectedSlotStatement := by
+  dsimp [oneTermRobinGamma3BoundaryBranchContributionFamily_n3,
+    oneTermRobinGamma3BoundaryBranchContributionPlaceholder_n3,
+    oneTermRobinGamma3BoundaryBranchContributionFocusedSlot]
+
+/--
+Typed obstruction after introducing the branch-contribution family.
+
+The selected slot theorem is now compiled, but the QBE-local finite matrix
+semantics still lacks the summation proof connecting the signal-zero block
+entry to the branch-contribution fold.
+-/
+structure OneTermRobinGamma3BoundaryBranchContributionObstruction where
+  sourceAnchor : String
+  family : OneTermRobinGamma3BoundaryBranchContributionFamily
+  projectionObstruction :
+    OneTermRobinGamma3BoundaryProjectionSummationObstruction
+  selectedSlotTheorem : String
+  projectionSummationTheoremTarget : String
+  branchContributionFamilyAvailable : Bool
+  selectedSlotTheoremCompiled : Bool
+  projectionSummationStatementTyped : Bool
+  projectionSummationTheoremAvailable : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Current obstruction for the focused projection/summation bridge after the
+branch-contribution family has been made a typed Lean interface.
+-/
+def oneTermRobinGamma3BoundaryBranchContributionObstruction_n3 :
+    OneTermRobinGamma3BoundaryBranchContributionObstruction :=
+  let family := oneTermRobinGamma3BoundaryBranchContributionFamily_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, and QBE finite sparse-branch summation interface"
+    family := family
+    projectionObstruction :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+    selectedSlotTheorem := family.selectedSlotTheorem
+    projectionSummationTheoremTarget :=
+      family.projectionSummationTheoremTarget
+    branchContributionFamilyAvailable := true
+    selectedSlotTheoremCompiled := true
+    projectionSummationStatementTyped := true
+    projectionSummationTheoremAvailable := false
+    projectionSummationProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "finite matrix semantics still needs oneTermRobinGamma3BoundaryBranchContribution_sum_n3: signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum branchContribution"
+  }
+
+/--
+Transcript theorem for the branch-contribution-family obstruction.
+
+The theorem verifies that the focused family is typed, slot `2` is selected,
+and every theorem-facing semantic flag remains false except the local
+selected-slot interface theorem.
+-/
+theorem oneTermRobinGamma3BoundaryBranchContributionObstruction_n3_transcript :
+    let obstruction :=
+      oneTermRobinGamma3BoundaryBranchContributionObstruction_n3
+    let family :=
+      oneTermRobinGamma3BoundaryBranchContributionFamily_n3
+    obstruction.family = family ∧
+      family.projectionObstruction =
+        oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3 ∧
+      family.focusedSparseSlot =
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot ∧
+      family.focusedSparseSlot.val = 2 ∧
+      family.branchContribution family.focusedSparseSlot =
+        family.selectedSlotContribution ∧
+      family.selectedSlotStatement ∧
+      family.signalBlockEntry =
+        family.projectionObstruction.signalBlockEntry ∧
+      family.branchContributionSum =
+        oneTermRobinGamma3BoundaryBranchContributionSum
+          family.branchContribution ∧
+      family.projectionSummationStatement =
+        (family.signalBlockEntry = family.branchContributionSum) ∧
+      family.branchContributionFamilyAvailable = true ∧
+      family.selectedSlotStatementTyped = true ∧
+      family.selectedSlotProved = true ∧
+      family.projectionSummationStatementTyped = true ∧
+      family.projectionSummationProved = false ∧
+      obstruction.branchContributionFamilyAvailable = true ∧
+      obstruction.selectedSlotTheoremCompiled = true ∧
+      obstruction.projectionSummationStatementTyped = true ∧
+      obstruction.projectionSummationTheoremAvailable = false ∧
+      obstruction.projectionSummationProved = false ∧
+      obstruction.productBridgeProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false ∧
+      obstruction.exactRemainingObstruction =
+        "finite matrix semantics still needs oneTermRobinGamma3BoundaryBranchContribution_sum_n3: signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum branchContribution" := by
+  have hslot :=
+    oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3
+  dsimp [oneTermRobinGamma3BoundaryBranchContributionObstruction_n3,
+    oneTermRobinGamma3BoundaryBranchContributionFamily_n3,
+    oneTermRobinGamma3BoundaryBranchContributionPlaceholder_n3,
+    oneTermRobinGamma3BoundaryBranchContributionFocusedSlot,
+    oneTermRobinGamma3BoundaryBranchContributionSum] at hslot ⊢
+  exact ⟨rfl, rfl, rfl, rfl, hslot, hslot,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Predicate that a backend-sourced sparse-branch contribution family must
+satisfy for the focused boundary projection/summation theorem.
+
+This is the next-run target, not a new assumption.  A candidate family must
+come from the finite projection semantics, select slot `2` as the accepted
+branch contribution, and sum to the signal-zero block entry.
+-/
+def oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+    (branchContribution : Fin 7 → Coeff) : Prop :=
+  branchContribution oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution ∧
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+      oneTermRobinGamma3BoundaryBranchContributionSum branchContribution
+
+/--
+Smallest backend field still missing from the focused projection bridge.
+
+The previous packet supplied a placeholder `branchContribution` family so Lean
+could type the selected-slot and branch-sum statements.  This record prevents
+that placeholder from being mistaken for the finite matrix-semantics field:
+the actual field must be sourced from the `BlockExtractionTarget`/projection
+backend and satisfy
+`oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3`.
+-/
+structure OneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget where
+  sourceAnchor : String
+  family : OneTermRobinGamma3BoundaryBranchContributionFamily
+  projectionObstruction :
+    OneTermRobinGamma3BoundaryProjectionSummationObstruction
+  projectionTarget : OneTermRobinGamma3BoundaryProjectionSummationTarget
+  backendBranchContributionPredicate : (Fin 7 → Coeff) → Prop
+  backendFieldExpectedOwner : String
+  backendFieldLeanType : String
+  requiredSelectedSlotTheorem : String
+  requiredProjectionSummationTheorem : String
+  placeholderFamilyIsBackendSourced : Bool
+  placeholderMayCloseProjectionSummation : Bool
+  backendFieldAvailable : Bool
+  backendPredicateTyped : Bool
+  backendSelectedSlotTheoremAvailable : Bool
+  backendProjectionSummationTheoremAvailable : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete backend-field target for the focused `n = 3` boundary branch.
+
+No theorem-facing flag is promoted.  The record says that the placeholder
+family is useful only for typing the statements; the missing semantic field is
+a backend-sourced `Fin 7 -> Coeff` family for the signal-zero entry.
+-/
+def oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3 :
+    OneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget :=
+  let family := oneTermRobinGamma3BoundaryBranchContributionFamily_n3
+  let obstruction := oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE BlockExtractionTarget projection backend"
+    family := family
+    projectionObstruction := obstruction
+    projectionTarget := obstruction.projectionTarget
+    backendBranchContributionPredicate :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+    backendFieldExpectedOwner :=
+      "BlockExtractionTarget / finite projection-summation backend"
+    backendFieldLeanType :=
+      "branchContribution : Fin 7 -> Coeff, sourced from contract.expectedTarget.blockMatrix[0,0]"
+    requiredSelectedSlotTheorem :=
+      "backendBranchContribution[2] = selectedSlotContribution"
+    requiredProjectionSummationTheorem :=
+      "signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum backendBranchContribution"
+    placeholderFamilyIsBackendSourced := false
+    placeholderMayCloseProjectionSummation := false
+    backendFieldAvailable := false
+    backendPredicateTyped := true
+    backendSelectedSlotTheoremAvailable := false
+    backendProjectionSummationTheoremAvailable := false
+    projectionSummationProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "BlockExtractionTarget exposes the signal-zero block entry but not a backend-sourced sparse-branch contribution family for that entry"
+  }
+
+/--
+Transcript theorem for the backend projection/summation field target.
+
+This theorem checks that the remaining interface is typed while the backend
+field, branch-sum theorem, product bridge, normalized equality, and theorem
+closure remain unavailable.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3_transcript :
+    let target :=
+      oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3
+    let family :=
+      oneTermRobinGamma3BoundaryBranchContributionFamily_n3
+    let obstruction :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+    target.family = family ∧
+      target.projectionObstruction = obstruction ∧
+      target.projectionTarget = obstruction.projectionTarget ∧
+      target.backendBranchContributionPredicate =
+        oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 ∧
+      target.backendBranchContributionPredicate family.branchContribution =
+        oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+          family.branchContribution ∧
+      target.backendFieldExpectedOwner =
+        "BlockExtractionTarget / finite projection-summation backend" ∧
+      target.backendFieldLeanType =
+        "branchContribution : Fin 7 -> Coeff, sourced from contract.expectedTarget.blockMatrix[0,0]" ∧
+      target.requiredSelectedSlotTheorem =
+        "backendBranchContribution[2] = selectedSlotContribution" ∧
+      target.requiredProjectionSummationTheorem =
+        "signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum backendBranchContribution" ∧
+      target.placeholderFamilyIsBackendSourced = false ∧
+      target.placeholderMayCloseProjectionSummation = false ∧
+      target.backendFieldAvailable = false ∧
+      target.backendPredicateTyped = true ∧
+      target.backendSelectedSlotTheoremAvailable = false ∧
+      target.backendProjectionSummationTheoremAvailable = false ∧
+      target.projectionSummationProved = false ∧
+      target.productBridgeProved = false ∧
+      target.normalizedBlockEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      target.exactRemainingObstruction =
+        "BlockExtractionTarget exposes the signal-zero block entry but not a backend-sourced sparse-branch contribution family for that entry" := by
+  have _family :=
+    oneTermRobinGamma3BoundaryBranchContributionObstruction_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl⟩
+
+/--
+Generic block-extraction branch-contribution target for the focused boundary
+entry.
+
+This uses the new QBE-local backend interface to type the seven-slot family at
+`contract.expectedTarget.blockMatrix[0,0]`.  The family is still the current
+placeholder from the Robin obstruction, so the backend-source and branch-sum
+obligations stay false.  This target exists only to make the next required
+backend theorem precise.
+-/
+def oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3 :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7 :=
+  let contract := oneTermRobinFiniteBlockCompositionContract 3
+  let family := oneTermRobinGamma3BoundaryBranchContributionFamily_n3
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  {
+    extractionTarget := contract.expectedTarget
+    systemRow := sysRow
+    systemCol := sysCol
+    selectedBranch := family.focusedSparseSlot
+    branchContribution := family.branchContribution
+    selectedContribution :=
+      family.branchContribution family.focusedSparseSlot
+    selectedContribution_eq := rfl
+    branchSum := oneTermRobinGamma3BoundaryBranchContributionSum
+      family.branchContribution
+    branchSum_eq := rfl
+    blockEntry := contract.expectedTarget.blockMatrix sysRow sysCol
+    blockEntry_eq := rfl
+    backendSource := {
+      description :=
+        "prove the seven-slot branchContribution family is computed by the BlockExtractionTarget projection backend"
+      source :=
+        "QBE BlockExtractionBranchContributionTarget for GHL2025 Definition def:block-encoding"
+      proved := false
+    }
+    selectedBranchCorrect := {
+      description :=
+        "selected branch slot 2 matches the focused gamma3 boundary contribution"
+      source :=
+        "GHL2025 Eq. ROBIN clarified boundary gamma3 branch and oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3"
+      proved := false
+    }
+    branchSummationCorrect := {
+      description :=
+        "signal-zero block entry equals the sum of the seven sparse-branch contributions"
+      source :=
+        "GHL2025 Definition def:block-encoding and Eq. ROBIN clarified boundary gamma3 branch"
+      proved := false
+    }
+  }
+
+/--
+The generic branch-contribution target selects the same slot as the Robin
+branch-contribution family.  This is a local selected-slot identity, not the
+backend-source proof and not the branch-sum theorem.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selected_n3 :
+    oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3.selectedBranchStatement := by
+  exact
+    BlockExtractionBranchContributionTarget.selectedBranchStatement_of_eq
+      oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3
+
+/--
+The selected contribution in the generic backend target is the already accepted
+slot-`2` selected contribution from the Robin obstruction.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selectedContribution_eq_n3 :
+    oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3.selectedContribution =
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution := by
+  change
+    oneTermRobinGamma3BoundaryBranchContributionFamily_n3.branchContribution
+        oneTermRobinGamma3BoundaryBranchContributionFamily_n3.focusedSparseSlot =
+      oneTermRobinGamma3BoundaryBranchContributionFamily_n3.selectedSlotContribution
+  exact oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3
+
+/--
+Smallest obstruction after inspecting the current `BlockExtractionTarget`
+backend.
+
+The backend gives a concrete `blockMatrix[0,0]` entry and the corresponding
+full-unitary entry.  It does not yet expose a sparse-slot contribution family
+for that entry.  This record is therefore a narrower obstruction than the
+generic backend-field target: it points at the existing `BlockExtractionTarget`
+fields and names the missing projection-summand interface.
+-/
+structure OneTermRobinGamma3BoundaryBlockExtractionBackendGap where
+  sourceAnchor : String
+  backendFieldTarget :
+    OneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget
+  expectedTarget :
+    BlockExtractionTarget Coeff (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+  signalBlockEntry : Coeff
+  unitaryEntry : Coeff
+  blockProjectionObligation : SemanticObligation
+  blockCorrectObligation : SemanticObligation
+  backendPredicate : (Fin 7 → Coeff) → Prop
+  branchContributionTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  exposesUnitaryMatrix : Bool
+  exposesBlockMatrix : Bool
+  exposesTargetMatrix : Bool
+  exposesSignalIndex : Bool
+  exposesBranchContributionField : Bool
+  genericBranchContributionInterfaceAvailable : Bool
+  genericBranchContributionBackendSourced : Bool
+  genericSelectedBranchStatementCompiled : Bool
+  genericProjectionSummationStatementTyped : Bool
+  blockEntryOnlyBridgeCompiled : Bool
+  backendPredicateTyped : Bool
+  backendFieldAvailable : Bool
+  placeholderFamilyRejected : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  missingBackendField : String
+  requiredBackendDeclaration : String
+  reasonPlaceholderRejected : String
+  exactRemainingObstruction : String
+
+/--
+Concrete backend gap for the focused `n = 3` boundary branch.
+
+This does not change `BlockExtractionTarget` or prove the branch sum.  It
+records that the available backend data reaches only the signal-zero block
+entry and its full-unitary index bridge.
+-/
+def oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3 :
+    OneTermRobinGamma3BoundaryBlockExtractionBackendGap :=
+  let backendTarget :=
+    oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3
+  let contract := oneTermRobinFiniteBlockCompositionContract 3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, and QBE BlockExtractionTarget fields"
+    backendFieldTarget := backendTarget
+    expectedTarget := contract.expectedTarget
+    signalBlockEntry := backendTarget.projectionTarget.signalBlockEntry
+    unitaryEntry := backendTarget.projectionTarget.signalUnitaryEntry
+    blockProjectionObligation := contract.expectedTarget.blockProjection
+    blockCorrectObligation := contract.expectedTarget.blockCorrect
+    backendPredicate :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+    branchContributionTarget :=
+      oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3
+    exposesUnitaryMatrix := true
+    exposesBlockMatrix := true
+    exposesTargetMatrix := true
+    exposesSignalIndex := true
+    exposesBranchContributionField := false
+    genericBranchContributionInterfaceAvailable := true
+    genericBranchContributionBackendSourced := false
+    genericSelectedBranchStatementCompiled := true
+    genericProjectionSummationStatementTyped := true
+    blockEntryOnlyBridgeCompiled := true
+    backendPredicateTyped := true
+    backendFieldAvailable := false
+    placeholderFamilyRejected := true
+    projectionSummationProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    missingBackendField :=
+      "branchContribution : Fin 7 -> Coeff computed from contract.expectedTarget.blockMatrix[0,0]"
+    requiredBackendDeclaration :=
+      "BlockExtractionTarget sparse-slot projection-summand interface for a fixed signal/system entry"
+    reasonPlaceholderRejected :=
+      "the placeholder family is not computed from contract.expectedTarget.blockMatrix[0,0]"
+    exactRemainingObstruction :=
+      "BlockExtractionTarget can be paired with a typed seven-slot branch target, but the backend-source proof and signal-block branch-sum theorem are still absent"
+  }
+
+/--
+Transcript theorem for the block-extraction backend gap.
+
+The theorem checks that the gap is tied to the actual `BlockExtractionTarget`
+entry and that all theorem-facing semantic flags remain false.
+-/
+theorem oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript :
+    let gap := oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3
+    let backendTarget :=
+      oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3
+    let contract := oneTermRobinFiniteBlockCompositionContract 3
+    gap.backendFieldTarget = backendTarget ∧
+      gap.expectedTarget = contract.expectedTarget ∧
+      gap.signalBlockEntry = backendTarget.projectionTarget.signalBlockEntry ∧
+      gap.unitaryEntry = backendTarget.projectionTarget.signalUnitaryEntry ∧
+      gap.signalBlockEntry = gap.unitaryEntry ∧
+      gap.blockProjectionObligation =
+        contract.expectedTarget.blockProjection ∧
+      gap.blockCorrectObligation =
+        contract.expectedTarget.blockCorrect ∧
+      gap.blockProjectionObligation.proved = false ∧
+      gap.blockCorrectObligation.proved = false ∧
+      gap.backendPredicate =
+        oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 ∧
+      gap.branchContributionTarget =
+        oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3 ∧
+      gap.branchContributionTarget.extractionTarget = gap.expectedTarget ∧
+      gap.branchContributionTarget.selectedBranch.val = 2 ∧
+      gap.branchContributionTarget.backendSource.proved = false ∧
+      gap.branchContributionTarget.branchSummationCorrect.proved = false ∧
+      gap.exposesUnitaryMatrix = true ∧
+      gap.exposesBlockMatrix = true ∧
+      gap.exposesTargetMatrix = true ∧
+      gap.exposesSignalIndex = true ∧
+      gap.exposesBranchContributionField = false ∧
+      gap.genericBranchContributionInterfaceAvailable = true ∧
+      gap.genericBranchContributionBackendSourced = false ∧
+      gap.genericSelectedBranchStatementCompiled = true ∧
+      gap.genericProjectionSummationStatementTyped = true ∧
+      gap.blockEntryOnlyBridgeCompiled = true ∧
+      gap.backendPredicateTyped = true ∧
+      gap.backendFieldAvailable = false ∧
+      gap.placeholderFamilyRejected = true ∧
+      gap.projectionSummationProved = false ∧
+      gap.productBridgeProved = false ∧
+      gap.normalizedBlockEqualityProved = false ∧
+      gap.productToCoefficientProved = false ∧
+      gap.lcuCorrectProved = false ∧
+      gap.blockProjectionProved = false ∧
+      gap.blockCorrectProved = false ∧
+      gap.finalExtractionProved = false ∧
+      gap.missingBackendField =
+        "branchContribution : Fin 7 -> Coeff computed from contract.expectedTarget.blockMatrix[0,0]" ∧
+      gap.requiredBackendDeclaration =
+        "BlockExtractionTarget sparse-slot projection-summand interface for a fixed signal/system entry" ∧
+      gap.reasonPlaceholderRejected =
+        "the placeholder family is not computed from contract.expectedTarget.blockMatrix[0,0]" ∧
+      gap.exactRemainingObstruction =
+        "BlockExtractionTarget can be paired with a typed seven-slot branch target, but the backend-source proof and signal-block branch-sum theorem are still absent" := by
+  have hentry :=
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3
+  have _backendTarget :=
+    oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3_transcript
+  dsimp [oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3]
+  dsimp [oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, hentry, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Full-basis branch index map for the focused `n = 3` boundary backend packet.
+
+For the system column `0`, this maps each sparse slot to the clean paper-basis
+index used by the displayed `gamma3` register expression.  The map is typed as
+a full circuit basis index; it does not by itself provide the branch summand
+formula or the branch-sum theorem for the signal-zero block entry.
+-/
+def oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+    (s : Fin 7) :
+    Fin (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3))) :=
+  ⟨oneTermRobinGamma3PaperBasisIndex (oneTermParameters 3) s.val 0, by
+    have hs : s.val <= 6 := Nat.le_of_lt_succ s.isLt
+    have hbasis :
+        oneTermRobinGamma3PaperBasisIndex (oneTermParameters 3) s.val 0 =
+          s.val * 16 := by
+      have hclog : clog2 7 = 3 := by native_decide
+      simp [oneTermRobinGamma3PaperBasisIndex, oneTermParameters,
+        Nat.shiftLeft_eq, hclog]
+    rw [hbasis]
+    have hle : s.val * 16 <= 6 * 16 := Nat.mul_le_mul_right 16 hs
+    have hbound :
+        6 * 16 <
+          qubitDim
+            (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3)) := by
+      native_decide
+    exact Nat.lt_of_le_of_lt hle hbound⟩
+
+/--
+The backend branch-index map sends the focused slot `2` to the accepted clean
+branch basis index `32`.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3 :
+    let idx :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+    idx.val = 32 ∧ idx = oneTermRobinGamma3BoundaryPrefixSource_n3 := by
+  native_decide
+
+/--
+The backend branch-index map sends sparse slot `0` to the active signal-zero
+full basis index `0`.
+
+This is the active-entry side of the current raw-fold obstruction: the uncast
+`[0,0]` entry is attached to the slot-`0` diagonal, while the backend fold still
+contains all seven sparse-slot summands.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchFullIndex_slotZero_n3 :
+    let idx :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨0, by native_decide⟩
+    idx.val = 0 ∧ idx = oneTermRobinGamma3BoundaryPrefixRow0_n3 := by
+  native_decide
+
+/--
+The selected contribution in the generic branch target is the already compiled
+slot-`2` seven-gate summand formula.
+
+This proves only the selected branch formula.  It does not construct the
+all-slot backend family and does not prove that the signal-zero block entry is
+the seven-branch fold.
+-/
+theorem oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3 :
+    let target :=
+      oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3
+    target.selectedContribution =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3)
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor := by
+  change
+    oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3.selectedContribution =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3)
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor
+  rw [
+    oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selectedContribution_eq_n3]
+  rfl
+
+/--
+Narrow obstruction after adding the branch-to-full-index map.
+
+The selected branch now has a typed full-basis index and a compiled selected
+summand formula.  The remaining backend gap is smaller: QBE still lacks the
+all-slot summand formula that would compute every
+`branchContribution s` from the projection backend and then prove the folded
+sum equals `contract.expectedTarget.blockMatrix[0,0]`.
+-/
+structure OneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction where
+  sourceAnchor : String
+  backendGap : OneTermRobinGamma3BoundaryBlockExtractionBackendGap
+  branchContributionTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  branchFullIndex :
+    Fin 7 →
+      Fin (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3)))
+  selectedBranch : Fin 7
+  selectedBranchFullIndex :
+    Fin (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3)))
+  selectedContribution : Coeff
+  branchIndexMapFormula : String
+  selectedSummandFormula : String
+  selectedBranchIndexLemma : String
+  selectedBranchSummandLemma : String
+  requiredAllBranchSummandFormula : String
+  requiredProjectionSummationTheorem : String
+  requiredBackendPredicateTheorem : String
+  backendBranchIndexMapAvailable : Bool
+  selectedBranchIndexMapCompiled : Bool
+  selectedBranchSummandFormulaCompiled : Bool
+  backendBranchSummandFormulaAvailable : Bool
+  backendPredicateTyped : Bool
+  backendPredicateProved : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Focused `n = 3` backend branch-index map obstruction.
+
+This packet is the current smallest Lean-facing interface: the full-basis
+index map for the seven sparse slots is present, and slot `2` is connected to
+the selected summand.  The all-slot summand formula and branch-sum predicate
+remain unavailable.
+-/
+def oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3 :
+    OneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction :=
+  let gap := oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3
+  let selected :=
+    oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE finite projection backend branch-index map"
+    backendGap := gap
+    branchContributionTarget := gap.branchContributionTarget
+    branchFullIndex :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+    selectedBranch := selected
+    selectedBranchFullIndex :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 selected
+    selectedContribution := gap.branchContributionTarget.selectedContribution
+    branchIndexMapFormula :=
+      "branchFullIndex(s) = oneTermRobinGamma3PaperBasisIndex (oneTermParameters 3) s 0"
+    selectedSummandFormula :=
+      "selectedContribution = oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32] * sqrt_kappa_inv * sqrt_kappa_inv"
+    selectedBranchIndexLemma :=
+      "oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3"
+    selectedBranchSummandLemma :=
+      "oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3"
+    requiredAllBranchSummandFormula :=
+      "for every s : Fin 7, compute branchContribution s from the backend full-basis branch entry and the sparse-register projection amplitudes"
+    requiredProjectionSummationTheorem :=
+      "signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum backendBranchContribution"
+    requiredBackendPredicateTheorem :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 backendBranchContribution"
+    backendBranchIndexMapAvailable := true
+    selectedBranchIndexMapCompiled := true
+    selectedBranchSummandFormulaCompiled := true
+    backendBranchSummandFormulaAvailable := false
+    backendPredicateTyped := true
+    backendPredicateProved := false
+    projectionSummationProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the branch-to-full-index map is typed and the selected slot-2 summand formula compiles, but QBE still lacks the all-slot backend summand formula and branch-sum theorem for contract.expectedTarget.blockMatrix[0,0]"
+  }
+
+/--
+Transcript theorem for the backend branch-index map obstruction.
+
+The theorem checks that the new packet consumes the current backend gap,
+selects sparse slot `2`, maps it to full index `32`, compiles the selected
+summand formula, and keeps the backend predicate, projection summation, and
+all theorem-facing flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3_transcript :
+    let obstruction :=
+      oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3
+    let gap := oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3
+    obstruction.backendGap = gap ∧
+      obstruction.branchContributionTarget = gap.branchContributionTarget ∧
+      obstruction.selectedBranch =
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot ∧
+      obstruction.selectedBranch.val = 2 ∧
+      (obstruction.branchFullIndex obstruction.selectedBranch).val = 32 ∧
+      obstruction.selectedBranchFullIndex =
+        oneTermRobinGamma3BoundaryPrefixSource_n3 ∧
+      obstruction.selectedContribution =
+        gap.branchContributionTarget.selectedContribution ∧
+      obstruction.selectedContribution =
+        oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution ∧
+      obstruction.branchIndexMapFormula =
+        "branchFullIndex(s) = oneTermRobinGamma3PaperBasisIndex (oneTermParameters 3) s 0" ∧
+      obstruction.selectedSummandFormula =
+        "selectedContribution = oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32] * sqrt_kappa_inv * sqrt_kappa_inv" ∧
+      obstruction.selectedBranchIndexLemma =
+        "oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3" ∧
+      obstruction.selectedBranchSummandLemma =
+        "oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3" ∧
+      obstruction.requiredAllBranchSummandFormula =
+        "for every s : Fin 7, compute branchContribution s from the backend full-basis branch entry and the sparse-register projection amplitudes" ∧
+      obstruction.requiredProjectionSummationTheorem =
+        "signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum backendBranchContribution" ∧
+      obstruction.requiredBackendPredicateTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 backendBranchContribution" ∧
+      obstruction.backendBranchIndexMapAvailable = true ∧
+      obstruction.selectedBranchIndexMapCompiled = true ∧
+      obstruction.selectedBranchSummandFormulaCompiled = true ∧
+      obstruction.backendBranchSummandFormulaAvailable = false ∧
+      obstruction.backendPredicateTyped = true ∧
+      obstruction.backendPredicateProved = false ∧
+      obstruction.projectionSummationProved = false ∧
+      obstruction.productBridgeProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false ∧
+      obstruction.exactRemainingObstruction =
+        "the branch-to-full-index map is typed and the selected slot-2 summand formula compiles, but QBE still lacks the all-slot backend summand formula and branch-sum theorem for contract.expectedTarget.blockMatrix[0,0]" := by
+  have hindex :=
+    oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3
+  have hselected :=
+    oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selectedContribution_eq_n3
+  have _hsummand :=
+    oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3
+  dsimp [oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3]
+  exact ⟨rfl, rfl, rfl, rfl, hindex.1, hindex.2, rfl, hselected,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+All-slot backend summand formula for the focused `n = 3` boundary packet.
+
+Each sparse slot is mapped through the compiled branch-to-full-index map and
+then read from the focused seven-gate matrix.  The two sparse-register
+projection amplitudes are attached uniformly.  This supplies the all-slot
+formula requested by the projection backend, but it is not yet the theorem that
+the signal-zero block entry is the fold of these seven summands.
+-/
+def oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    (s : Fin 7) : Coeff :=
+  Coeff.mul
+    (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+      (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s)
+      (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s))
+    oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor
+
+/--
+The all-slot backend summand formula selects the accepted slot-`2`
+contribution.
+
+This proves the selected branch clause of
+`oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3`.  The
+branch-sum clause remains a separate projection/summation theorem.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution := by
+  unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+      oneTermRobinGamma3BoundaryPrefixSource_n3 from
+    oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3.2]
+  rfl
+
+/--
+The slot-`0` backend summand is the active `[0,0]` seven-gate diagonal
+multiplied by the sparse-register projection amplitude factor.
+
+This is a smaller compiled term identification for the raw uncast
+backend-expansion target.  It does not prove that the active `[0,0]` entry is
+the full seven-slot fold; it shows that the fold's slot-`0` term is the active
+diagonal term with the projection weight attached.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨0, by native_decide⟩ =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3)
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor := by
+  unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨0, by native_decide⟩ =
+      oneTermRobinGamma3BoundaryPrefixRow0_n3 from
+    oneTermRobinGamma3BoundaryBackendBranchFullIndex_slotZero_n3.2]
+
+/--
+Concrete seven-summand expansion of the backend branch fold.
+
+This is the smaller compiled obstruction for the current backend-expansion
+target: the first summand is the active row-`0` diagonal branch, weighted by
+the sparse-register projection amplitude, and the remaining six summands stay
+as the all-slot backend contribution family.  It does not prove that the
+active signal-zero entry equals this fold.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3 :
+    blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 =
+      (((((((0 +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩) := by
+  rfl
+
+/--
+Backend branch-contribution target using the all-slot summand formula.
+
+Unlike `oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3`,
+this target no longer uses the placeholder family.  The `backendSource` and
+`branchSummationCorrect` obligations remain false until the finite
+projection backend proves that this seven-slot family is exactly the
+signal-zero block expansion.
+-/
+def oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3 :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7 :=
+  let contract := oneTermRobinFiniteBlockCompositionContract 3
+  let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+  let branchContribution :=
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  let selected :=
+    oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+  {
+    extractionTarget := contract.expectedTarget
+    systemRow := sysRow
+    systemCol := sysCol
+    selectedBranch := selected
+    branchContribution := branchContribution
+    selectedContribution := branchContribution selected
+    selectedContribution_eq := rfl
+    branchSum := blockExtractionBranchContributionSum branchContribution
+    branchSum_eq := rfl
+    blockEntry := contract.expectedTarget.blockMatrix sysRow sysCol
+    blockEntry_eq := rfl
+    backendSource := {
+      description :=
+        "prove the all-slot seven-gate branchContribution family is the BlockExtractionTarget projection backend for blockMatrix[0,0]"
+      source :=
+        "QBE BlockExtractionBranchContributionTarget for GHL2025 Definition def:block-encoding and Eq. ROBIN clarified boundary gamma3 branch"
+      proved := false
+    }
+    selectedBranchCorrect := {
+      description :=
+        "selected branch slot 2 is the accepted gamma3 boundary summand in the all-slot backend formula"
+      source :=
+        "GHL2025 Eq. ROBIN clarified boundary gamma3 branch and oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3"
+      proved := false
+    }
+    branchSummationCorrect := {
+      description :=
+        "signal-zero block entry equals the fold of the all-slot backend branchContribution family"
+      source :=
+        "GHL2025 Definition def:block-encoding and QBE finite projection backend"
+      proved := false
+    }
+  }
+
+/-- The all-slot backend target satisfies its selected-branch statement. -/
+theorem
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selected_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.selectedBranchStatement := by
+  exact
+    BlockExtractionBranchContributionTarget.selectedBranchStatement_of_eq
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+
+/--
+The selected contribution in the all-slot backend target is the accepted
+slot-`2` contribution from the projection-summation obstruction.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selectedContribution_eq_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.selectedContribution =
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution := by
+  change
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+  exact oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3
+
+/--
+Follow-up packet after the branch-index obstruction.
+
+The all-slot summand formula is now a concrete `Fin 7 -> Coeff` family sourced
+from the branch full-index map and the focused seven-gate matrix.  The packet
+proves only the selected slot-`2` clause.  The remaining theorem is still the
+finite projection/summation equality that identifies the signal-zero block
+entry with the fold of this backend family.
+-/
+structure OneTermRobinGamma3BoundaryBackendAllSlotSummandFormula where
+  sourceAnchor : String
+  indexMapObstruction :
+    OneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction
+  backendBranchTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  backendBranchContribution : Fin 7 → Coeff
+  selectedBranch : Fin 7
+  selectedBranchFullIndex :
+    Fin (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3)))
+  selectedContribution : Coeff
+  selectedSlotContribution : Coeff
+  signalBlockEntry : Coeff
+  backendBranchSum : Coeff
+  allBranchSummandFormula : String
+  selectedBranchContributionLemma : String
+  selectedBranchTargetLemma : String
+  requiredProjectionSummationTheorem : String
+  requiredBackendPredicateTheorem : String
+  allSlotBackendSummandFormulaAvailable : Bool
+  backendBranchContributionFamilyAvailable : Bool
+  selectedBranchContributionCompiled : Bool
+  backendPredicateSelectedClauseProved : Bool
+  backendPredicateProved : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete all-slot backend summand formula packet for the focused boundary
+branch.
+
+This supersedes the previous branch-index obstruction only for the all-slot
+formula itself: `backendBranchContribution s` is now defined for every
+`s : Fin 7`.  The full backend predicate remains unproved because its second
+clause is the missing signal-block branch-sum theorem.
+-/
+def oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3 :
+    OneTermRobinGamma3BoundaryBackendAllSlotSummandFormula :=
+  let obstruction :=
+    oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3
+  let target :=
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+  let selected :=
+    oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE finite projection backend all-slot summand formula"
+    indexMapObstruction := obstruction
+    backendBranchTarget := target
+    backendBranchContribution :=
+      oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    selectedBranch := selected
+    selectedBranchFullIndex :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 selected
+    selectedContribution := target.selectedContribution
+    selectedSlotContribution :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+    signalBlockEntry := target.blockEntry
+    backendBranchSum := target.branchSum
+    allBranchSummandFormula :=
+      "backendBranchContribution(s) = oneTermRobinGamma3BoundarySevenGateMatrix_n3[branchFullIndex(s), branchFullIndex(s)] * sqrt_kappa_inv * sqrt_kappa_inv"
+    selectedBranchContributionLemma :=
+      "oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3"
+    selectedBranchTargetLemma :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selectedContribution_eq_n3"
+    requiredProjectionSummationTheorem :=
+      "signalBlockEntry = blockExtractionBranchContributionSum backendBranchContribution"
+    requiredBackendPredicateTheorem :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 backendBranchContribution"
+    allSlotBackendSummandFormulaAvailable := true
+    backendBranchContributionFamilyAvailable := true
+    selectedBranchContributionCompiled := true
+    backendPredicateSelectedClauseProved := true
+    backendPredicateProved := false
+    projectionSummationProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "all-slot backend summand formula is typed and slot 2 is selected, but QBE still lacks the signal-block branch-sum theorem for contract.expectedTarget.blockMatrix[0,0]"
+  }
+
+/--
+Transcript theorem for the all-slot backend summand packet.
+
+This checks that the new branch family is not the placeholder family, that the
+selected slot goes through full index `32`, and that every theorem-facing
+projection, block-composition, and product flag remains false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3_transcript :
+    let packet :=
+      oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3
+    let obstruction :=
+      oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3
+    let target :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+    packet.indexMapObstruction = obstruction ∧
+      packet.backendBranchTarget = target ∧
+      packet.backendBranchContribution =
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      packet.selectedBranch =
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot ∧
+      packet.selectedBranch.val = 2 ∧
+      packet.selectedBranchFullIndex =
+        oneTermRobinGamma3BoundaryPrefixSource_n3 ∧
+      packet.backendBranchContribution packet.selectedBranch =
+        packet.selectedSlotContribution ∧
+      packet.selectedContribution =
+        packet.selectedSlotContribution ∧
+      packet.signalBlockEntry = target.blockEntry ∧
+      packet.backendBranchSum =
+        blockExtractionBranchContributionSum packet.backendBranchContribution ∧
+      target.selectedBranchStatement ∧
+      target.selectedBranch.val = 2 ∧
+      target.backendSource.proved = false ∧
+      target.selectedBranchCorrect.proved = false ∧
+      target.branchSummationCorrect.proved = false ∧
+      packet.allBranchSummandFormula =
+        "backendBranchContribution(s) = oneTermRobinGamma3BoundarySevenGateMatrix_n3[branchFullIndex(s), branchFullIndex(s)] * sqrt_kappa_inv * sqrt_kappa_inv" ∧
+      packet.selectedBranchContributionLemma =
+        "oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3" ∧
+      packet.selectedBranchTargetLemma =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selectedContribution_eq_n3" ∧
+      packet.requiredProjectionSummationTheorem =
+        "signalBlockEntry = blockExtractionBranchContributionSum backendBranchContribution" ∧
+      packet.requiredBackendPredicateTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 backendBranchContribution" ∧
+      packet.allSlotBackendSummandFormulaAvailable = true ∧
+      packet.backendBranchContributionFamilyAvailable = true ∧
+      packet.selectedBranchContributionCompiled = true ∧
+      packet.backendPredicateSelectedClauseProved = true ∧
+      packet.backendPredicateProved = false ∧
+      packet.projectionSummationProved = false ∧
+      packet.productBridgeProved = false ∧
+      packet.normalizedBlockEqualityProved = false ∧
+      packet.productToCoefficientProved = false ∧
+      packet.lcuCorrectProved = false ∧
+      packet.blockProjectionProved = false ∧
+      packet.blockCorrectProved = false ∧
+      packet.finalExtractionProved = false ∧
+      packet.exactRemainingObstruction =
+        "all-slot backend summand formula is typed and slot 2 is selected, but QBE still lacks the signal-block branch-sum theorem for contract.expectedTarget.blockMatrix[0,0]" := by
+  have hindex :=
+    oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3
+  have hselected :=
+    oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3
+  have htargetSelected :=
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selected_n3
+  dsimp [oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3,
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, hindex.2, hselected,
+    hselected, rfl, rfl, htargetSelected, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Selected clause of the backend branch-contribution predicate.
+
+The all-slot backend family already agrees with the accepted slot-`2`
+boundary summand.  This isolates the remaining predicate work to the
+signal-zero branch-sum equality.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution :=
+  oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3
+
+/--
+Conditional closure of the backend branch-contribution predicate.
+
+This theorem is not the projection/summation theorem.  It proves that, once the
+finite backend supplies the signal-zero branch-sum equality, the focused
+backend family satisfies the exact predicate needed by the product route.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_branchSum_n3
+    (hbranchSum :
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+      oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  exact ⟨
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3,
+    hbranchSum⟩
+
+/--
+Final focused obstruction for the current backend branch-sum packet.
+
+The selected sparse slot is proved and the predicate closure is conditional on
+one equality.  The unproved equality is precisely the QBE-local projection
+summation statement: the signal-zero block entry must be the fold of the
+backend seven-slot branch family.
+-/
+structure OneTermRobinGamma3BoundaryBackendBranchSumClosure where
+  sourceAnchor : String
+  allSlotPacket : OneTermRobinGamma3BoundaryBackendAllSlotSummandFormula
+  backendBranchTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  backendBranchContribution : Fin 7 → Coeff
+  selectedClauseStatement : Prop
+  requiredBranchSumStatement : Prop
+  projectionSummationStatement : Prop
+  backendPredicateStatement : Prop
+  selectedClauseTheorem : String
+  conditionalPredicateClosureTheorem : String
+  requiredProjectionSummationTheorem : String
+  requiredSecondConjunct : String
+  missingBackendField : String
+  selectedClauseProved : Bool
+  conditionalPredicateClosureCompiled : Bool
+  projectionSummationStatementTyped : Bool
+  backendPredicateTyped : Bool
+  backendPredicateProved : Bool
+  projectionSummationProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete branch-sum closure target for the focused `n = 3` boundary packet.
+
+This record is the narrow fallback for the current lower task: it does not
+claim the branch sum, but it proves that the selected clause is no longer a
+blocker and names the single remaining proposition.
+-/
+def oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3 :
+    OneTermRobinGamma3BoundaryBackendBranchSumClosure :=
+  let packet := oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3
+  let target := oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+  let branchContribution :=
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding and Eq. ROBIN clarified boundary gamma3 branch; QBE finite projection/summation backend"
+    allSlotPacket := packet
+    backendBranchTarget := target
+    backendBranchContribution := branchContribution
+    selectedClauseStatement :=
+      branchContribution
+          oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+        oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+    requiredBranchSumStatement :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBranchContributionSum branchContribution
+    projectionSummationStatement := target.projectionSummationStatement
+    backendPredicateStatement :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+        branchContribution
+    selectedClauseTheorem :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3"
+    conditionalPredicateClosureTheorem :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_branchSum_n3"
+    requiredProjectionSummationTheorem :=
+      "BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3"
+    requiredSecondConjunct :=
+      "oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3"
+    missingBackendField :=
+      "finite projection backend theorem expanding contract.expectedTarget.blockMatrix[0,0] as the fold over backend sparse-branch contributions"
+    selectedClauseProved := true
+    conditionalPredicateClosureCompiled := true
+    projectionSummationStatementTyped := true
+    backendPredicateTyped := true
+    backendPredicateProved := false
+    projectionSummationProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the selected branch predicate clause is proved and predicate closure is conditional, but QBE still lacks the signal-zero branch-sum equality for the backend seven-slot family"
+  }
+
+/--
+Transcript theorem for the backend branch-sum closure target.
+
+The theorem verifies that the new packet consumes the all-slot summand formula,
+proves the selected predicate clause, and keeps the actual projection
+summation statement and every theorem-facing semantic flag false.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3_transcript :
+    let closure :=
+      oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3
+    let packet :=
+      oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3
+    let target :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+    closure.allSlotPacket = packet ∧
+      closure.backendBranchTarget = target ∧
+    closure.backendBranchContribution =
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      closure.selectedClauseStatement ∧
+      closure.selectedClauseTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3" ∧
+      closure.conditionalPredicateClosureTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_branchSum_n3" ∧
+      closure.requiredProjectionSummationTheorem =
+        "BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3" ∧
+      closure.requiredSecondConjunct =
+        "oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3" ∧
+      closure.missingBackendField =
+        "finite projection backend theorem expanding contract.expectedTarget.blockMatrix[0,0] as the fold over backend sparse-branch contributions" ∧
+      closure.selectedClauseProved = true ∧
+      closure.conditionalPredicateClosureCompiled = true ∧
+      closure.projectionSummationStatementTyped = true ∧
+      closure.backendPredicateTyped = true ∧
+      closure.backendPredicateProved = false ∧
+      closure.projectionSummationProved = false ∧
+      closure.productBridgeProved = false ∧
+      closure.normalizedBlockEqualityProved = false ∧
+      closure.productToCoefficientProved = false ∧
+      closure.lcuCorrectProved = false ∧
+      closure.blockProjectionProved = false ∧
+      closure.blockCorrectProved = false ∧
+      closure.finalExtractionProved = false ∧
+      closure.exactRemainingObstruction =
+        "the selected branch predicate clause is proved and predicate closure is conditional, but QBE still lacks the signal-zero branch-sum equality for the backend seven-slot family" := by
+  have hselected :=
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3
+  have _hconditional :=
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_branchSum_n3
+  have _hpacket :=
+    oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3_transcript
+  dsimp [oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3]
+  exact ⟨rfl, rfl, rfl, hselected, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl⟩
+
+/--
+Unfolding bridge for the generic backend projection statement.
+
+The current focused target uses the generic
+`BlockExtractionBranchContributionTarget.projectionSummationStatement`.  This
+lemma exposes it as the concrete equality between the target block entry and
+the folded backend branch-contribution family, without proving that equality.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendProjectionStatement_unfold_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ↔
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchContribution := by
+  unfold BlockExtractionBranchContributionTarget.projectionSummationStatement
+  constructor
+  · intro h
+    rw [oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchSum_eq] at h
+    exact h
+  · intro h
+    rw [oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchSum_eq]
+    exact h
+
+/--
+The signal entry used in the Robin-local obstruction is the block entry of the
+generic backend branch-contribution target.
+
+This is an index/record bridge only.  It does not assert that the block entry
+equals the folded branch contribution family.
+-/
+theorem oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3 :
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry := by
+  have hobs :
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalBlockEntry := by
+    have h :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3_transcript
+    exact h.2.2.2.2.2.2.1
+  calc
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalBlockEntry := hobs
+    _ = oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry := rfl
+
+/--
+Conditional backend predicate closure from the generic projection statement.
+
+The selected slot-`2` predicate clause is already compiled.  Therefore the
+generic backend projection statement is exactly the remaining hypothesis needed
+to satisfy `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3`
+for the all-slot backend branch family.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3
+    (hprojection :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement) :
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+      oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  apply oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_branchSum_n3
+  have htarget :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry =
+        oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchSum := by
+    unfold BlockExtractionBranchContributionTarget.projectionSummationStatement at hprojection
+    exact hprojection
+  calc
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry :=
+          oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3
+    _ = oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchSum := htarget
+    _ = oneTermRobinGamma3BoundaryBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := rfl
+
+/--
+Equivalence between the generic backend projection statement and the
+Robin-local signal-zero branch-sum equality.
+
+This is a proof-DAG bridge only.  It shows that proving the generic
+`BlockExtractionBranchContributionTarget.projectionSummationStatement` is
+exactly the remaining branch-sum theorem for the focused all-slot backend
+family, but it does not prove either side.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  constructor
+  · intro hprojection
+    have htarget :
+        oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry =
+          oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchSum := by
+      unfold BlockExtractionBranchContributionTarget.projectionSummationStatement at hprojection
+      exact hprojection
+    calc
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+          oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry :=
+            oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3
+      _ = oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchSum := htarget
+      _ = oneTermRobinGamma3BoundaryBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := rfl
+  · intro hbranchSum
+    unfold BlockExtractionBranchContributionTarget.projectionSummationStatement
+    calc
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry =
+          oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry :=
+            oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3.symm
+      _ = oneTermRobinGamma3BoundaryBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := hbranchSum
+      _ = oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchSum := rfl
+
+/--
+Smallest obstruction after attempting the generic projection statement.
+
+The previous declarations provide the all-slot branch family and the selected
+slot theorem.  This packet records the remaining missing backend theorem:
+`BlockExtractionTarget` exposes the signal-zero block entry, but it does not
+yet expose a proof that this entry expands as the fold over the backend
+sparse-branch contributions.
+-/
+structure OneTermRobinGamma3BoundaryBackendProjectionStatementObstruction where
+  sourceAnchor : String
+  closurePacket : OneTermRobinGamma3BoundaryBackendBranchSumClosure
+  branchContributionTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  backendBranchContribution : Fin 7 → Coeff
+  genericProjectionStatement : Prop
+  focusedBranchSumStatement : Prop
+  equivalenceLemma : String
+  selectedClauseTheorem : String
+  conditionalPredicateClosureTheorem : String
+  requiredBackendField : String
+  requiredBackendTheorem : String
+  missingBackendField : String
+  blockEntryOnlyBridgeCompiled : Bool
+  equivalenceCompiled : Bool
+  selectedClauseProved : Bool
+  backendFieldAvailable : Bool
+  projectionSummationProved : Bool
+  backendPredicateProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Compiled obstruction for the current lower target.
+
+No theorem-facing flag is promoted.  The packet only names the exact missing
+projection-backend field required to turn the current all-slot family into the
+signal-zero block-entry sum.
+-/
+def oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3 :
+    OneTermRobinGamma3BoundaryBackendProjectionStatementObstruction :=
+  let closure := oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3
+  let target := oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+  let branchContribution :=
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding and Eq. ROBIN clarified boundary gamma3 branch; QBE finite projection/summation backend"
+    closurePacket := closure
+    branchContributionTarget := target
+    backendBranchContribution := branchContribution
+    genericProjectionStatement := target.projectionSummationStatement
+    focusedBranchSumStatement :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBranchContributionSum branchContribution
+    equivalenceLemma :=
+      "oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3"
+    selectedClauseTheorem :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3"
+    conditionalPredicateClosureTheorem :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3"
+    requiredBackendField :=
+      "projection backend branchContribution : Fin 7 -> Coeff for contract.expectedTarget.blockMatrix[0,0]"
+    requiredBackendTheorem :=
+      "contract.expectedTarget.blockMatrix[0,0] = blockExtractionBranchContributionSum backendBranchContribution"
+    missingBackendField :=
+      "BlockExtractionTarget lacks a sparse-slot branch-sum expansion theorem for the signal-zero entry"
+    blockEntryOnlyBridgeCompiled := true
+    equivalenceCompiled := true
+    selectedClauseProved := true
+    backendFieldAvailable := false
+    projectionSummationProved := false
+    backendPredicateProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the generic projection statement is equivalent to the focused branch-sum equality, but the finite backend still lacks the theorem expanding blockMatrix[0,0] as the seven-slot branch fold"
+  }
+
+/--
+Transcript theorem for the backend projection-statement obstruction.
+
+This checks that the packet uses the all-slot backend family, records the
+equivalence lemma, and keeps the projection-summation theorem and every
+theorem-facing semantic flag false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3_transcript :
+    let obstruction :=
+      oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3
+    let closure := oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3
+    let target :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+    obstruction.closurePacket = closure ∧
+      obstruction.branchContributionTarget = target ∧
+      obstruction.backendBranchContribution =
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      obstruction.genericProjectionStatement =
+        target.projectionSummationStatement ∧
+      obstruction.focusedBranchSumStatement =
+        (oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+          oneTermRobinGamma3BoundaryBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ∧
+      obstruction.equivalenceLemma =
+        "oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3" ∧
+      obstruction.selectedClauseTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3" ∧
+      obstruction.conditionalPredicateClosureTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3" ∧
+      obstruction.requiredBackendField =
+        "projection backend branchContribution : Fin 7 -> Coeff for contract.expectedTarget.blockMatrix[0,0]" ∧
+      obstruction.requiredBackendTheorem =
+        "contract.expectedTarget.blockMatrix[0,0] = blockExtractionBranchContributionSum backendBranchContribution" ∧
+      obstruction.missingBackendField =
+        "BlockExtractionTarget lacks a sparse-slot branch-sum expansion theorem for the signal-zero entry" ∧
+      obstruction.blockEntryOnlyBridgeCompiled = true ∧
+      obstruction.equivalenceCompiled = true ∧
+      obstruction.selectedClauseProved = true ∧
+      obstruction.backendFieldAvailable = false ∧
+      obstruction.projectionSummationProved = false ∧
+      obstruction.backendPredicateProved = false ∧
+      obstruction.productBridgeProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false ∧
+      obstruction.exactRemainingObstruction =
+        "the generic projection statement is equivalent to the focused branch-sum equality, but the finite backend still lacks the theorem expanding blockMatrix[0,0] as the seven-slot branch fold" := by
+  have _hequiv :=
+    oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3
+  have _hclosure :=
+    oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3_transcript
+  dsimp [oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl⟩
+
+/--
+Backend-expansion statement for the focused projection target.
+
+The generic `BlockExtractionBranchContributionTarget` proof-DAG block now
+names the missing theorem directly: expand the signal-zero block entry from
+`contract.expectedTarget.blockMatrix[0,0]` as the fold over the backend
+seven-slot branch family.  This theorem only unfolds the interface; it does
+not prove the expansion.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_equivProjection_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement := by
+  exact
+    (BlockExtractionBranchContributionTarget.projectionSummationStatement_iff_backendExpansionStatement
+        oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3).symm
+
+/--
+Conditional closure of the focused projection statement from the backend
+expansion theorem.
+
+This is the smallest Lean-facing bridge for the next projection-backend proof:
+once the backend supplies the sparse-slot fold for `blockMatrix[0,0]`, the
+generic `projectionSummationStatement` closes.  No semantic `proved` flag is
+changed here.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3
+    (hexpansion :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement :=
+  BlockExtractionBranchContributionTarget.projectionSummationStatement_of_backendExpansionStatement
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3 hexpansion
+
+/--
+The backend-expansion statement is equivalent to the Robin-local branch-sum
+equality.
+
+This packages the generic `BlockExtractionBranchContributionTarget` interface
+with the Robin-local signal-entry bridge.  It confirms that the remaining
+target is exactly one theorem: the backend expansion of the signal-zero entry
+as the seven-slot branch fold.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  constructor
+  · intro hexpansion
+    have hprojection :=
+      oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3
+        hexpansion
+    exact
+      oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3.1
+        hprojection
+  · intro hbranch
+    have hprojection :
+        oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement :=
+      oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3.2
+        hbranch
+    exact
+      BlockExtractionBranchContributionTarget.backendExpansionStatement_of_projectionSummationStatement
+          oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+          hprojection
+
+/--
+Proof-DAG packet for the remaining backend-expansion theorem.
+
+The packet records that the generic backend-expansion interface is now
+available and that it conditionally closes the focused projection statement.
+The actual sparse-slot fold theorem is still absent, so all theorem-facing
+semantic flags remain false.
+-/
+structure OneTermRobinGamma3BoundaryBackendExpansionBridge where
+  sourceAnchor : String
+  projectionStatementObstruction :
+    OneTermRobinGamma3BoundaryBackendProjectionStatementObstruction
+  branchContributionTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  backendExpansionStatement : Prop
+  projectionSummationStatement : Prop
+  focusedBranchSumStatement : Prop
+  genericEquivalenceLemma : String
+  robinEquivalenceLemma : String
+  conditionalProjectionTheorem : String
+  conditionalPredicateTheorem : String
+  requiredBackendTheorem : String
+  backendExpansionStatementTyped : Bool
+  genericEquivalenceCompiled : Bool
+  robinEquivalenceCompiled : Bool
+  conditionalProjectionCompiled : Bool
+  conditionalPredicateCompiled : Bool
+  backendExpansionProved : Bool
+  projectionSummationProved : Bool
+  backendPredicateProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Compiled backend-expansion bridge packet for the focused boundary branch.
+
+This is an interface refinement, not a proof of the sparse-branch expansion.
+It keeps the current `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`
+blocked until Lean proves the backend expansion statement.
+-/
+def oneTermRobinGamma3BoundaryBackendExpansionBridge_n3 :
+    OneTermRobinGamma3BoundaryBackendExpansionBridge :=
+  let obstruction :=
+    oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3
+  let target :=
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding and Eq. ROBIN clarified boundary gamma3 branch; QBE finite projection/summation backend proof-DAG bridge"
+    projectionStatementObstruction := obstruction
+    branchContributionTarget := target
+    backendExpansionStatement := target.backendExpansionStatement
+    projectionSummationStatement := target.projectionSummationStatement
+    focusedBranchSumStatement :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    genericEquivalenceLemma :=
+      "BlockExtractionBranchContributionTarget.projectionSummationStatement_iff_backendExpansionStatement"
+    robinEquivalenceLemma :=
+      "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3"
+    conditionalProjectionTheorem :=
+      "oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3"
+    conditionalPredicateTheorem :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3"
+    requiredBackendTheorem :=
+      "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement"
+    backendExpansionStatementTyped := true
+    genericEquivalenceCompiled := true
+    robinEquivalenceCompiled := true
+    conditionalProjectionCompiled := true
+    conditionalPredicateCompiled := true
+    backendExpansionProved := false
+    projectionSummationProved := false
+    backendPredicateProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the backend-expansion statement is typed and equivalent to the focused branch-sum equality, but the finite backend still has not proved the seven-slot fold for blockMatrix[0,0]"
+  }
+
+/--
+Transcript theorem for the backend-expansion bridge packet.
+
+The theorem verifies that the packet uses the generic proof-DAG interface,
+records the Robin-local equivalence, and keeps the backend expansion and all
+theorem-facing semantic flags false.
+-/
+theorem oneTermRobinGamma3BoundaryBackendExpansionBridge_n3_transcript :
+    let bridge :=
+      oneTermRobinGamma3BoundaryBackendExpansionBridge_n3
+    let obstruction :=
+      oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3
+    let target :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+    bridge.projectionStatementObstruction = obstruction ∧
+      bridge.branchContributionTarget = target ∧
+      bridge.backendExpansionStatement = target.backendExpansionStatement ∧
+      bridge.projectionSummationStatement = target.projectionSummationStatement ∧
+      bridge.focusedBranchSumStatement =
+        (oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+          oneTermRobinGamma3BoundaryBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ∧
+      bridge.genericEquivalenceLemma =
+        "BlockExtractionBranchContributionTarget.projectionSummationStatement_iff_backendExpansionStatement" ∧
+      bridge.robinEquivalenceLemma =
+        "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3" ∧
+      bridge.conditionalProjectionTheorem =
+        "oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3" ∧
+      bridge.conditionalPredicateTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3" ∧
+      bridge.requiredBackendTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement" ∧
+      bridge.backendExpansionStatementTyped = true ∧
+      bridge.genericEquivalenceCompiled = true ∧
+      bridge.robinEquivalenceCompiled = true ∧
+      bridge.conditionalProjectionCompiled = true ∧
+      bridge.conditionalPredicateCompiled = true ∧
+      bridge.backendExpansionProved = false ∧
+      bridge.projectionSummationProved = false ∧
+      bridge.backendPredicateProved = false ∧
+      bridge.productBridgeProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false ∧
+      bridge.exactRemainingObstruction =
+        "the backend-expansion statement is typed and equivalent to the focused branch-sum equality, but the finite backend still has not proved the seven-slot fold for blockMatrix[0,0]" := by
+  have _hgeneric :=
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_equivProjection_n3
+  have _hrobin :=
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3
+  have _hconditional :=
+    oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3
+  have _hobstruction :=
+    oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3_transcript
+  dsimp [oneTermRobinGamma3BoundaryBackendExpansionBridge_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+The Robin-local signal block entry in the projection/summation obstruction is
+the full unitary entry selected by the signal-zero block convention.
+-/
+theorem
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_signalEntry_eq_unitary_n3 :
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry := by
+  have hobs :
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalBlockEntry := by
+    have h :=
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3_transcript
+    exact h.2.2.2.2.2.2.1
+  calc
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalBlockEntry := hobs
+    _ = oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry :=
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3
+
+/--
+The backend-expansion target can be stated on the full signal-zero unitary
+entry.
+
+The previous bridge named the missing theorem as a block-matrix fold.  This
+lemma uses the already compiled block-entry/unitary-entry bridge to restate the
+same missing theorem as an expansion of the actual full finite product entry
+selected by Definition `def:block-encoding`.  It still does not prove the fold.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  constructor
+  · intro hexpansion
+    have hbranch :=
+      oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3.1
+        hexpansion
+    calc
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry := by
+            exact
+              oneTermRobinGamma3BoundaryProjectionSummationObstruction_signalEntry_eq_unitary_n3.symm
+      _ = oneTermRobinGamma3BoundaryBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := hbranch
+  · intro hunitaryFold
+    apply
+      oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3.2
+    calc
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry := by
+            exact
+              oneTermRobinGamma3BoundaryProjectionSummationObstruction_signalEntry_eq_unitary_n3
+      _ = oneTermRobinGamma3BoundaryBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := hunitaryFold
+
+/--
+Smallest current projection-backend target after moving from the cached block
+entry to the full finite product entry.
+
+The record points at the exact next theorem: the signal-zero full-unitary entry
+selected by `def:block-encoding` must be expanded as the seven-slot backend
+fold.  It keeps the backend expansion, product-to-coefficient theorem, LCU,
+block projection, block correctness, and final extraction flags false.
+-/
+structure OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget where
+  sourceAnchor : String
+  backendExpansionBridge : OneTermRobinGamma3BoundaryBackendExpansionBridge
+  branchContributionTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  signalBlockEntry : Coeff
+  signalUnitaryEntry : Coeff
+  backendBranchContribution : Fin 7 → Coeff
+  backendBranchFold : Coeff
+  backendExpansionStatement : Prop
+  unitaryEntryFoldStatement : Prop
+  blockEntryUnitaryLemma : String
+  equivalenceLemma : String
+  requiredFullProductFoldTheorem : String
+  missingProjectionBackendField : String
+  blockEntryUnitaryBridgeCompiled : Bool
+  unitaryEntryFoldStatementTyped : Bool
+  backendExpansionEquivalentToUnitaryFold : Bool
+  backendExpansionProved : Bool
+  projectionSummationProved : Bool
+  backendPredicateProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete unitary-entry fold target for the focused `n = 3` boundary branch.
+
+This is the accepted fallback when the preferred backend expansion theorem is
+not available: it replaces the broad block-matrix fold obligation by the
+full-product entry fold that a finite projection backend must provide.
+-/
+def oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3 :
+    OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget :=
+  let bridge := oneTermRobinGamma3BoundaryBackendExpansionBridge_n3
+  let target := oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+  let projectionTarget :=
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3
+  let obstruction :=
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+  let branchContribution :=
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding and Eq. ROBIN clarified boundary gamma3 branch; QBE finite full-product projection backend"
+    backendExpansionBridge := bridge
+    branchContributionTarget := target
+    signalBlockEntry := obstruction.signalBlockEntry
+    signalUnitaryEntry := projectionTarget.signalUnitaryEntry
+    backendBranchContribution := branchContribution
+    backendBranchFold :=
+      blockExtractionBranchContributionSum branchContribution
+    backendExpansionStatement := target.backendExpansionStatement
+    unitaryEntryFoldStatement :=
+      projectionTarget.signalUnitaryEntry =
+        blockExtractionBranchContributionSum branchContribution
+    blockEntryUnitaryLemma :=
+      "oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3"
+    equivalenceLemma :=
+      "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3"
+    requiredFullProductFoldTheorem :=
+      "contract.expectedTarget.unitaryMatrix[0,0] = blockExtractionBranchContributionSum backendBranchContribution"
+    missingProjectionBackendField :=
+      "finite product/projection backend theorem expanding the signal-zero full-unitary entry as the seven-slot branch fold"
+    blockEntryUnitaryBridgeCompiled := true
+    unitaryEntryFoldStatementTyped := true
+    backendExpansionEquivalentToUnitaryFold := true
+    backendExpansionProved := false
+    projectionSummationProved := false
+    backendPredicateProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the backend expansion is equivalent to a full-unitary entry fold, but QBE still lacks the finite product/projection theorem expanding entry [0,0] as the seven backend branch summands"
+  }
+
+/--
+Transcript theorem for the unitary-entry fold target.
+
+This checks that the target is tied to the existing backend-expansion bridge
+and only narrows the missing theorem to a full-product entry expansion.  No
+semantic proof flag is promoted.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3_transcript :
+    let target :=
+      oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3
+    let bridge := oneTermRobinGamma3BoundaryBackendExpansionBridge_n3
+    let branchTarget :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+    target.backendExpansionBridge = bridge ∧
+      target.branchContributionTarget = branchTarget ∧
+      target.signalBlockEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry ∧
+      target.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry ∧
+      target.signalBlockEntry = target.signalUnitaryEntry ∧
+      target.backendBranchContribution =
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      target.blockEntryUnitaryLemma =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3" ∧
+      target.equivalenceLemma =
+        "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3" ∧
+      target.requiredFullProductFoldTheorem =
+        "contract.expectedTarget.unitaryMatrix[0,0] = blockExtractionBranchContributionSum backendBranchContribution" ∧
+      target.missingProjectionBackendField =
+        "finite product/projection backend theorem expanding the signal-zero full-unitary entry as the seven-slot branch fold" ∧
+      target.blockEntryUnitaryBridgeCompiled = true ∧
+      target.unitaryEntryFoldStatementTyped = true ∧
+      target.backendExpansionEquivalentToUnitaryFold = true ∧
+      target.backendExpansionProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.backendPredicateProved = false ∧
+      target.productBridgeProved = false ∧
+      target.normalizedBlockEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      target.exactRemainingObstruction =
+        "the backend expansion is equivalent to a full-unitary entry fold, but QBE still lacks the finite product/projection theorem expanding entry [0,0] as the seven backend branch summands" := by
+  have hunitary :=
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_signalEntry_eq_unitary_n3
+  have _hequiv :=
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3
+  have _hbridge :=
+    oneTermRobinGamma3BoundaryBackendExpansionBridge_n3_transcript
+  dsimp [oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, hunitary, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl⟩
+
+/--
+The selected sparse slot is one of the seven indices folded by the backend
+branch-contribution sum.
+
+This is only a finite-domain support fact.  It does not prove that the full
+signal-zero unitary entry is the fold of the seven contributions.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3 :
+    oneTermRobinGamma3BoundaryBranchContributionFocusedSlot ∈
+      (List.finRange 7) :=
+  List.mem_finRange oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+
+/--
+Support packet for the remaining full-unitary entry fold.
+
+The packet records the finite fold domain, proves that the focused slot `2` is
+inside that domain, and keeps the actual theorem
+`signalUnitaryEntry = blockExtractionBranchContributionSum ...` as the
+remaining projection-backend obligation.
+-/
+structure OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget where
+  sourceAnchor : String
+  unitaryEntryFoldTarget :
+    OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget
+  branchContributionTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  backendBranchContribution : Fin 7 → Coeff
+  foldIndexList : List (Fin 7)
+  selectedBranch : Fin 7
+  selectedBranchIndex : Nat
+  selectedBranchFullIndex :
+    Fin (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3)))
+  selectedBranchInFoldStatement : Prop
+  selectedContributionStatement : Prop
+  unitaryEntryFoldStatement : Prop
+  selectedBranchMembershipLemma : String
+  selectedContributionLemma : String
+  requiredFullProductFoldTheorem : String
+  missingProjectionBackendField : String
+  foldDomainTyped : Bool
+  selectedBranchInFoldProved : Bool
+  selectedContributionProved : Bool
+  unitaryEntryFoldStatementTyped : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  backendPredicateProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete fold-support target for the focused `n = 3` boundary branch.
+
+This refines the obstruction from "prove a seven-slot fold" to the exact
+remaining backend theorem: the fold domain contains slot `2` and the slot is
+already identified with the accepted summand, but Lean still lacks the finite
+product/projection proof that the full signal-zero entry equals the complete
+seven-slot fold.
+-/
+def oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3 :
+    OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget :=
+  let unitaryTarget :=
+    oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3
+  let branchTarget :=
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+  let branchContribution :=
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  let selected :=
+    oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding and Eq. ROBIN clarified boundary gamma3 branch; QBE seven-slot fold-support interface"
+    unitaryEntryFoldTarget := unitaryTarget
+    branchContributionTarget := branchTarget
+    backendBranchContribution := branchContribution
+    foldIndexList := List.finRange 7
+    selectedBranch := selected
+    selectedBranchIndex := selected.val
+    selectedBranchFullIndex :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 selected
+    selectedBranchInFoldStatement := selected ∈ (List.finRange 7)
+    selectedContributionStatement :=
+      branchContribution selected =
+        oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+    unitaryEntryFoldStatement := unitaryTarget.unitaryEntryFoldStatement
+    selectedBranchMembershipLemma :=
+      "oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3"
+    selectedContributionLemma :=
+      "oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3"
+    requiredFullProductFoldTheorem :=
+      "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3"
+    missingProjectionBackendField :=
+      "finite product/projection backend proof that the full signal-zero entry [0,0] expands as the seven-slot fold whose slot 2 summand is the [32,32] branch contribution"
+    foldDomainTyped := true
+    selectedBranchInFoldProved := true
+    selectedContributionProved := true
+    unitaryEntryFoldStatementTyped := true
+    fullProductFoldProved := false
+    projectionSummationProved := false
+    backendPredicateProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the fold domain contains slot 2 and the selected summand is proved, but QBE still lacks the finite product/projection theorem equating the full signal-zero entry with the complete seven-slot fold"
+  }
+
+/--
+Transcript theorem for the fold-support target.
+
+The theorem verifies that slot `2` is included in the backend fold and already
+matches the accepted selected summand.  It does not promote the full fold,
+projection, normalized equality, or product-to-coefficient flags.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3_transcript :
+    let support :=
+      oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3
+    let unitaryTarget :=
+      oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3
+    let branchTarget :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+    support.unitaryEntryFoldTarget = unitaryTarget ∧
+      support.branchContributionTarget = branchTarget ∧
+      support.backendBranchContribution =
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      support.foldIndexList = List.finRange 7 ∧
+      support.selectedBranch =
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot ∧
+      support.selectedBranchIndex = 2 ∧
+      support.selectedBranchFullIndex =
+        oneTermRobinGamma3BoundaryPrefixSource_n3 ∧
+      support.selectedBranchInFoldStatement ∧
+      support.selectedContributionStatement ∧
+      support.unitaryEntryFoldStatement =
+        unitaryTarget.unitaryEntryFoldStatement ∧
+      support.selectedBranchMembershipLemma =
+        "oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3" ∧
+      support.selectedContributionLemma =
+        "oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3" ∧
+      support.requiredFullProductFoldTheorem =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3" ∧
+      support.missingProjectionBackendField =
+        "finite product/projection backend proof that the full signal-zero entry [0,0] expands as the seven-slot fold whose slot 2 summand is the [32,32] branch contribution" ∧
+      support.foldDomainTyped = true ∧
+      support.selectedBranchInFoldProved = true ∧
+      support.selectedContributionProved = true ∧
+      support.unitaryEntryFoldStatementTyped = true ∧
+      support.fullProductFoldProved = false ∧
+      support.projectionSummationProved = false ∧
+      support.backendPredicateProved = false ∧
+      support.productBridgeProved = false ∧
+      support.normalizedBlockEqualityProved = false ∧
+      support.productToCoefficientProved = false ∧
+      support.lcuCorrectProved = false ∧
+      support.blockProjectionProved = false ∧
+      support.blockCorrectProved = false ∧
+      support.finalExtractionProved = false ∧
+      support.exactRemainingObstruction =
+        "the fold domain contains slot 2 and the selected summand is proved, but QBE still lacks the finite product/projection theorem equating the full signal-zero entry with the complete seven-slot fold" := by
+  have hmem :=
+    oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3
+  have hselected :=
+    oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3
+  have hindex :=
+    oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3
+  dsimp [oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, hindex.2, hmem, hselected,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Every backend sparse-slot contribution is the corresponding branch-diagonal
+seven-gate entry, multiplied by the two sparse-register projection amplitudes.
+
+This is the all-slot formula that was implicit in
+`oneTermRobinGamma3BoundaryBackendBranchContribution_n3`.  It is not the
+full-entry fold theorem: it only identifies the summands of that fold.
+-/
+theorem oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3
+    (s : Fin 7) :
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3 s =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s)
+          (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s))
+        (Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv")) := by
+  unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  rfl
+
+/--
+Typed target for the prepared branch expansion still missing from the focused
+projection bridge.
+
+The current `CircuitMatrixSemantics` exposes the raw seven-gate product entry
+selected by the signal-zero block convention.  The branch fold, however, also
+uses the external sparse-register preparation/projection amplitudes.  This
+packet proves the all-slot summand formula and records the missing backend
+field as a prepared-projection theorem, rather than promoting the fold itself.
+-/
+structure OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget where
+  sourceAnchor : String
+  foldSupportTarget :
+    OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget
+  unitaryEntryFoldTarget :
+    OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget
+  branchContributionTarget :
+    BlockExtractionBranchContributionTarget Coeff
+      (gridSize 3) (gridSize 3)
+      (qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)))
+      7
+  rawSignalUnitaryEntry : Coeff
+  backendBranchContribution : Fin 7 → Coeff
+  branchFullIndex :
+    Fin 7 →
+      Fin (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3)))
+  branchMatrix :
+    Matrix
+      (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3)))
+      (qubitDim (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3)))
+      Coeff
+  ketAmplitude : Coeff
+  braAmplitude : Coeff
+  amplitudeProduct : Coeff
+  branchContributionFormulaStatement : Prop
+  unitaryEntryFoldStatement : Prop
+  preparedProjectionBackendStatement : Prop
+  branchContributionFormulaLemma : String
+  requiredPreparedProjectionTheorem : String
+  rawCircuitMatrixSource : String
+  missingPreparedProjectionField : String
+  branchContributionFormulaProved : Bool
+  preparedProjectionBackendStatementTyped : Bool
+  rawCircuitMatrixExposed : Bool
+  preparedProjectionBackendAvailable : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  backendPredicateProved : Bool
+  productBridgeProved : Bool
+  normalizedBlockEqualityProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete prepared-branch expansion target for the focused `n = 3` boundary
+branch.
+
+The packet narrows the missing interface: the summands are now proved to be
+the prepared branch entries, and the only absent theorem is the backend proof
+that the raw signal-zero entry expands through those prepared branches.
+-/
+def oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3 :
+    OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget :=
+  let support :=
+    oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3
+  let unitaryTarget :=
+    oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3
+  let branchTarget :=
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+  let branchContribution :=
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  let branchIndex :=
+    oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+  let branchMatrix :=
+    oneTermRobinGamma3BoundarySevenGateMatrix_n3
+  let ketAmplitude := Coeff.symbol "sqrt_kappa_inv"
+  let braAmplitude := Coeff.symbol "sqrt_kappa_inv"
+  let amplitudeProduct := Coeff.mul ketAmplitude braAmplitude
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Eq. arbitrary sparcity, and QBE prepared projection backend"
+    foldSupportTarget := support
+    unitaryEntryFoldTarget := unitaryTarget
+    branchContributionTarget := branchTarget
+    rawSignalUnitaryEntry := unitaryTarget.signalUnitaryEntry
+    backendBranchContribution := branchContribution
+    branchFullIndex := branchIndex
+    branchMatrix := branchMatrix
+    ketAmplitude := ketAmplitude
+    braAmplitude := braAmplitude
+    amplitudeProduct := amplitudeProduct
+    branchContributionFormulaStatement :=
+      ∀ s : Fin 7,
+        branchContribution s =
+          Coeff.mul (branchMatrix (branchIndex s) (branchIndex s))
+            amplitudeProduct
+    unitaryEntryFoldStatement :=
+      unitaryTarget.unitaryEntryFoldStatement
+    preparedProjectionBackendStatement :=
+      unitaryTarget.unitaryEntryFoldStatement
+    branchContributionFormulaLemma :=
+      "oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3"
+    requiredPreparedProjectionTheorem :=
+      "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3"
+    rawCircuitMatrixSource :=
+      "oneTermRobinCircuitSemantics 3 exposes evalGateMatrices for the seven Fig. 1-term ROBIN gates"
+    missingPreparedProjectionField :=
+      "prepared projection backend for the H_W^(kappa) ket amplitude and matching H_W^(kappa)^dagger bra amplitude that expands signal-zero entry [0,0] as the seven-slot fold"
+    branchContributionFormulaProved := true
+    preparedProjectionBackendStatementTyped := true
+    rawCircuitMatrixExposed := true
+    preparedProjectionBackendAvailable := false
+    fullProductFoldProved := false
+    projectionSummationProved := false
+    backendPredicateProved := false
+    productBridgeProved := false
+    normalizedBlockEqualityProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "all seven prepared branch summands are typed and proved by formula, but the backend still lacks the prepared projection theorem equating the raw signal-zero entry with their fold"
+  }
+
+/-- The prepared-branch target proves the all-slot summand formula. -/
+theorem
+    oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_formula_n3 :
+    oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3.branchContributionFormulaStatement := by
+  intro s
+  exact oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3 s
+
+/--
+Transcript theorem for the prepared-branch expansion target.
+
+This records the narrowed obstruction: the branch summands themselves are now
+proved uniformly for all seven slots, while the prepared projection theorem and
+all theorem-facing semantic flags remain false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3_transcript :
+    let target :=
+      oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3
+    let support :=
+      oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3
+    let unitaryTarget :=
+      oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3
+    let branchTarget :=
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+    target.foldSupportTarget = support ∧
+      target.unitaryEntryFoldTarget = unitaryTarget ∧
+      target.branchContributionTarget = branchTarget ∧
+      target.rawSignalUnitaryEntry = unitaryTarget.signalUnitaryEntry ∧
+      target.backendBranchContribution =
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      target.branchFullIndex =
+        oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 ∧
+      target.branchMatrix =
+        oneTermRobinGamma3BoundarySevenGateMatrix_n3 ∧
+      target.ketAmplitude = Coeff.symbol "sqrt_kappa_inv" ∧
+      target.braAmplitude = Coeff.symbol "sqrt_kappa_inv" ∧
+      target.amplitudeProduct =
+        Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv") ∧
+      target.branchContributionFormulaStatement ∧
+      target.unitaryEntryFoldStatement =
+        unitaryTarget.unitaryEntryFoldStatement ∧
+      target.preparedProjectionBackendStatement =
+        target.unitaryEntryFoldStatement ∧
+      target.branchContributionFormulaLemma =
+        "oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3" ∧
+      target.requiredPreparedProjectionTheorem =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3" ∧
+      target.rawCircuitMatrixSource =
+        "oneTermRobinCircuitSemantics 3 exposes evalGateMatrices for the seven Fig. 1-term ROBIN gates" ∧
+      target.missingPreparedProjectionField =
+        "prepared projection backend for the H_W^(kappa) ket amplitude and matching H_W^(kappa)^dagger bra amplitude that expands signal-zero entry [0,0] as the seven-slot fold" ∧
+      target.branchContributionFormulaProved = true ∧
+      target.preparedProjectionBackendStatementTyped = true ∧
+      target.rawCircuitMatrixExposed = true ∧
+      target.preparedProjectionBackendAvailable = false ∧
+      target.fullProductFoldProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.backendPredicateProved = false ∧
+      target.productBridgeProved = false ∧
+      target.normalizedBlockEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      target.exactRemainingObstruction =
+        "all seven prepared branch summands are typed and proved by formula, but the backend still lacks the prepared projection theorem equating the raw signal-zero entry with their fold" := by
+  have hformula :=
+    oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_formula_n3
+  have _hsupport :=
+    oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3_transcript
+  dsimp [oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    hformula, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl⟩
+
+/-- Clean sparse-register column index for the focused `H_W^(kappa)` packet. -/
+def oneTermRobinGamma3BoundarySparseCleanIndex_n3 : Fin 8 :=
+  ⟨0, by native_decide⟩
+
+/-- Embed one of the seven paper sparse slots into the eight-dimensional register. -/
+def oneTermRobinGamma3BoundarySparseSlotIndex_n3 (s : Fin 7) : Fin 8 :=
+  ⟨s.val, by omega⟩
+
+/--
+Focused uniform-column statement for the sparse-register preparation matrix.
+
+This is the exact local shape of the Shukla--Vedula contract needed by the
+prepared projection bridge: each of the seven paper slots has clean-column
+amplitude `sqrt_kappa_inv`.
+-/
+def oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+    (H : Matrix 8 8 Coeff) : Prop :=
+  ∀ s : Fin 7,
+    H (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s)
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3 =
+      Coeff.symbol "sqrt_kappa_inv"
+
+/--
+Prepared sandwich contribution for one sparse slot.
+
+The expression is the local branch-diagonal seven-gate entry multiplied by the
+ket-side `H_W^(kappa)` clean-column amplitude and the matching transpose-style
+bra amplitude.  It is the smallest matrix object missing from the raw
+`CircuitMatrixSemantics` block entry.
+-/
+def oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3
+    (H : Matrix 8 8 Coeff) (s : Fin 7) : Coeff :=
+  Coeff.mul
+    (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+      (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s)
+      (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s))
+    (Coeff.mul
+      (H (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s)
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+      (oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s)))
+
+/-- Fold the prepared sandwich contributions over the seven paper sparse slots. -/
+def oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3
+    (H : Matrix 8 8 Coeff) : Coeff :=
+  blockExtractionBranchContributionSum
+    (oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3 H)
+
+/--
+The prepared sandwich contribution specializes to the backend branch summand
+under the uniform-column contract for `H_W^(kappa)`.
+
+This proves the amplitude side of the prepared projection bridge.  It does not
+prove that the raw signal-zero unitary entry is this prepared sandwich fold.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (s : Fin 7) :
+    oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3 H s =
+      oneTermRobinGamma3BoundaryBackendBranchContribution_n3 s := by
+  unfold oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3
+  unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  rw [hUniform s]
+  unfold oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3
+  rw [hUniform s]
+  rfl
+
+/--
+The prepared sandwich fold specializes to the existing backend branch fold
+under the all-slot uniform-column contract.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  unfold oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3
+  have hfun :
+      oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3 H =
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+    funext s
+    exact
+      oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3
+        H hUniform s
+  rw [hfun]
+
+/--
+Conditional closure of the preferred unitary-entry fold from the smaller
+prepared-sandwich backend field.
+
+The remaining unproved input is now explicit:
+`signalUnitaryEntry = preparedProjectionSandwichSum H`.  The all-slot
+amplitude fold itself is compiled by
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3`.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hPreparedBackend :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  calc
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H :=
+          hPreparedBackend
+    _ = blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+          oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+            H hUniform
+
+/--
+Smallest prepared-projection backend field still missing from the current
+matrix semantics.
+
+QBE can now prove that a prepared `H_W^(kappa)^dagger * U * H_W^(kappa)`
+sandwich fold specializes to the backend branch sum.  What remains absent is a
+field or theorem connecting the raw signal-zero entry exposed by
+`CircuitMatrixSemantics` to that prepared sandwich fold.
+-/
+structure OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget where
+  sourceAnchor : String
+  preparedBranchExpansionTarget :
+    OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget
+  cleanColumnContract : OneTermRobinGamma3BoundaryHWKappaCleanColumnContract
+  sparseCleanIndex : Nat
+  sparseSlotDomain : List Nat
+  sparsePreparationMatrixType : String
+  sparseDaggerMatrixType : String
+  preparedSandwichContributionFormula : String
+  preparedSandwichSumFormula : String
+  uniformColumnStatementName : String
+  contributionSpecializationTheorem : String
+  sumSpecializationTheorem : String
+  conditionalUnitaryFoldTheorem : String
+  requiredPreparedProjectionBackendField : String
+  missingPreparedProjectionBackendField : String
+  uniformColumnObligation : SemanticObligation
+  preparedProjectionBackendObligation : SemanticObligation
+  preparedSandwichContributionSpecialized : Bool
+  preparedSandwichSumSpecialized : Bool
+  conditionalUnitaryFoldCompiled : Bool
+  preparedProjectionBackendAvailable : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete prepared-sandwich backend target for the focused `n = 3` boundary
+branch.
+
+This is a strict reduction of the previous obstruction: the branch summands
+and their fold are now connected to an explicit `H_W^(kappa)` clean-column
+matrix contract.  The missing theorem is only the raw-entry-to-prepared-fold
+backend field.
+-/
+def oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3 :
+    OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget :=
+  let target := oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3
+  let cleanColumn := oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Eq. arbitrary sparcity, Fig. 1-term ROBIN, and QBE prepared projection sandwich backend"
+    preparedBranchExpansionTarget := target
+    cleanColumnContract := cleanColumn
+    sparseCleanIndex := oneTermRobinGamma3BoundarySparseCleanIndex_n3.val
+    sparseSlotDomain := [0, 1, 2, 3, 4, 5, 6]
+    sparsePreparationMatrixType := "H_W^(kappa) : Matrix 8 8 Coeff"
+    sparseDaggerMatrixType :=
+      "oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H"
+    preparedSandwichContributionFormula :=
+      "U[branchFullIndex(s),branchFullIndex(s)] * H_W[s,0] * H_W^dagger[0,s]"
+    preparedSandwichSumFormula :=
+      "blockExtractionBranchContributionSum (preparedProjectionSandwichContribution H)"
+    uniformColumnStatementName :=
+      "oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H"
+    contributionSpecializationTheorem :=
+      "oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3"
+    sumSpecializationTheorem :=
+      "oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3"
+    conditionalUnitaryFoldTheorem :=
+      "oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3"
+    requiredPreparedProjectionBackendField :=
+      "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H"
+    missingPreparedProjectionBackendField :=
+      "raw CircuitMatrixSemantics entry [0,0] is not yet connected to an H_W^(kappa)^dagger * seven-gate product * H_W^(kappa) prepared sandwich entry"
+    uniformColumnObligation := cleanColumn.uniformColumnObligation
+    preparedProjectionBackendObligation := {
+      description :=
+        "prove the raw signal-zero entry equals the prepared H_W^(kappa)^dagger * U * H_W^(kappa) sparse-slot sandwich fold"
+      source :=
+        "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified, and QBE finite projection backend"
+      proved := false
+    }
+    preparedSandwichContributionSpecialized := true
+    preparedSandwichSumSpecialized := true
+    conditionalUnitaryFoldCompiled := true
+    preparedProjectionBackendAvailable := false
+    fullProductFoldProved := target.fullProductFoldProved
+    projectionSummationProved := target.projectionSummationProved
+    productToCoefficientProved := target.productToCoefficientProved
+    lcuCorrectProved := target.lcuCorrectProved
+    blockProjectionProved := target.blockProjectionProved
+    blockCorrectProved := target.blockCorrectProved
+    finalExtractionProved := target.finalExtractionProved
+    exactRemainingObstruction :=
+      "prepared sandwich summands specialize to the backend branch fold under the H_W^(kappa) clean-column contract; the remaining missing field is the raw signal-zero entry equals prepared sandwich fold theorem"
+  }
+
+/--
+Transcript theorem for the prepared-sandwich backend target.
+
+It verifies the new smaller proof interface and keeps the theorem-facing
+product, LCU, projection, block-correctness, and final-extraction flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3_transcript :
+    let backend :=
+      oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3
+    let target :=
+      oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3
+    let cleanColumn :=
+      oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3
+    backend.preparedBranchExpansionTarget = target ∧
+      backend.cleanColumnContract = cleanColumn ∧
+      backend.sparseCleanIndex = 0 ∧
+      backend.sparseSlotDomain = [0, 1, 2, 3, 4, 5, 6] ∧
+      backend.sparsePreparationMatrixType =
+        "H_W^(kappa) : Matrix 8 8 Coeff" ∧
+      backend.sparseDaggerMatrixType =
+        "oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H" ∧
+      backend.preparedSandwichContributionFormula =
+        "U[branchFullIndex(s),branchFullIndex(s)] * H_W[s,0] * H_W^dagger[0,s]" ∧
+      backend.preparedSandwichSumFormula =
+        "blockExtractionBranchContributionSum (preparedProjectionSandwichContribution H)" ∧
+      backend.uniformColumnStatementName =
+        "oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H" ∧
+      backend.contributionSpecializationTheorem =
+        "oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3" ∧
+      backend.sumSpecializationTheorem =
+        "oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3" ∧
+      backend.conditionalUnitaryFoldTheorem =
+        "oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3" ∧
+      backend.requiredPreparedProjectionBackendField =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H" ∧
+      backend.missingPreparedProjectionBackendField =
+        "raw CircuitMatrixSemantics entry [0,0] is not yet connected to an H_W^(kappa)^dagger * seven-gate product * H_W^(kappa) prepared sandwich entry" ∧
+      backend.uniformColumnObligation = cleanColumn.uniformColumnObligation ∧
+      backend.uniformColumnObligation.proved = false ∧
+      backend.preparedProjectionBackendObligation.proved = false ∧
+      backend.preparedSandwichContributionSpecialized = true ∧
+      backend.preparedSandwichSumSpecialized = true ∧
+      backend.conditionalUnitaryFoldCompiled = true ∧
+      backend.preparedProjectionBackendAvailable = false ∧
+      backend.fullProductFoldProved = false ∧
+      backend.projectionSummationProved = false ∧
+      backend.productToCoefficientProved = false ∧
+      backend.lcuCorrectProved = false ∧
+      backend.blockProjectionProved = false ∧
+      backend.blockCorrectProved = false ∧
+      backend.finalExtractionProved = false ∧
+      backend.exactRemainingObstruction =
+        "prepared sandwich summands specialize to the backend branch fold under the H_W^(kappa) clean-column contract; the remaining missing field is the raw signal-zero entry equals prepared sandwich fold theorem" := by
+  have _htarget :=
+    oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3_transcript
+  have _hclean :=
+    oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3_transcript
+  have _hcontribution :=
+    oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3
+  have _hsum :=
+    oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+  have _hfold :=
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3
+  dsimp [oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Typed raw-entry field needed by the prepared-sandwich backend.
+
+The previous packet proved that a prepared sparse-register sandwich fold
+specializes to the backend branch fold under the clean-column contract.  This
+record names the smaller remaining finite matrix field: the actual signal-zero
+entry exposed by `CircuitMatrixSemantics` must equal that prepared sandwich
+fold.  It does not assert that field.
+-/
+structure OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField where
+  sourceAnchor : String
+  preparedSandwichBackendTarget :
+    OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget
+  sparsePreparationMatrix : Matrix 8 8 Coeff
+  rawUnitaryEntry : Coeff
+  preparedSandwichSum : Coeff
+  uniformColumnStatement : Prop
+  rawEntryPreparedSandwichStatement : Prop
+  preferredUnitaryEntryFoldStatement : Prop
+  rawCircuitSemanticsEntryFormula : String
+  requiredCircuitMatrixField : String
+  conditionalFoldTheorem : String
+  uniformColumnObligation : SemanticObligation
+  rawEntryPreparedSandwichObligation : SemanticObligation
+  rawEntryPreparedSandwichStatementTyped : Bool
+  conditionalFoldBridgeCompiled : Bool
+  preparedProjectionBackendAvailable : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete raw-entry prepared-sandwich field for the focused boundary packet.
+
+The matrix `H` is the sparse-register preparation matrix named by the source
+contract.  The record keeps the Shukla--Vedula clean-column contract separate
+from the QBE-local raw circuit-entry theorem.
+-/
+def oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+    (H : Matrix 8 8 Coeff) :
+    OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField :=
+  let backend := oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified, Fig. 1-term ROBIN, and QBE CircuitMatrixSemantics raw-entry backend"
+    preparedSandwichBackendTarget := backend
+    sparsePreparationMatrix := H
+    rawUnitaryEntry :=
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry
+    preparedSandwichSum :=
+      oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H
+    uniformColumnStatement :=
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+    rawEntryPreparedSandwichStatement :=
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H
+    preferredUnitaryEntryFoldStatement :=
+      oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3.unitaryEntryFoldStatement
+    rawCircuitSemanticsEntryFormula :=
+      "contract.expectedTarget.unitaryMatrix[0,0] = (cast (oneTermRobinCircuitDimCompat 3) (evalGateMatrices oneTermRobinGateMatrixPlaceholders))[0,0]"
+    requiredCircuitMatrixField :=
+      "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H"
+    conditionalFoldTheorem :=
+      "oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3"
+    uniformColumnObligation := backend.uniformColumnObligation
+    rawEntryPreparedSandwichObligation := backend.preparedProjectionBackendObligation
+    rawEntryPreparedSandwichStatementTyped := true
+    conditionalFoldBridgeCompiled := true
+    preparedProjectionBackendAvailable := backend.preparedProjectionBackendAvailable
+    fullProductFoldProved := backend.fullProductFoldProved
+    projectionSummationProved := backend.projectionSummationProved
+    productToCoefficientProved := backend.productToCoefficientProved
+    lcuCorrectProved := backend.lcuCorrectProved
+    blockProjectionProved := backend.blockProjectionProved
+    blockCorrectProved := backend.blockCorrectProved
+    finalExtractionProved := backend.finalExtractionProved
+    exactRemainingObstruction :=
+      "the remaining field is the CircuitMatrixSemantics raw entry [0,0] equals the prepared H_W^(kappa)^dagger * U * H_W^(kappa) sandwich fold"
+  }
+
+/-- The raw-entry field statement unfolds to the prepared-sandwich equality. -/
+theorem
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3
+    (H : Matrix 8 8 Coeff) :
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H := by
+  rfl
+
+/--
+Conditional closure from the raw-entry prepared-sandwich field to the preferred
+unitary-entry fold.
+
+This theorem keeps the new packet on the existing proof route: if the clean
+column contract and the raw `CircuitMatrixSemantics` entry field are supplied,
+then the focused unitary-entry fold follows.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_rawEntryPreparedSandwichField_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).uniformColumnStatement)
+    (hRaw :
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement) :
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).preferredUnitaryEntryFoldStatement := by
+  exact
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3
+      H hUniform hRaw
+
+/--
+The raw-entry prepared-sandwich field is equivalent to the preferred
+unitary-entry fold under the existing all-slot clean-column contract.
+
+This is an alignment lemma only: it proves that the current raw field is not a
+parallel obstruction.  Supplying the raw field is exactly supplying the
+signal-zero entry fold once the prepared sandwich has been specialized by the
+`H_W^(kappa)` contract.
+-/
+theorem
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_unitaryEntryFold_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  constructor
+  · intro hRaw
+    have hRaw' :
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H :=
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3
+        H).1 hRaw
+    calc
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H :=
+          hRaw'
+      _ = blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+          oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+            H hUniform
+  · intro hFold
+    apply
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3
+        H).2
+    calc
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := hFold
+      _ = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H :=
+          (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+            H hUniform).symm
+
+/--
+The raw-entry prepared-sandwich field has the same remaining content as the
+backend-expansion target under the clean-column contract.
+
+This keeps the source-prepared route tied to the unique finite projection
+backend theorem and does not prove the backend expansion itself.
+-/
+theorem
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement ↔
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement := by
+  exact
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_unitaryEntryFold_n3
+      H hUniform).trans
+      (oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3).symm
+
+/--
+Transcript theorem for the raw-entry prepared-sandwich circuit field.
+
+The theorem checks that the packet is a strict continuation of
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3`, exposes
+the raw circuit-entry proposition as a typed field, and keeps every
+theorem-facing semantic flag false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3_transcript
+    (H : Matrix 8 8 Coeff) :
+    let field :=
+      oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H
+    let backend :=
+      oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3
+    field.preparedSandwichBackendTarget = backend ∧
+      field.sparsePreparationMatrix = H ∧
+      field.rawUnitaryEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry ∧
+      field.preparedSandwichSum =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H ∧
+      (field.rawEntryPreparedSandwichStatement ↔
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) ∧
+      field.rawCircuitSemanticsEntryFormula =
+        "contract.expectedTarget.unitaryMatrix[0,0] = (cast (oneTermRobinCircuitDimCompat 3) (evalGateMatrices oneTermRobinGateMatrixPlaceholders))[0,0]" ∧
+      field.requiredCircuitMatrixField =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H" ∧
+      field.conditionalFoldTheorem =
+        "oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3" ∧
+      field.uniformColumnObligation = backend.uniformColumnObligation ∧
+      field.uniformColumnObligation.proved = false ∧
+      field.rawEntryPreparedSandwichObligation =
+        backend.preparedProjectionBackendObligation ∧
+      field.rawEntryPreparedSandwichObligation.proved = false ∧
+      field.rawEntryPreparedSandwichStatementTyped = true ∧
+      field.conditionalFoldBridgeCompiled = true ∧
+      field.preparedProjectionBackendAvailable = false ∧
+      field.fullProductFoldProved = false ∧
+      field.projectionSummationProved = false ∧
+      field.productToCoefficientProved = false ∧
+      field.lcuCorrectProved = false ∧
+      field.blockProjectionProved = false ∧
+      field.blockCorrectProved = false ∧
+      field.finalExtractionProved = false ∧
+      field.exactRemainingObstruction =
+        "the remaining field is the CircuitMatrixSemantics raw entry [0,0] equals the prepared H_W^(kappa)^dagger * U * H_W^(kappa) sandwich fold" := by
+  have _hbackend :=
+    oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3_transcript
+  have _hstatement :=
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3 H
+  have _hconditional :=
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_rawEntryPreparedSandwichField_n3
+  dsimp [oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3]
+  exact ⟨rfl, rfl, rfl, rfl, Iff.rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl⟩
+
+/--
+The raw entry in the focused packet is the active seven-gate circuit product
+entry selected by the finite block-extraction contract.
+
+This is smaller than the prepared-sandwich theorem: it identifies the source
+of the raw entry without asserting that the active circuit product already
+contains the sparse-register preparation and its adjoint.
+-/
+theorem oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3 :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      (oneTermRobinFiniteBlockCompositionContract 3).expectedTarget.unitaryMatrix
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ := by
+  dsimp [oneTermRobinGamma3BoundaryProjectionSummationTarget_n3]
+  congr <;> apply Fin.ext <;> native_decide
+
+/--
+The active Fig. 1-term Robin gate list does not include the external
+`H_W^(kappa)` sparse-register preparation block or its adjoint.
+
+The missing prepared-sandwich theorem therefore cannot be obtained by simply
+unfolding `oneTermRobinGateMatrixPlaceholders`; QBE still needs either a
+prepared circuit semantics object or a theorem identifying the active raw
+entry with that prepared circuit entry.
+-/
+theorem oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3 :
+    Gate.oracleCall "H_W^(kappa)" ∉
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)).map (fun gateMatrix => gateMatrix.gate) ∧
+      Gate.oracleCall "(H_W^(kappa))^dagger" ∉
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)).map (fun gateMatrix => gateMatrix.gate) := by
+  native_decide
+
+/--
+Smallest prepared-circuit semantics gap after exposing the raw entry.
+
+The current raw entry is the active seven-gate `CircuitMatrixSemantics` entry
+at `[0,0]`.  The prepared-sandwich equality needs a circuit-matrix field for
+the source-preparation sandwich `H_W^(kappa)^dagger * U * H_W^(kappa)`, or an
+equivalent theorem relating the active raw entry to that prepared entry.  This
+record does not add an assumption and does not promote any theorem-facing
+semantic flag.
+-/
+structure OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap where
+  sourceAnchor : String
+  rawEntryField : OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField
+  rawUnitaryEntryContractStatementName : String
+  sparsePreparationGateAbsentStatementName : String
+  sparsePreparationDaggerGateAbsentStatementName : String
+  rawUnitaryEntryContractLemma : String
+  sparsePreparationAbsenceLemma : String
+  requiredPreparedCircuitSemantics : String
+  missingPreparedMatrixField : String
+  rawEntryContractProved : Bool
+  sparsePreparationAbsenceProved : Bool
+  rawEntryPreparedSandwichStatementTyped : Bool
+  preparedCircuitSemanticsAvailable : Bool
+  preparedCircuitEntryEqualityProved : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Compiled prepared-circuit semantics gap for the focused `n = 3` boundary
+packet.
+
+This is a strict refinement of the raw-entry field: Lean now knows that the
+raw entry is sourced from the active seven-gate contract matrix and that no
+`H_W^(kappa)` preparation gate is present in that active gate list.  The next
+field must therefore be a prepared circuit semantics matrix, not another
+restatement of the same raw-entry equality.
+-/
+def oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3
+    (H : Matrix 8 8 Coeff) :
+    OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap :=
+  let field :=
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified, Fig. 1-term ROBIN, and QBE CircuitMatrixSemantics active seven-gate product"
+    rawEntryField := field
+    rawUnitaryEntryContractStatementName :=
+      "field.rawUnitaryEntry = oneTermRobinFiniteBlockCompositionContract 3 expectedTarget.unitaryMatrix[0,0]"
+    sparsePreparationGateAbsentStatementName :=
+      "Gate.oracleCall \"H_W^(kappa)\" is absent from oneTermRobinGateMatrixPlaceholders"
+    sparsePreparationDaggerGateAbsentStatementName :=
+      "Gate.oracleCall \"(H_W^(kappa))^dagger\" is absent from oneTermRobinGateMatrixPlaceholders"
+    rawUnitaryEntryContractLemma :=
+      "oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3"
+    sparsePreparationAbsenceLemma :=
+      "oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3"
+    requiredPreparedCircuitSemantics :=
+      "CircuitMatrixSemantics entry for H_W^(kappa)^dagger * oneTermRobinGamma3BoundarySevenGateMatrix_n3 * H_W^(kappa), projected at clean sparse-register index 0"
+    missingPreparedMatrixField :=
+      "the active oneTermRobinGateMatrixPlaceholders list exposes only the seven Fig. 1-term ROBIN gates, so no Lean matrix field currently relates unitaryMatrix[0,0] to the H_W^(kappa)-prepared sparse-slot sandwich fold"
+    rawEntryContractProved := true
+    sparsePreparationAbsenceProved := true
+    rawEntryPreparedSandwichStatementTyped :=
+      field.rawEntryPreparedSandwichStatementTyped
+    preparedCircuitSemanticsAvailable := false
+    preparedCircuitEntryEqualityProved := false
+    fullProductFoldProved := field.fullProductFoldProved
+    projectionSummationProved := field.projectionSummationProved
+    productToCoefficientProved := field.productToCoefficientProved
+    lcuCorrectProved := field.lcuCorrectProved
+    blockProjectionProved := field.blockProjectionProved
+    blockCorrectProved := field.blockCorrectProved
+    finalExtractionProved := field.finalExtractionProved
+    exactRemainingObstruction :=
+      "QBE has identified the active raw entry as the seven-gate contract matrix entry and proved H_W^(kappa) is absent from the active gate list; the remaining missing field is a prepared circuit semantics entry for H_W^(kappa)^dagger * U * H_W^(kappa)"
+  }
+
+/--
+Transcript theorem for the prepared-circuit semantics gap.
+
+The theorem records the two accepted finite facts and keeps the raw-entry
+prepared-sandwich theorem and all theorem-facing flags unproved.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3_transcript
+    (H : Matrix 8 8 Coeff) :
+    let gap := oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3 H
+    gap.rawUnitaryEntryContractStatementName =
+        "field.rawUnitaryEntry = oneTermRobinFiniteBlockCompositionContract 3 expectedTarget.unitaryMatrix[0,0]" ∧
+      gap.sparsePreparationGateAbsentStatementName =
+        "Gate.oracleCall \"H_W^(kappa)\" is absent from oneTermRobinGateMatrixPlaceholders" ∧
+      gap.sparsePreparationDaggerGateAbsentStatementName =
+        "Gate.oracleCall \"(H_W^(kappa))^dagger\" is absent from oneTermRobinGateMatrixPlaceholders" ∧
+      gap.rawUnitaryEntryContractLemma =
+        "oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3" ∧
+      gap.sparsePreparationAbsenceLemma =
+        "oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3" ∧
+      gap.requiredPreparedCircuitSemantics =
+        "CircuitMatrixSemantics entry for H_W^(kappa)^dagger * oneTermRobinGamma3BoundarySevenGateMatrix_n3 * H_W^(kappa), projected at clean sparse-register index 0" ∧
+      gap.missingPreparedMatrixField =
+        "the active oneTermRobinGateMatrixPlaceholders list exposes only the seven Fig. 1-term ROBIN gates, so no Lean matrix field currently relates unitaryMatrix[0,0] to the H_W^(kappa)-prepared sparse-slot sandwich fold" ∧
+      gap.rawEntryContractProved = true ∧
+      gap.sparsePreparationAbsenceProved = true ∧
+      gap.rawEntryPreparedSandwichStatementTyped = true ∧
+      gap.preparedCircuitSemanticsAvailable = false ∧
+      gap.preparedCircuitEntryEqualityProved = false ∧
+      gap.fullProductFoldProved = false ∧
+      gap.projectionSummationProved = false ∧
+      gap.productToCoefficientProved = false ∧
+      gap.lcuCorrectProved = false ∧
+      gap.blockProjectionProved = false ∧
+      gap.blockCorrectProved = false ∧
+      gap.finalExtractionProved = false ∧
+      gap.exactRemainingObstruction =
+        "QBE has identified the active raw entry as the seven-gate contract matrix entry and proved H_W^(kappa) is absent from the active gate list; the remaining missing field is a prepared circuit semantics entry for H_W^(kappa)^dagger * U * H_W^(kappa)" := by
+  have _hraw :=
+    oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3
+  have _habsent :=
+    oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3
+  have _hfield :=
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3_transcript
+      H
+  dsimp [oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Compressed prepared sparse-register sandwich matrix for the focused boundary
+branch.
+
+Rows and columns are sparse-register indices.  The clean-clean entry is the
+seven-slot fold for the prepared
+`H_W^(kappa)^dagger * oneTermRobinGamma3BoundarySevenGateMatrix_n3 *
+H_W^(kappa)` sandwich.  This is a local matrix-interface block; it does not
+assert that the active raw circuit entry equals this prepared entry.
+-/
+def oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3
+    (H : Matrix 8 8 Coeff) : Matrix 8 8 Coeff :=
+  fun row col =>
+    blockExtractionBranchContributionSum (fun s : Fin 7 =>
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s)
+          (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s))
+        (Coeff.mul
+          (H (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s) col)
+          (oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H row
+            (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s))))
+
+/--
+The clean-clean entry of the prepared sparse-register sandwich matrix is the
+prepared sandwich fold already used by the projection backend.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3
+    (H : Matrix 8 8 Coeff) :
+    oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3 =
+      oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H := by
+  rfl
+
+/--
+Composite prepared sparse-register gate for the focused boundary packet.
+
+This is a local semantics object for the source-side prepared product
+`H_W^(kappa)^dagger * U * H_W^(kappa)` on the sparse register.  Its unitarity
+claim stays false because the cited state-preparation and diagonal-product
+certificates are not being proved in this lower packet.
+-/
+def oneTermRobinGamma3BoundaryPreparedCompositeGate_n3
+    (H : Matrix 8 8 Coeff) : GateMatrix Coeff 3 where
+  gate :=
+    Gate.oracleCall
+      "H_W^(kappa)^dagger * U_gamma3_boundary * H_W^(kappa)"
+  matrix := oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+  unitary := {
+    description :=
+      "prepared sparse-register composite gate for H_W^(kappa)^dagger * U_gamma3_boundary * H_W^(kappa)"
+    source :=
+      "GHL2025 Eq. arbitrary sparcity, Eq. ROBIN clarified boundary gamma3 branch, and Fig. 1-term ROBIN"
+    proved := false
+  }
+
+/-- Singleton circuit for the prepared sparse-register composite gate. -/
+def oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3 : Circuit :=
+  [Gate.oracleCall
+    "H_W^(kappa)^dagger * U_gamma3_boundary * H_W^(kappa)"]
+
+/-- The prepared composite gate matrix matches its singleton circuit label. -/
+theorem oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3
+    (H : Matrix 8 8 Coeff) :
+    gateMatricesMatchCircuit
+        oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3
+        [oneTermRobinGamma3BoundaryPreparedCompositeGate_n3 H] =
+      true := by
+  rfl
+
+/--
+Circuit-matrix semantics for the prepared sparse-register composite.
+
+This is not the active seven-gate Fig. 1-term Robin circuit.  It is the
+prepared-side matrix object that the source projection step requires before
+one can relate the active signal-zero entry to a prepared clean entry.
+-/
+def oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+    (H : Matrix 8 8 Coeff) : CircuitMatrixSemantics Coeff 3 :=
+  CircuitMatrixSemantics.ofGateMatrices
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3
+    [oneTermRobinGamma3BoundaryPreparedCompositeGate_n3 H]
+    (oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3 H)
+
+/--
+The prepared composite circuit semantics evaluates to the prepared sparse
+matrix at the clean-clean entry.
+
+The equality is stated through `Coeff.evalWith` because singleton
+`evalGateMatrices` still stores the multiplication by the identity as a finite
+fold in the raw symbolic coefficient syntax.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) := by
+  change
+    Coeff.evalWith env
+        ((evalGateMatrices
+          [oneTermRobinGamma3BoundaryPreparedCompositeGate_n3 H])
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeGate_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+  exact
+    evalWith_evalGateMatrices_single env
+      (oneTermRobinGamma3BoundaryPreparedCompositeGate_n3 H)
+      oneTermRobinGamma3BoundarySparseCleanIndex_n3
+      oneTermRobinGamma3BoundarySparseCleanIndex_n3
+
+/--
+Conditional closure of the preferred unitary-entry fold from a prepared sparse
+circuit-matrix entry.
+
+The remaining hypothesis is strictly smaller than the previous raw-entry
+prepared-sandwich field: it only has to identify the active signal-zero entry
+with the clean-clean entry of the prepared sparse-register sandwich matrix.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hPreparedEntry :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  apply
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3
+      H hUniform
+  calc
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 := hPreparedEntry
+    _ = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H :=
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H
+
+/--
+Prepared-circuit matrix interface for the current projection backend.
+
+This packet supplies the missing prepared sparse-register matrix object and
+proves its clean entry is the prepared sandwich fold.  It leaves the theorem
+connecting the active raw `CircuitMatrixSemantics` entry to this prepared
+matrix entry as the exact remaining obstruction.
+-/
+structure OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface where
+  sourceAnchor : String
+  preparedCircuitGap : OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap
+  sparsePreparationMatrix : Matrix 8 8 Coeff
+  preparedSparseMatrix : Matrix 8 8 Coeff
+  preparedCompositeSemantics : CircuitMatrixSemantics Coeff 3
+  cleanRow : Fin 8
+  cleanColumn : Fin 8
+  cleanEntry : Coeff
+  preparedCompositeCleanEntry : Coeff
+  preparedSandwichSum : Coeff
+  cleanEntryStatement : Prop
+  preparedCompositeCleanEntryEvalStatement : Prop
+  activeEntryToPreparedEntryStatement : Prop
+  cleanEntryLemma : String
+  preparedCompositeCleanEntryEvalLemma : String
+  conditionalUnitaryFoldTheorem : String
+  requiredActivePreparedEntryTheorem : String
+  preparedSparseMatrixAvailable : Bool
+  preparedCompositeSemanticsAvailable : Bool
+  cleanEntryStatementProved : Bool
+  preparedCompositeCleanEntryEvalCompiled : Bool
+  activePreparedEntryEqualityProved : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete prepared-circuit matrix interface for the focused `n = 3` boundary
+branch.
+
+The prepared sparse matrix is now a Lean object.  The active route remains
+blocked only on the raw-entry theorem identifying
+`signalUnitaryEntry` with that prepared matrix's clean-clean entry.
+-/
+def oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3
+    (H : Matrix 8 8 Coeff) :
+    OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface :=
+  let gap := oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3 H
+  let preparedMatrix :=
+    oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+  let preparedSemantics :=
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H
+  let clean := oneTermRobinGamma3BoundarySparseCleanIndex_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified, and QBE prepared sparse-register sandwich matrix"
+    preparedCircuitGap := gap
+    sparsePreparationMatrix := H
+    preparedSparseMatrix := preparedMatrix
+    preparedCompositeSemantics := preparedSemantics
+    cleanRow := clean
+    cleanColumn := clean
+    cleanEntry := preparedMatrix clean clean
+    preparedCompositeCleanEntry := preparedSemantics.matrix clean clean
+    preparedSandwichSum :=
+      oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H
+    cleanEntryStatement :=
+      preparedMatrix clean clean =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H
+    preparedCompositeCleanEntryEvalStatement :=
+      ∀ env : String → Rat,
+        Coeff.evalWith env (preparedSemantics.matrix clean clean) =
+          Coeff.evalWith env (preparedMatrix clean clean)
+    activeEntryToPreparedEntryStatement :=
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        preparedMatrix clean clean
+    cleanEntryLemma :=
+      "oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3"
+    preparedCompositeCleanEntryEvalLemma :=
+      "oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3"
+    conditionalUnitaryFoldTheorem :=
+      "oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3"
+    requiredActivePreparedEntryTheorem :=
+      "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H 0 0"
+    preparedSparseMatrixAvailable := true
+    preparedCompositeSemanticsAvailable := true
+    cleanEntryStatementProved := true
+    preparedCompositeCleanEntryEvalCompiled := true
+    activePreparedEntryEqualityProved := false
+    fullProductFoldProved := gap.fullProductFoldProved
+    projectionSummationProved := gap.projectionSummationProved
+    productToCoefficientProved := gap.productToCoefficientProved
+    lcuCorrectProved := gap.lcuCorrectProved
+    blockProjectionProved := gap.blockProjectionProved
+    blockCorrectProved := gap.blockCorrectProved
+    finalExtractionProved := gap.finalExtractionProved
+    exactRemainingObstruction :=
+      "the prepared sparse-register sandwich matrix has a composite CircuitMatrixSemantics object whose clean entry evaluates to the prepared matrix entry; QBE still lacks the theorem equating the active signal-zero entry with that prepared entry"
+  }
+
+/--
+Transcript theorem for the prepared-circuit matrix interface.
+
+The theorem checks that the prepared sparse matrix is available, its clean
+entry unfolds to the prepared sandwich fold, and all theorem-facing semantic
+flags remain false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3_transcript
+    (H : Matrix 8 8 Coeff) :
+    let interface :=
+      oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H
+    let gap := oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3 H
+    let preparedMatrix :=
+      oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    let preparedSemantics :=
+      oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H
+    let clean := oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    interface.preparedCircuitGap = gap ∧
+      interface.sparsePreparationMatrix = H ∧
+      interface.preparedSparseMatrix = preparedMatrix ∧
+      interface.preparedCompositeSemantics = preparedSemantics ∧
+      interface.cleanRow = clean ∧
+      interface.cleanColumn = clean ∧
+      interface.cleanEntry = preparedMatrix clean clean ∧
+      interface.preparedCompositeCleanEntry =
+        preparedSemantics.matrix clean clean ∧
+      interface.preparedSandwichSum =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H ∧
+      interface.cleanEntryStatement ∧
+      interface.preparedCompositeCleanEntryEvalStatement ∧
+      interface.activeEntryToPreparedEntryStatement =
+        (oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          preparedMatrix clean clean) ∧
+      interface.cleanEntryLemma =
+        "oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3" ∧
+      interface.preparedCompositeCleanEntryEvalLemma =
+        "oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3" ∧
+      interface.conditionalUnitaryFoldTheorem =
+        "oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3" ∧
+      interface.requiredActivePreparedEntryTheorem =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H 0 0" ∧
+      interface.preparedSparseMatrixAvailable = true ∧
+      interface.preparedCompositeSemanticsAvailable = true ∧
+      interface.cleanEntryStatementProved = true ∧
+      interface.preparedCompositeCleanEntryEvalCompiled = true ∧
+      interface.activePreparedEntryEqualityProved = false ∧
+      interface.fullProductFoldProved = false ∧
+      interface.projectionSummationProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.exactRemainingObstruction =
+        "the prepared sparse-register sandwich matrix has a composite CircuitMatrixSemantics object whose clean entry evaluates to the prepared matrix entry; QBE still lacks the theorem equating the active signal-zero entry with that prepared entry" := by
+  have hclean :=
+    oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H
+  have hsemantics :=
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+      H
+  have _hconditional :=
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3
+  have _hgap :=
+    oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3_transcript H
+  dsimp [oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, hclean,
+    hsemantics, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/-- Full active matrix dimension for the focused `n = 3` boundary packet. -/
+abbrev oneTermRobinGamma3BoundaryActiveFullDim_n3 : Nat :=
+  qubitDim (GHL2025.effectiveRobinSignalQubits (oneTermParameters 3)) *
+    gridSize 3
+
+/-- Clean active full-basis index for the focused signal-zero/system-zero entry. -/
+def oneTermRobinGamma3BoundaryActiveCleanIndex_n3 :
+    Fin oneTermRobinGamma3BoundaryActiveFullDim_n3 :=
+  ⟨0, by native_decide⟩
+
+/--
+The focused signal-zero entry is the active seven-gate circuit-matrix entry.
+
+This removes one layer from the evaluated backend-fold target: the remaining
+projection theorem can work directly against the active `CircuitMatrixSemantics`
+matrix instead of the finite block-composition contract wrapper.
+-/
+theorem
+    oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3 :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+        (oneTermRobinCircuitSemantics 3).matrix) :
+          Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+            oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+        oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+        oneTermRobinGamma3BoundaryActiveCleanIndex_n3) := by
+  simp [oneTermRobinGamma3BoundaryProjectionSummationTarget_n3,
+    oneTermRobinFiniteBlockCompositionContract, oneTermRobinBlockExtractionTarget,
+    CircuitMatrixSemantics.blockExtractionTarget,
+    oneTermRobinGamma3BoundaryActiveCleanIndex_n3]
+
+/--
+The focused signal-zero entry is the `[0,0]` entry of `evalGateMatrices` over
+the Fig. `1 term ROBIN` gate placeholders.
+
+The theorem is only an active-entry source lemma.  It does not prove the
+seven-slot backend branch fold.
+-/
+theorem
+    oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3 :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+        (evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))) :
+          Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+            oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+        oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+        oneTermRobinGamma3BoundaryActiveCleanIndex_n3) := by
+  simpa [oneTermRobinCircuitSemantics] using
+    oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3
+
+/--
+The active Fig. `1 term ROBIN` entry in the evaluated fold can be read from the
+uncast `evalGateMatrices` product at full basis `[0,0]`.
+
+This removes only the dimension cast from the remaining projection target.  It
+does not expand the seven-gate product as the backend sparse-slot fold.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+        (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+          (evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))) :
+          Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+            oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+          oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+          oneTermRobinGamma3BoundaryActiveCleanIndex_n3) =
+      Coeff.evalWith env
+        ((evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders
+            (oneTermParameters 3)))
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+  rw [Matrix.cast_square_apply (oneTermRobinCircuitDimCompat 3)]
+  congr <;> apply Fin.ext <;> native_decide
+
+/--
+The backend-expansion target is equivalent to the uncast active product entry.
+
+This removes the finite block-extraction wrapper and the dimension cast from the
+remaining raw `Coeff` theorem.  The right-hand statement is still unproved: it is
+the exact Fig. `1 term ROBIN` active `[0,0]` product expansion as the seven-slot
+backend branch fold.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  have huncast :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        (evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3 := by
+    calc
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+            (evalGateMatrices
+              (GHL2025.oneTermRobinGateMatrixPlaceholders
+                (oneTermParameters 3)))) :
+              Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+                oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3) :=
+          oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3
+      _ = (evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3 := by
+          rw [Matrix.cast_square_apply (oneTermRobinCircuitDimCompat 3)]
+          congr <;> apply Fin.ext <;> native_decide
+  constructor
+  · intro hexpansion
+    have hfold :=
+      (oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3).1
+        hexpansion
+    calc
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry :=
+          huncast.symm
+      _ = blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := hfold
+  · intro hentry
+    apply
+      (oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3).2
+    calc
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          (evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3 := huncast
+      _ = blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := hentry
+
+/--
+Expanded uncast form of the backend-expansion target.
+
+The target is now a direct equality between the active Fig. `1 term ROBIN`
+entry at `[0,0]` and the explicit seven-slot backend fold.  This is a strict
+reduction of the same backend-expansion/raw-field equality, not a new
+assumption and not a proof of the equality.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3 :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩) := by
+  rw [oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3]
+  rw [oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3]
+
+/--
+The expanded raw fold has the same remaining content as the raw-entry
+prepared-sandwich field under the explicit `H_W^(kappa)` clean-column contract.
+
+This keeps the H-free expanded fold on the source-prepared route: proving the
+expanded equality is equivalent to proving the raw entry equals the prepared
+`H_W^(kappa)^dagger * U * H_W^(kappa)` sandwich fold.  It proves no raw fold
+and promotes no semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_uncastActiveEntryExpandedFold_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement ↔
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩) := by
+  exact
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3
+      H hUniform).trans
+      oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3
+
+/--
+Typed active-entry/prepared-entry target for the focused boundary branch.
+
+The active entry is the current signal-zero entry from the seven-gate
+`CircuitMatrixSemantics` product.  The prepared entry is the clean-clean entry
+of the local sparse-register sandwich matrix.  This target names the exact
+composition equality that is still missing; it does not prove that equality.
+-/
+def oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+    (H : Matrix 8 8 Coeff) :
+    PreparedCircuitEntryTarget Coeff
+      oneTermRobinGamma3BoundaryActiveFullDim_n3 8 :=
+  let contract := oneTermRobinFiniteBlockCompositionContract 3
+  let active : Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+      oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff :=
+    contract.expectedTarget.unitaryMatrix
+  let activeClean : Fin oneTermRobinGamma3BoundaryActiveFullDim_n3 :=
+    ⟨0, by native_decide⟩
+  let prepared :=
+    oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+  let sparseClean := oneTermRobinGamma3BoundarySparseCleanIndex_n3
+  {
+    activeMatrix := active
+    preparedMatrix := prepared
+    activeRow := activeClean
+    activeCol := activeClean
+    preparedRow := sparseClean
+    preparedCol := sparseClean
+    activeEntry :=
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry
+    activeEntry_eq := by
+      simpa using oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3
+    preparedEntry := prepared sparseClean sparseClean
+    preparedEntry_eq := rfl
+    activeSource := {
+      description :=
+        "active entry is the signal-zero seven-gate CircuitMatrixSemantics entry"
+      source :=
+        "oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3"
+      proved := true
+    }
+    preparedComposition := {
+      description :=
+        "active seven-gate entry equals the prepared H_W^(kappa)^dagger * U * H_W^(kappa) clean entry"
+      source :=
+        "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Fig. 1-term ROBIN, and QBE prepared circuit semantics"
+      proved := false
+    }
+  }
+
+/--
+The target's cached entry equality is equivalent to the direct matrix-entry
+composition statement.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3
+    (H : Matrix 8 8 Coeff) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement ↔
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement :=
+  PreparedCircuitEntryTarget.entryEqualityStatement_iff_matrixEntryEqualityStatement
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H)
+
+/--
+The generic active/prepared entry target and the Robin prepared-matrix
+interface name the same remaining equality.
+
+This is only a proof-DAG alignment lemma: it identifies the two compiled
+interfaces for the missing prepared-composition field, but it does not prove
+that field.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3
+    (H : Matrix 8 8 Coeff) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement ↔
+      (oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H).activeEntryToPreparedEntryStatement := by
+  dsimp [PreparedCircuitEntryTarget.entryEqualityStatement,
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3,
+    oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3]
+  rfl
+
+/--
+Smallest prepared-composition field target now missing from the matrix backend.
+
+The previous packet produced the prepared sparse-register matrix and proved its
+clean entry.  This packet exposes the next field as a generic
+`PreparedCircuitEntryTarget`: relate the active seven-gate signal-zero entry to
+the clean entry of the prepared sandwich matrix.  All theorem-facing flags stay
+false.
+-/
+structure OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget where
+  sourceAnchor : String
+  preparedMatrixInterface :
+    OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface
+  entryTarget :
+    PreparedCircuitEntryTarget Coeff
+      oneTermRobinGamma3BoundaryActiveFullDim_n3 8
+  activeEntryStatement : Prop
+  matrixEntryStatement : Prop
+  interfaceStatement : Prop
+  genericEntryTarget : String
+  matrixEntryEquivalenceLemma : String
+  requiredCompositionTheorem : String
+  missingCircuitSemanticsField : String
+  activeEntrySourceProved : Bool
+  preparedCleanEntryProved : Bool
+  entryTargetTyped : Bool
+  matrixEntryEquivalenceCompiled : Bool
+  preparedCompositionFieldAvailable : Bool
+  activePreparedEntryEqualityProved : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete prepared-composition field target for the focused `n = 3` boundary
+branch.
+
+This is the accepted fallback for the active-entry proof attempt: it is smaller
+than the previous interface because it uses the generic prepared-entry target
+and states the exact missing `CircuitMatrixSemantics` composition field.
+-/
+def oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3
+    (H : Matrix 8 8 Coeff) :
+    OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget :=
+  let interface :=
+    oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H
+  let entryTarget :=
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Fig. 1-term ROBIN, and QBE PreparedCircuitEntryTarget"
+    preparedMatrixInterface := interface
+    entryTarget := entryTarget
+    activeEntryStatement := entryTarget.entryEqualityStatement
+    matrixEntryStatement := entryTarget.matrixEntryEqualityStatement
+    interfaceStatement := interface.activeEntryToPreparedEntryStatement
+    genericEntryTarget :=
+      "PreparedCircuitEntryTarget Coeff activeFullDim 8"
+    matrixEntryEquivalenceLemma :=
+      "oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3"
+    requiredCompositionTheorem :=
+      "oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H.entryEqualityStatement"
+    missingCircuitSemanticsField :=
+      "CircuitMatrixSemantics composition theorem for the active seven-gate entry and the prepared H_W^(kappa)^dagger * U * H_W^(kappa) clean entry"
+    activeEntrySourceProved := true
+    preparedCleanEntryProved := interface.cleanEntryStatementProved
+    entryTargetTyped := true
+    matrixEntryEquivalenceCompiled := true
+    preparedCompositionFieldAvailable := false
+    activePreparedEntryEqualityProved := false
+    fullProductFoldProved := interface.fullProductFoldProved
+    projectionSummationProved := interface.projectionSummationProved
+    productToCoefficientProved := interface.productToCoefficientProved
+    lcuCorrectProved := interface.lcuCorrectProved
+    blockProjectionProved := interface.blockProjectionProved
+    blockCorrectProved := interface.blockCorrectProved
+    finalExtractionProved := interface.finalExtractionProved
+    exactRemainingObstruction :=
+      "the active and prepared entries are packaged in a generic prepared-entry target, but QBE still lacks the CircuitMatrixSemantics composition theorem equating them"
+  }
+
+/--
+Transcript theorem for the active-entry/prepared-entry composition field.
+
+This checks that the new target is tied to the existing prepared matrix
+interface, that the generic matrix-entry bridge compiles, and that no
+theorem-facing semantic flag is promoted.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3_transcript
+    (H : Matrix 8 8 Coeff) :
+    let field :=
+      oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H
+    let interface :=
+      oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H
+    let entryTarget :=
+      oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H
+    field.preparedMatrixInterface = interface ∧
+      field.entryTarget = entryTarget ∧
+      field.activeEntryStatement = entryTarget.entryEqualityStatement ∧
+      field.matrixEntryStatement = entryTarget.matrixEntryEqualityStatement ∧
+      field.interfaceStatement = interface.activeEntryToPreparedEntryStatement ∧
+      (entryTarget.entryEqualityStatement ↔
+        entryTarget.matrixEntryEqualityStatement) ∧
+      field.genericEntryTarget =
+        "PreparedCircuitEntryTarget Coeff activeFullDim 8" ∧
+      field.matrixEntryEquivalenceLemma =
+        "oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3" ∧
+      field.requiredCompositionTheorem =
+        "oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H.entryEqualityStatement" ∧
+      field.missingCircuitSemanticsField =
+        "CircuitMatrixSemantics composition theorem for the active seven-gate entry and the prepared H_W^(kappa)^dagger * U * H_W^(kappa) clean entry" ∧
+      field.activeEntrySourceProved = true ∧
+      field.preparedCleanEntryProved = true ∧
+      field.entryTargetTyped = true ∧
+      field.matrixEntryEquivalenceCompiled = true ∧
+      field.preparedCompositionFieldAvailable = false ∧
+      field.activePreparedEntryEqualityProved = false ∧
+      field.fullProductFoldProved = false ∧
+      field.projectionSummationProved = false ∧
+      field.productToCoefficientProved = false ∧
+      field.lcuCorrectProved = false ∧
+      field.blockProjectionProved = false ∧
+      field.blockCorrectProved = false ∧
+      field.finalExtractionProved = false ∧
+      field.exactRemainingObstruction =
+        "the active and prepared entries are packaged in a generic prepared-entry target, but QBE still lacks the CircuitMatrixSemantics composition theorem equating them" := by
+  have hmatrix :=
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H
+  have _hprepared :=
+    oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3_transcript H
+  dsimp [oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, hmatrix, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl⟩
+
+/--
+The active/prepared composition packet's generic statement is exactly the
+prepared-matrix interface statement.
+
+This keeps the next proof target unique: proving either side supplies the same
+missing CircuitMatrixSemantics composition theorem.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3
+    (H : Matrix 8 8 Coeff) :
+    let field :=
+      oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H
+    field.activeEntryStatement ↔ field.interfaceStatement := by
+  exact
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3 H
+
+/--
+Conditional closure from the generic active/prepared matrix-entry target.
+
+This keeps the active-prepared packet connected to the focused projection
+backend: once QBE supplies the `CircuitMatrixSemantics` composition field as the
+backing matrix-entry equality, the preferred unitary-entry fold follows through
+the already compiled prepared sparse-register matrix bridge.  The theorem does
+not assert the missing matrix-entry equality.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_matrix_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hEntry :
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement) :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  apply
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3
+      H hUniform
+  exact hEntry
+
+/--
+Conditional closure from the cached active/prepared entry equality.
+
+This is the same route as
+`oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_matrix_n3`,
+but starts from the cached equality exposed by `PreparedCircuitEntryTarget`.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hEntry :
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement) :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  exact
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_matrix_n3
+      H hUniform
+      ((oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H).1
+        hEntry)
+
+/--
+Reverse bridge from the H-free unitary-entry fold to the cached
+active/prepared entry target.
+
+Under the existing clean-column contract for `H_W^(kappa)`, the prepared
+clean-clean entry is exactly the seven-slot backend fold.  Therefore the active
+entry target closes if, and only if, the raw signal-zero entry has already been
+expanded as that fold.  This does not prove the fold itself.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_of_unitaryEntryFold_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hFold :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement := by
+  dsimp [PreparedCircuitEntryTarget.entryEqualityStatement,
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3]
+  calc
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := hFold
+    _ = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H :=
+        (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+          H hUniform).symm
+    _ = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 :=
+        (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3
+          H).symm
+
+/--
+The active/prepared equality carries exactly the same remaining finite backend
+content as the H-free unitary-entry fold, once the external uniform
+`H_W^(kappa)` clean-column contract is supplied.
+
+This removes an interface ambiguity without promoting the fold, projection, LCU,
+or product-to-coefficient obligations.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  constructor
+  · intro hEntry
+    exact
+      oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3
+        H hUniform hEntry
+  · intro hFold
+    exact
+      oneTermRobinGamma3BoundaryActivePreparedEntryTarget_of_unitaryEntryFold_n3
+        H hUniform hFold
+
+/--
+The named active/prepared composition-field packet carries the same remaining
+content as the H-free unitary-entry fold.
+
+This is a proof-DAG alignment lemma for the current lower target.  It prevents
+the `OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget` record from
+becoming a parallel obligation: proving its active-entry statement is exactly
+proving the fixed signal-entry fold, under the existing clean-column contract.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_iff_unitaryEntryFold_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let field :=
+      oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H
+    field.activeEntryStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  simpa [oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3]
+    using
+      oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3
+        H hUniform
+
+/--
+The active/prepared entry target is equivalent to the current backend-expansion
+target under the explicit `H_W^(kappa)` clean-column contract.
+
+This proof-DAG alignment lemma ties the source-prepared route directly to
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`.
+It proves no expansion theorem and promotes no semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_backendExpansion_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement ↔
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement := by
+  exact
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3
+      H hUniform).trans
+      (oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3).symm
+
+/--
+The active/prepared composition-field packet has exactly the same remaining
+content as the backend-expansion target.
+
+This prevents the prepared composition field from becoming a parallel theorem:
+under the same external clean-column contract, proving the field's active-entry
+statement is exactly proving the fixed backend-expansion statement.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_iff_backendExpansion_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let field :=
+      oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H
+    field.activeEntryStatement ↔
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement := by
+  simpa [oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3]
+    using
+      oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_backendExpansion_n3
+        H hUniform
+
+/--
+The fixed H-free fold is equivalent to one concrete prepared-matrix clean-entry
+equality.
+
+This is the smallest prepared-projection term exposed by the current backend:
+after the external clean-column contract for `H_W^(kappa)` is supplied, the
+remaining theorem is exactly that the active signal-zero entry equals the
+clean-clean entry of `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3`.
+It does not prove that equality or promote any semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 := by
+  constructor
+  · intro hFold
+    have hEntry :=
+      oneTermRobinGamma3BoundaryActivePreparedEntryTarget_of_unitaryEntryFold_n3
+        H hUniform hFold
+    have hInterface :=
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3 H).1
+        hEntry
+    simpa [oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3]
+      using hInterface
+  · intro hPrepared
+    exact
+      oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3
+        H hUniform hPrepared
+
+/--
+Evaluation-level active/prepared composite entry statement.
+
+The active side is the signal-zero entry selected by Definition
+`def:block-encoding`.  The prepared side is the clean entry of the local
+singleton `CircuitMatrixSemantics` object for
+`H_W^(kappa)^dagger * U_gamma3_boundary * H_W^(kappa)`.  This is not asserted
+by the current backend; it is the exact composition field still missing.
+-/
+def oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) : Prop :=
+  Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+    Coeff.evalWith env
+      ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+
+/--
+Uncast active-entry form of the active/prepared singleton statement.
+
+This removes the signal-system block wrapper and dimension cast from the fixed
+active/prepared target.  The remaining equality is exactly the evaluated
+Fig. `1 term ROBIN` active entry `[0,0]` against the prepared singleton clean
+entry.  It does not prove that equality.
+-/
+def oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) : Prop :=
+  Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+
+/--
+The fixed active/prepared singleton field is equivalent to the uncast
+active-entry comparison.
+
+This is the smallest active-side reduction currently available: proving the
+right-hand statement is the same as proving the active/prepared singleton
+field, but without the finite block-extraction wrapper or dimension cast.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env ↔
+      oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env := by
+  unfold oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3
+  unfold oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+  have hentry :
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+            (evalGateMatrices
+              (GHL2025.oneTermRobinGateMatrixPlaceholders
+                (oneTermParameters 3)))) :
+            Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+              oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3) := by
+          rw [oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3]
+      _ = Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) :=
+          oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3 env
+  constructor
+  · intro hactive
+    calc
+      Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+          Coeff.evalWith env
+            oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry :=
+            hentry.symm
+      _ = Coeff.evalWith env
+          ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) := hactive
+  · intro huncast
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := hentry
+      _ = Coeff.evalWith env
+          ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) := huncast
+
+/--
+Evaluation-level active/prepared sparse-matrix entry statement.
+
+This is the same active entry compared directly with the prepared sparse
+matrix's clean-clean entry, bypassing the singleton `evalGateMatrices` wrapper.
+-/
+def oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) : Prop :=
+  Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+
+/--
+The prepared singleton semantics and prepared sparse matrix expose the same
+remaining active/prepared entry equality after `Coeff.evalWith`.
+
+This is a proof-DAG alignment lemma: it does not prove the active-to-prepared
+composition field, but it pins down that the singleton `CircuitMatrixSemantics`
+wrapper introduces no additional mathematical content at the selected entry.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env ↔
+      oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3 H env := by
+  unfold oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3
+  unfold oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3
+  constructor
+  · intro hComposite
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          Coeff.evalWith env
+            ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) := hComposite
+      _ = Coeff.evalWith env
+            (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+          oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+            H env
+  · intro hSparse
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          Coeff.evalWith env
+            (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) := hSparse
+      _ = Coeff.evalWith env
+            ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+          (oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+            H env).symm
+
+/--
+The uncast active/prepared singleton target is equivalent to comparing the
+uncast active entry with the prepared sandwich fold.
+
+This removes the singleton prepared `CircuitMatrixSemantics` wrapper from the
+right-hand side of the current lower target.  The remaining statement is still
+unproved: the active Fig. 1-term Robin entry must evaluate to the prepared
+`H_W^(kappa)^dagger * U * H_W^(kappa)` sandwich fold.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env ↔
+      Coeff.evalWith env
+        ((evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders
+            (oneTermParameters 3)))
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) := by
+  unfold oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+  constructor
+  · intro hUncast
+    calc
+      Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+          Coeff.evalWith env
+            ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) := hUncast
+      _ = Coeff.evalWith env
+            (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+          oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+            H env
+      _ = Coeff.evalWith env
+            (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) := by
+          rw [oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3
+            H]
+  · intro hSandwich
+    calc
+      Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+          Coeff.evalWith env
+            (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) :=
+            hSandwich
+      _ = Coeff.evalWith env
+            (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) := by
+          rw [oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3
+            H]
+      _ = Coeff.evalWith env
+            ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+          (oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+            H env).symm
+
+/--
+Named evaluated target for the current prepared-sandwich equality.
+
+This is the right-hand side of
+`oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3`:
+the active Fig. `fig:1 term ROBIN` uncast `[0,0]` entry must evaluate to the
+prepared sandwich fold.  The definition names the target only; it does not
+assert the equality.
+-/
+def oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) : Prop :=
+  Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H)
+
+/--
+The named prepared-sandwich evaluated target is exactly the current uncast
+active/prepared target.
+
+This theorem keeps the next proof target from forking into a prose-only
+right-hand side of an equivalence.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env ↔
+      oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+        H env := by
+  simpa [oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3]
+    using
+      oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3
+        H env
+
+/--
+The Coeff-level prepared clean-entry equality implies the evaluation-level
+active/prepared composite statement.
+
+The implication is one-way because the current symbolic `Coeff` backend stores
+singleton `evalGateMatrices` as a folded multiplication by the identity matrix;
+the generic singleton reduction is available only after `Coeff.evalWith`.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hPrepared :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) :
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env := by
+  apply
+    (oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3
+      H env).2
+  unfold oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3
+  rw [hPrepared]
+
+/--
+The generic active/prepared target also implies the evaluation-level
+active/prepared composite statement.
+
+This keeps the current target connected to the prepared singleton semantics
+without changing the target or asserting the missing composition field.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hEntry :
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement) :
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env := by
+  apply
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3
+      H env
+  simpa [PreparedCircuitEntryTarget.entryEqualityStatement,
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3] using hEntry
+
+/--
+The active seven-gate circuit and the prepared singleton circuit have distinct
+gate labels.
+
+This is a structural guard for the missing composition theorem: the prepared
+entry cannot be obtained by unfolding the active gate list.
+-/
+theorem oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3
+    (H : Matrix 8 8 Coeff) :
+    (oneTermRobinCircuitSemantics 3).circuit ≠
+      (oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).circuit := by
+  dsimp [oneTermRobinCircuitSemantics,
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3,
+    CircuitMatrixSemantics.ofGateMatrices,
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3]
+  native_decide
+
+/--
+Circuit-semantics field target for the active/prepared clean-entry bridge.
+
+Both sides now have concrete `CircuitMatrixSemantics` objects: the active
+seven-gate Fig. `fig:1 term ROBIN` semantics and the prepared singleton
+semantics for `H_W^(kappa)^dagger * U * H_W^(kappa)`.  The packet records the
+exact entry comparison still missing and the evaluation-level bridge to the
+prepared sparse matrix.  It does not add an assumption and leaves every
+theorem-facing flag false.
+-/
+structure OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget where
+  sourceAnchor : String
+  activeSemantics :
+    CircuitMatrixSemantics Coeff
+      (GHL2025.oneTermRobinTotalQubits (oneTermParameters 3))
+  preparedSemantics : CircuitMatrixSemantics Coeff 3
+  entryTarget :
+    PreparedCircuitEntryTarget Coeff
+      oneTermRobinGamma3BoundaryActiveFullDim_n3 8
+  activeCircuit : Circuit
+  preparedCircuit : Circuit
+  activeGateCount : Nat
+  preparedGateCount : Nat
+  activeEntry : Coeff
+  preparedCompositeEntry : Coeff
+  preparedSparseEntry : Coeff
+  activePreparedCompositeEvalStatement : Prop
+  activePreparedSparseEvalStatement : Prop
+  activePreparedEntryStatement : Prop
+  circuitLabelsDistinctLemma : String
+  compositeEvalEquivalenceLemma : String
+  compositeEvalOfEntryLemma : String
+  requiredCircuitCompositionTheorem : String
+  missingCircuitCompositionField : String
+  activeSevenGateSemanticsCompiled : Bool
+  preparedSingletonSemanticsCompiled : Bool
+  preparedCompositeCleanEvalCompiled : Bool
+  activePreparedEvalBridgeCompiled : Bool
+  activePreparedEntryEqualityProved : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete active/prepared circuit-semantics field target.
+
+This is the smallest current obstruction after the prepared singleton semantics
+packet: the prepared object is typed and its selected entry evaluates to the
+prepared sparse matrix, but QBE still lacks the composition theorem that
+identifies the active signal-zero entry with that prepared singleton entry.
+-/
+def oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget :=
+  let active := oneTermRobinCircuitSemantics 3
+  let prepared :=
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H
+  let clean := oneTermRobinGamma3BoundarySparseCleanIndex_n3
+  let entryTarget := oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE CircuitMatrixSemantics comparison"
+    activeSemantics := active
+    preparedSemantics := prepared
+    entryTarget := entryTarget
+    activeCircuit := active.circuit
+    preparedCircuit := prepared.circuit
+    activeGateCount := active.gateMatrices.length
+    preparedGateCount := prepared.gateMatrices.length
+    activeEntry :=
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry
+    preparedCompositeEntry := prepared.matrix clean clean
+    preparedSparseEntry :=
+      oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H clean clean
+    activePreparedCompositeEvalStatement :=
+      oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+    activePreparedSparseEvalStatement :=
+      oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3 H env
+    activePreparedEntryStatement := entryTarget.entryEqualityStatement
+    circuitLabelsDistinctLemma :=
+      "oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3"
+    compositeEvalEquivalenceLemma :=
+      "oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3"
+    compositeEvalOfEntryLemma :=
+      "oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3"
+    requiredCircuitCompositionTheorem :=
+      "active signal-zero CircuitMatrixSemantics entry equals prepared singleton clean entry"
+    missingCircuitCompositionField :=
+      "finite composition theorem relating the active seven-gate Fig. 1-term ROBIN matrix entry to the prepared H_W^(kappa)^dagger * U * H_W^(kappa) singleton entry"
+    activeSevenGateSemanticsCompiled := true
+    preparedSingletonSemanticsCompiled := true
+    preparedCompositeCleanEvalCompiled := true
+    activePreparedEvalBridgeCompiled := true
+    activePreparedEntryEqualityProved := false
+    fullProductFoldProved := false
+    projectionSummationProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the active seven-gate semantics and prepared singleton semantics are both typed, but QBE still lacks the CircuitMatrixSemantics composition theorem equating their selected entries"
+  }
+
+/--
+Target-level uncast form of the active/prepared circuit-field obligation.
+
+The record field and the uncast active-entry statement carry exactly the same
+remaining proof content.  This avoids turning the block-extraction cast into a
+separate obstruction.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_iff_uncast_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let field :=
+      oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env
+    field.activePreparedCompositeEvalStatement ↔
+      oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env := by
+  dsimp [oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3]
+  exact
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3
+      H env
+
+/--
+Transcript theorem for the active/prepared circuit-semantics field target.
+
+The theorem checks that the active side is the seven-gate circuit, the prepared
+side is the singleton prepared composite, the selected evaluation statements
+are equivalent, and no theorem-facing semantic flag is promoted.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3_transcript
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let field :=
+      oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env
+    let active := oneTermRobinCircuitSemantics 3
+    let prepared :=
+      oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H
+    field.activeSemantics = active ∧
+      field.preparedSemantics = prepared ∧
+      field.entryTarget =
+        oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H ∧
+      field.activeCircuit = active.circuit ∧
+      field.preparedCircuit = prepared.circuit ∧
+      field.activeGateCount = 7 ∧
+      field.preparedGateCount = 1 ∧
+      field.activeCircuit ≠ field.preparedCircuit ∧
+      field.activeEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry ∧
+      field.preparedCompositeEntry =
+        prepared.matrix oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 ∧
+      field.preparedSparseEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 ∧
+      (field.activePreparedCompositeEvalStatement ↔
+        field.activePreparedSparseEvalStatement) ∧
+      field.activePreparedEntryStatement =
+        (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement ∧
+      field.circuitLabelsDistinctLemma =
+        "oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3" ∧
+      field.compositeEvalEquivalenceLemma =
+        "oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3" ∧
+      field.compositeEvalOfEntryLemma =
+        "oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3" ∧
+      field.requiredCircuitCompositionTheorem =
+        "active signal-zero CircuitMatrixSemantics entry equals prepared singleton clean entry" ∧
+      field.missingCircuitCompositionField =
+        "finite composition theorem relating the active seven-gate Fig. 1-term ROBIN matrix entry to the prepared H_W^(kappa)^dagger * U * H_W^(kappa) singleton entry" ∧
+      field.activeSevenGateSemanticsCompiled = true ∧
+      field.preparedSingletonSemanticsCompiled = true ∧
+      field.preparedCompositeCleanEvalCompiled = true ∧
+      field.activePreparedEvalBridgeCompiled = true ∧
+      field.activePreparedEntryEqualityProved = false ∧
+      field.fullProductFoldProved = false ∧
+      field.projectionSummationProved = false ∧
+      field.productToCoefficientProved = false ∧
+      field.lcuCorrectProved = false ∧
+      field.blockProjectionProved = false ∧
+      field.blockCorrectProved = false ∧
+      field.finalExtractionProved = false ∧
+      field.exactRemainingObstruction =
+        "the active seven-gate semantics and prepared singleton semantics are both typed, but QBE still lacks the CircuitMatrixSemantics composition theorem equating their selected entries" := by
+  have hdistinct :=
+    oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3 H
+  have hequiv :=
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3
+      H env
+  have _hclean :=
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+      H env
+  dsimp [oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3,
+    oneTermRobinCircuitSemantics,
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3,
+    CircuitMatrixSemantics.ofGateMatrices,
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3,
+    GHL2025.oneTermRobinGateMatrixPlaceholders]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, hdistinct,
+    rfl, rfl, rfl, hequiv, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl⟩
+
+/--
+The prepared singleton clean entry evaluates to the backend branch fold under
+the existing clean-column contract for `H_W^(kappa)`.
+
+This is an evaluation-level bridge because the singleton
+`CircuitMatrixSemantics` matrix stores a finite multiplication by the identity
+in the raw `Coeff` syntax.  It does not assert that the active signal-zero
+entry equals the prepared singleton entry.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+  calc
+    Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+          oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+            H env
+    _ = Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) := by
+          rw [oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3
+            H]
+    _ = Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+          rw [oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+            H hUniform]
+
+/--
+Theorem-facing prepared projection target for the focused boundary branch.
+
+The selected entry is the clean entry of the prepared singleton semantics for
+`H_W^(kappa)^dagger * U_gamma3_boundary * H_W^(kappa)`.  The active
+signal-zero entry remains a separate missing field; this target prevents the
+projection backend from silently treating the raw seven-gate entry as the
+source-prepared entry.
+-/
+structure OneTermRobinGamma3BoundarySourcePreparedProjectionTarget where
+  sourceAnchor : String
+  activePreparedCircuitField :
+    OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget
+  sparsePreparationMatrix : Matrix 8 8 Coeff
+  preparedSemantics : CircuitMatrixSemantics Coeff 3
+  cleanIndex : Fin 8
+  preparedProjectionEntry : Coeff
+  preparedSparseEntry : Coeff
+  backendBranchFold : Coeff
+  uniformColumnStatement : Prop
+  preparedSingletonToSparseEvalStatement : Prop
+  preparedSingletonToBackendEvalStatement : Prop
+  activeToPreparedSingletonEvalStatement : Prop
+  theoremFacingPreparedEntry : String
+  singletonEvalLemma : String
+  conditionalBackendEvalBridgeLemma : String
+  requiredProjectionBackendField : String
+  missingProjectionBackendField : String
+  uniformColumnObligation : SemanticObligation
+  preparedProjectionTargetCompiled : Bool
+  preparedSingletonEntrySelected : Bool
+  singletonToSparseEvalCompiled : Bool
+  conditionalBackendEvalBridgeCompiled : Bool
+  activeProjectionBackendUsesPreparedEntry : Bool
+  activePreparedEntryEqualityProved : Bool
+  fullProductFoldProved : Bool
+  projectionSummationProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete theorem-facing prepared projection target for `n = 3`.
+
+It selects the prepared singleton clean entry and records the conditional
+evaluation bridge to the backend fold under the existing all-slot
+`H_W^(kappa)` clean-column contract.  The active projection backend still needs
+a finite composition theorem before this target can close the H-free fold.
+-/
+def oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    OneTermRobinGamma3BoundarySourcePreparedProjectionTarget :=
+  let field :=
+    oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env
+  let prepared :=
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H
+  let clean := oneTermRobinGamma3BoundarySparseCleanIndex_n3
+  let backendFold :=
+    blockExtractionBranchContributionSum
+      oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. arbitrary sparcity, Eq. ROBIN clarified boundary gamma3 branch, Fig. 1-term ROBIN, and QBE source-prepared projection target"
+    activePreparedCircuitField := field
+    sparsePreparationMatrix := H
+    preparedSemantics := prepared
+    cleanIndex := clean
+    preparedProjectionEntry := prepared.matrix clean clean
+    preparedSparseEntry :=
+      oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H clean clean
+    backendBranchFold := backendFold
+    uniformColumnStatement :=
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+    preparedSingletonToSparseEvalStatement :=
+      Coeff.evalWith env (prepared.matrix clean clean) =
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H clean clean)
+    preparedSingletonToBackendEvalStatement :=
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H →
+        Coeff.evalWith env (prepared.matrix clean clean) =
+          Coeff.evalWith env backendFold
+    activeToPreparedSingletonEvalStatement :=
+      oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+    theoremFacingPreparedEntry :=
+      "(oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix clean clean"
+    singletonEvalLemma :=
+      "oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3"
+    conditionalBackendEvalBridgeLemma :=
+      "oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3"
+    requiredProjectionBackendField :=
+      "the theorem-facing projection backend selects the prepared singleton clean entry before relating it to the active signal-zero entry"
+    missingProjectionBackendField :=
+      "finite CircuitMatrixSemantics composition theorem replacing the raw active signal-zero projection entry by the source-prepared singleton clean entry"
+    uniformColumnObligation :=
+      oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3.uniformColumnObligation
+    preparedProjectionTargetCompiled := true
+    preparedSingletonEntrySelected := true
+    singletonToSparseEvalCompiled := true
+    conditionalBackendEvalBridgeCompiled := true
+    activeProjectionBackendUsesPreparedEntry := false
+    activePreparedEntryEqualityProved := false
+    fullProductFoldProved := false
+    projectionSummationProved := false
+    productToCoefficientProved := false
+    lcuCorrectProved := false
+    blockProjectionProved := false
+    blockCorrectProved := false
+    finalExtractionProved := false
+    exactRemainingObstruction :=
+      "the source-prepared singleton entry is now the theorem-facing projection target, but QBE still lacks the finite composition theorem connecting the active signal-zero entry to that prepared entry"
+  }
+
+/--
+Transcript theorem for the source-prepared projection target.
+
+The theorem checks that the selected entry is the prepared singleton clean
+entry, that its evaluated value reaches the backend fold under the clean-column
+contract, and that all theorem-facing proof flags remain false.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3_transcript
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    let field :=
+      oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env
+    let prepared :=
+      oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H
+    let clean := oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    target.activePreparedCircuitField = field ∧
+      target.sparsePreparationMatrix = H ∧
+      target.preparedSemantics = prepared ∧
+      target.cleanIndex = clean ∧
+      target.preparedProjectionEntry = prepared.matrix clean clean ∧
+      target.preparedSparseEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H clean clean ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      target.uniformColumnStatement =
+        oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H ∧
+      target.preparedSingletonToSparseEvalStatement ∧
+      target.preparedSingletonToBackendEvalStatement ∧
+      target.activeToPreparedSingletonEvalStatement =
+        oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env ∧
+      target.theoremFacingPreparedEntry =
+        "(oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix clean clean" ∧
+      target.singletonEvalLemma =
+        "oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3" ∧
+      target.conditionalBackendEvalBridgeLemma =
+        "oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3" ∧
+      target.requiredProjectionBackendField =
+        "the theorem-facing projection backend selects the prepared singleton clean entry before relating it to the active signal-zero entry" ∧
+      target.missingProjectionBackendField =
+        "finite CircuitMatrixSemantics composition theorem replacing the raw active signal-zero projection entry by the source-prepared singleton clean entry" ∧
+      target.uniformColumnObligation =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3.uniformColumnObligation ∧
+      target.uniformColumnObligation.proved = false ∧
+      target.preparedProjectionTargetCompiled = true ∧
+      target.preparedSingletonEntrySelected = true ∧
+      target.singletonToSparseEvalCompiled = true ∧
+      target.conditionalBackendEvalBridgeCompiled = true ∧
+      target.activeProjectionBackendUsesPreparedEntry = false ∧
+      target.activePreparedEntryEqualityProved = false ∧
+      target.fullProductFoldProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      target.exactRemainingObstruction =
+        "the source-prepared singleton entry is now the theorem-facing projection target, but QBE still lacks the finite composition theorem connecting the active signal-zero entry to that prepared entry" := by
+  have hsparse :=
+    oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+      H env
+  have hbackend :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H →
+        Coeff.evalWith env
+          ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+          Coeff.evalWith env
+            (blockExtractionBranchContributionSum
+              oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+    intro hUniform
+    exact
+      oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+        H env hUniform
+  have _hfield :=
+    oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3_transcript
+      H env
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, hsparse,
+    hbackend, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl⟩
+
+/--
+Named route from the source-prepared projection target to the backend fold.
+
+The lower packet asked first for the prepared singleton clean-entry equality.
+That equality is already proved by
+`oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; this
+lemma exposes it through the theorem-facing source-prepared target instead of
+duplicating the proof or reverting to the H-free active entry.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement := by
+  intro hUniform
+  exact
+    oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+      H env hUniform
+
+/--
+The source-prepared backend bridge is now the reusable route witness for the
+focused product map.
+
+This theorem records the accepted source-correct path: the prepared singleton
+clean entry reaches the backend fold under the explicit
+`H_W^(kappa)` clean-column contract, while the product route still waits for
+the finite active/prepared composition bridge and normalized block equality.
+No product, LCU, block-projection, block-correctness, or final-extraction flag
+is promoted.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_feedsProductRoute_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    let productRoute :=
+      oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    target.preparedSingletonToBackendEvalStatement ∧
+      target.conditionalBackendEvalBridgeCompiled = true ∧
+      target.activeProjectionBackendUsesPreparedEntry = false ∧
+      target.activePreparedEntryEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      productRoute.productBridgeProved = false ∧
+      productRoute.productToCoefficientProved = false ∧
+      productRoute.normalizedBlockEqualityProved = false ∧
+      productRoute.blockProjectionProved = false ∧
+      productRoute.blockCorrectProved = false ∧
+      productRoute.finalExtractionProved = false := by
+  have hbridge :
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3
+      H env
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3]
+  exact ⟨hbridge, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+The theorem-facing source-prepared projection target has the requested backend
+evaluation under the explicit `H_W^(kappa)` clean-column contract.
+
+This is the reusable target-field route for the focused product map: it exposes
+the already compiled prepared singleton bridge through
+`preparedProjectionEntry` and `backendBranchFold`, rather than restating the raw
+matrix entry equality or using the H-free active entry as the source route.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    Coeff.evalWith env target.preparedProjectionEntry =
+      Coeff.evalWith env target.backendBranchFold := by
+  have hbridge :
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3
+      H env
+  exact hbridge hUniform
+
+/--
+The source-prepared projection target and the active/prepared circuit-field
+target name the same remaining evaluated composition field.
+
+This is proof-DAG wiring only.  It prevents the primary source-prepared target
+from becoming a parallel obligation beside
+`oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3`.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_activePreparedCircuitField_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement ↔
+      (oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement := by
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3,
+    oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3]
+  exact Iff.rfl
+
+/--
+Conditional closure of the theorem-facing source-prepared field from the
+generic prepared-entry target.
+
+The generic entry target is still unproved.  This lemma only records that once
+the finite active/prepared entry equality is supplied, the primary
+source-prepared evaluated field follows by the existing singleton-evaluation
+bridge.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hEntry :
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement := by
+  exact
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_activePreparedCircuitField_n3
+      H env).2
+      (oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3
+        H env hEntry)
+
+/--
+The primary source-prepared projection field is exactly the uncast
+active/prepared clean-entry comparison.
+
+This is the current finite-composition proof block after the source-correct
+prepared singleton entry has been selected.  It removes the block-extraction
+wrapper from the active side, but it does not prove the active seven-gate entry
+equals the prepared singleton clean entry.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement ↔
+      oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env := by
+  exact
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_activePreparedCircuitField_n3
+      H env).trans
+      (oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_iff_uncast_n3
+        H env)
+
+/--
+Conditional closure of the primary source-prepared field from the uncast
+active/prepared clean-entry comparison.
+
+The hypothesis is the smaller finite matrix-composition target; this theorem
+only routes it back to the theorem-facing source-prepared projection field.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_uncastActivePreparedCompositeEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUncast :
+      oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement :=
+  (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+    H env).2 hUncast
+
+/--
+Under the all-slot `H_W^(kappa)` clean-column contract, the active-to-prepared
+singleton evaluation field is equivalent to the evaluated backend branch fold.
+
+This does not prove the active/prepared field.  It identifies the remaining
+finite-composition obstruction after the prepared singleton entry has been
+selected as the theorem-facing projection target.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement ↔
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3,
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3]
+  constructor
+  · intro hActive
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          Coeff.evalWith env
+            ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) := hActive
+      _ = Coeff.evalWith env
+            (blockExtractionBranchContributionSum
+              oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
+          oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+            H env hUniform
+  · intro hBackend
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          Coeff.evalWith env
+            (blockExtractionBranchContributionSum
+              oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := hBackend
+      _ = Coeff.evalWith env
+            ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3
+              oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+          (oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+            H env hUniform).symm
+
+/--
+The theorem-facing source-prepared active field is equivalent to the uncast
+prepared-sandwich equality.
+
+This removes the block-extraction wrapper on the active side and the singleton
+prepared `CircuitMatrixSemantics` wrapper on the prepared side.  It does not use
+the `H_W^(kappa)` clean-column contract and does not prove the missing
+active/prepared composition field.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement ↔
+      oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env := by
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3]
+  exact
+    (oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3
+      H env).trans
+      (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3
+        H env)
+
+/--
+Evaluation-level backend-fold statement for the focused boundary branch.
+
+This is the H-free form of the remaining projection theorem: after interpreting
+symbolic `Coeff` terms in an environment, the active signal-zero entry must equal
+the seven-slot backend branch fold.  It is weaker than the raw `Coeff` equality
+and does not assert the missing finite projection theorem.
+-/
+def oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+    (env : String → Rat) : Prop :=
+  Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+    Coeff.evalWith env
+      (blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+
+/--
+The evaluated backend-fold statement is exactly the active seven-gate
+`evalGateMatrices` entry evaluation compared with the seven-slot backend fold.
+
+This is the smallest active-side reduction in the current backend: proving this
+right-hand statement is still the missing finite projection theorem, but the
+finite block-composition wrapper has been removed.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activeCircuitEntryEval_n3
+    (env : String → Rat) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env ↔
+      Coeff.evalWith env
+        (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+          (oneTermRobinCircuitSemantics 3).matrix) :
+            Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+              oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+          oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+          oneTermRobinGamma3BoundaryActiveCleanIndex_n3) =
+        Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+  unfold oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+  rw [oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3]
+
+/--
+Uncast active-entry form of the evaluated backend-fold target.
+
+After the finite block-extraction wrapper and dimension cast are removed, the
+remaining theorem is exactly the evaluated `[0,0]` entry of the Fig.
+`1 term ROBIN` `evalGateMatrices` product against the seven-slot backend fold.
+This is the current local projection/product obligation; no semantic proof flag
+is promoted here.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3
+    (env : String → Rat) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env ↔
+      Coeff.evalWith env
+        ((evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders
+            (oneTermParameters 3)))
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+  rw [oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activeCircuitEntryEval_n3]
+  have hentry :
+      Coeff.evalWith env
+          (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+            (oneTermRobinCircuitSemantics 3).matrix) :
+            Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+              oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3) =
+        Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+    simpa [oneTermRobinCircuitSemantics] using
+      oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3 env
+  constructor
+  · intro hactive
+    calc
+      Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+          Coeff.evalWith env
+            (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+              (oneTermRobinCircuitSemantics 3).matrix) :
+              Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+                oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+              oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+              oneTermRobinGamma3BoundaryActiveCleanIndex_n3) := hentry.symm
+      _ = Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := hactive
+  · intro huncast
+    calc
+      Coeff.evalWith env
+          (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+            (oneTermRobinCircuitSemantics 3).matrix) :
+            Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+              oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3) =
+          Coeff.evalWith env
+            ((evalGateMatrices
+              (GHL2025.oneTermRobinGateMatrixPlaceholders
+                (oneTermParameters 3)))
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3) := hentry
+      _ = Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := huncast
+
+/--
+The prepared-sandwich evaluated target carries the same content as the
+evaluated backend-fold target under the explicit all-slot clean-column contract
+for `H_W^(kappa)`.
+
+The theorem is an obligation-alignment bridge.  It proves neither side; it
+only removes the ambiguity between the source-prepared sandwich route and the
+newer H-free evaluated backend-fold target.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env ↔
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env := by
+  unfold oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+  unfold oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+  have hactive :
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+            (evalGateMatrices
+              (GHL2025.oneTermRobinGateMatrixPlaceholders
+                (oneTermParameters 3)))) :
+            Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+              oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3) := by
+          rw [oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3]
+      _ = Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) :=
+          oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3 env
+  have hprepared :
+      Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) =
+        Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+    rw [oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+      H hUniform]
+  constructor
+  · intro hsandwich
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := hactive
+      _ = Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) :=
+          hsandwich
+      _ = Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
+          hprepared
+  · intro hfold
+    calc
+      Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry :=
+          hactive.symm
+      _ = Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
+          hfold
+      _ = Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) :=
+          hprepared.symm
+
+/--
+The preferred uncast active/prepared target carries exactly the evaluated
+backend-fold obligation under the all-slot `H_W^(kappa)` contract.
+
+This is the direct lower-target reduction: it combines the prepared-sandwich
+entry bridge with the backend-fold equivalence, without proving the finite
+projection fold or promoting any theorem-facing flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_evaluatedBackendFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env ↔
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env := by
+  exact
+    (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3
+      H env).trans
+      (oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3
+        H env hUniform)
+
+/--
+The existing backend-expansion statement would close the named
+prepared-sandwich evaluated target under the clean-column contract.
+
+This is conditional route wiring only.  The backend-expansion theorem itself
+remains the missing finite projection/summation field.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_backendExpansion_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hexpansion :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env := by
+  apply
+    (oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3
+      H env hUniform).2
+  unfold oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+  rw [
+    (oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3).1
+      hexpansion]
+
+/--
+The backend-expansion statement closes the preferred uncast active/prepared
+target through the prepared-sandwich route.
+
+This is recovery wiring for the current lower target.  It does not prove the
+H-free backend expansion, and it keeps the source-prepared singleton entry as
+the theorem-facing projection entry.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_backendExpansion_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hexpansion :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env := by
+  apply
+    (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3
+      H env).2
+  exact
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_backendExpansion_n3
+      H env hUniform hexpansion
+
+/--
+The existing backend-expansion statement closes the source-prepared active
+singleton field through the prepared projection route.
+
+This is conditional recovery only: it routes a future proof of the raw
+backend-expansion target back into the prepared singleton clean-entry target
+selected by Definition `def:block-encoding`.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_backendExpansion_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hexpansion :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement := by
+  apply
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3
+      H env).2
+  exact
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_backendExpansion_n3
+      H env hUniform hexpansion
+
+/--
+The existing backend-expansion statement closes the exact evaluation-level
+active/prepared composite field.
+
+This is the direct lower-target form of
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_backendExpansion_n3`:
+it exposes the same source-prepared route at
+`oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` without
+adding a new assumption or promoting any theorem-facing flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_backendExpansion_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hexpansion :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env :=
+  oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_backendExpansion_n3
+    H env hUniform hexpansion
+
+/--
+The raw full-entry fold is strong enough to close the evaluated backend-fold
+statement.
+
+This is a one-way bridge from the symbolic `Coeff` equality to the
+environment-evaluated target.  It does not prove the raw fold.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3
+    (env : String → Rat)
+    (hFold :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env := by
+  unfold oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+  rw [hFold]
+
+/--
+The raw full-entry fold also closes the prepared-sandwich evaluated target once
+the explicit `H_W^(kappa)` clean-column contract is supplied.
+
+This keeps the prepared route tied to the unique backend-expansion theorem
+instead of creating another independent obstruction.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_unitaryEntryFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hFold :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env := by
+  apply
+    (oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3
+      H env hUniform).2
+  exact
+    oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3
+      env hFold
+
+/--
+The raw full-entry fold closes the preferred uncast active/prepared target
+through the prepared-sandwich route.
+
+This is conditional route wiring for the current lower target.  It does not
+prove the full-entry fold or use the H-free active equality as a standalone
+theorem-facing closure.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_unitaryEntryFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hFold :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env := by
+  apply
+    (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3
+      H env).2
+  exact
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_unitaryEntryFold_n3
+      H env hUniform hFold
+
+/--
+The raw full-entry fold also closes the theorem-facing source-prepared active
+field through the prepared singleton clean entry.
+
+The missing theorem remains exactly the finite projection fold supplied as
+`hFold`; this lemma only records the source-correct recovery path.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_unitaryEntryFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hFold :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement :=
+  oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_uncastActivePreparedCompositeEval_n3
+    H env
+    (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_unitaryEntryFold_n3
+      H env hUniform hFold)
+
+/--
+The raw-entry prepared-sandwich field is strong enough to close the assigned
+evaluation-level prepared-sandwich target.
+
+The current lower target only compares evaluated coefficients.  The existing
+raw field
+`oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3` states the
+stronger symbolic equality between the signal-zero entry and the prepared
+sandwich fold, so it implies the evaluated target without using the external
+clean-column contract.  The raw field itself remains unproved.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hRaw :
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement) :
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env := by
+  unfold oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+  have hactive :
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+    calc
+      Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+            (evalGateMatrices
+              (GHL2025.oneTermRobinGateMatrixPlaceholders
+                (oneTermParameters 3)))) :
+            Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+              oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3) := by
+          rw [oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3]
+      _ = Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) :=
+          oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3 env
+  have hraw :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H :=
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3
+      H).1 hRaw
+  calc
+    Coeff.evalWith env
+        ((evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders
+            (oneTermParameters 3)))
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry :=
+          hactive.symm
+    _ = Coeff.evalWith env
+        (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H) := by
+        rw [hraw]
+
+/--
+The raw-entry prepared-sandwich field closes the preferred uncast
+active/prepared target.
+
+This is a route lemma only.  The raw field remains the unproved finite
+projection theorem, but once supplied it now feeds the source-correct prepared
+singleton target directly instead of passing through a standalone H-free closure.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_rawEntryPreparedSandwichField_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hRaw :
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement) :
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env := by
+  apply
+    (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3
+      H env).2
+  exact
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3
+      H env hRaw
+
+/--
+The raw-entry prepared-sandwich field also feeds the theorem-facing
+source-prepared projection target.
+
+This keeps the remaining finite theorem unique: prove the existing raw
+prepared-sandwich field, then recover the active/prepared selected-entry
+statement through the prepared singleton clean entry.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hRaw :
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement :=
+  oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_uncastActivePreparedCompositeEval_n3
+    H env
+    (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_rawEntryPreparedSandwichField_n3
+      H env hRaw)
+
+/--
+The expanded raw fold closes the named prepared-sandwich evaluation target
+through the source-prepared route.
+
+The proof first recovers the raw-entry prepared-sandwich field using the
+compiled equivalence with the expanded fold, then applies the existing
+evaluation bridge.  The expanded H-free equality remains a diagnostic input;
+this theorem does not prove it.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_uncastActiveEntryExpandedFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hExpanded :
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩)) :
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env := by
+  have hRaw :
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement :=
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_uncastActiveEntryExpandedFold_n3
+      H hUniform).2 hExpanded
+  exact
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3
+      H env hRaw
+
+/--
+The expanded diagnostic fold also feeds the preferred uncast active/prepared
+target, but only through the prepared-sandwich bridge.
+
+This keeps the H-free expanded equality as a recovery input for the
+source-prepared route rather than as a standalone theorem-facing closure.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_uncastActiveEntryExpandedFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hExpanded :
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩)) :
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env := by
+  apply
+    (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3
+      H env).2
+  exact
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_uncastActiveEntryExpandedFold_n3
+      H env hUniform hExpanded
+
+/--
+The expanded raw fold feeds the theorem-facing source-prepared projection
+target, but only after passing through the prepared-sandwich route.
+
+This records the permitted recovery path for the diagnostic H-free equality:
+expanded fold -> raw prepared sandwich field -> prepared-sandwich eval target
+-> source-prepared active field.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_uncastActiveEntryExpandedFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hExpanded :
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩)) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement := by
+  apply
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3
+      H env).2
+  exact
+    oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_uncastActiveEntryExpandedFold_n3
+      H env hUniform hExpanded
+
+/--
+The H-free evaluated backend-fold statement is equivalent to the active-to-source
+prepared singleton field, once the existing clean-column contract for
+`H_W^(kappa)` is supplied.
+
+This is a proof-DAG alignment lemma only.  It identifies the next theorem target
+without proving either side and without adding any paper assumption.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env ↔
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement := by
+  exact
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3
+      H env hUniform).symm
+
+/--
+The evaluated backend-fold target is exactly the active/prepared circuit-field
+evaluation obligation under the all-slot `H_W^(kappa)` clean-column contract.
+
+This is the smaller compiled obstruction exposed by the current lower packet:
+the backend fold already agrees with the source-prepared singleton entry under
+the explicit clean-column contract, so the missing finite theorem is the
+`CircuitMatrixSemantics` composition field equating the active seven-gate
+signal-zero entry with the prepared singleton clean entry.  No theorem-facing
+semantic flag is promoted.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env ↔
+      (oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement :=
+  oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3
+    H env hUniform
+
+/--
+The evaluated backend fold closes the preferred uncast active/prepared target.
+
+This is only a named direction of
+`oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_evaluatedBackendFold_n3`.
+It keeps the missing finite projection theorem as the evaluated fold and does
+not promote any product, LCU, block, or final-extraction flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_evaluatedBackendFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hFold :
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env) :
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env :=
+  (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_evaluatedBackendFold_n3
+    H env hUniform).2 hFold
+
+/--
+The evaluated backend fold feeds the theorem-facing source-prepared field.
+
+This is the active route requested by the source-correct projection packet:
+once the evaluated finite projection fold is proved, the source-prepared
+singleton field follows through the prepared clean-entry bridge.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hFold :
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement :=
+  (oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3
+    H env hUniform).1 hFold
+
+/--
+The same evaluated fold feeds the active/prepared circuit-field target.
+
+This keeps the record field, source-prepared target, and uncast target on one
+proof route rather than creating parallel obligations.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_activeEval_of_evaluatedBackendFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hFold :
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env) :
+    (oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement :=
+  (oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3
+    H env hUniform).1 hFold
+
+/--
+Smallest current evaluated projection-backend target.
+
+The source-prepared target has selected the correct prepared singleton entry.
+This packet removes the matrix `H` from the statement that still has to be
+proved: the active signal-zero entry must evaluate to the evaluated backend
+fold.  The external clean-column contract is recorded only as the bridge needed
+to compare this H-free statement with the active/prepared singleton field.
+-/
+structure OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget where
+  sourceAnchor : String
+  sourcePreparedProjectionTarget :
+    OneTermRobinGamma3BoundarySourcePreparedProjectionTarget
+  activeSignalEntry : Coeff
+  backendBranchFold : Coeff
+  evaluatedBackendFoldStatement : Prop
+  activePreparedEvalStatement : Prop
+  equivalenceLemma : String
+  requiredEvaluationTheorem : String
+  missingFiniteProjectionField : String
+  cleanColumnObligation : SemanticObligation
+  sourcePreparedTargetCompiled : Bool
+  evaluatedBackendFoldStatementTyped : Bool
+  activeEvalEquivalenceCompiled : Bool
+  evaluatedBackendFoldProved : Bool
+  rawCoeffFoldProved : Bool
+  projectionSummationProved : Bool
+  productToCoefficientProved : Bool
+  lcuCorrectProved : Bool
+  blockProjectionProved : Bool
+  blockCorrectProved : Bool
+  finalExtractionProved : Bool
+  exactRemainingObstruction : String
+
+/--
+Concrete evaluated backend-fold target for `n = 3`.
+
+No semantic flag is promoted.  The packet records that the remaining local
+theorem is an evaluated equality between the active signal-zero entry and the
+backend branch fold; a raw `Coeff` proof would be stronger but is still absent.
+-/
+def oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget :=
+  let preparedTarget :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+  let backendFold :=
+    blockExtractionBranchContributionSum
+      oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  {
+    sourceAnchor :=
+      "GHL2025 Definition def:block-encoding, Eq. ROBIN clarified boundary gamma3 branch, Eq. arbitrary sparcity, and QBE evaluated finite projection backend"
+    sourcePreparedProjectionTarget := preparedTarget
+    activeSignalEntry :=
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry
+    backendBranchFold := backendFold
+    evaluatedBackendFoldStatement :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
+    activePreparedEvalStatement :=
+      preparedTarget.activeToPreparedSingletonEvalStatement
+    equivalenceLemma :=
+      "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3"
+    requiredEvaluationTheorem :=
+      "Coeff.evalWith env signalUnitaryEntry = Coeff.evalWith env (blockExtractionBranchContributionSum backendBranchContribution)"
+    missingFiniteProjectionField :=
+      "finite projection theorem evaluating the active signal-zero entry as the seven-slot backend branch fold"
+    cleanColumnObligation := preparedTarget.uniformColumnObligation
+    sourcePreparedTargetCompiled := true
+    evaluatedBackendFoldStatementTyped := true
+    activeEvalEquivalenceCompiled := true
+    evaluatedBackendFoldProved := false
+    rawCoeffFoldProved := false
+    projectionSummationProved := preparedTarget.projectionSummationProved
+    productToCoefficientProved := preparedTarget.productToCoefficientProved
+    lcuCorrectProved := preparedTarget.lcuCorrectProved
+    blockProjectionProved := preparedTarget.blockProjectionProved
+    blockCorrectProved := preparedTarget.blockCorrectProved
+    finalExtractionProved := preparedTarget.finalExtractionProved
+    exactRemainingObstruction :=
+      "the source-prepared active/evaluated-backend equivalence is compiled, but QBE still lacks the finite projection theorem evaluating the active signal-zero entry as the backend branch fold"
+  }
+
+/--
+The evaluated backend-fold packet has the same remaining content as the
+active-to-source-prepared singleton eval field under the clean-column contract.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_activeEval_iff_statement_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env
+    target.activePreparedEvalStatement ↔
+      target.evaluatedBackendFoldStatement := by
+  dsimp [oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3]
+  exact
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3
+      H env hUniform
+
+/--
+Target-level form of the active/prepared circuit-field reduction.
+
+This packages the current accepted fallback without adding another obstruction
+record: proving the target's evaluated backend-fold statement is equivalent to
+proving the active/prepared composite evaluation field already exposed by
+`oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3`.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_activePreparedCircuitField_iff_statement_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env
+    let field :=
+      oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env
+    target.evaluatedBackendFoldStatement ↔
+      field.activePreparedCompositeEvalStatement := by
+  dsimp [oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3]
+  exact
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3
+      H env hUniform
+
+/--
+Transcript theorem for the evaluated backend-fold target.
+
+The theorem checks that the packet is tied to the existing source-prepared
+projection target, names the H-free evaluated backend-fold theorem, and keeps the
+raw fold, projection, product, LCU, block-correctness, and final-extraction flags
+false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3_transcript
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let target :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env
+    let preparedTarget :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    target.sourcePreparedProjectionTarget = preparedTarget ∧
+      target.activeSignalEntry =
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      target.evaluatedBackendFoldStatement =
+        oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env ∧
+      target.activePreparedEvalStatement =
+        preparedTarget.activeToPreparedSingletonEvalStatement ∧
+      target.equivalenceLemma =
+        "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3" ∧
+      target.requiredEvaluationTheorem =
+        "Coeff.evalWith env signalUnitaryEntry = Coeff.evalWith env (blockExtractionBranchContributionSum backendBranchContribution)" ∧
+      target.missingFiniteProjectionField =
+        "finite projection theorem evaluating the active signal-zero entry as the seven-slot backend branch fold" ∧
+      target.cleanColumnObligation =
+        preparedTarget.uniformColumnObligation ∧
+      target.cleanColumnObligation.proved = false ∧
+      target.sourcePreparedTargetCompiled = true ∧
+      target.evaluatedBackendFoldStatementTyped = true ∧
+      target.activeEvalEquivalenceCompiled = true ∧
+      target.evaluatedBackendFoldProved = false ∧
+      target.rawCoeffFoldProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      target.exactRemainingObstruction =
+        "the source-prepared active/evaluated-backend equivalence is compiled, but QBE still lacks the finite projection theorem evaluating the active signal-zero entry as the backend branch fold" := by
+  have _hprepared :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3_transcript
+      H env
+  have _hequiv :=
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3
+  dsimp [oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl⟩
+
+/--
+The focused product route now consumes the source-prepared projection backend.
+
+Under the explicit all-slot `H_W^(kappa)` clean-column contract, the prepared
+singleton clean entry selected by
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` evaluates to the
+compiled backend branch fold.  This is the source-correct route requested by
+Eq. `arbitrary sparcity`; it does not prove the active/prepared composition
+field, the finite normalized block equality, or the fixed
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+-/
+theorem
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    let productRoute :=
+      oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      target.preparedProjectionEntry =
+        (oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      target.conditionalBackendEvalBridgeCompiled = true ∧
+      target.activePreparedEntryEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      productRoute.fixedProductObligationName =
+        "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0" ∧
+      productRoute.productBridgeProved = false ∧
+      productRoute.normalizedBlockEqualityProved = false ∧
+      productRoute.productToCoefficientProved = false ∧
+      productRoute.lcuCorrectProved = false ∧
+      productRoute.blockProjectionProved = false ∧
+      productRoute.blockCorrectProved = false ∧
+      productRoute.finalExtractionProved = false := by
+  have hprepared :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+      H env hUniform
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3] at hprepared ⊢
+  exact ⟨hprepared, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+The finite projection/product bridge can consume the source-prepared backend
+route without changing any theorem-facing proof flag.
+
+This is the focused product-map form of the prepared singleton bridge.  It
+keeps the finite branch-decomposition, normalized block equality, and product
+obligation false while making the prepared projection equality available at the
+bridge layer that tracks `oneTermRobinGamma3ProductToCoefficientObligation 3 0
+0`.
+-/
+theorem
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_preparedProjectionBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      bridge.productRoute =
+        oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3 ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have hprepared :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+      H env hUniform
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3] at hprepared ⊢
+  exact ⟨hprepared, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl⟩
+
+/--
+The prepared projection backend bridge is attached to the fixed focused
+product-to-coefficient obligation.
+
+This is route wiring only.  The theorem reuses the prepared singleton backend
+equality through the finite product/projection bridge and checks that the bridge
+still points at `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+No product, branch-decomposition, LCU, block, or final-extraction flag is
+promoted.
+-/
+theorem
+    oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      bridge.productObligation =
+        oneTermRobinGamma3ProductToCoefficientObligation 3
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ ∧
+      bridge.productObligation.proved = false ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have hbridge :=
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_preparedProjectionBackendEval_n3
+      H env hUniform
+  rcases hbridge with
+    ⟨hEval, _hProductRoute, hConsumed, hProductBridge,
+      hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+      hBlockCorrect, hFinal⟩
+  dsimp [oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3,
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3]
+    at hConsumed hProductBridge hBranchDecomposition hNormalized hProduct hLCU
+      hBlockProjection hBlockCorrect hFinal ⊢
+  exact ⟨hEval, rfl, rfl, hConsumed, hProductBridge,
+    hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+    hBlockCorrect, hFinal⟩
+
+/--
+The exact prepared clean entry is available at the focused product-obligation
+layer.
+
+This is the literal clean-clean entry selected by the source-correct projection
+route.  The theorem consumes the prepared composite clean-entry backend bridge
+and only checks that the focused bridge is still the fixed
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`; it does not promote
+the product, branch-decomposition, LCU, block, or final-extraction flags.
+-/
+theorem
+    oneTermRobinGamma3BoundaryFocusedProductObligation_preparedCompositeCleanEntryBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ∧
+      bridge.productObligation =
+        oneTermRobinGamma3ProductToCoefficientObligation 3
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ ∧
+      bridge.productObligation.proved = false ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have hclean :=
+    oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+      H env hUniform
+  have hfocused :=
+    oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3
+      H env hUniform
+  rcases hfocused with
+    ⟨_hEval, hObligation, hObligationFalse, hConsumed, hProductBridge,
+      hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+      hBlockCorrect, hFinal⟩
+  dsimp [oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3]
+    at hObligation hObligationFalse hConsumed hProductBridge
+      hBranchDecomposition hNormalized hProduct hLCU hBlockProjection
+      hBlockCorrect hFinal ⊢
+  exact ⟨hclean, hObligation, hObligationFalse, hConsumed, hProductBridge,
+    hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+    hBlockCorrect, hFinal⟩
+
+/--
+The prepared projection backend bridge is available at the fixed product
+obligation layer.
+
+This is only route wiring: it reuses
+`oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3`
+to expose the prepared singleton backend equality next to
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.  It does not prove
+the product obligation, the branch-decomposition bridge, or any block/LCU
+claim.
+-/
+theorem
+    oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedProjectionBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false := by
+  have hfocused :=
+    oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3
+      H env hUniform
+  rcases hfocused with
+    ⟨hEval, hObligation, hObligationFalse, hConsumed, hProductBridge,
+      hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+      hBlockCorrect, hFinal⟩
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3] at hEval ⊢
+  exact ⟨hEval, hObligation, hObligationFalse, hConsumed, hProductBridge,
+    hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+    hBlockCorrect, hFinal, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+The already proved prepared composite clean-entry equality is wired directly to
+the fixed product-to-coefficient obligation layer.
+
+This is the theorem-facing route requested by the source-prepared projection
+packet: the clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` evaluates to
+the backend branch fold under the explicit all-slot `H_W^(kappa)` contract, and
+the fixed product map still points at
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.  It does not prove
+the product obligation, branch decomposition, normalized block equality, LCU,
+block correctness, or final extraction.
+-/
+theorem
+    oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have hfocused :=
+    oneTermRobinGamma3BoundaryFocusedProductObligation_preparedCompositeCleanEntryBackendEval_n3
+      H env hUniform
+  rcases hfocused with
+    ⟨hclean, hObligation, hBridgeObligationFalse, hConsumed, hProductBridge,
+      hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+      hBlockCorrect, hFinal⟩
+  dsimp [oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3]
+    at hObligation hBridgeObligationFalse hConsumed hProductBridge
+      hBranchDecomposition hNormalized hProduct hLCU hBlockProjection
+      hBlockCorrect hFinal ⊢
+  exact ⟨hclean, hObligation, hBridgeObligationFalse, hConsumed, hProductBridge,
+    hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+    hBlockCorrect, hFinal⟩
+
+/--
+The exact prepared clean-entry bridge is the equality component consumed by the
+fixed product-to-coefficient proof map.
+
+This is a route witness only: it reuses
+`oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` and
+checks that the focused product map still points at
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.  It does not promote
+the product, normalized-block, LCU, block, or final-extraction flags.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have hclean :=
+    oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+      H env hUniform
+  have hmap :=
+    oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3
+      H env hUniform
+  rcases hmap with
+    ⟨_hRoute, hObligation, hObligationFalse, _hConsumed, _hProductBridge,
+      _hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+      hBlockCorrect, hFinal⟩
+  dsimp [oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3]
+    at hObligation hObligationFalse hNormalized hProduct hLCU
+      hBlockProjection hBlockCorrect hFinal ⊢
+  exact ⟨hclean, hObligation, hObligationFalse, hNormalized, hProduct,
+    hLCU, hBlockProjection, hBlockCorrect, hFinal⟩
+
+/--
+The evaluated backend-fold target also exposes the prepared clean-entry bridge
+at the fixed product-map layer.
+
+This is route wiring only.  It reuses the exact prepared singleton backend
+equality and records it through `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3`,
+while keeping the active evaluated fold, product theorem, normalized block, LCU,
+block, and final-extraction flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_preparedCleanEntryFeedsProductMap_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env
+        target.sourcePreparedProjectionTarget.preparedProjectionEntry =
+      Coeff.evalWith env target.backendBranchFold ∧
+      target.sourcePreparedProjectionTarget.preparedProjectionEntry =
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      target.evaluatedBackendFoldProved = false ∧
+      target.rawCoeffFoldProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have hmap :=
+    oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3
+      H env hUniform
+  rcases hmap with
+    ⟨hclean, hObligation, hObligationFalse, hNormalized, hProduct,
+      hLCU, hBlockProjection, hBlockCorrect, hFinal⟩
+  dsimp [oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3]
+    at hclean hObligation hObligationFalse hNormalized hProduct hLCU
+      hBlockProjection hBlockCorrect hFinal ⊢
+  exact ⟨hclean, rfl, rfl, hObligation, hObligationFalse, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, hNormalized, hProduct, hLCU,
+    hBlockProjection, hBlockCorrect, hFinal⟩
+
+/--
+The source-prepared target field is the backend equality consumed by the fixed
+product map.
+
+This theorem keeps the route theorem-facing: the reusable field is
+`preparedSingletonToBackendEvalStatement` from
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3`, and the
+`hUniform` contract turns that field into the exact prepared clean-entry
+backend equality beside `oneTermRobinGamma3ProductToCoefficientObligation 3 0
+0`.  It does not prove the active/prepared composition field or promote any
+semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryProductToCoefficientObligation_sourcePreparedTargetBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    let bridge :=
+      oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    target.preparedSingletonToBackendEvalStatement ∧
+      Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      target.preparedProjectionEntry =
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      target.activePreparedEntryEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have hfield :
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3
+      H env
+  have hEval :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+      H env hUniform
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3] at hfield hEval ⊢
+  exact ⟨hfield, hEval, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
 end Examples.RobinHeat
 
 end QuantumBlockEncoding

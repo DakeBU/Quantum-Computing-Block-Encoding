@@ -24,7 +24,16 @@ free-form chat room.
 - `runs/trials.jsonl` and `runs/trials_summary.csv` are the memory that keeps
   later cycles from repeating failed work.
 - `runs/<run-id>/dialogue.md` is the short handoff board.
+- `runs/context-packs/` stores compact context packets for token-lean long
+  runs.
+- `runs/efficiency/` stores post-run efficiency reports.
 - `python3 tools/qbe.py check` is the default gate.
+- `.agents/skills/qbe-proof-diagnostics/SKILL.md` is the reviewer/middle
+  checklist for hidden axioms, placeholders, suspicious semantic-flag
+  promotions, and reusable proof-block memory.
+- `proof-blueprints/<task-id>.md` is the compact system-of-record snapshot for
+  the active task.  It is a QBE-specific adaptation of the blueprint/DAG
+  control pattern studied in LeanMarathon.
 
 Every nontrivial cycle should leave three kinds of evidence:
 
@@ -55,6 +64,55 @@ obligations decide acceptance.
 
 The upper agent must identify the mode before broad lower-agent work begins.
 The reviewer rejects any cycle that silently mixes the two modes.
+
+## Blueprint And DAG Control
+
+LeanMarathon's useful control lesson for QBE is that long Lean runs need a
+durable blueprint, not only a long chat transcript.  QBE keeps the blueprint
+split across Lean source, conversion windows, proof obligations, paper notes,
+cited-results memory, and a compact generated snapshot:
+
+```bash
+python3 tools/qbe.py blueprint-refresh QBE-AUTO-002
+python3 tools/qbe.py blueprint-status QBE-AUTO-002 --refresh
+python3 tools/qbe.py write-context-pack QBE-AUTO-002 --cycle 1
+```
+
+The snapshot records:
+
+- the current directive,
+- the inferred stage,
+- dynamic leaf candidates,
+- open obligation signals,
+- task-relevant Lean declarations,
+- correspondence artifacts,
+- the latest dialogue signal.
+
+Use it before overnight work:
+
+```bash
+python3 tools/qbe.py run-cycle QBE-AUTO-002 \
+  --cycle 1 \
+  --lower-count 1 \
+  --context-mode focused \
+  --blueprint-refresh
+```
+
+The upper/middle agents should retire stale leaves when the blueprint reports
+that a lower target is already compiled.  The lower agent should work on one
+dynamic leaf.  The reviewer should treat Lean plus proof-map correspondence as
+the gate, not agent self-assessment.
+
+After a multi-hour run, write an efficiency report before planning the next
+batch:
+
+```bash
+python3 tools/qbe.py efficiency-report --task QBE-AUTO-002
+```
+
+This mirrors the useful control surface from the sibling
+Auto-Sampling-Theory-In-Sleep project: long runs should leave a compact status
+artifact, not only a long terminal log.
 
 ## Roles
 
@@ -111,7 +169,7 @@ project direction.
 ## Create A Prompt Deck
 
 ```bash
-cd /path/to/Quantum-Computing-Bloack-Encoding
+cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
 python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 2
 ```
 
@@ -174,6 +232,13 @@ This follows the useful part of the Learning Beyond Gradients artifact pattern:
 append rich JSONL records, then rewrite a small CSV summary after each attempt.
 The JSONL file preserves detail; the CSV gives the upper agent a short memory.
 
+QBE also uses a MathCode-like theorem-reuse discipline: useful proved Lean
+fragments should become named declarations rather than being rediscovered in
+future runs.  For QBE, the reusable fragments are usually finite index
+conversions, signal-zero projection lemmas, branch-decomposition lemmas,
+normalizer algebra, dagger-entry bridges, and gate-list/matrix-product
+semantics.  See `docs/mathcode_reference_notes.md`.
+
 ## Overnight Pattern
 
 Dry run first:
@@ -201,6 +266,7 @@ Example shape:
 python3 tools/qbe.py sleep-run QBE-AUTO-001 \
   --cycles 8 \
   --lower-count 3 \
+  --blueprint-refresh \
   --agent-cmd 'cd {root} && codex exec --full-auto "$(cat {prompt})"' \
   --execute \
   --check-each-cycle
@@ -209,6 +275,50 @@ python3 tools/qbe.py sleep-run QBE-AUTO-001 \
 Adjust the `codex exec` flags to the CLI you actually use. The QBE side only
 requires that the command reads the prompt, edits the repository if needed, and
 returns a process exit code.
+
+## Focused Proof Burst
+
+When upper and middle have already identified a fixed Lean theorem, do not run
+a full upper/middle/lower/reviewer cycle on every iteration.  That pattern is
+useful for planning, but it is token-expensive during local theorem closure.
+
+Use a full planning cycle when the route is unclear:
+
+```bash
+python3 tools/qbe.py sleep-run QBE-AUTO-002 \
+  --cycles 1 \
+  --lower-count 1 \
+  --context-mode full \
+  --blueprint-refresh \
+  --agent-cmd 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"' \
+  --execute \
+  --check-each-cycle
+```
+
+Use focused proof burst mode after the target is fixed:
+
+```bash
+python3 tools/qbe.py sleep-run QBE-AUTO-002 \
+  --cycles 12 \
+  --lower-count 1 \
+  --context-mode focused \
+  --blueprint-refresh \
+  --upper-every 6 \
+  --middle-every 6 \
+  --reviewer-every 6 \
+  --agent-cmd 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"' \
+  --execute \
+  --check-each-cycle
+```
+
+In focused mode, prompt decks still exist for all roles, but only the selected
+roles are executed in a given cycle.  The lower agent runs every cycle.  Upper,
+middle, and reviewer are periodic safeguards: they should re-plan only when the
+fixed theorem changes, the lower agent repeatedly produces only restated
+obstructions, or Lean failures indicate a source-contract mismatch.
+
+This is the preferred setting for faithful-paper theorem closure after the
+source proof has already been audited.
 
 ## Stop Conditions
 

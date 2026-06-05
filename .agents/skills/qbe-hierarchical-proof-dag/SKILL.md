@@ -17,6 +17,12 @@ as verifier-guided search and explains why a hierarchical prover can need far
 less successful trace data when it represents repeated subproofs as a reusable
 proof DAG with memoized blocks instead of flattening every occurrence.
 
+It also studies the similar blueprint/DAG-control pattern in LeanMarathon:
+target review first, then proof discharge from dynamic leaves with worker and
+refiner roles.  QBE uses this pattern through `proof-blueprints/` and
+`tools/qbe.py blueprint-refresh`, not through LeanMarathon's full GitHub
+worktree/PR harness.
+
 ## QBE Translation
 
 - The verifier is Lean.
@@ -63,10 +69,15 @@ QBE, useful interfaces include:
 
 - Upper chooses the next block whose reuse would reduce the largest flat
   duplication.
-- Middle keeps the DAG table synchronized with Lean, Markdown, and LaTeX.
+- Upper and middle refresh the proof blueprint before a long run and retire
+  stale dynamic leaves.
+- Middle keeps the DAG table synchronized with Lean, Markdown, LaTeX, and the
+  proof blueprint.
 - Lower proves or refines one block interface at a time.
 - Reviewer rejects duplicated definitions, repeated flat proof scripts, and
   changes that add assumptions instead of proving a block.
+- Reviewer groups related failures into one refiner-style illness area when a
+  shared dependency is wrong or missing.
 
 ## Faithful Paper Mode
 

@@ -27,6 +27,9 @@ and human explanation.
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2, the conversion window should
    expose shared proof blocks rather than flattening the same local argument
    many times.
+   Also keep it compatible with QBE's LeanMarathon-like proof blueprint:
+   dynamic leaves in `proof-blueprints/<task-id>.md` should point to concrete
+   conversion-window or proof-obligation rows, not vague goals.
 7. Add a cited-results pane when the proof uses prior work or a standard fact.
    Link to `research-wiki/cited-results/` and distinguish `paper-cited`,
    `contract-only`, `obligation`, and `formalized` statuses.
@@ -41,6 +44,8 @@ and human explanation.
 10. Write a Markdown explanation of the construction.
 11. Move verified Lean code into `QuantumBlockEncoding/`.
 12. Run `python3 tools/qbe.py check`.
+13. Run `python3 tools/qbe.py blueprint-refresh <task-id>` after accepted
+    changes so the next upper/lower/reviewer prompts see current DAG state.
 
 ## Proof-DAG Pane
 
@@ -73,6 +78,10 @@ If a proof block repeatedly fails, do not keep issuing the same lower-agent
 proof-search packet.  Re-read the local TeX source and bibliography, classify
 the dependency, and add either a cited-results entry, a local Lean lemma target,
 or a source-contract obligation.
+
+If several repeated failures share the same source-contract or Lean-interface
+dependency, group them as one refiner-style illness area.  Repair the shared
+interface once before sending more lower agents to adjacent leaves.
 
 If the paper already provides a proof, the window should show how the proof is
 being translated.  Do not let a lower-agent packet skip directly from theorem

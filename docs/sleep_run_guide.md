@@ -9,10 +9,11 @@ upper/middle/lower/reviewer cycles and uses Lean as the acceptance gate.
 
 `sleep-run` does four things:
 
-1. Creates a prompt deck for each cycle under `runs/<run-id>/`.
-2. Gives each role a precise prompt and shared dialogue board.
-3. Logs each cycle to `runs/trials.jsonl`.
-4. Optionally calls an external agent command and runs `lake build`.
+1. Optionally refreshes a task proof blueprint under `proof-blueprints/`.
+2. Creates a prompt deck for each cycle under `runs/<run-id>/`.
+3. Gives each role a precise prompt and shared dialogue board.
+4. Logs each cycle to `runs/trials.jsonl`.
+5. Optionally calls an external agent command and runs `lake build`.
 
 It does not require a specific vendor. The external command can be Codex CLI,
 Claude Code, a shell wrapper, or a manual script that reads one prompt file.
@@ -49,7 +50,9 @@ branch.
 Start with a dry run:
 
 ```bash
-cd /path/to/Quantum-Computing-Bloack-Encoding
+cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
+python3 tools/qbe.py blueprint-status QBE-AUTO-001 --refresh
+python3 tools/qbe.py write-context-pack QBE-AUTO-001 --cycle 1
 python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 2 --lower-count 2 --dry-run
 python3 tools/qbe.py trial-summary
 ```
@@ -75,7 +78,11 @@ If you do not want to execute agent CLIs automatically:
 Commands:
 
 ```bash
-python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 3
+python3 tools/qbe.py run-cycle QBE-AUTO-001 \
+  --cycle 1 \
+  --lower-count 3 \
+  --blueprint-refresh
+python3 tools/qbe.py blueprint-status QBE-AUTO-001 --refresh
 python3 tools/qbe.py agent-note latest --role upper --message "Objective selected."
 python3 tools/qbe.py trial-summary
 python3 tools/qbe.py check
@@ -100,9 +107,18 @@ Example shape:
 python3 tools/qbe.py sleep-run QBE-AUTO-001 \
   --cycles 8 \
   --lower-count 3 \
+  --context-mode focused \
+  --blueprint-refresh \
   --agent-cmd 'cd {root} && codex exec --full-auto "$(cat {prompt})"' \
   --execute \
   --check-each-cycle
+```
+
+After a long run, summarize the log and trial memory before assigning the next
+round:
+
+```bash
+python3 tools/qbe.py efficiency-report --task QBE-AUTO-001
 ```
 
 Use your own agent CLI flags. The only QBE-side expectation is that the command
@@ -117,7 +133,13 @@ GHL2025 Robin block-extraction proof statement.
 Run one small dry-run first:
 
 ```bash
-python3 tools/qbe.py sleep-run QBE-AUTO-002 --cycles 1 --lower-count 1 --dry-run
+python3 tools/qbe.py blueprint-refresh QBE-AUTO-002
+python3 tools/qbe.py sleep-run QBE-AUTO-002 \
+  --cycles 1 \
+  --lower-count 1 \
+  --context-mode focused \
+  --blueprint-refresh \
+  --dry-run
 ```
 
 Then start a Claude-only unattended run:
@@ -128,6 +150,8 @@ nohup bash -lc '
 python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --cycles 4 \
   --lower-count 1 \
+  --context-mode focused \
+  --blueprint-refresh \
   --agent-cmd '"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
   --execute \
   --check-each-cycle
@@ -146,6 +170,7 @@ Before starting:
 python3 tools/qbe.py check
 python3 tools/qbe.py list-literature
 python3 tools/qbe.py next-task
+python3 tools/qbe.py blueprint-refresh QBE-AUTO-001
 ```
 
 Prepare the active task:
@@ -158,7 +183,11 @@ python3 tools/qbe.py conversion-window QBE-AUTO-001 --title "Robin one-term bloc
 Start the run:
 
 ```bash
-python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 8 --lower-count 3 --dry-run
+python3 tools/qbe.py sleep-run QBE-AUTO-001 \
+  --cycles 8 \
+  --lower-count 3 \
+  --blueprint-refresh \
+  --dry-run
 ```
 
 Replace `--dry-run` with an `--agent-cmd ... --execute` template only after the
@@ -177,6 +206,7 @@ Review:
 - `runs/trials_summary.csv`,
 - latest `runs/<run-id>/90_handoff.md`,
 - latest `runs/<run-id>/dialogue.md`,
+- latest `proof-blueprints/<task-id>.md`,
 - changed Lean files,
 - proof obligations and open-problem proposals.
 

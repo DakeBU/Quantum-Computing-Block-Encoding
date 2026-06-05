@@ -17,6 +17,10 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
    future-paper abstractions, and non-critical proof polishing until the paper's
    theorem/equation/circuit/oracle map is complete.  In Phase 2, reorganize
    shared APIs and teaching/reuse structure.
+   Also classify the LeanMarathon-style control stage: target/transcript review
+   before broad proving, then DAG proof discharge from dynamic leaves.  Refresh
+   `proof-blueprints/<task-id>.md` with `python3 tools/qbe.py blueprint-refresh
+   <task-id>` before assigning long lower-agent work.
 3. Run a source-contract audit before writing Lean: for every oracle or named
    gate, record the paper anchor, exact input registers, exact output registers,
    clean ancilla condition, normalizer, and resource claim.  Public artifacts
@@ -62,6 +66,13 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
    `K_1 <= j <= K_2` and cite the bulk branch, including any `+ ...` term that
    is not expanded in the display.  A branch mismatch is a planning error to
    fix before proof search.
+   When a named gate angle seems inconsistent with the matrix convention, audit
+   the local paper, prior papers explicitly cited for that subroutine, and any
+   companion implementation cited by the paper before declaring a theorem gap.
+   Record the result as either a source-backed correction route or a true
+   source-contract gap.  For standard `R_y(theta)`, remember that the clean
+   matrix entry is `cos(theta/2)`, so an amplitude `a` usually requires an input
+   angle `2 arccos(a)`.
 8. Identify reusable proof blocks before writing Lean.  Use the lesson of
    Sonoda--Akiyama--Uezato, arXiv:2602.10512v2: a hierarchical prover gains
    sample efficiency when repeated local arguments are represented as a proof
@@ -74,24 +85,32 @@ Use this when implementing one paper from `QuantumBlockEncoding/Literature.lean`
 10. Create a conversion window:
    `python3 tools/qbe.py conversion-window <id> --title "<paper construction>"`.
 11. Add a proof-DAG/reuse map to the conversion window: each block should have
-   an interface, dependencies, Lean declaration name, paper citation, proof
-   status, and reuse sites.
-12. Add or update Lean definitions in the target file, preferring references to
-   existing shared declarations over duplicate local definitions.
-13. Add at least one small test in `Tests/Basic.lean` when possible.
-14. Run `python3 tools/qbe.py check`.
+    an interface, dependencies, Lean declaration name, paper citation, proof
+    status, and reuse sites.
+12. Refresh the task proof blueprint.  If it reports that the latest lower
+    target was already compiled, retire the stale directive before spending
+    more proof-search tokens.
+13. Add or update Lean definitions in the target file, preferring references to
+    existing shared declarations over duplicate local definitions.
+14. Add at least one small test in `Tests/Basic.lean` when possible.
+15. Run `python3 tools/qbe.py check`.
 
 ## Hierarchical Proof Policy
 
 - Upper chooses one reusable block or one block interface per cycle.
-- Middle maintains the proof DAG and sends lower agents narrow local proof
-  packets.
+- Upper also reviews the proof blueprint and retires stale dynamic leaves
+  before assigning lower work.
+- Middle maintains the proof DAG, refreshes the proof blueprint, and sends
+  lower agents narrow local proof packets.
 - Middle also keeps the Markdown/LaTeX proof map synchronized with Lean after
   each cycle; compilation alone is not a completed faithful-paper step.
 - Lower agents solve local blocks; a successful block should be promoted to a
   named Lean declaration and reused by calls, not copied.
 - Reviewer checks whether a failed or expensive flat proof should be split into
   a reusable lemma before more search is spent.
+- Reviewer checks whether a group of failures belongs to one connected
+  illness area that should receive a refiner-style repair instead of many
+  independent patches.
 - In faithful paper mode, the DAG decomposes the paper construction; it must not
   add hypotheses, substitute circuits, or weaken the theorem.
 - Reviewer treats source-contract drift as blocking: a Lean proof of a

@@ -6,6 +6,10 @@ This file is adapted from the plain-file workflow philosophy of ARIS
 this helper is QBE-specific.  It intentionally has no third-party dependencies.
 It also adopts the trial JSONL / summary CSV pattern used in the public
 Learning Beyond Gradients artifact repository.
+It additionally follows a similar blueprint/DAG-control pattern studied in
+LeanMarathon (`YuanheZ/LeanMarathon`): keep a durable system-of-record
+snapshot, review target fidelity before broad proving, and discharge focused
+proof leaves through deterministic gates.
 
 The helper is not an AI agent.  It is the stable command surface an agent can
 use while keeping all source-of-truth files in this Lean repository.
@@ -17,6 +21,7 @@ import argparse
 import csv
 import datetime as _dt
 import json
+import os
 import re
 import subprocess
 import sys
@@ -24,7 +29,20 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-LOCAL_PAPER_SOURCE_ROOT = ROOT.parent / "Auto-claude-code-research-in-sleep" / "paper-sources"
+REPOS_ROOT = ROOT.parent
+OUTER_REPOS_ROOT = REPOS_ROOT / "outer_repos"
+OUTER_PAPERS_ROOT = REPOS_ROOT / "outer_papers"
+LOCAL_PAPER_SOURCE_ROOT = Path(
+    os.environ.get("QBE_PAPER_SOURCE_ROOT", str(OUTER_PAPERS_ROOT))
+).expanduser()
+ARIS_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "Auto-claude-code-research-in-sleep"
+EOH_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "EoH"
+LBG_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "learning-beyond-gradients"
+LEANMARATHON_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "LeanMarathon"
+LEAN_QUANTUM_INFO_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "Lean-QuantumInfo"
+MATHCODE_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "mathcode"
+OPTIMIZATION_PROBLEMS_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "optimizationproblems"
+LEANMARATHON_PDF = OUTER_PAPERS_ROOT / "LeanMarathon-2606.05400.pdf"
 STATE_DIR = ROOT / ".qbe"
 STATE_FILE = STATE_DIR / "state.json"
 MANIFEST = ROOT / "MANIFEST.md"
@@ -32,6 +50,9 @@ QBE_DASHBOARD = ROOT / "QBE.md"
 FINDINGS = ROOT / "findings.md"
 TRIAL_LOG = ROOT / "runs" / "trials.jsonl"
 TRIAL_SUMMARY = ROOT / "runs" / "trials_summary.csv"
+BLUEPRINT_DIR = ROOT / "proof-blueprints"
+EFFICIENCY_DIR = ROOT / "runs" / "efficiency"
+CONTEXT_PACK_DIR = ROOT / "runs" / "context-packs"
 
 AGENT_ROLES = ("upper", "middle", "lower", "reviewer")
 TRIAL_KINDS = ("plan", "attempt", "build", "review", "proposal", "compression", "handoff")
@@ -43,11 +64,14 @@ WORK_DIRS = [
     "paper-notes",
     "agent-briefs",
     "proof-attempts",
+    "proof-blueprints",
     "candidate-populations",
     "open-problem-proposals",
     "proof-obligations",
     "reviews",
     "runs",
+    "runs/efficiency",
+    "runs/context-packs",
     "research-wiki/papers",
     "research-wiki/ideas",
     "research-wiki/claims",
@@ -132,6 +156,20 @@ def rel(path: Path) -> str:
     return str(path.relative_to(ROOT))
 
 
+def display_path(path: Path) -> str:
+    """Return a compact path for private agent prompts and diagnostics."""
+    try:
+        return str(path.relative_to(REPOS_ROOT))
+    except ValueError:
+        return str(path)
+
+
+def write_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    print(f"wrote {display_path(path)}")
+
+
 def git_changed_files() -> list[str]:
     code, output = run_capture(["git", "status", "--short"])
     if code != 0:
@@ -150,6 +188,51 @@ def git_changed_files() -> list[str]:
 def latest_run_dir() -> Path | None:
     runs = [p for p in (ROOT / "runs").glob("*") if p.is_dir()]
     return sorted(runs)[-1] if runs else None
+
+
+def latest_log_file() -> Path | None:
+    log_dir = ROOT / "runs" / "logs"
+    if not log_dir.exists():
+        return None
+    logs = [path for path in log_dir.glob("*.log") if path.is_file()]
+    if not logs:
+        return None
+    return max(logs, key=lambda path: path.stat().st_mtime)
+
+
+def infer_active_task_id(default: str = "QBE-AUTO-002") -> str:
+    state = load_state()
+    if state.get("active_task"):
+        return str(state["active_task"])
+    records = load_jsonl(TRIAL_LOG)
+    for record in reversed(records):
+        task_id = record.get("task_id")
+        if task_id:
+            return str(task_id)
+    if (ROOT / "tasks" / f"{default}.md").exists():
+        return default
+    tasks = sorted((ROOT / "tasks").glob("*.md"))
+    return tasks[0].stem if tasks else default
+
+
+def latest_dialogue_text(task_id: str | None = None, limit_chars: int = 8000) -> str:
+    run_dirs = sorted([p for p in (ROOT / "runs").glob("*") if p.is_dir()], reverse=True)
+    chunks: list[str] = []
+    for run_dir in run_dirs:
+        if task_id and slugify(task_id) not in run_dir.name and task_id not in run_dir.name:
+            continue
+        board = run_dir / "dialogue.md"
+        if not board.exists():
+            continue
+        text = board.read_text(encoding="utf-8").strip()
+        if text:
+            chunks.append(f"## {run_dir.name}\n\n{text}")
+        if sum(len(chunk) for chunk in chunks) >= limit_chars:
+            break
+    if not chunks:
+        return "no dialogue records yet"
+    joined = "\n\n".join(chunks)
+    return joined[-limit_chars:]
 
 
 def load_state() -> dict:
@@ -285,6 +368,24 @@ Each record should identify:
 - Lean error or remaining goals,
 - reusable intermediate lemma found,
 - status: rejected, promising, generalized, or proved.
+""",
+        ROOT / "proof-blueprints" / "README.md": """# Proof Blueprints
+
+QBE proof blueprints are compact system-of-record snapshots for one task.
+
+They are inspired by similar blueprint/DAG-control patterns in LeanMarathon,
+but adapted to QBE's block-encoding target:
+
+- Lean declarations are the correctness core;
+- Markdown and LaTeX artifacts are the human proof map;
+- proof obligations and cited-results ledgers keep unproved contracts explicit;
+- dynamic leaf candidates tell lower agents which local proof node to attempt.
+
+Refresh a blueprint before long runs:
+
+```bash
+python3 tools/qbe.py blueprint-refresh <task-id>
+```
 """,
         ROOT / "candidate-populations" / "README.md": """# Candidate Populations
 
@@ -796,6 +897,626 @@ def recent_trial_text(task_id: str | None = None, limit: int = 10) -> str:
     return "\n".join(lines)
 
 
+def extract_section(text: str, heading_patterns: list[str]) -> str:
+    matches: list[re.Match[str]] = []
+    for pattern in heading_patterns:
+        matches.extend(re.finditer(pattern, text, flags=re.M | re.I))
+    if not matches:
+        return ""
+    match = sorted(matches, key=lambda m: m.start())[-1]
+    start = match.start()
+    next_match = re.search(r"^## (?!#).*$", text[start + 1 :], flags=re.M)
+    end = start + 1 + next_match.start() if next_match else len(text)
+    return text[start:end].strip()
+
+
+def compact_markdown_lines(path: Path, patterns: list[str], limit: int = 30) -> list[str]:
+    if not path.exists():
+        return []
+    out: list[str] = []
+    compiled = [re.compile(pattern, flags=re.I) for pattern in patterns]
+    for raw in read_text(path).splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if any(pattern.search(line) for pattern in compiled):
+            out.append(line)
+        if len(out) >= limit:
+            break
+    return out
+
+
+def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, str]]:
+    keywords = ("theorem", "lemma", "def", "structure", "inductive", "abbrev")
+    if any(marker in task_text for marker in ["GHL2025", "Guseynov", "Robin", "QBE-AUTO-002"]):
+        files = [
+            ROOT / "QuantumBlockEncoding" / "GHL2025.lean",
+            ROOT / "QuantumBlockEncoding" / "RobinMatrix.lean",
+            ROOT / "QuantumBlockEncoding" / "CircuitSemantics.lean",
+        ]
+    else:
+        files = sorted((ROOT / "QuantumBlockEncoding").glob("*.lean"))
+    rows: list[dict[str, str]] = []
+    decl_re = re.compile(r"^\s*(?:noncomputable\s+)?(" + "|".join(keywords) + r")\s+([A-Za-z0-9_'.]+)")
+    for path in files:
+        if not path.exists():
+            continue
+        for line_no, line in enumerate(read_text(path).splitlines(), start=1):
+            match = decl_re.match(line)
+            if not match:
+                continue
+            name = match.group(2)
+            if task_text and any(token in task_text for token in ["GHL2025", "Robin", "QBE-AUTO-002"]):
+                if not any(marker in name for marker in ["GHL", "Robin", "robin", "Circuit", "Block", "banded", "functionOracle", "boundary", "swap", "indicator", "oneTerm"]):
+                    continue
+            rows.append(
+                {
+                    "file": rel(path),
+                    "line": str(line_no),
+                    "kind": match.group(1),
+                    "name": name,
+                }
+            )
+    return rows[-limit:]
+
+
+def infer_blueprint_stage(task_text: str, proof_obligation_text: str) -> str:
+    lower = (task_text + "\n" + proof_obligation_text).lower()
+    if (
+        any(marker in lower for marker in ["current run directive", "immediate 6h focus", "lower agent", "fixed theorem"])
+        and any(marker in lower for marker in ["unproved", "remain false", "proved := false", "proof target", "dynamic leaf"])
+    ):
+        return "Stage 2 DAG proof discharge, with faithful transcript checks still active"
+    if "phase 1" in lower or "transcript" in lower or "contract capture" in lower:
+        return "Stage 1 target/transcript stabilization"
+    if "unproved" in lower or "remain false" in lower or "proved := false" in lower:
+        return "Stage 2 DAG proof discharge"
+    return "Stage unknown; upper must classify before broad lower work"
+
+
+def dynamic_leaf_candidates(task_text: str, obligation_text: str, dialogue_text: str, limit: int = 12) -> list[str]:
+    candidates: list[str] = []
+    directive = extract_section(task_text, [r"^## Immediate .*?$", r"^## Current Run Directive.*?$"])
+    if directive:
+        current: list[str] = []
+        in_code = False
+
+        def flush_current() -> None:
+            if current:
+                candidates.append(" ".join(current).strip())
+                current.clear()
+
+        for line in directive.splitlines():
+            if line.strip().startswith("```"):
+                in_code = not in_code
+                flush_current()
+                continue
+            if in_code:
+                continue
+            stripped = line.strip()
+            if stripped.startswith("- ") or re.match(r"^[0-9]+\.", stripped):
+                flush_current()
+                current.append(stripped)
+            elif current and line[:1].isspace() and stripped:
+                current.append(stripped)
+            else:
+                flush_current()
+        flush_current()
+    for line in obligation_text.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        lowered = stripped.lower()
+        if any(marker in lowered for marker in ["unproved", "remain false", "proved := false", "next", "planned", "obligation"]):
+            candidates.append(stripped)
+    if "already compiled" in dialogue_text or "already implemented" in dialogue_text or "No duplicate" in dialogue_text:
+        candidates.insert(
+            0,
+            "Latest handoff indicates at least one assigned lower target was already compiled; upper/middle should retire stale directives before more proof search.",
+        )
+    compact: list[str] = []
+    seen: set[str] = set()
+    for item in candidates:
+        item = re.sub(r"\s+", " ", item)
+        if len(item) > 260:
+            item = item[:257] + "..."
+        if item in seen:
+            continue
+        seen.add(item)
+        compact.append(item)
+        if len(compact) >= limit:
+            break
+    return compact
+
+
+def blueprint_path(task_id: str) -> Path:
+    return BLUEPRINT_DIR / f"{slugify(task_id)}.md"
+
+
+def refresh_blueprint(task_id: str) -> Path:
+    cmd_init(argparse.Namespace())
+    title, task_text = task_context(task_id)
+    mode = infer_task_mode(task_text)
+    conversion_path = ROOT / "conversion-windows" / f"{slugify(task_id)}.md"
+    obligation_path = ROOT / "proof-obligations" / f"{slugify(task_id)}.md"
+    task_path = ROOT / "tasks" / f"{slugify(task_id)}.md"
+    obligation_text = read_text(obligation_path) if obligation_path.exists() else ""
+    dialogue_text = latest_dialogue_text(task_id, limit_chars=5000)
+    stage = infer_blueprint_stage(task_text, obligation_text)
+    directive = extract_section(task_text, [r"^## Immediate .*?$", r"^## Current Run Directive.*?$"])
+    if not directive:
+        directive = focused_task_contract(task_text)
+    declarations = lean_declaration_index(task_text, limit=60)
+    leaf_rows = dynamic_leaf_candidates(task_text, obligation_text, dialogue_text)
+    obligation_rows = compact_markdown_lines(
+        obligation_path,
+        [
+            r"unproved",
+            r"remain false",
+            r"proved := false",
+            r"obligation",
+            r"contract",
+            r"next",
+        ],
+        limit=24,
+    )
+    correspondence_files = [
+        task_path,
+        conversion_path,
+        obligation_path,
+        ROOT / "paper-notes" / "GHL2025_RobinOneTerm.tex",
+        ROOT / "paper-notes" / "GHL2025" / "markdown" / "00_status.md",
+        ROOT / "paper-notes" / "GHL2025" / "latex" / "sections" / "00_status.tex",
+        ROOT / "research-wiki" / "cited-results" / "GHL2025.md",
+    ]
+    artifacts = [path for path in correspondence_files if path.exists()]
+    text = f"""# Proof Blueprint: {task_id}
+
+Task id: `{task_id}`
+Title: {title}
+Mode: `{mode}`
+Updated: `{now_stamp()}`
+Blueprint stage: `{stage}`
+
+This is QBE's compact system-of-record snapshot for long-horizon Lean proof
+automation.  It follows a similar control pattern to LeanMarathon's evolving
+blueprint, but QBE keeps the human-facing proof map split across Lean,
+Markdown, LaTeX, proof obligations, and cited-results memory because
+block-encoding papers require source notation, register conventions, and
+oracle contracts to stay explicit.
+
+## Current Directive
+
+```text
+{directive.strip()}
+```
+
+## Dynamic Leaf Queue
+
+These are the current local proof or repair candidates.  Lower agents should
+work on one item at a time; if an item is stale, upper/middle must retire it
+before spending more proof-search tokens.
+
+| Leaf | Status |
+|---|---|
+"""
+    for item in leaf_rows:
+        status = "stale-check" if item.startswith("Latest handoff indicates") else "candidate"
+        text += f"| {item.replace('|', '/')} | {status} |\n"
+    if not leaf_rows:
+        text += "| none detected | upper must refresh the task directive |\n"
+    text += """
+## Open Obligation Signals
+
+```text
+"""
+    text += "\n".join(obligation_rows) if obligation_rows else "no compact obligation signals found"
+    text += """
+```
+
+## Lean Declaration Index
+
+Recent task-relevant declarations:
+
+| Kind | Lean name | File |
+|---|---|---|
+"""
+    for row in declarations:
+        text += f"| {row['kind']} | `{row['name']}` | `{row['file']}:{row['line']}` |\n"
+    if not declarations:
+        text += "| none | no task-relevant declaration found | n/a |\n"
+    text += """
+## Correspondence Artifacts
+
+| Artifact | Role |
+|---|---|
+"""
+    for path in artifacts:
+        role = "task/proof map"
+        if "conversion-windows" in str(path):
+            role = "Lean/Markdown/LaTeX conversion"
+        elif "proof-obligations" in str(path):
+            role = "open obligations"
+        elif "paper-notes" in str(path):
+            role = "human-readable proof export"
+        elif "cited-results" in str(path):
+            role = "external theorem memory"
+        text += f"| `{rel(path)}` | {role} |\n"
+    text += f"""
+## Latest Dialogue Signal
+
+```text
+{dialogue_text[-3000:]}
+```
+
+## Gate Policy
+
+- Stage 1 target/transcript stabilization: upper and middle must verify that
+  Lean statements, source-paper prose, register layouts, normalizers, and
+  cited contracts match before broad lower proving.
+- Stage 2 DAG proof discharge: lower agents work on dynamic leaves only;
+  reviewer accepts progress only through `python3 tools/qbe.py check` and
+  synchronized Markdown/LaTeX correspondence.
+- Refiner behavior: when several failures share a dependency, repair the
+  connected illness area once instead of stacking independent patches.
+- No agent may mark a proof complete from self-assessment, partial score, or
+  process memory.  Lean plus explicit proof-map correspondence is the gate.
+"""
+    path = blueprint_path(task_id)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    add_manifest("qbe.py blueprint-refresh", path, "blueprint", f"Refreshed proof blueprint for {task_id}")
+    return path
+
+
+def blueprint_context(task_id: str, max_chars: int = 12000) -> str:
+    path = blueprint_path(task_id)
+    if not path.exists():
+        return "No proof blueprint yet. Run `python3 tools/qbe.py blueprint-refresh <task-id>`."
+    text = read_text(path).strip()
+    if len(text) <= max_chars:
+        return text
+    return text[:4000] + "\n\n...[blueprint truncated]...\n\n" + text[-(max_chars - 4030):]
+
+
+def cmd_blueprint_refresh(args: argparse.Namespace) -> int:
+    path = refresh_blueprint(args.id)
+    print(f"refreshed {rel(path)}")
+    return 0
+
+
+def latest_task_run_name(task_id: str) -> str:
+    runs = sorted([path for path in (ROOT / "runs").glob(f"*-{slugify(task_id)}-cycle*") if path.is_dir()])
+    return runs[-1].name if runs else "none"
+
+
+def blueprint_status_state(task_id: str) -> dict:
+    title, task_text = task_context(task_id)
+    obligation_path = ROOT / "proof-obligations" / f"{slugify(task_id)}.md"
+    conversion_path = ROOT / "conversion-windows" / f"{slugify(task_id)}.md"
+    obligation_text = read_text(obligation_path) if obligation_path.exists() else ""
+    dialogue_text = latest_dialogue_text(task_id, limit_chars=5000)
+    declarations = lean_declaration_index(task_text, limit=50)
+    leaves = dynamic_leaf_candidates(task_text, obligation_text, dialogue_text, limit=10)
+    obligation_rows = compact_markdown_lines(
+        obligation_path,
+        [
+            r"unproved",
+            r"remain false",
+            r"proved := false",
+            r"obligation",
+            r"contract",
+            r"source",
+            r"next",
+        ],
+        limit=20,
+    )
+    records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
+    role_counts: dict[str, int] = {}
+    status_counts: dict[str, int] = {}
+    for record in records:
+        role = str(record.get("role", "unknown"))
+        status = str(record.get("status", "unknown"))
+        role_counts[role] = role_counts.get(role, 0) + 1
+        status_counts[status] = status_counts.get(status, 0) + 1
+    source_rows = []
+    for key, path in local_paper_source_candidates(task_text):
+        main_tex = path / "main.tex"
+        source_rows.append(
+            {
+                "key": key,
+                "path": display_path(main_tex),
+                "exists": main_tex.exists(),
+            }
+        )
+    if any(row["exists"] for row in source_rows):
+        source_rows = [row for row in source_rows if row["exists"]]
+    return {
+        "task_id": task_id,
+        "title": title,
+        "generated": now_stamp(),
+        "mode": infer_task_mode(task_text),
+        "stage": infer_blueprint_stage(task_text, obligation_text),
+        "latest_cycle": latest_task_run_name(task_id),
+        "blueprint_path": display_path(blueprint_path(task_id)),
+        "conversion_window": display_path(conversion_path),
+        "proof_obligations": display_path(obligation_path),
+        "dynamic_leaf_queue": leaves,
+        "open_obligation_signals": obligation_rows,
+        "lean_declarations": declarations,
+        "trial_counts_by_role": role_counts,
+        "trial_counts_by_status": status_counts,
+        "local_paper_sources": source_rows,
+        "changed_files": git_changed_files(),
+        "controls_absorbed": [
+            "ASTIS-style compact context/status artifacts for long runs",
+            "LeanMarathon-style durable proof blueprint and dynamic leaf queue",
+            "LBG-style trial memory and reviewer feedback compression",
+            "EoH-style candidate/proof-attempt populations only where QBE mode permits them",
+        ],
+    }
+
+
+def blueprint_status_text(state: dict) -> str:
+    role_lines = [
+        f"- `{role}`: {count}"
+        for role, count in sorted(state["trial_counts_by_role"].items())
+    ] or ["- no trial records"]
+    status_lines = [
+        f"- `{status}`: {count}"
+        for status, count in sorted(state["trial_counts_by_status"].items())
+    ] or ["- no trial records"]
+    source_lines = []
+    for row in state["local_paper_sources"]:
+        status = "found" if row["exists"] else "missing"
+        source_lines.append(f"- `{row['key']}` {status}: `{row['path']}`")
+    declaration_lines = []
+    for row in state["lean_declarations"]:
+        declaration_lines.append(f"- `{row['kind']} {row['name']}` at `{row['file']}:{row['line']}`")
+    changed_lines = [f"- `{path}`" for path in state["changed_files"][:40]] or ["- none"]
+    return "\n".join(
+        [
+            "# QBE Blueprint Status",
+            "",
+            f"- Task: `{state['task_id']}`",
+            f"- Title: {state['title']}",
+            f"- Generated: `{state['generated']}`",
+            f"- Mode: `{state['mode']}`",
+            f"- Stage: {state['stage']}",
+            f"- Latest cycle: `{state['latest_cycle']}`",
+            f"- Blueprint: `{state['blueprint_path']}`",
+            "",
+            "## Dynamic Leaf Queue",
+            "",
+            "\n".join(f"- {leaf}" for leaf in state["dynamic_leaf_queue"]) or "- none detected",
+            "",
+            "## Open Obligation Signals",
+            "",
+            "\n".join(f"- {item}" for item in state["open_obligation_signals"]) or "- no compact obligation signals found",
+            "",
+            "## Trial Counts By Role",
+            "",
+            "\n".join(role_lines),
+            "",
+            "## Trial Counts By Status",
+            "",
+            "\n".join(status_lines),
+            "",
+            "## Local Paper Sources",
+            "",
+            "\n".join(source_lines) if source_lines else "- no source candidates inferred",
+            "",
+            "## Recent Lean Declarations",
+            "",
+            "\n".join(declaration_lines[-30:]) if declaration_lines else "- none indexed",
+            "",
+            "## Current Dirty Files",
+            "",
+            "\n".join(changed_lines),
+            "",
+            "## Controls",
+            "",
+            "\n".join(f"- {item}" for item in state["controls_absorbed"]),
+            "",
+            "## Next-Cycle Rule",
+            "",
+            "- Upper must choose one dynamic leaf or one refiner illness area before lower work.",
+            "- Middle must map the selected paper proof fragment to Lean declarations or explicit obligations.",
+            "- Lower must edit only the assigned local target and run `python3 tools/qbe.py check` after Lean edits.",
+            "- Reviewer accepts progress only when the Lean gate and the Markdown/LaTeX correspondence are synchronized.",
+        ]
+    ) + "\n"
+
+
+def cmd_blueprint_status(args: argparse.Namespace) -> int:
+    if args.refresh:
+        refresh_blueprint(args.id)
+    state = blueprint_status_state(args.id)
+    output = Path(args.output) if args.output else BLUEPRINT_DIR / f"{slugify(args.id)}-status.md"
+    if not output.is_absolute():
+        output = ROOT / output
+    write_text(output, blueprint_status_text(state))
+    json_path = output.with_suffix(".json")
+    write_text(json_path, json.dumps(state, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
+    add_manifest("qbe.py blueprint-status", output, "blueprint", f"Wrote blueprint status for {args.id}")
+    print(f"status: {display_path(output)}")
+    print(f"json: {display_path(json_path)}")
+    return 0
+
+
+def build_context_pack(task_id: str, cycle: int) -> str:
+    title, task_text = task_context(task_id)
+    paper_sources = local_paper_source_context(task_text)
+    return "\n".join(
+        [
+            f"# QBE Context Pack: {task_id} cycle {cycle}",
+            "",
+            f"- Task: `{task_id}`",
+            f"- Title: {title}",
+            f"- Generated: `{now_stamp()}`",
+            f"- Mode: `{infer_task_mode(task_text)}`",
+            "",
+            "## Focused Task Contract",
+            "",
+            focused_task_contract(task_text),
+            "",
+            "## Proof Blueprint",
+            "",
+            "```text",
+            blueprint_context(task_id, max_chars=7000),
+            "```",
+            "",
+            "## Recent Trial Memory",
+            "",
+            "```text",
+            recent_trial_text(task_id, limit=10),
+            "```",
+            "",
+            "## Local Paper Sources For Agent Work",
+            "",
+            "```text",
+            paper_sources,
+            "```",
+            "",
+            "## Control Discipline",
+            "",
+            "- Use this compact context before reading long historical files.",
+            "- In faithful-paper mode, reproduce the paper construction and do not add assumptions.",
+            "- Translate the selected LaTeX proof fragment into Lean-facing declarations before lower proof search.",
+            "- Export newly accepted Lean proof blocks to Markdown/LaTeX in batch, not after every tiny edit.",
+            "- Keep `python3 tools/qbe.py check` as the deterministic gate.",
+        ]
+    ) + "\n"
+
+
+def cmd_write_context_pack(args: argparse.Namespace) -> int:
+    output = Path(args.output) if args.output else CONTEXT_PACK_DIR / f"{slugify(args.id)}-cycle{args.cycle:03d}.md"
+    if not output.is_absolute():
+        output = ROOT / output
+    write_text(output, build_context_pack(args.id, args.cycle))
+    add_manifest("qbe.py write-context-pack", output, "context", f"Wrote compact context pack for {args.id} cycle {args.cycle}")
+    print(f"context-pack: {display_path(output)}")
+    return 0
+
+
+def analyze_efficiency_log(path: Path | None, task_id: str) -> dict:
+    text = ""
+    if path is not None and path.exists():
+        text = path.read_text(encoding="utf-8", errors="replace")
+    recent_records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
+    status_counts: dict[str, int] = {}
+    role_counts: dict[str, int] = {}
+    for record in recent_records:
+        status = str(record.get("status", "unknown"))
+        role = str(record.get("role", "unknown"))
+        status_counts[status] = status_counts.get(status, 0) + 1
+        role_counts[role] = role_counts.get(role, 0) + 1
+    cycle_lines = re.findall(r"cycle\s+\d+:\s+runs/[^\s]+", text)
+    api_errors = re.findall(r"(?:API Error|Usage limit|429|quota)[^\n]*", text, flags=re.I)
+    warnings = re.findall(r"(?:Warning|warning|failed|Build failed)[^\n]*", text)
+    successes = len(re.findall(r"success|Build completed successfully", text, flags=re.I))
+    check_runs = len(re.findall(r"\$ lake build|\$ python3 tools/qbe.py check|Build completed successfully", text))
+    return {
+        "task_id": task_id,
+        "generated": now_stamp(),
+        "log": display_path(path) if path else "none",
+        "log_exists": bool(path and path.exists()),
+        "line_count": len(text.splitlines()),
+        "cycles_seen": cycle_lines[-12:],
+        "success_signal_count": successes,
+        "check_signal_count": check_runs,
+        "api_or_quota_errors": api_errors[-10:],
+        "warnings": warnings[-12:],
+        "trial_counts_by_status": status_counts,
+        "trial_counts_by_role": role_counts,
+        "changed_files": git_changed_files(),
+        "blueprint_status": blueprint_status_state(task_id),
+    }
+
+
+def efficiency_report_text(report: dict) -> str:
+    status_lines = [
+        f"- `{status}`: {count}"
+        for status, count in sorted(report["trial_counts_by_status"].items())
+    ] or ["- no trial records"]
+    role_lines = [
+        f"- `{role}`: {count}"
+        for role, count in sorted(report["trial_counts_by_role"].items())
+    ] or ["- no trial records"]
+    changed_lines = [f"- `{path}`" for path in report["changed_files"][:50]] or ["- none"]
+    blueprint = report["blueprint_status"]
+    next_leaf = blueprint["dynamic_leaf_queue"][0] if blueprint["dynamic_leaf_queue"] else "upper must refresh the dynamic leaf queue"
+    return "\n".join(
+        [
+            "# QBE Efficiency Report",
+            "",
+            f"- Task: `{report['task_id']}`",
+            f"- Generated: `{report['generated']}`",
+            f"- Log: `{report['log']}`",
+            f"- Log exists: `{report['log_exists']}`",
+            f"- Log lines: `{report['line_count']}`",
+            f"- Success/build signals: `{report['success_signal_count']}`",
+            f"- Check/build mentions: `{report['check_signal_count']}`",
+            "",
+            "## Cycles Seen",
+            "",
+            "\n".join(f"- {line}" for line in report["cycles_seen"]) or "- none detected",
+            "",
+            "## API Or Quota Errors",
+            "",
+            "\n".join(f"- {line}" for line in report["api_or_quota_errors"]) or "- none detected",
+            "",
+            "## Warnings",
+            "",
+            "\n".join(f"- {line}" for line in report["warnings"]) or "- none detected",
+            "",
+            "## Trial Counts By Status",
+            "",
+            "\n".join(status_lines),
+            "",
+            "## Trial Counts By Role",
+            "",
+            "\n".join(role_lines),
+            "",
+            "## Blueprint Snapshot",
+            "",
+            f"- Stage: {blueprint['stage']}",
+            f"- Latest cycle: `{blueprint['latest_cycle']}`",
+            f"- Next leaf/refiner target: {next_leaf}",
+            "",
+            "## Dirty Files",
+            "",
+            "\n".join(changed_lines),
+            "",
+            "## Next-Run Controls",
+            "",
+            "- Start with `python3 tools/qbe.py blueprint-status --refresh <task>`.",
+            "- Use `python3 tools/qbe.py write-context-pack <task> --cycle <n>` for token-lean context.",
+            "- Upper must retire stale dynamic leaves before assigning lower proof work.",
+            "- Middle must classify blocked paper steps as internal, external cited result, classical Lean lemma, contract drift, or source-contract gap.",
+            "- Reviewer should reject cycles that change Lean without updating the proof map or obligation ledger.",
+        ]
+    ) + "\n"
+
+
+def cmd_efficiency_report(args: argparse.Namespace) -> int:
+    task_id = args.task or infer_active_task_id()
+    log_path = Path(args.log) if args.log else latest_log_file()
+    if log_path is not None and not log_path.is_absolute():
+        log_path = ROOT / log_path
+    report = analyze_efficiency_log(log_path, task_id)
+    if args.json:
+        print(json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False))
+    output = Path(args.output) if args.output else EFFICIENCY_DIR / f"{file_stamp()}-{slugify(task_id)}-efficiency.md"
+    if not output.is_absolute():
+        output = ROOT / output
+    write_text(output, efficiency_report_text(report))
+    add_manifest("qbe.py efficiency-report", output, "review", f"Wrote efficiency report for {task_id}")
+    if not args.json:
+        print(f"efficiency-report: {display_path(output)}")
+    return 0
+
+
 def write_trial_summary(records: list[dict]) -> list[dict]:
     rows = []
     cumulative_by_task: dict[str, int] = {}
@@ -949,6 +1670,43 @@ def infer_task_mode(task_text: str) -> str:
     return "unspecified"
 
 
+def local_paper_source_candidates(task_text: str) -> list[tuple[str, Path]]:
+    candidates: list[tuple[str, Path]] = []
+    roots = [LOCAL_PAPER_SOURCE_ROOT]
+    if LOCAL_PAPER_SOURCE_ROOT != OUTER_PAPERS_ROOT:
+        roots.append(OUTER_PAPERS_ROOT)
+    if "GHL2025" in task_text or "Guseynov" in task_text or "2506.20478" in task_text:
+        names = [
+            "GHL2025",
+            "Guseynov-Huang-Liu 2025",
+            "Guseynov-Huang–Liu 2025",
+            "Quantum framework for simulating linear PDEs with Robin boundary conditions",
+        ]
+        for root in roots:
+            for name in names:
+                candidates.append(("GHL2025", root / name))
+            if root.exists():
+                for main_tex in root.glob("**/main.tex"):
+                    haystack = str(main_tex.parent).lower()
+                    if any(marker in haystack for marker in ["ghl2025", "guseynov", "robin"]):
+                        candidates.append(("GHL2025", main_tex.parent))
+        legacy = ARIS_LOCAL_REFERENCE / "paper-sources" / "GHL2025"
+        if legacy.exists():
+            candidates.append(("GHL2025-legacy", legacy))
+    seen: set[Path] = set()
+    unique: list[tuple[str, Path]] = []
+    for key, path in candidates:
+        try:
+            resolved = path.resolve()
+        except OSError:
+            resolved = path
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        unique.append((key, path))
+    return unique
+
+
 def local_paper_source_context(task_text: str) -> str:
     """Return optional local paper-source hints for agent prompts.
 
@@ -956,19 +1714,23 @@ def local_paper_source_context(task_text: str) -> str:
     paths.  The hints are for private agent workspaces where TeX sources are
     already available.
     """
-    candidates: list[tuple[str, Path]] = []
-    if "GHL2025" in task_text or "Guseynov" in task_text or "2506.20478" in task_text:
-        candidates.append(("GHL2025", LOCAL_PAPER_SOURCE_ROOT / "GHL2025"))
     rows = []
-    for key, path in candidates:
+    expected = []
+    for key, path in local_paper_source_candidates(task_text):
         main_tex = path / "main.tex"
         if main_tex.exists():
-            rows.append(f"- {key}: `{path.relative_to(ROOT.parent)}/main.tex`")
+            rows.append(f"- {key}: `{display_path(main_tex)}`")
+        else:
+            expected.append(f"- {key}: `{display_path(main_tex)}`")
     if not rows:
         return (
             "No local paper-source archive was detected for this task.  If a "
             "paper source is needed, middle should record the missing source "
-            "as an artifact gap rather than guessing a proof step."
+            "as an artifact gap rather than guessing a proof step.\n"
+            f"Default shared paper-source root: `{display_path(LOCAL_PAPER_SOURCE_ROOT)}`.\n"
+            "Set `QBE_PAPER_SOURCE_ROOT=/path/to/paper-sources` to override.\n"
+            "Expected local source candidates:\n"
+            + ("\n".join(expected[:8]) if expected else "- none inferred from task text")
         )
     return "\n".join(rows) + (
         "\nUse these local TeX files only as working sources.  Public proof "
@@ -1029,15 +1791,57 @@ def strategy_for_mode(mode: str) -> str:
 """
 
 
-def role_prompt(role: str, task_id: str, title: str, task_text: str, cycle: int, run_dir: Path) -> str:
+def focused_task_contract(task_text: str) -> str:
+    """Return the current directive plus stable header for token-lean runs."""
+    lines = task_text.strip().splitlines()
+    header: list[str] = []
+    for line in lines[:80]:
+        if line.startswith("## "):
+            break
+        header.append(line)
+    matches = list(re.finditer(r"^## Immediate .*?$", task_text, flags=re.M))
+    if not matches:
+        matches = list(re.finditer(r"^## Current Run Directive.*?$", task_text, flags=re.M))
+    if not matches:
+        return task_text.strip()
+    start = matches[-1].start()
+    next_match = re.search(r"^## (?!Immediate|Current Run Directive).*$", task_text[start + 1 :], flags=re.M)
+    end = start + 1 + next_match.start() if next_match else len(task_text)
+    directive = task_text[start:end].strip()
+    prefix = "\n".join(header).strip()
+    return (
+        (prefix + "\n\n" if prefix else "")
+        + directive
+        + "\n\n[Focused context mode: older task sections are omitted from this prompt. "
+        "Consult the task file only if the current directive is insufficient.]"
+    )
+
+
+def role_prompt(
+    role: str,
+    task_id: str,
+    title: str,
+    task_text: str,
+    cycle: int,
+    run_dir: Path,
+    context_mode: str = "full",
+) -> str:
     trial_memory = recent_trial_text(task_id, limit=12)
     mode = infer_task_mode(task_text)
     strategy = strategy_for_mode(mode)
     paper_sources = local_paper_source_context(task_text)
+    blueprint = blueprint_context(task_id)
+    displayed_task_text = task_text.strip() if context_mode == "full" else focused_task_contract(task_text)
+    context_note = (
+        "Full task context."
+        if context_mode == "full"
+        else "Focused task context: stable header plus the latest immediate/current directive only."
+    )
     shared = f"""Task: {task_id} - {title}
 Mode: {mode}
 Cycle: {cycle}
 Run directory: {rel(run_dir)}
+Context mode: {context_mode} ({context_note})
 
 Mandatory project gate:
 
@@ -1048,13 +1852,19 @@ python3 tools/qbe.py check
 Shared task contract:
 
 ```text
-{task_text.strip()}
+{displayed_task_text}
 ```
 
 Recent trial memory:
 
 ```text
 {trial_memory}
+```
+
+Proof blueprint snapshot:
+
+```text
+{blueprint}
 ```
 
 Local paper-source archive for agent work:
@@ -1112,6 +1922,14 @@ Mode discipline:
 - Apply `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` when repeated
   subproofs, gate obligations, index arithmetic, or projection arguments appear.
   The goal is a reusable proof DAG, not a flat repeated trace.
+- Apply `.agents/skills/qbe-proof-blueprint/SKILL.md` at the start of long
+  runs or after a stale lower target is detected.  Refresh
+  `proof-blueprints/<task-id>.md`, retire stale dynamic leaves, and then assign
+  one local proof node.
+- Apply `.agents/skills/qbe-proof-diagnostics/SKILL.md` when reviewing Lean
+  proof progress, hidden assumptions, placeholders, suspicious semantic-flag
+  promotions, or reusable proof-block memory.  This records the MathCode-like
+  proof-diagnostics pattern in a QBE-specific form.
 - Maintain cited-results memory for external or classical ingredients.  If a
   paper invokes a prior theorem, arithmetic circuit, state-preparation result,
   sparse-Hamiltonian primitive, QSVT/LCU lemma, or "standard" fact, record the
@@ -1320,6 +2138,13 @@ case, and a finite example chosen for a bulk formula must be tied to the bulk
 part of the paper proof, including any `+ ...` branch that the source omits
 from the display.
 
+Upper and middle must also regulate gate-convention drift.  If a named rotation
+angle is inconsistent with the active matrix convention, audit the local paper,
+the cited subroutine paper, and any companion implementation before sending more
+lower proof search.  Record the outcome as a source-backed correction route or
+a source-contract gap.  For standard `R_y(theta)`, the clean entry is
+`cos(theta/2)`, so an amplitude `a` normally requires `theta = 2 arccos(a)`.
+
 Prefer small Lean changes that keep the repository compiling.  Do not bury a
 failed oracle construction in prose; promote it to a proof obligation or open
 problem.
@@ -1397,17 +2222,21 @@ Look for:
 8. Missed proof-DAG opportunities covered by
    `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md`, especially repeated
    local proof fragments that should be named and reused.
-9. Missing two-way translation: after Lean changes, the Markdown/LaTeX proof
+9. Proof-diagnostics gaps covered by
+   `.agents/skills/qbe-proof-diagnostics/SKILL.md`, especially hidden axioms,
+   placeholders, suspicious semantic flag promotions, and useful failed
+   fragments that should be stored in proof-attempt memory.
+10. Missing two-way translation: after Lean changes, the Markdown/LaTeX proof
    map must say what was actually proved, what failed, and how that corresponds
    to the paper statement.
-10. Missing cited-results memory for prior work or "standard" facts used by the
+11. Missing cited-results memory for prior work or "standard" facts used by the
     paper.  Reject a dependency if the source, exact statement, Lean status, or
     dependent use sites are vague.
-11. Missing source-dependency audit after a faithful-paper proof block gets
+12. Missing source-dependency audit after a faithful-paper proof block gets
     stuck.  Reviewer should ask whether middle re-read the local TeX source and
     bibliography, whether the failure is internal/external/contractual, and
     whether the next lower packet is justified by that classification.
-12. Missing proof-translation map when the source TeX already contains a proof
+13. Missing proof-translation map when the source TeX already contains a proof
     or proof sketch.  Reviewer should reject broad lower proof search unless
     middle mapped the paper proof steps to Lean declarations, local lemma
     targets, cited-results entries, or explicit contract gaps.
@@ -1468,18 +2297,29 @@ improves a partial Lean score but does not yet prove the target.
     return f"# {role.title()} Agent Prompt\n\n{body}\n\n## Shared Context\n\n{shared}"
 
 
-def create_run_cycle(task_id: str, cycle: int, lower_count: int, run_id: str | None = None) -> Path:
+def create_run_cycle(
+    task_id: str,
+    cycle: int,
+    lower_count: int,
+    run_id: str | None = None,
+    context_mode: str = "full",
+    blueprint_refresh: bool = False,
+) -> Path:
     cmd_init(argparse.Namespace())
+    if blueprint_refresh:
+        refresh_blueprint(task_id)
     title, task_text = task_context(task_id)
     run_name = run_id or f"{file_stamp()}-{slugify(task_id)}-cycle{cycle:02d}"
     run_dir = ROOT / "runs" / run_name
     run_dir.mkdir(parents=True, exist_ok=False)
+    displayed_task_text = task_text if context_mode == "full" else focused_task_contract(task_text)
     context = f"""# Run Context
 
 Task id: `{task_id}`
 Title: {title}
 Cycle: `{cycle}`
 Created: `{now_stamp()}`
+Context mode: `{context_mode}`
 
 Use this directory as the shared workspace for one upper/middle/lower/reviewer
 cycle.  Agents converse through `dialogue.md`; durable results go into
@@ -1487,12 +2327,18 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
 
 ## Task Contract
 
-{task_text}
+{displayed_task_text}
 
 ## Recent Trial Memory
 
 ```text
 {recent_trial_text(task_id, limit=12)}
+```
+
+## Proof Blueprint Snapshot
+
+```text
+{blueprint_context(task_id)}
 ```
 """
     (run_dir / "00_context.md").write_text(context, encoding="utf-8")
@@ -1508,7 +2354,10 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
         prompt_files.append(("lower", run_dir / f"30_lower_searcher_{index}.md"))
     prompt_files.append(("reviewer", run_dir / "40_reviewer.md"))
     for role, path in prompt_files:
-        path.write_text(role_prompt(role, task_id, title, task_text, cycle, run_dir), encoding="utf-8")
+        path.write_text(
+            role_prompt(role, task_id, title, task_text, cycle, run_dir, context_mode),
+            encoding="utf-8",
+        )
     handoff = f"""# Handoff
 
 Task id: `{task_id}`
@@ -1548,7 +2397,14 @@ Cycle: `{cycle}`
 
 
 def cmd_run_cycle(args: argparse.Namespace) -> int:
-    run_dir = create_run_cycle(args.id, args.cycle, args.lower_count, args.run_id)
+    run_dir = create_run_cycle(
+        args.id,
+        args.cycle,
+        args.lower_count,
+        args.run_id,
+        args.context_mode,
+        args.blueprint_refresh,
+    )
     print(f"created {rel(run_dir)}")
     print("agent prompts:")
     for path in sorted(run_dir.glob("*.md")):
@@ -1589,16 +2445,29 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
         raise SystemExit("--execute requires --agent-cmd")
     if args.dry_run and args.execute:
         raise SystemExit("--dry-run and --execute cannot be used together")
+    if args.upper_every < 0 or args.middle_every < 0 or args.reviewer_every < 0:
+        raise SystemExit("--upper-every, --middle-every, and --reviewer-every must be nonnegative")
     final_code = 0
     for cycle in range(1, args.cycles + 1):
-        run_dir = create_run_cycle(args.id, cycle, args.lower_count)
+        run_dir = create_run_cycle(
+            args.id,
+            cycle,
+            args.lower_count,
+            context_mode=args.context_mode,
+            blueprint_refresh=args.blueprint_refresh,
+        )
         print(f"cycle {cycle}: {rel(run_dir)}")
-        prompts = [
-            run_dir / "10_upper_director.md",
-            run_dir / "20_middle_formalizer.md",
-            *sorted(run_dir.glob("30_lower_searcher_*.md")),
-        ]
-        if not args.skip_reviewer:
+        prompts = []
+        if args.upper_every > 0 and (cycle - 1) % args.upper_every == 0:
+            prompts.append(run_dir / "10_upper_director.md")
+        if args.middle_every > 0 and (cycle - 1) % args.middle_every == 0:
+            prompts.append(run_dir / "20_middle_formalizer.md")
+        prompts.extend(sorted(run_dir.glob("30_lower_searcher_*.md")))
+        if (
+            not args.skip_reviewer
+            and args.reviewer_every > 0
+            and (cycle - 1) % args.reviewer_every == 0
+        ):
             prompts.append(run_dir / "40_reviewer.md")
         if args.dry_run or not args.agent_cmd:
             print("dry run: prompt deck created, no external agent command executed")
@@ -1730,6 +2599,29 @@ def build_parser() -> argparse.ArgumentParser:
     p_brief.add_argument("id")
     p_brief.set_defaults(func=cmd_agent_brief)
 
+    p_blueprint = sub.add_parser("blueprint-refresh", help="refresh compact task proof blueprint")
+    p_blueprint.add_argument("id")
+    p_blueprint.set_defaults(func=cmd_blueprint_refresh)
+
+    p_blueprint_status = sub.add_parser("blueprint-status", help="write compact blueprint control status")
+    p_blueprint_status.add_argument("id")
+    p_blueprint_status.add_argument("--refresh", action="store_true")
+    p_blueprint_status.add_argument("--output", default="")
+    p_blueprint_status.set_defaults(func=cmd_blueprint_status)
+
+    p_context = sub.add_parser("write-context-pack", help="write compact long-run context pack")
+    p_context.add_argument("id")
+    p_context.add_argument("--cycle", type=int, default=1)
+    p_context.add_argument("--output", default="")
+    p_context.set_defaults(func=cmd_write_context_pack)
+
+    p_efficiency = sub.add_parser("efficiency-report", help="summarize recent long-run efficiency")
+    p_efficiency.add_argument("--task", default="")
+    p_efficiency.add_argument("--log", default="")
+    p_efficiency.add_argument("--output", default="")
+    p_efficiency.add_argument("--json", action="store_true")
+    p_efficiency.set_defaults(func=cmd_efficiency_report)
+
     p_trial = sub.add_parser("trial-log", help="append one trial record to runs/trials.jsonl")
     p_trial.add_argument("--task", required=True)
     p_trial.add_argument("--role", choices=AGENT_ROLES, required=True)
@@ -1754,6 +2646,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_cycle.add_argument("--cycle", type=int, default=1)
     p_cycle.add_argument("--lower-count", type=int, default=2)
     p_cycle.add_argument("--run-id", default="")
+    p_cycle.add_argument(
+        "--context-mode",
+        choices=("full", "focused"),
+        default="full",
+        help="use full task text or only the current directive plus stable header",
+    )
+    p_cycle.add_argument(
+        "--blueprint-refresh",
+        action="store_true",
+        help="refresh proof-blueprints/<task>.md before writing the prompt deck",
+    )
     p_cycle.set_defaults(func=cmd_run_cycle)
 
     p_sleep = sub.add_parser("sleep-run", help="create or execute repeated agent cycles")
@@ -1764,6 +2667,35 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep.add_argument("--execute", action="store_true")
     p_sleep.add_argument("--dry-run", action="store_true")
     p_sleep.add_argument("--check-each-cycle", action="store_true")
+    p_sleep.add_argument(
+        "--context-mode",
+        choices=("full", "focused"),
+        default="full",
+        help="use full task text or only the current directive plus stable header",
+    )
+    p_sleep.add_argument(
+        "--blueprint-refresh",
+        action="store_true",
+        help="refresh proof-blueprints/<task>.md before every cycle",
+    )
+    p_sleep.add_argument(
+        "--upper-every",
+        type=int,
+        default=1,
+        help="execute the upper prompt every N cycles; 0 skips it",
+    )
+    p_sleep.add_argument(
+        "--middle-every",
+        type=int,
+        default=1,
+        help="execute the middle prompt every N cycles; 0 skips it",
+    )
+    p_sleep.add_argument(
+        "--reviewer-every",
+        type=int,
+        default=1,
+        help="execute the reviewer prompt every N cycles; 0 skips it",
+    )
     p_sleep.add_argument(
         "--skip-reviewer",
         action="store_true",

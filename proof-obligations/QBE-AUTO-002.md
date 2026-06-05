@@ -1,7 +1,7 @@
 # Proof Obligations: QBE-AUTO-002 — Circuit Matrix Semantics Backend
 
 Task id: `QBE-AUTO-002`
-Updated: `2026-05-25`
+Updated: `2026-06-05`
 
 This ledger tracks the unproved semantic claims introduced by the circuit
 matrix semantics backend layer.
@@ -6354,3 +6354,6089 @@ Forbidden while the convention obligation is false:
   equality, or final-extraction promotion;
 - treating sparse-register summation alone as a proof of the indicator-field
   relation.
+
+## 2026-05-26 Middle Branch-Correct Gamma3 Update
+
+The prior no-lower-packet freeze is superseded for the next branch-correct
+transcript packet.  The old endpoint pair `228` versus `84` came from the
+focused example `j = 5`, and Lean now records that this column is bulk for
+`n = 3`, `K_1 = 2`, `K_2 = 5`.  It must not be compared against the displayed
+boundary summand in Eq. `eq: ROBIN clarified`.
+
+New branch split:
+
+| Obligation | Lean declaration | Status |
+|---|---|---|
+| displayed gamma3 boundary branch | `oneTermRobinGamma3BranchCorrectSourceMap_n3.boundary*` and `oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript` | compiled for `j = 0`; indicator remains `0` after `U_indic`; product obligation false |
+| omitted gamma3 bulk branch | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3` plus `oneTermRobinGamma3BranchCorrectSourceMap_n3.bulk*` | compiled for `j = 5`; full endpoint `228` has source-backed indicator `1`; product obligation false |
+| old endpoint mismatch | `oneTermRobinGamma3BranchCorrectSourceMap_n3.oldEndpointMismatchWasBranchMismatch` | compiled as `true`; no longer a boundary projection convention blocker |
+| old human freeze | `oneTermRobinGamma3BranchCorrectSourceMap_n3.oldHumanProjectionFreezeSuperseded` | compiled as `true`; do not issue lower work from that freeze |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | boundary-focused gamma3 path/product interface with `n = 3`, `j = 0`, and the displayed boundary branch |
+| dependencies | reuse `oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript`, `oneTermRobinBlockEncodingProofRoute`, existing gate-entry ledgers, and false product obligations |
+| output if proved | a branch-specific path-isolation or product-to-coefficient lemma that keeps all semantic flags false unless the exact product theorem is build-tested |
+| output if blocked | update this ledger and `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` with the exact failed Lean target and missing interface |
+| forbidden work | no direct continuation of the old `j = 5` boundary comparison, no cited-oracle proof search, and no cleanup, unitarity, LCU, block-projection, block-correctness, normalized-equality, or final-extraction promotion |
+
+Dependency classification:
+
+| Missing ingredient | Classification | Current Lean artifact | Next action |
+|---|---|---|---|
+| branch choice for finite example | `internal-paper-step` plus `classical-lean-lemma` | `oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript` | completed |
+| boundary branch product path | QBE-local finite matrix theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` via the branch map | lower packet may attempt |
+| bulk branch product path | QBE-local finite matrix theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 2 5` via the branch map and bulk audit | schedule separately after boundary target |
+| cited oracle and LCU primitives | external/contract-only dependencies | cited-results rows for `O_D^BS`, `O_{D^T}^S`, $O_f$, and LCU | do not recursively formalize in this packet |
+
+## 2026-05-26 Lower Boundary Gamma3 Path Audit
+
+Lower added the boundary-focused finite path audit
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3`
+and a regression example in `Tests/Basic.lean`.
+
+The audit consumes `oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript`.
+For displayed boundary column $j = 0$, `U_indic` leaves the indicator at `0`.
+For the target entry $(0,0)$, the active global sparse-slot table selects
+slot `2`, because `oneTermRobinGlobalSparseAddress 3 2 0 = 0`; slot `0`
+instead maps to row `6` and is not the coefficient slot for this entry.
+
+Compiled boundary slot-`2` path:
+
+| Stage | Lean fact |
+|---|---|
+| clean gamma3 source | `oneTermRobinGamma3PaperBasisIndex p 2 0 = 32` |
+| $U_{\mathrm{indic}}$ | `indicatorOracleImage p 32 = 32` |
+| $O_{D^T}^S$ | ket-zero entry is `Coeff.rat 1` |
+| `Ry_boundary` | entries use `boundary_cos_half_0_2` and `boundary_sin_half_0_2` |
+| $O_D^{BS}$ | `bandedSparseAccessPaperImage p 32 = 0` |
+| $O_f$ | clean amplitude is `f_3_0 * N_f_inv` |
+| `SWAP` | `swapOracleImage p 0 = 0` |
+| $(O_D^{BS})^\dagger$ | `bandedSparseAccessPaperPostSwapPreimageCandidate p 32 = 32` |
+
+Remaining obligations:
+
+| Missing ingredient | Classification | Current Lean artifact | Next action |
+|---|---|---|---|
+| boundary branch product-to-coefficient multiplication for $(0,0)$ | QBE-local finite matrix theorem under existing oracle contracts | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, still `proved = false` | attempt a branch-specific product-entry lemma after this path audit |
+| boundary rotation coefficient semantics | contract-only local oracle obligation | `boundaryRotationAngleNormalizerProofRoute` fields remain false | do not promote without a build-tested theorem |
+| LCU/block extraction | external/contract-only dependency | `LCU.StandardBlockEncoding` and route flags remain false | out of scope for this lower packet |
+
+## 2026-05-26 Middle Boundary Product Lower Packet
+
+Source audit result: the inspected GHL2025 anchors state the one-term theorem,
+the $U_{\mathrm{indic}}$ boundary/bulk rule, Eq. `eq: ROBIN clarified`, and
+Fig. `fig:1 term ROBIN`, but they do not contain a separate finite matrix
+product proof.  The next missing ingredient is a QBE-local finite product
+entry theorem under the existing typed oracle contracts.
+
+The active lower target is the boundary branch, not the older bulk example.
+Use `n = 3`, system entry $(0,0)$, displayed boundary column $j = 0$, and
+sparse slot `2`.
+
+| Requirement | Exact content |
+|---|---|
+| Lean destination | add one boundary-specific theorem near the gamma3 boundary audit in `QuantumBlockEncoding/RobinMatrix.lean` |
+| suggested name | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3` |
+| acceptance if strong enough | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientEquality_n3`, only if the exact product equality is proved |
+| regression | add a focused example in `Tests/Basic.lean` for the new declaration |
+| required source-map inputs | `oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript` and `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3` |
+| required obligation input | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, with `proved = false` unless the equality theorem is completed |
+| path data | `32 -> 32 -> 32 -> 32/33 -> 0/1 -> 0/1 -> 32/33` |
+| support warning | the existing bulk-shaped product interface assumes an `O_DT^S` indicator `1`; the boundary branch has indicator `0`, so lower should state a boundary-specific interface rather than adding a false hypothesis |
+
+Remaining blocker classification:
+
+| Missing ingredient | Classification | Current Lean artifact | Next action |
+|---|---|---|---|
+| boundary product path support for slot `2` | `classical-lean-lemma` over finite matrices | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3` | isolate the nonzero product path or record the first missing zero-support fact |
+| boundary coefficient normalization | contract-only local oracle obligation | `boundaryRotationAngleNormalizerProofRoute p 0 2` | keep analytic flags false unless a theorem proves the half-angle and division semantics |
+| final product-to-coefficient equality | QBE-local finite theorem under contracts | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | prove only after the product path and coefficient convention are explicit |
+
+Forbidden in this packet:
+
+- resuming the old `j = 5` boundary comparison;
+- recursively proving cited primitives for $O_D^{BS}$, $O_{D^T}^S$, $O_f$, or
+  LCU;
+- adding hypotheses to make the boundary branch match the old bulk interface;
+- promoting cleanup, unitarity, LCU, block projection, block correctness,
+  normalized equality, circuit unitarity, or final extraction.
+
+## 2026-05-26 Lower Boundary Product Interface Result
+
+Definition first:
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3`
+now compiles, with transcript theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3_transcript`.
+
+The declaration records the boundary branch factor packet for $n=3$, system
+entry $(0,0)$, and sparse slot `2`:
+
+| Gate | Ket-zero branch factor |
+|---|---|
+| $U_{\mathrm{indic}}$ | `Coeff.rat 1` |
+| $O_{D^T}^S$ | `Coeff.rat 1` |
+| `Ry_boundary` | `Coeff.symbol "boundary_cos_half_0_2"` |
+| $O_D^{BS}$ | `Coeff.rat 1` |
+| $O_f$ | `Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv")` |
+| `SWAP` | `Coeff.rat 1` |
+| $(O_D^{BS})^\dagger$ | `Coeff.rat 1` |
+
+The exact product equality is still not proved.  The new interface records
+`uniquePathSupportObligation.proved = false`, so the next lower target is the
+finite zero-support theorem needed before applying
+`Matrix.evalWith_mul_unique_path` to the row `32`, column `32` boundary entry.
+
+Remaining obligations:
+
+| Missing ingredient | Classification | Current Lean artifact | Next action |
+|---|---|---|---|
+| zero support for all non-slot-`2` paths from column `32` to row `32` | `classical-lean-lemma` over finite matrices | `uniquePathSupportObligation` inside the boundary interface | prove a focused support lemma or record the first blocking state |
+| boundary product-to-coefficient equality | QBE-local finite theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, still false | attempt only after support facts are explicit |
+| boundary rotation coefficient semantics | contract-only local oracle obligation | `boundaryRotationAngleNormalizerProofRoute p 0 2`, false analytic flags | do not promote without a compiled theorem |
+
+## 2026-05-26 Middle Boundary Unique-Path Support Packet
+
+The boundary product interface turns the next blocker into one local finite
+support theorem.  The GHL2025 source anchors provide the wavefunction route and
+the Fig. `fig:1 term ROBIN` gate order, but they do not state a separate
+finite matrix-product support proof.  This is not a new cited result.
+
+Current fixed target:
+
+| Item | Value |
+|---|---|
+| branch | displayed gamma3 boundary branch in Eq. `eq: ROBIN clarified` |
+| system size | $n=3$ |
+| system entry | $(0,0)$ |
+| boundary column | $j=0$ |
+| sparse slot | $2$ |
+| full source column | `32` |
+| full target row | `32` |
+| surviving ket-zero path | `32 -> 32 -> 32 -> 32 -> 0 -> 0 -> 0 -> 32` |
+| reusable product reducer | `Matrix.evalWith_mul_unique_path` |
+
+Lower-agent packet:
+
+| Requirement | Exact content |
+|---|---|
+| Lean destination | `QuantumBlockEncoding/RobinMatrix.lean`, near the boundary product interface |
+| suggested theorem | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupport_n3` |
+| optional stronger theorem | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientEquality_n3`, only if the exact evaluated product equality builds |
+| regression | add one focused example in `Tests/Basic.lean` for the new theorem or interface |
+| required inputs | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3_transcript`, `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3`, `Matrix.evalWith_mul_unique_path`, and `GHL2025.oneTermRobinGateMatrixPlaceholders` |
+| success condition | every evaluated seven-gate contribution from column `32` to row `32` is zero except the ket-zero slot-`2` path |
+| blocked output | update this ledger and `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` with the first missing zero-support fact |
+
+Remaining blocker classification:
+
+| Missing ingredient | Classification | Current Lean artifact | Next action |
+|---|---|---|---|
+| zero support for non-surviving intermediate paths | `classical-lean-lemma` over the local finite matrix backend | `uniquePathSupportObligation.proved = false` | prove a named support theorem or identify the first nonzero obstruction |
+| product-to-coefficient equality | QBE-local finite matrix theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, false | attempt only after support is explicit |
+| projection-slot convention | QBE-local projection/register interface | `projectionSlotConvention.proved = false` inside the boundary interface | do not hide it inside support proof |
+| boundary rotation normalizer and analytic semantics | contract-only local oracle obligation | `boundaryRotationAngleNormalizerProofRoute p 0 2` false fields | keep false unless a separate theorem proves them |
+
+Forbidden in this packet:
+
+- comparing the old bulk example $j=5$ against the displayed boundary branch;
+- recursively proving cited primitives for $O_D^{BS}$, $O_{D^T}^S$, $O_f$, or
+  LCU;
+- adding a hypothesis that removes a nonzero support path;
+- promoting cleanup, unitarity, LCU, block projection, block correctness,
+  normalized equality, circuit unitarity, product-to-coefficient, or final
+  extraction without a build-tested theorem.
+
+## 2026-05-26 Lower Boundary Unique-Path Support Audit
+
+Lower added the compiled audit
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupportAudit_n3`
+and theorem
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupport_n3`.
+
+What is proved:
+
+| Support fact | Lean check |
+|---|---|
+| surviving ket-zero path | `[32, 32, 32, 32, 0, 0, 0, 32]` |
+| adjacent ket-one path | `[32, 32, 32, 33, 1, 1, 1, 33]` |
+| $O_{D^T}^S$ ket-one probe from the boundary source | `sparseAmplitudeOracleDTRotationMatrix p 33 32 = Coeff.rat 0` |
+| adjacent branch killed at target clean $O_f$ row | `functionOraclePaperMatrix p 0 1 = Coeff.rat 0` |
+| adjacent branch killed by target dagger row | `bandedSparseAccessPaperDaggerMatrix p 32 1 = Coeff.rat 0` |
+
+What remains blocked:
+
+| Missing ingredient | Classification | Current Lean artifact | Next action |
+|---|---|---|---|
+| all-other-path support for the four-gate prefix before $O_f$ | `classical-lean-lemma` over finite matrices | `supportComplete = false`; first missing entry recorded as `(O_D^BS * Ry_boundary * O_DT^S * U_indic)[k,32]` for `k` not in `{0,1}` | prove a prefix-support theorem before applying `Matrix.evalWith_mul_unique_path` to the seven-gate product |
+| boundary product-to-coefficient equality | QBE-local finite theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, false | attempt only after all-path support is explicit |
+| projection-slot convention and semantic flags | QBE-local/external contracts | projection, LCU, block-correctness, and extraction flags remain false | no promotion in this packet |
+
+## 2026-05-26 Middle Prefix-Support Lower Packet
+
+The next target is the first missing support interface named by
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupportAudit_n3`.
+It is local finite matrix arithmetic: prove that the four-gate prefix
+`O_D^BS * Ry_boundary * O_DT^S * U_indic` sends source column `32` only into
+rows `0` and `1` for the displayed boundary packet.
+
+| Field | Requirement |
+|---|---|
+| Lean destination | `QuantumBlockEncoding/RobinMatrix.lean` near the boundary support audit |
+| test destination | `Tests/Basic.lean` focused regression for the new theorem or first blocking audit |
+| suggested theorem | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3` |
+| exact statement shape | for every prefix row `k`, if `k ≠ 0` and `k ≠ 1`, then the prefix entry `(O_D^BS * Ry_boundary * O_DT^S * U_indic)[k,32]` is `Coeff.rat 0` |
+| required reuse | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupport_n3`, `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3_transcript`, and existing gate matrices |
+| if blocked | record the first row `k`, gate factor, and matrix entry that cannot be proved zero in this ledger and `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` |
+| forbidden work | no old `j = 5` boundary comparison, no cited-oracle proof search, no new hypotheses, and no product-to-coefficient, projection, LCU, cleanup, unitarity, block-correctness, normalized equality, or final-extraction promotion |
+
+## 2026-05-26 Lower Boundary Prefix Support
+
+Accepted Lean block:
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3`.
+
+The compiled theorem proves the evaluated support statement used by the current
+matrix backend: for every coefficient environment and every row not equal to
+`0` or `1`,
+`Coeff.evalWith env (oneTermRobinGamma3BoundaryPrefixMatrix_n3 row 32) = 0`.
+The statement is intentionally evaluated through `Coeff.evalWith`; it does not
+claim that the raw symbolic `Coeff` fold produced by `Matrix.mul` is definitionally
+or syntactically equal to `Coeff.rat 0`.
+
+Supporting compiled blocks:
+
+| Block | Lean declaration | Status |
+|---|---|---|
+| all-path zero reducer | `Matrix.evalWith_mul_eq_zero_of_all_paths_zero` | compiled |
+| two-gate support | `oneTermRobinGamma3BoundaryDUPrefixSupport_n3` | compiled |
+| three-gate support | `oneTermRobinGamma3BoundaryRDUPrefixSupport_n3` | compiled |
+| four-gate support | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3` | compiled |
+| focused regression | `Tests/Basic.lean` row-`2` example | compiled |
+
+Remaining obligations:
+
+| Missing ingredient | Classification | Current artifact | Next action |
+|---|---|---|---|
+| seven-gate row-`32`, column-`32` product support after $O_f$, `SWAP`, and dagger | `classical-lean-lemma` over evaluated finite matrices | prefix support plus existing adjacent-branch audit | compose the prefix theorem with the target $O_f$, `SWAP`, and dagger zero entries |
+| product-to-coefficient equality for boundary $(0,0)$ | QBE-local finite theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, false | attempt only after the full evaluated unique path is isolated |
+| projection-slot convention | QBE-local projection/register interface | `projectionSlotConvention.proved = false` inside the boundary interface | keep explicit; do not hide it in support proof |
+| boundary normalizer, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, and final extraction | contract-only or external obligations | existing route flags false | no promotion in this lower packet |
+
+## 2026-05-26 Middle Seven-Gate Support Packet
+
+Definition first: the accepted prefix theorem is an evaluated support statement
+for
+`oneTermRobinGamma3BoundaryPrefixMatrix_n3`, the four-gate product
+$O_D^{BS} R_y^{\mathrm{boundary}} O_{D^T}^S U_{\mathrm{indic}}$.  It says that
+source column `32` has evaluated support only at rows `0` and `1`.
+
+The next proof obligation is to append the suffix
+$(O_D^{BS})^\dagger \mathrm{SWAP} O_f$ and isolate the full seven-gate entry
+from source column `32` to target row `32`.  This remains a local
+`classical-lean-lemma`: the GHL2025 source anchors give the gamma3 wavefunction
+and Fig. `fig:1 term ROBIN` gate order, but they do not contain a finite
+matrix-product support proof.
+
+Lower-agent packet:
+
+| Requirement | Exact content |
+|---|---|
+| Lean destination | `QuantumBlockEncoding/RobinMatrix.lean`, near the boundary prefix-support declarations |
+| test destination | `Tests/Basic.lean` focused regression for the new support theorem or first blocker |
+| suggested helpers | `oneTermRobinGamma3BoundarySuffixMatrix_n3` and `oneTermRobinGamma3BoundarySevenGateMatrix_n3` |
+| suggested theorem | `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateSupport_n3` |
+| support statement shape | prove that every evaluated suffix-prefix contribution into row `32` from column `32` is zero except the row-`0` prefix branch |
+| row-`1` kill facts | use the compiled $O_f$ and dagger zero entries recorded by `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupport_n3` |
+| rows outside `{0,1}` | use `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3` and `Matrix.evalWith_mul_eq_zero_of_all_paths_zero` |
+| optional stronger theorem | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientEquality_n3`, only if the exact evaluated equality builds |
+| blocked output | record the first unproved row `q`, matrix entry, and factor source in this ledger and `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` |
+
+Remaining obligations:
+
+| Missing ingredient | Classification | Current artifact | Next action |
+|---|---|---|---|
+| seven-gate evaluated support for row `32`, column `32` | `classical-lean-lemma` | prefix support is compiled; suffix support not yet named | prove `oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateSupport_n3` or record the first blocked suffix row |
+| boundary product-to-coefficient equality | QBE-local finite theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, false | apply `Matrix.evalWith_mul_unique_path` only after seven-gate support is explicit |
+| projection-slot convention | QBE-local projection/register interface | boundary interface keeps the convention obligation false | keep explicit |
+| cited primitives and final theorem flags | contract-only or obligation | existing `O_D^{BS}`, `O_{D^T}^S`, $O_f$, boundary rotation, and LCU rows | do not promote |
+
+Forbidden in this packet:
+
+- the old `j = 5` boundary comparison;
+- recursive proof search for cited $O_D^{BS}$, $O_{D^T}^S$, $O_f$, or LCU
+  primitives;
+- hypotheses that remove a support path;
+- promotion of product-to-coefficient equality, projection-slot convention,
+  boundary-normalizer semantics, cleanup, unitarity, LCU, block projection,
+  block correctness, normalized equality, circuit unitarity, or final
+  extraction without an exact build-tested theorem.
+
+## 2026-05-26 Lower Seven-Gate Support Result
+
+The suffix-side support target now compiles for the displayed gamma3 boundary
+packet.  The accepted declarations are:
+
+| Lean declaration | Obligation effect |
+|---|---|
+| `Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapMatrix_n3` | names the suffix subproduct `SWAP * O_f` |
+| `Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixMatrix_n3` | names $(O_D^{BS})^\dagger * \mathrm{SWAP} * O_f$ |
+| `Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3` | names the suffix times the compiled four-gate prefix |
+| `Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow0Col1_zero_n3` | proves the row-`0`, column-`1` evaluated suffix-side zero |
+| `Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow32Col1_zero_n3` | proves the row-`32`, column-`1` evaluated full-suffix zero |
+| `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateSupport_n3` | proves every non-row-`0` suffix-prefix contribution is zero |
+| `Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateUniquePath_n3` | reduces the seven-gate evaluated entry to the row-`0` branch |
+
+This discharges the previous seven-gate support obligation.  It does not
+discharge `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`,
+`oneTermRobinGamma3ProjectionSlotConventionObligation 3 0 0`, boundary
+normalizer semantics, LCU composition, block projection, block correctness,
+normalized equality, circuit unitarity, cleanup, unitarity, or final
+extraction.
+
+## 2026-05-26 Middle Boundary Product-Entry Packet
+
+The next obligation is a local finite evaluated-product statement, not a cited
+oracle theorem.  The source anchors are GHL2025 Theorem `theorem: 1 term
+robin`, Eq. `eq: ROBIN clarified`, the $U_{\mathrm{indic}}$ paragraph, Fig.
+`fig:1 term ROBIN`, Lemma `Banded-sparse-access-oracle`, Lemma
+`Sparse-amplitude-oracle for a banded-sparse matrix`, Theorem
+`Amplitude-oracle for piece-wise polynomial function`, and Definition
+`def:block-encoding`.
+
+For the fixed boundary branch $n=3$, $j=0$, system entry $(0,0)$, sparse slot
+$s=2$, full source column `32`, and full target row `32`, prove:
+
+```lean
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3
+    (env : String -> Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3
+        oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      Coeff.evalWith env
+        (Coeff.mul
+          (Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv"))
+          (Coeff.symbol "boundary_cos_half_0_2"))
+```
+
+Suggested helper interfaces:
+
+| Helper | Expected statement |
+|---|---|
+| `oneTermRobinGamma3BoundaryPrefixRow0Col32_eval_n3` | the evaluated four-gate prefix entry from column `32` to row `0` is `eval boundary_cos_half_0_2` |
+| `oneTermRobinGamma3BoundarySuffixRow32Col0_eval_n3` | the evaluated suffix entry from column `0` to row `32` is `eval (f_3_0 * N_f_inv)` |
+| product theorem | combine the two helpers with `oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateUniquePath_n3` |
+
+The product-entry theorem is still below the paper-level coefficient theorem.
+It must leave these obligations false:
+
+| Obligation | Current status |
+|---|---|
+| boundary half-angle/derivative-normalizer semantics | false; `GHL2025.RyBoundary` is contract-only |
+| sparse-register projection and slot summation | false; projection-slot convention remains explicit |
+| normalized $A_k$ entry equality | false; `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+| LCU/block-composition and final extraction | false |
+| O_D^BS cleanup and unitarity | false |
+| O_f amplitude correctness and unitary completion | false |
+
+If the target blocks, append the first failed factor equation, the exact
+matrix entry, and the resulting Lean goal to
+`proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md`.  Do not resume
+the old bulk `j = 5` endpoint comparison or prove a different theorem.
+
+## 2026-05-26 Middle Product-Entry Sync And Coefficient-Source Drift
+
+Accepted Lean block:
+`Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3`.
+
+The theorem evaluates the displayed gamma3 boundary branch for $n=3$, $j=0$,
+system entry $(0,0)$, sparse slot $s=2$, full source column `32`, and full
+target row `32`:
+
+$$
+\operatorname{eval}\bigl[U_{\mathrm{seven}}[32,32]\bigr]
+=
+(\operatorname{eval} f_{3,0}) \cdot (\operatorname{eval} N_f^{-1})
+\cdot \operatorname{eval}(\texttt{boundary\_cos\_half\_0\_2}).
+$$
+
+This discharges only the finite product-entry evaluation.  It does not
+discharge `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`,
+`oneTermRobinGamma3ProjectionSlotConventionObligation 3 0 0`, boundary
+normalizer semantics, sparse-register summation, LCU composition, block
+projection, block correctness, normalized equality, circuit unitarity, cleanup,
+unitarity, or final extraction.
+
+Source-dependency audit:
+
+| Missing ingredient | Classification | Current Lean artifact | Next action |
+|---|---|---|---|
+| coefficient source for boundary sparse slot $s=2$ | `contract-drift` | `DerivativeNormalizerNDContract`, `SparseAmplitudeOracleDTCoefficientNormalizerContract`, and `BoundaryRotationAngleNormalizerContract` read `robinSparseAmplitudeValue p.n sparse row` | introduce and wire a global sparse-slot coefficient source before proving product-to-coefficient |
+| finite product entry | `classical-lean-lemma` | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | compiled; reuse it only after the coefficient source is corrected |
+| boundary half-angle to derivative coefficient | contract-only analytic obligation | `boundaryRotationAngleNormalizerProofRoute` false fields | keep false until the corrected source coefficient is wired and analytic semantics are formalized |
+
+The drift is concrete.  The active $O_D^{BS}$ address uses the global sparse
+slot table, and for the focused boundary branch
+`oneTermRobinGlobalSparseAddress 3 2 0 = 0`.  Thus slot `2` is the diagonal
+entry of row `0`.  The current coefficient contracts instead interpret slot
+`2` through the row-dependent helper:
+`robinSparseAmplitudeValue 3 2 0 = -1/6`.  The target diagonal coefficient is
+the matrix entry at row `0`, column `0`, equivalently the old row-dependent
+slot `0` value `-5/2 + (7/3) A1*dx`.
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | global sparse-slot derivative coefficient source for the active Robin slot table |
+| suggested Lean name | `GHL2025.robinGlobalSparseAmplitudeValue` or a similarly named source function, plus a route record tying it to the derivative and boundary-normalizer contracts |
+| required boundary regression | prove/test that the new source gives the diagonal coefficient for $n=3$, row `0`, global slot `2`, and differs from the old row-dependent `robinSparseAmplitudeValue 3 2 0` |
+| required matrix coherence | in `RobinMatrix.lean`/`Tests/Basic.lean`, tie the new source for valid global slots to `robinDerivativeMatrix n row (oneTermRobinGlobalSparseAddress n s row)` for the focused boundary case |
+| allowed write scope | `QuantumBlockEncoding/GHL2025.lean`, `QuantumBlockEncoding/RobinMatrix.lean`, `Tests/Basic.lean`, and synchronized proof-map files if declarations are added |
+| forbidden promotion | do not prove or promote product-to-coefficient, boundary-normalizer semantics, sparse-register projection, cleanup, unitarity, LCU, block projection, block correctness, normalized equality, circuit unitarity, or final extraction |
+
+## 2026-05-26 Lower Global Sparse-Slot Coefficient Source
+
+The coefficient-source drift is corrected at the typed-contract layer.  The
+new source
+`GHL2025.robinGlobalSparseAmplitudeValue n s row` interprets `s` through the
+active global sparse-slot table instead of the old row-local nonzero list.
+
+Compiled Lean facts:
+
+| Obligation/interface | Lean artifact | Status |
+|---|---|---|
+| global slot `2` is the row-`0` diagonal for $n=3$ | `GHL2025.robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3` | proved |
+| global slot `2` differs from old row-local slot `2` at row `0` | `GHL2025.robinGlobalSparseAmplitudeValue_boundarySlot2_differs_rowLocal_n3` | proved |
+| shared `N_D` route uses the new source | `GHL2025.robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes` | proved bridge; semantic flags unchanged |
+| focused matrix coherence | `Tests/Basic.lean` compares the new source to `Examples.RobinHeat.robinDerivativeMatrix 3` at `oneTermRobinGlobalSparseAddress 3 2 0` | tested |
+| false flags after rewiring | `Tests/Basic.lean` keeps the `N_D` bound and boundary normalizer fields false | tested |
+
+The following obligations remain open:
+
+| Obligation | Current status |
+|---|---|
+| boundary half-angle equals the normalized derivative coefficient | false in `boundaryRotationAngleNormalizerProofRoute` |
+| `O_{D^T}^S` Eq. (20) coefficient relation and complementary amplitude | false in `sparseAmplitudeOracleDTCoefficientNormalizerProofRoute` |
+| gamma3 product-to-coefficient equality for the displayed boundary branch | false in `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+| sparse-register projection, LCU composition, cleanup, unitarity, block correctness, normalized equality, circuit unitarity, and final extraction | false obligations |
+
+This packet only changes the coefficient source and contract bridges.  It does
+not prove an analytic normalizer identity or a block-encoding statement.
+
+## 2026-05-26 Boundary Ry Angle-Convention Obligation
+
+The accepted product-entry theorem for the displayed boundary branch is
+
+$$
+\operatorname{eval}\bigl[U_{\mathrm{seven}}[32,32]\bigr]
+=
+(\operatorname{eval} f_{3,0})(\operatorname{eval} N_f^{-1})
+\operatorname{eval}(\texttt{boundary\_cos\_half\_0\_2}).
+$$
+
+The theorem-level coefficient target requires the normalized derivative
+coefficient for global sparse slot `2` at row `0`:
+
+$$
+D_0^{(2)}/\mathcal{N}_D.
+$$
+
+Lean now represents this source as
+`GHL2025.boundaryRotationNormalizedCoefficient p 0 2`, with
+`p = oneTermParameters 3`, and this unfolds to
+`GHL2025.robinGlobalSparseAmplitudeValue 3 2 0 * N_D_inv`.  The remaining
+gap is not a finite product proof.  GHL2025 Eq. `eq:angles for Ry` states
+$\theta_j^s=\arccos(D_j^{(s)}/\mathcal{N}_D)$, while the Lean gate matrix
+uses `boundary_cos_half_0_2` as the $R_y$ half-angle cosine entry.  The paper
+does not specify a matrix convention that makes that half-angle entry equal to
+$D_0^{(2)}/\mathcal{N}_D$.
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Artifact | Status |
+|---|---|---|---|
+| `boundary_cos_half_0_2` equals the normalized coefficient for row `0`, slot `2` | `source-contract-gap` | planned focused false bridge | open |
+| source coefficient for row `0`, slot `2` | `internal-paper-step` | `robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3` | compiled |
+| product factorization through the seven gates | `classical-lean-lemma` | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | compiled |
+| product-to-coefficient theorem | QBE theorem obligation | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| target declaration | focused record or theorem around `oneTermRobinGamma3BoundaryRyCoefficientBridge_n3` |
+| required contract | `cosHalfEntry = Coeff.symbol "boundary_cos_half_0_2"` and `normalizedCoefficient = GHL2025.boundaryRotationNormalizedCoefficient p 0 2` |
+| required false field | a `SemanticObligation` stating that the boundary `R_y` angle convention must justify identifying the half-angle entry with the normalized coefficient |
+| required guard | prove or test that the bridge obligation, `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, boundary-normalizer semantics, LCU, block projection, block correctness, and final extraction remain false |
+| forbidden shortcut | do not replace the paper angle, change `boundaryRotationMatrix`, or use `trivial`/`Prop := True` to close the convention |
+
+## 2026-05-26 Lower Boundary Ry Coefficient Bridge
+
+The planned focused bridge is now encoded as
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCoefficientBridge_n3`, with
+transcript theorem
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCoefficientBridge_n3_transcript`.
+
+Compiled facts:
+
+| Interface | Lean artifact | Status |
+|---|---|---|
+| product factor from the seven-gate entry | `cosHalfEntry = Coeff.symbol "boundary_cos_half_0_2"` | compiled |
+| normalized coefficient source | `normalizedCoefficient = GHL2025.boundaryRotationNormalizedCoefficient p 0 2` | compiled |
+| global coefficient expansion | `normalizedCoefficient = GHL2025.robinGlobalSparseAmplitudeValue 3 2 0 * N_D_inv` | compiled |
+| angle-convention gap | `angleConventionObligation` | `proved = false` |
+| gamma3 product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | `proved = false` |
+
+The bridge records a source-contract gap, not a proof.  The paper gives
+$\theta_0^2=\arccos(D_0^{(2)}/\mathcal{N}_D)$, while the Lean matrix entry
+`boundary_cos_half_0_2` is the half-angle entry.  The bridge therefore keeps
+the boundary division, arccos, half-angle, normalizer-bound, two-by-two-unitary,
+LCU, block-projection, block-correctness, and final-extraction fields false.
+
+Next proof work must not resume the product-to-coefficient theorem until this
+source convention is resolved or replaced by a paper-backed register/matrix
+rule.
+
+## 2026-05-26 Middle Post-Bridge Source-Dependency Audit
+
+Middle re-read the source around Eq. `eq:angles for Ry`, Theorem
+`theorem: 1 term robin`, Eq. `eq: ROBIN clarified`, and Fig. `fig:1 term
+ROBIN`.  The current blocker is classified as a `source-contract-gap`, not as
+another local product-support lemma.
+
+| Missing ingredient | Classification | Current artifact | Status |
+|---|---|---|---|
+| finite row-`32`, column-`32` product entry | `classical-lean-lemma` | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | compiled |
+| global slot-`2` coefficient at row `0` | `internal-paper-step` | `robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3` and `boundaryRotationNormalizedCoefficient p 0 2` | compiled wiring; analytic fields false |
+| identification of `boundary_cos_half_0_2` with $D_0^{(2)}/\mathcal{N}_D$ | `source-contract-gap` | `oneTermRobinGamma3BoundaryRyCoefficientBridge_n3.angleConventionObligation` | false |
+| displayed boundary gamma3 product-to-coefficient | theorem-route obligation | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+The next lower packet should not continue tactic search on the product entry.
+It may only add source-backed convention data, or wait for a human/source
+decision on the `Ry_boundary` matrix convention.  Product-to-coefficient,
+boundary-normalizer semantics, `O_D^BS` cleanup, oracle unitarity, LCU
+composition, block projection, block correctness, normalized equality, circuit
+unitarity, and final extraction remain explicit false obligations.
+
+## 2026-05-26 Lower Boundary Ry Angle-Convention Decision Packet
+
+The boundary bridge is now paired with a compiled decision packet:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3`.
+Its transcript theorem is
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript`.
+
+The packet records that the current source transcript supports these facts:
+
+| Obligation/interface | Lean artifact | Status |
+|---|---|---|
+| standard $R_y$ entry for the focused branch | `standardRyMatrixConvention = "boundary_cos_half_0_2 is the cos(theta_0^2 / 2) matrix entry"` | compiled |
+| displayed coefficient need | `paperCoefficientNeed = "the displayed gamma3 coefficient uses D_0^(2) / N_D"` | compiled |
+| direct half-angle coefficient rule | `sourceSpecifiesDirectHalfAngleCoefficientRule = false` | source-contract gap |
+| human/source decision | `humanInputRequired = true` | required before product proof search resumes |
+| proof-search freeze | `productSearchBlocked = true` | compiled |
+| convention decision obligation | `decisionObligation.proved = false` | open |
+| boundary half-angle semantics | `boundaryHalfAngleSemanticsProved = false` | open |
+| gamma3 product-to-coefficient | `productToCoefficientProved = false` | open |
+| LCU, block projection, block correctness, final extraction | corresponding fields in the packet | all false |
+
+Allowed next work is only a source-backed rule for the `Ry_boundary` matrix
+entry, or a human decision to keep the standard $R_y$ convention and leave this
+bridge as a theorem gap.  The packet does not modify the paper circuit,
+`boundaryRotationMatrix`, the product-entry theorem, or any semantic proof
+flag.
+
+## 2026-05-26 Middle Human/Source Decision Obligation
+
+The active obligation is now the boundary `Ry_boundary` angle convention for
+the displayed gamma3 boundary branch.  Middle rechecked the paper anchors
+Eq. `eq:angles for Ry`, Theorem `theorem: 1 term robin`, Eq.
+`eq: ROBIN clarified`, and Fig. `fig:1 term ROBIN` in GHL2025
+arXiv:2506.20478.
+
+The compiled finite product theorem gives the factor
+`boundary_cos_half_0_2`, while the displayed coefficient in Eq.
+`eq: ROBIN clarified` needs $D_0^{(2)}/\mathcal{N}_D$.  The source defines
+$\theta_0^2=\arccos(D_0^{(2)}/\mathcal{N}_D)$ but does not give a direct rule
+identifying the half-angle matrix entry with $D_0^{(2)}/\mathcal{N}_D$.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| seven-gate row-`32`, column-`32` product entry | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | `classical-lean-lemma` | compiled |
+| global sparse-slot coefficient source | `GHL2025.robinGlobalSparseAmplitudeValue 3 2 0` | `internal-paper-step` | compiled |
+| normalized coefficient source | `GHL2025.boundaryRotationNormalizedCoefficient p 0 2` | typed contract | compiled wiring; analytic flags false |
+| half-angle to coefficient bridge | `oneTermRobinGamma3BoundaryRyCoefficientBridge_n3.angleConventionObligation` | `source-contract-gap` | false |
+| convention decision | `oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3.decisionObligation` | source/human decision | false |
+| displayed product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Allowed resolutions:
+
+| Resolution | Required evidence |
+|---|---|
+| keep standard $R_y$ | record a human/source decision that the current matrix entry remains $\cos(\theta/2)$ and the displayed coefficient bridge remains an open theorem gap |
+| add paper-backed convention | cite a source-backed amplitude or rotation convention that explains how the focused matrix entry contributes $D_0^{(2)}/\mathcal{N}_D$ |
+| correct matrix transcription | provide a paper-backed correction packet for the `Ry_boundary` matrix convention before any Lean mutation |
+
+Forbidden until a resolution is present: further product-to-coefficient tactic
+search, changes to `boundaryRotationMatrix`, old bulk `j = 5` boundary
+comparisons, cited-oracle recursion, or promotion of boundary-normalizer,
+projection, LCU, cleanup, unitarity, block-correctness, normalized-equality,
+circuit-unitarity, or final-extraction flags.
+
+## 2026-05-26 Lower Boundary Ry Packet Guard
+
+The latest lower pass added only a non-semantic guard around the active
+decision packet:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3`.
+Its transcript theorem is
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3_transcript`.
+
+The guard records that lower product-to-coefficient proof search is disabled
+while the boundary $R_y$ angle-convention decision is open:
+
+| Guard field | Status |
+|---|---|
+| `decision.humanInputRequired` | compiled as `true` |
+| `decision.productSearchBlocked` | compiled as `true` |
+| `lowerProductProofPacketAllowed` | compiled as `false` |
+| `sourceBackedConventionPacketAllowed` | compiled as `true` |
+| `bridgeObligationProved` | compiled as `false` |
+| `decisionObligationProved` | compiled as `false` |
+| `productToCoefficientProved` | compiled as `false` |
+| LCU, block projection, block correctness, final extraction | all compiled as `false` |
+
+This guard does not change `boundaryRotationMatrix`, the gate list, the finite
+product-entry theorem, the cited-results status, or any semantic proof flag.
+It is only a regression check that future lower packets do not resume
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` before a
+source-backed convention or human decision is recorded.
+
+## 2026-05-26 Middle Lower-Guard Obligation Sync
+
+Middle re-audited the lower guard against the active paper anchors:
+GHL2025 Eq. `eq:angles for Ry`, Eq. `eq: ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, and Theorem `theorem: 1 term robin`.  The open obligation
+is unchanged.  The finite product path is compiled, but the paper source still
+does not state a direct rule turning the standard half-angle entry
+`boundary_cos_half_0_2` into the displayed coefficient
+$D_0^{(2)}/\mathcal{N}_D$.
+
+Current blocking ledger:
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| row-`32`, column-`32` displayed boundary product entry | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | `classical-lean-lemma` | compiled |
+| global sparse-slot coefficient source | `GHL2025.robinGlobalSparseAmplitudeValue 3 2 0` | `internal-paper-step` | compiled |
+| normalized coefficient source | `GHL2025.boundaryRotationNormalizedCoefficient p 0 2` | typed contract | compiled wiring; analytic fields false |
+| half-angle to coefficient bridge | `oneTermRobinGamma3BoundaryRyCoefficientBridge_n3.angleConventionObligation` | `source-contract-gap` | false |
+| lower product packet freeze | `oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3` | guard | compiled; `lowerProductProofPacketAllowed = false` |
+| displayed product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Until a source-backed convention or human decision is recorded, the next lower
+packet may only update the convention decision or non-semantic guards.  It must
+not prove around this gap by local product search, alter the paper circuit, or
+promote boundary-normalizer, projection, LCU, cleanup, unitarity,
+block-correctness, normalized-equality, circuit-unitarity, or final-extraction
+flags.
+
+## 2026-05-26 Lower Source-Evidence Guard Test
+
+This lower pass added only a regression test in `Tests/Basic.lean`.  The test
+checks the source-evidence boundary around
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3`.
+
+The checked data are:
+
+| Guard field | Required value |
+|---|---|
+| `guard.guardReason` | product-to-coefficient search is blocked until source-backed or human input exists |
+| `decision.acceptedSourceBackedOptions` | keep standard $R_y$ and leave the bridge open, or supply a paper-backed amplitude convention |
+| `decision.sourceSpecifiesDirectHalfAngleCoefficientRule` | `false` |
+| `bridge.thetaFormula` | `theta_j^s = arccos(D_j^(s) / N_D)` |
+| `bridge.cosHalfFormula` | `sqrt((1 + D_j^(s) / N_D) / 2)` |
+| `bridge.angleConventionObligation.source` | cited-results row `GHL2025.RyBoundary.AngleConventionBoundarySlot2` |
+| `decision.decisionObligation.source` | the existing boundary coefficient bridge |
+| `lowerProductProofPacketAllowed` | `false` |
+| `sourceBackedConventionPacketAllowed` | `true` |
+| `productToCoefficientProved` | `false` |
+
+No new matrix convention was selected.  The displayed boundary branch remains
+compiled up to the local product entry, and the bridge from
+`boundary_cos_half_0_2` to $D_0^{(2)}/N_D$ remains a source-contract gap.
+
+## 2026-05-26 Middle Source-Evidence Guard Obligation Sync
+
+Middle re-audited GHL2025 Eq. `eq:angles for Ry`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Theorem
+`theorem: 1 term robin` after the lower source-evidence guard test.  The
+classification does not change: the product entry is now a compiled finite
+matrix fact, and the remaining blocker is the missing source rule that would
+identify the standard half-angle entry `boundary_cos_half_0_2` with
+$D_0^{(2)}/\mathcal{N}_D$.
+
+Current blocking ledger:
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| row-`32`, column-`32` displayed boundary product entry | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | `classical-lean-lemma` | compiled |
+| global sparse-slot coefficient source | `GHL2025.robinGlobalSparseAmplitudeValue 3 2 0` | `internal-paper-step` | compiled |
+| normalized coefficient contract | `GHL2025.boundaryRotationNormalizedCoefficient p 0 2` | typed contract | compiled wiring; analytic fields false |
+| half-angle to coefficient bridge | `oneTermRobinGamma3BoundaryRyCoefficientBridge_n3.angleConventionObligation` | `source-contract-gap` | false |
+| lower source-evidence guard | `oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3` and the latest `Tests/Basic.lean` example | non-semantic guard | compiled; `lowerProductProofPacketAllowed = false` |
+| displayed product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Allowed resolutions:
+
+| Resolution | Required evidence |
+|---|---|
+| keep standard $R_y$ | record a human/source decision that the matrix entry remains $\cos(\theta_0^2/2)$ and the coefficient bridge remains an open theorem gap |
+| add source-backed convention | cite a paper-backed amplitude or rotation convention that relates the focused half-angle entry to $D_0^{(2)}/\mathcal{N}_D$ |
+| correct the matrix transcription | provide a paper-backed correction packet for `boundaryRotationMatrix` before any Lean mutation |
+
+Forbidden until a resolution is recorded: more product-to-coefficient tactic
+search, changes to `boundaryRotationMatrix`, reuse of the old bulk `j = 5`
+comparison as boundary evidence, cited-oracle recursion, or promotion of
+boundary-normalizer, projection, LCU, cleanup, unitarity, block-correctness,
+normalized-equality, circuit-unitarity, or final-extraction flags.
+
+## 2026-05-26 Middle No-Lower-Packet Closeout
+
+The active proof obligation is unchanged after the source-evidence guard:
+the displayed boundary branch has a compiled local product entry, but the
+source does not supply a rule identifying the standard half-angle matrix entry
+`boundary_cos_half_0_2` with $D_0^{(2)}/\mathcal{N}_D$.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| displayed boundary product entry | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | `classical-lean-lemma` | compiled |
+| global slot-`2` coefficient at row `0` | `GHL2025.robinGlobalSparseAmplitudeValue 3 2 0` | `internal-paper-step` | compiled |
+| normalized coefficient contract | `GHL2025.boundaryRotationNormalizedCoefficient p 0 2` | typed contract | compiled wiring; analytic fields false |
+| half-angle-to-coefficient bridge | `oneTermRobinGamma3BoundaryRyCoefficientBridge_n3.angleConventionObligation` | `source-contract-gap` | false |
+| lower packet guard | `oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3` | guard, not proof | compiled; product search disabled |
+| theorem-facing product-to-coefficient claim | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Middle should not issue another lower product-search packet from this state.
+Only these packets are admissible:
+
+| Packet | Required input |
+|---|---|
+| source-backed convention | a paper equation, author clarification, or cited convention explaining how the focused boundary $R_y$ entry contributes $D_0^{(2)}/\mathcal{N}_D$ |
+| human/source theorem-gap decision | explicit decision to keep the standard $R_y$ half-angle entry and leave the bridge open |
+| reviewer closeout | confirmation that the guard, cited-results ledger, proof-attempt memory, and all semantic flags remain false |
+
+Any packet that changes `boundaryRotationMatrix`, uses the old bulk `j = 5`
+endpoint as boundary evidence, or promotes product-to-coefficient, LCU,
+projection, cleanup, unitarity, block-correctness, normalized-equality,
+circuit-unitarity, or final-extraction flags is outside the accepted
+faithful-paper route.
+
+## 2026-05-26 Middle Persistent Boundary Ry Gap Closeout
+
+Middle re-audited GHL2025 Eq. `eq:angles for Ry`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Theorem
+`theorem: 1 term robin`.  The source still states
+$\theta_0^2=\arccos(D_0^{(2)}/\mathcal{N}_D)$ for the focused boundary
+entry, while the compiled seven-gate product contains the standard
+half-angle entry `boundary_cos_half_0_2`.  The displayed coefficient needs
+$D_0^{(2)}/\mathcal{N}_D$.  No audited source fragment supplies a direct
+half-angle coefficient rule.
+
+Persistent blocking ledger:
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| displayed boundary product entry | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | `classical-lean-lemma` | compiled |
+| global slot-`2` coefficient source | `GHL2025.robinGlobalSparseAmplitudeValue 3 2 0` | `internal-paper-step` | compiled |
+| normalized boundary coefficient | `GHL2025.boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2` | typed contract | compiled wiring; analytic flags false |
+| half-angle-to-coefficient bridge | `oneTermRobinGamma3BoundaryRyCoefficientBridge_n3.angleConventionObligation` | `source-contract-gap` | false |
+| source/human decision | `oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3.decisionObligation` | decision obligation | false |
+| lower product packet guard | `oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3` | non-semantic guard | compiled; product packet disabled |
+| displayed product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+No lower product-search packet is allowed from this state.  The next accepted
+change must either record a source-backed convention for the focused boundary
+$R_y$ entry, record a human/source decision to leave the bridge open under the
+standard $R_y$ convention, or let reviewer close the cycle with all semantic
+flags false.  In particular, the proof obligation ledger does not authorize
+changes to `boundaryRotationMatrix`, reuse of the old bulk `j = 5` endpoint as
+boundary evidence, or promotion of product-to-coefficient, LCU composition,
+block projection, cleanup, unitarity, block correctness, normalized equality,
+circuit unitarity, or final extraction.
+
+## 2026-05-26 Lower Bulk Branch Product Interface
+
+Definition: the finite column `j = 5` belongs to the omitted bulk branch of
+Eq. `eq: ROBIN clarified` for $n=3$, $K_1=2$, and $K_2=5$.  It is not a
+boundary endpoint.  The lower packet therefore records a separate bulk product
+interface instead of comparing the endpoint `228` with the displayed boundary
+endpoint.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| branch classification for `j = 5` | `oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript` | internal paper step plus finite register audit | compiled; source indicator is `1` |
+| omitted bulk product path for entry `(2,5)` and slot `5` | `oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3` | theorem-facing branch ledger | compiled |
+| derivative-amplitude ket-zero factor | `GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute (oneTermParameters 3) 5 5` | typed contract | analytic and unitary flags false |
+| bulk unique-path support | `oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3.uniquePathSupportObligation` | QBE-local finite matrix theorem | false |
+| bulk product-to-coefficient equality | `oneTermRobinGamma3ProductToCoefficientObligation 3 2 5` | theorem-route obligation | false |
+| indicator projection convention | `oneTermRobinGamma3IndicatorProjectionConvention_n3.conventionObligation` | source-contract gap | false |
+
+The compiled bulk ket-zero path is
+
+$$
+90 \to 218 \to 218 \to 218 \to 170 \to 170 \to 212 \to 228.
+$$
+
+The corresponding factor list is
+`[1, odts_cos_half_5_5, 1, 1, f_3_5 * N_f_inv, 1, 1]`.
+This only exposes the omitted-bulk branch ledger.  It does not prove
+unique-path support, does not close the product-to-coefficient theorem, and
+does not promote LCU composition, block projection, cleanup, unitarity, block
+correctness, normalized equality, circuit unitarity, or final extraction.
+
+## 2026-05-26 Boundary `R_y` Corrected-Angle Source Decision
+
+Upper/middle completed the source audit for the blocked boundary branch.  The
+local GHL2025 line Eq. `eq:angles for Ry` states
+`theta_j^s = arccos(D_j^(s) / N_D)`, but the standard `R_y(theta)` matrix entry
+is `cos(theta/2)`.  The source-backed continuation is therefore to use the
+corrected input angle
+
+$$
+theta_j^s = 2 arccos(D_j^(s) / N_D).
+$$
+
+Evidence ledger:
+
+| Evidence | Classification | Consequence |
+|---|---|---|
+| GHL2025 Eq. `eq:angles for Ry` | local paper line | records the apparent one-factor angle |
+| GHL2025 Fig. `fig:1 term ROBIN` | local paper circuit label | boundary gate is `R_y(theta_j^s)` |
+| GHL 2024 arXiv:2405.12855 appendix `O_{p^m}^S` | prior construction used by the paper family | sparse-amplitude rotations use `2 arccos(...)` with standard `R_y` |
+| Companion repository README and `fundamental_gates_unitary.py` | implementation convention | `ry(parameter)` has `cos(parameter/2)` and `sin(parameter/2)` entries |
+| Companion repository `Hamiltonian_of_1D_Heat_Equation.py` | implementation of the Robin heat example | boundary correction angles are computed as `2 * np.arccos(...)` |
+
+Compiled Lean decision:
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| corrected-angle source decision | `oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3` | source-backed erratum/correction route | compiled |
+| decision transcript | `oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3_transcript` | regression check | compiled |
+| focused boundary product entry | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3` | finite matrix product theorem | compiled as free boundary factor |
+| corrected boundary coefficient bridge | planned interface replacing the free boundary factor with `boundaryRotationNormalizedCoefficient p 0 2` | theorem-facing Lean work | pending |
+| boundary product-to-coefficient equality | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem route | false |
+
+The old lower guard is now superseded as a planning decision: it remains a
+record of the stale half-angle gap, but it must not block the next lower packet.
+Lower work may resume only through the corrected-angle route, and no semantic
+flag may be promoted until the corresponding Lean theorem is build-tested.
+
+## 2026-05-26 Middle Corrected Boundary Coefficient Interface
+
+The corrected-angle source decision now has a compiled Lean interface.  The
+interface is conditional, so it advances the product route without silently
+proving the analytic boundary rotation or any theorem-level block-encoding
+claim.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| corrected-angle decision | `oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3` | source-backed correction route | compiled |
+| corrected boundary coefficient interface | `oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3` | theorem-facing bridge | compiled; `correctedEntryHypothesis.proved = false` |
+| interface transcript | `oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3_transcript` | regression check | compiled; product and semantic flags false |
+| conditional product rewrite | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedAngle_n3` | `classical-lean-lemma` under corrected-entry hypothesis | compiled |
+| displayed boundary product-to-coefficient equality | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+The next proof obstruction is expected to be local notation and normalization:
+QBE has symbols `N_D_inv` and `N_f_inv`, but the focused theorem route still
+needs an exact Lean convention for the normalized entry by $N_D N_f \kappa$
+and the sparse-slot summation/projection factor.  This is not an authorization
+to promote LCU composition, block projection, cleanup, unitarity, block
+correctness, normalized equality, circuit unitarity, or final extraction.
+
+## 2026-05-26 Lower Boundary Product Obstruction
+
+The corrected-angle route now has one more compiled local theorem.  Under the
+explicit corrected-entry hypothesis for `boundary_cos_half_0_2`,
+`oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3`
+rewrites the focused boundary product entry as
+
+$$
+(f_3(0) N_f^{-1})(D_0^{(2)} N_D^{-1}).
+$$
+
+The stencil side is also locally matched:
+`oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3` proves that
+`(oneTermRobinAkMatrix 3)[0,0]` is `f_3_0 * D_0^(2)` using the same global
+sparse slot `2`.
+
+The smallest remaining Lean-local obstruction is recorded by
+`oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3`:
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| corrected branch-local product expansion | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3` | `classical-lean-lemma` under corrected-entry hypothesis | compiled |
+| boundary target entry uses slot `2` | `oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3` | local stencil/global-slot equality | compiled |
+| quotient convention for `N_D_inv`, `N_f_inv`, and $N_DN_f\kappa$ | `oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3.normalizedQuotientConvention` | theorem-route convention obligation | false |
+| sparse-register summation/projection factor for the $\kappa$ denominator | `oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3.sparseRegisterProjectionConvention` | block-projection/LCU convention obligation | false |
+| displayed boundary product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+No product-to-coefficient, LCU, projection, cleanup, unitarity,
+block-correctness, normalized-equality, circuit-unitarity, or final-extraction
+flag was promoted.
+
+## 2026-05-27 Middle Normalizer/Projection Dependency Audit
+
+Middle re-read GHL2025 Theorem `theorem: 1 term robin`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Definition
+`def:block-encoding`.  The focused boundary route is now blocked at the
+theorem-level normalization convention, not at the corrected $R_y$ angle and
+not at a cited oracle primitive.
+
+The compiled local facts are:
+
+$$
+\text{product}_{32,32}
+= (f_3(0) N_f^{-1})(D_0^{(2)} N_D^{-1}),
+$$
+
+and
+
+$$
+(A_k)_{0,0} = f_3(0)D_0^{(2)}.
+$$
+
+The source equation gives the gamma3 boundary coefficient with denominator
+$N_DN_f\kappa$.  The Lean route still needs a typed convention explaining how
+the symbolic inverse factors and the sparse-register projection/summation
+produce this normalized block entry.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| corrected boundary product expansion | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3` | `classical-lean-lemma` under corrected-entry hypothesis | compiled |
+| target entry comparison | `oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3` | `classical-lean-lemma` | compiled |
+| symbolic quotient for `N_D_inv` and `N_f_inv` | `oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3.normalizedQuotientConvention` | `internal-paper-step` plus QBE symbolic-inverse convention | false |
+| sparse-register $\kappa$ factor | `oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3.sparseRegisterProjectionConvention` | `internal-paper-step` plus finite projection convention | false |
+| final normalized block equality | `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | `contract-only`; see cited-results row `LCU.StandardBlockEncoding` | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | boundary entry `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| suggested declarations | `oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3` and `oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3_transcript` |
+| required start | reuse `oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3`, not a new route record |
+| acceptable result | a narrow convention lemma or a compiled typed convention packet with quotient/projection obligations still false |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Lower Boundary Normalizer/Projection Convention
+
+The lower packet added the planned typed convention packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3_transcript`
+
+It reuses `oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3` and
+records that the finite-composition normalizer is
+`GHL2025.oneTermRobinNormalizer`, i.e. the symbolic $N_DN_f\kappa$ normalizer.
+
+| Obligation | Lean artifact | Status |
+|---|---|---|
+| branch product expansion | `oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3` | compiled |
+| target entry comparison | `oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3` | compiled |
+| theorem normalizer wiring | `oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3.theoremNormalizer` and `.finiteCompositionNormalizer` | compiled |
+| quotient convention for `N_D_inv` and `N_f_inv` | `.quotientConvention.proved` | false |
+| sparse-register projection factor for $1/\kappa$ | `.sparseProjectionConvention.proved` | false |
+| normalized block equality | `.finiteCompositionNormalizedEquality.proved` | false |
+| focused product-to-coefficient theorem | `.productObligation.proved` | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.
+
+## 2026-05-27 Middle Projection-Amplitude Factor Bridge Audit
+
+The active focused boundary packet is now
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3`.
+It records the compiled conditional bridge from accepted `sqrt_kappa_inv`
+ket/bra contracts to the inserted `kappa_inv` factor. The bridge depends on
+explicit coefficient-environment hypotheses; it is not a proof of the
+underlying circuit or projection amplitudes.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| ket-side $H_W^{(\kappa)}$ sparse-register amplitude is $1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.uniformPreparationObligation` | external cited result via `ShuklaVedula2024.HWkappaUniformSuperposition`; contract-only | false |
+| bra-side matching projection onto sparse slot `2` contributes $1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.braAmplitudeObligation` and `.routeMatchingProjectionObligation` | internal QBE block-projection convention | false |
+| accepted ket and bra amplitude contracts produce `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.factorSemanticsObligation` | QBE projection-factor semantic theorem | false |
+| conditional factor evaluation under explicit inverse and product hypotheses | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3` | classical Lean coefficient lemma under explicit hypotheses | compiled |
+| finite normalized block equality for the composed route | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.productObligation`; `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Smallest current obstruction:
+
+| Missing ingredient | Source anchor | Lean destination | Status |
+|---|---|---|---|
+| a QBE-local theorem or stricter contract that supplies the semantic source of the `sqrt_kappa_inv * sqrt_kappa_inv = kappa_inv` factor and its use in the focused boundary projection | GHL2025 Eq. `arbitrary sparcity`, Definition `def:block-encoding`, Eq. `eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, and cited row `ShuklaVedula2024.HWkappaUniformSuperposition` | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.factorSemanticsObligation` | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` through `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| optional tests | focused transcript and false-flag checks only in `Tests/Basic.lean` |
+| allowed write scope | add a narrow source-backed factor-semantics lemma or stricter contract for `.factorSemanticsObligation`; if blocked, record which of ket amplitude, bra projection amplitude, product hypothesis, or finite normalized equality remains smallest |
+| required inputs | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3_transcript`, `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3`, `oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3`, `oneTermRobinGamma3BoundaryKappaProjectionEval_n3`, and cited-results rows `ShuklaVedula2024.HWkappaUniformSuperposition` and `QBE.Gamma3Boundary.MatchingProjectionSlot2` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Lower Projection-Amplitude Factor Bridge
+
+Lower added a conditional factor bridge for the focused boundary route:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3_transcript`
+
+The bridge consumes the compiled symbolic product lemma for the two
+`sqrt_kappa_inv` factors and the compiled `kappa_inv` normalizer lemma. Under
+explicit coefficient-environment hypotheses for `N_D_inv`, `N_f_inv`,
+`kappa_inv`, and
+`env "sqrt_kappa_inv" * env "sqrt_kappa_inv" = env "kappa_inv"`, the projected
+branch product multiplied by the theorem normalizer evaluates to the focused
+target entry.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| conditional use of accepted ket and bra amplitude factors | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3` | classical Lean coefficient lemma under explicit hypotheses | compiled |
+| ket-side sparse-register amplitude $1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| bra-side matching projection amplitude for sparse slot `2` | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.braAmplitudeObligation` | QBE block-projection convention | false |
+| identify the two amplitude factors with the theorem projection factor | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.factorSemanticsObligation` | projection-factor semantic theorem | false |
+| finite normalized block equality | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.finiteCompositionNormalizedEquality` | contract-only via finite composition / LCU | false |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3.productObligation` | theorem-route obligation | false |
+
+Proof-DAG row:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_projection_amplitude_factor_bridge_n3` | conditionally replace the inserted `kappa_inv` factor by the accepted ket and bra `sqrt_kappa_inv` factors | projection-amplitude semantics, product lemma, kappa-projection cancellation lemma | `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3`, `oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3`, transcript theorem | future factor-semantics discharge, then `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | sparse-register projection / block extraction | compiled conditional bridge; semantic flags false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted. The remaining blocker is still semantic: the actual sparse
+preparation and matching projection amplitudes must be supplied before the
+conditional environment hypotheses can be used in the theorem route.
+
+## 2026-05-27 Middle Projection-Amplitude Contract Audit
+
+The active focused boundary packet is now
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3`.
+It accepts the ket-side sparse-register amplitude and the bra-side matching
+projection amplitude only as Phase-1 contracts. Both factors are represented
+by `Coeff.symbol "sqrt_kappa_inv"`. The conditional product theorem
+`oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3` proves
+only coefficient algebra under the explicit hypothesis
+`env "sqrt_kappa_inv" * env "sqrt_kappa_inv" = env "kappa_inv"`.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| ket-side $H_W^{(\kappa)}$ sparse-register amplitude is $1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.uniformPreparationObligation` | external cited result via `ShuklaVedula2024.HWkappaUniformSuperposition`; contract-only | false |
+| bra-side matching projection onto sparse slot `2` contributes $1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.braAmplitudeObligation` | internal QBE block-projection convention | false |
+| accepted ket and bra amplitude contracts produce `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.factorSemanticsObligation` | QBE projection-factor semantic theorem | false |
+| symbolic product algebra under the explicit coefficient-environment hypothesis | `oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3` | classical Lean coefficient lemma | compiled |
+| finite normalized block equality for the composed route | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.productObligation`; `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Smallest current obstruction:
+
+| Missing ingredient | Source anchor | Lean destination | Status |
+|---|---|---|---|
+| a QBE-local theorem or stricter contract identifying the accepted `sqrt_kappa_inv` ket and bra factors with the inserted `kappa_inv` factor | GHL2025 Eq. `arbitrary sparcity`, Definition `def:block-encoding`, Eq. `eq: ROBIN clarified`, and cited row `ShuklaVedula2024.HWkappaUniformSuperposition` | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.factorSemanticsObligation` | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` through `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed write scope | refine or prove only the projection-factor semantics obligation for focused sparse slot `2` |
+| required inputs | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3_transcript`, `oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3`, `oneTermRobinGamma3BoundaryKappaProjectionEval_n3`, and cited-results row `ShuklaVedula2024.HWkappaUniformSuperposition` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Lower Projection-Amplitude Semantics Contract
+
+Lower added the projection-amplitude semantics packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3_transcript`
+
+The packet sits downstream of
+`oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3`. It accepts
+the ket-side and bra-side sparse-register amplitude factors as Phase-1
+contracts, both represented by `Coeff.symbol "sqrt_kappa_inv"`, and checks the
+symbolic product against `Coeff.symbol "kappa_inv"` only under an explicit
+environment hypothesis.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| ket-side sparse-register amplitude $1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| bra-side matching projection amplitude $1/\sqrt{\kappa}$ for sparse slot `2` | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.braAmplitudeObligation` | QBE block-projection convention | false |
+| symbolic product of the two amplitude contracts | `oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3` | local coefficient lemma under explicit hypothesis | compiled |
+| identify the product with the theorem projection factor | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.factorSemanticsObligation` | projection-factor semantic theorem | false |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3.productObligation` | theorem-route obligation | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.
+
+## 2026-05-27 Lower Matching Projection Amplitude Contract
+
+Lower added the focused bra-side projection-amplitude contract:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript`
+
+The contract fixes the local block-projection bra to sparse slot `2` and clean
+basis index `32`, with expected factor `Coeff.symbol "sqrt_kappa_inv"`. It
+does not prove that projection amplitude.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| matching projection bra contributes $1/\sqrt{\kappa}$ for sparse slot `2` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3.amplitudeContractObligation` | QBE block-projection convention | false |
+| route-level matching projection obligation remains linked | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3.routeMatchingProjectionObligation` | existing theorem-route obligation | false |
+| identify the two sparse-register amplitude factors with `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3.factorSemanticsObligation` | projection-factor semantic theorem | false |
+| symbolic product algebra for `sqrt_kappa_inv * sqrt_kappa_inv` | `oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3` | local coefficient lemma under explicit environment hypothesis | compiled |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.
+
+## 2026-05-27 Middle Post-Amplitude-Contract Sync
+
+The active lower starting packet is now the compiled contract:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript`
+
+This contract is downstream of
+`oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3`. It does
+not prove the projection amplitude; it names the exact bra-side finite
+projection obligation for sparse slot `2`, clean basis index `32`, and
+expected factor `Coeff.symbol "sqrt_kappa_inv"`.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| ket-side sparse-register amplitude $1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3.uniformPreparationProved` and the inherited uniform-preparation obligation | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| bra-side matching projection amplitude $1/\sqrt{\kappa}$ for sparse slot `2` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3.amplitudeContractObligation` | QBE block-projection convention | false |
+| route-level matching projection obligation remains linked | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3.routeMatchingProjectionObligation` | existing theorem-route obligation | false |
+| product represented by `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3.factorSemanticsObligation` with `oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3` | projection-factor semantic theorem | false; product lemma compiled only under explicit environment hypothesis |
+| focused product-to-coefficient theorem | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3.productObligation` | theorem-route obligation | false |
+
+Proof-DAG row:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_matching_projection_amplitude_n3` | prove or contract-accept the bra-side `sqrt_kappa_inv` amplitude for focused slot `2` | amplitude contract, matching convention, projection-factor index lemma, symbolic product lemma, Shukla-Vedula ket-side contract | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3`, transcript theorem | `factorSemanticsObligation`, then `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | sparse-register projection / block extraction | compiled contract packet; amplitude theorem and product semantics false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, routed through `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed write scope | prove the bra-side finite block-projection amplitude for sparse slot `2`, or add the precise local QBE projection contract needed to accept that amplitude |
+| required starting point | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript`, `oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3`, `oneTermRobinGamma3BoundaryProjectionFactorIndex_n3`, and cited-results row `ShuklaVedula2024.HWkappaUniformSuperposition` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Middle Post-Matching Amplitude Audit
+
+The accepted matching-projection amplitude obstruction was the active blocker
+before the later amplitude-contract packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3_transcript`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3`
+
+The packet compiles a symbolic product lemma, but it does not prove that the
+circuit or the block projection supplies either $1/\sqrt{\kappa}$ factor.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| ket-side sparse-register amplitude | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| bra-side matching projection amplitude for sparse slot `2` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.matchingProjectionObligation` | internal QBE block-projection convention | false |
+| product represented as `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.factorSemanticsObligation` | projection-factor semantic theorem | false |
+| symbolic product algebra | `oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3` | local coefficient lemma under explicit environment hypothesis | compiled |
+| finite normalized equality | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.finiteCompositionNormalizedEquality` | contract-only via finite composition / LCU | false |
+| focused product-to-coefficient equality | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.productObligation` | theorem-route obligation | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+is promoted by this packet.  The next lower work should start from
+`oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript`;
+this obstruction packet remains dependency context.
+
+## 2026-05-27 Middle Post-Matching Projection Obligation Sync
+
+The matching-projection convention now has a compiled Lean packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript`
+
+This packet is obligation bookkeeping only. It fixes the local block-projection
+bra to the same focused sparse slot `2` and clean basis index `32` as the
+prepared branch. It does not prove the projection amplitude, the product
+factor `Coeff.symbol "kappa_inv"`, finite normalized block equality, or the
+focused product-to-coefficient theorem.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| cited $H_W^{(\kappa)}$ per-slot preparation amplitude $1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| matching projection amplitude for sparse slot `2` | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.matchingProjectionObligation` | internal block-projection convention | false |
+| identify the product of the preparation and projection amplitudes with `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.factorSemanticsObligation` | projection-factor semantic theorem | false |
+| finite normalized block equality | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.productObligation` | theorem-route obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` through `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed write scope | prove or refine only the matching-projection amplitude and `kappa_inv` factor semantics for focused sparse slot `2` |
+| required inputs | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript`, `oneTermRobinGamma3BoundaryProjectionFactorIndex_n3`, `oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript`, `oneTermRobinGamma3BoundaryKappaProjectionEval_n3`, and cited-results row `ShuklaVedula2024.HWkappaUniformSuperposition` |
+| success condition | compile a local projection-amplitude theorem, or record a smaller obstruction that separates the local projection convention from the external uniform-preparation contract |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Lower Matching Projection Amplitude Obstruction
+
+Lower refined the pending matching-projection amplitude block with a compiled
+obstruction packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3_transcript`
+
+The new coefficient lemma is conditional only. It says that if an environment
+interprets the two symbolic factors as
+`sqrt_kappa_inv * sqrt_kappa_inv = kappa_inv`, then the symbolic product
+evaluates to `Coeff.symbol "kappa_inv"`. It does not prove either amplitude.
+
+The obstruction packet separates the remaining inputs:
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| ket-side sparse-register amplitude `1/sqrt(kappa)` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| bra-side matching projection amplitude for sparse slot `2` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.matchingProjectionObligation` | internal QBE block-projection convention | false |
+| symbolic product equals `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.factorSemanticsObligation` | projection-factor semantic theorem after both amplitudes are supplied | false |
+| finite normalized block equality | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3.productObligation` | theorem-route obligation | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted. The next lower packet should prove the bra-side projection
+amplitude theorem or provide a source-backed QBE block-projection contract for
+it; it should not recursively formalize Shukla-Vedula.
+
+## 2026-05-27 Lower Matching Projection Convention
+
+Lower added the local matching-projection convention packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript`
+
+The packet reuses
+`oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3` and the finite index
+lemma. It records that the block projection for the focused boundary branch is
+the matching projection onto sparse slot `2` and clean basis index `32`. It does
+not prove the projection amplitude or the full `kappa_inv` factor semantics.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| matching projection amplitude for sparse slot `2` | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.matchingProjectionObligation` | internal block-projection convention | false |
+| uniform sparse-register preparation amplitude | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| identify the two amplitudes with `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.factorSemanticsObligation` | projection-factor semantic theorem | false |
+| finite slot and basis-index agreement | `oneTermRobinGamma3BoundaryProjectionFactorIndex_n3` | local finite bookkeeping | compiled |
+| conditional cancellation after inserting `kappa_inv` | `oneTermRobinGamma3BoundaryKappaProjectionEval_n3` | local coefficient algebra under explicit hypotheses | compiled |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3.productObligation` | theorem-route obligation | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.
+
+## 2026-05-27 Middle Post-Obstruction Lower Packet
+
+The current fixed obstruction packet is:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3_transcript`
+
+Middle re-audited GHL2025 Eq. `arbitrary sparcity`, Eq.
+`eq: ROBIN clarified`, Fig. `fig:1 term ROBIN`, Definition
+`def:block-encoding`, and bibliography entry `shukla2024efficient`.  The cited
+uniform-preparation amplitude is already recorded under
+`ShuklaVedula2024.HWkappaUniformSuperposition`, so the local
+matching-projection convention is the fixed QBE-side refinement.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| cited $H_W^{(\kappa)}$ per-slot amplitude for sparse slot `2` | `oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3.uniformPreparationObligation` | external cited contract; do not formalize recursively in this packet | false |
+| matching bra/projection onto sparse slot `2` with clean basis index `32` | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3` | internal block-projection convention | compiled convention; amplitude false |
+| product represented by `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3.factorSemanticsObligation` | projection-factor semantic theorem after the two factors are supplied | false |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, routed through `oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed write scope | prove or further classify the actual matching sparse-slot projection amplitude; optional tests may only check wiring and false flags |
+| required inputs | `oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript`, `oneTermRobinGamma3BoundaryProjectionFactorIndex_n3`, `oneTermRobinGamma3BoundaryKappaProjectionEval_n3`, and cited-results row `ShuklaVedula2024.HWkappaUniformSuperposition` |
+| success condition | compile a local projection-amplitude theorem or a smaller semantic obstruction; keep all theorem-facing flags false unless the theorem is actually proved |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Boundary Projection Factor Interface
+
+The latest lower packet compiled the finite projection-factor interface:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorIndex_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3_transcript`
+
+Definition first:
+`oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3` reuses the source
+contract `oneTermRobinGamma3BoundaryProjectionSourceContract_n3`.  The finite
+index lemma proves only that the prepared sparse slot and projected sparse slot
+are both slot `2`, and both sides use the clean basis index
+`oneTermRobinGamma3PaperBasisIndex (oneTermParameters 3) 2 0 = 32`.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| finite slot and basis-index agreement | `oneTermRobinGamma3BoundaryProjectionFactorIndex_n3` | `classical-lean-lemma` | compiled |
+| source contract for the inserted `kappa_inv` factor | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3` | source/projection contract | compiled; semantic flags false |
+| uniform sparse-register preparation amplitude | `oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| matching projection amplitude for focused sparse slot `2` | `oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3.matchingProjectionObligation` | internal block-projection convention | false |
+| identify the product of amplitudes with `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3.factorSemanticsObligation` | QBE projection-factor semantic obligation | false |
+| finite normalized block equality | `oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3.finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused product-to-coefficient equality | `oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3.productObligation` | theorem-route obligation | false |
+
+Smallest current obstruction:
+
+| Missing ingredient | Source anchor | Lean destination | Status |
+|---|---|---|---|
+| prove that $H_W^{(\kappa)}$ and matching sparse-slot projection contribute the symbolic factor `kappa_inv` | GHL2025 Eq. `arbitrary sparcity`, Definition `def:block-encoding`, Eq. `eq: ROBIN clarified`, and cited row `ShuklaVedula2024.HWkappaUniformSuperposition` | `oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3.factorSemanticsObligation` | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` through `oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3` |
+| allowed write scope | refine or prove only the projection-factor semantic obligation for focused sparse slot `2` |
+| required inputs | `oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3_transcript`, `oneTermRobinGamma3BoundaryProjectionFactorIndex_n3`, `oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript`, and `oneTermRobinGamma3BoundaryKappaProjectionEval_n3` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Lower Projection-Factor Obstruction Split
+
+The finite projection-factor interface now has a smaller obstruction packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3_transcript`
+
+The packet does not prove the projection factor.  It records that the remaining
+semantic theorem for `Coeff.symbol "kappa_inv"` has two separate inputs:
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| $H_W^{(\kappa)}$ per-slot amplitude is $1/\sqrt{\kappa}$ for focused slot `2` | `oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| matching projection onto sparse slot `2` contributes the second $1/\sqrt{\kappa}$ factor | `oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3.matchingProjectionObligation` | QBE block-projection convention | false |
+| the product of those amplitudes is represented by `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3.factorSemanticsObligation` | projection-factor semantic theorem | false |
+| finite slot and basis-index agreement | `oneTermRobinGamma3BoundaryProjectionFactorIndex_n3` | local finite bookkeeping | compiled |
+| conditional cancellation after inserting `kappa_inv` | `oneTermRobinGamma3BoundaryKappaProjectionEval_n3` | local coefficient algebra under explicit hypotheses | compiled |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.
+
+## 2026-05-27 Middle Post-Projection Source Contract Sync
+
+The accepted projection source contract is now the fixed source-facing packet
+for the sparse-register factor in the focused boundary route:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript`
+
+The contract records the intended source of `Coeff.symbol "kappa_inv"`:
+GHL2025 Eq. `arbitrary sparcity` prepares each sparse slot with amplitude
+$1/\sqrt{\kappa}$, and the matching block projection onto focused slot `2`
+should contribute the second $1/\sqrt{\kappa}$ factor.  It does not prove that
+finite projection semantics.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| uniform sparse-register preparation | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| matching projection onto sparse slot `2` | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3.matchingProjectionObligation` | internal block-projection convention | false |
+| identify the product with `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3.projectionFactorSemantics` | QBE finite projection-factor interface | false |
+| conditional algebra after inserting `kappa_inv` | `oneTermRobinGamma3BoundaryKappaProjectionEval_n3` | local coefficient algebra under explicit hypotheses | compiled |
+| finite normalized block equality | `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused product-to-coefficient equality | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3.productObligation` | theorem-route obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` through `oneTermRobinGamma3BoundaryProjectionSourceContract_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed write scope | add a narrow projection-factor semantics packet or lemma for the focused sparse slot `2`; optional tests may only check wiring and false flags |
+| required inputs | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript`, `oneTermRobinGamma3BoundaryKappaProjectionEval_n3`, and cited-results row `ShuklaVedula2024.HWkappaUniformSuperposition` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Middle Boundary Normalizer Split Target
+
+The middle packet added
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3` and
+`oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3_transcript` as the next
+Lean-checkable lower target.  The packet reuses
+`oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3`; it does not
+duplicate the route or promote a theorem flag.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| symbolic inverse semantics for `N_D_inv` and `N_f_inv` | `oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.symbolicInverseObligation` | QBE symbolic-inverse convention tied to Eq. `eq: ROBIN clarified` | false |
+| sparse-register projection factor for $1/\kappa$ | `oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.kappaProjectionObligation` | finite block-projection convention for the sparse-slot sum | false |
+| finite composition normalized equality | `oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.finiteCompositionNormalizedEquality` | contract-only dependency via `LCU.StandardBlockEncoding` | false |
+| focused boundary product equality | `oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.productObligation` | theorem-route obligation | false |
+
+The next lower packet should pick one split target.  It may refine the symbolic
+inverse convention or the sparse-register $\kappa$ projection convention, but
+it must not recursively formalize cited primitives or promote
+product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction.
+
+## 2026-05-27 Lower Symbolic-Inverse Split Lemma
+
+The symbolic-inverse half of the boundary split target now has a compiled
+conditional Lean lemma:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3_transcript`
+
+The lemma proves only the local algebra under explicit environment hypotheses:
+`env "N_D_inv" * env "N_D" = 1` and
+`env "N_f_inv" * env "N_f" = 1`.  Under those hypotheses, the branch-local
+product multiplied by the $N_DN_f$ part of the normalizer evaluates to the
+target entry.  The proof does not supply the inverse hypotheses from the paper
+or from a normalizer contract.
+
+| Obligation | Lean artifact | Status |
+|---|---|---|
+| symbolic inverse algebra for `N_D_inv` and `N_f_inv` | `oneTermRobinGamma3BoundarySymbolicInverseEval_n3` | compiled conditional lemma |
+| actual inverse semantics for the coefficient environment | `oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3.symbolicInverseObligation` | false |
+| sparse-register projection factor for $1/\kappa$ | `oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3.kappaProjectionObligation` | false |
+| finite composition normalized equality | `oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3.finiteCompositionNormalizedEquality` | false |
+| focused product-to-coefficient equality | `oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3.productObligation` | false |
+
+The next lower packet should target the sparse-register $1/\kappa$ projection
+factor or the source of the actual inverse hypotheses.  It should not promote
+LCU, projection, cleanup, unitarity, block correctness, normalized equality,
+circuit unitarity, or final extraction.
+
+## 2026-05-27 Middle Boundary Kappa-Projection Target
+
+Middle added a focused target for the remaining sparse-register projection
+factor:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3_transcript`
+
+The packet records that the focused boundary branch uses $\kappa=7$, sparse
+slot `2`, and clean basis index `32`.  It connects the missing
+$1/\kappa$ factor to GHL2025 Eq. `arbitrary sparcity`, where
+$H_W^{(\kappa)}$ prepares the uniform sparse-register superposition with
+amplitude $1/\sqrt{\kappa}$, and to Eq. `eq: ROBIN clarified`, where the
+gamma3 coefficient has denominator $N_DN_f\kappa$.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| uniform sparse-register preparation | `oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3` | external cited implementation plus local convention | false |
+| symbolic inverse conditional lemma | `oneTermRobinGamma3BoundarySymbolicInverseEval_n3` | local algebra | compiled under explicit hypotheses |
+| sparse-register projection factor | `oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.kappaProjectionObligation` | finite block-projection convention | false |
+| normalized block equality | `oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused product-to-coefficient equality | `oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.productObligation` | theorem-route obligation | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.  The next lower packet should refine the $1/\kappa$ projection
+interface and should not recursively formalize the cited uniform-state
+preparation paper.
+
+## 2026-05-27 Lower Kappa-Projection Conditional Lemma
+
+Lower refined the sparse-register projection interface with a compiled
+conditional algebra lemma:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3_transcript`
+
+The lemma assumes the coefficient environment satisfies the already isolated
+inverse hypotheses for `N_D_inv` and `N_f_inv`, plus
+`env "kappa_inv" * env "kappa" = 1`.  Under those assumptions,
+`branchLocalProduct * kappa_inv`, multiplied by the theorem normalizer
+`N_D*N_f*kappa`, evaluates to the focused target entry.
+
+| Obligation | Lean artifact | Status |
+|---|---|---|
+| conditional cancellation of the inserted $1/\kappa$ factor | `oneTermRobinGamma3BoundaryKappaProjectionEval_n3` | compiled under explicit environment hypotheses |
+| symbolic sparse-register projection factor | `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3.projectionFactor` | recorded as `Coeff.symbol "kappa_inv"` |
+| actual uniform sparse-register preparation | `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3.uniformPreparationObligation` | false |
+| actual sparse-register projection convention | `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3.kappaProjectionObligation` | false |
+| finite composition normalized equality | `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3.finiteCompositionNormalizedEquality` | false |
+| focused boundary product equality | `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3.productObligation` | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.
+
+## 2026-05-27 Middle Projection Source-Dependency Audit
+
+Middle re-read GHL2025 Eq. `arbitrary sparcity`, Theorem
+`theorem: 1 term robin`, Eq. `eq: ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Definition `def:block-encoding`, and bibliography entry
+`shukla2024efficient`.
+
+The lower lemma
+`oneTermRobinGamma3BoundaryKappaProjectionEval_n3` proves the local algebra
+under explicit hypotheses for `N_D_inv`, `N_f_inv`, and `kappa_inv`. The proof
+does not explain why the circuit supplies `kappa_inv`; that remains a
+source/projection obligation.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| uniform sparse-register preparation has per-slot amplitude $\kappa^{-1/2}$ | `oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3` and row `ShuklaVedula2024.HWkappaUniformSuperposition` | `external-cited-result`; `contract-only` | false |
+| matching block projection contributes the second $\kappa^{-1/2}$ factor for focused slot `2` | `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3.kappaProjectionObligation` | `internal-paper-step` plus finite projection convention | false |
+| inserted symbolic `kappa_inv` cancels with the theorem normalizer | `oneTermRobinGamma3BoundaryKappaProjectionEval_n3` | `classical-lean-lemma` under explicit hypotheses | compiled |
+| composed circuit normalized block equality | `oneTermRobinFiniteBlockCompositionContract.normalizedBlockEquality` | `contract-only` via `LCU.StandardBlockEncoding` | false |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3.productObligation` | theorem-route obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` through `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3` |
+| target file | `QuantumBlockEncoding/RobinMatrix.lean` |
+| allowed write scope | add a typed projection/source-contract interface for the $H_W^{(\kappa)}$ preparation and matching projection factor; do not replace the existing route |
+| required inputs | `oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3_transcript`, `oneTermRobinGamma3BoundaryKappaProjectionEval_n3`, and cited-results row `ShuklaVedula2024.HWkappaUniformSuperposition` |
+| success condition | compile a source-backed projection contract or a narrow lemma that materially reduces the `kappaProjectionObligation`; keep unproved semantic fields false |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-27 Lower Boundary Projection Source Contract
+
+Lower added the source/projection contract packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript`
+
+The packet explains the source meaning intended for the already compiled
+`Coeff.symbol "kappa_inv"` factor. For the focused boundary route, GHL2025 Eq.
+`arbitrary sparcity` gives sparse-register preparation amplitude
+$1/\sqrt{\kappa}$, and matching projection onto the same sparse slot should
+contribute another $1/\sqrt{\kappa}$. The Lean packet fixes $\kappa=7$, sparse
+slot `2`, and basis index `32`.
+
+| Obligation | Lean artifact | Classification | Status |
+|---|---|---|---|
+| uniform sparse-register preparation amplitude | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3.uniformPreparationObligation` | external cited contract via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| matching projection amplitude for sparse slot `2` | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3.matchingProjectionObligation` | internal block-projection convention | false |
+| identify the product of amplitudes with `Coeff.symbol "kappa_inv"` | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3.projectionFactorSemantics` | QBE source/projection bridge | false |
+| conditional cancellation of `kappa_inv` | `oneTermRobinGamma3BoundaryKappaProjectionEval_n3` | local algebra under explicit hypotheses | compiled |
+| focused boundary product-to-coefficient equality | `oneTermRobinGamma3BoundaryProjectionSourceContract_n3.productObligation` | theorem-route obligation | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.
+
+## 2026-05-27 Middle Current Active Packet Pointer
+
+The current active lower packet is the factor-semantics bridge:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3`.
+Use the full audit section
+`2026-05-27 Middle Projection-Amplitude Factor Bridge Audit` in this ledger as
+the proof-obligation map for the next lower attempt.
+
+Next lower work is restricted to `QuantumBlockEncoding/RobinMatrix.lean` plus
+focused wiring tests in `Tests/Basic.lean`. The fixed target remains
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, routed through
+`oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3`. The allowed
+work is to prove or further contract-map `.factorSemanticsObligation`, or to
+record a smaller obstruction separating the ket amplitude, bra projection
+amplitude, symbolic product hypothesis, and finite normalized block equality.
+Do not recursively formalize Shukla-Vedula, add a new route, revisit the old
+bulk `j = 5` boundary comparison, or promote product-to-coefficient, LCU,
+cleanup, unitarity, block projection, block correctness, normalized equality,
+circuit unitarity, or final extraction.
+
+## 2026-05-27 Lower Factor-Semantics Contract Map
+
+Lower added a compiled contract map for the active factor-semantics blocker:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript`
+
+The map is downstream of
+`oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3`.  It reduces
+`.factorSemanticsObligation` to four explicit inputs without marking any of
+them proved:
+
+| Input | Lean field | Status |
+|---|---|---|
+| ket-side $H_W^{(\kappa)}$ amplitude for sparse slot `2` | `ketAmplitudeObligation` | false; cited contract only |
+| bra-side matching projection amplitude | `braAmplitudeObligation` | false |
+| matching projection route convention | `routeMatchingProjectionObligation` | false |
+| product identity `sqrt_kappa_inv*sqrt_kappa_inv=kappa_inv` | `productHypothesisObligation` | false |
+| finite normalized block equality | `finiteCompositionNormalizedEquality` | false |
+| focused product equality | `productObligation` | false |
+
+`oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3` compiles under
+explicit environment hypotheses and reuses
+`oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3`.  It does not
+prove the cited ket amplitude, the local bra projection amplitude, the product
+hypothesis, finite normalized block equality, or
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction was
+promoted.
+
+## 2026-05-27 Middle Current Active Packet Pointer After Factor Map
+
+The current active lower packet is no longer the broad factor bridge.  It is
+the focused contract map:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript`
+
+This packet is already connected to the fixed theorem-facing target
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.  It does not close
+that target, because the following inputs remain explicit obligations:
+
+| Input | Lean field | Classification | Status |
+|---|---|---|---|
+| ket-side $H_W^{(\kappa)}$ amplitude | `ketAmplitudeObligation` | external cited contract through `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| bra-side matching projection amplitude | `braAmplitudeObligation` | internal block-projection convention for sparse slot `2` | false |
+| same-slot projection route convention | `routeMatchingProjectionObligation` | internal projection convention | false |
+| product identity $1/\sqrt{\kappa}\cdot 1/\sqrt{\kappa}=1/\kappa$ | `productHypothesisObligation` | coefficient-environment convention | false |
+| finite normalized block equality | `finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused product equality | `productObligation` | theorem-route obligation | false |
+
+The next lower target should be the local bra-side projection amplitude for
+sparse slot `2`, clean basis index `32`.  Do not add another wrapper around
+the same four blockers unless it replaces `braAmplitudeObligation` by a
+strictly smaller projection-index or amplitude obstruction.
+
+## 2026-05-27 Lower Bra-Projection Amplitude Source Map
+
+Lower added a stricter map for the current local blocker:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3_transcript`
+
+This map does not prove the bra-side amplitude.  It records that the finite
+index part is already compiled for sparse slot `2` and clean basis index `32`,
+but the current Lean backend does not yet contain the concrete
+$H_W^{(\kappa)}$ preparation matrix, its dagger, or an equivalent
+block-projection bra-entry contract.
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| focused bra entry `<0|H_W^(kappa)^dagger|2>` contributes `sqrt_kappa_inv` | `oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3.amplitudeContractObligation` | missing local semantic object or explicit projection-entry contract | false |
+| same-slot route projection convention | `.routeMatchingProjectionObligation` | internal block-projection convention | false |
+| factor semantics after ket and bra amplitudes are supplied | `.factorSemanticsObligation` | projection-factor semantic theorem | false |
+| finite normalized block equality | `.finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused product equality | `.productObligation` | theorem-route obligation | false |
+
+The proof-DAG block is now:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_matching_bra_amplitude_source_n3` | identify the exact semantic object needed for the bra-side `sqrt_kappa_inv` amplitude | matching projection amplitude contract, factor-semantics contract map, finite projection-factor index lemma | `oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3`, transcript theorem | future bra-amplitude theorem or explicit projection-entry contract | sparse-register projection / block extraction | compiled source map; direct amplitude proof unavailable |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection,
+normalized equality, block correctness, circuit unitarity, or final extraction
+flag was promoted.
+
+## 2026-05-27 Middle HW-Dagger Uniform-Column Audit
+
+The active focused boundary gamma3 object is now:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript`
+
+The conditional theorem compiled, but it did not discharge either source
+input. The clean-column amplitude is an external cited contract from GHL2025
+Eq. `arbitrary sparcity` and Shukla--Vedula. The row-`0`, column-`2` dagger
+entry still needs QBE's local adjoint-entry convention for the sparse-register
+matrix interface.
+
+Source-dependency classification:
+
+| Missing ingredient | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column entry $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation` | `external-cited-result`; contract-only via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| adjoint-entry convention $H_W^{(\kappa)\dagger}[0,2]=H_W^{(\kappa)}[2,0]$ | `adjointEntryConventionObligation` | `classical-lean-lemma` or QBE matrix-interface contract | false |
+| existing focused dagger-entry contract | `sourceContractObligation` | contract-only row `QBE.Gamma3Boundary.HWkappaDaggerSlot2Entry` | false |
+| connection into the bra-amplitude route | `sourceMapBraAmplitudeObligation`, `factorMapBraAmplitudeObligation` | internal QBE block-projection convention | false |
+| factor semantics, finite normalized equality, and product equality | `factorSemanticsObligation`, `finiteCompositionNormalizedEquality`, `productObligation` | theorem-route obligations under contracts | false |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_hw_dagger_from_uniform_column_n3` | derive the focused dagger entry from a clean-column contract and an adjoint-entry convention | embedded-entry interface, Shukla--Vedula uniform-column row, QBE adjoint-entry convention | `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`, `oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3` | future bra-amplitude discharge, factor semantics, then `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | sparse-register projection / matrix adjoint | conditional lemma compiled; inputs false |
+| `one_term_gamma3_boundary_hw_dagger_adjoint_convention_n3` | provide or strictly block the local adjoint-entry convention for row `0`, column `2` | uniform-column split plus QBE matrix semantics | planned `oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3` or stricter obstruction | uniform-column bridge and focused product route | matrix adjoint | next lower target |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3.adjointEntryConventionObligation` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused checks only in `Tests/Basic.lean` |
+| desired interface | `oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3`, or an equivalent compiled obstruction that explains why the current backend lacks a concrete `H_W^(kappa)` matrix/adjoint API |
+| required starting point | `oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript`, `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`, and `oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Middle Product-Under-Contracts Obligation Sync
+
+Active object:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3`.
+This route is the current boundary-branch packet for the fixed target
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.  It compiles the
+conditional coefficient calculation through
+`oneTermRobinGamma3BoundaryProductUnderContractsEval_n3`, but it deliberately
+leaves the finite projection/product bridge and normalized block equality
+false.
+
+Source-dependency audit:
+
+| Missing ingredient | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column sparse-register amplitude $H_W^{(\kappa)}[2,0]=1/\sqrt{\kappa}$ | `uniformColumnObligation` | `external-cited-result`; Shukla--Vedula contract-only | false |
+| ket-side sparse-register amplitude for slot `2` | `ketAmplitudeObligation` | `external-cited-result`; same uniform-preparation contract family | false |
+| product convention for two `sqrt_kappa_inv` factors | `productHypothesisObligation` | coefficient-environment contract plus local algebra | conditional eval compiled; proof flag false |
+| finite projection/product bridge from the route's projected branch product to the exact block entry | `productBridgeObligation` | `internal-paper-step` plus QBE projection/product interface | false |
+| finite normalized block equality for the composed circuit | `finiteCompositionNormalizedEquality` | `external-cited-result`; `LCU.StandardBlockEncoding` contract-only | false |
+| focused boundary product-to-coefficient theorem | `productObligation` and `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation under the above contracts | false |
+
+Smallest remaining obstruction:
+
+| Obstruction | Next Lean target | Acceptance |
+|---|---|---|
+| the conditional route has a projected branch product, but QBE has not identified it with the exact finite block entry used by the theorem route | a finite projection/product bridge consuming `oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3` | compile a bridge theorem or a smaller record that names the absent projection field |
+| the final normalized equality is still only a finite LCU/block-composition contract | keep `finiteCompositionNormalizedEquality.proved = false` unless an exact finite theorem is added | do not recursively formalize LCU in this packet |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+| required route | `oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused tests only in `Tests/Basic.lean` |
+| allowed proof work | finite projection/product bridge or a smaller compiled obstruction for `productBridgeObligation` |
+| blocked proof work | Shukla--Vedula circuit formalization, LCU formalization, old bulk `j = 5` boundary comparison, and any semantic flag promotion not backed by a build-tested theorem |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Lower Clean-Column To Factor-Semantics Route
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3_transcript`
+
+The route connects the previously compiled clean-column-to-bra contract to the
+factor-semantics contract map under explicit hypotheses.  It does not prove the
+external Shukla--Vedula state-preparation theorem, the QBE projection entry,
+the square-root product convention, the finite LCU/block-composition equality,
+or the focused product-to-coefficient theorem.
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column amplitude $H_W^{(\kappa)}[2,0]=1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3.uniformColumnObligation` | `external-cited-result`; contract-only | false |
+| ket-side sparse-register amplitude | `.ketAmplitudeObligation` | `external-cited-result`; same Shukla--Vedula contract family | false |
+| clean-column-to-bra factor bridge | `oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3`, first conjunct | conditional local matrix-interface theorem | compiled |
+| square-root product convention | `.productHypothesisObligation` and the `hkappaSqrt` hypothesis of the eval theorem | coefficient-environment convention | false |
+| finite normalized equality and focused product theorem | `.finiteCompositionNormalizedEquality`, `.productObligation` | LCU/block-composition contract plus theorem-route obligation | false |
+
+Next blocker:
+
+| Field | Requirement |
+|---|---|
+| fixed target | discharge or refine one of the still-false inputs to `oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3`, preferably the square-root product convention or the finite composition contract if middle assigns it |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until build-tested Lean proofs exist |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Lower HW-Dagger Uniform-Column Contract Split
+
+Lower added a strict source split for the focused row-`0`, column-`2`
+$H_W^{(\kappa)\dagger}$ entry:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript`
+
+The theorem is conditional local matrix-entry algebra. It proves that a matrix
+entry $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$, together with the adjoint-entry
+convention
+$H_W^{(\kappa)\dagger}[0,2] = H_W^{(\kappa)}[2,0]$, gives the focused dagger
+entry represented by `Coeff.symbol "sqrt_kappa_inv"`.
+
+The new contract keeps both inputs false:
+
+| Input | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column uniform entry for slot `2` | `uniformColumnObligation` | external cited contract through `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| local adjoint-entry convention | `adjointEntryConventionObligation` | QBE matrix-semantics interface obligation | false |
+| inherited focused dagger-entry contract | `sourceContractObligation` | contract-only row `QBE.Gamma3Boundary.HWkappaDaggerSlot2Entry` | false |
+| current bra-amplitude blockers | `sourceMapBraAmplitudeObligation`, `factorMapBraAmplitudeObligation` | internal block-projection convention | false |
+| factor semantics and finite normalized equality | `factorSemanticsObligation`, `finiteCompositionNormalizedEquality` | theorem-route obligations | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_hw_dagger_from_uniform_column_n3` | derive the focused dagger entry from a clean-column contract and an adjoint-entry convention | embedded-entry interface, Shukla-Vedula uniform-column contract row, QBE adjoint-entry convention | `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`, `oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3` | future bra-amplitude discharge, factor semantics, then `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | sparse-register projection / matrix adjoint | conditional lemma compiled; semantic inputs false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection,
+normalized equality, block correctness, circuit unitarity, or final extraction
+flag was promoted.
+
+## 2026-05-27 Middle Post-HW-Dagger Embedded-Entry Audit
+
+The active lower packet is now the embedded-entry interface:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript`
+
+The interface fixes the finite layout for row `0`, column `2` of
+$H_W^{(\kappa)\dagger}$ at clean basis index `32`, with $\kappa=7$,
+sparse-register width `3`, and sparse-register dimension `8`.  It still has
+`concreteHWKappaMatrixAvailable = false`, `localEntryProved = false`, and
+`embeddedEntryProved = false`.
+
+Source-dependency classification:
+
+| Missing ingredient | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column amplitude $H_W^{(\kappa)}\ket{0}=\kappa^{-1/2}\sum_s\ket{s}$ | inherited uniform-preparation obligation and cited row `ShuklaVedula2024.HWkappaUniformSuperposition` | `external-cited-result`; contract-only | false |
+| adjoint-entry conversion from the clean-column entry to $\langle 0|(H_W^{(\kappa)})^\dagger|2\rangle$ | planned `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3` or stricter source contract | `classical-lean-lemma` after QBE has a matrix/adjoint interface | planned |
+| absence of a concrete $H_W^{(\kappa)}$ matrix or local adjoint-entry API | `oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3.sourceContractObligation` | source-contract gap for QBE's stricter matrix interface | false |
+| connection from the entry contract to the current bra-amplitude blocker | `sourceMapBraAmplitudeObligation` and `factorMapBraAmplitudeObligation` | internal QBE block-projection convention | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | instantiate or strictly refine `oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3.sourceContractObligation` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused tests only in `Tests/Basic.lean` |
+| desired interface | `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`, or an equivalent compiled contract that splits the missing row-`0`, column-`2` dagger entry into a uniform-column contract plus an adjoint-entry convention |
+| required starting point | `oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript`, `oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3_transcript`, and cited rows `ShuklaVedula2024.HWkappaUniformSuperposition`, `QBE.Gamma3Boundary.HWkappaDaggerSlot2Entry` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Lower HW-Dagger Embedded-Entry Interface
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript`
+
+This packet refines the typed contract for the focused bra-side entry
+$\langle 0|(H_W^{(\kappa)})^\dagger|2\rangle = 1/\sqrt{\kappa}$ by fixing the
+finite layout:
+
+| Item | Lean field | Status |
+|---|---|---|
+| focused sparse slot | `focusedSparseSlot = 2` | compiled |
+| $\kappa$ and sparse-register size | `focusedKappa = 7`, `sparseRegisterQubits = 3`, `sparseRegisterDimension = 8` | compiled |
+| local entry | `localBraIndex = 0`, `localKetIndex = 2` | compiled interface |
+| local domain checks | `localKetWithinKappa = true`, `localKetWithinSparseDimension = true` | compiled |
+| ambient clean branch | `ambientCleanBasisIndex = 32` | compiled |
+| expected entry | `expectedLocalEntry = Coeff.symbol "sqrt_kappa_inv"` | contract-only |
+| source entry theorem | `sourceContractObligation` inherited from `oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3` | false |
+
+Remaining obligations:
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| concrete row-0/column-2 entry of $H_W^{(\kappa)\dagger}$ | `localEntryProved`, `embeddedEntryProved`, `sourceContractObligation` | missing local matrix theorem or stricter external contract | false |
+| connect the entry to the current bra-amplitude blocker | `sourceMapBraAmplitudeObligation` and `factorMapBraAmplitudeObligation` | internal QBE block-projection contract | false |
+| same-slot route projection convention | `routeMatchingProjectionObligation` | internal block-projection convention | false |
+| combine ket and bra `sqrt_kappa_inv` factors as `kappa_inv` | inherited factor-semantics/product-hypothesis obligations | coefficient/projection convention | false |
+| finite normalized block equality | `finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused product equality | `productObligation` and `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_hw_dagger_embedded_entry_n3` | strict embedded-entry interface for row `0`, column `2` of $H_W^{(\kappa)\dagger}$ at clean basis index `32` | projection-entry contract, finite gamma3 basis index, matching projection source map | `oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3`, transcript theorem | future matrix-entry theorem, bra-amplitude discharge, factor semantics, then focused product route | sparse-register projection / block extraction | compiled interface; matrix-entry proof false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection,
+normalized equality, block correctness, circuit unitarity, or final extraction
+flag was promoted.
+
+## 2026-05-27 Middle HW-Dagger Projection-Entry Contract
+
+Middle added a typed contract for the focused bra-side sparse-register entry:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3_transcript`
+
+The contract is wired to
+`oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3` and
+`oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3`.  It records the
+entry needed by the focused boundary branch,
+
+$$
+\langle 0| (H_W^{(\kappa)})^\dagger |2\rangle = 1/\sqrt{\kappa},
+$$
+
+embedded at clean basis index `32` and represented by
+`Coeff.symbol "sqrt_kappa_inv"`.
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| instantiate the focused $H_W^{(\kappa)\dagger}$ entry contract | `sourceContractObligation` | typed projection-entry contract | false |
+| connect that entry to the current bra-amplitude blocker | `sourceMapBraAmplitudeObligation` and `factorMapBraAmplitudeObligation` | internal QBE block-projection contract | false |
+| same-slot route projection convention | `routeMatchingProjectionObligation` | internal block-projection convention | false |
+| combine ket and bra `sqrt_kappa_inv` factors as `kappa_inv` | `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3.productHypothesisObligation` and `.factorSemanticsObligation` | coefficient/projection convention | false |
+| finite normalized block equality | `finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| focused product equality | `productObligation` and `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+The proof-DAG block is now:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_hw_dagger_slot2_entry_n3` | typed contract for $\langle 0|(H_W^{(\kappa)})^\dagger|2\rangle = 1/\sqrt{\kappa}$ at clean basis index `32` | bra-source map, factor-semantics contract map, Shukla--Vedula ket-side row, matching projection row | `oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3`, transcript theorem | future bra-amplitude theorem, factor-semantics discharge, then focused product route | sparse-register projection / block extraction | compiled contract; all semantic flags false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection,
+normalized equality, block correctness, circuit unitarity, or final extraction
+flag was promoted.
+
+## 2026-05-27 Middle Current HW-Dagger Split Obligations
+
+Active object:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3`.
+The conditional bridge
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`
+compiled, but it leaves the clean-column source and local adjoint-entry
+convention as explicit obligations.
+
+| Missing ingredient | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column entry $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation` | `external-cited-result`; contract-only via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| adjoint-entry convention $H_W^{(\kappa)\dagger}[0,2]=H_W^{(\kappa)}[2,0]$ | `adjointEntryConventionObligation` | `classical-lean-lemma` or QBE matrix-interface contract | false |
+| inherited focused dagger-entry contract | `sourceContractObligation` | contract-only row `QBE.Gamma3Boundary.HWkappaDaggerSlot2Entry` | false |
+| connection into the bra-amplitude route | `sourceMapBraAmplitudeObligation`, `factorMapBraAmplitudeObligation` | internal QBE block-projection convention | false |
+| factor semantics, finite normalized equality, and product equality | `factorSemanticsObligation`, `finiteCompositionNormalizedEquality`, `productObligation` | theorem-route obligations under contracts | false |
+
+Proof-DAG tail:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_hw_dagger_from_uniform_column_n3` | derive the focused dagger entry from a clean-column contract and an adjoint-entry convention | embedded-entry interface, Shukla--Vedula row, QBE adjoint convention | `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`, `oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3` | focused bra amplitude and product route | matrix adjoint | conditional lemma compiled; inputs false |
+| `one_term_gamma3_boundary_hw_dagger_adjoint_convention_n3` | provide or strictly block the row-`0`, column-`2` adjoint-entry convention | uniform-column split plus QBE matrix semantics | planned `oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3` or stricter obstruction | uniform-column bridge and focused product route | matrix adjoint | next lower target |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3.adjointEntryConventionObligation` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused checks only in `Tests/Basic.lean` |
+| desired interface | `oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3`, or an equivalent compiled obstruction for the missing concrete `H_W^(kappa)` matrix/adjoint API |
+| required starting point | `oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript`, `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3`, and `oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Lower HW-Dagger Adjoint Convention
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3_transcript`
+
+The local adjoint convention is no longer the blocker: for the focused
+`Matrix 8 8 Coeff` interface, the transpose-style dagger satisfies
+$H_W^{(\kappa)\dagger}[0,2] = H_W^{(\kappa)}[2,0]$.  The compiled contract
+packet marks only
+`oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3.adjointEntryConventionObligation.proved`
+as `true`.
+
+Remaining obligations:
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column entry $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation`, `uniformColumnProved` | `external-cited-result`; contract-only via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| full focused dagger entry | `sourceContractObligation`, `daggerEntryProved` | depends on the external uniform-column source plus the compiled adjoint convention | false |
+| connection into the bra-amplitude route | `sourceMapBraAmplitudeObligation`, `factorMapBraAmplitudeObligation` | internal QBE block-projection convention | false |
+| factor semantics, finite normalized equality, and product equality | `factorSemanticsObligation`, `finiteCompositionNormalizedEquality`, `productObligation` | theorem-route obligations under contracts | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-28 Middle Branch-Sum Projection Obligation
+
+Current fixed route:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3`.
+The route has a concrete all-slot family
+`oneTermRobinGamma3BoundaryBackendBranchContribution_n3 : Fin 7 -> Coeff`
+and a compiled selected-slot theorem.  The remaining obligation is only the
+signal-zero branch-sum theorem.
+
+| Obligation | Lean field or target | Classification | Status |
+|---|---|---|---|
+| all-slot backend summand family | `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | local finite backend formula | compiled |
+| selected slot $2$ clause | `oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3` | internal Eq. `ROBIN clarified` boundary branch | compiled |
+| focused backend target over this family | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` | generic `BlockExtractionBranchContributionTarget` instance | compiled; semantic flags false |
+| signal block entry equals seven-branch fold | `BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` | QBE-local projection/summation theorem | typed but unproved |
+| backend predicate closure | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | first conjunct compiled; second conjunct missing | absent |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification: this is `classical-lean-lemma` or
+QBE-local backend bookkeeping over the finite matrix interface.  It is not the
+Shukla--Vedula sparse-register preparation theorem, and it is not standard
+LCU/block-composition.
+
+Required lower starting point:
+
+| Declaration | Use |
+|---|---|
+| `oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3_transcript` | confirms the all-slot family, selected-slot theorem, and false flags |
+| `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selected_n3` | proves the selected-branch statement for the focused target |
+| `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selectedContribution_eq_n3` | identifies the target selected contribution with the accepted slot-$2$ contribution |
+| `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` | names the predicate whose second conjunct is still missing |
+
+Accepted output shape:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` |
+| equivalent predicate theorem | second conjunct of `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| small supporting bridge | definitional equivalence between `blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` and `oneTermRobinGamma3BoundaryBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`, if Lean needs it |
+| fallback obstruction | a smaller compiled record naming the absent projection-backend field needed to justify the branch-sum equality |
+| false-flag discipline | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false unless directly proved by Lean |
+
+## 2026-05-28 Current Middle Pointer
+
+Latest compiled Lean packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript`
+
+The remaining obligation is a backend-sourced sparse-slot summand family for
+the focused signal-zero entry.  The next lower target is a
+`branchContribution : Fin 7 -> Coeff` satisfying
+`oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3`, or a smaller
+typed obstruction showing why the current `BlockExtractionTarget` cannot expose
+that field.  Product-to-coefficient, LCU, cleanup, unitarity, block projection,
+block correctness, normalized equality, circuit unitarity, and final extraction
+remain false.
+
+## 2026-05-28 Middle Post Block-Extraction Backend Gap Handoff
+
+The current narrow Lean obstruction is
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3`.
+Its transcript theorem proves that the backend exposes the focused
+`BlockExtractionTarget` block entry and the corresponding full-unitary entry,
+but does not expose a sparse-slot summand family for that entry.
+
+| Obligation | Lean field or target | Status |
+|---|---|---|
+| focused block-entry bridge | `gap.signalBlockEntry = gap.unitaryEntry` | compiled |
+| backend matrices and signal index | `exposesUnitaryMatrix`, `exposesBlockMatrix`, `exposesTargetMatrix`, `exposesSignalIndex` | compiled true |
+| sparse-slot summand family | `exposesBranchContributionField` | compiled false |
+| backend predicate | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` | typed |
+| backend branch family | `branchContribution : Fin 7 -> Coeff` computed from `contract.expectedTarget.blockMatrix[0,0]` | absent |
+| product-to-coefficient target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Next Lean target |
+|---|---|---|
+| sparse-slot expansion of the signal-zero block entry | QBE-local finite projection/summation backend lemma | backend-sourced `branchContribution : Fin 7 -> Coeff` satisfying `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` |
+| sparse-register uniform amplitudes | external cited result | existing Shukla--Vedula contract rows only |
+| final normalized block equality | standard/external contract | existing `LCU.StandardBlockEncoding` row only |
+
+Next lower packet should start from
+`oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript` and either
+add the backend-sourced branch family or return a smaller typed obstruction on
+`BlockExtractionTarget`.  The placeholder branch family must not be used to
+close the branch sum, and no theorem-facing semantic flag may be promoted from
+this obstruction.
+
+## 2026-05-28 Block-Extraction Backend Gap
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript`
+
+The backend gap ties the previous target to the actual `BlockExtractionTarget`
+fields.  Lean now records that the backend exposes the signal-zero block entry
+and its full-unitary entry, while the sparse-slot summand family is still not a
+backend field.
+
+| Obligation | Lean field or target | Status |
+|---|---|---|
+| block entry bridge | `gap.signalBlockEntry = gap.unitaryEntry` | compiled |
+| current backend fields | `exposesUnitaryMatrix`, `exposesBlockMatrix`, `exposesTargetMatrix`, `exposesSignalIndex` | compiled true |
+| sparse-slot summand field | `exposesBranchContributionField` | compiled false |
+| placeholder guard | `placeholderFamilyRejected` | compiled true |
+| focused product target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+The exact remaining obstruction is:
+
+```text
+BlockExtractionTarget supplies blockMatrix[0,0] and its unitary entry, but no
+backend-sourced sparse-slot summand family for that entry
+```
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-28 Middle Backend Field Audit and Lower Packet
+
+The backend target is now typed, so the next packet must not try to close the
+projection sum with the placeholder family.  Middle rechecked GHL2025
+Definition `def:block-encoding`, Theorem `theorem: 1 term robin`, Eq. `ROBIN
+clarified`, Fig. `1 term ROBIN`, Eq. `arbitrary sparcity`, and the
+Shukla--Vedula citation.
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Lean target | Status |
+|---|---|---|---|
+| Boundary branch slot $2$ contribution in Eq. `ROBIN clarified` | internal paper step | first conjunct of `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` | typed |
+| Expansion of the signal-zero block entry as sparse-slot contributions | QBE-local finite projection/summation backend lemma | backend-sourced `branchContribution : Fin 7 -> Coeff` satisfying `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` | absent |
+| Sparse-register uniform amplitudes | external cited result | existing Shukla--Vedula contract rows | contract-only |
+| Final normalized block equality | standard/external contract | existing `LCU.StandardBlockEncoding` row | contract-only; false |
+
+Proof-DAG row:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_backend_branch_sum_n3` | expose a backend-sourced sparse-branch contribution family for `contract.expectedTarget.blockMatrix[0,0]` and prove the selected slot and branch-sum predicate | backend field target, block-extraction target, branch-entry selection theorem, sparse-register contracts | planned theorem or smaller typed obstruction | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | finite projection backend | next lower target |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3` toward `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+| write scope | prefer `QuantumBlockEncoding/RobinMatrix.lean`; edit `QuantumBlockEncoding/CircuitSemantics.lean` only for the smallest `BlockExtractionTarget` backend field; focused tests may go in `Tests/Basic.lean` |
+| starting declarations | `oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3_transcript`, `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3`, `oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3`, `oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3` |
+| acceptable result | build-tested backend-sourced branch family satisfying `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3`, or a smaller typed obstruction explaining the absent backend field |
+| forbidden promotions | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction must remain false unless Lean proves the exact theorem |
+
+## 2026-05-28 Middle Branch-Contribution Handoff
+
+Middle rechecked GHL2025 Definition `def:block-encoding`, Theorem `1 term
+robin`, Eq. `ROBIN clarified`, Fig. `1 term ROBIN`, Eq. `arbitrary sparcity`,
+and the Shukla--Vedula citation after the branch-contribution family compiled.
+The current blocker is still internal QBE finite projection/summation
+bookkeeping.  It is not a new Shukla--Vedula theorem request and not an LCU
+composition proof.
+
+The accepted Lean state is:
+
+| Item | Lean declaration or field | Status |
+|---|---|---|
+| focused sparse slot | `oneTermRobinGamma3BoundaryBranchContributionFocusedSlot` | compiled as slot `2` |
+| branch-sum fold | `oneTermRobinGamma3BoundaryBranchContributionSum` | typed over `List.finRange 7` |
+| branch contribution family | `oneTermRobinGamma3BoundaryBranchContributionFamily_n3.branchContribution` | typed |
+| selected slot theorem | `oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3` | compiled |
+| remaining sum theorem | `oneTermRobinGamma3BoundaryBranchContribution_sum_n3` | absent |
+| fixed product target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+Source-dependency classification:
+
+| Missing ingredient | Lean target | Classification | Status |
+|---|---|---|---|
+| expand the signal-zero block entry as the sparse-slot branch sum | `oneTermRobinGamma3BoundaryBranchContribution_sum_n3` | `internal-paper-step` plus QBE-local finite matrix lemma | absent |
+| Shukla--Vedula uniform sparse-register amplitude | existing `ShuklaVedula2024.HWkappaUniformSuperposition` row | `external-cited-result`; contract-only | false |
+| finite normalized block equality | `finiteCompositionNormalizedEquality` | standard LCU/block-composition contract | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_branch_sum_n3` | prove the typed projection-summation statement for the focused family | branch-contribution family, selected-slot theorem, signal-zero block index theorem | planned `oneTermRobinGamma3BoundaryBranchContribution_sum_n3` | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | projection/summation | next lower target |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed theorem-facing target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+| immediate Lean target | `oneTermRobinGamma3BoundaryBranchContribution_sum_n3 : oneTermRobinGamma3BoundaryBranchContributionFamily_n3.projectionSummationStatement` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; optional focused transcript tests in `Tests/Basic.lean` |
+| required starting point | `oneTermRobinGamma3BoundaryBranchContributionObstruction_n3_transcript`, `oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3`, `oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3`, and `oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3` |
+| fallback | add a smaller typed obstruction if the current finite matrix semantics has no field exposing branch contributions for `BlockExtractionTarget` |
+| forbidden work | no recursive Shukla--Vedula proof, no recursive LCU proof, no old `j = 5` bulk comparison, no new theorem route, and no semantic flag promotion |
+
+## 2026-05-28 Middle Typed Projection-Summation Handoff
+
+Active object:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3`.
+It keeps the focused boundary branch at system entry `(0,0)`, sparse slot `2`,
+signal block entry `[0,0]`, and branch entry `[32,32]`.
+
+| Obligation | Lean field | Classification | Status |
+|---|---|---|---|
+| signal-zero block entry is the full unitary entry selected by Definition `def:block-encoding` | `oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3` | finite index lemma | proved |
+| branch matrix entry `[32,32]` equals the route's `projectedBranchProduct` under the existing coefficient contracts | `branchEntrySelectionObligation` | QBE-local coefficient/interface theorem | false |
+| signal-zero block entry `[0,0]` expands as the sparse-branch sum and selects slot `2` | `projectionSummationObligation`, `missingProjectionSummationField` | QBE-local finite projection/summation theorem | false |
+| normalized finite block equality | `finiteCompositionNormalizedEquality` | contract-only through `LCU.StandardBlockEncoding` | false |
+| focused theorem target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | continue through `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3`; do not create a parallel theorem route |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused transcript tests only in `Tests/Basic.lean` |
+| required starting point | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript`, `oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3`, `oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript`, and `oneTermRobinGamma3BoundaryProductUnderContractsEval_n3` |
+| first target | discharge or further refine `branchEntrySelectionObligation` for `oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32]` versus `projectedBranchProduct` |
+| second target | state/prove the finite projection-summation theorem for slot `2`, or return a smaller typed obstruction naming the absent summation field |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Middle Post Clean-Column Route Obligations
+
+Active compiled object:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3`.
+It connects the contract-only clean-column bridge to both bra-side fields
+needed by the focused boundary factor route:
+`oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3.amplitudeContractObligation`
+and `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3.braAmplitudeObligation`.
+
+Middle re-read GHL2025 Eq. `arbitrary sparcity`, Definition
+`def:block-encoding`, Eq. `ROBIN clarified`, Fig. `1 term ROBIN`, and the
+Shukla--Vedula citation.  The missing source is classified as follows:
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column amplitude $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation`, `uniformColumnProved` | `external-cited-result`; contract-only through `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| ket-side sparse-register amplitude in the factor map | `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3.ketAmplitudeObligation` | `external-cited-result`; same cited source family, separate route field | false |
+| bra-side amplitude route wiring | `sourceMapBraAmplitudeObligation = factorMapBraAmplitudeObligation` in the clean-column route contract | internal QBE projection-route wiring | compiled; amplitude proof false |
+| product of two `sqrt_kappa_inv` factors | `productHypothesisObligation` | coefficient-environment convention | false |
+| factor-semantics bridge under all contracts | planned clean-column-to-factor route contract | theorem-route contract map | next lower target |
+| finite normalized equality and focused product equality | `finiteCompositionNormalizedEquality`, `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | LCU/block-composition contract plus focused product theorem | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | route `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3` into `oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3` under explicit external and coefficient hypotheses |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused tests only in `Tests/Basic.lean` |
+| desired interface | `oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3`, or a smaller compiled obstruction naming the missing field |
+| required starting point | `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3_transcript`, `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3`, `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript`, and `oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Latest Middle Pointer
+
+Current active route:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3`.
+The fixed obligation is still
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+| Remaining blocker | Lean field | Status |
+|---|---|---|
+| finite projection/product bridge from the conditional projected branch product to the exact finite block entry | `productBridgeObligation.proved` | false |
+| normalized block equality for the composed circuit | `finiteCompositionNormalizedEquality.proved` | false; contract-only through `LCU.StandardBlockEncoding` |
+
+Next lower work should compile the finite projection/product bridge or a
+smaller obstruction naming the absent projection field.  It should not
+formalize Shukla--Vedula or LCU recursively, revisit the old bulk endpoint, or
+promote product-to-coefficient, projection, normalized equality, block
+correctness, circuit unitarity, or final extraction flags.
+
+## 2026-05-28 Middle Post Branch-Entry Selection Obligations
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript`
+
+The branch-entry side of the focused bridge is now compiled conditionally.
+Under the corrected boundary `Ry` entry hypothesis,
+`oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3` shows that the
+selected seven-gate branch entry at `[32,32]`, multiplied by
+`sqrt_kappa_inv * sqrt_kappa_inv`, evaluates to the route's
+`projectedBranchProduct`.  This does not prove the corrected `Ry` source
+contract, the sparse-register amplitude contracts, or the projection/summation
+from the signal-zero block entry `[0,0]`.
+
+Remaining obligations:
+
+| Obligation | Lean field | Classification | Status |
+|---|---|---|---|
+| corrected boundary `Ry` source entry | `correctedEntryHypothesis` | source-backed correction route; no proof flag promoted | false |
+| ket sparse-register amplitude | `ketAmplitudeObligation` | cited contract through Shukla--Vedula | false |
+| bra sparse-register matching amplitude | `braAmplitudeObligation` | QBE-local matching-projection obligation | false |
+| signal-zero block projection/summation selecting slot `2` | `projectionSummationObligation` | `internal-paper-step` plus QBE finite matrix lemma | false |
+| route product bridge | `productBridgeObligation` | QBE finite projection/product interface | false |
+| normalized finite block equality | `finiteCompositionNormalizedEquality` | contract-only through `LCU.StandardBlockEncoding` | false |
+| focused theorem target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation under the above inputs | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_branch_entry_selection_n3` | conditional branch-entry selection from `[32,32]` to the route `projectedBranchProduct` after multiplying by the sparse-register projection-amplitude factor | projection-summation target, corrected `Ry` coefficient interface, projection-amplitude semantics | `oneTermRobinGamma3BoundaryBranchEntrySelection_n3`, eval theorem, transcript theorem | finite projection/summation bridge and fixed product obligation | branch-entry selection | compiled conditionally; source and projection flags false |
+| `one_term_gamma3_boundary_signal_block_projection_summation_n3` | finite theorem or typed obstruction expanding the signal-zero block entry `[0,0]` as a branch sum and selecting slot `2` | branch-entry selection packet, typed projection target, Definition `def:block-encoding` | planned theorem or smaller obstruction | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | projection/summation | next lower target |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | keep `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` routed through `oneTermRobinGamma3BoundaryBranchEntrySelection_n3` and `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused transcript tests only in `Tests/Basic.lean` |
+| required starting point | `oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript`, `oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3`, `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript`, and `oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3` |
+| acceptable result | a build-tested finite projection/summation theorem, or a smaller typed obstruction naming the absent branch-sum field |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-28 Lower Branch-Entry Selection
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript`
+
+Definition first:
+`oneTermRobinGamma3BoundaryBranchEntrySelection_n3` is the typed lower packet
+for the branch-entry side of the projection bridge.  It starts from
+`oneTermRobinGamma3BoundaryProjectionSummationTarget_n3`, selects the
+branch-local seven-gate entry at `[32,32]`, and attaches the existing
+sparse-register projection-amplitude factor
+`sqrt_kappa_inv * sqrt_kappa_inv`.
+
+The theorem `oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3` proves the
+conditional coefficient calculation: under the corrected boundary `Ry` entry
+hypothesis, the selected branch entry times that projection-amplitude factor
+evaluates to the route's `projectedBranchProduct`.
+
+Remaining obligations:
+
+| Obligation | Lean field | Status |
+|---|---|---|
+| Corrected `Ry_boundary` entry source contract | `correctedEntryHypothesis` | false |
+| Cited ket sparse-register amplitude | `ketAmplitudeObligation` | false |
+| QBE bra-side matching projection amplitude | `braAmplitudeObligation` | false |
+| Signal-zero block projection/summation selecting slot `2` | `projectionSummationObligation` | false |
+| Product bridge into `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | `productBridgeObligation` | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-28 Branch-Decomposition Interface Obligations
+
+Active object:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3`.
+The packet consumes
+`oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3` and fixes the
+focused indices used by the source-to-Lean transcript:
+
+| Item | Lean field | Value | Status |
+|---|---|---|---|
+| system entry | `focusedSystemRow`, `focusedSystemColumn` | `(0,0)` | compiled |
+| sparse slot | `focusedSparseSlot` | `2` | compiled |
+| signal-zero block entry | `signalBlockRowIndex`, `signalBlockColumnIndex` | `[0,0]` | compiled |
+| branch-local entry | `branchRowIndex`, `branchColumnIndex` | `[32,32]` | compiled |
+| equality of block and branch entries | `signalBlockEntryMatchesBranchEntry` | `false` | compiled guard |
+| branch-sum theorem | `projectionSummationObligation.proved` | `false` | open |
+
+Source-dependency audit:
+
+| Missing ingredient | Lean field | Classification | Status |
+|---|---|---|---|
+| finite expansion of the signal-zero block entry as a sparse-branch projection/summation | `projectionSummationObligation`, `requiredProjectionSummationTheorem` | QBE-local finite matrix theorem | false |
+| branch decomposition from slot `2` product `[32,32]` into block entry `[0,0]` | `branchDecompositionObligation`, `productBridgeObligation` | QBE-local projection/product bridge | false |
+| normalized composed block equality | `finiteCompositionNormalizedEquality` | contract-only through `LCU.StandardBlockEncoding` | false |
+| focused theorem-facing product equality | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation under the above contracts | false |
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchDecompositionSlot2`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript`
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_branch_decomposition_slot2_n3` | typed projection-summation interface from slot-`2` branch product `[32,32]` to signal-zero block entry `[0,0]` | finite bridge, block-extraction index lemma, product-under-contracts route | `OneTermRobinGamma3BoundaryBranchDecompositionSlot2`, `oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3`, transcript theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | projection/summation | interface compiled; proof flags false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove or refine the finite projection-summation theorem named by `oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3.projectionSummationObligation` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused transcript tests only in `Tests/Basic.lean` |
+| required starting point | `oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript` and `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript` |
+| acceptable result | a build-tested theorem connecting the slot-`2` projected branch contribution to the signal-zero block entry, or a smaller typed obstruction that names the missing summation field |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-28 Middle Branch-Decomposition Obligation Packet
+
+Active compiled bridge:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3`.
+The bridge has closed only the finite index part of the focused projection
+problem.  The signal-zero block entry for system `(0,0)` is full entry
+`[0,0]`, while the branch product for sparse slot `2` is full branch entry
+`[32,32]`.  The theorem-facing obligation remains false until QBE supplies a
+finite branch-decomposition or projection-summation theorem.
+
+Source-dependency classification:
+
+| Missing ingredient | Lean field | Classification | Status |
+|---|---|---|---|
+| finite branch-sum/projection theorem from slot `2` branch product to signal block `[0,0]` | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3.branchDecompositionObligation` | `internal-paper-step` needing QBE finite matrix semantics | false |
+| route-level product bridge | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3.productBridgeObligation` | QBE projection/product interface | false |
+| normalized block equality for the composed circuit | `finiteCompositionNormalizedEquality` | `external-cited-result`; contract-only through `LCU.StandardBlockEncoding` | false |
+| focused theorem target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation under the above inputs | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | branch-decomposition/projection interface for `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; optional focused tests in `Tests/Basic.lean` |
+| required starting point | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript`, `oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3`, and `oneTermRobinGamma3BoundaryProductUnderContractsEval_n3` |
+| expected declarations | planned `OneTermRobinGamma3BoundaryBranchDecompositionSlot2`, `oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3`, and a transcript theorem, or a smaller obstruction record naming the absent summation field |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+No cited result is upgraded by this packet.  Shukla--Vedula remains only the
+uniform-amplitude contract, and standard LCU remains only the normalized
+block-composition contract.
+
+## 2026-05-27 Middle Finite Projection/Product Bridge Audit
+
+Active compiled input:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3`.
+The bridge records that the finite signal-zero block entry for the focused
+system entry `(0,0)` is the full matrix entry `[0,0]`, while the branch-local
+boundary product route is still attached to sparse slot `2` at embedded basis
+entry `[32,32]`.
+
+The smallest remaining obstruction is not Shukla--Vedula state preparation and
+not standard LCU composition.  Those stay as existing contract-only rows.  The
+new local blocker is the QBE branch-decomposition/projection theorem that
+sends the slot-`2` projected branch product into the signal-zero block entry
+selected by Definition `def:block-encoding`.
+
+| Obligation | Lean field | Classification | Status |
+|---|---|---|---|
+| branch-decomposition from slot-`2` projected branch product to signal-zero block entry | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3.branchDecompositionObligation` | `internal-paper-step` plus QBE finite projection/product interface | false |
+| product bridge for the fixed boundary theorem target | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3.productBridgeObligation` | QBE projection/product interface | false |
+| finite normalized block equality | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3.finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding` | false |
+| signal block entry obligation | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3.signalBlockEntryObligation` | finite block-entry theorem obligation | false |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` through `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused checks only in `Tests/Basic.lean` |
+| acceptable result | compile a branch-decomposition/projection interface, or return a smaller compiled obstruction naming the absent projection field |
+| required starting point | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript`, `oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3`, and `oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3_transcript` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Lower Finite Projection/Product Bridge
+
+Compiled:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript`
+
+The finite index side is now explicit:
+
+| Item | Lean field | Status |
+|---|---|---|
+| signal-zero block entry for system `(0,0)` is the full unitary entry at `[0,0]` | `oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3` | compiled |
+| branch-correct slot-`2` basis index is `32` | `branchBasisIndex` in `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3` | compiled |
+| branch basis index equals the signal block index | `branchBasisMatchesSignalBlockIndex` | false by finite evaluation; they are different interfaces |
+| missing bridge from projected branch product to finite signal-zero block entry | `branchDecompositionObligation`, `productBridgeObligation` | false |
+| final finite normalized equality | `finiteCompositionNormalizedEquality` | contract-only via `LCU.StandardBlockEncoding`; false |
+
+Smallest remaining obstruction:
+
+| Missing field | Classification | Required next target |
+|---|---|---|
+| branch-decomposition/projection theorem sending the slot-`2` projected branch product into the signal-zero block entry | QBE finite projection/product interface | define a typed finite branch-summation/projection contract or prove the exact entry theorem before promoting `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-28 Lower Branch-Decomposition Slot-2 Interface
+
+Compiled:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript`
+
+This packet consumes the finite projection/product bridge and names the
+smallest remaining finite matrix-semantics field.  The source boundary branch
+still uses sparse slot `2` and embedded branch entry `[32,32]`, while
+Definition `def:block-encoding` selects the signal-zero block entry `[0,0]`.
+The new interface records that QBE needs a projection/summation theorem that
+expands the signal-zero entry into branch contributions and identifies the
+slot-`2` contribution with the route's projected branch product.
+
+| Obligation | Lean field | Status |
+|---|---|---|
+| finite projection/summation theorem from slot-`2` branch product `[32,32]` to signal-zero block entry `[0,0]` | `oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3.projectionSummationObligation` | `proved = false` |
+| existing branch-decomposition obligation | `branchDecompositionObligation` | `proved = false` |
+| product bridge for the fixed theorem target | `productBridgeObligation` | `proved = false` |
+| finite normalized block equality | `finiteCompositionNormalizedEquality` | `proved = false` |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | `proved = false` |
+
+No semantic flag was promoted.  In particular, the interface keeps
+`signalBlockEntryMatchesBranchEntry = false`; the later proof must supply the
+branch-sum/projection rule rather than identify the two finite entries
+directly.
+
+## 2026-05-27 Lower Product Under Contracts Route
+
+Definition first:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3`
+is the current theorem-facing packet for the displayed boundary branch.  It
+does not prove `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+It records that the clean-column factor route can be used only under explicit
+external amplitude contracts, coefficient-environment identities, and the
+finite block-composition contract.
+
+New compiled declarations:
+
+| Declaration | Role | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3` | route object from the clean-column factor calculation to the fixed product obligation | compiled; flags false |
+| `oneTermRobinGamma3BoundaryProductUnderContractsEval_n3` | conditional coefficient evaluation under clean-column, inverse-symbol, and square-root-product hypotheses | compiled |
+| `oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3_transcript` | wiring and false-flag guard | compiled |
+
+Remaining obligations:
+
+| Obligation | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column amplitude $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation` | `external-cited-result`; Shukla--Vedula contract-only | false |
+| ket-side sparse-register amplitude | `ketAmplitudeObligation` | `external-cited-result`; same cited source family | false |
+| bra-side amplitude through the clean-column route | `braAmplitudeObligation` | internal QBE projection-route contract | false |
+| square-root product convention | `productHypothesisObligation` | coefficient-environment convention; conditional algebra compiled | false |
+| finite normalized equality | `finiteCompositionNormalizedEquality` | `external-cited-result` plus finite block-composition obligation | false |
+| projection/product bridge | `productBridgeObligation` | QBE finite projection interface | false |
+| focused product equality | `productObligation` | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_product_under_contracts_n3` | conditional route from the clean-column factor semantics to the fixed boundary product obligation | clean-column factor route, coefficient identities, Shukla--Vedula row, `LCU.StandardBlockEncoding` row | `oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3`, eval theorem, transcript theorem | final boundary product theorem after block-projection bridge | product/block-composition | compiled conditionally; no semantic promotion |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection,
+block correctness, normalized equality, circuit unitarity, or final extraction
+flag was promoted.
+
+## 2026-05-27 Middle Post Clean-Column Factor-Semantics Sync
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3_transcript`
+
+The route uses `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3` as
+the bra-factor input to
+`oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3`.  The evaluation
+theorem is conditional on the external clean-column entry
+$H_W^{(\kappa)}[2,0]=1/\sqrt{\kappa}$ and on the coefficient-environment
+identities for `N_D_inv`, `N_f_inv`, `kappa_inv`, and `sqrt_kappa_inv`.
+
+| Remaining obligation | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column amplitude | `uniformColumnObligation` | `external-cited-result`; Shukla--Vedula contract only | false |
+| ket-side uniform sparse-register amplitude | `ketAmplitudeObligation` | `external-cited-result`; same source family, separate route field | false |
+| product `sqrt_kappa_inv * sqrt_kappa_inv = kappa_inv` | `productHypothesisObligation` | coefficient-environment convention | conditional theorem compiled; proof flag false |
+| finite normalized block equality | `finiteCompositionNormalizedEquality` | LCU/block-composition contract | false |
+| fixed boundary product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation under contracts | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, routed through `oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused checks only in `Tests/Basic.lean` |
+| desired interface | a compiled product-under-contracts route, or a smaller compiled obstruction identifying the first missing field among ket amplitude, coefficient product convention, finite normalized equality, and projection/product bridge |
+| required starting point | `oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3_transcript`, `oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3`, `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript`, `ShuklaVedula2024.HWkappaUniformSuperposition`, and `LCU.StandardBlockEncoding` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Middle Clean-Column Route Obligations
+
+Active object:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3`.
+The lower clean-column bridge compiled, and the local transpose-style bridge
+shows that a supplied clean-column entry
+$H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ feeds the focused dagger entry. The
+source remains contract-only through `ShuklaVedula2024.HWkappaUniformSuperposition`.
+
+The next blocker is not the adjoint convention and not the source formula for
+the ket-side uniform state. The next blocker is the internal QBE route from
+that accepted clean-column contract to the bra-side projection amplitude and
+the factor-semantics map.
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column source theorem for $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3.uniformColumnObligation` | `external-cited-result`; contract-only through Shukla--Vedula | false |
+| local transpose bridge from clean column to dagger row `0`, column `2` | `oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3` | local matrix-interface theorem under external hypothesis | compiled |
+| connect focused dagger entry to the bra-side projection amplitude | `oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3.amplitudeContractObligation` | internal QBE block-projection convention | false |
+| connect bra amplitude into the factor route | `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3.braAmplitudeObligation` | theorem-route contract map | false |
+| square-root product and normalized equality | `.productHypothesisObligation`, `.factorSemanticsObligation`, `.finiteCompositionNormalizedEquality` | coefficient convention and LCU/finite composition contract | false |
+| focused theorem target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-route obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | route `oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3` into the existing bra-amplitude and factor-semantics contract maps |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused checks only in `Tests/Basic.lean` |
+| desired interface | `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3`, or a smaller compiled obstruction that names the missing projection-entry field |
+| required starting point | `oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3_transcript`, `oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3`, `oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3_transcript`, and `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Middle Post-Adjoint Convention Obligations
+
+Active object:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3`.
+The local adjoint-entry convention for sparse slot `2` is compiled.  The
+source-contract audit now moves the next blocker to the clean-column amplitude
+from GHL2025 Eq. `arbitrary sparcity`.
+
+| Missing ingredient | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column entry $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation`, `uniformColumnProved` | `external-cited-result`; contract-only via `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| local adjoint convention $H_W^{(\kappa)\dagger}[0,2]=H_W^{(\kappa)}[2,0]$ | `adjointEntryConventionObligation` | `classical-lean-lemma` for the local transpose-style matrix interface | compiled true in the adjoint-convention packet |
+| focused dagger entry after applying the clean-column contract | `sourceContractObligation`, `daggerEntryProved` | conditional theorem-route contract | false until the clean-column contract is accepted in the route |
+| connection from dagger entry to bra projection amplitude | `sourceMapBraAmplitudeObligation`, `factorMapBraAmplitudeObligation` | internal QBE block-projection convention | false |
+| product factor, finite normalized equality, and focused product equality | `factorSemanticsObligation`, `finiteCompositionNormalizedEquality`, `productObligation` | theorem-route obligations under contracts | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | contract-map `oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3.uniformColumnObligation` without proving Shukla--Vedula |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused tests only in `Tests/Basic.lean` |
+| desired interface | a compiled clean-column contract bridge for $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ that can be consumed by `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3`, or a smaller compiled obstruction naming the absent contract field |
+| required starting point | `oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3_transcript`, `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3`, and cited-results row `ShuklaVedula2024.HWkappaUniformSuperposition` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Lower HW Clean-Column Contract Bridge
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3_transcript`
+
+The bridge maps the focused clean-column amplitude
+$H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ to the existing Shukla--Vedula
+contract-only row and shows that this is the exact hypothesis consumed by the
+compiled transpose dagger theorem.  It does not prove the cited
+state-preparation theorem and does not promote the focused dagger entry as a
+QBE proof.
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column source theorem for $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation`, `uniformColumnProved` | `external-cited-result`; contract-only through `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| local transpose conversion from row `2`, column `0` to dagger row `0`, column `2` | `cleanColumnFeedsTransposeBridge`, `conditionalDaggerEntryBridgeCompiled` | local matrix-interface theorem under the external hypothesis | compiled |
+| focused dagger-entry proof after accepting the external hypothesis | `sourceContractObligation`, `daggerEntryProved` | theorem-route contract still needs connection into the bra-amplitude source map | false |
+| connection into the bra-amplitude and factor-semantics route | `sourceMapBraAmplitudeObligation`, `factorMapBraAmplitudeObligation`, `factorSemanticsObligation` | internal QBE block-projection/coefficient obligations | false |
+| normalized block equality and product equality | `finiteCompositionNormalizedEquality`, `productObligation` | theorem-route obligations under contracts | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_hw_clean_column_contract_n3` | accept the focused clean-column amplitude as a typed external contract and feed it through the transpose dagger bridge | cited row `ShuklaVedula2024.HWkappaUniformSuperposition`, `oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3`, `oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3` | `oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3`, `oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3`, transcript theorem | focused dagger-entry source contract, bra amplitude, factor semantics, then `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | external contract / matrix adjoint | compiled; semantic proof flags false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-27 Middle Current Clean-Column Route Packet
+
+Current compiled input:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3`.
+The bridge is a contract-only use of
+`ShuklaVedula2024.HWkappaUniformSuperposition` for
+$H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$, followed by the compiled local
+transpose bridge
+`oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3`.
+
+The next lower packet should connect this bridge to
+`oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3.amplitudeContractObligation`
+and `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3.braAmplitudeObligation`,
+or compile a smaller obstruction naming the missing projection-entry field.
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+may be promoted in that packet.
+
+## 2026-05-28 Typed Projection-Summation Target
+
+The focused gamma3 boundary projection bridge now has a typed Lean target:
+
+| Declaration | Role | Status |
+|---|---|---|
+| `OneTermRobinGamma3BoundaryProjectionSummationTarget` | record exposing the actual `Coeff` entries for the signal-zero block entry, full unitary entry, branch matrix entry, and `projectedBranchProduct` | defined |
+| `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3` | instantiated target for system entry `(0,0)`, sparse slot `2`, signal entry `[0,0]`, and branch entry `[32,32]` | compiled |
+| `oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3` | proves the signal-zero block entry is the full unitary entry selected by Definition `def:block-encoding` | proved |
+| `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript` | checks target wiring and false theorem-facing flags | proved |
+
+Remaining obligations:
+
+| Obligation | Lean field | Status |
+|---|---|---|
+| Branch-entry selection: connect `oneTermRobinGamma3BoundarySevenGateMatrix_n3[32,32]` to the route's `projectedBranchProduct` under the existing coefficient contracts | `branchEntrySelectionObligation` | `proved = false` |
+| Projection/summation: expand `contract.expectedTarget.blockMatrix[0,0]` as the sparse-branch sum and select slot `2` | `projectionSummationObligation`, `missingProjectionSummationField` | `proved = false` |
+| Focused theorem target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | `proved = false` |
+| Normalized finite block equality | `finiteCompositionNormalizedEquality` | `proved = false`; contract-only through `LCU.StandardBlockEncoding` |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-27 Lower Clean-Column To Bra-Route Contract
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3_transcript`
+
+The route contract now connects the contract-only clean-column bridge to both
+active bra-side obligations:
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column source theorem for $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation`, `uniformColumnProved` | `external-cited-result`; contract-only through `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| conditional transpose bridge to the focused dagger entry | `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3`, `cleanColumnFeedsDaggerEntry` | local matrix-interface theorem under the external hypothesis | compiled |
+| source-map bra amplitude | `sourceMapBraAmplitudeObligation = oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3.amplitudeContractObligation` | internal QBE block-projection convention | false |
+| factor-map bra amplitude | `factorMapBraAmplitudeObligation = oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3.braAmplitudeObligation` | theorem-route contract map | false |
+| factor semantics, normalized equality, and product equality | `factorSemanticsObligation`, `finiteCompositionNormalizedEquality`, `productObligation` | theorem-route obligations under contracts | false |
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-27 Middle Current Factor-Semantics Route Packet
+
+Current compiled object:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3`.
+It connects the clean-column bridge to
+`oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3.amplitudeContractObligation`
+and `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3.braAmplitudeObligation`.
+
+The next blocker is now the under-contract factor-semantics bridge.  It should
+use the clean-column route as the bra-factor input for
+`oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3`, while keeping
+all source and coefficient hypotheses explicit.
+
+| Remaining input | Lean field | Classification | Status |
+|---|---|---|---|
+| clean-column amplitude $H_W^{(\kappa)}[2,0] = 1/\sqrt{\kappa}$ | `uniformColumnObligation`, `uniformColumnProved` | `external-cited-result`; contract-only through `ShuklaVedula2024.HWkappaUniformSuperposition` | false |
+| ket-side sparse-register amplitude in the factor map | `ketAmplitudeObligation` | `external-cited-result`; same cited source family, separate route field | false |
+| bra-side route wiring | `sourceMapBraAmplitudeObligation = factorMapBraAmplitudeObligation` | internal QBE projection-route wiring | compiled; amplitude proof false |
+| product of two `sqrt_kappa_inv` factors | `productHypothesisObligation` | coefficient-environment convention | false |
+| finite normalized block equality and focused product equality | `finiteCompositionNormalizedEquality`, `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | LCU/block-composition contract plus theorem-route obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | route `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3` into `oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3` under explicit external and coefficient hypotheses |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused tests only in `Tests/Basic.lean` |
+| desired interface | `oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3`, or a smaller compiled obstruction naming the missing field |
+| required starting point | `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3_transcript`, `oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3`, `oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript`, and `oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3` |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+| required gate | `python3 tools/qbe.py check` |
+
+## 2026-05-27 Latest Middle Pointer
+
+Current active route:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3`.
+The fixed obligation is still
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+| Remaining blocker | Lean field | Status |
+|---|---|---|
+| finite projection/product bridge from the conditional projected branch product to the exact finite block entry | `productBridgeObligation.proved` | false |
+| normalized block equality for the composed circuit | `finiteCompositionNormalizedEquality.proved` | false; contract-only through `LCU.StandardBlockEncoding` |
+
+Next lower work should compile the finite projection/product bridge or a
+smaller obstruction naming the absent projection field.  It should not
+formalize Shukla--Vedula or LCU recursively, revisit the old bulk endpoint, or
+promote product-to-coefficient, projection, normalized equality, block
+correctness, circuit unitarity, or final extraction flags.
+
+## 2026-05-28 Current Middle Pointer
+
+Latest compiled packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript`
+
+The packet conditionally evaluates the selected slot-`2` branch entry
+`[32,32]`, multiplied by `sqrt_kappa_inv * sqrt_kappa_inv`, to the route's
+`projectedBranchProduct`.  The corrected boundary `Ry` entry, sparse-register
+amplitudes, signal-block projection/summation, product bridge, normalized
+block equality, and fixed product theorem remain false.
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | finite projection/summation bridge toward `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean`; focused transcript tests only in `Tests/Basic.lean` |
+| required starting point | `oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript`, `oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3`, `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript`, and `oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3` |
+| acceptable result | a build-tested projection/summation theorem or a typed obstruction naming the exact absent branch-sum field |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction |
+
+## 2026-05-28 Lower Typed Projection-Summation Obstruction
+
+New compiled obstruction:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3_transcript`
+
+The accepted packet records a typed selected slot-$2$ contribution for the
+focused boundary branch:
+
+| Object | Lean field | Status |
+|---|---|---|
+| Sparse-slot domain | `slotDomain = [0,1,2,3,4,5,6]`, `focusedSparseSlot = 2` | compiled |
+| Selected contribution | `selectedSlotContribution` | typed `Coeff` |
+| Conditional selected-slot evaluation | `oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3` | compiled under corrected `Ry` entry hypothesis |
+| Branch contribution family | `branchContribution : Fin 7 -> Coeff` | absent |
+| Selected slot theorem | `branchContribution[2] = selectedSlotContribution` | false |
+| Projection/summation theorem | `signalBlockEntry = Finset.univ.sum branchContribution` | false |
+
+Current exact obstruction:
+
+```text
+finite matrix semantics lacks branchContribution : Fin 7 -> Coeff and the
+summation theorem identifying signalBlockEntry with the sparse-branch sum
+```
+
+This obstruction is QBE-local finite projection/summation work.  It is not a
+Shukla--Vedula state-preparation proof and not the standard LCU theorem.  The
+product-to-coefficient obligation
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` remains false, as do
+LCU, cleanup, unitarity, block projection, block correctness, normalized block
+equality, circuit unitarity, and final extraction.
+
+## 2026-05-28 Lower Branch-Contribution Family Interface
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFamily_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3_transcript`
+
+The selected slot is no longer only a string-level requirement.  Lean now has a
+typed family
+`branchContribution : Fin 7 -> Coeff` and a compiled theorem proving that slot
+`2` is the previously accepted selected contribution.  The sparse-branch sum
+statement is also typed through
+`oneTermRobinGamma3BoundaryBranchContributionFamily_n3.projectionSummationStatement`,
+but no theorem proves it.
+
+| Obligation | Lean field or target | Status |
+|---|---|---|
+| selected slot contribution | `oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3` | compiled |
+| branch contribution family | `oneTermRobinGamma3BoundaryBranchContributionFamily_n3.branchContribution` | typed |
+| signal-zero block entry as branch sum | `oneTermRobinGamma3BoundaryBranchContribution_sum_n3` | absent |
+| focused product target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+| normalized finite block equality | `finiteCompositionNormalizedEquality` | false; contract-only through `LCU.StandardBlockEncoding` |
+
+The exact remaining local obstruction is:
+
+```text
+finite matrix semantics still needs oneTermRobinGamma3BoundaryBranchContribution_sum_n3:
+signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum branchContribution
+```
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-28 Backend Projection-Summation Field Target
+
+Accepted Lean declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3_transcript`
+
+The new target records the smallest remaining backend obstruction.  The
+existing placeholder family still types the selected-slot statement, but it is
+not a finite matrix-semantics branch expansion for
+`contract.expectedTarget.blockMatrix[0,0]`.
+
+| Obligation | Lean field or target | Status |
+|---|---|---|
+| backend-sourced branch contribution family | `backendFieldLeanType = "branchContribution : Fin 7 -> Coeff, sourced from contract.expectedTarget.blockMatrix[0,0]"` | absent |
+| selected backend slot | `requiredSelectedSlotTheorem = "backendBranchContribution[2] = selectedSlotContribution"` | theorem unavailable |
+| backend branch sum | `requiredProjectionSummationTheorem = "signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum backendBranchContribution"` | theorem unavailable |
+| placeholder guard | `placeholderFamilyIsBackendSourced = false` and `placeholderMayCloseProjectionSummation = false` | compiled |
+| focused product target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+The exact remaining obstruction is:
+
+```text
+BlockExtractionTarget exposes the signal-zero block entry but not a
+backend-sourced sparse-branch contribution family for that entry
+```
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-28 Current Middle Pointer After Backend Gap
+
+The current lower-facing packet should start from
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3`.
+The next accepted result is either a backend-sourced
+`branchContribution : Fin 7 -> Coeff` satisfying
+`oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3`, or a smaller
+typed obstruction showing why the current `BlockExtractionTarget` cannot expose
+that sparse-slot summand field.  The placeholder family remains rejected for
+theorem closure, and all theorem-facing semantic flags remain false.
+
+## 2026-05-28 Lower Generic Branch-Target Interface
+
+New generic backend interface:
+
+- `blockExtractionBranchContributionSum`
+- `BlockExtractionBranchContributionTarget`
+
+Focused Robin instantiation:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selected_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selectedContribution_eq_n3`
+- updated `Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript`
+
+The selected branch remains slot $2$, and Lean proves that the selected
+contribution in the generic target is the accepted selected contribution from
+`oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3`.  The new
+interface does not make the placeholder family backend-sourced.
+
+| Obligation | Lean target | Status |
+|---|---|---|
+| generic branch fold | `blockExtractionBranchContributionSum` | compiled |
+| one-entry branch target | `BlockExtractionBranchContributionTarget` | compiled |
+| focused selected slot | `oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selected_n3` | compiled |
+| backend source for the seven-slot family | `target.backendSource.proved` | false |
+| signal block entry equals seven-branch fold | `target.branchSummationCorrect.proved` and `target.projectionSummationStatement` | false |
+| backend predicate closure | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` for a backend-sourced family | absent |
+
+Current exact obstruction:
+
+```text
+BlockExtractionTarget can be paired with a typed seven-slot branch target, but
+the backend-source proof and signal-block branch-sum theorem are still absent.
+```
+
+This is a QBE-local finite projection/summation backend obligation.  It does
+not discharge Shukla--Vedula state preparation, standard LCU composition, or
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+## 2026-05-28 Middle Backend-Sourced Branch-Family Obligation
+
+Current fixed route:
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3`.
+The route has reached the actual `BlockExtractionTarget` block entry and a
+typed generic seven-slot branch target, but the branch family is not yet
+backend-sourced.
+
+| Obligation | Lean field or target | Classification | Status |
+|---|---|---|---|
+| signal-zero block entry for system `(0,0)` | `oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3.signalBlockEntry` | local block-index bridge from Definition `def:block-encoding` | compiled |
+| selected sparse slot | `oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selectedContribution_eq_n3` | internal Eq. `ROBIN clarified` boundary branch | compiled |
+| backend source for the seven-slot family | `oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3.backendSource` | QBE-local finite projection backend | false |
+| signal block entry equals seven-branch fold | `BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3` | QBE-local projection/summation theorem | typed but unproved |
+| backend acceptance predicate | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 branchContribution` for a backend-sourced family | fixed lower target | absent |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+The next lower packet may close only the backend family interface or return a
+smaller typed obstruction.  It must not use the placeholder branch family as a
+backend proof.  It must not use the Shukla--Vedula row or the
+`LCU.StandardBlockEncoding` row to discharge this QBE-local projection step.
+
+Required lower starting point:
+
+| Declaration | Use |
+|---|---|
+| `oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript` | confirms the focused block entry, current exposed backend fields, and false flags |
+| `oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selectedContribution_eq_n3` | supplies the already accepted slot-$2$ selected contribution |
+| `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` | names the target predicate for any candidate backend family |
+| `oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3` | keeps the block entry tied to the full finite matrix entry |
+
+Accepted output shape:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | a build-tested backend-sourced `branchContribution : Fin 7 -> Coeff` satisfying `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` |
+| fallback obstruction | a smaller compiled record naming the absent field, such as a branch-to-full-index map, a branch-summand formula, or a theorem expanding `BlockExtractionTarget.blockMatrix[0,0]` into seven sparse-slot contributions |
+| false-flag discipline | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false unless directly proved by Lean |
+
+## 2026-05-28 Lower Branch-Index Map Obstruction
+
+New compiled declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3_transcript`
+
+The focused branch-to-full-index map is now typed.  For the boundary system
+entry $(0,0)$, slot $2$ maps to full basis index $32$, and the selected
+contribution is the already accepted branch-local seven-gate summand multiplied
+by the two sparse-register projection amplitudes.
+
+Current exact obstruction:
+
+```text
+the branch-to-full-index map is typed and the selected slot-2 summand formula
+compiles, but QBE still lacks the all-slot backend summand formula and
+branch-sum theorem for contract.expectedTarget.blockMatrix[0,0]
+```
+
+Open obligations:
+
+| Obligation | Lean target | Status |
+|---|---|---|
+| all-slot backend summand formula | compute `branchContribution s` for every `s : Fin 7` from the backend full-basis branch entry and sparse-register projection amplitudes | absent |
+| backend branch predicate closure | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 backendBranchContribution` | absent |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+| normalized finite block equality | `finiteCompositionNormalizedEquality` | false; contract-only |
+
+No theorem-facing semantic flag was promoted.
+
+## 2026-05-28 Middle Post Branch-Index Packet
+
+The source-dependency classification remains unchanged after the branch-index
+map compiled.  The missing theorem is QBE-local finite projection/summation
+bookkeeping, not Shukla--Vedula state preparation and not standard
+LCU/block-composition.
+
+| Source item | Lean destination | Classification | Status |
+|---|---|---|---|
+| Definition `def:block-encoding` signal-zero block entry | `oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3.signalBlockEntry` | existing local block-index bridge | compiled |
+| Eq. `ROBIN clarified` boundary slot $s=2$ for system `(0,0)` | `oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3` | internal paper step | compiled |
+| selected slot summand | `oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3` | local selected-summand bridge | compiled |
+| every sparse slot summand | planned all-slot backend summand formula over `Fin 7` | classical Lean/backend lemma target | absent |
+| signal-zero entry as branch sum | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 backendBranchContribution` | QBE-local projection/summation theorem | typed but unproved |
+
+Lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, routed through `oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3` |
+| starting declarations | `oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3_transcript`, `oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3`, `oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3`, `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` |
+| preferred result | backend-sourced `branchContribution : Fin 7 -> Coeff` plus the all-slot summand formula, satisfying `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3` |
+| fallback | smaller typed obstruction naming the missing `BlockExtractionTarget` branch-summand field |
+| forbidden promotions | product-to-coefficient, LCU, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, final extraction |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_backend_branch_index_map_n3` | sparse slot to clean full-basis branch index, with slot-$2$ summand formula | backend gap, branch target, paper-basis layout | branch-index map declarations and transcript theorem | backend-sourced branch family | projection backend | compiled; all-slot summand absent |
+| `one_term_gamma3_boundary_all_slot_backend_summands_n3` | compute `branchContribution s` for every `s : Fin 7` from backend full-basis branch entries | branch-index map, sparse-register projection amplitudes, `BlockExtractionTarget` | planned theorem or smaller obstruction | backend predicate closure | projection backend | next lower target |
+
+## 2026-05-28 Lower All-Slot Backend Summand Formula
+
+New compiled declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selected_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selectedContribution_eq_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3_transcript`
+
+The focused backend family is now typed for every sparse slot:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :
+  Fin 7 -> Coeff
+```
+
+For each slot it uses the branch full-index map and the focused seven-gate
+matrix entry, with the two sparse-register projection amplitudes attached.
+Lean proves the selected slot-$2$ equality:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+Open obligations:
+
+| Obligation | Lean target | Status |
+|---|---|---|
+| all-slot backend summand formula | `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | compiled |
+| selected slot theorem | `oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3` | compiled |
+| backend target over the new family | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` | compiled; semantic flags false |
+| backend source proof | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendSource` | false |
+| signal block entry equals seven-branch fold | `signalBlockEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | absent |
+| backend predicate closure | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | first conjunct compiled; second conjunct absent |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+Current exact obstruction:
+
+```text
+all-slot backend summand formula is typed and slot 2 is selected, but QBE
+still lacks the signal-block branch-sum theorem for
+contract.expectedTarget.blockMatrix[0,0]
+```
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-28 Branch-Sum Closure Packet
+
+The current compiled packet narrows the projection bridge to one missing
+branch-sum equality.  The backend all-slot family is still
+`oneTermRobinGamma3BoundaryBackendBranchContribution_n3 : Fin 7 -> Coeff`.
+Lean now proves the selected predicate clause and provides a conditional
+predicate-closure theorem.
+
+New compiled declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_branchSum_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3_transcript`
+
+Open obligations:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| selected predicate clause | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3` | local selected-slot theorem for Eq. `ROBIN clarified` boundary branch | compiled |
+| conditional backend predicate closure | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_branchSum_n3` | QBE-local bridge from branch-sum equality to predicate closure | compiled |
+| signal-zero branch-sum equality | `oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | QBE-local finite projection/summation theorem | absent |
+| block-extraction projection statement | `BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` | equivalent QBE-local target | typed but unproved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+| normalized finite block equality | `finiteCompositionNormalizedEquality` | contract-only LCU/block-composition dependency | false |
+
+Exact remaining obstruction:
+
+```text
+the selected branch predicate clause is proved and predicate closure is
+conditional, but QBE still lacks the signal-zero branch-sum equality for the
+backend seven-slot family
+```
+
+No theorem-facing semantic flag was promoted.  The next lower target is the
+branch-sum equality above, or a smaller typed obstruction explaining which
+projection-backend field is still absent.
+
+## 2026-05-28 Projection-Statement Bridge
+
+The latest Lean increment proves the interface bridge from the generic
+block-extraction target statement to the Robin-local backend predicate.  It
+does not prove the branch-sum equality.
+
+New compiled declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_unfold_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3`
+
+Obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| generic projection statement unfold | `oneTermRobinGamma3BoundaryBackendProjectionStatement_unfold_n3` | local proof-DAG bridge | compiled |
+| Robin signal entry equals backend target block entry | `oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3` | local record/index bridge | compiled |
+| backend predicate from generic target projection | `oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3` | conditional local bridge | compiled under projection-statement hypothesis |
+| signal-zero branch-sum equality | `BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` | QBE-local finite projection/summation theorem | absent |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+The remaining target is still the generic projection statement above.  The new
+conditional theorem shows that this target is sufficient for the backend
+predicate closure, but it is not itself a proof of the projection/summation
+equality.
+
+## 2026-05-28 Middle Projection-Bridge Handoff
+
+The current open obligation is the signal-zero branch-sum equality for the
+backend seven-slot family:
+
+```lean
+BlockExtractionBranchContributionTarget.projectionSummationStatement
+  oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+```
+
+Equivalent focused equality:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+  oneTermRobinGamma3BoundaryBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| signal-zero block entry as the sum over backend sparse-slot branches | QBE-local finite projection/summation theorem | GHL2025 Definition `def:block-encoding` gives the projection convention and Eq. `ROBIN clarified` gives the slot-$2$ branch, but QBE still needs the backend expansion theorem for the finite matrix entry |
+| sparse-register amplitudes | external cited result, contract-only | represented by the Shukla--Vedula row; not enough to prove the branch-sum equality |
+| normalized block composition | external/standard contract-only | belongs to the LCU row; not enough to prove the branch-sum equality |
+
+Required next lower output:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` |
+| fallback obstruction | a compiled record naming the missing projection-backend field needed to expand `contract.expectedTarget.blockMatrix[0,0]` into the seven backend branch summands |
+| false-flag discipline | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, LCU correctness, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false unless directly proved by Lean |
+
+## 2026-05-28 Lower Projection-Statement Obstruction
+
+The preferred projection statement remains unproved.  The new Lean bridge
+proves that the preferred statement is equivalent to the focused branch-sum
+equality:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement
+  ↔
+oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+  oneTermRobinGamma3BoundaryBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+New compiled declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3_transcript`
+
+Updated obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| projection-statement equivalence | `oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3` | local proof-DAG bridge | compiled |
+| smallest backend-field obstruction | `oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3` | QBE-local projection backend gap | compiled |
+| signal-zero branch-sum equality | `BlockExtractionBranchContributionTarget.projectionSummationStatement oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` | QBE-local finite projection/summation theorem | absent |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+The missing backend theorem is:
+
+```text
+contract.expectedTarget.blockMatrix[0,0] = blockExtractionBranchContributionSum backendBranchContribution
+```
+
+The typed backend contribution family is
+`oneTermRobinGamma3BoundaryBackendBranchContribution_n3`.  The placeholder
+family remains excluded from theorem closure.  No product-to-coefficient, LCU,
+cleanup, unitarity, block projection, block correctness, normalized equality,
+circuit unitarity, or final extraction flag was promoted.
+
+## 2026-05-28 Lower Backend-Expansion Interface
+
+The projection statement is still open, but the missing theorem is now named by
+a generic backend-expansion interface:
+
+```lean
+BlockExtractionBranchContributionTarget.backendExpansionStatement
+```
+
+For the focused Robin target, this proposition expands the signal-zero block
+entry `contract.expectedTarget.blockMatrix[0,0]` as the seven-slot backend
+fold.  Lean now proves that this backend expansion is equivalent to the generic
+projection statement and to the Robin-local branch-sum equality.
+
+New compiled declarations:
+
+- `BlockExtractionBranchContributionTarget.backendExpansionStatement`
+- `BlockExtractionBranchContributionTarget.projectionSummationStatement_iff_backendExpansionStatement`
+- `BlockExtractionBranchContributionTarget.projectionSummationStatement_of_backendExpansionStatement`
+- `BlockExtractionBranchContributionTarget.backendExpansionStatement_of_projectionSummationStatement`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionBridge_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionBridge_n3_transcript`
+
+Proof-DAG row:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `block_extraction_backend_expansion_statement` | define the exact backend theorem for one block entry and bridge it to `projectionSummationStatement` | `BlockExtractionBranchContributionTarget`, `blockExtractionBranchContributionSum` | generic backend-expansion declarations in `CircuitSemantics.lean` | focused Robin branch-sum bridge | projection backend | compiled; expansion theorem unproved |
+| `one_term_gamma3_boundary_backend_expansion_bridge_n3` | specialize the backend-expansion interface to the fixed `(0,0)`, slot-$2$ boundary branch | all-slot backend family, signal-entry bridge, projection-statement obstruction | `oneTermRobinGamma3BoundaryBackendExpansionBridge_n3` | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` route | projection backend | compiled; all semantic flags false |
+
+Remaining obligation:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction flag
+was promoted.
+
+## 2026-05-28 Middle Backend-Expansion Source Sync
+
+The active finite projection obligation is now named by the generic backend
+interface:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+For the focused Robin target, this is the statement that
+`contract.expectedTarget.blockMatrix[0,0]` equals
+`blockExtractionBranchContributionSum
+oneTermRobinGamma3BoundaryBackendBranchContribution_n3`.
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Expansion of the signal-zero block entry as the backend seven-slot fold | QBE-local finite projection/backend theorem, treated as `classical-lean-lemma` work | GHL2025 Definition `def:block-encoding` fixes the signal-zero projection and Eq. `ROBIN clarified` fixes the boundary slot-$2$ branch, but QBE still needs the finite matrix-entry expansion theorem |
+| Sparse-register uniform amplitudes | external cited result, contract-only | recorded through the Shukla--Vedula sparse-state contract; it does not expand `blockMatrix[0,0]` |
+| Normalized block-composition / LCU | external or standard contract-only | recorded in the finite block-composition contract; it does not prove the backend branch fold |
+
+Current proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| backend-expansion interface | state one block-entry expansion as a branch fold | `BlockExtractionBranchContributionTarget.backendExpansionStatement` | compiled |
+| projection/backend equivalence | bridge projection statement and backend expansion | `BlockExtractionBranchContributionTarget.projectionSummationStatement_iff_backendExpansionStatement` | compiled |
+| Robin backend expansion bridge | specialize the interface to the focused gamma3 boundary branch | `oneTermRobinGamma3BoundaryBackendExpansionBridge_n3` | compiled; backend expansion false |
+| backend expansion proof | prove the actual seven-slot fold for `[0,0]` | planned theorem for `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | absent |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| accepted fallback | a smaller compiled obstruction naming the absent finite product/projection field needed for the backend fold |
+| starting declarations | `oneTermRobinGamma3BoundaryBackendExpansionBridge_n3_transcript`, `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3`, `oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3`, and `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-29 Lower Evaluated Backend Fold Target
+
+Accepted Lean increment:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | H-free evaluation-level statement `eval(signalUnitaryEntry) = eval(blockExtractionBranchContributionSum backendBranchContribution)` | compiled; not proved |
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3 H env hUniform` | under the existing all-slot $H_W^{(\kappa)}$ clean-column contract, the H-free evaluated backend fold is equivalent to the active-to-source-prepared singleton eval field | compiled; contract-conditional |
+| `OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` | typed packet naming the evaluated backend fold as the next finite projection theorem | compiled |
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env` | focused `n = 3` obstruction packet for the boundary branch | compiled; theorem-facing flags false |
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3_transcript H env` | transcript theorem checking the packet and false flags | compiled |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| H-free evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | QBE-local finite projection theorem | typed; not proved |
+| active-to-source-prepared singleton eval field | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite `CircuitMatrixSemantics` composition theorem | equivalent to the evaluated backend fold under `hUniform`; not proved |
+| raw symbolic fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | stronger symbolic projection theorem | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+No theorem-facing product, LCU, projection, block-correctness, normalized
+equality, unitarity, cleanup, or final-extraction flag was promoted.
+
+## 2026-05-29 Lower Prepared-Circuit Semantics Gap
+
+Compiled progress:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| identify the active raw signal-zero entry | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3` | local finite projection/index bridge | compiled |
+| audit whether the active gate list already contains sparse preparation | `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | local gate-list audit | compiled; absent |
+| package the smaller missing field | `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3 H` | QBE-local prepared circuit semantics gap | compiled interface |
+| raw signal-zero entry equals the prepared sparse-register sandwich fold | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | QBE-local finite matrix-semantics backend theorem | absent |
+
+The new obstruction is smaller than the previous raw-entry field.  Lean now
+knows that the active raw entry is the seven-gate contract matrix entry and
+that `H_W^(kappa)` and its dagger are not present in
+`oneTermRobinGateMatrixPlaceholders`.  The remaining backend field is a
+prepared circuit semantics entry for
+$H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$, or a theorem equating the active raw
+entry with that prepared entry.
+
+No product-to-coefficient, LCU, cleanup, unitarity, block projection, block
+correctness, normalized equality, circuit unitarity, or final-extraction flag
+was promoted.
+
+## 2026-05-29 Middle Prepared-Circuit Semantics Audit
+
+Definition first: the prepared circuit semantics field is a finite matrix
+entry for $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$, projected at clean sparse
+index `0`, where `U` is the seven-gate Robin product already used in the
+focused boundary route.
+
+Middle rechecked the source anchors GHL2025 Definition `def:block-encoding`,
+Theorem `theorem: 1 term robin`, Eq. `ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Eq. `arbitrary sparcity`, and the Shukla-Vedula citation.
+The missing item is not an external oracle theorem.  It is the QBE-local
+matrix-semantics field that inserts the sparse preparation and its adjoint
+around the already compiled seven-gate product.
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| raw signal-zero entry is the active seven-gate contract entry | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3` | local projection/index bridge | compiled |
+| active gate list lacks sparse preparation and adjoint | `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | local gate-list audit | compiled |
+| prepared circuit semantics gap is typed | `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3 H` | QBE-local prepared circuit field | compiled interface |
+| uniform clean column for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; contract-only |
+| prepared circuit entry for $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ | planned field refining `requiredPreparedCircuitSemantics` | `classical-lean-lemma` / QBE-local matrix-semantics backend theorem | absent |
+| raw signal-zero entry equals prepared sandwich fold | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | theorem-facing projection bridge | absent |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| raw-entry source | expose the raw `[0,0]` entry as the active seven-gate contract matrix entry | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3` | compiled |
+| prepared-gate absence | prove the active gate list does not already contain `H_W^(kappa)` or its dagger | `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | compiled |
+| prepared circuit entry | provide the finite product entry for $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ or name the exact missing composition field | planned theorem or typed obstruction under `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3 H` | next lower target |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred output | a Lean field or theorem for the prepared circuit entry $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ that can feed `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` |
+| accepted fallback | a strictly smaller compiled obstruction naming the absent `CircuitMatrixSemantics` composition field for the prepared sparse-register sandwich |
+| starting declarations | `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3_transcript`, `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3`, `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3`, and `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_rawEntryPreparedSandwichField_n3` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-28 Lower Fold-Support Packet
+
+The focused unitary-entry fold remains unproved:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+The lower packet added a support-level proof that the selected branch is in the
+finite fold domain:
+
+```lean
+oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3
+```
+
+It also added the transcript packet
+`oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3`, which
+records that slot $2$ is in `List.finRange 7` and that
+`oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3` still
+identifies this slot with the accepted `[32,32]` branch summand.  The full fold
+equality, projection summation, backend predicate, product bridge, normalized
+block equality, product-to-coefficient theorem, LCU correctness, block
+projection, block correctness, and final extraction all remain false.
+
+## 2026-05-28 Lower Unitary-Entry Fold Target
+
+The preferred backend expansion theorem remains unproved:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+A flat attempt to decide the full statement by expanding the symbolic fold was
+not a viable proof route; the expression is too large and does not expose the
+needed finite product/projection structure.  The new Lean increment narrows the
+obligation by moving it from the cached block entry to the full unitary entry
+selected by Definition `def:block-encoding`:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+  ↔
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+New compiled declarations:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_signalEntry_eq_unitary_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3_transcript`
+
+Updated proof-DAG status:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_unitary_entry_fold_n3` | restate the backend expansion as a theorem about the full signal-zero unitary entry `[0,0]` | backend expansion bridge, block-entry/unitary-entry index lemma, all-slot backend family | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3` | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` route | projection backend | compiled; fold theorem unproved |
+
+Remaining obligation:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+This is now the smallest QBE-local finite product/projection field needed for
+the focused branch: expand the actual full finite product entry `[0,0]` as the
+seven backend branch summands.  The fixed theorem target
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` remains false, as do
+LCU correctness, cleanup, unitarity, block projection, block correctness,
+normalized equality, circuit unitarity, and final extraction.
+
+## 2026-05-28 Middle Unitary-Entry Fold Source Sync
+
+The active obligation is the full-unitary entry fold:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+By `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`,
+this is equivalent to:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Expansion of full finite unitary entry `[0,0]` as the seven-slot backend fold | QBE-local finite projection/backend theorem, treated as `classical-lean-lemma` work | GHL2025 Definition `def:block-encoding` fixes the signal-zero projection and Eq. `ROBIN clarified` fixes the boundary slot-$2$ branch, but QBE still needs the finite entry expansion theorem |
+| Sparse-register uniform amplitudes | external cited result, contract-only | represented by the Shukla--Vedula row; it does not expand the full unitary entry |
+| Normalized block-composition / LCU | external or standard contract-only | represented by the finite block-composition row; it does not prove the seven-slot fold |
+
+Current proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| unitary-entry fold interface | name the full product entry `[0,0]` fold target | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3` | compiled |
+| backend expansion to unitary-entry fold | bridge cached block-entry expansion to the full unitary entry | `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3` | compiled |
+| unitary-entry fold proof | prove the actual seven-slot fold for the signal-zero full unitary entry | planned theorem for the equality above | absent |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| equivalent theorem | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| accepted fallback | a smaller compiled obstruction naming the absent finite product/projection field needed for the full unitary entry fold |
+| starting declarations | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3_transcript`, `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`, `oneTermRobinGamma3BoundaryProjectionSummationObstruction_signalEntry_eq_unitary_n3`, and `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-28 Middle Post Fold-Support Source Sync
+
+The accepted support packet is:
+
+```lean
+oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3
+```
+
+It compiles the finite support facts for the active fold but does not prove the
+fold. The remaining target is still:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+Compiled declarations now available for the next lower packet:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3_transcript`
+
+Updated obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| selected branch is in the seven-slot fold | `oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3` | `classical-lean-lemma` / finite-list membership | compiled |
+| selected slot still matches the accepted `[32,32]` branch summand | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3_transcript` using `oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3` | local proof-DAG support block | compiled |
+| full unitary entry `[0,0]` equals the seven-slot backend fold | equality displayed above | QBE-local finite product/projection theorem | absent |
+| equivalent backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | QBE-local finite projection/backend theorem | absent |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Expansion of the signal-zero full unitary entry `[0,0]` as all seven backend sparse-slot summands | QBE-local finite projection/backend theorem, treated as `classical-lean-lemma` work | GHL2025 Definition `def:block-encoding` fixes the signal-zero projection and Eq. `ROBIN clarified` fixes slot $2$, but QBE still needs the finite entry fold theorem |
+| Slot-$2$ fold membership and selected summand | `classical-lean-lemma` / local support block | compiled by the fold-support packet |
+| Sparse-register uniform amplitudes | external cited result, contract-only | represented by the Shukla--Vedula row; it does not expand the full unitary entry |
+| Normalized block-composition / LCU | external or standard contract-only | represented by the finite block-composition row; it does not prove the seven-slot fold |
+
+Proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| unitary-entry fold interface | name the full product entry `[0,0]` fold target | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3` | compiled |
+| fold-support block | prove slot $2$ is in the fold and still equals the selected `[32,32]` summand | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3` | compiled |
+| unitary-entry fold proof | prove the full seven-slot fold for the signal-zero entry | planned theorem for the displayed equality | absent |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| equivalent theorem | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| accepted fallback | a smaller compiled obstruction naming the absent finite product/projection field needed for the full unitary entry fold |
+| starting declarations | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3_transcript`, `oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3`, `oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3`, `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`, and `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-28 Lower Prepared-Branch Expansion Target
+
+Compiled progress:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| all seven backend summands have the prepared-branch formula | `oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3` | local finite matrix formula | compiled |
+| package the prepared branch fold target without promoting the fold | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3` and transcript theorem | QBE-local interface | compiled |
+| prove the target record's all-slot formula statement | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_formula_n3` | local proof-DAG support block | compiled |
+| prepared projection backend expands signal-zero entry `[0,0]` as the seven-slot fold | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3.preparedProjectionBackendStatement` | QBE-local prepared projection/backend theorem | absent |
+
+Remaining obligation:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+Refined obstruction: the summand family is no longer the blocker.  Lean now
+proves each summand is the focused seven-gate diagonal entry at the branch
+index, multiplied by `sqrt_kappa_inv * sqrt_kappa_inv`.  The missing field is
+the prepared projection theorem that connects the raw signal-zero entry exposed
+by `CircuitMatrixSemantics` to this prepared seven-slot branch fold.  Do not
+close this by adding an assumption to the GHL theorem or by citing
+Shukla--Vedula/LCU as the fold proof.
+
+## 2026-05-28 Middle Prepared-Branch Source Audit
+
+The accepted lower packet is a strict refinement of the same fixed target.  It
+does not prove the target equality, but it removes the summand-formula
+ambiguity:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| all prepared backend summands have the branch-entry formula | `oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3` | QBE-local finite matrix formula | compiled |
+| prepared branch expansion packet preserves false semantic flags | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3_transcript` | local proof-DAG support block | compiled |
+| ket-side sparse-register amplitude | `ketAmplitude = Coeff.symbol "sqrt_kappa_inv"` | external cited contract from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; not formalized |
+| matching bra-side sparse-register amplitude | `braAmplitude = Coeff.symbol "sqrt_kappa_inv"` | QBE projection convention plus external amplitude contract | typed; projection theorem absent |
+| raw signal-zero entry equals prepared seven-slot fold | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3.preparedProjectionBackendStatement` | QBE-local prepared projection backend theorem | absent |
+
+The missing theorem is not an external cited result.  GHL2025 Definition
+`def:block-encoding` fixes the signal-zero projection, Eq. `ROBIN clarified`
+fixes the focused boundary branch, and Eq. `arbitrary sparcity` supplies only
+the uniform sparse-register amplitude contract.  QBE still needs a finite
+prepared-projection theorem connecting the raw entry exposed by
+`CircuitMatrixSemantics` to the seven prepared summands.
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| preferred theorem | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| equivalent statement | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3.preparedProjectionBackendStatement` |
+| starting declarations | `oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3`, `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3_transcript`, `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3_transcript` |
+| acceptable fallback | a strictly smaller compiled obstruction naming the absent prepared-projection backend field |
+| forbidden promotions | product-to-coefficient, LCU composition, block projection, normalized equality, block correctness, circuit unitarity, and final extraction |
+
+## 2026-05-28 Lower Prepared-Sandwich Backend Reduction
+
+Compiled progress:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| express the sparse-register clean column for all seven paper slots | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3` | external cited contract shape | typed |
+| define the prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ slot contribution | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3` | QBE-local matrix interface | compiled |
+| prove the prepared slot contribution specializes to the backend branch contribution under the clean-column contract | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3` | local proof-DAG block | compiled |
+| prove the prepared sandwich fold specializes to the backend branch fold | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3` | local proof-DAG block | compiled |
+| reduce the preferred unitary-entry fold to a raw-entry-to-prepared-sandwich theorem | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3` | conditional bridge | compiled |
+| package the remaining backend field and false flags | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3_transcript` | QBE-local obstruction record | compiled |
+
+Remaining obligation:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H
+```
+
+Once that prepared-projection backend field is proved for a matrix `H` satisfying
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, Lean can
+derive the current preferred equality.  The product-to-coefficient, LCU,
+projection, normalized equality, block correctness, circuit unitarity, and final
+extraction flags remain false.
+
+## 2026-05-29 Middle Prepared-Sandwich Source Audit
+
+The accepted prepared-sandwich packet is a strict reduction of the current
+projection bridge blocker.  It does not prove the raw signal-zero entry fold;
+it proves that this fold would imply the existing backend branch fold under
+the all-slot clean-column contract for $H_W^{(\kappa)}$.
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| sparse-register clean column for all seven paper slots | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla--Vedula | typed; contract-only |
+| prepared slot contribution $U_{b_s,b_s} H[s,0] H^\dagger[0,s]$ | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3` | QBE-local finite matrix interface | compiled |
+| prepared slot contribution specializes to backend branch contribution | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3` | local proof-DAG block | compiled |
+| prepared sandwich fold specializes to backend branch fold | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3` | local proof-DAG block | compiled |
+| preferred fold follows from the prepared backend field | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3` | conditional local bridge | compiled |
+| raw signal-zero entry equals the prepared sandwich fold | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3.preparedProjectionBackendObligation` | QBE-local prepared projection backend theorem | absent |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Raw entry `[0,0]` equals the prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ sandwich fold | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | GHL2025 Definition `def:block-encoding` fixes the signal-zero projection and Eq. `ROBIN clarified` fixes the boundary branch, but QBE still needs the finite matrix expansion through the prepared sparse register |
+| Uniform sparse-register amplitudes | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla--Vedula citation justify the clean-column contract shape only |
+| Normalized block-composition / LCU | external or standard contract-only | later route context; it does not prove the prepared sandwich entry theorem |
+
+Proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| prepared sandwich contribution | define the slot contribution using `H[s,0]` and `H^dagger[0,s]` | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3` | compiled |
+| prepared sandwich specialization | specialize contribution and fold to the backend branch family under the clean-column contract | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3`, `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3` | compiled |
+| conditional preferred fold | derive the backend branch fold from the raw-entry-to-prepared-fold theorem | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3` | compiled |
+| raw-entry prepared projection backend | prove the raw signal-zero entry equals the prepared sandwich fold | planned theorem for `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3.preparedProjectionBackendObligation` | absent |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H` under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` |
+| accepted fallback | a smaller compiled obstruction naming the absent raw-entry prepared-projection field in `CircuitMatrixSemantics` |
+| starting declarations | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3_transcript`, `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3`, `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3`, `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3_transcript` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-29 Lower Raw-Entry Prepared-Sandwich Circuit Field
+
+Compiled progress:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| expose the raw signal-zero entry as the same route field used by Definition `def:block-encoding` | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H.rawUnitaryEntry` | QBE-local finite projection/index bridge | compiled |
+| type the raw-entry-to-prepared-sandwich theorem | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H.rawEntryPreparedSandwichStatement` | QBE-local `CircuitMatrixSemantics` backend theorem | typed; absent |
+| show that the typed field is exactly the prepared sandwich equality | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3` | local proof-DAG block | compiled |
+| derive the preferred unitary-entry fold from the clean-column contract plus raw-entry field | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_rawEntryPreparedSandwichField_n3` | conditional local bridge | compiled |
+| keep the packet on the existing prepared-sandwich route and preserve false flags | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3_transcript` | QBE-local obstruction record | compiled |
+
+Remaining obligation:
+
+```lean
+(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement
+```
+
+Equivalently:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H
+```
+
+The missing item is now narrowed to a concrete raw `CircuitMatrixSemantics`
+entry theorem for the prepared `H_W^(kappa)^dagger * U * H_W^(kappa)` sandwich.
+The Shukla--Vedula clean-column contract and standard LCU composition remain
+contract-only dependencies and were not used to prove this raw-entry field.
+Product-to-coefficient, LCU correctness, cleanup, unitarity, block projection,
+block correctness, normalized equality, circuit unitarity, and final extraction
+remain false.
+
+## 2026-05-29 Middle Raw-Entry Prepared-Sandwich Audit
+
+The lower packet is accepted as a smaller typed interface, not as theorem
+closure.  The active remaining obligation is:
+
+```lean
+(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement
+```
+
+Equivalently:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H
+```
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| raw signal-zero entry field is typed on the existing prepared-sandwich route | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H` | local projection/index interface | compiled |
+| raw-entry field unfolds to the prepared sandwich equality | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3` | local proof-DAG block | compiled |
+| preferred unitary-entry fold follows from raw-entry field plus clean-column contract | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_rawEntryPreparedSandwichField_n3` | conditional local bridge | compiled |
+| raw signal-zero entry equals prepared sandwich fold | `.rawEntryPreparedSandwichStatement` | `classical-lean-lemma` / QBE-local finite matrix-semantics backend theorem | absent |
+| uniform clean column for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; contract-only |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Raw entry `[0,0]` equals the prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ sandwich fold | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | GHL2025 Definition `def:block-encoding` fixes the signal-zero projection and Eq. `ROBIN clarified` fixes the boundary branch, but QBE still needs the finite product-entry theorem for the prepared sparse register |
+| Uniform sparse-register clean column | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation justify the clean-column contract shape only |
+| Standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove this raw-entry prepared-sandwich equality |
+
+Proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| prepared sandwich specialization | specialize the prepared sandwich fold to the backend branch fold under the clean-column contract | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3` | compiled |
+| raw-entry field interface | expose the exact raw entry to prepared sandwich equality without promoting it | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3`, statement theorem, transcript theorem | compiled |
+| conditional preferred fold | derive the existing backend fold target from the raw-entry field | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_rawEntryPreparedSandwichField_n3` | compiled |
+| raw-entry prepared-sandwich theorem | prove the raw `CircuitMatrixSemantics` entry equals the prepared sandwich fold | planned theorem for `.rawEntryPreparedSandwichStatement` or smaller backend-field obstruction | absent |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` |
+| equivalent statement | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H` |
+| accepted fallback | a smaller compiled obstruction naming the missing raw `CircuitMatrixSemantics` product-entry field, not another restatement of the same equality |
+| starting declarations | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3_transcript`, `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3`, `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_rawEntryPreparedSandwichField_n3`, `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3_transcript` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-29 Lower Prepared-Circuit Sparse-Matrix Interface
+
+Compiled progress:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| define the prepared sparse-register sandwich matrix for $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3` | QBE-local finite matrix interface | compiled |
+| prove the clean-clean entry is the prepared sandwich fold | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3` | local proof-DAG block | compiled |
+| derive the preferred unitary-entry fold from a clean-column contract plus active-entry-to-prepared-entry equality | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3` | conditional local bridge | compiled |
+| package the prepared matrix field and preserve false theorem-facing flags | `oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3_transcript` | QBE-local interface packet | compiled |
+
+Proof-DAG status:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| prepared sparse matrix | matrix on sparse-register rows/columns whose clean-clean entry is the prepared seven-slot sandwich fold | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3`, `oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3` | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3` | active-entry bridge target | prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ sandwich | compiled |
+| clean-entry bridge | identify prepared matrix `[0,0]` with `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H` | prepared sparse matrix definition | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3` | conditional preferred fold | prepared projection | compiled |
+| conditional fold bridge | close `signalUnitaryEntry = blockExtractionBranchContributionSum backendBranchContribution` from clean-column contract plus active-entry-to-prepared-entry theorem | clean-entry bridge, `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3` | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3` | fixed projection bridge | projection backend | compiled; conditional |
+
+Remaining obligation:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+```
+
+This is narrower than the previous prepared-sandwich equality: the prepared
+matrix object and its clean-entry expansion now compile.  The missing item is
+the raw `CircuitMatrixSemantics` theorem relating the active signal-zero entry
+to the prepared sparse-register sandwich matrix.  Product-to-coefficient, LCU
+correctness, cleanup, unitarity, block projection, block correctness,
+normalized equality, circuit unitarity, and final extraction remain false.
+
+## 2026-05-29 Middle Prepared Sparse-Matrix Source Audit
+
+The latest lower packet is accepted as a strict reduction of the prepared
+projection backend blocker.  It adds a prepared sparse-register matrix object,
+not a proof of the active signal-zero entry equality.
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared sparse-register sandwich matrix | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H` | QBE-local finite matrix interface | compiled |
+| clean-clean prepared entry equals the prepared sandwich fold | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H` | local proof-DAG block | compiled |
+| preferred fold follows from clean-column contract plus active-entry equality | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3 H` | conditional local bridge | compiled |
+| active signal-zero entry equals prepared sparse matrix clean entry | `oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H.activeEntryToPreparedEntryStatement` | `classical-lean-lemma` / QBE-local finite matrix-semantics backend theorem | typed; absent |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; contract-only |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Active raw entry `[0,0]` equals the prepared sparse matrix clean-clean entry | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | GHL2025 Definition `def:block-encoding` fixes the signal-zero projection and Fig. `fig:1 term ROBIN` fixes the active Robin product, but QBE still needs a composition theorem inserting $H_W^{(\kappa)}$ and its dagger around that product |
+| Uniform sparse-register clean column | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation justify only the clean-column amplitude shape |
+| Standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the raw active-entry-to-prepared-entry equality |
+
+Proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| prepared sparse matrix | define the matrix for $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ on sparse-register rows and columns | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3` | compiled |
+| prepared clean entry | unfold the prepared matrix clean-clean entry to the prepared sandwich fold | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3` | compiled |
+| conditional prepared fold | derive the backend branch fold from clean-column amplitudes plus the active-entry equality | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3` | compiled |
+| active-entry prepared-matrix theorem | prove the active `CircuitMatrixSemantics` signal-zero entry equals the prepared matrix clean entry | planned theorem for `activeEntryToPreparedEntryStatement` or smaller backend-field obstruction | absent |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H oneTermRobinGamma3BoundarySparseCleanIndex_n3 oneTermRobinGamma3BoundarySparseCleanIndex_n3` |
+| accepted fallback | a smaller compiled obstruction naming the missing `CircuitMatrixSemantics` field for composing sparse preparation, the seven-gate Robin product, and sparse-preparation adjoint |
+| starting declarations | `oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3_transcript`, `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3`, `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3`, `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3_transcript` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-29 Lower Active Prepared-Entry Field
+
+Compiled progress:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| generic active/prepared entry interface | `PreparedCircuitEntryTarget` | QBE-local matrix-semantics interface | compiled |
+| cached entry equality equals backing matrix-entry equality | `PreparedCircuitEntryTarget.entryEqualityStatement_iff_matrixEntryEqualityStatement` | local proof-DAG bridge | compiled |
+| focused active/prepared entry target | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H` | QBE-local prepared composition field | compiled |
+| focused cached equality equals focused direct matrix equality | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H` | local proof-DAG bridge | compiled |
+| package field without promoting theorem flags | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H` | QBE-local obstruction packet | compiled |
+
+Remaining obligation:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+This is the exact `CircuitMatrixSemantics` composition theorem still absent:
+the active seven-gate signal-zero entry must equal the clean entry of the
+prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ sparse-register matrix.  The
+uniform clean-column statement for $H_W^{(\kappa)}$ remains contract-only, and
+the product-to-coefficient, LCU, block projection, block correctness,
+normalized equality, and final extraction flags remain false.
+
+## 2026-05-29 Middle Active Prepared-Entry Audit
+
+The lower packet is accepted as a smaller typed interface, not as projection
+closure.  The active remaining obligation is:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+Equivalently, by
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H`, the
+remaining obligation can be proved as the backing matrix-entry statement for
+the same target.
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| generic active/prepared entry contract | `PreparedCircuitEntryTarget` | QBE-local matrix-semantics interface | compiled |
+| cached equality is equivalent to matrix-entry equality | `PreparedCircuitEntryTarget.entryEqualityStatement_iff_matrixEntryEqualityStatement` and `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H` | local proof-DAG bridge | compiled |
+| active signal-zero entry is the current route entry | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H.activeEntry` | local finite entry source | compiled |
+| prepared clean entry is the sparse-register sandwich clean entry | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H.preparedEntry` | QBE-local prepared sparse-matrix interface | compiled |
+| active entry equals prepared clean entry | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | `classical-lean-lemma` / QBE-local `CircuitMatrixSemantics` composition theorem | absent |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; contract-only |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Active seven-gate entry equals the prepared sparse-register sandwich clean entry | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | GHL2025 Definition `def:block-encoding` fixes the signal-zero entry, Fig. `fig:1 term ROBIN` fixes the active seven-gate product, and Eq. `arbitrary sparcity` fixes the preparation contract, but QBE still needs the composition theorem connecting those finite matrices |
+| Uniform sparse-register clean column | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation justify the amplitude contract only |
+| Standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the active/prepared entry equality |
+
+Proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| prepared-entry target | package active and prepared entries in the generic target | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3` | compiled |
+| entry/matrix equivalence | permit lower proof search on either cached entries or backing matrices | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3` | compiled |
+| active/prepared composition theorem | prove the target equality for the prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ entry | planned proof for `.entryEqualityStatement` or a smaller backend-field obstruction | absent |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` |
+| equivalent theorem | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement` |
+| accepted fallback | a smaller compiled obstruction naming the missing `CircuitMatrixSemantics` composition field for the active seven-gate product surrounded by $H_W^{(\kappa)}$ and $H_W^{(\kappa)\dagger}$ |
+| starting declarations | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3_transcript`, `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3`, `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3`, and `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-29 Lower Conditional Active-Prepared Fold Bridge
+
+Compiled progress:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| matrix-entry equality implies preferred unitary-entry fold | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_matrix_n3 H` | QBE-local conditional bridge | compiled |
+| cached entry equality implies preferred unitary-entry fold | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3 H` | QBE-local conditional bridge using the entry/matrix equivalence | compiled |
+
+Remaining obligation:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+The matrix-entry equivalent remains:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement
+```
+
+The new bridge does not prove either equality.  It confirms that once QBE
+provides the `CircuitMatrixSemantics` composition theorem for the active
+seven-gate product surrounded by $H_W^{(\kappa)}$ and
+$H_W^{(\kappa)\dagger}$, the focused projection fold follows immediately under
+the existing clean-column contract.  Product-to-coefficient, LCU correctness,
+block projection, block correctness, normalized equality, circuit unitarity, and
+final extraction remain false.
+
+## 2026-05-29 Middle Conditional Active-Prepared Fold Audit
+
+The latest conditional fold bridge is accepted as routing, not closure.  It
+does not prove the active/prepared entry equality and does not upgrade any
+theorem-facing flag.
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| cached active/prepared entry equality implies the focused fold | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3 H` | local conditional bridge | compiled |
+| matrix-entry active/prepared equality implies the focused fold | `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_matrix_n3 H` | local conditional bridge | compiled |
+| cached equality is equivalent to direct matrix-entry equality | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H` | local proof-DAG bridge | compiled |
+| active signal-zero entry equals prepared sparse-register clean entry | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | `classical-lean-lemma` / QBE-local `CircuitMatrixSemantics` composition theorem | absent |
+| equivalent matrix-entry statement | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement` | same QBE-local composition theorem | absent |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; contract-only |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Active seven-gate signal-zero entry equals the prepared sparse-register clean entry | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | Definition `def:block-encoding` fixes the signal-zero entry, Fig. `fig:1 term ROBIN` fixes the seven-gate product, and Eq. `arbitrary sparcity` fixes the shape of the preparation contract; the remaining equality is QBE's finite composition bookkeeping |
+| Uniform sparse-register clean column | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation justify the amplitude contract only |
+| Standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the active/prepared entry equality |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` |
+| equivalent theorem | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement` |
+| accepted fallback | a smaller compiled obstruction naming the missing `CircuitMatrixSemantics` composition field for inserting $H_W^{(\kappa)}$ and $H_W^{(\kappa)\dagger}$ around the active seven-gate product |
+| starting declarations | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3_transcript`, `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3`, `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3`, `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_matrix_n3`, and `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3` |
+| write scope | normally `QuantumBlockEncoding/RobinMatrix.lean`; only add a small helper in `QuantumBlockEncoding/CircuitSemantics.lean` if the missing field is genuinely generic; focused tests may go in `Tests/Basic.lean` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+Do not send lower agents into Shukla-Vedula state-preparation formalization or
+standard LCU recursion for this target.  The only accepted non-proof fallback
+is a strictly smaller typed matrix-composition field.
+
+## 2026-05-29 Lower Active/Interface Equality Alignment
+
+Compiled alignment lemmas:
+
+| Lemma | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3` | the generic target equality is equivalent to the prepared-matrix interface equality | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3` | the active/prepared field packet's generic statement is equivalent to its interface statement | compiled |
+
+The remaining obligation is still one theorem:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+Equivalently, it may be proved through either the matrix-entry form or the
+prepared-matrix interface statement.  This update removes an interface-choice
+ambiguity only; it does not prove the active/prepared equality and does not
+promote product-to-coefficient, LCU correctness, block projection, block
+correctness, normalized equality, circuit unitarity, or final extraction.
+
+## 2026-05-29 Middle Active/Interface Equality Audit
+
+The lower alignment packet is accepted as proof-DAG cleanup, not as projection
+closure.  It proves that the active/prepared equality has one Lean meaning
+across the generic target, direct matrix-entry target, and prepared-matrix
+interface.
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| generic active/prepared entry target | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H` | QBE-local matrix-semantics interface | compiled |
+| cached equality equals direct matrix-entry equality | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H` | local proof-DAG bridge | compiled |
+| generic target equality equals prepared-matrix interface equality | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3 H` and `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3 H` | local proof-DAG alignment | compiled |
+| active signal-zero entry equals prepared sparse-register clean entry | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | `classical-lean-lemma` / QBE-local `CircuitMatrixSemantics` composition theorem | absent |
+| equivalent matrix-entry statement | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement` | same QBE-local composition theorem | absent |
+| equivalent prepared-interface statement | `(oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H).activeEntryToPreparedEntryStatement` | same QBE-local composition theorem | absent |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; contract-only |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Active seven-gate signal-zero entry equals the prepared sparse-register clean entry | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | GHL2025 Definition `def:block-encoding` fixes the signal-zero projection, Fig. `fig:1 term ROBIN` fixes the seven-gate product, and Eq. `arbitrary sparcity` fixes the preparation contract; QBE still needs the finite composition theorem connecting those matrices |
+| Uniform sparse-register clean column | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation justify the clean-column amplitude shape only |
+| Standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the active/prepared entry equality |
+
+Proof-DAG status:
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| active/prepared target | package active and prepared entries in the generic target | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3` | compiled |
+| entry/matrix equivalence | permit proof search on cached equality or backing matrix equality | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3` | compiled |
+| target/interface equivalence | show the generic target equality and prepared-matrix interface equality are the same proposition | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3`, `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3` | compiled |
+| active/prepared composition theorem | prove the target equality for the prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ entry | planned proof for `.entryEqualityStatement` or a smaller backend-field obstruction | absent |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` |
+| equivalent theorem | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement` |
+| equivalent interface theorem | `(oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H).activeEntryToPreparedEntryStatement` |
+| accepted fallback | a smaller compiled obstruction naming the missing `CircuitMatrixSemantics` composition field for the active seven-gate product surrounded by $H_W^{(\kappa)}$ and $H_W^{(\kappa)\dagger}$ |
+| starting declarations | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3`, `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3`, `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3`, `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3`, and `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3` |
+| write scope | normally `QuantumBlockEncoding/RobinMatrix.lean`; only add a small helper in `QuantumBlockEncoding/CircuitSemantics.lean` if the missing field is genuinely generic; focused tests may go in `Tests/Basic.lean` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-29 Lower Active/Prepared Fold Equivalence
+
+Compiled Lean declarations:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_of_unitaryEntryFold_n3` | the H-free unitary-entry fold implies the active/prepared entry target under the existing clean-column contract | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3` | under the same contract, the active/prepared entry target is equivalent to the H-free unitary-entry fold | compiled |
+
+Current remaining obligation:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+The active/prepared equality is no longer a separate interface choice: under
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, it is
+equivalent to the fold equality above.  The clean-column statement remains the
+contract-only Shukla-Vedula dependency from Eq. `arbitrary sparcity`; it is not
+marked proved.  Product-to-coefficient, LCU correctness, block projection,
+block correctness, normalized equality, circuit unitarity, and final extraction
+remain false.
+
+## 2026-05-29 Middle Active/Prepared Fold-Equivalence Audit
+
+The lower equivalence packet is accepted as proof-DAG cleanup.  It proves that,
+under the existing clean-column contract for $H_W^{(\kappa)}$, the
+active/prepared entry target carries the same remaining content as the original
+H-free fold.
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+Accepted compiled bridges:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_of_unitaryEntryFold_n3` | the H-free fold implies the cached active/prepared entry statement under the clean-column contract | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3` | the cached active/prepared entry statement is equivalent to the H-free fold under the same contract | compiled |
+
+Current obligation status:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| H-free signal-entry fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | `classical-lean-lemma` / QBE-local finite matrix and projection bookkeeping | absent |
+| active/prepared entry target | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | proof-DAG equivalent under the clean-column contract | not a separate next target |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; contract-only |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Signal-zero entry equals the folded backend seven-slot contribution family | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | Definition `def:block-encoding` fixes the signal-zero entry, Eq. `ROBIN clarified` fixes the boundary sparse-slot sum, and Fig. `fig:1 term ROBIN` fixes the active seven-gate product; QBE still needs the finite matrix/projection expansion theorem |
+| Uniform sparse-register clean column | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation justify the clean-column amplitude shape only |
+| Standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the H-free fold equality |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| duplicate-route guard | use `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3 H` to avoid treating active/prepared entry equality as an independent objective |
+| accepted fallback | a smaller compiled obstruction naming the missing finite matrix/projection field for expanding the active signal-zero entry as the seven-slot backend fold |
+| write scope | normally `QuantumBlockEncoding/RobinMatrix.lean`; only add a small helper in `QuantumBlockEncoding/CircuitSemantics.lean` if it is genuinely reusable finite projection machinery; focused tests may go in `Tests/Basic.lean` |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-29 Middle Composition-Field/Fold Alignment Audit
+
+The latest composition-field alignment lemma is accepted as a proof-DAG guard,
+not as projection closure.
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| named composition-field packet equals the H-free fold target under the clean-column contract | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_iff_unitaryEntryFold_n3 H` | local proof-DAG alignment | compiled |
+| H-free signal-entry fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | `classical-lean-lemma` / QBE-local finite matrix and projection bookkeeping | absent |
+| equivalent backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | same QBE-local projection backend theorem | absent |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result from Eq. `arbitrary sparcity` and Shukla-Vedula | typed; contract-only |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| Signal-zero entry equals the folded backend seven-slot contribution family | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | Definition `def:block-encoding` fixes the signal-zero entry, Eq. `ROBIN clarified` fixes the boundary sparse-slot sum, and Fig. `fig:1 term ROBIN` fixes the active seven-gate product; QBE still needs the finite projection expansion theorem |
+| Uniform sparse-register clean column | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation justify the clean-column amplitude shape only |
+| Standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the H-free fold equality |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| equivalent theorem | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| duplicate-route guard | use `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3 H` and `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_iff_unitaryEntryFold_n3 H` to avoid treating active/prepared equality as an independent objective |
+| accepted fallback | a smaller compiled obstruction naming the finite matrix/projection field still needed to expand entry `[0,0]` as all seven backend sparse-slot summands |
+| false-flag discipline | keep product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction false unless Lean proves the corresponding theorem directly |
+
+## 2026-05-29 Lower Prepared Clean-Entry Reduction
+
+New compiled bridge:
+
+```lean
+Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3
+```
+
+Under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`,
+the fixed fold equality is equivalent to the concrete prepared sparse-matrix
+clean-entry equality
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+```
+
+Remaining obligation:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active signal-zero entry equals prepared sparse-matrix clean entry | equality displayed above | QBE-local `CircuitMatrixSemantics` prepared projection field | absent |
+| clean-column amplitudes for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external Shukla-Vedula cited contract | contract-only |
+| H-free seven-slot fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | follows from the prepared clean-entry equality plus the clean-column contract | not proved |
+
+No product-to-coefficient, LCU, block projection, block correctness, normalized
+block equality, circuit unitarity, or final extraction flag was promoted.
+
+## 2026-05-29 Middle Prepared Clean-Entry Reduction Audit
+
+Middle accepts the lower bridge as a proof-DAG reduction, not as closure.  The
+fixed H-free fold is equivalent, under the clean-column contract for
+$H_W^{(\kappa)}$, to one prepared sparse-matrix clean-entry equality:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+```
+
+Accepted compiled bridge:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3` | under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, the H-free fold is equivalent to the prepared clean-entry equality | compiled |
+
+Current obligations:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active signal-zero entry equals prepared sparse-matrix clean entry | equality displayed above | QBE-local `CircuitMatrixSemantics` prepared projection theorem | absent |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external Shukla-Vedula cited contract | typed; not formalized |
+| H-free seven-slot fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | follows after the prepared clean-entry theorem and the clean-column contract | not proved |
+| product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| active seven-gate signal-zero entry equals the prepared sparse-matrix clean entry | `classical-lean-lemma` / QBE-local finite matrix semantics backend theorem | GHL2025 Definition `def:block-encoding` fixes the signal-zero projection, Fig. `fig:1 term ROBIN` fixes the active product, and Eq. `arbitrary sparcity` fixes only the sparse-preparation contract; QBE still needs the finite matrix composition theorem |
+| clean-column amplitudes for $H_W^{(\kappa)}$ | external cited result, contract-only | Eq. `arbitrary sparcity` cites Shukla-Vedula for the uniform sparse-register preparation |
+| standard LCU/block composition | external or standard contract-only | this is later theorem context and does not prove the prepared clean-entry equality |
+
+Next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | prove the prepared clean-entry equality displayed above |
+| recovery bridge | use `oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3 H` to recover the H-free fold after the equality is proved |
+| accepted fallback | return a smaller compiled obstruction naming the exact missing finite `CircuitMatrixSemantics` composition field for inserting $H_W^{(\kappa)}$ and $H_W^{(\kappa)\dagger}$ around the active seven-gate product |
+| forbidden promotions | do not promote product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, or final extraction from this bridge |
+
+## 2026-05-29 Lower Prepared Composite Semantics Field
+
+Accepted Lean increment:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `Matrix.evalWith_mul_identity_right_apply` | evaluation-level right-identity lemma for symbolic `Coeff` matrix entries | compiled |
+| `evalWith_evalGateMatrices_single` | singleton `evalGateMatrices` entry evaluates to the supplied gate matrix entry | compiled |
+| `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` | prepared singleton circuit semantics for $H_W^{(\kappa)\dagger} U_{\gamma_3,\mathrm{bdry}} H_W^{(\kappa)}$ | compiled |
+| `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3 H` | prepared composite clean entry evaluates to the prepared sparse-matrix clean entry | compiled |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared circuit-semantics object for $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` | QBE-local matrix semantics field | compiled |
+| active signal-zero entry equals prepared composite clean entry | prepared clean-entry equality from the previous section | QBE-local finite composition theorem | absent |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external Shukla-Vedula cited contract | contract-only |
+| H-free seven-slot fold | fixed fold target | follows only after active-to-prepared equality plus clean-column contract | not proved |
+
+No semantic flag was promoted.  The current smallest remaining obstruction is
+not the existence of a prepared matrix object; it is the theorem relating the
+active Fig. `fig:1 term ROBIN` seven-gate signal-zero entry to the prepared
+composite clean entry.
+
+## 2026-05-29 Middle Prepared Composite Semantics Audit
+
+Middle accepts the prepared-composite semantics packet as a QBE-local
+matrix-semantics increment.  The source audit used GHL2025 Definition
+`def:block-encoding`, Theorem `theorem: 1 term robin`, Eq. `ROBIN clarified`,
+Fig. `fig:1 term ROBIN`, Eq. `arbitrary sparcity`, and the Shukla-Vedula
+citation.  The Shukla-Vedula dependency remains contract-only: it supplies the
+clean-column amplitude shape for $H_W^{(\kappa)}$, not the active-to-prepared
+matrix-entry theorem.
+
+Accepted compiled declarations:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `Matrix.evalWith_mul_identity_right_apply` | evaluation-level right-identity lemma for symbolic matrix products | compiled |
+| `evalWith_evalGateMatrices_single` | singleton `evalGateMatrices` entry evaluates to the supplied gate matrix entry | compiled |
+| `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` | singleton prepared sparse-register `CircuitMatrixSemantics` for $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ | compiled |
+| `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3 H` | prepared composite clean entry evaluates to `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H 0 0` | compiled |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared circuit-semantics object for $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` | QBE-local matrix semantics field | compiled |
+| prepared composite clean-entry evaluation | `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3 H` | QBE-local singleton evaluation lemma | compiled |
+| active signal-zero entry equals prepared sparse-matrix clean entry | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H oneTermRobinGamma3BoundarySparseCleanIndex_n3 oneTermRobinGamma3BoundarySparseCleanIndex_n3` | QBE-local finite `CircuitMatrixSemantics` composition theorem | absent |
+| clean-column amplitude for $H_W^{(\kappa)}$ | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external Shukla-Vedula cited contract | contract-only |
+| H-free seven-slot fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | follows only after the active-to-prepared equality plus clean-column contract | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred theorem | prove the active signal-zero entry equals the prepared sparse-matrix clean entry displayed above |
+| recovery bridge | use `oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3 H` to recover the H-free fold after the equality is proved |
+| accepted fallback | return a strictly smaller compiled obstruction naming the exact missing `CircuitMatrixSemantics` composition field for inserting $H_W^{(\kappa)}$ and $H_W^{(\kappa)\dagger}$ around the active seven-gate product |
+| forbidden promotions | do not promote product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, or final extraction from this packet |
+
+## 2026-05-29 Lower Active/Prepared Circuit Field Target
+
+Accepted Lean increment:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` | evaluated active signal-zero entry equals the evaluated prepared singleton clean entry | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` | evaluated active signal-zero entry equals the evaluated prepared sparse-matrix clean entry | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3` | the prepared singleton and prepared sparse matrix give equivalent evaluated active/prepared targets | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3` | the Coeff-level prepared clean-entry theorem would imply the evaluated singleton comparison | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` | the active seven-gate circuit and prepared singleton circuit are not the same gate list | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` | typed packet for the exact missing active/prepared `CircuitMatrixSemantics` composition field | compiled; flags false |
+| `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3_transcript` | transcript check for the packet | compiled |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton entry agrees with the prepared sparse matrix after evaluation | `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3 H env` | QBE-local symbolic-matrix evaluation bridge | compiled |
+| active and prepared circuit labels are distinct | `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3 H` | QBE-local gate-list guard | compiled |
+| active signal-zero entry equals prepared singleton clean entry | `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env` required composition theorem | QBE-local finite `CircuitMatrixSemantics` composition theorem | absent |
+| active signal-zero entry equals prepared sparse-matrix clean entry | prepared clean-entry equality from the previous section | QBE-local finite composition theorem | absent |
+| H-free seven-slot fold | fixed fold target | follows only after the active/prepared equality plus clean-column contract | not proved |
+
+The remaining obstruction is now specific: QBE has the active seven-gate
+semantics and the prepared singleton semantics, but it still lacks the theorem
+equating their selected entries.  The packet does not promote product,
+LCU/block, projection, normalized equality, unitarity, or final extraction
+flags.
+
+## 2026-05-29 Middle Active/Prepared Circuit Field Audit
+
+Middle accepts the latest lower packet only as a typed obstruction and route
+guard.  The packet proves that the active seven-gate `CircuitMatrixSemantics`
+entry and the prepared singleton
+$H_W^{(\kappa)\dagger} U_{\gamma_3,\mathrm{bdry}} H_W^{(\kappa)}$ entry are
+both present, and it proves their circuit labels are distinct.  It does not
+prove an active-to-prepared entry equality.
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| active seven-gate signal-zero entry equals prepared singleton clean entry | `contract-drift` if used to close the source-prepared route directly | GHL2025 Eq. `arbitrary sparcity` inserts $H_W^{(\kappa)}$ and the source-prepared sandwich, while the active Lean target is still the raw seven-gate entry |
+| theorem-facing prepared projection target | QBE-local finite matrix-semantics interface | the next target must expose the prepared singleton clean entry as the projection backend entry before using the fold bridge |
+| clean-column amplitude for $H_W^{(\kappa)}$ | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation supply the uniform sparse-register amplitude shape only |
+| standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the active/prepared entry comparison |
+
+Accepted compiled declarations:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` | evaluated active entry equals evaluated prepared singleton clean entry | compiled statement |
+| `oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` | evaluated active entry equals evaluated prepared sparse-matrix clean entry | compiled statement |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3` | prepared singleton and prepared sparse-matrix entries are equivalent after evaluation | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3` | Coeff-level prepared clean-entry equality implies the evaluated singleton comparison | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` | active seven-gate circuit and prepared singleton circuit have distinct labels | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` | typed packet for the missing active/prepared composition field | compiled; flags false |
+| `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3_transcript` | transcript check for the field packet | compiled |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton entry aligns with prepared sparse matrix after evaluation | `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3 H env` | QBE-local evaluation bridge | compiled |
+| active and prepared circuit labels are distinct | `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3 H` | QBE-local route guard | compiled |
+| theorem-facing prepared projection entry | prepared singleton clean entry of `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` | QBE-local prepared projection contract | absent |
+| active seven-gate entry equals prepared singleton clean entry | required field of `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env` | contract drift unless the projection backend is corrected first | absent |
+| H-free seven-slot fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | follows only after a source-faithful prepared projection target plus clean-column contract | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Allowed next lower target:
+
+| Output | Requirement |
+|---|---|
+| preferred target | add a narrow prepared projection target whose selected entry is the clean entry of `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` |
+| recovery bridge | connect that prepared entry to the existing backend fold using `oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3 H` and the clean-column contract |
+| accepted fallback | a smaller compiled obstruction identifying the missing `CircuitMatrixSemantics` field that makes the theorem-facing projection backend use the prepared singleton entry |
+| forbidden promotions | do not promote product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, or final extraction from this packet |
+
+## 2026-05-29 Lower Source-Prepared Projection Target
+
+Accepted Lean increment:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` | the evaluated prepared singleton clean entry reaches the evaluated backend fold under the all-slot $H_W^{(\kappa)}$ clean-column contract | compiled; contract-conditional |
+| `OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` | typed interface for selecting the prepared singleton clean entry as the theorem-facing projection entry | compiled |
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | focused source-prepared projection packet for the boundary branch | compiled; flags false |
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3_transcript` | transcript theorem checking the selected entry, bridge, and false flags | compiled |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton entry aligns with backend branch fold after evaluation | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | QBE-local evaluation bridge plus external clean-column contract | compiled conditionally |
+| theorem-facing prepared projection entry | `(oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix oneTermRobinGamma3BoundarySparseCleanIndex_n3 oneTermRobinGamma3BoundarySparseCleanIndex_n3` | QBE-local prepared projection target | compiled |
+| active signal-zero entry equals prepared singleton clean entry | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env`.activeToPreparedSingletonEvalStatement | QBE-local finite `CircuitMatrixSemantics` composition theorem | absent |
+| H-free seven-slot fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | follows only after the active/prepared field plus the clean-column contract | not proved |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_source_prepared_projection_target_n3` | make the source-prepared singleton clean entry the projection target before comparing to the active raw entry | prepared singleton semantics, clean-entry evaluation, clean-column contract, active/prepared guard | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | fixed product-to-coefficient route | prepared projection backend | compiled obstruction; all theorem flags false |
+
+No theorem-facing product, LCU, projection, block-correctness, normalized
+equality, unitarity, or final-extraction flag was promoted.
+
+## 2026-05-29 Middle Source-Prepared Projection Target Audit
+
+Middle accepts the source-prepared target as a compiled obstruction, not as
+fold closure. The selected theorem-facing entry is the clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`; the active
+Fig. `fig:1 term ROBIN` signal-zero entry still has to be connected to it by a
+finite `CircuitMatrixSemantics` composition theorem.
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| active signal-zero entry equals the prepared singleton clean entry | `classical-lean-lemma` / QBE-local finite matrix-semantics theorem | GHL2025 Definition `def:block-encoding` selects the signal-zero block entry, Fig. `fig:1 term ROBIN` fixes the active product, and Eq. `arbitrary sparcity` inserts $H_W^{(\kappa)}$ but does not prove the active/prepared entry equality |
+| using the raw active entry as the prepared projection entry without proof | `contract-drift` | the prepared source expression is $H_W^{(\kappa)\dagger} U_{\gamma_3,\mathrm{bdry}} H_W^{(\kappa)}$, while the active Lean entry is the current seven-gate product entry |
+| clean-column amplitudes for $H_W^{(\kappa)}$ | external cited result, contract-only | Eq. `arbitrary sparcity` cites Shukla-Vedula for the uniform sparse-register preparation |
+| standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the active-to-prepared projection bridge |
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton entry reaches backend fold after evaluation | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | local evaluation bridge plus external clean-column contract | compiled conditionally |
+| source-prepared projection target | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` | QBE-local prepared projection interface | compiled; flags false |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite composition theorem | absent |
+| H-free branch fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | follows only after the active-to-prepared bridge plus the clean-column contract | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_active_to_source_prepared_clean_entry_n3` | connect the active signal-zero entry to the source-prepared singleton clean entry | active raw entry, prepared singleton semantics, $H_W^{(\kappa)}$ insertion/removal composition | planned theorem or smaller compiled obstruction for `activeToPreparedSingletonEvalStatement` | H-free fold and `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | `CircuitMatrixSemantics` composition backend | next lower target |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`, or a Coeff-level theorem that implies it |
+| allowed inputs | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3_transcript`, `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3`, `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`, and `oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3` |
+| accepted fallback | a smaller compiled obstruction naming the missing finite composition field for inserting $H_W^{(\kappa)}$ and $H_W^{(\kappa)\dagger}$ around the active boundary product |
+| prohibited dependencies | do not use Shukla-Vedula, standard LCU, or a new GHL assumption to close the active/prepared equality |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-06-02 Lower Active/Prepared Field Reduction
+
+Accepted Lean declarations:
+
+| Declaration | Interface | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3` | under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, reduces the evaluated backend-fold target to `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env.activePreparedCompositeEvalStatement` | compiled equivalence; target not proved |
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_activePreparedCircuitField_iff_statement_n3` | target-level wrapper for the same reduction | compiled equivalence; flags false |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | QBE-local finite projection theorem | equivalent under the clean-column contract; not proved |
+| active/prepared circuit-field composition | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | QBE-local `CircuitMatrixSemantics` composition theorem | exact smaller obstruction |
+| all-slot sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+
+No product-to-coefficient, LCU, block projection, block correctness,
+normalized equality, circuit unitarity, or final-extraction flag was promoted.
+
+## 2026-06-02 Middle Active/Prepared Field Reduction Sync
+
+Middle classifies the latest lower result as an accepted reduction to the
+prepared-composition field, not as proof of the evaluated backend fold.
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | QBE-local finite projection theorem | equivalent to the active/prepared field under `hUniform`; not proved |
+| active/prepared circuit-field composition | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | QBE-local `CircuitMatrixSemantics` composition theorem | smallest current obstruction |
+| target-level reduction | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_activePreparedCircuitField_iff_statement_n3 H env hUniform` | proof-DAG alignment lemma | compiled; flags false |
+| all-slot sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+| raw symbolic fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | stronger symbolic theorem | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` |
+| recovery bridge | after the field theorem is proved, recover the evaluated fold through `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3 H env hUniform` |
+| accepted fallback | a smaller compiled obstruction naming the missing finite composition lemma for the prepared singleton entry |
+| forbidden dependencies | do not use Shukla-Vedula, standard LCU, a new GHL assumption, the corrected `R_y` audit, or the bulk `j = 5` route to close the active/prepared equality |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-05-29 Lower Active Eval/Backend Equivalence
+
+Accepted Lean increment:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3` | under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, the source-prepared target's active-to-prepared eval field is equivalent to the evaluated backend branch fold | compiled; contract-conditional |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active signal-zero entry equals prepared singleton clean entry after evaluation | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite `CircuitMatrixSemantics` composition theorem | equivalent to the evaluated backend fold under the clean-column contract; not proved |
+| H-free branch fold as a raw `Coeff` equality | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | stronger symbolic backend theorem | not proved |
+
+The declaration does not add a GHL theorem assumption and does not promote
+product-to-coefficient, LCU, projection, block correctness, normalized
+equality, cleanup, unitarity, or final extraction.
+
+## 2026-05-29 Middle Active Eval/Backend Equivalence Audit
+
+Middle accepts
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3`
+as a compiled equivalence only.  Under
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, the
+active-to-prepared eval field is equivalent to the evaluated backend branch
+fold.  Neither side has been proved.
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| active signal-zero entry equals prepared singleton clean entry after evaluation | QBE-local finite matrix-semantics theorem | Definition `def:block-encoding` and Fig. `fig:1 term ROBIN` fix the entries; the paper does not supply the finite composition proof |
+| evaluated backend fold | QBE-local finite projection theorem | the compiled equivalence makes this the same remaining eval-level target under the clean-column contract |
+| raw H-free branch fold as a `Coeff` equality | stronger symbolic backend theorem | this would imply the evaluated fold for every environment, but it is not proved |
+| clean-column amplitudes for $H_W^{(\kappa)}$ | external cited result, contract-only | Eq. `arbitrary sparcity` cites Shukla-Vedula only for the uniform sparse-register preparation |
+| standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the local active/prepared bridge |
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active-to-prepared eval field | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite matrix-semantics theorem | absent |
+| evaluated backend branch fold | `Coeff.evalWith env oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = Coeff.evalWith env (blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3)` | QBE-local finite projection theorem | equivalent to the active-to-prepared eval field under `hUniform`; not proved |
+| raw H-free fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | stronger symbolic projection theorem | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove the active-to-prepared eval field, or prove the equivalent evaluated backend fold under `hUniform` |
+| preferred theorem | evaluation-level backend fold equality using `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3` as the recovery bridge |
+| stronger acceptable theorem | raw `Coeff` fold equality if the finite backend can prove it directly |
+| accepted fallback | a smaller compiled obstruction naming the missing finite projection or `Coeff.evalWith` field for the active signal-zero entry |
+| prohibited dependencies | do not use Shukla-Vedula, standard LCU, or a new GHL assumption to close the local equality |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-05-29 Lower Active Circuit Entry Source
+
+Accepted Lean increment:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryActiveCleanIndex_n3` | clean full active basis index for the focused signal-zero/system-zero entry | compiled |
+| `oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3` | proves that `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry` is the active seven-gate circuit matrix entry at `[0,0]` | compiled |
+| `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` | rewrites that active entry as the `evalGateMatrices` product over the Fig. `fig:1 term ROBIN` gate placeholders | compiled |
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activeCircuitEntryEval_n3` | makes the evaluated backend-fold target equivalent to evaluating the active `[0,0]` entry against the seven-slot backend fold | compiled equivalence; target not proved |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active signal-zero entry source | `oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3` and `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` | QBE-local finite block-projection bookkeeping | proved |
+| evaluated active `[0,0]` entry equals backend branch fold | right-hand side of `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activeCircuitEntryEval_n3 env` | QBE-local finite product/projection theorem | absent |
+| raw H-free fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | stronger symbolic projection theorem | not proved |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_active_signal_entry_source_n3` | expose the theorem-facing signal-zero entry as the active seven-gate matrix entry | block-extraction target, dimension cast, Fig. `fig:1 term ROBIN` gate order | `oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3` | evaluated backend fold route | active circuit matrix backend | compiled |
+
+No theorem-facing product, LCU, projection, block-correctness, normalized
+equality, unitarity, or final-extraction flag was promoted.
+
+## 2026-05-29 Middle Active Circuit Entry Source Audit
+
+Middle accepts the latest lower packet as a local source-entry reduction, not
+as projection-fold closure.  The accepted theorem
+`oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3` proves
+that the focused `signalUnitaryEntry` is the active seven-gate
+`CircuitMatrixSemantics` entry at full basis `[0,0]`.  The accepted theorem
+`oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` rewrites
+that entry as the `evalGateMatrices` product over the Fig. `fig:1 term ROBIN`
+gate placeholders.
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| active `[0,0]` seven-gate entry evaluates to the backend branch fold | `classical-lean-lemma` / QBE-local finite matrix theorem | Definition `def:block-encoding` and Fig. `fig:1 term ROBIN` fix the entry and gate order, but the paper does not provide the finite `Coeff.evalWith` product/projection proof |
+| raw H-free branch fold as a `Coeff` equality | stronger symbolic projection theorem | this would imply the evaluated fold for every environment, but Lean has not proved it |
+| clean-column amplitudes for $H_W^{(\kappa)}$ | external cited result, contract-only | Eq. `arbitrary sparcity` cites Shukla-Vedula only for sparse-register preparation |
+| standard LCU/block composition | external or standard contract-only | later theorem context; it does not prove the local active-entry fold |
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active signal-zero entry source | `oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3` and `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` | QBE-local finite entry source | proved |
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | QBE-local finite matrix/projection theorem | typed; not proved |
+| evaluated active `[0,0]` entry equals backend branch fold | right side of `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activeCircuitEntryEval_n3 env` | QBE-local finite product/projection theorem | equivalent; absent |
+| raw H-free fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | stronger symbolic projection theorem | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_active_signal_entry_source_n3` | expose the theorem-facing signal-zero entry as the active seven-gate matrix entry | block-extraction target, dimension cast, Fig. `fig:1 term ROBIN` gate order | `oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3`, `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` | evaluated backend fold route | active circuit matrix backend | compiled |
+| `one_term_gamma3_boundary_eval_backend_fold_from_active_entry_n3` | evaluate the active seven-gate `[0,0]` entry as the seven-slot backend fold | active signal-entry source, backend branch contribution family, finite `Coeff.evalWith` product/projection bookkeeping | planned theorem or smaller compiled obstruction | active/prepared eval bridge and focused product route | projection backend | next lower target |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, or the equivalent active `[0,0]` entry statement from `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activeCircuitEntryEval_n3 env` |
+| preferred theorem | an evaluation-level active-entry fold equality using the existing backend branch family |
+| stronger acceptable theorem | the raw `Coeff` equality `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| accepted fallback | a smaller compiled obstruction naming the exact missing finite projection or `Coeff.evalWith` field for the active `[0,0]` entry |
+| allowed inputs | `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3`, `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activeCircuitEntryEval_n3`, `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3`, `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3`, and existing branch-contribution selected-slot lemmas |
+| prohibited dependencies | do not use Shukla-Vedula, standard LCU, a new GHL assumption, the corrected `R_y` audit, or the bulk `j = 5` route to close this local equality |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-05-29 Lower Uncast Active Entry Reduction
+
+Accepted Lean declarations:
+
+| Declaration | Obligation effect |
+|---|---|
+| `Matrix.cast_square_apply` | exposes a casted square matrix entry as the same uncast matrix entry with transported `Fin` indices |
+| `oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3` | removes the dimension cast from the active Fig. `fig:1 term ROBIN` `[0,0]` entry after `Coeff.evalWith` |
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3` | makes the evaluated backend-fold target equivalent to the uncast active `evalGateMatrices` `[0,0]` entry compared with the backend seven-slot fold |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active entry cast removal | `oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3` | QBE-local finite matrix bookkeeping | proved |
+| evaluated backend fold after cast removal | right side of `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3 env` | QBE-local finite product/projection theorem | absent |
+| raw H-free fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | stronger symbolic projection theorem | not proved |
+
+No product-to-coefficient, LCU, block projection, block correctness,
+normalized equality, circuit unitarity, or final-extraction flag was promoted.
+
+## 2026-06-02 Middle Evaluated Backend-Fold Obligation Sync
+
+Definition first: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`
+is the current evaluated projection obligation for the focused GHL2025 Robin
+boundary branch.  It states that the evaluated active signal-zero entry equals
+the evaluated seven-slot backend branch fold.
+
+Middle rechecked GHL2025 Definition `def:block-encoding`, Theorem
+`theorem: 1 term robin`, Eq. `ROBIN clarified`, Eq. `arbitrary sparcity`, and
+Fig. `fig:1 term ROBIN`.  The missing theorem is internal finite
+matrix/projection bookkeeping.  Shukla-Vedula remains a contract-only source
+for the all-slot $H_W^{(\kappa)}$ clean-column amplitudes.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | QBE-local finite matrix/projection theorem | typed; absent |
+| uncast active-entry formulation | right side of `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3 env` | QBE-local finite `Coeff.evalWith` product theorem | equivalent; absent |
+| active-to-source-prepared eval field | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite composition theorem | equivalent to the evaluated fold under `hUniform`; absent |
+| all-slot sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+| raw symbolic fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | stronger symbolic projection theorem | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product obligation | false |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` |
+| preferred form | evaluate the uncast active seven-gate `[0,0]` `evalGateMatrices` entry against `blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| accepted fallback | a smaller compiled obstruction naming the missing finite `Coeff.evalWith` product/projection field |
+| starting declarations | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3_transcript`, `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3`, `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3`, and `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` |
+| forbidden dependencies | do not use Shukla-Vedula, standard LCU, a new GHL assumption, the corrected `R_y` audit, or the bulk `j = 5` route to close this local equality |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-06-02 Lower Source-Prepared Route Witness
+
+Definition first: the source-prepared projection target uses the clean entry of
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`. Under the
+all-slot clean-column contract for $H_W^{(\kappa)}$, the prepared clean entry
+evaluates to the backend branch fold. This is the source-correct route supplied
+by Eq. `arbitrary sparcity` and Fig. `fig:1 term ROBIN`; it does not prove that
+the raw H-free active entry is already source-prepared.
+
+Accepted Lean declarations:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3` | names the existing prepared singleton backend bridge as the `preparedSingletonToBackendEvalStatement` field of `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` | compiled |
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_feedsProductRoute_n3` | connects the prepared backend bridge to the focused product route while checking that product, LCU, projection, block-correctness, and final-extraction flags remain false | compiled |
+
+Updated obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton clean entry reaches backend branch fold | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement` | QBE-local prepared projection bridge under external clean-column contract | compiled |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite `CircuitMatrixSemantics` composition theorem | absent |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+No theorem-facing product, LCU, projection, normalized equality,
+block-correctness, circuit unitarity, or final-extraction flag was promoted.
+
+## 2026-06-03 Middle Active/Prepared Field Obligation Sync
+
+Definition first: the active/prepared field is
+`(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement`.
+It compares the active Fig. `fig:1 term ROBIN` signal-zero entry with the
+prepared singleton clean entry selected by
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`.
+
+Middle re-read GHL2025 Theorem `theorem: 1 term robin`, Eq.
+`ROBIN clarified`, Eq. `arbitrary sparcity`, Fig. `fig:1 term ROBIN`, and
+Definition `def:block-encoding`.  The source-backed classification is unchanged:
+the $H_W^{(\kappa)}$ clean-column amplitudes are an external contract from Eq.
+`arbitrary sparcity`, while the active/prepared selected-entry equality is a
+QBE-local finite `CircuitMatrixSemantics` composition theorem.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton clean entry reaches backend branch fold | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` and `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement` | QBE-local bridge under external clean-column contract | compiled; contract-conditional |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | QBE-local finite `CircuitMatrixSemantics` composition theorem | fixed next target |
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | equivalent to the active/prepared field under `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3 H env hUniform` | not proved |
+| raw H-free fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | diagnostic/backlog unless recovered from the prepared route | not proved |
+| all-slot sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | Prove `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement`, or compile a strictly smaller obstruction for that same field. |
+| starting declarations | `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3_transcript`, `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3_transcript`, `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`, and `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_activePreparedCircuitField_iff_statement_n3`. |
+| prohibited dependencies | No Shukla-Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, or bulk `j = 5` route. |
+| false-flag discipline | Product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized block equality, circuit unitarity, and final extraction remain false until Lean proves them directly. |
+
+## 2026-06-02 Middle Source-Prepared Route Witness Audit
+
+Middle accepts the latest lower increment as source-prepared route wiring only.
+The prepared singleton clean entry is now the theorem-facing projection entry,
+and Lean proves that this prepared entry evaluates to the backend branch fold
+under the explicit all-slot $H_W^{(\kappa)}$ clean-column contract.  Lean has
+not proved that the active signal-zero entry equals that prepared singleton
+entry.
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| active signal-zero entry equals the prepared singleton clean entry after evaluation | `classical-lean-lemma` / QBE-local finite matrix-semantics theorem | Definition `def:block-encoding` fixes the signal-zero projection and Fig. `fig:1 term ROBIN` fixes the active product, but the paper does not give the finite `CircuitMatrixSemantics` composition proof |
+| clean-column amplitudes for $H_W^{(\kappa)}$ | external cited result, contract-only | Eq. `arbitrary sparcity` cites Shukla-Vedula only for sparse-register preparation |
+| evaluated backend fold | QBE-local finite projection theorem | compiled equivalences reduce it to the active/prepared field under the clean-column contract |
+| raw H-free fold as a `Coeff` equality | diagnostic/backlog stronger theorem | it would imply the evaluated fold for every environment, but the source-correct route first passes through the prepared singleton entry |
+| standard LCU/block composition | external or standard contract-only | downstream theorem context; it does not prove the active/prepared clean-entry equality |
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton clean entry reaches backend branch fold | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement` | QBE-local prepared projection bridge under external clean-column contract | compiled |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite `CircuitMatrixSemantics` composition theorem | absent |
+| active/prepared circuit-field statement | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | equivalent fixed target | absent |
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | equivalent under `hUniform` through compiled bridge lemmas | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_source_prepared_backend_bridge_n3` | route the prepared singleton clean entry to the backend branch fold under the $H_W^{(\kappa)}$ clean-column contract | prepared singleton semantics, clean-entry evaluation, prepared sandwich backend theorem | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3`, `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_feedsProductRoute_n3` | focused product route | prepared projection backend | compiled; flags false |
+| `one_term_gamma3_boundary_active_prepared_composition_n3` | prove the active signal-zero entry equals the source-prepared singleton clean entry | active seven-gate entry, prepared singleton entry, finite `CircuitMatrixSemantics` composition bookkeeping | planned theorem or smaller compiled obstruction for `.activeToPreparedSingletonEvalStatement` | evaluated backend fold and `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | finite composition backend | next lower target |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`, equivalently `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` |
+| recovery bridge | after the fixed target is proved, use `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3 H env hUniform` to recover `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` |
+| accepted fallback | a smaller compiled obstruction naming the exact missing finite composition field for the active/prepared clean entry |
+| prohibited dependencies | do not use Shukla-Vedula, standard LCU, a new GHL assumption, the corrected `R_y` audit, or the bulk `j = 5` route to close the local equality |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-06-03 Middle Source-Correct Prepared Projection Packet
+
+Definition first: the active theorem-facing projection route now passes through
+the prepared singleton clean entry of
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`.  This entry
+represents $H_W^{(\kappa)\dagger} U_{\gamma_3,\mathrm{bdry}} H_W^{(\kappa)}$
+for the focused boundary branch.
+
+Accepted compiled bridge:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton clean entry reaches backend branch fold | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement` | QBE-local bridge under external clean-column contract | compiled |
+| prepared singleton backend theorem | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | finite prepared projection bridge using the explicit $H_W^{(\kappa)}$ clean-column contract | compiled; contract-conditional |
+
+Remaining fixed obligation:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active signal-zero entry equals source-prepared singleton clean entry | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | `classical-lean-lemma` / QBE-local finite `CircuitMatrixSemantics` composition theorem | absent |
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | equivalent to the active/prepared field under `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3 H env hUniform` | not proved |
+| raw H-free fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | diagnostic/backlog unless recovered from the prepared route | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement`, or compile a strictly smaller obstruction for the same field |
+| recovery bridge | use `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3 H env hUniform` only after the fixed field is proved |
+| allowed files | `QuantumBlockEncoding/RobinMatrix.lean`; `QuantumBlockEncoding/CircuitSemantics.lean` only for a genuinely reusable finite-composition helper; focused checks in `Tests/Basic.lean` |
+| prohibited detours | no Shukla-Vedula recursion, standard LCU proof search, corrected `R_y` audit, O_D^BS/O_f work, bulk `j = 5`, new GHL assumptions, or theorem-flag promotion |
+
+## 2026-06-03 Lower Active/Prepared Uncast Reduction
+
+The fixed active/prepared field was reduced to an uncast active-entry
+comparison:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+This statement compares the evaluated Fig. `fig:1 term ROBIN`
+`evalGateMatrices` entry `[0,0]` directly with the prepared singleton clean
+entry of `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`.
+It removes the signal-system block wrapper and dimension cast, but it does not
+prove the active/prepared equality.
+
+Compiled declarations:
+
+| Declaration | Interface | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` | uncast active `evalGateMatrices[0,0]` entry equals prepared singleton clean entry | typed; unproved |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3` | fixed active/prepared statement is equivalent to the uncast target | compiled |
+| `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_iff_uncast_n3` | record field form of the same equivalence | compiled |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_active_prepared_uncast_entry_n3` | expose the exact uncast finite-composition equality still needed for the active/prepared clean-entry bridge | active signal-entry lemma, uncast entry lemma, prepared singleton semantics | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3` | evaluated backend fold and fixed product route | finite composition backend | compiled; equality absent |
+
+Remaining obligation:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| uncast active `[0,0]` entry equals source-prepared singleton clean entry | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | `classical-lean-lemma` / QBE-local finite `CircuitMatrixSemantics` composition theorem | absent |
+| active/prepared circuit-field statement | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | equivalent to the uncast target | absent |
+| product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+## 2026-06-03 Middle Active/Prepared Uncast Obligation Sync
+
+Definition first: the fixed target for the next lower worker is
+`oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`.
+This is the uncast equality between the evaluated Fig. `fig:1 term ROBIN`
+active `evalGateMatrices` entry `[0,0]` and the prepared singleton clean entry
+of `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`.
+
+Middle re-read GHL2025 Theorem `theorem: 1 term robin`, Eq.
+`ROBIN clarified`, Eq. `arbitrary sparcity`, Fig. `fig:1 term ROBIN`, and
+Definition `def:block-encoding`.  The uncast reduction is accepted as a
+QBE-local proof-DAG step.  It does not use Shukla-Vedula to prove the local
+equality, and no product-to-coefficient or block-encoding flag is promoted.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton clean entry reaches backend branch fold | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | QBE-local prepared bridge under external clean-column contract | compiled; contract-conditional |
+| uncast active `[0,0]` entry equals prepared singleton clean entry | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | `classical-lean-lemma` / QBE-local finite `CircuitMatrixSemantics` composition theorem | fixed next target |
+| active/prepared circuit-field statement | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | equivalent to the uncast target by `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_iff_uncast_n3` | absent |
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | recoverable only after the uncast target and the prepared backend bridge | not proved |
+| all-slot sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+| raw H-free fold | `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | diagnostic/backlog unless recovered from the prepared route | not proved |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` |
+| starting declarations | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3`, `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3`, `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_iff_uncast_n3`, `oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3`, and `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` |
+| accepted fallback | a strictly smaller compiled obstruction for the same uncast equality |
+| prohibited dependencies | no Shukla-Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, or bulk `j = 5` route |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-06-03 Lower Uncast Prepared-Sandwich Reduction
+
+Lean now compiles
+`oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3`.
+This reduces the current uncast active/prepared equality to a comparison between
+the active Fig. `fig:1 term ROBIN` uncast `[0,0]` `evalGateMatrices` entry and
+the prepared sandwich fold
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`.
+
+Compiled declaration:
+
+| Declaration | Interface | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3` | removes the prepared singleton `CircuitMatrixSemantics` wrapper from `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | compiled equivalence |
+
+Remaining obligation:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active uncast entry equals prepared sandwich fold after evaluation | right-hand side of `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3 H env` | QBE-local finite product/composition theorem | absent |
+| focused product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+No semantic proof flag was promoted.
+
+## 2026-06-03 Lower Raw-Field Alignment
+
+The raw field remains open, but it is now build-tested as the same remaining
+obligation as the backend expansion under the existing clean-column contract:
+
+```lean
+oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_unitaryEntryFold_n3
+oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3
+```
+
+Obligation state:
+
+| Obligation | Lean target | Status |
+|---|---|---|
+| backend expansion / raw prepared-sandwich field | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`, equivalently `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | still absent |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+No product-to-coefficient, LCU, block-projection, block-correctness,
+normalized-equality, circuit-unitarity, or final-extraction flag was promoted.
+
+## 2026-06-03 Middle Prepared-Sandwich Reduction Sync
+
+Definition first: the prepared-sandwich fold is
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`.  It is the
+finite prepared-register expression for the focused boundary route
+$H_W^{(\kappa)\dagger} U_{\gamma_3,\mathrm{bdry}} H_W^{(\kappa)}$.
+
+Middle accepts
+`oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3`
+as a compiled equivalence, not as proof of the active/prepared equality.  The
+remaining fixed target is the evaluated equality between the active
+Fig. `fig:1 term ROBIN` `[0,0]` entry and the prepared-sandwich fold.
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| active uncast `[0,0]` entry evaluates to the prepared-sandwich fold | `classical-lean-lemma` / QBE-local finite product theorem | GHL2025 fixes the circuit order and sparse-preparation route, but the finite `evalGateMatrices` product equality is QBE-local. |
+| all-slot sparse-register preparation | external cited result, contract-only | Eq. `arbitrary sparcity` cites Shukla-Vedula only for $H_W^{(\kappa)}$ preparation and cost. |
+| uncast active/prepared singleton equality | QBE-local theorem after the sandwich equality | recoverable via `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3 H env` |
+| evaluated backend fold | QBE-local theorem after the uncast equality and backend specialization | not proved |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_active_entry_prepared_sandwich_eval_n3` | prove the active uncast `[0,0]` entry evaluates to the prepared sandwich fold | active seven-gate product, prepared sandwich fold, finite `Coeff.evalWith` product bookkeeping | planned theorem or smaller compiled obstruction for the right-hand side of `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3 H env` | uncast active/prepared equality, evaluated backend fold, and fixed product route | finite product backend | next lower target |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | Prove the right-hand side of `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3 H env`. |
+| starting declarations | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3`, `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3`, `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3`, `oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3`, and `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3`. |
+| accepted fallback | a strictly smaller compiled obstruction for the same evaluated prepared-sandwich equality |
+| prohibited dependencies | no Shukla-Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, or bulk `j = 5` route |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-06-03 Lower Raw-Fold Route Into Prepared Sandwich
+
+Definition first: the raw symbolic fold is
+`oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+blockExtractionBranchContributionSum
+oneTermRobinGamma3BoundaryBackendBranchContribution_n3`.  This is the unique
+stronger theorem that implies the current evaluated prepared-sandwich target
+under the explicit $H_W^{(\kappa)}$ clean-column contract.
+
+Compiled declarations:
+
+| Declaration | Interface | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3` | raw symbolic fold implies `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | compiled conditional bridge |
+| `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_unitaryEntryFold_n3` | raw symbolic fold plus `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` implies `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env` | compiled conditional bridge |
+
+Remaining obligation:
+
+| Obligation | Lean target | Status |
+|---|---|---|
+| finite projection/backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | not proved |
+| prepared-sandwich evaluated equality | follows from the raw fold via `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_unitaryEntryFold_n3` | conditional only |
+| theorem-facing product route | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+No theorem-facing semantic flag was promoted.
+
+## 2026-06-03 Middle Backend-Expansion Lower Packet
+
+Definition first: the current fixed target is
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`.
+By `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`,
+this is equivalent to the raw symbolic fold
+`oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`.
+
+Middle re-read GHL2025 Theorem `theorem: 1 term robin`, Eq.
+`ROBIN clarified`, Eq. `arbitrary sparcity`, Fig. `fig:1 term ROBIN`,
+Definition `def:block-encoding`, and the Shukla-Vedula citation.  The latest
+lower bridges are accepted as conditional route wiring only:
+
+| Declaration | Interface | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3` | raw fold implies the evaluated backend-fold target | compiled; raw fold absent |
+| `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_unitaryEntryFold_n3` | raw fold plus the all-slot $H_W^{(\kappa)}$ clean-column contract implies the prepared-sandwich evaluated target | compiled; conditional only |
+| `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_backendExpansion_n3` | backend expansion plus the same clean-column contract implies the prepared-sandwich evaluated target | compiled; conditional only |
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| backend expansion / raw unitary-entry fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | `classical-lean-lemma` / QBE-local finite projection theorem | fixed next target |
+| prepared-sandwich evaluated equality | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env` | follows from backend expansion under `hUniform` | not proved |
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | follows from raw fold | not proved |
+| all-slot sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+| fixed product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_backend_expansion_raw_fold_n3` | prove the signal-zero entry equals the seven-slot backend branch fold | active signal entry, backend contribution family, finite projection/summation bookkeeping | planned theorem for `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | prepared-sandwich target, evaluated backend fold, focused product route | finite projection backend | next lower target |
+| `one_term_gamma3_boundary_raw_fold_to_prepared_sandwich_eval_n3` | route the raw fold/backend expansion into the prepared-sandwich evaluated target | backend expansion bridge and all-slot clean-column contract | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_unitaryEntryFold_n3`, `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_backendExpansion_n3` | active/prepared route and product route | finite projection backend | compiled route; proof absent |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| equivalent target | prove the raw `Coeff` equality `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` |
+| starting declarations | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3`, `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`, `oneTermRobinGamma3BoundaryProjectionSummationObstruction_signalEntry_eq_unitary_n3`, `oneTermRobinGamma3BoundaryBackendBranchContribution_n3`, and `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_backendExpansion_n3` |
+| accepted fallback | a strictly smaller compiled obstruction for the same backend-expansion/raw-fold theorem |
+| prohibited dependencies | no Shukla-Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, or bulk `j = 5` route |
+| false-flag discipline | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false until Lean proves them directly |
+
+## 2026-06-03 Lower Active-Prepared/Backend-Expansion Alignment
+
+The lower packet did not prove backend expansion.  It added the smallest
+alignment lemma needed to prevent the source-prepared route and backend-fold
+route from becoming parallel obligations:
+
+| Declaration | Obligation relation | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_backendExpansion_n3` | under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, the active/prepared entry equality is equivalent to `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | compiled; theorem absent |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_iff_backendExpansion_n3` | the composition-field packet carries the same equivalence through its `activeEntryStatement` field | compiled; field absent |
+
+Updated proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_active_prepared_backend_alignment_n3` | identify the active/prepared entry target with backend expansion under the clean-column contract | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3`, `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3` | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_backendExpansion_n3`, `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_iff_backendExpansion_n3` | backend expansion, evaluated backend fold, focused product route | finite projection backend | compiled alignment only |
+
+Remaining obligations:
+
+| Obligation | Lean target | Status |
+|---|---|---|
+| backend expansion / raw fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | not proved |
+| active/prepared entry equality | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | equivalent to backend expansion under `hUniform`; not proved |
+| product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+## 2026-06-03 Middle Backend-Expansion Dispatch Sync
+
+Definition first: the current fixed target is
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`.
+It is equivalent to the raw full-entry fold
+`oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`.
+
+Middle re-read GHL2025 Theorem `theorem: 1 term robin`, Eq.
+`ROBIN clarified`, Eq. `arbitrary sparcity`, Fig. `fig:1 term ROBIN`,
+Definition `def:block-encoding`, and the Shukla-Vedula citation.  The missing
+ingredient is still QBE-local finite projection bookkeeping; it is not a new
+external theorem.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| backend expansion / raw full-entry fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | `classical-lean-lemma` / QBE-local finite projection theorem | fixed next target |
+| active/prepared entry equality | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | equivalent to backend expansion under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | not proved |
+| prepared-sandwich evaluated equality | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env` | follows from backend expansion under `hUniform` | conditional only |
+| sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+Allowed lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| equivalent target | prove the raw `Coeff` fold for `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry` |
+| use of active/prepared lemmas | use `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_backendExpansion_n3` only as an equivalence to avoid duplicate obligations |
+| accepted fallback | a strictly smaller compiled theorem for the same backend-expansion target |
+| prohibited dependencies | no Shukla-Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-05 Lower Backend-Expansion Recovery Route
+
+Accepted compiled bridge:
+
+| Declaration | Lean target | Classification | Status |
+|---|---|---|---|
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_backendExpansion_n3` | `backendExpansionStatement -> (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local conditional recovery through the prepared singleton route | compiled; does not prove backend expansion |
+
+Remaining proof obligation:
+
+| Item | Lean target | Status |
+|---|---|---|
+| backend expansion / raw finite projection theorem | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | not proved |
+| active/prepared singleton field without recovery hypothesis | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | still absent |
+| theorem-facing flags | product-to-coefficient, LCU correctness, block projection, block correctness, normalized equality, circuit unitarity, final extraction | all remain false |
+
+## 2026-06-03 Lower Raw Uncast Backend-Expansion Reduction
+
+The lower attempt did not prove
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`.
+It reduced that target to a smaller raw matrix-entry theorem:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+blockExtractionBranchContributionSum
+  oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+Compiled proof-DAG row:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_uncast_raw_backend_expansion_n3` | state backend expansion as the uncast active `[0,0]` product-entry fold | `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3`, `Matrix.cast_square_apply`, `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3` | `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3` | backend expansion and the focused product route | finite projection backend | compiled; fold not proved |
+
+Current obligation state:
+
+| Obligation | Lean target | Status |
+|---|---|---|
+| backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | equivalent to the uncast raw active-entry fold; not proved |
+| raw uncast active-entry fold | displayed theorem above | next smallest theorem |
+| active/prepared entry equality | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | equivalent to backend expansion under the clean-column contract; not proved |
+| product-to-coefficient theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | false |
+
+No theorem-facing semantic flag was promoted.
+
+## 2026-06-03 Middle Raw Uncast Reduction Sync
+
+The latest accepted lower lemma is a reduction, not theorem closure:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3` | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` is equivalent to the raw active `[0,0]` `evalGateMatrices` entry equaling `blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | compiled; raw fold not proved |
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| raw active `[0,0]` product entry equals the seven-slot backend fold | `classical-lean-lemma` / QBE-local finite projection theorem | GHL2025 fixes the gate order, branch, and projection convention; QBE must still prove the finite product-entry expansion. |
+| $H_W^{(\kappa)}$ clean-column amplitudes | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation supply this only as the existing typed contract. |
+| backend expansion | QBE-local theorem after the raw fold | equivalent to the raw fold by `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3`; still absent. |
+| product-to-coefficient theorem | theorem-facing route | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` remains false. |
+
+Current fixed lower target:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+blockExtractionBranchContributionSum
+  oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+The target is allowed only as the raw form of the source-prepared projection
+route.  The route guard is the compiled alignment through
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_backendExpansion_n3`
+and `oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3`
+under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove the raw active `[0,0]` entry fold above |
+| starting declarations | `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3`, `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3`, `oneTermRobinGamma3BoundaryBackendBranchContribution_n3`, `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3`, and `oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3` |
+| accepted fallback | one smaller compiled theorem naming the missing finite support, sparse-slot, or matrix-entry calculation for the same fold |
+| prohibited dependencies | no Shukla-Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-03 Middle Slot-Zero Prepared-Projection Obligation Sync
+
+The latest accepted lower fact is a diagnostic reduction, not theorem closure.
+It identifies the backend fold's slot-`0` summand as the active `[0,0]`
+seven-gate diagonal multiplied by the sparse-register projection amplitude
+factor:
+
+| Declaration | Meaning | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryBackendBranchFullIndex_slotZero_n3` | sparse slot `0` maps to full basis index `0`, namely `oneTermRobinGamma3BoundaryPrefixRow0_n3` | compiled |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3` | the slot-`0` summand is the active `[0,0]` diagonal term times the projection amplitude factor | compiled |
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| source-prepared projection field | use the prepared singleton clean entry in `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` and its bridge `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3 H env` | `internal-paper-step` plus QBE-local finite matrix interface | fixed next target |
+| raw active `[0,0]` fold | right-hand side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3` | diagnostic/backlog unless recovered through the prepared route | not proved |
+| slot-`0` term identification | `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3` | QBE-local finite summand lemma | compiled |
+| selected boundary slot `2` | `oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3` | QBE-local selected-summand lemma | compiled |
+| all-slot sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+Allowed lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | route the focused projection/product map through the prepared singleton clean entry of `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`; do not keep the raw H-free fold as the primary theorem |
+| preferred bridge | consume `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3 H env` and `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` |
+| exact equality target if needed | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env`, or a smaller compiled obstruction for the prepared sandwich field |
+| diagnostics to retain | `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3`, `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3`, and `oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3` |
+| prohibited dependencies | no Shukla--Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-03 Middle Uncast Prepared-Sandwich Dispatch
+
+Definition first: the current fixed target is
+`oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env`.
+It compares the uncast active Fig. `fig:1 term ROBIN` `[0,0]`
+`evalGateMatrices` entry with
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`, the prepared
+$H_W^{(\kappa)\dagger} U_{\gamma_3,\mathrm{bdry}} H_W^{(\kappa)}$ sandwich
+fold.
+
+Source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| uncast prepared-sandwich equality | `classical-lean-lemma` / QBE-local finite matrix composition theorem | The GHL source supplies the gate order and prepared sparse-register route, but QBE must still prove the selected finite matrix entry equality. |
+| all-slot sparse-register preparation | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla--Vedula citation supply only `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`. |
+| evaluated backend fold | contract-conditional recovery target | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3 H env hUniform` recovers it only after the prepared-sandwich equality and clean-column contract. |
+| raw H-free active fold | diagnostic/backlog | It must not replace the prepared route unless derived from the source-prepared projection path. |
+| focused product theorem | theorem-facing route | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` remains false. |
+
+Proof obligation:
+
+```lean
+oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env
+```
+
+Equivalent route context:
+
+| Declaration | Role | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3` | reduces the active/source-prepared singleton field to the fixed uncast target | compiled equivalence |
+| `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3` | names the prepared-sandwich side of the uncast field | compiled equivalence |
+| `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3` | recovers the evaluated backend fold under `hUniform` | compiled; conditional |
+| `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` | evaluates the prepared singleton clean entry as the backend fold under the clean-column contract | compiled; conditional |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove or strictly reduce `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env` |
+| write scope | prefer `QuantumBlockEncoding/RobinMatrix.lean` and focused checks in `Tests/Basic.lean`; touch `QuantumBlockEncoding/CircuitSemantics.lean` only for a small reusable finite-matrix helper |
+| accepted fallback | one smaller compiled obstruction for the same prepared-sandwich equality, not a parallel obstruction hierarchy |
+| prohibited dependencies | no Shukla--Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, raw H-free fold as primary target, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-03 Lower Source Target to Uncast Prepared-Sandwich Reduction
+
+The lower attempt did not prove the active/source-prepared singleton field.  It
+reduced the fixed target to a smaller uncast prepared-sandwich statement:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3
+```
+
+This theorem states that
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`
+is equivalent to
+`oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env`.
+The reduction removes the signal/block wrapper from the active side and the
+singleton `CircuitMatrixSemantics` wrapper from the prepared side.  It does not
+use the $H_W^{(\kappa)}$ clean-column contract and does not assert the missing
+active/prepared composition theorem.
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_uncast_prepared_sandwich_field_n3` | reduce the source-prepared active field to the uncast active `[0,0]` entry compared with the prepared sandwich fold | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3`, `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3` | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3` | evaluated backend fold and focused product route | prepared projection backend | compiled; equality not proved |
+
+Current remaining obligation:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| uncast prepared-sandwich field | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env` | QBE-local finite composition/projection lemma | not proved |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+No product-to-coefficient, LCU, block-projection, block-correctness,
+normalized-equality, circuit-unitarity, or final-extraction flag was promoted.
+
+## 2026-06-03 Middle Prepared Singleton Route Dispatch
+
+Definition first: the active source-prepared obligation is
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`.
+It compares the signal-zero entry selected by Definition `def:block-encoding`
+with the prepared singleton clean entry used by the source route
+$H_W^{(\kappa)\dagger} U_{\gamma_3,\mathrm{bdry}} H_W^{(\kappa)}$.
+
+Middle rechecked GHL2025 Theorem `theorem: 1 term robin`, Eq.
+`ROBIN clarified`, Eq. `arbitrary sparcity`, Fig. `fig:1 term ROBIN`, and
+Definition `def:block-encoding`.  Eq. `arbitrary sparcity` is an external
+clean-column contract for $H_W^{(\kappa)}$; it is not a proof that the raw
+H-free active entry already equals the source-prepared clean entry.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| active signal-zero entry equals source-prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | `classical-lean-lemma` / QBE-local finite `CircuitMatrixSemantics` composition theorem | fixed next target |
+| equivalent active/prepared circuit-field statement | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | QBE-local finite composition theorem | equivalent target; absent |
+| prepared singleton clean entry reaches backend fold | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement` | QBE-local bridge under external clean-column contract | compiled |
+| external clean-column preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | typed; not formalized |
+| raw H-free active `[0,0]` fold | right-hand side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3` | diagnostic/backlog unless recovered through the prepared route | not proved |
+| slot-`0` diagnostic summand | `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3` | QBE-local finite summand lemma | compiled; no theorem flag promoted |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing product route | false |
+
+Proof-DAG block:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_source_prepared_singleton_field_n3` | prove the active projection entry equals the source-prepared singleton clean entry | active projection entry, prepared composite clean entry, finite `CircuitMatrixSemantics` composition | planned theorem or smaller obstruction for `.activeToPreparedSingletonEvalStatement` | evaluated backend fold and focused product route | prepared projection backend | next lower target |
+| `one_term_gamma3_boundary_prepared_backend_bridge_n3` | after the singleton field, evaluate the prepared clean entry as the backend fold under the clean-column contract | source-prepared target and $H_W^{(\kappa)}$ contract | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3`, `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` | focused product route | prepared projection backend | compiled; contract-conditional |
+
+Allowed lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` |
+| equivalent target | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` |
+| starting declarations | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3_transcript`, `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3_transcript`, `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3`, `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`, and `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3` |
+| accepted fallback | one strictly smaller compiled obstruction for the same active-to-prepared singleton field |
+| diagnostics to retain | `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3`, `oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3`, and `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3` |
+| prohibited dependencies | no Shukla--Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-03 Middle Superseding Uncast Prepared-Sandwich Obligation
+
+This end-of-ledger entry supersedes older same-day dispatch text that still
+names the active/source-prepared singleton field as the direct lower target.
+The compiled reduction now fixes the next target as:
+
+```lean
+oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env
+```
+
+Current source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| uncast active entry equals prepared sandwich fold | `classical-lean-lemma` / QBE-local finite matrix composition theorem | GHL2025 fixes the gate order and sparse-preparation route; QBE must still prove the selected finite matrix equality. |
+| all-slot sparse-register preparation | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla--Vedula citation supply only `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`. |
+| evaluated backend fold | contract-conditional recovery | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3 H env hUniform` recovers it only after the fixed equality and the clean-column contract. |
+| raw H-free active fold | diagnostic/backlog | It must not replace the prepared sandwich route unless derived from the source-prepared path. |
+
+Allowed lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove or strictly reduce `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env` |
+| write scope | prefer `QuantumBlockEncoding/RobinMatrix.lean` and focused checks in `Tests/Basic.lean`; touch `QuantumBlockEncoding/CircuitSemantics.lean` only for a small reusable finite-matrix helper |
+| starting declarations | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3`, `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3`, `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3`, and `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3` |
+| accepted fallback | one smaller compiled obstruction for this same prepared-sandwich equality, not a parallel obstruction hierarchy |
+| prohibited dependencies | no Shukla--Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, raw H-free fold as primary target, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-03 Middle Current Prepared-Sandwich Obligation
+
+This entry supersedes older same-day packets that point lower agents directly
+at the raw H-free fold.  The fixed source-correct obligation is:
+
+```lean
+oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env
+```
+
+It states that the active Fig. `fig:1 term ROBIN` `[0,0]`
+`evalGateMatrices` entry evaluates to
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`, the prepared
+$H_W^{(\kappa)\dagger} U_{\gamma_3,\mathrm{bdry}} H_W^{(\kappa)}$ sandwich
+fold.
+
+Current source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| uncast active entry equals prepared sandwich fold | `classical-lean-lemma` / QBE-local finite matrix composition theorem | GHL2025 fixes the gate order and the sparse-preparation route; QBE must prove the selected finite matrix equality. |
+| all-slot sparse-register preparation | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla--Vedula citation are represented only by `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`. |
+| evaluated backend fold | contract-conditional reduction | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3 H env hUniform` relates the fixed target to `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env`, but it proves neither equality. |
+| raw H-free active fold | diagnostic/backlog | It must not replace the prepared route unless it is recovered through the source-prepared sandwich path. |
+| focused product theorem | theorem-facing route | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` remains false. |
+
+Accepted compiled route witnesses:
+
+| Lean declaration | Role | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3` | reduces the source-prepared singleton field to the uncast prepared-sandwich target | compiled equivalence |
+| `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3` | names the prepared-sandwich side of the uncast target | compiled equivalence |
+| `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` | evaluates the prepared singleton clean entry as the backend fold under the clean-column contract | compiled; conditional |
+| `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3` | relates the fixed target to the evaluated backend fold under the clean-column contract | compiled; conditional |
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3_transcript` | records the evaluated backend-fold packet and false flags | compiled |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove or strictly reduce `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env` |
+| equivalent route allowed | use `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env` only through the prepared-sandwich equivalence under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` |
+| write scope | prefer `QuantumBlockEncoding/RobinMatrix.lean` and focused checks in `Tests/Basic.lean`; touch `QuantumBlockEncoding/CircuitSemantics.lean` only for a small reusable finite-matrix helper |
+| accepted fallback | one smaller compiled obstruction for this same prepared-sandwich equality |
+| prohibited dependencies | no Shukla--Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, raw H-free fold as an independent source route, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-03 Lower Raw-Field Prepared-Sandwich Bridge
+
+The lower attempt did not prove the fixed evaluated target
+`oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env`.
+It compiled a narrower route from the already typed raw field:
+
+```lean
+oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3
+```
+
+This theorem proves that
+`(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement`
+implies the evaluated prepared-sandwich statement.  The implication is
+one-way: the raw statement is a stronger symbolic `Coeff` equality, while the
+fixed target is only an equality after `Coeff.evalWith env`.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| raw signal-zero entry equals the prepared sandwich fold | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | `classical-lean-lemma` / QBE-local finite matrix-semantics backend theorem | still absent |
+| route raw field to evaluated prepared-sandwich target | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3` | QBE-local wrapper-removal bridge | compiled |
+| evaluated prepared-sandwich target | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env` | follows from raw field; not proved unconditionally | open |
+| external all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | unchanged |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing route | false |
+
+No semantic proof flag was promoted.
+
+## 2026-06-03 Middle Raw-Field Backend-Expansion Sync
+
+Definition first: the stronger raw field is
+
+```lean
+(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement
+```
+
+It compares the source-selected signal-zero entry with the prepared sandwich
+fold at the `Coeff` level.  The latest lower bridge does not prove this field.
+It proves that, after the all-slot clean-column contract for
+$H_W^{(\kappa)}$, this raw field is equivalent to the existing backend
+expansion statement.
+
+Accepted compiled alignment:
+
+| Declaration | Role | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_unitaryEntryFold_n3` | identifies the raw prepared-sandwich field with the full signal-zero unitary-entry fold under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | compiled equivalence; equality absent |
+| `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3` | aligns the raw field with `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` under the same clean-column contract | compiled equivalence; backend expansion absent |
+
+Updated source-dependency classification:
+
+| Missing item | Classification | Reason |
+|---|---|---|
+| backend expansion / raw prepared-sandwich field | `classical-lean-lemma` / QBE-local finite projection theorem | GHL2025 fixes the source-prepared route, but QBE must still prove the finite matrix equality tying the signal-zero entry to the backend branch fold. |
+| all-slot sparse-register preparation | external cited result, contract-only | Eq. `arbitrary sparcity` and the Shukla-Vedula citation are used only through `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`. |
+| evaluated prepared-sandwich target | QBE-local recovery target | It follows from the raw field by `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3`, but the raw field remains unproved. |
+
+Proof-DAG update:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_raw_field_backend_alignment_n3` | align the raw prepared-sandwich field with the unique backend-expansion theorem | raw field statement, unitary-entry fold equivalence, backend-expansion equivalence, clean-column contract | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_unitaryEntryFold_n3`, `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3` | evaluated prepared-sandwich target, source-prepared projection route, focused product route | prepared projection backend | compiled; equality still not proved |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove or strictly reduce `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| equivalent target | under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, prove `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` |
+| starting declarations | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3`, `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`, `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3`, and `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` |
+| accepted fallback | one smaller compiled obstruction for this same backend-expansion/raw-field equality |
+| prohibited dependencies | no Shukla-Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, raw H-free fold as an independent source route, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-03 Lower Prepared Projection Product Route
+
+The prepared singleton clean-entry route is now explicitly connected to the
+focused product proof map by
+`oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3`.
+Given
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, this
+theorem shows that the prepared projection entry in
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` evaluates
+to the backend branch fold used by the current product route.
+
+No theorem-facing semantic flag was promoted.  The bridge deliberately records
+that `productBridgeProved`, `normalizedBlockEqualityProved`,
+`productToCoefficientProved`, `blockProjectionProved`, and
+`blockCorrectProved` remain false.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| route prepared singleton backend fold into the product map | `oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3` | QBE-local route wiring under external clean-column contract | compiled |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | `classical-lean-lemma` / finite `CircuitMatrixSemantics` composition theorem | absent |
+| backend expansion / raw prepared-sandwich field | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`, equivalently `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` under the clean-column contract | QBE-local finite projection theorem | absent |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing route | false |
+
+## 2026-06-03 Middle Post-Prepared Product Sync
+
+The accepted lower theorem
+`oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3`
+connects the prepared singleton clean-entry bridge to the focused product
+route.  It is conditional on
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, the
+existing contract-only representation of GHL2025 Eq. `arbitrary sparcity`.
+
+This theorem is route wiring only.  It does not prove the active/prepared
+selected-entry equality, the backend expansion, the fixed product theorem, or
+any final block-encoding flag.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton backend fold feeds product route | `oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3` | QBE-local route wiring under external clean-column contract | compiled |
+| backend expansion / raw prepared-sandwich field | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`, equivalently `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` under `hUniform` | `classical-lean-lemma` / QBE-local finite projection theorem | fixed next target |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite `CircuitMatrixSemantics` composition theorem | absent |
+| external all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited result, contract-only | unchanged |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing route | false |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed target | prove or strictly reduce `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| equivalent target | under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, prove `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` |
+| starting declarations | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3`, `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_backendExpansion_n3`, `oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3`, and `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3` |
+| accepted fallback | one smaller compiled obstruction for this same backend-expansion/raw-field equality |
+| prohibited dependencies | no Shukla--Vedula recursion, standard LCU proof search, new GHL assumption, corrected `R_y` audit, O_D^BS/O_f work, raw H-free fold as an independent source route, or bulk `j = 5` route |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-03 Lower Expanded Backend Fold Reduction
+
+The lower attempt did not prove
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`.
+It reduced the same target to a concrete seven-summand equality by expanding
+`blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`.
+
+Accepted compiled reduction:
+
+| Declaration | Role | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3` | expands the backend branch fold into seven summands and exposes slot `0` as `oneTermRobinGamma3BoundarySevenGateMatrix_n3[0,0]` multiplied by the sparse-register projection amplitude | compiled |
+| `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | shows the backend-expansion statement is equivalent to the uncast active `[0,0]` entry equaling that explicit seven-summand fold | compiled equivalence; equality absent |
+
+Remaining obligation:
+
+| Item | Lean target | Status |
+|---|---|---|
+| active uncast `[0,0]` entry equals the explicit seven-summand backend fold | right side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | not proved |
+| backend expansion / raw prepared-sandwich field | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`, equivalently `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` under the clean-column contract | not proved |
+| theorem-facing flags | product-to-coefficient, LCU correctness, block projection, block correctness, normalized equality, circuit unitarity, final extraction | all remain false |
+
+## 2026-06-04 Middle Cycle 1 Prepared Projection Sync
+
+Definition first: the active source-correct projection route is
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env`.  Its
+selected entry is the prepared singleton clean entry of
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton backend fold feeds product route | `oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3` | QBE-local route wiring under the external clean-column contract | compiled |
+| raw H-free active fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | diagnostic/backlog unless recovered through the prepared route | not proved |
+| expanded seven-summand backend equality | right side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | `classical-lean-lemma` / QBE-local finite projection theorem | fixed next target |
+| all-slot sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract only | typed; not formalized |
+| focused product theorem | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing route | false |
+
+Lower packet:
+
+| Field | Requirement |
+|---|---|
+| target files | `QuantumBlockEncoding/RobinMatrix.lean` and focused `Tests/Basic.lean`; `QuantumBlockEncoding/CircuitSemantics.lean` only for a reusable finite-matrix helper |
+| fixed theorem | prove or strictly reduce the expanded-fold side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` |
+| equivalent theorem | prove `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` |
+| starting declarations | `oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3`, `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3`, `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3`, and `oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3` |
+| forbidden promotion | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction stay false until the exact Lean theorem compiles |
+
+## 2026-06-04 Middle Cycle 1 Closeout
+
+The source-correct route for this batch is accepted as compiled route wiring:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared singleton clean entry evaluates to backend fold | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | QBE-local bridge under the external clean-column contract | compiled |
+| prepared backend bridge feeds focused product route | `oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3 H env hUniform` | theorem-route wiring | compiled; final flags false |
+| raw H-free active fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | diagnostic/backlog unless recovered through the prepared route | not proved |
+| expanded seven-summand backend equality | right side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | `classical-lean-lemma` / finite projection theorem | next local recovery target |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract | typed; not formalized |
+
+No semantic record is promoted by this closeout.  The following fields remain
+false unless Lean later proves the exact theorem named by the field:
+`productToCoefficientProved`, `lcuCorrectProved`, `blockProjectionProved`,
+`blockCorrectProved`, `normalizedBlockEqualityProved`,
+`circuitUnitarityProved`, and `finalExtractionProved`.
+
+## 2026-06-04 Lower Expanded Fold Prepared-Route Bridge
+
+The lower attempt did not prove the expanded raw fold.  It added a direct
+compiled bridge that prevents the diagnostic H-free equality from becoming an
+independent theorem route.
+
+Accepted compiled declarations:
+
+| Declaration | Role | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_uncastActiveEntryExpandedFold_n3` | under the all-slot clean-column contract, the expanded raw fold is equivalent to the raw-entry prepared-sandwich field | compiled; equality absent |
+| `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_uncastActiveEntryExpandedFold_n3` | conditionally closes the named prepared-sandwich evaluation target from a proved expanded fold | compiled; conditional only |
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_uncastActiveEntryExpandedFold_n3` | conditionally feeds a proved expanded fold into the source-prepared projection target | compiled; conditional only |
+
+Remaining obligation:
+
+| Item | Lean target | Status |
+|---|---|---|
+| expanded raw fold | right side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | not proved |
+| equivalent backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | not proved |
+| equivalent prepared route field under `hUniform` | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | not proved |
+| theorem-facing flags | product-to-coefficient, LCU correctness, block projection, block correctness, normalized equality, circuit unitarity, final extraction | all remain false |
+
+## 2026-06-05 Middle Source-Prepared Projection Packet
+
+The active theorem-facing route is the prepared singleton clean-entry route,
+not the standalone H-free active fold. GHL2025 Eq. `arbitrary sparcity`
+supplies only the external all-slot sparse-register preparation contract, Fig.
+`fig:1 term ROBIN` applies the Robin product after that preparation, and
+Definition `def:block-encoding` projects the prepared clean output.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared target field evaluates to backend fold | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform` | QBE-local bridge under external clean-column contract | compiled |
+| prepared backend bridge feeds focused product route | `oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3 H env hUniform` | route wiring for the fixed product map | compiled; theorem-facing flags false |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite `CircuitMatrixSemantics` composition theorem | fixed next target |
+| equivalent active/prepared field | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | QBE-local finite matrix-composition field | absent |
+| raw H-free fold | right side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | diagnostic/backlog unless recovered through the prepared route | not proved |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract | typed; not formalized |
+
+Allowed next lower packet:
+
+| Field | Requirement |
+|---|---|
+| fixed theorem | prove or strictly reduce `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` |
+| equivalent theorem | prove or strictly reduce `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` |
+| recovery theorem | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` may be used only as prepared-route recovery, not as an independent H-free source route |
+| starting declarations | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3`, `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3`, `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3`, `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`, and `oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3` |
+| prohibited dependencies | no Shukla--Vedula recursion, standard LCU proof search, new GHL assumption, O_D^BS/O_f work, corrected `R_y` audit, bulk `j = 5`, or standalone H-free theorem closure |
+| false flags | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction remain false |
+
+## 2026-06-05 Lower Focused Product-Obligation Prepared Bridge
+
+Definitions first: the focused product obligation is
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, and the source-correct
+prepared backend equality is the evaluated equality between
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedProjectionEntry`
+and the same target's `backendBranchFold`.
+
+Accepted compiled declaration:
+
+| Declaration | Obligation state |
+|---|---|
+| `oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3` | connects the prepared backend equality to `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3.productObligation = oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`; all product, branch-decomposition, LCU, block, normalized-equality, and final-extraction flags remain false |
+
+Proof-DAG row:
+
+| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
+|---|---|---|---|---|---|---|
+| `one_term_gamma3_boundary_focused_product_obligation_prepared_backend_n3` | route the source-prepared backend equality into the fixed product-to-coefficient proof map without proving the product theorem | source-prepared target, prepared backend bridge, finite projection/product bridge, all-slot clean-column contract | `oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3` | fixed `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` route | prepared projection backend | compiled route; theorem-facing flags false |
+
+Remaining obligation: prove or reduce the active signal-zero entry equals the
+prepared singleton clean entry, equivalently the active/prepared field already
+listed in the current lower packet.  The standalone H-free fold remains a
+diagnostic recovery target only.
+
+## 2026-06-05 Middle Focused Product-Obligation Sync
+
+The prepared singleton clean-entry route is now attached to the fixed focused
+product-obligation map.  This is route wiring only, not proof of the product
+theorem or block encoding.
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| prepared target field evaluates to backend fold | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform` | QBE-local bridge under the external clean-column contract | compiled |
+| prepared backend bridge feeds the focused product obligation | `oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3 H env hUniform` | QBE-local route wiring for `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | compiled; theorem-facing flags false |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite `CircuitMatrixSemantics` composition theorem | fixed next target |
+| equivalent active/prepared field | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | QBE-local finite matrix-composition field | absent |
+| raw H-free fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` or the expanded-fold side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | diagnostic/recovery only through the prepared route | not proved |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract only | typed; not formalized |
+
+Lower packet:
+
+| Field | Requirement |
+|---|---|
+| target files | `QuantumBlockEncoding/RobinMatrix.lean` and focused `Tests/Basic.lean`; touch `QuantumBlockEncoding/CircuitSemantics.lean` only for a reusable finite-matrix helper |
+| fixed theorem | prove or strictly reduce `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` |
+| equivalent theorem | prove or strictly reduce `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` |
+| recovery theorem | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` may be used only to recover the prepared route, not as standalone H-free closure |
+| starting declarations | `oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3`, `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_preparedProjectionBackendEval_n3`, `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3`, `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3`, and `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` |
+| forbidden promotion | product-to-coefficient, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction stay false until the exact Lean theorem compiles |
+
+## 2026-06-05 Middle Direct Prepared-Clean Product Sync
+
+The newest lower route exposes the exact clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` at the fixed
+product-obligation layer.  This satisfies the source-correct prepared
+projection route under the explicit all-slot $H_W^{(\kappa)}$ contract, but it
+does not prove the product-to-coefficient theorem or any block-encoding field.
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| direct prepared clean entry evaluates to backend fold | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | QBE-local bridge under the external clean-column contract | compiled |
+| direct prepared clean bridge feeds focused product obligation | `oneTermRobinGamma3BoundaryFocusedProductObligation_preparedCompositeCleanEntryBackendEval_n3 H env hUniform` | QBE-local route wiring for `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | compiled; theorem-facing flags false |
+| direct prepared clean bridge feeds product-obligation wrapper | `oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3 H env hUniform` | QBE-local route wiring | compiled; product theorem false |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | internal paper step needing a finite `CircuitMatrixSemantics` proof | fixed next target |
+| equivalent active/prepared field | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | QBE-local finite matrix-composition theorem | absent |
+| raw H-free fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` or the expanded-fold side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | diagnostic/recovery only through the prepared route | not proved |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract only | typed; not formalized |
+
+Lower packet:
+
+| Field | Requirement |
+|---|---|
+| target files | `QuantumBlockEncoding/RobinMatrix.lean` and focused `Tests/Basic.lean`; `QuantumBlockEncoding/CircuitSemantics.lean` only for a reusable finite-matrix helper |
+| primary theorem | prove or strictly reduce `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` |
+| equivalent theorem | prove or strictly reduce `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` |
+| recovery theorem | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` may be used only to recover the prepared route, not as standalone H-free closure |
+| starting declarations | `oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3`, `oneTermRobinGamma3BoundaryFocusedProductObligation_preparedCompositeCleanEntryBackendEval_n3`, `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`, `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3`, `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3`, and `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` |
+| forbidden promotion | product-to-coefficient, branch decomposition, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction stay false until the exact Lean theorem compiles |
+
+## 2026-06-05 Middle Cycle 1 Source-Dependency Closeout
+
+The source-correct theorem-facing route is the prepared singleton clean entry,
+not the standalone H-free active fold.  GHL2025 Eq. `arbitrary sparcity`
+supplies the external all-slot $H_W^{(\kappa)}$ preparation contract, Fig.
+`fig:1 term ROBIN` applies the Robin boundary product after that preparation,
+and Definition `def:block-encoding` selects the prepared clean output.
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| direct prepared clean entry evaluates to backend fold | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | QBE-local bridge under the external clean-column contract | compiled |
+| direct prepared clean bridge feeds focused product obligation | `oneTermRobinGamma3BoundaryFocusedProductObligation_preparedCompositeCleanEntryBackendEval_n3 H env hUniform` | QBE-local route wiring for `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | compiled; theorem-facing flags false |
+| direct prepared clean bridge feeds product-obligation wrapper | `oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3 H env hUniform` | QBE-local route wiring | compiled; product theorem false |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | internal paper step needing a finite `CircuitMatrixSemantics` proof | fixed next target |
+| equivalent active/prepared field | `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` | QBE-local finite matrix-composition theorem | absent |
+| raw H-free active fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` or the expanded-fold side of `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3` | diagnostic/recovery only through the prepared route | not proved |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract only | typed; not formalized |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| primary theorem | prove or strictly reduce `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` |
+| equivalent theorem | prove or strictly reduce `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` |
+| fallback | one smaller compiled obstruction for the same active/prepared finite-composition theorem, recorded in `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` |
+| recovery theorem | use the H-free backend expansion only if it feeds the source-prepared route |
+| forbidden promotion | product-to-coefficient, branch decomposition, LCU correctness, cleanup, unitarity, block projection, block correctness, normalized equality, circuit unitarity, and final extraction stay false until Lean proves the exact named field |
+
+## 2026-06-05 Middle Post-Lower Source-Prepared Target Sync
+
+Definition first: the source-prepared backend field is
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedSingletonToBackendEvalStatement`.
+It is the prepared singleton clean entry selected by Definition
+`def:block-encoding`, not the standalone H-free active entry.
+
+Accepted compiled route:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| source-prepared backend field feeds fixed product map | `oneTermRobinGamma3BoundaryProductToCoefficientObligation_sourcePreparedTargetBackendEval_n3 H env hUniform` | QBE-local route wiring under the external clean-column contract | compiled; theorem-facing flags false |
+| prepared clean entry evaluates to backend fold | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | QBE-local bridge under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | compiled |
+| active signal-zero entry equals prepared singleton clean entry | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | internal paper step needing finite `CircuitMatrixSemantics` composition | fixed next target |
+| uncast active/prepared comparison | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | smaller equivalent local theorem | absent |
+| raw H-free active fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | diagnostic/recovery only through the prepared route | absent |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract only | typed; not formalized |
+
+Proof-diagnostics result:
+
+| Check | Result |
+|---|---|
+| hidden proof shortcut scan | no shortcut matches in `QuantumBlockEncoding` or `Tests` outside the excluded automation file |
+| semantic flag scan | only local convention, unitary, selected-branch, and false-flag tests matched; no forbidden theorem-facing flag is promoted |
+
+Next lower target:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+This target may also be approached through
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`
+or
+`(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement`.
+The H-free backend expansion remains a recovery lemma only, and product,
+branch-decomposition, LCU, block projection, normalized equality, block
+correctness, circuit unitarity, and final extraction remain false.
+
+## 2026-06-05 Lower Raw-Field Active Route
+
+Definition first: the raw-entry prepared-sandwich field is
+`(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement`.
+It remains the finite projection theorem to prove.  This lower packet only
+compiled routes from that field into the preferred source-prepared targets.
+
+Accepted compiled route:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| raw field feeds uncast active/prepared target | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_rawEntryPreparedSandwichField_n3 H env hRaw` | QBE-local route wiring | compiled; target conditional on raw field |
+| raw field feeds source-prepared active field | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3 H env hRaw` | QBE-local route wiring | compiled; active/prepared equality absent unconditionally |
+| raw signal-zero entry equals prepared sandwich fold | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | QBE-local finite projection theorem | absent |
+
+The next lower target is still to prove or strictly reduce the raw-entry
+prepared-sandwich field or the equivalent uncast active/prepared selected-entry
+statement.  All theorem-facing product, LCU, block, normalized-equality,
+unitarity, and final-extraction flags remain false.
+
+## 2026-06-05 Middle Raw-Field Obligation Sync
+
+The raw-field route is accepted as conditional route wiring only.  It does not
+prove the active/prepared selected-entry equality and does not upgrade any
+theorem-facing flag.
+
+Current obligation state:
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| raw signal-zero entry equals prepared sandwich fold | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | QBE-local finite projection theorem | absent |
+| raw field feeds uncast active/prepared target | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_rawEntryPreparedSandwichField_n3 H env hRaw` | route wiring | compiled; conditional on `hRaw` |
+| raw field feeds source-prepared active field | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3 H env hRaw` | route wiring | compiled; conditional on `hRaw` |
+| preferred active/prepared equality | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | QBE-local finite matrix-composition theorem | absent unconditionally |
+| prepared singleton backend bridge | `oneTermRobinGamma3BoundaryProductToCoefficientObligation_sourcePreparedTargetBackendEval_n3 H env hUniform` | QBE-local route wiring under the external clean-column contract | compiled; product theorem false |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract only | typed; not formalized |
+| raw H-free backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | diagnostic/recovery only through the prepared route | absent |
+
+Next lower packet:
+
+| Field | Requirement |
+|---|---|
+| primary target | prove or strictly reduce `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` |
+| smaller accepted target | prove or strictly reduce `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` |
+| equivalent wrappers | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` and `(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement` |
+| recovery rule | use the H-free backend expansion only if it feeds the source-prepared singleton route |
+| proof-attempt memory | record any smaller obstruction in `proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md` |
+| forbidden promotion | keep product-to-coefficient, branch-decomposition, LCU, block-projection, normalized-equality, block-correctness, unitarity, and final-extraction flags false until Lean proves the exact named field |
+
+## 2026-06-05 Middle Cycle 1 Final Obligation Sync
+
+The source-correct route is now fixed: the theorem-facing projection backend
+uses the prepared singleton clean entry under the explicit all-slot
+$H_W^{(\kappa)}$ contract.  The H-free active fold is diagnostic/backlog unless
+it is used only to recover the prepared singleton route.
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | Shukla--Vedula cited contract | typed; not formalized |
+| prepared clean entry evaluates to backend fold | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | QBE-local bridge under cited contract | compiled |
+| prepared clean bridge feeds fixed product map | `oneTermRobinGamma3BoundaryProductToCoefficientObligation_sourcePreparedTargetBackendEval_n3 H env hUniform` | QBE-local route wiring | compiled; product theorem false |
+| active signal-zero entry equals prepared singleton clean entry | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | QBE-local finite matrix-composition theorem | primary open target |
+| smaller prepared-sandwich field | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | QBE-local finite projection theorem | accepted smaller target |
+| raw H-free active fold | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | diagnostic/recovery only through prepared route | absent |
+
+Allowed lower packet:
+
+| Field | Requirement |
+|---|---|
+| write scope | `QuantumBlockEncoding/RobinMatrix.lean` and focused `Tests/Basic.lean`; `QuantumBlockEncoding/CircuitSemantics.lean` only for a reusable finite-matrix helper |
+| primary target | prove or strictly reduce `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` |
+| smaller accepted target | prove or strictly reduce `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` |
+| route discipline | do not assign the standalone H-free active equality as the theorem-facing target |
+| false flags | product-to-coefficient, branch-decomposition, LCU correctness, block projection, normalized equality, block correctness, circuit unitarity, and final extraction remain false until the exact Lean theorem compiles |
+
+## 2026-06-05 Evaluated-Fold Active Route Sync
+
+The newest accepted route wiring makes
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` the reduced
+local finite projection target.  Under
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, a proof
+of that evaluated fold feeds all active/prepared wrappers without promoting any
+theorem-facing flag.
+
+| Obligation | Lean target | Classification | Status |
+|---|---|---|---|
+| evaluated fold feeds uncast target | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_evaluatedBackendFold_n3 H env hUniform hFold` | QBE-local route wiring | compiled; conditional on `hFold` |
+| evaluated fold feeds source-prepared active field | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold` | QBE-local route wiring | compiled; conditional on `hFold` |
+| evaluated fold feeds active/prepared circuit field | `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold` | QBE-local route wiring | compiled; conditional on `hFold` |
+| evaluated finite projection fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | QBE-local finite matrix/projection theorem | primary open target |
+| raw H-free backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | diagnostic/recovery only through the prepared route | absent |
+
+Next lower work should prove or strictly reduce
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`.  It may use
+the H-free backend expansion only as a recovery route into the prepared
+singleton target.  Product-to-coefficient, branch decomposition, LCU, block
+projection, normalized equality, block correctness, circuit unitarity, and
+final extraction remain false until an exact Lean theorem compiles.

@@ -83,6 +83,19 @@ example :
       ⟨1, by native_decide⟩ ⟨0, by native_decide⟩ = (2 : Rat) := by
   native_decide
 
+def testBranchContribution : Fin 3 → Rat :=
+  fun s =>
+    if s.val = 0 then
+      1
+    else if s.val = 1 then
+      2
+    else
+      3
+
+example :
+    blockExtractionBranchContributionSum testBranchContribution = (6 : Rat) := by
+  native_decide
+
 def testCoeffDiagonalMatrix : Matrix 2 2 Coeff :=
   fun i j =>
     if i = j then
@@ -91,6 +104,26 @@ def testCoeffDiagonalMatrix : Matrix 2 2 Coeff :=
 
 def testCoeffFlipMatrix : Matrix 2 2 Coeff :=
   fun i j => if i.val + j.val = 1 then Coeff.rat 1 else Coeff.rat 0
+
+def testCoeffDiagonalGateMatrix : GateMatrix Coeff 1 where
+  gate := Gate.oneQubit "D" 0
+  matrix := testCoeffDiagonalMatrix
+  unitary := {
+    description := "non-unitary symbolic diagonal test matrix"
+    source := "Tests/Basic.lean"
+    proved := false
+  }
+
+example :
+    Coeff.evalWith (fun _ => 0)
+        ((evalGateMatrices [testCoeffDiagonalGateMatrix])
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩) =
+      Coeff.evalWith (fun _ => 0)
+        (testCoeffDiagonalGateMatrix.matrix
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩) :=
+  evalWith_evalGateMatrices_single (fun _ => 0)
+    testCoeffDiagonalGateMatrix
+    ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
 
 example :
     Coeff.evalWith (fun _ => 0)
@@ -2997,6 +3030,49 @@ example :
       ⟨6, by native_decide⟩
       ⟨GHL2025.robinSparseColumnMap 3 3 6, by native_decide⟩ := by native_decide
 
+-- Global sparse-slot source: slot 2 is the active diagonal slot for boundary row 0.
+example :
+    GHL2025.robinGlobalSparseAmplitudeValue 3 2 0 =
+      Coeff.add (Coeff.rat ((-5 : Rat) / 2))
+        (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")) :=
+  GHL2025.robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3
+
+-- The same global slot differs from the old row-local slot numbering.
+example :
+    GHL2025.robinGlobalSparseAmplitudeValue 3 2 0 ≠
+      GHL2025.robinSparseAmplitudeValue 3 2 0 :=
+  GHL2025.robinGlobalSparseAmplitudeValue_boundarySlot2_differs_rowLocal_n3
+
+-- Matrix coherence for the focused boundary packet: global slot 2 maps to column 0.
+example :
+    GHL2025.robinGlobalSparseAmplitudeValue 3 2 0 =
+    (Examples.RobinHeat.robinDerivativeMatrix 3)
+      ⟨0, by native_decide⟩
+      ⟨GHL2025.oneTermRobinGlobalSparseAddress 3 2 0, by native_decide⟩ := by
+  native_decide
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.derivativeNormalizerNDSourceBound p 0 2).sourceCoefficient =
+      GHL2025.robinGlobalSparseAmplitudeValue 3 2 0 ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p 0 2).coefficient =
+      GHL2025.robinGlobalSparseAmplitudeValue 3 2 0 ∧
+    (GHL2025.boundaryRotationAngleNormalizerProofRoute p 0 2).coefficient =
+      GHL2025.robinGlobalSparseAmplitudeValue 3 2 0 ∧
+    (GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute p 0 2).coefficient =
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p 0 2).coefficient := by
+  exact GHL2025.robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes
+    { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 } 0 2
+
+example :
+    let p : GHL2025.OneTermRobinParameters :=
+      { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
+    (GHL2025.derivativeNormalizerNDContract p 0 2).coefficientBound.proved = false ∧
+      (GHL2025.boundaryRotationAngleNormalizerProofRoute p 0 2).normalizerBound.proved =
+        false :=
+  by native_decide
+
 -- Cycle 6->9: O_f function oracle diagonal matrix tests (main.tex:870-910)
 -- O_f now uses robinFunctionValue (symbolic f(x_j)) instead of derivative amplitude data.
 
@@ -3834,7 +3910,7 @@ example :
 
 example :
     let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
-    (GHL2025.boundaryRotationAngleNormalizerContract p 0 0).coefficient =
+    (GHL2025.boundaryRotationAngleNormalizerContract p 0 2).coefficient =
       Coeff.add (Coeff.rat ((-5 : Rat) / 2))
         (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")) := by
   native_decide
@@ -3878,12 +3954,12 @@ example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
 
 example (p : GHL2025.OneTermRobinParameters) (row sparse : Nat) :
     (GHL2025.boundaryRotationAngleNormalizerContract p row sparse).coefficient =
-      GHL2025.robinSparseAmplitudeValue p.n sparse row :=
+      GHL2025.robinGlobalSparseAmplitudeValue p.n sparse row :=
   GHL2025.boundaryRotationAngleNormalizerContract_coefficient p row sparse
 
 example :
     let p : GHL2025.OneTermRobinParameters := { n := 3, kappa := 7, functionPieces := 1, polynomialDegreeCost := 1 }
-    GHL2025.boundaryRotationNormalizedCoefficient p 0 0 =
+    GHL2025.boundaryRotationNormalizedCoefficient p 0 2 =
       Coeff.mul
         (Coeff.add (Coeff.rat ((-5 : Rat) / 2))
           (Coeff.mul (Coeff.rat ((7 : Rat) / 3)) (Coeff.symbol "A1*dx")))
@@ -6277,9 +6353,3618 @@ example :
     Examples.RobinHeat.oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript
   native_decide
 
--- Entry-level nonzero checks for the full product are tracked as future proof
--- obligations rather than compiled tests, because they force large symbolic
--- matrix multiplication at n=3.
+-- Omitted bulk gamma3 packet: for displayed-omitted column j=5, slot 5
+-- follows the source-backed bulk path with indicator 1 and endpoint 228.
+example :
+    let interface :=
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3
+    interface.systemRow = 2 ∧
+      interface.systemColumn = 5 ∧
+      interface.sparseSlot = 5 ∧
+      interface.bulkColumnIsBulk = true ∧
+      interface.bulkBranchIsOmittedByDisplay = true ∧
+      interface.fullEndpointUsed = true ∧
+      interface.cleanBoundaryEndpointComparisonUsed = false ∧
+      interface.cleanSource = 90 ∧
+      interface.afterIndic = 218 ∧
+      interface.sourceBulkIndicator = 1 ∧
+      interface.afterOdbsKetZero = 170 ∧
+      interface.afterSwapKetZero = 212 ∧
+      interface.daggerKetZeroEndpoint = 228 ∧
+      interface.ketZeroFactors = [
+        Coeff.rat 1,
+        Coeff.symbol "odts_cos_half_5_5",
+        Coeff.rat 1,
+        Coeff.rat 1,
+        Coeff.mul (Coeff.symbol "f_3_5") (Coeff.symbol "N_f_inv"),
+        Coeff.rat 1,
+        Coeff.rat 1
+      ] ∧
+      interface.productObligation.proved = false ∧
+      interface.indicatorProjectionConvention.proved = false ∧
+      interface.uniquePathSupportObligation.proved = false ∧
+      interface.derivativeAmplitudeNormalizerProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false := by
+  have _bulk :=
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3_transcript
+  native_decide
+
+-- Branch-correct boundary gamma3 packet: for displayed column j=0, slot 2 is
+-- the sparse slot that routes column 0 back to row 0; product flags stay false.
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    let branch := Examples.RobinHeat.oneTermRobinGamma3BranchCorrectSourceMap_n3
+    let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let slot0Col := Examples.RobinHeat.oneTermRobinGamma3PaperBasisIndex
+      p 0 sysCol.val
+    let slot2Col := Examples.RobinHeat.oneTermRobinGamma3PaperBasisIndex
+      p 2 sysCol.val
+    let slot2Row := Examples.RobinHeat.oneTermRobinGamma3PaperBasisIndex
+      p 2 sysRow.val
+    branch.boundaryColumn = 0 ∧
+      branch.boundaryColumnIsBoundary = true ∧
+      branch.boundaryColumnIsBulk = false ∧
+      slot0Col = 0 ∧
+      GHL2025.oneTermRobinGlobalSparseAddress 3 0 sysCol.val = 6 ∧
+      GHL2025.oneTermRobinGlobalSparseAddress 3 2 sysCol.val =
+        sysRow.val ∧
+      slot2Col = 32 ∧
+      slot2Row = 32 ∧
+      GHL2025.indicatorOracleImage p slot2Col = slot2Col ∧
+      GHL2025.bandedSparseAccessPaperImage p slot2Col = 0 ∧
+      GHL2025.swapOracleImage p
+          (GHL2025.bandedSparseAccessPaperImage p slot2Col) = 0 ∧
+      GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate p slot2Col =
+        slot2Row ∧
+      branch.boundaryProductObligation.proved = false ∧
+      (Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation
+          3 sysRow sysCol).proved = false ∧
+      branch.lcuCorrectProved = false ∧
+      branch.blockProjectionProved = false ∧
+      branch.blockCorrectProved = false ∧
+      branch.finalExtractionProved = false := by
+  have _audit :=
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3
+  native_decide
+
+-- Boundary gamma3 product interface: the branch factor list is now compiled,
+-- but unique-path support and product-to-coefficient remain false obligations.
+example :
+    let interface :=
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3
+    interface.systemRow = 0 ∧
+      interface.systemColumn = 0 ∧
+      interface.sparseSlot = 2 ∧
+      interface.cleanSource = 32 ∧
+      interface.afterIndic = 32 ∧
+      interface.afterOdbsKetZero = 0 ∧
+      interface.afterOdbsKetOne = 1 ∧
+      interface.daggerKetZeroEndpoint = 32 ∧
+      interface.daggerKetOneEndpoint = 33 ∧
+      interface.ketZeroFactors = [
+        Coeff.rat 1,
+        Coeff.rat 1,
+        Coeff.symbol "boundary_cos_half_0_2",
+        Coeff.rat 1,
+        Coeff.mul (Coeff.symbol "f_3_0") (Coeff.symbol "N_f_inv"),
+        Coeff.rat 1,
+        Coeff.rat 1
+      ] ∧
+      interface.uniquePathSupportObligation.proved = false ∧
+      interface.exactProductEqualityProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false := by
+  have _interface :=
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3_transcript
+  native_decide
+
+-- Boundary unique-path support audit: the adjacent ket-one target contribution
+-- has concrete zero entries, while the all-other-path support theorem remains
+-- the next obligation.
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    let fullDim := qubitDim (GHL2025.oneTermRobinTotalQubits p)
+    let audit :=
+      Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupportAudit_n3
+    let row0 : Fin fullDim := ⟨0, by native_decide⟩
+    let row1 : Fin fullDim := ⟨1, by native_decide⟩
+    let row32 : Fin fullDim := ⟨32, by native_decide⟩
+    let row33 : Fin fullDim := ⟨33, by native_decide⟩
+    audit.survivingKetZeroPath = [32, 32, 32, 32, 0, 0, 0, 32] ∧
+      audit.adjacentKetOnePath = [32, 32, 32, 33, 1, 1, 1, 33] ∧
+      GHL2025.sparseAmplitudeOracleDTRotationMatrix p row33 row32 =
+        Coeff.rat 0 ∧
+      GHL2025.functionOraclePaperMatrix p row0 row1 = Coeff.rat 0 ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p row32 row1 =
+        Coeff.rat 0 ∧
+      audit.adjacentBranchKilledAtOf = true ∧
+      audit.adjacentBranchKilledAtDagger = true ∧
+      audit.firstMissingGateIndex = 3 ∧
+      audit.firstMissingSupportColumn = 32 ∧
+      audit.supportComplete = false ∧
+      audit.uniquePathSupportObligation.proved = false ∧
+      audit.productToCoefficientProved = false ∧
+      audit.blockCorrectProved = false ∧
+      audit.finalExtractionProved = false := by
+  have _support :=
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupport_n3
+  native_decide
+
+-- Boundary gamma3 prefix support: after `O_D^BS * Ry_boundary * O_DT^S *
+-- U_indic`, source column 32 has evaluated support only in rows 0 and 1.
+example :
+    let env : String → Rat := fun _ => 0
+    let row2 : Fin Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨2, by native_decide⟩
+    Coeff.evalWith env
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixMatrix_n3
+        row2 Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3) = 0 := by
+  exact
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3
+      (fun _ => 0) ⟨2, by native_decide⟩ (by native_decide) (by native_decide)
+
+-- Boundary gamma3 seven-gate support: the adjacent row-1 branch is killed by
+-- the suffix after the compiled prefix-support step.
+example :
+    let env : String → Rat := fun _ => 0
+    Coeff.evalWith env
+        (Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixMatrix_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow1_n3) *
+      Coeff.evalWith env
+        (Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixMatrix_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow1_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3) = 0 := by
+  exact
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateSupport_n3
+      (fun _ => 0) Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow1_n3
+      (by native_decide)
+
+-- The focused seven-gate row-32/column-32 entry reduces to the row-0
+-- intermediate branch; this is not yet the product-to-coefficient theorem.
+example :
+    let env : String → Rat := fun _ => 0
+    Coeff.evalWith env
+      (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      Coeff.evalWith env
+        (Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixMatrix_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3) *
+      Coeff.evalWith env
+        (Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixMatrix_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3) := by
+  exact
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateUniquePath_n3
+      (fun _ => 0)
+
+-- The focused seven-gate row-32/column-32 entry now evaluates to the
+-- branch-local boundary cosine times the clean O_f amplitude.  The final
+-- product-to-Ak coefficient theorem remains a separate obligation.
+example :
+    let env : String → Rat := fun s =>
+      if s = "f_3_0" then 2
+      else if s = "N_f_inv" then 3
+      else if s = "boundary_cos_half_0_2" then 5
+      else 0
+    Coeff.evalWith env
+      (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      (env "f_3_0" * env "N_f_inv") * env "boundary_cos_half_0_2" := by
+  exact
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3
+      (fun s =>
+        if s = "f_3_0" then 2
+        else if s = "N_f_inv" then 3
+        else if s = "boundary_cos_half_0_2" then 5
+        else 0)
+
+-- The focused boundary Ry coefficient bridge is only a source-contract gap.
+example :
+    let bridge := Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCoefficientBridge_n3
+    bridge.cosHalfEntry = Coeff.symbol "boundary_cos_half_0_2" ∧
+      bridge.normalizedCoefficient =
+        GHL2025.boundaryRotationNormalizedCoefficient
+          (Examples.RobinHeat.oneTermParameters 3) 0 2 ∧
+      bridge.normalizedCoefficient =
+        Coeff.mul (GHL2025.robinGlobalSparseAmplitudeValue 3 2 0)
+          (Coeff.symbol "N_D_inv") ∧
+      bridge.angleConventionObligation.proved = false ∧
+      bridge.productObligation.proved = false ∧
+      bridge.boundaryHalfAngleSemanticsProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  native_decide
+
+-- The boundary Ry angle-convention decision blocks product proof search.
+example :
+    let decision :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3
+    decision.sourceSpecifiesDirectHalfAngleCoefficientRule = false ∧
+      decision.humanInputRequired = true ∧
+      decision.productSearchBlocked = true ∧
+      decision.decisionObligation.proved = false ∧
+      decision.angleConventionObligationProved = false ∧
+      decision.boundaryHalfAngleSemanticsProved = false ∧
+      decision.productToCoefficientProved = false ∧
+      decision.lcuCorrectProved = false ∧
+      decision.blockProjectionProved = false ∧
+      decision.blockCorrectProved = false ∧
+      decision.finalExtractionProved = false := by
+  have _decision :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript
+  native_decide
+
+-- Lower packets must not resume product proof search while the boundary Ry
+-- angle convention decision is still open.
+example :
+    let guard :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3
+    guard.decision.humanInputRequired = true ∧
+      guard.decision.productSearchBlocked = true ∧
+      guard.lowerProductProofPacketAllowed = false ∧
+      guard.sourceBackedConventionPacketAllowed = true ∧
+      guard.bridgeObligationProved = false ∧
+      guard.decisionObligationProved = false ∧
+      guard.productToCoefficientProved = false ∧
+      guard.lcuCorrectProved = false ∧
+      guard.blockProjectionProved = false ∧
+      guard.blockCorrectProved = false ∧
+      guard.finalExtractionProved = false := by
+  have _guard :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3_transcript
+  native_decide
+
+-- Source-evidence boundary for the frozen boundary Ry route: future work must
+-- supply a paper-backed convention or keep the coefficient bridge open.
+example :
+    let guard :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3
+    guard.guardReason =
+        "product-to-coefficient search is blocked until the boundary Ry angle convention has source-backed or human input" ∧
+      guard.decision.acceptedSourceBackedOptions =
+        "either keep standard Ry and leave the coefficient bridge as a theorem gap, or supply an author/paper-backed boundary amplitude-preparation convention" ∧
+      guard.decision.sourceSpecifiesDirectHalfAngleCoefficientRule = false ∧
+      guard.decision.bridge.thetaFormula =
+        "theta_j^s = arccos(D_j^(s) / N_D)" ∧
+      guard.decision.bridge.cosHalfFormula =
+        "sqrt((1 + D_j^(s) / N_D) / 2)" ∧
+      guard.decision.bridge.angleConventionObligation.source =
+        "GHL2025 Eq. angles for Ry and Eq. ROBIN clarified, arXiv:2506.20478; source-contract gap recorded in cited-results row GHL2025.RyBoundary.AngleConventionBoundarySlot2" ∧
+      guard.decision.decisionObligation.source =
+        "GHL2025 Eq. angles for Ry and Eq. ROBIN clarified; QBE bridge oneTermRobinGamma3BoundaryRyCoefficientBridge_n3" ∧
+      guard.lowerProductProofPacketAllowed = false ∧
+      guard.sourceBackedConventionPacketAllowed = true ∧
+      guard.productToCoefficientProved = false := by
+  have _guard :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3_transcript
+  native_decide
+
+-- Source-backed correction: standard Ry uses half-angle entries, so the
+-- faithful continuation is the corrected input angle `2 * arccos(D/N_D)`.
+example :
+    let decision :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3
+    decision.correctedThetaFormula =
+        "theta_j^s = 2 arccos(D_j^(s) / N_D)" ∧
+      decision.correctedAngleSourceBacked = true ∧
+      decision.useStandardRyMatrixConvention = true ∧
+      decision.directCoefficientEntryAllowed = true ∧
+      decision.productSearchBlocked = false ∧
+      decision.lowerProductProofPacketAllowed = true ∧
+      decision.semanticFlagsRemainFalseUntilLeanProof = true ∧
+      decision.productToCoefficientProved = false ∧
+      decision.lcuCorrectProved = false ∧
+      decision.blockProjectionProved = false ∧
+      decision.blockCorrectProved = false ∧
+      decision.finalExtractionProved = false := by
+  have _decision :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3_transcript
+  native_decide
+
+-- The corrected-angle route now has a conditional coefficient interface.
+example :
+    let interface :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3
+    interface.productEntryFactor = Coeff.symbol "boundary_cos_half_0_2" ∧
+      interface.normalizedCoefficient =
+        GHL2025.boundaryRotationNormalizedCoefficient
+          (Examples.RobinHeat.oneTermParameters 3) 0 2 ∧
+      interface.correctedEntryHypothesis.proved = false ∧
+      interface.productObligation.proved = false ∧
+      interface.correctedAngleSourceBacked = true ∧
+      interface.coefficientInterfaceCompiled = true ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false := by
+  have _interface :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3_transcript
+  native_decide
+
+-- Under the corrected-entry environment hypothesis, the boundary product uses
+-- the normalized coefficient instead of the unresolved free symbol.
+example :
+    let env : String → Rat := fun s =>
+      if s = "f_3_0" then 3
+      else if s = "N_f_inv" then 4
+      else if s = "N_D_inv" then 2
+      else if s = "A1*dx" then 0
+      else if s = "boundary_cos_half_0_2" then -5
+      else 0
+    Coeff.evalWith env
+      (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      (env "f_3_0" * env "N_f_inv") *
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (Examples.RobinHeat.oneTermParameters 3) 0 2) := by
+  exact
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedAngle_n3
+      (fun s =>
+        if s = "f_3_0" then 3
+        else if s = "N_f_inv" then 4
+        else if s = "N_D_inv" then 2
+        else if s = "A1*dx" then 0
+        else if s = "boundary_cos_half_0_2" then -5
+        else 0)
+      (by native_decide)
+
+-- The corrected-entry route expands to the branch-local normalized derivative
+-- coefficient.  The theorem-level quotient/projection convention is still an
+-- explicit obstruction.
+example :
+    let env : String → Rat := fun s =>
+      if s = "f_3_0" then 3
+      else if s = "N_f_inv" then 4
+      else if s = "N_D_inv" then 2
+      else if s = "A1*dx" then 0
+      else if s = "boundary_cos_half_0_2" then -5
+      else 0
+    Coeff.evalWith env
+      (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3) =
+      Coeff.evalWith env
+        (Coeff.mul
+          (Coeff.mul (GHL2025.robinFunctionValue 3 0)
+            (Coeff.symbol "N_f_inv"))
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (Examples.RobinHeat.oneTermParameters 3) 0 2)) := by
+  exact
+    Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3
+      (fun s =>
+        if s = "f_3_0" then 3
+        else if s = "N_f_inv" then 4
+        else if s = "N_D_inv" then 2
+        else if s = "A1*dx" then 0
+        else if s = "boundary_cos_half_0_2" then -5
+        else 0)
+      (by native_decide)
+
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3
+    obstruction.productEntryExpanded = true ∧
+      obstruction.akEntryMatched = true ∧
+      obstruction.normalizedQuotientConvention.proved = false ∧
+      obstruction.sparseRegisterProjectionConvention.proved = false ∧
+      obstruction.productObligation.proved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false := by
+  have _obstruction :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3_transcript
+  native_decide
+
+-- The focused boundary normalizer/projection packet names the remaining
+-- `N_D*N_f*kappa` convention without proving the product theorem.
+example :
+    let convention :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3
+    convention.obstruction =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3 ∧
+      convention.targetEntry = convention.targetEntryLocalFormula ∧
+      convention.theoremNormalizer = GHL2025.oneTermRobinNormalizer ∧
+      convention.finiteCompositionNormalizer = GHL2025.oneTermRobinNormalizer ∧
+      convention.theoremNormalizer = convention.finiteCompositionNormalizer ∧
+      convention.normalizerFormula = "N_D*N_f*kappa" ∧
+      convention.quotientConvention.proved = false ∧
+      convention.sparseProjectionConvention.proved = false ∧
+      convention.productObligation.proved = false ∧
+      convention.finiteCompositionNormalizedEquality.proved = false ∧
+      convention.productToCoefficientProved = false ∧
+      convention.finiteCompositionNormalizedEqualityProved = false ∧
+      convention.lcuCorrectProved = false ∧
+      convention.blockProjectionProved = false ∧
+      convention.blockCorrectProved = false ∧
+      convention.finalExtractionProved = false := by
+  have _convention :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3_transcript
+  native_decide
+
+example (env : String → Rat) :
+    let convention :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3
+    Coeff.evalWith env convention.theoremNormalizer =
+      env "N_D" * env "N_f" * env "kappa" := by
+  simp [Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3]
+
+-- Middle split target: the next lower packet must treat symbolic inverse
+-- semantics and the sparse-register kappa factor as separate obligations.
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3
+    let convention :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3
+    target.convention = convention ∧
+      target.symbolicInverseObligation = convention.quotientConvention ∧
+      target.kappaProjectionObligation = convention.sparseProjectionConvention ∧
+      target.finiteCompositionNormalizedEquality =
+        convention.finiteCompositionNormalizedEquality ∧
+      target.productObligation = convention.productObligation ∧
+      target.branchLocalProduct = convention.branchLocalProduct ∧
+      target.targetEntry = convention.targetEntry ∧
+      target.theoremNormalizer = convention.theoremNormalizer ∧
+      target.symbolicInverseProved = false ∧
+      target.kappaProjectionProved = false ∧
+      target.normalizedBlockEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false := by
+  have _target :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3_transcript
+  native_decide
+
+example (env : String → Rat)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1) :
+    Coeff.evalWith env
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.branchLocalProduct *
+      (env "N_D" * env "N_f") =
+    Coeff.evalWith env
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3.targetEntry :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseEval_n3
+    env hND hNF
+
+-- The symbolic-inverse packet compiles the local algebra but keeps the
+-- theorem-facing inverse, kappa projection, and composition obligations false.
+example :
+    let semantics :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3
+    semantics.splitTarget = target ∧
+      semantics.conditionalEvalCompiled = true ∧
+      semantics.symbolicInverseObligation = target.symbolicInverseObligation ∧
+      semantics.kappaProjectionObligation = target.kappaProjectionObligation ∧
+      semantics.finiteCompositionNormalizedEquality =
+        target.finiteCompositionNormalizedEquality ∧
+      semantics.productObligation = target.productObligation ∧
+      semantics.symbolicInverseObligation.proved = false ∧
+      semantics.kappaProjectionObligation.proved = false ∧
+      semantics.finiteCompositionNormalizedEquality.proved = false ∧
+      semantics.productObligation.proved = false ∧
+      semantics.symbolicInverseProved = false ∧
+      semantics.kappaProjectionProved = false ∧
+      semantics.normalizedBlockEqualityProved = false ∧
+      semantics.productToCoefficientProved = false ∧
+      semantics.lcuCorrectProved = false ∧
+      semantics.blockProjectionProved = false ∧
+      semantics.blockCorrectProved = false ∧
+      semantics.finalExtractionProved = false := by
+  have _semantics :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3_transcript
+  native_decide
+
+-- The kappa-projection target isolates the remaining sparse-register
+-- preparation/projection factor without promoting the product theorem.
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3
+    target.splitTarget =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3 ∧
+      target.symbolicInverseSemantics =
+        Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3 ∧
+      target.citedResultId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      target.focusedKappa = 7 ∧
+      target.focusedSparseSlot = 2 ∧
+      target.sourceBasisIndex = 32 ∧
+      target.targetBasisIndex = 32 ∧
+      target.productProjectionFormula = "1/kappa" ∧
+      target.symbolicInverseConditionalLemmaCompiled = true ∧
+      target.dependsOnUniformPreparationCitation = true ∧
+      target.uniformPreparationObligation.proved = false ∧
+      target.kappaProjectionObligation.proved = false ∧
+      target.finiteCompositionNormalizedEquality.proved = false ∧
+      target.productObligation.proved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false := by
+  have _target :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3_transcript
+  native_decide
+
+example (env : String → Rat)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1) :
+    Coeff.evalWith env
+        (Coeff.mul
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          (Coeff.symbol "kappa_inv")) *
+      Coeff.evalWith env
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.theoremNormalizer =
+    Coeff.evalWith env
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.targetEntry :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionEval_n3
+    env hND hNF hkappa
+
+-- The kappa-projection semantics packet compiles only the conditional algebra;
+-- sparse-register preparation/projection and block-composition flags stay false.
+example :
+    let semantics :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3
+    semantics.projectionTarget = target ∧
+      semantics.projectedBranchProduct =
+        Coeff.mul target.splitTarget.branchLocalProduct
+          (Coeff.symbol "kappa_inv") ∧
+      semantics.projectionFactor = Coeff.symbol "kappa_inv" ∧
+      semantics.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      semantics.symbolicInverseConditionalLemmaCompiled = true ∧
+      semantics.kappaProjectionConditionalLemmaCompiled = true ∧
+      semantics.uniformPreparationObligation.proved = false ∧
+      semantics.kappaProjectionObligation.proved = false ∧
+      semantics.finiteCompositionNormalizedEquality.proved = false ∧
+      semantics.productObligation.proved = false ∧
+      semantics.uniformPreparationProved = false ∧
+      semantics.kappaProjectionProved = false ∧
+      semantics.normalizedBlockEqualityProved = false ∧
+      semantics.productToCoefficientProved = false ∧
+      semantics.lcuCorrectProved = false ∧
+      semantics.blockProjectionProved = false ∧
+      semantics.blockCorrectProved = false ∧
+      semantics.finalExtractionProved = false := by
+  have _semantics :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3_transcript
+  native_decide
+
+-- The projection source contract explains the inserted kappa_inv factor without
+-- proving the cited uniform preparation or block-projection convention.
+example :
+    let contract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3
+    let semantics :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3
+    contract.kappaSemantics = semantics ∧
+      contract.citedResultId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      contract.preparationAmplitudeFormula = "1/sqrt(kappa)" ∧
+      contract.projectionAmplitudeFormula = "1/sqrt(kappa)" ∧
+      contract.combinedProjectionFormula = "1/kappa" ∧
+      contract.focusedKappa = 7 ∧
+      contract.focusedSparseSlot = 2 ∧
+      contract.projectionFactor = Coeff.symbol "kappa_inv" ∧
+      contract.projectedBranchProduct = semantics.projectedBranchProduct ∧
+      contract.uniformPreparationObligation =
+        semantics.uniformPreparationObligation ∧
+      contract.matchingProjectionObligation =
+        semantics.kappaProjectionObligation ∧
+      contract.conditionalEvalLemma =
+        "oneTermRobinGamma3BoundaryKappaProjectionEval_n3" ∧
+      contract.sourceContractCompiled = true ∧
+      contract.uniformPreparationObligation.proved = false ∧
+      contract.matchingProjectionObligation.proved = false ∧
+      contract.projectionFactorSemantics.proved = false ∧
+      contract.finiteCompositionNormalizedEquality.proved = false ∧
+      contract.productObligation.proved = false ∧
+      contract.uniformPreparationProved = false ∧
+      contract.matchingProjectionProved = false ∧
+      contract.projectionFactorSemanticsProved = false ∧
+      contract.normalizedBlockEqualityProved = false ∧
+      contract.productToCoefficientProved = false ∧
+      contract.lcuCorrectProved = false ∧
+      contract.blockProjectionProved = false ∧
+      contract.blockCorrectProved = false ∧
+      contract.finalExtractionProved = false := by
+  have _contract :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript
+  native_decide
+
+-- The projection-factor semantics packet proves only finite slot/index wiring;
+-- the amplitude and block-projection meanings of kappa_inv remain obligations.
+example :
+    let factor :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3
+    let contract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3
+    factor.sourceContract = contract ∧
+      factor.finiteIndexLemma =
+        "oneTermRobinGamma3BoundaryProjectionFactorIndex_n3" ∧
+      factor.preparedSparseSlot = 2 ∧
+      factor.projectedSparseSlot = 2 ∧
+      factor.preparedBasisIndex = 32 ∧
+      factor.projectedBasisIndex = 32 ∧
+      factor.preparedAndProjectedSlotAgree = true ∧
+      factor.preparedAndProjectedBasisAgree = true ∧
+      factor.projectionFactor = Coeff.symbol "kappa_inv" ∧
+      factor.projectedBranchProduct = contract.projectedBranchProduct ∧
+      factor.factorSemanticsObligation =
+        contract.projectionFactorSemantics ∧
+      factor.sourceContractCompiled = true ∧
+      factor.finiteIndexLemmaCompiled = true ∧
+      factor.factorSemanticsObligation.proved = false ∧
+      factor.uniformPreparationObligation.proved = false ∧
+      factor.matchingProjectionObligation.proved = false ∧
+      factor.finiteCompositionNormalizedEquality.proved = false ∧
+      factor.productObligation.proved = false ∧
+      factor.projectionFactorSemanticsProved = false ∧
+      factor.normalizedBlockEqualityProved = false ∧
+      factor.productToCoefficientProved = false ∧
+      factor.lcuCorrectProved = false ∧
+      factor.blockProjectionProved = false ∧
+      factor.blockCorrectProved = false ∧
+      factor.finalExtractionProved = false := by
+  have _factor :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3_transcript
+  native_decide
+
+-- The projection-factor obstruction separates the cited uniform-preparation
+-- contract from QBE's matching block-projection convention.
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3
+    let factor :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3
+    obstruction.factorSemantics = factor ∧
+      obstruction.citedUniformPreparationId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      obstruction.uniformPreparationObligation =
+        factor.uniformPreparationObligation ∧
+      obstruction.matchingProjectionObligation =
+        factor.matchingProjectionObligation ∧
+      obstruction.factorSemanticsObligation =
+        factor.factorSemanticsObligation ∧
+      obstruction.finiteIndexLemmaCompiled = true ∧
+      obstruction.conditionalEvalCompiled = true ∧
+      obstruction.uniformPreparationObligation.proved = false ∧
+      obstruction.matchingProjectionObligation.proved = false ∧
+      obstruction.factorSemanticsObligation.proved = false ∧
+      obstruction.citedUniformPreparationProved = false ∧
+      obstruction.matchingProjectionProved = false ∧
+      obstruction.factorSemanticsProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false := by
+  have _obstruction :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3_transcript
+  native_decide
+
+-- The matching-projection convention pins the local bra to sparse slot 2 and
+-- clean basis index 32 without proving the projection amplitude.
+example :
+    let convention :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3
+    convention.obstruction = obstruction ∧
+      convention.sourceContract =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3 ∧
+      convention.factorSemantics =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3 ∧
+      convention.focusedSparseSlot = 2 ∧
+      convention.preparedBasisIndex = 32 ∧
+      convention.projectedBasisIndex = 32 ∧
+      convention.preparedBasisIndex = convention.projectedBasisIndex ∧
+      convention.matchingProjectionObligation =
+        obstruction.matchingProjectionObligation ∧
+      convention.uniformPreparationObligation =
+        obstruction.uniformPreparationObligation ∧
+      convention.factorSemanticsObligation =
+        obstruction.factorSemanticsObligation ∧
+      convention.finiteIndexLemmaCompiled = true ∧
+      convention.obstructionPacketCompiled = true ∧
+      convention.matchingProjectionConventionCompiled = true ∧
+      convention.matchingProjectionObligation.proved = false ∧
+      convention.factorSemanticsObligation.proved = false ∧
+      convention.productObligation.proved = false ∧
+      convention.uniformPreparationProved = false ∧
+      convention.matchingProjectionProved = false ∧
+      convention.factorSemanticsProved = false ∧
+      convention.productToCoefficientProved = false ∧
+      convention.lcuCorrectProved = false ∧
+      convention.blockProjectionProved = false ∧
+      convention.blockCorrectProved = false ∧
+      convention.finalExtractionProved = false := by
+  have _convention :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript
+  native_decide
+
+-- The matching-projection amplitude obstruction separates the bra-side
+-- projection amplitude from the external uniform-preparation contract.
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3
+    let convention :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3
+    obstruction.matchingConvention = convention ∧
+      obstruction.preparationAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      obstruction.matchingProjectionAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      obstruction.combinedAmplitudeFactor =
+        Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv") ∧
+      obstruction.expectedProjectionFactor =
+        Coeff.symbol "kappa_inv" ∧
+      obstruction.uniformPreparationObligation =
+        convention.uniformPreparationObligation ∧
+      obstruction.matchingProjectionObligation =
+        convention.matchingProjectionObligation ∧
+      obstruction.factorSemanticsObligation =
+        convention.factorSemanticsObligation ∧
+      obstruction.symbolicProductEvalCompiled = true ∧
+      obstruction.matchingProjectionObligation.proved = false ∧
+      obstruction.factorSemanticsObligation.proved = false ∧
+      obstruction.productObligation.proved = false ∧
+      obstruction.matchingProjectionAmplitudeProved = false ∧
+      obstruction.factorSemanticsProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false := by
+  have _obstruction :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3_transcript
+  native_decide
+
+-- The bra-side projection-amplitude contract exposes the exact local
+-- sqrt_kappa_inv obligation without proving projection or product semantics.
+example :
+    let contract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3
+    contract.amplitudeObstruction = obstruction ∧
+      contract.focusedSparseSlot = 2 ∧
+      contract.preparedBasisIndex = 32 ∧
+      contract.projectedBasisIndex = 32 ∧
+      contract.matchingProjectionAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      contract.routeMatchingProjectionObligation =
+        obstruction.matchingProjectionObligation ∧
+      contract.amplitudeContractObligation.proved = false ∧
+      contract.factorSemanticsObligation =
+        obstruction.factorSemanticsObligation ∧
+      contract.productObligation = obstruction.productObligation ∧
+      contract.amplitudeContractCompiled = true ∧
+      contract.finiteIndexLemmaCompiled = true ∧
+      contract.symbolicProductEvalCompiled = true ∧
+      contract.routeMatchingProjectionObligation.proved = false ∧
+      contract.factorSemanticsObligation.proved = false ∧
+      contract.productObligation.proved = false ∧
+      contract.matchingProjectionAmplitudeProved = false ∧
+      contract.factorSemanticsProved = false ∧
+      contract.productToCoefficientProved = false ∧
+      contract.lcuCorrectProved = false ∧
+      contract.blockProjectionProved = false ∧
+      contract.blockCorrectProved = false ∧
+      contract.finalExtractionProved = false := by
+  have _contract :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript
+  native_decide
+
+-- The projection-amplitude semantics packet accepts the two sqrt_kappa_inv
+-- factors only as Phase-1 contracts and leaves the product route false.
+example :
+    let semantics :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+    let contract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3
+    semantics.amplitudeContract = contract ∧
+      semantics.citedUniformPreparationId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      semantics.focusedSparseSlot = 2 ∧
+      semantics.cleanBasisIndex = 32 ∧
+      semantics.ketAmplitudeFactor = Coeff.symbol "sqrt_kappa_inv" ∧
+      semantics.braAmplitudeFactor = Coeff.symbol "sqrt_kappa_inv" ∧
+      semantics.expectedProjectionFactor = Coeff.symbol "kappa_inv" ∧
+      semantics.ketAmplitudeAcceptedAsContract = true ∧
+      semantics.braAmplitudeAcceptedAsContract = true ∧
+      semantics.conditionalProductEvalCompiled = true ∧
+      semantics.uniformPreparationObligation.proved = false ∧
+      semantics.braAmplitudeObligation.proved = false ∧
+      semantics.routeMatchingProjectionObligation.proved = false ∧
+      semantics.factorSemanticsObligation.proved = false ∧
+      semantics.productObligation.proved = false ∧
+      semantics.braAmplitudeProved = false ∧
+      semantics.factorSemanticsProved = false ∧
+      semantics.productToCoefficientProved = false ∧
+      semantics.lcuCorrectProved = false ∧
+      semantics.blockProjectionProved = false ∧
+      semantics.blockCorrectProved = false ∧
+      semantics.finalExtractionProved = false := by
+  have _semantics :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3_transcript
+  native_decide
+
+example (env : String → Rat)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let semantics :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+    Coeff.evalWith env semantics.combinedAmplitudeFactor =
+      Coeff.evalWith env semantics.expectedProjectionFactor :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3
+    env hkappaSqrt
+
+example (env : String → Rat)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let semantics :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+    Coeff.evalWith env
+        (Coeff.mul
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          semantics.combinedAmplitudeFactor) *
+      Coeff.evalWith env
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.theoremNormalizer =
+    Coeff.evalWith env
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.targetEntry :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3
+    env hND hNF hkappa hkappaSqrt
+
+-- The factor-semantics bridge compiles only a conditional coefficient lemma;
+-- all semantic proof flags remain false.
+example :
+    let factor :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3
+    let semantics :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3
+    factor.projectionAmplitudeSemantics = semantics ∧
+      factor.projectedBranchProduct =
+        Coeff.mul
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3.splitTarget.branchLocalProduct
+          semantics.combinedAmplitudeFactor ∧
+      factor.conditionalFactorEvalCompiled = true ∧
+      factor.uniformPreparationObligation.proved = false ∧
+      factor.braAmplitudeObligation.proved = false ∧
+      factor.routeMatchingProjectionObligation.proved = false ∧
+      factor.factorSemanticsObligation.proved = false ∧
+      factor.finiteCompositionNormalizedEquality.proved = false ∧
+      factor.productObligation.proved = false ∧
+      factor.uniformPreparationProved = false ∧
+      factor.braAmplitudeProved = false ∧
+      factor.factorSemanticsProved = false ∧
+      factor.productToCoefficientProved = false ∧
+      factor.lcuCorrectProved = false ∧
+      factor.blockProjectionProved = false ∧
+      factor.blockCorrectProved = false ∧
+      factor.finalExtractionProved = false := by
+  have _factor :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3_transcript
+  native_decide
+
+example (env : String → Rat)
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let contract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    Coeff.evalWith env contract.projectedBranchProduct *
+      Coeff.evalWith env contract.theoremNormalizer =
+    Coeff.evalWith env contract.expectedTargetEntry :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3
+    env hND hNF hkappa hkappaSqrt
+
+example :
+    let contract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    let factor :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3
+    contract.factorBridge = factor ∧
+      contract.factorSemanticsContractMapped = true ∧
+      contract.conditionalFactorEvalCompiled = true ∧
+      contract.ketAmplitudeObligation.proved = false ∧
+      contract.braAmplitudeObligation.proved = false ∧
+      contract.routeMatchingProjectionObligation.proved = false ∧
+      contract.productHypothesisObligation.proved = false ∧
+      contract.factorSemanticsObligation.proved = false ∧
+      contract.finiteCompositionNormalizedEquality.proved = false ∧
+      contract.productObligation.proved = false ∧
+      contract.ketAmplitudeProved = false ∧
+      contract.braAmplitudeProved = false ∧
+      contract.routeMatchingProjectionProved = false ∧
+      contract.productHypothesisProved = false ∧
+      contract.factorSemanticsProved = false ∧
+      contract.normalizedBlockEqualityProved = false ∧
+      contract.productToCoefficientProved = false ∧
+      contract.lcuCorrectProved = false ∧
+      contract.blockProjectionProved = false ∧
+      contract.blockCorrectProved = false ∧
+      contract.finalExtractionProved = false := by
+  have _contract :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript
+  native_decide
+
+-- The bra-side projection-amplitude source map names the missing H_W dagger
+-- or block-projection entry contract without proving the semantic amplitude.
+example :
+    let sourceMap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3
+    let amplitudeContract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3
+    let factorContract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    sourceMap.amplitudeContract = amplitudeContract ∧
+      sourceMap.factorContractMap = factorContract ∧
+      sourceMap.focusedSparseSlot = 2 ∧
+      sourceMap.cleanBasisIndex = 32 ∧
+      sourceMap.expectedBraAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      sourceMap.braAmplitudeSourceMapped = true ∧
+      sourceMap.directBraAmplitudeProofAvailable = false ∧
+      sourceMap.amplitudeContractObligation.proved = false ∧
+      sourceMap.factorSemanticsObligation.proved = false ∧
+      sourceMap.finiteCompositionNormalizedEquality.proved = false ∧
+      sourceMap.productObligation.proved = false ∧
+      sourceMap.productToCoefficientProved = false ∧
+      sourceMap.lcuCorrectProved = false ∧
+      sourceMap.blockProjectionProved = false ∧
+      sourceMap.blockCorrectProved = false ∧
+      sourceMap.finalExtractionProved = false := by
+  have _sourceMap :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3_transcript
+  native_decide
+
+-- The focused H_W dagger entry is now a typed contract wired to the source
+-- map and factor-semantics map; it is not a proved amplitude theorem.
+example :
+    let entry :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3
+    let sourceMap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3
+    let factorMap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    entry.braSourceMap = sourceMap ∧
+      entry.factorContractMap = factorMap ∧
+      entry.focusedSparseSlot = 2 ∧
+      entry.cleanBasisIndex = 32 ∧
+      entry.expectedEntry = Coeff.symbol "sqrt_kappa_inv" ∧
+      entry.sourceMapBraAmplitudeObligation =
+        sourceMap.amplitudeContractObligation ∧
+      entry.factorMapBraAmplitudeObligation =
+        factorMap.braAmplitudeObligation ∧
+      entry.factorMapBraAmplitudeObligation =
+        entry.sourceMapBraAmplitudeObligation ∧
+      entry.contractAcceptedAsTypedInterface = true ∧
+      entry.sourceMapWired = true ∧
+      entry.factorMapWired = true ∧
+      entry.daggerEntryProved = false ∧
+      entry.braAmplitudeProved = false ∧
+      entry.factorSemanticsProved = false ∧
+      entry.productToCoefficientProved = false ∧
+      entry.lcuCorrectProved = false ∧
+      entry.blockProjectionProved = false ∧
+      entry.blockCorrectProved = false ∧
+      entry.finalExtractionProved = false := by
+  have _entry :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3_transcript
+  native_decide
+
+-- The embedded-entry interface pins the local H_W dagger row/column and the
+-- ambient clean gamma3 basis index, while keeping the entry theorem false.
+example :
+    let interface :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3
+    let entry :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3
+    interface.entryContract = entry ∧
+      interface.focusedSparseSlot = 2 ∧
+      interface.focusedKappa = 7 ∧
+      interface.sparseRegisterQubits = 3 ∧
+      interface.sparseRegisterDimension = 8 ∧
+      interface.localBraIndex = 0 ∧
+      interface.localKetIndex = 2 ∧
+      interface.ambientCleanBasisIndex = 32 ∧
+      interface.expectedLocalEntry = Coeff.symbol "sqrt_kappa_inv" ∧
+      interface.expectedEmbeddedEntry = Coeff.symbol "sqrt_kappa_inv" ∧
+      interface.localKetWithinKappa = true ∧
+      interface.localKetWithinSparseDimension = true ∧
+      interface.refinesProjectionEntryContract = true ∧
+      interface.concreteHWKappaMatrixAvailable = false ∧
+      interface.localEntryProved = false ∧
+      interface.embeddedEntryProved = false ∧
+      interface.braAmplitudeProved = false ∧
+      interface.factorSemanticsProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false := by
+  have _interface :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript
+  native_decide
+
+-- The focused H_W dagger entry now has a compiled conditional bridge from
+-- the uniform clean-column contract plus the local adjoint-entry convention.
+example :
+    ((fun _ _ => Coeff.symbol "sqrt_kappa_inv") : Matrix 8 8 Coeff)
+      ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+        Coeff.symbol "sqrt_kappa_inv" :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3
+    ((fun _ _ => Coeff.symbol "sqrt_kappa_inv") : Matrix 8 8 Coeff)
+    ((fun _ _ => Coeff.symbol "sqrt_kappa_inv") : Matrix 8 8 Coeff)
+    rfl
+    rfl
+
+-- The uniform-column contract split is wired to the embedded-entry interface,
+-- but the uniform-column and adjoint-entry source obligations remain false.
+example :
+    let contract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3
+    let interface :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3
+    contract.embeddedInterface = interface ∧
+      contract.focusedSparseSlot = 2 ∧
+      contract.focusedKappa = 7 ∧
+      contract.sparseRegisterDimension = 8 ∧
+      contract.uniformColumnRowIndex = 2 ∧
+      contract.uniformColumnColIndex = 0 ∧
+      contract.daggerRowIndex = 0 ∧
+      contract.daggerColIndex = 2 ∧
+      contract.ambientCleanBasisIndex = 32 ∧
+      contract.expectedUniformColumnEntry = Coeff.symbol "sqrt_kappa_inv" ∧
+      contract.expectedDaggerEntry = Coeff.symbol "sqrt_kappa_inv" ∧
+      contract.uniformColumnContractMapped = true ∧
+      contract.adjointEntryConventionMapped = true ∧
+      contract.conditionalEntryLemmaCompiled = true ∧
+      contract.concreteHWKappaMatrixAvailable = false ∧
+      contract.uniformColumnObligation.proved = false ∧
+      contract.adjointEntryConventionObligation.proved = false ∧
+      contract.sourceContractObligation.proved = false ∧
+      contract.uniformColumnProved = false ∧
+      contract.adjointEntryConventionProved = false ∧
+      contract.daggerEntryProved = false ∧
+      contract.embeddedEntryProved = false ∧
+      contract.braAmplitudeProved = false ∧
+      contract.factorSemanticsProved = false ∧
+      contract.productToCoefficientProved = false ∧
+      contract.lcuCorrectProved = false ∧
+      contract.blockProjectionProved = false ∧
+      contract.blockCorrectProved = false ∧
+      contract.finalExtractionProved = false := by
+  have _contract :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript
+  native_decide
+
+-- The local transpose-style dagger convention supplies the adjoint-entry side
+-- of the focused H_W packet without proving the external uniform-column source.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3
+        ((fun row col => if row.val = 2 ∧ col.val = 0 then
+            Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+          Matrix 8 8 Coeff)
+        ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+      Coeff.symbol "sqrt_kappa_inv" := by
+  native_decide
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3
+        ((fun row col => if row.val = 2 ∧ col.val = 0 then
+            Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+          Matrix 8 8 Coeff)
+        ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+      ((fun row col => if row.val = 2 ∧ col.val = 0 then
+          Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+        Matrix 8 8 Coeff)
+        ⟨2, by native_decide⟩ ⟨0, by native_decide⟩ :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3
+    ((fun row col => if row.val = 2 ∧ col.val = 0 then
+        Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+      Matrix 8 8 Coeff)
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3
+        ((fun row col => if row.val = 2 ∧ col.val = 0 then
+            Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+          Matrix 8 8 Coeff)
+        ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+      Coeff.symbol "sqrt_kappa_inv" :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3
+    ((fun row col => if row.val = 2 ∧ col.val = 0 then
+        Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+      Matrix 8 8 Coeff)
+    (by native_decide)
+
+-- The refined convention packet marks only the local adjoint convention as
+-- proved; uniform-column and downstream semantic obligations remain false.
+example :
+    let convention :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3
+    let contract :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3
+    convention.uniformColumnContract = contract ∧
+      convention.focusedSparseSlot = 2 ∧
+      convention.focusedKappa = 7 ∧
+      convention.sparseRegisterDimension = 8 ∧
+      convention.uniformColumnRowIndex = 2 ∧
+      convention.uniformColumnColIndex = 0 ∧
+      convention.daggerRowIndex = 0 ∧
+      convention.daggerColIndex = 2 ∧
+      convention.expectedUniformColumnEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      convention.expectedDaggerEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      convention.uniformColumnObligation.proved = false ∧
+      convention.adjointEntryConventionObligation.proved = true ∧
+      convention.transposeMatrixAvailable = true ∧
+      convention.transposeEntryConventionCompiled = true ∧
+      convention.conditionalDaggerEntryFromTransposeCompiled = true ∧
+      convention.adjointEntryConventionProved = true ∧
+      convention.uniformColumnProved = false ∧
+      convention.daggerEntryProved = false ∧
+      convention.braAmplitudeProved = false ∧
+      convention.factorSemanticsProved = false ∧
+      convention.productToCoefficientProved = false ∧
+      convention.lcuCorrectProved = false ∧
+      convention.blockProjectionProved = false ∧
+      convention.blockCorrectProved = false ∧
+      convention.finalExtractionProved = false := by
+  have _convention :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3_transcript
+  native_decide
+
+-- The external clean-column contract is accepted only as a Phase-1 contract
+-- and is wired into the compiled transpose bridge.
+example :
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3
+    let convention :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3
+    bridge.adjointConvention = convention ∧
+      bridge.citedResultId =
+        "ShuklaVedula2024.HWkappaUniformSuperposition" ∧
+      bridge.focusedSparseSlot = 2 ∧
+      bridge.focusedKappa = 7 ∧
+      bridge.sparseRegisterDimension = 8 ∧
+      bridge.uniformColumnRowIndex = 2 ∧
+      bridge.uniformColumnColIndex = 0 ∧
+      bridge.daggerRowIndex = 0 ∧
+      bridge.daggerColIndex = 2 ∧
+      bridge.expectedUniformColumnEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      bridge.expectedDaggerEntry =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      bridge.externalCleanColumnAcceptedAsContract = true ∧
+      bridge.cleanColumnFeedsTransposeBridge = true ∧
+      bridge.conditionalDaggerEntryBridgeCompiled = true ∧
+      bridge.uniformColumnObligation.proved = false ∧
+      bridge.adjointEntryConventionObligation.proved = true ∧
+      bridge.uniformColumnProved = false ∧
+      bridge.adjointEntryConventionProved = true ∧
+      bridge.daggerEntryProved = false ∧
+      bridge.embeddedEntryProved = false ∧
+      bridge.braAmplitudeProved = false ∧
+      bridge.factorSemanticsProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have _bridge :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3_transcript
+  native_decide
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3
+        ((fun row col => if row.val = 2 ∧ col.val = 0 then
+            Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+          Matrix 8 8 Coeff)
+        ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+      Coeff.symbol "sqrt_kappa_inv" :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3
+    ((fun row col => if row.val = 2 ∧ col.val = 0 then
+        Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+      Matrix 8 8 Coeff)
+    (by native_decide)
+
+-- The clean-column bridge is wired to the existing bra-amplitude source map
+-- and factor-semantics contract map without promoting semantic flags.
+example :
+    let route :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3
+    let cleanColumn :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3
+    let sourceMap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3
+    let factorMap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    route.cleanColumnContract = cleanColumn ∧
+      route.braSourceMap = sourceMap ∧
+      route.factorContractMap = factorMap ∧
+      route.focusedSparseSlot = 2 ∧
+      route.cleanBasisIndex = 32 ∧
+      route.expectedBraAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      route.sourceMapBraAmplitudeObligation =
+        sourceMap.amplitudeContractObligation ∧
+      route.factorMapBraAmplitudeObligation =
+        factorMap.braAmplitudeObligation ∧
+      route.sourceMapBraAmplitudeObligation =
+        route.factorMapBraAmplitudeObligation ∧
+      route.externalCleanColumnAcceptedAsContract = true ∧
+      route.cleanColumnFeedsDaggerEntry = true ∧
+      route.braRouteContractMapped = true ∧
+      route.uniformColumnProved = false ∧
+      route.daggerEntryProved = false ∧
+      route.braAmplitudeProved = false ∧
+      route.factorSemanticsProved = false ∧
+      route.productToCoefficientProved = false ∧
+      route.lcuCorrectProved = false ∧
+      route.blockProjectionProved = false ∧
+      route.blockCorrectProved = false ∧
+      route.finalExtractionProved = false := by
+  have _route :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3_transcript
+  native_decide
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3
+        ((fun row col => if row.val = 2 ∧ col.val = 0 then
+            Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+          Matrix 8 8 Coeff)
+        ⟨0, by native_decide⟩ ⟨2, by native_decide⟩ =
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3).expectedBraAmplitudeFactor :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3
+    ((fun row col => if row.val = 2 ∧ col.val = 0 then
+        Coeff.symbol "sqrt_kappa_inv" else Coeff.rat 0) :
+      Matrix 8 8 Coeff)
+    (by native_decide)
+
+-- The clean-column route now feeds the factor-semantics contract map under
+-- explicit external and coefficient hypotheses.
+example :
+    let route :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3
+    let cleanRoute :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3
+    let factorMap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3
+    route.cleanColumnRoute = cleanRoute ∧
+      route.factorContractMap = factorMap ∧
+      route.focusedSparseSlot = 2 ∧
+      route.cleanBasisIndex = 32 ∧
+      route.expectedBraAmplitudeFactor =
+        Coeff.symbol "sqrt_kappa_inv" ∧
+      route.cleanColumnFeedLemma =
+        "oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3" ∧
+      route.factorEvalLemma =
+        "oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3" ∧
+      route.braAmplitudeObligation =
+        factorMap.braAmplitudeObligation ∧
+      route.braAmplitudeObligation =
+        cleanRoute.factorMapBraAmplitudeObligation ∧
+      route.externalCleanColumnAcceptedAsContract = true ∧
+      route.braFactorRouteWired = true ∧
+      route.conditionalBraFactorCompiled = true ∧
+      route.conditionalFactorEvalCompiled = true ∧
+      route.cleanColumnToFactorRouteMapped = true ∧
+      route.uniformColumnProved = false ∧
+      route.ketAmplitudeProved = false ∧
+      route.braAmplitudeProved = false ∧
+      route.productHypothesisProved = false ∧
+      route.factorSemanticsProved = false ∧
+      route.normalizedBlockEqualityProved = false ∧
+      route.productToCoefficientProved = false ∧
+      route.lcuCorrectProved = false ∧
+      route.blockProjectionProved = false ∧
+      route.blockCorrectProved = false ∧
+      route.finalExtractionProved = false := by
+  have _route :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3_transcript
+  native_decide
+
+example :
+    let env : String → Rat := fun _ => 1
+    let H : Matrix 8 8 Coeff :=
+      ((fun row col =>
+        if row.val = 2 ∧ col.val = 0 then
+          Coeff.symbol "sqrt_kappa_inv"
+        else
+          Coeff.rat 0) : Matrix 8 8 Coeff)
+    let route :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        ⟨route.daggerRowIndex, by native_decide⟩
+        ⟨route.daggerColIndex, by native_decide⟩ =
+      route.expectedBraAmplitudeFactor ∧
+    Coeff.evalWith env route.projectedBranchProduct *
+      Coeff.evalWith env route.theoremNormalizer =
+    Coeff.evalWith env route.expectedTargetEntry :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3
+    (fun _ => 1)
+    ((fun row col =>
+      if row.val = 2 ∧ col.val = 0 then
+        Coeff.symbol "sqrt_kappa_inv"
+      else
+        Coeff.rat 0) : Matrix 8 8 Coeff)
+    (by native_decide)
+    (by simp) (by simp) (by simp) (by simp)
+
+-- The product-under-contracts route starts from the clean-column factor route
+-- and names the remaining finite block-composition/product bridge.
+example :
+    let productRoute :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    let factorRoute :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3
+    productRoute.cleanColumnFactorRoute = factorRoute ∧
+      productRoute.focusedSparseSlot = 2 ∧
+      productRoute.cleanBasisIndex = 32 ∧
+      productRoute.fixedProductObligationName =
+        "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0" ∧
+      productRoute.conditionalEvalCompiled = true ∧
+      productRoute.productUnderContractsMapped = true ∧
+      productRoute.productBridgeObligation.proved = false ∧
+      productRoute.finiteCompositionNormalizedEquality.proved = false ∧
+      productRoute.productObligation.proved = false ∧
+      productRoute.productToCoefficientProved = false ∧
+      productRoute.lcuCorrectProved = false ∧
+      productRoute.blockProjectionProved = false ∧
+      productRoute.blockCorrectProved = false ∧
+      productRoute.finalExtractionProved = false := by
+  have _route :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3_transcript
+  native_decide
+
+example :
+    let env : String → Rat := fun _ => 1
+    let H : Matrix 8 8 Coeff :=
+      ((fun row col =>
+        if row.val = 2 ∧ col.val = 0 then
+          Coeff.symbol "sqrt_kappa_inv"
+        else
+          Coeff.rat 0) : Matrix 8 8 Coeff)
+    let productRoute :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H
+        ⟨productRoute.cleanColumnFactorRoute.daggerRowIndex, by native_decide⟩
+        ⟨productRoute.cleanColumnFactorRoute.daggerColIndex, by native_decide⟩ =
+      productRoute.expectedBraAmplitudeFactor ∧
+    Coeff.evalWith env productRoute.projectedBranchProduct *
+      Coeff.evalWith env productRoute.theoremNormalizer =
+    Coeff.evalWith env productRoute.expectedTargetEntry :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsEval_n3
+    (fun _ => 1)
+    ((fun row col =>
+      if row.val = 2 ∧ col.val = 0 then
+        Coeff.symbol "sqrt_kappa_inv"
+      else
+        Coeff.rat 0) : Matrix 8 8 Coeff)
+    (by native_decide)
+    (by simp) (by simp) (by simp) (by simp)
+
+-- The finite projection/product bridge exposes the current indexing split:
+-- the signal-zero block entry is `[0,0]`, while the focused slot-2 branch was
+-- evaluated at full basis entry `[32,32]`.
+example :
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let productRoute :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    bridge.productRoute = productRoute ∧
+      bridge.focusedSparseSlot = 2 ∧
+      bridge.signalBlockRowIndex = 0 ∧
+      bridge.signalBlockColumnIndex = 0 ∧
+      bridge.branchBasisIndex = 32 ∧
+      bridge.branchBasisMatchesSignalBlockIndex = false ∧
+      bridge.finiteBlockIndexCompiled = true ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeObligation.proved = false ∧
+      bridge.branchDecompositionObligation.proved = false ∧
+      bridge.finiteCompositionNormalizedEquality.proved = false ∧
+      bridge.signalBlockEntryObligation.proved = false ∧
+      bridge.productObligation.proved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false := by
+  have _bridge :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript
+  native_decide
+
+example :
+    let p := Examples.RobinHeat.oneTermParameters 3
+    let contract :=
+      Examples.RobinHeat.oneTermRobinFiniteBlockCompositionContract 3
+    let sysRow : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let sysCol : Fin (gridSize 3) := ⟨0, by native_decide⟩
+    let blockRow : Fin
+        (qubitDim (GHL2025.effectiveRobinSignalQubits p) * gridSize 3) :=
+      ⟨signalSystemBlockRowIndex (gridSize 3)
+          contract.expectedTarget.signalIndex.val sysRow.val,
+        signalSystemBlockRowIndex_lt
+          contract.expectedTarget.signalIndex sysRow⟩
+    let blockCol : Fin
+        (qubitDim (GHL2025.effectiveRobinSignalQubits p) * gridSize 3) :=
+      ⟨signalSystemBlockColIndex (gridSize 3)
+          contract.expectedTarget.signalIndex.val sysCol.val,
+        signalSystemBlockColIndex_lt
+          contract.expectedTarget.signalIndex sysCol⟩
+    contract.expectedTarget.blockMatrix sysRow sysCol =
+        contract.expectedTarget.unitaryMatrix blockRow blockCol ∧
+      blockRow.val = 0 ∧
+      blockCol.val = 0 ∧
+      Examples.RobinHeat.oneTermRobinGamma3PaperBasisIndex p 2 0 = 32 := by
+  rcases
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3
+    with ⟨hentry, hrow, hcol, hbasis, _hsource, _hrowNe, _hcolNe⟩
+  exact ⟨hentry, hrow, hcol, hbasis⟩
+
+-- The next branch-decomposition packet names the exact missing
+-- projection/summation theorem from the slot-2 branch entry `[32,32]` into
+-- the signal-zero block entry `[0,0]`.
+example :
+    let packet :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    packet.finiteBridge = bridge ∧
+      packet.focusedSparseSlot = 2 ∧
+      packet.signalBlockRowIndex = 0 ∧
+      packet.signalBlockColumnIndex = 0 ∧
+      packet.branchRowIndex = 32 ∧
+      packet.branchColumnIndex = 32 ∧
+      packet.signalBlockEntryMatchesBranchEntry = false ∧
+      packet.branchDecompositionInterfaceCompiled = true ∧
+      packet.finiteIndexCompiled = true ∧
+      packet.conditionalProductEvalCompiled = true ∧
+      packet.projectionSummationObligation.proved = false ∧
+      packet.productBridgeObligation.proved = false ∧
+      packet.branchDecompositionObligation.proved = false ∧
+      packet.finiteCompositionNormalizedEquality.proved = false ∧
+      packet.signalBlockEntryObligation.proved = false ∧
+      packet.productObligation.proved = false ∧
+      packet.productToCoefficientProved = false ∧
+      packet.lcuCorrectProved = false ∧
+      packet.blockProjectionProved = false ∧
+      packet.blockCorrectProved = false ∧
+      packet.finalExtractionProved = false := by
+  have _packet :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript
+  native_decide
+
+-- The typed projection/summation target exposes the actual coefficient
+-- objects for the signal block entry and branch-local entry, while keeping the
+-- missing projection theorem false.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalBlockEntry =
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3
+
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3
+    let packet :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3
+    target.branchPacket = packet ∧
+      target.signalBlockEntryEqualityLemma =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3" ∧
+      target.branchEntryEvalLemma =
+        "oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3" ∧
+      target.requiredBranchEntrySelectionTheorem =
+        "branch-matrix entry [32,32] evaluates to the projectedBranchProduct used by the product route under the explicit coefficient contracts" ∧
+      target.projectionSummationObligation =
+        packet.projectionSummationObligation ∧
+      target.branchEntrySelectionObligation.proved = false ∧
+      target.typedProjectionSummationTargetCompiled = true ∧
+      target.signalBlockEntryTyped = true ∧
+      target.branchMatrixEntryTyped = true ∧
+      target.branchEntrySelectionProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.productBridgeProved = false ∧
+      target.productToCoefficientProved = false := by
+  have _target :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl⟩
+
+-- The branch-entry selection packet proves the conditional local step from
+-- the selected `[32,32]` seven-gate entry to the route's projected branch
+-- product, but it does not prove the source amplitudes or signal-block sum.
+example :
+    let selection :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3
+    selection.projectionTarget = target ∧
+      selection.focusedSparseSlot = 2 ∧
+      selection.branchRowIndex = 32 ∧
+      selection.branchColumnIndex = 32 ∧
+      selection.projectionAmplitudeFactor =
+        Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv") ∧
+      selection.conditionalBranchEntrySelectionLemma =
+        "oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3" ∧
+      selection.conditionalBranchEntrySelectionCompiled = true ∧
+      selection.correctedEntryHypothesis.proved = false ∧
+      selection.ketAmplitudeObligation.proved = false ∧
+      selection.braAmplitudeObligation.proved = false ∧
+      selection.branchEntrySelectionObligation.proved = false ∧
+      selection.projectionSummationObligation.proved = false ∧
+      selection.productBridgeObligation.proved = false ∧
+      selection.productToCoefficientProved = false := by
+  have _selection :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl⟩
+
+example :
+    let env : String → Rat := fun _ => 0
+    let selection :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3
+    Coeff.evalWith env
+        (Coeff.mul
+          (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3)
+          selection.projectionAmplitudeFactor) =
+      Coeff.evalWith env selection.projectionTarget.projectedBranchProduct :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3
+    (fun _ => 0) (by native_decide)
+
+-- The projection/summation obstruction now has a typed selected slot-2
+-- contribution, but no branch-contribution family or sparse-branch sum theorem.
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+    obstruction.slotDomain = [0, 1, 2, 3, 4, 5, 6] ∧
+      obstruction.slotDomainCardinality = 7 ∧
+      obstruction.focusedSparseSlot = 2 ∧
+      obstruction.focusedSlotInDomain = true :=
+  by exact ⟨rfl, rfl, rfl, rfl⟩
+
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+    obstruction.selectedSlotContribution =
+      Coeff.mul
+        (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3)
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor :=
+  rfl
+
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+    obstruction.branchContributionFamilyInterface =
+        "branchContribution : Fin 7 -> Coeff" ∧
+      obstruction.requiredSelectedSlotTheorem =
+        "branchContribution[2] = selectedSlotContribution" ∧
+      obstruction.requiredProjectionSummationTheorem =
+        "signalBlockEntry = Finset.univ.sum branchContribution" ∧
+      obstruction.typedInterfaceCompiled = true ∧
+      obstruction.selectedSlotContributionTyped = true ∧
+      obstruction.selectedSlotEvalCompiled = true ∧
+      obstruction.branchContributionFamilyAvailable = false ∧
+      obstruction.sparseBranchSumExpansionAvailable = false ∧
+      obstruction.projectionSummationProved = false ∧
+      obstruction.productBridgeProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false := by
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl⟩
+
+example :
+    let env : String → Rat := fun _ => 0
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3
+    Coeff.evalWith env obstruction.selectedSlotContribution =
+      Coeff.evalWith env obstruction.projectionTarget.projectedBranchProduct :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3
+    (fun _ => 0) (by native_decide)
+
+-- The branch-contribution interface now exposes a typed `Fin 7 -> Coeff`
+-- family and proves only the slot-2 selection.  The sparse-branch sum theorem
+-- remains an explicit obstruction.
+example :
+    let family :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFamily_n3
+    family.focusedSparseSlot.val = 2 ∧
+      family.branchContributionFamilyAvailable = true ∧
+      family.selectedSlotStatementTyped = true ∧
+      family.selectedSlotProved = true ∧
+      family.projectionSummationStatementTyped = true ∧
+      family.projectionSummationProved = false ∧
+      family.productToCoefficientProved = false := by
+  have _transcript :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+example :
+    let family :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFamily_n3
+    family.branchContribution family.focusedSparseSlot =
+      family.selectedSlotContribution := by
+  change (Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFamily_n3).selectedSlotStatement
+  exact
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3
+
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3
+    obstruction.branchContributionFamilyAvailable = true ∧
+      obstruction.selectedSlotTheoremCompiled = true ∧
+      obstruction.projectionSummationStatementTyped = true ∧
+      obstruction.projectionSummationTheoremAvailable = false ∧
+      obstruction.projectionSummationProved = false ∧
+      obstruction.productBridgeProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.lcuCorrectProved = false ∧
+      obstruction.blockProjectionProved = false ∧
+      obstruction.blockCorrectProved = false ∧
+      obstruction.finalExtractionProved = false := by
+  have _transcript :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl⟩
+
+-- The backend-field target separates the typed placeholder family from the
+-- still-missing projection/summation field that must come from the finite
+-- block-extraction backend.
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3
+    let family :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFamily_n3
+    target.family = family ∧
+      target.backendBranchContributionPredicate =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3 ∧
+      target.backendBranchContributionPredicate family.branchContribution =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+          family.branchContribution ∧
+      target.backendPredicateTyped = true ∧
+      target.placeholderFamilyIsBackendSourced = false ∧
+      target.placeholderMayCloseProjectionSummation = false ∧
+      target.backendFieldAvailable = false ∧
+      target.backendSelectedSlotTheoremAvailable = false ∧
+      target.backendProjectionSummationTheoremAvailable = false ∧
+      target.projectionSummationProved = false ∧
+      target.productToCoefficientProved = false :=
+  by
+    have _target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3_transcript
+    exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3
+    target.backendFieldExpectedOwner =
+        "BlockExtractionTarget / finite projection-summation backend" ∧
+      target.backendFieldLeanType =
+        "branchContribution : Fin 7 -> Coeff, sourced from contract.expectedTarget.blockMatrix[0,0]" ∧
+      target.requiredSelectedSlotTheorem =
+        "backendBranchContribution[2] = selectedSlotContribution" ∧
+      target.requiredProjectionSummationTheorem =
+        "signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum backendBranchContribution" ∧
+      target.exactRemainingObstruction =
+        "BlockExtractionTarget exposes the signal-zero block entry but not a backend-sourced sparse-branch contribution family for that entry" :=
+  by
+    have _target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3_transcript
+    exact ⟨rfl, rfl, rfl, rfl, rfl⟩
+
+-- The generic block-extraction branch target is typed for the focused slot-2
+-- branch, but the backend-source and branch-summation obligations remain open.
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3
+    target.selectedBranch.val = 2 ∧
+      target.backendSource.proved = false ∧
+      target.selectedBranchCorrect.proved = false ∧
+      target.branchSummationCorrect.proved = false ∧
+      target.selectedBranchStatement := by
+  exact ⟨rfl, rfl, rfl, rfl,
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selected_n3⟩
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3.selectedContribution =
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_selectedContribution_eq_n3
+
+-- The smaller backend gap ties the obstruction to the actual
+-- BlockExtractionTarget fields: the block entry exists and a generic
+-- branch-target interface is now typed, but no backend-sourced seven-slot
+-- family has been proved for that entry.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3.signalBlockEntry =
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3.unitaryEntry := by
+  simpa [Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3]
+    using
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3
+
+example :
+    let gap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3
+    gap.exposesBlockMatrix = true ∧
+      gap.exposesBranchContributionField = false ∧
+      gap.genericBranchContributionInterfaceAvailable = true ∧
+      gap.genericBranchContributionBackendSourced = false ∧
+      gap.genericSelectedBranchStatementCompiled = true ∧
+      gap.genericProjectionSummationStatementTyped = true ∧
+      gap.blockEntryOnlyBridgeCompiled = true ∧
+      gap.backendFieldAvailable = false ∧
+      gap.placeholderFamilyRejected = true ∧
+      gap.blockProjectionObligation.proved = false ∧
+      gap.blockCorrectObligation.proved = false ∧
+      gap.projectionSummationProved = false ∧
+      gap.productToCoefficientProved = false ∧
+      gap.exactRemainingObstruction =
+        "BlockExtractionTarget can be paired with a typed seven-slot branch target, but the backend-source proof and signal-block branch-sum theorem are still absent" :=
+  by
+    have _gap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript
+    exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+      rfl, rfl, rfl, rfl⟩
+
+-- The branch-to-full-index map is now typed for the seven sparse slots.  Slot
+-- 2 maps to the branch-local full basis index 32, but the all-slot backend
+-- summand formula remains open.
+example :
+    let idx :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+    idx.val = 32 ∧
+      idx = Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3
+
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3
+    target.selectedContribution =
+      Coeff.mul
+        (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3)
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3
+
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3
+    obstruction.backendBranchIndexMapAvailable = true ∧
+      obstruction.selectedBranchIndexMapCompiled = true ∧
+      obstruction.selectedBranchSummandFormulaCompiled = true ∧
+      obstruction.backendBranchSummandFormulaAvailable = false ∧
+      obstruction.backendPredicateTyped = true ∧
+      obstruction.backendPredicateProved = false ∧
+      obstruction.projectionSummationProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.exactRemainingObstruction =
+        "the branch-to-full-index map is typed and the selected slot-2 summand formula compiles, but QBE still lacks the all-slot backend summand formula and branch-sum theorem for contract.expectedTarget.blockMatrix[0,0]" :=
+  by
+    have _obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3_transcript
+    exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The all-slot backend summand formula now supplies a concrete `Fin 7 -> Coeff`
+-- family from the branch full-index map.  Only the selected slot-2 clause is
+-- proved; the signal-block branch-sum theorem remains open.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3
+
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+    target.selectedBranchStatement ∧
+      target.selectedBranch.val = 2 ∧
+      target.selectedContribution =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution ∧
+      target.backendSource.proved = false ∧
+      target.selectedBranchCorrect.proved = false ∧
+      target.branchSummationCorrect.proved = false := by
+  exact ⟨
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selected_n3,
+    rfl,
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_selectedContribution_eq_n3,
+    rfl, rfl, rfl⟩
+
+example :
+    let packet :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3
+    packet.allSlotBackendSummandFormulaAvailable = true ∧
+      packet.backendBranchContributionFamilyAvailable = true ∧
+      packet.selectedBranchContributionCompiled = true ∧
+      packet.backendPredicateSelectedClauseProved = true ∧
+      packet.backendPredicateProved = false ∧
+      packet.projectionSummationProved = false ∧
+      packet.productBridgeProved = false ∧
+      packet.normalizedBlockEqualityProved = false ∧
+      packet.productToCoefficientProved = false ∧
+      packet.exactRemainingObstruction =
+        "all-slot backend summand formula is typed and slot 2 is selected, but QBE still lacks the signal-block branch-sum theorem for contract.expectedTarget.blockMatrix[0,0]" := by
+  have _packet :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The branch-sum closure packet proves the selected predicate clause and
+-- isolates the remaining missing input to the signal-zero branch-sum equality.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFocusedSlot =
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3
+
+example
+    (hbranchSum :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_branchSum_n3
+    hbranchSum
+
+example :
+    let closure :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3
+    closure.selectedClauseStatement ∧
+      closure.selectedClauseProved = true ∧
+      closure.conditionalPredicateClosureCompiled = true ∧
+      closure.projectionSummationStatementTyped = true ∧
+      closure.backendPredicateTyped = true ∧
+      closure.backendPredicateProved = false ∧
+      closure.projectionSummationProved = false ∧
+      closure.productBridgeProved = false ∧
+      closure.normalizedBlockEqualityProved = false ∧
+      closure.productToCoefficientProved = false ∧
+      closure.requiredSecondConjunct =
+        "oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry = oneTermRobinGamma3BoundaryBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3" ∧
+      closure.exactRemainingObstruction =
+        "the selected branch predicate clause is proved and predicate closure is conditional, but QBE still lacks the signal-zero branch-sum equality for the backend seven-slot family" := by
+  have _closure :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3_transcript
+  exact ⟨
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_selectedClause_n3,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The generic backend projection statement is now bridged to the Robin-local
+-- branch-sum predicate target, but the branch sum itself remains unproved.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.branchContribution :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_unfold_n3
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.blockEntry :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3
+
+example
+    (hprojection :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3
+    hprojection
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3
+
+example :
+    let obstruction :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3
+    obstruction.equivalenceCompiled = true ∧
+      obstruction.selectedClauseProved = true ∧
+      obstruction.backendFieldAvailable = false ∧
+      obstruction.projectionSummationProved = false ∧
+      obstruction.backendPredicateProved = false ∧
+      obstruction.productBridgeProved = false ∧
+      obstruction.normalizedBlockEqualityProved = false ∧
+      obstruction.productToCoefficientProved = false ∧
+      obstruction.requiredBackendTheorem =
+        "contract.expectedTarget.blockMatrix[0,0] = blockExtractionBranchContributionSum backendBranchContribution" ∧
+      obstruction.exactRemainingObstruction =
+        "the generic projection statement is equivalent to the focused branch-sum equality, but the finite backend still lacks the theorem expanding blockMatrix[0,0] as the seven-slot branch fold" := by
+  have _obstruction :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The backend-expansion proof-DAG block states the exact theorem that would
+-- close the generic projection statement, without asserting the theorem.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement :=
+  BlockExtractionBranchContributionTarget.projectionSummationStatement_iff_backendExpansionStatement
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3
+
+example
+    (hexpansion :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3
+    hexpansion
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3
+
+example :
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionBridge_n3
+    bridge.backendExpansionStatementTyped = true ∧
+      bridge.genericEquivalenceCompiled = true ∧
+      bridge.robinEquivalenceCompiled = true ∧
+      bridge.conditionalProjectionCompiled = true ∧
+      bridge.backendExpansionProved = false ∧
+      bridge.projectionSummationProved = false ∧
+      bridge.backendPredicateProved = false ∧
+      bridge.requiredBackendTheorem =
+        "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement" ∧
+      bridge.exactRemainingObstruction =
+        "the backend-expansion statement is typed and equivalent to the focused branch-sum equality, but the finite backend still has not proved the seven-slot fold for blockMatrix[0,0]" := by
+  have _bridge :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionBridge_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The backend-expansion target is now narrowed one step further: it is
+-- equivalent to a fold theorem for the actual full-unitary entry selected by
+-- the signal-zero block projection.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters 3)))
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      blockExtractionBranchContributionSum
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3
+
+example :
+    let idx :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨0, by native_decide⟩
+    idx.val = 0 ∧
+      idx = Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_slotZero_n3
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨0, by native_decide⟩ =
+      Coeff.mul
+        (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3)
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3
+
+example :
+    blockExtractionBranchContributionSum
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 =
+      (((((((0 +
+        Coeff.mul
+          (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ↔
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters 3)))
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).rawEntryPreparedSandwichStatement ↔
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters 3)))
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_uncastActiveEntryExpandedFold_n3
+    H hUniform
+
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3
+    target.blockEntryUnitaryBridgeCompiled = true ∧
+      target.unitaryEntryFoldStatementTyped = true ∧
+      target.backendExpansionEquivalentToUnitaryFold = true ∧
+      target.backendExpansionProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.backendPredicateProved = false ∧
+      target.requiredFullProductFoldTheorem =
+        "contract.expectedTarget.unitaryMatrix[0,0] = blockExtractionBranchContributionSum backendBranchContribution" ∧
+      target.exactRemainingObstruction =
+        "the backend expansion is equivalent to a full-unitary entry fold, but QBE still lacks the finite product/projection theorem expanding entry [0,0] as the seven backend branch summands" := by
+  have _target :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The fold-support packet proves only that slot 2 is inside the seven-slot
+-- backend fold and already equals the selected [32,32] branch summand.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFocusedSlot ∈
+      (List.finRange 7) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendSelectedBranch_mem_fold_n3
+
+example :
+    let support :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3
+    support.selectedBranchInFoldStatement ∧
+      support.selectedContributionStatement ∧
+      support.foldDomainTyped = true ∧
+      support.selectedBranchInFoldProved = true ∧
+      support.selectedContributionProved = true ∧
+      support.unitaryEntryFoldStatementTyped = true ∧
+      support.fullProductFoldProved = false ∧
+      support.projectionSummationProved = false ∧
+      support.backendPredicateProved = false ∧
+      support.productBridgeProved = false ∧
+      support.normalizedBlockEqualityProved = false ∧
+      support.productToCoefficientProved = false ∧
+      support.requiredFullProductFoldTheorem =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3" ∧
+      support.exactRemainingObstruction =
+        "the fold domain contains slot 2 and the selected summand is proved, but QBE still lacks the finite product/projection theorem equating the full signal-zero entry with the complete seven-slot fold" := by
+  have hsupport :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3_transcript
+  exact ⟨hsupport.2.2.2.2.2.2.2.1, hsupport.2.2.2.2.2.2.2.2.1,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The prepared-branch packet proves the all-slot summand formula and narrows
+-- the remaining obstruction to the prepared projection backend theorem.
+example (s : Fin 7) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 s =
+      Coeff.mul
+        (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          (Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s)
+          (Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s))
+        (Coeff.mul (Coeff.symbol "sqrt_kappa_inv")
+          (Coeff.symbol "sqrt_kappa_inv")) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3
+    s
+
+example :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3
+    target.branchContributionFormulaStatement ∧
+      target.branchContributionFormulaProved = true ∧
+      target.preparedProjectionBackendStatementTyped = true ∧
+      target.rawCircuitMatrixExposed = true ∧
+      target.preparedProjectionBackendAvailable = false ∧
+      target.fullProductFoldProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.requiredPreparedProjectionTheorem =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3" ∧
+      target.exactRemainingObstruction =
+        "all seven prepared branch summands are typed and proved by formula, but the backend still lacks the prepared projection theorem equating the raw signal-zero entry with their fold" := by
+  have hformula :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_formula_n3
+  exact ⟨hformula, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The prepared-sandwich backend block proves that an explicit H_W/H_W^dagger
+-- clean-column matrix specializes the prepared fold to the backend branch sum.
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (s : Fin 7) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3
+        H s =
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        s :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_eq_backend_n3
+    H hUniform s
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3
+        H =
+      blockExtractionBranchContributionSum
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+    H hUniform
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hPreparedBackend :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3
+          H) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedSandwichBackend_n3
+    H hUniform hPreparedBackend
+
+example :
+    let backend :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3
+    backend.preparedSandwichContributionSpecialized = true ∧
+      backend.preparedSandwichSumSpecialized = true ∧
+      backend.conditionalUnitaryFoldCompiled = true ∧
+      backend.preparedProjectionBackendAvailable = false ∧
+      backend.fullProductFoldProved = false ∧
+      backend.projectionSummationProved = false ∧
+      backend.productToCoefficientProved = false ∧
+      backend.requiredPreparedProjectionBackendField =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H" ∧
+      backend.exactRemainingObstruction =
+        "prepared sandwich summands specialize to the backend branch fold under the H_W^(kappa) clean-column contract; the remaining missing field is the raw signal-zero entry equals prepared sandwich fold theorem" := by
+  have _backend :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3_transcript
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The raw-entry prepared-sandwich packet types the exact CircuitMatrixSemantics
+-- field still needed to close the preferred unitary-entry fold.
+example (H : Matrix 8 8 Coeff) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).rawEntryPreparedSandwichStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3
+          H :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3
+    H
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).uniformColumnStatement)
+    (hRaw :
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).rawEntryPreparedSandwichStatement) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+      H).preferredUnitaryEntryFoldStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntryFold_of_rawEntryPreparedSandwichField_n3
+    H hUniform hRaw
+
+example (H : Matrix 8 8 Coeff) :
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H
+    field.preparedSandwichBackendTarget =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3 ∧
+      field.rawEntryPreparedSandwichStatementTyped = true ∧
+      field.conditionalFoldBridgeCompiled = true ∧
+      field.preparedProjectionBackendAvailable = false ∧
+      field.fullProductFoldProved = false ∧
+      field.projectionSummationProved = false ∧
+      field.productToCoefficientProved = false ∧
+      field.requiredCircuitMatrixField =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H" ∧
+      field.exactRemainingObstruction =
+        "the remaining field is the CircuitMatrixSemantics raw entry [0,0] equals the prepared H_W^(kappa)^dagger * U * H_W^(kappa) sandwich fold" := by
+  have _field :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3_transcript
+      H
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The prepared-circuit gap packet shows that the active raw entry is the
+-- seven-gate contract matrix entry, while H_W^(kappa) is not an active gate.
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      (Examples.RobinHeat.oneTermRobinFiniteBlockCompositionContract 3).expectedTarget.unitaryMatrix
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3
+
+example :
+    Gate.oracleCall "H_W^(kappa)" ∉
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters 3)).map
+            (fun gateMatrix => gateMatrix.gate) ∧
+      Gate.oracleCall "(H_W^(kappa))^dagger" ∉
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters 3)).map
+            (fun gateMatrix => gateMatrix.gate) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3
+
+example (H : Matrix 8 8 Coeff) :
+    let gap :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3
+        H
+    gap.rawEntryContractProved = true ∧
+      gap.sparsePreparationAbsenceProved = true ∧
+      gap.rawEntryPreparedSandwichStatementTyped = true ∧
+      gap.preparedCircuitSemanticsAvailable = false ∧
+      gap.preparedCircuitEntryEqualityProved = false ∧
+      gap.fullProductFoldProved = false ∧
+      gap.projectionSummationProved = false ∧
+      gap.productToCoefficientProved = false ∧
+      gap.requiredPreparedCircuitSemantics =
+        "CircuitMatrixSemantics entry for H_W^(kappa)^dagger * oneTermRobinGamma3BoundarySevenGateMatrix_n3 * H_W^(kappa), projected at clean sparse-register index 0" :=
+    by
+  have _gap :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3_transcript
+      H
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+-- The prepared sparse-register matrix now has a clean-clean entry that is
+-- definitionally the prepared sandwich fold.
+example (H : Matrix 8 8 Coeff) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+        Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3 =
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3
+        H :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3
+    H
+
+example (H : Matrix 8 8 Coeff) :
+    gateMatricesMatchCircuit
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3
+        [Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeGate_n3 H] =
+      true :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3
+    H
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    Coeff.evalWith env
+        ((Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+          H).matrix
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+    H env
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hPreparedEntry :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3
+    H hUniform hPreparedEntry
+
+example (H : Matrix 8 8 Coeff) :
+    let interface :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3
+        H
+    interface.preparedSparseMatrixAvailable = true ∧
+      interface.preparedCompositeSemanticsAvailable = true ∧
+      interface.cleanEntryStatement ∧
+      interface.preparedCompositeCleanEntryEvalStatement ∧
+      interface.cleanEntryStatementProved = true ∧
+      interface.preparedCompositeCleanEntryEvalCompiled = true ∧
+      interface.activePreparedEntryEqualityProved = false ∧
+      interface.fullProductFoldProved = false ∧
+      interface.projectionSummationProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.requiredActivePreparedEntryTheorem =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H 0 0" :=
+  by
+    have hclean :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3
+        H
+    have hsemantics :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+        H
+    dsimp [Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3]
+    exact ⟨rfl, rfl, hclean, hsemantics, rfl, rfl, rfl, rfl,
+      rfl, rfl, rfl⟩
+
+example (H : Matrix 8 8 Coeff) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+        H).entryEqualityStatement ↔
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+        H).matrixEntryEqualityStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3
+    H
+
+example (H : Matrix 8 8 Coeff) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+        H).entryEqualityStatement ↔
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3
+        H).activeEntryToPreparedEntryStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3
+    H
+
+example (H : Matrix 8 8 Coeff) :
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3
+        H
+    field.entryTargetTyped = true ∧
+      field.matrixEntryEquivalenceCompiled = true ∧
+      field.preparedCompositionFieldAvailable = false ∧
+      field.activePreparedEntryEqualityProved = false ∧
+      field.fullProductFoldProved = false ∧
+      field.projectionSummationProved = false ∧
+      field.productToCoefficientProved = false ∧
+      field.requiredCompositionTheorem =
+        "oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H.entryEqualityStatement" ∧
+      field.exactRemainingObstruction =
+        "the active and prepared entries are packaged in a generic prepared-entry target, but QBE still lacks the CircuitMatrixSemantics composition theorem equating them" :=
+  by
+    have _field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3_transcript
+        H
+    exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+example (H : Matrix 8 8 Coeff) :
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3
+        H
+    field.activeEntryStatement ↔ field.interfaceStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3
+    H
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hEntry :
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+        H).matrixEntryEqualityStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_matrix_n3
+    H hUniform hEntry
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hEntry :
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+        H).entryEqualityStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3
+    H hUniform hEntry
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hFold :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+      H).entryEqualityStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_of_unitaryEntryFold_n3
+    H hUniform hFold
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+        H).entryEqualityStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3
+    H hUniform
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3
+        H
+    field.activeEntryStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_iff_unitaryEntryFold_n3
+    H hUniform
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+        H).entryEqualityStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_backendExpansion_n3
+    H hUniform
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3
+        H
+    field.activeEntryStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_iff_backendExpansion_n3
+    H hUniform
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3
+    H hUniform
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3
+        H env ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3
+        H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3
+    H env
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+        H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwichStatement_n3
+    H env
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+        H env ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_evaluatedBackendFold_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hexpansion :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_backendExpansion_n3
+    H env hUniform hexpansion
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hexpansion :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_backendExpansion_n3
+    H env hUniform hexpansion
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hexpansion :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_backendExpansion_n3
+    H env hUniform hexpansion
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hexpansion :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_backendExpansion_n3
+    H env hUniform hexpansion
+
+example (H : Matrix 8 8 Coeff) :
+    (Examples.RobinHeat.oneTermRobinCircuitSemantics 3).circuit ≠
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+        H).circuit :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3
+    H
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hPrepared :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3
+    H env hPrepared
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3
+        H env
+    field.activeGateCount = 7 ∧
+      field.preparedGateCount = 1 ∧
+      field.activeCircuit ≠ field.preparedCircuit ∧
+      (field.activePreparedCompositeEvalStatement ↔
+        field.activePreparedSparseEvalStatement) ∧
+      field.preparedSingletonSemanticsCompiled = true ∧
+      field.preparedCompositeCleanEvalCompiled = true ∧
+      field.activePreparedEvalBridgeCompiled = true ∧
+      field.activePreparedEntryEqualityProved = false ∧
+      field.fullProductFoldProved = false ∧
+      field.projectionSummationProved = false ∧
+      field.productToCoefficientProved = false ∧
+      field.requiredCircuitCompositionTheorem =
+        "active signal-zero CircuitMatrixSemantics entry equals prepared singleton clean entry" ∧
+      field.exactRemainingObstruction =
+        "the active seven-gate semantics and prepared singleton semantics are both typed, but QBE still lacks the CircuitMatrixSemantics composition theorem equating their selected entries" :=
+  by
+    have hdistinct :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3
+        H
+    have hequiv :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3
+        H env
+    dsimp [
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3,
+      Examples.RobinHeat.oneTermRobinCircuitSemantics,
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3,
+      CircuitMatrixSemantics.ofGateMatrices,
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3,
+      GHL2025.oneTermRobinGateMatrixPlaceholders]
+    exact ⟨rfl, rfl, hdistinct, hequiv, rfl, rfl, rfl, rfl, rfl,
+      rfl, rfl, rfl, rfl⟩
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    Coeff.evalWith env
+        ((Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+          H).matrix
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+    H env hUniform
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    let prepared :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+        H
+    let clean :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    target.preparedProjectionEntry = prepared.matrix clean clean ∧
+      target.preparedSingletonToSparseEvalStatement ∧
+      target.preparedSingletonToBackendEvalStatement := by
+  have hsparse :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+      H env
+  have hbackend :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H →
+        Coeff.evalWith env
+          ((Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+            H).matrix
+            Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+          Coeff.evalWith env
+            (blockExtractionBranchContributionSum
+              Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+    intro hUniform
+    exact
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+        H env hUniform
+  dsimp [
+    Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3]
+  exact ⟨rfl, hsparse, hbackend⟩
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    target.theoremFacingPreparedEntry =
+        "(oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix clean clean" ∧
+      target.conditionalBackendEvalBridgeLemma =
+        "oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3" ∧
+      target.preparedProjectionTargetCompiled = true ∧
+      target.preparedSingletonEntrySelected = true ∧
+      target.singletonToSparseEvalCompiled = true ∧
+      target.conditionalBackendEvalBridgeCompiled = true ∧
+      target.activeProjectionBackendUsesPreparedEntry = false ∧
+      target.activePreparedEntryEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.finalExtractionProved = false := by
+  dsimp [
+    Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3]
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl⟩
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement ↔
+      Coeff.evalWith env
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_backendEval_n3
+    H env hUniform
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).preparedSingletonToBackendEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedBackendEval_n3
+    H env
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    Coeff.evalWith env target.preparedProjectionEntry =
+      Coeff.evalWith env target.backendBranchFold :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+    H env hUniform
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+        H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3
+    H env
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement ↔
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3
+        H env).activePreparedCompositeEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_activePreparedCircuitField_n3
+    H env
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hEntry :
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3
+        H).entryEqualityStatement) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3
+    H env hEntry
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+    H env
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUncast :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_uncastActivePreparedCompositeEval_n3
+    H env hUncast
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    let productRoute :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    target.preparedSingletonToBackendEvalStatement ∧
+      target.conditionalBackendEvalBridgeCompiled = true ∧
+      target.activeProjectionBackendUsesPreparedEntry = false ∧
+      target.activePreparedEntryEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      productRoute.productBridgeProved = false ∧
+      productRoute.productToCoefficientProved = false ∧
+      productRoute.normalizedBlockEqualityProved = false ∧
+      productRoute.blockProjectionProved = false ∧
+      productRoute.blockCorrectProved = false ∧
+      productRoute.finalExtractionProved = false :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_feedsProductRoute_n3
+    H env
+
+example (env : String → Rat) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env =
+      (Coeff.evalWith env
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3)) :=
+  rfl
+
+example :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      (((cast (by rw [Examples.RobinHeat.oneTermRobinCircuitDimCompat 3])
+        (Examples.RobinHeat.oneTermRobinCircuitSemantics 3).matrix) :
+          Matrix Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveFullDim_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveCleanIndex_n3) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3
+
+example (env : String → Rat) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env ↔
+      Coeff.evalWith env
+        (((cast (by rw [Examples.RobinHeat.oneTermRobinCircuitDimCompat 3])
+          (Examples.RobinHeat.oneTermRobinCircuitSemantics 3).matrix) :
+            Matrix Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveFullDim_n3
+              Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveCleanIndex_n3) =
+        Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activeCircuitEntryEval_n3
+    env
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env ↔
+      (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env ↔
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3
+        H env).activePreparedCompositeEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hFold :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_evaluatedBackendFold_n3
+    H env hUniform hFold
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hFold :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+    H env hUniform hFold
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hFold :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3
+        H env).activePreparedCompositeEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_activeEval_of_evaluatedBackendFold_n3
+    H env hUniform hFold
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3
+        H env
+    target.activePreparedEvalStatement ↔
+      target.evaluatedBackendFoldStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_activeEval_iff_statement_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3
+        H env
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3
+        H env
+    target.evaluatedBackendFoldStatement ↔
+      field.activePreparedCompositeEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_activePreparedCircuitField_iff_statement_n3
+    H env hUniform
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3
+        H env ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3
+    H env
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3
+        H env
+    field.activePreparedCompositeEvalStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_iff_uncast_n3
+    H env
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env ↔
+      Coeff.evalWith env
+        ((evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders
+            (Examples.RobinHeat.oneTermParameters 3)))
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3
+            H) :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_preparedSandwich_n3
+    H env
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+        H env ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_evaluatedBackendFold_n3
+    H env hUniform
+
+example
+    (env : String → Rat)
+    (hFold :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+        env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3
+    env hFold
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hFold :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_unitaryEntryFold_n3
+    H env hUniform hFold
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hFold :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_unitaryEntryFold_n3
+    H env hUniform hFold
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hFold :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_unitaryEntryFold_n3
+    H env hUniform hFold
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hRaw :
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).rawEntryPreparedSandwichStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3
+    H env hRaw
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hRaw :
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).rawEntryPreparedSandwichStatement) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_rawEntryPreparedSandwichField_n3
+    H env hRaw
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hRaw :
+      (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).rawEntryPreparedSandwichStatement) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3
+    H env hRaw
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).rawEntryPreparedSandwichStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_unitaryEntryFold_n3
+    H hUniform
+
+example
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3
+        H).rawEntryPreparedSandwichStatement ↔
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3
+    H hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hExpanded :
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters 3)))
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩)) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_uncastActiveEntryExpandedFold_n3
+    H env hUniform hExpanded
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hExpanded :
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters 3)))
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩)) :
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+      H env :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_uncastActiveEntryExpandedFold_n3
+    H env hUniform hExpanded
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H)
+    (hExpanded :
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (Examples.RobinHeat.oneTermParameters 3)))
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (((((((0 +
+        Coeff.mul
+          (Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3
+            Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨1, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨2, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨3, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨4, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨5, by native_decide⟩) +
+        Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+          ⟨6, by native_decide⟩)) :
+    (Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).activeToPreparedSingletonEvalStatement :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_uncastActiveEntryExpandedFold_n3
+    H env hUniform hExpanded
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let field :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3
+        H env
+    field.activeSevenGateSemanticsCompiled = true ∧
+      field.preparedSingletonSemanticsCompiled = true ∧
+      field.activePreparedEntryEqualityProved = false ∧
+      field.fullProductFoldProved = false ∧
+      field.projectionSummationProved = false ∧
+      field.productToCoefficientProved = false ∧
+      field.exactRemainingObstruction =
+        "the active seven-gate semantics and prepared singleton semantics are both typed, but QBE still lacks the CircuitMatrixSemantics composition theorem equating their selected entries" := by
+  have _field :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3_transcript
+      H env
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+example (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3
+        H env
+    target.sourcePreparedTargetCompiled = true ∧
+      target.evaluatedBackendFoldStatementTyped = true ∧
+      target.activeEvalEquivalenceCompiled = true ∧
+      target.evaluatedBackendFoldProved = false ∧
+      target.rawCoeffFoldProved = false ∧
+      target.projectionSummationProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.requiredEvaluationTheorem =
+        "Coeff.evalWith env signalUnitaryEntry = Coeff.evalWith env (blockExtractionBranchContributionSum backendBranchContribution)" ∧
+      target.exactRemainingObstruction =
+        "the source-prepared active/evaluated-backend equivalence is compiled, but QBE still lacks the finite projection theorem evaluating the active signal-zero entry as the backend branch fold" := by
+  have _target :=
+    Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3_transcript
+      H env
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    let productRoute :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      productRoute.productBridgeProved = false ∧
+      productRoute.normalizedBlockEqualityProved = false ∧
+      productRoute.productToCoefficientProved = false ∧
+      productRoute.lcuCorrectProved = false ∧
+      productRoute.blockProjectionProved = false ∧
+      productRoute.blockCorrectProved = false ∧
+      productRoute.finalExtractionProved = false :=
+  by
+    have hroute :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_preparedProjectionBackendEval_n3
+        H env hUniform
+    rcases hroute with
+      ⟨hEval, _hPreparedEntry, _hBackendFold, _hConditional,
+        _hActivePrepared, hTargetProduct, hTargetLCU, hTargetBlockProjection,
+        hTargetBlockCorrect, hTargetFinal, _hFixed, hProductBridge,
+        hNormalized, hProduct, hLCU, hBlockProjection, hBlockCorrect,
+        hFinal⟩
+    exact ⟨hEval, hTargetProduct, hTargetLCU, hTargetBlockProjection,
+      hTargetBlockCorrect, hTargetFinal, hProductBridge, hNormalized, hProduct,
+      hLCU, hBlockProjection, hBlockCorrect, hFinal⟩
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false :=
+  by
+    have hbridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_preparedProjectionBackendEval_n3
+        H env hUniform
+    rcases hbridge with
+      ⟨hEval, _hProductRoute, hConsumed, hProductBridge,
+        hBranchDecomposition, hNormalized, hProduct, hLCU, hBlockProjection,
+        hBlockCorrect, hFinal⟩
+    exact ⟨hEval, hConsumed, hProductBridge, hBranchDecomposition,
+      hNormalized, hProduct, hLCU, hBlockProjection, hBlockCorrect, hFinal⟩
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      bridge.productObligation =
+        Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation 3
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ ∧
+      bridge.productObligation.proved = false ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryFocusedProductObligation_preparedProjectionBackendEval_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    Coeff.evalWith env
+        ((Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+          H).matrix
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ∧
+      bridge.productObligation =
+        Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation 3
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩ ∧
+      bridge.productObligation.proved = false ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryFocusedProductObligation_preparedCompositeCleanEntryBackendEval_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedProjectionBackendEval_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env
+        ((Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+          H).matrix
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      bridge.productRouteConsumed = true ∧
+      bridge.productBridgeProved = false ∧
+      bridge.branchDecompositionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env
+        ((Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+          H).matrix
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3
+        H env
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env
+        target.sourcePreparedProjectionTarget.preparedProjectionEntry =
+      Coeff.evalWith env target.backendBranchFold ∧
+      target.sourcePreparedProjectionTarget.preparedProjectionEntry =
+        ((Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+          H).matrix
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      target.evaluatedBackendFoldProved = false ∧
+      target.rawCoeffFoldProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_preparedCleanEntryFeedsProductMap_n3
+    H env hUniform
+
+example
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3
+        H) :
+    let target :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env
+    let bridge :=
+      Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let obligation :=
+      Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    target.preparedSingletonToBackendEvalStatement ∧
+      Coeff.evalWith env target.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      target.preparedProjectionEntry =
+        ((Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3
+          H).matrix
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3) ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      target.activePreparedEntryEqualityProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false :=
+  Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObligation_sourcePreparedTargetBackendEval_n3
+    H env hUniform
 
 -- Cycle 12: U_indic proof-DAG tests
 

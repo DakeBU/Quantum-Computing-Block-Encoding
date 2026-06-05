@@ -5,7 +5,19 @@ a Lean-first block-encoding proof project.  It also adapts the trial-memory
 pattern from [Learning Beyond Gradients](https://trinkle23897.github.io/learning-beyond-gradients/)
 and its [artifact repository](https://github.com/Trinkle23897/learning-beyond-gradients):
 append detailed JSONL records, then rewrite compact summaries for future
-agent iterations.
+agent iterations.  It preserves a Learning-Beyond-Gradients-like
+upper/middle/lower plus reviewer hierarchy for maintaining the proof system
+across cycles.  It also studies similar Lean-agent patterns in
+[MathCode](https://github.com/math-ai-org/mathcode), especially proof
+diagnostics, theorem-store-like reuse, persistent proof feedback,
+tree-of-subgoals decomposition, and skills/tools/plugins.  It also studies the
+blueprint/DAG-control pattern in
+[LeanMarathon](https://github.com/YuanheZ/LeanMarathon) and its
+[paper](https://arxiv.org/abs/2606.05400): target review before broad proving,
+dynamic leaves, bounded worker/refiner roles, and deterministic gates.
+Exploratory construction mode also preserves an
+[EoH](https://github.com/FeiLiu36/EoH)-like population layer for evolving
+candidate circuit/oracle families under a fixed acceptance predicate.
 
 ARIS optimizes the loop:
 
@@ -18,6 +30,36 @@ QBE uses the analogous proof loop:
 ```text
 papers/open problems -> formal specs -> circuit search -> Lean proofs -> review -> docs
 ```
+
+The LeanMarathon-like QBE control layer is:
+
+```text
+task + source proof + Lean declarations
+  -> proof-blueprint snapshot
+  -> dynamic leaf lower work
+  -> Lean gate and reviewer
+  -> refiner-style repair of connected obstruction areas
+```
+
+These layers are complementary.  LeanMarathon-style harness control does not
+replace the LBG-like role hierarchy or the EoH-like exploratory population.  It
+adds a stronger system-of-record and dynamic-leaf discipline so the existing
+upper/middle/lower/reviewer loop spends fewer tokens on stale or drifted proof
+targets.
+
+## Layered Architecture
+
+| Layer | Similar pattern | QBE use |
+|---|---|---|
+| Plain-file substrate | ARIS | Skills, manifests, task files, conversion windows, wiki, reviews, and run logs. |
+| Iterative controller | Learning Beyond Gradients | Upper/middle/lower/reviewer cycles, trial memory, failure compression, and proof-system maintenance. |
+| Exploratory search | EoH | Candidate populations for new circuit/oracle constructions, only in exploratory mode. |
+| Lean harness control | LeanMarathon | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
+| Proof diagnostics | MathCode | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
+
+QBE's advantage is the domain boundary: each layer is specialized to
+gate-level quantum block-encoding work rather than generic empirical research,
+generic heuristic design, or generic Lean autoformalization.
 
 ## Core Contract
 
@@ -75,12 +117,32 @@ The two modes share infrastructure, but their scientific standards are
 different.  Faithful mode teaches the system how existing constructions work;
 exploratory mode reuses that knowledge to search under new assumptions.
 
+## MathCode-Inspired Diagnostics
+
+QBE should use MathCode-like diagnostics without changing QBE's acceptance
+standard:
+
+- scan for `sorry`, `admit`, forbidden `axiom`/`constant`/`postulate`, and
+  suspicious semantic-flag promotions;
+- record useful failed proof routes in `proof-attempts/` instead of losing
+  them in chat history;
+- turn repeated successful local arguments into named Lean declarations;
+- use tree-of-subgoals decomposition only as proof-attempt scaffolding, never
+  as committed accepted proof with placeholders;
+- keep a future backlog item for focused Lean checks or persistent Lean
+  feedback, while retaining the full `lake build && lake build Tests` gate.
+
+See `docs/mathcode_reference_notes.md` and
+`.agents/skills/qbe-proof-diagnostics/SKILL.md`.
+
 ## Artifact Layout
 
 ```text
 tasks/                 task contracts and progress logs
 conversion-windows/    synchronized Lean/LaTeX/Markdown workspaces
 paper-notes/           optional LaTeX derivations and theorem sketches
+proof-obligations/     explicit unproved theorem/circuit obligations
+proof-blueprints/      compact task system-of-record snapshots
 docs/                  human-readable roadmaps and explanations
 QuantumBlockEncoding/  Lean source of truth
 Tests/                 Lean build smoke tests
@@ -102,7 +164,10 @@ roles:
 Generate one role deck:
 
 ```bash
-python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 2
+python3 tools/qbe.py run-cycle QBE-AUTO-001 \
+  --cycle 1 \
+  --lower-count 2 \
+  --blueprint-refresh
 ```
 
 Generate repeated decks:
@@ -112,6 +177,29 @@ python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 8 --lower-count 3 --dry-run
 ```
 
 See `docs/agent_orchestration.md` and `docs/sleep_run_guide.md`.
+
+For theorem-closure work where upper and middle have already fixed the Lean
+target, use focused proof burst mode instead of repeating the full role stack
+every cycle:
+
+```bash
+python3 tools/qbe.py sleep-run QBE-AUTO-002 \
+  --cycles 12 \
+  --lower-count 1 \
+  --context-mode focused \
+  --blueprint-refresh \
+  --upper-every 6 \
+  --middle-every 6 \
+  --reviewer-every 6 \
+  --agent-cmd 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"' \
+  --execute \
+  --check-each-cycle
+```
+
+This keeps Lean build gates on every cycle while reducing repeated planning
+tokens.  It should be used only after a full planning cycle has identified a
+single theorem or a single strictly smaller obstruction as the lower-agent
+target.
 
 ## Faithful Agent Loop
 

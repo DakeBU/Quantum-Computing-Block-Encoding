@@ -35,7 +35,137 @@ Proof-route populations are allowed only for fixed Lean statements whose
 failure produced useful lemmas.  They must not mutate the paper construction or
 displace the Phase 1 transcript objective.
 
+## Current Run Directive: 2026-05-28 Focused Projection Bridge Closure
+
+This directive supersedes older broad run directives for the next overnight
+batch.  The active mathematical blocker is no longer the boundary `R_y`
+convention, Shukla--Vedula state preparation, standard LCU, or the old bulk
+endpoint comparison.  Those are either source-backed, contract-only, or
+backlog.  The current target is the QBE-local finite-register projection bridge
+for the focused GHL2025 Robin boundary branch.
+
+Source anchors:
+
+| Source item | Role in this run |
+|---|---|
+| GHL2025 Theorem `theorem: 1 term robin` | theorem being faithfully reproduced under cited contracts |
+| Eq. `eq: ROBIN clarified`, displayed `gamma_3` boundary branch | source coefficient and register branch |
+| Fig. `fig:1 term ROBIN` | gate/order/register source for the product route |
+| Definition `def:block-encoding` | signal-zero block projection convention |
+| Eq. `arbitrary sparcity` and Shukla--Vedula cited result | external clean sparse-register amplitude contract only |
+| Standard LCU/block-composition | external/standard contract only for this run |
+
+Current compiled Lean input:
+
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsEval_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3`
+- `Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript`
+
+The focused branch data is fixed:
+
+| Item | Value |
+|---|---|
+| system entry | `(0,0)` |
+| sparse slot | `2` |
+| branch basis index | `32` |
+| signal-zero block entry | full finite entry `[0,0]` |
+| fixed theorem target | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` |
+
+This run has exactly one proof focus:
+
+1. Produce a Lean-facing proof-translation packet that explains how the
+   source's Dirac/register expression for the displayed `gamma_3` boundary
+   branch is projected into Definition `def:block-encoding`.
+2. Implement or refine the smallest QBE-local interface that connects the
+   slot-`2` branch product at full basis `[32,32]` to the signal-zero block
+   entry `[0,0]`.
+3. If the existing finite matrix semantics cannot express that bridge, record
+   the missing projection/summation field as the smallest obstruction and add a
+   typed interface target for the next run.  Do not hide this by adding a new
+   assumption to the GHL theorem.
+4. Promote `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` only if the
+   bridge and normalized product equality are actually proved by Lean and the
+   build gate passes.
+
+Non-goals for this run:
+
+- Do not recursively formalize the whole Shukla--Vedula state-preparation
+  theorem.
+- Do not recursively formalize standard LCU/block-composition.
+- Do not revisit the old `j = 5` bulk endpoint mismatch.
+- Do not write broad reusable APIs or project-paper prose unless the current
+  proof interface needs a small reusable lemma.
+- Do not add a replacement oracle, extra assumption, or easier theorem.
+- Do not edit automation/process files unless the run command itself is broken.
+
+Agent discipline for this run:
+
+| Agent | Required behavior |
+|---|---|
+| upper | Keep the cycle focused on the projection bridge and reject broad detours. |
+| middle | Translate the relevant source register/projection step into Lean targets before lower work; after Lean work, update Markdown/LaTeX/proof-obligation notes only for accepted changes. |
+| lower | Work only on the fixed bridge or the smallest missing interface. Prefer `QuantumBlockEncoding/RobinMatrix.lean` and focused tests in `Tests/Basic.lean`. |
+| reviewer | Check that no semantic flag is promoted without a Lean theorem, that cited contracts remain contract-only, and that Markdown math uses `$...$` or `$$...$$`. |
+
+Known pre-existing diff boundary for the next continuation run:
+
+- MathCode attribution, `qbe-proof-diagnostics`, and process-documentation
+  edits are a separate process-docs/reference update already present before the
+  GHL continuation run starts.
+- The GHL faithful run must not edit those process-docs files further unless a
+  build or prompt-generation failure makes it necessary.
+- Reviewer should not reject the GHL proof cycle merely because those
+  pre-existing process-docs files remain dirty.  Reviewer should reject only
+  new out-of-scope edits made during the GHL continuation run or any attempt to
+  use process-doc changes as evidence for a GHL theorem closure.
+
 ## Current Run Directive: GHL Theorem Closure Under Cited Contracts
+
+### 2026-05-26 Boundary `R_y` Source-Audit Correction
+
+The previous batch exposed a real convention mismatch in the displayed
+boundary branch of Eq. `eq: ROBIN clarified`.  The local GHL2025 text writes
+`theta_j^s = arccos(D_j^(s) / N_D)`, while the active Lean matrix uses the
+standard quantum `R_y(theta)` convention with entries `cos(theta/2)` and
+`sin(theta/2)`.  Under that standard convention the displayed coefficient
+requires the input angle
+
+$$
+theta_j^s = 2 arccos(D_j^(s) / N_D).
+$$
+
+Source audit:
+
+| Evidence | Status |
+|---|---|
+| GHL2025 Eq. `eq:angles for Ry` | local text says `arccos(D/N_D)` |
+| GHL2025 Fig. `fig:1 term ROBIN` | labels the boundary gates as `R_y(theta_j^s)` |
+| Prior PDE construction, arXiv:2405.12855, appendix `O_{p^m}^S` | uses `theta_s = 2 arccos(...)` for the same standard `R_y` sparse-amplitude pattern |
+| Companion implementation `XiajieHuang/Hamiltonian-Simulation-of-1D-Heat-Equation-with-Robin-Boundary-Conditions` | README and `fundamental_gates_unitary.py` use the standard half-angle `ry(parameter)` convention; `Hamiltonian_of_1D_Heat_Equation.py` computes boundary correction angles with `2 * np.arccos(...)` |
+
+Active decision: treat the GHL2025 boundary line as a source-backed correction
+route, not as a theorem-ending gap.  The corrected route is compiled as
+`Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3`.
+It permits lower product-to-coefficient work to resume for the boundary branch
+while keeping product-to-coefficient, LCU, block projection, cleanup, unitarity,
+block correctness, normalized equality, circuit unitarity, and final extraction
+flags false until Lean actually proves them.
+
+The next lower focus is narrow:
+
+1. Add a corrected-angle boundary coefficient interface for `Ry_boundary`.
+2. Rewire the focused boundary product route so the clean ket-zero boundary
+   factor is the normalized derivative coefficient
+   `GHL2025.boundaryRotationNormalizedCoefficient p 0 2`, not an unresolved
+   free symbol.
+3. Prove the focused boundary product-to-coefficient statement for
+   `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, or record the
+   smallest remaining Lean-local obstruction.
+4. Only after that, continue to the bulk branch and finite block-composition
+   route.  Do not spend this batch on broad library organization or recursive
+   proof of cited primitives.
 
 The 2026-05-25 next run is a hard pivot from route-guard maintenance and
 recursive oracle formalization to theorem transcript closure for GHL2025
@@ -188,12 +318,15 @@ Development may use local working copies of the paper, but public proof maps
 must cite the paper, arXiv URL, theorem/lemma/equation/figure labels, or bundled
 paper notes.  Do not cite machine-specific absolute source paths.
 
-For local agent work, the GHL2025 TeX source is archived in the sibling
-ARIS-style source store:
+For local agent work, the GHL2025 TeX source should be archived in the shared
+external paper store:
 
 ```text
-../Auto-claude-code-research-in-sleep/paper-sources/GHL2025/main.tex
+../outer_papers/GHL2025/main.tex
 ```
+
+If the source uses a different GHL/Guseynov folder name, set
+`QBE_PAPER_SOURCE_ROOT` before generating run prompts.
 
 This local source is for planning and source-contract audits only.  Public QBE
 artifacts should cite arXiv:2506.20478 and stable paper anchors.
@@ -383,3 +516,234 @@ rg -n "Prop := True|:= trivial|sparseCorrect := True|amplitudeCorrect := True|lc
 
 The run is successful only if Lean builds and the Markdown/LaTeX correspondence
 has been updated for the semantic declarations added in that cycle.
+
+## Immediate 6h Focus: Close the Prepared Projection Backend
+
+This batch is Lean-heavy faithful-paper reproduction.  Do not spend lower-agent
+time creating broad new process notes, new alternative theorem routes, or large
+educational rewrites.  The current reviewer-approved obstruction is exactly:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+Upper agent:
+
+- Treat the above equality as the only primary target.
+- Before assigning lower work, re-read the source proof context for Theorem
+  `1 term robin`, Eq. `ROBIN clarified`, Eq. `arbitrary sparcity`, and Fig.
+  `1 term ROBIN`.
+- Decide whether the equality is just finite matrix/projection bookkeeping
+  already encoded in QBE, or whether the paper is implicitly invoking the
+  sparse-state-preparation convention for $H_W^{(\kappa)}$.
+- Do not redirect this batch into Shukla--Vedula recursion, generic LCU
+  formalization, bulk `j = 5`, or Ry-convention audit unless the source proof
+  directly forces it.
+
+Middle agent:
+
+- Keep the conversion/proof-obligation notes minimal and synchronized.
+- Translate only the relevant source-proof fragment into the Lean target and
+  translate back only the newly accepted Lean theorem or the exact smaller
+  obstruction.
+- Do not polish the project article or appendix during this batch.
+- In Markdown, use `$...$` and `$$...$$`; do not use backslash math delimiters.
+
+Lower agent:
+
+- Work only in the narrow files needed for the target, normally
+  `QuantumBlockEncoding/RobinMatrix.lean`, a small generic helper in
+  `QuantumBlockEncoding/CircuitSemantics.lean` if unavoidable, and focused
+  checks in `Tests/Basic.lean`.
+- Prefer proving a direct finite-fold/projection lemma over adding another
+  record that merely names the same obstruction.
+- If the equality cannot be closed, the acceptable fallback is a strictly
+  smaller compiled lemma identifying the exact missing term in the prepared
+  projection backend.  Do not add parallel obstruction hierarchies.
+- Keep `productToCoefficientProved`, `lcuCorrectProved`, `blockCorrectProved`,
+  `normalizedBlockEqualityProved`, `circuitUnitarityProved`, and
+  `finalExtractionProved` false unless Lean directly proves them.
+
+Reviewer:
+
+- Reject new out-of-scope edits whose main effect is more documentation or
+  another restatement of the same obstruction.
+- Accept only if the run either proves the displayed equality, or reduces it to
+  a genuinely smaller theorem with a build-tested Lean declaration.
+- Audit that the paper source was used faithfully: no added assumptions, no
+  invented oracle conditions, and no promotion of theorem-facing flags without
+  compiled proof.
+
+## Immediate 6h Focus: Source-Correct Prepared Projection Route
+
+This directive supersedes the previous "prove the H-free active entry fold"
+focus.  After re-reading the local source proof around Theorem
+`theorem: 1 term robin`, Eq. `ROBIN clarified`, Eq. `arbitrary sparcity`, and
+Fig. `fig:1 term ROBIN`, the correct faithful-paper route is:
+
+1. `H_W^(kappa)` prepares the sparse register as in Eq. `arbitrary sparcity`.
+2. The Fig. `1 term ROBIN` seven-gate product acts on the prepared sparse
+   register and produces the `gamma_3` coefficient in Eq. `ROBIN clarified`.
+3. The block-encoding projection from Definition `def:block-encoding` selects
+   the prepared clean output, not the H-free seven-gate active entry by itself.
+
+Therefore, the next batch must stop trying to prove the H-free active equality
+
+```lean
+Coeff.evalWith env
+  ((evalGateMatrices
+    (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+    oneTermRobinGamma3BoundaryPrefixRow0_n3
+    oneTermRobinGamma3BoundaryPrefixRow0_n3)
+=
+Coeff.evalWith env
+  (blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+as the primary theorem.  That equality is useful only as a diagnostic if the
+active seven-gate matrix has already been source-prepared, which the current
+Lean guard `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` shows is
+not the case.
+
+Primary target for this batch:
+
+- Make the theorem-facing focused block/projection route use the prepared
+  singleton clean entry
+  `(oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3`
+  or the equivalent prepared sparse-matrix clean entry.
+- Use the already compiled bridge
+  `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`
+  under the explicit contract
+  `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` to
+  prove the source-correct evaluated backend fold.
+- If possible, route the focused `gamma_3` product-to-coefficient statement
+  through this prepared projection target.  If not possible, add only the
+  smallest missing route lemma and keep all theorem-facing flags false.
+
+Source/background classification for agents:
+
+- GHL2025 own contribution: the Robin boundary seven-gate construction,
+  `gamma_1`/`gamma_2`/`gamma_3` coefficient bookkeeping, normalizer
+  `N_D * N_f * kappa`, ancilla ledger, and resource count.
+- External contract: Shukla--Vedula uniform superposition gives only the
+  clean-column amplitude shape and `O(log kappa)` cost for `H_W^(kappa)`.
+  Do not recursively formalize it in this batch.
+- External/standard contract: LCU and block-composition are downstream
+  contracts.  Do not use them to prove the local prepared projection entry.
+- QBE-local work: finite matrix/projection bookkeeping that connects the
+  source-prepared singleton clean entry to the branch fold and then to the
+  focused product route.
+
+Upper agent:
+
+- Start from the prepared projection route above, not from the H-free active
+  equality.
+- Treat `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` as a guard
+  that prevents false closure of the active route.
+- Assign lower work to change the theorem-facing route, not to add another
+  obstruction record.
+
+Middle agent:
+
+- Update the conversion window so the active H-free equality is marked
+  "diagnostic/backlog" and the prepared singleton clean-entry route is marked
+  "source-correct active route".
+- Keep Markdown/LaTeX notes minimal: definitions first, theorem statement,
+  source-proof map, and remaining obligations.
+- Do not polish the project paper during this Lean-heavy batch.
+
+Lower agent:
+
+- Prefer direct theorem declarations over new records.
+- Work in `QuantumBlockEncoding/RobinMatrix.lean` and focused
+  `Tests/Basic.lean`; touch `CircuitSemantics.lean` only for a genuinely
+  reusable finite-matrix helper.
+- First try to prove a theorem of the form:
+
+```lean
+theorem ... (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    Coeff.evalWith env
+      ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+    Coeff.evalWith env
+      (blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+  if the exact theorem is already present, route it into the focused
+  product-to-coefficient proof map instead of duplicating it.
+- Keep `productToCoefficientProved`, `lcuCorrectProved`,
+  `blockProjectionProved`, `blockCorrectProved`, `normalizedBlockEqualityProved`,
+  `circuitUnitarityProved`, and `finalExtractionProved` false unless Lean
+  directly proves the corresponding theorem.
+
+Reviewer:
+
+- Reject a cycle that again spends its main effort on proving the H-free active
+  equality without explaining why this matches Eq. `arbitrary sparcity`.
+- Accept if the theorem-facing route is corrected to the prepared singleton
+  clean entry and the prepared backend fold is build-tested under the explicit
+  `H_W^(kappa)` clean-column contract.
+
+## Automation Control: Avoid Full-Stack Token Waste
+
+The current target is fixed enough for focused proof-burst mode.  A full
+upper/middle/lower/reviewer cycle is useful when the source route is unclear;
+it is too expensive when the remaining target is one Lean theorem.
+
+## LeanMarathon-Style Blueprint Control Update
+
+Before the next long run, refresh the QBE proof blueprint:
+
+```bash
+python3 tools/qbe.py blueprint-refresh QBE-AUTO-002
+```
+
+The latest focused burst reported that
+`oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` and
+its focused product-map wrappers are already compiled and already tested.  This
+means the next upper/middle checkpoint must retire the stale lower packet
+"prove the prepared clean-entry backend fold" before more proof-search tokens
+are spent.
+
+The next dynamic leaf should be the smallest theorem-facing wrapper that is not
+already compiled, such as the route from the prepared backend fold into the
+focused `gamma_3` product-to-coefficient theorem, or a precise proof-obligation
+row explaining why that wrapper cannot yet be stated without a missing
+projection/summation interface.
+
+Reviewer should treat this as a LeanMarathon-like target-review checkpoint:
+the system must stabilize the active leaf before lower-only focused proof
+bursts continue.
+
+For the next automated run, prefer:
+
+- `--context-mode focused`;
+- `--blueprint-refresh`;
+- lower every cycle;
+- upper, middle, and reviewer every 6 cycles, or sooner only if Lean fails or
+  lower reports a source-contract mismatch;
+- `--check-each-cycle` so the Lean gate still runs every cycle.
+
+The lower target remains the source-correct active/prepared selected-entry
+equality:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+Equivalent wrappers are
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`
+and
+`(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement`.
+The H-free backend expansion may be used only as a recovery lemma for the
+prepared route.  Do not spend a focused proof burst adding more process notes,
+new route records, or repeated statements of the same obstruction.

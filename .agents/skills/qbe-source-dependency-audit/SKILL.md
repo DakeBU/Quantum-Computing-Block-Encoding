@@ -18,17 +18,21 @@ must classify the missing ingredient before more proof search.
 
 ## Local Source Archive
 
-Agents may use local TeX sources from the sibling ARIS-style archive:
+Agents may use local TeX sources from the shared external paper archive:
 
 ```text
-../Auto-claude-code-research-in-sleep/paper-sources/
+../outer_papers/
 ```
 
 For GHL2025, the current local source is:
 
 ```text
-../Auto-claude-code-research-in-sleep/paper-sources/GHL2025/main.tex
+../outer_papers/GHL2025/main.tex
 ```
+
+If the source is stored under another GHL/Guseynov folder name, or under a
+temporary local source root, set `QBE_PAPER_SOURCE_ROOT` before creating the
+prompt deck.
 
 These paths are private working references.  Public Markdown, LaTeX, README,
 and proof-obligation artifacts must cite stable paper anchors such as arXiv
