@@ -1,35 +1,30 @@
 {
   "blueprint_path": "Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/proof-blueprints/QBE-AUTO-002.md",
   "changed_files": [
-    ".agents/skills/qbe-conversion-window/SKILL.md",
-    ".agents/skills/qbe-formalize-paper/SKILL.md",
-    ".agents/skills/qbe-hierarchical-proof-dag/SKILL.md",
-    ".agents/skills/qbe-proof-blueprint/",
-    ".agents/skills/qbe-proof-diagnostics/",
+    ".agents/skills/qbe-cited-results/SKILL.md",
     ".agents/skills/qbe-source-dependency-audit/SKILL.md",
     "MANIFEST.md",
-    "NOTICE.md",
     "QuantumBlockEncoding/CircuitSemantics.lean",
-    "QuantumBlockEncoding/GHL2025.lean",
     "QuantumBlockEncoding/RobinMatrix.lean",
     "README.md",
-    "Tests/Basic.lean",
     "conversion-windows/QBE-AUTO-002.md",
-    "docs/agent_orchestration.md",
-    "docs/attribution.md",
-    "docs/automation_deployment.md",
+    "docs/astis_reference_notes.md",
     "docs/leanmarathon_reference_notes.md",
     "docs/mathcode_reference_notes.md",
-    "docs/sleep_run_guide.md",
-    "paper-notes/GHL2025/latex/sections/00_status.tex",
-    "paper-notes/GHL2025/markdown/00_status.md",
-    "paper-notes/GHL2025_RobinOneTerm.tex",
-    "proof-attempts/QBE-AUTO-002/gamma3-product-to-coefficient.md",
-    "proof-blueprints/",
+    "proof-attempts/QBE-AUTO-002/active-prepared-architect-plan-cycle01-update.md",
+    "proof-attempts/QBE-AUTO-002/active-prepared-architect-plan-cycle01.md",
+    "proof-attempts/QBE-AUTO-002/column0-two-path-analysis.md",
+    "proof-attempts/QBE-AUTO-002/cycle01-two-path-infra.md",
+    "proof-attempts/QBE-AUTO-002/matrix-associativity-bridge.md",
+    "proof-attempts/QBE-AUTO-002/suffix-row0-plan.md",
+    "proof-blueprints/QBE-AUTO-002-status.json",
+    "proof-blueprints/QBE-AUTO-002-status.md",
+    "proof-blueprints/QBE-AUTO-002.md",
     "proof-obligations/QBE-AUTO-002.md",
-    "research-wiki/cited-results/GHL2025.md",
     "tasks/QBE-AUTO-002.md",
-    "tools/qbe.py"
+    "tools/qbe.py",
+    "tools/qbe_claude_faithful.sh",
+    "tools/qbe_run_theorem_closure.sh"
   ],
   "controls_absorbed": [
     "ASTIS-style compact context/status artifacts for long runs",
@@ -39,235 +34,235 @@
   ],
   "conversion_window": "Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/conversion-windows/QBE-AUTO-002.md",
   "dynamic_leaf_queue": [
-    "Latest handoff indicates at least one assigned lower target was already compiled; upper/middle should retire stale directives before more proof search.",
-    "1. `H_W^(kappa)` prepares the sparse register as in Eq. `arbitrary sparcity`.",
-    "2. The Fig. `1 term ROBIN` seven-gate product acts on the prepared sparse register and produces the `gamma_3` coefficient in Eq. `ROBIN clarified`.",
-    "3. The block-encoding projection from Definition `def:block-encoding` selects the prepared clean output, not the H-free seven-gate active entry by itself.",
-    "- Make the theorem-facing focused block/projection route use the prepared singleton clean entry `(oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix oneTermRobinGamma3BoundarySparseCleanIndex_n3 oneTermRobinGamma3BoundarySparseCleanInd...",
-    "- Use the already compiled bridge `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` under the explicit contract `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` to prove the source-correct evaluated backend fold.",
-    "- If possible, route the focused `gamma_3` product-to-coefficient statement through this prepared projection target. If not possible, add only the smallest missing route lemma and keep all theorem-facing flags false.",
-    "- GHL2025 own contribution: the Robin boundary seven-gate construction, `gamma_1`/`gamma_2`/`gamma_3` coefficient bookkeeping, normalizer `N_D * N_f * kappa`, ancilla ledger, and resource count.",
-    "- External contract: Shukla--Vedula uniform superposition gives only the clean-column amplitude shape and `O(log kappa)` cost for `H_W^(kappa)`. Do not recursively formalize it in this batch.",
-    "- External/standard contract: LCU and block-composition are downstream contracts. Do not use them to prove the local prepared projection entry."
+    "- lower 1 is the natural-language proof architect. It should translate the GHL source proof and the current Lean DAG into a dependency-ordered proof plan, naming existing declarations and the smallest new intermediate lemma.",
+    "- lower 2 is the Lean implementation worker. It should implement that smallest theorem/lemma, run `python3 tools/qbe.py check`, and record useful failed routes under `proof-attempts/`.",
+    "1. Reduce the active/prepared statement to the uncast form using the compiled equivalence.",
+    "2. Compare the raw active seven-gate selected entry with the prepared sandwich clean entry under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.",
+    "3. Reuse the prepared clean-entry backend bridge already compiled in `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`.",
+    "4. If direct HWKappa use is blocked, use the column-0 support lemmas as a fallback, but do not restart the frozen H-free raw fold as the main route.",
+    "- Do not prove `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` as a standalone H-free theorem this batch; it is diagnostic/backlog unless routed through the prepared projection target.",
+    "- Do not recursively formalize Shukla--Vedula, LCU, or block-composition.",
+    "- Do not add assumptions, replace the paper circuit, or promote semantic flags.",
+    "- Do not spend the cycle on project-paper polish or broad library refactors."
   ],
-  "generated": "2026-06-06 01:40:47",
-  "latest_cycle": "20260605-051845-QBE-AUTO-002-cycle01",
+  "generated": "2026-06-07 21:06:16",
+  "latest_cycle": "20260607-155230-QBE-AUTO-002-cycle01",
   "lean_declarations": [
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "16238",
-      "name": "oneTermRobinGamma3BoundarySparseSlotIndex_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "16248",
-      "name": "oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "16263",
-      "name": "oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "16277",
-      "name": "oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "16364",
+      "line": "16952",
       "name": "OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "16405",
+      "line": "16993",
       "name": "oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "16536",
+      "line": "17124",
       "name": "OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "16570",
+      "line": "17158",
       "name": "oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "16771",
+      "line": "17359",
       "name": "oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "16787",
+      "line": "17375",
       "name": "oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "16806",
+      "line": "17394",
       "name": "OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "16840",
+      "line": "17428",
       "name": "oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "16939",
+      "line": "17527",
       "name": "oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "16973",
+      "line": "17561",
       "name": "oneTermRobinGamma3BoundaryPreparedCompositeGate_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "16988",
+      "line": "17576",
       "name": "oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "16993",
+      "line": "17581",
       "name": "oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "17008",
+      "line": "17596",
       "name": "oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "17090",
+      "line": "17678",
       "name": "OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "17130",
+      "line": "17718",
       "name": "oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "abbrev",
-      "line": "17257",
+      "line": "17845",
       "name": "oneTermRobinGamma3BoundaryActiveFullDim_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "17262",
+      "line": "17850",
       "name": "oneTermRobinGamma3BoundaryActiveCleanIndex_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "17489",
+      "line": "18077",
       "name": "oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "17570",
+      "line": "18158",
       "name": "OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "17607",
+      "line": "18195",
       "name": "oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "17939",
+      "line": "18527",
       "name": "oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "17956",
+      "line": "18544",
       "name": "oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "18051",
+      "line": "18639",
       "name": "oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "18184",
+      "line": "18772",
       "name": "oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "18263",
+      "line": "18851",
       "name": "oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "18283",
+      "line": "18871",
       "name": "OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "18329",
+      "line": "18917",
       "name": "oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "18534",
+      "line": "19122",
       "name": "OneTermRobinGamma3BoundarySourcePreparedProjectionTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "18577",
+      "line": "19165",
       "name": "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "18963",
+      "line": "19551",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "19713",
+      "line": "20301",
       "name": "OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "19745",
+      "line": "20333",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "20988",
+      "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "21018",
+      "name": "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "21031",
+      "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "21049",
+      "name": "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
@@ -278,79 +273,79 @@
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "structure",
-      "line": "305",
+      "line": "404",
       "name": "CircuitMatrixSemantics"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "structure",
-      "line": "337",
+      "line": "436",
       "name": "PreparedCircuitEntryTarget"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "structure",
-      "line": "403",
+      "line": "502",
       "name": "BlockExtractionTarget"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "structure",
-      "line": "436",
+      "line": "535",
       "name": "BlockExtractionBranchContributionTarget"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "structure",
-      "line": "562",
+      "line": "661",
       "name": "CircuitBlockEncodingClaim"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "structure",
-      "line": "577",
+      "line": "676",
       "name": "FiniteBlockCompositionContract"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "def",
-      "line": "597",
+      "line": "696",
       "name": "signalSystemBlockRowIndex"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "def",
-      "line": "601",
+      "line": "700",
       "name": "signalSystemBlockColIndex"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "theorem",
-      "line": "613",
+      "line": "712",
       "name": "signalSystemBlockRowIndex_lt"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "theorem",
-      "line": "628",
+      "line": "727",
       "name": "signalSystemBlockColIndex_lt"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "def",
-      "line": "654",
+      "line": "753",
       "name": "signalSystemBlockProjection"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "def",
-      "line": "679",
+      "line": "778",
       "name": "totalCircuitQubits"
     },
     {
       "file": "QuantumBlockEncoding/CircuitSemantics.lean",
       "kind": "def",
-      "line": "687",
+      "line": "786",
       "name": "CircuitMatrixSemantics.blockExtractionTarget"
     }
   ],
@@ -358,7 +353,7 @@
     {
       "exists": true,
       "key": "GHL2025",
-      "path": "outer_papers/GHL2025/main.tex"
+      "path": "outer_papers/quantum/GHL2025/main.tex"
     }
   ],
   "mode": "faithfulPaper",
@@ -389,16 +384,16 @@
   "task_id": "QBE-AUTO-002",
   "title": "Concrete Circuit Matrix Semantics Backend",
   "trial_counts_by_role": {
-    "lower": 799,
-    "middle": 665,
-    "reviewer": 593,
-    "upper": 1095
+    "lower": 811,
+    "middle": 676,
+    "reviewer": 600,
+    "upper": 1112
   },
   "trial_counts_by_status": {
-    "accepted": 1173,
+    "accepted": 1191,
     "blocked": 8,
-    "compiled": 395,
+    "compiled": 400,
     "failed": 5,
-    "queued": 1571
+    "queued": 1595
   }
 }

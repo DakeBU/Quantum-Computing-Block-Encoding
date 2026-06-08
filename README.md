@@ -15,15 +15,17 @@ layout, normalizer, and resource count needed to run it on a quantum computer.
 
 ![QBE automation pipeline](docs/assets/qbe_pipeline.svg)
 
-## Primary Target
+## First Faithful Reproduction Case
 
-The first target is the Robin-boundary PDE simulation construction:
+ABEIS is a general auto-Lean-in-sleep system for gate-level quantum oracle and
+block-encoding formalization.  Its first faithful paper-reproduction case is
+the Robin-boundary PDE simulation construction:
 
 - Nikita Guseynov, Xiajie Huang, Nana Liu,
   [Quantum framework for simulating linear PDEs with Robin boundary conditions](https://arxiv.org/abs/2506.20478),
-  arXiv 2025 / published 2026. Status: `skeleton`.
+  arXiv 2025 / published 2026. Status: `active faithful reproduction`.
 
-The primary Lean file is:
+The first-case Lean file is:
 
 ```text
 QuantumBlockEncoding/GHL2025.lean
@@ -53,7 +55,7 @@ Compiled Lean source of truth:
 - `QuantumBlockEncoding/Core.lean`: base finite index and grid helpers.
 - `QuantumBlockEncoding/Circuit.lean`: circuit and gate-level placeholders.
 - `QuantumBlockEncoding/BlockEncoding.lean`: block-encoding contracts.
-- `QuantumBlockEncoding/GHL2025.lean`: primary Robin-boundary target.
+- `QuantumBlockEncoding/GHL2025.lean`: first faithful reproduction case.
 - `QuantumBlockEncoding/Literature.lean`: clickable literature registry.
 - `QuantumBlockEncoding/OpenProblems.lean`: Lean-registered open problems.
 - `QuantumBlockEncoding/Automation.lean`: compiled automation contracts.
@@ -73,11 +75,25 @@ Automation and knowledge artifacts:
 
 Shared external development references live outside this repository:
 
-- `../outer_papers/`: local paper PDFs/TeX sources used by agents during
-  source-dependency audits.
-- `../outer_repos/`: local checkouts of reference systems such as ARIS,
-  Learning Beyond Gradients, EoH, LeanMarathon, MathCode, Lean-QuantumInfo,
-  and optimizationproblems.
+- `../outer_papers/quantum/`: quantum-computing paper PDFs/TeX sources used by
+  ABEIS during source-dependency audits.
+- `../outer_papers/sampling_theory_sde/`: statistical learning, sampling,
+  Langevin/SDE, and propagation-of-chaos paper sources shared with ASTIS.
+- `../outer_papers/automation_systems/`: automation-system papers such as
+  [LeanMarathon][leanmarathon] and [ARIS][aris].
+- `../outer_repos/automation_systems/`: local checkouts of reference systems
+  such as [ARIS][aris], [Learning Beyond Gradients][lbg], [EoH][eoh],
+  [LeanMarathon][leanmarathon], and [MathCode][mathcode].
+- `../outer_repos/quantum/`: quantum-formalization references such as
+  [Lean-QuantumInfo][lean-quantuminfo].
+- `../outer_repos/sampling_theory_sde/`: ASTIS-facing statistical-learning and
+  sampling/SDE formalization references.
+- `../outer_repos/mathematics_open_problems/`: open-problem registry and
+  benchmark references such as [optimizationproblems][optimizationproblems].
+
+The shared roots are intentionally classified: `../outer_papers/` and
+`../outer_repos/` should contain only topic folders, not duplicate flat copies
+or compatibility symlinks.
 
 Public ABEIS/QBE artifacts cite upstream GitHub repositories, arXiv URLs,
 theorem/equation anchors, or bundled paper notes. They should not depend on a
@@ -85,30 +101,31 @@ machine-specific absolute path.
 
 ## Agent Automation
 
-QBE adapts the ARIS plain-file automation pattern to Lean proof work:
+QBE adapts the [ARIS][aris] plain-file automation pattern to Lean proof work:
 
 ```text
 literature/open problem -> formal spec -> circuit search -> Lean proof -> review -> docs
 ```
 
-The implementation also borrows the trial-memory pattern from Learning Beyond
-Gradients: append detailed JSONL trial records and rewrite a compact summary
-CSV after every attempt.
+The implementation also borrows the trial-memory pattern from
+[Learning Beyond Gradients][lbg]: append detailed JSONL trial records and
+rewrite a compact summary CSV after every attempt.
 
 QBE's automation stack is layered:
 
 | Layer | Similar pattern | QBE role |
 |---|---|---|
-| Plain-file substrate | ARIS | Skills, task files, conversion windows, manifests, wiki pages, reviews, and run logs. |
-| Iterative controller | Learning Beyond Gradients | Upper/middle/lower plus reviewer cycles, trial memory, failure compression, and proof-system maintenance. |
-| Exploratory search | EoH | Candidate populations for new circuit/oracle constructions, only after a Lean-checkable target is fixed. |
-| Lean harness control | LeanMarathon | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
-| Proof diagnostics | MathCode | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
+| Plain-file substrate | [ARIS][aris] | Skills, task files, conversion windows, manifests, wiki pages, reviews, and run logs. |
+| Iterative controller | [Learning Beyond Gradients][lbg] | Upper/middle/lower plus reviewer cycles, trial memory, failure compression, and proof-system maintenance. |
+| Exploratory search | [EoH][eoh] | Candidate populations for new circuit/oracle constructions, only after a Lean-checkable target is fixed. |
+| Lean harness control | [LeanMarathon][leanmarathon] | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
+| Proof diagnostics | [MathCode][mathcode] | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
 
-The LeanMarathon-like control layer does not replace the LBG-like hierarchy or
-the EoH-like exploration layer.  It makes those existing loops more reliable by
-forcing agents to work from a current proof blueprint and by retiring stale
-dynamic leaves before lower agents spend more proof-search tokens.
+The [LeanMarathon][leanmarathon]-like control layer does not replace the
+[Learning Beyond Gradients][lbg]-like hierarchy or the [EoH][eoh]-like
+exploration layer.  It makes those existing loops more reliable by forcing
+agents to work from a current proof blueprint and by retiring stale dynamic
+leaves before lower agents spend more proof-search tokens.
 
 ![Three-layer agent stack](docs/assets/agent_stack.svg)
 
@@ -129,9 +146,15 @@ of Sonoda--Akiyama--Uezato
 ([arXiv:2602.10512v2](https://arxiv.org/abs/2602.10512)): successful theorem
 proving should reuse named proof blocks as a DAG rather than repeatedly
 flattening the same local proof trace.
+A DAG is a directed acyclic graph: nodes are definitions, lemmas, external
+contracts, and theorem targets; an edge `A -> B` means that `B` depends on
+`A`.  QBE schedules lower agents on active leaves of this graph.  When
+`QBE_LOWER_COUNT=2`, lower 1 is expected to write the natural-language proof
+decomposition and dependency table, while lower 2 turns one ready leaf into
+compiling Lean.
 For Lean proof diagnostics, agents use
 `.agents/skills/qbe-proof-diagnostics/SKILL.md`, influenced by similar
-diagnostic patterns in [MathCode](https://github.com/math-ai-org/mathcode):
+diagnostic patterns in [MathCode][mathcode]:
 placeholder scans, hidden-axiom checks, proof statistics, theorem-store-like
 reuse memory, and fast feedback loops.  In QBE these diagnostics are advisory;
 the final acceptance gate remains the Lean theorem plus the explicit
@@ -139,7 +162,7 @@ block-encoding proof obligations.
 For long-horizon Lean control, agents use
 `.agents/skills/qbe-proof-blueprint/SKILL.md`, influenced by similar
 blueprint/DAG-control patterns in
-[LeanMarathon](https://github.com/YuanheZ/LeanMarathon) and its
+[LeanMarathon][leanmarathon] and its
 [paper](https://arxiv.org/abs/2606.05400).  QBE adapts the idea as
 `proof-blueprints/<task-id>.md`: a compact snapshot of the active directive,
 dynamic proof leaves, proof obligations, Lean declarations, correspondence
@@ -159,14 +182,14 @@ python3 tools/qbe.py efficiency-report --task QBE-AUTO-002
 QBE has two hybrid strategy modes:
 
 - Faithful paper reproduction: reproduce a specific paper's circuit/block
-  encoding in Lean.  This is the current mode for GHL2025.  The strategy is
-  [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients)-like proof-system maintenance: Lean feedback, failed proof routes, tests,
+  encoding in Lean.  GHL2025 is the first case study in this mode.  The strategy is
+  [Learning Beyond Gradients][lbg]-like proof-system maintenance: Lean feedback, failed proof routes, tests,
   and reviewer notes are written into memory and compressed into the next
   cycle.  If a fixed lemma fails, lower agents may maintain a local
   proof-attempt population, but they must not mutate the paper construction.
 - Exploratory construction: search for new oracle or block-encoding
   constructions under a precise Lean-checkable target.  The strategy combines
-  [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients)-like memory with an [EoH](https://github.com/FeiLiu36/EoH)-like candidate-evolution layer: lower agents can
+  [Learning Beyond Gradients][lbg]-like memory with an [EoH][eoh]-like candidate-evolution layer: lower agents can
   maintain candidate circuit families, mutate or recombine them, score partial
   progress, and archive rejected designs.  Lean proof obligations remain the
   final acceptance gate.
@@ -324,10 +347,10 @@ Full guide:
 - [Article to Lean workflow](docs/article_to_lean_workflow.md)
 - [ASTIS reference notes](docs/astis_reference_notes.md)
 
-## Faithful GHL2025 Overnight Run
+## First Case: GHL2025 Faithful Run
 
-For the current paper-reproduction target, use `QBE-AUTO-002` as the
-infrastructure task that makes the GHL2025 circuit semantics concrete:
+For the first paper-reproduction case, use `QBE-AUTO-002` as the infrastructure
+task that makes the GHL2025 circuit semantics concrete:
 
 ```bash
 cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
@@ -337,19 +360,27 @@ python3 tools/qbe.py write-context-pack QBE-AUTO-002 --cycle 1
 
 mkdir -p runs/logs
 nohup bash -lc '
-python3 tools/qbe.py sleep-run QBE-AUTO-002 \
-  --cycles 4 \
-  --lower-count 1 \
-  --context-mode focused \
-  --blueprint-refresh \
-  --agent-cmd '"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
-  --execute \
-  --check-each-cycle
+QBE_HOURS=6 \
+QBE_LOWER_COUNT=2 \
+QBE_PARALLEL_LOWER=1 \
+QBE_AGENT_CMD='"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
+bash tools/qbe_run_theorem_closure.sh QBE-AUTO-002
 ' > runs/logs/claude-qbe-auto-002-$(date +%Y%m%d-%H%M%S).log 2>&1 &
 ```
 
-Use one lower worker for this faithful mode until the paper's register layout,
-matrix semantics, and block-extraction target are stable.
+`QBE_HOURS=6` is an active-agent-time budget: retry sleep caused by quota or
+temporary API failures is recorded separately and does not count against the
+six hours.  With `QBE_LOWER_COUNT=2` and `QBE_PARALLEL_LOWER=1`, lower 1 is a
+natural-language proof architect and lower 2 is a Lean implementation worker.
+The intended flow is:
+
+```text
+upper chooses root theorem and active proof-DAG leaves
+  -> middle maps source TeX, Lean declarations, and proof obligations
+  -> lower 1 writes the natural-language dependency proof for one leaf
+  -> lower 2 proves that leaf in Lean and runs the gate
+  -> reviewer rejects stale leaves, contract drift, or undocumented Lean changes
+```
 
 ## Lean/LaTeX/Markdown Conversion
 
@@ -408,7 +439,7 @@ math-writing skill.
 The source of truth is `QuantumBlockEncoding/Literature.lean`. This README
 mirrors the initial checklist with clickable links.
 
-Primary target:
+First faithful reproduction case:
 
 | Status | Paper | Target |
 | --- | --- | --- |
@@ -457,33 +488,33 @@ Seed citation graph:
 
 This repository cites external work by original source link:
 
-- [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep):
-  ARIS-style plain-file research automation, artifact contracts, and review
+- [wanshuiyin/Auto-claude-code-research-in-sleep][aris]:
+  [ARIS][aris]-style plain-file research automation, artifact contracts, and review
   gates. QBE adapts the pattern to Lean proof automation.
-- [Learning Beyond Gradients](https://trinkle23897.github.io/learning-beyond-gradients/)
-  and its [artifact repository](https://github.com/Trinkle23897/learning-beyond-gradients):
+- [Learning Beyond Gradients][lbg]
+  and its [artifact repository][lbg]:
   trial JSONL logs, summary CSVs, and iterative upper/middle/lower plus
   reviewer maintenance of a proof system.
-- [FeiLiu36/EoH](https://github.com/FeiLiu36/EoH):
+- [FeiLiu36/EoH][eoh]:
   similar pattern for evolutionary candidate search with initialization,
   mutation, recombination/crossover, selection pressure, and archives. QBE
   keeps this only for exploratory circuit/oracle construction under a fixed
   Lean target; faithful paper mode does not mutate paper constructions.
-- [Timeroot/Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo):
+- [Timeroot/Lean-QuantumInfo][lean-quantuminfo]:
   style reference for finite-dimensional quantum information formalization.
-- [teorth/optimizationproblems](https://github.com/teorth/optimizationproblems):
+- [teorth/optimizationproblems][optimizationproblems]:
   style reference for open mathematical problem registries.
-- [math-ai-org/mathcode](https://github.com/math-ai-org/mathcode):
+- [math-ai-org/mathcode][mathcode]:
   similar pattern for Lean proof diagnostics, theorem reuse memory, persistent
   proof feedback, skills, tools, plugins, and tree-of-subgoals proving. QBE
   adapts those ideas to gate-level quantum block-encoding formalization; see
-  [MathCode Reference Notes](docs/mathcode_reference_notes.md).
-- [YuanheZ/LeanMarathon](https://github.com/YuanheZ/LeanMarathon) and
+  [MathCode][mathcode] [Reference Notes](docs/mathcode_reference_notes.md).
+- [YuanheZ/LeanMarathon][leanmarathon] and
   [arXiv:2606.05400](https://arxiv.org/abs/2606.05400):
   similar pattern for Lean blueprint-as-system-of-record design, target review,
   dynamic proof-DAG leaves, bounded worker/refiner scopes, and deterministic
   gates. QBE adapts those ideas to domain-specific block-encoding proof
-  snapshots; see [LeanMarathon Reference Notes](docs/leanmarathon_reference_notes.md).
+  snapshots; see [LeanMarathon][leanmarathon] [Reference Notes](docs/leanmarathon_reference_notes.md).
 
 See [Attribution](docs/attribution.md) and [NOTICE](NOTICE.md).
 For the sibling auto-Lean control-surface comparison, see
@@ -491,7 +522,7 @@ For the sibling auto-Lean control-surface comparison, see
 
 ## Citation
 
-If you use ARIS in your research, please cite:
+If you use [ARIS][aris] in your research, please cite:
 
 ```bibtex
 @misc{huangbu2026autoblockencoding,
@@ -513,32 +544,32 @@ task boundary explicit.
 
 | Similar pattern | Where it appears | QBE adaptation | Task boundary |
 | --- | --- | --- | --- |
-| LLM-readable workflow packets | [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) uses single-purpose `SKILL.md` files for empirical research workflows. | `tools/qbe.py run-cycle` generates task-specific role prompts for upper, middle, lower, and reviewer agents. | ARIS targets literature, experiments, reviews, and paper writing; QBE targets Lean-checked circuit/oracle formalization. |
-| Plain-file project memory | ARIS uses Markdown templates, `MANIFEST.md`, research wiki pages, and review artifacts instead of a database. | `tasks/`, `conversion-windows/`, `paper-notes/`, `proof-obligations/`, `runs/`, and `research-wiki/` are plain files that humans and agents can inspect and edit. | QBE adds a stricter Lean/LaTeX/Markdown correspondence layer because theorem proving must preserve source-paper notation. |
-| Independent review loop | ARIS uses reviewer models to check claims, experiments, citations, and writing. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, resource counts, citations, and faithful-vs-exploratory mode discipline. | In QBE, review cannot accept a claim merely because it reads well; the Lean gate and explicit proof obligations control completion. |
-| Trial memory and feedback compression | [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients) records policy attempts in `trials.jsonl`, `summary.csv`, videos, logs, and rejected directions. | QBE records proof/circuit attempts in `runs/trials.jsonl` and `runs/trials_summary.csv`; rejected constructions become proof obligations or open problems. | LBG optimizes empirical behavior of heuristic policies; QBE uses similar memory discipline to organize theorem-proving attempts whose final target is formal verification. |
-| Hierarchical proof-system maintenance | LBG treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | QBE keeps an upper/middle/lower plus reviewer hierarchy: upper chooses strategy, middle maintains Lean/Markdown/LaTeX and memory, lower proves local leaves, reviewer gates claims. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
-| Population-style candidate evolution | [EoH](https://github.com/FeiLiu36/EoH) evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea only in exploratory mode: maintain families of candidate circuit constructions, vary them, evaluate them against Lean-checkable obligations, and keep rejected designs as memory. | EoH is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction is accepted only when the Lean target and proof obligations are satisfied. |
-| Selection and archive pressure | EoH keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer constructions that reduce formal gaps. | Faithful paper-reproduction mode should not use evolutionary mutation to change the paper construction; EoH-like exploration belongs only after the acceptance predicate is explicit. |
-| Lean proof diagnostics and theorem reuse | [MathCode](https://github.com/math-ai-org/mathcode) provides Lean proof-analysis tools, theorem-store-like reuse, persistent REPL/LSP feedback, tree-of-subgoals proving, multi-planner search, and skills/plugins. | QBE uses a similar idea for reviewer scans, proof-attempt memory, reusable projection/gate lemmas, and future focused-check tooling. | MathCode is a general math formalization agent; QBE is a domain-specific system for quantum oracle/block-encoding circuit matrices. QBE must not accept stored assumptions or proof-search scores as theorem closure. |
-| Blueprint and dynamic proof-DAG control | [LeanMarathon](https://github.com/YuanheZ/LeanMarathon) and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | LeanMarathon targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |
+| LLM-readable workflow packets | [ARIS][aris] uses single-purpose `SKILL.md` files for empirical research workflows. | `tools/qbe.py run-cycle` generates task-specific role prompts for upper, middle, lower, and reviewer agents. | [ARIS][aris] targets literature, experiments, reviews, and paper writing; QBE targets Lean-checked circuit/oracle formalization. |
+| Plain-file project memory | [ARIS][aris] uses Markdown templates, `MANIFEST.md`, research wiki pages, and review artifacts instead of a database. | `tasks/`, `conversion-windows/`, `paper-notes/`, `proof-obligations/`, `runs/`, and `research-wiki/` are plain files that humans and agents can inspect and edit. | QBE adds a stricter Lean/LaTeX/Markdown correspondence layer because theorem proving must preserve source-paper notation. |
+| Independent review loop | [ARIS][aris] uses reviewer models to check claims, experiments, citations, and writing. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, resource counts, citations, and faithful-vs-exploratory mode discipline. | In QBE, review cannot accept a claim merely because it reads well; the Lean gate and explicit proof obligations control completion. |
+| Trial memory and feedback compression | [Learning Beyond Gradients][lbg] records policy attempts in `trials.jsonl`, `summary.csv`, videos, logs, and rejected directions. | QBE records proof/circuit attempts in `runs/trials.jsonl` and `runs/trials_summary.csv`; rejected constructions become proof obligations or open problems. | [Learning Beyond Gradients][lbg] optimizes empirical behavior of heuristic policies; QBE uses similar memory discipline to organize theorem-proving attempts whose final target is formal verification. |
+| Hierarchical proof-system maintenance | [Learning Beyond Gradients][lbg] treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | QBE keeps an upper/middle/lower plus reviewer hierarchy: upper chooses strategy, middle maintains Lean/Markdown/LaTeX and memory, lower proves local leaves, reviewer gates claims. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
+| Population-style candidate evolution | [EoH][eoh] evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea only in exploratory mode: maintain families of candidate circuit constructions, vary them, evaluate them against Lean-checkable obligations, and keep rejected designs as memory. | [EoH][eoh] is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction is accepted only when the Lean target and proof obligations are satisfied. |
+| Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer constructions that reduce formal gaps. | Faithful paper-reproduction mode should not use evolutionary mutation to change the paper construction; [EoH][eoh]-like exploration belongs only after the acceptance predicate is explicit. |
+| Lean proof diagnostics and theorem reuse | [MathCode][mathcode] provides Lean proof-analysis tools, theorem-store-like reuse, persistent REPL/LSP feedback, tree-of-subgoals proving, multi-planner search, and skills/plugins. | QBE uses a similar idea for reviewer scans, proof-attempt memory, reusable projection/gate lemmas, and future focused-check tooling. | [MathCode][mathcode] is a general math formalization agent; QBE is a domain-specific system for quantum oracle/block-encoding circuit matrices. QBE must not accept stored assumptions or proof-search scores as theorem closure. |
+| Blueprint and dynamic proof-DAG control | [LeanMarathon][leanmarathon] and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | [LeanMarathon][leanmarathon] targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |
 
 The analogy is:
 
 ```text
-ARIS empirical paper pipeline:
+[ARIS][aris] empirical paper pipeline:
 papers -> ideas -> experiments -> review -> paper
 
-Learning Beyond Gradients heuristic loop:
+[Learning Beyond Gradients][lbg] heuristic loop:
 state/test/log feedback -> code edit -> trial record -> summary -> next edit
 
-EoH algorithm-design loop:
+[EoH][eoh] algorithm-design loop:
 population -> mutation/crossover -> objective evaluation -> selection/archive
 
-MathCode proof-agent loop:
+[MathCode][mathcode] proof-agent loop:
 goal -> Lean formalization -> proof diagnostics -> theorem reuse -> repair loop
 
-LeanMarathon blueprint loop:
+[LeanMarathon][leanmarathon] blueprint loop:
 source proof + target statements -> reviewed blueprint -> dynamic proof leaves -> CI gate -> refiner repair
 
 QBE proof pipeline:
@@ -552,10 +583,10 @@ faithfulPaper:
 LBG-like memory loop + local proof-attempt population for fixed lemmas
 
 exploratoryConstruction:
-LBG-like memory loop + EoH-like candidate population for circuit families
+[Learning Beyond Gradients][lbg]-like memory loop + [EoH][eoh]-like candidate population for circuit families
 ```
 
-The LeanMarathon-like control layer in QBE is the proof blueprint:
+The [LeanMarathon][leanmarathon]-like control layer in QBE is the proof blueprint:
 
 ```bash
 python3 tools/qbe.py blueprint-refresh QBE-AUTO-002
@@ -578,7 +609,7 @@ python3 tools/qbe.py sleep-run QBE-AUTO-002 \
 ```
 
 QBE's many Markdown files are therefore not decoration.  They play the same
-operational role that ARIS skills, templates, manifests, and research-wiki
+operational role that [ARIS][aris] skills, templates, manifests, and research-wiki
 pages play: they are the stable interface between humans, agents, and the next
 cycle.  The extra QBE-specific layers are the Lean/LaTeX/Markdown conversion
 window and the proof blueprint, because a theorem-proving project must preserve
@@ -613,10 +644,10 @@ Middle and upper agents should inspect the local TeX source, nearby citations,
 and bibliography, then classify the missing ingredient as an internal paper
 step, external cited result, classical Lean lemma, or source-contract gap.
 
-Local TeX sources should be kept in the shared external paper directory,
-normally `../outer_papers/`.  For GHL2025, the expected private working source
-is `../outer_papers/GHL2025/main.tex` or a similarly named GHL/Guseynov source
-folder.  Agents may override the search root with:
+Local TeX sources should be kept in the classified shared external paper
+directory.  For GHL2025, the preferred private working source is
+`../outer_papers/quantum/GHL2025/main.tex`.
+Agents may override the search root with:
 
 ```bash
 export QBE_PAPER_SOURCE_ROOT=/path/to/paper-sources
@@ -650,3 +681,11 @@ This export is intentionally batch-based.  Lower agents may prove many small
 Lean lemmas during a 5-hour run; the middle agent should translate accepted
 proof blocks into Markdown and LaTeX once at the end of the batch, not after
 every small lemma.
+
+[aris]: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
+[lbg]: https://github.com/Trinkle23897/learning-beyond-gradients
+[eoh]: https://github.com/FeiLiu36/EoH
+[leanmarathon]: https://github.com/YuanheZ/LeanMarathon
+[mathcode]: https://github.com/math-ai-org/mathcode
+[lean-quantuminfo]: https://github.com/Timeroot/Lean-QuantumInfo
+[optimizationproblems]: https://github.com/teorth/optimizationproblems

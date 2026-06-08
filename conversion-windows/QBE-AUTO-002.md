@@ -17222,8 +17222,144 @@ Remaining obligation:
 
 | Obligation | Lean target | Status |
 |---|---|---|
-| evaluated finite projection fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | absent |
+| evaluated finite projection fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | sorry-guarded raw Coeff equality at line 20380; evaluated form compiles via bridge |
 
 All product-to-coefficient, LCU, block projection, block correctness,
 normalized equality, circuit unitarity, and final-extraction flags remain
 false.
+
+## 2026-06-06 Cycle 1: Route Classification Update
+
+The H-free active equality is now classified as **diagnostic/backlog**:
+`rfl` fails (recursion depth), `native_decide` OOMs (19GB).  The raw Coeff
+equality is sorry-guarded as `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`.
+
+The **source-correct active route** is the prepared singleton clean entry:
+`oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`
+(compiled under `hUniform`), with the sorry at line 20380 as the single
+obstruction.
+
+Obstruction classification: QBE-local finite projection/summation theorem.
+The 7-gate product's $[0,0]$ entry equals the 7-slot backend fold because
+all other projected paths vanish due to oracle register structure.  Not an
+external cited result, not a source-contract gap.  Requires either per-gate
+projection lemmas that exploit sparse register structure, or a computation
+approach that avoids full 8192x8192 matrix materialization.
+
+**Upper agent cycle 1 decision**: pursue structural per-gate block
+decomposition (approach a).  Each of the 7 gates has controlled/block
+structure: identity outside its target register subspace.  Per-gate lemmas
+of the form "gate acts as identity outside subspace" will collapse the
+matrix product fold at $[0,0]$ to the 7-slot diagonal sum.  This mirrors
+the paper's own projection argument (Fig. 1 term ROBIN).  Brute-force
+approaches are declared exhausted.
+
+### Proof-Translation Packet: Structural Decomposition
+
+Source: upper agent cycle 1 assignment, based on re-reading Theorem
+`theorem: 1 term robin`, Eq. `ROBIN clarified`, Fig. `fig:1 term ROBIN`.
+
+| Step | Paper anchor | Lean target | Classification | Lean status |
+|---|---|---|---|---|
+| 1. Per-gate identity-outside-subspace: each gate $G_k$ satisfies $G_k[i,j] = \delta_{i,j}$ for indices outside its controlled register subspace | Gate definitions in `GHL2025.oneTermRobinGateMatrixPlaceholders` | new local lemmas `gate_k_identity_outside_subspace` | QBE-local | not started |
+| 2. Matrix product entry decomposition: $(G_7 \cdots G_1)[0,0] = \sum_{i_1,\ldots,i_6} G_1[0,i_1] \cdot G_2[i_1,i_2] \cdots G_7[i_6,0]$ | standard matrix multiplication | Mathlib `Matrix.mul_apply` | standard | available |
+| 3. Path vanishing: consecutive gates' identity-block structure restricts surviving paths to 7 specific indices | Fig. `1 term ROBIN` projection argument | composition of per-gate lemmas | QBE-local | not started |
+| 4. Surviving paths give $\sum_{s:\mathrm{Fin}\,7} \mathrm{sevenGateMatrix}[\mathrm{idx}(s),\mathrm{idx}(s)] \cdot \mathrm{projFactor}$ | definition of `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | conclusion | QBE-local | not started |
+
+Source-dependency classification: no external ingredients.  Entirely QBE-local
+finite matrix bookkeeping.  Each step is either a new local lemma (steps 1, 3,
+4) or an existing Mathlib fact (step 2).
+
+Lower-agent packet summary:
+
+| Field | Value |
+|---|---|
+| fixed target | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` (line 20430, sorry-guarded) |
+| approach | per-gate block-structure decomposition |
+| file scope | `QuantumBlockEncoding/RobinMatrix.lean` |
+| starting gates | simplest first: SWAP, U_indic |
+| forbidden | brute-force, new assumptions, flag promotion |
+| acceptance | 2-3 per-gate block lemmas proved + product decomposition skeleton |
+
+## 2026-06-06 Cycle 1 (cont.): Active-Prepared Route via HWKappa Contract
+
+Upper reassessed after the latest lower column-0 support analysis.  The
+structural decomposition approach (per-gate identity-outside-subspace) is
+**superseded** for this cycle.  The new sole active proof target is:
+
+```
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+```
+
+under the `HWKappaUniformColumnAllSlotsStatement_n3 H` hypothesis.
+
+### Target Classification
+
+| Route | Status | Notes |
+|---|---|---|
+| H-free raw Coeff fold `UnitaryEntry_eq_backendFold_n3` | **frozen diagnostic/backlog** | sorry at line 20621; brute-force exhausted; column-0 support partial |
+| Structural decomposition of H-free fold | **superseded** | per-gate block approach was upper's previous plan; now replaced by direct HWKappa route |
+| Active-prepared composite eval `ActivePreparedCompositeEvalStatement_n3` | **sole active target** | the missing hypothesis `hActive` in the source-correct calc block at line 20565 |
+| Evaluated backend fold via prepared route | conditional on `hActive` | leg 2 already proved via `PreparedCompositeCleanEntryEval_eq_backend_n3` |
+
+### Three-Step Proof Map for Active-Prepared Statement
+
+Source: upper agent cycle 1 reassessment, based on Theorem `theorem: 1 term robin`,
+Eq. `ROBIN clarified`, Eq. `arbitrary sparcity`, Fig. `fig: 1 term ROBIN`.
+
+The `ActivePreparedCompositeEvalStatement` says: the active signal-zero entry
+equals the prepared composite singleton clean entry.  This is the statement
+that the prepared composite circuit $H_W^\dagger \cdot U_{\gamma_3} \cdot H_W$
+agrees with the active seven-gate product on the clean index.  Proof steps:
+
+| Step | Statement | Lean ingredients | Classification | Status |
+|---|---|---|---|---|
+| 1 | Reduce to uncast form via `ActivePreparedCompositeEvalStatement_iff_uncast_n3` | proved (line 18164) | QBE-local | **compiled** |
+| 2 | Uncast form: `(evalGateMatrices 7-gates)[0,0] = (PreparedCompositeCircuitSemantics H).matrix[clean,clean]` | target equality | QBE-local | **open** |
+| 3a | RHS is `(PreparedCircuitSparseMatrix H)[clean,clean]` by `PreparedCompositeCircuitSemantics_cleanEntryEval_n3` | proved | QBE-local | **compiled** |
+| 3b | Prepared sparse matrix is $H_W^\dagger \cdot U_{\gamma_3} \cdot H_W$ in sparse form; at clean index, `H_W[clean,:]` has uniform-column shape from `HWKappa` contract | `HWKappaUniformColumnAllSlotsStatement_n3 H` as hypothesis | external contract (Shukla-Vedula) | typed assumption |
+| 3c | Sandwich clean entry reduces to $U_{\gamma_3}[0,0]$ = LHS | new lemma: sparse sandwich at clean index under uniform column | QBE-local | **not started** |
+
+Key observation: step 3c is the mathematical crux.  The `HWKappa` contract says
+$H_W$ has a uniform column where every slot in the clean column carries the
+same amplitude $1/\sqrt{\kappa}$.  The sandwich
+$(H_W^\dagger \cdot U_{\gamma_3} \cdot H_W)[\text{clean}, \text{clean}]$
+then collapses because $H_W$ acts like a normalized all-ones preparation on the
+sparse register, projecting onto $U_{\gamma_3}[0,0]$.
+
+### Lower-Agent Column-0 Support Analysis (recorded, secondary)
+
+The latest lower agent added column-0 support lemmas.  These remain useful as
+fallback but are not the primary route for this cycle:
+
+| Gate | Column-0 support | Compiled |
+|---|---|---|
+| U_indic | support only at row 0 | yes |
+| O_DT^S | support only at row 0 | yes |
+| DU prefix (O_DT^S * U_indic) | support only at row 0 | yes |
+| bandedSparseAccessPaperImage p 0 | = 96 | yes |
+| Ry_boundary | support at rows {0,1} | not yet proved |
+| RDU prefix | support at rows {0,1} | not yet proved |
+
+### Source-Dependency Classification
+
+| Ingredient | Source | Status |
+|---|---|---|
+| `HWKappaUniformColumnAllSlotsStatement_n3` | Shukla-Vedula contract (external) | typed hypothesis; not proved, not recursively formalized |
+| `ActivePreparedCompositeEvalStatement_iff_uncast_n3` | QBE-local | proved |
+| `PreparedCompositeCircuitSemantics_cleanEntryEval_n3` | QBE-local | proved |
+| `PreparedCompositeCleanEntryEval_eq_backend_n3` | QBE-local | proved (leg 2) |
+| Sandwich clean entry = U_gamma3[0,0] under HWKappa | QBE-local | **new lemma needed** |
+| Gate block structure / per-gate decomposition | QBE-local | not needed for HWKappa route; fallback only |
+
+### Lower-Agent Packet (next)
+
+| Field | Value |
+|---|---|
+| sole active target | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env` |
+| key hypothesis | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` |
+| approach | reduce to uncast form (compiled), then prove sparse sandwich clean entry = U_gamma3[0,0] via HWKappa contract |
+| file scope | `QuantumBlockEncoding/RobinMatrix.lean` (region 18100–18460) |
+| fallback route | `ActivePreparedSparseEvalStatement` (line 18238) if direct route fails |
+| forbidden | brute-force on H-free raw equality, new assumptions, flag promotion, recursive Shukla-Vedula formalization |
+| acceptance | new theorem compiles without sorry; sorry at line 20621 unchanged; no flags promoted |

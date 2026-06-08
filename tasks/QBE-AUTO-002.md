@@ -35,6 +35,94 @@ Proof-route populations are allowed only for fixed Lean statements whose
 failure produced useful lemmas.  They must not mutate the paper construction or
 displace the Phase 1 transcript objective.
 
+## Immediate 6h Focus: Active/Prepared Composition Closure
+
+This directive supersedes earlier projection-bridge and H-free backend-fold
+directives for the next active-time theorem-closure batch.
+
+The source-correct route is now:
+
+1. Prove the active/prepared selected-entry equality
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env`,
+   preferably via the reduced target
+   `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`.
+2. Feed that theorem into the already compiled route
+   `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
+3. Keep the H-free theorem
+   `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` frozen as a
+   diagnostic/backlog route unless a proof explicitly recovers it through the
+   prepared projection target.
+
+The exact active mathematical target is QBE-local finite matrix composition:
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+```
+
+or the equivalent uncast target:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+Source interpretation:
+
+- GHL2025 supplies the Robin boundary seven-gate product and the prepared sparse
+  register route in Fig. `1 term ROBIN`, Eq. `ROBIN clarified`, and Eq.
+  `arbitrary sparcity`.
+- The Shukla--Vedula uniform superposition subroutine is an external typed
+  contract for the `H_W^(kappa)` column shape.  Do not recursively formalize it
+  in this batch.
+- The active Lean work is to show that the prepared sandwich clean entry matches
+  the active seven-gate selected entry under that typed contract, not to invent
+  a new oracle or add an assumption.
+
+Lower-agent population for this batch:
+
+| Lower profile | Role | Allowed outputs |
+|---|---|---|
+| lower 1: natural-language proof architect | Translate the relevant source proof and current Lean DAG into a dependency-ordered proof plan. | `proof-attempts/`, `conversion-windows/`, `proof-obligations/`, dialogue handoff. Minimal Lean only if unavoidable. |
+| lower 2: Lean implementation worker | Implement the smallest theorem or lemma from that plan and run the gate. | `QuantumBlockEncoding/RobinMatrix.lean`, focused tests, proof-attempt record for failed Lean routes. |
+
+Natural-language proof work is not second-class.  A good proof architect should
+state definitions before claims, identify existing Lean declarations to reuse,
+and propose one or two small intermediate lemmas that make the Lean proof
+obvious.  The Lean worker should avoid broad search when the proof architect has
+already isolated a sharper lemma.
+
+Current known compiled inputs:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3` | compiled conditional closure of the evaluated backend fold from the active/prepared theorem |
+| `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3` | compiled prepared clean-entry backend bridge under `hUniform` |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3` | compiled reduction to the uncast active/prepared theorem |
+| `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3` | compiled prepared sandwich expansion route |
+| column-0 support lemmas for indicator, `O_DT^S`, DU prefix, and `O_D^BS` | compiled fallback fragments; `R_y`, RDU, suffix, and unique-path support remain open |
+
+Non-goals:
+
+- Do not spend the batch proving the frozen H-free raw fold directly.
+- Do not promote `productToCoefficientProved`, `lcuCorrectProved`,
+  `blockProjectionProved`, `blockCorrectProved`,
+  `normalizedBlockEqualityProved`, `circuitUnitarityProved`, or
+  `finalExtractionProved`.
+- Do not recursively formalize Shukla--Vedula, LCU, or block-composition.
+- Do not polish the project article or broad library organization.
+- Do not add hypotheses, change the paper circuit, or replace the oracle.
+
+Acceptance for this batch:
+
+- Best outcome: a sorry-free theorem proving
+  `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env` or
+  the equivalent uncast theorem under the existing contracts, with
+  `python3 tools/qbe.py check` passing.
+- Acceptable partial outcome: a strictly smaller compiled intermediate lemma
+  that the next Lean worker can directly use, plus a natural-language proof map
+  explaining exactly how it closes the active/prepared target.
+- Rejected outcome: more status records, broad diagnostics, or prose that does
+  not reduce the active theorem.
+
 ## Current Run Directive: 2026-05-28 Focused Projection Bridge Closure
 
 This directive supersedes older broad run directives for the next overnight
@@ -322,7 +410,7 @@ For local agent work, the GHL2025 TeX source should be archived in the shared
 external paper store:
 
 ```text
-../outer_papers/GHL2025/main.tex
+../outer_papers/quantum/GHL2025/main.tex
 ```
 
 If the source uses a different GHL/Guseynov folder name, set
@@ -747,3 +835,80 @@ and
 The H-free backend expansion may be used only as a recovery lemma for the
 prepared route.  Do not spend a focused proof burst adding more process notes,
 new route records, or repeated statements of the same obstruction.
+
+## Immediate 6h Focus: Active/Prepared Composition Closure (2026-06-07)
+
+This is the active directive for the next active-time theorem-closure run.  It
+supersedes all earlier `Immediate 6h Focus` sections in this task file.
+
+Target exactly one theorem family:
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+```
+
+preferably through the equivalent reduced target:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+This is the missing active/prepared selected-entry equality needed by the
+already compiled source-correct route
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
+
+Use a two-lower-agent population:
+
+- lower 1 is the natural-language proof architect.  It should translate the GHL
+  source proof and the current Lean DAG into a dependency-ordered proof plan,
+  naming existing declarations and the smallest new intermediate lemma.
+- lower 2 is the Lean implementation worker.  It should implement that smallest
+  theorem/lemma, run `python3 tools/qbe.py check`, and record useful failed
+  routes under `proof-attempts/`.
+
+Required proof-DAG frontier for this run:
+
+| Node | Interface | Dependencies | Owner | Status |
+|---|---|---|---|---|
+| `GHL-root-active-prepared` | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env` or uncast equivalent | evaluated backend bridge plus selected-entry expansion | upper/middle | root, do not attack directly unless all leaves below are proved |
+| `GHL-two-path` | reduce the seven-gate selected entry to the two surviving paths through indices `96` and `97` | compiled support lemmas for the suffix/prefix split | lower 2 | mostly compiled; retire stale duplicates |
+| `GHL-suffix-96-97` | prove/evaluate suffix entries `[0,96]` and `[0,97]` against the coefficient-oracle rows used by the paper branch | support lemmas and gate definitions | lower 2 | partially compiled |
+| `GHL-prefix-96-97` | prove/evaluate prefix entries `[96,0]` and `[97,0]` as the boundary rotation factors | `Ry` convention audit, gate definitions, index support | lower 1 then lower 2 | active leaf candidate |
+| `GHL-oracle-coeff-entries` | prove/evaluate `O_f[12,96]` and `O_f[12,97]` as the source coefficient factors | paper coefficient-oracle contract, cited-results status | middle then lower 2 | active leaf candidate |
+| `GHL-backend-fold-compare` | combine the two-path expansion and compare it to the evaluated backend fold | all entry lemmas above | lower 2 | blocked until active leaves close |
+
+Agent rule for this frontier:
+
+- lower 1 should first write the natural-language proof map for
+  `GHL-prefix-96-97` or `GHL-oracle-coeff-entries`, including definitions,
+  source anchors, existing Lean declarations, and the exact next Lean lemma.
+- lower 2 should then implement exactly one of those leaves.  It should not
+  attack `GHL-root-active-prepared` directly unless middle marks all dependency
+  nodes proved.
+- middle must update the DAG table when a node becomes proved, stale, blocked
+  internal, blocked external, or contract drift.
+- reviewer must reject cycles that merely restate the root theorem, duplicate a
+  compiled two-path route, or omit the natural-language-to-Lean dependency map.
+
+Allowed mathematical route:
+
+1. Reduce the active/prepared statement to the uncast form using the compiled
+   equivalence.
+2. Compare the raw active seven-gate selected entry with the prepared sandwich
+   clean entry under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+3. Reuse the prepared clean-entry backend bridge already compiled in
+   `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`.
+4. If direct HWKappa use is blocked, use the column-0 support lemmas as a
+   fallback, but do not restart the frozen H-free raw fold as the main route.
+
+Non-goals:
+
+- Do not prove `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` as a
+  standalone H-free theorem this batch; it is diagnostic/backlog unless routed
+  through the prepared projection target.
+- Do not recursively formalize Shukla--Vedula, LCU, or block-composition.
+- Do not add assumptions, replace the paper circuit, or promote semantic flags.
+- Do not spend the cycle on project-paper polish or broad library refactors.
+
+Success means a sorry-free proof of the active/prepared theorem or a strictly
+smaller compiled theorem that the next Lean worker can use directly.

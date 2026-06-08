@@ -15,7 +15,7 @@ automation harness, not the mathematical domain.
 
 | Similar pattern | ASTIS practice | ABEIS adaptation |
 |---|---|---|
-| Shared external roots | ASTIS keeps reference repositories and papers under shared `outer_repos` and `outer_papers` roots. | ABEIS now uses the same external-root convention for ARIS, EoH, LBG, LeanMarathon, MathCode, Lean-QuantumInfo, optimizationproblems, and local paper sources. |
+| Shared external roots | ASTIS keeps reference repositories and papers under shared `outer_repos` and `outer_papers` roots. | ABEIS now uses the same categorized external-root convention: `outer_repos/automation_systems`, `outer_repos/quantum`, `outer_repos/sampling_theory_sde`, `outer_papers/quantum`, `outer_papers/sampling_theory_sde`, and `outer_papers/automation_systems`. |
 | Compact status artifacts | ASTIS writes blueprint/status files so agents do not replay a long history before every run. | ABEIS adds `python3 tools/qbe.py blueprint-status <task> --refresh`, writing Markdown and JSON over the active proof blueprint. |
 | Token-lean context packs | ASTIS uses context packs for focused long-run prompts. | ABEIS adds `python3 tools/qbe.py write-context-pack <task> --cycle <n>` with block-encoding-specific paper-source, blueprint, and trial context. |
 | Efficiency reports | ASTIS uses post-run reports to detect broad replay, quota waste, or stale blockers. | ABEIS adds `python3 tools/qbe.py efficiency-report --task <task>` to summarize logs, build signals, stale leaves, and next-run controls. |

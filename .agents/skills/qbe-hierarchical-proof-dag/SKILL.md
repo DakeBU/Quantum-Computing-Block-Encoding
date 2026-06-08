@@ -34,6 +34,29 @@ worktree/PR harness.
 - The proof DAG consists of named Lean declarations and proof obligations.
 - Memoization means proving a block once and referencing it everywhere else.
 
+## What DAG Means
+
+A DAG is a directed acyclic graph.  In a Lean proof project, nodes are
+definitions, lemmas, theorem targets, external contracts, or explicit proof
+obligations.  A directed edge `A -> B` means that block `B` depends on block
+`A`.  Acyclic means there is no circular dependency: agents must prove leaves
+first, then reuse those proved leaves to close higher nodes.
+
+For QBE this is not just a diagram.  It is the scheduling object:
+
+```text
+source equation
+  -> register/index lemmas
+  -> gate-entry lemmas
+  -> product/sandwich entry equality
+  -> normalized block-encoding theorem
+```
+
+If a natural-language decomposition makes the dependency order obvious, use it
+before Lean tactic search.  A lower natural-language proof architect may write
+the DAG and proof sketch first; a lower Lean worker then implements exactly one
+dynamic leaf from that DAG.
+
 ## When To Apply
 
 Apply this skill when:
@@ -51,8 +74,8 @@ Apply this skill when:
 Add or update a proof-DAG table in the relevant conversion window or
 proof-obligation ledger:
 
-| Block | Interface | Dependencies | Lean declaration | Reused by | Local gate | Status |
-|---|---|---|---|---|---|---|
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
 
 The interface should state exactly what the block proves or constructs.  For
 QBE, useful interfaces include:
@@ -65,19 +88,37 @@ QBE, useful interfaces include:
 - `normalizer`: an alpha/resource bound;
 - `composition`: a product-of-gates or block-correctness step.
 
+Every active node should be classified as one of:
+
+- `proved`: named Lean declaration exists and the project gate passes;
+- `active leaf`: next lower-agent target with all dependencies ready;
+- `blocked internal`: paper-local step needs a new Lean interface;
+- `blocked external`: cited result needs a cited-results contract;
+- `contract drift`: Lean statement does not match the paper source;
+- `stale`: previous lower packet is already proved or no longer on the route.
+
+The active leaf must be small enough that one lower Lean worker can plausibly
+attempt it without changing the theorem statement.
+
 ## Agent Protocol
 
-- Upper chooses the next block whose reuse would reduce the largest flat
-  duplication.
+- Upper chooses the proof frontier: the highest theorem, the unproved
+  dependency nodes, and one or two active leaves.
 - Upper and middle refresh the proof blueprint before a long run and retire
   stale dynamic leaves.
-- Middle keeps the DAG table synchronized with Lean, Markdown, LaTeX, and the
-  proof blueprint.
-- Lower proves or refines one block interface at a time.
+- Middle keeps the DAG table synchronized with Lean, Markdown, LaTeX, cited
+  results, and the proof blueprint.  Middle should translate the relevant
+  source proof into node statements before lower proof search.
+- Lower natural-language agents prove or refactor the dependency plan in prose,
+  naming existing declarations and the exact next Lean node.
+- Lower Lean agents prove or refine one active leaf at a time.
 - Reviewer rejects duplicated definitions, repeated flat proof scripts, and
   changes that add assumptions instead of proving a block.
 - Reviewer groups related failures into one refiner-style illness area when a
   shared dependency is wrong or missing.
+- Reviewer also rejects lower-agent work that ignores the active leaf, repeats
+  a stale route, or fails to record the natural-language-to-Lean dependency
+  map after a blocked proof.
 
 ## Faithful Paper Mode
 

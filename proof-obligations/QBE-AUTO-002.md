@@ -1,7 +1,7 @@
 # Proof Obligations: QBE-AUTO-002 — Circuit Matrix Semantics Backend
 
 Task id: `QBE-AUTO-002`
-Updated: `2026-06-05`
+Updated: `2026-06-07`
 
 This ledger tracks the unproved semantic claims introduced by the circuit
 matrix semantics backend layer.
@@ -12440,3 +12440,184 @@ the H-free backend expansion only as a recovery route into the prepared
 singleton target.  Product-to-coefficient, branch decomposition, LCU, block
 projection, normalized equality, block correctness, circuit unitarity, and
 final extraction remain false until an exact Lean theorem compiles.
+
+## 2026-06-06 Cycle 1: Evaluated-Backend-Fold Direct Attempt
+
+Lower agent attempted to prove the raw Coeff equality and the evaluated
+backend-fold statement directly.  Results:
+
+| Approach | Outcome |
+|---|---|
+| `rfl` on raw Coeff equality | maxRecDepth exceeded (even at 4096); terms too deeply nested |
+| `native_decide` on raw Coeff equality | OOM (19GB RSS, killed after 780s); 8192x8192 matrix product too large for DecidableEq |
+| Rewriting via `SignalUnitaryEntry_evalGateMatrices_n3` then simp | Remaining goal is the core finite projection/summation identity |
+
+Obstruction classification: **QBE-local finite projection/summation theorem**.
+The equality
+$(\\text{evalGateMatrices}(\\text{gates}))\_{0,0}
+= \\sum\_{s:\\text{Fin}\\,7} \\text{sevenGateMatrix}\_{\\text{idx}(s),\\text{idx}(s)} \\cdot \\text{projFactor}$
+encodes the sparse-structure identity: the 7-gate product's $[0,0]$ entry equals
+the sum of 7 weighted diagonal entries because all other projected paths vanish
+due to the oracle register structure.  This is not an external cited result, not
+a classical fact, and not a source-contract gap.  It is the mathematical heart
+of the block-encoding projection step.
+
+New declarations:
+
+| Declaration | Purpose | Status |
+|---|---|---|
+| `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | raw Coeff equality (sorry-guarded) | sorry; line 20380 |
+| `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof` | evaluated fold conditional on the sorry-guarded raw equality | compiled (via bridge theorem) |
+
+The evaluated fold compiles conditionally.  The sorry at line 20380 is the
+single remaining obstruction for this route.  All theorem-facing flags remain
+false.
+
+Next steps for upper/middle: the raw Coeff equality requires either
+(a) a decomposition into per-gate projection lemmas that break the 8192x8192
+product into sparse-register-indexed blocks, or
+(b) a direct computation approach that avoids materializing the full matrix
+product.  The gate convention is that each oracle gate acts nontrivially only
+on its target register subspace, so most cross-register products are zero.
+A reusable helper that exploits this sparse structure would address the
+projection/summation theorem without full matrix materialization.
+
+### Structural Decomposition Approach (upper cycle 1 decision)
+
+Upper agent selected approach (a): per-gate block-structure decomposition.
+Brute-force (rfl, native_decide, simp with full unfolding) is declared
+exhausted.
+
+Proof-translation map for
+`oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` (line 20430):
+
+| Step | Paper anchor | Lean target | Classification | Status |
+|---|---|---|---|---|
+| 1. Per-gate identity-outside-subspace: each gate $G_k$ satisfies $G_k[i,j] = \delta_{i,j}$ for indices outside its controlled register subspace | Gate definitions in `GHL2025.oneTermRobinGateMatrixPlaceholders` | new local lemmas `gate_k_identity_outside_subspace` | QBE-local | not started |
+| 2. Matrix product entry decomposition: $(G_7 \cdots G_1)[0,0] = \sum_{i_1,\ldots,i_6} G_1[0,i_1] \cdot G_2[i_1,i_2] \cdots G_7[i_6,0]$ | standard matrix multiplication | Mathlib `Matrix.mul_apply` | standard | available |
+| 3. Path vanishing: consecutive gates' identity-block structure restricts surviving paths to 7 specific indices (sparse-slot diagonal) | Fig. `1 term ROBIN` projection argument | composition of per-gate lemmas with product decomposition | QBE-local | not started |
+| 4. Surviving paths give exactly $\sum_{s:\mathrm{Fin}\,7} \mathrm{sevenGateMatrix}[\mathrm{idx}(s),\mathrm{idx}(s)] \cdot \mathrm{projFactor}$ | definition of `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | conclusion of the sorry-guarded theorem | QBE-local | not started |
+
+External ingredients needed: none. This is entirely QBE-local finite matrix
+bookkeeping.  Lower agent should start with the simplest gates (SWAP, U_indic)
+where the controlled structure is already partially formalized.
+
+## 2026-06-06 Cycle 1: Active-Prepared Route via HWKappa Contract
+
+Upper reassessed: the structural decomposition of the H-free raw equality is
+superseded.  The new sole active proof target is
+`oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env`
+under the `HWKappaUniformColumnAllSlotsStatement_n3 H` hypothesis.
+
+### Route Update
+
+| Route | Lean target | Status |
+|---|---|---|
+| H-free raw Coeff fold | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` (line 20621) | **frozen diagnostic/backlog**; sorry remains; brute-force exhausted |
+| Structural decomposition | per-gate block-structure lemmas | **superseded** for this cycle |
+| Active-prepared composite eval | `ActivePreparedCompositeEvalStatement_n3 H env` | **sole active target** |
+| Evaluated backend fold | `EvaluatedBackendFoldStatement_of_activePreparedEval_n3` | conditional on `hActive`; leg 2 proved |
+
+### Proof-Translation Map: Active-Prepared Statement
+
+The statement is that the active signal-zero entry equals the prepared
+composite singleton clean entry.  Source: upper agent cycle 1 reassessment.
+
+| Step | Proof step | Lean ingredient | Classification | Status |
+|---|---|---|---|---|
+| 1 | Reduce to uncast form | `ActivePreparedCompositeEvalStatement_iff_uncast_n3` (proved, line 18164) | QBE-local | **compiled** |
+| 2 | Uncast target: `(evalGateMatrices 7-gates)[0,0] = (PreparedCompositeCircuitSemantics H).matrix[clean,clean]` | target equality | QBE-local | **open** |
+| 3a | RHS = `(PreparedCircuitSparseMatrix H)[clean,clean]` | `PreparedCompositeCircuitSemantics_cleanEntryEval_n3` | QBE-local | **compiled** |
+| 3b | Sandwich clean entry reduces to $U_{\gamma_3}[0,0]$ under HWKappa contract | `HWKappaUniformColumnAllSlotsStatement_n3 H` as hypothesis; new sandwich lemma | external contract + QBE-local | **not started** |
+| 3c | $U_{\gamma_3}[0,0]$ = LHS `(evalGateMatrices 7-gates)[0,0]` | signal-unitary entry definition | QBE-local | **compiled** (by construction) |
+
+The mathematical crux is step 3b: the sparse sandwich
+$(H_W^\dagger \cdot U_{\gamma_3} \cdot H_W)[\text{clean}, \text{clean}]$
+reduces to $U_{\gamma_3}[0,0]$ because $H_W$ prepares a uniform column with
+amplitude $1/\sqrt{\kappa}$ on every sparse-slot entry.  The `HWKappa` contract
+provides exactly this shape.
+
+### Column-0 Support Analysis (secondary, from latest lower run)
+
+| Gate | Column-0 support result | Compiled |
+|---|---|---|
+| U_indic | support only at row 0 | yes |
+| O_DT^S | support only at row 0 | yes |
+| DU prefix | support only at row 0 | yes |
+| bandedSparseAccessPaperImage p 0 | = 96 | yes |
+| Ry_boundary | support at rows {0,1} | **compiled** (`oneTermRobinGamma3BoundaryRyCol0_support_n3`) |
+| RDU prefix | support at rows {0,1} | **compiled** (`oneTermRobinGamma3BoundaryRDUPrefixCol0Support_n3`) |
+| O_D^BS images | image(0)=96, image(1)=97 | **compiled** (`ODBSCol0_support_n3`, `ODBSCol1_support_n3`) |
+| Full prefix | support at rows {96,97} | **compiled** (`oneTermRobinGamma3BoundaryPrefixCol0Support_n3`) |
+
+These support lemmas are compiled.  The suffix-side support is the next
+obligation for the two-path decomposition of `sevenGateMatrix[0,0]`.
+
+### Suffix-Side Row-0 Support Analysis (2026-06-07, cycle 1)
+
+The `[0,0]` entry of `sevenGateMatrix = suffix * prefix` requires suffix-side
+support analysis at row 0.  Unlike `[32,32]` which has a unique-path through
+row 0, `[0,0]` has a two-path decomposition through intermediate rows
+`{96, 97}`.
+
+| Obligation | Lean target | Status |
+|---|---|---|
+| Dagger row-0 support: `(O_D^BS)^†[0, k] = 0` for `k ≠ 96` | `oneTermRobinGamma3BoundaryDaggerRow0_support_n3` | **compiled** (sorry-free) |
+| SWAP row-96 image: `swapOracleImage(p, 96) = 12` | `oneTermRobinGamma3BoundarySwapRow96_image_n3` | **compiled** (native_decide) |
+| Two-path infrastructure: `evalWith_mul_two_path` in CircuitSemantics.lean | `Matrix.evalWith_mul_two_path` | **compiled** (sorry-free) |
+| Two-path decomposition: `sevenGateMatrix[0,0]` through rows {96, 97} | `oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateTwoPath_n3` | **compiled** (sorry-free) |
+| Suffix entry evaluation: `suffixMatrix[0, 96] evalWith = O_f[12, 96] evalWith` | not yet named | not started |
+| Suffix entry evaluation: `suffixMatrix[0, 97] evalWith = O_f[12, 97] evalWith` | not yet named | not started |
+
+The suffix-side analysis chain:
+1. `(O_D^BS)^†` at row 0 is nonzero only at column `bandedSparseAccessPaperImage(0) = 96`
+2. `OfSwap = SWAP * O_f`: `SWAP[96, j] = 1` iff `j = 12` (since `swapOracleImage(12) = 96`)
+3. So `suffixMatrix[0, k] = dagger[0,96] * O_f[12, k]` (single path through dagger)
+
+### Cited Prior Results
+
+| Result | Source | Lean status | Role |
+|---|---|---|---|
+| `HWKappaUniformColumnAllSlotsStatement_n3` | Shukla-Vedula contract | typed hypothesis, not proved | provides $H_W^{(\kappa)}$ uniform column shape |
+| `PreparedCompositeCleanEntryEval_eq_backend_n3` | QBE-local (GHL2025) | **proved** (leg 2) | evaluated backend fold, prepared side |
+| `ActivePreparedCompositeEvalStatement_iff_uncast_n3` | QBE-local | **proved** | reduction to uncast form |
+| Gate block structure | GHL2025 own | not formalized; fallback only | per-gate decomposition (not primary route) |
+
+## 2026-06-07 Cycle 1 Phase 2: evalGateMatrices Associativity Contract Gap
+
+### Finding
+
+The sorry-bearing theorem `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`
+(RobinMatrix.lean:21049) is **unprovable as stated**. It claims raw `Coeff`-level matrix
+equality between `evalGateMatrices(...)` (left-nested 7-gate fold) and `sevenGateMatrix_n3`
+(suffix $\times$ prefix product). Since `Coeff` is a symbolic expression type where
+`Coeff.add` and `Coeff.mul` are constructors, different parenthesizations of `Matrix.mul`
+produce structurally different `Coeff` trees. Equality holds only under `Coeff.evalWith`,
+which evaluates to `Rat` where ring properties hold.
+
+Full analysis: `proof-attempts/QBE-AUTO-002/evalGateMatrices-associativity-attempt.md`.
+
+### Corrected Route
+
+Replace the raw-Coeff sorry with an evalWith-level bridge for the specific entry needed:
+
+$$\texttt{evalWith env (evalGateMatrices}(\ldots)\texttt{[0,0])} = \texttt{evalWith env (sevenGateMatrix[0,0])}$$
+
+This should be provable because `evalWith` is a ring homomorphism from `Coeff` to `Rat`,
+and `Rat` has associativity.
+
+### Obligation Classification: source-contract gap (theorem statement drift)
+
+The sorry theorem claims a stronger statement than the paper requires. The paper route
+only needs evalWith-level equality for the selected entry. The iff chain
+`EvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3` is already proved
+without this sorry and correctly works at the evalWith level.
+
+### Remaining Steps for EvaluatedBackendFoldStatement_n3
+
+1. **evalWith-level bridge** (new): `evalWith env (evalGateMatrices[0,0]) = evalWith env (sevenGateMatrix[0,0])`
+2. **Two-path decomposition** (compiled): `sevenGateMatrix[0,0] = suffix[0,96]*prefix[96,0] + suffix[0,97]*prefix[97,0]`
+3. **Suffix evaluations** (compiled): `suffix[0,96] = O_f[12,96]`, `suffix[0,97] = O_f[12,97]`
+4. **Prefix evaluations** (new): `prefix[96,0] = env "boundary_cos_half_0_2"`, `prefix[97,0] = env "boundary_sin_half_0_2"`
+5. **Diagonal uniformity** (new): backend fold = 7-slot weighted sum; under HWKappa, all 7 diagonal entries equal, so sum collapses to single entry
+6. **Backend fold comparison**: total = `evalWith env (backendFold)`

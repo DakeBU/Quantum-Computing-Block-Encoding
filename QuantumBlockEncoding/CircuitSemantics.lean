@@ -221,6 +221,78 @@ private theorem finRange_nodup (n : Nat) : (List.finRange n).Nodup := by
           simpa using Nat.succ.inj hv
         · exact ih
 
+private theorem foldl_add_extract_init {β : Type u}
+    (ks : List β) (f : β → Rat) (init : Rat) :
+    ks.foldl (fun acc k => acc + f k) init = init + ks.foldl (fun acc k => acc + f k) 0 := by
+  induction ks generalizing init with
+  | nil => simp [List.foldl_nil, Rat.add_zero]
+  | cons k ks ih =>
+      simp only [List.foldl_cons]
+      rw [ih, ih (0 + f k)]
+      simp only [Rat.zero_add]
+      exact Rat.add_assoc init (f k) _
+
+private theorem foldl_add_two_of_nodup {β : Type u} [DecidableEq β]
+    (ks : List β) (f : β → Rat) (k0 k1 : β)
+    (hnodup : ks.Nodup)
+    (hmem0 : k0 ∈ ks)
+    (hmem1 : k1 ∈ ks)
+    (hk0_ne_k1 : k0 ≠ k1)
+    (hzero : ∀ k, k ∈ ks → k ≠ k0 → k ≠ k1 → f k = 0) :
+    ks.foldl (fun acc k => acc + f k) 0 = f k0 + f k1 := by
+  induction ks with
+  | nil => cases hmem0
+  | cons k ks ih =>
+      rw [List.nodup_cons] at hnodup
+      obtain ⟨hk_not_mem, hks_nodup⟩ := hnodup
+      rw [List.mem_cons] at hmem0 hmem1
+      -- Case: k0 = k = head
+      rcases hmem0 with rfl | htail0
+      · rcases hmem1 with hhead1 | htail1
+        -- Sub-case: k1 = k = head (impossible, k0 ≠ k1)
+        · exfalso; exact hk0_ne_k1 hhead1.symm
+        -- Sub-case: k1 ∈ tail
+        · have htail1_zero : ∀ k', k' ∈ ks → k' ≠ k1 → f k' = 0 := by
+            intro k' hk' hne
+            exact hzero k' (by simp [hk']) (by
+              intro h_eq; apply hk_not_mem; simpa [h_eq] using hk') hne
+          have h := foldl_add_unique_of_nodup ks f k1 hks_nodup htail1 htail1_zero
+          calc
+            (k0 :: ks).foldl (fun acc k => acc + f k) 0 =
+                ks.foldl (fun acc k => acc + f k) (0 + f k0) := rfl
+            _ = f k0 + ks.foldl (fun acc k => acc + f k) 0 := by
+                rw [Rat.zero_add, foldl_add_extract_init]
+            _ = f k0 + f k1 := by rw [h]
+      -- Case: k0 ∈ tail
+      · rcases hmem1 with rfl | htail1
+        -- Sub-case: k1 = k = head
+        · have htail0_zero : ∀ k', k' ∈ ks → k' ≠ k0 → f k' = 0 := by
+            intro k' hk' hne
+            exact hzero k' (by simp [hk']) hne (by
+              intro h_eq; apply hk_not_mem; simpa [h_eq] using hk')
+          have h := foldl_add_unique_of_nodup ks f k0 hks_nodup htail0 htail0_zero
+          calc
+            (k1 :: ks).foldl (fun acc k => acc + f k) 0 =
+                ks.foldl (fun acc k => acc + f k) (0 + f k1) := rfl
+            _ = f k1 + ks.foldl (fun acc k => acc + f k) 0 := by
+                rw [Rat.zero_add, foldl_add_extract_init]
+            _ = f k1 + f k0 := by rw [h]
+            _ = f k0 + f k1 := by exact Rat.add_comm (f k1) (f k0)
+        -- Sub-case: k1 ∈ tail, head is neither
+        · have hk_zero : f k = 0 := by
+            refine hzero k (by simp) ?_ ?_
+            · intro h_eq; apply hk_not_mem; simpa [h_eq] using htail0
+            · intro h_eq; apply hk_not_mem; simpa [h_eq] using htail1
+          have htail_zero : ∀ k', k' ∈ ks → k' ≠ k0 → k' ≠ k1 → f k' = 0 := by
+            intro k' hk' hne0 hne1
+            exact hzero k' (by simp [hk']) hne0 hne1
+          calc
+            (k :: ks).foldl (fun acc k => acc + f k) 0 =
+                ks.foldl (fun acc k => acc + f k) (0 + f k) := rfl
+            _ = ks.foldl (fun acc k => acc + f k) 0 := by
+                rw [hk_zero, Rat.zero_add]
+            _ = f k0 + f k1 := ih hks_nodup htail0 htail1 htail_zero
+
 /--
 Evaluate one matrix-product entry when all evaluated paths except `k0` vanish.
 
@@ -244,6 +316,33 @@ theorem evalWith_mul_unique_path
     (by
       intro k _hmem hne
       exact hzero k hne)
+
+/--
+Evaluate one matrix-product entry when all evaluated paths except `k0` and `k1`
+vanish.
+
+This is the two-path companion to `evalWith_mul_unique_path`.  A seven-gate
+product proof can first establish that only two intermediate rows contribute,
+then reduce the evaluated product to their sum using this theorem.
+-/
+theorem evalWith_mul_two_path
+    (env : String → Rat) {rows mid cols : Nat}
+    (A : Matrix rows mid Coeff) (B : Matrix mid cols Coeff)
+    (i : Fin rows) (j : Fin cols) (k0 k1 : Fin mid)
+    (hk0_ne_k1 : k0 ≠ k1)
+    (hzero : ∀ k : Fin mid, k ≠ k0 → k ≠ k1 →
+      Coeff.evalWith env (A i k) * Coeff.evalWith env (B k j) = 0) :
+    Coeff.evalWith env (Matrix.mul A B i j) =
+      Coeff.evalWith env (A i k0) * Coeff.evalWith env (B k0 j) +
+      Coeff.evalWith env (A i k1) * Coeff.evalWith env (B k1 j) := by
+  rw [evalWith_mul_apply]
+  exact foldl_add_two_of_nodup (List.finRange mid)
+    (fun k => Coeff.evalWith env (A i k) * Coeff.evalWith env (B k j))
+    k0 k1 (finRange_nodup mid) (List.mem_finRange k0) (List.mem_finRange k1)
+    hk0_ne_k1
+    (by
+      intro k _hmem hne0 hne1
+      exact hzero k hne0 hne1)
 
 /--
 Evaluating a symbolic matrix after multiplying on the right by the identity

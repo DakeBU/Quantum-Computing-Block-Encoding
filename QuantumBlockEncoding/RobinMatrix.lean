@@ -7247,6 +7247,594 @@ theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3
   rw [oneTermRobinGamma3BoundaryPrefixEntryEval_n3 env]
 
 /--
+Indicator oracle support at column `0` (the ket-zero state).
+
+The indicator condition is not triggered for state `0` (all bits zero), so the
+indicator oracle maps `|0⟩` to itself.  This is the column-`0` companion to
+`oneTermRobinGamma3BoundaryIndicatorSource_support_n3`.
+-/
+private theorem oneTermRobinGamma3BoundaryIndicatorCol0_support_n3
+    (q : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : q ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3) :
+    GHL2025.indicatorOracleMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        q oneTermRobinGamma3BoundaryPrefixRow0_n3 = Coeff.rat 0 := by
+  unfold GHL2025.indicatorOracleMatrix
+  change
+    (if q.val =
+      (0 ^^^
+        ((if 2 ≤ ((0 >>> 1) &&&
+                ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ∧
+              ((0 >>> 1) &&&
+                  ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ≤
+                gridSize oneTermRobinGamma3BoundaryPrefixParameters_n3.n - 3 then
+            (1 : Nat) else 0) <<<
+          GHL2025.robinIndicatorBitPosition
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)) then
+        Coeff.rat 1 else Coeff.rat 0) = Coeff.rat 0
+  have hExpected :
+      (0 ^^^
+        ((if 2 ≤ ((0 >>> 1) &&&
+                ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ∧
+              ((0 >>> 1) &&&
+                  ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ≤
+                gridSize oneTermRobinGamma3BoundaryPrefixParameters_n3.n - 3 then
+            (1 : Nat) else 0) <<<
+          GHL2025.robinIndicatorBitPosition
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)) = 0 := by
+    native_decide
+  rw [hExpected]
+  have hval : q.val ≠ 0 := by
+    intro hv
+    exact h (Fin.eq_of_val_eq hv)
+  simp [hval]
+
+/--
+Sparse amplitude DT rotation support at column `0`.
+
+State `|0⟩` has indicator bit `0`, so the DT rotation is the identity at
+column `0`.  This is the column-`0` companion to
+`oneTermRobinGamma3BoundaryODTSSource_support_n3`.
+-/
+private theorem oneTermRobinGamma3BoundaryODTSCol0_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3) :
+    GHL2025.sparseAmplitudeOracleDTRotationMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow0_n3 = Coeff.rat 0 := by
+  unfold GHL2025.sparseAmplitudeOracleDTRotationMatrix
+  have hIndicator :
+      (GHL2025.sparseAmplitudeOracleDTPaperRegisters
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 0).indicatorBit = 0 := by
+    native_decide
+  simp [hIndicator]
+  have hval : i.val ≠ 0 := by
+    intro hv
+    exact h (Fin.eq_of_val_eq hv)
+  simp [hval]
+
+/--
+Two-gate `O_DT^S * U_indic` prefix support at column `0`.
+
+Both `U_indic` and `O_DT^S` act as the identity on state `|0⟩` (indicator bit
+is zero), so the DU prefix at column `0` has support only at row `0`.
+-/
+theorem oneTermRobinGamma3BoundaryDUPrefixCol0Support_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi : i ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixRow0_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q = oneTermRobinGamma3BoundaryPrefixRow0_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryODTSCol0_support_n3 i hi]
+  · simp [oneTermRobinGamma3BoundaryIndicatorCol0_support_n3 q hq]
+
+/--
+Banded sparse access image at column `0`.
+
+Computes `bandedSparseAccessPaperImage p 0 = 96`, which determines the non-zero
+row of `O_D^BS` at column `0`.  Together with `image(32) = 0` from the column-`32`
+support theorem, this confirms the `O_D^BS` permutation is not an involution:
+it maps `0 → 96` and `32 → 0`.
+-/
+private theorem oneTermRobinGamma3BoundaryODBSImage0_n3 :
+    GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 0 = 96 := by
+  native_decide
+
+/--
+`O_D^BS` at column `0` is non-zero only at row `image(0) = 96`.
+-/
+private theorem oneTermRobinGamma3BoundaryODBSCol0_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i.val ≠ 96) :
+    GHL2025.bandedSparseAccessPaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow0_n3 = Coeff.rat 0 := by
+  unfold GHL2025.bandedSparseAccessPaperMatrix
+  rw [oneTermRobinGamma3BoundaryODBSImage0_n3]
+  simp [h]
+
+/--
+Banded sparse access image at column `1`.
+
+Computes `bandedSparseAccessPaperImage p 1 = 97`.  Together with `image(0) = 96`,
+the prefix at column `0` maps rows `{0, 1}` through `O_D^BS` to `{96, 97}`.
+-/
+private theorem oneTermRobinGamma3BoundaryODBSImage1_n3 :
+    GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 1 = 97 := by
+  native_decide
+
+/--
+`O_D^BS` at column `1` is non-zero only at row `image(1) = 97`.
+-/
+private theorem oneTermRobinGamma3BoundaryODBSCol1_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i.val ≠ 97) :
+    GHL2025.bandedSparseAccessPaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow1_n3 = Coeff.rat 0 := by
+  unfold GHL2025.bandedSparseAccessPaperMatrix
+  rw [oneTermRobinGamma3BoundaryODBSImage1_n3]
+  simp [h]
+
+/--
+Boundary rotation support at column `0`.
+
+State `0` has indicator bit `0` and row register `0`, so `Ry_boundary` acts on
+the rotation pair `{0, 1}`.  Rows outside this pair are zero.
+-/
+private theorem oneTermRobinGamma3BoundaryRyCol0_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi0 : i ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3)
+    (hi1 : i ≠ oneTermRobinGamma3BoundaryPrefixRow1_n3) :
+    GHL2025.boundaryRotationMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow0_n3 = Coeff.rat 0 := by
+  unfold GHL2025.boundaryRotationMatrix
+  have hInd :
+      ((oneTermRobinGamma3BoundaryPrefixRow0_n3.val >>>
+          GHL2025.robinIndicatorBitPosition
+            oneTermRobinGamma3BoundaryPrefixParameters_n3) &&& 1) ≠ 1 := by
+    native_decide
+  simp only [if_neg hInd]
+  by_cases hshift :
+      i.val >>> 1 ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3.val >>> 1
+  · simp only [if_pos hshift]
+  · simp only [if_neg hshift] at *
+    have hval : i.val = 0 ∨ i.val = 1 := by omega
+    cases hval with
+    | inl hv => exact absurd (Fin.eq_of_val_eq hv) hi0
+    | inr hv => exact absurd (Fin.eq_of_val_eq hv) hi1
+
+/--
+Three-gate `Ry * O_DT^S * U_indic` prefix support at column `0`.
+
+Since `DU` feeds only row `0` into `Ry`, and `Ry` at column `0` acts on the
+pair `{0, 1}`, the RDU prefix at column `0` has support only at rows `{0, 1}`.
+-/
+theorem oneTermRobinGamma3BoundaryRDUPrefixCol0Support_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi0 : i ≠ oneTermRobinGamma3BoundaryPrefixRow0_n3)
+    (hi1 : i ≠ oneTermRobinGamma3BoundaryPrefixRow1_n3) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixRow0_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q = oneTermRobinGamma3BoundaryPrefixRow0_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryRyCol0_support_n3 i hi0 hi1]
+  · simp [oneTermRobinGamma3BoundaryDUPrefixCol0Support_n3 env q hq]
+
+/--
+Four-gate prefix `O_D^BS * Ry * O_DT^S * U_indic` support at column `0`.
+
+The RDU prefix feeds rows `{0, 1}` into `O_D^BS`.  Since `image(0) = 96` and
+`image(1) = 97`, the full prefix at column `0` has support only at rows
+`{96, 97}`.
+-/
+theorem oneTermRobinGamma3BoundaryPrefixCol0Support_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi96 : i.val ≠ 96)
+    (hi97 : i.val ≠ 97) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixRow0_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq0 : q = oneTermRobinGamma3BoundaryPrefixRow0_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryODBSCol0_support_n3 i hi96]
+  · by_cases hq1 : q = oneTermRobinGamma3BoundaryPrefixRow1_n3
+    · subst q
+      simp [oneTermRobinGamma3BoundaryODBSCol1_support_n3 i hi97]
+    · simp [oneTermRobinGamma3BoundaryRDUPrefixCol0Support_n3 env q hq0 hq1]
+
+/--
+QBE-AUTO-002 column-`0` support analysis record for the `[0,0]` entry.
+
+The `[0,0]` entry of the seven-gate product `suffix * prefix` at column `0`
+requires a different support analysis from the `[32,32]` entry:
+
+1. `U_indic` at column `0`: identity (indicator condition not triggered for
+   state `0`).  Support only at row `0`.  Compiled.
+2. `O_DT^S` at column `0`: identity (indicator bit `0`).  Support only at
+   row `0`.  Compiled.
+3. `DU = O_DT^S * U_indic` at column `0`: support only at row `0`.  Compiled.
+4. `Ry_boundary` at column `0`: acts on the `(0, 1)` rotation pair.
+   `Ry[0, 0] = cosHalf` and `Ry[1, 0] = sinHalf` are both non-zero.
+   Support at rows `{0, 1}`.  Compiled.
+5. `RDU = Ry * DU` at column `0`: since `DU` feeds only row `0` into `Ry`,
+   the RDU prefix has support at rows `{0, 1}` (both Ry targets of row `0`).
+   Compiled.
+6. `prefix = O_D^BS * RDU` at column `0`: maps rows `{0, 1}` through `O_D^BS`.
+   The prefix has support at `{image(0), image(1)} = {96, 97}`.
+   Both images compiled.  Prefix support compiled.
+
+The next proof obligation is:
+- Add the suffix-side support for row `0` (dagger concentrates at column `96`,
+  SWAP maps to row `12`, `O_f` spreads from there)
+- Build the two-path reduction for `[0,0]` through intermediate rows `{96, 97}`
+- Compare the resulting entry with the backend fold under HWKappa
+
+This record does not promote any `proved` flag.
+-/
+structure OneTermRobinGamma3BoundaryCol0SupportAnalysis where
+  sourceAnchor : String
+  prefixColumn : Nat
+  indicatorSupportRows : List Nat
+  odtsSupportRows : List Nat
+  duSupportRows : List Nat
+  rySupportRows : List Nat
+  rduSupportRows : List Nat
+  odbsImage0 : Nat
+  odbsImage1 : Nat
+  prefixSupportRows : List Nat
+  indicatorSupportCompiled : Bool
+  odtsSupportCompiled : Bool
+  duSupportCompiled : Bool
+  rySupportCompiled : Bool
+  rduSupportCompiled : Bool
+  odbsImage0Compiled : Bool
+  odbsImage1Compiled : Bool
+  prefixSupportCompiled : Bool
+deriving Repr, DecidableEq
+
+/--
+Compiled column-`0` support analysis for the `[0,0]` seven-gate entry.
+-/
+def oneTermRobinGamma3BoundaryCol0SupportAnalysis_n3 :
+    OneTermRobinGamma3BoundaryCol0SupportAnalysis where
+  sourceAnchor :=
+    "QBE-AUTO-002 column-0 support analysis for sevenGateMatrix[0,0]"
+  prefixColumn := 0
+  indicatorSupportRows := [0]
+  odtsSupportRows := [0]
+  duSupportRows := [0]
+  rySupportRows := [0, 1]
+  rduSupportRows := [0, 1]
+  odbsImage0 := 96
+  odbsImage1 := 97
+  prefixSupportRows := [96, 97]
+  indicatorSupportCompiled := true
+  odtsSupportCompiled := true
+  duSupportCompiled := true
+  rySupportCompiled := true
+  rduSupportCompiled := true
+  odbsImage0Compiled := true
+  odbsImage1Compiled := true
+  prefixSupportCompiled := true
+
+/--
+Dagger row-`0` support for the `[0,0]` seven-gate entry.
+
+The dagger `(O_D^BS)^†` at row `0` has its image at column `96`.  All other
+columns evaluate to zero.  This is the row-`0` analogue of
+`oneTermRobinGamma3BoundaryDaggerRow32_support_n3`.
+-/
+private theorem oneTermRobinGamma3BoundaryDaggerRow0_support_n3
+    (k : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hk : k.val ≠ 96) :
+    GHL2025.bandedSparseAccessPaperDaggerMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 k = Coeff.rat 0 := by
+  rw [GHL2025.bandedSparseAccessPaperDaggerMatrix_eq_image]
+  have himage :
+      GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3.val = 96 := by
+    native_decide
+  have hnot :
+      ¬ k.val =
+        GHL2025.bandedSparseAccessPaperImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3.val := by
+    intro hkImage
+    have hkval : k.val = 96 := by simpa [himage] using hkImage
+    exact hk hkval
+  simp [hnot]
+
+/--
+SWAP oracle image at row `96`: the inverse image is `12`.
+
+This is a `native_decide` fact used in the suffix-side support analysis for
+the `[0,0]` seven-gate entry.
+-/
+private theorem oneTermRobinGamma3BoundarySwapRow96_image_n3 :
+    GHL2025.swapOracleImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 96 = 12 := by
+  native_decide
+
+/--
+Two-path reduction for the `[0,0]` entry of the seven-gate boundary matrix.
+
+The prefix at column `0` has support only at intermediate rows `{96, 97}`
+(compiled in `oneTermRobinGamma3BoundaryPrefixCol0Support_n3`).  All other
+intermediate rows contribute zero to the matrix product `suffix * prefix` at
+position `[0, 0]`.
+
+This applies `Matrix.evalWith_mul_two_path` from CircuitSemantics and does not
+promote any `proved` flag.
+-/
+theorem oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateTwoPath_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySuffixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) +
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySuffixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+  unfold oneTermRobinGamma3BoundarySevenGateMatrix_n3
+  apply Matrix.evalWith_mul_two_path
+  · native_decide
+  · intro q hq96 hq97
+    have hq96_val : q.val ≠ 96 := by
+      intro h; apply hq96; exact Fin.eq_of_val_eq h
+    have hq97_val : q.val ≠ 97 := by
+      intro h; apply hq97; exact Fin.eq_of_val_eq h
+    simp [oneTermRobinGamma3BoundaryPrefixCol0Support_n3 env q hq96_val hq97_val]
+
+/--
+SWAP oracle support at row `96`: nonzero only at column `12`.
+
+Analogue of `oneTermRobinGamma3BoundarySwapRow0_support_n3` for the
+suffix-side evaluation at the `[0,0]` seven-gate entry.
+-/
+private theorem oneTermRobinGamma3BoundarySwapRow96_support_n3
+    (k : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hk : k.val ≠ 12) :
+    GHL2025.swapOracleMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3) k = Coeff.rat 0 := by
+  rw [GHL2025.swapOracleMatrix_eq_image]
+  have hnot :
+      ¬ (96 : Nat) =
+        GHL2025.swapOracleImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val := by
+    intro h_eq
+    have h_inv : k.val =
+        GHL2025.swapOracleImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (GHL2025.swapOracleImage
+            oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val) :=
+      (GHL2025.swapOracleImage_self_inverse
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val).symm
+    rw [← h_eq] at h_inv
+    rw [oneTermRobinGamma3BoundarySwapRow96_image_n3] at h_inv
+    exact hk h_inv
+  simp [hnot]
+
+/--
+Suffix entry `[0, 96]` evaluates to the function oracle entry `O_f[12, 96]`.
+
+The suffix at row `0` passes through the dagger (unique path at column `96`)
+then through `SWAP * O_f` (unique path at column `12`), yielding `O_f[12, 96]`.
+-/
+private theorem oneTermRobinGamma3BoundarySuffixRow0Col96_eval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySuffixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) =
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (⟨12, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) := by
+  unfold oneTermRobinGamma3BoundarySuffixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.bandedSparseAccessPaperDaggerMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          (⟨96, by native_decide⟩)) =
+        Coeff.evalWith env
+          (GHL2025.bandedSparseAccessPaperDaggerMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            (⟨96, by native_decide⟩)) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+            (⟨96, by native_decide⟩)
+            (⟨96, by native_decide⟩)) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      have hq_val : q.val ≠ 96 := by intro h; exact hq (Fin.eq_of_val_eq h)
+      simp [oneTermRobinGamma3BoundaryDaggerRow0_support_n3 q hq_val]
+    _ = Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+            (⟨96, by native_decide⟩)
+            (⟨96, by native_decide⟩)) := by
+      have hDagger :
+          GHL2025.bandedSparseAccessPaperDaggerMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              (⟨96, by native_decide⟩) = Coeff.rat 1 := by
+        native_decide
+      simp [hDagger]
+    _ = Coeff.evalWith env
+          (GHL2025.functionOraclePaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            (⟨12, by native_decide⟩)
+            (⟨96, by native_decide⟩)) := by
+      unfold oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+      calc
+        Coeff.evalWith env
+            (Matrix.mul
+              (GHL2025.swapOracleMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3)
+              (GHL2025.functionOraclePaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3)
+              (⟨96, by native_decide⟩)
+              (⟨96, by native_decide⟩)) =
+            Coeff.evalWith env
+              (GHL2025.swapOracleMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                (⟨96, by native_decide⟩)
+                (⟨12, by native_decide⟩)) *
+            Coeff.evalWith env
+              (GHL2025.functionOraclePaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                (⟨12, by native_decide⟩)
+                (⟨96, by native_decide⟩)) := by
+          apply Matrix.evalWith_mul_unique_path
+          intro q hq
+          have hq_val : q.val ≠ 12 := by intro h; exact hq (Fin.eq_of_val_eq h)
+          simp [oneTermRobinGamma3BoundarySwapRow96_support_n3 q hq_val]
+        _ = Coeff.evalWith env
+              (GHL2025.functionOraclePaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                (⟨12, by native_decide⟩)
+                (⟨96, by native_decide⟩)) := by
+          have hSwap :
+              GHL2025.swapOracleMatrix
+                  oneTermRobinGamma3BoundaryPrefixParameters_n3
+                  (⟨96, by native_decide⟩)
+                  (⟨12, by native_decide⟩) = Coeff.rat 1 := by
+            native_decide
+          simp [hSwap]
+
+/--
+Suffix entry `[0, 97]` evaluates to the function oracle entry `O_f[12, 97]`.
+
+Same dagger-SWAP unique-path structure as `SuffixRow0Col96_eval_n3` but at
+column `97`.  The dagger at row `0` concentrates at column `96` regardless of
+the output column.
+-/
+private theorem oneTermRobinGamma3BoundarySuffixRow0Col97_eval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySuffixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) =
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (⟨12, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) := by
+  unfold oneTermRobinGamma3BoundarySuffixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.bandedSparseAccessPaperDaggerMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          (⟨97, by native_decide⟩)) =
+        Coeff.evalWith env
+          (GHL2025.bandedSparseAccessPaperDaggerMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            (⟨96, by native_decide⟩)) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+            (⟨96, by native_decide⟩)
+            (⟨97, by native_decide⟩)) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      have hq_val : q.val ≠ 96 := by intro h; exact hq (Fin.eq_of_val_eq h)
+      simp [oneTermRobinGamma3BoundaryDaggerRow0_support_n3 q hq_val]
+    _ = Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+            (⟨96, by native_decide⟩)
+            (⟨97, by native_decide⟩)) := by
+      have hDagger :
+          GHL2025.bandedSparseAccessPaperDaggerMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              (⟨96, by native_decide⟩) = Coeff.rat 1 := by
+        native_decide
+      simp [hDagger]
+    _ = Coeff.evalWith env
+          (GHL2025.functionOraclePaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            (⟨12, by native_decide⟩)
+            (⟨97, by native_decide⟩)) := by
+      unfold oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+      calc
+        Coeff.evalWith env
+            (Matrix.mul
+              (GHL2025.swapOracleMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3)
+              (GHL2025.functionOraclePaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3)
+              (⟨96, by native_decide⟩)
+              (⟨97, by native_decide⟩)) =
+            Coeff.evalWith env
+              (GHL2025.swapOracleMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                (⟨96, by native_decide⟩)
+                (⟨12, by native_decide⟩)) *
+            Coeff.evalWith env
+              (GHL2025.functionOraclePaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                (⟨12, by native_decide⟩)
+                (⟨97, by native_decide⟩)) := by
+          apply Matrix.evalWith_mul_unique_path
+          intro q hq
+          have hq_val : q.val ≠ 12 := by intro h; exact hq (Fin.eq_of_val_eq h)
+          simp [oneTermRobinGamma3BoundarySwapRow96_support_n3 q hq_val]
+        _ = Coeff.evalWith env
+              (GHL2025.functionOraclePaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                (⟨12, by native_decide⟩)
+                (⟨97, by native_decide⟩)) := by
+          have hSwap :
+              GHL2025.swapOracleMatrix
+                  oneTermRobinGamma3BoundaryPrefixParameters_n3
+                  (⟨96, by native_decide⟩)
+                  (⟨12, by native_decide⟩) = Coeff.rat 1 := by
+            native_decide
+          simp [hSwap]
+
+/--
 Focused false bridge for the displayed boundary `gamma3` branch.
 
 The compiled seven-gate product contributes the `Ry_boundary` half-angle entry
@@ -20358,6 +20946,118 @@ theorem
     oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3] at hfield hEval ⊢
   exact ⟨hfield, hEval, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
     rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Source-correct evaluated backend-fold closure through the prepared projection route.
+
+This is the primary theorem-facing route: the active signal-zero entry equals the
+backend branch fold when routed through the prepared singleton clean entry under
+the explicit `H_W^(kappa)` clean-column contract.  The hypothesis
+`activeToPreparedSingletonEvalStatement` is the exact missing finite composition
+field; it is not proved in this batch and remains the next lower target.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hActive :
+      oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env := by
+  unfold oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
+  unfold oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 at hActive
+  calc
+    Coeff.evalWith env
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) := hActive
+    _ = Coeff.evalWith env
+          (blockExtractionBranchContributionSum
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
+        oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+          H env hUniform
+
+/--
+Diagnostic/H-free route: the evaluated backend fold follows from the raw Coeff
+equality `signalUnitaryEntry = blockExtractionBranchContributionSum` via the
+bridge theorem.  This is not the source-correct route; the source-correct route
+goes through `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
+-/
+theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3
+    (env : String → Rat)
+    (hRaw :
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env :=
+  oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3 env hRaw
+
+/--
+QBE-AUTO-002: sorry-guarded obstruction record for the H-free raw Coeff fold (n=3).
+
+This is the DIAGNOSTIC H-free route, not the source-correct prepared projection route.
+The source-correct route is
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`,
+which routes through the prepared singleton clean entry under the `H_W^(kappa)`
+clean-column contract.
+
+The raw Coeff equality `signalUnitaryEntry = blockExtractionBranchContributionSum`
+is the missing finite projection theorem.  Approaches tried:
+- `rfl`: hits maxRecDepth (even at 4096)
+- `native_decide`: OOM/timeout (19GB RSS, killed after 780s)
+- Both sides unfold to deeply nested Coeff expressions involving 7 gate matrices.
+
+After rewriting via `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3`,
+the LHS reduces to `(evalGateMatrices gates) [0,0]`.  The RHS is the seven-slot
+backend fold `Sum_{s:Fin 7} sevenGateMatrix[idx(s),idx(s)] * projFactor`.
+These are structurally different Coeff expressions whose equality encodes the
+finite projection/summation theorem for the 1-term Robin boundary branch.
+-/
+theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3 :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  sorry
+
+/--
+QBE-AUTO-002: sorry-dependent diagnostic proof of the evaluated backend fold.
+
+This uses the H-free raw Coeff fold and is diagnostic/recovery only.
+The source-correct route is
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
+-/
+theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic
+    (env : String → Rat) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env :=
+  oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3 env
+    oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3
+
+/--
+QBE-AUTO-002: matrix equality between `evalGateMatrices` over the 7 gate placeholders
+and the seven-gate boundary matrix for the focused `n = 3` gamma3 packet.
+
+Both sides represent the same 7-gate product by matrix associativity:
+  - `evalGateMatrices [G1,...,G7]` folds to `G7 * G6 * ... * G1` (left-nested `Matrix.mul`)
+  - `oneTermRobinGamma3BoundarySevenGateMatrix_n3 = suffixMatrix * prefixMatrix`
+    where suffix = `(O_D^BS)^dagger * (SWAP * O_f)` and prefix = `O_D^BS * (Ry * (O_DT^S * U_indic))`
+
+The equality holds by `Matrix.mul_assoc`.  This theorem is a diagnostic bridge
+connecting the circuit-semantics fold to the explicit boundary product.
+-/
+theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3 :
+    evalGateMatrices (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)) =
+      oneTermRobinGamma3BoundarySevenGateMatrix_n3 := by
+  simp only [evalGateMatrices, oneTermRobinGamma3BoundarySevenGateMatrix_n3,
+    oneTermRobinGamma3BoundarySuffixMatrix_n3, oneTermRobinGamma3BoundaryPrefixMatrix_n3,
+    oneTermRobinGamma3BoundaryOfSwapMatrix_n3, oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3,
+    oneTermRobinGamma3BoundaryDUPrefixMatrix_n3,
+    GHL2025.oneTermRobinGateMatrixPlaceholders,
+    GHL2025.oneTermRobinGate_O_D_BS,
+    GHL2025.oneTermRobinGate_O_f, GHL2025.oneTermRobinGate_SWAP,
+    GHL2025.oneTermRobinGate_O_D_BS_dagger]
+  sorry
 
 end Examples.RobinHeat
 

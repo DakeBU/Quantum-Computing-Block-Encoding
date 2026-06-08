@@ -5,7 +5,7 @@ Reference repository: [math-ai-org/mathcode](https://github.com/math-ai-org/math
 Local development checkout, when present:
 
 ```text
-../outer_repos/mathcode
+../outer_repos/automation_systems/mathcode
 ```
 
 Public QBE documentation should cite the upstream repository link above, not a

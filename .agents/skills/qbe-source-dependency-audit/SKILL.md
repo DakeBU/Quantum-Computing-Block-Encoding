@@ -27,7 +27,7 @@ Agents may use local TeX sources from the shared external paper archive:
 For GHL2025, the current local source is:
 
 ```text
-../outer_papers/GHL2025/main.tex
+../outer_papers/quantum/GHL2025/main.tex
 ```
 
 If the source is stored under another GHL/Guseynov folder name, or under a

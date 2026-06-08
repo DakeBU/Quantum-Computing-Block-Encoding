@@ -78,6 +78,13 @@ python3 tools/qbe.py blueprint-status QBE-AUTO-002 --refresh
 python3 tools/qbe.py write-context-pack QBE-AUTO-002 --cycle 1
 ```
 
+In this document, a DAG is a directed acyclic graph.  For Lean work, its nodes
+are source proof steps, Lean definitions, lemmas, external contracts, theorem
+targets, and explicit obligations.  A directed edge `A -> B` says that `B`
+depends on `A`.  Long theorem closure should prove active leaves first and
+reuse them, instead of repeatedly asking a lower agent to attack the root
+theorem.
+
 The snapshot records:
 
 - the current directive,
@@ -102,6 +109,18 @@ The upper/middle agents should retire stale leaves when the blueprint reports
 that a lower target is already compiled.  The lower agent should work on one
 dynamic leaf.  The reviewer should treat Lean plus proof-map correspondence as
 the gate, not agent self-assessment.
+
+When two lower agents are used, QBE deliberately mixes two proof modes:
+
+- lower 1 is a natural-language proof architect.  It reads the source TeX,
+  current Lean declarations, and proof obligations, then writes the dependency
+  proof and active-leaf table.
+- lower 2 is a Lean implementation worker.  It implements exactly one ready
+  leaf from that table and runs `python3 tools/qbe.py check`.
+
+This is not a weaker proof path.  Natural-language proof planning is used to
+make the dependency graph small and source-faithful before Lean tactic search
+spends tokens.
 
 After a multi-hour run, write an efficiency report before planning the next
 batch:

@@ -32,17 +32,26 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOS_ROOT = ROOT.parent
 OUTER_REPOS_ROOT = REPOS_ROOT / "outer_repos"
 OUTER_PAPERS_ROOT = REPOS_ROOT / "outer_papers"
+OUTER_REPOS_AUTOMATION_ROOT = OUTER_REPOS_ROOT / "automation_systems"
+OUTER_REPOS_QUANTUM_ROOT = OUTER_REPOS_ROOT / "quantum"
+OUTER_REPOS_SAMPLING_ROOT = OUTER_REPOS_ROOT / "sampling_theory_sde"
+OUTER_REPOS_MATH_ROOT = OUTER_REPOS_ROOT / "mathematics_open_problems"
+OUTER_PAPERS_AUTOMATION_ROOT = OUTER_PAPERS_ROOT / "automation_systems"
+OUTER_PAPERS_QUANTUM_ROOT = OUTER_PAPERS_ROOT / "quantum"
+OUTER_PAPERS_SAMPLING_ROOT = OUTER_PAPERS_ROOT / "sampling_theory_sde"
 LOCAL_PAPER_SOURCE_ROOT = Path(
     os.environ.get("QBE_PAPER_SOURCE_ROOT", str(OUTER_PAPERS_ROOT))
 ).expanduser()
-ARIS_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "Auto-claude-code-research-in-sleep"
-EOH_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "EoH"
-LBG_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "learning-beyond-gradients"
-LEANMARATHON_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "LeanMarathon"
-LEAN_QUANTUM_INFO_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "Lean-QuantumInfo"
-MATHCODE_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "mathcode"
-OPTIMIZATION_PROBLEMS_LOCAL_REFERENCE = OUTER_REPOS_ROOT / "optimizationproblems"
-LEANMARATHON_PDF = OUTER_PAPERS_ROOT / "LeanMarathon-2606.05400.pdf"
+
+
+ARIS_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "Auto-claude-code-research-in-sleep"
+EOH_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "EoH"
+LBG_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "learning-beyond-gradients"
+LEANMARATHON_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "LeanMarathon"
+LEAN_QUANTUM_INFO_LOCAL_REFERENCE = OUTER_REPOS_QUANTUM_ROOT / "Lean-QuantumInfo"
+MATHCODE_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "mathcode"
+OPTIMIZATION_PROBLEMS_LOCAL_REFERENCE = OUTER_REPOS_MATH_ROOT / "optimizationproblems"
+LEANMARATHON_PDF = OUTER_PAPERS_AUTOMATION_ROOT / "LeanMarathon-2606.05400.pdf"
 STATE_DIR = ROOT / ".qbe"
 STATE_FILE = STATE_DIR / "state.json"
 MANIFEST = ROOT / "MANIFEST.md"
@@ -1157,6 +1166,9 @@ Recent task-relevant declarations:
 - Stage 2 DAG proof discharge: lower agents work on dynamic leaves only;
   reviewer accepts progress only through `python3 tools/qbe.py check` and
   synchronized Markdown/LaTeX correspondence.
+- Mixed lower-agent proof mode: when two lower agents are available, lower 1
+  writes the natural-language dependency proof and active-leaf table; lower 2
+  compiles exactly one ready Lean leaf from that table.
 - Refiner behavior: when several failures share a dependency, repair the
   connected illness area once instead of stacking independent patches.
 - No agent may mark a proof complete from self-assessment, partial score, or
@@ -1322,6 +1334,7 @@ def blueprint_status_text(state: dict) -> str:
             "",
             "- Upper must choose one dynamic leaf or one refiner illness area before lower work.",
             "- Middle must map the selected paper proof fragment to Lean declarations or explicit obligations.",
+            "- With two lower agents, lower 1 writes the natural-language DAG proof packet and lower 2 proves one ready Lean leaf.",
             "- Lower must edit only the assigned local target and run `python3 tools/qbe.py check` after Lean edits.",
             "- Reviewer accepts progress only when the Lean gate and the Markdown/LaTeX correspondence are synchronized.",
         ]
@@ -1383,6 +1396,8 @@ def build_context_pack(task_id: str, cycle: int) -> str:
             "- Use this compact context before reading long historical files.",
             "- In faithful-paper mode, reproduce the paper construction and do not add assumptions.",
             "- Translate the selected LaTeX proof fragment into Lean-facing declarations before lower proof search.",
+            "- Maintain a proof-DAG frontier: root theorem, dependencies, active leaves, stale leaves, and owner lower profile.",
+            "- With two lower agents, lower 1 writes the natural-language DAG proof packet and lower 2 compiles one ready Lean leaf.",
             "- Export newly accepted Lean proof blocks to Markdown/LaTeX in batch, not after every tiny edit.",
             "- Keep `python3 tools/qbe.py check` as the deterministic gate.",
         ]
@@ -1672,9 +1687,29 @@ def infer_task_mode(task_text: str) -> str:
 
 def local_paper_source_candidates(task_text: str) -> list[tuple[str, Path]]:
     candidates: list[tuple[str, Path]] = []
-    roots = [LOCAL_PAPER_SOURCE_ROOT]
-    if LOCAL_PAPER_SOURCE_ROOT != OUTER_PAPERS_ROOT:
-        roots.append(OUTER_PAPERS_ROOT)
+    if LOCAL_PAPER_SOURCE_ROOT == OUTER_PAPERS_ROOT:
+        raw_roots = [
+            OUTER_PAPERS_QUANTUM_ROOT,
+            OUTER_PAPERS_AUTOMATION_ROOT,
+            OUTER_PAPERS_SAMPLING_ROOT,
+        ]
+    else:
+        raw_roots = [
+            LOCAL_PAPER_SOURCE_ROOT,
+            OUTER_PAPERS_QUANTUM_ROOT,
+            OUTER_PAPERS_ROOT,
+        ]
+    roots: list[Path] = []
+    seen_roots: set[Path] = set()
+    for root in raw_roots:
+        try:
+            resolved_root = root.resolve()
+        except OSError:
+            resolved_root = root
+        if resolved_root in seen_roots:
+            continue
+        seen_roots.add(resolved_root)
+        roots.append(root)
     if "GHL2025" in task_text or "Guseynov" in task_text or "2506.20478" in task_text:
         names = [
             "GHL2025",
@@ -1825,6 +1860,7 @@ def role_prompt(
     cycle: int,
     run_dir: Path,
     context_mode: str = "full",
+    lower_index: int = 0,
 ) -> str:
     trial_memory = recent_trial_text(task_id, limit=12)
     mode = infer_task_mode(task_text)
@@ -1922,6 +1958,15 @@ Mode discipline:
 - Apply `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md` when repeated
   subproofs, gate obligations, index arithmetic, or projection arguments appear.
   The goal is a reusable proof DAG, not a flat repeated trace.
+- Proof-DAG invariant: a DAG is a directed acyclic graph of Lean declarations,
+  source-proof steps, cited contracts, and proof obligations.  Edge `A -> B`
+  means that `B` depends on `A`; agents must not create circular routes or
+  repeatedly attack a high theorem while its active leaves are unproved.
+  During theorem-closure cycles, upper and middle must expose a current
+  frontier with node id, interface statement, dependencies, owner, Lean
+  declaration, human proof-map location, local gate, and status.  Lower 1 may
+  first solve the dependency plan in natural language; lower 2 must then
+  implement exactly one active Lean leaf from that plan.
 - Apply `.agents/skills/qbe-proof-blueprint/SKILL.md` at the start of long
   runs or after a stale lower target is detected.  Refresh
   `proof-blueprints/<task-id>.md`, retire stale dynamic leaves, and then assign
@@ -2022,13 +2067,17 @@ Produce:
 1. Task mode for this cycle: faithful paper reproduction, exploratory
    construction, or blocked pending human input.
 2. One precise objective.
-3. Non-goals and directions to stop pursuing, with reasons.
-4. Middle-agent instructions for conversion windows, paper notes, proof
+3. Current proof-DAG frontier: highest theorem, dependency nodes, active
+   leaves, stale leaves to retire, and one refiner illness area if needed.
+4. Non-goals and directions to stop pursuing, with reasons.
+5. Middle-agent instructions for conversion windows, paper notes, proof
    obligations, and memory.
-5. Lower-agent work packets with narrow file scopes and acceptance checks.
-6. Reviewer checklist.
-7. A compressed handoff explaining what future agents should remember.
-8. Any cited prior results or classical facts that the next cycle depends on,
+6. Lower-agent work packets with narrow file scopes and acceptance checks.
+   If two lower agents are available, assign lower 1 to natural-language
+   dependency proof and lower 2 to one compiling Lean active leaf.
+7. Reviewer checklist.
+8. A compressed handoff explaining what future agents should remember.
+9. Any cited prior results or classical facts that the next cycle depends on,
    including whether they are already formalized or still obligations.
 
 In faithful paper mode, preserve the paper construction and isolate every
@@ -2069,6 +2118,12 @@ middle to produce a proof-translation packet: list the source proof steps,
 their Lean targets or existing declarations, and the exact external results
 needed.  The next lower packet should implement one item from this map, not a
 free-form search around the theorem.
+
+For long theorem-closure runs, plan through the proof DAG explicitly.  Upper
+should name the current root theorem, the shortest dependency path to the root,
+the active leaf for lower 2, and the natural-language proof plan requested from
+lower 1.  If a previous lower target is already compiled, retire it instead of
+asking another worker to rediscover it.
 
 Require the middle agent to maintain two-way translation every cycle:
 paper/LaTeX-to-Lean for the next lower task, and Lean-to-Markdown/LaTeX for
@@ -2112,6 +2167,8 @@ Maintain:
    and build/test expectations.
 6. Cited-results memory: exact external results used by this paper, their
    source anchors, Lean status, and dependent proof blocks.
+7. Proof-DAG frontier: root theorem, dependency edges, active leaves, stale
+   leaves, owner lower-agent profile, human proof-map location, and Lean gate.
 
 You are responsible for two-way translation.  Before lower work, translate the
 paper's relevant LaTeX theorem/equation/circuit fragment into a Lean-facing
@@ -2188,6 +2245,12 @@ proof-DAG/reuse table whenever the same local argument would otherwise be
 proved several times.  Lower packets should target one block interface at a
 time.
 
+When two lower agents are available, middle must split the packet deliberately:
+lower 1 receives a natural-language DAG/proof packet with source anchors,
+definitions, dependencies, and the next Lean lemma; lower 2 receives a Lean
+implementation packet for exactly one active leaf.  The Lean packet should
+reference the lower-1 proof map if it exists, not restart broad search.
+
 When editing Markdown or LaTeX, follow `.agents/skills/qbe-math-writing/SKILL.md`:
 definitions before theorem statements, short claim statements, precise
 justifications, and no unannounced assumptions.
@@ -2240,6 +2303,10 @@ Look for:
     or proof sketch.  Reviewer should reject broad lower proof search unless
     middle mapped the paper proof steps to Lean declarations, local lemma
     targets, cited-results entries, or explicit contract gaps.
+14. Missing proof-DAG frontier.  Reviewer should reject cycles where lower
+    agents attack the root theorem directly without ready dependencies, ignore
+    the natural-language proof plan, duplicate a stale route, or fail to name
+    the active leaf being discharged.
 
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention and any added assumption or
@@ -2286,6 +2353,12 @@ Prefer small reusable lemmas over duplicated local encodings.
 If the assigned proof repeats a known argument, create or reuse a
 `qbe-hierarchical-proof-dag` block rather than copying the proof script.
 
+For theorem closure, treat the proof DAG as the work order.  If you cannot name
+the active leaf, its dependencies, and the root theorem it feeds, stop and
+record a handoff instead of editing a broad theorem.  A useful natural-language
+proof decomposition is valid lower-agent work; a Lean implementation worker
+should then compile one leaf from that decomposition.
+
 Write failures clearly; a failed attempt is useful search data when it
 identifies a blocked assumption, missing lemma, or impossible file scope.
 
@@ -2293,6 +2366,62 @@ In faithful mode, record failed proof scripts or lemma routes under
 `proof-attempts/` when useful.  In exploratory mode, record candidate-family
 changes under `candidate-populations/` when useful, especially when the attempt
 improves a partial Lean score but does not yet prove the target.
+"""
+        if lower_index == 1:
+            body += """
+Lower profile for this prompt: natural-language proof architect.
+
+Your primary job is to reason mathematically before Lean coding.  Read the
+local TeX source, conversion window, proof obligations, and current Lean DAG.
+Then produce a compact proof design that a Lean-focused lower agent can use.
+
+Expected output:
+
+1. The exact source-paper proof fragment or equation being translated.
+2. The natural-language proof of the active local theorem, with definitions
+   stated before claims.
+3. A proof-DAG table with node ids, dependencies, status, owner, and the next
+   active leaf for the Lean worker.
+4. A list of intermediate Lean lemmas, ordered by dependency, including which
+   existing declarations should be reused.
+5. A failure analysis if the current target is mathematically wrong or should
+   be routed through a different equivalent theorem.
+6. A short handoff in `proof-attempts/` or the dialogue board.
+
+You may edit Markdown proof-attempt, conversion-window, or proof-obligation
+files.  Avoid Lean edits unless the proof design exposes a very small
+definition-free theorem that is safe to add.  Do not add assumptions, mutate
+the paper circuit, or promote semantic flags.
+"""
+        elif lower_index == 2:
+            body += """
+Lower profile for this prompt: Lean implementation worker.
+
+Your primary job is to turn the current proof design into compiling Lean.
+Prefer existing declarations and the dependency map from the natural-language
+proof architect.  If no such handoff is available yet, work from the current
+upper/middle packet and keep the theorem scope narrow.
+
+Expected output:
+
+1. One small Lean theorem, lemma, or repair that compiles.
+2. No new `sorry`, `admit`, hidden axiom, or theorem-flag promotion.
+3. `python3 tools/qbe.py check` after Lean edits.
+4. A handoff naming the exact theorem closed or the exact remaining Lean goal.
+5. If the proof blocks, store the useful failed route under `proof-attempts/`.
+
+Do not spend the cycle on broad prose polish.  The natural-language proof
+agent owns proof design; you own compiled declarations and gate checks.
+If the active leaf is underspecified or stale, do not improvise a new theorem;
+record the missing DAG packet and ask middle to refresh the frontier.
+"""
+        elif lower_index > 2:
+            body += f"""
+Lower profile for this prompt: auxiliary proof-route worker `{lower_index}`.
+
+Try an independent route to the same fixed theorem or lemma.  Coordinate
+through the dialogue board, avoid overlapping file edits where possible, and
+preserve useful failed fragments as proof-attempt memory.
 """
     return f"# {role.title()} Agent Prompt\n\n{body}\n\n## Shared Context\n\n{shared}"
 
@@ -2347,15 +2476,15 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
         encoding="utf-8",
     )
     prompt_files = [
-        ("upper", run_dir / "10_upper_director.md"),
-        ("middle", run_dir / "20_middle_formalizer.md"),
+        ("upper", run_dir / "10_upper_director.md", 0),
+        ("middle", run_dir / "20_middle_formalizer.md", 0),
     ]
     for index in range(1, lower_count + 1):
-        prompt_files.append(("lower", run_dir / f"30_lower_searcher_{index}.md"))
-    prompt_files.append(("reviewer", run_dir / "40_reviewer.md"))
-    for role, path in prompt_files:
+        prompt_files.append(("lower", run_dir / f"30_lower_searcher_{index}.md", index))
+    prompt_files.append(("reviewer", run_dir / "40_reviewer.md", 0))
+    for role, path, lower_index in prompt_files:
         path.write_text(
-            role_prompt(role, task_id, title, task_text, cycle, run_dir, context_mode),
+            role_prompt(role, task_id, title, task_text, cycle, run_dir, context_mode, lower_index),
             encoding="utf-8",
         )
     handoff = f"""# Handoff
@@ -2386,7 +2515,7 @@ Cycle: `{cycle}`
             "score": "",
             "lean_gate": "",
             "artifact": rel(run_dir),
-            "changed_files": [rel(p) for _, p in prompt_files] + [rel(run_dir / "00_context.md"), rel(run_dir / "dialogue.md")],
+            "changed_files": [rel(p) for _, p, _ in prompt_files] + [rel(run_dir / "00_context.md"), rel(run_dir / "dialogue.md")],
             "command": "qbe.py run-cycle",
             "notes": f"Created prompt deck with {lower_count} lower agent(s).",
         },
@@ -2424,9 +2553,9 @@ def prompt_role(path: Path) -> str:
     return "lower"
 
 
-def run_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> int:
+def format_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> str:
     role = prompt_role(prompt)
-    command = template.format(
+    return template.format(
         root=str(ROOT),
         prompt=str(prompt),
         run_dir=str(run_dir),
@@ -2434,9 +2563,41 @@ def run_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, 
         cycle=cycle,
         role=role,
     )
+
+
+def run_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> int:
+    command = format_agent_command(template, prompt, run_dir, task_id, cycle)
     print("$ " + command)
     completed = subprocess.run(command, cwd=ROOT, shell=True)
     return completed.returncode
+
+
+def log_agent_attempt(
+    task_id: str,
+    run_dir: Path,
+    prompt: Path,
+    command: str,
+    code: int,
+) -> None:
+    status = "accepted" if code == 0 else "failed"
+    append_jsonl(
+        TRIAL_LOG,
+        {
+            "timestamp": now_stamp(),
+            "trial_id": f"{run_dir.name}-{prompt.stem}",
+            "task_id": task_id,
+            "role": prompt_role(prompt),
+            "kind": "attempt",
+            "status": status,
+            "score": "",
+            "lean_gate": "",
+            "artifact": rel(prompt),
+            "changed_files": git_changed_files(),
+            "command": command,
+            "notes": f"External agent command exit code {code}.",
+        },
+    )
+    write_trial_summary(load_jsonl(TRIAL_LOG))
 
 
 def cmd_sleep_run(args: argparse.Namespace) -> int:
@@ -2475,30 +2636,52 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
         if not args.execute:
             print("agent command configured but not executed; pass --execute to run it")
             continue
-        for prompt in prompts:
-            code = run_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
-            status = "accepted" if code == 0 else "failed"
-            append_jsonl(
-                TRIAL_LOG,
-                {
-                    "timestamp": now_stamp(),
-                    "trial_id": f"{run_dir.name}-{prompt.stem}",
-                    "task_id": args.id,
-                    "role": prompt_role(prompt),
-                    "kind": "attempt",
-                    "status": status,
-                    "score": "",
-                    "lean_gate": "",
-                    "artifact": rel(prompt),
-                    "changed_files": git_changed_files(),
-                    "command": args.agent_cmd,
-                    "notes": f"External agent command exit code {code}.",
-                },
-            )
-            write_trial_summary(load_jsonl(TRIAL_LOG))
-            if code != 0:
-                final_code = code
-                break
+        cycle_code = 0
+        if args.parallel_lower:
+            pre_prompts = [prompt for prompt in prompts if prompt_role(prompt) in {"upper", "middle"}]
+            lower_prompts = [prompt for prompt in prompts if prompt_role(prompt) == "lower"]
+            post_prompts = [prompt for prompt in prompts if prompt_role(prompt) == "reviewer"]
+            for prompt in pre_prompts:
+                command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                print("$ " + command)
+                code = subprocess.run(command, cwd=ROOT, shell=True).returncode
+                log_agent_attempt(args.id, run_dir, prompt, command, code)
+                if code != 0:
+                    cycle_code = code
+                    break
+            if cycle_code == 0 and lower_prompts:
+                running = []
+                for prompt in lower_prompts:
+                    command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                    print("$ " + command)
+                    process = subprocess.Popen(command, cwd=ROOT, shell=True)
+                    running.append((prompt, command, process))
+                for prompt, command, process in running:
+                    code = process.wait()
+                    log_agent_attempt(args.id, run_dir, prompt, command, code)
+                    if code != 0:
+                        cycle_code = code
+                if cycle_code != 0:
+                    break
+            if cycle_code == 0:
+                for prompt in post_prompts:
+                    command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                    print("$ " + command)
+                    code = subprocess.run(command, cwd=ROOT, shell=True).returncode
+                    log_agent_attempt(args.id, run_dir, prompt, command, code)
+                    if code != 0:
+                        cycle_code = code
+                        break
+        else:
+            for prompt in prompts:
+                command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                code = run_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                log_agent_attempt(args.id, run_dir, prompt, command, code)
+                if code != 0:
+                    cycle_code = code
+                    break
+        if cycle_code != 0:
+            final_code = cycle_code
         if args.check_each_cycle:
             code = cmd_check(argparse.Namespace())
             append_jsonl(
@@ -2700,6 +2883,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--skip-reviewer",
         action="store_true",
         help="do not execute the reviewer agent prompt; combine with --check-each-cycle to keep the Lean build gate",
+    )
+    p_sleep.add_argument(
+        "--parallel-lower",
+        action="store_true",
+        help="execute lower-agent prompts concurrently after upper/middle complete",
     )
     p_sleep.set_defaults(func=cmd_sleep_run)
 

@@ -22,7 +22,7 @@ actually formalized, contracted, or recorded as an obligation.
 2. If the result is used by a faithful-paper proof step, first inspect the
    local paper source and bibliography when available.  For GHL2025, the local
    TeX source is stored under
-   `../Auto-claude-code-research-in-sleep/paper-sources/GHL2025/`.
+   `../outer_papers/quantum/GHL2025/`.
 3. Record the source with a stable link, paper title, authors, arXiv version if
    available, theorem/lemma/equation/figure label, and the exact statement QBE
    needs.  Public artifacts should not cite local absolute paths.
