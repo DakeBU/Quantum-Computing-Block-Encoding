@@ -78,7 +78,8 @@ Shared external development references live outside this repository:
 - `../outer_papers/quantum/`: quantum-computing paper PDFs/TeX sources used by
   ABEIS during source-dependency audits.
 - `../outer_papers/sampling_theory_sde/`: statistical learning, sampling,
-  Langevin/SDE, and propagation-of-chaos paper sources shared with ASTIS.
+  Langevin/SDE, and propagation-of-chaos paper sources shared with
+  [ASTIS](https://github.com/DakeBU/Auto-Sampling-Theory-In-Sleep).
 - `../outer_papers/automation_systems/`: automation-system papers such as
   [LeanMarathon][leanmarathon] and [ARIS][aris].
 - `../outer_repos/automation_systems/`: local checkouts of reference systems
@@ -86,7 +87,9 @@ Shared external development references live outside this repository:
   [LeanMarathon][leanmarathon], and [MathCode][mathcode].
 - `../outer_repos/quantum/`: quantum-formalization references such as
   [Lean-QuantumInfo][lean-quantuminfo].
-- `../outer_repos/sampling_theory_sde/`: ASTIS-facing statistical-learning and
+- `../outer_repos/sampling_theory_sde/`:
+  [ASTIS](https://github.com/DakeBU/Auto-Sampling-Theory-In-Sleep)-facing
+  statistical-learning and
   sampling/SDE formalization references.
 - `../outer_repos/mathematics_open_problems/`: open-problem registry and
   benchmark references such as [optimizationproblems][optimizationproblems].
@@ -169,9 +172,9 @@ dynamic proof leaves, proof obligations, Lean declarations, correspondence
 artifacts, and latest dialogue signal.
 
 ABEIS also adopts the compact control-surface discipline used in the sibling
-Auto-Sampling-Theory-In-Sleep project: before or after long runs, agents can
-write status, context, and efficiency artifacts instead of replaying the full
-history.
+[Auto-Sampling-Theory-In-Sleep](https://github.com/DakeBU/Auto-Sampling-Theory-In-Sleep)
+project: before or after long runs, agents can write status, context, and
+efficiency artifacts instead of replaying the full history.
 
 ```bash
 python3 tools/qbe.py blueprint-status QBE-AUTO-002 --refresh
@@ -199,6 +202,18 @@ hypotheses, side conditions, or easier theorem variants.  Missing oracle
 details become proof obligations.  In exploratory mode, agents may search, but
 every candidate must be tied to the original acceptance predicate and logged as
 trial memory.
+
+## Sibling System Comparison
+
+| System | Mathematical domain | Domain-specific proof object | Paper mode | New-problem mode |
+| --- | --- | --- | --- | --- |
+| [ABEIS/QBE](https://github.com/DakeBU/Quantum-Computing-Block-Encoding) | Quantum block encoding | matrices, circuits, oracles, block-encoding invariants | Reproduce block-encoding papers and preserve paper-level operators. | Search for new block encodings and verified oracle constructions. |
+| [ASTIS](https://github.com/DakeBU/Auto-Sampling-Theory-In-Sleep) | Sampling theory and stochastic analysis | SDEs, distributions, KL/FI/LSI/PI chains, convergence bounds | Reproduce sampling papers with Lean statements and source-aligned proof maps. | Prove new sampling or diffusion claims from the accumulated library. |
+| [AGTIS](https://github.com/DakeBU/Auto-Colored-Graph-Theory-In-Sleep) | Colored graph theory | labels/SRLGs, labelled cuts, dual walks, winding, algorithmic obstruction certificates | Reproduce WDV2023 first, then label-cut and multigraph papers. | Prove new labelled-cut, SRLG, coloring, or labelled-matching statements with Lean verification. |
+
+The shared rule is: the repository must contain both the Lean code and the
+human-readable mathematical proof translation.  Lean verifies correctness;
+the natural-language proof keeps the result inspectable by humans.
 
 
 
