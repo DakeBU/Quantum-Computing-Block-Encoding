@@ -35,6 +35,78 @@ Proof-route populations are allowed only for fixed Lean statements whose
 failure produced useful lemmas.  They must not mutate the paper construction or
 displace the Phase 1 transcript objective.
 
+## Immediate 6h Focus: Source-Faithful Fig. 4 Transcript And EvalWith Bridge (2026-06-08)
+
+This directive supersedes all earlier immediate directives for the next
+active-time theorem-closure batch.
+
+The current blocker is not a missing external theorem.  The GHL source gives
+the Robin one-term construction in:
+
+| Source | Role |
+|---|---|
+| `main.tex:1098-1109` | Theorem `1 term robin`, target block-encoding claim |
+| `main.tex:1111-1119` | Eq. `ROBIN clarified`, especially the `gamma_3` clean coefficient |
+| `main.tex:1122-1164` | Fig. `1 term ROBIN`, theorem-facing gate order and cleanup |
+| `main.tex:948-955` | `H_W^(kappa)` sparse-register preparation contract |
+| `main.tex:2027-2035` | block-encoding projection definition |
+
+The next batch has one scientific objective: make the Lean theorem-facing
+circuit transcript match Fig. `1 term ROBIN`, then close the remaining
+entry/projection bridge at the `Coeff.evalWith` semantic level.
+
+Required source-correction work before more proof search:
+
+1. Add an explicit theorem-facing `U_indic^dagger` gate slot.  The existing
+   `U_indic` permutation/self-inverse lemmas may justify using the same matrix,
+   but the gate label and circuit transcript must match Fig. 4.
+2. Keep the two `H_W^(kappa)` sides visible as theorem-facing boundary gates or
+   as a clearly named prepared-sandwich contract.  Do not let lower agents
+   prove a seven-gate theorem while claiming it is the full Fig. 4 circuit.
+3. Distinguish the pre-SWAP `O_{D^T}^{BS}` role from the post-SWAP
+   `(O_D^{BS})^dagger` cleanup role in the conversion window and proof notes.
+4. Demote the raw symbolic `Coeff` constructor-equality route to diagnostic
+   memory.  The active route must be an `evalWith` entry bridge.
+
+After the transcript correction, the Lean proof target should be one of:
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+or a strictly smaller theorem that directly feeds
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
+
+Lower-agent population:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Translate `main.tex:1098-1164` into a dependency-ordered proof-DAG packet: source line, Lean declaration, existing lemma, missing lemma, and whether each dependency is GHL-internal or cited-contract. |
+| lower 2: Lean implementation worker | Implement exactly one ready Lean leaf from lower 1's packet, preferably the circuit transcript correction or the smallest `evalWith` bridge. |
+
+Reviewer requirements:
+
+- Reject any cycle that keeps proving the old raw `Coeff` equality as the main
+  theorem.
+- Reject any claim that the full GHL Fig. 4 circuit is formalized while the
+  explicit `U_indic^dagger` slot or the `H_W^(kappa)` sides are absent from the
+  theorem-facing transcript.
+- Reject any promotion of ODBS/ODTS/O_f/H_W/R_y contract flags to proved unless
+  there is a corresponding Lean theorem and source/citation row.
+- Require the generated Chinese summary at
+  `paper-notes/GHL2025/markdown/cycle-summaries/latest.md` to name the source
+  lines, Lean state, and remaining obligations.
+
+Non-goals:
+
+- Do not recursively formalize Shukla--Vedula, Gilyén et al., LCU, or the
+  prior PDE sparse-access paper in this batch.
+- Do not work on 1D Hamiltonian, multidimensional theorem, QSVT, or project
+  article polish until the one-term Robin theorem-facing route is closed under
+  cited contracts.
+- Do not add assumptions, weaken the target, or replace the paper oracle.
+
 ## Immediate 6h Focus: Active/Prepared Composition Closure
 
 This directive supersedes earlier projection-bridge and H-free backend-fold
@@ -912,3 +984,74 @@ Non-goals:
 
 Success means a sorry-free proof of the active/prepared theorem or a strictly
 smaller compiled theorem that the next Lean worker can use directly.
+
+## Immediate 6h Focus: Source-Faithful Fig. 4 Transcript And EvalWith Bridge (2026-06-08 Active)
+
+This is the active directive for the next active-time theorem-closure run.  It
+supersedes the 2026-06-07 active/prepared directive above.
+
+The current blocker is source transcript fidelity plus one semantic entry
+bridge, not broad external-oracle formalization.  The source anchors are:
+
+| Source | Role |
+|---|---|
+| `main.tex:1098-1109` | Theorem `1 term robin`, target block-encoding claim |
+| `main.tex:1111-1119` | Eq. `ROBIN clarified`, especially the `gamma_3` clean coefficient |
+| `main.tex:1122-1164` | Fig. `1 term ROBIN`, full theorem-facing gate order and cleanup |
+| `main.tex:948-955` | `H_W^(kappa)` sparse-register preparation contract |
+| `main.tex:2027-2035` | block-encoding projection definition |
+
+Objective for this batch:
+
+1. Correct the theorem-facing Fig. 4 transcript before further proof search.
+   Add an explicit `U_indic^dagger` gate slot.  If the matrix is equal to
+   `U_indic` because the indicator permutation is self-inverse, record that as
+   a Lean lemma or explicit bridge, but keep the gate label and circuit role
+   faithful to the paper.
+2. Keep the two `H_W^(kappa)` sides visible as theorem-facing boundary gates
+   or as a clearly named prepared-sandwich contract.  Do not claim the full
+   Fig. 4 circuit from a seven-gate active product that omits those sides.
+3. Distinguish pre-SWAP `O_{D^T}^{BS}` from post-SWAP `(O_D^{BS})^dagger` in
+   the conversion window, proof notes, and any Lean labels introduced this
+   batch.
+4. Demote the raw symbolic `Coeff` constructor-equality route to
+   diagnostic/backlog.  The active proof route is an `evalWith` semantic entry
+   bridge.
+
+After the transcript correction, lower agents may target one of:
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+or a strictly smaller theorem that directly feeds
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Produce a proof-DAG packet translating `main.tex:1098-1164` into source line, Lean declaration, existing lemma, missing lemma, and dependency class (`GHL-internal`, `external-cited-contract`, `QBE-local semantic bridge`). |
+| lower 2: Lean implementation worker | Implement exactly one ready Lean leaf from that packet: preferably `U_indic^dagger` transcript correction, `H_W` prepared-boundary naming, or the smallest `evalWith` bridge. |
+
+Reviewer checklist:
+
+- Reject any cycle that keeps the old raw `Coeff` equality as the main theorem.
+- Reject any claim that the full GHL Fig. 4 circuit is formalized while
+  explicit `U_indic^dagger` or the two `H_W^(kappa)` sides are absent from the
+  theorem-facing transcript.
+- Reject promotion of ODBS/ODTS/O_f/H_W/R_y contract flags without a Lean theorem
+  and source/citation row.
+- Require the generated Chinese cycle summary at
+  `paper-notes/GHL2025/markdown/cycle-summaries/latest.md` to expose source
+  lines, Lean status, and remaining obligations.
+
+Non-goals:
+
+- Do not recursively formalize Shukla--Vedula, Gilyén et al., LCU, or the prior
+  PDE sparse-access paper in this batch.
+- Do not work on the 1D Hamiltonian theorem, multidimensional theorem, QSVT, or
+  project article polish until the one-term Robin theorem-facing route is
+  closed under cited contracts.
+- Do not add assumptions, weaken the target, or replace the paper oracle.

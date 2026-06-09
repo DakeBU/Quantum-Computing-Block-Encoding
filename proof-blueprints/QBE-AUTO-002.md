@@ -3,7 +3,7 @@
 Task id: `QBE-AUTO-002`
 Title: Concrete Circuit Matrix Semantics Backend
 Mode: `faithfulPaper`
-Updated: `2026-06-07 21:06:16`
+Updated: `2026-06-09 12:38:53`
 Blueprint stage: `Stage 2 DAG proof discharge, with faithful transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -16,58 +16,76 @@ oracle contracts to stay explicit.
 ## Current Directive
 
 ```text
-## Immediate 6h Focus: Active/Prepared Composition Closure (2026-06-07)
+## Immediate 6h Focus: Source-Faithful Fig. 4 Transcript And EvalWith Bridge (2026-06-08 Active)
 
 This is the active directive for the next active-time theorem-closure run.  It
-supersedes all earlier `Immediate 6h Focus` sections in this task file.
+supersedes the 2026-06-07 active/prepared directive above.
 
-Target exactly one theorem family:
+The current blocker is source transcript fidelity plus one semantic entry
+bridge, not broad external-oracle formalization.  The source anchors are:
+
+| Source | Role |
+|---|---|
+| `main.tex:1098-1109` | Theorem `1 term robin`, target block-encoding claim |
+| `main.tex:1111-1119` | Eq. `ROBIN clarified`, especially the `gamma_3` clean coefficient |
+| `main.tex:1122-1164` | Fig. `1 term ROBIN`, full theorem-facing gate order and cleanup |
+| `main.tex:948-955` | `H_W^(kappa)` sparse-register preparation contract |
+| `main.tex:2027-2035` | block-encoding projection definition |
+
+Objective for this batch:
+
+1. Correct the theorem-facing Fig. 4 transcript before further proof search.
+   Add an explicit `U_indic^dagger` gate slot.  If the matrix is equal to
+   `U_indic` because the indicator permutation is self-inverse, record that as
+   a Lean lemma or explicit bridge, but keep the gate label and circuit role
+   faithful to the paper.
+2. Keep the two `H_W^(kappa)` sides visible as theorem-facing boundary gates
+   or as a clearly named prepared-sandwich contract.  Do not claim the full
+   Fig. 4 circuit from a seven-gate active product that omits those sides.
+3. Distinguish pre-SWAP `O_{D^T}^{BS}` from post-SWAP `(O_D^{BS})^dagger` in
+   the conversion window, proof notes, and any Lean labels introduced this
+   batch.
+4. Demote the raw symbolic `Coeff` constructor-equality route to
+   diagnostic/backlog.  The active proof route is an `evalWith` semantic entry
+   bridge.
+
+After the transcript correction, lower agents may target one of:
 
 ```lean
 oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
-```
-
-preferably through the equivalent reduced target:
-
-```lean
 oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
 ```
 
-This is the missing active/prepared selected-entry equality needed by the
-already compiled source-correct route
+or a strictly smaller theorem that directly feeds
 `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
 
-Use a two-lower-agent population:
+Lower-agent split:
 
-- lower 1 is the natural-language proof architect.  It should translate the GHL
-  source proof and the current Lean DAG into a dependency-ordered proof plan,
-  naming existing declarations and the smallest new intermediate lemma.
-- lower 2 is the Lean implementation worker.  It should implement that smallest
-  theorem/lemma, run `python3 tools/qbe.py check`, and record useful failed
-  routes under `proof-attempts/`.
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Produce a proof-DAG packet translating `main.tex:1098-1164` into source line, Lean declaration, existing lemma, missing lemma, and dependency class (`GHL-internal`, `external-cited-contract`, `QBE-local semantic bridge`). |
+| lower 2: Lean implementation worker | Implement exactly one ready Lean leaf from that packet: preferably `U_indic^dagger` transcript correction, `H_W` prepared-boundary naming, or the smallest `evalWith` bridge. |
 
-Allowed mathematical route:
+Reviewer checklist:
 
-1. Reduce the active/prepared statement to the uncast form using the compiled
-   equivalence.
-2. Compare the raw active seven-gate selected entry with the prepared sandwich
-   clean entry under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
-3. Reuse the prepared clean-entry backend bridge already compiled in
-   `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`.
-4. If direct HWKappa use is blocked, use the column-0 support lemmas as a
-   fallback, but do not restart the frozen H-free raw fold as the main route.
+- Reject any cycle that keeps the old raw `Coeff` equality as the main theorem.
+- Reject any claim that the full GHL Fig. 4 circuit is formalized while
+  explicit `U_indic^dagger` or the two `H_W^(kappa)` sides are absent from the
+  theorem-facing transcript.
+- Reject promotion of ODBS/ODTS/O_f/H_W/R_y contract flags without a Lean theorem
+  and source/citation row.
+- Require the generated Chinese cycle summary at
+  `paper-notes/GHL2025/markdown/cycle-summaries/latest.md` to expose source
+  lines, Lean status, and remaining obligations.
 
 Non-goals:
 
-- Do not prove `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` as a
-  standalone H-free theorem this batch; it is diagnostic/backlog unless routed
-  through the prepared projection target.
-- Do not recursively formalize Shukla--Vedula, LCU, or block-composition.
-- Do not add assumptions, replace the paper circuit, or promote semantic flags.
-- Do not spend the cycle on project-paper polish or broad library refactors.
-
-Success means a sorry-free proof of the active/prepared theorem or a strictly
-smaller compiled theorem that the next Lean worker can use directly.
+- Do not recursively formalize Shukla--Vedula, Gilyén et al., LCU, or the prior
+  PDE sparse-access paper in this batch.
+- Do not work on the 1D Hamiltonian theorem, multidimensional theorem, QSVT, or
+  project article polish until the one-term Robin theorem-facing route is
+  closed under cited contracts.
+- Do not add assumptions, weaken the target, or replace the paper oracle.
 ```
 
 ## Dynamic Leaf Queue
@@ -78,18 +96,18 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| - lower 1 is the natural-language proof architect. It should translate the GHL source proof and the current Lean DAG into a dependency-ordered proof plan, naming existing declarations and the smallest new intermediate lemma. | candidate |
-| - lower 2 is the Lean implementation worker. It should implement that smallest theorem/lemma, run `python3 tools/qbe.py check`, and record useful failed routes under `proof-attempts/`. | candidate |
-| 1. Reduce the active/prepared statement to the uncast form using the compiled equivalence. | candidate |
-| 2. Compare the raw active seven-gate selected entry with the prepared sandwich clean entry under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`. | candidate |
-| 3. Reuse the prepared clean-entry backend bridge already compiled in `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`. | candidate |
-| 4. If direct HWKappa use is blocked, use the column-0 support lemmas as a fallback, but do not restart the frozen H-free raw fold as the main route. | candidate |
-| - Do not prove `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` as a standalone H-free theorem this batch; it is diagnostic/backlog unless routed through the prepared projection target. | candidate |
-| - Do not recursively formalize Shukla--Vedula, LCU, or block-composition. | candidate |
-| - Do not add assumptions, replace the paper circuit, or promote semantic flags. | candidate |
-| - Do not spend the cycle on project-paper polish or broad library refactors. | candidate |
-| # Proof Obligations: QBE-AUTO-002 — Circuit Matrix Semantics Backend | candidate |
-| This ledger tracks the unproved semantic claims introduced by the circuit | candidate |
+| Latest handoff indicates at least one assigned lower target was already compiled; upper/middle should retire stale directives before more proof search. | stale-check |
+| 1. Correct the theorem-facing Fig. 4 transcript before further proof search. Add an explicit `U_indic^dagger` gate slot. If the matrix is equal to `U_indic` because the indicator permutation is self-inverse, record that as a Lean lemma or explicit bridge, b... | candidate |
+| 2. Keep the two `H_W^(kappa)` sides visible as theorem-facing boundary gates or as a clearly named prepared-sandwich contract. Do not claim the full Fig. 4 circuit from a seven-gate active product that omits those sides. | candidate |
+| 3. Distinguish pre-SWAP `O_{D^T}^{BS}` from post-SWAP `(O_D^{BS})^dagger` in the conversion window, proof notes, and any Lean labels introduced this batch. | candidate |
+| 4. Demote the raw symbolic `Coeff` constructor-equality route to diagnostic/backlog. The active proof route is an `evalWith` semantic entry bridge. | candidate |
+| - Reject any cycle that keeps the old raw `Coeff` equality as the main theorem. | candidate |
+| - Reject any claim that the full GHL Fig. 4 circuit is formalized while explicit `U_indic^dagger` or the two `H_W^(kappa)` sides are absent from the theorem-facing transcript. | candidate |
+| - Reject promotion of ODBS/ODTS/O_f/H_W/R_y contract flags without a Lean theorem and source/citation row. | candidate |
+| - Require the generated Chinese cycle summary at `paper-notes/GHL2025/markdown/cycle-summaries/latest.md` to expose source lines, Lean status, and remaining obligations. | candidate |
+| - Do not recursively formalize Shukla--Vedula, Gilyén et al., LCU, or the prior PDE sparse-access paper in this batch. | candidate |
+| - Do not work on the 1D Hamiltonian theorem, multidimensional theorem, QSVT, or project article polish until the one-term Robin theorem-facing route is closed under cited contracts. | candidate |
+| - Do not add assumptions, weaken the target, or replace the paper oracle. | candidate |
 
 ## Open Obligation Signals
 
@@ -202,30 +220,39 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ```text
-aperImage(0) = 96` | QBE n=3 finite, `ODBSCol0_support_n3` | Proved (native_decide) | Dagger row-0 support |
-| `bandedSparseAccessPaperImage(1) = 97` | QBE n=3 finite, `ODBSCol1_support_n3` | Proved (native_decide) | Prefix column-0 support |
+th`. The two-path expression is now `O_f[12,96]*prefix[96,0] +
+O_f[12,97]*prefix[97,0]` where prefix entries trace through O_D^BS (unique
+path) and Ry rotation (cosHalf/sinHalf). Next cycle: (1) prove `Matrix.mul_assoc`
+for the custom Matrix type to close the associativity bridge sorry, (2) compile
+prefix entry evaluation lemmas, (3) attempt the expanded entry equality and
+backend fold comparison. No external results needed; the gap is entirely
+internal finite matrix computation.
 
-No external results need formalization this cycle. All use sites reference compiled QBE lemmas or external GHL2025 contracts at the operator level.
+### 9. Cited Prior Results
 
-## 2026-06-07 20:34:28 - middle
+| Result | Source | Used at | Lean status |
+|---|---|---|---|
+| `evalWith_mul_unique_path` | CircuitSemantics.lean | suffix eval lemmas | proved |
+| `evalWith_mul_two_path` | CircuitSemantics.lean:328 | SevenGateTwoPath_n3 | proved this cycle |
+| `PrefixCol0Support_n3` | RobinMatrix.lean:7445 | SevenGateTwoPath_n3 | proved |
+| `PreparedCompositeCleanEntryEval_eq_backend_n3` | RobinMatrix.lean:18866 | prepared→backend bridge | proved |
+| `EvalGateMatrices_eq_sevenGateMatrix_n3` | RobinMatrix.lean:21049 | associativity bridge | sorry-guarded, needs `Matrix.mul_assoc` |
+| `Matrix.mul_assoc` | Core.lean (custom Matrix) | associativity bridge | obligation, not yet formalized |
 
-Proof-obligations ledger updated with suffix-side row-0 obligations and compiled column-0 support status. Two lower agents dispatched: (1) proof architect writing suffix-row0-plan.md, (2) Lean worker implementing evalWith_mul_two_path infrastructure and two-path decomposition. Build gate passes with 2 pre-existing sorries.
+No external paper results need formalization this cycle. All use sites reference
+compiled QBE lemmas or the internal `Matrix.mul_assoc` obligation.
 
-## 2026-06-07 20:40:44 - middle
+## 2026-06-07 21:09:43 - upper
 
-Proof architect completed. Plan at suffix-row0-plan.md. Key insight: two-path sparsity from prefix side only, suffix at row 0 = O_f[12,:]. 8 lemmas in dependency order. Lean worker still running on evalWith_mul_two_path infrastructure.
+Cycle 1 upper assessment: faithfulPaper mode continues. Target reduces to EvaluatedBackendFoldStatement_n3 env. Two-path infrastructure compiled: SevenGateTwoPath_n3, SuffixRow0Col96/97_eval_n3. Next: (1) prove Matrix.mul_assoc for custom Matrix type (close sorry at line 21049), (2) compile prefix entry eval lemmas (prefix[96,0] = cosHalf, prefix[97,0] = sinHalf via O_D^BS unique path), (3) attempt expanded entry equality. No external results needed. Build passes with 2 pre-existing sorries.
 
-## 2026-06-07 20:51:25 - middle
+## 2026-06-07 21:18:38 - middle
 
-Both lower agents completed. Two-path infrastructure compiled: evalWith_mul_two_path (CircuitSemantics.lean:328), foldl_add_two_of_nodup (CircuitSemantics.lean:235), DaggerRow0_support_n3 (RobinMatrix.lean:7546), SwapRow96_image_n3 (RobinMatrix.lean:7574), SevenGateTwoPath_n3 (RobinMatrix.lean:7590). Build passes with 2 pre-existing sorries, 0 new. Next: suffix entry evaluation lemmas (suffix[0,96] = O_f[12,96], suffix[0,97] = O_f[12,97]), then attempt EvaluatedBackendFoldStatement.
+Dispatched 2 lower agents: (1) architect writing phase2 plan for EvaluatedBackendFoldStatement_n3 route through prefix evaluation and backend fold comparison, (2) Lean worker attempting to close EvalGateMatrices_eq_sevenGateMatrix_n3 sorry via Matrix.mul_assoc. Build gate passed with 2 pre-existing sorries.
 
-## 2026-06-07 21:00:05 - lower
+## 2026-06-07 21:39:46 - middle
 
-Proof architect plan updated. Key finding: the target UncastActivePreparedCompositeEvalStatement_n3 reduces entirely to proving EvaluatedBackendFoldStatement_n3 (evalGateMatrices[0,0] evalWith = backendFold evalWith), via the reverse of the compiled prepared-bridge under HWKappa. This is the same as the frozen H-free fold at the evaluation level. Recommended route: compute sevenGateMatrix[0,0] through the compiled two-path decomposition + suffix entry evaluation (O_f[12,k] entries), then compare with the backend fold. New lemmas needed: SwapRow96_support_n3 (~15 lines), SuffixRow0Col_eval_n3 (~20 lines), sevenGateEntry00_expanded_n3 (~10 lines). Plan written to proof-attempts/QBE-AUTO-002/active-prepared-architect-plan-cycle01-update.md with full dependency graph.
-
-## 2026-06-07 21:05:55 - lower
-
-Compiled 3 new private lemmas: (1) oneTermRobinGamma3BoundarySwapRow96_support_n3: SWAP at row 96 has support only at column 12. (2) oneTermRobinGamma3BoundarySuffixRow0Col96_eval_n3: suffix[0,96] = O_f[12,96] via double unique-path (dagger→col 96, SWAP→col 12). (3) oneTermRobinGamma3BoundarySuffixRow0Col97_eval_n3: suffix[0,97] = O_f[12,97] via same double unique-path. Gate passes: 2 pre-existing sorries, 0 new. Next step: evaluate the four terms in the two-path decomposition (suffix[0,96], suffix[0,97], prefix[96,0], prefix[97,0]) to concrete Coeff/Rat values, then attempt the EvaluatedBackendFoldStatement.
+Phase 2 complete. Key finding: sorry EvalGateMatrices_eq_sevenGateMatrix_n3 is UNPROVABLE as stated (raw Coeff-level matrix equality between differently-parenthesized products). Coeff is symbolic; equality only holds under evalWith. Failure record at proof-attempts/QBE-AUTO-002/evalGateMatrices-associativity-attempt.md. Architect identified prefix[96,0] = boundary_cos_half_0_2, prefix[97,0] = boundary_sin_half_0_2, and diagonal uniformity as critical gap. Corrected route: replace raw-Coeff sorry with evalWith-level bridge for [0,0] entry. Iff chain is valid (proved without sorry). Proof-obligations ledger updated. Next cycle: (1) prove evalWith-level bridge, (2) compute prefix entries, (3) attempt EvaluatedBackendFoldStatement_n3 directly.
 ```
 
 ## Gate Policy
@@ -236,6 +263,9 @@ Compiled 3 new private lemmas: (1) oneTermRobinGamma3BoundarySwapRow96_support_n
 - Stage 2 DAG proof discharge: lower agents work on dynamic leaves only;
   reviewer accepts progress only through `python3 tools/qbe.py check` and
   synchronized Markdown/LaTeX correspondence.
+- Mixed lower-agent proof mode: when two lower agents are available, lower 1
+  writes the natural-language dependency proof and active-leaf table; lower 2
+  compiles exactly one ready Lean leaf from that table.
 - Refiner behavior: when several failures share a dependency, repair the
   connected illness area once instead of stacking independent patches.
 - No agent may mark a proof complete from self-assessment, partial score, or

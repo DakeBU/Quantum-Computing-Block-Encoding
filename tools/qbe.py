@@ -87,6 +87,7 @@ WORK_DIRS = [
     "research-wiki/experiments",
     "research-wiki/graph",
     "research-wiki/cited-results",
+    "paper-notes/GHL2025/markdown/cycle-summaries",
 ]
 
 
@@ -195,7 +196,10 @@ def git_changed_files() -> list[str]:
 
 
 def latest_run_dir() -> Path | None:
-    runs = [p for p in (ROOT / "runs").glob("*") if p.is_dir()]
+    runs = [
+        p for p in (ROOT / "runs").glob("*")
+        if p.is_dir() and re.search(r"-cycle[0-9]+$", p.name)
+    ]
     return sorted(runs)[-1] if runs else None
 
 
@@ -1532,6 +1536,234 @@ def cmd_efficiency_report(args: argparse.Namespace) -> int:
     return 0
 
 
+GHL2025_SOURCE_ANCHORS = [
+    {
+        "id": "ODBS",
+        "source": "main.tex:784-798",
+        "paper": "Lemma 1，banded-sparse-access oracle",
+        "meaning": "定义 $\\hat{O}^{BS}_D |0\\rangle^{n-l}|s\\rangle^l|i\\rangle^n = |r_{si}\\rangle^n|i\\rangle^n$，并从前一篇 PDE block-encoding 论文引用资源估计。",
+        "status": "contract/backlog：已有 active matrix helper；完整 reversible extension、injectivity、dagger cleanup、unitarity 仍是义务。",
+    },
+    {
+        "id": "ODTS",
+        "source": "main.tex:822-843",
+        "paper": "Lemma 3，banded-sparse matrix 的 sparse-amplitude oracle",
+        "meaning": "clean branch 的振幅是 $D^{(s)}/\\mathcal{N}_D$，另有 square-root complement 分支保证 unitary。",
+        "status": "contract/backlog：已有 route record 和 matrix interface；nonzero normalizer、sqrt/arccos 语义、二乘二 unitarity 仍是义务。",
+    },
+    {
+        "id": "Of",
+        "source": "main.tex:870-908",
+        "paper": "Theorem 5，piece-wise polynomial function 的 amplitude oracle",
+        "meaning": "$\\hat{O}_f$ 的 clean branch 振幅是 $f(x_j)/\\mathcal{N}_f$，其余分支与 clean workspace 正交。",
+        "status": "contract/backlog：clean branch 已 typed；$\\mathcal{N}_f$ bound、orthogonality、workspace cleanup、unitary completion 还没有完整形式化。",
+    },
+    {
+        "id": "HW",
+        "source": "main.tex:948-955",
+        "paper": "Sparse-register preparation $H_W^{(\\kappa)}$",
+        "meaning": "制备 $\\kappa^{-1/2}\\sum_{s=0}^{\\kappa-1}|s\\rangle$，并引用 Shukla--Vedula 的实现复杂度。",
+        "status": "theorem-facing route 已部分使用 clean-column contract；完整 gate-level state-preparation proof 仍是 external/backlog。",
+    },
+    {
+        "id": "Uindic",
+        "source": "main.tex:1056-1066",
+        "paper": "Indicator unitary $U_{\\mathrm{indic}}(K_1,K_2)$",
+        "meaning": "在 bulk region $K_1 \\le i \\le K_2$ 精确把 indicator qubit 置为 $|1\\rangle$。",
+        "status": "基本已作为 permutation/self-inverse helper 编译；theorem-facing circuit 仍需显式 $U_{\\mathrm{indic}}^\\dagger$ slot 来匹配 Fig. 4。",
+    },
+    {
+        "id": "RyBoundary",
+        "source": "main.tex:1077-1085",
+        "paper": "Boundary controlled $R_y$ rotations",
+        "meaning": "boundary entry 逐元素处理，角度写作 $\\theta_j^s = \\arccos(D_j^{(s)}/\\mathcal{N}_D)$。",
+        "status": "active convention audit：标准 $R_y(\\theta)$ 给出 $\\cos(\\theta/2)$，所以 Lean route 必须确认论文 convention，或使用有原文/引用支持的 doubled-angle 修正。",
+    },
+    {
+        "id": "RobinTheorem",
+        "source": "main.tex:1098-1109",
+        "paper": "Theorem：one-term Robin block-encoding",
+        "meaning": "声称构造 $A_k$ 的 $(\\mathcal{N}_D\\mathcal{N}_f\\kappa, \\lceil\\log_2 n\\rceil + \\lceil\\log_2 G_f\\rceil + \\lceil\\log_2\\kappa\\rceil + 4, 0)$ block-encoding。",
+        "status": "main active target：还没有作为 theorem-facing Lean statement 闭合。",
+    },
+    {
+        "id": "GammaSlices",
+        "source": "main.tex:1111-1119",
+        "paper": "Eq. ROBIN clarified",
+        "meaning": "给出 $\\gamma_1,\\gamma_2,\\gamma_3$ wavefunction slices；关键 clean branch 是 $\\gamma_3$ 系数 $f(x_i)D_i^{(s)}/(\\mathcal{N}_D\\mathcal{N}_f\\kappa)$。",
+        "status": "finite boundary instance 已有不少 route lemma；最终 projection/product bridge 还没闭合。",
+    },
+    {
+        "id": "FigRobin",
+        "source": "main.tex:1122-1164",
+        "paper": "Fig. 1-term Robin circuit caption",
+        "meaning": "指定完整 gate order：$H_W^{(\\kappa)}$、$U_{\\mathrm{indic}}$、$\\hat O^S_{D^T}$ 或 boundary $R_y$、$\\hat O^{BS}_{D^T}$、$U_{\\mathrm{indic}}^\\dagger$、$\\hat O_f$、SWAP、$(\\hat O_D^{BS})^\\dagger$、$(H_W^{(\\kappa)})^T$。",
+        "status": "已发现 source-contract drift：当前 active placeholder list 缺显式 $U_{\\mathrm{indic}}^\\dagger$，两侧 $H_W$ 通过 prepared contract 处理。",
+    },
+    {
+        "id": "OneD",
+        "source": "main.tex:1171-1278",
+        "paper": "One-dimensional Hamiltonian block-encoding",
+        "meaning": "用 LCU 组合 $A_k$、$A_k^\\dagger$、$B$、$x_\\xi$ 来 block-encode $H$。",
+        "status": "one-term Robin 闭合之后再做；不是当前 active theorem blocker。",
+    },
+    {
+        "id": "MultiD",
+        "source": "main.tex:1596-1649",
+        "paper": "Multi-dimensional block-encoding",
+        "meaning": "把 1D 构造推广到 $A^{(d)}$、$B^{(d)}$ 和多维 oracle。",
+        "status": "planned；依赖 one-term 和 LCU abstractions。",
+    },
+    {
+        "id": "QSVT",
+        "source": "main.tex:1676-1694",
+        "paper": "Hamiltonian simulation/QSVT theorem",
+        "meaning": "通过引用 Gilyén et al. theorem，把 block-encoding 用于 Hamiltonian simulation。",
+        "status": "external theorem application；不是当前 gate-level Robin circuit closure 的一部分。",
+    },
+    {
+        "id": "BlockEncodingDef",
+        "source": "main.tex:2027-2035",
+        "paper": "Block-encoding definition",
+        "meaning": "定义所有 theorem statement 使用的 clean ancilla projection 和 approximation condition。",
+        "status": "已作为 semantic target 使用；final one-term theorem 仍需把 circuit entry/projection 接到该定义。",
+    },
+]
+
+
+def ghl2025_source_main_tex(task_text: str) -> Path | None:
+    for key, path in local_paper_source_candidates(task_text):
+        if key.startswith("GHL2025"):
+            main_tex = path / "main.tex"
+            if main_tex.exists():
+                return main_tex
+    return None
+
+
+def lean_sorry_lines(limit: int = 20) -> list[str]:
+    code, output = run_capture(["rg", "-n", r"(^\s*sorry\s*$|:=\s*sorry\b|by\s+sorry\b)", "QuantumBlockEncoding", "Tests"])
+    if code not in (0, 1):
+        return [f"rg failed: {output.strip()}"]
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    return lines[:limit]
+
+
+def current_ghl2025_focus() -> list[str]:
+    return [
+        "先修正 theorem-facing Fig. 4 circuit transcript：显式加入 $U_{\\mathrm{indic}}^\\dagger$，并把 $H_W^{(\\kappa)}$ 与 $(H_W^{(\\kappa)})^T$ 的 prepared route 标成清楚的 theorem boundary。",
+        "把 raw symbolic `Coeff` matrix equality 路线降级为 diagnostic/backlog；主路线改成 `Coeff.evalWith` 层面的 entry bridge。",
+        "把已编译的 prepared clean-entry lemma 接到最终 `CircuitBlockEncodingClaim`/block-extraction target，而不是停在 route witness。",
+        "中层每轮对照 `main.tex:1098-1164`，明确哪些是 GHL 本文贡献、哪些是 Lemma 1/Lemma 3/Theorem 5 等外部 primitive contract。",
+        "reviewer 必须拒绝新增假设、替换 oracle、把 contract-only 结果标成 proved，或继续证明已经判定为错误路线的 raw equality。",
+    ]
+
+
+def cycle_zh_summary_text(task_id: str, cycle: int, run_dir: Path) -> str:
+    title, task_text = task_context(task_id)
+    state = blueprint_status_state(task_id)
+    source = ghl2025_source_main_tex(task_text)
+    source_display = display_path(source) if source else "未检测到本地 GHL2025 main.tex；请检查 outer_papers/quantum/GHL2025/main.tex"
+    sorry_lines = lean_sorry_lines(limit=30)
+    changed_lines = git_changed_files()
+    latest_dialogue = read_text(run_dir / "dialogue.md") if (run_dir / "dialogue.md").exists() else ""
+    dialogue_tail = latest_dialogue[-1800:].strip() if latest_dialogue.strip() else "本轮 dialogue 还没有有效交接。"
+    dynamic = state.get("dynamic_leaf_queue", [])
+    obligations = state.get("open_obligation_signals", [])
+    anchors = "\n".join(
+        "| `{id}` | `{source}` | {paper} | {meaning} | {status} |".format(**row)
+        for row in GHL2025_SOURCE_ANCHORS
+    )
+    sorry_text = "\n".join(f"- `{line}`" for line in sorry_lines) if sorry_lines else "- 当前没有检测到 `sorry`。"
+    changed_text = "\n".join(f"- `{line}`" for line in changed_lines[:40]) if changed_lines else "- 当前工作区没有未提交变更。"
+    dynamic_text = "\n".join(f"- {item}" for item in dynamic) if dynamic else "- blueprint 没有检测到动态 leaf；upper 需要刷新目标。"
+    obligation_text = "\n".join(f"- {item}" for item in obligations[:20]) if obligations else "- 没有 compact obligation signals；请检查 `proof-obligations/` 原文。"
+    focus_text = "\n".join(f"{idx}. {item}" for idx, item in enumerate(current_ghl2025_focus(), start=1))
+    return f"""# 中文循环总结：{task_id} cycle {cycle}
+
+生成时间：`{now_stamp()}`
+
+Run 目录：`{rel(run_dir)}`
+
+任务标题：{title}
+
+本地原文 TeX：`{source_display}`
+
+这个文件是每轮 6h/active-time 循环的人类审计入口。它的目的不是替代 Lean 证明，而是把 GHL 原文、Lean 状态、未复现义务、下一轮计划放在同一个中文页面里，方便人类上层 agent 给宏观指示。
+
+## 本轮最重要判断
+
+当前优先级仍然是忠实复现 GHL2025 的 one-term Robin block-encoding，也就是原文 `main.tex:1098-1164` 的 Theorem、Eq. ROBIN clarified、Fig. 1-term Robin circuit。不要在这个阶段把时间花到 1D Hamiltonian、multi-dimensional theorem、QSVT 文章写作 polish，除非它们是关闭 one-term theorem 的必要依赖。
+
+## GHL 原文对照表
+
+| ID | 原文位置 | 原文对象 | 对人类的含义 | 当前 Lean/ABEIS 状态 |
+|---|---:|---|---|---|
+{anchors}
+
+## 当前 Lean 编译/`sorry` 状态
+
+{sorry_text}
+
+## 当前动态 proof-DAG leaf
+
+{dynamic_text}
+
+## 当前未完成义务信号
+
+{obligation_text}
+
+## 下一轮规划
+
+{focus_text}
+
+## 本轮 dialogue 末尾
+
+```text
+{dialogue_tail}
+```
+
+## 当前未提交文件
+
+{changed_text}
+
+## 人类检查建议
+
+1. 先看 `FigRobin`、`GammaSlices`、`RobinTheorem` 三行，确认 agent 没有把 Fig. 4 的 gate 顺序改成自己的构造。
+2. 再看 `ODBS`、`ODTS`、`Of`、`HW`、`RyBoundary`，确认这些是外部 primitive/contract 还是 GHL 本文自己需要证明的部分。
+3. 如果下一轮还在攻击 raw `Coeff` constructor equality，应当让 reviewer 拒绝，因为主路线应是 `evalWith` semantic entry bridge。
+4. 如果 agent 声称 GHL one-term theorem 完成，应要求它指出对应 `main.tex:1098-1164`、最终 Lean theorem 名称、`python3 tools/qbe.py check` 结果、以及 Markdown/LaTeX 证明导出位置。
+"""
+
+
+def write_cycle_zh_summary(task_id: str, cycle: int, run_dir: Path) -> tuple[Path, Path]:
+    text = cycle_zh_summary_text(task_id, cycle, run_dir)
+    run_path = run_dir / "zh_summary.md"
+    archive_dir = ROOT / "paper-notes" / "GHL2025" / "markdown" / "cycle-summaries"
+    archive_path = archive_dir / f"{run_dir.name}.md"
+    latest_path = archive_dir / "latest.md"
+    write_text(run_path, text)
+    write_text(archive_path, text)
+    write_text(latest_path, text)
+    add_manifest("qbe.py cycle-zh-summary", run_path, "review", f"Wrote Chinese cycle summary for {task_id} cycle {cycle}")
+    add_manifest("qbe.py cycle-zh-summary", archive_path, "paper-note", f"Archived Chinese cycle summary for {task_id} cycle {cycle}")
+    return run_path, archive_path
+
+
+def cmd_cycle_zh_summary(args: argparse.Namespace) -> int:
+    if args.run_id == "latest":
+        run_dir = latest_run_dir()
+        if run_dir is None:
+            raise SystemExit("no run directories found")
+    else:
+        run_dir = ROOT / "runs" / args.run_id
+    if not run_dir.exists():
+        raise SystemExit(f"run directory not found: {rel(run_dir)}")
+    run_path, archive_path = write_cycle_zh_summary(args.id, args.cycle, run_dir)
+    print(f"zh-summary: {display_path(run_path)}")
+    print(f"zh-summary-archive: {display_path(archive_path)}")
+    return 0
+
+
 def write_trial_summary(records: list[dict]) -> list[dict]:
     rows = []
     cumulative_by_task: dict[str, int] = {}
@@ -2019,6 +2251,12 @@ Human-facing correspondence rule:
 - If a cycle changes Lean declarations tied to a paper construction, update the
   conversion window, a `paper-notes/*.tex` note, or a `proof-obligations/`
   ledger in the same cycle.
+- Every executed cycle writes a Chinese audit page at
+  `runs/<run-id>/zh_summary.md` and archives it under
+  `paper-notes/GHL2025/markdown/cycle-summaries/`.  Middle and reviewer should
+  make sure the page remains truthful: source `main.tex` anchors, Lean status,
+  contract/backlog classifications, and the next proof-DAG leaf must match the
+  actual work.
 - Lean compilation alone is not enough for faithful paper-reproduction mode;
   humans must be able to compare the Lean names with the original theorem,
   equations, normalizers, register layout, and resource statement.
@@ -2703,7 +2941,9 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             )
             write_trial_summary(load_jsonl(TRIAL_LOG))
             if code != 0:
+                write_cycle_zh_summary(args.id, cycle, run_dir)
                 return code
+        write_cycle_zh_summary(args.id, cycle, run_dir)
         if final_code != 0:
             return final_code
     return final_code
@@ -2804,6 +3044,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_efficiency.add_argument("--output", default="")
     p_efficiency.add_argument("--json", action="store_true")
     p_efficiency.set_defaults(func=cmd_efficiency_report)
+
+    p_zh_summary = sub.add_parser("cycle-zh-summary", help="write a Chinese paper-source cycle summary")
+    p_zh_summary.add_argument("id")
+    p_zh_summary.add_argument("--cycle", type=int, default=1)
+    p_zh_summary.add_argument("--run-id", default="latest")
+    p_zh_summary.set_defaults(func=cmd_cycle_zh_summary)
 
     p_trial = sub.add_parser("trial-log", help="append one trial record to runs/trials.jsonl")
     p_trial.add_argument("--task", required=True)

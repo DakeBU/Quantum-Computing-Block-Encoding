@@ -2987,3 +2987,52 @@ block-encoding formalization lifecycle.
 | 2026-06-07 21:18:38 | qbe.py agent-note | `runs/20260607-210616-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
 | 2026-06-07 21:39:46 | qbe.py agent-note | `runs/20260607-210616-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
 | 2026-06-07 21:39:51 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260607-213951-QBE-AUTO-002-middle-handoff |
+| 2026-06-08 13:17:40 | qbe.py cycle-zh-summary | `runs/metrics/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:17:40 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/metrics.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:18:04 | qbe.py cycle-zh-summary | `runs/20260607-210616-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:18:04 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260607-210616-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:19:35 | qbe.py cycle-zh-summary | `runs/20260607-210616-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:19:35 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260607-210616-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:20:24 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 13:20:24 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-08 13:20:24 | qbe.py write-context-pack | `runs/context-packs/QBE-AUTO-002-cycle001.md` | context | Wrote compact context pack for QBE-AUTO-002 cycle 1 |
+| 2026-06-08 13:20:24 | qbe.py cycle-zh-summary | `runs/20260607-210616-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:20:24 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260607-210616-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:21:09 | qbe.py update-task | `tasks/QBE-AUTO-002.md` | task | Updated QBE-AUTO-002 to active |
+| 2026-06-08 13:21:09 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 13:21:09 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-08 13:21:10 | qbe.py write-context-pack | `runs/context-packs/QBE-AUTO-002-cycle001.md` | context | Wrote compact context pack for QBE-AUTO-002 cycle 1 |
+| 2026-06-08 13:21:10 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 13:21:10 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-08 13:21:10 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 13:21:10 | qbe.py run-cycle | `runs/20260608-132110-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-08 13:22:49 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 13:22:50 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-08 13:22:50 | qbe.py cycle-zh-summary | `runs/20260608-132110-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:22:50 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260608-132110-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 0 |
+| 2026-06-08 13:23:02 | qbe.py update-task | `tasks/QBE-AUTO-002.md` | task | Updated QBE-AUTO-002 to active |
+| 2026-06-08 13:23:02 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 13:23:02 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-08 13:23:02 | qbe.py write-context-pack | `runs/context-packs/QBE-AUTO-002-cycle001.md` | context | Wrote compact context pack for QBE-AUTO-002 cycle 1 |
+| 2026-06-08 13:23:02 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 13:23:02 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-08 13:23:02 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 13:23:02 | qbe.py run-cycle | `runs/20260608-132302-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-08 21:06:42 | qbe.py cycle-zh-summary | `runs/20260608-132302-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-08 21:06:42 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260608-132302-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-08 21:07:42 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 21:07:42 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-08 21:07:42 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-08 21:07:42 | qbe.py run-cycle | `runs/20260608-210742-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-09 04:52:11 | qbe.py cycle-zh-summary | `runs/20260608-210742-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-09 04:52:11 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260608-210742-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-09 04:53:11 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-09 04:53:11 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-09 04:53:12 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-09 04:53:12 | qbe.py run-cycle | `runs/20260609-045312-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-09 12:37:53 | qbe.py cycle-zh-summary | `runs/20260609-045312-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-09 12:37:53 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260609-045312-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-09 12:38:53 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-09 12:38:53 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-09 12:38:53 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-09 12:38:54 | qbe.py run-cycle | `runs/20260609-123853-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
