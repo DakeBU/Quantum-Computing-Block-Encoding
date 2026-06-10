@@ -7462,6 +7462,254 @@ theorem oneTermRobinGamma3BoundaryPrefixCol0Support_n3
     · simp [oneTermRobinGamma3BoundaryRDUPrefixCol0Support_n3 env q hq0 hq1]
 
 /--
+The two-gate prefix at column `0` contributes unit amplitude on row `0`.
+
+This is the column-`0` analogue of
+`oneTermRobinGamma3BoundaryDUPrefixEntryEval_n3`; it feeds the two-path
+decomposition for the active `[0,0]` entry.
+-/
+theorem oneTermRobinGamma3BoundaryDUPrefixCol0EntryEval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) = 1 := by
+  unfold oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.sparseAmplitudeOracleDTRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          (GHL2025.indicatorOracleMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (GHL2025.sparseAmplitudeOracleDTRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) *
+        Coeff.evalWith env
+          (GHL2025.indicatorOracleMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      simp [oneTermRobinGamma3BoundaryIndicatorCol0_support_n3 q hq]
+    _ = 1 := by
+      have hOdts :
+          GHL2025.sparseAmplitudeOracleDTRotationMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      have hIndic :
+          GHL2025.indicatorOracleMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      simp [hOdts, hIndic]
+
+/-- The three-gate column-`0` prefix row `0` is the slot-`0` boundary cosine entry. -/
+theorem oneTermRobinGamma3BoundaryRDUPrefixRow0Col0_eval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      env "boundary_cos_half_0_0" := by
+  unfold oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.boundaryRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      simp [oneTermRobinGamma3BoundaryDUPrefixCol0Support_n3 env q hq]
+    _ = env "boundary_cos_half_0_0" := by
+      have hRy :
+          GHL2025.boundaryRotationMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+            Coeff.symbol "boundary_cos_half_0_0" := by
+        native_decide
+      simp [hRy, oneTermRobinGamma3BoundaryDUPrefixCol0EntryEval_n3 env]
+
+/-- The three-gate column-`0` prefix row `1` is the slot-`0` boundary sine entry. -/
+theorem oneTermRobinGamma3BoundaryRDUPrefixRow1Col0_eval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow1_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      env "boundary_sin_half_0_0" := by
+  unfold oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.boundaryRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow1_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow1_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      simp [oneTermRobinGamma3BoundaryDUPrefixCol0Support_n3 env q hq]
+    _ = env "boundary_sin_half_0_0" := by
+      have hRy :
+          GHL2025.boundaryRotationMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              oneTermRobinGamma3BoundaryPrefixRow1_n3
+              oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+            Coeff.symbol "boundary_sin_half_0_0" := by
+        native_decide
+      simp [hRy, oneTermRobinGamma3BoundaryDUPrefixCol0EntryEval_n3 env]
+
+/--
+The four-gate prefix row `96`, column `0` evaluates to the slot-`0` boundary
+cosine half-angle entry.
+
+This is one of the two prefix factors required by
+`oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateTwoPath_n3`.
+-/
+theorem oneTermRobinGamma3BoundaryPrefixRow96Col0_eval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+        (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      env "boundary_cos_half_0_0" := by
+  unfold oneTermRobinGamma3BoundaryPrefixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.bandedSparseAccessPaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (GHL2025.bandedSparseAccessPaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      by_cases hq1 : q = oneTermRobinGamma3BoundaryPrefixRow1_n3
+      · subst q
+        have hOdbs :
+            GHL2025.bandedSparseAccessPaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                (⟨96, by native_decide⟩ :
+                  Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+                oneTermRobinGamma3BoundaryPrefixRow1_n3 =
+              Coeff.rat 0 :=
+          oneTermRobinGamma3BoundaryODBSCol1_support_n3
+            (⟨96, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            (by native_decide)
+        simp [hOdbs]
+      · simp [oneTermRobinGamma3BoundaryRDUPrefixCol0Support_n3 env q hq hq1]
+    _ = env "boundary_cos_half_0_0" := by
+      have hOdbs :
+          GHL2025.bandedSparseAccessPaperMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              (⟨96, by native_decide⟩ :
+                Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+              oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      simp [hOdbs, oneTermRobinGamma3BoundaryRDUPrefixRow0Col0_eval_n3 env]
+
+/--
+The four-gate prefix row `97`, column `0` evaluates to the slot-`0` boundary
+sine half-angle entry.
+-/
+theorem oneTermRobinGamma3BoundaryPrefixRow97Col0_eval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+        (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      env "boundary_sin_half_0_0" := by
+  unfold oneTermRobinGamma3BoundaryPrefixMatrix_n3
+  calc
+    Coeff.evalWith env
+        (Matrix.mul
+          (GHL2025.bandedSparseAccessPaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)
+          oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (GHL2025.bandedSparseAccessPaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            oneTermRobinGamma3BoundaryPrefixRow1_n3) *
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow1_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+      apply Matrix.evalWith_mul_unique_path
+      intro q hq
+      by_cases hq0 : q = oneTermRobinGamma3BoundaryPrefixRow0_n3
+      · subst q
+        have hOdbs :
+            GHL2025.bandedSparseAccessPaperMatrix
+                oneTermRobinGamma3BoundaryPrefixParameters_n3
+                (⟨97, by native_decide⟩ :
+                  Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+                oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+              Coeff.rat 0 :=
+          oneTermRobinGamma3BoundaryODBSCol0_support_n3
+            (⟨97, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            (by native_decide)
+        simp [hOdbs]
+      · simp [oneTermRobinGamma3BoundaryRDUPrefixCol0Support_n3 env q hq0 hq]
+    _ = env "boundary_sin_half_0_0" := by
+      have hOdbs :
+          GHL2025.bandedSparseAccessPaperMatrix
+              oneTermRobinGamma3BoundaryPrefixParameters_n3
+              (⟨97, by native_decide⟩ :
+                Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+              oneTermRobinGamma3BoundaryPrefixRow1_n3 =
+            Coeff.rat 1 := by
+        native_decide
+      simp [hOdbs, oneTermRobinGamma3BoundaryRDUPrefixRow1Col0_eval_n3 env]
+
+/--
 QBE-AUTO-002 column-`0` support analysis record for the `[0,0]` entry.
 
 The `[0,0]` entry of the seven-gate product `suffix * prefix` at column `0`
@@ -7833,6 +8081,110 @@ private theorem oneTermRobinGamma3BoundarySuffixRow0Col97_eval_n3
                   (⟨12, by native_decide⟩) = Coeff.rat 1 := by
             native_decide
           simp [hSwap]
+
+/--
+Evaluated two-path expansion for the actual active `[0,0]` seven-gate entry.
+
+This is the column-`0` diagnostic promised by the branch audit: the prefix
+entries are the slot-`0` boundary half-angle symbols, not the displayed
+gamma3 slot-`2` symbols.  The theorem is a local `evalWith` bridge for the
+seven-gate matrix only; it does not identify the active entry with the
+source-prepared `H_W^(kappa)` sandwich.
+-/
+theorem
+    oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (⟨12, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+        env "boundary_cos_half_0_0" +
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (⟨12, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+        env "boundary_sin_half_0_0" := by
+  calc
+    Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySuffixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) +
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySuffixMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) := by
+        rw [oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateTwoPath_n3
+          env]
+    _ =
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (⟨12, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+        env "boundary_cos_half_0_0" +
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (⟨12, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+        env "boundary_sin_half_0_0" := by
+        rw [oneTermRobinGamma3BoundarySuffixRow0Col96_eval_n3 env]
+        rw [oneTermRobinGamma3BoundaryPrefixRow96Col0_eval_n3 env]
+        rw [oneTermRobinGamma3BoundarySuffixRow0Col97_eval_n3 env]
+        rw [oneTermRobinGamma3BoundaryPrefixRow97Col0_eval_n3 env]
+
+/--
+The active seven-gate `[0,0]` expansion is a slot-`0` diagnostic, not the
+displayed gamma3 slot-`2` branch.
+
+This is the typed mismatch guard for the current active/prepared composition
+leaf.  It records the exact evaluated column-`0` expansion and the syntactic
+separation from the source branch's slot-`2` Ry symbols; it does not assert the
+active/prepared equality or promote any semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundarySevenGateColumn0UsesSlot0_notGamma3Slot2_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (⟨12, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨96, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+        env "boundary_cos_half_0_0" +
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (⟨12, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨97, by native_decide⟩ : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)) *
+        env "boundary_sin_half_0_0" ∧
+    Coeff.symbol "boundary_cos_half_0_0" ≠
+      Coeff.symbol "boundary_cos_half_0_2" ∧
+    Coeff.symbol "boundary_sin_half_0_0" ≠
+      Coeff.symbol "boundary_sin_half_0_2" := by
+  exact ⟨oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3 env,
+    by native_decide, by native_decide⟩
 
 /--
 Focused false bridge for the displayed boundary `gamma3` branch.
@@ -18457,6 +18809,24 @@ theorem
       (oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3).symm
 
 /--
+The cached active/prepared entry field closes the backend-expansion target.
+
+This is the direct lower-leaf bridge for the current backend-expansion packet:
+if a future proof supplies the generic prepared-entry equality, the preferred
+`backendExpansionStatement` follows under the existing clean-column contract.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_of_activePreparedEntryTarget_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hEntry :
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement) :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement :=
+  (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_backendExpansion_n3
+    H hUniform).1 hEntry
+
+/--
 The active/prepared composition-field packet has exactly the same remaining
 content as the backend-expansion target.
 
@@ -19111,6 +19481,29 @@ theorem
             H hUniform]
 
 /--
+Theorem-facing alias for the prepared clean-entry backend evaluator.
+
+This is the safe lower leaf requested by the source-prepared packet: it names
+the exact clean entry selected by the prepared Fig. 4 sandwich and reuses the
+compiled evaluator above.  It does not assert the open active/prepared
+composition field.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedCleanEntryEval_eq_backendFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
+  oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+    H env hUniform
+
+/--
 Theorem-facing prepared projection target for the focused boundary branch.
 
 The selected entry is the clean entry of the prepared singleton semantics for
@@ -19541,6 +19934,42 @@ theorem
         H env)
 
 /--
+The source-prepared active field still exposes the active seven-gate entry on
+its left-hand side.
+
+This is the branch-correct mismatch witness requested by the current proof-DAG
+packet: the active gate list has no `H_W^(kappa)` preparation side gates, while
+the right-hand side is the prepared sparse-register sandwich fold.  The theorem
+does not assert the equality; it only records the exact evaluated statement
+that remains to be proved or replaced by a theorem-facing prepared entry.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_exposesUncastSevenGate_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let gates :=
+      GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)
+    let target :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    Gate.oracleCall "H_W^(kappa)" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      Gate.oracleCall "(H_W^(kappa))^dagger" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      (target.activeToPreparedSingletonEvalStatement ↔
+        Coeff.evalWith env
+          ((evalGateMatrices gates)
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H)) := by
+  have hAbsent := oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3
+  have hIff :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSandwich_n3
+      H env
+  dsimp [oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3] at hIff
+  dsimp
+  exact ⟨hAbsent.1, hAbsent.2, hIff⟩
+
+/--
 Evaluation-level backend-fold statement for the focused boundary branch.
 
 This is the H-free form of the remaining projection theorem: after interpreting
@@ -19773,6 +20202,35 @@ theorem
         H env hUniform)
 
 /--
+Finite active/prepared composition reduces to the evaluated backend fold.
+
+This is the route-packaging guard requested by the finite-composition DAG: the
+active gate list is still H-free, and under the explicit all-slot
+`H_W^(kappa)` clean-column contract the preferred uncast active/prepared target
+is exactly the evaluated backend-fold obligation.  It proves no fold theorem
+and promotes no theorem-facing semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryFiniteActivePreparedComposition_reducesToBackendFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let gates :=
+      GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)
+    Gate.oracleCall "H_W^(kappa)" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      Gate.oracleCall "(H_W^(kappa))^dagger" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      (oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3
+          H env ↔
+        oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env) := by
+  have hAbsent := oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3
+  dsimp
+  exact ⟨hAbsent.1, hAbsent.2,
+    oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_iff_evaluatedBackendFold_n3
+      H env hUniform⟩
+
+/--
 The existing backend-expansion statement would close the named
 prepared-sandwich evaluated target under the clean-column contract.
 
@@ -19880,6 +20338,25 @@ theorem
     oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env := by
   unfold oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3
   rw [hFold]
+
+/--
+A future proof of the backend-expansion statement directly closes the H-free
+evaluated backend-fold target.
+
+This is a one-way bridge from the stronger raw backend-expansion leaf to the
+fixed-environment `evalWith` target.  It does not prove the backend expansion
+and it does not promote the diagnostic raw `Coeff` route.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_backendExpansion_n3
+    (env : String → Rat)
+    (hexpansion :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env := by
+  exact
+    oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3 env
+      ((oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3).1
+        hexpansion)
 
 /--
 The raw full-entry fold also closes the prepared-sandwich evaluated target once
@@ -20235,6 +20712,26 @@ theorem
     H env hUniform
 
 /--
+Direct active/prepared form of the evaluated backend-fold equivalence.
+
+This names the exact active lower leaf without going through the
+source-prepared target record.  The theorem is still conditional on the
+external all-slot `H_W^(kappa)` clean-column contract and proves neither side of
+the finite composition field.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_evaluatedBackendFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env ↔
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env := by
+  have h :=
+    (oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3
+      H env hUniform).symm
+  simpa [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3] using h
+
+/--
 The evaluated backend fold closes the preferred uncast active/prepared target.
 
 This is only a named direction of
@@ -20412,6 +20909,121 @@ theorem
   exact
     oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedCircuitField_n3
       H env hUniform
+
+/--
+The evaluated backend-fold target still exposes the active seven-gate entry on
+its left-hand side.
+
+This is the target-level mismatch witness for the current proof packet: the
+evaluated fold is an H-free active `[0,0]` statement, while the source-prepared
+route needs the two `H_W^(kappa)` side gates before comparing to the all-slot
+prepared sandwich.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesUncastSevenGate_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let gates :=
+      GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)
+    let target :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env
+    Gate.oracleCall "H_W^(kappa)" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      Gate.oracleCall "(H_W^(kappa))^dagger" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      (target.evaluatedBackendFoldStatement ↔
+        Coeff.evalWith env
+          ((evalGateMatrices gates)
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env target.backendBranchFold) := by
+  have hAbsent := oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3
+  dsimp [oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3]
+  exact ⟨hAbsent.1, hAbsent.2,
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3
+      env⟩
+
+/--
+The evaluated backend-fold target expands to the slot-`0` weighted backend fold.
+
+This is the compiled support-partition obstruction for the current uncast
+`evalWith` leaf.  The left side is still the H-free active seven-gate entry,
+while the right side is the all-slot backend fold after exposing the slot-`0`
+summand and leaving slots `1` through `6` explicit.  No finite projection theorem
+or theorem-facing semantic flag is promoted.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesExpandedSlotZeroFold_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let gates :=
+      GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)
+    let target :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env
+    Gate.oracleCall "H_W^(kappa)" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      Gate.oracleCall "(H_W^(kappa))^dagger" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      (target.evaluatedBackendFoldStatement ↔
+        Coeff.evalWith env
+          ((evalGateMatrices gates)
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (((((((0 +
+            Coeff.mul
+              (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+                oneTermRobinGamma3BoundaryPrefixRow0_n3
+                oneTermRobinGamma3BoundaryPrefixRow0_n3)
+              oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨1, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨2, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨3, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨4, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨5, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨6, by native_decide⟩)) ∧
+      target.evaluatedBackendFoldProved = false ∧
+      target.rawCoeffFoldProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.finalExtractionProved = false := by
+  have hAbsent := oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3
+  have hExpanded :
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env ↔
+        Coeff.evalWith env
+          ((evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (((((((0 +
+            Coeff.mul
+              (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+                oneTermRobinGamma3BoundaryPrefixRow0_n3
+                oneTermRobinGamma3BoundaryPrefixRow0_n3)
+              oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨1, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨2, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨3, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨4, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨5, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨6, by native_decide⟩) := by
+    rw [
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3
+        env]
+    rw [oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3]
+  dsimp [oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3]
+  exact ⟨hAbsent.1, hAbsent.2, hExpanded, rfl, rfl, rfl, rfl⟩
 
 /--
 Transcript theorem for the evaluated backend-fold target.
@@ -20888,6 +21500,37 @@ theorem
     hBlockProjection, hBlockCorrect, hFinal⟩
 
 /--
+Prepared-entry LHS repair for the evaluated backend-fold target.
+
+The theorem exposes the source-prepared `preparedProjectionEntry` as the left
+side of the backend bridge inside
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3`.  It consumes the
+compiled prepared-entry evaluator and keeps the active evaluated fold and
+downstream theorem-facing flags unproved.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_preparedProjectionEntryBackendEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    let target :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env
+    Coeff.evalWith env
+        target.sourcePreparedProjectionTarget.preparedProjectionEntry =
+      Coeff.evalWith env target.backendBranchFold ∧
+      target.sourcePreparedProjectionTarget.preparedProjectionEntry =
+        (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+          H env).preparedProjectionEntry ∧
+      target.evaluatedBackendFoldProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.finalExtractionProved = false := by
+  have hprepared :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+      H env hUniform
+  dsimp [oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3] at hprepared ⊢
+  exact ⟨hprepared, rfl, rfl, rfl, rfl⟩
+
+/--
 The source-prepared target field is the backend equality consumed by the fixed
 product map.
 
@@ -20978,6 +21621,32 @@ theorem
             oneTermRobinGamma3BoundaryBackendBranchContribution_n3) :=
         oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
           H env hUniform
+
+/--
+The raw prepared-sandwich field closes the evaluated backend-fold target through
+the source-prepared active/prepared bridge.
+
+This is route wiring for the allowed equivalent leaf
+`(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement`.
+It does not prove that raw field and does not use the diagnostic raw
+constructor-equality theorem.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_rawEntryPreparedSandwichField_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hRaw :
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env := by
+  have hActive :
+      oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env := by
+    simpa [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3] using
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3
+        H env hRaw
+  exact
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+      H env hUniform hActive
 
 /--
 Diagnostic/H-free route: the evaluated backend fold follows from the raw Coeff

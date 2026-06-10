@@ -11,7 +11,7 @@ METRICS_FILE="${QBE_AGENT_METRICS:-runs/metrics/theorem-closure-$(date +%Y%m%d-%
 if [ -n "${QBE_AGENT_CMD:-}" ]; then
   AGENT_CMD="$QBE_AGENT_CMD"
 else
-  AGENT_CMD='cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"'
+  AGENT_CMD='bash tools/qbe_codex_faithful.sh {root} {prompt}'
 fi
 
 cd "$ROOT" || exit 1

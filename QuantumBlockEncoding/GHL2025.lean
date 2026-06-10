@@ -173,6 +173,68 @@ def oneTermRobinCircuit : Circuit :=
   , Gate.oracleCall "(O_D^BS)^†"
   ]
 
+/--
+Theorem-facing Fig. 1-term Robin transcript.
+
+This label list is the source-facing circuit map used by the conversion window.
+It deliberately differs from the active seven-gate backend list: the backend
+matrix product still uses `oneTermRobinCircuit`, while this transcript keeps
+the sparse-register preparation sides, the explicit `U_indic^dagger` cleanup
+slot, and the pre-SWAP `O_DT^BS` label visible for paper audit.
+figure:1_term_ROBIN, eq:arbitrary sparcity --/
+def oneTermRobinTheoremFacingFig4Circuit : Circuit :=
+  [ Gate.oracleCall "H_W^(kappa)"
+  , Gate.oracleCall "U_indic"
+  , Gate.oracleCall "O_DT^S"
+  , Gate.oracleCall "Ry_boundary"
+  , Gate.oracleCall "O_DT^BS"
+  , Gate.oracleCall "U_indic^dagger"
+  , Gate.oracleCall "O_f"
+  , Gate.swap 0 0
+  , Gate.oracleCall "(O_D^BS)^dagger"
+  , Gate.oracleCall "(H_W^(kappa))^dagger"
+  ]
+
+/--
+The theorem-facing transcript exposes the source-correction slots explicitly.
+
+This theorem is a transcript guard only.  It does not replace
+`oneTermRobinCircuit`, does not change `oneTermRobinGateMatrixPlaceholders`, and
+does not promote any oracle correctness or unitarity flag.
+-/
+theorem oneTermRobinTheoremFacingFig4Circuit_gateList :
+    oneTermRobinTheoremFacingFig4Circuit =
+      [ Gate.oracleCall "H_W^(kappa)"
+      , Gate.oracleCall "U_indic"
+      , Gate.oracleCall "O_DT^S"
+      , Gate.oracleCall "Ry_boundary"
+      , Gate.oracleCall "O_DT^BS"
+      , Gate.oracleCall "U_indic^dagger"
+      , Gate.oracleCall "O_f"
+      , Gate.swap 0 0
+      , Gate.oracleCall "(O_D^BS)^dagger"
+      , Gate.oracleCall "(H_W^(kappa))^dagger"
+      ] := rfl
+
+/--
+The active backend circuit remains the seven-gate product currently used by
+the finite matrix semantics.
+
+Theorem-facing proof maps must not call this list the full Fig. 1-term Robin
+transcript, because it omits both `H_W^(kappa)` sides and the explicit
+`U_indic^dagger` source slot.
+-/
+theorem oneTermRobinActiveBackendCircuit_gateList :
+    oneTermRobinCircuit =
+      [ Gate.oracleCall "U_indic"
+      , Gate.oracleCall "O_DT^S"
+      , Gate.oracleCall "Ry_boundary"
+      , Gate.oracleCall "O_D^BS"
+      , Gate.oracleCall "O_f"
+      , Gate.swap 0 0
+      , Gate.oracleCall "(O_D^BS)^†"
+      ] := rfl
+
 /-- Symbolic normalizer α = N_D · N_f · κ for the one-term Robin construction. -/
 def oneTermRobinNormalizer : Coeff :=
   Coeff.mul (Coeff.mul (Coeff.symbol "N_D") (Coeff.symbol "N_f")) (Coeff.symbol "kappa")
@@ -3837,6 +3899,35 @@ def oneTermRobinGate_U_indic (p : OneTermRobinParameters) : GateMatrix Coeff (on
     source := "main.tex:1088-1099"
     proved := true
   }
+
+/--
+Theorem-facing Hermitian-conjugate slot for `U_indic`.
+
+The indicator permutation is self-inverse, so its dagger is represented by the
+same matrix.  This gate record exists to keep the Fig. 1-term Robin transcript
+faithful; the active backend product is still the seven-gate list unless a
+separate theorem rewires it.
+-/
+def oneTermRobinGate_U_indic_dagger (p : OneTermRobinParameters) :
+    GateMatrix Coeff (oneTermRobinTotalQubits p) where
+  gate := Gate.oracleCall "U_indic^dagger"
+  matrix := indicatorOracleMatrix p
+  unitary := {
+    description := "U_indic^dagger uses the same self-inverse indicator permutation matrix as U_indic"
+    source := "GHL2025 Fig. 1-term Robin transcript slot; self-inverse bridge from indicatorOracleImage_self_inverse"
+    proved := true
+  }
+
+/--
+The theorem-facing `U_indic^dagger` slot has the same matrix as `U_indic`.
+
+This is only a transcript bridge.  It does not insert the dagger slot into the
+active seven-gate backend product.
+-/
+theorem oneTermRobinGate_U_indic_dagger_matrix_eq
+    (p : OneTermRobinParameters) :
+    (oneTermRobinGate_U_indic_dagger p).matrix =
+      (oneTermRobinGate_U_indic p).matrix := rfl
 
 /--
 Honest O_DT^S diagonal matrix: encodes the sparse amplitude data on the diagonal
@@ -8197,6 +8288,21 @@ theorem indicatorOracleImage_self_inverse (p : OneTermRobinParameters) (j : Nat)
   simp only [indicatorOracleImage] at h_pres
   rw [h_pres]
   rw [Nat.xor_assoc, Nat.xor_self, Nat.xor_zero]
+
+/--
+Source-facing bridge for the explicit `U_indic^dagger` transcript slot.
+
+The dagger slot uses the same matrix as `U_indic` because the underlying
+indicator image is self-inverse.  This theorem records the bridge used by the
+conversion window; it does not change the active backend gate list.
+-/
+theorem oneTermRobinGate_U_indic_dagger_selfInverseBridge
+    (p : OneTermRobinParameters) :
+    (oneTermRobinGate_U_indic_dagger p).matrix =
+        (oneTermRobinGate_U_indic p).matrix ∧
+      (∀ j : Nat, indicatorOracleImage p (indicatorOracleImage p j) = j) := by
+  exact ⟨oneTermRobinGate_U_indic_dagger_matrix_eq p,
+    indicatorOracleImage_self_inverse p⟩
 
 /--
 Cycle 12: General injectivity for indicatorOracleImage, derived from self-inverse.

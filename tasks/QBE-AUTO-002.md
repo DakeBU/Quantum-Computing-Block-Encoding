@@ -1055,3 +1055,213 @@ Non-goals:
   project article polish until the one-term Robin theorem-facing route is
   closed under cited contracts.
 - Do not add assumptions, weaken the target, or replace the paper oracle.
+
+## Current Run Directive: 2026-06-09 Source-Prepared Backend Frontier
+
+This directive supersedes the 2026-06-08 batch directive for the next lower
+packet.  The Fig. 4 transcript correction, explicit `U_indic^dagger` role, and
+prepared `H_W^(kappa)` boundary route are now compiled as transcript and route
+guards.  The theorem-facing route remains open because the finite
+active/prepared entry equality or an equivalent backend-expansion theorem is
+still unproved.
+
+Use the following compiled inputs:
+
+| Declaration | Status |
+|---|---|
+| `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList` | compiled transcript guard with both `H_W` sides and explicit `U_indic^dagger` label |
+| `GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge` | compiled bridge explaining why the dagger slot may use the same indicator matrix |
+| `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | compiled prepared clean-entry backend fold under the external clean-column contract |
+| `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform` | compiled theorem-facing prepared projection backend bridge |
+| `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_evaluatedBackendFold_n3 H env hUniform` | compiled equivalence; neither side is proved |
+| `oneTermRobinGamma3BoundaryBackendExpansionStatement_of_activePreparedEntryTarget_n3 H hUniform hEntry` | compiled conditional bridge from a future generic prepared-entry equality to backend expansion |
+
+The next lower work is one local proof node:
+
+1. Prefer the source-prepared alias leaf
+   `oneTermRobinGamma3BoundarySourcePreparedCleanEntryEval_eq_backendFold_n3`
+   if middle wants a stable theorem name for the already compiled prepared
+   clean-entry backend bridge.
+2. If proving new mathematics, target exactly
+   `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`
+   or a strictly smaller finite matrix-entry lemma feeding it.
+3. Treat `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`
+   as an equivalent recovery leaf only through the compiled
+   `oneTermRobinGamma3BoundaryBackendExpansionStatement_of_activePreparedEntryTarget_n3`
+   bridge.
+4. Retire the H-free eval leaf, column-0 two-path diagnostic, raw `Coeff`
+   equalities, finite active/prepared composition guard, and backend-expansion
+   bridge rediscovery as lower targets.
+5. Lower 1 should reuse
+   `proof-attempts/QBE-AUTO-002/source-faithful-prepared-route-correction-20260609-181431-lower1.md`
+   and add only a narrow addendum if the selected theorem statement changes.
+6. Lower 2 must edit only `QuantumBlockEncoding/RobinMatrix.lean` and must not
+   change oracle contracts, theorem hypotheses, normalizers, or the paper
+   circuit.
+7. The accepted bridge from a future generic prepared-entry equality to
+   backend expansion is
+   `oneTermRobinGamma3BoundaryBackendExpansionStatement_of_activePreparedEntryTarget_n3`;
+   rediscovering it is stale work.
+8. The generated Chinese summary and project-article update must report that
+   the one-term theorem is still open and that the current progress is only
+   transcript/route wiring plus conditional bridges.
+9. The gate for any Lean edit remains `python3 tools/qbe.py check`, then
+   `lake build`, then `lake build Tests`.
+10. No external primitive is formalized in this packet; all Shukla--Vedula,
+    LCU, oracle, and block-composition rows remain contract-only obligations.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Reuse `proof-attempts/QBE-AUTO-002/source-faithful-prepared-route-correction-20260609-181431-lower1.md`; add only a narrow addendum if the selected entry target changes. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`, implement one selected leaf above, and run `python3 tools/qbe.py check`, `lake build`, and `lake build Tests`. |
+
+No ODBS, ODTS, `O_f`, `H_W`, `R_y`, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, or final-extraction flag may be promoted from this packet.
+
+## Current Run Directive: 2026-06-09 Source-Prepared Branch-Sum Frontier
+
+This directive supersedes the previous source-prepared clean-entry packet for
+the next lower work item. The theorem-facing Fig. 4 transcript guard, explicit
+`U_indic^dagger` role, prepared `H_W^(kappa)` boundary route, and
+`oneTermRobinGamma3BoundarySourcePreparedCleanEntryEval_eq_backendFold_n3`
+alias are now compiled. The alias is stale as a lower target.
+
+The remaining local theorem content is the finite projection/backend branch-sum
+expansion:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+  oneTermRobinGamma3BoundaryBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+This is route-equivalent to
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`
+by `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3`.
+
+Next lower work:
+
+1. Lower 1 should reuse
+   `proof-attempts/QBE-AUTO-002/source-prepared-branch-sum-dag-20260609-1835-lower1.md`
+   and add only a narrow addendum if the selected theorem name changes.
+2. Lower 2 must edit only `QuantumBlockEncoding/RobinMatrix.lean`.
+3. Lower 2 should prove exactly the proposed branch-sum leaf
+   `oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_n3`, or close
+   the equivalent backend-expansion statement through the compiled branch-sum
+   equivalence.
+4. Retire the compiled source-prepared clean-entry alias, arbitrary-`H`
+   generic prepared-entry target, H-free `evalWith` route, column-0 diagnostics,
+   raw `Coeff` constructor equalities, finite active/prepared guard, and
+   rediscovery of compiled conditional bridges as lower targets.
+5. The generated Chinese summary and project-article update must state that
+   the one-term theorem is still open; the cycle has only transcript guards,
+   source-prepared route wiring, conditional bridges, and a branch-sum frontier.
+6. The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+   `lake build Tests`.
+
+No external primitive is formalized in this packet; all Shukla--Vedula, LCU,
+oracle, and block-composition rows remain contract-only obligations.
+
+## Current Run Directive: 2026-06-10 Branch-Sum Leaf Closure And Article-Facing Audit
+
+This directive supersedes the 2026-06-09 branch-sum frontier.  The next
+active-time batch should spend proof-search effort only on the remaining local
+finite projection/backend branch-sum leaf for the first case study.  Do not
+restart broad oracle formalization or project-wide refactoring.
+
+Active Lean target:
+
+```lean
+oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_n3
+```
+
+Equivalent target, if it is easier through the compiled bridge:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+using:
+
+```lean
+oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3
+```
+
+Current compiled context:
+
+| Declaration | Status |
+|---|---|
+| `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList` | compiled theorem-facing transcript guard with both `H_W` sides and explicit `U_indic^dagger` role |
+| `GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge` | compiled bridge justifying that the dagger slot can use the indicator matrix while keeping the paper circuit role explicit |
+| `oneTermRobinGamma3BoundarySourcePreparedCleanEntryEval_eq_backendFold_n3` | compiled safe alias for the prepared clean-entry backend fold route |
+| `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3` | compiled equivalence between the branch-sum leaf and the backend-expansion formulation |
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Write a narrow proof-DAG addendum for the branch-sum leaf only.  It should say which terms survive, which vanish, which existing Lean declarations justify each step, and whether each ingredient is GHL-internal, cited-contract, or QBE-local matrix semantics. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the branch-sum leaf or one strictly smaller lemma that feeds it directly.  Do not change oracle contracts, theorem hypotheses, normalizers, or the paper circuit. |
+
+Middle-agent duties for this batch:
+
+1. Keep the conversion window and proof-obligation ledger synchronized with the
+   branch-sum proof-DAG.  Retire stale lower targets explicitly.
+2. Generate the Chinese human audit page at:
+
+   ```text
+   paper-notes/GHL2025/markdown/cycle-summaries/latest.md
+   ```
+
+   and archive it under:
+
+   ```text
+   paper-notes/GHL2025/markdown/cycle-summaries/<run-id>.md
+   ```
+
+   The Chinese audit page may mention local TeX source line ranges because it
+   is an internal human-control artifact.
+3. Update the project article bridge after the batch.  The generated status
+   must be mirrored into:
+
+   ```text
+   ../Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex
+   ```
+
+   and included by the ABEIS `main.tex`.  If this batch closes a stable theorem
+   or changes a stable system lesson, update only the relevant included report
+   section, such as `main/ghl_case_study.tex`, `main/evidence.tex`, or
+   `appendix/ghl_correspondence.tex`.
+4. The public ABEIS report must be readable by the original paper authors and
+   by non-agent-system readers.  Use citations, theorem/equation/figure names,
+   and prose descriptions.  Do not write local source line anchors such as
+   `main.tex:1098-1164` in the public report or its generated appendix.
+
+Reviewer checklist:
+
+- Reject any cycle that changes the target theorem, adds assumptions, changes
+  the normalizer, or treats a cited oracle primitive as proved without a named
+  Lean theorem and source/citation row.
+- Reject any cycle that works on raw symbolic `Coeff` matrix equality as the
+  main route instead of the `Coeff.evalWith`/branch-sum semantic route.
+- Reject any claim that the first-case-study one-term block-encoding theorem is
+  complete while the theorem-facing root or any corresponding `sorry` remains.
+- Confirm that `python3 tools/qbe.py check`, `lake build`, and
+  `lake build Tests` pass after Lean edits.
+- Confirm that the Chinese summary path above and the ABEIS generated appendix
+  are updated.  The Chinese summary may cite local TeX line ranges; the public
+  article must not.
+
+Success for this 6h active-time batch means one of:
+
+1. the branch-sum leaf is proved and the root proof-DAG frontier advances to
+   the next named dependency; or
+2. a strictly smaller compiled lemma is produced, with a proof-DAG addendum
+   showing exactly how it feeds the branch-sum leaf in the next cycle.
+
+Do not spend lower-agent time on prose polish.  Article updates are a
+middle/reviewer end-of-cycle synchronization task and must only report what the
+Lean gates, proof notes, source anchors, and explicit obligations support.

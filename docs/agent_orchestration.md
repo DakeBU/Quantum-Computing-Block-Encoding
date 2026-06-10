@@ -40,6 +40,8 @@ Every nontrivial cycle should leave three kinds of evidence:
 - a Lean change, test, or explicit proof obligation,
 - a Markdown/LaTeX correspondence update when paper notation is involved,
 - a trial record explaining what changed or why the attempt was blocked.
+- an article-facing update packet that tells the project technical report what
+  can safely be updated and what must not be overclaimed.
 
 ## Two Hybrid Strategy Modes
 
@@ -132,6 +134,43 @@ python3 tools/qbe.py efficiency-report --task QBE-AUTO-002
 This mirrors the useful control surface from the sibling
 Auto-Sampling-Theory-In-Sleep project: long runs should leave a compact status
 artifact, not only a long terminal log.
+
+## Project Article Update Loop
+
+The middle agent also maintains the bridge from Lean/proof-cycle work to the
+ABEIS technical report.  This adapts the useful ARIS paper-writing discipline
+to theorem proving: every manuscript claim must be backed by Lean, a source
+anchor, a cited-result row, a proof-attempt record, or an explicit obligation.
+
+Every executed `sleep-run` cycle writes:
+
+```text
+runs/<run-id>/article_update.md
+runs/<run-id>/article_update.tex
+paper-notes/project-paper/cycle-updates/<run-id>.md
+paper-notes/project-paper/cycle-updates/<run-id>.tex
+paper-notes/project-paper/cycle-updates/latest.md
+paper-notes/project-paper/cycle-updates/latest.tex
+```
+
+If `../Auto_Proof_Papers/ABEIS/main.tex` exists, QBE also mirrors the latest
+generated status into:
+
+```text
+../Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex
+```
+
+Use the command manually when needed:
+
+```bash
+python3 tools/qbe.py project-article-update QBE-AUTO-002 \
+  --cycle 1 \
+  --run-id latest
+```
+
+The generated status is safe to overwrite each cycle.  Polished report sections
+should change only when a stable Lean theorem, source-contract correction,
+reviewer finding, or system-design lesson is actually supported.
 
 ## Roles
 

@@ -25,6 +25,34 @@ The paper should emphasize the system:
 - trial memory and rejected-model memory;
 - faithful paper reproduction versus exploratory oracle construction.
 
+## Cycle Update Contract
+
+Every executed multi-hour proof cycle should now leave an article-facing
+update packet:
+
+- `runs/<run-id>/article_update.md`
+- `runs/<run-id>/article_update.tex`
+- `paper-notes/project-paper/cycle-updates/latest.md`
+- `paper-notes/project-paper/cycle-updates/latest.tex`
+
+If the external technical-report project exists, the latest generated status is
+mirrored to `../Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex`.
+
+Middle owns this bridge.  Reviewer checks it.  The generated update is not a
+polished paper section; it is the claim-to-evidence ledger that tells the
+article what can safely change after a 6h active loop.  Use
+`.agents/skills/qbe-project-paper-update/SKILL.md` before editing the report.
+
+Stable claims may move into the report only when backed by one of:
+
+- a Lean declaration and passing gate,
+- a source-paper anchor plus conversion-window/proof-obligation row,
+- a cited-results row with honest status,
+- a proof-attempt or reviewer record explaining a system lesson.
+
+Do not claim a case study is complete while theorem-facing `sorry` or root
+block-extraction obligations remain.
+
 ## Case Appendices
 
 GHL2025 is the first appendix case:

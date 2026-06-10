@@ -1152,3 +1152,393 @@ The next lower packet should prove or strictly reduce the evaluated finite
 projection fold.  The standalone H-free backend expansion remains
 diagnostic/recovery only through the prepared route, and no product, LCU, block,
 normalized-equality, unitarity, or final-extraction flag is promoted.
+
+## 2026-06-09 Middle Lower-Packet Freeze After Prepared-Entry DAG
+
+Definition first: `PreparedEntry(H, env)` means
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedProjectionEntry`.
+It is the theorem-facing clean entry of
+`H_W^(kappa)^dagger * U_gamma3 * H_W^(kappa)`.  It is not the active
+seven-gate `[0,0]` entry exposed by the current active field.
+
+Lower 1 has already supplied the proof map from GHL2025 `main.tex:948-955`,
+`1098-1164`, and `2027-2035` to `PreparedEntry(H, env)` in
+`proof-attempts/QBE-AUTO-002/prepared-signal-entry-source-dag-20260609-lower1.md`.
+The displayed slot `2` branch is mapped to full basis `[32,32]`; the all-slot
+prepared entry evaluates to the backend fold under the external `H_W` clean
+column contract by
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| lower-1 source proof map | `proof-attempts/QBE-AUTO-002/prepared-signal-entry-source-dag-20260609-lower1.md` | accepted proof map; no Lean edit |
+| prepared entry backend bridge | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform` | compiled conditional |
+| active-field mismatch guard | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_exposesUncastSevenGate_n3`; `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesUncastSevenGate_n3` | compiled; active side remains H-free `[0,0]` |
+| next target-shape leaf | theorem or record consuming `PreparedEntry(H, env)` and the compiled backend bridge | assign lower 2 |
+| alternate finite-composition leaf | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | open |
+| retired routes | `oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3`; raw `Coeff` equality route | diagnostic/backlog only |
+
+The next Lean worker should edit only `QuantumBlockEncoding/RobinMatrix.lean`
+and compile one of the two active leaves above.  The worker must not use the
+slot-`0` diagnostic as the displayed slot-`2` proof and must not promote
+oracle, `H_W`, `R_y`, LCU, block-projection, block-correctness, unitarity,
+normalized-equality, or final-extraction flags.
+
+## 2026-06-09 Fig. 4 Transcript Correction And Active Frontier
+
+The theorem-facing transcript now has a compiled Lean label list:
+`GHL2025.oneTermRobinTheoremFacingFig4Circuit`.  It is the object to compare
+with GHL2025 Theorem `theorem: 1 term robin`, Eq. `ROBIN clarified`, Eq.
+`arbitrary sparcity`, Fig. `fig:1 term ROBIN`, and Definition
+`def:block-encoding`.
+
+| Source-facing slot | Lean name or label | Status |
+|---|---|---|
+| $H_W^{(\kappa)}$ preparation | `Gate.oracleCall "H_W^(kappa)"` in `oneTermRobinTheoremFacingFig4Circuit` | visible transcript slot; state-preparation proof remains contract-only |
+| $U_{\mathrm{indic}}$ | `GHL2025.oneTermRobinGate_U_indic` | active matrix proved as a permutation |
+| $U_{\mathrm{indic}}^\dagger$ cleanup | `GHL2025.oneTermRobinGate_U_indic_dagger`, `GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge` | compiled transcript bridge; same matrix as `U_indic` by self-inverse image |
+| pre-SWAP $O_{D^T}^{BS}$ | `Gate.oracleCall "O_DT^BS"` | theorem-facing label distinct from post-SWAP dagger; active backend still uses existing seven-gate skeleton |
+| post-SWAP $(O_D^{BS})^\dagger$ | `Gate.oracleCall "(O_D^BS)^dagger"` | visible transcript slot; cleanup and unitarity remain unproved |
+| $(H_W^{(\kappa)})^\dagger$ projection side | `Gate.oracleCall "(H_W^(kappa))^dagger"` | visible transcript slot; state-preparation proof remains contract-only |
+
+The active finite backend is still guarded by
+`GHL2025.oneTermRobinActiveBackendCircuit_gateList`, the seven-gate product
+used by `evalGateMatrices`.  That backend must not be called the full Fig.
+`1 term ROBIN` transcript.
+
+The next lower target is unchanged after the transcript correction:
+`oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`,
+or a strictly smaller `Coeff.evalWith` selected-entry bridge feeding
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
+The raw symbolic `Coeff` constructor-equality route is diagnostic/backlog.
+
+No theorem-facing flag is promoted in this update.  Product-to-coefficient,
+LCU, block projection, normalized equality, block correctness, circuit
+unitarity, and final extraction remain false.
+
+## 2026-06-09 Prefix Diagnostics And Branch-Correct Frontier
+
+Definition first: the accepted column-`0` prefix facts are finite
+`Coeff.evalWith` facts for the active seven-gate backend entry `[0,0]`.  They
+are not the displayed $\gamma_3$ slot-`2` branch in Eq. `ROBIN clarified`.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| column-`0` two-gate prefix entry | `oneTermRobinGamma3BoundaryDUPrefixCol0EntryEval_n3` | compiled |
+| column-`0` `Ry_boundary` prefix entries | `oneTermRobinGamma3BoundaryRDUPrefixRow0Col0_eval_n3`, `oneTermRobinGamma3BoundaryRDUPrefixRow1Col0_eval_n3` | compiled slot-`0` diagnostics |
+| column-`0` four-gate prefix entries | `oneTermRobinGamma3BoundaryPrefixRow96Col0_eval_n3`, `oneTermRobinGamma3BoundaryPrefixRow97Col0_eval_n3` | compiled slot-`0` diagnostics |
+| displayed $\gamma_3$ slot-`2` path map | next proof-DAG packet | active natural-language leaf |
+| raw-entry prepared-sandwich bridge | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | active Lean leaf; absent |
+
+The next Lean worker should prove a branch-correct raw-entry/prepared-sandwich
+bridge, or a smaller `Coeff.evalWith` lemma that directly feeds it.  The
+column-`0` slot-`0` facts may be reused for active `[0,0]` diagnostics, but
+they must not be used as a proof of the source displayed slot-`2` coefficient.
+The raw symbolic `Coeff` constructor-equality and `Matrix.mul_assoc` routes
+remain diagnostic/backlog.
+
+## 2026-06-09 Source-Prepared Field Selection
+
+Definition first: the theorem-facing prepared signal-entry target is
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env`.  Its
+prepared entry is the clean entry of the local
+`H_W^(kappa)^dagger * U_gamma3_boundary * H_W^(kappa)` singleton semantics.
+The smaller missing field is
+`(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement`,
+which would connect the active signal-zero entry to the prepared sandwich
+fold.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| selected prepared projection field | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` | compiled record; selected for the next frontier |
+| conditional backend bridge | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | compiled under the external $H_W^{(\kappa)}$ clean-column contract |
+| raw-entry prepared-sandwich field | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | open active Lean leaf |
+| column-`0` seven-gate expansion | `oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3` | proved diagnostic; retired from active lower work |
+
+The next lower packet should not prove the seven-gate slot-`0` entry equal to
+the all-slot prepared sandwich.  It should either feed the raw-entry
+prepared-sandwich field through the selected source-prepared target, or record
+a typed mismatch if the current active LHS is not theorem-facing prepared
+semantics.  No oracle, $H_W$, LCU, block, normalized-equality, unitarity, or
+final-extraction flag is promoted.
+
+## 2026-06-09 Middle Target-Repair Frontier
+
+The latest compiled mismatch witness is
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_exposesUncastSevenGate_n3`.
+It records that the selected source-prepared active field still has the
+seven-gate `[0,0]` entry on the left, while the active gate list omits both
+`H_W^(kappa)` and `(H_W^(kappa))^dagger`.
+
+The next theorem-facing target must therefore expose the prepared clean entry
+itself:
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedProjectionEntry
+```
+
+or an equivalent matrix entry of
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H`.  The
+compiled bridge
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`
+already evaluates that prepared entry to the backend fold under the external
+$H_W^{(\kappa)}$ clean-column contract.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| active field mismatch | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_exposesUncastSevenGate_n3` | compiled mismatch witness |
+| prepared entry backend bridge | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform` | compiled conditional |
+| repaired prepared signal-entry LHS | new target-shape theorem or record consuming `preparedProjectionEntry` | next Lean leaf |
+| finite active-to-prepared composition | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` or raw-entry prepared-sandwich field | still open |
+| column-`0` seven-gate expansion | `oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3` | diagnostic only; retired |
+
+This is a QBE-local finite projection/composition issue, not a new cited
+subroutine.  No product, LCU, block-projection, block-correctness,
+normalized-equality, unitarity, or final-extraction flag is promoted.
+
+## 2026-06-09 Middle Frontier Sync After Prepared-Entry LHS Repair
+
+Definition first: `PreparedEntry(H, env)` is
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).preparedProjectionEntry`.
+It is the clean entry of the prepared singleton semantics for
+`H_W^(kappa)^dagger * U_gamma3_boundary * H_W^(kappa)`.
+
+The compiled theorem
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_preparedProjectionEntryBackendEval_n3`
+now exposes `PreparedEntry(H, env)` as the left side of the backend evaluator
+and consumes
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform`.
+This retires the prepared-entry target-shape leaf.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| prepared-entry LHS repair | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_preparedProjectionEntryBackendEval_n3 H env hUniform` | compiled; theorem-facing flags false |
+| active/prepared composition | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | open active Lean leaf |
+| accepted smaller field | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | open |
+| accepted raw prepared-sandwich field | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | open |
+| next middle/lower packet | `proof-attempts/QBE-AUTO-002/finite-active-prepared-composition-middle-packet-20260609-154329.md` | active packet |
+| retired diagnostics | `oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3`; raw `Coeff` equality route | diagnostic/backlog only |
+
+Source classification: the remaining blocker is QBE-local finite
+`CircuitMatrixSemantics` composition.  It is not a new Shukla--Vedula,
+Gilyen/LCU, sparse-oracle, function-oracle, or classical-theorem dependency.
+No oracle, $H_W$, $R_y$, LCU, block-projection, block-correctness, unitarity,
+normalized-equality, product-to-coefficient, or final-extraction flag is
+promoted by this sync.
+
+## 2026-06-09 Middle Frontier Sync To Uncast Eval Entry
+
+Definition first: `ActiveEvalEntry(env)` is the evaluated uncast entry
+
+```lean
+Coeff.evalWith env
+  ((evalGateMatrices
+    (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+    oneTermRobinGamma3BoundaryPrefixRow0_n3
+    oneTermRobinGamma3BoundaryPrefixRow0_n3)
+```
+
+and `BackendFold(env)` is
+
+```lean
+Coeff.evalWith env
+  (blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+The next preferred Lean target is
+`oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env`,
+which states `ActiveEvalEntry(env) = BackendFold(env)`.  The compiled bridge
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3 env`
+turns this leaf into the named evaluated backend-fold statement.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| preferred active leaf | `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env` | proposed; open |
+| named evaluated fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | active theorem; open |
+| raw prepared-sandwich route bridge | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_rawEntryPreparedSandwichField_n3 H env hUniform hRaw` | compiled conditional; raw field still open |
+| backend expansion stronger leaf | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | allowed stronger leaf; open |
+| raw prepared-sandwich stronger leaf | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | allowed stronger leaf; open |
+| retired wrapper | `oneTermRobinGamma3BoundaryFiniteActivePreparedComposition_reducesToBackendFold_n3 H env hUniform` | compiled guard; not a smaller target |
+| retired diagnostics | `oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3`; raw `Coeff` constructor equality route | diagnostic/backlog only |
+
+Source classification: this is a QBE-local `evalWith` finite matrix-semantics
+obligation tied to `main.tex:2027-2035` after the Fig. 4 transcript and
+gamma3 slot-`2` branch map are in place.  It does not prove ODBS, ODTS, `O_f`,
+`H_W`, `R_y`, LCU, block projection, normalized equality, circuit unitarity,
+block correctness, or final extraction.
+
+## 2026-06-09 Middle Support-Partition Packet Sync
+
+The compiled bridge
+`oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_backendExpansion_n3 env hexpansion`
+has one role: if a future proof supplies
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`,
+then the named evaluated backend fold follows.  The bridge does not prove the
+backend expansion, the raw prepared-sandwich field, or the preferred uncast
+`evalWith` entry equality.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| conditional backend route | `oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_backendExpansion_n3 env hexpansion` | compiled; not closure |
+| next support subgoal | a support-partition lemma inside `QuantumBlockEncoding/RobinMatrix.lean` feeding `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env` | next implementation subgoal |
+| preferred active leaf | `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env` | proposed; open |
+| stronger backend leaf | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | open |
+| stronger prepared-sandwich leaf | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | open |
+| middle packet | `proof-attempts/QBE-AUTO-002/uncast-eval-entry-support-partition-middle-packet-20260609-170218.md` | active lower packet |
+
+This remains a QBE-local finite matrix/projection obligation tied to
+`main.tex:2027-2035`.  It uses the existing source transcript and branch map
+from `main.tex:1098-1164`; it does not promote any external oracle, `H_W`,
+`R_y`, LCU, block-projection, product-to-coefficient, normalized-equality,
+circuit-unitarity, block-correctness, or final-extraction flag.
+
+## 2026-06-09 Middle Source-Prepared Active Frontier Sync
+
+Definition first: `SourcePreparedActive(H, env)` is
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+```
+
+and its uncast selected-entry form is
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+The H-free uncast backend equality is now diagnostic unless it is recovered
+through the prepared route.  The compiled obstruction
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesExpandedSlotZeroFold_n3 H env`
+exposes the active `[0,0]` entry against a weighted backend fold with slot `0`
+carrying `projectionAmplitudeFactor` and slots `1` through `6` still visible.
+This does not match the source-prepared Fig. `fig:1 term ROBIN` route by
+itself.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| source-prepared backend bridge | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform` | compiled conditional under the external $H_W^{(\kappa)}$ clean-column contract |
+| H-free expanded-fold obstruction | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesExpandedSlotZeroFold_n3 H env` | compiled diagnostic; not closure |
+| preferred source-prepared leaf | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env` | open active leaf |
+| preferred uncast leaf | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | open smaller leaf |
+| accepted generic entry leaf | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | open smaller leaf |
+| accepted raw prepared-sandwich leaf | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | open stronger leaf |
+| equivalent backend leaf | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | open recovery leaf |
+| retired source-closure leaf | proposed `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env` | diagnostic/blocked unless all weighted slots are matched or eliminated |
+
+The next packet is
+`proof-attempts/QBE-AUTO-002/source-prepared-active-composition-middle-packet-20260609-1732.md`.
+No oracle, $H_W$, $R_y$, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness, final-extraction,
+ODBS, ODTS, or `O_f` flag is promoted.
+
+## 2026-06-09 Middle Source-Prepared Branch-Sum Frontier Sync
+
+Definition first: `SignalBlockEntry` is
+`oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry`,
+and `BranchSum` is
+`oneTermRobinGamma3BoundaryBranchContributionSum
+oneTermRobinGamma3BoundaryBackendBranchContribution_n3`.
+
+The compiled theorem
+`oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3`
+identifies the backend-expansion statement with
+`SignalBlockEntry = BranchSum`. The proposed leaf
+`oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_n3` is still
+open.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| Fig. 4 transcript guard | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`; `GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge` | compiled |
+| prepared clean-entry alias | `oneTermRobinGamma3BoundarySourcePreparedCleanEntryEval_eq_backendFold_n3 H env hUniform` | compiled conditional; stale as lower target |
+| branch-sum leaf | proposed `oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_n3` | next active leaf |
+| backend-expansion equivalence | `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3` | compiled bridge; not closure |
+| backend-expansion statement | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | open equivalent recovery leaf |
+| retired H-free and raw routes | `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env`; raw `Coeff` equalities | diagnostic/backlog |
+
+The next lower packet is
+`proof-attempts/QBE-AUTO-002/source-prepared-branch-sum-middle-packet-20260609-1842.md`.
+The one-term theorem remains open. No oracle, $H_W$, $R_y$, LCU,
+block-projection, normalized-equality, product-to-coefficient,
+circuit-unitarity, block-correctness, final-extraction, ODBS, ODTS, or `O_f`
+flag is promoted.
+
+## 2026-06-09 Middle Source-Prepared Backend Frontier Sync
+
+Definition first: `PreparedCleanBackend(H, env)` is the prepared clean-entry
+evaluation theorem
+`oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform`,
+where `hUniform` is the external $H_W^{(\kappa)}$ clean-column contract.
+
+The latest compiled bridge
+`oneTermRobinGamma3BoundaryBackendExpansionStatement_of_activePreparedEntryTarget_n3`
+states that a future proof of
+`(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`
+will imply
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`.
+It does not prove either statement.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| Fig. 4 transcript guard | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`; `GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge` | compiled |
+| prepared clean-entry backend bridge | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | compiled conditional |
+| theorem-facing prepared target bridge | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform` | compiled conditional |
+| active mathematical leaf | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | open |
+| conditional bridge to backend expansion | `oneTermRobinGamma3BoundaryBackendExpansionStatement_of_activePreparedEntryTarget_n3 H hUniform hEntry` | compiled; not closure |
+| optional alias leaf | proposed `oneTermRobinGamma3BoundarySourcePreparedCleanEntryEval_eq_backendFold_n3` | safe naming leaf |
+| retired H-free route | proposed `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env` | diagnostic unless every weighted slot is matched |
+| raw `Coeff` route | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | backlog |
+
+The next lower packet is
+`proof-attempts/QBE-AUTO-002/source-prepared-clean-entry-middle-packet-20260609-1822.md`.
+No oracle, $H_W$, $R_y$, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness, final-extraction,
+ODBS, ODTS, or `O_f` flag is promoted.
+
+## 2026-06-09 Middle Backend-Expansion/Raw-Sandwich Packet Sync
+
+Definition first: the active backend-expansion leaf is
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`.
+It is the finite branch/projection theorem that expands the clean block entry
+into the seven-slot backend branch fold. The raw prepared-sandwich field
+`(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement`
+and the generic prepared-entry target
+`(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`
+are allowed route-equivalent leaves under the existing `hUniform` contract.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| active mathematical leaf | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | open |
+| equivalent raw prepared-sandwich leaf | `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement` | open |
+| equivalent generic prepared-entry leaf | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | open |
+| route equivalence | `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_evaluatedBackendFold_n3 H env hUniform` | compiled conditional; neither side proved |
+| retired H-free eval leaf | proposed `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env` | diagnostic unless recovered through prepared/backend expansion |
+| new middle packet | `proof-attempts/QBE-AUTO-002/backend-expansion-raw-sandwich-middle-packet-20260609-180111.md` | active lower packet |
+
+Source audit: `main.tex:948-955` supplies the $H_W^{(\kappa)}$ clean-column
+contract, `main.tex:1111-1119` supplies the gamma3 slot-`2` branch,
+`main.tex:1122-1164` supplies the theorem-facing Fig. 4 transcript, and
+`main.tex:2027-2035` supplies the clean block projection. The missing theorem
+is QBE-local finite matrix/projection work. It is not a new external oracle,
+LCU, `R_y`, or block-projection dependency.
+
+No oracle, $H_W$, $R_y$, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness, final-extraction,
+ODBS, ODTS, or `O_f` flag is promoted.
+
+## 2026-06-09 Middle Branch-Sum Frontier Closeout
+
+Latest frontier: the source-prepared clean-entry alias is compiled and stale as
+a lower target. The next Lean leaf is the local branch-sum equality
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+  oneTermRobinGamma3BoundaryBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+or the equivalent backend-expansion statement through
+`oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3`.
+The assigned middle packet is
+`proof-attempts/QBE-AUTO-002/source-prepared-branch-sum-middle-packet-20260609-1842.md`.
+The one-term theorem remains open, and no semantic flag is promoted.

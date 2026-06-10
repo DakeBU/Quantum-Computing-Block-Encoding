@@ -42,6 +42,9 @@ OUTER_PAPERS_SAMPLING_ROOT = OUTER_PAPERS_ROOT / "sampling_theory_sde"
 LOCAL_PAPER_SOURCE_ROOT = Path(
     os.environ.get("QBE_PAPER_SOURCE_ROOT", str(OUTER_PAPERS_ROOT))
 ).expanduser()
+PROJECT_ARTICLE_ROOT = Path(
+    os.environ.get("QBE_PROJECT_ARTICLE_ROOT", str(REPOS_ROOT / "Auto_Proof_Papers" / "ABEIS"))
+).expanduser()
 
 
 ARIS_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "Auto-claude-code-research-in-sleep"
@@ -62,6 +65,7 @@ TRIAL_SUMMARY = ROOT / "runs" / "trials_summary.csv"
 BLUEPRINT_DIR = ROOT / "proof-blueprints"
 EFFICIENCY_DIR = ROOT / "runs" / "efficiency"
 CONTEXT_PACK_DIR = ROOT / "runs" / "context-packs"
+PROJECT_ARTICLE_UPDATE_DIR = ROOT / "paper-notes" / "project-paper" / "cycle-updates"
 
 AGENT_ROLES = ("upper", "middle", "lower", "reviewer")
 TRIAL_KINDS = ("plan", "attempt", "build", "review", "proposal", "compression", "handoff")
@@ -81,6 +85,7 @@ WORK_DIRS = [
     "runs",
     "runs/efficiency",
     "runs/context-packs",
+    "paper-notes/project-paper/cycle-updates",
     "research-wiki/papers",
     "research-wiki/ideas",
     "research-wiki/claims",
@@ -172,6 +177,31 @@ def display_path(path: Path) -> str:
         return str(path.relative_to(REPOS_ROOT))
     except ValueError:
         return str(path)
+
+
+def latex_escape(value: object) -> str:
+    """Escape plain text for a conservative LaTeX item/table cell."""
+    text = str(value)
+    replacements = {
+        "\\": r"\textbackslash{}",
+        "&": r"\&",
+        "%": r"\%",
+        "$": r"\$",
+        "#": r"\#",
+        "_": r"\_",
+        "{": r"\{",
+        "}": r"\}",
+        "~": r"\textasciitilde{}",
+        "^": r"\textasciicircum{}",
+        "`": r"\textasciigrave{}",
+        "–": "--",
+        "—": "---",
+        "“": "``",
+        "”": "''",
+        "‘": "`",
+        "’": "'",
+    }
+    return "".join(replacements.get(ch, ch) for ch in text)
 
 
 def write_text(path: Path, text: str) -> None:
@@ -280,8 +310,14 @@ block-encoding formalization lifecycle.
 
 def add_manifest(tool: str, file: Path, stage: str, description: str) -> None:
     ensure_manifest()
-    rel = file.relative_to(ROOT) if file.is_absolute() else file
-    append_line(MANIFEST, f"| {now_stamp()} | {tool} | `{rel}` | {stage} | {description} |")
+    if file.is_absolute():
+        try:
+            file_display = str(file.relative_to(ROOT))
+        except ValueError:
+            file_display = display_path(file)
+    else:
+        file_display = str(file)
+    append_line(MANIFEST, f"| {now_stamp()} | {tool} | `{file_display}` | {stage} | {description} |")
 
 
 def init_texts() -> dict[Path, str]:
@@ -1570,7 +1606,7 @@ GHL2025_SOURCE_ANCHORS = [
         "source": "main.tex:1056-1066",
         "paper": "Indicator unitary $U_{\\mathrm{indic}}(K_1,K_2)$",
         "meaning": "在 bulk region $K_1 \\le i \\le K_2$ 精确把 indicator qubit 置为 $|1\\rangle$。",
-        "status": "基本已作为 permutation/self-inverse helper 编译；theorem-facing circuit 仍需显式 $U_{\\mathrm{indic}}^\\dagger$ slot 来匹配 Fig. 4。",
+        "status": "permutation/self-inverse helper 和 theorem-facing $U_{\\mathrm{indic}}^\\dagger$ slot 已编译；它仍不是 final block-encoding proof。",
     },
     {
         "id": "RyBoundary",
@@ -1598,7 +1634,7 @@ GHL2025_SOURCE_ANCHORS = [
         "source": "main.tex:1122-1164",
         "paper": "Fig. 1-term Robin circuit caption",
         "meaning": "指定完整 gate order：$H_W^{(\\kappa)}$、$U_{\\mathrm{indic}}$、$\\hat O^S_{D^T}$ 或 boundary $R_y$、$\\hat O^{BS}_{D^T}$、$U_{\\mathrm{indic}}^\\dagger$、$\\hat O_f$、SWAP、$(\\hat O_D^{BS})^\\dagger$、$(H_W^{(\\kappa)})^T$。",
-        "status": "已发现 source-contract drift：当前 active placeholder list 缺显式 $U_{\\mathrm{indic}}^\\dagger$，两侧 $H_W$ 通过 prepared contract 处理。",
+        "status": "theorem-facing transcript guard 已编译：显式 $U_{\\mathrm{indic}}^\\dagger$ 和两侧 $H_W$ prepared route 可见；active backend 七门列表仍是独立 H-free component。",
     },
     {
         "id": "OneD",
@@ -1650,9 +1686,9 @@ def lean_sorry_lines(limit: int = 20) -> list[str]:
 
 def current_ghl2025_focus() -> list[str]:
     return [
-        "先修正 theorem-facing Fig. 4 circuit transcript：显式加入 $U_{\\mathrm{indic}}^\\dagger$，并把 $H_W^{(\\kappa)}$ 与 $(H_W^{(\\kappa)})^T$ 的 prepared route 标成清楚的 theorem boundary。",
-        "把 raw symbolic `Coeff` matrix equality 路线降级为 diagnostic/backlog；主路线改成 `Coeff.evalWith` 层面的 entry bridge。",
-        "把已编译的 prepared clean-entry lemma 接到最终 `CircuitBlockEncodingClaim`/block-extraction target，而不是停在 route witness。",
+        "保持 theorem-facing Fig. 4 transcript guard：显式 $U_{\\mathrm{indic}}^\\dagger$ 和两侧 $H_W^{(\\kappa)}$ prepared route 已可见，不要把 H-free 七门 backend 当作完整 Fig. 4 theorem。",
+        "继续把 raw symbolic `Coeff` matrix equality 路线放在 diagnostic/backlog；主路线是 source-prepared selected-entry 或 `Coeff.evalWith` bridge。",
+        "下一 Lean leaf 是 `oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_n3`，或通过 `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3` 关闭等价的 backend-expansion statement。",
         "中层每轮对照 `main.tex:1098-1164`，明确哪些是 GHL 本文贡献、哪些是 Lemma 1/Lemma 3/Theorem 5 等外部 primitive contract。",
         "reviewer 必须拒绝新增假设、替换 oracle、把 contract-only 结果标成 proved，或继续证明已经判定为错误路线的 raw equality。",
     ]
@@ -1747,6 +1783,264 @@ def write_cycle_zh_summary(task_id: str, cycle: int, run_dir: Path) -> tuple[Pat
     add_manifest("qbe.py cycle-zh-summary", run_path, "review", f"Wrote Chinese cycle summary for {task_id} cycle {cycle}")
     add_manifest("qbe.py cycle-zh-summary", archive_path, "paper-note", f"Archived Chinese cycle summary for {task_id} cycle {cycle}")
     return run_path, archive_path
+
+
+def latest_proof_attempts(task_id: str, limit: int = 8) -> list[str]:
+    attempts_dir = ROOT / "proof-attempts" / slugify(task_id)
+    if not attempts_dir.exists():
+        return []
+    files = sorted(
+        [path for path in attempts_dir.glob("*.md") if path.is_file()],
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    return [rel(path) for path in files[:limit]]
+
+
+def project_article_update_markdown(task_id: str, cycle: int, run_dir: Path) -> str:
+    title, task_text = task_context(task_id)
+    state = blueprint_status_state(task_id)
+    sorry_lines = lean_sorry_lines(limit=20)
+    changed_lines = git_changed_files()
+    latest_dialogue = read_text(run_dir / "dialogue.md") if (run_dir / "dialogue.md").exists() else ""
+    dialogue_tail = latest_dialogue[-1400:].strip() if latest_dialogue.strip() else "No substantive dialogue handoff was recorded yet."
+    dynamic = state.get("dynamic_leaf_queue", [])
+    obligations = state.get("open_obligation_signals", [])
+    proof_attempts = latest_proof_attempts(task_id)
+    sorry_text = "\n".join(f"- `{line}`" for line in sorry_lines) if sorry_lines else "- No `sorry` was detected by the project scan."
+    dynamic_text = "\n".join(f"- {item}" for item in dynamic[:12]) if dynamic else "- No dynamic leaf was detected; refresh the proof blueprint before the next run."
+    obligation_text = "\n".join(f"- {item}" for item in obligations[:12]) if obligations else "- No compact obligation signal was detected; inspect `proof-obligations/` directly."
+    attempts_text = "\n".join(f"- `{item}`" for item in proof_attempts) if proof_attempts else "- No proof-attempt files were found for this task."
+    changed_text = "\n".join(f"- `{item}`" for item in changed_lines[:30]) if changed_lines else "- No uncommitted files were detected."
+    return f"""# Project Article Update: {task_id} cycle {cycle}
+
+Generated: `{now_stamp()}`
+
+Run directory: `{rel(run_dir)}`
+
+Task title: {title}
+
+This file is the article-facing update packet for the technical report
+`Auto-Lean-in-Sleep: Block Encoding for Quantum Computing`.  It is written at
+the end of an active proof cycle so the project paper can track what the Lean
+system actually proved, failed, or learned.  It is not a polished manuscript
+section; middle agents should fold stable claims into
+the ABEIS technical report directory only when the claims are supported by
+Lean declarations, source anchors, or explicit obligations.
+
+## Article-facing delta
+
+- Keep the main system claim: ABEIS is an auto-proof harness for turning
+  quantum oracle assumptions into Lean-checked block-encoding/circuit
+  certificates.
+- Keep the first case study honest: Guseynov--Huang--Liu 2025 is the first
+  faithful reproduction target, but final completion depends on the current
+  Lean gate and `sorry` status below.
+- If this cycle only changes proof-route memory or obstruction analysis, update
+  the report's evidence/appendix status, not the headline contribution.
+- If this cycle closes a named Lean theorem, middle should export the theorem
+  to Markdown and LaTeX proof notes before strengthening the project-paper
+  claim.
+
+## Lean status signal
+
+{sorry_text}
+
+## Current proof-DAG frontier
+
+{dynamic_text}
+
+## Open obligation signal
+
+{obligation_text}
+
+## Recent proof-attempt memory
+
+{attempts_text}
+
+## Suggested project-paper edits
+
+| Report location | Safe update |
+|---|---|
+| `main/evidence.tex` | Add only stable harness lessons from this cycle, with no stronger claim than the Lean gate supports. |
+| `main/ghl_case_study.tex` | Update the case-study status if a theorem, source-contract correction, or obstruction was accepted by reviewer. |
+| `appendix/generated_cycle_status.tex` | This file is overwritten automatically and can be included as the latest machine-generated status appendix. |
+| Figures/tables | Add or revise a figure only if the cycle changed the system design, proof-DAG frontier, or article-facing evidence. |
+
+## Do not claim
+
+- Do not say the Guseynov--Huang--Liu one-term theorem is complete while any
+  theorem-facing `sorry` or root block-extraction obligation remains.
+- Do not present a cited oracle/state-preparation/LCU/QSVT primitive as proved
+  unless a build-tested Lean declaration is named.
+- Do not turn proof-search scores, agent self-assessments, or natural-language
+  proof sketches into accepted mathematical claims.
+
+## Dialogue tail
+
+```text
+{dialogue_tail}
+```
+
+## Current changed files
+
+{changed_text}
+"""
+
+
+def article_status_plain(value: object) -> str:
+    """Normalize generated proof status text for inclusion in the public report."""
+    text = str(value)
+    text = re.sub(
+        r"\bmain\.tex:[0-9]+(?:-[0-9]+)?\b",
+        "the source-paper TeX passage",
+        text,
+    )
+    text = re.sub(
+        r"\blocal source anchors?\s+the source-paper TeX passage(?:,\s*[0-9]+(?:-[0-9]+)?)*",
+        "source-paper anchors",
+        text,
+        flags=re.I,
+    )
+    replacements = [
+        ("GHL2025", "the first case study"),
+        ("GHL Fig.", "the first-case-study figure"),
+        ("GHL one-term", "the first-case-study one-term"),
+        ("GHL-style", "first-case-study-style"),
+        ("GHL ", "first-case-study "),
+        ("Guseynov--Huang--Liu", "the first case study"),
+    ]
+    for old, new in replacements:
+        text = text.replace(old, new)
+    return text
+
+
+def project_article_public_markdown(markdown: str) -> str:
+    """Normalize the mirrored Markdown copy that lives beside the public report."""
+    return article_status_plain(markdown)
+
+
+def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str:
+    state = blueprint_status_state(task_id)
+    sorry_lines = lean_sorry_lines(limit=12)
+    dynamic = state.get("dynamic_leaf_queue", [])
+    obligations = state.get("open_obligation_signals", [])
+    proof_attempts = latest_proof_attempts(task_id, limit=5)
+    if sorry_lines:
+        sorry_items = "\n".join(f"  \\item \\texttt{{{latex_escape(line)}}}" for line in sorry_lines)
+    else:
+        sorry_items = "  \\item No \\texttt{sorry} was detected by the project scan."
+    dynamic_items = "\n".join(
+        f"  \\item {latex_escape(article_status_plain(item))}" for item in dynamic[:8]
+    ) or "  \\item No dynamic proof leaf was detected; the next cycle should refresh the proof blueprint."
+    obligation_items = "\n".join(
+        f"  \\item {latex_escape(article_status_plain(item))}" for item in obligations[:8]
+    ) or "  \\item No compact obligation signal was detected; inspect the proof-obligation ledger directly."
+    attempt_items = "\n".join(
+        f"  \\item \\texttt{{{latex_escape(item)}}}" for item in proof_attempts
+    ) or "  \\item No task-specific proof-attempt file was detected."
+    return f"""% Auto-generated by tools/qbe.py project-article-update.
+% Do not edit this file by hand; edit the proof artifacts or article sections instead.
+
+\\section{{Generated Current Cycle Status}}
+\\label{{app:generated-cycle-status}}
+
+This appendix page is generated from the latest ABEIS proof cycle.  It is a
+status bridge for article maintenance, not a polished theorem proof.  Stable
+mathematical claims should be copied into the main text only after the
+corresponding Lean declaration, source-paper anchor, and proof-note export are
+available.
+
+\\paragraph{{Cycle.}}
+Task \\texttt{{{latex_escape(task_id)}}}, cycle \\texttt{{{cycle}}}, run
+\\texttt{{{latex_escape(rel(run_dir))}}}.  Generated at
+\\texttt{{{latex_escape(now_stamp())}}}.
+
+\\paragraph{{Lean status signal.}}
+\\begin{{itemize}}
+{sorry_items}
+\\end{{itemize}}
+
+\\paragraph{{Current proof-DAG frontier.}}
+\\begin{{itemize}}
+{dynamic_items}
+\\end{{itemize}}
+
+\\paragraph{{Open obligation signal.}}
+\\begin{{itemize}}
+{obligation_items}
+\\end{{itemize}}
+
+\\paragraph{{Recent proof-attempt memory.}}
+\\begin{{itemize}}
+{attempt_items}
+\\end{{itemize}}
+
+\\paragraph{{Article-writing rule.}}
+The project report may discuss this cycle as process evidence.  It must not
+claim completion of the first case study \\citep{{guseynovHuangLiu2025}} unless
+the final theorem-facing block-extraction statement is closed in Lean and the
+Markdown/LaTeX proof map has been synchronized.
+"""
+
+
+def write_project_article_update(
+    task_id: str,
+    cycle: int,
+    run_dir: Path,
+    article_root: Path | None = None,
+) -> tuple[Path, Path, Path, Path, list[Path]]:
+    markdown = project_article_update_markdown(task_id, cycle, run_dir)
+    latex = project_article_update_latex(task_id, cycle, run_dir)
+    run_md = run_dir / "article_update.md"
+    run_tex = run_dir / "article_update.tex"
+    archive_md = PROJECT_ARTICLE_UPDATE_DIR / f"{run_dir.name}.md"
+    archive_tex = PROJECT_ARTICLE_UPDATE_DIR / f"{run_dir.name}.tex"
+    latest_md = PROJECT_ARTICLE_UPDATE_DIR / "latest.md"
+    latest_tex = PROJECT_ARTICLE_UPDATE_DIR / "latest.tex"
+    write_text(run_md, markdown)
+    write_text(run_tex, latex)
+    write_text(archive_md, markdown)
+    write_text(archive_tex, latex)
+    write_text(latest_md, markdown)
+    write_text(latest_tex, latex)
+    add_manifest("qbe.py project-article-update", run_md, "article", f"Wrote project article update for {task_id} cycle {cycle}")
+    add_manifest("qbe.py project-article-update", archive_md, "article", f"Archived project article update for {task_id} cycle {cycle}")
+    external_written: list[Path] = []
+    target_root = article_root or PROJECT_ARTICLE_ROOT
+    if target_root and (target_root / "main.tex").exists():
+        ext_tex = target_root / "appendix" / "generated_cycle_status.tex"
+        ext_md = target_root / "appendix" / "generated_cycle_status.md"
+        write_text(ext_tex, latex)
+        write_text(ext_md, project_article_public_markdown(markdown))
+        add_manifest("qbe.py project-article-update", ext_tex, "article", "Mirrored latest generated status into the ABEIS technical report")
+        external_written.extend([ext_tex, ext_md])
+    return run_md, archive_md, run_tex, archive_tex, external_written
+
+
+def cmd_project_article_update(args: argparse.Namespace) -> int:
+    if args.run_id == "latest":
+        run_dir = latest_run_dir()
+        if run_dir is None:
+            raise SystemExit("no run directories found")
+    else:
+        run_dir = ROOT / "runs" / args.run_id
+    if not run_dir.exists():
+        raise SystemExit(f"run directory not found: {display_path(run_dir)}")
+    article_root = Path(args.article_root).expanduser() if args.article_root else None
+    run_md, archive_md, run_tex, archive_tex, external = write_project_article_update(
+        args.id,
+        args.cycle,
+        run_dir,
+        article_root,
+    )
+    print(f"article-update: {display_path(run_md)}")
+    print(f"article-update-archive: {display_path(archive_md)}")
+    print(f"article-update-tex: {display_path(run_tex)}")
+    print(f"article-update-tex-archive: {display_path(archive_tex)}")
+    for path in external:
+        print(f"article-update-external: {display_path(path)}")
+    return 0
 
 
 def cmd_cycle_zh_summary(args: argparse.Namespace) -> int:
@@ -2273,6 +2567,18 @@ Human-facing correspondence rule:
   batch, middle may update the appendix map, project-paper outline, and figure
   todo list so the compiled proof work can later be folded into the main
   article efficiently.
+- Article-update cadence: every executed sleep-run cycle writes
+  `runs/<run-id>/article_update.md`, `runs/<run-id>/article_update.tex`, and
+  archives them under `paper-notes/project-paper/cycle-updates/`.  If the
+  ABEIS technical-report directory exists, the latest generated status is also
+  mirrored to `appendix/generated_cycle_status.tex`.  Middle owns this
+  article-facing bridge; reviewer checks it for honest claims.
+- Use `.agents/skills/qbe-project-paper-update/SKILL.md` when updating the
+  technical report, generated cycle status appendix, article outline, figure
+  todo list, or evidence discussion.  This is adapted from the ARIS paper
+  writing loop but constrained by Lean truth: no claim becomes a paper claim
+  unless it is backed by a Lean declaration, source/citation row, or explicit
+  proof obligation.
 - For mathematical prose, use `.agents/skills/qbe-math-writing/SKILL.md`.
   Keep definitions before theorem statements, justify nontrivial claims, use
   precise citations, and avoid duplicated definitions.
@@ -2407,6 +2713,11 @@ Maintain:
    source anchors, Lean status, and dependent proof blocks.
 7. Proof-DAG frontier: root theorem, dependency edges, active leaves, stale
    leaves, owner lower-agent profile, human proof-map location, and Lean gate.
+8. Project-article update bridge: after each active cycle, ensure the generated
+   article update packet reflects the Lean status, proof-DAG frontier, and
+   safe manuscript edits.  If stable claims should move into the ABEIS
+   technical report, update only the relevant section or generated status
+   appendix and cite the supporting artifact.
 
 You are responsible for two-way translation.  Before lower work, translate the
 paper's relevant LaTeX theorem/equation/circuit fragment into a Lean-facing
@@ -2483,6 +2794,13 @@ proof-DAG/reuse table whenever the same local argument would otherwise be
 proved several times.  Lower packets should target one block interface at a
 time.
 
+Use `.agents/skills/qbe-project-paper-update/SKILL.md` at the end of a
+multi-hour active cycle or when `article_update.md` reports a manuscript-facing
+delta.  The update is concise and evidence-preserving: record what changed in
+Lean/proof memory, which report section can safely change, and which stronger
+claims remain forbidden until Lean and proof notes support them.  Do not spend
+lower-agent proof time on article polish.
+
 When two lower agents are available, middle must split the packet deliberately:
 lower 1 receives a natural-language DAG/proof packet with source anchors,
 definitions, dependencies, and the next Lean lemma; lower 2 receives a Lean
@@ -2545,6 +2863,11 @@ Look for:
     agents attack the root theorem directly without ready dependencies, ignore
     the natural-language proof plan, duplicate a stale route, or fail to name
     the active leaf being discharged.
+15. Missing project-paper update.  Reviewer should check that the generated
+    `article_update.md/.tex` packet is truthful, that the technical-report
+    status appendix does not overclaim, and that any manual report edits are
+    backed by Lean declarations, source anchors, cited-result rows, or explicit
+    obligations.
 
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention and any added assumption or
@@ -2942,8 +3265,12 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             write_trial_summary(load_jsonl(TRIAL_LOG))
             if code != 0:
                 write_cycle_zh_summary(args.id, cycle, run_dir)
+                if not args.skip_article_update:
+                    write_project_article_update(args.id, cycle, run_dir)
                 return code
         write_cycle_zh_summary(args.id, cycle, run_dir)
+        if not args.skip_article_update:
+            write_project_article_update(args.id, cycle, run_dir)
         if final_code != 0:
             return final_code
     return final_code
@@ -3051,6 +3378,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_zh_summary.add_argument("--run-id", default="latest")
     p_zh_summary.set_defaults(func=cmd_cycle_zh_summary)
 
+    p_article_update = sub.add_parser("project-article-update", help="write an article-facing cycle update packet")
+    p_article_update.add_argument("id")
+    p_article_update.add_argument("--cycle", type=int, default=1)
+    p_article_update.add_argument("--run-id", default="latest")
+    p_article_update.add_argument(
+        "--article-root",
+        default="",
+        help="optional technical-report root; defaults to QBE_PROJECT_ARTICLE_ROOT or ../Auto_Proof_Papers/ABEIS",
+    )
+    p_article_update.set_defaults(func=cmd_project_article_update)
+
     p_trial = sub.add_parser("trial-log", help="append one trial record to runs/trials.jsonl")
     p_trial.add_argument("--task", required=True)
     p_trial.add_argument("--role", choices=AGENT_ROLES, required=True)
@@ -3134,6 +3472,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--parallel-lower",
         action="store_true",
         help="execute lower-agent prompts concurrently after upper/middle complete",
+    )
+    p_sleep.add_argument(
+        "--skip-article-update",
+        action="store_true",
+        help="do not write project-paper article_update artifacts after each executed cycle",
     )
     p_sleep.set_defaults(func=cmd_sleep_run)
 
