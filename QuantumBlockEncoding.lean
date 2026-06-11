@@ -7,5 +7,7 @@ import QuantumBlockEncoding.Examples.RobinHeat
 import QuantumBlockEncoding.GHL2025
 import QuantumBlockEncoding.Literature
 import QuantumBlockEncoding.OpenProblems
+import QuantumBlockEncoding.Papers.GHL2025
 import QuantumBlockEncoding.Resources
 import QuantumBlockEncoding.RobinMatrix
+import QuantumBlockEncoding.TechnicalLemmas

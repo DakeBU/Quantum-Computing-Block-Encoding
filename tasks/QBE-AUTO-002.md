@@ -1265,3 +1265,763 @@ Success for this 6h active-time batch means one of:
 Do not spend lower-agent time on prose polish.  Article updates are a
 middle/reviewer end-of-cycle synchronization task and must only report what the
 Lean gates, proof notes, source anchors, and explicit obligations support.
+
+## Current Run Directive: 2026-06-10 Full-Unitary Fold Frontier And Generated Frontier Repair
+
+This directive supersedes the branch-sum leaf packet for the next lower proof
+attempt.  The bridge
+`oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_iff_unitaryEntryFold_n3`
+is compiled, so the direct branch-sum wrapper is no longer the implementation
+target.  The active local theorem is the full signal-zero unitary-entry fold:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+The equivalent backend-expansion endpoint remains:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+through:
+
+```lean
+oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3
+```
+
+The prepared clean-entry bridge
+`oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_iff_preparedCleanEntry_n3`
+is useful only under the existing $H_W^{(\kappa)}$ clean-column contract; it
+does not prove the fold or promote any external primitive.
+
+Next lower work:
+
+1. Lower 1 reuses
+   `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md`
+   and adds only a narrow addendum if the selected theorem name changes.
+2. Lower 2 edits only `QuantumBlockEncoding/RobinMatrix.lean` and proves the
+   `FullUnitaryFold` equation displayed above or the equivalent
+   backend-expansion statement.
+3. A strictly smaller named leaf is acceptable only if it directly feeds the
+   full-unitary fold, for example an uncast active-entry fold lemma or a
+   seven-slot support, vanish, or cancellation lemma.
+4. Retire the branch-sum wrapper, conditional feeders, source-prepared
+   clean-entry alias, arbitrary-`H` entry theorem, H-free `evalWith` route,
+   column-`0` diagnostics, raw `Coeff` constructor equalities, and rediscovery
+   of compiled bridges as lower targets.
+5. The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+   `lake build Tests`.
+
+Middle must repair generated frontier extraction so the Chinese cycle summary,
+project article update, and ABEIS generated appendix name `unitary_fold_leaf`
+as open and do not reprint branch-sum checklist text as the current proof-DAG
+frontier.  The generated Chinese audit page may mention local TeX line ranges;
+the public ABEIS report and generated appendix must use theorem, equation,
+figure, citation, and Lean declaration names rather than local source-line
+anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Current Run Directive: 2026-06-10 Post-Slot-One Evaluated Remaining-Slots Frontier
+
+This directive supersedes the post-remaining-slots support packet for the next
+lower proof attempt.  The active-side target is unchanged, but the latest Lean
+evidence now includes the full evaluated slot-`1` backend branch vanish theorem:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3
+```
+
+This theorem is compiled support only.  It retires slot `1` as the next smaller
+lower target.  It does not prove `ActiveUncastToPreparedEntry`,
+`SourcePreparedEntry`, `FullUnitaryFold`, backend expansion, the one-term Robin
+theorem, or any oracle, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+block-correctness, or final-extraction flag.
+
+Compiled support to reuse:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast active `[0,0]` entry against the cached prepared entry; retired as a lower target |
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
+| `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | compiled active column-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | compiled backend slot-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3` | compiled slot-`1` dagger-after-SWAP support mismatch; retired because full slot-`1` evaluated vanish is now compiled |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3` | compiled full slot-`1` evaluated branch vanish; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3` | compiled dagger-after-SWAP support mismatch for backend slots `3`, `4`, `5`, and `6`; support-only, retired as a lower target |
+
+The preferred local theorem remains the active-side uncast entry equality:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+The next preferred smaller leaf is a true evaluated branch
+vanish/cancellation theorem for the remaining backend slots `3`, `4`, `5`, or
+`6`.  Prefer slot `3` first:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3
+```
+
+or a strict full-index `48` diagonal-factor lemma that directly feeds that
+slot-`3` theorem.  Do not spend lower work on another support-only lemma for
+slots `3`, `4`, `5`, or `6`.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Reuse `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md`; append only a narrow Section 21 postscript for the remaining-slots evaluated frontier.  The postscript must retire slot `1`, classify slots `3` through `6` support as support-only, and name the slot-`3` evaluated vanish theorem or full-index `48` feeder. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the active-side uncast entry equality, the full slot-`3` evaluated branch vanish/cancellation theorem, or one strict full-index `48` diagonal-factor lemma feeding the slot-`3` theorem directly.  Do not change oracle contracts, theorem hypotheses, normalizers, gate labels, or the paper circuit. |
+
+Retired lower targets remain retired: direct branch-sum wrapper,
+source-prepared clean-entry alias, H-free `evalWith` route, raw `Coeff`
+constructor route, compiled bridge rediscovery,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`,
+slot-`0` evaluated vanish support,
+`oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3`,
+and `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+Middle must keep the Chinese summary, project article update, and ABEIS
+generated appendix honest: the first-case-study one-term theorem is still
+open; this packet adds only one full slot-`1` evaluated vanish feeder and
+moves the proof-DAG frontier to remaining-slots evaluated vanish/cancellation
+or the active-side uncast equality.  The public ABEIS report must use theorem,
+equation, figure, citation, and Lean declaration names rather than local
+source-line anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Previous Run Directive: 2026-06-10 Post-Remaining-Slots Support Frontier
+
+This directive is the final override for the next lower proof attempt.  The
+active-side target remains:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+Compiled support now includes:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast active `[0,0]` entry against the cached prepared entry; retired as a lower target |
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
+| `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | compiled active column-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | compiled backend slot-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3` | compiled slot-`1` dagger-after-SWAP support mismatch; support-only, not a full slot-`1` vanish theorem |
+| `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3` | compiled dagger-after-SWAP support mismatch for backend slots `3`, `4`, `5`, and `6`; support-only, retired as a lower target |
+
+The next preferred smaller leaf is a full slot-`1` evaluated branch
+vanish/cancellation theorem, preferably:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3
+```
+
+or a strict diagonal-factor lemma at full index `16` that directly feeds that
+slot-`1` theorem.  Lower 2 may instead prove the full active-side uncast entry
+equality.  Lower 2 edits only `QuantumBlockEncoding/RobinMatrix.lean` and must
+not change oracle contracts, theorem hypotheses, normalizers, gate labels, or
+the paper circuit.
+
+Retired lower targets remain retired: direct branch-sum wrapper,
+source-prepared clean-entry alias, H-free `evalWith` route, raw `Coeff`
+constructor route, compiled bridge rediscovery, prepared-side backend fold,
+active wrapper/cast removal, all-slot fold expansion, slot-`0` vanish support,
+slot-`1` support-only theorem, and the slots `3` through `6` support-only
+theorem.  Do not spend lower work on another support-only lemma for slots `3`,
+`4`, `5`, or `6`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Previous Run Directive: 2026-06-10 Post-Remaining-Slots Support Frontier
+
+This directive supersedes the post-slot-one support frontier for the next
+lower proof attempt.  The active-side target is unchanged, but the latest
+compiled support now includes the dagger-after-SWAP zero support for backend
+slots `3`, `4`, `5`, and `6`.  Those slot-support facts are retired as lower
+targets.
+
+Compiled support to reuse:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast active `[0,0]` entry against the cached prepared entry; retired as a lower target |
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
+| `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | compiled active column-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | compiled backend slot-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3` | compiled slot-`1` dagger-after-SWAP support mismatch; support-only, not a full slot-`1` vanish theorem |
+| `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3` | compiled dagger-after-SWAP support mismatch for backend slots `3`, `4`, `5`, and `6`; support-only, retired as a lower target |
+
+The next preferred local theorem remains the active-side uncast entry equality:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+The next preferred smaller leaf is a full slot-`1` evaluated branch
+vanish/cancellation theorem, preferably:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3
+```
+
+or a strict diagonal-factor lemma at full index `16` that directly feeds that
+slot-`1` backend contribution vanish theorem.  Do not spend lower work on
+another support-only lemma for slots `3`, `4`, `5`, or `6`.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Reuse `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md`; add only a narrow postscript if the selected slot-`1` theorem name changes. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the active-side uncast entry equality, the full slot-`1` evaluated branch vanish/cancellation theorem, or one strict diagonal-factor lemma feeding that slot-`1` theorem directly.  Do not change oracle contracts, theorem hypotheses, normalizers, gate labels, or the paper circuit. |
+
+Retired lower targets remain retired: direct branch-sum wrapper,
+source-prepared clean-entry alias, H-free `evalWith` route, raw `Coeff`
+constructor route, compiled bridge rediscovery,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`,
+slot-`0` evaluated vanish support,
+`oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3`, and
+`oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+Middle must keep the Chinese summary, project article update, and ABEIS
+generated appendix honest: the first-case-study one-term theorem is still
+open; this packet adds only support routing for the finite active-side
+prepared-entry frontier.  The public ABEIS report must use theorem, equation,
+figure, citation, and Lean declaration names rather than local source-line
+anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Previous Run Directive: 2026-06-10 Post-Slot-One Support Frontier
+
+This directive supersedes the active-side uncast entry packet for the next
+lower proof attempt.  The active-side target is unchanged, but the latest
+compiled support now includes the slot-`0` evaluated vanish facts and the
+slot-`1` dagger-after-SWAP support mismatch.  These support facts are retired
+as lower targets.
+
+Compiled support to reuse:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast seven-gate active `[0,0]` entry against the cached prepared entry; retired as a lower target |
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
+| `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | compiled active column-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | compiled backend slot-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3` | compiled slot-`1` dagger-after-SWAP support mismatch; support-only, not a full slot-`1` vanish theorem |
+
+The next preferred local theorem remains the active-side uncast entry equality:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+An acceptable smaller leaf is one strict support, vanish, or cancellation lemma
+that feeds this equality directly.  Slot `1` still needs a full branch-level
+vanish or cancellation theorem if lower work chooses that route; otherwise
+target slots `3`, `4`, `5`, or `6`.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Reuse `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md` and the middle packet `proof-attempts/QBE-AUTO-002/active-side-slot-one-support-middle-packet-20260610-1448.md`; add only a narrow postscript if the selected slot or theorem name changes. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the active-side uncast entry equality, a full slot-`1` vanish/cancellation theorem, or one strict support, vanish, or cancellation lemma for slots `3`, `4`, `5`, or `6` feeding it directly.  Do not change oracle contracts, theorem hypotheses, normalizers, gate labels, or the paper circuit. |
+
+Retired lower targets remain retired: direct branch-sum wrapper,
+source-prepared clean-entry alias, H-free `evalWith` route, raw `Coeff`
+constructor route, compiled bridge rediscovery,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`,
+slot-`0` evaluated vanish support, and
+`oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+Middle must keep the Chinese summary, project article update, and ABEIS
+generated appendix honest: the first-case-study one-term theorem is still
+open; this packet adds only support routing for the finite active-side
+prepared-entry frontier.  The public ABEIS report must use theorem, equation,
+figure, citation, and Lean declaration names rather than local source-line
+anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Previous Run Directive: 2026-06-10 Post-Slot-One Support Frontier
+
+This directive supersedes the active-side uncast entry packet for the next
+lower proof attempt.  The active-side target is unchanged, but the latest
+compiled support now includes the slot-`0` evaluated vanish facts and the
+slot-`1` dagger-after-SWAP support mismatch.  These support facts are retired
+as lower targets.
+
+Compiled support to reuse:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast seven-gate active `[0,0]` entry against the cached prepared entry; retired as a lower target |
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
+| `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | compiled active column-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | compiled backend slot-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3` | compiled slot-`1` dagger-after-SWAP support mismatch; support-only, not a full slot-`1` vanish theorem |
+
+The next preferred local theorem remains the active-side uncast entry equality:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+An acceptable smaller leaf is one strict support, vanish, or cancellation lemma
+that feeds this equality directly.  Slot `1` still needs a full branch-level
+vanish or cancellation theorem if lower work chooses that route; otherwise
+target slots `3`, `4`, `5`, or `6`.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Reuse `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md` and the middle packet `proof-attempts/QBE-AUTO-002/active-side-slot-one-support-middle-packet-20260610-1448.md`; add only a narrow postscript if the selected slot or theorem name changes. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the active-side uncast entry equality, a full slot-`1` vanish/cancellation theorem, or one strict support, vanish, or cancellation lemma for slots `3`, `4`, `5`, or `6` feeding it directly.  Do not change oracle contracts, theorem hypotheses, normalizers, gate labels, or the paper circuit. |
+
+Retired lower targets remain retired: direct branch-sum wrapper,
+source-prepared clean-entry alias, H-free `evalWith` route, raw `Coeff`
+constructor route, compiled bridge rediscovery,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`,
+slot-`0` evaluated vanish support, and
+`oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+Middle must keep the Chinese summary, project article update, and ABEIS
+generated appendix honest: the first-case-study one-term theorem is still
+open; this packet adds only support routing for the finite active-side
+prepared-entry frontier.  The public ABEIS report must use theorem, equation,
+figure, citation, and Lean declaration names rather than local source-line
+anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Current Run Sync: 2026-06-10 Slot-Zero Support Accepted
+
+This sync refines the active-side uncast entry frontier after the current
+lower pass.  Two strict support feeders are compiled:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | compiled; the active seven-gate column-`0` entry evaluates to zero; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | compiled; the slot-`0` backend branch contribution evaluates to zero; retired as a lower target |
+
+These feeders do not prove `ActiveUncastToPreparedEntry`,
+`SourcePreparedEntry`, `FullUnitaryFold`, backend expansion, or the one-term
+Robin theorem.  They also do not justify erasing sparse slots `1` through `6`.
+
+The next lower work remains the active-side equality
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+through the existing `HUniform`-visible route, or one strict support, vanish,
+or cancellation lemma feeding that equality directly.  Retire slot-`0` vanish,
+prepared-side backend fold, active wrapper/cast removal, all-slot fold
+expansion, raw `Coeff`, H-free `evalWith`, and bridge rediscovery as lower
+targets.
+
+Middle packet:
+`proof-attempts/QBE-AUTO-002/active-side-slot-zero-support-middle-packet-20260610-1420.md`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.  No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU,
+block-projection, normalized-equality, product-to-coefficient,
+circuit-unitarity, block-correctness, final-extraction, oracle, or external
+primitive flag is promoted by this sync.
+
+## Previous Run Directive: 2026-06-10 Active-Side Uncast Entry Frontier
+
+This directive supersedes the source-prepared active/prepared entry packet for
+the next lower proof attempt.  The prepared-side backend normal form and the
+active wrapper/cast removal bridge are now compiled support.  They are not the
+next lower targets.
+
+Compiled support to reuse:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast seven-gate active `[0,0]` entry against the cached prepared entry; retired as a lower target |
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
+
+The next preferred local theorem is the active-side uncast entry equality:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+An acceptable smaller leaf is one support, vanish, or cancellation lemma that
+feeds this equality directly.  If the equality is proved, recover
+`SourcePreparedEntry` through
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`,
+then recover `FullUnitaryFold` through
+`oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3`
+under the existing `HUniform` contract.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Add only a narrow postscript to `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md`.  It should classify the new active-side uncast equality, state which seven-gate product terms are expected to survive or vanish, and keep `HUniform` contract-only. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the active-side uncast entry equality above, or one strictly smaller support, vanish, or cancellation lemma feeding it directly.  Do not change oracle contracts, theorem hypotheses, normalizers, gate labels, or the paper circuit. |
+
+Retired lower targets remain retired: direct branch-sum wrapper, source-prepared
+clean-entry alias, H-free `evalWith` route, column-`0` diagnostics, raw
+`Coeff` constructor route, compiled bridge rediscovery,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3`,
+and `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+Middle must keep the Chinese summary, project article update, and ABEIS
+generated appendix honest: the first-case-study one-term theorem is still
+open; this packet adds only active-side source-prepared routing for the finite
+projection/backend fold.  The public ABEIS report must use theorem, equation,
+figure, citation, and Lean declaration names rather than local source-line
+anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Previous Run Directive: 2026-06-10 Post-Slot-One Support Frontier
+
+This directive supersedes the active-side uncast entry packet for the next
+lower proof attempt.  The active-side target is unchanged, but the latest
+compiled support now includes slot-`0` evaluated vanish and the slot-`1`
+dagger-after-SWAP support mismatch.  These support facts are retired as lower
+targets.
+
+Compiled support to reuse:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast active `[0,0]` entry against the cached prepared entry; retired as a lower target |
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
+| `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | compiled active column-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | compiled backend slot-`0` evaluated vanish support; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3` | compiled slot-`1` dagger-after-SWAP support mismatch; support-only, not a full slot-`1` vanish theorem |
+
+The next preferred local theorem remains:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+An acceptable smaller leaf is a full slot-`1` vanish/cancellation theorem, or
+one strict support, vanish, or cancellation lemma for slots `3`, `4`, `5`, or
+`6` that feeds this equality directly.
+
+Lower 2 must edit only `QuantumBlockEncoding/RobinMatrix.lean`.  It must not
+change oracle contracts, theorem hypotheses, normalizers, gate labels, or the
+paper circuit.  Retired lower targets remain retired: branch-sum wrappers,
+source-prepared clean-entry aliases, H-free `evalWith`, raw `Coeff`, compiled
+bridge rediscovery, prepared-side backend fold, active wrapper/cast removal,
+slot-`0` support, and
+`oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Previous Run Directive: 2026-06-10 Expanded-All-Slots Feeder Accepted And Next Fold Reduction
+
+This directive supersedes the full-unitary fold frontier packet for the next
+lower proof attempt.  The active theorem is unchanged:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+The current run has accepted two strict support feeders:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3` | compiled; maps sparse slot `s : Fin 7` to full basis value `s.val * 16`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3` | compiled; expands the backend branch fold into the seven weighted diagonal entries at full-basis values `0`, `16`, `32`, `48`, `64`, `80`, and `96`; retired as a lower target |
+
+Neither feeder proves `FullUnitaryFold`, the backend-expansion endpoint, or the
+one-term Robin theorem.  The known diagnostic sorries in
+`QuantumBlockEncoding/RobinMatrix.lean` remain.
+
+Next lower work:
+
+1. Lower 1 should reuse
+   `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md`
+   and add only a narrow addendum for `oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`
+   if the selected theorem name changes.
+2. Lower 2 edits only `QuantumBlockEncoding/RobinMatrix.lean`.
+3. Lower 2 should prove exactly one of:
+   - the expanded uncast active-entry equality exposed by
+     `oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3`,
+     using `oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`
+     as the backend RHS normal form; or
+   - `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`
+     under the already explicit
+     `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`
+     route.
+4. The equivalent endpoint remains
+   `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`
+   through `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`.
+5. Retire the direct branch-sum wrapper, source-prepared clean-entry alias,
+   H-free `evalWith` route, column-`0` diagnostics, raw `Coeff` constructor
+   route, compiled bridge rediscovery, `oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
+   and `oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3` as lower targets.
+6. The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+   `lake build Tests`.
+
+Middle must keep the Chinese summary, project article update, and ABEIS
+generated appendix honest: the first-case-study one-term theorem is still
+open; this batch adds only support feeders and proof-DAG routing for the
+finite projection/backend fold.  The public ABEIS report must use theorem,
+equation, figure, citation, and Lean declaration names rather than local
+source-line anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Previous Run Directive: 2026-06-10 Source-Prepared Active/Prepared Entry Frontier
+
+This directive supersedes the expanded-all-slots feeder packet for the next
+lower proof attempt.  The theorem-facing transcript guard, explicit
+`U_indic^dagger` role, prepared `H_W^{(\kappa)}` route, full-index value lemma,
+and expanded seven-slot backend fold are compiled.  They are support memory,
+not the next lower target.
+
+The next preferred local theorem is the source-prepared active/prepared entry
+equality under the existing clean-column contract:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+with the external contract kept explicit as:
+
+```lean
+oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+```
+
+The dependent root remains:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+and it is reached through:
+
+```lean
+oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3
+```
+
+Equivalent recovery through
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`
+or the expanded uncast equality exposed by
+`oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3`
+is allowed only if the proof returns through the prepared-entry or
+`FullUnitaryFold` bridges.  The expanded uncast/backend fold route is not the
+preferred lower target.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Reuse `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md` and add only a narrow source-prepared addendum if the selected theorem statement changes.  The addendum must say how `hUniform`, the prepared clean entry, and the active signal-zero entry feed the dependent fold. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the active/prepared entry equality under `hUniform`, or one strictly smaller prepared-circuit semantics lemma that feeds it directly.  Do not change oracle contracts, theorem hypotheses, normalizers, or the paper circuit. |
+
+Retired lower targets remain retired: direct branch-sum wrapper,
+source-prepared clean-entry alias, H-free `evalWith` route, column-`0`
+diagnostics, raw `Coeff` constructor route, compiled bridge rediscovery,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3`, and
+`oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+Middle must keep the Chinese summary, project article update, and ABEIS
+generated appendix honest: the first-case-study one-term theorem is still
+open; this batch adds only source-prepared routing and support feeders for the
+finite projection/backend fold.  The public ABEIS report must use theorem,
+equation, figure, citation, and Lean declaration names rather than local
+source-line anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.
+
+## Previous Run Directive: 2026-06-10 Active-Side Uncast Entry Frontier
+
+This directive supersedes the source-prepared active/prepared entry packet for
+the next lower proof attempt.  The prepared-side backend normal form and the
+active wrapper/cast removal bridge are now compiled support.  They are not the
+next lower targets.
+
+Compiled support to reuse:
+
+| Declaration | Status |
+|---|---|
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
+| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast seven-gate active `[0,0]` entry against the cached prepared entry; retired as a lower target |
+| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
+
+The next preferred local theorem is the active-side uncast entry equality:
+
+```lean
+(evalGateMatrices
+  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+  oneTermRobinGamma3BoundaryPrefixRow0_n3
+  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+```
+
+An acceptable smaller leaf is one support, vanish, or cancellation lemma that
+feeds this equality directly.  If the equality is proved, recover
+`SourcePreparedEntry` through
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`,
+then recover `FullUnitaryFold` through
+`oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3`
+under the existing `HUniform` contract.
+
+Lower-agent split:
+
+| Lower profile | Required behavior |
+|---|---|
+| lower 1: natural-language proof architect | Add only a narrow postscript to `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md`.  It should classify the new active-side uncast equality, state which seven-gate product terms are expected to survive or vanish, and keep `HUniform` contract-only. |
+| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the active-side uncast entry equality above, or one strictly smaller support, vanish, or cancellation lemma feeding it directly.  Do not change oracle contracts, theorem hypotheses, normalizers, gate labels, or the paper circuit. |
+
+Retired lower targets remain retired: direct branch-sum wrapper,
+source-prepared clean-entry alias, H-free `evalWith` route, column-`0`
+diagnostics, raw `Coeff` constructor route, compiled bridge rediscovery,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3`,
+`oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`,
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3`,
+and `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`.
+
+The gate remains `python3 tools/qbe.py check`, then `lake build`, then
+`lake build Tests`.
+
+Middle must keep the Chinese summary, project article update, and ABEIS
+generated appendix honest: the first-case-study one-term theorem is still
+open; this packet adds only active-side source-prepared routing for the finite
+projection/backend fold.  The public ABEIS report must use theorem, equation,
+figure, citation, and Lean declaration names rather than local source-line
+anchors.
+
+No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, oracle, or external primitive flag is
+promoted by this packet.

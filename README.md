@@ -123,6 +123,7 @@ QBE's automation stack is layered:
 | Exploratory search | [EoH][eoh] | Candidate populations for new circuit/oracle constructions, only after a Lean-checkable target is fixed. |
 | Lean harness control | [LeanMarathon][leanmarathon] | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
 | Proof diagnostics | [MathCode][mathcode] | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
+| Typed verifier feedback | [QASM-Eval][qasm-eval] and [Qiskit QuantumKatas][qiskit-quantumkatas] | Parser/build/finite-matrix/test-style fields used as pre-Lean diagnostics, never as theorem closure. |
 
 The [LeanMarathon][leanmarathon]-like control layer does not replace the
 [Learning Beyond Gradients][lbg]-like hierarchy or the [EoH][eoh]-like
@@ -131,6 +132,22 @@ agents to work from a current proof blueprint and by retiring stale dynamic
 leaves before lower agents spend more proof-search tokens.
 
 ![Three-layer agent stack](docs/assets/agent_stack.svg)
+
+### ABEIS Memory and Proof-Feedback Loop
+
+```mermaid
+flowchart TD
+  A["paper source / external lemma sources"] --> B["upper planning"]
+  B --> C["middle memory + Lean/Markdown/LaTeX correspondence"]
+  C --> D["lower natural-language proof architect"]
+  C --> E["lower Lean implementation worker"]
+  D --> F["Lean gate / finite matrix feedback / verifier feedback"]
+  E --> F
+  F --> G["trial logs"]
+  G --> H["retrieval index + todos"]
+  H --> I["Chinese summary + technical report appendix"]
+  I --> B
+```
 
 The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
 
@@ -162,6 +179,14 @@ placeholder scans, hidden-axiom checks, proof statistics, theorem-store-like
 reuse memory, and fast feedback loops.  In QBE these diagnostics are advisory;
 the final acceptance gate remains the Lean theorem plus the explicit
 block-encoding proof obligations.
+For typed attempt feedback, agents use
+`.agents/skills/qbe-verifier-feedback/SKILL.md`, influenced by non-Lean
+quantum-circuit evaluation systems such as [QASM-Eval][qasm-eval] and
+[Qiskit QuantumKatas][qiskit-quantumkatas].  QBE records fields such as
+`source_correspondence_ok`, `finite_matrix_ok`, `block_entry_ok`,
+`error_class`, and `next_route` in `runs/trials.jsonl` and
+`runs/trials_summary.csv`.  These fields help upper and middle agents choose
+the next leaf; they do not prove a block encoding.
 For long-horizon Lean control, agents use
 `.agents/skills/qbe-proof-blueprint/SKILL.md`, influenced by similar
 blueprint/DAG-control patterns in
@@ -441,6 +466,9 @@ math-writing skill.
 | `python3 tools/qbe.py blueprint-status ...` | Write the current blueprint control status as Markdown and JSON. |
 | `python3 tools/qbe.py write-context-pack ...` | Write a compact long-run context pack. |
 | `python3 tools/qbe.py efficiency-report ...` | Summarize recent long-run efficiency, quota/build signals, and next controls. |
+| `python3 tools/qbe.py cycle-zh-summary ...` | Write the Chinese source-aligned cycle audit page. |
+| `python3 tools/qbe.py memory-refresh ...` | Refresh `memory_digest.md`, cycle todo, GHL todo, technical-lemma todo, and the compact retrieval JSON. |
+| `python3 tools/qbe.py project-article-update ...` | Write the article-facing cycle packet and mirror generated status into the technical report. |
 | `python3 tools/qbe.py new-open-problem ...` | Draft an open problem proposal. |
 | `python3 tools/qbe.py agent-brief ...` | Generate an agent context packet. |
 | `python3 tools/qbe.py run-cycle ...` | Create one multi-agent prompt deck. |
@@ -568,6 +596,11 @@ task boundary explicit.
 | Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer constructions that reduce formal gaps. | Faithful paper-reproduction mode should not use evolutionary mutation to change the paper construction; [EoH][eoh]-like exploration belongs only after the acceptance predicate is explicit. |
 | Lean proof diagnostics and theorem reuse | [MathCode][mathcode] provides Lean proof-analysis tools, theorem-store-like reuse, persistent REPL/LSP feedback, tree-of-subgoals proving, multi-planner search, and skills/plugins. | QBE uses a similar idea for reviewer scans, proof-attempt memory, reusable projection/gate lemmas, and future focused-check tooling. | [MathCode][mathcode] is a general math formalization agent; QBE is a domain-specific system for quantum oracle/block-encoding circuit matrices. QBE must not accept stored assumptions or proof-search scores as theorem closure. |
 | Blueprint and dynamic proof-DAG control | [LeanMarathon][leanmarathon] and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | [LeanMarathon][leanmarathon] targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |
+| Quantum circuit generation evaluation taxonomy | [Generative AI for Quantum Circuits and Quantum Code][quantum-circuit-review] organizes circuit-generation systems by artifact type, training regime, and syntax/semantic/hardware evaluation layers. | QBE uses the taxonomy to separate pre-Lean diagnostics from proof closure: syntax and finite simulation are useful search signals, while Lean theorems remain the final certificate. | The review concerns generated QASM/Qiskit/circuit artifacts; QBE targets block-encoding/oracle theorem reproduction and construction. |
+| Tool-server and hierarchical reward feedback | [QUASAR][quasar] uses tool-augmented quantum simulators and hierarchical reward feedback for quantum assembly generation. | QBE borrows the idea of structured search signals for lower agents, but translates them into proof-DAG leaves, verifier-feedback fields, and rejected-route memory. | [QUASAR][quasar] optimizes generated circuit programs; QBE cannot treat reward as proof. |
+| Typed verifier fields | [QASM-Eval][qasm-eval] validates OpenQASM-3 programs with syntax, state, and timeline checks. | QBE mirrors this as `verifier-feedback/` fields such as `lean_parse_ok`, `finite_matrix_ok`, `block_entry_ok`, `ancilla_cleanup_ok`, and `next_route`. | QASM-Eval validates executable programs; QBE uses such checks only before Lean theorem closure. |
+| Kata-style deterministic tests | [Qiskit QuantumKatas][qiskit-quantumkatas] adapts [Microsoft QuantumKatas][microsoft-quantumkatas] into deterministic LLM evaluation tasks. | QBE treats this as a model for future `BlockEncodingKatas`: small deterministic circuit/oracle lemmas that teach agents and humans before full paper reproduction. | Kata tests are excellent pedagogy and regression checks, but they do not replace source-paper block-encoding proof obligations. |
+| Natural-language idea to tool-executable loop | [AI-Mandel][ai-mandel] turns literature-derived quantum-physics ideas into tool-executable configurations. | QBE keeps a natural-language proof architect lower agent that translates source proofs into dependency DAGs before the Lean implementation worker attacks one leaf. | AI-Mandel targets executable physics designs; QBE targets Lean-checked oracle/block-encoding certificates. |
 
 The analogy is:
 
@@ -638,6 +671,18 @@ proof.  QBE records those dependencies under
 faithful-paper runs and exploratory-construction runs can reuse the same
 audited memory.
 
+The current retrieval layer separates three memories:
+
+- [`research-wiki/paper-contributions/GHL2025/`](research-wiki/paper-contributions/GHL2025/)
+  records source-paper objects and whether each item is GHL's own contribution
+  or an external primitive used by the proof.
+- [`research-wiki/technical-lemmas/`](research-wiki/technical-lemmas/)
+  records external lemmas, standard quantum primitives, classical facts, and
+  reusable proof contracts with a fixed card schema.
+- [`research-wiki/retrieval-index/`](research-wiki/retrieval-index/)
+  stores compact JSON packets read by upper and middle agents before the next
+  6h cycle, so they do not need to replay the full long log.
+
 The important distinction is status:
 
 - `paper-cited`: the source paper invokes the result.
@@ -702,5 +747,15 @@ every small lemma.
 [eoh]: https://github.com/FeiLiu36/EoH
 [leanmarathon]: https://github.com/YuanheZ/LeanMarathon
 [mathcode]: https://github.com/math-ai-org/mathcode
+[quantum-circuit-review]: https://arxiv.org/abs/2603.16216
+[quasar]: https://github.com/benyucong/QUASAR
+[quasar-paper]: https://arxiv.org/abs/2510.00967
+[qasm-eval]: https://github.com/fuzhenxiao/QASM-Eval
+[qasm-eval-paper]: https://arxiv.org/abs/2605.30358
+[qiskit-quantumkatas]: https://github.com/qiskit-community/Qiskit-QuantumKatas
+[qiskit-quantumkatas-paper]: https://arxiv.org/abs/2605.27210
+[microsoft-quantumkatas]: https://github.com/microsoft/QuantumKatas
+[ai-mandel]: https://github.com/artificial-scientist-lab/ai-mandel
+[ai-mandel-paper]: https://arxiv.org/abs/2511.11752
 [lean-quantuminfo]: https://github.com/Timeroot/Lean-QuantumInfo
 [optimizationproblems]: https://github.com/teorth/optimizationproblems

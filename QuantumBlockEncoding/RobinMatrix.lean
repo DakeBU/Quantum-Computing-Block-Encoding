@@ -8152,6 +8152,41 @@ theorem
         rw [oneTermRobinGamma3BoundaryPrefixRow97Col0_eval_n3 env]
 
 /--
+The evaluated active column-`0` seven-gate entry vanishes.
+
+The compiled two-path expansion factors through the two function-oracle entries
+`O_f[12,96]` and `O_f[12,97]`, and both are zero for the focused finite witness.
+This is a strict vanish feeder for the active uncast entry comparison; it does
+not prove the active/prepared equality or promote any semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3) = 0 := by
+  rw [oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3 env]
+  have h96 :
+      GHL2025.functionOraclePaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        (⟨12, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+        (⟨96, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) = Coeff.rat 0 := by
+    native_decide
+  have h97 :
+      GHL2025.functionOraclePaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        (⟨12, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+        (⟨97, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) = Coeff.rat 0 := by
+    native_decide
+  simp [h96, h97]
+  exact Rat.zero_add 0
+
+/--
 The active seven-gate `[0,0]` expansion is a slot-`0` diagnostic, not the
 displayed gamma3 slot-`2` branch.
 
@@ -15324,6 +15359,138 @@ theorem oneTermRobinGamma3BoundaryBackendBranchFullIndex_slotZero_n3 :
   native_decide
 
 /--
+The all-slot backend branch-index map embeds sparse slot `s` at full basis
+index `16 * s`.
+
+This is the reusable index feeder for future slot support or cancellation
+lemmas in the full-unitary fold; it does not prove any summand vanishes and
+does not assert the branch-sum theorem.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3
+    (s : Fin 7) :
+    (oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s).val =
+      s.val * 16 := by
+  unfold oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+  have hclog : clog2 7 = 3 := by native_decide
+  simp [oneTermRobinGamma3PaperBasisIndex, oneTermParameters, hclog,
+    Nat.shiftLeft_eq]
+
+/--
+The seven backend sparse slots occupy distinct full-basis indices.
+
+This is a support feeder for the full-unitary fold frontier: later slot-by-slot
+support or cancellation lemmas can use it to rule out accidental branch-index
+collisions.  It does not prove that any summand vanishes or that the fold equals
+the signal-zero unitary entry.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3 :
+    Function.Injective oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 := by
+  intro s t hidx
+  apply Fin.ext
+  have hval := congrArg Fin.val hidx
+  rw [oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3 s,
+    oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3 t] at hval
+  omega
+
+/--
+Slot-`1` clean path support mismatch for the backend diagonal branch.
+
+The backend slot maps to full index `16`; the forward sparse-access image is
+`112`, and SWAP sends that image to `14`.  The transpose-style dagger row for
+the original slot-`1` index has zero entry at column `14`, so the clean
+slot-`1` path cannot close the diagonal branch through the dagger.  This is a
+strict support feeder for a future slot-`1` vanish proof; it proves no full
+fold equality and promotes no semantic flag.
+-/
+theorem oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3 :
+    let p := oneTermRobinGamma3BoundaryPrefixParameters_n3
+    let slotOne :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨1, by native_decide⟩
+    let afterForward : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨112, by native_decide⟩
+    let afterSwap : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨14, by native_decide⟩
+    slotOne.val = 16 ∧
+      GHL2025.bandedSparseAccessPaperImage p slotOne.val =
+        afterForward.val ∧
+      GHL2025.swapOracleImage p afterForward.val = afterSwap.val ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p slotOne afterSwap =
+        Coeff.rat 0 := by
+  native_decide
+
+/--
+Remaining clean-path support mismatches for backend slots `3` through `6`.
+
+Each backend slot maps to its full-basis diagonal index `16 * s`.  After the
+forward sparse-access gate and SWAP, the post-SWAP column is not in the
+transpose-style dagger support for that same original slot index.  This is a
+strict support feeder for future slot-vanish/cancellation proofs; it does not
+prove a full branch vanish, the active/prepared equality, or any oracle,
+projection, LCU, block-correctness, or final-extraction flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3 :
+    let p := oneTermRobinGamma3BoundaryPrefixParameters_n3
+    let slotThree :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨3, by native_decide⟩
+    let slotFour :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨4, by native_decide⟩
+    let slotFive :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨5, by native_decide⟩
+    let slotSix :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨6, by native_decide⟩
+    let afterForwardThree : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨16, by native_decide⟩
+    let afterForwardFour : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨32, by native_decide⟩
+    let afterForwardFive : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨80, by native_decide⟩
+    let afterForwardSix : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨48, by native_decide⟩
+    let afterSwapThree : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨2, by native_decide⟩
+    let afterSwapFour : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨4, by native_decide⟩
+    let afterSwapFive : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨10, by native_decide⟩
+    let afterSwapSix : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨6, by native_decide⟩
+    slotThree.val = 48 ∧
+      GHL2025.bandedSparseAccessPaperImage p slotThree.val =
+        afterForwardThree.val ∧
+      GHL2025.swapOracleImage p afterForwardThree.val =
+        afterSwapThree.val ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p slotThree afterSwapThree =
+        Coeff.rat 0 ∧
+      slotFour.val = 64 ∧
+      GHL2025.bandedSparseAccessPaperImage p slotFour.val =
+        afterForwardFour.val ∧
+      GHL2025.swapOracleImage p afterForwardFour.val =
+        afterSwapFour.val ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p slotFour afterSwapFour =
+        Coeff.rat 0 ∧
+      slotFive.val = 80 ∧
+      GHL2025.bandedSparseAccessPaperImage p slotFive.val =
+        afterForwardFive.val ∧
+      GHL2025.swapOracleImage p afterForwardFive.val =
+        afterSwapFive.val ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p slotFive afterSwapFive =
+        Coeff.rat 0 ∧
+      slotSix.val = 96 ∧
+      GHL2025.bandedSparseAccessPaperImage p slotSix.val =
+        afterForwardSix.val ∧
+      GHL2025.swapOracleImage p afterForwardSix.val =
+        afterSwapSix.val ∧
+      GHL2025.bandedSparseAccessPaperDaggerMatrix p slotSix afterSwapSix =
+        Coeff.rat 0 := by
+  native_decide
+
+/--
 The selected contribution in the generic branch target is the already compiled
 slot-`2` seven-gate summand formula.
 
@@ -15580,6 +15747,367 @@ theorem oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3 :
     oneTermRobinGamma3BoundaryBackendBranchFullIndex_slotZero_n3.2]
 
 /--
+The slot-`0` backend branch contribution vanishes after coefficient evaluation.
+
+This packages the active column-`0` vanish fact with the backend summand
+formula.  It is a local support lemma for the active/prepared entry frontier;
+the all-slot fold and active/prepared equality remain open.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨0, by native_decide⟩) = 0 := by
+  rw [oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3]
+  simp [Coeff.evalWith, oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3
+    env]
+
+private abbrev oneTermRobinGamma3BoundaryPrefixRow16_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨16, by native_decide⟩
+
+private abbrev oneTermRobinGamma3BoundaryPrefixRow17_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨17, by native_decide⟩
+
+private abbrev oneTermRobinGamma3BoundaryPrefixRow112_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨112, by native_decide⟩
+
+private abbrev oneTermRobinGamma3BoundaryPrefixRow113_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨113, by native_decide⟩
+
+private abbrev oneTermRobinGamma3BoundaryPrefixRow14_n3 :
+    Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+  ⟨14, by native_decide⟩
+
+private theorem oneTermRobinGamma3BoundaryIndicatorCol16_support_n3
+    (q : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : q ≠ oneTermRobinGamma3BoundaryPrefixRow16_n3) :
+    GHL2025.indicatorOracleMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        q oneTermRobinGamma3BoundaryPrefixRow16_n3 = Coeff.rat 0 := by
+  unfold GHL2025.indicatorOracleMatrix
+  change
+    (if q.val =
+      (16 ^^^
+        ((if 2 ≤ ((16 >>> 1) &&&
+                ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ∧
+              ((16 >>> 1) &&&
+                  ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ≤
+                gridSize oneTermRobinGamma3BoundaryPrefixParameters_n3.n - 3 then
+            (1 : Nat) else 0) <<<
+          GHL2025.robinIndicatorBitPosition
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)) then
+        Coeff.rat 1 else Coeff.rat 0) = Coeff.rat 0
+  have hExpected :
+      (16 ^^^
+        ((if 2 ≤ ((16 >>> 1) &&&
+                ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ∧
+              ((16 >>> 1) &&&
+                  ((1 <<< oneTermRobinGamma3BoundaryPrefixParameters_n3.n) - 1)) ≤
+                gridSize oneTermRobinGamma3BoundaryPrefixParameters_n3.n - 3 then
+            (1 : Nat) else 0) <<<
+          GHL2025.robinIndicatorBitPosition
+            oneTermRobinGamma3BoundaryPrefixParameters_n3)) = 16 := by
+    native_decide
+  rw [hExpected]
+  have hval : q.val ≠ 16 := by
+    intro hv
+    exact h (Fin.eq_of_val_eq hv)
+  simp [hval]
+
+private theorem oneTermRobinGamma3BoundaryODTSCol16_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i ≠ oneTermRobinGamma3BoundaryPrefixRow16_n3) :
+    GHL2025.sparseAmplitudeOracleDTRotationMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow16_n3 = Coeff.rat 0 := by
+  unfold GHL2025.sparseAmplitudeOracleDTRotationMatrix
+  have hIndicator :
+      (GHL2025.sparseAmplitudeOracleDTPaperRegisters
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 16).indicatorBit = 0 := by
+    native_decide
+  simp [hIndicator]
+  have hval : i.val ≠ 16 := by
+    intro hv
+    exact h (Fin.eq_of_val_eq hv)
+  simp [hval]
+
+private theorem oneTermRobinGamma3BoundaryDUPrefixCol16Support_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi : i ≠ oneTermRobinGamma3BoundaryPrefixRow16_n3) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixRow16_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryDUPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q = oneTermRobinGamma3BoundaryPrefixRow16_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryODTSCol16_support_n3 i hi]
+  · simp [oneTermRobinGamma3BoundaryIndicatorCol16_support_n3 q hq]
+
+private theorem oneTermRobinGamma3BoundaryRyCol16_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi16 : i ≠ oneTermRobinGamma3BoundaryPrefixRow16_n3)
+    (hi17 : i ≠ oneTermRobinGamma3BoundaryPrefixRow17_n3) :
+    GHL2025.boundaryRotationMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow16_n3 = Coeff.rat 0 := by
+  unfold GHL2025.boundaryRotationMatrix
+  have hInd :
+      ((oneTermRobinGamma3BoundaryPrefixRow16_n3.val >>>
+          GHL2025.robinIndicatorBitPosition
+            oneTermRobinGamma3BoundaryPrefixParameters_n3) &&& 1) ≠ 1 := by
+    native_decide
+  simp only [if_neg hInd]
+  by_cases hshift :
+      i.val >>> 1 ≠ oneTermRobinGamma3BoundaryPrefixRow16_n3.val >>> 1
+  · simp only [if_pos hshift]
+  · simp only [if_neg hshift] at *
+    have hval : i.val = 16 ∨ i.val = 17 := by omega
+    cases hval with
+    | inl hv => exact absurd (Fin.eq_of_val_eq hv) hi16
+    | inr hv => exact absurd (Fin.eq_of_val_eq hv) hi17
+
+private theorem oneTermRobinGamma3BoundaryRDUPrefixCol16Support_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi16 : i ≠ oneTermRobinGamma3BoundaryPrefixRow16_n3)
+    (hi17 : i ≠ oneTermRobinGamma3BoundaryPrefixRow17_n3) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixRow16_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q = oneTermRobinGamma3BoundaryPrefixRow16_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryRyCol16_support_n3 i hi16 hi17]
+  · simp [oneTermRobinGamma3BoundaryDUPrefixCol16Support_n3 env q hq]
+
+private theorem oneTermRobinGamma3BoundaryODBSCol16_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i.val ≠ 112) :
+    GHL2025.bandedSparseAccessPaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow16_n3 = Coeff.rat 0 := by
+  unfold GHL2025.bandedSparseAccessPaperMatrix
+  have himage :
+      GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 16 = 112 := by
+    native_decide
+  rw [himage]
+  simp [h]
+
+private theorem oneTermRobinGamma3BoundaryODBSCol17_support_n3
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (h : i.val ≠ 113) :
+    GHL2025.bandedSparseAccessPaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        i oneTermRobinGamma3BoundaryPrefixRow17_n3 = Coeff.rat 0 := by
+  unfold GHL2025.bandedSparseAccessPaperMatrix
+  have himage :
+      GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 17 = 113 := by
+    native_decide
+  rw [himage]
+  simp [h]
+
+private theorem oneTermRobinGamma3BoundaryPrefixCol16Support_n3
+    (env : String → Rat)
+    (i : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hi112 : i.val ≠ 112)
+    (hi113 : i.val ≠ 113) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryPrefixMatrix_n3
+        i oneTermRobinGamma3BoundaryPrefixRow16_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryPrefixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq16 : q = oneTermRobinGamma3BoundaryPrefixRow16_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundaryODBSCol16_support_n3 i hi112]
+  · by_cases hq17 : q = oneTermRobinGamma3BoundaryPrefixRow17_n3
+    · subst q
+      simp [oneTermRobinGamma3BoundaryODBSCol17_support_n3 i hi113]
+    · simp [oneTermRobinGamma3BoundaryRDUPrefixCol16Support_n3 env q hq16 hq17]
+
+private theorem oneTermRobinGamma3BoundarySwapRow112_support_n3
+    (k : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hk : k.val ≠ 14) :
+    GHL2025.swapOracleMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        oneTermRobinGamma3BoundaryPrefixRow112_n3 k = Coeff.rat 0 := by
+  rw [GHL2025.swapOracleMatrix_eq_image]
+  have hnot :
+      ¬ oneTermRobinGamma3BoundaryPrefixRow112_n3.val =
+        GHL2025.swapOracleImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val := by
+    intro himage
+    have hkval : k.val =
+        GHL2025.swapOracleImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          (GHL2025.swapOracleImage
+            oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val) :=
+      (GHL2025.swapOracleImage_self_inverse
+        oneTermRobinGamma3BoundaryPrefixParameters_n3 k.val).symm
+    rw [← himage] at hkval
+    have hrow112 :
+        GHL2025.swapOracleImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          oneTermRobinGamma3BoundaryPrefixRow112_n3.val = 14 := by
+      native_decide
+    rw [hrow112] at hkval
+    exact hk hkval
+  simp [hnot]
+
+private theorem oneTermRobinGamma3BoundaryOfSwapRow112Col112_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow112_n3
+        oneTermRobinGamma3BoundaryPrefixRow112_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q.val = 14
+  · have hqeq : q = oneTermRobinGamma3BoundaryPrefixRow14_n3 :=
+      Fin.eq_of_val_eq hq
+    subst q
+    have hOf :
+        GHL2025.functionOraclePaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow14_n3
+            oneTermRobinGamma3BoundaryPrefixRow112_n3 = Coeff.rat 0 := by
+      native_decide
+    simp [hOf]
+  · simp [oneTermRobinGamma3BoundarySwapRow112_support_n3 q hq]
+
+private theorem oneTermRobinGamma3BoundaryOfSwapRow112Col113_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow112_n3
+        oneTermRobinGamma3BoundaryPrefixRow113_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundaryOfSwapMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q.val = 14
+  · have hqeq : q = oneTermRobinGamma3BoundaryPrefixRow14_n3 :=
+      Fin.eq_of_val_eq hq
+    subst q
+    have hOf :
+        GHL2025.functionOraclePaperMatrix
+            oneTermRobinGamma3BoundaryPrefixParameters_n3
+            oneTermRobinGamma3BoundaryPrefixRow14_n3
+            oneTermRobinGamma3BoundaryPrefixRow113_n3 = Coeff.rat 0 := by
+      native_decide
+    simp [hOf]
+  · simp [oneTermRobinGamma3BoundarySwapRow112_support_n3 q hq]
+
+private theorem oneTermRobinGamma3BoundaryDaggerRow16_support_n3
+    (k : Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+    (hk : k.val ≠ 112) :
+    GHL2025.bandedSparseAccessPaperDaggerMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        oneTermRobinGamma3BoundaryPrefixRow16_n3 k = Coeff.rat 0 := by
+  rw [GHL2025.bandedSparseAccessPaperDaggerMatrix_eq_image]
+  have himage :
+      GHL2025.bandedSparseAccessPaperImage
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        oneTermRobinGamma3BoundaryPrefixRow16_n3.val = 112 := by
+    native_decide
+  have hnot :
+      ¬ k.val =
+        GHL2025.bandedSparseAccessPaperImage
+          oneTermRobinGamma3BoundaryPrefixParameters_n3
+          oneTermRobinGamma3BoundaryPrefixRow16_n3.val := by
+    intro hkImage
+    have hkval : k.val = 112 := by simpa [himage] using hkImage
+    exact hk hkval
+  simp [hnot]
+
+private theorem oneTermRobinGamma3BoundarySuffixRow16Col112_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySuffixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow16_n3
+        oneTermRobinGamma3BoundaryPrefixRow112_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundarySuffixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q.val = 112
+  · have hqeq : q = oneTermRobinGamma3BoundaryPrefixRow112_n3 :=
+      Fin.eq_of_val_eq hq
+    subst q
+    simp [oneTermRobinGamma3BoundaryOfSwapRow112Col112_zero_n3 env]
+  · simp [oneTermRobinGamma3BoundaryDaggerRow16_support_n3 q hq]
+
+private theorem oneTermRobinGamma3BoundarySuffixRow16Col113_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySuffixMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow16_n3
+        oneTermRobinGamma3BoundaryPrefixRow113_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundarySuffixMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq : q.val = 112
+  · have hqeq : q = oneTermRobinGamma3BoundaryPrefixRow112_n3 :=
+      Fin.eq_of_val_eq hq
+    subst q
+    simp [oneTermRobinGamma3BoundaryOfSwapRow112Col113_zero_n3 env]
+  · simp [oneTermRobinGamma3BoundaryDaggerRow16_support_n3 q hq]
+
+private theorem oneTermRobinGamma3BoundarySevenGateSlotOneEval_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow16_n3
+        oneTermRobinGamma3BoundaryPrefixRow16_n3) = 0 := by
+  unfold oneTermRobinGamma3BoundarySevenGateMatrix_n3
+  apply Matrix.evalWith_mul_eq_zero_of_all_paths_zero
+  intro q
+  by_cases hq112 : q = oneTermRobinGamma3BoundaryPrefixRow112_n3
+  · subst q
+    simp [oneTermRobinGamma3BoundarySuffixRow16Col112_zero_n3 env]
+  · by_cases hq113 : q = oneTermRobinGamma3BoundaryPrefixRow113_n3
+    · subst q
+      simp [oneTermRobinGamma3BoundarySuffixRow16Col113_zero_n3 env]
+    · have hq112_val : q.val ≠ 112 := by
+        intro hval
+        exact hq112 (Fin.eq_of_val_eq hval)
+      have hq113_val : q.val ≠ 113 := by
+        intro hval
+        exact hq113 (Fin.eq_of_val_eq hval)
+      simp [oneTermRobinGamma3BoundaryPrefixCol16Support_n3
+        env q hq112_val hq113_val]
+
+/--
+The slot-`1` backend branch contribution vanishes after coefficient evaluation.
+
+This is the first full slot-`1` vanish feeder: the all-slot backend summand
+formula maps slot `1` to the full diagonal entry `[16,16]`, and the finite
+seven-gate matrix entry is zero for the focused backend.  It does not prove the
+active/prepared equality, the full unitary fold, or any oracle/block flag.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨1, by native_decide⟩) = 0 := by
+  unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+  rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        ⟨1, by native_decide⟩ =
+      oneTermRobinGamma3BoundaryPrefixRow16_n3 from by
+    native_decide]
+  simp [oneTermRobinGamma3BoundarySevenGateSlotOneEval_zero_n3 env]
+
+/--
 Concrete seven-summand expansion of the backend branch fold.
 
 This is the smaller compiled obstruction for the current backend-expansion
@@ -15610,6 +16138,152 @@ theorem oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3 :
         oneTermRobinGamma3BoundaryBackendBranchContribution_n3
           ⟨6, by native_decide⟩) := by
   rfl
+
+/--
+Concrete seven-slot expansion of the backend branch fold.
+
+This support lemma exposes every sparse-slot summand as the corresponding
+full-basis diagonal entry of `oneTermRobinGamma3BoundarySevenGateMatrix_n3`,
+weighted by the sparse-register projection amplitude.  It does not prove that
+the active signal-zero entry equals this fold.
+-/
+theorem oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3 :
+    blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 =
+      (((((((0 +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            (⟨16, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            (⟨16, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3
+            oneTermRobinGamma3BoundaryPrefixSource_n3)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            (⟨48, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            (⟨48, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            (⟨64, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            (⟨64, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            (⟨80, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            (⟨80, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+            (⟨96, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+            (⟨96, by native_decide⟩ :
+              Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) := by
+  rw [oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3]
+  rw [show oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨1, by native_decide⟩ =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          (⟨16, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨16, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor from by
+    unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+          ⟨1, by native_decide⟩ =
+        (⟨16, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) from by
+      native_decide]]
+  rw [show oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨2, by native_decide⟩ =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3
+          oneTermRobinGamma3BoundaryPrefixSource_n3)
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor from by
+    unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+          ⟨2, by native_decide⟩ =
+        oneTermRobinGamma3BoundaryPrefixSource_n3 from by
+      native_decide]]
+  rw [show oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨3, by native_decide⟩ =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          (⟨48, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨48, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor from by
+    unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+          ⟨3, by native_decide⟩ =
+        (⟨48, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) from by
+      native_decide]]
+  rw [show oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨4, by native_decide⟩ =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          (⟨64, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨64, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor from by
+    unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+          ⟨4, by native_decide⟩ =
+        (⟨64, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) from by
+      native_decide]]
+  rw [show oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨5, by native_decide⟩ =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          (⟨80, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨80, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor from by
+    unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+          ⟨5, by native_decide⟩ =
+        (⟨80, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) from by
+      native_decide]]
+  rw [show oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+        ⟨6, by native_decide⟩ =
+      Coeff.mul
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          (⟨96, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+          (⟨96, by native_decide⟩ :
+            Fin oneTermRobinGamma3BoundaryPrefixDim_n3))
+        oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor from by
+    unfold oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+    rw [show oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+          ⟨6, by native_decide⟩ =
+        (⟨96, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) from by
+      native_decide]]
 
 /--
 Backend branch-contribution target using the all-slot summand formula.
@@ -16561,6 +17235,25 @@ theorem
         oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalBlockEntry := hobs
     _ = oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry :=
         oneTermRobinGamma3BoundaryProjectionSummationTarget_blockEntry_eq_unitary_n3
+
+/--
+The current branch-sum leaf is equivalent to the already isolated full-unitary
+entry fold.
+
+This is only a signal-entry bridge: the seven-slot fold endpoint itself remains
+the open finite projection/backend theorem.
+-/
+theorem
+    oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_iff_unitaryEntryFold_n3 :
+    (oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+      oneTermRobinGamma3BoundaryBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  rw [←
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_signalEntry_eq_unitary_n3]
+  rfl
 
 /--
 The backend-expansion target can be stated on the full signal-zero unitary
@@ -18499,6 +19192,100 @@ theorem
   rfl
 
 /--
+The generic active/prepared entry target is exactly the prepared clean-entry
+equality for the source-prepared sparse-register sandwich matrix.
+
+This is a feeder bridge for the current source-prepared frontier: a future
+proof of the displayed clean-entry equality closes
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H`, but this theorem
+does not prove that equality or promote the prepared-composition flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3
+    (H : Matrix 8 8 Coeff) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 := by
+  simpa [oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3] using
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_interfaceStatement_n3 H
+
+/--
+Prepared side of the active/prepared entry target after the all-slot
+`H_W^(kappa)` clean-column contract is applied.
+
+This is a strict feeder for the source-prepared route: it identifies only the
+prepared cached entry with the backend branch fold.  The active signal-zero
+entry equality remains the open finite composition theorem.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry =
+      blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  dsimp [oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3]
+  calc
+    oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3 =
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H :=
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H
+    _ = blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+        oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3
+          H hUniform
+
+/--
+Active side of the active/prepared entry target after removing only the
+block-extraction wrapper and dimension cast.
+
+This is a strict feeder for the remaining finite composition theorem: it
+identifies the cached active entry with the uncast seven-gate product entry,
+while leaving the prepared side untouched.  It does not prove the backend fold
+or promote any semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3
+    (H : Matrix 8 8 Coeff) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement ↔
+      (evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3 =
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry := by
+  unfold PreparedCircuitEntryTarget.entryEqualityStatement
+  have hactive :
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).activeEntry =
+        (evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3 := by
+    dsimp [oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3]
+    calc
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+          (((cast (by rw [oneTermRobinCircuitDimCompat 3])
+            (evalGateMatrices
+              (GHL2025.oneTermRobinGateMatrixPlaceholders
+                (oneTermParameters 3)))) :
+            Matrix oneTermRobinGamma3BoundaryActiveFullDim_n3
+              oneTermRobinGamma3BoundaryActiveFullDim_n3 Coeff)
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3
+            oneTermRobinGamma3BoundaryActiveCleanIndex_n3) :=
+          oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3
+      _ = (evalGateMatrices
+            (GHL2025.oneTermRobinGateMatrixPlaceholders
+              (oneTermParameters 3)))
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3 := by
+          rw [Matrix.cast_square_apply (oneTermRobinCircuitDimCompat 3)]
+          congr <;> apply Fin.ext <;> native_decide
+  rw [hactive]
+
+/--
 Smallest prepared-composition field target now missing from the matrix backend.
 
 The previous packet produced the prepared sparse-register matrix and proved its
@@ -18827,6 +19614,26 @@ theorem
     H hUniform).1 hEntry
 
 /--
+Conditional feeder from the source-prepared active entry route to the current
+branch-sum leaf.  This is not theorem closure: it only transports a future
+active/prepared entry proof through the compiled backend-expansion bridge.
+-/
+theorem
+    oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_of_activePreparedEntryTarget_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hEntry :
+      (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement) :
+    oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+      oneTermRobinGamma3BoundaryBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
+  exact
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3.1
+      (oneTermRobinGamma3BoundaryBackendExpansionStatement_of_activePreparedEntryTarget_n3
+        H hUniform hEntry)
+
+/--
 The active/prepared composition-field packet has exactly the same remaining
 content as the backend-expansion target.
 
@@ -18884,6 +19691,31 @@ theorem
     exact
       oneTermRobinGamma3BoundaryUnitaryEntryFold_of_preparedCircuitSparseMatrix_n3
         H hUniform hPrepared
+
+/--
+Source-prepared form of the current branch-sum leaf.
+
+Under the existing clean-column contract for `H_W^(kappa)`, the focused
+branch-sum equality is exactly the prepared clean-entry equality.  This only
+repackages the remaining proof obligation; it does not prove the finite
+projection/backend fold or promote any theorem-facing semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_iff_preparedCleanEntry_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+      oneTermRobinGamma3BoundaryBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3) ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 := by
+  exact
+    oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_iff_unitaryEntryFold_n3.trans
+      (oneTermRobinGamma3BoundaryUnitaryEntryFold_iff_preparedCleanEntry_n3
+        H hUniform)
 
 /--
 Evaluation-level active/prepared composite entry statement.

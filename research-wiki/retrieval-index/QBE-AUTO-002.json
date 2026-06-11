@@ -1,0 +1,757 @@
+{
+  "cycle": 0,
+  "dynamic_leaf_queue": [
+    "active_uncast_to_prepared_entry_leaf: uncast seven-gate `[0,0]` entry equals the cached prepared entry; status: preferred active mathematical leaf; Lean: target `ActiveUncastToPreparedEntry`",
+    "remaining_slots_evaluated_vanish_leaf: full evaluated backend branch contribution vanishes or cancels for one remaining slot, starting with slot `3`; status: next preferred smaller leaf; Lean: proposed `oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3 env`, or a full-index `48` diagonal-factor lemma feeding it",
+    "source_prepared_entry_leaf: `SourcePreparedEntry`: active/prepared entry equality; status: open dependent target; Lean: `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`; `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`",
+    "slot1_full_vanish_leaf: full evaluated slot-`1` backend branch contribution is zero; status: compiled support feeder; retired; Lean: `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3 env`",
+    "unitary_fold_leaf: `FullUnitaryFold`: full signal-zero unitary entry equals the seven-slot backend branch fold; status: open dependent root; Lean: target `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`",
+    "backend_expansion_leaf: backend-expansion statement for the branch-contribution target; status: open equivalent endpoint; Lean: `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`; `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`",
+    "slot0_vanish_support: active column-`0` and backend slot-`0` contributions evaluate to zero; status: compiled support; retired; Lean: `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3`; `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3`",
+    "remaining_slots_support_mismatch: backend slots `3`, `4`, `5`, and `6` have zero dagger-after-SWAP support on the clean path; status: compiled support; retired; not full branch vanish; Lean: `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3`",
+    "prepared_entry_backend_fold_feeder: cached prepared entry equals the backend branch fold under `HUniform`; status: compiled feeder; retired; Lean: `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3 H hUniform`",
+    "active_wrapper_cast_feeder: `SourcePreparedEntry` is equivalent to the uncast active `[0,0]` equality; status: compiled feeder; retired; Lean: `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3 H`"
+  ],
+  "generated": "2026-06-11 18:35:42",
+  "ghl_contributions": [
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Banded-sparse-access oracle",
+      "english_status": "External contract/backlog: reversible extension, injectivity, dagger cleanup, and unitarity remain obligations.",
+      "id": "ODBS",
+      "is_ghl_contribution": false,
+      "lean_decl": "bandedSparseAccessPaperMatrix / oracle contract helpers",
+      "lean_status": "contract/backlog：已有 active matrix helper；完整 reversible extension、injectivity、dagger cleanup、unitarity 仍是义务。",
+      "main_tex_anchor": "main.tex:784-798",
+      "meaning": "定义 $\\hat{O}^{BS}_D |0\\rangle^{n-l}|s\\rangle^l|i\\rangle^n = |r_{si}\\rangle^n|i\\rangle^n$，并从前一篇 PDE block-encoding 论文引用资源估计。",
+      "open": true,
+      "paper_object": "Lemma 1，banded-sparse-access oracle"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Sparse-amplitude oracle for a banded-sparse matrix",
+      "english_status": "External contract/backlog: normalizer, square-root/arccos semantics, and two-by-two unitarity remain obligations.",
+      "id": "ODTS",
+      "is_ghl_contribution": false,
+      "lean_decl": "sparse-amplitude oracle contract helpers",
+      "lean_status": "contract/backlog：已有 route record 和 matrix interface；nonzero normalizer、sqrt/arccos 语义、二乘二 unitarity 仍是义务。",
+      "main_tex_anchor": "main.tex:822-843",
+      "meaning": "clean branch 的振幅是 $D^{(s)}/\\mathcal{N}_D$，另有 square-root complement 分支保证 unitary。",
+      "open": true,
+      "paper_object": "Lemma 3，banded-sparse matrix 的 sparse-amplitude oracle"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Amplitude oracle for a piecewise-polynomial coefficient",
+      "english_status": "External contract/backlog: clean branch is typed; bounds, orthogonality, cleanup, and unitary completion remain obligations.",
+      "id": "Of",
+      "is_ghl_contribution": false,
+      "lean_decl": "coefficient-amplitude oracle contract helpers",
+      "lean_status": "contract/backlog：clean branch 已 typed；$\\mathcal{N}_f$ bound、orthogonality、workspace cleanup、unitary completion 还没有完整形式化。",
+      "main_tex_anchor": "main.tex:870-908",
+      "meaning": "$\\hat{O}_f$ 的 clean branch 振幅是 $f(x_j)/\\mathcal{N}_f$，其余分支与 clean workspace 正交。",
+      "open": true,
+      "paper_object": "Theorem 5，piece-wise polynomial function 的 amplitude oracle"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Uniform sparse-register preparation",
+      "english_status": "The theorem-facing route uses a clean-column contract; full gate-level state-preparation remains external/backlog.",
+      "id": "HW",
+      "is_ghl_contribution": false,
+      "lean_decl": "HUniform / prepared sparse-register contract",
+      "lean_status": "theorem-facing route 已部分使用 clean-column contract；完整 gate-level state-preparation proof 仍是 external/backlog。",
+      "main_tex_anchor": "main.tex:948-955",
+      "meaning": "制备 $\\kappa^{-1/2}\\sum_{s=0}^{\\kappa-1}|s\\rangle$，并引用 Shukla--Vedula 的实现复杂度。",
+      "open": true,
+      "paper_object": "Sparse-register preparation $H_W^{(\\kappa)}$"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "Indicator unitary",
+      "english_status": "Permutation and self-inverse helpers compile, but this is not yet the final block-encoding proof.",
+      "id": "Uindic",
+      "is_ghl_contribution": true,
+      "lean_decl": "indicator permutation and dagger slot helpers",
+      "lean_status": "permutation/self-inverse helper 和 theorem-facing $U_{\\mathrm{indic}}^\\dagger$ slot 已编译；它仍不是 final block-encoding proof。",
+      "main_tex_anchor": "main.tex:1056-1066",
+      "meaning": "在 bulk region $K_1 \\le i \\le K_2$ 精确把 indicator qubit 置为 $|1\\rangle$。",
+      "open": true,
+      "paper_object": "Indicator unitary $U_{\\mathrm{indic}}(K_1,K_2)$"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Boundary-controlled Ry rotations",
+      "english_status": "Active convention audit: the Ry angle convention must be source-supported before closing the boundary amplitude proof.",
+      "id": "RyBoundary",
+      "is_ghl_contribution": true,
+      "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+      "lean_status": "active convention audit：标准 $R_y(\\theta)$ 给出 $\\cos(\\theta/2)$，所以 Lean route 必须确认论文 convention，或使用有原文/引用支持的 doubled-angle 修正。",
+      "main_tex_anchor": "main.tex:1077-1085",
+      "meaning": "boundary entry 逐元素处理，角度写作 $\\theta_j^s = \\arccos(D_j^{(s)}/\\mathcal{N}_D)$。",
+      "open": true,
+      "paper_object": "Boundary controlled $R_y$ rotations"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "One-term Robin block-encoding theorem",
+      "english_status": "Main active target: the theorem-facing Lean statement is not closed.",
+      "id": "RobinTheorem",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobin... theorem-facing statements",
+      "lean_status": "main active target：还没有作为 theorem-facing Lean statement 闭合。",
+      "main_tex_anchor": "main.tex:1098-1109",
+      "meaning": "声称构造 $A_k$ 的 $(\\mathcal{N}_D\\mathcal{N}_f\\kappa, \\lceil\\log_2 n\\rceil + \\lceil\\log_2 G_f\\rceil + \\lceil\\log_2\\kappa\\rceil + 4, 0)$ block-encoding。",
+      "open": true,
+      "paper_object": "Theorem：one-term Robin block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Gamma wavefunction slices and coefficient product",
+      "english_status": "Several finite boundary lemmas exist; the final projection/product bridge is still open.",
+      "id": "GammaSlices",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobinGamma3... entry/product lemmas",
+      "lean_status": "finite boundary instance 已有不少 route lemma；最终 projection/product bridge 还没闭合。",
+      "main_tex_anchor": "main.tex:1111-1119",
+      "meaning": "给出 $\\gamma_1,\\gamma_2,\\gamma_3$ wavefunction slices；关键 clean branch 是 $\\gamma_3$ 系数 $f(x_i)D_i^{(s)}/(\\mathcal{N}_D\\mathcal{N}_f\\kappa)$。",
+      "open": true,
+      "paper_object": "Eq. ROBIN clarified"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Figure 4 Robin circuit transcript",
+      "english_status": "Transcript guard compiles for visible indicator dagger and H preparation; the active seven-gate backend remains a component.",
+      "id": "FigRobin",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobinGamma3... transcript/fold guards",
+      "lean_status": "theorem-facing transcript guard 已编译：显式 $U_{\\mathrm{indic}}^\\dagger$ 和两侧 $H_W$ prepared route 可见；active backend 七门列表仍是独立 H-free component。",
+      "main_tex_anchor": "main.tex:1122-1164",
+      "meaning": "指定完整 gate order：$H_W^{(\\kappa)}$、$U_{\\mathrm{indic}}$、$\\hat O^S_{D^T}$ 或 boundary $R_y$、$\\hat O^{BS}_{D^T}$、$U_{\\mathrm{indic}}^\\dagger$、$\\hat O_f$、SWAP、$(\\hat O_D^{BS})^\\dagger$、$(H_W^{(\\kappa)})^T$。",
+      "open": true,
+      "paper_object": "Fig. 1-term Robin circuit caption"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "One-dimensional Hamiltonian block encoding",
+      "english_status": "Deferred until the one-term Robin theorem closes.",
+      "id": "OneD",
+      "is_ghl_contribution": true,
+      "lean_decl": "planned LCU/Hamiltonian statements",
+      "lean_status": "one-term Robin 闭合之后再做；不是当前 active theorem blocker。",
+      "main_tex_anchor": "main.tex:1171-1278",
+      "meaning": "用 LCU 组合 $A_k$、$A_k^\\dagger$、$B$、$x_\\xi$ 来 block-encode $H$。",
+      "open": true,
+      "paper_object": "One-dimensional Hamiltonian block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "Multidimensional block encoding",
+      "english_status": "Planned; depends on one-term and LCU abstractions.",
+      "id": "MultiD",
+      "is_ghl_contribution": true,
+      "lean_decl": "planned multidimensional statements",
+      "lean_status": "planned；依赖 one-term 和 LCU abstractions。",
+      "main_tex_anchor": "main.tex:1596-1649",
+      "meaning": "把 1D 构造推广到 $A^{(d)}$、$B^{(d)}$ 和多维 oracle。",
+      "open": true,
+      "paper_object": "Multi-dimensional block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Hamiltonian simulation/QSVT application",
+      "english_status": "External theorem application; not part of the current gate-level Robin circuit closure.",
+      "id": "QSVT",
+      "is_ghl_contribution": false,
+      "lean_decl": "external QSVT simulation theorem application",
+      "lean_status": "external theorem application；不是当前 gate-level Robin circuit closure 的一部分。",
+      "main_tex_anchor": "main.tex:1676-1694",
+      "meaning": "通过引用 Gilyén et al. theorem，把 block-encoding 用于 Hamiltonian simulation。",
+      "open": true,
+      "paper_object": "Hamiltonian simulation/QSVT theorem"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Clean-block block-encoding definition",
+      "english_status": "Used as the semantic target; the final circuit entry/projection bridge remains open.",
+      "id": "BlockEncodingDef",
+      "is_ghl_contribution": false,
+      "lean_decl": "BlockEncoding semantic predicate",
+      "lean_status": "已作为 semantic target 使用；final one-term theorem 仍需把 circuit entry/projection 接到该定义。",
+      "main_tex_anchor": "main.tex:2027-2035",
+      "meaning": "定义所有 theorem statement 使用的 clean ancilla projection 和 approximation condition。",
+      "open": true,
+      "paper_object": "Block-encoding definition"
+    }
+  ],
+  "lean_sorries": [
+    "QuantumBlockEncoding/RobinMatrix.lean:22523:  sorry",
+    "QuantumBlockEncoding/RobinMatrix.lean:22561:  sorry"
+  ],
+  "mode": "faithfulPaper",
+  "next_lower_tasks": [
+    {
+      "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+      "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
+      "role": "lower-1-natural-language-proof-architect"
+    },
+    {
+      "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+      "must_write": "Lean declaration plus trial-log verifier-feedback fields",
+      "role": "lower-2-lean-implementation-worker"
+    }
+  ],
+  "open_external_technical_lemma_obligations": [
+    {
+      "dependencies": [
+        "sparse slot injectivity",
+        "reversible extension",
+        "finite matrix unitarity"
+      ],
+      "id": "tl-ghl-lemma1-banded-sparse-access",
+      "lean_decl": "bandedSparseAccessPaperMatrix / ODBS contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Keep as explicit external contract until the exact cited construction is formalized or imported as a theorem.",
+      "source": "GHL2025 main.tex:784-798; previous PDE block-encoding construction",
+      "statement": "Banded-sparse-access oracle maps sparse slot and row index to the corresponding column index, with a reversible/unitary completion and dagger cleanup.",
+      "tags": [
+        "GHL2025",
+        "oracle",
+        "sparse-access",
+        "external-primitive"
+      ],
+      "used_by": [
+        "GHL2025 Fig. 4",
+        "Robin boundary ODBS dagger cleanup"
+      ]
+    },
+    {
+      "dependencies": [
+        "nonzero normalizer",
+        "sqrt/arccos semantics",
+        "2x2 unitarity"
+      ],
+      "id": "tl-ghl-lemma3-sparse-amplitude",
+      "lean_decl": "ODTS sparse-amplitude contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Maintain the clean-branch contract and isolate any missing unitarity proof as an external technical lemma.",
+      "source": "GHL2025 main.tex:822-843",
+      "statement": "Sparse-amplitude oracle prepares clean-branch amplitudes D_j^(s)/N_D plus an orthogonal complement branch.",
+      "tags": [
+        "GHL2025",
+        "amplitude-oracle",
+        "normalizer"
+      ],
+      "used_by": [
+        "GHL2025 gamma_1/gamma_2/gamma_3 slices"
+      ]
+    },
+    {
+      "dependencies": [
+        "piecewise-polynomial evaluator",
+        "N_f bound",
+        "workspace orthogonality"
+      ],
+      "id": "tl-ghl-theorem5-piecewise-polynomial-of",
+      "lean_decl": "coefficient-amplitude oracle contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Use only as a named contract in the current theorem; do not invent stronger smoothness or range assumptions.",
+      "source": "GHL2025 main.tex:870-908",
+      "statement": "Coefficient oracle O_f prepares clean-branch amplitude f(x_j)/N_f for the piecewise-polynomial coefficient function.",
+      "tags": [
+        "GHL2025",
+        "coefficient-oracle",
+        "piecewise-polynomial"
+      ],
+      "used_by": [
+        "GHL2025 one-term Robin operator A_k = f(x) partial_x^m"
+      ]
+    },
+    {
+      "dependencies": [
+        "finite register size",
+        "uniform-column normalization",
+        "dagger cleanup"
+      ],
+      "id": "tl-uniform-sparse-register-preparation",
+      "lean_decl": "HUniform / prepared sparse-register contract",
+      "lean_status": "contract-only",
+      "next_action": "Keep as a theorem-facing contract unless the exact state-preparation proof is needed to close a resource theorem.",
+      "source": "GHL2025 main.tex:948-955; Shukla--Vedula 2024",
+      "statement": "H_W^(kappa) prepares the uniform sparse-register superposition kappa^(-1/2) sum_s |s>.",
+      "tags": [
+        "state-preparation",
+        "Hadamard",
+        "external-primitive"
+      ],
+      "used_by": [
+        "GHL2025 Fig. 4 left/right sparse-register preparation"
+      ]
+    },
+    {
+      "dependencies": [
+        "R_y convention audit",
+        "cos(theta/2) versus cos(theta)",
+        "source-supported angle translation"
+      ],
+      "id": "tl-ry-boundary-amplitude-convention",
+      "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+      "lean_status": "obligation",
+      "next_action": "Do not silently change the paper angle; prove the convention bridge or record the exact cited convention.",
+      "source": "GHL2025 main.tex:1077-1085",
+      "statement": "Boundary rotations must implement the paper's desired amplitude D_j^(s)/N_D under the correct R_y convention.",
+      "tags": [
+        "GHL2025",
+        "Ry",
+        "source-audit",
+        "boundary"
+      ],
+      "used_by": [
+        "GHL2025 boundary-entry branch",
+        "active gamma_3 coefficient leaf"
+      ]
+    },
+    {
+      "dependencies": [
+        "closed one-term/LCU block encodings",
+        "QSVT theorem import or contract"
+      ],
+      "id": "tl-qsvt-blockencoding-simulation",
+      "lean_decl": "planned external QSVT theorem application",
+      "lean_status": "paper-cited",
+      "next_action": "Defer until the one-term Robin theorem and LCU combination are closed.",
+      "source": "GHL2025 main.tex:1676-1694; Gilyen et al. 2019",
+      "statement": "A closed block encoding can be used as input to QSVT/Hamiltonian simulation complexity theorems.",
+      "tags": [
+        "QSVT",
+        "simulation",
+        "external-theorem"
+      ],
+      "used_by": [
+        "GHL2025 Hamiltonian simulation section"
+      ]
+    },
+    {
+      "dependencies": [
+        "projector index convention",
+        "normalizer alpha",
+        "approximation epsilon"
+      ],
+      "id": "tl-clean-block-definition",
+      "lean_decl": "BlockEncoding semantic predicate",
+      "lean_status": "contract-only",
+      "next_action": "Use as the final target predicate; ensure circuit entry lemmas are bridged to this semantic definition.",
+      "source": "GHL2025 main.tex:2027-2035",
+      "statement": "Block encoding is defined by a clean-ancilla projection whose top-left block approximates A/alpha.",
+      "tags": [
+        "block-encoding",
+        "definition",
+        "clean-ancilla"
+      ],
+      "used_by": [
+        "all theorem-facing block-encoding statements"
+      ]
+    }
+  ],
+  "open_ghl_contribution_obligations": [
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "Indicator unitary",
+      "english_status": "Permutation and self-inverse helpers compile, but this is not yet the final block-encoding proof.",
+      "id": "Uindic",
+      "is_ghl_contribution": true,
+      "lean_decl": "indicator permutation and dagger slot helpers",
+      "lean_status": "permutation/self-inverse helper 和 theorem-facing $U_{\\mathrm{indic}}^\\dagger$ slot 已编译；它仍不是 final block-encoding proof。",
+      "main_tex_anchor": "main.tex:1056-1066",
+      "meaning": "在 bulk region $K_1 \\le i \\le K_2$ 精确把 indicator qubit 置为 $|1\\rangle$。",
+      "open": true,
+      "paper_object": "Indicator unitary $U_{\\mathrm{indic}}(K_1,K_2)$"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Boundary-controlled Ry rotations",
+      "english_status": "Active convention audit: the Ry angle convention must be source-supported before closing the boundary amplitude proof.",
+      "id": "RyBoundary",
+      "is_ghl_contribution": true,
+      "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+      "lean_status": "active convention audit：标准 $R_y(\\theta)$ 给出 $\\cos(\\theta/2)$，所以 Lean route 必须确认论文 convention，或使用有原文/引用支持的 doubled-angle 修正。",
+      "main_tex_anchor": "main.tex:1077-1085",
+      "meaning": "boundary entry 逐元素处理，角度写作 $\\theta_j^s = \\arccos(D_j^{(s)}/\\mathcal{N}_D)$。",
+      "open": true,
+      "paper_object": "Boundary controlled $R_y$ rotations"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "One-term Robin block-encoding theorem",
+      "english_status": "Main active target: the theorem-facing Lean statement is not closed.",
+      "id": "RobinTheorem",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobin... theorem-facing statements",
+      "lean_status": "main active target：还没有作为 theorem-facing Lean statement 闭合。",
+      "main_tex_anchor": "main.tex:1098-1109",
+      "meaning": "声称构造 $A_k$ 的 $(\\mathcal{N}_D\\mathcal{N}_f\\kappa, \\lceil\\log_2 n\\rceil + \\lceil\\log_2 G_f\\rceil + \\lceil\\log_2\\kappa\\rceil + 4, 0)$ block-encoding。",
+      "open": true,
+      "paper_object": "Theorem：one-term Robin block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Gamma wavefunction slices and coefficient product",
+      "english_status": "Several finite boundary lemmas exist; the final projection/product bridge is still open.",
+      "id": "GammaSlices",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobinGamma3... entry/product lemmas",
+      "lean_status": "finite boundary instance 已有不少 route lemma；最终 projection/product bridge 还没闭合。",
+      "main_tex_anchor": "main.tex:1111-1119",
+      "meaning": "给出 $\\gamma_1,\\gamma_2,\\gamma_3$ wavefunction slices；关键 clean branch 是 $\\gamma_3$ 系数 $f(x_i)D_i^{(s)}/(\\mathcal{N}_D\\mathcal{N}_f\\kappa)$。",
+      "open": true,
+      "paper_object": "Eq. ROBIN clarified"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Figure 4 Robin circuit transcript",
+      "english_status": "Transcript guard compiles for visible indicator dagger and H preparation; the active seven-gate backend remains a component.",
+      "id": "FigRobin",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobinGamma3... transcript/fold guards",
+      "lean_status": "theorem-facing transcript guard 已编译：显式 $U_{\\mathrm{indic}}^\\dagger$ 和两侧 $H_W$ prepared route 可见；active backend 七门列表仍是独立 H-free component。",
+      "main_tex_anchor": "main.tex:1122-1164",
+      "meaning": "指定完整 gate order：$H_W^{(\\kappa)}$、$U_{\\mathrm{indic}}$、$\\hat O^S_{D^T}$ 或 boundary $R_y$、$\\hat O^{BS}_{D^T}$、$U_{\\mathrm{indic}}^\\dagger$、$\\hat O_f$、SWAP、$(\\hat O_D^{BS})^\\dagger$、$(H_W^{(\\kappa)})^T$。",
+      "open": true,
+      "paper_object": "Fig. 1-term Robin circuit caption"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "One-dimensional Hamiltonian block encoding",
+      "english_status": "Deferred until the one-term Robin theorem closes.",
+      "id": "OneD",
+      "is_ghl_contribution": true,
+      "lean_decl": "planned LCU/Hamiltonian statements",
+      "lean_status": "one-term Robin 闭合之后再做；不是当前 active theorem blocker。",
+      "main_tex_anchor": "main.tex:1171-1278",
+      "meaning": "用 LCU 组合 $A_k$、$A_k^\\dagger$、$B$、$x_\\xi$ 来 block-encode $H$。",
+      "open": true,
+      "paper_object": "One-dimensional Hamiltonian block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "Multidimensional block encoding",
+      "english_status": "Planned; depends on one-term and LCU abstractions.",
+      "id": "MultiD",
+      "is_ghl_contribution": true,
+      "lean_decl": "planned multidimensional statements",
+      "lean_status": "planned；依赖 one-term 和 LCU abstractions。",
+      "main_tex_anchor": "main.tex:1596-1649",
+      "meaning": "把 1D 构造推广到 $A^{(d)}$、$B^{(d)}$ 和多维 oracle。",
+      "open": true,
+      "paper_object": "Multi-dimensional block-encoding"
+    }
+  ],
+  "open_obligation_signals": [
+    "theorem-facing Fig. 4 transcript: Lean `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`; `GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge`; class GHL-internal transcript plus QBE-local indicator bridge; status compiled guard; no full semantic proof",
+    "prepared entry backend-fold normal form: Lean `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3 H hUniform`; class QBE-local prepared-side semantic bridge under external `HUniform` contract; status compiled feeder; retired as next lower target",
+    "active wrapper/cast removal: Lean `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3 H`; class QBE-local finite matrix-entry bridge; status compiled feeder; retired as next lower target",
+    "slot-`0` active/backend vanish support: Lean `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3 env`; `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3 env`; class QBE-local finite support lemma; status compiled support; retired as next lower target",
+    "slot-`1` full evaluated branch vanish: Lean `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3 env`; class QBE-local finite branch evaluation lemma; status compiled support feeder; retired as next lower target",
+    "slots `3` through `6` dagger-after-SWAP support: Lean `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3`; class QBE-local finite support lemma; status compiled support; retired; not a full branch vanish theorem",
+    "remaining-slots evaluated branch vanish/cancellation: Lean proposed `oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3 env`, or a full-index `48` diagonal-factor lemma feeding it directly; class QBE-local finite branch evaluation lemma; status next preferred smaller leaf",
+    "active-side uncast entry equality: Lean target `ActiveUncastToPreparedEntry`; class QBE-local finite seven-gate matrix semantics; status preferred active mathematical leaf",
+    "source-prepared active/prepared entry equality: Lean `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`; class QBE-local prepared circuit semantics under an external cited contract; status open dependent target; recover only after active-side leaf",
+    "active/prepared entry to fold bridge: Lean `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3`; `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3`; class QBE-local bridge under `HUniform`; status compiled conditional; not closure",
+    "full signal-zero unitary fold: Lean `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`; class QBE-local finite projection/backend theorem; status open dependent root",
+    "external sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract; status contract-only; no Shukla--Vedula formalization in this packet",
+    "diagnostic raw constructor route: Lean `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class diagnostic/backlog; status still `sorry`-guarded; do not assign as source closure"
+  ],
+  "recent_proof_attempts": [
+    "proof-attempts/QBE-AUTO-002/post-slot-one-evaluated-remaining-slots-middle-packet-20260610-1538.md",
+    "proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md",
+    "proof-attempts/QBE-AUTO-002/post-remaining-slots-support-middle-packet-20260610-1515.md",
+    "proof-attempts/QBE-AUTO-002/active-side-slot-one-support-middle-packet-20260610-1448.md",
+    "proof-attempts/QBE-AUTO-002/active-side-slot-zero-support-middle-packet-20260610-1420.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-active-uncast-entry-middle-packet-20260610-1359.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-active-entry-after-prepared-side-feeder-middle-packet-20260610-1342.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-active-entry-frontier-middle-packet-20260610-1305.md",
+    "proof-attempts/QBE-AUTO-002/branch-sum-unitary-fold-dag-addendum-20260610-120231-lower1.md",
+    "proof-attempts/QBE-AUTO-002/unitary-fold-frontier-middle-packet-20260610-1144.md"
+  ],
+  "recent_trials": [
+    {
+      "artifact": "runs/20260610-175513-QBE-AUTO-002-cycle01",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-10 17:59:32",
+      "trial_id": "20260610-175513-QBE-AUTO-002-cycle01-build-gate"
+    },
+    {
+      "artifact": "runs/20260610-175513-QBE-AUTO-002-cycle01/10_upper_director.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "failed",
+      "timestamp": "2026-06-10 17:59:31",
+      "trial_id": "20260610-175513-QBE-AUTO-002-cycle01-10_upper_director"
+    },
+    {
+      "artifact": "runs/20260610-175513-QBE-AUTO-002-cycle01",
+      "kind": "plan",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "queued",
+      "timestamp": "2026-06-10 17:55:13",
+      "trial_id": "20260610-175513-QBE-AUTO-002-cycle01-prompt-deck"
+    },
+    {
+      "artifact": "runs/20260610-174957-QBE-AUTO-002-cycle01",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-10 17:54:12",
+      "trial_id": "20260610-174957-QBE-AUTO-002-cycle01-build-gate"
+    },
+    {
+      "artifact": "runs/20260610-174957-QBE-AUTO-002-cycle01/10_upper_director.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "failed",
+      "timestamp": "2026-06-10 17:54:11",
+      "trial_id": "20260610-174957-QBE-AUTO-002-cycle01-10_upper_director"
+    },
+    {
+      "artifact": "runs/20260610-174957-QBE-AUTO-002-cycle01",
+      "kind": "plan",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "queued",
+      "timestamp": "2026-06-10 17:49:58",
+      "trial_id": "20260610-174957-QBE-AUTO-002-cycle01-prompt-deck"
+    },
+    {
+      "artifact": "runs/20260610-174440-QBE-AUTO-002-cycle01",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-10 17:48:57",
+      "trial_id": "20260610-174440-QBE-AUTO-002-cycle01-build-gate"
+    },
+    {
+      "artifact": "runs/20260610-174440-QBE-AUTO-002-cycle01/10_upper_director.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "failed",
+      "timestamp": "2026-06-10 17:48:55",
+      "trial_id": "20260610-174440-QBE-AUTO-002-cycle01-10_upper_director"
+    },
+    {
+      "artifact": "runs/20260610-174440-QBE-AUTO-002-cycle01",
+      "kind": "plan",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "queued",
+      "timestamp": "2026-06-10 17:44:40",
+      "trial_id": "20260610-174440-QBE-AUTO-002-cycle01-prompt-deck"
+    },
+    {
+      "artifact": "runs/20260610-173925-QBE-AUTO-002-cycle01",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-10 17:43:39",
+      "trial_id": "20260610-173925-QBE-AUTO-002-cycle01-build-gate"
+    }
+  ],
+  "recent_verifier_feedback": [
+    {
+      "block_entry_ok": "",
+      "closed_theorem_ok": "",
+      "error_class": "manual-packet",
+      "finite_matrix_ok": "",
+      "leaf": "README",
+      "next_route": [
+        "\"next_route\": \"prove evalWith-level entry bridge for full index 48\"",
+        "- `invalid_route`"
+      ],
+      "role": "reviewer",
+      "status": "packet",
+      "timestamp": "2026-06-11 17:25:31",
+      "trial_id": "verifier-feedback/README.md"
+    },
+    {
+      "block_entry_ok": "",
+      "closed_theorem_ok": "",
+      "error_class": "manual-packet",
+      "finite_matrix_ok": "",
+      "leaf": "QBE-AUTO-002-current-ghl-feedback",
+      "next_route": [
+        "for the theorem-facing Fig. 4 route.",
+        "\"next_route\": \"prove an evalWith-level entry bridge or a full-index-48 diagonal-factor lemma feeding slot-3 evaluated vanish\""
+      ],
+      "role": "reviewer",
+      "status": "packet",
+      "timestamp": "2026-06-11 17:25:17",
+      "trial_id": "verifier-feedback/QBE-AUTO-002-current-ghl-feedback.md"
+    }
+  ],
+  "run_dir": "runs/20260610-175513-QBE-AUTO-002-cycle01",
+  "source_main_tex": "outer_papers/quantum/GHL2025/main.tex",
+  "stage": "Stage 2 DAG proof discharge, with faithful transcript checks still active",
+  "task_id": "QBE-AUTO-002",
+  "technical_lemmas": [
+    {
+      "dependencies": [
+        "sparse slot injectivity",
+        "reversible extension",
+        "finite matrix unitarity"
+      ],
+      "id": "tl-ghl-lemma1-banded-sparse-access",
+      "lean_decl": "bandedSparseAccessPaperMatrix / ODBS contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Keep as explicit external contract until the exact cited construction is formalized or imported as a theorem.",
+      "source": "GHL2025 main.tex:784-798; previous PDE block-encoding construction",
+      "statement": "Banded-sparse-access oracle maps sparse slot and row index to the corresponding column index, with a reversible/unitary completion and dagger cleanup.",
+      "tags": [
+        "GHL2025",
+        "oracle",
+        "sparse-access",
+        "external-primitive"
+      ],
+      "used_by": [
+        "GHL2025 Fig. 4",
+        "Robin boundary ODBS dagger cleanup"
+      ]
+    },
+    {
+      "dependencies": [
+        "nonzero normalizer",
+        "sqrt/arccos semantics",
+        "2x2 unitarity"
+      ],
+      "id": "tl-ghl-lemma3-sparse-amplitude",
+      "lean_decl": "ODTS sparse-amplitude contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Maintain the clean-branch contract and isolate any missing unitarity proof as an external technical lemma.",
+      "source": "GHL2025 main.tex:822-843",
+      "statement": "Sparse-amplitude oracle prepares clean-branch amplitudes D_j^(s)/N_D plus an orthogonal complement branch.",
+      "tags": [
+        "GHL2025",
+        "amplitude-oracle",
+        "normalizer"
+      ],
+      "used_by": [
+        "GHL2025 gamma_1/gamma_2/gamma_3 slices"
+      ]
+    },
+    {
+      "dependencies": [
+        "piecewise-polynomial evaluator",
+        "N_f bound",
+        "workspace orthogonality"
+      ],
+      "id": "tl-ghl-theorem5-piecewise-polynomial-of",
+      "lean_decl": "coefficient-amplitude oracle contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Use only as a named contract in the current theorem; do not invent stronger smoothness or range assumptions.",
+      "source": "GHL2025 main.tex:870-908",
+      "statement": "Coefficient oracle O_f prepares clean-branch amplitude f(x_j)/N_f for the piecewise-polynomial coefficient function.",
+      "tags": [
+        "GHL2025",
+        "coefficient-oracle",
+        "piecewise-polynomial"
+      ],
+      "used_by": [
+        "GHL2025 one-term Robin operator A_k = f(x) partial_x^m"
+      ]
+    },
+    {
+      "dependencies": [
+        "finite register size",
+        "uniform-column normalization",
+        "dagger cleanup"
+      ],
+      "id": "tl-uniform-sparse-register-preparation",
+      "lean_decl": "HUniform / prepared sparse-register contract",
+      "lean_status": "contract-only",
+      "next_action": "Keep as a theorem-facing contract unless the exact state-preparation proof is needed to close a resource theorem.",
+      "source": "GHL2025 main.tex:948-955; Shukla--Vedula 2024",
+      "statement": "H_W^(kappa) prepares the uniform sparse-register superposition kappa^(-1/2) sum_s |s>.",
+      "tags": [
+        "state-preparation",
+        "Hadamard",
+        "external-primitive"
+      ],
+      "used_by": [
+        "GHL2025 Fig. 4 left/right sparse-register preparation"
+      ]
+    },
+    {
+      "dependencies": [
+        "R_y convention audit",
+        "cos(theta/2) versus cos(theta)",
+        "source-supported angle translation"
+      ],
+      "id": "tl-ry-boundary-amplitude-convention",
+      "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+      "lean_status": "obligation",
+      "next_action": "Do not silently change the paper angle; prove the convention bridge or record the exact cited convention.",
+      "source": "GHL2025 main.tex:1077-1085",
+      "statement": "Boundary rotations must implement the paper's desired amplitude D_j^(s)/N_D under the correct R_y convention.",
+      "tags": [
+        "GHL2025",
+        "Ry",
+        "source-audit",
+        "boundary"
+      ],
+      "used_by": [
+        "GHL2025 boundary-entry branch",
+        "active gamma_3 coefficient leaf"
+      ]
+    },
+    {
+      "dependencies": [
+        "closed one-term/LCU block encodings",
+        "QSVT theorem import or contract"
+      ],
+      "id": "tl-qsvt-blockencoding-simulation",
+      "lean_decl": "planned external QSVT theorem application",
+      "lean_status": "paper-cited",
+      "next_action": "Defer until the one-term Robin theorem and LCU combination are closed.",
+      "source": "GHL2025 main.tex:1676-1694; Gilyen et al. 2019",
+      "statement": "A closed block encoding can be used as input to QSVT/Hamiltonian simulation complexity theorems.",
+      "tags": [
+        "QSVT",
+        "simulation",
+        "external-theorem"
+      ],
+      "used_by": [
+        "GHL2025 Hamiltonian simulation section"
+      ]
+    },
+    {
+      "dependencies": [
+        "projector index convention",
+        "normalizer alpha",
+        "approximation epsilon"
+      ],
+      "id": "tl-clean-block-definition",
+      "lean_decl": "BlockEncoding semantic predicate",
+      "lean_status": "contract-only",
+      "next_action": "Use as the final target predicate; ensure circuit entry lemmas are bridged to this semantic definition.",
+      "source": "GHL2025 main.tex:2027-2035",
+      "statement": "Block encoding is defined by a clean-ancilla projection whose top-left block approximates A/alpha.",
+      "tags": [
+        "block-encoding",
+        "definition",
+        "clean-ancilla"
+      ],
+      "used_by": [
+        "all theorem-facing block-encoding statements"
+      ]
+    }
+  ],
+  "title": "Concrete Circuit Matrix Semantics Backend"
+}

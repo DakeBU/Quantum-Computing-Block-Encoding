@@ -7,16 +7,50 @@ upper/middle/lower/reviewer cycles and uses Lean as the acceptance gate.
 
 ## What It Does
 
-`sleep-run` does four things:
+`sleep-run` does these things:
 
 1. Optionally refreshes a task proof blueprint under `proof-blueprints/`.
 2. Creates a prompt deck for each cycle under `runs/<run-id>/`.
 3. Gives each role a precise prompt and shared dialogue board.
 4. Logs each cycle to `runs/trials.jsonl`.
 5. Optionally calls an external agent command and runs `lake build`.
+6. Writes a Chinese audit summary, refreshes the compact retrieval index, and
+   mirrors the latest article-facing status after each executed cycle.
 
 It does not require a specific vendor. The external command can be Codex CLI,
 Claude Code, a shell wrapper, or a manual script that reads one prompt file.
+
+## Verifier Feedback Layers
+
+QBE can borrow parser/unit-test/simulator-style feedback from quantum-circuit
+benchmarks, but only as diagnostics before Lean theorem closure.
+
+For every substantial lower attempt, record typed verifier feedback.  The
+summary CSV now exposes fields such as `feedback_leaf`,
+`feedback_error_class`, `source_correspondence_ok`, `lean_parse_ok`,
+`lean_build_ok`, `finite_matrix_ok`, `block_entry_ok`,
+`ancilla_cleanup_ok`, `normalizer_ok`, `closed_theorem_ok`, and `next_route`.
+
+Use:
+
+```bash
+python3 tools/qbe.py trial-log --task QBE-AUTO-002 \
+  --role lower \
+  --kind attempt \
+  --status failed \
+  --feedback-field leaf=slot-three-branch-vanish \
+  --feedback-field source_correspondence_ok=true \
+  --feedback-field lean_build_ok=false \
+  --feedback-field finite_matrix_ok=true \
+  --feedback-field error_class=symbolic_bridge_gap \
+  --feedback-field next_route="prove evalWith-level entry bridge for full index 48"
+```
+
+For GHL2025, the useful feedback layers are source correspondence,
+register/shape checks, finite matrix-entry checks, support/vanish/cancellation
+checks, symbolic bridge classification, and Lean build status.  Timeline,
+pulse, hardware transpilation, and output-distribution-only checks are not
+useful for the current one-term Robin blocker.
 
 ## Choose The Mode First
 

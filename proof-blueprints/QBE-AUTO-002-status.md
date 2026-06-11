@@ -2,62 +2,55 @@
 
 - Task: `QBE-AUTO-002`
 - Title: Concrete Circuit Matrix Semantics Backend
-- Generated: `2026-06-10 01:35:20`
+- Generated: `2026-06-10 17:49:57`
 - Mode: `faithfulPaper`
 - Stage: Stage 2 DAG proof discharge, with faithful transcript checks still active
-- Latest cycle: `20260610-013140-QBE-AUTO-002-cycle01`
+- Latest cycle: `20260610-174440-QBE-AUTO-002-cycle01`
 - Blueprint: `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/proof-blueprints/QBE-AUTO-002.md`
 
 ## Dynamic Leaf Queue
 
-- Latest handoff indicates at least one assigned lower target was already compiled; upper/middle should retire stale directives before more proof search.
-- 1. Keep the conversion window and proof-obligation ledger synchronized with the branch-sum proof-DAG. Retire stale lower targets explicitly.
-- 2. Generate the Chinese human audit page at:
-- 3. Update the project article bridge after the batch. The generated status must be mirrored into:
-- 4. The public ABEIS report must be readable by the original paper authors and by non-agent-system readers. Use citations, theorem/equation/figure names, and prose descriptions. Do not write local source line anchors such as `main.tex:1098-1164` in the publi...
-- - Reject any cycle that changes the target theorem, adds assumptions, changes the normalizer, or treats a cited oracle primitive as proved without a named Lean theorem and source/citation row.
-- - Reject any cycle that works on raw symbolic `Coeff` matrix equality as the main route instead of the `Coeff.evalWith`/branch-sum semantic route.
-- - Reject any claim that the first-case-study one-term block-encoding theorem is complete while the theorem-facing root or any corresponding `sorry` remains.
-- - Confirm that `python3 tools/qbe.py check`, `lake build`, and `lake build Tests` pass after Lean edits.
-- - Confirm that the Chinese summary path above and the ABEIS generated appendix are updated. The Chinese summary may cite local TeX line ranges; the public article must not.
+- active_uncast_to_prepared_entry_leaf: uncast seven-gate `[0,0]` entry equals the cached prepared entry; status: preferred active mathematical leaf; Lean: target `ActiveUncastToPreparedEntry`
+- remaining_slots_evaluated_vanish_leaf: full evaluated backend branch contribution vanishes or cancels for one remaining slot, starting with slot `3`; status: next preferred smaller leaf; Lean: proposed `oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3 env`, or a full-index `48` diagonal-factor lemma feeding it
+- source_prepared_entry_leaf: `SourcePreparedEntry`: active/prepared entry equality; status: open dependent target; Lean: `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`; `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`
+- slot1_full_vanish_leaf: full evaluated slot-`1` backend branch contribution is zero; status: compiled support feeder; retired; Lean: `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3 env`
+- unitary_fold_leaf: `FullUnitaryFold`: full signal-zero unitary entry equals the seven-slot backend branch fold; status: open dependent root; Lean: target `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`
+- backend_expansion_leaf: backend-expansion statement for the branch-contribution target; status: open equivalent endpoint; Lean: `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`; `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`
+- slot0_vanish_support: active column-`0` and backend slot-`0` contributions evaluate to zero; status: compiled support; retired; Lean: `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3`; `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3`
+- remaining_slots_support_mismatch: backend slots `3`, `4`, `5`, and `6` have zero dagger-after-SWAP support on the clean path; status: compiled support; retired; not full branch vanish; Lean: `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3`
+- prepared_entry_backend_fold_feeder: cached prepared entry equals the backend branch fold under `HUniform`; status: compiled feeder; retired; Lean: `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3 H hUniform`
+- active_wrapper_cast_feeder: `SourcePreparedEntry` is equivalent to the uncast active `[0,0]` equality; status: compiled feeder; retired; Lean: `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3 H`
 
 ## Open Obligation Signals
 
-- # Proof Obligations: QBE-AUTO-002 — Circuit Matrix Semantics Backend
-- This ledger tracks the unproved semantic claims introduced by the circuit
-- the remaining five gate unitarity claims remain explicit proof obligations.
-- | Gate | Lean declaration | Paper source | Status |
-- | O_DT^S | `GHL2025.oneTermRobinGate_O_DT_S` | Lemma 3, Eq. (20), arXiv:2506.20478 | active controlled-rotation skeleton; coefficient-normalizer relation and unitarity unproved |
-- | Ry_boundary | `GHL2025.oneTermRobinGate_Ry_boundary` | Fig. 1-term Robin and Eq. angles for Ry, arXiv:2506.20478 | active symbolic controlled rotation matrix; angle-normalizer contract and unitarity unproved |
-- | O_D^BS | `GHL2025.oneTermRobinGate_O_D_BS` | Lemma 1, arXiv:2506.20478 | active global sparse-slot paper-image matrix skeleton; `bandedSparseAccessPaperGlobalSlotSource` now records the faithful clean source predicate as padded clean input plus sparse index $s<\kappa$; finite-image, entry-safety, finite-range cleanup wrapper, global-source image injectivity, post-SWAP unique preimage, and record-level inverse bridge proved under explicit hypotheses; `oneTermRobinGate_O_D_BS_globalSparseBoundaryNoCollision_n3` proves the corrected active image separates the old $n=3$ boundary columns, while `oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3` is retained as a rejected row-dependent-model regression; forward correctness, semantic cleanup, obligation-record flag promotion, and unitarity unproved |
-- | O_f | `GHL2025.oneTermRobinGate_O_f` | Theorem `Amplitude-oracle for piece-wise polynomial function`, Eq. `coordinate oracle`, and Fig. 1-term Robin, arXiv:2506.20478 | active paper-image matrix skeleton with clean $m_f$ branch wired; orthogonal completion, amplitude relation, normalizer bound, and unitarity unproved |
-- | (O_D^BS)^dagger | `GHL2025.oneTermRobinGate_O_D_BS_dagger` | Fig. 1-term Robin caption, arXiv:2506.20478 | active transpose-style paper-image matrix; conditional entry and register-cleanup witness available for the global-source candidate, and `bandedSparseAccessGlobalSlotInverseOnRangeContract_uniquePreimageBridge` identifies that candidate among active global-source preimages; semantic cleanup and unitarity unproved |
-- The source audit points to a different faithful target:
-- Therefore the active obligation is not to invent an unused-branch image for a
-- row-dependent source domain.  The Lean `O_D^BS` address layer now uses a global
-- | `odbs_global_source_domain` | implemented `bandedSparseAccessPaperGlobalSlotSource` as clean padded input plus sparse index $s<\kappa$; old columns `0` and `48` are both active global sources | do not use `bandedSparseAccessPaperValidCleanSource` to delete zero-amplitude boundary slots |
-- | `odbs_rejected_model_memory` | added `bandedSparseAccessRowDependentPaperAddress` and `bandedSparseAccessRowDependentPaperImage`; kept the old collision witness as rejected-model memory | do not present the old witness as a paper-level source gap |
-- | Obligation | Declaration | Status |
-- | Obligation | Declaration | Status |
-- | Block projection extracts correct submatrix | `oneTermRobinBlockExtractionTarget.blockProjection` | unproved |
-- | Extracted block = targetMatrix / normalizer | `oneTermRobinBlockExtractionTarget.blockCorrect` | unproved |
-- | Obligation | Declaration | Status |
-- | Block correctness for Robin | `blockCorrect` field | unproved |
+- theorem-facing Fig. 4 transcript: Lean `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`; `GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge`; class GHL-internal transcript plus QBE-local indicator bridge; status compiled guard; no full semantic proof
+- prepared entry backend-fold normal form: Lean `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3 H hUniform`; class QBE-local prepared-side semantic bridge under external `HUniform` contract; status compiled feeder; retired as next lower target
+- active wrapper/cast removal: Lean `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3 H`; class QBE-local finite matrix-entry bridge; status compiled feeder; retired as next lower target
+- slot-`0` active/backend vanish support: Lean `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3 env`; `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3 env`; class QBE-local finite support lemma; status compiled support; retired as next lower target
+- slot-`1` full evaluated branch vanish: Lean `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3 env`; class QBE-local finite branch evaluation lemma; status compiled support feeder; retired as next lower target
+- slots `3` through `6` dagger-after-SWAP support: Lean `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3`; class QBE-local finite support lemma; status compiled support; retired; not a full branch vanish theorem
+- remaining-slots evaluated branch vanish/cancellation: Lean proposed `oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3 env`, or a full-index `48` diagonal-factor lemma feeding it directly; class QBE-local finite branch evaluation lemma; status next preferred smaller leaf
+- active-side uncast entry equality: Lean target `ActiveUncastToPreparedEntry`; class QBE-local finite seven-gate matrix semantics; status preferred active mathematical leaf
+- source-prepared active/prepared entry equality: Lean `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`; class QBE-local prepared circuit semantics under an external cited contract; status open dependent target; recover only after active-side leaf
+- active/prepared entry to fold bridge: Lean `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3`; `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3`; class QBE-local bridge under `HUniform`; status compiled conditional; not closure
+- full signal-zero unitary fold: Lean `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`; class QBE-local finite projection/backend theorem; status open dependent root
+- external sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract; status contract-only; no Shukla--Vedula formalization in this packet
+- diagnostic raw constructor route: Lean `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class diagnostic/backlog; status still `sorry`-guarded; do not assign as source closure
 
 ## Trial Counts By Role
 
-- `lower`: 860
-- `middle`: 703
-- `reviewer`: 618
-- `upper`: 1163
+- `lower`: 913
+- `middle`: 731
+- `reviewer`: 655
+- `upper`: 1254
 
 ## Trial Counts By Status
 
-- `accepted`: 1243
+- `accepted`: 1295
 - `blocked`: 9
-- `compiled`: 416
-- `failed`: 8
-- `queued`: 1668
+- `compiled`: 453
+- `failed`: 35
+- `queued`: 1761
 
 ## Local Paper Sources
 
@@ -65,22 +58,22 @@
 
 ## Recent Lean Declarations
 
-- `def oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:18897`
-- `def oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:18914`
-- `def oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19009`
-- `def oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19142`
-- `theorem oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19221`
-- `structure OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:19241`
-- `def oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19287`
-- `structure OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` at `QuantumBlockEncoding/RobinMatrix.lean:19515`
-- `def oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19558`
-- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19980`
-- `structure OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:20798`
-- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:20830`
-- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21657`
-- `theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21687`
-- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` at `QuantumBlockEncoding/RobinMatrix.lean:21700`
-- `theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21718`
+- `def oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19729`
+- `def oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19746`
+- `def oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19841`
+- `def oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:19974`
+- `theorem oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` at `QuantumBlockEncoding/RobinMatrix.lean:20053`
+- `structure OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:20073`
+- `def oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:20119`
+- `structure OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` at `QuantumBlockEncoding/RobinMatrix.lean:20347`
+- `def oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:20390`
+- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:20812`
+- `structure OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:21630`
+- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21662`
+- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` at `QuantumBlockEncoding/RobinMatrix.lean:22489`
+- `theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` at `QuantumBlockEncoding/RobinMatrix.lean:22519`
+- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` at `QuantumBlockEncoding/RobinMatrix.lean:22532`
+- `theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` at `QuantumBlockEncoding/RobinMatrix.lean:22550`
 - `def gateMatricesMatchCircuit` at `QuantumBlockEncoding/CircuitSemantics.lean:41`
 - `structure CircuitMatrixSemantics` at `QuantumBlockEncoding/CircuitSemantics.lean:404`
 - `structure PreparedCircuitEntryTarget` at `QuantumBlockEncoding/CircuitSemantics.lean:436`
@@ -98,46 +91,46 @@
 
 ## Current Dirty Files
 
-- `.agents/skills/qbe-project-paper-update/`
 - `MANIFEST.md`
-- `QuantumBlockEncoding/GHL2025.lean`
 - `QuantumBlockEncoding/RobinMatrix.lean`
 - `conversion-windows/QBE-AUTO-002.md`
-- `docs/agent_orchestration.md`
-- `paper-notes/GHL2025/latex/sections/00_status.tex`
-- `paper-notes/GHL2025/markdown/00_status.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-134517-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-141421-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-143630-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-145602-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-151734-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-154329-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-161309-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-163249-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-170218-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-172319-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-175111-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-181857-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260609-183946-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/latest.md`
-- `paper-notes/project-paper/README.md`
-- `paper-notes/project-paper/cycle-updates/`
-- `proof-attempts/QBE-AUTO-002/active-eval-support-partition-proof-dag-20260609-1718-lower1.md`
-- `proof-attempts/QBE-AUTO-002/active-prepared-eval-iff-evaluated-fold-20260609-lower2.md`
-- `proof-attempts/QBE-AUTO-002/active-seven-gate-prepared-mismatch-20260609-lower2.md`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-of-active-prepared-entry-20260609-lower2.md`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-raw-sandwich-middle-packet-20260609-180111.md`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-to-evaluated-fold-20260609-lower2.md`
-- `proof-attempts/QBE-AUTO-002/eval-entry-expanded-slot0-fold-20260609-lower2.md`
-- `proof-attempts/QBE-AUTO-002/eval-gate-matrices-entry-middle-packet-20260609-164304.md`
-- `proof-attempts/QBE-AUTO-002/evaluated-backend-fold-middle-packet-20260609-161309.md`
-- `proof-attempts/QBE-AUTO-002/evaluated-backend-fold-route-dag-20260609-lower1.md`
-- `proof-attempts/QBE-AUTO-002/fig4-source-proof-dag-20260609-lower1.md`
-- `proof-attempts/QBE-AUTO-002/finite-active-prepared-composition-dag-20260609-lower1.md`
-- `proof-attempts/QBE-AUTO-002/finite-active-prepared-composition-middle-packet-20260609-154329.md`
-- `proof-attempts/QBE-AUTO-002/prepared-entry-lhs-repair-20260609-lower2.md`
-- `proof-attempts/QBE-AUTO-002/prepared-entry-lower2-packet-20260609-151734-middle.md`
-- `proof-attempts/QBE-AUTO-002/prepared-projection-entry-dag-20260609-151734-lower1.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-111623-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-113838-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-120231-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-122328-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-124120-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-125802-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-131957-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-133742-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-135339-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-141642-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-144151-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-150313-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-153222-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-154743-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-155221-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-155658-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-160119-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-160541-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-161006-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-161432-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-161852-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-162318-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-162743-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-163207-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-163634-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-164054-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-164522-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-164950-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-165410-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-165851-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-170729-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-171247-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-171807-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-172339-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-172850-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-173406-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260610-173925-QBE-AUTO-002-cycle01.md`
 
 ## Controls
 

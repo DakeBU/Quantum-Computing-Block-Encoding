@@ -63,6 +63,11 @@ FINDINGS = ROOT / "findings.md"
 TRIAL_LOG = ROOT / "runs" / "trials.jsonl"
 TRIAL_SUMMARY = ROOT / "runs" / "trials_summary.csv"
 BLUEPRINT_DIR = ROOT / "proof-blueprints"
+VERIFIER_FEEDBACK_DIR = ROOT / "verifier-feedback"
+TECHNICAL_LEMMA_DIR = ROOT / "research-wiki" / "technical-lemmas"
+PAPER_CONTRIBUTION_DIR = ROOT / "research-wiki" / "paper-contributions"
+GHL_CONTRIBUTION_DIR = PAPER_CONTRIBUTION_DIR / "GHL2025"
+RETRIEVAL_INDEX_DIR = ROOT / "research-wiki" / "retrieval-index"
 EFFICIENCY_DIR = ROOT / "runs" / "efficiency"
 CONTEXT_PACK_DIR = ROOT / "runs" / "context-packs"
 PROJECT_ARTICLE_UPDATE_DIR = ROOT / "paper-notes" / "project-paper" / "cycle-updates"
@@ -78,6 +83,7 @@ WORK_DIRS = [
     "agent-briefs",
     "proof-attempts",
     "proof-blueprints",
+    "verifier-feedback",
     "candidate-populations",
     "open-problem-proposals",
     "proof-obligations",
@@ -92,6 +98,10 @@ WORK_DIRS = [
     "research-wiki/experiments",
     "research-wiki/graph",
     "research-wiki/cited-results",
+    "research-wiki/technical-lemmas",
+    "research-wiki/paper-contributions",
+    "research-wiki/paper-contributions/GHL2025",
+    "research-wiki/retrieval-index",
     "paper-notes/GHL2025/markdown/cycle-summaries",
 ]
 
@@ -152,6 +162,40 @@ def load_jsonl(path: Path) -> list[dict]:
         except json.JSONDecodeError as exc:
             raise SystemExit(f"invalid JSONL in {path}: {exc}") from exc
     return records
+
+
+def load_feedback_payload(args: argparse.Namespace) -> dict:
+    """Load structured verifier feedback from CLI args."""
+    feedback: dict = {}
+    if getattr(args, "feedback_json", ""):
+        source = args.feedback_json.strip()
+        try:
+            if source.startswith("{") or source.startswith("["):
+                feedback.update(json.loads(source))
+            else:
+                maybe_path = Path(source)
+                if maybe_path.exists():
+                    feedback.update(json.loads(maybe_path.read_text(encoding="utf-8")))
+                else:
+                    feedback.update(json.loads(source))
+        except Exception as exc:
+            raise SystemExit(f"invalid --feedback-json payload: {exc}") from exc
+    for item in getattr(args, "feedback_field", []) or []:
+        if "=" not in item:
+            raise SystemExit(f"--feedback-field must be key=value, got: {item}")
+        key, value = item.split("=", 1)
+        key = key.strip()
+        value = value.strip()
+        if value.lower() == "true":
+            parsed: object = True
+        elif value.lower() == "false":
+            parsed = False
+        elif value.lower() in {"null", "none", ""}:
+            parsed = None
+        else:
+            parsed = value
+        feedback[key] = parsed
+    return feedback
 
 
 def now_stamp() -> str:
@@ -399,6 +443,53 @@ Do not treat a result as proved merely because it is standard, classical, or
 cited by a paper.  Record the source, the exact statement used, the Lean target
 or declaration, and each dependent QBE task.
 """,
+        TECHNICAL_LEMMA_DIR / "README.md": """# Technical Lemma Memory
+
+This retrieval layer stores reusable external lemmas, standard quantum
+primitives, classical facts, and source-paper dependencies used by ABEIS tasks.
+
+Every memory card should expose the same fields:
+
+- `id`
+- `source`
+- `statement`
+- `lean_decl`
+- `lean_status`
+- `used_by`
+- `dependencies`
+- `next_action`
+- `tags`
+
+Allowed statuses:
+
+- `paper-cited`
+- `classic-unformalized`
+- `contract-only`
+- `obligation`
+- `formalized`
+
+This directory is retrieval memory.  A result closes a theorem only when the
+referenced Lean declaration is build-tested for the exact statement being used.
+""",
+        PAPER_CONTRIBUTION_DIR / "README.md": """# Paper Contribution Memory
+
+This retrieval layer separates a paper's own contributions from external
+technical lemmas.  Faithful-reproduction agents should consult this directory
+before assigning lower-agent work so that paper steps, cited primitives, and
+standard facts are not mixed together.
+""",
+        GHL_CONTRIBUTION_DIR / "README.md": """# Guseynov-Huang-Liu 2025 Contribution Memory
+
+This directory tracks the first ABEIS faithful-reproduction case study:
+Guseynov--Huang--Liu 2025.  The generated `index.md`, `source-map.md`, and
+`todo.md` files are refreshed from the source-anchor table, proof obligations,
+trial logs, verifier feedback, and Lean `sorry` scan.
+""",
+        RETRIEVAL_INDEX_DIR / "README.md": """# Retrieval Index
+
+Compact JSON indexes for upper and middle agents.  These files are designed to
+be read instead of replaying the full long log when a new 6h cycle starts.
+""",
         ROOT / "proof-obligations" / "README.md": """# Proof Obligations
 
 Use this directory for proof-obligation ledgers extracted from papers or from
@@ -452,6 +543,48 @@ Each candidate family should identify:
 
 A score is only a search guide.  A construction is accepted only when the Lean
 target and proof obligations are satisfied.
+""",
+        ROOT / "verifier-feedback" / "README.md": """# Verifier Feedback
+
+This directory stores typed verifier-feedback packets for QBE lower-agent
+attempts.  The pattern is inspired by non-Lean quantum-circuit benchmarks such
+as QASM-Eval and Qiskit QuantumKatas, but QBE uses these diagnostics only as
+pre-Lean search guidance.  Lean theorem closure remains the acceptance gate.
+
+Use this when a lower attempt fails or partially succeeds.  Record small,
+machine-readable fields instead of only prose:
+
+```json
+{
+  "task": "QBE-AUTO-002",
+  "leaf": "slot-three-branch-vanish",
+  "mode": "faithfulPaper",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": false,
+  "finite_matrix_ok": true,
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "prove evalWith-level entry bridge for full index 48"
+}
+```
+
+Suggested classes:
+
+- `source_translation_gap`
+- `shape_or_register_gap`
+- `finite_matrix_counterexample`
+- `symbolic_bridge_gap`
+- `lean_tactic_gap`
+- `external_contract_gap`
+- `stale_leaf`
+- `invalid_route`
+
+Scores and booleans are diagnostics.  They must not be promoted into
+paper-theorem status unless a named Lean declaration closes the exact target.
 """,
         ROOT / "reviews" / "README.md": """# Reviews
 
@@ -975,6 +1108,38 @@ def compact_markdown_lines(path: Path, patterns: list[str], limit: int = 30) -> 
     return out
 
 
+def current_obligation_table_rows(text: str, limit: int = 20) -> list[str]:
+    """Extract the current obligation table as compact prose rows."""
+    if not text:
+        return []
+    start = text.find("Current obligation state:")
+    if start < 0:
+        return []
+    rows: list[str] = []
+    in_table = False
+    for raw in text[start:].splitlines()[1:]:
+        line = raw.strip()
+        if not line:
+            if in_table:
+                break
+            continue
+        if not line.startswith("|"):
+            if in_table:
+                break
+            continue
+        in_table = True
+        cells = [cell.strip() for cell in line.strip("|").split("|")]
+        if len(cells) < 4 or cells[0] in {"Obligation", "---"}:
+            continue
+        obligation, lean_decl, dependency_class, status = cells[:4]
+        rows.append(
+            f"{obligation}: Lean {lean_decl}; class {dependency_class}; status {status}"
+        )
+        if len(rows) >= limit:
+            break
+    return rows
+
+
 def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, str]]:
     keywords = ("theorem", "lemma", "def", "structure", "inductive", "abbrev")
     if any(marker in task_text for marker in ["GHL2025", "Guseynov", "Robin", "QBE-AUTO-002"]):
@@ -1051,13 +1216,14 @@ def dynamic_leaf_candidates(task_text: str, obligation_text: str, dialogue_text:
             else:
                 flush_current()
         flush_current()
-    for line in obligation_text.splitlines():
-        stripped = line.strip()
-        if not stripped:
-            continue
-        lowered = stripped.lower()
-        if any(marker in lowered for marker in ["unproved", "remain false", "proved := false", "next", "planned", "obligation"]):
-            candidates.append(stripped)
+    if not candidates:
+        for line in obligation_text.splitlines():
+            stripped = line.strip()
+            if not stripped:
+                continue
+            lowered = stripped.lower()
+            if any(marker in lowered for marker in ["unproved", "remain false", "proved := false", "next", "planned", "obligation"]):
+                candidates.append(stripped)
     if "already compiled" in dialogue_text or "already implemented" in dialogue_text or "No duplicate" in dialogue_text:
         candidates.insert(
             0,
@@ -1078,6 +1244,119 @@ def dynamic_leaf_candidates(task_text: str, obligation_text: str, dialogue_text:
     return compact
 
 
+def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str]:
+    if not conversion_text:
+        return []
+    sections = re.split(r"\n(?=## )", conversion_text)
+    priority_sections = [
+        section
+        for section in sections
+        if "Updated proof-DAG frontier" in section
+        and "Remaining-Slots Evaluated" in section
+        and "unitary_fold_leaf" in section
+        and "FullUnitaryFold" in section
+    ]
+    if not priority_sections:
+        priority_sections = [
+        section
+        for section in sections
+        if "Updated proof-DAG frontier" in section
+        and "Remaining-Slots" in section
+        and "unitary_fold_leaf" in section
+        and "FullUnitaryFold" in section
+    ]
+    if not priority_sections:
+        priority_sections = [
+        section
+        for section in sections
+        if "Updated proof-DAG frontier" in section
+        and "Post-Slot-One Support" in section
+        and "unitary_fold_leaf" in section
+        and "FullUnitaryFold" in section
+    ]
+    if not priority_sections:
+        priority_sections = [
+        section
+        for section in sections
+        if "Updated proof-DAG frontier" in section
+        and "unitary_fold_leaf" in section
+        and "FullUnitaryFold" in section
+        ]
+    if not priority_sections:
+        priority_sections = [
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section and "unitary_fold_leaf" in section
+        ]
+    if not priority_sections:
+        return []
+    section = priority_sections[-1]
+    rows: list[tuple[int, str]] = []
+    priority = {
+        "active_prepared_entry_feeder": 0,
+        "active_uncast_to_prepared_entry_leaf": 0,
+        "active_uncast_entry_leaf": 0,
+        "source_prepared_entry_leaf": 1,
+        "unitary_fold_leaf": 2,
+        "backend_expansion_leaf": 3,
+        "expanded_uncast_entry_leaf": 4,
+        "expanded_uncast_recovery_leaf": 4,
+        "expanded_all_slots_feeder": 4,
+        "slot0_vanish_support": 4,
+        "slot1_support_mismatch": 4,
+        "remaining_slots_support_mismatch": 4,
+        "slot1_full_vanish_leaf": 1,
+        "slot1_branch_vanish_leaf": 1,
+        "remaining_slots_evaluated_vanish_leaf": 1,
+        "slot3_full_vanish_leaf": 1,
+        "slot_support_vanish_lemmas": 5,
+        "remaining_slot_support_leaf": 5,
+        "branch_sum_to_unitary_fold_bridge": 6,
+        "prepared_clean_equivalent_bridge": 7,
+    }
+    for line in section.splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in stripped.strip("|").split("|")]
+        if len(cells) < 8 or cells[0] in {"Node", "---"}:
+            continue
+        node = cells[0].strip("`")
+        if node == "retired_routes":
+            continue
+        status = cells[7]
+        status_lower = status.lower()
+        if not any(
+            marker in status_lower
+            for marker in [
+                "active",
+                "open",
+                "allowed",
+                "compiled feeder",
+                "compiled support",
+                "compiled bridge",
+                "compiled conditional",
+                "next",
+            ]
+        ):
+            continue
+        interface = re.sub(r"\s+", " ", cells[1])
+        lean_decl = re.sub(r"\s+", " ", cells[4])
+        if node == "unitary_fold_leaf" and "; diagnostic" in lean_decl:
+            lean_decl = lean_decl.split("; diagnostic", 1)[0]
+        max_lean_len = 260 if node == "unitary_fold_leaf" else 180
+        if len(lean_decl) > max_lean_len:
+            lean_decl = lean_decl[: max_lean_len - 3] + "..."
+        if node == "unitary_fold_leaf" and "active" in status_lower:
+            status = "open active mathematical leaf"
+        item = f"{node}: {interface}; status: {status}; Lean: {lean_decl}"
+        rows.append((priority.get(node, 50), item))
+        if len(rows) >= limit:
+            break
+    rows.sort(key=lambda row: row[0])
+    return [item for _, item in rows[:limit]]
+
+
 def blueprint_path(task_id: str) -> Path:
     return BLUEPRINT_DIR / f"{slugify(task_id)}.md"
 
@@ -1089,6 +1368,7 @@ def refresh_blueprint(task_id: str) -> Path:
     conversion_path = ROOT / "conversion-windows" / f"{slugify(task_id)}.md"
     obligation_path = ROOT / "proof-obligations" / f"{slugify(task_id)}.md"
     task_path = ROOT / "tasks" / f"{slugify(task_id)}.md"
+    conversion_text = read_text(conversion_path) if conversion_path.exists() else ""
     obligation_text = read_text(obligation_path) if obligation_path.exists() else ""
     dialogue_text = latest_dialogue_text(task_id, limit_chars=5000)
     stage = infer_blueprint_stage(task_text, obligation_text)
@@ -1096,8 +1376,11 @@ def refresh_blueprint(task_id: str) -> Path:
     if not directive:
         directive = focused_task_contract(task_text)
     declarations = lean_declaration_index(task_text, limit=60)
-    leaf_rows = dynamic_leaf_candidates(task_text, obligation_text, dialogue_text)
-    obligation_rows = compact_markdown_lines(
+    leaf_rows = current_proof_dag_frontier(conversion_text) or dynamic_leaf_candidates(task_text, obligation_text, dialogue_text)
+    obligation_rows = current_obligation_table_rows(
+        obligation_text,
+        limit=24,
+    ) or compact_markdown_lines(
         obligation_path,
         [
             r"unproved",
@@ -1247,10 +1530,14 @@ def blueprint_status_state(task_id: str) -> dict:
     obligation_path = ROOT / "proof-obligations" / f"{slugify(task_id)}.md"
     conversion_path = ROOT / "conversion-windows" / f"{slugify(task_id)}.md"
     obligation_text = read_text(obligation_path) if obligation_path.exists() else ""
+    conversion_text = read_text(conversion_path) if conversion_path.exists() else ""
     dialogue_text = latest_dialogue_text(task_id, limit_chars=5000)
     declarations = lean_declaration_index(task_text, limit=50)
-    leaves = dynamic_leaf_candidates(task_text, obligation_text, dialogue_text, limit=10)
-    obligation_rows = compact_markdown_lines(
+    leaves = current_proof_dag_frontier(conversion_text, limit=10) or dynamic_leaf_candidates(task_text, obligation_text, dialogue_text, limit=10)
+    obligation_rows = current_obligation_table_rows(
+        obligation_text,
+        limit=20,
+    ) or compact_markdown_lines(
         obligation_path,
         [
             r"unproved",
@@ -1687,8 +1974,12 @@ def lean_sorry_lines(limit: int = 20) -> list[str]:
 def current_ghl2025_focus() -> list[str]:
     return [
         "保持 theorem-facing Fig. 4 transcript guard：显式 $U_{\\mathrm{indic}}^\\dagger$ 和两侧 $H_W^{(\\kappa)}$ prepared route 已可见，不要把 H-free 七门 backend 当作完整 Fig. 4 theorem。",
-        "继续把 raw symbolic `Coeff` matrix equality 路线放在 diagnostic/backlog；主路线是 source-prepared selected-entry 或 `Coeff.evalWith` bridge。",
-        "下一 Lean leaf 是 `oneTermRobinGamma3BoundarySignalBlockEntry_eq_backendBranchSum_n3`，或通过 `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivBranchSum_n3` 关闭等价的 backend-expansion statement。",
+        "继续把 raw symbolic `Coeff` matrix equality 路线放在 diagnostic/backlog；主路线是 active-side uncast entry 经 source-prepared bridge 接到 full-unitary fold。",
+        "已编译的 `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` 和 `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` 只是 support feeders；不要把它们重新派给 lower。",
+        "已编译的 `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3` 只是 slots `3` through `6` 的 support feeder；不要把它当作 full branch vanish。",
+        "已编译的 `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3` 是 slot-`1` full evaluated branch vanish feeder；不要重新派给 lower，也不要把它当作 theorem closure。",
+        "下一 Lean leaf 优先是 active uncast `[0,0]` entry 等于 cached prepared entry；若做更小 leaf，优先证明 remaining slots `3` through `6` 的 full evaluated branch vanish/cancellation，先从 slot `3` 或 full-index `48` diagonal-factor feeder 开始。",
+        "证明 active uncast leaf 后，再通过 `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` 回收 `SourcePreparedEntry`，并在 existing `HUniform` contract 下通过 `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` 回收 `FullUnitaryFold`。",
         "中层每轮对照 `main.tex:1098-1164`，明确哪些是 GHL 本文贡献、哪些是 Lemma 1/Lemma 3/Theorem 5 等外部 primitive contract。",
         "reviewer 必须拒绝新增假设、替换 oracle、把 contract-only 结果标成 proved，或继续证明已经判定为错误路线的 raw equality。",
     ]
@@ -1697,6 +1988,7 @@ def current_ghl2025_focus() -> list[str]:
 def cycle_zh_summary_text(task_id: str, cycle: int, run_dir: Path) -> str:
     title, task_text = task_context(task_id)
     state = blueprint_status_state(task_id)
+    memory = memory_snapshot_state(task_id, cycle, run_dir)
     source = ghl2025_source_main_tex(task_text)
     source_display = display_path(source) if source else "未检测到本地 GHL2025 main.tex；请检查 outer_papers/quantum/GHL2025/main.tex"
     sorry_lines = lean_sorry_lines(limit=30)
@@ -1713,6 +2005,46 @@ def cycle_zh_summary_text(task_id: str, cycle: int, run_dir: Path) -> str:
     changed_text = "\n".join(f"- `{line}`" for line in changed_lines[:40]) if changed_lines else "- 当前工作区没有未提交变更。"
     dynamic_text = "\n".join(f"- {item}" for item in dynamic) if dynamic else "- blueprint 没有检测到动态 leaf；upper 需要刷新目标。"
     obligation_text = "\n".join(f"- {item}" for item in obligations[:20]) if obligations else "- 没有 compact obligation signals；请检查 `proof-obligations/` 原文。"
+    open_ghl_text = markdown_table(
+        memory.get("open_ghl_contribution_obligations", []),
+        [
+            ("ID", "id"),
+            ("main.tex", "main_tex_anchor"),
+            ("原文对象", "paper_object"),
+            ("Lean/status", "lean_status"),
+            ("依赖外部 lemma?", "depends_on_external_technical_lemma"),
+        ],
+        limit=10,
+    )
+    open_technical_text = markdown_table(
+        memory.get("open_external_technical_lemma_obligations", []),
+        [
+            ("ID", "id"),
+            ("source", "source"),
+            ("status", "lean_status"),
+            ("next action", "next_action"),
+        ],
+        limit=10,
+    )
+    feedback_text = markdown_table(
+        memory.get("recent_verifier_feedback", []),
+        [
+            ("leaf", "leaf"),
+            ("class", "error_class"),
+            ("finite", "finite_matrix_ok"),
+            ("entry", "block_entry_ok"),
+            ("next", "next_route"),
+        ],
+        limit=6,
+    )
+    lower_task_text = markdown_table(
+        memory.get("next_lower_tasks", []),
+        [
+            ("角色", "role"),
+            ("目标", "goal"),
+            ("产物", "must_write"),
+        ],
+    )
     focus_text = "\n".join(f"{idx}. {item}" for idx, item in enumerate(current_ghl2025_focus(), start=1))
     return f"""# 中文循环总结：{task_id} cycle {cycle}
 
@@ -1729,6 +2061,16 @@ Run 目录：`{rel(run_dir)}`
 ## 本轮最重要判断
 
 当前优先级仍然是忠实复现 GHL2025 的 one-term Robin block-encoding，也就是原文 `main.tex:1098-1164` 的 Theorem、Eq. ROBIN clarified、Fig. 1-term Robin circuit。不要在这个阶段把时间花到 1D Hamiltonian、multi-dimensional theorem、QSVT 文章写作 polish，除非它们是关闭 one-term theorem 的必要依赖。
+
+## 给不熟悉 Lean 的读者看的解释
+
+{plain_language_status_zh()}
+
+## 哪些地方可以先用非 Lean verifier 加速
+
+下面这些检查不是正式证明，也不能替代 Lean。它们的作用更像“先用计算器验算中间数”：如果快速检查失败，说明当前 Lean 目标、线路翻译或 index map 很可能写错，继续等 Lean 编译只会浪费时间；如果快速检查通过，只能说明没有发现反例，最后仍要 Lean 给出正式证明。
+
+{prelean_verifier_table_zh()}
 
 ## GHL 原文对照表
 
@@ -1747,6 +2089,22 @@ Run 目录：`{rel(run_dir)}`
 ## 当前未完成义务信号
 
 {obligation_text}
+
+## GHL 本文贡献未完成项
+
+{open_ghl_text}
+
+## 前人 technical lemma / standard primitive 未完成项
+
+{open_technical_text}
+
+## 最近 typed verifier feedback
+
+{feedback_text}
+
+## 下一轮 lower-agent 分工
+
+{lower_task_text}
 
 ## 下一轮规划
 
@@ -1797,9 +2155,710 @@ def latest_proof_attempts(task_id: str, limit: int = 8) -> list[str]:
     return [rel(path) for path in files[:limit]]
 
 
+def status_is_open(status: str) -> bool:
+    lowered = status.lower()
+    closed_markers = ["formalized", "closed", "complete", "完成", "闭合"]
+    open_markers = [
+        "backlog",
+        "contract",
+        "obligation",
+        "planned",
+        "active",
+        "not final",
+        "unformalized",
+        "未",
+        "还",
+        "仍",
+        "义务",
+        "依赖",
+        "planned",
+    ]
+    if any(marker in lowered or marker in status for marker in open_markers):
+        return True
+    if any(marker in lowered or marker in status for marker in closed_markers):
+        return False
+    return True
+
+
+def ghl_anchor_metadata(anchor_id: str) -> dict[str, object]:
+    own_contributions = {
+        "Uindic",
+        "RyBoundary",
+        "RobinTheorem",
+        "GammaSlices",
+        "FigRobin",
+        "OneD",
+        "MultiD",
+    }
+    external_dependencies = {
+        "ODBS",
+        "ODTS",
+        "Of",
+        "HW",
+        "QSVT",
+        "BlockEncodingDef",
+        "FigRobin",
+        "RobinTheorem",
+        "GammaSlices",
+        "RyBoundary",
+    }
+    lean_decls = {
+        "ODBS": "bandedSparseAccessPaperMatrix / oracle contract helpers",
+        "ODTS": "sparse-amplitude oracle contract helpers",
+        "Of": "coefficient-amplitude oracle contract helpers",
+        "HW": "HUniform / prepared sparse-register contract",
+        "Uindic": "indicator permutation and dagger slot helpers",
+        "RyBoundary": "boundary rotation coefficient/evalWith lemmas",
+        "RobinTheorem": "oneTermRobin... theorem-facing statements",
+        "GammaSlices": "oneTermRobinGamma3... entry/product lemmas",
+        "FigRobin": "oneTermRobinGamma3... transcript/fold guards",
+        "OneD": "planned LCU/Hamiltonian statements",
+        "MultiD": "planned multidimensional statements",
+        "QSVT": "external QSVT simulation theorem application",
+        "BlockEncodingDef": "BlockEncoding semantic predicate",
+    }
+    english_objects = {
+        "ODBS": "Banded-sparse-access oracle",
+        "ODTS": "Sparse-amplitude oracle for a banded-sparse matrix",
+        "Of": "Amplitude oracle for a piecewise-polynomial coefficient",
+        "HW": "Uniform sparse-register preparation",
+        "Uindic": "Indicator unitary",
+        "RyBoundary": "Boundary-controlled Ry rotations",
+        "RobinTheorem": "One-term Robin block-encoding theorem",
+        "GammaSlices": "Gamma wavefunction slices and coefficient product",
+        "FigRobin": "Figure 4 Robin circuit transcript",
+        "OneD": "One-dimensional Hamiltonian block encoding",
+        "MultiD": "Multidimensional block encoding",
+        "QSVT": "Hamiltonian simulation/QSVT application",
+        "BlockEncodingDef": "Clean-block block-encoding definition",
+    }
+    english_statuses = {
+        "ODBS": "External contract/backlog: reversible extension, injectivity, dagger cleanup, and unitarity remain obligations.",
+        "ODTS": "External contract/backlog: normalizer, square-root/arccos semantics, and two-by-two unitarity remain obligations.",
+        "Of": "External contract/backlog: clean branch is typed; bounds, orthogonality, cleanup, and unitary completion remain obligations.",
+        "HW": "The theorem-facing route uses a clean-column contract; full gate-level state-preparation remains external/backlog.",
+        "Uindic": "Permutation and self-inverse helpers compile, but this is not yet the final block-encoding proof.",
+        "RyBoundary": "Active convention audit: the Ry angle convention must be source-supported before closing the boundary amplitude proof.",
+        "RobinTheorem": "Main active target: the theorem-facing Lean statement is not closed.",
+        "GammaSlices": "Several finite boundary lemmas exist; the final projection/product bridge is still open.",
+        "FigRobin": "Transcript guard compiles for visible indicator dagger and H preparation; the active seven-gate backend remains a component.",
+        "OneD": "Deferred until the one-term Robin theorem closes.",
+        "MultiD": "Planned; depends on one-term and LCU abstractions.",
+        "QSVT": "External theorem application; not part of the current gate-level Robin circuit closure.",
+        "BlockEncodingDef": "Used as the semantic target; the final circuit entry/projection bridge remains open.",
+    }
+    return {
+        "is_ghl_contribution": anchor_id in own_contributions,
+        "depends_on_external_technical_lemma": anchor_id in external_dependencies,
+        "lean_decl": lean_decls.get(anchor_id, ""),
+        "english_object": english_objects.get(anchor_id, anchor_id),
+        "english_status": english_statuses.get(anchor_id, ""),
+    }
+
+
+def ghl_contribution_rows() -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for anchor in GHL2025_SOURCE_ANCHORS:
+        meta = ghl_anchor_metadata(str(anchor["id"]))
+        status = str(anchor["status"])
+        rows.append(
+            {
+                "id": anchor["id"],
+                "main_tex_anchor": anchor["source"],
+                "paper_object": anchor["paper"],
+                "english_object": meta["english_object"],
+                "meaning": anchor["meaning"],
+                "lean_decl": meta["lean_decl"],
+                "lean_status": status,
+                "english_status": meta["english_status"],
+                "is_ghl_contribution": meta["is_ghl_contribution"],
+                "depends_on_external_technical_lemma": meta[
+                    "depends_on_external_technical_lemma"
+                ],
+                "open": status_is_open(status),
+            }
+        )
+    return rows
+
+
+def technical_lemma_rows() -> list[dict[str, object]]:
+    return [
+        {
+            "id": "tl-ghl-lemma1-banded-sparse-access",
+            "source": "GHL2025 main.tex:784-798; previous PDE block-encoding construction",
+            "statement": "Banded-sparse-access oracle maps sparse slot and row index to the corresponding column index, with a reversible/unitary completion and dagger cleanup.",
+            "lean_decl": "bandedSparseAccessPaperMatrix / ODBS contract helpers",
+            "lean_status": "contract-only",
+            "used_by": ["GHL2025 Fig. 4", "Robin boundary ODBS dagger cleanup"],
+            "dependencies": ["sparse slot injectivity", "reversible extension", "finite matrix unitarity"],
+            "next_action": "Keep as explicit external contract until the exact cited construction is formalized or imported as a theorem.",
+            "tags": ["GHL2025", "oracle", "sparse-access", "external-primitive"],
+        },
+        {
+            "id": "tl-ghl-lemma3-sparse-amplitude",
+            "source": "GHL2025 main.tex:822-843",
+            "statement": "Sparse-amplitude oracle prepares clean-branch amplitudes D_j^(s)/N_D plus an orthogonal complement branch.",
+            "lean_decl": "ODTS sparse-amplitude contract helpers",
+            "lean_status": "contract-only",
+            "used_by": ["GHL2025 gamma_1/gamma_2/gamma_3 slices"],
+            "dependencies": ["nonzero normalizer", "sqrt/arccos semantics", "2x2 unitarity"],
+            "next_action": "Maintain the clean-branch contract and isolate any missing unitarity proof as an external technical lemma.",
+            "tags": ["GHL2025", "amplitude-oracle", "normalizer"],
+        },
+        {
+            "id": "tl-ghl-theorem5-piecewise-polynomial-of",
+            "source": "GHL2025 main.tex:870-908",
+            "statement": "Coefficient oracle O_f prepares clean-branch amplitude f(x_j)/N_f for the piecewise-polynomial coefficient function.",
+            "lean_decl": "coefficient-amplitude oracle contract helpers",
+            "lean_status": "contract-only",
+            "used_by": ["GHL2025 one-term Robin operator A_k = f(x) partial_x^m"],
+            "dependencies": ["piecewise-polynomial evaluator", "N_f bound", "workspace orthogonality"],
+            "next_action": "Use only as a named contract in the current theorem; do not invent stronger smoothness or range assumptions.",
+            "tags": ["GHL2025", "coefficient-oracle", "piecewise-polynomial"],
+        },
+        {
+            "id": "tl-uniform-sparse-register-preparation",
+            "source": "GHL2025 main.tex:948-955; Shukla--Vedula 2024",
+            "statement": "H_W^(kappa) prepares the uniform sparse-register superposition kappa^(-1/2) sum_s |s>.",
+            "lean_decl": "HUniform / prepared sparse-register contract",
+            "lean_status": "contract-only",
+            "used_by": ["GHL2025 Fig. 4 left/right sparse-register preparation"],
+            "dependencies": ["finite register size", "uniform-column normalization", "dagger cleanup"],
+            "next_action": "Keep as a theorem-facing contract unless the exact state-preparation proof is needed to close a resource theorem.",
+            "tags": ["state-preparation", "Hadamard", "external-primitive"],
+        },
+        {
+            "id": "tl-ry-boundary-amplitude-convention",
+            "source": "GHL2025 main.tex:1077-1085",
+            "statement": "Boundary rotations must implement the paper's desired amplitude D_j^(s)/N_D under the correct R_y convention.",
+            "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+            "lean_status": "obligation",
+            "used_by": ["GHL2025 boundary-entry branch", "active gamma_3 coefficient leaf"],
+            "dependencies": ["R_y convention audit", "cos(theta/2) versus cos(theta)", "source-supported angle translation"],
+            "next_action": "Do not silently change the paper angle; prove the convention bridge or record the exact cited convention.",
+            "tags": ["GHL2025", "Ry", "source-audit", "boundary"],
+        },
+        {
+            "id": "tl-qsvt-blockencoding-simulation",
+            "source": "GHL2025 main.tex:1676-1694; Gilyen et al. 2019",
+            "statement": "A closed block encoding can be used as input to QSVT/Hamiltonian simulation complexity theorems.",
+            "lean_decl": "planned external QSVT theorem application",
+            "lean_status": "paper-cited",
+            "used_by": ["GHL2025 Hamiltonian simulation section"],
+            "dependencies": ["closed one-term/LCU block encodings", "QSVT theorem import or contract"],
+            "next_action": "Defer until the one-term Robin theorem and LCU combination are closed.",
+            "tags": ["QSVT", "simulation", "external-theorem"],
+        },
+        {
+            "id": "tl-clean-block-definition",
+            "source": "GHL2025 main.tex:2027-2035",
+            "statement": "Block encoding is defined by a clean-ancilla projection whose top-left block approximates A/alpha.",
+            "lean_decl": "BlockEncoding semantic predicate",
+            "lean_status": "contract-only",
+            "used_by": ["all theorem-facing block-encoding statements"],
+            "dependencies": ["projector index convention", "normalizer alpha", "approximation epsilon"],
+            "next_action": "Use as the final target predicate; ensure circuit entry lemmas are bridged to this semantic definition.",
+            "tags": ["block-encoding", "definition", "clean-ancilla"],
+        },
+    ]
+
+
+def recent_verifier_feedback(task_id: str, limit: int = 8) -> list[dict[str, object]]:
+    records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
+    feedback_rows: list[dict[str, object]] = []
+    for record in reversed(records):
+        feedback = record.get("verifier_feedback")
+        if not isinstance(feedback, dict) or not feedback:
+            continue
+        feedback_rows.append(
+            {
+                "timestamp": record.get("timestamp", ""),
+                "trial_id": record.get("trial_id", ""),
+                "role": record.get("role", ""),
+                "status": record.get("status", ""),
+                "leaf": feedback.get("leaf", ""),
+                "error_class": feedback.get("error_class", ""),
+                "finite_matrix_ok": feedback.get("finite_matrix_ok", ""),
+                "block_entry_ok": feedback.get("block_entry_ok", ""),
+                "closed_theorem_ok": feedback.get("closed_theorem_ok", ""),
+                "next_route": feedback.get("next_route", ""),
+            }
+        )
+        if len(feedback_rows) >= limit:
+            break
+    if feedback_rows:
+        return feedback_rows
+    feedback_files = sorted(VERIFIER_FEEDBACK_DIR.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
+    for path in feedback_files[:limit]:
+        feedback_rows.append(
+            {
+                "timestamp": _dt.datetime.fromtimestamp(path.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S"),
+                "trial_id": rel(path),
+                "role": "reviewer",
+                "status": "packet",
+                "leaf": path.stem,
+                "error_class": "manual-packet",
+                "finite_matrix_ok": "",
+                "block_entry_ok": "",
+                "closed_theorem_ok": "",
+                "next_route": compact_markdown_lines(path, [r"next_route", r"Next route", r"route"], limit=2),
+            }
+        )
+    return feedback_rows
+
+
+def recent_trial_rows(task_id: str, limit: int = 8) -> list[dict[str, object]]:
+    records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
+    rows = []
+    for record in reversed(records[-limit:]):
+        rows.append(
+            {
+                "timestamp": record.get("timestamp", ""),
+                "trial_id": record.get("trial_id", ""),
+                "role": record.get("role", ""),
+                "kind": record.get("kind", ""),
+                "status": record.get("status", ""),
+                "lean_gate": record.get("lean_gate", ""),
+                "artifact": record.get("artifact", ""),
+            }
+        )
+    return rows
+
+
+def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, object]:
+    title, task_text = task_context(task_id)
+    blueprint = blueprint_status_state(task_id)
+    ghl_rows = ghl_contribution_rows()
+    technical_rows = technical_lemma_rows()
+    open_ghl = [
+        row for row in ghl_rows
+        if row.get("open") and row.get("is_ghl_contribution")
+    ]
+    open_technical = [row for row in technical_rows if row.get("lean_status") != "formalized"]
+    source = ghl2025_source_main_tex(task_text)
+    return {
+        "task_id": task_id,
+        "title": title,
+        "cycle": cycle,
+        "generated": now_stamp(),
+        "run_dir": rel(run_dir),
+        "source_main_tex": display_path(source) if source else "",
+        "mode": blueprint.get("mode", ""),
+        "stage": blueprint.get("stage", ""),
+        "dynamic_leaf_queue": blueprint.get("dynamic_leaf_queue", []),
+        "open_obligation_signals": blueprint.get("open_obligation_signals", []),
+        "lean_sorries": lean_sorry_lines(limit=40),
+        "ghl_contributions": ghl_rows,
+        "open_ghl_contribution_obligations": open_ghl,
+        "technical_lemmas": technical_rows,
+        "open_external_technical_lemma_obligations": open_technical,
+        "recent_verifier_feedback": recent_verifier_feedback(task_id, limit=10),
+        "recent_trials": recent_trial_rows(task_id, limit=10),
+        "recent_proof_attempts": latest_proof_attempts(task_id, limit=10),
+        "next_lower_tasks": [
+            {
+                "role": "lower-1-natural-language-proof-architect",
+                "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+                "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
+            },
+            {
+                "role": "lower-2-lean-implementation-worker",
+                "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+                "must_write": "Lean declaration plus trial-log verifier-feedback fields",
+            },
+        ],
+    }
+
+
+def markdown_table(rows: list[dict[str, object]], columns: list[tuple[str, str]], limit: int | None = None) -> str:
+    selected = rows[:limit] if limit is not None else rows
+    if not selected:
+        return "_None._"
+    header = "| " + " | ".join(title for title, _ in columns) + " |"
+    sep = "| " + " | ".join("---" for _ in columns) + " |"
+    body = []
+    for row in selected:
+        cells = []
+        for _, key in columns:
+            value = row.get(key, "")
+            if isinstance(value, list):
+                value = "; ".join(str(item) for item in value)
+            cells.append(str(value).replace("\n", " ").replace("|", "\\|"))
+        body.append("| " + " | ".join(cells) + " |")
+    return "\n".join([header, sep, *body])
+
+
+def prose_value(value: object) -> str:
+    if isinstance(value, list):
+        return "; ".join(str(item) for item in value)
+    return str(value)
+
+
+def plain_language_status_zh() -> str:
+    return """现在 GHL 复现不是卡在“论文没有证明”，而是卡在把论文图里的线路翻译成 Lean 后，必须证明某些具体矩阵条目真的等于论文写的系数。普通理解是：论文说这串量子门最后会在 clean branch 里留下目标系数；Lean 要求我们把这串门看成一个大矩阵，然后精确证明对应的行列条目等于那个系数。
+
+目前最重要的未闭合点是 one-term Robin 的 Fig. 4 / gamma_3 部分：需要证明 active clean branch 的 entry 等于 $f(x_i)D_i^{(s)}/(N_D N_f \\kappa)$，并证明其它不该留下贡献的 branch 确实为零或相互抵消。前人 oracle、state-preparation、QSVT 这些可以先保持为明确 contract，不应该混进“GHL 自己贡献已经证明完”的说法里。"""
+
+
+def prelean_verifier_rows_zh() -> list[dict[str, object]]:
+    return [
+        {
+            "part": "active `[0,0]` entry",
+            "plain": "把 Fig. 4 中当前关注的几道门乘成一个有限矩阵，检查 clean branch 那个格子的数是不是论文需要的系数。",
+            "quick_check": "exact rational matrix/path-sum evaluator",
+            "if_fail": "Lean 不可能证明当前这个等式；应先修正 gate order、index map 或目标 statement。",
+            "if_pass": "只说明目标没有被有限矩阵反例否定；最后仍要 Lean 证明一般化/形式化等式。",
+        },
+        {
+            "part": "slots `3..6` vanish/cancel",
+            "plain": "检查那些按论文应该不会进入 clean branch 的路径，最后是不是确实给 0。",
+            "quick_check": "support/path checker for each slot",
+            "if_fail": "说明某条不该存在的路径还活着；Lean proof 会卡住，先找错路由。",
+            "if_pass": "说明这些 branch 有希望用 Lean 化简为 0，但还不是正式证明。",
+        },
+        {
+            "part": "$R_y$ angle convention",
+            "plain": "确认论文写的角度放进我们采用的 $R_y$ 矩阵后，振幅到底是 $D/N_D$ 还是 $\\cos(\\theta/2)$ 之类的半角。",
+            "quick_check": "2x2 symbolic matrix check",
+            "if_fail": "说明 angle convention 没对齐；不能靠 Lean tactic 硬证错误公式。",
+            "if_pass": "说明 convention 至少一致；还要 Lean 写出具体 bridge lemma。",
+        },
+        {
+            "part": "sparse-access map",
+            "plain": "检查 oracle 把 `(slot,row)` 映到 column 的规则有没有冲突、有没有跑出范围。",
+            "quick_check": "finite injectivity/range/permutation checker",
+            "if_fail": "reversible/unitary oracle 无法成立；需要重读论文或补 domain 条件。",
+            "if_pass": "说明可逆扩展没有显然有限反例；Lean 仍要证明 injectivity/cleanup。",
+        },
+        {
+            "part": "$O_f$ clean branch",
+            "plain": "检查 coefficient oracle 在 clean branch 上给出的数是不是 $f(x_i)/N_f$。",
+            "quick_check": "exact evaluator for finite sample/function table",
+            "if_fail": "block-entry 系数会错，GHL 主 theorem 不可能闭合。",
+            "if_pass": "说明 coefficient route 数值方向正确；Lean 仍要证明 normalizer、orthogonality、cleanup。",
+        },
+    ]
+
+
+def prelean_verifier_table_zh() -> str:
+    return markdown_table(
+        prelean_verifier_rows_zh(),
+        [
+            ("卡点", "part"),
+            ("普通解释", "plain"),
+            ("可先做的快速检查", "quick_check"),
+            ("如果快速检查失败", "if_fail"),
+            ("如果快速检查通过", "if_pass"),
+        ],
+    )
+
+
+def plain_language_status_en() -> str:
+    return (
+        "The current GHL case study is not blocked because the paper lacks a "
+        "proof sketch.  It is blocked because ABEIS must turn the circuit in "
+        "the paper into an exact matrix statement and prove that the clean "
+        "block entry has the coefficient claimed by the paper.  In ordinary "
+        "terms, the paper says that a specific path through the circuit leaves "
+        "the desired coefficient, while Lean requires the corresponding matrix "
+        "entry and all unwanted branches to be proved exactly."
+    )
+
+
+def prelean_verifier_rows_en() -> list[dict[str, object]]:
+    return [
+        {
+            "part": "active [0,0] entry",
+            "quick_check": "exact rational matrix or path-sum evaluation",
+            "why_necessary": "if the exact finite entry is not the target coefficient, the Lean equality for that entry cannot be true",
+            "lean_still_needed": "a passing check is only a counterexample filter; Lean must still prove the named entry lemma",
+        },
+        {
+            "part": "remaining branch vanish/cancel",
+            "quick_check": "support and path checker for the remaining backend slots",
+            "why_necessary": "if an unwanted clean-branch path survives numerically, the block projection cannot match the paper target",
+            "lean_still_needed": "Lean must still prove the zero/cancellation lemma in the formal circuit semantics",
+        },
+        {
+            "part": "Ry boundary convention",
+            "quick_check": "symbolic 2-by-2 rotation check",
+            "why_necessary": "a mismatched half-angle convention changes the boundary amplitude before any Lean tactic is relevant",
+            "lean_still_needed": "Lean must still record the convention bridge as a source-supported theorem",
+        },
+        {
+            "part": "sparse-access map",
+            "quick_check": "finite range/injectivity/permutation check",
+            "why_necessary": "a reversible oracle cannot exist for a colliding or out-of-range finite map",
+            "lean_still_needed": "Lean must still prove the reversible extension and cleanup obligations",
+        },
+        {
+            "part": "coefficient oracle clean branch",
+            "quick_check": "exact finite evaluator for f(x_i)/N_f",
+            "why_necessary": "the final block entry uses this coefficient, so a wrong clean branch invalidates the target theorem",
+            "lean_still_needed": "Lean must still prove bounds, orthogonality, and unitary completion or keep them as contracts",
+        },
+    ]
+
+
+def prelean_verifier_table_en() -> str:
+    return markdown_table(
+        prelean_verifier_rows_en(),
+        [
+            ("proof part", "part"),
+            ("fast check", "quick_check"),
+            ("why this is a necessary condition", "why_necessary"),
+            ("what Lean still proves", "lean_still_needed"),
+        ],
+    )
+
+
+def memory_digest_markdown(snapshot: dict[str, object]) -> str:
+    sorries = snapshot.get("lean_sorries", [])
+    sorries_text = "\n".join(f"- `{line}`" for line in sorries) if sorries else "- No `sorry` detected."
+    dynamic = snapshot.get("dynamic_leaf_queue", [])
+    dynamic_text = "\n".join(f"- {item}" for item in dynamic) if dynamic else "- No dynamic proof-DAG leaf detected."
+    feedback_rows = snapshot.get("recent_verifier_feedback", [])
+    feedback_text = markdown_table(
+        feedback_rows if isinstance(feedback_rows, list) else [],
+        [
+            ("time", "timestamp"),
+            ("leaf", "leaf"),
+            ("class", "error_class"),
+            ("finite", "finite_matrix_ok"),
+            ("entry", "block_entry_ok"),
+            ("next", "next_route"),
+        ],
+        limit=8,
+    )
+    return f"""# Memory Digest: {snapshot.get('task_id')} cycle {snapshot.get('cycle')}
+
+Generated: `{snapshot.get('generated')}`
+
+Run directory: `{snapshot.get('run_dir')}`
+
+Task title: {snapshot.get('title')}
+
+This is the compact retrieval packet for the next upper/middle cycle.  It keeps
+the long log, paper-source map, typed verifier feedback, and Lean `sorry` scan
+separate from the next lower-agent task package.
+
+## Plain-language status
+
+{plain_language_status_en()}
+
+## Pre-Lean verifier candidates
+
+These checks are necessary-condition filters, not proofs.  A failure is useful
+because it usually means the current target, index map, or circuit transcript
+is wrong.  A pass only says that the target survived this exact finite check;
+Lean must still close the theorem or keep the dependency as an explicit
+contract.
+
+{prelean_verifier_table_en()}
+
+## Lean theorem closure signal
+
+{sorries_text}
+
+## Active proof-DAG leaves
+
+{dynamic_text}
+
+## Open GHL contribution obligations
+
+{markdown_table(snapshot.get('open_ghl_contribution_obligations', []), [
+    ('id', 'id'),
+    ('main.tex anchor', 'main_tex_anchor'),
+    ('paper object', 'paper_object'),
+    ('Lean/status', 'lean_status'),
+    ('external lemma?', 'depends_on_external_technical_lemma'),
+])}
+
+## Open external technical lemma obligations
+
+{markdown_table(snapshot.get('open_external_technical_lemma_obligations', []), [
+    ('id', 'id'),
+    ('source', 'source'),
+    ('status', 'lean_status'),
+    ('used by', 'used_by'),
+    ('next action', 'next_action'),
+])}
+
+## Recent typed verifier feedback
+
+{feedback_text}
+
+## Next lower-agent task split
+
+{markdown_table(snapshot.get('next_lower_tasks', []), [
+    ('role', 'role'),
+    ('goal', 'goal'),
+    ('artifact', 'must_write'),
+])}
+"""
+
+
+def todo_markdown(snapshot: dict[str, object]) -> str:
+    return f"""# Next Todo Packet: {snapshot.get('task_id')} cycle {snapshot.get('cycle')}
+
+Generated: `{snapshot.get('generated')}`
+
+## Lower 1: Natural-language proof architect
+
+1. Read the first open GHL contribution row below.
+2. Write the exact source-proof translation: source anchor, local theorem goal,
+   dependency DAG, external technical lemmas, and route rejected by verifier.
+3. Do not change Lean code.
+
+## Lower 2: Lean implementation worker
+
+1. Pick one active proof-DAG leaf from the retrieval index.
+2. Prove the smallest build-testable declaration; do not refactor the paper
+   construction or change assumptions.
+3. Log typed verifier feedback with `trial-log --feedback-field`.
+
+## Open GHL contribution obligations
+
+{markdown_table(snapshot.get('open_ghl_contribution_obligations', []), [
+    ('id', 'id'),
+    ('main.tex anchor', 'main_tex_anchor'),
+    ('paper object', 'paper_object'),
+    ('Lean/status', 'lean_status'),
+], limit=8)}
+
+## Open external technical lemma obligations
+
+{markdown_table(snapshot.get('open_external_technical_lemma_obligations', []), [
+    ('id', 'id'),
+    ('status', 'lean_status'),
+    ('next action', 'next_action'),
+], limit=8)}
+"""
+
+
+def ghl_contribution_index_markdown(rows: list[dict[str, object]]) -> str:
+    return """# GHL2025 Paper Contribution Index
+
+Generated by `python3 tools/qbe.py memory-refresh`.
+
+""" + markdown_table(
+        rows,
+        [
+            ("id", "id"),
+            ("main.tex anchor", "main_tex_anchor"),
+            ("paper object", "paper_object"),
+            ("Lean declaration/status", "lean_status"),
+            ("GHL contribution?", "is_ghl_contribution"),
+            ("external technical lemma?", "depends_on_external_technical_lemma"),
+        ],
+    ) + "\n"
+
+
+def ghl_contribution_todo_markdown(rows: list[dict[str, object]]) -> str:
+    open_rows = [
+        row for row in rows
+        if row.get("open") and row.get("is_ghl_contribution")
+    ]
+    return """# GHL2025 Open Contribution Todo
+
+Rows here are GHL2025 source-paper objects whose Lean reproduction is not yet
+closed.  They should not be mixed with external technical lemma todo items.
+
+""" + markdown_table(
+        open_rows,
+        [
+            ("id", "id"),
+            ("main.tex anchor", "main_tex_anchor"),
+            ("paper object", "paper_object"),
+            ("Lean/status", "lean_status"),
+            ("depends on external?", "depends_on_external_technical_lemma"),
+        ],
+    ) + "\n"
+
+
+def technical_lemma_index_markdown(rows: list[dict[str, object]]) -> str:
+    return """# Technical Lemma Index
+
+Generated by `python3 tools/qbe.py memory-refresh`.
+
+""" + markdown_table(
+        rows,
+        [
+            ("id", "id"),
+            ("source", "source"),
+            ("statement", "statement"),
+            ("Lean declaration", "lean_decl"),
+            ("status", "lean_status"),
+            ("used by", "used_by"),
+            ("next action", "next_action"),
+            ("tags", "tags"),
+        ],
+    ) + "\n"
+
+
+def technical_lemma_todo_markdown(rows: list[dict[str, object]]) -> str:
+    open_rows = [row for row in rows if row.get("lean_status") != "formalized"]
+    return """# Open External Technical Lemma Todo
+
+These are not GHL2025's new contributions.  They are cited primitives,
+standard facts, or reusable technical lemmas that current and future ABEIS
+tasks may need.
+
+""" + markdown_table(
+        open_rows,
+        [
+            ("id", "id"),
+            ("source", "source"),
+            ("status", "lean_status"),
+            ("used by", "used_by"),
+            ("next action", "next_action"),
+        ],
+    ) + "\n"
+
+
+def write_memory_refresh(task_id: str, cycle: int, run_dir: Path) -> tuple[Path, Path, Path]:
+    snapshot = memory_snapshot_state(task_id, cycle, run_dir)
+    digest_path = run_dir / "memory_digest.md"
+    todo_path = run_dir / "todo.md"
+    index_path = RETRIEVAL_INDEX_DIR / f"{slugify(task_id)}.json"
+    write_text(digest_path, memory_digest_markdown(snapshot))
+    write_text(todo_path, todo_markdown(snapshot))
+    write_text(index_path, json.dumps(snapshot, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
+    ghl_rows = snapshot.get("ghl_contributions", [])
+    technical_rows = snapshot.get("technical_lemmas", [])
+    if isinstance(ghl_rows, list):
+        write_text(GHL_CONTRIBUTION_DIR / "index.md", ghl_contribution_index_markdown(ghl_rows))
+        write_text(GHL_CONTRIBUTION_DIR / "source-map.md", ghl_contribution_index_markdown(ghl_rows))
+        write_text(GHL_CONTRIBUTION_DIR / "todo.md", ghl_contribution_todo_markdown(ghl_rows))
+    if isinstance(technical_rows, list):
+        write_text(TECHNICAL_LEMMA_DIR / "index.md", technical_lemma_index_markdown(technical_rows))
+        write_text(TECHNICAL_LEMMA_DIR / "todo.md", technical_lemma_todo_markdown(technical_rows))
+    add_manifest("qbe.py memory-refresh", digest_path, "memory", f"Wrote memory digest for {task_id} cycle {cycle}")
+    add_manifest("qbe.py memory-refresh", index_path, "memory", f"Wrote retrieval index for {task_id}")
+    return digest_path, todo_path, index_path
+
+
+def cmd_memory_refresh(args: argparse.Namespace) -> int:
+    cmd_init(argparse.Namespace())
+    if args.run_id == "latest":
+        run_dir = latest_run_dir()
+        if run_dir is None:
+            raise SystemExit("no run directories found")
+    else:
+        run_dir = ROOT / "runs" / args.run_id
+    if not run_dir.exists():
+        raise SystemExit(f"run directory not found: {display_path(run_dir)}")
+    digest_path, todo_path, index_path = write_memory_refresh(args.id, args.cycle, run_dir)
+    print(f"memory-digest: {display_path(digest_path)}")
+    print(f"memory-todo: {display_path(todo_path)}")
+    print(f"retrieval-index: {display_path(index_path)}")
+    return 0
+
+
 def project_article_update_markdown(task_id: str, cycle: int, run_dir: Path) -> str:
     title, task_text = task_context(task_id)
     state = blueprint_status_state(task_id)
+    memory = memory_snapshot_state(task_id, cycle, run_dir)
     sorry_lines = lean_sorry_lines(limit=20)
     changed_lines = git_changed_files()
     latest_dialogue = read_text(run_dir / "dialogue.md") if (run_dir / "dialogue.md").exists() else ""
@@ -1812,6 +2871,37 @@ def project_article_update_markdown(task_id: str, cycle: int, run_dir: Path) -> 
     obligation_text = "\n".join(f"- {item}" for item in obligations[:12]) if obligations else "- No compact obligation signal was detected; inspect `proof-obligations/` directly."
     attempts_text = "\n".join(f"- `{item}`" for item in proof_attempts) if proof_attempts else "- No proof-attempt files were found for this task."
     changed_text = "\n".join(f"- `{item}`" for item in changed_lines[:30]) if changed_lines else "- No uncommitted files were detected."
+    open_ghl_text = markdown_table(
+        memory.get("open_ghl_contribution_obligations", []),
+        [
+            ("id", "id"),
+            ("source anchor", "main_tex_anchor"),
+            ("paper object", "english_object"),
+            ("Lean/status", "english_status"),
+        ],
+        limit=10,
+    )
+    open_technical_text = markdown_table(
+        memory.get("open_external_technical_lemma_obligations", []),
+        [
+            ("id", "id"),
+            ("source", "source"),
+            ("status", "lean_status"),
+            ("next action", "next_action"),
+        ],
+        limit=10,
+    )
+    feedback_text = markdown_table(
+        memory.get("recent_verifier_feedback", []),
+        [
+            ("leaf", "leaf"),
+            ("class", "error_class"),
+            ("finite", "finite_matrix_ok"),
+            ("entry", "block_entry_ok"),
+            ("next", "next_route"),
+        ],
+        limit=8,
+    )
     return f"""# Project Article Update: {task_id} cycle {cycle}
 
 Generated: `{now_stamp()}`
@@ -1846,6 +2936,19 @@ Lean declarations, source anchors, or explicit obligations.
 
 {sorry_text}
 
+## Plain-language status for readers
+
+{plain_language_status_en()}
+
+## Pre-Lean verifier candidates
+
+These checks are necessary-condition filters, not proofs.  They are useful
+because a failing exact finite check usually means the Lean target, circuit
+transcript, or index map is wrong.  A passing check only means the candidate
+survived this cheaper test; the final claim still needs a Lean theorem.
+
+{prelean_verifier_table_en()}
+
 ## Current proof-DAG frontier
 
 {dynamic_text}
@@ -1853,6 +2956,18 @@ Lean declarations, source anchors, or explicit obligations.
 ## Open obligation signal
 
 {obligation_text}
+
+## Open GHL contribution obligations
+
+{open_ghl_text}
+
+## Open external technical lemma obligations
+
+{open_technical_text}
+
+## Recent typed verifier feedback
+
+{feedback_text}
 
 ## Recent proof-attempt memory
 
@@ -1903,15 +3018,14 @@ def article_status_plain(value: object) -> str:
         flags=re.I,
     )
     replacements = [
-        ("GHL2025", "the first case study"),
         ("GHL Fig.", "the first-case-study figure"),
         ("GHL one-term", "the first-case-study one-term"),
         ("GHL-style", "first-case-study-style"),
-        ("GHL ", "first-case-study "),
         ("Guseynov--Huang--Liu", "the first case study"),
     ]
     for old, new in replacements:
         text = text.replace(old, new)
+    text = text.replace("the the first case study", "the first case study")
     return text
 
 
@@ -1922,6 +3036,7 @@ def project_article_public_markdown(markdown: str) -> str:
 
 def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str:
     state = blueprint_status_state(task_id)
+    memory = memory_snapshot_state(task_id, cycle, run_dir)
     sorry_lines = lean_sorry_lines(limit=12)
     dynamic = state.get("dynamic_leaf_queue", [])
     obligations = state.get("open_obligation_signals", [])
@@ -1939,6 +3054,55 @@ def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str
     attempt_items = "\n".join(
         f"  \\item \\texttt{{{latex_escape(item)}}}" for item in proof_attempts
     ) or "  \\item No task-specific proof-attempt file was detected."
+    open_ghl_rows = memory.get("open_ghl_contribution_obligations", [])
+    if isinstance(open_ghl_rows, list) and open_ghl_rows:
+        open_ghl_items = "\n".join(
+            "  \\item \\texttt{%s}: %s; status %s."
+            % (
+                latex_escape(row.get("id", "")),
+                latex_escape(article_status_plain(row.get("english_object", row.get("paper_object", "")))),
+                latex_escape(article_status_plain(row.get("english_status", row.get("lean_status", "")))),
+            )
+            for row in open_ghl_rows[:8]
+        )
+    else:
+        open_ghl_items = "  \\item No open first-case-study contribution obligation was detected."
+    open_technical_rows = memory.get("open_external_technical_lemma_obligations", [])
+    if isinstance(open_technical_rows, list) and open_technical_rows:
+        open_technical_items = "\n".join(
+            "  \\item \\texttt{%s}: %s; next action %s."
+            % (
+                latex_escape(row.get("id", "")),
+                latex_escape(article_status_plain(row.get("lean_status", ""))),
+                latex_escape(article_status_plain(row.get("next_action", ""))),
+            )
+            for row in open_technical_rows[:8]
+        )
+    else:
+        open_technical_items = "  \\item No open external technical lemma obligation was detected."
+    feedback_rows = memory.get("recent_verifier_feedback", [])
+    if isinstance(feedback_rows, list) and feedback_rows:
+        feedback_items = "\n".join(
+            "  \\item Leaf \\texttt{%s}, class \\texttt{%s}; next route: %s."
+            % (
+                latex_escape(row.get("leaf", "")),
+                latex_escape(row.get("error_class", "")),
+                latex_escape(article_status_plain(prose_value(row.get("next_route", "")))),
+            )
+            for row in feedback_rows[:6]
+        )
+    else:
+        feedback_items = "  \\item No typed verifier-feedback packet was detected."
+    prelean_items = "\n".join(
+        "  \\item \\textbf{%s.} Fast check: %s.  Necessary because %s.  Lean still must prove: %s."
+        % (
+            latex_escape(row["part"]),
+            latex_escape(row["quick_check"]),
+            latex_escape(row["why_necessary"]),
+            latex_escape(row["lean_still_needed"]),
+        )
+        for row in prelean_verifier_rows_en()
+    )
     return f"""% Auto-generated by tools/qbe.py project-article-update.
 % Do not edit this file by hand; edit the proof artifacts or article sections instead.
 
@@ -1961,6 +3125,19 @@ Task \\texttt{{{latex_escape(task_id)}}}, cycle \\texttt{{{cycle}}}, run
 {sorry_items}
 \\end{{itemize}}
 
+\\paragraph{{Plain-language status.}}
+{latex_escape(plain_language_status_en())}
+
+\\paragraph{{Pre-Lean verifier candidates.}}
+These checks are necessary-condition filters, not proofs.  A failed exact
+finite check usually indicates that the current Lean target, circuit
+transcript, or index map is wrong.  A passing check only means the candidate
+survived a cheaper diagnostic; the final claim still requires a named Lean
+theorem or an explicit contract.
+\\begin{{itemize}}
+{prelean_items}
+\\end{{itemize}}
+
 \\paragraph{{Current proof-DAG frontier.}}
 \\begin{{itemize}}
 {dynamic_items}
@@ -1969,6 +3146,21 @@ Task \\texttt{{{latex_escape(task_id)}}}, cycle \\texttt{{{cycle}}}, run
 \\paragraph{{Open obligation signal.}}
 \\begin{{itemize}}
 {obligation_items}
+\\end{{itemize}}
+
+\\paragraph{{Open GHL contribution obligations.}}
+\\begin{{itemize}}
+{open_ghl_items}
+\\end{{itemize}}
+
+\\paragraph{{Open external technical lemma obligations.}}
+\\begin{{itemize}}
+{open_technical_items}
+\\end{{itemize}}
+
+\\paragraph{{Recent typed verifier feedback.}}
+\\begin{{itemize}}
+{feedback_items}
 \\end{{itemize}}
 
 \\paragraph{{Recent proof-attempt memory.}}
@@ -2067,6 +3259,9 @@ def write_trial_summary(records: list[dict]) -> list[dict]:
         cumulative_by_task[task_id] = cumulative_by_task.get(task_id, 0) + 1
         if record.get("status") == "compiled" or record.get("lean_gate") == "pass":
             compiled_by_task[task_id] = compiled_by_task.get(task_id, 0) + 1
+        feedback = record.get("verifier_feedback", {})
+        if not isinstance(feedback, dict):
+            feedback = {}
         rows.append(
             {
                 "index": index,
@@ -2082,6 +3277,17 @@ def write_trial_summary(records: list[dict]) -> list[dict]:
                 "changed_files": ";".join(record.get("changed_files", [])),
                 "cumulative_task_trials": cumulative_by_task[task_id],
                 "compiled_task_trials": compiled_by_task.get(task_id, 0),
+                "feedback_leaf": feedback.get("leaf", ""),
+                "feedback_error_class": feedback.get("error_class", ""),
+                "source_correspondence_ok": feedback.get("source_correspondence_ok", ""),
+                "lean_parse_ok": feedback.get("lean_parse_ok", ""),
+                "lean_build_ok": feedback.get("lean_build_ok", ""),
+                "finite_matrix_ok": feedback.get("finite_matrix_ok", ""),
+                "block_entry_ok": feedback.get("block_entry_ok", ""),
+                "ancilla_cleanup_ok": feedback.get("ancilla_cleanup_ok", ""),
+                "normalizer_ok": feedback.get("normalizer_ok", ""),
+                "closed_theorem_ok": feedback.get("closed_theorem_ok", ""),
+                "next_route": feedback.get("next_route", ""),
                 "notes": record.get("notes", ""),
             }
         )
@@ -2101,6 +3307,17 @@ def write_trial_summary(records: list[dict]) -> list[dict]:
             "changed_files",
             "cumulative_task_trials",
             "compiled_task_trials",
+            "feedback_leaf",
+            "feedback_error_class",
+            "source_correspondence_ok",
+            "lean_parse_ok",
+            "lean_build_ok",
+            "finite_matrix_ok",
+            "block_entry_ok",
+            "ancilla_cleanup_ok",
+            "normalizer_ok",
+            "closed_theorem_ok",
+            "next_route",
             "notes",
         ]
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -2115,6 +3332,7 @@ def cmd_trial_log(args: argparse.Namespace) -> int:
     if args.from_git:
         changed.extend(git_changed_files())
     trial_id = args.trial_id or f"{file_stamp()}-{slugify(args.task)}-{args.role}-{args.kind}"
+    verifier_feedback = load_feedback_payload(args)
     record = {
         "timestamp": now_stamp(),
         "trial_id": trial_id,
@@ -2129,6 +3347,8 @@ def cmd_trial_log(args: argparse.Namespace) -> int:
         "command": args.command or "",
         "notes": args.notes or "",
     }
+    if verifier_feedback:
+        record["verifier_feedback"] = verifier_feedback
     append_jsonl(TRIAL_LOG, record)
     rows = write_trial_summary(load_jsonl(TRIAL_LOG))
     add_manifest("qbe.py trial-log", TRIAL_LOG, "trial", f"Logged {trial_id}")
@@ -2300,6 +3520,39 @@ def local_paper_source_context(task_text: str) -> str:
     )
 
 
+def verifier_feedback_contract() -> str:
+    return """Typed verifier-feedback contract:
+
+- QBE borrows the useful shape of parser/unit-test/simulator feedback from
+  non-Lean quantum-circuit systems, but Lean remains the final acceptance gate.
+- Every lower attempt should classify progress with small fields when possible:
+  `leaf`, `source_correspondence_ok`, `lean_parse_ok`, `lean_build_ok`,
+  `finite_matrix_ok`, `block_entry_ok`, `ancilla_cleanup_ok`, `normalizer_ok`,
+  `closed_theorem_ok`, `error_class`, and `next_route`.
+- Suggested `error_class` values: `source_translation_gap`,
+  `shape_or_register_gap`, `finite_matrix_counterexample`,
+  `symbolic_bridge_gap`, `lean_tactic_gap`, `external_contract_gap`,
+  `stale_leaf`, and `invalid_route`.
+- In faithful-paper mode, feedback may rank proof routes for the same fixed
+  statement, but it must not mutate the paper circuit, oracle contract, theorem,
+  or assumptions.  In exploratory mode, feedback may score candidate families,
+  but a score is not proof.
+- Log structured feedback with:
+
+```bash
+python3 tools/qbe.py trial-log --task <task> --role lower --kind attempt \\
+  --status failed --feedback-field leaf=<leaf-id> \\
+  --feedback-field lean_build_ok=false \\
+  --feedback-field error_class=<class> \\
+  --feedback-field next_route=\"<next narrow route>\"
+```
+
+For GHL2025 one-term closure, useful pre-Lean diagnostics are finite
+matrix-entry checks and support/branch decomposition checks.  Timeline or
+hardware scheduling checks are not relevant to the current proof blocker.
+"""
+
+
 def strategy_for_mode(mode: str) -> str:
     if mode == "faithfulPaper":
         return """Hybrid strategy for this mode:
@@ -2392,6 +3645,7 @@ def role_prompt(
     mode = infer_task_mode(task_text)
     strategy = strategy_for_mode(mode)
     paper_sources = local_paper_source_context(task_text)
+    verifier_feedback = verifier_feedback_contract()
     blueprint = blueprint_context(task_id)
     displayed_task_text = task_text.strip() if context_mode == "full" else focused_task_contract(task_text)
     context_note = (
@@ -2435,7 +3689,7 @@ Local paper-source archive for agent work:
 {paper_sources}
 ```
 
-Operating model:
+	Operating model:
 
 - QBE uses ARIS-style plain-file coordination and Learning-Beyond-Gradients-style
   trial memory, but the scientific target is Lean-checked quantum circuit
@@ -2452,10 +3706,16 @@ Operating model:
 - Reviewer is the gatekeeper: audit the diff, build status, hidden oracle
   assumptions, normalizers, ancillas, resource counts, links, and Markdown math
   discipline.
-- Lean source is authoritative for correctness.  Markdown and LaTeX are the
-  human-readable proof map.  JSONL/CSV trial logs are the process memory.
+	- Lean source is authoritative for correctness.  Markdown and LaTeX are the
+	  human-readable proof map.  JSONL/CSV trial logs are the process memory.
 
-Mode discipline:
+	Verifier-feedback discipline:
+
+	```text
+	{verifier_feedback}
+	```
+
+	Mode discipline:
 
 - In `faithfulPaper` mode, reproduce the cited paper's construction.  Do not
   invent a replacement oracle or block encoding, and do not add assumptions,
@@ -2497,10 +3757,13 @@ Mode discipline:
   runs or after a stale lower target is detected.  Refresh
   `proof-blueprints/<task-id>.md`, retire stale dynamic leaves, and then assign
   one local proof node.
-- Apply `.agents/skills/qbe-proof-diagnostics/SKILL.md` when reviewing Lean
-  proof progress, hidden assumptions, placeholders, suspicious semantic-flag
-  promotions, or reusable proof-block memory.  This records the MathCode-like
-  proof-diagnostics pattern in a QBE-specific form.
+	- Apply `.agents/skills/qbe-proof-diagnostics/SKILL.md` when reviewing Lean
+	  proof progress, hidden assumptions, placeholders, suspicious semantic-flag
+	  promotions, or reusable proof-block memory.  This records the MathCode-like
+	  proof-diagnostics pattern in a QBE-specific form.
+	- Apply `.agents/skills/qbe-verifier-feedback/SKILL.md` when a lower attempt
+	  fails or partially succeeds.  Parser/build/finite-matrix/symbolic-feedback
+	  fields should guide the next route, but they are not theorem closure.
 - Maintain cited-results memory for external or classical ingredients.  If a
   paper invokes a prior theorem, arithmetic circuit, state-preparation result,
   sparse-Hamiltonian primitive, QSVT/LCU lemma, or "standard" fact, record the
@@ -2551,6 +3814,15 @@ Human-facing correspondence rule:
   make sure the page remains truthful: source `main.tex` anchors, Lean status,
   contract/backlog classifications, and the next proof-DAG leaf must match the
   actual work.
+- Every executed cycle also refreshes `runs/<run-id>/memory_digest.md`,
+  `runs/<run-id>/todo.md`, and
+  `research-wiki/retrieval-index/{task_id}.json`.  Upper and middle agents
+  should read this compact retrieval packet before replaying long logs.
+- The memory layer separates paper contributions from external technical
+  lemmas: GHL-owned proof steps live under
+  `research-wiki/paper-contributions/GHL2025/`, while cited primitives,
+  standard facts, and reusable contracts live under
+  `research-wiki/technical-lemmas/`.
 - Lean compilation alone is not enough for faithful paper-reproduction mode;
   humans must be able to compare the Lean names with the original theorem,
   equations, normalizers, register layout, and resource statement.
@@ -2619,9 +3891,12 @@ Produce:
 6. Lower-agent work packets with narrow file scopes and acceptance checks.
    If two lower agents are available, assign lower 1 to natural-language
    dependency proof and lower 2 to one compiling Lean active leaf.
-7. Reviewer checklist.
-8. A compressed handoff explaining what future agents should remember.
-9. Any cited prior results or classical facts that the next cycle depends on,
+7. The verifier-feedback fields expected from lower agents for this cycle,
+   including which finite-matrix, source-correspondence, or Lean-gate checks are
+   meaningful and which ones are irrelevant.
+8. Reviewer checklist.
+9. A compressed handoff explaining what future agents should remember.
+10. Any cited prior results or classical facts that the next cycle depends on,
    including whether they are already formalized or still obligations.
 
 In faithful paper mode, preserve the paper construction and isolate every
@@ -2713,7 +3988,10 @@ Maintain:
    source anchors, Lean status, and dependent proof blocks.
 7. Proof-DAG frontier: root theorem, dependency edges, active leaves, stale
    leaves, owner lower-agent profile, human proof-map location, and Lean gate.
-8. Project-article update bridge: after each active cycle, ensure the generated
+8. Verifier-feedback memory: for each lower attempt, record the leaf id, typed
+   success/failure fields, error class, and next route in `runs/trials.jsonl`
+   and, when useful, under `verifier-feedback/`.
+9. Project-article update bridge: after each active cycle, ensure the generated
    article update packet reflects the Lean status, proof-DAG frontier, and
    safe manuscript edits.  If stable claims should move into the ABEIS
    technical report, update only the relevant section or generated status
@@ -2794,6 +4072,11 @@ proof-DAG/reuse table whenever the same local argument would otherwise be
 proved several times.  Lower packets should target one block interface at a
 time.
 
+Use `.agents/skills/qbe-verifier-feedback/SKILL.md` when a lower attempt has
+partial progress or a useful failure.  Update `runs/trials.jsonl` through
+`trial-log --feedback-field ...` and, if needed, write a durable JSON/Markdown
+packet under `verifier-feedback/<task-id>/`.
+
 Use `.agents/skills/qbe-project-paper-update/SKILL.md` at the end of a
 multi-hour active cycle or when `article_update.md` reports a manuscript-facing
 delta.  The update is concise and evidence-preserving: record what changed in
@@ -2845,29 +4128,36 @@ Look for:
    `.agents/skills/qbe-proof-diagnostics/SKILL.md`, especially hidden axioms,
    placeholders, suspicious semantic flag promotions, and useful failed
    fragments that should be stored in proof-attempt memory.
-10. Missing two-way translation: after Lean changes, the Markdown/LaTeX proof
-   map must say what was actually proved, what failed, and how that corresponds
-   to the paper statement.
-11. Missing cited-results memory for prior work or "standard" facts used by the
-    paper.  Reject a dependency if the source, exact statement, Lean status, or
-    dependent use sites are vague.
-12. Missing source-dependency audit after a faithful-paper proof block gets
-    stuck.  Reviewer should ask whether middle re-read the local TeX source and
-    bibliography, whether the failure is internal/external/contractual, and
-    whether the next lower packet is justified by that classification.
-13. Missing proof-translation map when the source TeX already contains a proof
-    or proof sketch.  Reviewer should reject broad lower proof search unless
-    middle mapped the paper proof steps to Lean declarations, local lemma
-    targets, cited-results entries, or explicit contract gaps.
-14. Missing proof-DAG frontier.  Reviewer should reject cycles where lower
-    agents attack the root theorem directly without ready dependencies, ignore
-    the natural-language proof plan, duplicate a stale route, or fail to name
-    the active leaf being discharged.
-15. Missing project-paper update.  Reviewer should check that the generated
-    `article_update.md/.tex` packet is truthful, that the technical-report
-    status appendix does not overclaim, and that any manual report edits are
-    backed by Lean declarations, source anchors, cited-result rows, or explicit
-    obligations.
+10. Verifier-feedback gaps covered by
+   `.agents/skills/qbe-verifier-feedback/SKILL.md`, especially failures that
+   lack typed fields and therefore cannot guide upper/middle scheduling.
+11. Missing two-way translation: after Lean changes, the Markdown/LaTeX proof
+	   map must say what was actually proved, what failed, and how that corresponds
+	   to the paper statement.
+12. Missing cited-results memory for prior work or "standard" facts used by the
+	    paper.  Reject a dependency if the source, exact statement, Lean status, or
+	    dependent use sites are vague.
+13. Missing source-dependency audit after a faithful-paper proof block gets
+	    stuck.  Reviewer should ask whether middle re-read the local TeX source and
+	    bibliography, whether the failure is internal/external/contractual, and
+	    whether the next lower packet is justified by that classification.
+14. Missing proof-translation map when the source TeX already contains a proof
+	    or proof sketch.  Reviewer should reject broad lower proof search unless
+	    middle mapped the paper proof steps to Lean declarations, local lemma
+	    targets, cited-results entries, or explicit contract gaps.
+15. Missing proof-DAG frontier.  Reviewer should reject cycles where lower
+	    agents attack the root theorem directly without ready dependencies, ignore
+	    the natural-language proof plan, duplicate a stale route, or fail to name
+	    the active leaf being discharged.
+16. Missing project-paper update.  Reviewer should check that the generated
+	    `article_update.md/.tex` packet is truthful, that the technical-report
+	    status appendix does not overclaim, and that any manual report edits are
+	    backed by Lean declarations, source anchors, cited-result rows, or explicit
+	    obligations.
+17. Missing typed verifier feedback.  Reviewer should reject a failed lower
+    handoff that says only "proof failed" without classifying whether the
+    failure was source translation, shape/register, finite-matrix,
+    symbolic-bridge, Lean-tactic, external-contract, stale-leaf, or invalid-route.
 
 Classify findings as blocking or advisory.  If the current task is faithful
 paper reproduction, reject unrecorded invention and any added assumption or
@@ -2922,6 +4212,9 @@ should then compile one leaf from that decomposition.
 
 Write failures clearly; a failed attempt is useful search data when it
 identifies a blocked assumption, missing lemma, or impossible file scope.
+Also write typed verifier feedback when possible.  At minimum, include the leaf
+id, one `error_class`, and one `next_route`; if you edited Lean, include
+`lean_parse_ok`, `lean_build_ok`, and `closed_theorem_ok`.
 
 In faithful mode, record failed proof scripts or lemma routes under
 `proof-attempts/` when useful.  In exploratory mode, record candidate-family
@@ -3222,8 +4515,6 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                     log_agent_attempt(args.id, run_dir, prompt, command, code)
                     if code != 0:
                         cycle_code = code
-                if cycle_code != 0:
-                    break
             if cycle_code == 0:
                 for prompt in post_prompts:
                     command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
@@ -3265,10 +4556,12 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             write_trial_summary(load_jsonl(TRIAL_LOG))
             if code != 0:
                 write_cycle_zh_summary(args.id, cycle, run_dir)
+                write_memory_refresh(args.id, cycle, run_dir)
                 if not args.skip_article_update:
                     write_project_article_update(args.id, cycle, run_dir)
                 return code
         write_cycle_zh_summary(args.id, cycle, run_dir)
+        write_memory_refresh(args.id, cycle, run_dir)
         if not args.skip_article_update:
             write_project_article_update(args.id, cycle, run_dir)
         if final_code != 0:
@@ -3378,6 +4671,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_zh_summary.add_argument("--run-id", default="latest")
     p_zh_summary.set_defaults(func=cmd_cycle_zh_summary)
 
+    p_memory = sub.add_parser("memory-refresh", help="refresh compact task memory and retrieval index")
+    p_memory.add_argument("id")
+    p_memory.add_argument("--cycle", type=int, default=1)
+    p_memory.add_argument("--run-id", default="latest")
+    p_memory.set_defaults(func=cmd_memory_refresh)
+
     p_article_update = sub.add_parser("project-article-update", help="write an article-facing cycle update packet")
     p_article_update.add_argument("id")
     p_article_update.add_argument("--cycle", type=int, default=1)
@@ -3402,6 +4701,16 @@ def build_parser() -> argparse.ArgumentParser:
     p_trial.add_argument("--from-git", action="store_true")
     p_trial.add_argument("--command", default="")
     p_trial.add_argument("--notes", default="")
+    p_trial.add_argument(
+        "--feedback-json",
+        default="",
+        help="structured verifier feedback as a JSON string or path to a JSON file",
+    )
+    p_trial.add_argument(
+        "--feedback-field",
+        action="append",
+        help="append one structured verifier-feedback key=value field",
+    )
     p_trial.set_defaults(func=cmd_trial_log)
 
     sub.add_parser("trial-summary", help="rewrite and print the trial summary").set_defaults(
