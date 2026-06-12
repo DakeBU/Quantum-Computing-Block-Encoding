@@ -422,6 +422,13 @@ upper chooses root theorem and active proof-DAG leaves
   -> reviewer rejects stale leaves, contract drift, or undocumented Lean changes
 ```
 
+Human and agent status should start from the compact reports, not from raw logs:
+
+- [`HUMAN_STATUS.md`](HUMAN_STATUS.md): current verdict, build/sorry status, active leaves.
+- [`REPORTS.zh.md`](REPORTS.zh.md): which report or log to read for each purpose.
+- [`paper-notes/GHL2025/markdown/unresolved-failures.zh.md`](paper-notes/GHL2025/markdown/unresolved-failures.zh.md): source-aligned GHL unfinished proof map.
+- [`paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`](paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md): visual audit of GHL Fig. 4, including the distinction between the full circuit transcript and the seven-gate backend component.
+
 ## Lean/LaTeX/Markdown Conversion
 
 Every serious paper target should use a conversion window.
@@ -466,14 +473,14 @@ math-writing skill.
 | `python3 tools/qbe.py blueprint-status ...` | Write the current blueprint control status as Markdown and JSON. |
 | `python3 tools/qbe.py write-context-pack ...` | Write a compact long-run context pack. |
 | `python3 tools/qbe.py efficiency-report ...` | Summarize recent long-run efficiency, quota/build signals, and next controls. |
-| `python3 tools/qbe.py cycle-zh-summary ...` | Write the Chinese source-aligned cycle audit page. |
+| `python3 tools/qbe.py cycle-zh-summary ...` | Write the Chinese source-aligned audit page. The 6h wrapper runs this once at the final audit; use `sleep-run --summary-each-cycle` only for short debugging runs. |
 | `python3 tools/qbe.py memory-refresh ...` | Refresh `memory_digest.md`, cycle todo, GHL todo, technical-lemma todo, and the compact retrieval JSON. |
 | `python3 tools/qbe.py human-status ...` | Refresh `HUMAN_STATUS.md`, the single human-facing dashboard for the latest run. |
 | `python3 tools/qbe.py project-article-update ...` | Write the article-facing cycle packet and mirror generated status into the technical report. |
 | `python3 tools/qbe.py new-open-problem ...` | Draft an open problem proposal. |
 | `python3 tools/qbe.py agent-brief ...` | Generate an agent context packet. |
 | `python3 tools/qbe.py run-cycle ...` | Create one multi-agent prompt deck. |
-| `python3 tools/qbe.py sleep-run ...` | Create or execute repeated agent cycles. |
+| `python3 tools/qbe.py sleep-run ...` | Create or execute repeated agent cycles. By default it refreshes compact memory each cycle but does not archive a Chinese summary each cycle. |
 | `python3 tools/qbe.py agent-note ...` | Append to a run dialogue board. |
 | `python3 tools/qbe.py trial-log ...` | Append one JSONL trial record. |
 | `python3 tools/qbe.py trial-summary` | Rewrite and print trial summaries. |

@@ -1,6 +1,6 @@
 # ABEIS Human Status
 
-Generated: `2026-06-12 13:49:19`
+Generated: `2026-06-13 00:39:47`
 
 Task: `QBE-AUTO-002` — Concrete Circuit Matrix Semantics Backend
 
@@ -23,7 +23,9 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 - 最新下一步 todo：`runs/20260611-234445-QBE-AUTO-002-cycle01/todo.md`
 - 最新 dialogue：`runs/20260611-234445-QBE-AUTO-002-cycle01/dialogue.md`
 - 最新技术报告 update：`runs/20260611-234445-QBE-AUTO-002-cycle01/article_update.md`
+- 报告/日志阅读入口说明：`REPORTS.zh.md`
 - GHL 未完成/失败原因中文地图：`paper-notes/GHL2025/markdown/unresolved-failures.zh.md`
+- GHL Fig. 4 视觉审计：`paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`
 - 最新 efficiency report：`Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/efficiency/20260612-000545-QBE-AUTO-002-efficiency.md`
 - 压缩检索 JSON：`research-wiki/retrieval-index/QBE-AUTO-002.json`
 
@@ -57,7 +59,7 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 
 | total | compiled/pass | failed | blocked |
 |---:|---:|---:|---:|
-| 3712 | 501 | 38 | 9 |
+| 3713 | 501 | 38 | 9 |
 
 ## Current Active Proof Leaves
 
@@ -92,11 +94,13 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 ## Human Reading Order
 
 1. Start here: `HUMAN_STATUS.md`.
-2. For a plain Chinese map of unfinished GHL source steps and failed Lean routes, read `paper-notes/GHL2025/markdown/unresolved-failures.zh.md`.
-3. For human-readable cycle details, read `runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md`.
-4. For what the next agents should read, use `runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md` and `runs/20260611-234445-QBE-AUTO-002-cycle01/todo.md`.
-5. For machine retrieval, use `research-wiki/retrieval-index/QBE-AUTO-002.json`.
-6. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
+2. For report/log reading rules, read `REPORTS.zh.md`.
+3. For a plain Chinese map of unfinished GHL source steps and failed Lean routes, read `paper-notes/GHL2025/markdown/unresolved-failures.zh.md`.
+4. For the Fig. 4 circuit image audit, read `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`.
+5. For human-readable cycle details, read `runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md`.
+6. For what the next agents should read, use `runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md` and `runs/20260611-234445-QBE-AUTO-002-cycle01/todo.md`.
+7. For machine retrieval, use `research-wiki/retrieval-index/QBE-AUTO-002.json`.
+8. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
 
 ## Directory Map
 
@@ -105,6 +109,7 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 | `QuantumBlockEncoding/` | Formal Lean source. Only trust claims that compile here. | Lower agent edits/proves here. |
 | `runs/<run-id>/` | One cycle's prompt, dialogue, summary, todo, and article packet. | Short-term local memory. |
 | `paper-notes/GHL2025/markdown/cycle-summaries/latest.md` | Latest archived Chinese audit. | Middle keeps source correspondence readable. |
+| `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | Visual audit of the active GHL circuit figure. | Prevents agents from confusing full Fig. 4 with the seven-gate backend. |
 | `research-wiki/retrieval-index/` | Usually not read by humans unless debugging. | Compact JSON retrieval; prevents replaying the long log. |
 | `research-wiki/paper-contributions/GHL2025/` | Separates GHL's own unfinished contribution from external lemmas. | Upper/middle planning. |
 | `research-wiki/technical-lemmas/` | Shows which prior results are still contracts. | Reviewer prevents hidden assumptions. |

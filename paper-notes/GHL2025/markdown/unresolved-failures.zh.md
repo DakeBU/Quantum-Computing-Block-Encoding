@@ -1,6 +1,6 @@
 # GHL2025 未完成与失败原因中文地图
 
-生成时间：`2026-06-12 13:49:18`
+生成时间：`2026-06-13 00:39:46`
 
 任务：`QBE-AUTO-002`
 
@@ -10,10 +10,13 @@
 
 它不是正式论文证明，也不是 Lean 证明。它是给人类上层 agent、合作者和不熟悉 Lean 的读者看的导航页。正式可信状态仍以 `QuantumBlockEncoding/` 里的 Lean 编译和 `sorry` 数量为准。
 
+配套图像审计：`paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`
+
 ## 先读结论
 
 - GHL2025 的 one-term Robin block-encoding 还没有完整 Lean 复现完成。
 - 当前没有完成的是 Fig. 4 / Eq. ROBIN clarified / one-term theorem 之间的最后矩阵条目桥接：论文说线路的 clean branch 会留下目标系数；Lean 需要我们把具体门矩阵相乘，并证明指定 entry 正好等于这个系数。
+- 视觉审计已确认：完整 Fig. 4 包含左右两侧 `H_W^(kappa)` / `(H_W^(kappa))^T` 和显式 `U_indic^dagger`。当前 active seven-gate backend 只是子组件，不能被当成完整 Fig. 4 theorem。
 - 现在剩下的主要失败不是“论文没有写证明”，而是 ABEIS 当前 Lean 表达层级还差一个语义桥：不能继续强证 raw `Coeff` symbolic matrix 的构造子相等，应该在 `Coeff.evalWith` 后的矩阵语义层证明 entry equality。
 - 外部 oracle、$H_W$ sparse-register preparation、$O_f$、QSVT 等还没有都从零 formalize；当前它们被明确记录为 contract 或 external technical lemma，不应冒充为已经由 GHL 本文贡献证明。
 

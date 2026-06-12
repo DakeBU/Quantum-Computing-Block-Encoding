@@ -56,6 +56,7 @@ while [ "$(active_used_seconds)" -lt "$active_budget" ]; do
     --execute \
     --check-each-cycle \
     --skip-reviewer \
+    --skip-article-update \
     "${sleep_run_extra_args[@]}"
   code=$?
   active_used="$(active_used_seconds)"
@@ -77,8 +78,12 @@ python3 tools/qbe.py sleep-run "$TASK_ID" \
   --blueprint-refresh \
   --agent-cmd "$AGENT_CMD" \
   --execute \
-  --check-each-cycle
+  --check-each-cycle \
+  --skip-article-update
 final_code=$?
+python3 tools/qbe.py cycle-zh-summary "$TASK_ID" --cycle "$cycle" --run-id latest
+python3 tools/qbe.py memory-refresh "$TASK_ID" --cycle "$cycle" --run-id latest
+python3 tools/qbe.py project-article-update "$TASK_ID" --cycle "$cycle" --run-id latest
 python3 tools/qbe.py efficiency-report --task "$TASK_ID"
 python3 tools/qbe.py human-status "$TASK_ID"
 active_used="$(active_used_seconds)"

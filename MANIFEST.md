@@ -4564,3 +4564,7 @@ block-encoding formalization lifecycle.
 | 2026-06-12 13:48:35 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |
 | 2026-06-12 13:49:18 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
 | 2026-06-12 13:49:19 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |
+| 2026-06-13 00:39:46 | qbe.py human-status | `REPORTS.zh.md` | review | Wrote report guide for QBE-AUTO-002 |
+| 2026-06-13 00:39:46 | qbe.py human-status | `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | review | Wrote GHL Fig. 4 visual audit for QBE-AUTO-002 |
+| 2026-06-13 00:39:46 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
+| 2026-06-13 00:39:47 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |

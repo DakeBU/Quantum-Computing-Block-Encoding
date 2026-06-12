@@ -60,7 +60,9 @@ STATE_FILE = STATE_DIR / "state.json"
 MANIFEST = ROOT / "MANIFEST.md"
 QBE_DASHBOARD = ROOT / "QBE.md"
 HUMAN_STATUS = ROOT / "HUMAN_STATUS.md"
+REPORTS_GUIDE = ROOT / "REPORTS.zh.md"
 GHL_FAILURE_MAP = ROOT / "paper-notes" / "GHL2025" / "markdown" / "unresolved-failures.zh.md"
+GHL_FIG4_AUDIT = ROOT / "paper-notes" / "GHL2025" / "markdown" / "fig4-visual-audit.zh.md"
 FINDINGS = ROOT / "findings.md"
 TRIAL_LOG = ROOT / "runs" / "trials.jsonl"
 TRIAL_SUMMARY = ROOT / "runs" / "trials_summary.csv"
@@ -276,6 +278,22 @@ def latest_run_dir() -> Path | None:
         p for p in (ROOT / "runs").glob("*")
         if p.is_dir() and re.search(r"-cycle[0-9]+$", p.name)
     ]
+    return sorted(runs)[-1] if runs else None
+
+
+def latest_report_run_dir() -> Path | None:
+    """Latest run with generated report artifacts, ignoring prompt-only dry runs."""
+    runs = [
+        p for p in (ROOT / "runs").glob("*")
+        if p.is_dir() and re.search(r"-cycle[0-9]+$", p.name)
+    ]
+    for run_dir in sorted(runs, reverse=True):
+        if (
+            (run_dir / "zh_summary.md").exists()
+            or (run_dir / "memory_digest.md").exists()
+            or (run_dir / "article_update.md").exists()
+        ):
+            return run_dir
     return sorted(runs)[-1] if runs else None
 
 
@@ -2931,7 +2949,16 @@ def recent_task_run_dirs(task_id: str, limit: int = 8) -> list[Path]:
         path for path in runs_dir.glob(f"*-{slugify(task_id)}-cycle*")
         if path.is_dir()
     ]
-    return sorted(runs, key=lambda path: path.stat().st_mtime, reverse=True)[:limit]
+    report_runs = [
+        path for path in runs
+        if (
+            (path / "zh_summary.md").exists()
+            or (path / "memory_digest.md").exists()
+            or (path / "article_update.md").exists()
+        )
+    ]
+    chosen = report_runs if report_runs else runs
+    return sorted(chosen, key=lambda path: path.stat().st_mtime, reverse=True)[:limit]
 
 
 def trial_count_summary(task_id: str) -> dict[str, int]:
@@ -2970,6 +2997,131 @@ def latest_batch_log_signal() -> list[str]:
     return [f"`{display_path(log_path)}`: {line}" for line in lines[-18:]]
 
 
+def reports_guide_markdown(task_id: str, run_dir: Path) -> str:
+    text = """# ABEIS 报告与记忆入口说明
+
+生成时间：`{now_stamp()}`
+
+任务：`{task_id}`
+
+对应 run：`{rel(run_dir)}`
+
+这个文件只解决一个问题：**人类和 agent 到底应该先读哪个文件，哪些文件只是原始日志，不应该作为决策入口？**
+
+## 首选阅读顺序
+
+1. `HUMAN_STATUS.md`：总入口，只看当前任务是否完成、剩几个 `sorry`、下一步是什么。
+2. `paper-notes/GHL2025/markdown/unresolved-failures.zh.md`：给人看的 GHL 未完成/失败原因地图，按原文位置解释。
+3. `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`：Fig. 4 视觉审计，说明完整线路和七门 backend 子组件的区别。
+4. `runs/<latest>/memory_digest.md` 与 `runs/<latest>/todo.md`：给 upper/middle agent 的短记忆包。
+5. `research-wiki/retrieval-index/QBE-AUTO-002.json`：给工具和 agent 检索用的压缩 JSON。
+6. `proof-attempts/` 与 `verifier-feedback/`：只有在调查某个具体 leaf 为什么失败时才打开。
+
+## 不再作为首选入口的文件
+
+- `paper-notes/project-paper/cycle-updates/*`：这是技术报告素材，不是 proof-control 入口。
+- `runs/logs/*.log`：这是原始运行日志，只用来查 crash、quota、build gate。
+- `paper-notes/GHL2025/markdown/cycle-summaries/*`：这是 6h 收尾中文审计归档；最新状态优先看 `HUMAN_STATUS.md` 和失败地图。
+- `appendix/generated_cycle_status.*`：这是给技术报告 appendix 的生成状态，不应该让 lower agent 从这里反推 Lean 任务。
+
+## 6h 运行后的报告节奏
+
+- 每个 inner proof-search cycle：只刷新 compact memory，避免大量中文总结和文章 update 淹没检索。
+- 每个 6h active-time batch 结束：统一生成中文总结、memory refresh、技术报告 update、human status、Fig. 4 审计和失败地图。
+- 如果只是短调试，可以显式用 `sleep-run --summary-each-cycle` 打开每轮中文总结。
+
+## 当前任务的决策规则
+
+- 当前 GHL target 是 one-term Robin theorem 的 Fig. 4 / Eq. ROBIN clarified / block-entry bridge。
+- 完整 Fig. 4 transcript 与七门 backend 子组件必须分开说。
+- 不允许把外部 oracle contract、`H_W` state-preparation、`O_f`、QSVT、LCU 写成已经 Lean 证明完成。
+- 不允许让 lower agent 重试 raw `Coeff` constructor equality；应优先证明 `Coeff.evalWith` 后的 semantic entry bridge。
+
+## 文件夹角色
+
+| 文件夹 | 角色 |
+| --- | --- |
+| `QuantumBlockEncoding/` | 唯一正式 Lean 证明源。 |
+| `research-wiki/retrieval-index/` | 压缩检索层，减少反复读长日志。 |
+| `research-wiki/paper-contributions/GHL2025/` | GHL 本文贡献和 source map。 |
+| `research-wiki/technical-lemmas/` | 前人 lemma、经典 primitive、contract-only 结果。 |
+| `proof-blueprints/` | proof-DAG 和 active leaf 排队。 |
+| `verifier-feedback/` | typed failure/reward feedback。 |
+| `proof-attempts/` | lower agent 成功/失败路线的人类可查档案。 |
+| `paper-notes/GHL2025/markdown/` | 给人类读的 GHL 对照说明。 |
+| `paper-notes/project-paper/` | 技术报告素材，不是日常 proof 控制入口。 |
+
+"""
+    return (
+        text.replace("{now_stamp()}", now_stamp())
+        .replace("{task_id}", task_id)
+        .replace("{rel(run_dir)}", rel(run_dir))
+    )
+
+
+def ghl_fig4_visual_audit_markdown(task_id: str, run_dir: Path) -> str:
+    text = """# GHL2025 Fig. 4 视觉审计
+
+生成时间：`{now_stamp()}`
+
+任务：`{task_id}`
+
+对应 run：`{rel(run_dir)}`
+
+图源：`outer_papers/quantum/GHL2025/Figures/1_term_ROBIN.pdf`
+
+对应原文：`outer_papers/quantum/GHL2025/main.tex:1086-1164`
+
+这个文件记录一次明确的视觉审计：Fig. 4 不是一个普通线性七门列表。它包含左右两侧 sparse-register preparation/cleanup、bulk/boundary 分支、indicator cleanup、function oracle、SWAP 和 sparse-access dagger cleanup。ABEIS 之前容易慢，是因为报告没有把“完整 Fig. 4 transcript”和“当前 H-free seven-gate backend 子组件”分得足够清楚。
+
+## 图中从左到右的主结构
+
+| 阶段 | 图中门/操作 | 普通解释 | Lean 中的对应 |
+| --- | --- | --- | --- |
+| 输入准备 | `H_W^(kappa)` 作用在 sparse index register，`U_indic` 作用在 system + indicator qubit | sparse register 制备均匀叠加；indicator 标记 bulk region | 完整 transcript: `oneTermRobinTheoremFacingFig4Circuit`; backend 子组件通常不含 `H_W` |
+| `gamma_1` 到 `gamma_2` | bulk branch 用 `O^S_{D^T}`；boundary branch 用一组 controlled `R_y(theta_j^s)`；随后 `O^{BS}_{D^T}` 和 `U_indic^dagger` | 这一段负责 derivative operator 的 bulk/boundary 系数和地址 | Lean 中被拆成 sparse-amplitude/boundary Ry/ODBS/indicator cleanup 的 contract 与局部矩阵语义 |
+| `gamma_2` 后 | `O_f`、SWAP、`(O_D^{BS})^dagger` | 加上 $f(x_i)$ 系数，交换两个 $n$-qubit register，再清理 sparse-access address | backend fold / branch contribution 相关 lemmas |
+| 输出清理 | `(H_W^(kappa))^T` 作用在 sparse register；pure ancilla 返回 zero | 把 sparse register 和 pure ancilla 恢复到 block-encoding clean branch 所需状态 | source-prepared theorem-facing route 需要 `H_W` clean-column contract |
+
+## 关键视觉事实
+
+- `O_f` 不作用在 indicator qubit 上；caption 明说对应那根 1-qubit wire goes above the box。
+- 图中 `O^{BS}_{D^T}` 和后面的 `(O_D^{BS})^dagger` 不是同一个方向的随意占位；前者写 transposed derivative sparse address，后者在 SWAP 后做 cleanup。
+- `U_indic^dagger` 在图里是显式门，位于 `O^{BS}_{D^T}` 后、`O_f` 前；它不能被旧七门 backend 的不完整标签悄悄吞掉。
+- 左右两侧 `H_W^(kappa)` / `(H_W^(kappa))^T` 是完整 Fig. 4 的一部分。当前 active backend seven-gate matrix 是为了局部有限矩阵语义而抽出的子组件，不能被称为完整 Fig. 4 proof。
+
+## Lean 中两个 circuit list 的区别
+
+| Lean 名称 | 角色 | 包含什么 | 不应怎么用 |
+| --- | --- | --- | --- |
+| `GHL2025.oneTermRobinTheoremFacingFig4Circuit` | 完整 Fig. 4 transcript guard | `H_W^(kappa)`, `U_indic`, `O_DT^S`, `Ry_boundary`, `O_DT^BS`, `U_indic^dagger`, `O_f`, `SWAP`, `(O_D^BS)^dagger`, `(H_W^(kappa))^dagger` | 目前只是 transcript guard，不等于完整 semantic proof |
+| `GHL2025.oneTermRobinCircuit` | active seven-gate backend 子组件 | `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`, `O_f`, `SWAP`, `(O_D^BS)^dagger` | 不能叫完整 Fig. 4，也不能用它直接替代 source-prepared route |
+
+## 当前没解决的真正 Lean 问题
+
+现在不是“看不懂原文有没有证明”。问题更具体：
+
+1. 完整 Fig. 4 要通过 `H_W` prepared route 进入 clean sparse branch。
+2. 当前 Lean 已经有很多 feeder，能把目标化到 active seven-gate evaluated entry / prepared sparse clean entry / backend fold 之间。
+3. 还缺一个语义矩阵 entry bridge：在 `Coeff.evalWith` 后证明这个 active entry 等于 backend fold，或等价地证明 source-prepared active entry 等于 prepared sparse clean entry。
+4. 不能继续证明 raw `Coeff` expression tree 的 constructor equality，因为那不是论文语义，且已被 verifier 记录为 `symbolic_bridge_gap`。
+
+## 下一轮 agent 任务约束
+
+- upper：只选择一个 leaf：`semantic_eval_product_bridge` 或 `evaluated_backend_fold_leaf`。
+- middle：必须先引用本文件，声明完整 Fig. 4 和 seven-gate backend 的区别。
+- lower1 natural-language proof architect：把 Fig. 4 视觉路径写成依赖 DAG，不写 Lean。
+- lower2 Lean worker：只在 `QuantumBlockEncoding/RobinMatrix.lean` 证明一个 `Coeff.evalWith` semantic entry lemma。
+- reviewer：拒绝任何把 seven-gate backend 当完整 Fig. 4、把 external oracle contract 当 proved、或重试 raw `Coeff` equality 的路线。
+
+"""
+    return (
+        text.replace("{now_stamp()}", now_stamp())
+        .replace("{task_id}", task_id)
+        .replace("{rel(run_dir)}", rel(run_dir))
+    )
+
+
 def ghl_failure_map_markdown(task_id: str, run_dir: Path) -> str:
     snapshot = memory_snapshot_state(task_id, 0, run_dir)
     sorries = snapshot.get("lean_sorries", [])
@@ -2989,10 +3141,13 @@ def ghl_failure_map_markdown(task_id: str, run_dir: Path) -> str:
 
 它不是正式论文证明，也不是 Lean 证明。它是给人类上层 agent、合作者和不熟悉 Lean 的读者看的导航页。正式可信状态仍以 `QuantumBlockEncoding/` 里的 Lean 编译和 `sorry` 数量为准。
 
+配套图像审计：`paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`
+
 ## 先读结论
 
 - GHL2025 的 one-term Robin block-encoding 还没有完整 Lean 复现完成。
 - 当前没有完成的是 Fig. 4 / Eq. ROBIN clarified / one-term theorem 之间的最后矩阵条目桥接：论文说线路的 clean branch 会留下目标系数；Lean 需要我们把具体门矩阵相乘，并证明指定 entry 正好等于这个系数。
+- 视觉审计已确认：完整 Fig. 4 包含左右两侧 `H_W^(kappa)` / `(H_W^(kappa))^T` 和显式 `U_indic^dagger`。当前 active seven-gate backend 只是子组件，不能被当成完整 Fig. 4 theorem。
 - 现在剩下的主要失败不是“论文没有写证明”，而是 ABEIS 当前 Lean 表达层级还差一个语义桥：不能继续强证 raw `Coeff` symbolic matrix 的构造子相等，应该在 `Coeff.evalWith` 后的矩阵语义层证明 entry equality。
 - 外部 oracle、$H_W$ sparse-register preparation、$O_f$、QSVT 等还没有都从零 formalize；当前它们被明确记录为 contract 或 external technical lemma，不应冒充为已经由 GHL 本文贡献证明。
 
@@ -3116,7 +3271,9 @@ Latest run: `{rel(run_dir)}`
 - 最新下一步 todo：`{rel(run_dir / "todo.md")}`
 - 最新 dialogue：`{rel(run_dir / "dialogue.md")}`
 - 最新技术报告 update：`{rel(run_dir / "article_update.md")}`
+- 报告/日志阅读入口说明：`{rel(REPORTS_GUIDE)}`
 - GHL 未完成/失败原因中文地图：`{rel(GHL_FAILURE_MAP)}`
+- GHL Fig. 4 视觉审计：`{rel(GHL_FIG4_AUDIT)}`
 - 最新 efficiency report：`{display_path(latest_eff) if latest_eff else "not found"}`
 - 压缩检索 JSON：`research-wiki/retrieval-index/{slugify(task_id)}.json`
 
@@ -3158,11 +3315,13 @@ Latest run: `{rel(run_dir)}`
 ## Human Reading Order
 
 1. Start here: `HUMAN_STATUS.md`.
-2. For a plain Chinese map of unfinished GHL source steps and failed Lean routes, read `{rel(GHL_FAILURE_MAP)}`.
-3. For human-readable cycle details, read `{rel(run_dir / "zh_summary.md")}`.
-4. For what the next agents should read, use `{rel(run_dir / "memory_digest.md")}` and `{rel(run_dir / "todo.md")}`.
-5. For machine retrieval, use `research-wiki/retrieval-index/{slugify(task_id)}.json`.
-6. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
+2. For report/log reading rules, read `{rel(REPORTS_GUIDE)}`.
+3. For a plain Chinese map of unfinished GHL source steps and failed Lean routes, read `{rel(GHL_FAILURE_MAP)}`.
+4. For the Fig. 4 circuit image audit, read `{rel(GHL_FIG4_AUDIT)}`.
+5. For human-readable cycle details, read `{rel(run_dir / "zh_summary.md")}`.
+6. For what the next agents should read, use `{rel(run_dir / "memory_digest.md")}` and `{rel(run_dir / "todo.md")}`.
+7. For machine retrieval, use `research-wiki/retrieval-index/{slugify(task_id)}.json`.
+8. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
 
 ## Directory Map
 
@@ -3171,6 +3330,7 @@ Latest run: `{rel(run_dir)}`
 | `QuantumBlockEncoding/` | Formal Lean source. Only trust claims that compile here. | Lower agent edits/proves here. |
 | `runs/<run-id>/` | One cycle's prompt, dialogue, summary, todo, and article packet. | Short-term local memory. |
 | `paper-notes/GHL2025/markdown/cycle-summaries/latest.md` | Latest archived Chinese audit. | Middle keeps source correspondence readable. |
+| `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | Visual audit of the active GHL circuit figure. | Prevents agents from confusing full Fig. 4 with the seven-gate backend. |
 | `research-wiki/retrieval-index/` | Usually not read by humans unless debugging. | Compact JSON retrieval; prevents replaying the long log. |
 | `research-wiki/paper-contributions/GHL2025/` | Separates GHL's own unfinished contribution from external lemmas. | Upper/middle planning. |
 | `research-wiki/technical-lemmas/` | Shows which prior results are still contracts. | Reviewer prevents hidden assumptions. |
@@ -3186,6 +3346,10 @@ Latest run: `{rel(run_dir)}`
 
 
 def write_human_status(task_id: str, run_dir: Path) -> Path:
+    write_text(REPORTS_GUIDE, reports_guide_markdown(task_id, run_dir))
+    add_manifest("qbe.py human-status", REPORTS_GUIDE, "review", f"Wrote report guide for {task_id}")
+    write_text(GHL_FIG4_AUDIT, ghl_fig4_visual_audit_markdown(task_id, run_dir))
+    add_manifest("qbe.py human-status", GHL_FIG4_AUDIT, "review", f"Wrote GHL Fig. 4 visual audit for {task_id}")
     write_text(GHL_FAILURE_MAP, ghl_failure_map_markdown(task_id, run_dir))
     add_manifest("qbe.py human-status", GHL_FAILURE_MAP, "review", f"Wrote GHL failure map for {task_id}")
     write_text(HUMAN_STATUS, human_status_markdown(task_id, run_dir))
@@ -3196,7 +3360,7 @@ def write_human_status(task_id: str, run_dir: Path) -> Path:
 def cmd_human_status(args: argparse.Namespace) -> int:
     cmd_init(argparse.Namespace())
     if args.run_id == "latest":
-        run_dir = latest_run_dir()
+        run_dir = latest_report_run_dir()
         if run_dir is None:
             raise SystemExit("no run directories found")
     else:
@@ -4171,12 +4335,16 @@ Human-facing correspondence rule:
 - If a cycle changes Lean declarations tied to a paper construction, update the
   conversion window, a `paper-notes/*.tex` note, or a `proof-obligations/`
   ledger in the same cycle.
-- Every executed cycle writes a Chinese audit page at
-  `runs/<run-id>/zh_summary.md` and archives it under
-  `paper-notes/GHL2025/markdown/cycle-summaries/`.  Middle and reviewer should
-  make sure the page remains truthful: source `main.tex` anchors, Lean status,
-  contract/backlog classifications, and the next proof-DAG leaf must match the
-  actual work.
+- Chinese audit cadence: during long theorem-closure batches, do not spend
+  context or filesystem churn writing a full Chinese summary after every inner
+  proof-search cycle.  The 6h wrapper writes one source-aligned Chinese audit
+  page at the final upper/middle/reviewer audit.  Use `--summary-each-cycle`
+  only for short debugging runs where a summary after every cycle is desired.
+- Figure-audit rule: if the active leaf depends on a paper circuit diagram,
+  upper/middle/lower1 must use the figure audit or inspect the figure source
+  directly before assigning Lean work.  For GHL2025 Fig. 4, read
+  `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` and keep the full
+  Fig. 4 transcript separate from the seven-gate backend component.
 - Every executed cycle also refreshes `runs/<run-id>/memory_digest.md`,
   `runs/<run-id>/todo.md`, and
   `research-wiki/retrieval-index/{task_id}.json`.  Upper and middle agents
@@ -4202,12 +4370,11 @@ Human-facing correspondence rule:
   batch, middle may update the appendix map, project-paper outline, and figure
   todo list so the compiled proof work can later be folded into the main
   article efficiently.
-- Article-update cadence: every executed sleep-run cycle writes
+- Article-update cadence: the 6h theorem-closure wrapper writes
   `runs/<run-id>/article_update.md`, `runs/<run-id>/article_update.tex`, and
-  archives them under `paper-notes/project-paper/cycle-updates/`.  If the
-  ABEIS technical-report directory exists, the latest generated status is also
-  mirrored to `appendix/generated_cycle_status.tex`.  Middle owns this
-  article-facing bridge; reviewer checks it for honest claims.
+  the generated technical-report status once at the final audit.  Inner
+  proof-search cycles should usually skip article updates and keep their
+  effort on Lean proof closure plus compact memory refresh.
 - Use `.agents/skills/qbe-project-paper-update/SKILL.md` when updating the
   technical report, generated cycle status appendix, article outline, figure
   todo list, or evidence discussion.  This is adapted from the ARIS paper
@@ -4918,12 +5085,14 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             )
             write_trial_summary(load_jsonl(TRIAL_LOG))
             if code != 0:
-                write_cycle_zh_summary(args.id, cycle, run_dir)
+                if args.summary_each_cycle:
+                    write_cycle_zh_summary(args.id, cycle, run_dir)
                 write_memory_refresh(args.id, cycle, run_dir)
                 if not args.skip_article_update:
                     write_project_article_update(args.id, cycle, run_dir)
                 return code
-        write_cycle_zh_summary(args.id, cycle, run_dir)
+        if args.summary_each_cycle:
+            write_cycle_zh_summary(args.id, cycle, run_dir)
         write_memory_refresh(args.id, cycle, run_dir)
         if not args.skip_article_update:
             write_project_article_update(args.id, cycle, run_dir)
@@ -5111,6 +5280,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep.add_argument("--execute", action="store_true")
     p_sleep.add_argument("--dry-run", action="store_true")
     p_sleep.add_argument("--check-each-cycle", action="store_true")
+    p_sleep.add_argument(
+        "--summary-each-cycle",
+        action="store_true",
+        help="write and archive the Chinese paper-source audit after every executed cycle; long 6h runs leave this off and write one final summary",
+    )
     p_sleep.add_argument(
         "--context-mode",
         choices=("full", "focused"),
