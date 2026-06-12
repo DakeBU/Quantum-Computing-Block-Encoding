@@ -1,6 +1,6 @@
 # GHL2025 Fig. 4 视觉审计
 
-生成时间：`2026-06-13 01:08:16`
+生成时间：`2026-06-13 01:20:14`
 
 任务：`QBE-AUTO-002`
 
@@ -50,5 +50,6 @@
 - middle：必须先引用本文件，声明完整 Fig. 4 和 seven-gate backend 的区别。
 - lower1 natural-language proof architect：把 Fig. 4 视觉路径写成依赖 DAG，不写 Lean。
 - lower2 Lean worker：只在 `QuantumBlockEncoding/RobinMatrix.lean` 证明一个 `Coeff.evalWith` semantic entry lemma。
+- lower3 necessary-condition verifier：先做 finite matrix/path/support 诊断，确认 active entry、branch vanish、register shape 没有反例，再把 typed feedback 写进 `verifier-feedback/`。
 - reviewer：拒绝任何把 seven-gate backend 当完整 Fig. 4、把 external oracle contract 当 proved、或重试 raw `Coeff` equality 的路线。
 

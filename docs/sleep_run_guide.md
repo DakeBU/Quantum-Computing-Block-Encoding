@@ -65,7 +65,9 @@ Faithful paper reproduction:
 - record missing oracle details as proof obligations,
 - use `proof-attempts/` for competing proof routes of the same fixed lemma,
 - require Markdown/LaTeX updates for Lean declarations tied to the paper,
-- prefer one lower worker per cycle.
+- prefer three lower roles for hard theorem closure: proof architect, Lean
+  worker, and necessary-condition verifier.  Use one lower worker only for
+  cheap maintenance cycles.
 
 Exploratory construction:
 
@@ -89,7 +91,7 @@ Start with a dry run:
 cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
 python3 tools/qbe.py blueprint-status QBE-AUTO-001 --refresh
 python3 tools/qbe.py write-context-pack QBE-AUTO-001 --cycle 1
-python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 2 --lower-count 2 --dry-run
+python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 2 --lower-count 3 --dry-run
 python3 tools/qbe.py trial-summary
 ```
 
@@ -190,7 +192,7 @@ Run one small dry-run first:
 python3 tools/qbe.py blueprint-refresh QBE-AUTO-002
 python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --cycles 1 \
-  --lower-count 1 \
+  --lower-count 3 \
   --context-mode focused \
   --blueprint-refresh \
   --dry-run
@@ -203,7 +205,7 @@ mkdir -p runs/logs
 nohup bash -lc '
 python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --cycles 4 \
-  --lower-count 1 \
+  --lower-count 3 \
   --context-mode focused \
   --blueprint-refresh \
   --agent-cmd '"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
@@ -212,9 +214,11 @@ python3 tools/qbe.py sleep-run QBE-AUTO-002 \
 ' > runs/logs/claude-qbe-auto-002-$(date +%Y%m%d-%H%M%S).log 2>&1 &
 ```
 
-This mode is intentionally conservative: one lower worker per cycle, no
-exploratory block-encoding invention, and every Lean change must be mirrored in
-the conversion window, LaTeX proof map, or proof-obligation ledger.
+This mode is intentionally conservative in target, not in useful role
+separation: lower 1 writes the proof DAG, lower 2 proves one Lean leaf, and
+lower 3 runs necessary-condition diagnostics.  There is still no exploratory
+block-encoding invention, and every Lean change must be mirrored in the
+conversion window, LaTeX proof map, or proof-obligation ledger.
 
 ## Overnight Checklist
 

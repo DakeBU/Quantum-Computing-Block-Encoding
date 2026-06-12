@@ -150,14 +150,14 @@ tools/qbe.py           stable local command surface for agents
 .agents/skills/        project-local workflow prompts
 ```
 
-## Three-Layer Agent Stack
+## Layer-Panel Agent Stack
 
 The compiled contract in `QuantumBlockEncoding/Automation.lean` defines four
 roles:
 
 - upper: human-facing strategy, mode selection, and memory compression,
 - middle: Lean/LaTeX/Markdown synchronization plus success/failure memory,
-- lower: assigned Lean/circuit implementation attempts,
+- lower: proof DAG, Lean implementation, and necessary-condition diagnostics,
 - reviewer: build, citation, resource, hidden-oracle, and mode-discipline
   review.
 
@@ -166,7 +166,7 @@ Generate one role deck:
 ```bash
 python3 tools/qbe.py run-cycle QBE-AUTO-001 \
   --cycle 1 \
-  --lower-count 2 \
+  --lower-count 3 \
   --blueprint-refresh
 ```
 

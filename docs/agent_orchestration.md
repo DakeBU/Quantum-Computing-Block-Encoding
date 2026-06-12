@@ -92,8 +92,8 @@ Middle panel:
   retirement, and compact context;
 - report/export maintainer: Chinese summaries, Markdown/LaTeX proof maps, and
   technical-report status;
-- coordinator: writes exactly one lower-1 natural-language proof task and one
-  lower-2 Lean implementation task.
+- coordinator: writes exactly one lower-1 natural-language proof task, one
+  lower-2 Lean implementation task, and one lower-3 verifier task.
 
 The default 6h wrapper runs upper and middle panels only at the final audit.
 Enable inner panels only when the run is demonstrably losing source
@@ -134,7 +134,7 @@ Use it before overnight work:
 ```bash
 python3 tools/qbe.py run-cycle QBE-AUTO-002 \
   --cycle 1 \
-  --lower-count 1 \
+  --lower-count 3 \
   --context-mode focused \
   --blueprint-refresh
 ```
@@ -144,17 +144,23 @@ that a lower target is already compiled.  The lower agent should work on one
 dynamic leaf.  The reviewer should treat Lean plus proof-map correspondence as
 the gate, not agent self-assessment.
 
-When two lower agents are used, QBE deliberately mixes two proof modes:
+When three lower agents are used, QBE deliberately mixes three proof modes:
 
 - lower 1 is a natural-language proof architect.  It reads the source TeX,
   current Lean declarations, and proof obligations, then writes the dependency
   proof and active-leaf table.
 - lower 2 is a Lean implementation worker.  It implements exactly one ready
   leaf from that table and runs `python3 tools/qbe.py check`.
+- lower 3 is a necessary-condition verifier.  It checks exact finite matrix
+  entries, path support, branch vanish/cancellation, register shape, or small
+  convention identities that must hold before lower 2 spends a large Lean
+  proof attempt.
 
 This is not a weaker proof path.  Natural-language proof planning is used to
 make the dependency graph small and source-faithful before Lean tactic search
-spends tokens.
+spends tokens, and diagnostic checks reject wrong targets before Lean search
+gets expensive.  Lower 4 should be used only as a refiner/reducer after a
+specific Lean failure has been classified.
 
 After a multi-hour run, write an efficiency report before planning the next
 batch:
@@ -229,11 +235,12 @@ the final lower packet.
 
 Lower agents:
 
-- implement one assigned Lean/circuit task,
-- edit only the assigned file scope,
-- add tests or proof obligations with the code change,
-- run the Lean gate if they edit Lean,
-- report blocked attempts without changing the objective.
+- lower 1 writes source-faithful natural-language proof DAGs,
+- lower 2 implements exactly one assigned Lean leaf,
+- lower 3 runs necessary-condition diagnostics and typed feedback,
+- lower 4, when scheduled, refines a concrete Lean failure,
+- all lower agents edit only the assigned scope and report blockers without
+  changing the objective.
 
 Reviewer:
 
@@ -264,7 +271,7 @@ project direction.
 
 ```bash
 cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
-python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 2
+python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 3
 ```
 
 This creates a directory like:
@@ -338,7 +345,7 @@ semantics.  See `docs/mathcode_reference_notes.md`.
 Dry run first:
 
 ```bash
-python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 3 --lower-count 2 --dry-run
+python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 3 --lower-count 3 --dry-run
 ```
 
 This only creates prompt decks and trial records. It does not call any external
@@ -381,7 +388,7 @@ Use a full planning cycle when the route is unclear:
 ```bash
 python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --cycles 1 \
-  --lower-count 1 \
+  --lower-count 3 \
   --context-mode full \
   --blueprint-refresh \
   --agent-cmd 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"' \
@@ -394,7 +401,7 @@ Use focused proof burst mode after the target is fixed:
 ```bash
 python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --cycles 12 \
-  --lower-count 1 \
+  --lower-count 3 \
   --context-mode focused \
   --blueprint-refresh \
   --upper-every 6 \

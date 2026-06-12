@@ -16,15 +16,19 @@
 
   <rect x="80" y="220" width="960" height="70" rx="8" fill="#f0fdfa" stroke="#5eead4"/>
   <text x="112" y="249" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#134e4a">Middle panel + coordinator</text>
-  <text x="112" y="273" font-family="Inter,Arial,sans-serif" font-size="14" fill="#115e59">Source correspondence · retrieval memory · report/export · one lower-agent packet.</text>
+  <text x="112" y="273" font-family="Inter,Arial,sans-serif" font-size="14" fill="#115e59">Source correspondence · retrieval memory · report/export · narrow lower packets.</text>
 
-  <rect x="80" y="315" width="460" height="70" rx="8" fill="#fff7ed" stroke="#fdba74"/>
-  <text x="112" y="344" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#7c2d12">Lower agent A</text>
-  <text x="112" y="368" font-family="Inter,Arial,sans-serif" font-size="14" fill="#9a3412">Tries one circuit construction, lemma, resource count, or counterexample.</text>
+  <rect x="80" y="315" width="300" height="70" rx="8" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="112" y="344" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#7c2d12">Lower 1</text>
+  <text x="112" y="368" font-family="Inter,Arial,sans-serif" font-size="14" fill="#9a3412">Natural-language proof DAG.</text>
 
-  <rect x="580" y="315" width="460" height="70" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
-  <text x="612" y="344" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#7f1d1d">Lower agent B</text>
-  <text x="612" y="368" font-family="Inter,Arial,sans-serif" font-size="14" fill="#991b1b">Explores a different construction path with a disjoint write scope.</text>
+  <rect x="410" y="315" width="300" height="70" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="442" y="344" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#7f1d1d">Lower 2</text>
+  <text x="442" y="368" font-family="Inter,Arial,sans-serif" font-size="14" fill="#991b1b">One Lean leaf implementation.</text>
+
+  <rect x="740" y="315" width="300" height="70" rx="8" fill="#f0f9ff" stroke="#7dd3fc"/>
+  <text x="772" y="344" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#075985">Lower 3</text>
+  <text x="772" y="368" font-family="Inter,Arial,sans-serif" font-size="14" fill="#0369a1">Finite/path/support verifier.</text>
 
   <rect x="80" y="410" width="960" height="50" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
   <text x="112" y="441" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#334155">Reviewer agent</text>
@@ -32,8 +36,9 @@
 
   <path d="M560 195 V209" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
   <path d="M560 290 V304" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
-  <path d="M310 385 V400" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
-  <path d="M810 385 V400" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M230 385 V400" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M560 385 V400" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M890 385 V400" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
 
   <rect x="820" y="22" width="220" height="40" rx="7" fill="#f1f5f9" stroke="#cbd5e1"/>
   <text x="842" y="47" font-family="Inter,Arial,sans-serif" font-size="14" fill="#334155">runs/&lt;run-id&gt;/dialogue.md</text>

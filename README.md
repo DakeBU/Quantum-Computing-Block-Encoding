@@ -157,8 +157,10 @@ flowchart TD
   H --> I
   I --> M["lower natural-language proof architect"]
   I --> N["lower Lean implementation worker"]
+  I --> P["lower necessary-condition verifier"]
   M --> O["Lean gate / finite matrix feedback / verifier feedback"]
   N --> O
+  P --> O
   O --> J
   J --> K["retrieval index + todos"]
   K --> L["Chinese 6h summary + technical report appendix"]
@@ -174,15 +176,22 @@ The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
   leaves to retire, and necessary-condition checks.
 - Upper process/memory auditor: checks whether reports, verifier feedback,
   trial memory, rejected routes, and human summaries are current.
-- Middle coordinator: turns upper decisions into one lower-1 packet and one
-  lower-2 packet.
+- Middle coordinator: turns upper decisions into lower-1 proof-DAG, lower-2
+  Lean, and lower-3 verifier packets.
 - Middle source-correspondence formalizer: maps source TeX, equations, figures,
   and cited primitives to Lean-facing contracts.
 - Middle memory/retrieval curator: retires stale targets, updates retrieval
   packets, verifier-feedback fields, and rejected-route memory.
 - Middle report/export maintainer: updates Chinese status, Markdown/LaTeX proof
   maps, and technical-report status only at the right cadence.
-- Lower agents: try concrete construction/proof paths.
+- Lower natural-language proof architect: translates the active source proof
+  fragment into a dependency DAG and ordered lemma list.
+- Lower Lean implementation worker: proves exactly one ready Lean leaf.
+- Lower necessary-condition verifier: runs finite matrix, path-support,
+  branch-vanish, shape/register, or convention diagnostics that must pass if
+  the Lean leaf is true.
+- Lower refiner/reducer, optional: after a concrete Lean failure, isolates a
+  smaller lemma or repairs a specific route such as `maxRecDepth`.
 - Reviewer: checks Lean build, hidden oracle assumptions, resources, links, and
   whether the panel outputs were followed.
 
@@ -199,9 +208,11 @@ flattening the same local proof trace.
 A DAG is a directed acyclic graph: nodes are definitions, lemmas, external
 contracts, and theorem targets; an edge `A -> B` means that `B` depends on
 `A`.  QBE schedules lower agents on active leaves of this graph.  When
-`QBE_LOWER_COUNT=2`, lower 1 is expected to write the natural-language proof
-decomposition and dependency table, while lower 2 turns one ready leaf into
-compiling Lean.
+`QBE_LOWER_COUNT=3`, lower 1 is expected to write the natural-language proof
+decomposition and dependency table, lower 2 turns one ready leaf into compiling
+Lean, and lower 3 runs necessary-condition diagnostics before another large
+Lean proof attempt.  Use lower 4 only as a refiner after a specific Lean
+failure has been classified.
 For Lean proof diagnostics, agents use
 `.agents/skills/qbe-proof-diagnostics/SKILL.md`, influenced by similar
 diagnostic patterns in [MathCode][mathcode]:
@@ -379,7 +390,7 @@ problem statements.
 Create one prompt deck:
 
 ```bash
-python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 2
+python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 3
 ```
 
 Create repeated prompt decks for an overnight dry run:
@@ -431,7 +442,7 @@ python3 tools/qbe.py write-context-pack QBE-AUTO-002 --cycle 1
 mkdir -p runs/logs
 nohup bash -lc '
 QBE_HOURS=6 \
-QBE_LOWER_COUNT=2 \
+QBE_LOWER_COUNT=3 \
 QBE_PARALLEL_LOWER=1 \
 QBE_UPPER_PANEL_FINAL=1 \
 QBE_UPPER_PANEL_INNER=0 \
@@ -444,8 +455,10 @@ bash tools/qbe_run_theorem_closure.sh QBE-AUTO-002
 
 `QBE_HOURS=6` is an active-agent-time budget: retry sleep caused by quota or
 temporary API failures is recorded separately and does not count against the
-six hours.  With `QBE_LOWER_COUNT=2` and `QBE_PARALLEL_LOWER=1`, lower 1 is a
-natural-language proof architect and lower 2 is a Lean implementation worker.
+six hours.  With `QBE_LOWER_COUNT=3` and `QBE_PARALLEL_LOWER=1`, lower 1 is a
+natural-language proof architect, lower 2 is a Lean implementation worker, and
+lower 3 is a necessary-condition verifier.  Lower 3 should try exact finite
+matrix/path/support checks, not broad theorem closure.
 `QBE_UPPER_PANEL_FINAL=1` runs the source/visual, proof-DAG, and process/memory
 upper specialists at the final audit before the director synthesizes the next
 human-facing plan.  `QBE_UPPER_PANEL_INNER=0` keeps ordinary proof-search
@@ -461,9 +474,10 @@ The intended flow is:
 upper panel audits source/visual facts, proof-DAG frontier, and process memory
   -> upper director chooses root theorem and active proof-DAG leaves
   -> middle panel separates source map, compact memory, and report/export work
-  -> middle coordinator writes one narrow lower-1 and lower-2 packet
+  -> middle coordinator writes narrow lower-1, lower-2, and lower-3 packets
   -> lower 1 writes the natural-language dependency proof for one leaf
   -> lower 2 proves that leaf in Lean and runs the gate
+  -> lower 3 checks finite/path/support necessary conditions and typed feedback
   -> reviewer rejects stale leaves, contract drift, or undocumented Lean changes
 ```
 
@@ -651,9 +665,9 @@ task boundary explicit.
 | Blueprint and dynamic proof-DAG control | [LeanMarathon][leanmarathon] and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | [LeanMarathon][leanmarathon] targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |
 | Quantum circuit generation evaluation taxonomy | [Generative AI for Quantum Circuits and Quantum Code][quantum-circuit-review] organizes circuit-generation systems by artifact type, training regime, and syntax/semantic/hardware evaluation layers. | QBE uses the taxonomy to separate pre-Lean diagnostics from proof closure: syntax and finite simulation are useful search signals, while Lean theorems remain the final certificate. | The review concerns generated QASM/Qiskit/circuit artifacts; QBE targets block-encoding/oracle theorem reproduction and construction. |
 | Tool-server and hierarchical reward feedback | [QUASAR][quasar] uses tool-augmented quantum simulators and hierarchical reward feedback for quantum assembly generation. | QBE borrows the idea of structured search signals for lower agents, but translates them into proof-DAG leaves, verifier-feedback fields, and rejected-route memory. | [QUASAR][quasar] optimizes generated circuit programs; QBE cannot treat reward as proof. |
-| Typed verifier fields | [QASM-Eval][qasm-eval] validates OpenQASM-3 programs with syntax, state, and timeline checks. | QBE mirrors this as `verifier-feedback/` fields such as `lean_parse_ok`, `finite_matrix_ok`, `block_entry_ok`, `ancilla_cleanup_ok`, and `next_route`. | QASM-Eval validates executable programs; QBE uses such checks only before Lean theorem closure. |
+| Typed verifier fields | [QASM-Eval][qasm-eval] validates OpenQASM-3 programs with syntax, state, and timeline checks. | QBE mirrors this as `verifier-feedback/` fields and as lower 3, a necessary-condition verifier for finite matrix/path/support checks before Lean theorem closure. | QASM-Eval validates executable programs; QBE uses such checks only before Lean theorem closure. |
 | Kata-style deterministic tests | [Qiskit QuantumKatas][qiskit-quantumkatas] adapts [Microsoft QuantumKatas][microsoft-quantumkatas] into deterministic LLM evaluation tasks. | QBE treats this as a model for future `BlockEncodingKatas`: small deterministic circuit/oracle lemmas that teach agents and humans before full paper reproduction. | Kata tests are excellent pedagogy and regression checks, but they do not replace source-paper block-encoding proof obligations. |
-| Natural-language idea to tool-executable loop | [AI-Mandel][ai-mandel] turns literature-derived quantum-physics ideas into tool-executable configurations. | QBE keeps a natural-language proof architect lower agent that translates source proofs into dependency DAGs before the Lean implementation worker attacks one leaf. | AI-Mandel targets executable physics designs; QBE targets Lean-checked oracle/block-encoding certificates. |
+| Natural-language idea to tool-executable loop | [AI-Mandel][ai-mandel] turns literature-derived quantum-physics ideas into tool-executable configurations. | QBE keeps a natural-language proof architect lower agent that translates source proofs into dependency DAGs before the Lean implementation worker attacks one leaf; lower 3 checks necessary finite/tool feedback before large proof search. | AI-Mandel targets executable physics designs; QBE targets Lean-checked oracle/block-encoding certificates. |
 
 The analogy is:
 

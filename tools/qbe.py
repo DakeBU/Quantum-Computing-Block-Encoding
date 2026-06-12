@@ -1554,9 +1554,11 @@ Recent task-relevant declarations:
 - Stage 2 DAG proof discharge: lower agents work on dynamic leaves only;
   reviewer accepts progress only through `python3 tools/qbe.py check` and
   synchronized Markdown/LaTeX correspondence.
-- Mixed lower-agent proof mode: when two lower agents are available, lower 1
-  writes the natural-language dependency proof and active-leaf table; lower 2
-  compiles exactly one ready Lean leaf from that table.
+- Mixed lower-agent proof mode: lower 1 writes the natural-language dependency
+  proof and active-leaf table; lower 2 compiles exactly one ready Lean leaf;
+  lower 3, when available, runs necessary-condition diagnostics such as finite
+  matrix/path/support checks and typed verifier-feedback packets before lower 2
+  spends time on a large Lean proof.
 - Refiner behavior: when several failures share a dependency, repair the
   connected illness area once instead of stacking independent patches.
 - No agent may mark a proof complete from self-assessment, partial score, or
@@ -1726,7 +1728,7 @@ def blueprint_status_text(state: dict) -> str:
             "",
             "- Upper must choose one dynamic leaf or one refiner illness area before lower work.",
             "- Middle must map the selected paper proof fragment to Lean declarations or explicit obligations.",
-            "- With two lower agents, lower 1 writes the natural-language DAG proof packet and lower 2 proves one ready Lean leaf.",
+            "- Lower 1 writes the natural-language DAG proof packet; lower 2 proves one ready Lean leaf; lower 3, if present, runs finite/path/support diagnostics and records typed verifier feedback.",
             "- Lower must edit only the assigned local target and run `python3 tools/qbe.py check` after Lean edits.",
             "- Reviewer accepts progress only when the Lean gate and the Markdown/LaTeX correspondence are synchronized.",
         ]
@@ -1789,7 +1791,7 @@ def build_context_pack(task_id: str, cycle: int) -> str:
             "- In faithful-paper mode, reproduce the paper construction and do not add assumptions.",
             "- Translate the selected LaTeX proof fragment into Lean-facing declarations before lower proof search.",
             "- Maintain a proof-DAG frontier: root theorem, dependencies, active leaves, stale leaves, and owner lower profile.",
-            "- With two lower agents, lower 1 writes the natural-language DAG proof packet and lower 2 compiles one ready Lean leaf.",
+            "- Lower 1 writes the natural-language DAG proof packet; lower 2 compiles one ready Lean leaf; lower 3, if present, runs finite/path/support diagnostics before a large Lean proof.",
             "- Export newly accepted Lean proof blocks to Markdown/LaTeX in batch, not after every tiny edit.",
             "- Keep `python3 tools/qbe.py check` as the deterministic gate.",
         ]
@@ -2542,6 +2544,11 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
                 "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
                 "must_write": "Lean declaration plus trial-log verifier-feedback fields",
             },
+            {
+                "role": "lower-3-necessary-condition-verifier",
+                "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+                "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
+            },
         ],
     }
 
@@ -2792,6 +2799,16 @@ Generated: `{snapshot.get('generated')}`
 2. Prove the smallest build-testable declaration; do not refactor the paper
    construction or change assumptions.
 3. Log typed verifier feedback with `trial-log --feedback-field`.
+
+## Lower 3: Necessary-condition verifier
+
+1. Do not try to close the theorem by broad Lean search.
+2. Run or design a finite matrix/path/support check that must pass if the
+   active Lean leaf is true.
+3. Record typed verifier feedback: `finite_matrix_ok`, `block_entry_ok`,
+   `source_correspondence_ok`, `error_class`, and `next_route`.
+4. If the diagnostic fails, ask middle to repair the target before lower 2
+   spends another large proof attempt.
 
 ## Open GHL contribution obligations
 
@@ -3119,6 +3136,7 @@ def ghl_fig4_visual_audit_markdown(task_id: str, run_dir: Path) -> str:
 - middle：必须先引用本文件，声明完整 Fig. 4 和 seven-gate backend 的区别。
 - lower1 natural-language proof architect：把 Fig. 4 视觉路径写成依赖 DAG，不写 Lean。
 - lower2 Lean worker：只在 `QuantumBlockEncoding/RobinMatrix.lean` 证明一个 `Coeff.evalWith` semantic entry lemma。
+- lower3 necessary-condition verifier：先做 finite matrix/path/support 诊断，确认 active entry、branch vanish、register shape 没有反例，再把 typed feedback 写进 `verifier-feedback/`。
 - reviewer：拒绝任何把 seven-gate backend 当完整 Fig. 4、把 external oracle contract 当 proved、或重试 raw `Coeff` equality 的路线。
 
 """
@@ -4291,7 +4309,9 @@ Local paper-source archive for agent work:
   frontier with node id, interface statement, dependencies, owner, Lean
   declaration, human proof-map location, local gate, and status.  Lower 1 may
   first solve the dependency plan in natural language; lower 2 must then
-  implement exactly one active Lean leaf from that plan.
+  implement exactly one active Lean leaf from that plan; lower 3, when present,
+  should run necessary-condition diagnostics that can reject a wrong target
+  before a large Lean proof attempt.
 - Apply `.agents/skills/qbe-proof-blueprint/SKILL.md` at the start of long
   runs or after a stale lower target is detected.  Refresh
   `proof-blueprints/<task-id>.md`, retire stale dynamic leaves, and then assign
@@ -4431,8 +4451,10 @@ Produce:
 5. Middle-agent instructions for conversion windows, paper notes, proof
    obligations, and memory.
 6. Lower-agent work packets with narrow file scopes and acceptance checks.
-   If two lower agents are available, assign lower 1 to natural-language
-   dependency proof and lower 2 to one compiling Lean active leaf.
+   Assign lower 1 to natural-language dependency proof, lower 2 to one
+   compiling Lean active leaf, and lower 3, when available, to
+   necessary-condition diagnostics.  Use lower 4 only as a refiner/reducer
+   after a concrete Lean failure.
 7. The verifier-feedback fields expected from lower agents for this cycle,
    including which finite-matrix, source-correspondence, or Lean-gate checks are
    meaningful and which ones are irrelevant.
@@ -4482,9 +4504,10 @@ free-form search around the theorem.
 
 For long theorem-closure runs, plan through the proof DAG explicitly.  Upper
 should name the current root theorem, the shortest dependency path to the root,
-the active leaf for lower 2, and the natural-language proof plan requested from
-lower 1.  If a previous lower target is already compiled, retire it instead of
-asking another worker to rediscover it.
+the active leaf for lower 2, the natural-language proof plan requested from
+lower 1, and any lower-3 necessary-condition diagnostic that can reject a
+wrong target cheaply.  If a previous lower target is already compiled, retire
+it instead of asking another worker to rediscover it.
 
 Require the middle agent to maintain two-way translation every cycle:
 paper/LaTeX-to-Lean for the next lower task, and Lean-to-Markdown/LaTeX for
@@ -4544,9 +4567,10 @@ not rewrite prose broadly.  Produce:
 1. The current root theorem and the shortest dependency path to it.
 2. Active leaves that are ready for lower work, with one recommended leaf.
 3. Stale leaves or already-compiled targets that should be retired.
-4. The exact lower-1 natural-language proof task and lower-2 Lean task.
-5. Any necessary-condition verifier that can reject a wrong target before Lean
-   spends time on a large proof.
+4. The exact lower-1 natural-language proof task, lower-2 Lean task, and
+   lower-3 necessary-condition verifier task.
+5. Any diagnostic that can reject a wrong target before Lean spends time on a
+   large proof.
 
 Prefer small semantic bridge lemmas over repeated attacks on a root theorem.
 """
@@ -4699,11 +4723,15 @@ Lean/proof memory, which report section can safely change, and which stronger
 claims remain forbidden until Lean and proof notes support them.  Do not spend
 lower-agent proof time on article polish.
 
-When two lower agents are available, middle must split the packet deliberately:
+When lower agents are available, middle must split the packet deliberately:
 lower 1 receives a natural-language DAG/proof packet with source anchors,
 definitions, dependencies, and the next Lean lemma; lower 2 receives a Lean
-implementation packet for exactly one active leaf.  The Lean packet should
-reference the lower-1 proof map if it exists, not restart broad search.
+implementation packet for exactly one active leaf; lower 3, if present,
+receives a necessary-condition verifier packet for finite matrix/path/support
+checks and typed feedback.  The Lean packet should reference the lower-1 proof
+map and lower-3 diagnostics if they exist, not restart broad search.  Lower 4
+should be scheduled only as a refiner/reducer after a concrete Lean failure,
+for example to isolate a maxRecDepth route or factor out a reusable lemma.
 
 When editing Markdown or LaTeX, follow `.agents/skills/qbe-math-writing/SKILL.md`:
 definitions before theorem statements, short claim statements, precise
@@ -4774,8 +4802,9 @@ Middle profile: coordinator synthesis.
 
 If middle-panel specialist prompts or handoffs exist, read them before writing
 the lower packet.  Synthesize source correspondence, compact memory, and
-report/export status into one lower-1 natural-language task and one lower-2
-Lean implementation task.  If the specialists disagree, preserve source
+report/export status into lower-1 natural-language, lower-2 Lean
+implementation, and lower-3 necessary-condition verifier tasks.  If the
+specialists disagree, preserve source
 faithfulness first, then proof-DAG readiness, then report cleanliness.
 """
     elif role == "reviewer":
@@ -4946,13 +4975,59 @@ agent owns proof design; you own compiled declarations and gate checks.
 If the active leaf is underspecified or stale, do not improvise a new theorem;
 record the missing DAG packet and ask middle to refresh the frontier.
 """
-        elif lower_index > 2:
+        elif lower_index == 3:
+            body += """
+Lower profile for this prompt: necessary-condition verifier.
+
+Your primary job is to protect the Lean worker from proving the wrong target.
+Use exact finite matrix, path-sum, support/vanish, register-shape, or symbolic
+2-by-2 convention checks that are necessary for the active Lean statement.
+
+Expected output:
+
+1. The active leaf being checked and why the diagnostic is a necessary
+   condition for that leaf.
+2. A small executable or Lean-local diagnostic, if one already exists or can be
+   added safely without changing theorem statements.
+3. Typed verifier feedback with at least `leaf`, `source_correspondence_ok`,
+   `finite_matrix_ok`, `block_entry_ok`, `error_class`, and `next_route`.
+4. A clear rejection if the finite/path/support check contradicts the current
+   target, so middle can repair the source contract or proof-DAG leaf.
+
+You should usually avoid editing theorem-facing Lean declarations.  If you edit
+Lean, add only diagnostic lemmas/tests or small helpers that do not promote
+semantic flags, oracle contracts, normalizers, or theorem completion.  Do not
+use passing diagnostics as proof closure.
+"""
+        elif lower_index == 4:
+            body += """
+Lower profile for this prompt: Lean refiner/reducer.
+
+Your primary job is to repair a concrete failed Lean route after lower 2 or the
+reviewer has produced a specific error.  Good targets are reducing
+`maxRecDepth`, extracting one reusable associativity/evalWith lemma, replacing
+a raw constructor equality with a semantic bridge, or shrinking a tactic proof.
+
+Expected output:
+
+1. The exact failed theorem, error message, and rejected route.
+2. One smaller lemma, simplification normal form, or proof-reduction patch.
+3. No theorem statement drift and no new assumptions.
+4. `python3 tools/qbe.py check` after Lean edits.
+5. A proof-attempt record explaining whether the refiner repair should be kept,
+   retried, or rejected.
+
+Do not duplicate lower 2's broad proof attempt and do not invent a new route
+unless it directly repairs the reported failure.
+"""
+        elif lower_index > 4:
             body += f"""
 Lower profile for this prompt: auxiliary proof-route worker `{lower_index}`.
 
-Try an independent route to the same fixed theorem or lemma.  Coordinate
-through the dialogue board, avoid overlapping file edits where possible, and
-preserve useful failed fragments as proof-attempt memory.
+Use this worker only for exploratory construction mode or explicitly separated
+candidate families.  Try an independent route to the same fixed acceptance
+predicate, coordinate through the dialogue board, avoid overlapping file edits
+where possible, and preserve useful failed fragments as proof-attempt memory.
 """
     return f"# {role.title()} Agent Prompt\n\n{body}\n\n## Shared Context\n\n{shared}"
 
@@ -5463,7 +5538,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_cycle = sub.add_parser("run-cycle", help="create one upper/middle/lower/reviewer prompt deck")
     p_cycle.add_argument("id")
     p_cycle.add_argument("--cycle", type=int, default=1)
-    p_cycle.add_argument("--lower-count", type=int, default=2)
+    p_cycle.add_argument("--lower-count", type=int, default=3)
     p_cycle.add_argument("--run-id", default="")
     p_cycle.add_argument(
         "--context-mode",
@@ -5491,7 +5566,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep = sub.add_parser("sleep-run", help="create or execute repeated agent cycles")
     p_sleep.add_argument("id")
     p_sleep.add_argument("--cycles", type=int, default=8)
-    p_sleep.add_argument("--lower-count", type=int, default=2)
+    p_sleep.add_argument("--lower-count", type=int, default=3)
     p_sleep.add_argument("--agent-cmd", default="")
     p_sleep.add_argument("--execute", action="store_true")
     p_sleep.add_argument("--dry-run", action="store_true")
