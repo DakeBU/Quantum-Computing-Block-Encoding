@@ -4560,3 +4560,7 @@ block-encoding formalization lifecycle.
 | 2026-06-12 00:05:40 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
 | 2026-06-12 00:05:45 | qbe.py efficiency-report | `runs/efficiency/20260612-000545-QBE-AUTO-002-efficiency.md` | review | Wrote efficiency report for QBE-AUTO-002 |
 | 2026-06-12 13:32:15 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |
+| 2026-06-12 13:48:34 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
+| 2026-06-12 13:48:35 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |
+| 2026-06-12 13:49:18 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
+| 2026-06-12 13:49:19 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |

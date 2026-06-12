@@ -1,6 +1,6 @@
 # ABEIS Human Status
 
-Generated: `2026-06-12 13:32:15`
+Generated: `2026-06-12 13:49:19`
 
 Task: `QBE-AUTO-002` — Concrete Circuit Matrix Semantics Backend
 
@@ -23,6 +23,7 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 - 最新下一步 todo：`runs/20260611-234445-QBE-AUTO-002-cycle01/todo.md`
 - 最新 dialogue：`runs/20260611-234445-QBE-AUTO-002-cycle01/dialogue.md`
 - 最新技术报告 update：`runs/20260611-234445-QBE-AUTO-002-cycle01/article_update.md`
+- GHL 未完成/失败原因中文地图：`paper-notes/GHL2025/markdown/unresolved-failures.zh.md`
 - 最新 efficiency report：`Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/efficiency/20260612-000545-QBE-AUTO-002-efficiency.md`
 - 压缩检索 JSON：`research-wiki/retrieval-index/QBE-AUTO-002.json`
 
@@ -33,7 +34,7 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 
 ## 6h Batch Log Signal
 
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: /bin/bash -lc 'python3 tools/qbe.py agent-note 20260611-234445-QBE-AUTO-002-cycle01 --role reviewer --message "Reviewer audit complete. Gate passed: python3 tools/qbe.py check, lake build, and lake build Tests all succeeded, with warnings only at RobinMatrix.lean:24186/24217 for the known diagnostic sorries. Blocking for theorem closure: oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3 and oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3 remain sorry-backed, and oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 / the first-case-study one-term theorem remain open. No oracle, H_W, R_y, LCU, block-projection, normalizer, product-to-coefficient, circuit-unitarity, block-correctness, or final-extraction flag was promoted in the audited packet. Current next lower leaf should be evaluated_backend_fold_leaf or a smaller evalWith semantic product bridge; do not reassign the compiled sparse-clean-to-fold bridge, slot vanish/support work, raw Coeff route, or H-free selected-slot diagnostic. Advisory: generated public-facing notes still contain main.tex line anchors; polished public docs should prefer GHL2025 theorem/equation/figure anchors plus arXiv citation."' in /home/nitanda_sub/mark/repos/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: /bin/bash -lc 'python3 tools/qbe.py agent-note 20260611-234445-QBE-AUTO-002-cycle01 --role reviewer --message "Reviewer audit complete. Gate passed: python3 tools/qbe.py check, lake build, and lake build Tests all succeeded, with warnings only at RobinMatrix.lean:24186/24217 for the known diagnostic sorries. Blocking for theorem closure: oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3 and oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3 remain sorry-backed, and oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 / the first-case-study one-term theorem remain open. No oracle, H_W, R_y, LCU, block-projection, normalizer, product-to-coefficient, circuit-unitarity, block-correctness, or final-extraction flag was promoted in the audited packet. Current next lower leaf should be evaluated_backend_fold_leaf or a smaller evalWith semantic product bridge; do not reassign the compiled sparse-clean-to-fold bridge, slot vanish/support work, raw Coeff route, or H-free selected-slot diagnostic. Advisory: generated public-facing notes still contain main.tex line anchors; polished public docs should prefer GHL2025 theorem/equation/figure anchors plus arXiv citation."' in Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24186:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24217:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: Build completed successfully (16 jobs).
@@ -41,9 +42,9 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24217:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: Build completed successfully (18 jobs).
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: **Findings**
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: - Blocking for theorem closure: [RobinMatrix.lean](/home/nitanda_sub/mark/repos/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24186) still has `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` proved by `sorry`, and [RobinMatrix.lean](/home/nitanda_sub/mark/repos/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24217) still has `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` proved by `sorry`. These are explicit diagnostic blockers, not hidden in prose, but they prevent claiming the evaluated backend fold or one-term theorem is closed.
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: - Blocking for theorem closure: [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24186) still has `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` proved by `sorry`, and [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24217) still has `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` proved by `sorry`. These are explicit diagnostic blockers, not hidden in prose, but they prevent claiming the evaluated backend fold or one-term theorem is closed.
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: **Findings**
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: - Blocking for theorem closure: [RobinMatrix.lean](/home/nitanda_sub/mark/repos/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24186) still has `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` proved by `sorry`, and [RobinMatrix.lean](/home/nitanda_sub/mark/repos/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24217) still has `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` proved by `sorry`. These are explicit diagnostic blockers, not hidden in prose, but they prevent claiming the evaluated backend fold or one-term theorem is closed.
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: - Blocking for theorem closure: [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24186) still has `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` proved by `sorry`, and [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24217) still has `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` proved by `sorry`. These are explicit diagnostic blockers, not hidden in prose, but they prevent claiming the evaluated backend fold or one-term theorem is closed.
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24186:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24217:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: Build completed successfully (16 jobs).
@@ -91,10 +92,11 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 ## Human Reading Order
 
 1. Start here: `HUMAN_STATUS.md`.
-2. For human-readable cycle details, read `runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md`.
-3. For what the next agents should read, use `runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md` and `runs/20260611-234445-QBE-AUTO-002-cycle01/todo.md`.
-4. For machine retrieval, use `research-wiki/retrieval-index/QBE-AUTO-002.json`.
-5. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
+2. For a plain Chinese map of unfinished GHL source steps and failed Lean routes, read `paper-notes/GHL2025/markdown/unresolved-failures.zh.md`.
+3. For human-readable cycle details, read `runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md`.
+4. For what the next agents should read, use `runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md` and `runs/20260611-234445-QBE-AUTO-002-cycle01/todo.md`.
+5. For machine retrieval, use `research-wiki/retrieval-index/QBE-AUTO-002.json`.
+6. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
 
 ## Directory Map
 
