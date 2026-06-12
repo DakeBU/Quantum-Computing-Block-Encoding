@@ -1,6 +1,6 @@
 # ABEIS 报告与记忆入口说明
 
-生成时间：`2026-06-13 00:39:46`
+生成时间：`2026-06-13 01:08:16`
 
 任务：`QBE-AUTO-002`
 
@@ -27,8 +27,15 @@
 ## 6h 运行后的报告节奏
 
 - 每个 inner proof-search cycle：只刷新 compact memory，避免大量中文总结和文章 update 淹没检索。
-- 每个 6h active-time batch 结束：统一生成中文总结、memory refresh、技术报告 update、human status、Fig. 4 审计和失败地图。
+- 每个 6h active-time batch 结束：默认运行 upper panel 与 middle panel，然后统一生成中文总结、memory refresh、技术报告 update、human status、Fig. 4 审计和失败地图。
 - 如果只是短调试，可以显式用 `sleep-run --summary-each-cycle` 打开每轮中文总结。
+
+## Agent panel 节奏
+
+- inner cycle 默认不跑 panel：lower proof search 优先，避免把 token 花在重复讨论上。
+- final audit 默认跑 upper panel：source/visual、proof-DAG、process/memory 三个 specialist 先给判断，再由 upper director 统一决策。
+- final audit 默认跑 middle panel：source-correspondence、memory/retrieval、report/export 三个 specialist 先整理材料，再由 middle coordinator 写下一轮 lower packet。
+- 如果 6h 中途连续遇到 source 图像误读、stale leaf、memory drift 或报告混乱，可以临时设置 `QBE_UPPER_PANEL_INNER=1` 或 `QBE_MIDDLE_PANEL_INNER=1`。
 
 ## 当前任务的决策规则
 

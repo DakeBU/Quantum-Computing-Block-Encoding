@@ -1,7 +1,8 @@
 # Sleep Run Guide
 
 Sleep run mode is for unattended construction search. It creates repeated
-upper/middle/lower/reviewer cycles and uses Lean as the acceptance gate.
+upper/middle/lower/reviewer cycles, can run bounded upper and middle panels at
+checkpoints, and uses Lean as the acceptance gate.
 
 ![QBE automation pipeline](assets/qbe_pipeline.svg)
 
@@ -14,8 +15,9 @@ upper/middle/lower/reviewer cycles and uses Lean as the acceptance gate.
 3. Gives each role a precise prompt and shared dialogue board.
 4. Logs each cycle to `runs/trials.jsonl`.
 5. Optionally calls an external agent command and runs `lake build`.
-6. Writes a Chinese audit summary, refreshes the compact retrieval index, and
-   mirrors the latest article-facing status after each executed cycle.
+6. Refreshes compact memory after each executed cycle.
+7. In the 6h wrapper, runs upper/middle panels and writes Chinese summaries,
+   human status, and article-facing status once at the final audit.
 
 It does not require a specific vendor. The external command can be Codex CLI,
 Claude Code, a shell wrapper, or a manual script that reads one prompt file.
@@ -115,6 +117,8 @@ Commands:
 python3 tools/qbe.py run-cycle QBE-AUTO-001 \
   --cycle 1 \
   --lower-count 3 \
+  --upper-panel \
+  --middle-panel \
   --blueprint-refresh
 python3 tools/qbe.py blueprint-status QBE-AUTO-001 --refresh
 python3 tools/qbe.py agent-note latest --role upper --message "Objective selected."
@@ -157,6 +161,22 @@ python3 tools/qbe.py efficiency-report --task QBE-AUTO-001
 
 Use your own agent CLI flags. The only QBE-side expectation is that the command
 returns success or failure and leaves artifacts in the repository.
+
+Use panels deliberately:
+
+```bash
+python3 tools/qbe.py sleep-run QBE-AUTO-002 \
+  --cycles 1 \
+  --lower-count 0 \
+  --upper-panel \
+  --middle-panel \
+  --agent-cmd 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"' \
+  --execute \
+  --check-each-cycle
+```
+
+This is appropriate for final audits or repeated drift.  It is usually too
+expensive for every inner proof-search cycle.
 
 ## Faithful GHL2025 Semantics Run
 

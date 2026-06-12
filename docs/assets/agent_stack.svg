@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" role="img" aria-labelledby="title desc">
-  <title id="title">Three-layer agent stack</title>
-  <desc id="desc">Upper, middle, lower, and reviewer agents coordinate through shared files and trial logs.</desc>
+  <title id="title">Layer-panel agent stack</title>
+  <desc id="desc">Bounded upper and middle panels, lower workers, and reviewer agents coordinate through shared files and trial logs.</desc>
   <defs>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
       <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
     </marker>
   </defs>
   <rect x="0" y="0" width="1120" height="500" fill="#ffffff"/>
-  <text x="56" y="54" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" fill="#111827">Three-Layer Agent Stack</text>
-  <text x="56" y="83" font-family="Inter,Arial,sans-serif" font-size="15" fill="#475569">Agents do not need a special chat server. They talk through files that are versioned, reviewable, and usable after an overnight run.</text>
+  <text x="56" y="54" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" fill="#111827">Layer-Panel Agent Stack</text>
+  <text x="56" y="83" font-family="Inter,Arial,sans-serif" font-size="15" fill="#475569">Long runs use bounded upper and middle specialist panels at checkpoints, then return to lower proof work through versioned files.</text>
 
   <rect x="80" y="125" width="960" height="70" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
-  <text x="112" y="154" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#1e3a8a">Upper agent</text>
-  <text x="112" y="178" font-family="Inter,Arial,sans-serif" font-size="14" fill="#1e40af">Research director: chooses objective, compresses memory, rejects weak directions.</text>
+  <text x="112" y="154" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#1e3a8a">Upper panel + director synthesis</text>
+  <text x="112" y="178" font-family="Inter,Arial,sans-serif" font-size="14" fill="#1e40af">Source/visual audit · proof-DAG strategy · process/memory audit · one synthesized objective.</text>
 
   <rect x="80" y="220" width="960" height="70" rx="8" fill="#f0fdfa" stroke="#5eead4"/>
-  <text x="112" y="249" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#134e4a">Middle agent</text>
-  <text x="112" y="273" font-family="Inter,Arial,sans-serif" font-size="14" fill="#115e59">Formalization maintainer: synchronizes LaTeX, Markdown, Lean names, and proof obligations.</text>
+  <text x="112" y="249" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#134e4a">Middle panel + coordinator</text>
+  <text x="112" y="273" font-family="Inter,Arial,sans-serif" font-size="14" fill="#115e59">Source correspondence · retrieval memory · report/export · one lower-agent packet.</text>
 
   <rect x="80" y="315" width="460" height="70" rx="8" fill="#fff7ed" stroke="#fdba74"/>
   <text x="112" y="344" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#7c2d12">Lower agent A</text>

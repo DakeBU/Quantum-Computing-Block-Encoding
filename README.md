@@ -129,32 +129,62 @@ The [LeanMarathon][leanmarathon]-like control layer does not replace the
 [Learning Beyond Gradients][lbg]-like hierarchy or the [EoH][eoh]-like
 exploration layer.  It makes those existing loops more reliable by forcing
 agents to work from a current proof blueprint and by retiring stale dynamic
-leaves before lower agents spend more proof-search tokens.
+leaves before lower agents spend more proof-search tokens.  For long theorem
+closure runs, QBE can split planning and translation roles into bounded panels.
+The upper panel performs source/visual audit, proof-DAG strategy,
+process/memory audit, and director synthesis.  The middle panel separates
+source correspondence, retrieval/memory curation, report/export maintenance,
+and coordinator synthesis.  The 6h wrapper runs these panels at the final
+audit by default, while inner proof-search cycles stay lightweight.
 
-![Three-layer agent stack](docs/assets/agent_stack.svg)
+![Layer-panel agent stack](docs/assets/agent_stack.svg)
 
 ### ABEIS Memory and Proof-Feedback Loop
 
 ```mermaid
 flowchart TD
-  A["paper source / external lemma sources"] --> B["upper planning"]
-  B --> C["middle memory + Lean/Markdown/LaTeX correspondence"]
-  C --> D["lower natural-language proof architect"]
-  C --> E["lower Lean implementation worker"]
-  D --> F["Lean gate / finite matrix feedback / verifier feedback"]
-  E --> F
-  F --> G["trial logs"]
-  G --> H["retrieval index + todos"]
-  H --> I["Chinese summary + technical report appendix"]
-  I --> B
+  A["paper source / external lemma sources"] --> B["upper source/visual audit"]
+  A --> C["upper proof-DAG strategist"]
+  J["trial logs + human reports"] --> D["upper process/memory audit"]
+  B --> E["upper director synthesis"]
+  C --> E
+  D --> E
+  E --> F["middle source-correspondence formalizer"]
+  E --> G["middle memory/retrieval curator"]
+  E --> H["middle report/export maintainer"]
+  F --> I["middle coordinator synthesis"]
+  G --> I
+  H --> I
+  I --> M["lower natural-language proof architect"]
+  I --> N["lower Lean implementation worker"]
+  M --> O["Lean gate / finite matrix feedback / verifier feedback"]
+  N --> O
+  O --> J
+  J --> K["retrieval index + todos"]
+  K --> L["Chinese 6h summary + technical report appendix"]
+  L --> E
 ```
 
 The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
 
-- Upper agent: chooses strategy and compresses memory.
-- Middle agent: maintains LaTeX/Markdown/Lean conversion and proof obligations.
+- Upper director: chooses strategy and compresses memory.
+- Upper source/visual auditor: checks paper text, equations, figures, register
+  transcript, normalizer, and ancilla cleanup before Lean work is assigned.
+- Upper proof-DAG strategist: chooses the root theorem, active leaf, stale
+  leaves to retire, and necessary-condition checks.
+- Upper process/memory auditor: checks whether reports, verifier feedback,
+  trial memory, rejected routes, and human summaries are current.
+- Middle coordinator: turns upper decisions into one lower-1 packet and one
+  lower-2 packet.
+- Middle source-correspondence formalizer: maps source TeX, equations, figures,
+  and cited primitives to Lean-facing contracts.
+- Middle memory/retrieval curator: retires stale targets, updates retrieval
+  packets, verifier-feedback fields, and rejected-route memory.
+- Middle report/export maintainer: updates Chinese status, Markdown/LaTeX proof
+  maps, and technical-report status only at the right cadence.
 - Lower agents: try concrete construction/proof paths.
-- Reviewer: checks Lean build, hidden oracle assumptions, resources, and links.
+- Reviewer: checks Lean build, hidden oracle assumptions, resources, links, and
+  whether the panel outputs were followed.
 
 Documentation-writing agents also use
 `.agents/skills/qbe-math-writing/SKILL.md`.  The skill keeps mathematical prose
@@ -403,6 +433,10 @@ nohup bash -lc '
 QBE_HOURS=6 \
 QBE_LOWER_COUNT=2 \
 QBE_PARALLEL_LOWER=1 \
+QBE_UPPER_PANEL_FINAL=1 \
+QBE_UPPER_PANEL_INNER=0 \
+QBE_MIDDLE_PANEL_FINAL=1 \
+QBE_MIDDLE_PANEL_INNER=0 \
 QBE_AGENT_CMD='"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
 bash tools/qbe_run_theorem_closure.sh QBE-AUTO-002
 ' > runs/logs/claude-qbe-auto-002-$(date +%Y%m%d-%H%M%S).log 2>&1 &
@@ -412,11 +446,22 @@ bash tools/qbe_run_theorem_closure.sh QBE-AUTO-002
 temporary API failures is recorded separately and does not count against the
 six hours.  With `QBE_LOWER_COUNT=2` and `QBE_PARALLEL_LOWER=1`, lower 1 is a
 natural-language proof architect and lower 2 is a Lean implementation worker.
+`QBE_UPPER_PANEL_FINAL=1` runs the source/visual, proof-DAG, and process/memory
+upper specialists at the final audit before the director synthesizes the next
+human-facing plan.  `QBE_UPPER_PANEL_INNER=0` keeps ordinary proof-search
+cycles cheap; set it to `1` only when the run is repeatedly stuck on source
+interpretation, figure correspondence, stale leaves, or memory drift.
+`QBE_MIDDLE_PANEL_FINAL=1` makes the final audit split middle work into source
+correspondence, memory/retrieval, and report/export maintenance before the
+middle coordinator writes the next lower packet.  `QBE_MIDDLE_PANEL_INNER=0`
+prevents routine proof-search cycles from spending time on report/export work.
 The intended flow is:
 
 ```text
-upper chooses root theorem and active proof-DAG leaves
-  -> middle maps source TeX, Lean declarations, and proof obligations
+upper panel audits source/visual facts, proof-DAG frontier, and process memory
+  -> upper director chooses root theorem and active proof-DAG leaves
+  -> middle panel separates source map, compact memory, and report/export work
+  -> middle coordinator writes one narrow lower-1 and lower-2 packet
   -> lower 1 writes the natural-language dependency proof for one leaf
   -> lower 2 proves that leaf in Lean and runs the gate
   -> reviewer rejects stale leaves, contract drift, or undocumented Lean changes
@@ -479,8 +524,8 @@ math-writing skill.
 | `python3 tools/qbe.py project-article-update ...` | Write the article-facing cycle packet and mirror generated status into the technical report. |
 | `python3 tools/qbe.py new-open-problem ...` | Draft an open problem proposal. |
 | `python3 tools/qbe.py agent-brief ...` | Generate an agent context packet. |
-| `python3 tools/qbe.py run-cycle ...` | Create one multi-agent prompt deck. |
-| `python3 tools/qbe.py sleep-run ...` | Create or execute repeated agent cycles. By default it refreshes compact memory each cycle but does not archive a Chinese summary each cycle. |
+| `python3 tools/qbe.py run-cycle ... --upper-panel --middle-panel` | Create one multi-agent prompt deck; panel flags also create specialist upper and middle prompts. |
+| `python3 tools/qbe.py sleep-run ... --upper-panel --middle-panel` | Create or execute repeated agent cycles. By default it refreshes compact memory each cycle but does not archive a Chinese summary each cycle; panel flags run specialist audits whenever that layer is scheduled. |
 | `python3 tools/qbe.py agent-note ...` | Append to a run dialogue board. |
 | `python3 tools/qbe.py trial-log ...` | Append one JSONL trial record. |
 | `python3 tools/qbe.py trial-summary` | Rewrite and print trial summaries. |
@@ -661,8 +706,17 @@ python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --upper-every 6 \
   --middle-every 6 \
   --reviewer-every 6 \
+  --upper-panel \
+  --middle-panel \
   --check-each-cycle
 ```
+
+This manual pattern runs the upper and middle panels only every sixth cycle
+because specialist audits are planning and synchronization work, not local
+proof search.  For the standard 6h active-time wrapper, leave
+`QBE_UPPER_PANEL_INNER=0` and `QBE_MIDDLE_PANEL_INNER=0`, then rely on the
+final panel audit unless a repeated blocker needs source/visual,
+proof-DAG, correspondence, or memory intervention inside the batch.
 
 QBE's many Markdown files are therefore not decoration.  They play the same
 operational role that [ARIS][aris] skills, templates, manifests, and research-wiki

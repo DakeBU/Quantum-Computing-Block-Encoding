@@ -12,7 +12,7 @@ The implementation is intentionally local and inspectable:
 - compressed run memory lives in `runs/trials_summary.csv`,
 - the acceptance gate is `lake build && lake build Tests`.
 
-![Three-layer agent stack](assets/agent_stack.svg)
+![Layer-panel agent stack](assets/agent_stack.svg)
 
 ## Operational Contract
 
@@ -66,6 +66,38 @@ obligations decide acceptance.
 
 The upper agent must identify the mode before broad lower-agent work begins.
 The reviewer rejects any cycle that silently mixes the two modes.
+
+## Adaptive Layer Panels
+
+Most inner cycles should stay cheap: one upper director, one middle
+coordinator, lower workers, and a build gate.  When a long run reaches its
+final audit, or when repeated failures show source, proof-DAG, or memory drift,
+QBE can split the planning layers into bounded specialist panels.
+
+Upper panel:
+
+- source/visual auditor: paper text, equations, figures, register transcript,
+  normalizer, and cleanup;
+- proof-DAG strategist: root theorem, active leaf, stale leaves, and
+  necessary-condition checks;
+- process/memory auditor: trial logs, rejected routes, human reports, and
+  compact retrieval state;
+- director: synthesizes the three audits into one objective.
+
+Middle panel:
+
+- source-correspondence formalizer: source TeX, Lean declarations, and cited
+  contracts;
+- memory/retrieval curator: proof-DAG status, verifier feedback, stale target
+  retirement, and compact context;
+- report/export maintainer: Chinese summaries, Markdown/LaTeX proof maps, and
+  technical-report status;
+- coordinator: writes exactly one lower-1 natural-language proof task and one
+  lower-2 Lean implementation task.
+
+The default 6h wrapper runs upper and middle panels only at the final audit.
+Enable inner panels only when the run is demonstrably losing source
+faithfulness or repeating stale work.
 
 ## Blueprint And DAG Control
 
@@ -183,13 +215,17 @@ Upper agent:
 - decomposes the task into middle/lower/reviewer packets,
 - compresses useful memory into the next handoff.
 
-Middle agent:
+Middle coordinator:
 
 - owns the Lean/Markdown/LaTeX conversion layer,
 - maps paper symbols to Lean declarations,
 - maintains proof obligations and open assumptions,
 - records success and failure memory,
 - turns upper strategy into narrow lower-agent tasks.
+
+Middle specialists, when enabled, split that work into source correspondence,
+memory/retrieval, and report/export maintenance before the coordinator writes
+the final lower packet.
 
 Lower agents:
 

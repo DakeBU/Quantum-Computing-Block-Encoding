@@ -3027,8 +3027,15 @@ def reports_guide_markdown(task_id: str, run_dir: Path) -> str:
 ## 6h 运行后的报告节奏
 
 - 每个 inner proof-search cycle：只刷新 compact memory，避免大量中文总结和文章 update 淹没检索。
-- 每个 6h active-time batch 结束：统一生成中文总结、memory refresh、技术报告 update、human status、Fig. 4 审计和失败地图。
+- 每个 6h active-time batch 结束：默认运行 upper panel 与 middle panel，然后统一生成中文总结、memory refresh、技术报告 update、human status、Fig. 4 审计和失败地图。
 - 如果只是短调试，可以显式用 `sleep-run --summary-each-cycle` 打开每轮中文总结。
+
+## Agent panel 节奏
+
+- inner cycle 默认不跑 panel：lower proof search 优先，避免把 token 花在重复讨论上。
+- final audit 默认跑 upper panel：source/visual、proof-DAG、process/memory 三个 specialist 先给判断，再由 upper director 统一决策。
+- final audit 默认跑 middle panel：source-correspondence、memory/retrieval、report/export 三个 specialist 先整理材料，再由 middle coordinator 写下一轮 lower packet。
+- 如果 6h 中途连续遇到 source 图像误读、stale leaf、memory drift 或报告混乱，可以临时设置 `QBE_UPPER_PANEL_INNER=1` 或 `QBE_MIDDLE_PANEL_INNER=1`。
 
 ## 当前任务的决策规则
 
@@ -4223,10 +4230,15 @@ Local paper-source archive for agent work:
   matrix construction.
 - Upper is the human-facing project director: choose the cycle objective,
   decide whether the task is faithful paper reproduction or exploratory
-  construction, and compress memory for the next cycle.
+  construction, and compress memory for the next cycle.  In long runs, QBE can
+  replace one broad upper pass with a bounded upper panel: source/visual audit,
+  proof-DAG strategy, process/memory audit, and director synthesis.
 - Middle is the workflow maintainer: synchronize Lean, Markdown, and LaTeX;
   convert upper strategy into exact declarations, file scopes, proof
-  obligations, and lower-agent packets; maintain success/failure memory.
+  obligations, and lower-agent packets; maintain success/failure memory.  In
+  final audits or stale-context episodes, QBE can split this into a bounded
+  middle panel: source correspondence, memory/retrieval, report/export, and
+  coordinator synthesis.
 - Lower agents are implementation workers: solve one assigned Lean/circuit
   task, run the gate if they edit Lean, and report useful failures without
   changing the scientific objective.
@@ -4497,6 +4509,79 @@ middle to update `research-wiki/cited-results/` and ask reviewer to verify that
 the result has a precise source, a statement matching the use site, and a Lean
 status that is not overstated.
 """
+        if lower_index == -1:
+            body += """
+
+Upper-panel profile: source/visual auditor.
+
+This pass answers only source-faithfulness questions.  Inspect the local paper
+source context, figure audits, conversion windows, and current theorem target.
+Do not assign broad Lean proof search.  Produce:
+
+1. The exact source theorem/equation/figure/caption anchors relevant to the
+   active target.
+2. The register transcript, gate order, branch conditions, normalizer, and
+   ancilla cleanup requirements that the Lean target must preserve.
+3. Any mismatch between the source object and current Lean/proof-obligation
+   object, classified as source-confirmed, external-citation-needed, or
+   contract-drift.
+4. A short recommendation to the director: continue the current leaf, repair
+   the source contract, or ask middle for a proof-translation packet.
+
+For GHL2025 Fig. 4, keep the full circuit transcript separate from the local
+seven-gate backend component.  The purpose is to prevent another cycle from
+proving the wrong diagram.
+"""
+        elif lower_index == -2:
+            body += """
+
+Upper-panel profile: proof-DAG strategist.
+
+This pass answers dependency-order questions.  Use the proof blueprint,
+retrieval index, proof obligations, verifier feedback, and recent trials.  Do
+not rewrite prose broadly.  Produce:
+
+1. The current root theorem and the shortest dependency path to it.
+2. Active leaves that are ready for lower work, with one recommended leaf.
+3. Stale leaves or already-compiled targets that should be retired.
+4. The exact lower-1 natural-language proof task and lower-2 Lean task.
+5. Any necessary-condition verifier that can reject a wrong target before Lean
+   spends time on a large proof.
+
+Prefer small semantic bridge lemmas over repeated attacks on a root theorem.
+"""
+        elif lower_index == -3:
+            body += """
+
+Upper-panel profile: process/memory auditor.
+
+This pass answers whether the automation process is wasting context, repeating
+failed routes, or hiding status from humans.  Inspect recent dialogue,
+`runs/trials_summary.csv`, proof-attempt records, human reports, and compact
+memory.  Produce:
+
+1. Repeated failures that should become rejected-route memory.
+2. Missing or stale memory cards, cited-results rows, verifier-feedback fields,
+   Chinese summaries, or article-update packets.
+3. Token/time waste risks in the next cycle.
+4. One concrete harness or prompt adjustment, if needed.
+5. The reports humans should read after the run.
+
+Do not ask lower agents to solve new mathematics from this profile; route that
+through the director synthesis.
+"""
+        else:
+            body += """
+
+Upper profile: director synthesis.
+
+If this run directory contains upper-panel specialist prompts or handoffs,
+read them before assigning middle/lower work.  Synthesize the source/visual
+audit, proof-DAG strategy, and process/memory audit into one coherent next
+objective.  If the specialist reports disagree, resolve the conflict by
+source faithfulness first, proof-DAG readiness second, and process efficiency
+third.
+"""
     elif role == "middle":
         body = """You are the middle formalization maintainer and memory manager.
 
@@ -4630,6 +4715,68 @@ it.  A cited result entry should name the source, exact statement used, Lean
 declaration or planned declaration, dependency sites, and status.  Use
 `obligation`, not `formalized`, unless the Lean target is actually present and
 build-tested.
+"""
+        if lower_index == -1:
+            body += """
+
+Middle-panel profile: source-correspondence formalizer.
+
+Focus only on paper-to-Lean correspondence.  Read the upper source/visual
+audit if present.  Produce:
+
+1. The source anchors and the paper object being translated.
+2. The Lean declarations, theorem statements, and proof obligations that
+   correspond to that object.
+3. Any external technical lemma or cited-result row needed by the next lower
+   packet.
+4. A clear statement of what is GHL-owned, what is an external contract, and
+   what is QBE-local semantic glue.
+5. One lower-facing source contract, with no article prose polish.
+"""
+        elif lower_index == -2:
+            body += """
+
+Middle-panel profile: memory/retrieval curator.
+
+Focus only on compact memory.  Read recent trials, verifier feedback,
+proof-attempts, proof-blueprints, and retrieval indexes.  Produce:
+
+1. Stale lower targets to retire.
+2. Rejected routes that must be remembered.
+3. The current active proof-DAG leaf and its dependencies.
+4. Missing typed verifier-feedback fields or memory-card updates.
+5. A compact next-cycle retrieval packet recommendation.
+
+Do not rewrite the source proof or article text unless the memory state is
+ambiguous without a one-line clarification.
+"""
+        elif lower_index == -3:
+            body += """
+
+Middle-panel profile: report/export maintainer.
+
+Focus only on human-readable exports.  Read the source-correspondence and
+memory curator notes if present.  Produce:
+
+1. Which Chinese status page, Markdown note, LaTeX status section, or technical
+   report appendix must be updated at the final audit.
+2. Which raw logs or generated files should not be human entry points.
+3. A concise human-facing explanation of any open blocker.
+4. Any manuscript claim that must remain forbidden until Lean closes it.
+
+Do not assign Lean work and do not rewrite polished prose during inner proof
+search.  This role is mainly for final-audit synchronization.
+"""
+        else:
+            body += """
+
+Middle profile: coordinator synthesis.
+
+If middle-panel specialist prompts or handoffs exist, read them before writing
+the lower packet.  Synthesize source correspondence, compact memory, and
+report/export status into one lower-1 natural-language task and one lower-2
+Lean implementation task.  If the specialists disagree, preserve source
+faithfulness first, then proof-DAG readiness, then report cleanliness.
 """
     elif role == "reviewer":
         body = """You are the independent reviewer and gatekeeper.
@@ -4817,6 +4964,8 @@ def create_run_cycle(
     run_id: str | None = None,
     context_mode: str = "full",
     blueprint_refresh: bool = False,
+    upper_panel: bool = False,
+    middle_panel: bool = False,
 ) -> Path:
     cmd_init(argparse.Namespace())
     if blueprint_refresh:
@@ -4859,10 +5008,24 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
         f"# Dialogue: {task_id} cycle {cycle}\n\nAppend short role-tagged handoffs here.\n",
         encoding="utf-8",
     )
-    prompt_files = [
-        ("upper", run_dir / "10_upper_director.md", 0),
-        ("middle", run_dir / "20_middle_formalizer.md", 0),
-    ]
+    prompt_files = [("upper", run_dir / "10_upper_director.md", 0)]
+    if upper_panel:
+        prompt_files.extend(
+            [
+                ("upper", run_dir / "11_upper_source_visual.md", -1),
+                ("upper", run_dir / "12_upper_proof_dag.md", -2),
+                ("upper", run_dir / "13_upper_process_memory.md", -3),
+            ]
+        )
+    prompt_files.append(("middle", run_dir / "20_middle_formalizer.md", 0))
+    if middle_panel:
+        prompt_files.extend(
+            [
+                ("middle", run_dir / "21_middle_source_correspondence.md", -1),
+                ("middle", run_dir / "22_middle_memory_retrieval.md", -2),
+                ("middle", run_dir / "23_middle_report_export.md", -3),
+            ]
+        )
     for index in range(1, lower_count + 1):
         prompt_files.append(("lower", run_dir / f"30_lower_searcher_{index}.md", index))
     prompt_files.append(("reviewer", run_dir / "40_reviewer.md", 0))
@@ -4901,7 +5064,10 @@ Cycle: `{cycle}`
             "artifact": rel(run_dir),
             "changed_files": [rel(p) for _, p, _ in prompt_files] + [rel(run_dir / "00_context.md"), rel(run_dir / "dialogue.md")],
             "command": "qbe.py run-cycle",
-            "notes": f"Created prompt deck with {lower_count} lower agent(s).",
+            "notes": (
+                f"Created prompt deck with {lower_count} lower agent(s); "
+                f"upper_panel={upper_panel}; middle_panel={middle_panel}."
+            ),
         },
     )
     write_trial_summary(load_jsonl(TRIAL_LOG))
@@ -4917,6 +5083,8 @@ def cmd_run_cycle(args: argparse.Namespace) -> int:
         args.run_id,
         args.context_mode,
         args.blueprint_refresh,
+        args.upper_panel,
+        args.middle_panel,
     )
     print(f"created {rel(run_dir)}")
     print("agent prompts:")
@@ -4935,6 +5103,42 @@ def prompt_role(path: Path) -> str:
     if "reviewer" in name:
         return "reviewer"
     return "lower"
+
+
+def upper_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
+    """Return upper prompts in execution order.
+
+    The director prompt keeps the historical `10_upper_director.md` name for
+    compatibility.  In panel mode it runs after the specialist audits, so it
+    can synthesize their findings before middle/lower work begins.
+    """
+    director = run_dir / "10_upper_director.md"
+    if not use_panel:
+        return [director]
+    specialists = [
+        run_dir / "11_upper_source_visual.md",
+        run_dir / "12_upper_proof_dag.md",
+        run_dir / "13_upper_process_memory.md",
+    ]
+    return [path for path in specialists if path.exists()] + [director]
+
+
+def middle_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
+    """Return middle prompts in execution order.
+
+    The coordinator keeps the historical `20_middle_formalizer.md` name.  In
+    panel mode it runs after specialist middle audits so it can write one
+    coherent lower-agent packet.
+    """
+    coordinator = run_dir / "20_middle_formalizer.md"
+    if not use_panel:
+        return [coordinator]
+    specialists = [
+        run_dir / "21_middle_source_correspondence.md",
+        run_dir / "22_middle_memory_retrieval.md",
+        run_dir / "23_middle_report_export.md",
+    ]
+    return [path for path in specialists if path.exists()] + [coordinator]
 
 
 def format_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> str:
@@ -5000,13 +5204,15 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             args.lower_count,
             context_mode=args.context_mode,
             blueprint_refresh=args.blueprint_refresh,
+            upper_panel=args.upper_panel,
+            middle_panel=args.middle_panel,
         )
         print(f"cycle {cycle}: {rel(run_dir)}")
         prompts = []
         if args.upper_every > 0 and (cycle - 1) % args.upper_every == 0:
-            prompts.append(run_dir / "10_upper_director.md")
+            prompts.extend(upper_prompt_sequence(run_dir, args.upper_panel))
         if args.middle_every > 0 and (cycle - 1) % args.middle_every == 0:
-            prompts.append(run_dir / "20_middle_formalizer.md")
+            prompts.extend(middle_prompt_sequence(run_dir, args.middle_panel))
         prompts.extend(sorted(run_dir.glob("30_lower_searcher_*.md")))
         if (
             not args.skip_reviewer
@@ -5270,6 +5476,16 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="refresh proof-blueprints/<task>.md before writing the prompt deck",
     )
+    p_cycle.add_argument(
+        "--upper-panel",
+        action="store_true",
+        help="also create source/visual, proof-DAG, and process/memory upper specialist prompts",
+    )
+    p_cycle.add_argument(
+        "--middle-panel",
+        action="store_true",
+        help="also create source-correspondence, memory/retrieval, and report/export middle specialist prompts",
+    )
     p_cycle.set_defaults(func=cmd_run_cycle)
 
     p_sleep = sub.add_parser("sleep-run", help="create or execute repeated agent cycles")
@@ -5295,6 +5511,16 @@ def build_parser() -> argparse.ArgumentParser:
         "--blueprint-refresh",
         action="store_true",
         help="refresh proof-blueprints/<task>.md before every cycle",
+    )
+    p_sleep.add_argument(
+        "--upper-panel",
+        action="store_true",
+        help="execute a bounded upper panel before director synthesis whenever upper runs",
+    )
+    p_sleep.add_argument(
+        "--middle-panel",
+        action="store_true",
+        help="execute a bounded middle panel before coordinator synthesis whenever middle runs",
     )
     p_sleep.add_argument(
         "--upper-every",
