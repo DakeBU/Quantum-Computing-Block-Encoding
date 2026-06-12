@@ -12,13 +12,13 @@ available.
 
 \paragraph{Cycle.}
 Task \texttt{QBE-AUTO-002}, cycle \texttt{1}, run
-\texttt{runs/20260611-234445-QBE-AUTO-002-cycle01}.  Generated at
-\texttt{2026-06-12 00:05:40}.
+\texttt{runs/20260611-203233-QBE-AUTO-002-cycle01}.  Generated at
+\texttt{2026-06-11 21:18:47}.
 
 \paragraph{Lean status signal.}
 \begin{itemize}
-  \item \texttt{QuantumBlockEncoding/RobinMatrix.lean:24190:  sorry}
-  \item \texttt{QuantumBlockEncoding/RobinMatrix.lean:24220:  sorry}
+  \item \texttt{QuantumBlockEncoding/RobinMatrix.lean:23909:  sorry}
+  \item \texttt{QuantumBlockEncoding/RobinMatrix.lean:23947:  sorry}
 \end{itemize}
 
 \paragraph{Plain-language status.}
@@ -40,18 +40,23 @@ theorem or an explicit contract.
 
 \paragraph{Current proof-DAG frontier.}
 \begin{itemize}
-  \item source\_prepared\_entry\_leaf: theorem-facing source-prepared active field follows after the evaluated fold; status: open dependent target; Lean: \textasciigrave{}(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3 H env).activeToPreparedSingletonEvalStatement\textasciigrave{}
-  \item evaluated\_backend\_fold\_leaf: prove the evaluated signal-zero entry equals the backend branch fold; status: active leaf; Lean: \textasciigrave{}oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3 env\textasciigrave{}
-  \item semantic\_eval\_product\_bridge: prove a smaller evaluated matrix-product bridge feeding the evaluated fold; status: active smaller leaf; preferred; Lean: new local theorem in \textasciigrave{}QuantumBlockEncoding/RobinMatrix.lean\textasciigrave{} feeding the right side of \textasciigrave{}oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_iff\_uncastActiveCircuitEntryEval\_...
+  \item active\_uncast\_to\_prepared\_entry\_leaf: uncast seven-gate \textasciigrave{}[0,0]\textasciigrave{} entry equals the cached prepared entry; status: preferred active mathematical leaf; Lean: target \textasciigrave{}ActiveUncastToPreparedEntry\textasciigrave{}
+  \item remaining\_slots\_evaluated\_vanish\_leaf: full evaluated backend branch contribution vanishes or cancels for the last remaining slot, slot \textasciigrave{}6\textasciigrave{}; status: next preferred smaller leaf; Lean: proposed \textasciigrave{}oneTermRobinGamma3BoundaryBackendBranchContribution\_slotSixEval\_zero\_n3 env\textasciigrave{}, or a full-index \textasciigrave{}96\textasciigrave{} diagonal-factor lemma feeding it
+  \item source\_prepared\_entry\_leaf: \textasciigrave{}SourcePreparedEntry\textasciigrave{}: active/prepared entry equality; status: open dependent target; Lean: \textasciigrave{}(oneTermRobinGamma3BoundaryActivePreparedEntryTarget\_n3 H).entryEqualityStatement\textasciigrave{}; \textasciigrave{}oneTermRobinGamma3BoundaryActivePreparedEntryTarget\_iff\_uncastActiveEntry\_n3\textasciigrave{}
+  \item unitary\_fold\_leaf: \textasciigrave{}FullUnitaryFold\textasciigrave{}: full signal-zero unitary entry equals the seven-slot backend branch fold; status: open dependent root; Lean: target \textasciigrave{}oneTermRobinGamma3BoundaryProjectionSummationTarget\_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution\_n3\textasciigrave{}
+  \item backend\_expansion\_leaf: backend-expansion statement for the branch-contribution target; status: open equivalent endpoint; Lean: \textasciigrave{}oneTermRobinGamma3BoundaryBackendBranchContributionTarget\_n3.backendExpansionStatement\textasciigrave{}; \textasciigrave{}oneTermRobinGamma3BoundaryBackendExpansionStatement\_equivUnitaryEntryFold\_n3\textasciigrave{}
 \end{itemize}
 
 \paragraph{Open obligation signal.}
 \begin{itemize}
-  \item evaluated backend fold: Lean \textasciigrave{}oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3 env\textasciigrave{}; class QBE-local finite projection/backend theorem; status active Lean leaf; not proved
-  \item active/prepared sparse-clean equality: Lean left side of \textasciigrave{}oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval\_iff\_evaluatedBackendFold\_n3 H env hUniform\textasciigrave{}; class QBE-local finite matrix semantics plus explicit clean-column contract for recovery; status active equivalent leaf; not proved
-  \item post-feeder sparse-clean to fold bridge: Lean \textasciigrave{}oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval\_iff\_evaluatedBackendFold\_n3 H env hUniform\textasciigrave{}; class QBE-local evalWith bridge under external clean-column contract; status compiled bridge; retired as lower target
-  \item source-prepared projection active field: Lean \textasciigrave{}(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3 H env).activeToPreparedSingletonEvalStatement\textasciigrave{}; class QBE-local theorem-facing projection bridge; status open dependent target
-  \item diagnostic raw constructor route: Lean \textasciigrave{}oneTermRobinGamma3BoundaryUnitaryEntry\_eq\_backendFold\_n3\textasciigrave{}; \textasciigrave{}oneTermRobinGamma3BoundaryEvalGateMatrices\_eq\_sevenGateMatrix\_n3\textasciigrave{}; class diagnostic/backlog; status still \textasciigrave{}sorry\textasciigrave{}-guarded; do not assign as source closure
+  \item theorem-facing Fig. 4 transcript: Lean \textasciigrave{}GHL2025.oneTermRobinTheoremFacingFig4Circuit\_gateList\textasciigrave{}; \textasciigrave{}GHL2025.oneTermRobinGate\_U\_indic\_dagger\_selfInverseBridge\textasciigrave{}; class GHL-internal transcript plus QBE-local indicator bridge; status compiled guard; no full semantic proof
+  \item prepared entry backend-fold normal form: Lean \textasciigrave{}oneTermRobinGamma3BoundaryActivePreparedEntryTarget\_preparedEntry\_eq\_backendFold\_n3 H hUniform\textasciigrave{}; class QBE-local prepared-side semantic bridge under external \textasciigrave{}HUniform\textasciigrave{} contract; status proved feeder; retired as next lower target
+  \item active wrapper/cast removal: Lean \textasciigrave{}oneTermRobinGamma3BoundaryActivePreparedEntryTarget\_iff\_uncastActiveEntry\_n3 H\textasciigrave{}; class QBE-local finite matrix-entry bridge; status proved feeder; retired as next lower target
+  \item slot-\textasciigrave{}0\textasciigrave{} active/backend vanish support: Lean \textasciigrave{}oneTermRobinGamma3BoundarySevenGateColumn0Eval\_zero\_n3 env\textasciigrave{}; \textasciigrave{}oneTermRobinGamma3BoundaryBackendBranchContribution\_slotZeroEval\_zero\_n3 env\textasciigrave{}; class QBE-local finite support/evaluation lemma; status proved support; retired as next lower target
+  \item slot-\textasciigrave{}1\textasciigrave{} full evaluated branch vanish: Lean \textasciigrave{}oneTermRobinGamma3BoundaryBackendBranchContribution\_slotOneEval\_zero\_n3 env\textasciigrave{}; class QBE-local finite branch evaluation lemma; status proved feeder; retired as next lower target
+  \item slot-\textasciigrave{}3\textasciigrave{} full evaluated branch vanish: Lean \textasciigrave{}oneTermRobinGamma3BoundaryBackendBranchContribution\_slotThreeEval\_zero\_n3 env\textasciigrave{}; class QBE-local finite branch evaluation lemma; status proved feeder; retired as next lower target
+  \item slot-\textasciigrave{}4\textasciigrave{} full evaluated branch vanish: Lean \textasciigrave{}oneTermRobinGamma3BoundaryBackendBranchContribution\_slotFourEval\_zero\_n3 env\textasciigrave{}; class QBE-local finite branch evaluation lemma; status proved feeder; retired as next lower target
+  \item slot-\textasciigrave{}5\textasciigrave{} full evaluated branch vanish: Lean \textasciigrave{}oneTermRobinGamma3BoundaryBackendBranchContribution\_slotFiveEval\_zero\_n3 env\textasciigrave{}; class QBE-local finite branch evaluation lemma; status proved feeder; retired as next lower target
 \end{itemize}
 
 \paragraph{Open GHL contribution obligations.}
@@ -78,21 +83,21 @@ theorem or an explicit contract.
 
 \paragraph{Recent typed verifier feedback.}
 \begin{itemize}
-  \item Leaf \texttt{evaluated\_backend\_fold\_leaf}, class \texttt{symbolic\_bridge\_gap}; next route: prove an evalWith-level active product/backend fold bridge using Matrix.evalWith\_mul\_apply or path-isolation helpers; keep hUniform explicit if using the source-prepared sparse-clean route.
-  \item Leaf \texttt{unitary\_fold\_leaf}, class \texttt{shape\_or\_register\_gap}; next route: middle should refresh the active leaf around a source-backed prepared projection theorem or supply a semantic evalWith associativity bridge before another lower proof attempt on the H-free active [0,0] fold.
-  \item Leaf \texttt{evaluated\_backend\_fold\_leaf}, class \texttt{symbolic\_bridge\_gap}; next route: prove oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3 env or a smaller evaluated matrix-entry lemma feeding it; keep hUniform explicit if using the sparse-clean route.
-  \item Leaf \texttt{active\_prepared\_composition\_leaf}, class \texttt{shape\_or\_register\_gap}; next route: supply a source-backed prepared H\_W composition theorem or keep the concrete H\_W semantics gap explicit; do not close arbitrary-H equality by assumption.
-  \item Leaf \texttt{active\_prepared\_composition\_leaf}, class \texttt{symbolic\_bridge\_gap}; next route: prove oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3 env or the exact unwrapped active/prepared sparse-clean equality directly without adding assumptions.
-  \item Leaf \texttt{prepared\_sandwich\_semantics\_gap\_feeder}, class \texttt{None}; next route: prove active signal-zero entry equals the prepared sparse clean entry, then recover the prepared-sandwich eval statement through the new feeder.
+  \item Leaf \texttt{post\_slot6\_active\_uncast\_source\_prepared\_design\_concurrency\_note}, class \texttt{symbolic\_bridge\_gap}; next route: compare active uncast evalGateMatrices [0,0] entry with selected slot2 contribution.
+  \item Leaf \texttt{post\_slot6\_active\_uncast\_source\_prepared\_design}, class \texttt{symbolic\_bridge\_gap}; next route: prove source-prepared evaluated active leaf or strict selected-slot/active-side evaluated feeder.
+  \item Leaf \texttt{selected\_slot2\_backend\_fold\_eval\_feeder}, class \texttt{None}; next route: compare active uncast evalGateMatrices [0,0] entry to selected slot-2 contribution to close ActiveUncastToPreparedEntry/evaluated active-prepared field.
+  \item Leaf \texttt{slot6\_full\_vanish\_leaf}, class \texttt{None}; next route: use slots 0/1/3/4/5/6 and selected slot 2 toward ActiveUncastToPreparedEntry.
+  \item Leaf \texttt{slot6\_full\_vanish\_leaf}, class \texttt{None}; next route: use slots 0/1/3/4/5/6 toward ActiveUncastToPreparedEntry.
+  \item Leaf \texttt{slot5\_full\_vanish\_leaf}, class \texttt{None}; next route: attempt slot6 evaluated branch vanish/cancellation or use slots 0/1/3/4/5 toward ActiveUncastToPreparedEntry.
 \end{itemize}
 
 \paragraph{Recent proof-attempt memory.}
 \begin{itemize}
-  \item \texttt{proof-attempts/QBE-AUTO-002/post-lower2-evaluated-fold-semantic-bridge-middle-packet-20260611-2352.md}
-  \item \texttt{proof-attempts/QBE-AUTO-002/evaluated-backend-fold-lower2-blocked-20260611-2348.md}
   \item \texttt{proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md}
-  \item \texttt{proof-attempts/QBE-AUTO-002/post-bridge-evaluated-fold-middle-packet-20260611-2312.md}
-  \item \texttt{proof-attempts/QBE-AUTO-002/post-feeder-frontier-repair-middle-packet-20260611-2258.md}
+  \item \texttt{proof-attempts/QBE-AUTO-002/post-slot-six-active-uncast-middle-packet-20260611-2038.md}
+  \item \texttt{proof-attempts/QBE-AUTO-002/post-slot-five-evaluated-remaining-slots-middle-packet-20260611-2018.md}
+  \item \texttt{proof-attempts/QBE-AUTO-002/post-slot-four-evaluated-remaining-slots-middle-packet-20260611-1959.md}
+  \item \texttt{proof-attempts/QBE-AUTO-002/post-slot-three-evaluated-remaining-slots-middle-packet-20260611-1939.md}
 \end{itemize}
 
 \paragraph{Article-writing rule.}

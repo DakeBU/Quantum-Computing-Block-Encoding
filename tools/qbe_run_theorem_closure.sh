@@ -80,6 +80,7 @@ python3 tools/qbe.py sleep-run "$TASK_ID" \
   --check-each-cycle
 final_code=$?
 python3 tools/qbe.py efficiency-report --task "$TASK_ID"
+python3 tools/qbe.py human-status "$TASK_ID"
 active_used="$(active_used_seconds)"
 echo "[$(date)] theorem-closure batch finished; final_audit_exit=$final_code active_used=${active_used}/${active_budget}"
 exit "$final_code"

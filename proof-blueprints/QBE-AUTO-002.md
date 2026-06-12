@@ -3,7 +3,7 @@
 Task id: `QBE-AUTO-002`
 Title: Concrete Circuit Matrix Semantics Backend
 Mode: `faithfulPaper`
-Updated: `2026-06-10 17:55:13`
+Updated: `2026-06-12 00:03:59`
 Blueprint stage: `Stage 2 DAG proof discharge, with faithful transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -16,92 +16,58 @@ oracle contracts to stay explicit.
 ## Current Directive
 
 ```text
-## Current Run Directive: 2026-06-10 Post-Slot-One Evaluated Remaining-Slots Frontier
+## Current Run Directive: 2026-06-11 Post-Bridge Evaluated Backend Fold Frontier
 
-This directive supersedes the post-remaining-slots support packet for the next
-lower proof attempt.  The active-side target is unchanged, but the latest Lean
-evidence now includes the full evaluated slot-`1` backend branch vanish theorem:
-
-```lean
-oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3
-```
-
-This theorem is compiled support only.  It retires slot `1` as the next smaller
-lower target.  It does not prove `ActiveUncastToPreparedEntry`,
-`SourcePreparedEntry`, `FullUnitaryFold`, backend expansion, the one-term Robin
-theorem, or any oracle, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
-block-correctness, or final-extraction flag.
-
-Compiled support to reuse:
-
-| Declaration | Status |
-|---|---|
-| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` | compiled prepared-side normal form under `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; retired as a lower target |
-| `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | compiled bridge rewriting `SourcePreparedEntry` to the uncast active `[0,0]` entry against the cached prepared entry; retired as a lower target |
-| `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` | compiled conditional bridge from `SourcePreparedEntry` plus `HUniform` to `FullUnitaryFold`; do not rediscover |
-| `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | compiled active column-`0` evaluated vanish support; retired as a lower target |
-| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | compiled backend slot-`0` evaluated vanish support; retired as a lower target |
-| `oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3` | compiled slot-`1` dagger-after-SWAP support mismatch; retired because full slot-`1` evaluated vanish is now compiled |
-| `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3` | compiled full slot-`1` evaluated branch vanish; retired as a lower target |
-| `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3` | compiled dagger-after-SWAP support mismatch for backend slots `3`, `4`, `5`, and `6`; support-only, retired as a lower target |
-
-The preferred local theorem remains the active-side uncast entry equality:
+This directive supersedes the post-feeder active/prepared composition packet
+for the next lower proof attempt. Lower 2 has compiled the post-feeder bridge
 
 ```lean
-(evalGateMatrices
-  (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
-  oneTermRobinGamma3BoundaryPrefixRow0_n3
-  oneTermRobinGamma3BoundaryPrefixRow0_n3 =
-    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).preparedEntry
+oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3
 ```
 
-The next preferred smaller leaf is a true evaluated branch
-vanish/cancellation theorem for the remaining backend slots `3`, `4`, `5`, or
-`6`.  Prefer slot `3` first:
+which proves that, under
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`, the
+exact unwrapped active/prepared sparse-clean `evalWith` equality is equivalent
+to:
 
 ```lean
-oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
 ```
 
-or a strict full-index `48` diagonal-factor lemma that directly feeds that
-slot-`3` theorem.  Do not spend lower work on another support-only lemma for
-slots `3`, `4`, `5`, or `6`.
+The bridge is now stale as a lower target. The first-case-study one-term
+theorem remains open.
 
-Lower-agent split:
+Next lower work:
 
-| Lower profile | Required behavior |
-|---|---|
-| lower 1: natural-language proof architect | Reuse `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md`; append only a narrow Section 21 postscript for the remaining-slots evaluated frontier.  The postscript must retire slot `1`, classify slots `3` through `6` support as support-only, and name the slot-`3` evaluated vanish theorem or full-index `48` feeder. |
-| lower 2: Lean implementation worker | Edit only `QuantumBlockEncoding/RobinMatrix.lean`.  Prove the active-side uncast entry equality, the full slot-`3` evaluated branch vanish/cancellation theorem, or one strict full-index `48` diagonal-factor lemma feeding the slot-`3` theorem directly.  Do not change oracle contracts, theorem hypotheses, normalizers, gate labels, or the paper circuit. |
-
-Retired lower targets remain retired: direct branch-sum wrapper,
-source-prepared clean-entry alias, H-free `evalWith` route, raw `Coeff`
-constructor route, compiled bridge rediscovery,
-`oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3`,
-`oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3`,
-`oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3`,
-`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3`,
-`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3`,
-slot-`0` evaluated vanish support,
-`oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3`,
-`oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3`,
-and `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3`.
+1. Lower 1 may append only a narrow postscript to Section 21.15 of
+   `proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md`,
+   naming the compiled bridge above and retiring it as a target.
+2. Lower 2 edits only `QuantumBlockEncoding/RobinMatrix.lean`.
+3. Lower 2 should prove exactly
+   `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, the
+   exact unwrapped active/prepared sparse-clean equality exposed by the
+   bridge, or one strictly smaller theorem that directly feeds one of these
+   statements.
+4. Retire the strict prepared-sparse feeder, the new sparse-clean-to-fold
+   bridge, finite active/prepared reduction guards, H-free active-selected
+   diagnostics, backend slot vanish/support work, raw `Coeff` constructor
+   equalities, branch-sum wrappers, and compiled bridge rediscovery.
+5. If the obstacle is the arbitrary-`H` route shape rather than a tactic gap,
+   record typed verifier feedback as `source_translation_gap` or
+   `shape_or_register_gap`; do not add hypotheses or change the paper circuit.
 
 The gate remains `python3 tools/qbe.py check`, then `lake build`, then
 `lake build Tests`.
 
-Middle must keep the Chinese summary, project article update, and ABEIS
-generated appendix honest: the first-case-study one-term theorem is still
-open; this packet adds only one full slot-`1` evaluated vanish feeder and
-moves the proof-DAG frontier to remaining-slots evaluated vanish/cancellation
-or the active-side uncast equality.  The public ABEIS report must use theorem,
-equation, figure, citation, and Lean declaration names rather than local
-source-line anchors.
+Generated Chinese summaries, the project article update, and the ABEIS
+generated appendix must say that the first-case-study one-term theorem is
+still open. This packet only narrows the source-prepared matrix-entry frontier
+after one compiled equivalence bridge.
 
-No ODBS, ODTS, `O_f`, $H_W^{(\kappa)}$, $R_y$, LCU, block-projection,
-normalized-equality, product-to-coefficient, circuit-unitarity,
-block-correctness, final-extraction, oracle, or external primitive flag is
-promoted by this packet.
+No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness,
+final-extraction, normalizer, or external primitive flag is promoted by this
+packet.
 ```
 
 ## Dynamic Leaf Queue
@@ -112,30 +78,17 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| active_uncast_to_prepared_entry_leaf: uncast seven-gate `[0,0]` entry equals the cached prepared entry; status: preferred active mathematical leaf; Lean: target `ActiveUncastToPreparedEntry` | candidate |
-| remaining_slots_evaluated_vanish_leaf: full evaluated backend branch contribution vanishes or cancels for one remaining slot, starting with slot `3`; status: next preferred smaller leaf; Lean: proposed `oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3 env`, or a full-index `48` diagonal-factor lemma feeding it | candidate |
-| source_prepared_entry_leaf: `SourcePreparedEntry`: active/prepared entry equality; status: open dependent target; Lean: `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`; `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` | candidate |
-| slot1_full_vanish_leaf: full evaluated slot-`1` backend branch contribution is zero; status: compiled support feeder; retired; Lean: `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3 env` | candidate |
-| unitary_fold_leaf: `FullUnitaryFold`: full signal-zero unitary entry equals the seven-slot backend branch fold; status: open dependent root; Lean: target `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3` | candidate |
-| backend_expansion_leaf: backend-expansion statement for the branch-contribution target; status: open equivalent endpoint; Lean: `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`; `oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3` | candidate |
-| slot0_vanish_support: active column-`0` and backend slot-`0` contributions evaluate to zero; status: compiled support; retired; Lean: `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3`; `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3` | candidate |
-| remaining_slots_support_mismatch: backend slots `3`, `4`, `5`, and `6` have zero dagger-after-SWAP support on the clean path; status: compiled support; retired; not full branch vanish; Lean: `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3` | candidate |
+| source_prepared_entry_leaf: theorem-facing source-prepared active field follows after the evaluated fold; status: open dependent target; Lean: `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | candidate |
+| evaluated_backend_fold_leaf: prove the evaluated signal-zero entry equals the backend branch fold; status: active leaf; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | candidate |
+| semantic_eval_product_bridge: prove a smaller evaluated matrix-product bridge feeding the evaluated fold; status: active smaller leaf; preferred; Lean: new local theorem in `QuantumBlockEncoding/RobinMatrix.lean` feeding the right side of `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_... | candidate |
 
 ## Open Obligation Signals
 
 ```text
-theorem-facing Fig. 4 transcript: Lean `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`; `GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge`; class GHL-internal transcript plus QBE-local indicator bridge; status compiled guard; no full semantic proof
-prepared entry backend-fold normal form: Lean `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3 H hUniform`; class QBE-local prepared-side semantic bridge under external `HUniform` contract; status compiled feeder; retired as next lower target
-active wrapper/cast removal: Lean `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3 H`; class QBE-local finite matrix-entry bridge; status compiled feeder; retired as next lower target
-slot-`0` active/backend vanish support: Lean `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3 env`; `oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3 env`; class QBE-local finite support lemma; status compiled support; retired as next lower target
-slot-`1` full evaluated branch vanish: Lean `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3 env`; class QBE-local finite branch evaluation lemma; status compiled support feeder; retired as next lower target
-slots `3` through `6` dagger-after-SWAP support: Lean `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3`; class QBE-local finite support lemma; status compiled support; retired; not a full branch vanish theorem
-remaining-slots evaluated branch vanish/cancellation: Lean proposed `oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3 env`, or a full-index `48` diagonal-factor lemma feeding it directly; class QBE-local finite branch evaluation lemma; status next preferred smaller leaf
-active-side uncast entry equality: Lean target `ActiveUncastToPreparedEntry`; class QBE-local finite seven-gate matrix semantics; status preferred active mathematical leaf
-source-prepared active/prepared entry equality: Lean `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`; class QBE-local prepared circuit semantics under an external cited contract; status open dependent target; recover only after active-side leaf
-active/prepared entry to fold bridge: Lean `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3`; `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3`; class QBE-local bridge under `HUniform`; status compiled conditional; not closure
-full signal-zero unitary fold: Lean `oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3`; class QBE-local finite projection/backend theorem; status open dependent root
-external sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract; status contract-only; no Shukla--Vedula formalization in this packet
+evaluated backend fold: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; class QBE-local finite projection/backend theorem; status active Lean leaf; not proved
+active/prepared sparse-clean equality: Lean left side of `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 H env hUniform`; class QBE-local finite matrix semantics plus explicit clean-column contract for recovery; status active equivalent leaf; not proved
+post-feeder sparse-clean to fold bridge: Lean `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 H env hUniform`; class QBE-local evalWith bridge under external clean-column contract; status compiled bridge; retired as lower target
+source-prepared projection active field: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`; class QBE-local theorem-facing projection bridge; status open dependent target
 diagnostic raw constructor route: Lean `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class diagnostic/backlog; status still `sorry`-guarded; do not assign as source closure
 ```
 
@@ -145,52 +98,52 @@ Recent task-relevant declarations:
 
 | Kind | Lean name | File |
 |---|---|---|
-| structure | `OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget` | `QuantumBlockEncoding/RobinMatrix.lean:17475` |
-| def | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:17522` |
-| theorem | `oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3` | `QuantumBlockEncoding/RobinMatrix.lean:17646` |
-| structure | `OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:17668` |
-| def | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:17723` |
-| def | `oneTermRobinGamma3BoundarySparseCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:17867` |
-| def | `oneTermRobinGamma3BoundarySparseSlotIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:17871` |
-| def | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:17881` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3` | `QuantumBlockEncoding/RobinMatrix.lean:17896` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3` | `QuantumBlockEncoding/RobinMatrix.lean:17910` |
-| structure | `OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget` | `QuantumBlockEncoding/RobinMatrix.lean:17997` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18038` |
-| structure | `OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField` | `QuantumBlockEncoding/RobinMatrix.lean:18169` |
-| def | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18203` |
-| theorem | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18404` |
-| theorem | `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18420` |
-| structure | `OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap` | `QuantumBlockEncoding/RobinMatrix.lean:18439` |
-| def | `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18473` |
-| def | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18572` |
-| def | `oneTermRobinGamma3BoundaryPreparedCompositeGate_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18606` |
-| def | `oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18621` |
-| theorem | `oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18626` |
-| def | `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18641` |
-| structure | `OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface` | `QuantumBlockEncoding/RobinMatrix.lean:18723` |
-| def | `oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18763` |
-| abbrev | `oneTermRobinGamma3BoundaryActiveFullDim_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18890` |
-| def | `oneTermRobinGamma3BoundaryActiveCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18895` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19122` |
-| structure | `OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19297` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19334` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19729` |
-| def | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19746` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19841` |
-| def | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19974` |
-| theorem | `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20053` |
-| structure | `OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:20073` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20119` |
-| structure | `OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:20347` |
-| def | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20390` |
-| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20812` |
-| structure | `OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:21630` |
-| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21662` |
-| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22489` |
-| theorem | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22519` |
-| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` | `QuantumBlockEncoding/RobinMatrix.lean:22532` |
-| theorem | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22550` |
+| structure | `OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget` | `QuantumBlockEncoding/RobinMatrix.lean:18861` |
+| def | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18908` |
+| theorem | `oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19032` |
+| structure | `OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19054` |
+| def | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19109` |
+| def | `oneTermRobinGamma3BoundarySparseCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19253` |
+| def | `oneTermRobinGamma3BoundarySparseSlotIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19257` |
+| def | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19267` |
+| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19282` |
+| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19296` |
+| structure | `OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19383` |
+| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19424` |
+| structure | `OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField` | `QuantumBlockEncoding/RobinMatrix.lean:19555` |
+| def | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19589` |
+| theorem | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19790` |
+| theorem | `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19806` |
+| structure | `OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap` | `QuantumBlockEncoding/RobinMatrix.lean:19825` |
+| def | `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19859` |
+| def | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19958` |
+| def | `oneTermRobinGamma3BoundaryPreparedCompositeGate_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19992` |
+| def | `oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20007` |
+| theorem | `oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20012` |
+| def | `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20027` |
+| structure | `OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface` | `QuantumBlockEncoding/RobinMatrix.lean:20109` |
+| def | `oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20149` |
+| abbrev | `oneTermRobinGamma3BoundaryActiveFullDim_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20276` |
+| def | `oneTermRobinGamma3BoundaryActiveCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20281` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20508` |
+| structure | `OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:20683` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20720` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21115` |
+| def | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21132` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21227` |
+| def | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21360` |
+| theorem | `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21465` |
+| structure | `OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:21485` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21531` |
+| structure | `OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:21759` |
+| def | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21802` |
+| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22332` |
+| structure | `OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:23297` |
+| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23329` |
+| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24156` |
+| theorem | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24186` |
+| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` | `QuantumBlockEncoding/RobinMatrix.lean:24199` |
+| theorem | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24217` |
 | def | `gateMatricesMatchCircuit` | `QuantumBlockEncoding/CircuitSemantics.lean:41` |
 | structure | `CircuitMatrixSemantics` | `QuantumBlockEncoding/CircuitSemantics.lean:404` |
 | structure | `PreparedCircuitEntryTarget` | `QuantumBlockEncoding/CircuitSemantics.lean:436` |
@@ -221,35 +174,11 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ```text
-BE-AUTO-002 cycle 1
+21.15.7 post-bridge retirement postscript to proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md. It names oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 as compiled route wiring and retires active_prepared_composition_leaf as the preferred target. Next active leaf is evaluated_backend_fold_leaf: prove oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env or a direct evaluated active-entry/backend-fold feeder. During final clean rebuild, QuantumBlockEncoding/RobinMatrix.lean hit maxRecDepth in the already sorry-guarded diagnostic theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3; lower1 removed only the expensive pre-sorry simplification, leaving the theorem diagnostic and unclosed. No oracle contract, theorem hypothesis, normalizer, gate label, paper circuit, or semantic flag changed. Verifier feedback: leaf=evaluated_backend_fold_leaf; source_correspondence_ok=true_for_evaluated_backend_fold_false_for_unconditional_arbitrary_H_sparse_equality; lean_parse_ok=true_after_minimal_diagnostic_lean_repair; lean_build_ok=true; finite_matrix_ok=partial_compiled_bridge_reduces_sparse_clean_leaf_to_evaluated_fold; block_entry_ok=false_evaluated_backend_fold_still_open; ancilla_cleanup_ok=not_promoted; normalizer_ok=unchanged; closed_theorem_ok=false; error_class=symbolic_bridge_gap; next_route=prove oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env or a direct evaluated active-entry/backend-fold lemma, keeping hUniform explicit if using sparse-clean equality. Gates passed after repair: python3 tools/qbe.py check; lake build; lake build Tests, with known diagnostic sorries at RobinMatrix.lean:24186 and 24217.
 
-Append short role-tagged handoffs here.
+## 2026-06-11 23:43:44 - lower
 
-## 20260610-155221-QBE-AUTO-002-cycle01
-
-# Dialogue: QBE-AUTO-002 cycle 1
-
-Append short role-tagged handoffs here.
-
-## 20260610-154743-QBE-AUTO-002-cycle01
-
-# Dialogue: QBE-AUTO-002 cycle 1
-
-Append short role-tagged handoffs here.
-
-## 20260610-153222-QBE-AUTO-002-cycle01
-
-# Dialogue: QBE-AUTO-002 cycle 1
-
-Append short role-tagged handoffs here.
-
-## 2026-06-10 15:35:51 - upper
-
-Upper handoff: faithful paper reproduction, Stage 2 DAG proof discharge. Source-contract audit against GHL2025 one-term theorem, Eq ROBIN clarified, Fig 1-term ROBIN, H_W preparation, and block-encoding definition finds no new contract drift: theorem-facing transcript guards remain compiled, H_W/ODBS/ODTS/O_f/R_y/LCU/block-composition stay contract-only. Latest Lean evidence retires oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3 as compiled full slot-1 evaluated vanish; generated frontier files are stale where they still present slot-1 as next. Next objective: advance ActiveUncastToPreparedEntry by proving a true evaluated branch vanish/cancellation for remaining backend slots 3-6, preferably a slot-3 theorem oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3 env or a strict full-index-48 diagonal factor lemma feeding it; lower may prove ActiveUncastToPreparedEntry directly if available. Do not assign more support-only lemmas for slots 3-6. Root path remains remaining slot vanish/cancellation -> ActiveUncastToPreparedEntry -> SourcePreparedEntry -> FullUnitaryFold -> backend expansion -> one-term theorem. Middle must repair conversion window, proof obligations, blueprint, Chinese summary, project article, and ABEIS generated status to retire slot1 and name the remaining-slots evaluated vanish frontier. Lower1 should append a narrow Section 21 to the existing unitary-fold DAG addendum; lower2 edits only QuantumBlockEncoding/RobinMatrix.lean. Reviewer requires python3 tools/qbe.py check, lake build, lake build Tests, rejects raw Coeff route and any oracle/H_W/R_y/LCU/block/final flag promotion.
-
-## 2026-06-10 15:43:34 - middle
-
-Middle sync repaired the generated frontier after slot-1 full evaluated vanish compiled. Retired oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3 as a lower target, selected remaining-slots evaluated vanish/cancellation starting with oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3 env or a full-index-48 diagonal-factor feeder, and kept ActiveUncastToPreparedEntry as the preferred active mathematical leaf. Updated task directive, conversion window, proof obligations, proof blueprint/status, Chinese summary, project article update, and ABEIS generated appendix. No oracle, H_W, R_y, LCU, block-projection, final-extraction, normalizer, gate-label, or theorem-completion flag was promoted. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests, with known RobinMatrix diagnostic sorries.
+Lower2 did not close oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env. I tested the existing raw matrix bridge oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3 by replacing its final sorry with rfl after the existing simp-only expansion; Lean rejected it with maxRecDepth, confirming this route needs a semantic evalWith associativity/product bridge rather than a local tactic tweak. The patch was reverted. I recorded proof-attempts/QBE-AUTO-002/evaluated-backend-fold-lower2-blocked-20260611-2348.md. Verifier feedback: leaf=unitary_fold_leaf; source_correspondence_ok=partial; lean_parse_ok=true_after_revert; lean_build_ok=true; finite_matrix_ok=partial_backend_fold_collapses_to_slot_2; block_entry_ok=false; ancilla_cleanup_ok=not_promoted; normalizer_ok=unchanged; closed_theorem_ok=false; error_class=shape_or_register_gap; next_route=middle should refresh the active leaf around a source-backed prepared projection theorem or supply a semantic evalWith associativity bridge before another lower proof attempt on the H-free active [0,0] fold. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests, with known pre-existing RobinMatrix sorries at lines 24186 and 24217.
 ```
 
 ## Gate Policy

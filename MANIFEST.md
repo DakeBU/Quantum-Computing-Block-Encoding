@@ -4078,3 +4078,485 @@ block-encoding formalization lifecycle.
 | 2026-06-11 18:35:42 | qbe.py project-article-update | `runs/20260610-175513-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 0 |
 | 2026-06-11 18:35:42 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260610-175513-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 0 |
 | 2026-06-11 18:35:42 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 19:13:49 | qbe.py update-task | `tasks/QBE-AUTO-002.md` | task | Updated QBE-AUTO-002 to active |
+| 2026-06-11 19:13:49 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:13:49 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 19:13:49 | qbe.py write-context-pack | `runs/context-packs/QBE-AUTO-002-cycle001.md` | context | Wrote compact context pack for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:13:49 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:13:49 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 19:13:49 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:13:50 | qbe.py run-cycle | `runs/20260611-191349-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 19:14:30 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:17:44 | qbe.py agent-note | `runs/20260611-191349-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 19:17:50 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-191750-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 19:20:12 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:20:12 | qbe.py memory-refresh | `runs/20260611-191349-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:20:12 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 19:20:12 | qbe.py cycle-zh-summary | `runs/20260611-191349-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:20:12 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-191349-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:20:12 | qbe.py project-article-update | `runs/20260611-191349-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:20:12 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-191349-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:20:12 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 19:23:23 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:25:31 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:25:50 | qbe.py agent-note | `runs/20260611-191349-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 19:25:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-192554-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 19:31:40 | qbe.py agent-note | `runs/20260611-191349-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 19:31:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-193144-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 19:33:38 | qbe.py agent-note | `runs/20260611-191349-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 19:33:46 | qbe.py agent-note | `runs/20260611-191349-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 19:33:51 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-193350-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 19:33:51 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-193351-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 19:33:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-193352-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 19:34:22 | qbe.py cycle-zh-summary | `runs/20260611-191349-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:34:22 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-191349-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:34:22 | qbe.py memory-refresh | `runs/20260611-191349-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:34:22 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 19:34:23 | qbe.py project-article-update | `runs/20260611-191349-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:34:23 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-191349-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:34:23 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 19:34:25 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:34:25 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 19:34:25 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:34:26 | qbe.py run-cycle | `runs/20260611-193425-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 19:35:01 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:36:54 | qbe.py agent-note | `runs/20260611-193425-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 19:36:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-193654-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 19:43:19 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:43:19 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 19:43:19 | qbe.py memory-refresh | `runs/20260611-193425-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:43:19 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 19:43:19 | qbe.py cycle-zh-summary | `runs/20260611-193425-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:43:19 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-193425-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:43:19 | qbe.py project-article-update | `runs/20260611-193425-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:43:19 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-193425-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:43:19 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 19:44:36 | qbe.py agent-note | `runs/20260611-193425-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 19:44:41 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-194441-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 19:50:14 | qbe.py agent-note | `runs/20260611-193425-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 19:50:14 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-195014-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 19:50:19 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-195019-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 19:50:24 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-195024-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 19:50:28 | qbe.py agent-note | `runs/20260611-193425-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 19:50:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-195032-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 19:51:49 | qbe.py agent-note | `runs/20260611-193425-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 19:51:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-195149-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 19:52:06 | qbe.py cycle-zh-summary | `runs/20260611-193425-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:52:06 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-193425-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:52:06 | qbe.py memory-refresh | `runs/20260611-193425-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:52:06 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 19:52:06 | qbe.py project-article-update | `runs/20260611-193425-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:52:06 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-193425-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 19:52:06 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 19:52:08 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:52:09 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 19:52:09 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:52:09 | qbe.py run-cycle | `runs/20260611-195209-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 19:53:13 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 19:54:34 | qbe.py agent-note | `runs/20260611-195209-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 19:54:38 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-195438-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 20:03:48 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:03:55 | qbe.py memory-refresh | `runs/20260611-195209-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:03:55 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 20:04:03 | qbe.py cycle-zh-summary | `runs/20260611-195209-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:03 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-195209-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:03 | qbe.py project-article-update | `runs/20260611-195209-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:03 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-195209-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:03 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 20:04:29 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-200429-QBE-AUTO-002-middle-review |
+| 2026-06-11 20:04:40 | qbe.py memory-refresh | `runs/20260611-195209-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:40 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 20:04:40 | qbe.py cycle-zh-summary | `runs/20260611-195209-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:40 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-195209-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:41 | qbe.py project-article-update | `runs/20260611-195209-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:41 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-195209-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:04:41 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 20:05:32 | qbe.py agent-note | `runs/20260611-195209-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 20:05:39 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-200539-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 20:11:14 | qbe.py agent-note | `runs/20260611-195209-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 20:11:17 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-201117-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 20:11:42 | qbe.py agent-note | `runs/20260611-195209-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 20:11:42 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-201142-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 20:12:19 | qbe.py cycle-zh-summary | `runs/20260611-195209-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:12:19 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-195209-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:12:20 | qbe.py memory-refresh | `runs/20260611-195209-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:12:20 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 20:12:20 | qbe.py project-article-update | `runs/20260611-195209-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:12:20 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-195209-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:12:20 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 20:12:22 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:12:23 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 20:12:23 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:12:23 | qbe.py run-cycle | `runs/20260611-201223-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 20:13:12 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:15:04 | qbe.py agent-note | `runs/20260611-201223-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 20:15:08 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-201508-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 20:22:31 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-202230-QBE-AUTO-002-middle-review |
+| 2026-06-11 20:22:44 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:22:44 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:22:45 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 20:22:45 | qbe.py memory-refresh | `runs/20260611-201223-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:22:45 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 20:22:45 | qbe.py cycle-zh-summary | `runs/20260611-201223-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:22:45 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-201223-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:22:45 | qbe.py project-article-update | `runs/20260611-201223-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:22:45 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-201223-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:22:45 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 20:23:27 | qbe.py cycle-zh-summary | `runs/20260611-201223-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:23:27 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-201223-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:24:43 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-202443-QBE-AUTO-002-middle-build |
+| 2026-06-11 20:24:50 | qbe.py agent-note | `runs/20260611-201223-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 20:24:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-202456-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 20:30:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-203030-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 20:30:41 | qbe.py agent-note | `runs/20260611-201223-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 20:30:41 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-203041-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 20:31:05 | qbe.py agent-note | `runs/20260611-201223-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 20:31:05 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-203105-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 20:31:52 | qbe.py agent-note | `runs/20260611-201223-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 20:31:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-203152-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 20:32:29 | qbe.py cycle-zh-summary | `runs/20260611-201223-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:32:29 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-201223-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:32:30 | qbe.py memory-refresh | `runs/20260611-201223-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:32:30 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 20:32:30 | qbe.py project-article-update | `runs/20260611-201223-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:32:30 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-201223-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:32:30 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 20:32:32 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:32:32 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 20:32:33 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:32:33 | qbe.py run-cycle | `runs/20260611-203233-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 20:33:11 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:34:52 | qbe.py agent-note | `runs/20260611-203233-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 20:34:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-203457-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 20:41:10 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:41:14 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:41:14 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 20:41:18 | qbe.py memory-refresh | `runs/20260611-203233-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:41:18 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 20:41:23 | qbe.py cycle-zh-summary | `runs/20260611-203233-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:41:23 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-203233-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:41:28 | qbe.py project-article-update | `runs/20260611-203233-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:41:28 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-203233-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:41:28 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 20:42:23 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:42:26 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 20:42:26 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 20:42:30 | qbe.py memory-refresh | `runs/20260611-203233-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:42:30 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 20:42:35 | qbe.py cycle-zh-summary | `runs/20260611-203233-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:42:35 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-203233-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:42:39 | qbe.py project-article-update | `runs/20260611-203233-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:42:39 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-203233-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 20:42:39 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 20:43:39 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-204339-QBE-AUTO-002-middle-review |
+| 2026-06-11 20:43:48 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-204348-QBE-AUTO-002-middle-build |
+| 2026-06-11 20:43:55 | qbe.py agent-note | `runs/20260611-203233-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 20:44:01 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-204401-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 21:09:08 | qbe.py agent-note | `runs/20260611-203233-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 21:09:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-210916-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 21:15:54 | qbe.py agent-note | `runs/20260611-203233-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 21:15:55 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-211555-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 21:16:09 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-211608-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 21:18:05 | qbe.py agent-note | `runs/20260611-203233-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 21:18:05 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-211805-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 21:18:47 | qbe.py cycle-zh-summary | `runs/20260611-203233-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:18:47 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-203233-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:18:47 | qbe.py memory-refresh | `runs/20260611-203233-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:18:47 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 21:18:47 | qbe.py project-article-update | `runs/20260611-203233-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:18:47 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-203233-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:18:47 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 21:18:50 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:18:50 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 21:18:50 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:18:50 | qbe.py run-cycle | `runs/20260611-211850-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 21:19:46 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:21:53 | qbe.py agent-note | `runs/20260611-211850-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 21:21:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-212158-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 21:29:29 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:29:32 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:29:33 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 21:29:36 | qbe.py memory-refresh | `runs/20260611-211850-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:29:36 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 21:29:41 | qbe.py cycle-zh-summary | `runs/20260611-211850-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:29:41 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-211850-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:29:45 | qbe.py project-article-update | `runs/20260611-211850-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:29:45 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-211850-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:29:45 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 21:30:28 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:30:31 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:30:31 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 21:30:35 | qbe.py memory-refresh | `runs/20260611-211850-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:30:35 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 21:30:39 | qbe.py cycle-zh-summary | `runs/20260611-211850-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:30:39 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-211850-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:30:43 | qbe.py project-article-update | `runs/20260611-211850-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:30:43 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-211850-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:30:43 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 21:31:58 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:31:58 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 21:32:04 | qbe.py memory-refresh | `runs/20260611-211850-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:32:04 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 21:32:08 | qbe.py cycle-zh-summary | `runs/20260611-211850-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:32:08 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-211850-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:32:12 | qbe.py project-article-update | `runs/20260611-211850-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:32:12 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-211850-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:32:12 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 21:33:00 | qbe.py agent-note | `runs/20260611-211850-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 21:33:04 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-213304-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 21:33:56 | qbe.py project-article-update | `runs/20260611-211850-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:33:56 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-211850-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:33:56 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 21:41:16 | qbe.py agent-note | `runs/20260611-211850-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 21:41:21 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-214121-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 21:41:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-214130-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 21:41:41 | qbe.py agent-note | `runs/20260611-211850-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 21:41:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-214145-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 21:42:47 | qbe.py agent-note | `runs/20260611-211850-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 21:43:20 | qbe.py cycle-zh-summary | `runs/20260611-211850-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:43:20 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-211850-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:43:20 | qbe.py memory-refresh | `runs/20260611-211850-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:43:20 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 21:43:21 | qbe.py project-article-update | `runs/20260611-211850-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:43:21 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-211850-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:43:21 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 21:43:23 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:43:23 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 21:43:23 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:43:23 | qbe.py run-cycle | `runs/20260611-214323-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 21:44:05 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:45:37 | qbe.py agent-note | `runs/20260611-214323-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 21:45:42 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-214542-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 21:51:33 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 21:51:37 | qbe.py memory-refresh | `runs/20260611-214323-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:51:37 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 21:51:41 | qbe.py cycle-zh-summary | `runs/20260611-214323-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:51:41 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-214323-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:51:48 | qbe.py project-article-update | `runs/20260611-214323-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:51:48 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-214323-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:51:48 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 21:52:57 | qbe.py cycle-zh-summary | `runs/20260611-214323-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:52:57 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-214323-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 21:54:24 | qbe.py agent-note | `runs/20260611-214323-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 21:54:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-215429-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 21:59:44 | qbe.py agent-note | `runs/20260611-214323-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 21:59:48 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-215948-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 22:00:08 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-220008-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 22:00:17 | qbe.py agent-note | `runs/20260611-214323-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 22:00:22 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-220022-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 22:00:55 | qbe.py cycle-zh-summary | `runs/20260611-214323-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:00:55 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-214323-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:00:55 | qbe.py memory-refresh | `runs/20260611-214323-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:00:55 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 22:00:56 | qbe.py project-article-update | `runs/20260611-214323-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:00:56 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-214323-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:00:56 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 22:00:58 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:00:58 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 22:00:58 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:00:58 | qbe.py run-cycle | `runs/20260611-220058-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 22:01:55 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:02:58 | qbe.py agent-note | `runs/20260611-220058-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 22:02:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-220258-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 22:04:04 | qbe.py agent-note | `runs/20260611-220058-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 22:04:04 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-220404-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 22:13:02 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:13:02 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 22:13:02 | qbe.py memory-refresh | `runs/20260611-220058-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:13:02 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 22:13:02 | qbe.py cycle-zh-summary | `runs/20260611-220058-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:13:02 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-220058-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:13:03 | qbe.py project-article-update | `runs/20260611-220058-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:13:03 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-220058-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:13:03 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 22:14:06 | qbe.py cycle-zh-summary | `runs/20260611-220058-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:14:06 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-220058-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:15:05 | qbe.py agent-note | `runs/20260611-220058-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 22:15:10 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-221510-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 22:20:51 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-222051-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 22:21:01 | qbe.py agent-note | `runs/20260611-220058-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 22:21:05 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-222105-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 22:21:18 | qbe.py agent-note | `runs/20260611-220058-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 22:21:24 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-222123-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 22:22:27 | qbe.py agent-note | `runs/20260611-220058-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 22:22:32 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-222232-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 22:23:08 | qbe.py cycle-zh-summary | `runs/20260611-220058-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:23:08 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-220058-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:23:08 | qbe.py memory-refresh | `runs/20260611-220058-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:23:08 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 22:23:09 | qbe.py project-article-update | `runs/20260611-220058-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:23:09 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-220058-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:23:09 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 22:23:11 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:23:11 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 22:23:11 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:23:12 | qbe.py run-cycle | `runs/20260611-222311-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 22:23:55 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:25:43 | qbe.py agent-note | `runs/20260611-222311-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 22:25:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-222549-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 22:37:04 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:37:04 | qbe.py blueprint-status | `/tmp/qbe-status-check.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 22:37:41 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:37:41 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 22:38:52 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:38:52 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 22:39:13 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:39:13 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:39:13 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 22:39:28 | qbe.py memory-refresh | `runs/20260611-222311-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:39:28 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 22:39:28 | qbe.py cycle-zh-summary | `runs/20260611-222311-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:39:28 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-222311-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:39:29 | qbe.py project-article-update | `runs/20260611-222311-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:39:29 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-222311-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:39:29 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 22:40:31 | qbe.py agent-note | `runs/20260611-222311-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 22:40:37 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-224037-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 22:45:12 | qbe.py agent-note | `runs/20260611-222311-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 22:45:17 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-224517-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 22:46:34 | qbe.py agent-note | `runs/20260611-222311-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 22:46:39 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-224638-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 22:47:24 | qbe.py cycle-zh-summary | `runs/20260611-222311-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:47:24 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-222311-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:47:24 | qbe.py memory-refresh | `runs/20260611-222311-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:47:24 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 22:47:25 | qbe.py project-article-update | `runs/20260611-222311-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:47:25 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-222311-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:47:25 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 22:47:27 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:47:27 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 22:47:27 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:47:28 | qbe.py run-cycle | `runs/20260611-224727-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 22:48:01 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 22:49:21 | qbe.py agent-note | `runs/20260611-224727-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 22:49:25 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-224925-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 22:52:36 | qbe.py memory-refresh | `runs/20260611-224727-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:52:36 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 22:52:36 | qbe.py cycle-zh-summary | `runs/20260611-224727-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:52:36 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-224727-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:52:36 | qbe.py project-article-update | `runs/20260611-224727-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:52:36 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-224727-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 22:52:36 | qbe.py project-article-update | `../Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 22:57:07 | qbe.py agent-note | `runs/20260611-224727-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 22:57:12 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-225712-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 23:01:30 | qbe.py agent-note | `runs/20260611-224727-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 23:01:34 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-230134-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 23:03:26 | qbe.py agent-note | `runs/20260611-224727-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 23:03:30 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-230330-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 23:03:50 | qbe.py cycle-zh-summary | `runs/20260611-224727-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:03:50 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-224727-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:03:51 | qbe.py memory-refresh | `runs/20260611-224727-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:03:51 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 23:03:51 | qbe.py project-article-update | `runs/20260611-224727-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:03:51 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-224727-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:03:51 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 23:03:53 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:03:54 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 23:03:54 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:03:54 | qbe.py run-cycle | `runs/20260611-230354-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 23:04:34 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:06:29 | qbe.py agent-note | `runs/20260611-230354-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 23:06:34 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-230634-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 23:16:11 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:17:09 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:17:18 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:17:18 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 23:17:28 | qbe.py memory-refresh | `runs/20260611-230354-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:17:28 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 23:17:28 | qbe.py cycle-zh-summary | `runs/20260611-230354-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:17:28 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-230354-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:17:33 | qbe.py project-article-update | `runs/20260611-230354-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:17:33 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-230354-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:17:33 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 23:18:18 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-231818-QBE-AUTO-002-middle-attempt |
+| 2026-06-11 23:18:28 | qbe.py memory-refresh | `runs/20260611-230354-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:18:28 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 23:18:28 | qbe.py cycle-zh-summary | `runs/20260611-230354-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:18:28 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-230354-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:18:28 | qbe.py project-article-update | `runs/20260611-230354-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:18:28 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-230354-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:18:28 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 23:19:27 | qbe.py agent-note | `runs/20260611-230354-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 23:19:31 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-231931-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 23:26:45 | qbe.py agent-note | `runs/20260611-230354-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 23:26:49 | qbe.py agent-note | `runs/20260611-230354-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 23:26:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-232654-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 23:26:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-232656-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 23:27:02 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-232702-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 23:27:22 | qbe.py cycle-zh-summary | `runs/20260611-230354-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:27:22 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-230354-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:27:22 | qbe.py memory-refresh | `runs/20260611-230354-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:27:22 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 23:27:23 | qbe.py project-article-update | `runs/20260611-230354-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:27:23 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-230354-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:27:23 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 23:27:25 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:27:25 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 23:27:25 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:27:25 | qbe.py run-cycle | `runs/20260611-232725-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 23:28:04 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:29:30 | qbe.py agent-note | `runs/20260611-232725-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 23:29:34 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-232934-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 23:31:45 | qbe.py cycle-zh-summary | `runs/20260611-232725-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:31:45 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-232725-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:31:49 | qbe.py memory-refresh | `runs/20260611-232725-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:31:49 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 23:31:54 | qbe.py project-article-update | `runs/20260611-232725-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:31:54 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-232725-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:31:54 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 23:32:00 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:32:00 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:32:00 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-11 23:36:29 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-233629-QBE-AUTO-002-middle-attempt |
+| 2026-06-11 23:36:37 | qbe.py agent-note | `runs/20260611-232725-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 23:36:42 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-233642-QBE-AUTO-002-middle-handoff |
+| 2026-06-11 23:40:45 | qbe.py agent-note | `runs/20260611-232725-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 23:40:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-234049-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 23:43:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-234333-QBE-AUTO-002-lower-attempt |
+| 2026-06-11 23:43:40 | qbe.py agent-note | `runs/20260611-232725-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 23:43:44 | qbe.py agent-note | `runs/20260611-232725-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-11 23:43:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-234344-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 23:43:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-234347-QBE-AUTO-002-lower-handoff |
+| 2026-06-11 23:44:42 | qbe.py cycle-zh-summary | `runs/20260611-232725-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:44:42 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-232725-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:44:43 | qbe.py memory-refresh | `runs/20260611-232725-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:44:43 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 23:44:43 | qbe.py project-article-update | `runs/20260611-232725-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:44:43 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-232725-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:44:43 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 23:44:45 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:44:46 | qbe.py run-cycle | `runs/20260611-234445-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |
+| 2026-06-11 23:47:30 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:47:48 | qbe.py agent-note | `runs/20260611-234445-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-11 23:47:48 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-234748-QBE-AUTO-002-upper-handoff |
+| 2026-06-11 23:58:18 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:58:18 | qbe.py memory-refresh | `runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:58:18 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 23:58:19 | qbe.py cycle-zh-summary | `runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:58:19 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-234445-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:58:20 | qbe.py project-article-update | `runs/20260611-234445-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:58:20 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-234445-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:58:20 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 23:59:06 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-11 23:59:06 | qbe.py memory-refresh | `runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:59:06 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-11 23:59:07 | qbe.py cycle-zh-summary | `runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:59:07 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-234445-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:59:07 | qbe.py project-article-update | `runs/20260611-234445-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:59:07 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-234445-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-11 23:59:07 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-11 23:59:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-235956-QBE-AUTO-002-middle-compression |
+| 2026-06-11 23:59:56 | qbe.py agent-note | `runs/20260611-234445-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-11 23:59:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260611-235956-QBE-AUTO-002-middle-handoff |
+| 2026-06-12 00:03:59 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-12 00:04:59 | qbe.py agent-note | `runs/20260611-234445-QBE-AUTO-002-cycle01/dialogue.md` | dialogue | Appended reviewer note |
+| 2026-06-12 00:05:04 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260612-000504-QBE-AUTO-002-reviewer-handoff |
+| 2026-06-12 00:05:39 | qbe.py cycle-zh-summary | `runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md` | review | Wrote Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-12 00:05:39 | qbe.py cycle-zh-summary | `paper-notes/GHL2025/markdown/cycle-summaries/20260611-234445-QBE-AUTO-002-cycle01.md` | paper-note | Archived Chinese cycle summary for QBE-AUTO-002 cycle 1 |
+| 2026-06-12 00:05:39 | qbe.py memory-refresh | `runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-AUTO-002 cycle 1 |
+| 2026-06-12 00:05:39 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
+| 2026-06-12 00:05:40 | qbe.py project-article-update | `runs/20260611-234445-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-12 00:05:40 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260611-234445-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 1 |
+| 2026-06-12 00:05:40 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-12 00:05:45 | qbe.py efficiency-report | `runs/efficiency/20260612-000545-QBE-AUTO-002-efficiency.md` | review | Wrote efficiency report for QBE-AUTO-002 |
+| 2026-06-12 13:32:15 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |

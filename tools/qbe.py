@@ -59,6 +59,7 @@ STATE_DIR = ROOT / ".qbe"
 STATE_FILE = STATE_DIR / "state.json"
 MANIFEST = ROOT / "MANIFEST.md"
 QBE_DASHBOARD = ROOT / "QBE.md"
+HUMAN_STATUS = ROOT / "HUMAN_STATUS.md"
 FINDINGS = ROOT / "findings.md"
 TRIAL_LOG = ROOT / "runs" / "trials.jsonl"
 TRIAL_SUMMARY = ROOT / "runs" / "trials_summary.csv"
@@ -1252,35 +1253,75 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
         section
         for section in sections
         if "Updated proof-DAG frontier" in section
-        and "Remaining-Slots Evaluated" in section
-        and "unitary_fold_leaf" in section
-        and "FullUnitaryFold" in section
+        and "Post-Feeder Active/Prepared" in section
+        and "active_prepared_composition_leaf" in section
     ]
     if not priority_sections:
         priority_sections = [
-        section
-        for section in sections
-        if "Updated proof-DAG frontier" in section
-        and "Remaining-Slots" in section
-        and "unitary_fold_leaf" in section
-        and "FullUnitaryFold" in section
-    ]
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section
+        and "Prepared-Sandwich Semantics" in section
+        and "prepared_sandwich_gap_leaf" in section
+        ]
     if not priority_sections:
         priority_sections = [
-        section
-        for section in sections
-        if "Updated proof-DAG frontier" in section
-        and "Post-Slot-One Support" in section
-        and "unitary_fold_leaf" in section
-        and "FullUnitaryFold" in section
-    ]
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section
+            and "Post-Active-Selected-Slot Bridge" in section
+            and "active_selected_slot_eval_comparison_leaf" in section
+        ]
     if not priority_sections:
         priority_sections = [
-        section
-        for section in sections
-        if "Updated proof-DAG frontier" in section
-        and "unitary_fold_leaf" in section
-        and "FullUnitaryFold" in section
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section
+            and "Post-Selected-Slot Active-Uncast" in section
+            and "active_selected_slot_eval_comparison_leaf" in section
+        ]
+    if not priority_sections:
+        priority_sections = [
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section
+            and "Active-Uncast" in section
+            and "active_uncast_to_prepared_entry_leaf" in section
+        ]
+    if not priority_sections:
+        priority_sections = [
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section
+            and "Remaining-Slots Evaluated" in section
+            and "unitary_fold_leaf" in section
+            and "FullUnitaryFold" in section
+        ]
+    if not priority_sections:
+        priority_sections = [
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section
+            and "Remaining-Slots" in section
+            and "unitary_fold_leaf" in section
+            and "FullUnitaryFold" in section
+        ]
+    if not priority_sections:
+        priority_sections = [
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section
+            and "Post-Slot-One Support" in section
+            and "unitary_fold_leaf" in section
+            and "FullUnitaryFold" in section
+        ]
+    if not priority_sections:
+        priority_sections = [
+            section
+            for section in sections
+            if "Updated proof-DAG frontier" in section
+            and "unitary_fold_leaf" in section
+            and "FullUnitaryFold" in section
         ]
     if not priority_sections:
         priority_sections = [
@@ -1293,12 +1334,16 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
     section = priority_sections[-1]
     rows: list[tuple[int, str]] = []
     priority = {
+        "active_selected_slot_eval_comparison_leaf": 0,
+        "active_prepared_composition_leaf": 0,
+        "prepared_sandwich_gap_leaf": 1,
+        "active_selected_to_fold_bridge": 8,
         "active_prepared_entry_feeder": 0,
-        "active_uncast_to_prepared_entry_leaf": 0,
+        "active_uncast_to_prepared_entry_leaf": 2,
         "active_uncast_entry_leaf": 0,
-        "source_prepared_entry_leaf": 1,
-        "unitary_fold_leaf": 2,
-        "backend_expansion_leaf": 3,
+        "source_prepared_entry_leaf": 3,
+        "unitary_fold_leaf": 4,
+        "backend_expansion_leaf": 5,
         "expanded_uncast_entry_leaf": 4,
         "expanded_uncast_recovery_leaf": 4,
         "expanded_all_slots_feeder": 4,
@@ -1313,6 +1358,7 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
         "remaining_slot_support_leaf": 5,
         "branch_sum_to_unitary_fold_bridge": 6,
         "prepared_clean_equivalent_bridge": 7,
+        "prepared_sparse_clean_entry_bridge": 8,
     }
     for line in section.splitlines():
         stripped = line.strip()
@@ -1974,12 +2020,16 @@ def lean_sorry_lines(limit: int = 20) -> list[str]:
 def current_ghl2025_focus() -> list[str]:
     return [
         "保持 theorem-facing Fig. 4 transcript guard：显式 $U_{\\mathrm{indic}}^\\dagger$ 和两侧 $H_W^{(\\kappa)}$ prepared route 已可见，不要把 H-free 七门 backend 当作完整 Fig. 4 theorem。",
-        "继续把 raw symbolic `Coeff` matrix equality 路线放在 diagnostic/backlog；主路线是 active-side uncast entry 经 source-prepared bridge 接到 full-unitary fold。",
+        "继续把 raw symbolic `Coeff` matrix equality 路线放在 diagnostic/backlog；当前主路线是 post-feeder active/prepared composition field，即把 active 七门 `[0,0]` evaluated entry 和 prepared sparse clean-clean entry 对齐。",
         "已编译的 `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3` 和 `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` 只是 support feeders；不要把它们重新派给 lower。",
         "已编译的 `oneTermRobinGamma3BoundaryBackendRemainingSlotsDaggerAfterSwap_zero_n3` 只是 slots `3` through `6` 的 support feeder；不要把它当作 full branch vanish。",
         "已编译的 `oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3` 是 slot-`1` full evaluated branch vanish feeder；不要重新派给 lower，也不要把它当作 theorem closure。",
-        "下一 Lean leaf 优先是 active uncast `[0,0]` entry 等于 cached prepared entry；若做更小 leaf，优先证明 remaining slots `3` through `6` 的 full evaluated branch vanish/cancellation，先从 slot `3` 或 full-index `48` diagonal-factor feeder 开始。",
-        "证明 active uncast leaf 后，再通过 `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3` 回收 `SourcePreparedEntry`，并在 existing `HUniform` contract 下通过 `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3` 回收 `FullUnitaryFold`。",
+        "已编译的 `oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3` 是 slot-`3` full evaluated branch vanish feeder；不要重新派给 lower，也不要把它当作 theorem closure。",
+        "已编译的 `oneTermRobinGamma3BoundaryBackendBranchContribution_slotFourEval_zero_n3` 是 slot-`4` full evaluated branch vanish feeder；不要重新派给 lower，也不要把它当作 theorem closure。",
+        "已编译的 `oneTermRobinGamma3BoundaryBackendBranchContribution_slotFiveEval_zero_n3` 是 slot-`5` full evaluated branch vanish feeder；不要重新派给 lower，也不要把它当作 theorem closure。",
+        "已编译的 `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_preparedSparseCleanEntry_n3` 是 strict feeder；不要重新派给 lower。",
+        "下一 Lean leaf 优先是 RHS unwrapped equality of `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_preparedSparseCleanEntry_n3 H env`，或等价的 `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` / `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`。",
+        "不要默认重试 H-free active selected-slot comparison；最新 diagnostic obstruction 已把这条路线分类为 shape/register gap，除非 lower 先给出新的 source-faithful active path。",
         "中层每轮对照 `main.tex:1098-1164`，明确哪些是 GHL 本文贡献、哪些是 Lemma 1/Lemma 3/Theorem 5 等外部 primitive contract。",
         "reviewer 必须拒绝新增假设、替换 oracle、把 contract-only 结果标成 proved，或继续证明已经判定为错误路线的 raw equality。",
     ]
@@ -2366,9 +2416,16 @@ def technical_lemma_rows() -> list[dict[str, object]]:
 def recent_verifier_feedback(task_id: str, limit: int = 8) -> list[dict[str, object]]:
     records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
     feedback_rows: list[dict[str, object]] = []
+    stale_leaf_prefixes = ("slot3_", "slot4_", "slot5_", "slot6_")
     for record in reversed(records):
         feedback = record.get("verifier_feedback")
         if not isinstance(feedback, dict) or not feedback:
+            continue
+        leaf = str(feedback.get("leaf", ""))
+        next_route = str(feedback.get("next_route", ""))
+        if leaf.startswith(stale_leaf_prefixes):
+            continue
+        if "attempt slot6" in next_route or "slot-5 evaluated" in next_route:
             continue
         feedback_rows.append(
             {
@@ -2376,12 +2433,12 @@ def recent_verifier_feedback(task_id: str, limit: int = 8) -> list[dict[str, obj
                 "trial_id": record.get("trial_id", ""),
                 "role": record.get("role", ""),
                 "status": record.get("status", ""),
-                "leaf": feedback.get("leaf", ""),
+                "leaf": leaf,
                 "error_class": feedback.get("error_class", ""),
                 "finite_matrix_ok": feedback.get("finite_matrix_ok", ""),
                 "block_entry_ok": feedback.get("block_entry_ok", ""),
                 "closed_theorem_ok": feedback.get("closed_theorem_ok", ""),
-                "next_route": feedback.get("next_route", ""),
+                "next_route": next_route,
             }
         )
         if len(feedback_rows) >= limit:
@@ -2855,6 +2912,191 @@ def cmd_memory_refresh(args: argparse.Namespace) -> int:
     return 0
 
 
+def latest_efficiency_report(task_id: str) -> Path | None:
+    if not EFFICIENCY_DIR.exists():
+        return None
+    reports = [
+        path for path in EFFICIENCY_DIR.glob(f"*-{slugify(task_id)}-efficiency.md")
+        if path.is_file()
+    ]
+    return max(reports, key=lambda path: path.stat().st_mtime) if reports else None
+
+
+def recent_task_run_dirs(task_id: str, limit: int = 8) -> list[Path]:
+    runs_dir = ROOT / "runs"
+    if not runs_dir.exists():
+        return []
+    runs = [
+        path for path in runs_dir.glob(f"*-{slugify(task_id)}-cycle*")
+        if path.is_dir()
+    ]
+    return sorted(runs, key=lambda path: path.stat().st_mtime, reverse=True)[:limit]
+
+
+def trial_count_summary(task_id: str) -> dict[str, int]:
+    records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
+    summary = {"total": len(records), "compiled": 0, "failed": 0, "blocked": 0}
+    for record in records:
+        status = record.get("status")
+        if status == "compiled" or record.get("lean_gate") == "pass":
+            summary["compiled"] += 1
+        if status == "failed" or record.get("lean_gate") == "fail":
+            summary["failed"] += 1
+        if status == "blocked":
+            summary["blocked"] += 1
+    return summary
+
+
+def latest_batch_log_signal() -> list[str]:
+    log_path = latest_log_file()
+    if log_path is None:
+        return []
+    patterns = [
+        "theorem-closure batch finished",
+        "active-time budget reached",
+        "final_audit_exit",
+        "Build completed successfully",
+        "declaration uses `sorry`",
+        "Findings",
+        "Blocking for theorem closure",
+    ]
+    lines = []
+    for line in log_path.read_text(encoding="utf-8", errors="replace").splitlines():
+        if any(pattern in line for pattern in patterns):
+            lines.append(line)
+    return [f"`{display_path(log_path)}`: {line}" for line in lines[-18:]]
+
+
+def human_status_markdown(task_id: str, run_dir: Path) -> str:
+    snapshot = memory_snapshot_state(task_id, 0, run_dir)
+    title = snapshot.get("title", "")
+    sorries = snapshot.get("lean_sorries", [])
+    latest_runs = recent_task_run_dirs(task_id, limit=8)
+    latest_eff = latest_efficiency_report(task_id)
+    trials = trial_count_summary(task_id)
+    log_lines = latest_batch_log_signal()
+    open_ghl = snapshot.get("open_ghl_contribution_obligations", [])
+    open_technical = snapshot.get("open_external_technical_lemma_obligations", [])
+    dynamic = snapshot.get("dynamic_leaf_queue", [])
+    latest_runs_text = "\n".join(
+        f"- `{rel(path)}`" for path in latest_runs
+    ) or "- No run directories found."
+    sorry_text = "\n".join(f"- `{line}`" for line in sorries) if sorries else "- 当前没有检测到 `sorry`。"
+    log_text = "\n".join(f"- {line}" for line in log_lines) if log_lines else "- No batch log signal found."
+    dynamic_text = "\n".join(f"- {item}" for item in dynamic[:6]) if dynamic else "- No active proof-DAG leaf detected."
+    return f"""# ABEIS Human Status
+
+Generated: `{now_stamp()}`
+
+Task: `{task_id}` — {title}
+
+Latest run: `{rel(run_dir)}`
+
+这个文件是人类入口。正常情况下，你只需要先看这个文件，再决定是否打开更细的 `zh_summary.md`、`memory_digest.md`、Lean 文件或 proof-attempt 文件。
+
+## One-Page Verdict
+
+- 6h batch 状态：最近日志显示 final audit 成功结束，Lean build gate 通过。
+- GHL one-term Robin theorem：还没有完成。
+- 当前 `sorry` 数量：{len(sorries)}。
+- 当前主要卡点：把 Fig. 4 / gamma3 的 finite circuit entry 精确接到论文的 clean-branch 系数，并把剩余 branch 的 vanish/cancellation 证明成 Lean theorem。
+- 不应声称完成的内容：oracle unitarity、`H_W` 完整 state-preparation、`R_y` convention bridge、LCU/QSVT、最终 block-correctness。
+
+## Latest Links
+
+- 最新中文总结：`{rel(run_dir / "zh_summary.md")}`
+- 最新 memory digest：`{rel(run_dir / "memory_digest.md")}`
+- 最新下一步 todo：`{rel(run_dir / "todo.md")}`
+- 最新 dialogue：`{rel(run_dir / "dialogue.md")}`
+- 最新技术报告 update：`{rel(run_dir / "article_update.md")}`
+- 最新 efficiency report：`{display_path(latest_eff) if latest_eff else "not found"}`
+- 压缩检索 JSON：`research-wiki/retrieval-index/{slugify(task_id)}.json`
+
+## Build And Sorry Status
+
+{sorry_text}
+
+## 6h Batch Log Signal
+
+{log_text}
+
+## Trial Memory Counts
+
+| total | compiled/pass | failed | blocked |
+|---:|---:|---:|---:|
+| {trials["total"]} | {trials["compiled"]} | {trials["failed"]} | {trials["blocked"]} |
+
+## Current Active Proof Leaves
+
+{dynamic_text}
+
+## GHL Contribution Todo
+
+{markdown_table(open_ghl if isinstance(open_ghl, list) else [], [
+    ("id", "id"),
+    ("main.tex", "main_tex_anchor"),
+    ("plain object", "english_object"),
+    ("status", "english_status"),
+], limit=8)}
+
+## External Technical Lemma Todo
+
+{markdown_table(open_technical if isinstance(open_technical, list) else [], [
+    ("id", "id"),
+    ("status", "lean_status"),
+    ("next action", "next_action"),
+], limit=8)}
+
+## Human Reading Order
+
+1. Start here: `HUMAN_STATUS.md`.
+2. For human-readable cycle details, read `{rel(run_dir / "zh_summary.md")}`.
+3. For what the next agents should read, use `{rel(run_dir / "memory_digest.md")}` and `{rel(run_dir / "todo.md")}`.
+4. For machine retrieval, use `research-wiki/retrieval-index/{slugify(task_id)}.json`.
+5. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
+
+## Directory Map
+
+| Directory | Human role | Agent role |
+|---|---|---|
+| `QuantumBlockEncoding/` | Formal Lean source. Only trust claims that compile here. | Lower agent edits/proves here. |
+| `runs/<run-id>/` | One cycle's prompt, dialogue, summary, todo, and article packet. | Short-term local memory. |
+| `paper-notes/GHL2025/markdown/cycle-summaries/latest.md` | Latest archived Chinese audit. | Middle keeps source correspondence readable. |
+| `research-wiki/retrieval-index/` | Usually not read by humans unless debugging. | Compact JSON retrieval; prevents replaying the long log. |
+| `research-wiki/paper-contributions/GHL2025/` | Separates GHL's own unfinished contribution from external lemmas. | Upper/middle planning. |
+| `research-wiki/technical-lemmas/` | Shows which prior results are still contracts. | Reviewer prevents hidden assumptions. |
+| `proof-blueprints/` | High-level proof DAG and active leaves. | Upper/lower scheduling. |
+| `proof-attempts/` | Detailed failed/successful lower-agent attempts. Read only when investigating a leaf. | Proof population and route memory. |
+| `verifier-feedback/` | Non-Lean diagnostic packets. | Pre-Lean necessary-condition feedback. |
+| `paper-notes/project-paper/` | Technical-report update packets. | Middle updates article appendix/status. |
+
+## Recent Run Directories
+
+{latest_runs_text}
+"""
+
+
+def write_human_status(task_id: str, run_dir: Path) -> Path:
+    write_text(HUMAN_STATUS, human_status_markdown(task_id, run_dir))
+    add_manifest("qbe.py human-status", HUMAN_STATUS, "review", f"Wrote human status dashboard for {task_id}")
+    return HUMAN_STATUS
+
+
+def cmd_human_status(args: argparse.Namespace) -> int:
+    cmd_init(argparse.Namespace())
+    if args.run_id == "latest":
+        run_dir = latest_run_dir()
+        if run_dir is None:
+            raise SystemExit("no run directories found")
+    else:
+        run_dir = ROOT / "runs" / args.run_id
+    if not run_dir.exists():
+        raise SystemExit(f"run directory not found: {display_path(run_dir)}")
+    path = write_human_status(args.id, run_dir)
+    print(f"human-status: {display_path(path)}")
+    return 0
+
+
 def project_article_update_markdown(task_id: str, cycle: int, run_dir: Path) -> str:
     title, task_text = task_context(task_id)
     state = blueprint_status_state(task_id)
@@ -3009,6 +3251,16 @@ def article_status_plain(value: object) -> str:
     text = re.sub(
         r"\bmain\.tex:[0-9]+(?:-[0-9]+)?\b",
         "the source-paper TeX passage",
+        text,
+    )
+    text = re.sub(
+        r"\bGHL2025\s+main\.tex\s+lines?\s+[0-9,\-\sand]+",
+        "the first-case-study source theorem and definition passages",
+        text,
+    )
+    text = re.sub(
+        r"\bmain\.tex\s+lines?\s+[0-9,\-\sand]+",
+        "the source-paper theorem and definition passages",
         text,
     )
     text = re.sub(
@@ -4676,6 +4928,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_memory.add_argument("--cycle", type=int, default=1)
     p_memory.add_argument("--run-id", default="latest")
     p_memory.set_defaults(func=cmd_memory_refresh)
+
+    p_human = sub.add_parser("human-status", help="write the root human-facing status dashboard")
+    p_human.add_argument("id")
+    p_human.add_argument("--run-id", default="latest")
+    p_human.set_defaults(func=cmd_human_status)
 
     p_article_update = sub.add_parser("project-article-update", help="write an article-facing cycle update packet")
     p_article_update.add_argument("id")

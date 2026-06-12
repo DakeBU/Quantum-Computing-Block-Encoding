@@ -11,6 +11,28 @@ Build gate after this export:
 python3 tools/qbe.py check
 ```
 
+## Current Frontier: Post-Feeder Sparse-Clean To Evaluated Fold
+
+The current Lean bridge
+`oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3`
+states that, under the existing
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`
+contract, the unwrapped active/prepared sparse-clean `evalWith` equality is
+equivalent to `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`.
+
+This bridge is compiled route wiring only. It does not prove the
+active/prepared equality, the evaluated backend fold, the final one-term Robin
+block-encoding theorem, or any external sparse-preparation/oracle primitive.
+The next proof node is the evaluated backend fold itself or the exact
+unwrapped sparse-clean equality.
+
+| Item | Lean declaration or target | Status |
+|---|---|---|
+| post-feeder sparse-clean to fold bridge | `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 H env hUniform` | compiled; retired as a lower target |
+| active/prepared sparse-clean equality | active seven-gate `[0,0]` evaluated entry equals `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H` at the clean-clean sparse index | active equivalent leaf; not proved |
+| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | active equivalent leaf; not proved |
+| external sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | contract-only; no Shukla--Vedula formalization here |
+
 ## Compiled Blocks Exported Here
 
 | Block | Main Lean declarations | Status |
@@ -1542,3 +1564,22 @@ or the equivalent backend-expansion statement through
 The assigned middle packet is
 `proof-attempts/QBE-AUTO-002/source-prepared-branch-sum-middle-packet-20260609-1842.md`.
 The one-term theorem remains open, and no semantic flag is promoted.
+
+## 2026-06-11 Post-Feeder Active/Prepared Frontier
+
+The compiled Lean feeder
+`oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_iff_preparedSparseCleanEntry_n3`
+rewrites the prepared-sandwich evaluated target to the clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H`. It is a route
+lemma only.
+
+The current open local leaf is the active/prepared composition field: after
+`Coeff.evalWith`, the active seven-gate `[0,0]` entry must equal that prepared
+sparse clean-clean entry. Equivalent Lean-facing targets are
+`oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3 H env`,
+`oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`,
+or `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`.
+
+All theorem-facing oracle, sparse-preparation, normalizer, LCU, block
+projection, block-correctness, and final-extraction flags remain unproved. The
+first-case-study one-term theorem is still open.
