@@ -1,0 +1,46 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-045026-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "profile": "coordinator-synthesis",
+  "leaf": "source_prepared_finite_composition_leaf",
+  "supersedes_leaf": "direct_hfree_evaluated_backend_fold_as_default_lower_target",
+  "lean_target": "(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement",
+  "equivalent_targets": [
+    "oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env",
+    "oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env",
+    "(oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3 H env).activePreparedCompositeEvalStatement",
+    "(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement",
+    "(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).activeEntryStatement"
+  ],
+  "source_correspondence_ok": "true_for_source_prepared_route_with_explicit_Uniform_contract",
+  "source_dependency_class": "internal_qbe_local_finite_circuit_matrix_composition",
+  "external_contracts": [
+    {
+      "name": "oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H",
+      "source": "GHL2025 Eq. arbitrary sparcity and Shukla-Vedula 2024",
+      "status": "contract_only"
+    }
+  ],
+  "lean_parse_ok": "markdown_and_json_only_no_lean_edit",
+  "lean_build_ok": true,
+  "finite_matrix_ok": "partial_lower2_lower3_rejected_direct_hfree_slot_route",
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": "not_promoted",
+  "normalizer_ok": "unchanged",
+  "closed_theorem_ok": false,
+  "error_class": "shape_or_register_gap",
+  "error_class_context": "superseded_hfree_route_as_default_target",
+  "next_error_class_if_source_shaped_but_unproved": "symbolic_bridge_gap",
+  "next_error_class_if_arbitrary_H_shape_blocks": "source_translation_gap",
+  "next_route": "Prove SourcePreparedField(H, env), an equivalent active/prepared field, or one strict finite source-shaped feeder; recover evaluated backend fold only through existing hUniform bridges.",
+  "gates": {
+    "python3 tools/qbe.py check": "passed",
+    "lake build": "passed",
+    "lake build Tests": "passed"
+  },
+  "known_existing_sorries": [
+    "QuantumBlockEncoding/RobinMatrix.lean:24282",
+    "QuantumBlockEncoding/RobinMatrix.lean:24313"
+  ]
+}

@@ -4528,6 +4528,88 @@ already sorry-guarded diagnostic proof body. No oracle contract, theorem
 hypothesis, normalizer, gate label, paper circuit, or semantic flag changed,
 and no target theorem was closed.
 
+##### 21.15.8 2026-06-13 Lower1 Proof-Design Refresh
+
+Source fragment. Eq. `arbitrary sparcity` gives the clean column
+$H_W^{(\kappa)}\ket{0} = \kappa^{-1/2}\sum_s\ket{s}$ as an external
+contract. Theorem `theorem: 1 term robin` fixes the one-term
+$(\mathcal{N}_D\mathcal{N}_f\kappa,\cdots,0)$ block-encoding target. Eq.
+`ROBIN clarified` gives the boundary gamma3 coefficient
+$1/(\mathcal{N}_D\mathcal{N}_f\kappa)$. Fig. `fig:1 term ROBIN` fixes the
+prepared sandwich circuit, including both sparse-preparation sides. Definition
+`def:block-encoding` makes the clean signal-system entry the theorem-facing
+projection. This source fragment does not justify an unconditional theorem for
+an arbitrary prepared matrix `H`.
+
+Definitions. Let
+
+```lean
+ActiveEval(env) :=
+  Coeff.evalWith env
+    ((evalGateMatrices
+      (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+      oneTermRobinGamma3BoundaryPrefixRow0_n3
+      oneTermRobinGamma3BoundaryPrefixRow0_n3)
+
+BackendFold(env) :=
+  Coeff.evalWith env
+    (blockExtractionBranchContributionSum
+      oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+The active local theorem is `ActiveEval(env) = BackendFold(env)`, equivalently
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` by
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3 env`.
+
+Natural-language proof. First reduce the named evaluated fold to the uncast
+active-entry statement by the compiled equivalence above. The backend side is
+already reduced to the selected slot-2 contribution by
+`oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3 env`.
+The remaining Lean work is therefore to evaluate the active seven-gate
+`[0,0]` product at `Coeff.evalWith` level and identify it with the same
+selected slot-2 contribution. That proof should use the product-evaluation
+blocks from `CircuitSemantics.lean`, especially `Matrix.evalWith_mul_apply`,
+`Matrix.evalWith_mul_unique_path`, `Matrix.evalWith_mul_two_path`, and
+`Matrix.evalWith_mul_eq_zero_of_all_paths_zero`. It should not close through
+raw `Coeff` constructor equality or by reassigning retired slot vanish/support
+work as standalone leaves.
+
+| Node | Dependencies | Status | Owner | Next active leaf |
+|---|---|---|---|---|
+| `post_feeder_sparse_clean_to_fold_bridge` | strict prepared-sparse feeder; `hUniform` prepared backend bridge | proved; retired | none | reuse only |
+| `semantic_eval_product_bridge` | `Matrix.evalWith_mul_*`; active gate support facts; selected slot-2 backend feeder | preferred active smaller leaf | lower2 | prove active `[0,0]` eval equals selected slot-2 contribution |
+| `evaluated_backend_fold_leaf` | uncast active-entry equivalence; `semantic_eval_product_bridge`; backend fold collapse | active leaf | lower2 | prove `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` |
+| `active_prepared_composition_leaf` | post-feeder bridge; explicit `hUniform`; prepared clean-entry backend theorem | equivalent but not preferred | lower2 only if selected | do not state arbitrary-`H` equality |
+| `source_prepared_entry_leaf` | evaluated fold; source-prepared wrappers; `hUniform` | open dependent | later lower2 | wait |
+
+Ordered Lean lemmas for the worker:
+
+1. Reuse `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3 env`.
+2. Reuse `oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3 env`.
+3. Prove a smaller theorem such as
+   `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_selectedSlotContribution_n3 env`,
+   stating `ActiveEval(env) = Coeff.evalWith env oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution`.
+4. Close the exact uncast active-entry/backend-fold equality by transitivity.
+5. Close `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` through the compiled equivalence.
+
+Failure analysis. The evaluated backend-fold target is mathematically
+well-shaped. A proof route that replaces it with `ActiveEval(env) = P(H, env)`
+for every `H` is a shape/register gap, because the source only supplies the
+prepared side through the `H_W^{(\kappa)}` clean-column contract. A route that
+tries to prove `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`
+as raw syntax is a symbolic bridge gap; the next proof should stay after
+`Coeff.evalWith`.
+
+Verifier feedback: `leaf=evaluated_backend_fold_leaf`;
+`source_correspondence_ok=true_for_evaluated_fold_false_for_unconditional_arbitrary_H_sparse_equality`;
+`lean_parse_ok=true_markdown_only_no_lean_edit`;
+`lean_build_ok=true_markdown_only_gate_passed`; `finite_matrix_ok=partial_backend_fold_collapses_to_slot_2`;
+`block_entry_ok=false_evaluated_backend_fold_still_open`;
+`ancilla_cleanup_ok=not_promoted`; `normalizer_ok=unchanged`;
+`closed_theorem_ok=false`; `error_class=symbolic_bridge_gap`;
+`next_route=prove a Coeff.evalWith-level active product/selected-slot bridge,
+then close oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`.
+
 #### 21.16 Post-Bridge Evaluated Backend Fold Frontier
 
 This is a narrow lower1 postscript after lower2 compiled
@@ -4692,3 +4774,1820 @@ semantic flag changed. Lower2 should edit only `QuantumBlockEncoding/RobinMatrix
 and attempt the evaluated backend fold, the exact sparse-clean equality through
 the compiled post-feeder bridge, or a strictly smaller evaluated matrix-entry
 lemma that feeds one of those two statements.
+
+#### 21.17 2026-06-13 Source-Prepared Refiner Postscript
+
+This is a narrow lower1 postscript after the latest upper and middle dialogue
+for run `20260613-020116-QBE-AUTO-002-cycle01`. It keeps the compiled bridge
+`oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3`
+retired, and it also retires the H-free `semantic_eval_product_bridge` as the
+default source-closure target for this run. The H-free evaluated fold remains
+a recovery leaf after the source-prepared active-entry field is proved, or
+after a future source-backed active product theorem avoids the slot/register
+mismatch.
+
+##### 21.17.1 Source Fragment Being Translated
+
+The local TeX source gives the following proof fragment.
+
+| Source anchor | Paper fragment | Lean interface | Classification |
+|---|---|---|---|
+| `main.tex:948-955`, Eq. `arbitrary sparcity` | $H_W^{(\kappa)}\ket{0}^{\lceil\log_2\kappa\rceil} = \kappa^{-1/2}\sum_{s=0}^{\kappa-1}\ket{s}^{\lceil\log_2\kappa\rceil}$. | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited clean-column contract |
+| `main.tex:1098-1109`, Theorem `theorem: 1 term robin` | The one-term Robin circuit should give a $(\mathcal{N}_D\mathcal{N}_f\kappa,\lceil\log_2 n\rceil+\lceil\log_2 G_f\rceil+\lceil\log_2\kappa\rceil+4,0)$ block-encoding. | theorem-facing root remains open | GHL-internal theorem target plus contracts |
+| `main.tex:1111-1119`, Eq. `ROBIN clarified` | The displayed gamma3 boundary slice carries the coefficient $1/(\mathcal{N}_D\mathcal{N}_f\kappa)$ on the clean sparse-register branch. | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`; `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | GHL branch algebra plus QBE-local prepared semantics |
+| `main.tex:1122-1164`, Fig. `fig:1 term ROBIN` | The theorem-facing circuit contains both $H_W^{(\kappa)}$ sides, `U_indic`, `U_indic^dagger`, the derivative sparse oracles, the function oracle, SWAP, and cleanup. | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`; `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | transcript guard and route distinction |
+| `main.tex:2027-2035`, Definition `def:block-encoding` | The clean signal-system projection selects the entry that must match the encoded operator. | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | QBE-local finite projection/composition theorem |
+
+The exact source-prepared field now assigned to lower2 is:
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
+```
+
+Equivalent source-shaped targets are:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement
+```
+
+##### 21.17.2 Definitions And Local Proof Design
+
+Fix `H : Matrix 8 8 Coeff` and `env : String -> Rat`. Define
+`HUniform(H)` to be
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Define `SourcePreparedActive(H, env)` to be
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
+```
+
+Define `UncastActivePrepared(H, env)` to be
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+Define `PreparedEntry(H)` to be
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+The active local theorem is `SourcePreparedActive(H, env)`, or one of the
+equivalent source-shaped targets above. The natural proof route is:
+
+1. Use the source transcript guard to keep the theorem-facing circuit on the
+   prepared route with both $H_W^{(\kappa)}$ side gates.
+2. Reduce `SourcePreparedActive(H, env)` to `UncastActivePrepared(H, env)` by
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3 H env`.
+3. If the worker targets `PreparedEntry(H)`, use
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env`
+   to recover the theorem-facing field.
+4. If the worker targets the raw prepared-sandwich field, use
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3 H env`.
+5. Use `HUniform(H)` only for prepared-side backend recovery, through
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3 H hUniform`
+   or `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform`.
+
+The proof must not replace this with the standalone H-free product/backend
+fold comparison. The previous diagnostics showed that route can compare the
+active slot-0 shape with the source gamma3 selected slot 2 unless it is first
+recovered through the source-prepared sandwich.
+
+##### 21.17.3 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Status | Owner | Next active leaf |
+|---|---|---|---|---|---|
+| `fig4_transcript_guard` | theorem-facing Fig. `fig:1 term ROBIN` keeps both $H_W^{(\kappa)}$ sides and explicit dagger roles | source figure; indicator bridge | compiled guard | none | reuse |
+| `source_uniform_contract` | all paper sparse slots have clean-column amplitude `sqrt_kappa_inv` | Eq. `arbitrary sparcity`; Shukla--Vedula cited primitive | external contract only | none | reuse as `hUniform` only |
+| `prepared_side_to_backend` | prepared clean-clean entry evaluates to the backend branch fold under `hUniform` | `source_uniform_contract`; prepared sandwich backend lemmas | compiled conditional | none | reuse only |
+| `source_prepared_active_entry_leaf` | active signal-zero entry equals the source-prepared singleton clean entry | source projection wrappers; active/prepared entry target; raw prepared-sandwich feeder | active leaf | lower2 | prove `SourcePreparedActive(H, env)`, `UncastActivePrepared(H, env)`, `PreparedEntry(H)`, or the raw prepared-sandwich statement |
+| `evaluated_backend_fold_leaf` | evaluated signal-zero entry equals the backend branch fold | source-prepared active entry via `hUniform`, or a future source-backed active product theorem | recovery leaf | later lower2 | wait for the source-prepared field or a branch-correct product theorem |
+| `retired_hfree_product_route` | standalone H-free active `[0,0]` product/backend-fold bridge | rejected raw seven-gate diagnostic route; slot/register mismatch risk | stale for this run | none | do not assign as default source closure |
+
+The next active leaf for a Lean worker is `source_prepared_active_entry_leaf`.
+
+##### 21.17.4 Ordered Lean Lemmas For The Worker
+
+1. `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3 H env`.
+2. `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_iff_uncast_n3 H env`.
+3. `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3 H`.
+4. `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3 H`.
+5. `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3 H`.
+6. `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env`.
+7. `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3 H env`.
+8. `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_preparedEntry_eq_backendFold_n3 H hUniform`, only for prepared-side backend recovery.
+9. `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`, only after a branch-correct evaluated fold theorem is available.
+
+Candidate implementation leaves, ordered by source faithfulness:
+
+1. Prove `UncastActivePrepared(H, env)`.
+2. Prove `PreparedEntry(H)`.
+3. Prove `(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement`.
+4. Prove a strictly smaller theorem that feeds one of the three statements
+   above without changing `H`, the normalizer, oracle contracts, gate labels,
+   or the circuit.
+
+##### 21.17.5 Failure Analysis And Verifier Feedback
+
+The current source-prepared target is mathematically well-shaped. The stale
+route is the default H-free `semantic_eval_product_bridge`: by itself it omits
+the two $H_W^{(\kappa)}$ prepared sides fixed by Fig. `fig:1 term ROBIN`, and
+previous diagnostics showed a slot-0 versus gamma3 slot-2 mismatch when raw
+seven-gate facts are used as theorem closure. This is a `shape_or_register_gap`
+for source closure, not permission to add assumptions or alter the paper
+circuit.
+
+| Field | Value |
+|---|---|
+| `leaf` | `source_prepared_active_entry_leaf` |
+| `source_correspondence_ok` | `true_for_source_prepared_route_with_hUniform_false_for_default_hfree_slot0_to_gamma3_slot2_closure` |
+| `lean_parse_ok` | `true_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `true_markdown_only_gate_passed` |
+| `finite_matrix_ok` | `partial_prepared_side_backend_bridge_compiled_hfree_product_route_retired_as_default` |
+| `block_entry_ok` | `false_source_prepared_active_entry_still_open` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `shape_or_register_gap` |
+| `next_route` | `prove a source-prepared active-entry theorem, uncast active/prepared theorem, prepared-entry theorem, or raw prepared-sandwich feeder under the existing hUniform route; do not assign the standalone H-free semantic_eval_product_bridge as default source closure` |
+
+Handoff: lower1 appended this source-prepared refiner postscript only. No Lean
+source, oracle contract, theorem hypothesis, normalizer, gate label, paper
+circuit, or semantic flag changed. Lower2 should edit only
+`QuantumBlockEncoding/RobinMatrix.lean` and prove one source-prepared active
+leaf listed above, or one smaller theorem feeding it directly.
+
+#### 21.18 2026-06-13 Post-Strict-Feeder Retirement Postscript
+
+This is the narrow lower1 postscript for run
+`20260613-022313-QBE-AUTO-002-cycle01`. Lower2 has compiled
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_rawEntryPreparedSandwichField_n3
+```
+
+under the existing clean-column contract
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`. This
+feeder is now retired as a lower target. It proves route equivalence only: it
+does not prove `PreparedEntry(H)`, the raw prepared-sandwich field, the
+uncast active/prepared equality, the source-prepared projection field, the
+evaluated backend fold, or the first-case-study one-term theorem.
+
+##### 21.18.1 Source Fragment Being Translated
+
+The active source fragment remains Eq. `arbitrary sparcity`,
+Theorem `theorem: 1 term robin`, Eq. `ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, and Definition `def:block-encoding` in GHL2025. Eq.
+`arbitrary sparcity` supplies the $H_W^{(\kappa)}$ clean-column contract.
+Fig. `fig:1 term ROBIN` fixes the source-prepared sandwich with both
+$H_W^{(\kappa)}$ sides. Eq. `ROBIN clarified` supplies the gamma3 boundary
+coefficient after the two sparse-preparation amplitudes are paired. Definition
+`def:block-encoding` makes the clean signal-system entry the theorem-facing
+projection. No source line claims an unconditional equality for an arbitrary
+prepared matrix `H`.
+
+##### 21.18.2 Definitions And Local Proof Design
+
+Fix `H : Matrix 8 8 Coeff` and `env : String -> Rat`. Define
+`HUniform(H)` as
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Define `RawPrepared(H)` as
+
+```lean
+(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement
+```
+
+Define `PreparedEntry(H)` as
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+Define `SourcePreparedActive(H, env)` as
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
+```
+
+The compiled feeder proves that `PreparedEntry(H)` is equivalent to
+`RawPrepared(H)` under `HUniform(H)`. The natural proof route is therefore:
+
+1. Prove `RawPrepared(H)` directly, or prove `PreparedEntry(H)` directly.
+2. If `RawPrepared(H)` is proved, use
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3 H env`
+   to recover `SourcePreparedActive(H, env)`.
+3. If `PreparedEntry(H)` is proved, use
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env`
+   to recover `SourcePreparedActive(H, env)`.
+4. Use the retired feeder only to move between `PreparedEntry(H)` and
+   `RawPrepared(H)` under `HUniform(H)`. Do not reprove the feeder.
+
+##### 21.18.3 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Status | Owner | Next active leaf |
+|---|---|---|---|---|---|
+| `strict_prepared_entry_to_raw_field_feeder` | `PreparedEntry(H)` is equivalent to `RawPrepared(H)` under `HUniform(H)` | active/prepared entry target; raw prepared-sandwich field; clean-column contract | compiled; retired | none | reuse only |
+| `raw_entry_to_source_prepared_sandwich_bridge` | prove the raw equality between the active signal-zero entry and the prepared $H_W^\dagger U H_W$ sandwich fold | source-prepared circuit transcript; prepared sandwich matrix; existing wrapper bridges | preferred active leaf | lower2 | prove `RawPrepared(H)` |
+| `source_prepared_active_entry_leaf` | active signal-zero entry equals the source-prepared singleton clean entry | `RawPrepared(H)` or `PreparedEntry(H)`; source projection wrappers | active dependent leaf | lower2 | prove `SourcePreparedActive(H, env)`, `UncastActivePrepared(H, env)`, `PreparedEntry(H)`, or `RawPrepared(H)` |
+| `evaluated_backend_fold_leaf` | evaluated signal-zero entry equals the backend branch fold through the source-prepared route | source-prepared active entry; `HUniform(H)`; prepared backend bridge | recovery leaf | later lower2 | wait |
+| `retired_hfree_product_route` | standalone H-free active `[0,0]` product/backend comparison | selected-slot diagnostics and raw seven-gate facts | stale for source closure | none | do not assign |
+
+The next active Lean leaf is `raw_entry_to_source_prepared_sandwich_bridge`,
+or equivalently `source_prepared_active_entry_leaf` if lower2 chooses the
+theorem-facing wrapper. The retired feeder is not a target.
+
+##### 21.18.4 Ordered Lean Lemmas For The Worker
+
+1. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_rawEntryPreparedSandwichField_n3 H hUniform`
+   only as compiled route wiring.
+2. Reuse
+   `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3 H`
+   to unfold the raw prepared-sandwich field when the proof works at the
+   symbolic entry level.
+3. Reuse
+   `oneTermRobinGamma3BoundaryUncastPreparedSandwichEval_of_rawEntryPreparedSandwichField_n3 H env`
+   if the proof first closes `RawPrepared(H)` and needs the evaluated
+   prepared-sandwich target.
+4. Reuse
+   `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEval_of_rawEntryPreparedSandwichField_n3 H env`
+   to move from `RawPrepared(H)` to the uncast active/prepared target.
+5. Reuse
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_rawEntryPreparedSandwichField_n3 H env`
+   to close the theorem-facing source-prepared projection field from
+   `RawPrepared(H)`.
+6. Reuse
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env`
+   if lower2 proves `PreparedEntry(H)` instead.
+
+##### 21.18.5 Failure Analysis And Verifier Feedback
+
+The current target is mathematically well-shaped as a source-prepared finite
+matrix-composition theorem. A route that tries to close the one-term theorem
+through the standalone H-free active product/backend comparison remains a
+`shape_or_register_gap` for this source-prepared frontier. A route that works
+on `RawPrepared(H)` or `PreparedEntry(H)` but gets stuck in finite symbolic
+matrix algebra should be logged as `symbolic_bridge_gap`.
+
+| Field | Value |
+|---|---|
+| `leaf` | `raw_entry_to_source_prepared_sandwich_bridge` |
+| `source_correspondence_ok` | `true_for_source_prepared_route_with_hUniform_false_for_default_hfree_product_route` |
+| `lean_parse_ok` | `true_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `true_markdown_only_gate_passed` |
+| `finite_matrix_ok` | `partial_compiled_feeder_retired_raw_field_open` |
+| `block_entry_ok` | `false_raw_prepared_sandwich_field_still_open` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `next_route` | `prove RawPrepared(H), PreparedEntry(H), UncastActivePrepared(H, env), or SourcePreparedActive(H, env); reuse the compiled feeder only as wiring under hUniform` |
+
+Handoff: lower1 appended this post-strict-feeder retirement postscript only.
+No Lean source, oracle contract, theorem hypothesis, normalizer, gate label,
+paper circuit, or semantic flag changed. Lower2 should edit only
+`QuantumBlockEncoding/RobinMatrix.lean` and prove the raw prepared-sandwich
+field, the prepared-entry equality, the uncast active/prepared equality, the
+source-prepared projection field, or a strict source-shaped feeder into one of
+those statements.
+
+#### 21.19 2026-06-13 Prepared Clean-Entry Feeder Retirement Postscript
+
+This is the narrow lower1 postscript for run
+`20260613-024914-QBE-AUTO-002-cycle01`. Lower2/middle have compiled
+
+```lean
+oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_preparedCleanEntry_n3
+```
+
+and this feeder is now retired as a lower target. It proves only that the raw
+prepared-sandwich field is equivalent to the concrete prepared sparse-matrix
+clean-entry equality. It does not prove the prepared clean-entry equality, the
+cached `PreparedCircuitEntryTarget` equality, the theorem-facing
+source-prepared projection field, the evaluated backend fold, or the
+first-case-study one-term theorem.
+
+##### 21.19.1 Source Fragment Being Translated
+
+The local source TeX fragment is
+`/home/nitanda_sub/mark/repos/outer_papers/quantum/GHL2025/main.tex` at the
+existing anchors already used by the conversion window:
+
+| Source anchor | Fragment translated here | Lean-side role |
+|---|---|---|
+| `main.tex:948-955`, Eq. `arbitrary sparcity` | $H_W^{(\kappa)}\ket{0}$ prepares the uniform sparse-register superposition over $s=0,\ldots,\kappa-1$. | external clean-column contract only, named by `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` |
+| `main.tex:1098-1119`, Theorem `theorem: 1 term robin` and Eq. `ROBIN clarified` | the Robin one-term theorem normalizer is $N_D N_f \kappa$, and the $\gamma_3$ boundary slice has the paired sparse-preparation amplitude in the denominator. | source target for the prepared clean entry; theorem remains open |
+| `main.tex:1122-1164`, Fig. `fig:1 term ROBIN` | the theorem-facing circuit keeps the sparse-preparation side and cleanup side around the active backend component. | guard against using the standalone H-free seven-gate product as source closure |
+| `main.tex:2027-2035`, Definition `def:block-encoding` | the clean block is read by projecting the non-system registers to zero. | motivates comparing the active signal-zero entry with the prepared sparse clean-clean entry |
+
+The exact active Lean equality translated from those fragments is:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+```
+
+The equivalent cached target is:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+##### 21.19.2 Definitions And Local Proof Design
+
+Fix `H : Matrix 8 8 Coeff` and `env : String -> Rat`. Define
+`HUniform(H)` as
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Define `PreparedCleanEntry(H)` as the displayed equality between
+`oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry`
+and the clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H`.
+
+Define `PreparedEntry(H)` as
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+The natural proof route is now:
+
+1. Prove `PreparedCleanEntry(H)` directly, or prove `PreparedEntry(H)`.
+2. If `PreparedEntry(H)` is proved, use
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3 H`
+   only as route wiring to recover `PreparedCleanEntry(H)`.
+3. Use
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3 H env`
+   to recover the evaluated active/prepared singleton field from
+   `PreparedCleanEntry(H)`.
+4. Use
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env`
+   if the worker closes `PreparedEntry(H)` first.
+5. Keep `HUniform(H)` only for the prepared-side backend recovery, through
+   `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform`
+   or later evaluated-backend-fold wrappers. It is not a license to prove a
+   standalone H-free active-slot theorem.
+
+The active theorem content is the prepared clean-entry equality. The raw
+prepared-sandwich statement is now only an equivalent route through the
+retired feeder
+`oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_preparedCleanEntry_n3 H`.
+
+##### 21.19.3 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Status | Owner | Next active leaf |
+|---|---|---|---|---|---|
+| `raw_field_to_prepared_clean_feeder` | raw prepared-sandwich field is equivalent to `PreparedCleanEntry(H)` | raw prepared-sandwich field statement; prepared sparse matrix clean-entry lemma | compiled; retired | none | reuse only |
+| `prepared_clean_entry_leaf` | active signal-zero entry equals the prepared sparse-matrix clean-clean entry | source-prepared route guard; prepared sparse matrix; active signal-zero source | active leaf | lower2 | prove `PreparedCleanEntry(H)` |
+| `cached_prepared_entry_leaf` | cached `PreparedCircuitEntryTarget` equality equivalent to the clean-entry equality | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3 H` | active equivalent leaf | lower2 | prove `PreparedEntry(H)` if easier |
+| `source_prepared_active_entry_leaf` | theorem-facing active/prepared singleton evaluation field follows after the clean-entry equality | `PreparedCleanEntry(H)` or `PreparedEntry(H)`; source projection wrappers | open dependent leaf | later lower2 | recover after active leaf closes |
+| `evaluated_backend_fold_leaf` | evaluated signal-zero entry equals the backend branch fold through the source-prepared route | source-prepared active entry; `HUniform(H)`; prepared backend bridge | recovery leaf; open | later lower2 | wait |
+| `retired_hfree_product_route` | standalone H-free active `[0,0]` product/backend comparison | selected-slot diagnostics and raw seven-gate facts | stale for source closure | none | do not assign |
+
+The next active Lean leaf is `prepared_clean_entry_leaf`, with
+`cached_prepared_entry_leaf` as the only accepted equivalent target.
+
+##### 21.19.4 Ordered Lean Lemmas For The Worker
+
+1. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H`
+   only to unfold the right-hand side to the prepared sandwich sum when needed.
+2. Reuse
+   `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_preparedCleanEntry_n3 H`
+   only as compiled route wiring between the raw field and
+   `PreparedCleanEntry(H)`.
+3. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3 H`
+   only as compiled route wiring between `PreparedEntry(H)` and
+   `PreparedCleanEntry(H)`.
+4. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3 H env`
+   after `PreparedCleanEntry(H)` is proved.
+5. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3 H env`
+   after `PreparedEntry(H)` is proved.
+6. Reuse
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env`
+   to recover the theorem-facing source-prepared projection field from the
+   cached prepared-entry target.
+7. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform`
+   only for later prepared-side backend recovery.
+8. Keep `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` as a
+   route guard showing that the active seven-gate list is not the full
+   theorem-facing prepared circuit.
+
+##### 21.19.5 Failure Analysis And Verifier Feedback
+
+The current target is mathematically well-shaped as a source-prepared finite
+matrix-composition theorem. A route that proves only
+`oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_preparedCleanEntry_n3`
+again is stale. A route that compares the H-free active slot directly to the
+gamma3 selected backend slot without the prepared sandwich is a
+`shape_or_register_gap`. A route that works on `PreparedCleanEntry(H)` or
+`PreparedEntry(H)` and gets stuck in finite symbolic matrix algebra should be
+logged as `symbolic_bridge_gap`.
+
+| Field | Value |
+|---|---|
+| `leaf` | `prepared_clean_entry_leaf` |
+| `active_smaller_leaf` | `prepared_clean_entry_equality_after_source_shaped_feeder` |
+| `source_correspondence_ok` | `true_for_source_prepared_route_with_hUniform_false_for_standalone_hfree_slot0_to_gamma3_slot2_closure` |
+| `lean_parse_ok` | `true_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `true_lower1_gate_passed` |
+| `finite_matrix_ok` | `partial_existing_shape_diagnostics_compile_prepared_clean_entry_open` |
+| `block_entry_ok` | `false_prepared_clean_entry_still_open` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `secondary_error_class_if_hfree_route_reassigned` | `shape_or_register_gap` |
+| `next_route` | `prove PreparedCleanEntry(H), PreparedEntry(H), or one strict source-shaped feeder into one of those statements; do not reassign compiled feeders or standalone H-free semantic_eval_product_bridge` |
+
+Handoff: lower1 appended this prepared clean-entry feeder retirement
+postscript only. No Lean source, oracle contract, theorem hypothesis,
+normalizer, gate label, paper circuit, or semantic flag changed. Lower2 should
+edit only `QuantumBlockEncoding/RobinMatrix.lean` and prove the prepared
+clean-entry equality, the cached prepared-entry equality, or a strict
+source-shaped theorem feeding one of those two statements.
+
+#### 21.20 2026-06-13 Post-Obstruction Prepared Clean-Entry Proof Design
+
+This is the narrow lower1 proof-design refresh for run
+`20260613-031339-QBE-AUTO-002-cycle01`. It refines Section 21.19 after lower2
+compiled the obstruction handle
+
+```lean
+oneTermRobinGamma3BoundaryPreparedCleanEntryLeaf_obstruction_n3 H
+```
+
+No Lean source, theorem hypothesis, oracle contract, normalizer, gate label,
+paper circuit, or semantic flag is changed by this postscript.
+
+##### 21.20.1 Source Fragment Being Translated
+
+The local source fragments are the same GHL2025 anchors used by the current
+middle packet and conversion window.
+
+| Source anchor | Fragment translated here | Lean-side role |
+|---|---|---|
+| `main.tex:948-955`, Eq. `arbitrary sparcity` | $H_W^{(\kappa)}$ prepares the uniform sparse-register superposition over $s=0,\ldots,\kappa-1$. | contract-only source for `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` |
+| `main.tex:1098-1119`, Theorem `theorem: 1 term robin` and Eq. `ROBIN clarified` | the $\gamma_3$ boundary slice carries the paired sparse-preparation denominator $N_D N_f \kappa$. | source target for the prepared sparse-register clean entry |
+| `main.tex:1122-1164`, Fig. `fig:1 term ROBIN` | the theorem-facing circuit keeps the $H_W^{(\kappa)}$ preparation and cleanup around the active backend component. | guard against treating the standalone H-free seven-gate product as closure |
+| `main.tex:2027-2035`, Definition `def:block-encoding` | the clean block is selected by projecting non-system registers to zero. | motivates comparing the active signal-zero entry with the prepared clean-clean entry |
+
+The exact active Lean proposition is:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+```
+
+The accepted equivalent cached proposition is:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+##### 21.20.2 Definitions Before The Local Claim
+
+Fix `H : Matrix 8 8 Coeff` and `env : String -> Rat`.
+
+Define `HUniform(H)` to be
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Define `PreparedCleanEntry(H)` to be the displayed equality between
+`oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry`
+and the clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H`.
+
+Define `PreparedInterface(H)` to be
+`oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H`. Its field
+`activeEntryToPreparedEntryStatement` is the same proposition as
+`PreparedCleanEntry(H)`, by the compiled obstruction handle.
+
+Define `PreparedEntry(H)` to be
+`(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`.
+
+The local claim for the Lean worker is therefore one of these equivalent
+source-prepared forms:
+
+```lean
+PreparedCleanEntry(H)
+(oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H).activeEntryToPreparedEntryStatement
+PreparedEntry(H)
+```
+
+##### 21.20.3 Natural-Language Proof Of The Active Local Theorem
+
+The proof must start from the compiled obstruction handle. That theorem states
+that the prepared-interface active-to-prepared field is equivalent to
+`PreparedCleanEntry(H)`, and it records
+`activePreparedEntryEqualityProved = false`. It is an interface identification,
+not theorem closure.
+
+The active side is already the signal-zero entry of the finite
+`CircuitMatrixSemantics` product. The worker should reuse
+`oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3`,
+`oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3`, or
+`oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` only to
+choose the most convenient active-entry normal form.
+
+The prepared side is already represented as a sparse-register matrix. The
+clean-clean entry unfolds by
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H` to the
+prepared sandwich fold
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`.
+
+The only theorem content left is the finite composition step:
+the active signal-zero entry must be proved equal to the clean-clean entry of
+the prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ sparse-register
+sandwich. The clean-column contract `HUniform(H)` can later normalize the
+prepared side to the backend branch fold, but it does not by itself prove the
+active-to-prepared equality.
+
+Once `PreparedCleanEntry(H)` is proved, the existing recovery lemmas close the
+dependent wrappers:
+
+1. `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3 H`
+   recovers `PreparedEntry(H)` when needed.
+2. `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3 H env`
+   recovers the evaluated active/prepared singleton field.
+3. `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env`
+   recovers the theorem-facing source-prepared projection field from
+   `PreparedEntry(H)`.
+4. `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform`
+   is only for later prepared-side backend recovery under `HUniform(H)`.
+
+##### 21.20.4 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status | Next active leaf |
+|---|---|---|---|---|---|---|---|---|
+| `prepared_interface_obstruction` | identifies the exact remaining prepared clean-entry proposition and false proof flag | prepared sparse matrix interface | none | `oneTermRobinGamma3BoundaryPreparedCleanEntryLeaf_obstruction_n3 H` | current middle packet and this postscript | already gated by lower2/reviewer | compiled obstruction handle | reuse only |
+| `active_entry_source` | active side is the signal-zero finite circuit entry | block-extraction target; active circuit semantics | none | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3`; `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` | this postscript | already gated | compiled source normalizer | reuse only |
+| `prepared_clean_unfold` | prepared clean-clean entry unfolds to the prepared sandwich fold | prepared sparse matrix definition | none | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H` | this postscript | already gated | compiled prepared-side normalizer | reuse only |
+| `prepared_clean_entry_leaf` | active signal-zero entry equals the prepared sparse-matrix clean-clean entry | obstruction handle; active-entry source; prepared clean unfold | lower2 | displayed `PreparedCleanEntry(H)` equality or interface field | this postscript | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active leaf; open | prove this |
+| `cached_prepared_entry_leaf` | cached prepared-entry target is equivalent to the clean-entry equality | `prepared_clean_entry_leaf`; compiled target equivalence | lower2 alternate | `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | this postscript | same gate | active equivalent leaf; open | prove only if easier |
+| `source_prepared_active_entry_leaf` | theorem-facing source-prepared active field follows after the clean-entry equality | `prepared_clean_entry_leaf` or `cached_prepared_entry_leaf`; source-projection wrappers | later lower2 | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | conversion window | same gate | dependent target | wait |
+| `evaluated_backend_fold_leaf` | evaluated signal-zero entry equals backend branch fold through the source-prepared route | source-prepared active field; `HUniform(H)`; prepared backend bridge | later lower2 | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | proof blueprint | same gate | recovery leaf; open | wait |
+| `retired_hfree_product_route` | standalone H-free active `[0,0]` product/backend comparison | selected-slot diagnostics and raw seven-gate facts | none | `semantic_eval_product_bridge`; diagnostic `sorry` declarations | verifier feedback | none | stale for source closure | do not assign |
+
+##### 21.20.5 Ordered Lean Lemmas For The Worker
+
+1. Reuse `oneTermRobinGamma3BoundaryPreparedCleanEntryLeaf_obstruction_n3 H` to
+   confirm that the interface field is exactly `PreparedCleanEntry(H)`.
+2. Reuse `oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H` only as
+   the named interface for the open equality; do not treat the false proof flag
+   as a proof.
+3. Reuse `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3`,
+   `oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3`, or
+   `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` for the
+   active entry normal form.
+4. Reuse `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H`
+   if the proof works through the prepared sandwich fold.
+5. Prove one new source-shaped finite-composition theorem closing
+   `PreparedCleanEntry(H)`, the interface field, or `PreparedEntry(H)`.
+6. After closure, reuse
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3 H`,
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_preparedCleanEntry_n3 H env`,
+   and `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env`
+   as recovery wiring.
+7. Use
+   `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform`
+   only after the active-to-prepared equality is proved.
+
+##### 21.20.6 Failure Analysis And Verifier Feedback
+
+The current target is source-aligned and remains open. The missing ingredient
+is a QBE-local finite `CircuitMatrixSemantics` composition theorem, not a new
+external cited theorem and not a license to promote the Shukla-Vedula
+state-preparation contract.
+
+If a proposed route stays inside the source-prepared equality and fails in
+finite symbolic matrix algebra, record `symbolic_bridge_gap`. If a route
+compares the H-free active product directly to the gamma3 backend selected
+slot without passing through the prepared sandwich, record
+`shape_or_register_gap`.
+
+| Field | Value |
+|---|---|
+| `leaf` | `prepared_clean_entry_leaf` |
+| `active_smaller_leaf` | `prepared_interface_activeEntryToPreparedEntryStatement` |
+| `source_correspondence_ok` | `true_for_source_prepared_clean_entry_route; false_for_standalone_hfree_slot0_backend_closure` |
+| `lean_parse_ok` | `not_applicable_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `not_applicable_markdown_only_no_lean_edit` |
+| `finite_matrix_ok` | `partial_compiled_obstruction_handle; exact active_to_prepared clean-entry equality remains open` |
+| `block_entry_ok` | `false` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `secondary_error_class_if_hfree_route_reassigned` | `shape_or_register_gap` |
+| `next_route` | `prove PreparedCleanEntry(H), the interface activeEntryToPreparedEntryStatement, PreparedEntry(H), or one strict source-shaped theorem feeding those statements; do not reassign compiled feeders or the standalone H-free semantic_eval_product_bridge` |
+
+Handoff: lower1 appended this post-obstruction proof design only. Lower2
+should edit only `QuantumBlockEncoding/RobinMatrix.lean` and prove the
+prepared clean-entry equality, the interface active-to-prepared field, the
+cached prepared-entry equality, or one strict source-shaped theorem directly
+feeding those statements. The first-case-study one-term theorem remains open.
+
+#### 21.21 2026-06-13 Active/Prepared Composition Interface Postscript
+
+This is the narrow lower1 refresh for run
+`20260613-033618-QBE-AUTO-002-cycle01`. It supersedes only the active leaf name
+from Section 21.20. The compiled obstruction handle
+`oneTermRobinGamma3BoundaryPreparedCleanEntryLeaf_obstruction_n3 H`, the raw
+prepared-sandwich feeder, and the cached prepared-entry feeder are route wiring
+or bookkeeping only. They are retired as lower targets.
+
+No Lean source, theorem hypothesis, oracle contract, normalizer, gate label,
+paper circuit, or semantic flag is changed by this postscript.
+
+##### 21.21.1 Source Fragment Being Translated
+
+The active source fragment is the same GHL2025 one-term Robin fragment, but the
+Lean frontier is now the active/prepared composition interface.
+
+| Source anchor | Fragment translated here | Lean-side role |
+|---|---|---|
+| `main.tex:948-955`, Eq. `arbitrary sparcity` | $H_W^{(\kappa)}\ket{0} = \kappa^{-1/2}\sum_{s=0}^{\kappa-1}\ket{s}$. | contract-only source for `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` |
+| `main.tex:1098-1119`, Theorem `theorem: 1 term robin` and Eq. `ROBIN clarified` | the boundary $\gamma_3$ slice is an all-slot sparse sum with denominator $N_D N_f \kappa$ and clean ancillas. | source target for the prepared sparse-register clean entry |
+| `main.tex:1122-1164`, Fig. `fig:1 term ROBIN` | the theorem-facing circuit keeps both $H_W^{(\kappa)}$ side operations around the active backend component. | guard against replacing the prepared sandwich by the standalone H-free seven-gate product |
+| `main.tex:2027-2035`, Definition `def:block-encoding` | the block is read by projecting clean ancillas before comparing the system entry. | source reason to compare the active signal-zero entry with the prepared clean-clean entry |
+
+The current active Lean interface is:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).activeEntryStatement
+```
+
+Equivalent names are:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).interfaceStatement
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+and the direct prepared clean-entry form is:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+```
+
+##### 21.21.2 Definitions Before The Local Claim
+
+Fix `H : Matrix 8 8 Coeff` and `env : String -> Rat`.
+
+Define `ActiveEntry` to be
+`oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry`.
+
+Define `PreparedMatrix(H)` to be
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H`.
+
+Define `Clean` to be
+`oneTermRobinGamma3BoundarySparseCleanIndex_n3`.
+
+Define `PreparedCleanEntry(H)` to be the equality
+`ActiveEntry = PreparedMatrix(H) Clean Clean`.
+
+Define `PreparedEntry(H)` to be
+`(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`.
+
+Define `CompositionField(H)` to be
+`oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H`.
+
+The local claim named by middle is `CompositionField(H).activeEntryStatement`.
+By compiled declarations, this is equivalent to `PreparedEntry(H)` and to
+`PreparedCleanEntry(H)`.
+
+##### 21.21.3 Natural-Language Proof Design
+
+The source-backed proof should use the active/prepared interface only as a
+target name. The actual mathematical work is a finite matrix-entry composition
+step.
+
+First, rewrite the active side. The active entry is already known to be the
+signal-zero entry of the active seven-gate `CircuitMatrixSemantics` product.
+For Coeff-level work, reuse
+`oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3`,
+`oneTermRobinGamma3BoundarySignalUnitaryEntry_activeCircuitMatrix_n3`, or
+`oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3`. For
+evaluation-level work, reuse
+`oneTermRobinGamma3BoundaryActiveCircuitEntryEval_uncast_n3 env`.
+
+Second, rewrite the prepared side. The prepared matrix is the local sparse
+register matrix for the source sandwich
+$H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$. Its clean-clean entry unfolds by
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H` to
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`.
+
+Third, prove exactly one finite composition theorem identifying the selected
+active entry with that prepared clean entry. The useful Coeff-level leaf is:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement
+```
+
+The useful uncast evaluated leaf, if the worker deliberately stays at
+`Coeff.evalWith`, is:
+
+```lean
+Coeff.evalWith env
+  ((evalGateMatrices
+    (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+    oneTermRobinGamma3BoundaryPrefixRow0_n3
+    oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+Coeff.evalWith env
+  (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+```
+
+After either one closes, use only compiled recovery wiring. Do not create a new
+record, obstruction handle, or equivalence wrapper.
+
+##### 21.21.4 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status | Next active leaf |
+|---|---|---|---|---|---|---|---|---|
+| `source_uniform_contract` | clean-column amplitudes for the paper sparse preparation | Eq. `arbitrary sparcity`; Shukla-Vedula cited contract | none | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | cited-results ledger and this postscript | contract only | external obligation | do not formalize here |
+| `active_entry_source` | active side is the signal-zero seven-gate entry | active circuit semantics; block extraction target | none | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3`; `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3` | this postscript | already gated | compiled normalizer | reuse only |
+| `prepared_clean_unfold` | prepared clean-clean entry unfolds to the prepared sandwich fold | prepared sparse matrix definition | none | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H` | this postscript | already gated | compiled normalizer | reuse only |
+| `composition_field_interface` | field record exposes the active/prepared composition theorem | prepared matrix interface; `PreparedCircuitEntryTarget` | none | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H`; `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3 H` | middle packet and this postscript | already gated | compiled interface; not closure | reuse only |
+| `active_prepared_composition_interface_leaf` | active signal-zero entry equals prepared sparse-matrix clean-clean entry | `active_entry_source`; `prepared_clean_unfold`; source Fig. 4 route | lower2 | `CompositionField(H).activeEntryStatement`; `PreparedEntry(H)`; `PreparedCleanEntry(H)` | this postscript | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active leaf; open | prove one finite matrix-entry composition theorem |
+| `source_prepared_entry_leaf` | theorem-facing source-prepared active field follows after the active/prepared equality | `active_prepared_composition_interface_leaf`; source projection wrappers | later lower2 | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` | conversion window | same gate | open dependent target | wait |
+| `evaluated_backend_fold_leaf` | evaluated signal-zero entry equals backend branch fold through the source-prepared route | source-prepared active field; `source_uniform_contract`; prepared backend bridge | later lower2/refiner | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | proof blueprint | same gate | recovery leaf; open | wait |
+| `retired_hfree_product_route` | standalone H-free active/backend comparison | diagnostic `sorry` declarations; selected-slot diagnostics | none | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | verifier feedback | none | stale for source closure | do not assign |
+
+##### 21.21.5 Ordered Lean Lemmas For The Worker
+
+1. Reuse `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3_transcript H`
+   only to confirm the field names the existing interface and keeps proof flags
+   false.
+2. Reuse `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3 H`
+   to move between `CompositionField(H).activeEntryStatement` and the prepared
+   matrix interface statement.
+3. Reuse `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H`
+   if the proof is easier as a backing matrix-entry equality.
+4. Reuse `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3 H`
+   to remove the block-extraction wrapper from the active side.
+5. Reuse `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H`
+   to replace the prepared clean entry by
+   `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`.
+6. If the worker proves only an evaluated statement, reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3 H env`,
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env`,
+   and `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3 H env`.
+7. After a Coeff-level active/prepared equality closes, reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3 H env`
+   and `oneTermRobinGamma3BoundaryUnitaryEntryFold_of_activePreparedEntryTarget_n3 H hUniform`.
+8. Keep `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3 H`
+   and `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_exposesUncastSevenGate_n3 H env`
+   as guards. They explain why unfolding the active seven-gate list cannot by
+   itself supply the prepared side gates.
+
+##### 21.21.6 Failure Analysis And Verifier Feedback
+
+The interface is source-aligned as a proof obligation: it names the missing
+finite composition between the active seven-gate entry and the prepared
+$H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ clean entry. However, the source paper
+does not justify an unconditional theorem for every matrix `H`. It justifies
+the prepared side through the specific sparse-preparation operation
+$H_W^{(\kappa)}$ and the contract exposed in Lean as
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Therefore a Lean route that proves
+`CompositionField(H).activeEntryStatement` for arbitrary `H` must first exhibit
+a finite matrix reason that the selected prepared clean entry is independent of
+the unconstrained entries of `H`. No such reason is currently named. Without
+that reason, the unconditional arbitrary-`H` target should be treated as a
+source-translation gap, not as a tactic gap.
+
+The next Lean worker should either prove the exact active leaf by a real finite
+matrix-entry theorem already implicit in the current definitions, or stop and
+route the target back to middle for a contract-specific source statement. The
+worker should not add an `hUniform` hypothesis to the existing target, mutate
+the paper circuit, or add another wrapper around a retired feeder.
+
+| Field | Value |
+|---|---|
+| `leaf` | `active_prepared_composition_interface_leaf` |
+| `source_correspondence_ok` | `conditional_source_route_ok_for_H_W_contract; unconditional_arbitrary_H_not_source_justified_without_independence_theorem` |
+| `lean_parse_ok` | `not_applicable_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `pending_gate_for_markdown_cycle` |
+| `finite_matrix_ok` | `not_closed; no counterexample certificate recorded, but no H-independence theorem named` |
+| `block_entry_ok` | `false` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `source_translation_gap` |
+| `secondary_error_class_if_hfree_route_reassigned` | `shape_or_register_gap` |
+| `next_route` | `prove a finite matrix-entry composition theorem for CompositionField(H).activeEntryStatement, or ask middle to restate the source-backed target with the existing H_W clean-column contract; do not add wrappers or reassign H-free diagnostics` |
+
+Handoff: lower1 appended this active/prepared composition-interface postscript
+only. Lower2 should edit only `QuantumBlockEncoding/RobinMatrix.lean` and
+attempt exactly the active composition interface leaf or one strict finite
+matrix-entry theorem feeding it. If the obstruction is the arbitrary-`H` shape
+rather than finite algebra, record `source_translation_gap` and stop. The
+first-case-study one-term theorem remains open.
+
+#### 21.22 2026-06-13 Lower1 Source-Translation Correction Handoff
+
+This is the narrow lower1 postscript for run
+`20260613-040302-QBE-AUTO-002-cycle01` after middle's
+source-translation correction packet.  It refines Section 21.21 only.  The
+active Lean target is unchanged, but the proof route is now classified more
+sharply: arbitrary-`H` closure needs a finite theorem that removes the
+unconstrained `H` shape, or the target must be returned to middle for a
+contract-specific source restatement.
+
+The prompt's archived TeX path `outer_papers/quantum/GHL2025/main.tex` is not
+present in this checkout.  This note therefore uses the synchronized source
+anchors already recorded in the conversion window, cited-results ledger, and
+middle packet.  It does not change Lean source, theorem hypotheses, gate
+labels, oracle contracts, normalizers, or semantic flags.
+
+##### 21.22.1 Source Fragment Being Translated
+
+| Source anchor | Fragment translated here | Lean-side role |
+|---|---|---|
+| GHL2025 Eq. `arbitrary sparcity` | $H_W^{(\kappa)}$ prepares the all-slot sparse-register clean column with amplitude $\kappa^{-1/2}$. | external contract `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; not a proof of arbitrary-`H` equality |
+| GHL2025 Eq. `ROBIN clarified` | the boundary $\gamma_3$ branch is represented by the seven sparse slots and the backend contribution fold. | prepared-side fold represented by `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H` and its backend specialization under `hUniform` |
+| GHL2025 Fig. `fig:1 term ROBIN` | the theorem-facing circuit keeps both $H_W^{(\kappa)}$ side operations around the active backend component. | guard supplied by `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3`; the active seven-gate list alone is not the source-prepared circuit |
+| GHL2025 Definition `def:block-encoding` | the clean signal block is compared with the prepared clean entry. | current QBE-local finite matrix-entry obligation |
+
+The active proposition remains:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).activeEntryStatement
+```
+
+with equivalent names:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).interfaceStatement
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+and unfolded prepared clean-entry form:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+```
+
+##### 21.22.2 Definitions Before The Local Claim
+
+Fix `H : Matrix 8 8 Coeff`.
+
+Define `ActiveEntry` to be
+`oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry`.
+
+Define `Clean` to be
+`oneTermRobinGamma3BoundarySparseCleanIndex_n3`.
+
+Define `Slot(s)` to be
+`oneTermRobinGamma3BoundarySparseSlotIndex_n3 s`.
+
+Define `PreparedClean(H)` to be
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H Clean Clean`.
+
+Define `Uniform(H)` to be
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Define `ActivePreparedInterface(H)` to be
+`(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).activeEntryStatement`.
+
+The local claim assigned to lower2 is `ActivePreparedInterface(H)`, equivalently
+`ActiveEntry = PreparedClean(H)`.
+
+##### 21.22.3 Natural-Language Proof Design
+
+The prepared side unfolds first.  By
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H`,
+`PreparedClean(H)` is the fold
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`.  By the
+definition of `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3`
+and the transpose convention
+`oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3 H row col = H col row`,
+each summand has the shape
+
+```text
+U_s,s * H (Slot(s)) Clean * H (Slot(s)) Clean
+```
+
+where `U_s,s` abbreviates the matching seven-gate diagonal backend entry at
+`oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3 s`.
+
+The source paper supplies `Uniform(H)` only for the paper sparse-preparation
+matrix.  Under this contract, the compiled theorem
+`oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_eq_backend_n3 H hUniform`
+specializes `PreparedClean(H)` to the backend branch fold.  This is already
+available route wiring; it does not prove `ActiveEntry = PreparedClean(H)`.
+
+The active side is already sourced by compiled entries such as
+`oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3`,
+`oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3`, and
+`oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3 H`.
+These identify `ActiveEntry` with the active seven-gate `[0,0]` entry.  They
+do not insert the missing $H_W^{(\kappa)}$ side operations.
+
+Therefore the actual local theorem lower2 must prove is a finite
+composition theorem connecting the active seven-gate signal-zero entry to the
+prepared clean entry.  A concurrent lower2 pass has compiled
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_congr_cleanColumn_n3`,
+which proves that unrelated entries of `H` do not affect `PreparedClean(H)`.
+That is useful source-shape support, but it is not enough for the current
+arbitrary-`H` target: the expression still depends on the sparse clean-column
+values themselves.  Without a direct finite active/prepared equality or a
+source-backed restatement carrying `Uniform(H)`, this remains
+`source_translation_gap`, not a tactic gap.
+
+##### 21.22.4 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status | Next active leaf |
+|---|---|---|---|---|---|---|---|---|
+| `source_uniform_contract` | clean-column amplitudes for the paper sparse-preparation matrix | GHL2025 Eq. `arbitrary sparcity`; Shukla--Vedula cited row | none | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | `research-wiki/cited-results/GHL2025.md` and middle packet | contract only | external obligation; not formalized | do not prove here |
+| `prepared_clean_unfold` | `PreparedClean(H)` unfolds to the prepared sandwich fold over seven slots | prepared sparse matrix definition | none | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H` | Section 21.22 | already gated | compiled | reuse only |
+| `prepared_clean_column_dependence` | the prepared clean entry depends only on sparse clean-column values of `H`, not on unrelated matrix entries | `prepared_clean_unfold`; transpose convention; finite extensionality over `Fin 7` | lower2 | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_congr_cleanColumn_n3` | dialogue 04:19 and this section | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | compiled support; does not close target | reuse only |
+| `arbitrary_H_independence_leaf` | justify the current arbitrary-`H` target by proving constancy across the sparse clean-column values as well, or by direct active/prepared equality | prepared sparse matrix definition; clean-column dependence theorem | lower2 only if attempting arbitrary-`H` closure | still absent beyond clean-column congruence | middle packet and this section | same gate | open and not source-justified | prove direct equality or report gap |
+| `active_prepared_composition_interface_leaf` | `ActiveEntry = PreparedClean(H)` | active-entry source; prepared clean unfold; source-prepared route | lower2 | `ActivePreparedInterface(H)` or cached prepared-entry equality | Section 21.21 and this section | same gate | active leaf; open | prove one finite matrix-entry theorem |
+| `contract_specific_restatement` | source-backed target with `Uniform(H)` explicit if arbitrary-`H` cannot be justified | source audit; cited-results row; prepared-side backend specialization | middle | planned only after lower feedback | middle packet | documentation gate first | pending route | route here on `source_translation_gap` |
+| `retired_hfree_product_route` | standalone H-free active/backend selected-slot comparison | diagnostic `sorry` declarations; H_W side-gate absence guard | none | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | verifier feedback | none | stale for source closure | do not assign |
+
+##### 21.22.5 Ordered Lean Lemmas For The Worker
+
+1. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3_transcript H`
+   only to confirm the proof flags remain false and the target is the active
+   prepared-entry field.
+2. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_interfaceStatement_n3 H`
+   and `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_matrixStatement_n3 H`
+   to move between field, cached entry, and backing matrix-entry forms.
+3. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H` to
+   replace `PreparedClean(H)` by
+   `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3 H`.
+4. Reuse
+   `oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3` only as the
+   local transpose convention.  It makes the clean-clean prepared summand use
+   the same sparse clean-column value twice.
+5. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_congr_cleanColumn_n3`
+   as the compiled clean-column extensionality theorem for `PreparedClean(H)`.
+   It explains the source shape but does not close arbitrary-`H`.
+6. To close the current target without restatement, prove either
+   `ActivePreparedInterface(H)` directly or a strict finite theorem showing
+   full constancy across the remaining sparse clean-column values required by
+   the current arbitrary-`H` quantification.
+7. Do not add `hUniform` as a new hypothesis to
+   `ActivePreparedInterface(H)`.  If `hUniform` is needed for a source-backed
+   theorem, route the target to middle as `contract_specific_restatement`.
+
+##### 21.22.6 Failure Analysis And Verifier Feedback
+
+The current target is coherent as a Lean proposition, but the source paper does
+not justify it for an arbitrary matrix `H`.  The source-backed theorem is about
+the paper sparse-preparation matrix satisfying `Uniform(H)`.  Since
+`PreparedClean(H)` unfolds to a sum containing `H (Slot(s)) Clean` factors, the
+existing arbitrary-`H` quantification cannot be closed by source prose alone.
+
+If lower2 proves the equality by direct finite matrix expansion, that theorem
+will settle the leaf.  The compiled clean-column congruence theorem only shows
+that unrelated `H` entries are irrelevant.  It leaves dependence on the sparse
+clean-column values, so the correct next route is still a direct finite
+active/prepared theorem or a contract-specific middle restatement, not another
+wrapper or H-free diagnostic.
+
+| Field | Value |
+|---|---|
+| `leaf` | `active_prepared_composition_interface_leaf` |
+| `source_correspondence_ok` | `conditional_source_route_ok_for_H_W_contract; arbitrary_H_target_requires_full_constancy_or_restatement` |
+| `lean_parse_ok` | `not_applicable_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `true_markdown_only_gate_passed` |
+| `finite_matrix_ok` | `partial_clean_column_congruence_compiled; active/prepared equality still open` |
+| `block_entry_ok` | `false` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `source_translation_gap` |
+| `secondary_error_class_if_finite_source_shape_only` | `symbolic_bridge_gap` |
+| `secondary_error_class_if_hfree_route_reassigned` | `shape_or_register_gap` |
+| `next_route` | `prove ActivePreparedInterface(H) by a real finite matrix-entry theorem, prove full constancy across sparse clean-column values, or route to middle for a source-backed hUniform restatement` |
+
+Handoff: lower1 appended this source-translation correction only.  Lower2
+should edit only `QuantumBlockEncoding/RobinMatrix.lean` and attempt the active
+composition interface leaf, an equivalent cached target, or one strict finite
+theorem that justifies the remaining arbitrary-`H` shape beyond the compiled
+clean-column congruence.  If the attempt only needs the paper's `Uniform(H)`
+contract, lower2 should stop with `source_translation_gap` and ask middle to
+restate the source-backed contract-specific target.  The first-case-study
+one-term theorem remains open.
+
+#### 21.23 2026-06-13 Lower1 Evaluated Backend-Fold Frontier Postscript
+
+This is the narrow lower1 postscript for run
+`20260613-042537-QBE-AUTO-002-cycle01`.  It supersedes the Section 21.22
+arbitrary-`H` active/prepared target as the default lower route.  The current
+active leaf is now the evaluated backend-fold statement:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
+```
+
+The direct arbitrary-`H` active/prepared interface remains a useful diagnostic
+and alternate route only if a full finite constancy theorem or a middle
+source-backed restatement is supplied.  Lower2 should not reassign it as the
+default target.
+
+##### 21.23.1 Source Fragment Being Translated
+
+| Source anchor | Fragment translated here | Lean-side role |
+|---|---|---|
+| GHL2025 Eq. `arbitrary sparcity`, `main.tex:948-955` | $H_W^{(\kappa)}$ prepares the all-slot sparse-register clean column and cites Shukla--Vedula for the preparation cost. | Contract-only support for `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; do not formalize the cited construction here. |
+| GHL2025 Eq. `ROBIN clarified`, `main.tex:1111-1119` | The boundary $\gamma_3$ branch is the all-slot sparse fold with normalizer $\mathcal{N}_D\mathcal{N}_f\kappa$. | Source of `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` and the backend branch fold. |
+| GHL2025 Fig. `fig:1 term ROBIN`, `main.tex:1122-1164` | The theorem-facing circuit contains both $H_W^{(\kappa)}$ side operations around the backend component. | Transcript guard; the active seven-gate list is H-free and must not be renamed into the full prepared circuit. |
+| GHL2025 Definition `def:block-encoding`, `main.tex:2027-2035` | The clean signal block entry is compared with the encoded operator after projecting clean ancillas. | QBE-local finite projection/product theorem represented by the evaluated backend-fold leaf. |
+
+The exact Lean equation that Lower2 should feed is the uncast form exposed by
+the compiled bridge:
+
+```lean
+Coeff.evalWith env
+  ((evalGateMatrices
+    (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+    oneTermRobinGamma3BoundaryPrefixRow0_n3
+    oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+Coeff.evalWith env
+  (blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+##### 21.23.2 Definitions Before The Local Claim
+
+Fix `env : String -> Rat`.
+
+Define `Gates` to be
+`GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)`.
+
+Define `ActiveEval(env)` to be
+`Coeff.evalWith env ((evalGateMatrices Gates)
+oneTermRobinGamma3BoundaryPrefixRow0_n3
+oneTermRobinGamma3BoundaryPrefixRow0_n3)`.
+
+Define `BackendFold(env)` to be
+`Coeff.evalWith env (blockExtractionBranchContributionSum
+oneTermRobinGamma3BoundaryBackendBranchContribution_n3)`.
+
+Define `EvaluatedBackendFold(env)` to be
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`.
+
+The active local claim is `EvaluatedBackendFold(env)`, equivalently
+`ActiveEval(env) = BackendFold(env)` by
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3
+env`.
+
+##### 21.23.3 Natural-Language Proof Design
+
+The root proof starts with the compiled bridge
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3
+env`.  This reduces the named theorem to the finite equality
+`ActiveEval(env) = BackendFold(env)`.  The bridge already removes the
+block-extraction cast and the active-clean index wrapper, so Lower2 should not
+open those wrappers again.
+
+The right-hand side is the evaluated version of the all-slot fold from Eq.
+`ROBIN clarified`.  The backend branch bookkeeping is already compiled:
+`oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3` exposes the
+slot-`0` weighted term plus slots `1` through `6`, and
+`oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3
+env` records the selected-slot collapse.  These theorems are support memory,
+not new lower targets.
+
+The left-hand side must be proved by a finite evaluated matrix-product
+argument for the seven active gates.  The intended smaller Lean leaf is:
+
+```lean
+theorem oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3
+    (env : String -> Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      (blockExtractionBranchContributionSum
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+The proof should isolate the contributing finite paths at `Coeff.evalWith`
+level.  Use `Matrix.evalWith_mul_apply`,
+`Matrix.evalWith_mul_unique_path`, `Matrix.evalWith_mul_two_path`, and
+`Matrix.evalWith_mul_eq_zero_of_all_paths_zero` for adjacent products and
+support partitions.  Do not try to close the raw `Coeff` constructor equality
+`oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; that route
+is diagnostic and has already hit the symbolic bridge blocker.
+
+Once the smaller theorem is proved, the named root closes by applying the
+uncast bridge in the forward direction.  This proof promotes no oracle,
+prepared-state, LCU, projection, normalizer, product-to-coefficient,
+block-correctness, final-extraction, or external primitive flag.
+
+##### 21.23.4 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status | Next active leaf |
+|---|---|---|---|---|---|---|---|---|
+| `source_uniform_contract` | clean-column amplitudes for the source sparse-preparation operation | Eq. `arbitrary sparcity`; Shukla--Vedula cited row | none | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | cited-results ledger and current middle packet | contract only | external obligation; not formalized | do not prove here |
+| `uncast_evaluated_bridge` | `EvaluatedBackendFold(env)` is equivalent to `ActiveEval(env) = BackendFold(env)` | active circuit entry bridge; block-extraction target | none | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3 env` | current middle packet and this section | already gated | compiled | reuse only |
+| `backend_fold_support` | backend fold expansion and selected-slot collapse | branch contribution definitions; slot vanish/cancellation lemmas | none | `oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3`; `oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3 env` | proof-obligations ledger | already gated | compiled support | reuse only |
+| `eval_product_bridge_leaf` | `ActiveEval(env) = BackendFold(env)` | `uncast_evaluated_bridge`; `backend_fold_support`; finite path support over `Gates` | lower2 | proposed `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env` | this section | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | preferred active leaf; absent | prove this |
+| `evaluated_backend_fold_leaf` | named evaluated backend-fold theorem | `eval_product_bridge_leaf` or a strict equivalent feeder | lower2 | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | current middle packet | same gate | active root; open | close after feeder |
+| `active_prepared_sparse_clean_equivalent` | active evaluated entry equals prepared sparse clean-clean entry under `hUniform` | sparse-clean-to-fold bridge; source uniform contract | lower2 only if selected by middle | left side of `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 H env hUniform` | current middle packet | same gate | alternate route; open | keep `hUniform` explicit |
+| `arbitrary_H_direct_interface` | direct active/prepared equality for arbitrary `H` | full finite constancy theorem or source restatement | none by default | `(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).activeEntryStatement` | Section 21.22 | none | stale as default lower target | do not assign |
+| `retired_diagnostics` | raw fold, raw constructor equality, H-free selected-slot comparison, backend slot support, bridge rediscovery, branch-sum wrappers | stale or diagnostic routes | none | names recorded in `RobinMatrix.lean` and the obligation ledger | verifier feedback | none | stale | do not assign |
+
+##### 21.23.5 Ordered Lean Lemmas For The Worker
+
+1. Reuse
+   `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3
+   env` to replace the named root by the uncast evaluated equality.
+2. Reuse `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesUncastSevenGate_n3
+   H env` only as a target-shape guard: it confirms that the active side is the
+   H-free seven-gate entry.
+3. Reuse `oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3` and
+   `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesExpandedSlotZeroFold_n3
+   H env` to see the expanded backend-fold shape if the proof works by
+   explicit support partition.
+4. Reuse
+   `oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3
+   env` only after the active side has been connected to the full backend fold;
+   do not use the retired active-selected-slot diagnostic as a substitute.
+5. Use `Matrix.evalWith_mul_apply`,
+   `Matrix.evalWith_mul_eq_zero_of_all_paths_zero`,
+   `Matrix.evalWith_mul_unique_path`, and `Matrix.evalWith_mul_two_path` for
+   the finite matrix-product support proof.
+6. Prove the preferred new leaf
+   `oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env`,
+   or prove `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`
+   directly using the same evaluated support partition.
+7. If Lower2 chooses the prepared sparse-clean route, reuse
+   `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3
+   H env hUniform` only as compiled route wiring with `hUniform` explicit.
+8. Do not consume the `sorry` diagnostics
+   `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` or
+   `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` as proof
+   closure.
+
+##### 21.23.6 Failure Analysis And Verifier Feedback
+
+The current evaluated backend-fold target is source-shaped and should remain
+the default lower leaf.  The earlier arbitrary-`H` active/prepared interface is
+not mathematically wrong as a Lean proposition, but it is stale as the default
+route because the paper source justifies the prepared side through the specific
+`H_W^{(\kappa)}` clean-column contract.  Reassigning that arbitrary-`H` target
+without a full finite constancy theorem should be classified as
+`source_translation_gap`.
+
+The active evaluated theorem itself is not an external-contract gap.  Its
+missing ingredient is a QBE-local finite `Coeff.evalWith` product/projection
+calculation.  If a worker unfolds raw symbolic `Coeff` constructors and hits
+recursion or expression-size failure, classify the attempt as
+`symbolic_bridge_gap` and route to the finite support-partition lemma above.
+If a worker replaces the full backend fold with the retired H-free
+selected-slot diagnostic, classify that as `shape_or_register_gap`.
+
+| Field | Value |
+|---|---|
+| `leaf` | `evaluated_backend_fold_leaf` |
+| `source_correspondence_ok` | `true_for_GHL2025_ROBIN_clarified_and_def:block-encoding; sparse_clean_route_requires_existing_hUniform_contract` |
+| `lean_parse_ok` | `not_applicable_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `not_applicable_markdown_only_gate_recorded_separately` |
+| `finite_matrix_ok` | `partial_support_routes_compiled; eval_product_bridge_leaf_absent` |
+| `block_entry_ok` | `false` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `secondary_error_class_if_arbitrary_H_reassigned` | `source_translation_gap` |
+| `secondary_error_class_if_selected_slot_reassigned` | `shape_or_register_gap` |
+| `next_route` | `prove oneTermRobinGamma3BoundaryEvalGateMatricesEntryEval_eq_backendFold_n3 env or one strict finite Coeff.evalWith product/projection lemma feeding oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` |
+
+Handoff: lower1 appended this evaluated backend-fold proof design only.  Lower2
+should edit only `QuantumBlockEncoding/RobinMatrix.lean` and prove the named
+evaluated fold or the preferred uncast evaluated entry lemma.  The
+arbitrary-`H` direct active/prepared interface, sparse-clean bridge, raw
+constructor route, selected-slot diagnostics, backend vanish/support feeders,
+and bridge rediscovery remain retired as lower targets.  The first-case-study
+one-term theorem remains open.
+
+#### 21.24 2026-06-13 Lower1 Source-Prepared Finite Composition Postscript
+
+This is the narrow lower1 postscript for run
+`20260613-045026-QBE-AUTO-002-cycle01`.  It supersedes Section 21.23 as the
+default lower route because lower2 and lower3 rejected direct H-free evaluated
+backend-fold closure as `shape_or_register_gap`.  The active leaf is now:
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
+```
+
+The leaf id for the next Lean worker is
+`source_prepared_finite_composition_leaf`.  The evaluated backend fold remains
+an open recovery root after this field closes under the existing
+`Uniform(H)` contract.
+
+##### 21.24.1 Source Fragment Being Translated
+
+| Source anchor | Fragment translated here | Lean-side role |
+|---|---|---|
+| GHL2025 Eq. `arbitrary sparcity`, `main.tex:948-955` | $H_W^{(\kappa)}$ maps the sparse-register clean basis state to the uniform all-slot superposition and cites Shukla--Vedula for implementation cost. | External contract only: `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`. |
+| GHL2025 Theorem `theorem: 1 term robin`, `main.tex:1098-1109` | The Robin one-term circuit gives an $(\mathcal{N}_D\mathcal{N}_f\kappa,\ldots,0)$ block-encoding. | Root theorem remains open; this postscript only handles one finite entry field. |
+| GHL2025 Eq. `ROBIN clarified`, `main.tex:1111-1119` | The boundary $\gamma_3$ slice carries the all-slot sparse sum with normalizer $\mathcal{N}_D\mathcal{N}_f\kappa$. | Source of `oneTermRobinGamma3BoundaryBackendBranchContribution_n3` and the prepared/backend fold. |
+| GHL2025 Fig. `fig:1 term ROBIN`, `main.tex:1122-1164` | The theorem-facing circuit has both sparse-preparation sides around the active backend component. | Source-prepared projection target; the H-free seven-gate active backend is only one component. |
+| GHL2025 Definition `def:block-encoding`, `main.tex:2027-2035` | The clean signal projection of the output state is compared with the encoded operator. | QBE-local finite `CircuitMatrixSemantics` entry comparison. |
+
+The exact Lean equation exposed by the active target is the evaluated
+active/prepared singleton field:
+
+```lean
+Coeff.evalWith env
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  Coeff.evalWith env
+    ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+      oneTermRobinGamma3BoundarySparseCleanIndex_n3
+      oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+```
+
+The uncast equivalent is:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+which compares the active Fig. `fig:1 term ROBIN` seven-gate `[0,0]`
+`evalGateMatrices` entry with the same prepared singleton clean entry.
+
+##### 21.24.2 Definitions Before The Local Claim
+
+Fix `H : Matrix 8 8 Coeff` and `env : String -> Rat`.
+
+Define `Uniform(H)` to be
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Define `SourcePreparedField(H, env)` to be
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`.
+
+Define `ActiveEval(env)` to be
+`Coeff.evalWith env oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry`.
+
+Define `PreparedSingletonEval(H, env)` to be
+`Coeff.evalWith env ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+oneTermRobinGamma3BoundarySparseCleanIndex_n3
+oneTermRobinGamma3BoundarySparseCleanIndex_n3)`.
+
+Define `PreparedSparseEval(H, env)` to be
+`Coeff.evalWith env (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+oneTermRobinGamma3BoundarySparseCleanIndex_n3
+oneTermRobinGamma3BoundarySparseCleanIndex_n3)`.
+
+Define `BackendFold(env)` to be
+`Coeff.evalWith env (blockExtractionBranchContributionSum
+oneTermRobinGamma3BoundaryBackendBranchContribution_n3)`.
+
+The active local claim is `SourcePreparedField(H, env)`, equivalently
+`ActiveEval(env) = PreparedSingletonEval(H, env)`.
+
+##### 21.24.3 Natural-Language Proof Design
+
+The proof begins with the compiled wrapper theorem
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+H env`.  This removes the source-prepared projection record and reduces the
+target to the uncast active/prepared equality.  Lower2 should not reopen the
+projection wrapper, the prepared singleton wrapper, or the prepared sparse
+clean-entry feeder as a target.
+
+A strict Lean proof can instead close the cached entry target
+`(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`.
+The compiled theorem
+`oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3 H env`
+then gives `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3
+H env`, and the source-prepared projection target follows by the source
+wrapper equivalence.  This route is definitionally smaller because it compares
+the active entry and prepared clean entry before applying `Coeff.evalWith`.
+
+The prepared side already has two compiled reductions.  First,
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+H env` identifies the singleton prepared circuit entry with the prepared sparse
+matrix clean-clean entry after evaluation.  Second,
+`oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env
+hUniform` identifies that prepared singleton clean entry with the backend fold,
+but only under `Uniform(H)`.  This second theorem is downstream support for
+recovering `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`;
+it is not a proof of the active/prepared field.
+
+After `SourcePreparedField(H, env)` is proved, the evaluated backend fold is
+recovered by the compiled conditional route
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+H env hUniform hActive`.  This is the correct replacement for the rejected
+standalone H-free route: the sparse-preparation contract enters only as
+`hUniform`, and no new theorem hypothesis is added to the active field.
+
+The Lean worker should therefore try exactly one of the following strict
+leaves:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+or one finite `CircuitMatrixSemantics` or `Coeff.evalWith` lemma that feeds one
+of these statements directly.  If the finite expansion shows dependence on
+unconstrained entries of `H` and the proof needs `Uniform(H)` to proceed, the
+worker should stop and report `source_translation_gap` rather than adding
+`hUniform` to the existing arbitrary-`H` target.
+
+##### 21.24.4 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status | Next active leaf |
+|---|---|---|---|---|---|---|---|---|
+| `source_uniform_contract` | sparse-register clean column of the paper $H_W^{(\kappa)}$ | Eq. `arbitrary sparcity`; Shukla--Vedula cited row | none | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | cited-results ledger | contract only | external obligation; not formalized here | do not prove here |
+| `source_prepared_projection_wrapper` | `SourcePreparedField(H, env)` equals the active/prepared composite field | source-prepared projection target; active/prepared circuit-field target | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3 H env` | middle finite-composition packet | already gated | compiled | reuse only |
+| `prepared_singleton_to_sparse` | prepared singleton clean entry equals prepared sparse clean entry after `Coeff.evalWith` | prepared composite semantics | none | `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3 H env`; `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3 H env` | conversion window | already gated | compiled | reuse only |
+| `prepared_backend_under_uniform` | prepared singleton clean entry equals backend fold under `Uniform(H)` | source uniform contract; gamma3 backend fold | none | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | cited-results ledger and middle packet | already gated | compiled conditional | use after active field closes |
+| `cached_entry_to_source_field` | cached prepared-entry equality implies `SourcePreparedField(H, env)` | generic entry target; wrapper bridge | none | `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3 H env`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env` | current Lean DAG | already gated | compiled | reuse if proving cached leaf |
+| `source_prepared_finite_composition_leaf` | active signal-zero entry equals the source-prepared singleton clean entry | active entry source; prepared singleton target; source transcript guard | lower2 | `SourcePreparedField(H, env)` or `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env` | this postscript and finite-composition middle packet | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active source-prepared leaf; open | prove this |
+| `strict_source_shaped_feeder` | one finite source-shaped theorem feeding the active/prepared field | wrapper lemmas above; finite matrix product semantics | lower2 alternate | new local theorem in `QuantumBlockEncoding/RobinMatrix.lean` | this postscript | same gate | allowed smaller leaf | prove one only if it feeds the active field |
+| `evaluated_backend_fold_recovery` | evaluated backend fold after the source-prepared field closes | `source_prepared_finite_composition_leaf`; `source_uniform_contract`; prepared backend bridge | later lower2/refiner | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3 H env hUniform hActive` | proof blueprint | same gate after active field | recovery root; open; not default | wait for active field |
+| `direct_hfree_evaluated_fold_route` | standalone H-free active `[0,0]` entry compared with backend fold | previous lower2/lower3 diagnostics | none | RHS of `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3 env` | verifier-feedback packets | none | rejected as default; `shape_or_register_gap` | do not assign |
+| `retired_routes` | obstruction handles, feeder equivalences, bridge rediscovery, backend slot support, raw `Coeff`, branch-sum wrappers, selected-slot diagnostics, and diagnostic `sorry` route | stale or support-only routes | none | names recorded in `RobinMatrix.lean` and ledgers | current sync | none | stale | do not assign |
+
+##### 21.24.5 Ordered Lean Lemmas For The Worker
+
+1. Reuse
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+   H env` to reduce the primary target to the uncast active/prepared equality.
+2. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3
+   H env` if starting from the evaluated composite statement rather than the
+   source-prepared target.
+3. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3
+   H` to expose the cached entry target as the uncast active seven-gate entry
+   against the prepared cached entry.
+4. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3
+   H` to move between the cached entry target and the prepared sparse-matrix
+   clean-clean equality.
+5. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3
+   H env` and
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3
+   H env` after proving the cached entry target.
+6. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+   H env` and
+   `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H` for
+   prepared-side wrapper removal only.
+7. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_congr_cleanColumn_n3`
+   as a clean-column extensionality theorem if the proof isolates which
+   entries of `H` matter.  This theorem does not close arbitrary `H`.
+8. Use
+   `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+   H env hUniform` only after the active/prepared field is available and
+   `Uniform(H)` is explicit.
+9. Use
+   `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+   H env hUniform hActive` to recover the evaluated backend fold after the
+   source-prepared field closes.
+10. Do not consume the diagnostic `sorry` declarations
+    `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` or
+    `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` as
+    closure.
+
+##### 21.24.6 Failure Analysis And Verifier Feedback
+
+The source-paper route is correct only for the theorem-facing sparse
+preparation operation.  In Lean this operation is represented by an arbitrary
+parameter `H` together with the separate `Uniform(H)` contract.  Therefore a
+proof of `SourcePreparedField(H, env)` for arbitrary `H` must be a genuine
+finite composition theorem showing that the selected prepared clean entry
+matches the active entry without using the clean-column contract.  The paper
+source alone does not supply that independence theorem.
+
+The active leaf is still the right source-shaped frontier because it keeps the
+prepared $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ entry visible.  The guard is
+that lower2 must not turn this into the standalone H-free backend fold, and
+must not add `hUniform` to an existing arbitrary-`H` theorem statement.  If
+the only available proof uses `Uniform(H)`, the correct next route is a middle
+restatement or a new contract-specific theorem, classified as
+`source_translation_gap`.
+
+| Field | Value |
+|---|---|
+| `leaf` | `source_prepared_finite_composition_leaf` |
+| `source_correspondence_ok` | `true_for_source_prepared_route_with_H_W_contract_visible; arbitrary_H_closure_requires_finite_independence_or_middle_restatement` |
+| `lean_parse_ok` | `not_applicable_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `not_applicable_markdown_only_gate_recorded_separately` |
+| `finite_matrix_ok` | `not_checked_by_lower1; prepared_side_bridges_compiled; active_prepared_field_open` |
+| `block_entry_ok` | `false` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `secondary_error_class_if_uniform_needed_for_arbitrary_H_target` | `source_translation_gap` |
+| `secondary_error_class_if_hfree_fold_reassigned` | `shape_or_register_gap` |
+| `next_route` | `prove SourcePreparedField(H, env), one accepted equivalent active/prepared target, or one strict source-shaped finite composition lemma feeding it; stop with source_translation_gap if Uniform(H) is required to make the arbitrary-H target true` |
+
+Handoff: lower1 appended this source-prepared finite-composition proof design
+only.  Lower2 should edit only `QuantumBlockEncoding/RobinMatrix.lean` and
+attempt `SourcePreparedField(H, env)`, the uncast active/prepared composite
+target, the cached entry target, or one strict source-shaped finite feeder.
+The direct H-free evaluated fold, raw `Coeff` constructor equality, diagnostic
+`sorry` route, obstruction handles, feeder equivalences, backend slot work,
+branch-sum wrappers, and selected-slot diagnostics remain retired.  The
+first-case-study one-term theorem remains open.
+
+#### 21.25 2026-06-13 Lower1 Coordinator Refinement For Source-Prepared Field
+
+This is a narrow lower1 refinement for run
+`20260613-050943-QBE-AUTO-002-cycle01`.  Section 21.24 remains the full proof
+design.  This postscript incorporates the 05:16 middle coordinator packet and
+the lower3 necessary-condition feedback: the next Lean worker should still
+target `source_prepared_finite_composition_leaf`, but the worker must stop with
+`source_translation_gap` if the arbitrary-`H` statement can only be made true
+by adding the paper clean-column contract to the theorem statement.
+
+The local TeX archive named by the run prompt,
+`outer_papers/quantum/GHL2025/main.tex`, is not present in this checkout.  The
+source anchors below are therefore taken from the checked-in source maps,
+cited-results ledger, conversion window, proof obligations, and Section 21.24.
+No fresh TeX reread is claimed here.
+
+##### 21.25.1 Source Fragment Being Translated
+
+| Source anchor | Fragment translated here | Lean-side role |
+|---|---|---|
+| GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula state-preparation primitive | $H_W^{(\kappa)}$ supplies the all-slot clean sparse-register preparation used by the sandwich. | External contract `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; do not formalize it in this leaf. |
+| GHL2025 Eq. `ROBIN clarified` | The boundary $\gamma_3$ contribution is read after the sparse-register preparation and summed over the source sparse slots. | Source of the prepared/backend fold, already compiled under `Uniform(H)`. |
+| GHL2025 Fig. `fig:1 term ROBIN` | The theorem-facing circuit contains the prepared sandwich $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$, not only the H-free active seven-gate backend component. | Guard against reassigning the direct H-free evaluated-fold route. |
+| GHL2025 Definition `def:block-encoding` | The encoded entry is obtained from the clean signal projection. | QBE-local finite `CircuitMatrixSemantics` entry comparison. |
+
+The exact active Lean field remains:
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
+```
+
+Its uncast equation is:
+
+```lean
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+```
+
+Equivalently, after wrapper removal the active equality compares:
+
+```lean
+Coeff.evalWith env
+  oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry
+```
+
+with:
+
+```lean
+Coeff.evalWith env
+  ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+```
+
+##### 21.25.2 Definitions Before The Local Claim
+
+Fix `H : Matrix 8 8 Coeff` and `env : String -> Rat`.
+
+Define `Uniform(H)` to be
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Define `SourcePreparedField(H, env)` to be
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`.
+
+Define `ActiveEval(env)` to be
+`Coeff.evalWith env oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry`.
+
+Define `PreparedSingletonEval(H, env)` to be the evaluated clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` at
+`oneTermRobinGamma3BoundarySparseCleanIndex_n3`.
+
+Define `PreparedSparseEval(H, env)` to be the evaluated clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H` at the same sparse
+clean index.
+
+Define `BackendFold(env)` to be
+`Coeff.evalWith env (blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3)`.
+
+The active local theorem is:
+
+```lean
+SourcePreparedField(H, env)
+```
+
+which is the statement `ActiveEval(env) = PreparedSingletonEval(H, env)`.
+
+##### 21.25.3 Natural-Language Proof Of The Active Local Theorem
+
+The proof should first use the compiled wrapper
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+H env`.  This replaces `SourcePreparedField(H, env)` by the uncast
+active/prepared equality and removes only record wrappers and casts.
+
+The remaining mathematical content is one finite matrix-composition theorem:
+the active signal-zero entry selected from the seven-gate backend component
+must equal the clean-clean entry of the source-prepared singleton matrix
+$H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$.  This is not the prepared-side
+backend bridge.  It is the missing equality between the active projection
+entry and the prepared singleton entry.
+
+If the worker proves the cached entry theorem
+`(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`,
+then the compiled route
+`oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3 H env`
+gives the active/prepared composite field, and
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3
+H env` gives `SourcePreparedField(H, env)`.
+
+The prepared side is already routed.  The theorem
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+H env` relates the prepared singleton entry to the prepared sparse matrix after
+evaluation.  The theorem
+`oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env
+hUniform` relates the prepared singleton entry to `BackendFold(env)`, but only
+under `Uniform(H)`.
+
+After the active field is proved, the evaluated backend fold follows from:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+  H env hUniform hActive
+```
+
+This downstream use of `hUniform` is source-faithful.  Adding `hUniform` to the
+current arbitrary-`H` active/prepared theorem is not a lower-agent edit unless
+middle first restates the target.
+
+##### 21.25.4 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status | Next active leaf |
+|---|---|---|---|---|---|---|---|---|
+| `source_uniform_contract` | all-slot clean-column behavior for the paper sparse-preparation matrix | GHL2025 Eq. `arbitrary sparcity`; Shukla--Vedula cited row | none | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | cited-results ledger and proof obligations | contract only | external obligation | do not prove here |
+| `source_prepared_projection_wrapper` | `SourcePreparedField(H, env)` is equivalent to the uncast active/prepared field | source-prepared target; active/prepared circuit-field target | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3 H env` | Section 21.24 and middle packet 05:16 | already gated | compiled | reuse only |
+| `cached_entry_to_source_field` | cached prepared-entry equality implies `SourcePreparedField(H, env)` | generic entry target; active/prepared composite route | none | `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3 H env`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env` | current Lean DAG | already gated | compiled | reuse if proving cached entry |
+| `prepared_backend_under_uniform` | prepared singleton clean entry evaluates to `BackendFold(env)` under `Uniform(H)` | source uniform contract; prepared sparse clean-entry bridge | none | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | conversion window and proof obligations | already gated | compiled conditional | downstream only |
+| `source_prepared_finite_composition_leaf` | active signal-zero entry equals the source-prepared singleton clean entry | wrappers above; finite `CircuitMatrixSemantics` semantics | lower2 | `SourcePreparedField(H, env)`, `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`, or `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement` | this postscript and middle packet 05:16 | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active source-prepared leaf; open | prove this |
+| `strict_source_shaped_feeder` | one finite theorem directly feeding the active/prepared field | source transcript guard; active/prepared wrappers | lower2 alternate | new local theorem in `QuantumBlockEncoding/RobinMatrix.lean` | this postscript | same gate | allowed smaller leaf | prove one only if it feeds the field |
+| `evaluated_backend_fold_recovery` | evaluated backend fold after the source-prepared field closes | `source_prepared_finite_composition_leaf`; `source_uniform_contract`; prepared backend bridge | later | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3 H env hUniform hActive` | proof blueprint | same gate after active field | recovery root; open; not default | wait |
+| `direct_hfree_evaluated_fold_route` | standalone H-free active `[0,0]` entry equals backend fold | lower2/lower3 diagnostics | none | diagnostic route through `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` and `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | verifier feedback | none | rejected as default; `shape_or_register_gap` | do not assign |
+
+##### 21.25.5 Ordered Lean Lemmas For The Worker
+
+1. Reuse
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+   H env` to expose the uncast active/prepared equality.
+2. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3
+   H env` if the chosen statement is the evaluated composite statement rather
+   than the source-prepared target.
+3. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3
+   H` if proving the cached entry target.
+4. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3
+   H` to move between the cached entry target and the prepared sparse
+   clean-entry equality.
+5. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+   H env` and
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3
+   H env` only for prepared singleton/sparse alignment.
+6. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_congr_cleanColumn_n3`
+   if a finite proof isolates dependence on the seven clean-column sparse
+   entries of `H`; this is support information, not arbitrary-`H` closure.
+7. After proving the active field, reuse
+   `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+   H env hUniform hActive` to recover the evaluated backend fold.
+8. Do not use the diagnostic `sorry` declarations
+   `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` or
+   `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` as
+   closure.
+
+##### 21.25.6 Failure Analysis And Verifier Feedback
+
+The source-prepared route is the correct theorem-facing shape because it keeps
+the $H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$ singleton entry visible.  The
+current arbitrary-`H` Lean target, however, is stronger than the paper
+transcript unless a finite composition theorem proves the equality for all `H`
+or an independence theorem proves that only the source-constrained clean-column
+values matter.  If the only viable proof uses `Uniform(H)`, the next route is
+a middle restatement with `hUniform` explicit, not a lower edit to add the
+hypothesis.
+
+| Field | Value |
+|---|---|
+| `leaf` | `source_prepared_finite_composition_leaf` |
+| `source_correspondence_ok` | `true_for_source_prepared_shape; arbitrary_H_without_independence_or_hUniform_restatement_not_established` |
+| `lean_parse_ok` | `not_applicable_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `not_applicable_markdown_only_gate_recorded_separately` |
+| `finite_matrix_ok` | `partial_lower3_source_shape_checks_passed; active_block_entry_equality_open` |
+| `block_entry_ok` | `false` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `secondary_error_class_if_uniform_required_for_arbitrary_H` | `source_translation_gap` |
+| `secondary_error_class_if_hfree_route_reassigned` | `shape_or_register_gap` |
+| `next_route` | `lower2 proves SourcePreparedField(H, env), an accepted active/prepared equivalent, the cached entry target, or one strict finite feeder; route to middle if Uniform(H) is required` |
+
+Handoff: lower1 appended this coordinator refinement only.  Section 21.24
+remains the main proof design.  Lower2 should edit only
+`QuantumBlockEncoding/RobinMatrix.lean` and prove the source-prepared
+finite-composition leaf or one strict feeder.  Do not assign direct H-free
+evaluated-fold closure, feeder rediscovery, obstruction handles, raw `Coeff`
+constructor equality, branch-sum wrappers, backend slot work, selected-slot
+diagnostics, or diagnostic `sorry` routes.  The first-case-study one-term
+theorem remains open.
+
+#### 21.26 2026-06-13 Lower1 Fresh-Source Delta For Source-Prepared Leaf
+
+This is the narrow lower1 postscript for run
+`20260613-052836-QBE-AUTO-002-cycle01`.  It corrects the source-audit
+limitation recorded in Section 21.25: the local TeX archive was available
+through the parent source archive, and the relevant source fragments were read
+again.  The active proof leaf and allowed Lean targets do not change.
+
+##### 21.26.1 Source Fragment Being Translated
+
+| Source anchor | Fragment translated here | Lean-side role |
+|---|---|---|
+| GHL2025 Eq. `arbitrary sparcity` | The sparse-preparation operation satisfies $H_W^{(\kappa)}\ket{0}^{\lceil\log_2 \kappa\rceil} = \kappa^{-1/2}\sum_{s=0}^{\kappa-1}\ket{s}^{\lceil\log_2 \kappa\rceil}$. | External contract `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; do not formalize Shukla--Vedula in this leaf. |
+| GHL2025 Theorem `1 term robin` | The paper claims a $(\mathcal{N}_D\mathcal{N}_f\kappa,\lceil\log_2 n\rceil+\lceil\log_2 G_f\rceil+\lceil\log_2\kappa\rceil+4,0)$ block-encoding for the one-term Robin operator. | Root theorem remains open; the current target is only a finite entry feeder. |
+| GHL2025 Eq. `ROBIN clarified` | The displayed $\gamma_3$ boundary term has coefficient $(\mathcal{N}_D\mathcal{N}_f\kappa)^{-1}$ on the clean prepared branch, with the sparse slot $s$ still present. | Source of the prepared singleton/backend fold under the uniform sparse-register contract. |
+| GHL2025 Fig. `fig:1 term ROBIN` | The theorem-facing circuit includes the source-prepared sparse-register route around the derivative/oracle component and the cleanup back to clean ancillas. | Guard against treating the H-free seven-gate active backend component as the whole theorem-facing circuit. |
+| GHL2025 Definition `def:block-encoding` | The encoded operator is read from the clean signal projection of the circuit output. | Source for comparing the active signal-zero entry with the source-prepared clean entry. |
+
+##### 21.26.2 Definitions And Active Local Claim
+
+Fix `H : Matrix 8 8 Coeff` and `env : String -> Rat`.
+
+Define `Uniform(H)` to be
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Define `SourcePreparedField(H, env)` to be
+`(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`.
+
+Define `UncastActivePrepared(H, env)` to be
+`oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`.
+
+Define `CachedPreparedEntry(H)` to be
+`(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`.
+
+The active local theorem is `SourcePreparedField(H, env)`, equivalently
+`UncastActivePrepared(H, env)`, or equivalently the cached prepared-entry
+target `CachedPreparedEntry(H)`.  In unwrapped evaluated form, the next Lean
+leaf compares the active seven-gate `[0,0]` entry with the clean-clean entry of
+`oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H`.
+
+##### 21.26.3 Natural-Language Proof Design
+
+First, remove wrappers with
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+H env`.  This step changes only the packaging of the target.
+
+Second, prove one finite composition theorem: the active signal-zero entry
+selected by the block-encoding projection equals the clean-clean entry of the
+source-prepared singleton matrix
+$H_W^{(\kappa)\dagger} U H_W^{(\kappa)}$.  The source equation supplies the
+uniform sparse-register amplitudes, but it does not itself prove that the
+H-free active seven-gate product equals the prepared sandwich entry for an
+arbitrary matrix `H`.
+
+Third, if lower2 proves `CachedPreparedEntry(H)`, then
+`oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3 H env`
+and
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3
+H env` recover `SourcePreparedField(H, env)`.  If lower2 proves the unwrapped
+evaluated equality instead, the bridge
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3
+H env` recovers the same field.
+
+Finally, after the active field is proved, the downstream evaluated backend
+fold follows from
+`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+H env hUniform hActive`.  The use of `Uniform(H)` belongs to this downstream
+prepared-to-backend recovery, not to an unapproved edit of the arbitrary-`H`
+active/prepared target.
+
+##### 21.26.4 Proof-DAG Delta
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Status | Next active leaf |
+|---|---|---|---|---|---|---|
+| `source_uniform_contract` | all-slot clean-column sparse-preparation amplitudes | GHL2025 Eq. `arbitrary sparcity`; Shukla--Vedula cited primitive | none | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external contract only | do not prove here |
+| `source_prepared_wrapper` | `SourcePreparedField(H, env)` is equivalent to `UncastActivePrepared(H, env)` | active/prepared circuit-field target | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3 H env` | compiled | reuse only |
+| `uncast_sparse_clean_wrapper` | `SourcePreparedField(H, env)` is equivalent to the unwrapped active/prepared sparse-clean `evalWith` equality | prepared-sandwich and sparse-clean feeder bridges | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env` | compiled | reuse only |
+| `cached_entry_to_source_field` | `CachedPreparedEntry(H)` implies `SourcePreparedField(H, env)` | generic prepared-entry target | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3 H env` | compiled | reuse if cached entry is proved |
+| `prepared_backend_under_uniform` | prepared singleton clean entry evaluates to backend fold under `Uniform(H)` | source uniform contract; prepared clean-entry bridge | none | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | compiled conditional | downstream only |
+| `source_prepared_finite_composition_leaf` | active signal-zero entry equals the source-prepared singleton clean entry | wrappers above; finite `CircuitMatrixSemantics` product semantics | lower2 | `SourcePreparedField(H, env)`, `UncastActivePrepared(H, env)`, `CachedPreparedEntry(H)`, or the unwrapped sparse-clean equality | active leaf; open | prove exactly one of these |
+| `strict_source_shaped_feeder` | one smaller finite theorem directly feeding the active leaf | source-prepared wrappers; no theorem mutation | lower2 alternate | new local theorem in `QuantumBlockEncoding/RobinMatrix.lean` | allowed only if direct feeder | prove only if it closes the active field |
+| `evaluated_backend_fold_recovery` | evaluated backend fold after the active/prepared field closes | active leaf; `Uniform(H)`; prepared backend bridge | later | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3 H env hUniform hActive` | recovery root; open | wait |
+| `direct_hfree_evaluated_fold_route` | standalone H-free active entry equals backend fold | lower2/lower3 diagnostics | none | diagnostic route near `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | rejected as default; `shape_or_register_gap` | do not assign |
+
+##### 21.26.5 Ordered Lean Lemmas For The Worker
+
+1. Reuse
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
+   H env` to expose the uncast active/prepared target.
+2. Reuse
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3
+   H env` if proving the unwrapped sparse-clean `evalWith` equality.
+3. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_iff_uncast_n3
+   H env` to move between the evaluated composite statement and the uncast
+   statement.
+4. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_uncastActiveEntry_n3
+   H` and
+   `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_preparedCleanEntry_n3
+   H` if proving `CachedPreparedEntry(H)`.
+5. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_entryTarget_n3
+   H env` and
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_entryTarget_n3
+   H env` after a cached entry proof.
+6. Reuse
+   `oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_sparseEval_n3
+   H env`,
+   `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+   H env`, and `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3 H`
+   only for prepared singleton/sparse alignment.
+7. Reuse
+   `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_congr_cleanColumn_n3`
+   only as support for clean-column dependence; it is not arbitrary-`H`
+   closure.
+8. After the active field closes, reuse
+   `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+   H env hUniform hActive`.
+9. Do not use diagnostic `sorry` declarations, branch-sum wrappers, selected
+   slot diagnostics, or raw `Coeff` constructor equalities as closure.
+
+##### 21.26.6 Failure Analysis And Verifier Feedback
+
+The source-prepared target is the correct theorem-facing shape.  The remaining
+open question is whether the current arbitrary-`H` Lean target is provable as
+stated.  It is source-backed only if lower2 proves a genuine finite
+active/prepared equality for all `H`, or proves a clean-column independence
+theorem strong enough to reduce the target to the source uniform column.  If
+the proof needs `Uniform(H)` as a hypothesis of the active/prepared statement,
+the route should return to middle as `source_translation_gap`; lower2 should
+not add that hypothesis locally.  Reassigning the standalone H-free
+evaluated-fold route remains `shape_or_register_gap`.
+
+| Field | Value |
+|---|---|
+| `leaf` | `source_prepared_finite_composition_leaf` |
+| `source_correspondence_ok` | `true_for_source_prepared_shape_after_fresh_tex_read` |
+| `lean_parse_ok` | `not_applicable_markdown_only_no_lean_edit` |
+| `lean_build_ok` | `true_lower1_gate_passed` |
+| `finite_matrix_ok` | `not_checked_by_lower1` |
+| `block_entry_ok` | `false_active_prepared_field_open` |
+| `ancilla_cleanup_ok` | `not_promoted` |
+| `normalizer_ok` | `unchanged` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `secondary_error_class_if_uniform_required_for_arbitrary_H` | `source_translation_gap` |
+| `secondary_error_class_if_hfree_route_reassigned` | `shape_or_register_gap` |
+| `next_route` | `lower2 proves SourcePreparedField(H, env), UncastActivePrepared(H, env), CachedPreparedEntry(H), the unwrapped sparse-clean evalWith equality, or one strict finite source-shaped feeder; return to middle if Uniform(H) is required` |
+
+Handoff: lower1 appended this fresh-source delta only.  The exact source
+anchors are GHL2025 Eq. `arbitrary sparcity`, Theorem `1 term robin`, Eq.
+`ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Definition
+`def:block-encoding`.  Lower2 should edit only
+`QuantumBlockEncoding/RobinMatrix.lean` and prove the source-prepared finite
+composition leaf or one strict direct feeder.  The first-case-study one-term
+theorem remains open.

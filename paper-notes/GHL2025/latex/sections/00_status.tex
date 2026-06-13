@@ -11,37 +11,49 @@ The build gate after this export is
 \]
 It runs \Lean{lake build} and \Lean{lake build Tests}.
 
-\subsection{Current Frontier: Post-Feeder Sparse-Clean To Evaluated Fold}
+\subsection{Current Frontier: Finite Projection Feeder Under Explicit Uniform Contract}
 
-The current Lean bridge
+Definitions first.  \Lean{Uniform(H)} denotes
 \[
-  \Lean{oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval\_iff\_evaluatedBackendFold\_n3}
+  \Lean{oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3\ H}.
 \]
-states that, under the existing
-\[
-  \Lean{oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3\ H}
-\]
-contract, the unwrapped active/prepared sparse-clean \Lean{evalWith}
-equality is equivalent to
+\Lean{EvaluatedBackendFold(env)} denotes
 \[
   \Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3\ env}.
 \]
-This bridge is compiled route wiring only.  It does not prove the
-active/prepared equality, the evaluated backend fold, the final one-term Robin
-block-encoding theorem, or any external sparse-preparation/oracle primitive.
+\Lean{SourcePreparedField(H, env)} denotes the active-to-prepared singleton
+field of
+\[
+  \Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3\ H\ env}.
+\]
+The active export frontier is \Lean{finite\_projection\_feeder}: prove
+\Lean{EvaluatedBackendFold(env)} or one strict finite theorem feeding it, then
+consume the result through
+\[
+  \Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_activeEval\_of\_evaluatedBackendFold\_n3\ H\ env\ hUniform\ hFold}.
+\]
+The arbitrary-\Lean{H} \Lean{SourcePreparedField(H, env)} target is retired as
+the default lower target unless a true all-\Lean{H} composition or clean-column
+independence theorem is assigned.  The sparse-clean to fold bridge remains
+compiled route wiring only; it does not prove the evaluated backend fold, the
+final one-term Robin block-encoding theorem, or any external
+sparse-preparation/oracle primitive.
 
 \[
 \begin{array}{lll}
 \text{Item} & \text{Lean declaration or target} & \text{Status}\\
+\text{finite projection feeder} &
+\Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3\ env} &
+\text{active lower2 leaf; open}\\
+\text{source-prepared recovery} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_activeEval\_of\_evaluatedBackendFold\_n3} &
+\text{compiled conditional; not closure without } \Lean{hFold}\\
+\text{arbitrary-}\Lean{H}\text{ source-prepared field} &
+\Lean{SourcePreparedField(H, env)} &
+\text{retired as default lower target}\\
 \text{post-feeder sparse-clean to fold bridge} &
 \Lean{oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval\_iff\_evaluatedBackendFold\_n3} &
-\text{compiled; retired}\\
-\text{active/prepared sparse-clean equality} &
-\text{active seven-gate }[0,0]\text{ evaluated entry equals the prepared clean entry} &
-\text{active equivalent leaf; not proved}\\
-\text{evaluated backend fold} &
-\Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3\ env} &
-\text{active equivalent leaf; not proved}\\
+\text{compiled route wiring; retired}\\
 \text{external sparse preparation} &
 \Lean{oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3\ H} &
 \text{contract-only}

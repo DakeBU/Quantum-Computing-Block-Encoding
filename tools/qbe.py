@@ -1112,6 +1112,43 @@ def extract_section(text: str, heading_patterns: list[str]) -> str:
     return text[start:end].strip()
 
 
+def extract_preferred_section(text: str, heading_patterns: list[str]) -> str:
+    """Extract the latest section for the first heading pattern that matches.
+
+    `extract_section` intentionally returns the latest matching heading across
+    all patterns.  That is useful for broad scans, but task directives need a
+    priority order: a fresh `Current Run Directive` must override an older
+    `Immediate 6h Focus` section even if the older section appears later in the
+    task file.
+    """
+    for pattern in heading_patterns:
+        matches = list(re.finditer(pattern, text, flags=re.M | re.I))
+        if not matches:
+            continue
+        sections: list[tuple[int, str]] = []
+        for match in matches:
+            start = match.start()
+            next_match = re.search(r"^## (?!#).*$", text[start + 1 :], flags=re.M)
+            end = start + 1 + next_match.start() if next_match else len(text)
+            sections.append((start, text[start:end].strip()))
+        if "Current Run Directive" in pattern:
+            def score(item: tuple[int, str]) -> tuple[int, int]:
+                start, section = item
+                lowered = section.lower()
+                value = 0
+                if "finite_projection_feeder" in section or "final finite projection" in lowered:
+                    value += 1000
+                if "active lower2 target" in lowered:
+                    value += 100
+                if start < 2000:
+                    value += 50
+                return (value, -start)
+
+            return max(sections, key=score)[1]
+        return sorted(sections, key=lambda item: item[0])[-1][1]
+    return ""
+
+
 def compact_markdown_lines(path: Path, patterns: list[str], limit: int = 30) -> list[str]:
     if not path.exists():
         return []
@@ -1132,12 +1169,22 @@ def current_obligation_table_rows(text: str, limit: int = 20) -> list[str]:
     """Extract the current obligation table as compact prose rows."""
     if not text:
         return []
-    start = text.find("Current obligation state:")
-    if start < 0:
-        return []
+    latest_table = re.search(
+        r"(?ms)^\| Obligation \| Lean declaration or target \| Dependency class \| Status \|\n"
+        r"^\|---\|---\|---\|---\|\n"
+        r"(?P<body>(?:^\|.*\|\n)+)",
+        text,
+    )
+    if latest_table:
+        table_lines = latest_table.group("body").splitlines()
+    else:
+        start = text.find("Current obligation state:")
+        if start < 0:
+            return []
+        table_lines = text[start:].splitlines()[1:]
     rows: list[str] = []
     in_table = False
-    for raw in text[start:].splitlines()[1:]:
+    for raw in table_lines:
         line = raw.strip()
         if not line:
             if in_table:
@@ -1210,7 +1257,7 @@ def infer_blueprint_stage(task_text: str, proof_obligation_text: str) -> str:
 
 def dynamic_leaf_candidates(task_text: str, obligation_text: str, dialogue_text: str, limit: int = 12) -> list[str]:
     candidates: list[str] = []
-    directive = extract_section(task_text, [r"^## Immediate .*?$", r"^## Current Run Directive.*?$"])
+    directive = extract_preferred_section(task_text, [r"^## Current Run Directive.*?$", r"^## Immediate .*?$"])
     if directive:
         current: list[str] = []
         in_code = False
@@ -1269,6 +1316,13 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
         return []
     sections = re.split(r"\n(?=## )", conversion_text)
     priority_sections = [
+        section
+        for section in sections
+        if "Updated proof-DAG frontier" in section
+        and "finite_projection_feeder" in section
+    ]
+    if not priority_sections:
+        priority_sections = [
         section
         for section in sections
         if "Updated proof-DAG frontier" in section
@@ -1354,8 +1408,12 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
     rows: list[tuple[int, str]] = []
     priority = {
         "active_selected_slot_eval_comparison_leaf": 0,
+        "finite_projection_feeder": 0,
+        "source_contract_target_correction": 1,
         "active_prepared_composition_leaf": 0,
         "prepared_sandwich_gap_leaf": 1,
+        "arbitrary_H_source_prepared_field": 9,
+        "direct_hfree_evaluated_fold_route": 10,
         "active_selected_to_fold_bridge": 8,
         "active_prepared_entry_feeder": 0,
         "active_uncast_to_prepared_entry_leaf": 2,
@@ -1437,7 +1495,7 @@ def refresh_blueprint(task_id: str) -> Path:
     obligation_text = read_text(obligation_path) if obligation_path.exists() else ""
     dialogue_text = latest_dialogue_text(task_id, limit_chars=5000)
     stage = infer_blueprint_stage(task_text, obligation_text)
-    directive = extract_section(task_text, [r"^## Immediate .*?$", r"^## Current Run Directive.*?$"])
+    directive = extract_preferred_section(task_text, [r"^## Current Run Directive.*?$", r"^## Immediate .*?$"])
     if not directive:
         directive = focused_task_contract(task_text)
     declarations = lean_declaration_index(task_text, limit=60)
@@ -1484,9 +1542,9 @@ oracle contracts to stay explicit.
 
 ## Current Directive
 
-```text
+````text
 {directive.strip()}
-```
+````
 
 ## Dynamic Leaf Queue
 
@@ -1542,9 +1600,9 @@ Recent task-relevant declarations:
     text += f"""
 ## Latest Dialogue Signal
 
-```text
+````text
 {dialogue_text[-3000:]}
-```
+````
 
 ## Gate Policy
 

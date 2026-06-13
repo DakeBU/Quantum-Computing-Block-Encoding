@@ -1,10 +1,10 @@
 # ABEIS Human Status
 
-Generated: `2026-06-13 01:20:16`
+Generated: `2026-06-13 13:19:01`
 
 Task: `QBE-AUTO-002` — Concrete Circuit Matrix Semantics Backend
 
-Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
+Latest run: `runs/20260613-054606-QBE-AUTO-002-cycle01`
 
 这个文件是人类入口。正常情况下，你只需要先看这个文件，再决定是否打开更细的 `zh_summary.md`、`memory_digest.md`、Lean 文件或 proof-attempt 文件。
 
@@ -18,54 +18,53 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 
 ## Latest Links
 
-- 最新中文总结：`runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md`
-- 最新 memory digest：`runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md`
-- 最新下一步 todo：`runs/20260611-234445-QBE-AUTO-002-cycle01/todo.md`
-- 最新 dialogue：`runs/20260611-234445-QBE-AUTO-002-cycle01/dialogue.md`
-- 最新技术报告 update：`runs/20260611-234445-QBE-AUTO-002-cycle01/article_update.md`
+- 最新中文总结：`runs/20260613-054606-QBE-AUTO-002-cycle01/zh_summary.md`
+- 最新 memory digest：`runs/20260613-054606-QBE-AUTO-002-cycle01/memory_digest.md`
+- 最新下一步 todo：`runs/20260613-054606-QBE-AUTO-002-cycle01/todo.md`
+- 最新 dialogue：`runs/20260613-054606-QBE-AUTO-002-cycle01/dialogue.md`
+- 最新技术报告 update：`runs/20260613-054606-QBE-AUTO-002-cycle01/article_update.md`
 - 报告/日志阅读入口说明：`REPORTS.zh.md`
 - GHL 未完成/失败原因中文地图：`paper-notes/GHL2025/markdown/unresolved-failures.zh.md`
 - GHL Fig. 4 视觉审计：`paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`
-- 最新 efficiency report：`Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/efficiency/20260612-000545-QBE-AUTO-002-efficiency.md`
+- 最新 efficiency report：`Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/efficiency/20260613-063623-QBE-AUTO-002-efficiency.md`
 - 压缩检索 JSON：`research-wiki/retrieval-index/QBE-AUTO-002.json`
 
 ## Build And Sorry Status
 
-- `QuantumBlockEncoding/RobinMatrix.lean:24190:  sorry`
-- `QuantumBlockEncoding/RobinMatrix.lean:24220:  sorry`
+- `QuantumBlockEncoding/RobinMatrix.lean:24334:  sorry`
+- `QuantumBlockEncoding/RobinMatrix.lean:24364:  sorry`
 
 ## 6h Batch Log Signal
 
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: /bin/bash -lc 'python3 tools/qbe.py agent-note 20260611-234445-QBE-AUTO-002-cycle01 --role reviewer --message "Reviewer audit complete. Gate passed: python3 tools/qbe.py check, lake build, and lake build Tests all succeeded, with warnings only at RobinMatrix.lean:24186/24217 for the known diagnostic sorries. Blocking for theorem closure: oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3 and oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3 remain sorry-backed, and oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 / the first-case-study one-term theorem remain open. No oracle, H_W, R_y, LCU, block-projection, normalizer, product-to-coefficient, circuit-unitarity, block-correctness, or final-extraction flag was promoted in the audited packet. Current next lower leaf should be evaluated_backend_fold_leaf or a smaller evalWith semantic product bridge; do not reassign the compiled sparse-clean-to-fold bridge, slot vanish/support work, raw Coeff route, or H-free selected-slot diagnostic. Advisory: generated public-facing notes still contain main.tex line anchors; polished public docs should prefer GHL2025 theorem/equation/figure anchors plus arXiv citation."' in Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24186:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24217:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: Build completed successfully (16 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24186:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24217:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: Build completed successfully (18 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: **Findings**
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: - Blocking for theorem closure: [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24186) still has `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` proved by `sorry`, and [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24217) still has `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` proved by `sorry`. These are explicit diagnostic blockers, not hidden in prose, but they prevent claiming the evaluated backend fold or one-term theorem is closed.
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: **Findings**
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: - Blocking for theorem closure: [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24186) still has `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` proved by `sorry`, and [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24217) still has `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` proved by `sorry`. These are explicit diagnostic blockers, not hidden in prose, but they prevent claiming the evaluated backend fold or one-term theorem is closed.
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24186:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24217:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: Build completed successfully (16 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24186:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24217:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: Build completed successfully (18 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260611-191349.log`: [Fri Jun 12 00:05:45 JST 2026] theorem-closure batch finished; final_audit_exit=0 active_used=23119/21600
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: ## Reviewer Findings
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24330:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24361:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: Build completed successfully (16 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24330:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24361:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: Build completed successfully (18 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: **Findings**
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: Blocking for theorem closure, but expected in this packet: the two diagnostic `sorry`s remain at [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24330) and [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24361). The docs correctly treat them as diagnostic non-closure; no first-case theorem completion is claimed.
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: **Findings**
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: Blocking for theorem closure, but expected in this packet: the two diagnostic `sorry`s remain at [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24330) and [RobinMatrix.lean](Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/QuantumBlockEncoding/RobinMatrix.lean:24361). The docs correctly treat them as diagnostic non-closure; no first-case theorem completion is claimed.
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24330:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24361:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: Build completed successfully (16 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24330:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24361:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: Build completed successfully (18 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-20260613-014103.log`: [Sat Jun 13 06:36:25 JST 2026] theorem-closure batch finished; final_audit_exit=0 active_used=24919/21600
 
 ## Trial Memory Counts
 
 | total | compiled/pass | failed | blocked |
 |---:|---:|---:|---:|
-| 3713 | 501 | 38 | 9 |
+| 3904 | 539 | 39 | 30 |
 
 ## Current Active Proof Leaves
 
-- source_prepared_entry_leaf: theorem-facing source-prepared active field follows after the evaluated fold; status: open dependent target; Lean: `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`
-- evaluated_backend_fold_leaf: prove the evaluated signal-zero entry equals the backend branch fold; status: active leaf; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`
-- semantic_eval_product_bridge: prove a smaller evaluated matrix-product bridge feeding the evaluated fold; status: active smaller leaf; preferred; Lean: new local theorem in `QuantumBlockEncoding/RobinMatrix.lean` feeding the right side of `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_...
+- finite_projection_feeder: prove the active clean projection equals the backend fold at evaluated level; status: active lower leaf; open; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` or one strict finite theorem feeding it
+- source_contract_target_correction: source-prepared field is recovered only with `Uniform(H)` explicit and a finite projection feeder; status: active correction; compiled bridge reused; Lean: `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_i...
 
 ## GHL Contribution Todo
 
@@ -97,8 +96,8 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 2. For report/log reading rules, read `REPORTS.zh.md`.
 3. For a plain Chinese map of unfinished GHL source steps and failed Lean routes, read `paper-notes/GHL2025/markdown/unresolved-failures.zh.md`.
 4. For the Fig. 4 circuit image audit, read `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`.
-5. For human-readable cycle details, read `runs/20260611-234445-QBE-AUTO-002-cycle01/zh_summary.md`.
-6. For what the next agents should read, use `runs/20260611-234445-QBE-AUTO-002-cycle01/memory_digest.md` and `runs/20260611-234445-QBE-AUTO-002-cycle01/todo.md`.
+5. For human-readable cycle details, read `runs/20260613-054606-QBE-AUTO-002-cycle01/zh_summary.md`.
+6. For what the next agents should read, use `runs/20260613-054606-QBE-AUTO-002-cycle01/memory_digest.md` and `runs/20260613-054606-QBE-AUTO-002-cycle01/todo.md`.
 7. For machine retrieval, use `research-wiki/retrieval-index/QBE-AUTO-002.json`.
 8. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
 
@@ -120,11 +119,11 @@ Latest run: `runs/20260611-234445-QBE-AUTO-002-cycle01`
 
 ## Recent Run Directories
 
-- `runs/20260611-234445-QBE-AUTO-002-cycle01`
-- `runs/20260611-232725-QBE-AUTO-002-cycle01`
-- `runs/20260611-230354-QBE-AUTO-002-cycle01`
-- `runs/20260611-224727-QBE-AUTO-002-cycle01`
-- `runs/20260611-222311-QBE-AUTO-002-cycle01`
-- `runs/20260611-220058-QBE-AUTO-002-cycle01`
-- `runs/20260611-214323-QBE-AUTO-002-cycle01`
-- `runs/20260611-211850-QBE-AUTO-002-cycle01`
+- `runs/20260613-054606-QBE-AUTO-002-cycle01`
+- `runs/20260613-052836-QBE-AUTO-002-cycle01`
+- `runs/20260613-050943-QBE-AUTO-002-cycle01`
+- `runs/20260613-045026-QBE-AUTO-002-cycle01`
+- `runs/20260613-042537-QBE-AUTO-002-cycle01`
+- `runs/20260613-040302-QBE-AUTO-002-cycle01`
+- `runs/20260613-033618-QBE-AUTO-002-cycle01`
+- `runs/20260613-031339-QBE-AUTO-002-cycle01`

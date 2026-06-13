@@ -1,0 +1,25 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260613-033618-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "profile": "Lean implementation worker",
+  "leaf": "active_prepared_composition_interface_leaf",
+  "target": "(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).activeEntryStatement",
+  "equivalent_target": "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H oneTermRobinGamma3BoundarySparseCleanIndex_n3 oneTermRobinGamma3BoundarySparseCleanIndex_n3",
+  "source_correspondence_ok": "true_for_source_prepared_route; arbitrary-H reading remains a shape risk unless tied to the existing H_W clean-column contract",
+  "lean_parse_ok": "true_no_lean_edit",
+  "lean_build_ok": true,
+  "finite_matrix_ok": "not_closed; direct unfolded target remains the raw active/prepared clean-entry equality",
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": "not_promoted",
+  "normalizer_ok": "unchanged",
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "secondary_error_class_if_arbitrary_H_route_required": "shape_or_register_gap",
+  "failed_routes": [
+    "unfolded the active interface leaf to the exact prepared clean-entry equality; no proof term was available",
+    "zero-H syntactic counterprobe was terminated because raw Coeff reduction did not finish promptly",
+    "retired feeder/equivalence declarations were not reused as closure"
+  ],
+  "next_route": "prove a source-shaped finite CircuitMatrixSemantics composition lemma equating the active seven-gate signal-zero entry with the prepared H_W^(kappa)^dagger * U * H_W^(kappa) clean entry; do not add another wrapper or use the retired H-free diagnostic fold"
+}

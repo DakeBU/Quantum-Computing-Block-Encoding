@@ -1,11 +1,10 @@
 {
-  "cycle": 1,
+  "cycle": 12,
   "dynamic_leaf_queue": [
-    "source_prepared_entry_leaf: theorem-facing source-prepared active field follows after the evaluated fold; status: open dependent target; Lean: `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`",
-    "evaluated_backend_fold_leaf: prove the evaluated signal-zero entry equals the backend branch fold; status: active leaf; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`",
-    "semantic_eval_product_bridge: prove a smaller evaluated matrix-product bridge feeding the evaluated fold; status: active smaller leaf; preferred; Lean: new local theorem in `QuantumBlockEncoding/RobinMatrix.lean` feeding the right side of `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_..."
+    "finite_projection_feeder: prove the active clean projection equals the backend fold at evaluated level; status: active lower leaf; open; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` or one strict finite theorem feeding it",
+    "source_contract_target_correction: source-prepared field is recovered only with `Uniform(H)` explicit and a finite projection feeder; status: active correction; compiled bridge reused; Lean: `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_i..."
   ],
-  "generated": "2026-06-12 00:05:39",
+  "generated": "2026-06-13 13:19:00",
   "ghl_contributions": [
     {
       "depends_on_external_technical_lemma": true,
@@ -178,8 +177,8 @@
     }
   ],
   "lean_sorries": [
-    "QuantumBlockEncoding/RobinMatrix.lean:24190:  sorry",
-    "QuantumBlockEncoding/RobinMatrix.lean:24220:  sorry"
+    "QuantumBlockEncoding/RobinMatrix.lean:24334:  sorry",
+    "QuantumBlockEncoding/RobinMatrix.lean:24364:  sorry"
   ],
   "mode": "faithfulPaper",
   "next_lower_tasks": [
@@ -192,6 +191,11 @@
       "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
       "must_write": "Lean declaration plus trial-log verifier-feedback fields",
       "role": "lower-2-lean-implementation-worker"
+    },
+    {
+      "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+      "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
+      "role": "lower-3-necessary-condition-verifier"
     }
   ],
   "open_external_technical_lemma_obligations": [
@@ -440,239 +444,239 @@
     }
   ],
   "open_obligation_signals": [
-    "evaluated backend fold: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; class QBE-local finite projection/backend theorem; status active Lean leaf; not proved",
-    "active/prepared sparse-clean equality: Lean left side of `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 H env hUniform`; class QBE-local finite matrix semantics plus explicit clean-column contract for recovery; status active equivalent leaf; not proved",
-    "post-feeder sparse-clean to fold bridge: Lean `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 H env hUniform`; class QBE-local evalWith bridge under external clean-column contract; status compiled bridge; retired as lower target",
-    "source-prepared projection active field: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`; class QBE-local theorem-facing projection bridge; status open dependent target",
-    "diagnostic raw constructor route: Lean `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class diagnostic/backlog; status still `sorry`-guarded; do not assign as source closure"
+    "finite projection feeder: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, or one strict finite `CircuitMatrixSemantics`/`Coeff.evalWith` theorem feeding it; class QBE-local finite projection/backend fold theorem tied to GHL2025 Eq. `ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Definition `def:block-encoding`; status active lower2 target; open",
+    "source-prepared recovery under `Uniform(H)`: Lean `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; class compiled route consuming the finite feeder under the explicit external clean-column contract; status compiled conditional; not closure without `hFold`",
+    "arbitrary-`H` source-prepared field: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`; `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env`; `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`; class needs a true all-`H` finite composition theorem or clean-column independence theorem; status retired as default lower target",
+    "all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024; status contract-only; allowed only as explicit `hUniform`; not formalized here",
+    "direct H-free evaluated-fold route: Lean diagnostic `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class diagnostic route with register-shape drift risk; status rejected as default lower target; do not assign"
   ],
   "recent_proof_attempts": [
-    "proof-attempts/QBE-AUTO-002/post-lower2-evaluated-fold-semantic-bridge-middle-packet-20260611-2352.md",
-    "proof-attempts/QBE-AUTO-002/evaluated-backend-fold-lower2-blocked-20260611-2348.md",
+    "proof-attempts/QBE-AUTO-002/finite-projection-feeder-final-middle-packet-20260613-0624.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-memory-retrieval-middle-packet-20260613-0614.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-uniform-target-correction-middle-packet-20260613-0606.md",
     "proof-attempts/QBE-AUTO-002/unitary-fold-leaf-dag-addendum-20260610-1156-lower1.md",
-    "proof-attempts/QBE-AUTO-002/post-bridge-evaluated-fold-middle-packet-20260611-2312.md",
-    "proof-attempts/QBE-AUTO-002/post-feeder-frontier-repair-middle-packet-20260611-2258.md",
-    "proof-attempts/QBE-AUTO-002/post-feeder-active-prepared-composition-middle-packet-20260611-2230.md",
-    "proof-attempts/QBE-AUTO-002/prepared-sandwich-semantics-middle-packet-20260611-2208.md",
-    "proof-attempts/QBE-AUTO-002/post-active-selected-slot-bridge-middle-packet-20260611-2148.md",
-    "proof-attempts/QBE-AUTO-002/post-selected-slot-active-uncast-middle-packet-20260611-2129.md",
-    "proof-attempts/QBE-AUTO-002/post-slot-six-active-uncast-middle-packet-20260611-2038.md"
+    "proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-lower2-blocked-20260613-054356.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-lower3-necessary-condition-20260613-054209.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-contract-clarification-middle-packet-20260613-0534.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-lower3-necessary-condition-20260613-052520.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-middle-packet-20260613-0516.md",
+    "proof-attempts/QBE-AUTO-002/evaluated-backend-fold-lower2-blocked-20260613-050601.md"
   ],
   "recent_trials": [
     {
-      "artifact": "runs/20260611-234445-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "accepted",
+      "timestamp": "2026-06-13 13:18:49",
+      "trial_id": "20260613-131849-QBE-AUTO-002-upper-handoff"
+    },
+    {
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01",
       "kind": "build",
       "lean_gate": "pass",
       "role": "reviewer",
       "status": "compiled",
-      "timestamp": "2026-06-12 00:05:38",
-      "trial_id": "20260611-234445-QBE-AUTO-002-cycle01-build-gate"
+      "timestamp": "2026-06-13 06:36:14",
+      "trial_id": "20260613-054606-QBE-AUTO-002-cycle01-build-gate"
     },
     {
-      "artifact": "runs/20260611-234445-QBE-AUTO-002-cycle01/40_reviewer.md",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01/40_reviewer.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "reviewer",
       "status": "accepted",
-      "timestamp": "2026-06-12 00:05:37",
-      "trial_id": "20260611-234445-QBE-AUTO-002-cycle01-40_reviewer"
+      "timestamp": "2026-06-13 06:36:13",
+      "trial_id": "20260613-054606-QBE-AUTO-002-cycle01-40_reviewer"
     },
     {
-      "artifact": "runs/20260611-234445-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01",
       "kind": "handoff",
       "lean_gate": "",
       "role": "reviewer",
       "status": "queued",
-      "timestamp": "2026-06-12 00:05:04",
-      "trial_id": "20260612-000504-QBE-AUTO-002-reviewer-handoff"
+      "timestamp": "2026-06-13 06:35:44",
+      "trial_id": "20260613-063544-QBE-AUTO-002-reviewer-handoff"
     },
     {
-      "artifact": "runs/20260611-234445-QBE-AUTO-002-cycle01/20_middle_formalizer.md",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01/20_middle_formalizer.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "middle",
       "status": "accepted",
-      "timestamp": "2026-06-12 00:01:08",
-      "trial_id": "20260611-234445-QBE-AUTO-002-cycle01-20_middle_formalizer"
+      "timestamp": "2026-06-13 06:32:13",
+      "trial_id": "20260613-054606-QBE-AUTO-002-cycle01-20_middle_formalizer"
     },
     {
-      "artifact": "runs/20260611-234445-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01",
       "kind": "handoff",
       "lean_gate": "",
       "role": "middle",
       "status": "queued",
-      "timestamp": "2026-06-11 23:59:56",
-      "trial_id": "20260611-235956-QBE-AUTO-002-middle-handoff"
+      "timestamp": "2026-06-13 06:31:27",
+      "trial_id": "20260613-063127-QBE-AUTO-002-middle-handoff"
     },
     {
-      "artifact": "verifier-feedback/QBE-AUTO-002/evaluated-backend-fold-lower2-20260611-2348.json",
-      "kind": "compression",
-      "lean_gate": "",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-11 23:59:56",
-      "trial_id": "20260611-235956-QBE-AUTO-002-middle-compression"
-    },
-    {
-      "artifact": "runs/20260611-234445-QBE-AUTO-002-cycle01/10_upper_director.md",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01/23_middle_report_export.md",
       "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
+      "role": "middle",
       "status": "accepted",
-      "timestamp": "2026-06-11 23:49:34",
-      "trial_id": "20260611-234445-QBE-AUTO-002-cycle01-10_upper_director"
+      "timestamp": "2026-06-13 06:20:48",
+      "trial_id": "20260613-054606-QBE-AUTO-002-cycle01-23_middle_report_export"
     },
     {
-      "artifact": "runs/20260611-234445-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01",
       "kind": "handoff",
       "lean_gate": "",
-      "role": "upper",
+      "role": "middle",
       "status": "queued",
-      "timestamp": "2026-06-11 23:47:48",
-      "trial_id": "20260611-234748-QBE-AUTO-002-upper-handoff"
+      "timestamp": "2026-06-13 06:20:19",
+      "trial_id": "20260613-062019-QBE-AUTO-002-middle-handoff"
     },
     {
-      "artifact": "runs/20260611-234445-QBE-AUTO-002-cycle01",
-      "kind": "plan",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01/22_middle_memory_retrieval.md",
+      "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
-      "status": "queued",
-      "timestamp": "2026-06-11 23:44:45",
-      "trial_id": "20260611-234445-QBE-AUTO-002-cycle01-prompt-deck"
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-13 06:17:24",
+      "trial_id": "20260613-054606-QBE-AUTO-002-cycle01-22_middle_memory_retrieval"
     },
     {
-      "artifact": "runs/20260611-232725-QBE-AUTO-002-cycle01",
-      "kind": "build",
+      "artifact": "runs/20260613-054606-QBE-AUTO-002-cycle01",
+      "kind": "handoff",
       "lean_gate": "pass",
-      "role": "reviewer",
-      "status": "compiled",
-      "timestamp": "2026-06-11 23:44:42",
-      "trial_id": "20260611-232725-QBE-AUTO-002-cycle01-build-gate"
+      "role": "middle",
+      "status": "queued",
+      "timestamp": "2026-06-13 06:16:44",
+      "trial_id": "20260613-061644-QBE-AUTO-002-middle-handoff"
     }
   ],
   "recent_verifier_feedback": [
     {
       "block_entry_ok": false,
       "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": "partial_backend_fold_collapses_to_slot_2; active_eval_product_bridge_absent",
-      "leaf": "evaluated_backend_fold_leaf",
-      "next_route": "prove an evalWith-level active product/backend fold bridge using Matrix.evalWith_mul_apply or path-isolation helpers; keep hUniform explicit if using the source-prepared sparse-clean route",
+      "error_class": "source_translation_gap",
+      "finite_matrix_ok": "not_checked_by_middle; recent lower2/lower3 feedback shows the arbitrary-H field depends on the prepared clean-column slots unless a true independence theorem is proved",
+      "leaf": "finite_projection_feeder",
+      "next_route": "Lower2 proves the finite projection feeder for oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env, or one strict theorem feeding it, and the result is consumed only through the explicit hUniform source-prepared bridge.",
       "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-11 23:59:56",
-      "trial_id": "20260611-235956-QBE-AUTO-002-middle-compression"
+      "status": "queued",
+      "timestamp": "2026-06-13 06:16:44",
+      "trial_id": "20260613-061644-QBE-AUTO-002-middle-handoff"
     },
     {
       "block_entry_ok": false,
       "closed_theorem_ok": false,
-      "error_class": "shape_or_register_gap",
-      "finite_matrix_ok": "partial_backend_fold_collapses_to_slot_2",
-      "leaf": "unitary_fold_leaf",
-      "next_route": "middle should refresh the active leaf around a source-backed prepared projection theorem or supply a semantic evalWith associativity bridge before another lower proof attempt on the H-free active [0,0] fold",
-      "role": "lower",
-      "status": "failed",
-      "timestamp": "2026-06-11 23:43:33",
-      "trial_id": "20260611-234333-QBE-AUTO-002-lower-attempt"
-    },
-    {
-      "block_entry_ok": "false_evaluated_backend_fold_still_open",
-      "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": "partial_bridge_compiled_evaluated_fold_open",
-      "leaf": "evaluated_backend_fold_leaf",
-      "next_route": "prove oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env or a smaller evaluated matrix-entry lemma feeding it; keep hUniform explicit if using the sparse-clean route",
+      "error_class": "source_translation_gap",
+      "finite_matrix_ok": "not_checked_by_middle; lower2/lower3 feedback shows arbitrary-H closure needs true independence or explicit Uniform(H)",
+      "leaf": "source_contract_target_correction",
+      "next_route": "Lower2 proves one finite projection feeder for oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env, or a strict theorem feeding it, and the feeder is consumed only through oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold.",
       "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-11 23:36:29",
-      "trial_id": "20260611-233629-QBE-AUTO-002-middle-attempt"
-    },
-    {
-      "block_entry_ok": "false_active_prepared_equality_still_open",
-      "closed_theorem_ok": "true_for_obstruction_false_for_target",
-      "error_class": "shape_or_register_gap",
-      "finite_matrix_ok": "partial_obstruction_compiled",
-      "leaf": "active_prepared_composition_leaf",
-      "next_route": "supply a source-backed prepared H_W composition theorem or keep the concrete H_W semantics gap explicit; do not close arbitrary-H equality by assumption",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-11 23:26:56",
-      "trial_id": "20260611-232656-QBE-AUTO-002-lower-attempt"
-    },
-    {
-      "block_entry_ok": "false_active_prepared_equality_and_evaluated_fold_still_open",
-      "closed_theorem_ok": "true_for_bridge_false_for_target",
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": "partial_bridge_only",
-      "leaf": "active_prepared_composition_leaf",
-      "next_route": "prove oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env or the exact unwrapped active/prepared sparse-clean equality directly without adding assumptions",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-11 23:18:18",
-      "trial_id": "20260611-231818-QBE-AUTO-002-middle-attempt"
-    },
-    {
-      "block_entry_ok": "partial",
-      "closed_theorem_ok": true,
-      "error_class": null,
-      "finite_matrix_ok": true,
-      "leaf": "prepared_sandwich_semantics_gap_feeder",
-      "next_route": "prove active signal-zero entry equals the prepared sparse clean entry, then recover the prepared-sandwich eval statement through the new feeder",
-      "role": "lower",
-      "status": "compiled",
-      "timestamp": "2026-06-11 22:20:51",
-      "trial_id": "20260611-222051-QBE-AUTO-002-lower-attempt"
+      "status": "queued",
+      "timestamp": "2026-06-13 06:10:47",
+      "trial_id": "20260613-061047-QBE-AUTO-002-middle-handoff"
     },
     {
       "block_entry_ok": false,
       "closed_theorem_ok": false,
-      "error_class": "shape_or_register_gap",
-      "finite_matrix_ok": "partial_diagnostic_obstruction_compiled",
-      "leaf": "active_selected_slot_eval_comparison",
-      "next_route": "reroute to prepared-sandwich semantics gap unless a direct source-faithful evalGateMatrices path proves ActiveSelectedSlotEvalComparison",
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "not_checked_by_lower1",
+      "leaf": "source_prepared_finite_composition_leaf",
+      "next_route": "lower2 proves SourcePreparedField(H, env), UncastActivePrepared(H, env), CachedPreparedEntry(H), the unwrapped sparse-clean evalWith equality, or one strict finite source-shaped feeder; return to middle if Uniform(H) is required",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-13 05:45:14",
+      "trial_id": "20260613-054514-QBE-AUTO-002-lower-attempt"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "source_translation_gap",
+      "finite_matrix_ok": "prepared_clean_entry_depends_on_seven_H_clean_column_slots",
+      "leaf": "source_prepared_finite_composition_leaf",
+      "next_route": "Middle should either restate the source-prepared active field with Uniform(H) explicit, or assign a genuine finite composition/independence theorem that proves the arbitrary-H target without using the downstream hUniform bridge.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-13 05:44:43",
+      "trial_id": "20260613-054443-QBE-AUTO-002-lower-attempt"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "shape_check_passed_no_counterexample; exact finite block-entry equality not proved",
+      "leaf": "source_prepared_finite_composition_leaf",
+      "next_route": "Prove SourcePreparedField(H, env), one accepted equivalent active/prepared target, the cached prepared-entry target, or one strict finite source-shaped theorem feeding those statements. If Uniform(H) is required for arbitrary H, ask middle to restate the contract-specific target rather than adding a lower-local hypothesis.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-13 05:44:04",
+      "trial_id": "20260613-054404-QBE-AUTO-002-lower-attempt"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "not_closed; lower3_source_shape_checks_remain_partial",
+      "leaf": "source_prepared_finite_composition_leaf",
+      "next_route": "lower2 proves SourcePreparedField(H, env), UncastActivePrepared(H, env), CachedPreparedEntry(H), or one strict finite source-shaped theorem feeding those statements without adding Uniform(H) to the arbitrary-H target",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-13 05:39:19",
+      "trial_id": "20260613-053919-QBE-AUTO-002-middle-attempt"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": "true_for_transport_leaf_false_for_active_field",
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "clean_column_transport_compiled",
+      "leaf": "source_prepared_finite_composition_leaf",
+      "next_route": "prove SourcePreparedField(H, env) or cached active/prepared entry equality; if Uniform(H) is required for arbitrary H, ask middle for contract-specific restatement",
       "role": "lower",
       "status": "compiled",
-      "timestamp": "2026-06-11 22:00:08",
-      "trial_id": "20260611-220008-QBE-AUTO-002-lower-attempt"
+      "timestamp": "2026-06-13 05:27:32",
+      "trial_id": "20260613-052732-QBE-AUTO-002-lower-attempt"
     },
     {
-      "block_entry_ok": "partial",
-      "closed_theorem_ok": true,
-      "error_class": null,
-      "finite_matrix_ok": true,
-      "leaf": "active_selected_slot_eval_comparison_bridge",
-      "next_route": "prove ActiveSelectedSlotEvalComparison itself, then recover evaluated backend fold through oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3",
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "source_translation_gap",
+      "finite_matrix_ok": "source_shape_checks_passed_but_arbitrary_H_not_closed",
+      "leaf": "source_prepared_finite_composition_leaf",
+      "next_route": "Lower2 should prove SourcePreparedField(H, env), the cached PreparedCircuitEntryTarget equality, or one strict finite composition theorem directly feeding those statements. If the proof only becomes source-backed under Uniform(H), middle should restate the target with Uniform(H) explicit or require an independence theorem; lower should not add a local hUniform hypothesis.",
       "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-11 21:41:30",
-      "trial_id": "20260611-214130-QBE-AUTO-002-lower-attempt"
+      "status": "blocked",
+      "timestamp": "2026-06-13 05:27:29",
+      "trial_id": "20260613-052729-QBE-AUTO-002-lower-attempt"
     },
     {
-      "block_entry_ok": "false_open_active_entry_selected_slot_comparison",
+      "block_entry_ok": false,
       "closed_theorem_ok": false,
       "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": "partial_selected_slot2_fold_feeder_now_compiled",
-      "leaf": "post_slot6_active_uncast_source_prepared_design_concurrency_note",
-      "next_route": "compare active uncast evalGateMatrices [0,0] entry with selected slot2 contribution",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-11 21:18:05",
-      "trial_id": "20260611-211805-QBE-AUTO-002-lower-attempt"
+      "finite_matrix_ok": "partial_lower3_source_shape_checks_passed",
+      "leaf": "source_prepared_finite_composition_leaf",
+      "next_route": "prove SourcePreparedField(H, env), an accepted active/prepared target, the cached prepared-entry equality, or one strict finite source-shaped feeder; use source_translation_gap if Uniform(H) is required for arbitrary H",
+      "role": "middle",
+      "status": "queued",
+      "timestamp": "2026-06-13 05:21:42",
+      "trial_id": "20260613-052142-QBE-AUTO-002-middle-handoff"
     },
     {
-      "block_entry_ok": "false_open_active_prepared_composition_field",
+      "block_entry_ok": false,
       "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": "partial_all_nonselected_eval_vanish_facts_compiled_selected_slot2_compiled",
-      "leaf": "post_slot6_active_uncast_source_prepared_design",
-      "next_route": "prove source-prepared evaluated active leaf or strict selected-slot/active-side evaluated feeder",
+      "error_class": "source_translation_gap",
+      "finite_matrix_ok": "partial_source_shape_checks_passed",
+      "leaf": "source_prepared_finite_composition_leaf",
+      "next_route": "Lower2 should prove SourcePreparedField(H, env), the cached PreparedCircuitEntryTarget equality, the uncast active/prepared sparse clean-entry evalWith equality, or one strict finite composition theorem directly feeding those statements. If the proof needs only the paper clean-column contract, middle should restate the source-backed target with hUniform explicit rather than adding a lower-edit hypothesis.",
       "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-11 21:16:08",
-      "trial_id": "20260611-211608-QBE-AUTO-002-lower-attempt"
+      "status": "blocked",
+      "timestamp": "2026-06-13 05:09:02",
+      "trial_id": "20260613-050902-QBE-AUTO-002-lower-attempt"
     }
   ],
-  "run_dir": "runs/20260611-234445-QBE-AUTO-002-cycle01",
+  "run_dir": "runs/20260613-054606-QBE-AUTO-002-cycle01",
   "source_main_tex": "outer_papers/quantum/GHL2025/main.tex",
   "stage": "Stage 2 DAG proof discharge, with faithful transcript checks still active",
   "task_id": "QBE-AUTO-002",

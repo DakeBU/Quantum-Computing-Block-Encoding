@@ -11,27 +11,38 @@ Build gate after this export:
 python3 tools/qbe.py check
 ```
 
-## Current Frontier: Post-Feeder Sparse-Clean To Evaluated Fold
+## Current Frontier: Finite Projection Feeder Under Explicit Uniform Contract
 
-The current Lean bridge
+Definitions:
+
+- `Uniform(H)` is
+  `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+- `EvaluatedBackendFold(env)` is
+  `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`.
+- `SourcePreparedField(H, env)` is
+  `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`.
+
+The active export frontier is `finite_projection_feeder`: prove
+`EvaluatedBackendFold(env)` or one strict finite theorem feeding it, then
+consume the result through
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+H env hUniform hFold`.
+
+The arbitrary-`H` `SourcePreparedField(H, env)` target is retired as the
+default lower target unless a true all-`H` composition or clean-column
+independence theorem is assigned.  The compiled bridge
 `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3`
-states that, under the existing
-`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`
-contract, the unwrapped active/prepared sparse-clean `evalWith` equality is
-equivalent to `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`.
-
-This bridge is compiled route wiring only. It does not prove the
-active/prepared equality, the evaluated backend fold, the final one-term Robin
-block-encoding theorem, or any external sparse-preparation/oracle primitive.
-The next proof node is the evaluated backend fold itself or the exact
-unwrapped sparse-clean equality.
+is route wiring only; it does not prove the active/prepared equality, the
+evaluated backend fold, the final one-term Robin block-encoding theorem, or any
+external sparse-preparation/oracle primitive.
 
 | Item | Lean declaration or target | Status |
 |---|---|---|
-| post-feeder sparse-clean to fold bridge | `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 H env hUniform` | compiled; retired as a lower target |
-| active/prepared sparse-clean equality | active seven-gate `[0,0]` evaluated entry equals `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H` at the clean-clean sparse index | active equivalent leaf; not proved |
-| evaluated backend fold | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | active equivalent leaf; not proved |
-| external sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | contract-only; no Shukla--Vedula formalization here |
+| finite projection feeder | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, or one strict finite theorem feeding it | active lower2 leaf; open |
+| source-prepared recovery | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold` | compiled conditional route; not closure without `hFold` |
+| arbitrary-`H` source-prepared field | `SourcePreparedField(H, env)` | retired as default lower target |
+| post-feeder sparse-clean to fold bridge | `oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval_iff_evaluatedBackendFold_n3 H env hUniform` | compiled route wiring; retired as a lower target |
+| external sparse preparation | `Uniform(H)` | contract-only; no Shukla--Vedula formalization here |
 
 ## Compiled Blocks Exported Here
 

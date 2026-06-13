@@ -19982,6 +19982,54 @@ theorem
   rfl
 
 /--
+The prepared clean-clean sparse entry depends only on the seven sparse-slot
+clean-column amplitudes of `H`.
+
+This is the finite independence fact needed by the source-translation route:
+entries outside the source clean column cannot affect the selected prepared
+sandwich entry.  It does not prove the active/prepared composition field.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_congr_cleanColumn_n3
+    (H K : Matrix 8 8 Coeff)
+    (hClean : ∀ s : Fin 7,
+      H (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s)
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 =
+        K (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s)
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) :
+    oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3 =
+      oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 K
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3
+        oneTermRobinGamma3BoundarySparseCleanIndex_n3 := by
+  unfold oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3
+  unfold oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3
+  congr 1
+  funext s
+  rw [hClean s]
+
+/--
+The raw prepared-sandwich field is exactly the prepared sparse matrix
+clean-entry equality.
+
+This is a source-shaped feeder for the active leaf: a future proof of the
+prepared clean-entry equality now closes the raw prepared-sandwich field
+directly, without routing through the retired `hUniform` equivalence or the
+standalone H-free backend fold.
+-/
+theorem
+    oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_preparedCleanEntry_n3
+    (H : Matrix 8 8 Coeff) :
+    (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 := by
+  rw [oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_statement_n3]
+  rw [oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_n3]
+
+/--
 Composite prepared sparse-register gate for the focused boundary packet.
 
 This is a local semantics object for the source-side prepared product
@@ -20271,6 +20319,33 @@ theorem
   exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, hclean,
     hsemantics, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
     rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Focused obstruction for the current prepared clean-entry leaf.
+
+The theorem gives lower workers a compiled source-shaped handle for the exact
+`PreparedCleanEntry(H)` proposition carried by
+`oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3`, while recording
+that the active/prepared equality itself is still unproved.  It does not assert
+the missing composition field.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedCleanEntryLeaf_obstruction_n3
+    (H : Matrix 8 8 Coeff) :
+    let interface :=
+      oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3 H
+    (interface.activeEntryToPreparedEntryStatement ↔
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) ∧
+      interface.activePreparedEntryEqualityProved = false ∧
+      interface.requiredActivePreparedEntryTheorem =
+        "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H 0 0" ∧
+      interface.exactRemainingObstruction =
+        "the prepared sparse-register sandwich matrix has a composite CircuitMatrixSemantics object whose clean entry evaluates to the prepared matrix entry; QBE still lacks the theorem equating the active signal-zero entry with that prepared entry" := by
+  dsimp [oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3]
+  exact ⟨Iff.rfl, rfl, rfl, rfl⟩
 
 /-- Full active matrix dimension for the focused `n = 3` boundary packet. -/
 abbrev oneTermRobinGamma3BoundaryActiveFullDim_n3 : Nat :=
@@ -20935,6 +21010,27 @@ theorem
     exact
       oneTermRobinGamma3BoundaryActivePreparedEntryTarget_of_unitaryEntryFold_n3
         H hUniform hFold
+
+/--
+The cached active/prepared entry target is the same source-prepared raw
+sandwich field under the existing clean-column contract.
+
+This is route wiring for the current source-prepared leaf only.  It does not
+prove the active/prepared equality, the backend fold, or any theorem-facing
+semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_rawEntryPreparedSandwichField_n3
+    (H : Matrix 8 8 Coeff)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement ↔
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement := by
+  exact
+    (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_iff_unitaryEntryFold_n3
+      H hUniform).trans
+      (oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_unitaryEntryFold_n3
+        H hUniform).symm
 
 /--
 The named active/prepared composition-field packet carries the same remaining
@@ -22106,6 +22202,54 @@ theorem
     (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement :=
   (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastActivePreparedCompositeEval_n3
     H env).2 hUncast
+
+/--
+The source-prepared active field is stable under changing entries of `H`
+outside the seven sparse-register clean-column slots.
+
+This is a source-shaped transport lemma for the current finite-composition
+frontier.  It does not prove the active/prepared equality for arbitrary `H`;
+it only records that once the field is known for one preparation matrix, the
+same field follows for any matrix with the same source clean column.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_congr_cleanColumn_n3
+    (H K : Matrix 8 8 Coeff) (env : String → Rat)
+    (hClean : ∀ s : Fin 7,
+      H (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s)
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3 =
+        K (oneTermRobinGamma3BoundarySparseSlotIndex_n3 s)
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+    (hK :
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 K env).activeToPreparedSingletonEvalStatement) :
+    (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement := by
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3,
+    oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3] at hK ⊢
+  calc
+    Coeff.evalWith env
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+        Coeff.evalWith env
+          ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 K).matrix
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) := hK
+    _ = Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 K
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+          oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+            K env
+    _ = Coeff.evalWith env
+          (oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) := by
+          rw [oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_cleanEntry_congr_cleanColumn_n3
+            K H (by intro s; exact (hClean s).symm)]
+    _ = Coeff.evalWith env
+          ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3
+            oneTermRobinGamma3BoundarySparseCleanIndex_n3) :=
+          (oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_cleanEntryEval_n3
+            H env).symm
 
 /--
 Under the all-slot `H_W^(kappa)` clean-column contract, the active-to-prepared

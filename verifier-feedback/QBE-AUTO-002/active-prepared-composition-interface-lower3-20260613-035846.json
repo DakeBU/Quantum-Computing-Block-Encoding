@@ -1,0 +1,60 @@
+{
+  "task_id": "QBE-AUTO-002",
+  "run_id": "20260613-033618-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "lower_profile": "necessary-condition verifier",
+  "mode": "faithfulPaper",
+  "timestamp_local": "2026-06-13T03:58:46+09:00",
+  "leaf": "active_prepared_composition_interface_leaf",
+  "active_statement": "(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).activeEntryStatement",
+  "equivalent_statements_checked": [
+    "(oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3 H).interfaceStatement",
+    "(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement",
+    "oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry = oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H oneTermRobinGamma3BoundarySparseCleanIndex_n3 oneTermRobinGamma3BoundarySparseCleanIndex_n3",
+    "(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).matrixEntryEqualityStatement"
+  ],
+  "diagnostic": {
+    "kind": "Lean stdin necessary-condition check",
+    "command": "lake env lean --stdin",
+    "checks": [
+      "field.activeEntryStatement iff field.interfaceStatement",
+      "field.activeEntryStatement iff direct prepared clean-entry equality",
+      "field.activeEntryStatement iff cached PreparedCircuitEntryTarget matrix-entry equality",
+      "active/prepared composition field keeps preparedCompositionFieldAvailable and activePreparedEntryEqualityProved false",
+      "active seven-gate placeholder list still excludes H_W^(kappa) and its dagger"
+    ]
+  },
+  "source_correspondence_ok": true,
+  "source_correspondence_detail": "The active leaf keeps the GHL source-prepared route: active signal-zero entry is compared with the prepared H_W^(kappa)^dagger * U * H_W^(kappa) clean-clean entry. The standalone H-free backend-slot route remains rejected for source closure.",
+  "finite_matrix_ok": true,
+  "finite_matrix_detail": "Finite active/prepared dimensions, clean indices, sparse clean entry, and wrapper equivalences type-check in Lean. This is a necessary shape check only; it is not a proof of the active/prepared matrix-entry equality.",
+  "block_entry_ok": false,
+  "block_entry_detail": "The exact block-entry equality remains open: no theorem proves active signal-zero entry equals oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3 H clean clean.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "closed_theorem_ok": false,
+  "rejected_routes": [
+    {
+      "route": "compiled obstruction handle or feeder rediscovery",
+      "reason": "stale lower target; only repackages the same missing equality"
+    },
+    {
+      "route": "standalone H-free active slot to gamma3 backend fold",
+      "reason": "shape_or_register_gap unless recovered through the source-prepared active/prepared interface"
+    }
+  ],
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Prove a QBE-local finite CircuitMatrixSemantics composition theorem for the active seven-gate signal-zero entry and the prepared H_W^(kappa)^dagger * U * H_W^(kappa) clean entry; do not reassign obstruction handles, feeder equivalences, or standalone H-free diagnostics.",
+  "gate": {
+    "python3_tools_qbe_check": true,
+    "lake_build": true,
+    "lake_build_tests": true,
+    "known_warnings": [
+      "QuantumBlockEncoding/RobinMatrix.lean:24254:8 declaration uses sorry",
+      "QuantumBlockEncoding/RobinMatrix.lean:24285:8 declaration uses sorry"
+    ]
+  },
+  "promoted_flags": []
+}
