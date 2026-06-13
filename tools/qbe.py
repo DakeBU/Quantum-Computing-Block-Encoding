@@ -1147,12 +1147,17 @@ def extract_preferred_section(text: str, heading_patterns: list[str]) -> str:
                 start, section = item
                 lowered = section.lower()
                 value = 0
+                # A task file keeps historical directives for audit.  The
+                # current directive is the fresh top section; do not let older
+                # sections with legacy keywords outrank it.
+                if start < 2000:
+                    value += 10000
+                if "source_prepared_projection_summation_correction" in section:
+                    value += 2000
                 if "finite_projection_feeder" in section or "final finite projection" in lowered:
                     value += 1000
                 if "active lower2 target" in lowered:
                     value += 100
-                if start < 2000:
-                    value += 50
                 return (value, -start)
 
             return max(sections, key=score)[1]
@@ -1329,9 +1334,16 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
     priority_sections = [
         section
         for section in sections
+        if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
+        and "source_prepared_projection_summation_correction" in section
+    ]
+    if not priority_sections:
+        priority_sections = [
+        section
+        for section in sections
         if "Updated proof-DAG frontier" in section
         and "finite_projection_feeder" in section
-    ]
+        ]
     if not priority_sections:
         priority_sections = [
         section
@@ -1418,6 +1430,11 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
     section = priority_sections[-1]
     rows: list[tuple[int, str]] = []
     priority = {
+        "source_prepared_projection_summation_correction": 0,
+        "source_prepared_sparse_clean_feeder": 1,
+        "evaluated_backend_fold_recovery": 2,
+        "active_col0_diagnostic_bridge": 8,
+        "strict_hfree_feeder_retirement": 10,
         "active_selected_slot_eval_comparison_leaf": 0,
         "finite_projection_feeder": 0,
         "source_contract_target_correction": 1,

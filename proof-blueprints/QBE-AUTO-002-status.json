@@ -2,12 +2,26 @@
   "blueprint_path": "Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/proof-blueprints/QBE-AUTO-002.md",
   "changed_files": [
     "MANIFEST.md",
-    "QuantumBlockEncoding/Automation.lean",
+    "QuantumBlockEncoding/RobinMatrix.lean",
     "README.md",
-    "docs/agent_blueprint_formalization.md",
+    "conversion-windows/QBE-AUTO-002.md",
     "docs/pro_prompt_policy.md",
-    "docs/prompts/",
-    "proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md",
+    "paper-notes/project-paper/cycle-updates/20260613-155325-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260613-155325-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260613-161435-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260613-161435-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260613-163714-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260613-163714-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/latest.md",
+    "paper-notes/project-paper/cycle-updates/latest.tex",
+    "proof-attempts/QBE-AUTO-002/finite-path-feeder-lower1-dag-20260613-160936.md",
+    "proof-attempts/QBE-AUTO-002/finite-path-feeder-lower2-index-split-20260613-155325.md",
+    "proof-attempts/QBE-AUTO-002/finite-path-feeder-lower2-tailkill-normalform-20260613-161435.md",
+    "proof-attempts/QBE-AUTO-002/finite-path-feeder-lower3-necessary-condition-20260613-160804.md",
+    "proof-attempts/QBE-AUTO-002/finite-path-feeder-middle-packet-20260613-1600.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-packet-20260613-163714.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-packet-20260613-1621.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-lower1-20260613-163053.md",
     "proof-blueprints/QBE-AUTO-002-status.json",
     "proof-blueprints/QBE-AUTO-002-status.md",
     "proof-blueprints/QBE-AUTO-002.md",
@@ -15,9 +29,14 @@
     "research-wiki/retrieval-index/QBE-AUTO-002.json",
     "tasks/QBE-AUTO-002.md",
     "tools/qbe.py",
-    "tools/qbe_run_theorem_closure.sh",
-    "verifier-feedback/QBE-AUTO-002-current-ghl-feedback.md",
-    "verifier-feedback/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.json"
+    "verifier-feedback/QBE-AUTO-002/finite-path-feeder-lower1-20260613-160936.json",
+    "verifier-feedback/QBE-AUTO-002/finite-path-feeder-lower2-20260613-155325.json",
+    "verifier-feedback/QBE-AUTO-002/finite-path-feeder-lower2-tailkill-20260613-161435.json",
+    "verifier-feedback/QBE-AUTO-002/finite-path-feeder-lower3-20260613-160804.json",
+    "verifier-feedback/QBE-AUTO-002/finite-path-feeder-middle-20260613-1600.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-20260613-163714.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-20260613-1621.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-projection-summation-lower3-20260613-163030.json"
   ],
   "controls_absorbed": [
     "ASTIS-style compact context/status artifacts for long runs",
@@ -27,226 +46,227 @@
   ],
   "conversion_window": "Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/conversion-windows/QBE-AUTO-002.md",
   "dynamic_leaf_queue": [
-    "finite_projection_feeder: prove the active clean projection equals the backend fold at evaluated level; status: active lower leaf; open; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` or one strict finite theorem feeding it",
-    "source_contract_target_correction: source-prepared field is recovered only with `Uniform(H)` explicit and a finite projection feeder; status: active correction; compiled bridge reused; Lean: `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_i..."
+    "source_prepared_projection_summation_correction: translate Eq. `ROBIN clarified` through prepared sparse-register projection, not the H-free row-0 shortcut; status: active lower1/lower3 leaf; Lean: no new Lean required before lower2",
+    "active_eval_gate_matrices_column0_bridge: prove `ActiveEval(env) = ExplicitSevenGate00(env)` at `evalWith` entry level without using the sorry-guarded raw matrix equality; status: active lower2 leaf; guard only; Lean: proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env`",
+    "source_prepared_sparse_clean_feeder: prove `SourcePreparedField(H, env)` or the equivalent uncast prepared sparse-clean equality under explicit source contract; status: active lower2 leaf after calibration; Lean: `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env` feeds the target"
   ],
-  "generated": "2026-06-13 15:53:25",
-  "latest_cycle": "20260613-054606-QBE-AUTO-002-cycle01",
+  "generated": "2026-06-13 16:47:14",
+  "latest_cycle": "20260613-163714-QBE-AUTO-002-cycle01",
   "lean_declarations": [
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "structure",
-      "line": "19383",
-      "name": "OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "19424",
+      "line": "19494",
       "name": "oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "19555",
+      "line": "19625",
       "name": "OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "19589",
+      "line": "19659",
       "name": "oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "19790",
+      "line": "19860",
       "name": "oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "19806",
+      "line": "19876",
       "name": "oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "19825",
+      "line": "19895",
       "name": "OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "19859",
+      "line": "19929",
       "name": "oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "19958",
+      "line": "20028",
       "name": "oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "20040",
+      "line": "20110",
       "name": "oneTermRobinGamma3BoundaryPreparedCompositeGate_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "20055",
+      "line": "20125",
       "name": "oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "20060",
+      "line": "20130",
       "name": "oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "20075",
+      "line": "20145",
       "name": "oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "20157",
+      "line": "20227",
       "name": "OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "20197",
+      "line": "20267",
       "name": "oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "abbrev",
-      "line": "20351",
+      "line": "20421",
       "name": "oneTermRobinGamma3BoundaryActiveFullDim_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "20356",
+      "line": "20426",
       "name": "oneTermRobinGamma3BoundaryActiveCleanIndex_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "20583",
+      "line": "20653",
       "name": "oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "20758",
+      "line": "20828",
       "name": "OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "20795",
+      "line": "20865",
       "name": "oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "21211",
+      "line": "21281",
       "name": "oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "21228",
+      "line": "21298",
       "name": "oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "21323",
+      "line": "21393",
       "name": "oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "21456",
+      "line": "21526",
       "name": "oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "21561",
+      "line": "21631",
       "name": "oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "21581",
+      "line": "21651",
       "name": "OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "21627",
+      "line": "21697",
       "name": "oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "21855",
+      "line": "21925",
       "name": "OneTermRobinGamma3BoundarySourcePreparedProjectionTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "21898",
+      "line": "21968",
       "name": "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "22476",
+      "line": "22546",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "22727",
+      "name": "oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "23441",
+      "line": "23547",
       "name": "OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "23473",
+      "line": "23579",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "24300",
+      "line": "24406",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "24330",
+      "line": "24436",
       "name": "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "24343",
+      "line": "24449",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "24361",
+      "line": "24467",
       "name": "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3"
     },
     {
@@ -343,27 +363,28 @@
   ],
   "mode": "faithfulPaper",
   "open_obligation_signals": [
-    "finite projection feeder: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, or one strict finite `CircuitMatrixSemantics`/`Coeff.evalWith` theorem feeding it; class QBE-local finite projection/backend fold theorem tied to GHL2025 Eq. `ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Definition `def:block-encoding`; status active lower2 target; open",
-    "source-prepared recovery under `Uniform(H)`: Lean `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; class compiled route consuming the finite feeder under the explicit external clean-column contract; status compiled conditional; not closure without `hFold`",
-    "arbitrary-`H` source-prepared field: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`; `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env`; `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`; class needs a true all-`H` finite composition theorem or clean-column independence theorem; status retired as default lower target",
-    "all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024; status contract-only; allowed only as explicit `hUniform`; not formalized here",
-    "direct H-free evaluated-fold route: Lean diagnostic `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class diagnostic route with register-shape drift risk; status rejected as default lower target; do not assign"
+    "strict H-free row-0 to slot-2 feeder: Lean `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`; class compares different finite paths: active `[0,0]` and selected slot `2`/full index `32`; status retired; `shape_or_register_gap`",
+    "active column-0 tail-kill normal form: Lean `oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3`; class QBE-local explicit seven-gate path support; status proved by lower2; no semantic flag promoted",
+    "active evalGateMatrices column-0 bridge: Lean proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env`; class QBE-local fold/product associativity at `evalWith` entry level; status active lower2 leaf; guard only; open",
+    "source-prepared sparse-clean feeder: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`, or the equivalent uncast prepared sparse-clean comparison from `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env`; class source-shaped active/prepared finite composition theorem under explicit `Uniform(H)` in recovery; status blocked until the active-side guard is interpreted",
+    "evaluated fold recovery: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3 H env hUniform hActive`; class compiled route from source-prepared field to evaluated backend fold under `Uniform(H)`; status blocked on source-shaped field",
+    "all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024; status contract-only; keep explicit"
   ],
   "proof_obligations": "Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/proof-obligations/QBE-AUTO-002.md",
   "stage": "Stage 2 DAG proof discharge, with faithful transcript checks still active",
   "task_id": "QBE-AUTO-002",
   "title": "Concrete Circuit Matrix Semantics Backend",
   "trial_counts_by_role": {
-    "lower": 1074,
-    "middle": 797,
-    "reviewer": 688,
-    "upper": 1345
+    "lower": 1092,
+    "middle": 801,
+    "reviewer": 690,
+    "upper": 1354
   },
   "trial_counts_by_status": {
-    "accepted": 1433,
-    "blocked": 30,
-    "compiled": 489,
-    "failed": 39,
-    "queued": 1913
+    "accepted": 1444,
+    "blocked": 34,
+    "compiled": 492,
+    "failed": 40,
+    "queued": 1927
   }
 }

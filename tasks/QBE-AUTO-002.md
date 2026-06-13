@@ -6,44 +6,134 @@ Mode: `faithfulPaper`
 Status: `active`
 Created: `2026-05-18`
 
-## Current Run Directive: 2026-06-13 Final Finite Projection Feeder Frontier
+## Current Run Directive: 2026-06-13 Middle Coordinator Synthesis For Run 20260613-163714
 
-This directive supersedes the 2026-06-13 source-prepared finite composition
-frontier for the next lower proof batch.  The active lower2 target is
-`finite_projection_feeder`: prove
-
-```lean
-oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
-```
-
-or one strictly smaller finite `CircuitMatrixSemantics`/`Coeff.evalWith`
-theorem in `QuantumBlockEncoding/RobinMatrix.lean` that directly feeds it.
-The result is consumed through
+This directive implements the latest upper handoff in
+`runs/20260613-163714-QBE-AUTO-002-cycle01/dialogue.md`.  If a focused prompt
+replays the older ChatGPT Pro strict-feeder override, treat it as stale.  The
+strict H-free feeder
 
 ```lean
-oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
-  H env hUniform hFold
+oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
 ```
 
-where
+remains retired as `shape_or_register_gap`: it compares the active H-free
+full-basis entry `[0,0]` with the selected sparse slot `2` contribution at full
+index `32`.
+
+The active source-faithful route is still the prepared sparse-register
+projection route under explicit
 
 ```lean
 hUniform :
   oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
-hFold :
-  oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
 ```
 
-The arbitrary-`H` `SourcePreparedField(H, env)` target is retired as the
-default lower target unless a true all-`H` finite composition theorem or
-clean-column independence theorem is explicitly assigned.  Standalone H-free
-evaluated-fold closure remains rejected as a default route with
-`shape_or_register_gap`.  Do not change oracle contracts, the paper circuit,
-normalizer, gate labels, or theorem assumptions, and do not use diagnostic
-`sorry` declarations as closure.
+The next lower2 Lean leaf is the guard-only evaluated column-`0` bridge:
 
-The next lower packet is
-`proof-attempts/QBE-AUTO-002/finite-projection-feeder-final-middle-packet-20260613-0624.md`.
+```lean
+theorem oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3
+    (env : String -> Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3)
+```
+
+This bridge may use matrix associativity or entry-level product congruence, but
+must not use the sorry-guarded raw theorem
+`oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` as closure.
+It is a diagnostic guard only.  If it compiles, combine it with
+`oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3` to record the
+active H-free column-`0` behavior, then middle must retarget before any worker
+tries to prove a direct source-shaped feeder from the H-free active entry.
+
+Current packet:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-packet-20260613-163714.md
+```
+
+No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness,
+final-extraction, normalizer, or external primitive flag is promoted.  The
+first-case-study one-term theorem remains open.
+
+## Current Run Directive: 2026-06-13 Source-Prepared Projection/Summation Correction
+
+This directive supersedes the ChatGPT Pro finite-path strict feeder after the
+lower1/lower3 necessary-condition audit in run
+`20260613-161435-QBE-AUTO-002-cycle01`.
+
+Retire the strict H-free feeder as a lower2 theorem target:
+
+```lean
+oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
+```
+
+The rejected statement compares the active H-free full-basis entry `[0,0]`
+with the selected sparse slot `2` contribution at full index `32`.  Existing
+Lean-local support gives the active `[0,0]` diagnostic path and the selected
+slot-`2` branch as different finite paths, so the old strict feeder is now
+classified as `shape_or_register_gap`, not as a tactic or symbolic bridge gap.
+
+The active leaf is now:
+
+```text
+source_prepared_projection_summation_correction
+```
+
+The theorem-facing route must keep the `H_W^(kappa)` clean-column contract
+explicit:
+
+```lean
+hUniform :
+  oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+```
+
+The corrected source-shaped target is the active/prepared finite composition
+field, exposed by existing equivalences such as:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3
+  H env
+```
+
+and:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3
+  H env hUniform
+```
+
+Allowed lower2 work is exactly one of:
+
+1. a source-shaped active/prepared sparse-clean feeder under explicit
+   `hUniform`;
+2. a smaller prepared projection/summation lemma feeding that source-shaped
+   field;
+3. the diagnostic active `[0,0]` bridge
+   `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env`,
+   only as a guard and not as theorem closure.
+
+Lower2 must not prove
+`Coeff.evalWith env evalGateMatrices[0,0] =
+Coeff.evalWith env selectedSlotContribution` directly, must not add
+`hUniform` to the retired strict feeder, and must not change oracle contracts,
+gate order, normalizer, or theorem assumptions.
+
+The next lower packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-packet-20260613-1621.md
+```
+
 The first-case-study one-term theorem remains open.  No oracle, `H_W`, `R_y`,
 LCU, block-projection, normalized-equality, product-to-coefficient,
 circuit-unitarity, block-correctness, final-extraction, normalizer, or external

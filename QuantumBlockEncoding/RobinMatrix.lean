@@ -8187,6 +8187,76 @@ theorem
   exact Rat.zero_add 0
 
 /--
+Focused evaluated normal form for the active column-`0` tail.
+
+The explicit seven-gate `[0,0]` entry reduces to the two `R_y` branches through
+`O_f[12,96]` and `O_f[12,97]`; both function-oracle entries are zero in the
+current finite witness.  The final conjunct records the exact remaining bridge
+needed before this tail-kill result can be used for the `evalGateMatrices`
+active entry.  It does not prove the strict selected-slot feeder or promote any
+semantic flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3
+    (env : String → Rat) :
+    let row12 : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨12, by native_decide⟩
+    let row96 : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨96, by native_decide⟩
+    let row97 : Fin oneTermRobinGamma3BoundaryPrefixDim_n3 :=
+      ⟨97, by native_decide⟩
+    let explicit :=
+      Coeff.evalWith env
+        (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3)
+    let active :=
+      Coeff.evalWith env
+        ((evalGateMatrices
+          (GHL2025.oneTermRobinGateMatrixPlaceholders
+            (oneTermParameters 3)))
+          oneTermRobinGamma3BoundaryPrefixRow0_n3
+          oneTermRobinGamma3BoundaryPrefixRow0_n3)
+    let of96 :=
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3 row12 row96)
+    let of97 :=
+      Coeff.evalWith env
+        (GHL2025.functionOraclePaperMatrix
+          oneTermRobinGamma3BoundaryPrefixParameters_n3 row12 row97)
+    explicit =
+        of96 * env "boundary_cos_half_0_0" +
+          of97 * env "boundary_sin_half_0_0" ∧
+      of96 = 0 ∧
+      of97 = 0 ∧
+      explicit = 0 ∧
+      (active = explicit → active = 0) := by
+  dsimp
+  have h96 :
+      GHL2025.functionOraclePaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        (⟨12, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+        (⟨96, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) = Coeff.rat 0 := by
+    native_decide
+  have h97 :
+      GHL2025.functionOraclePaperMatrix
+        oneTermRobinGamma3BoundaryPrefixParameters_n3
+        (⟨12, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3)
+        (⟨97, by native_decide⟩ :
+          Fin oneTermRobinGamma3BoundaryPrefixDim_n3) = Coeff.rat 0 := by
+    native_decide
+  refine ⟨?_, by simp [h96], by simp [h97],
+    oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3 env, ?_⟩
+  · exact oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3 env
+  · intro hbridge
+    rw [hbridge]
+    exact oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3 env
+
+/--
 The active seven-gate `[0,0]` expansion is a slot-`0` diagnostic, not the
 displayed gamma3 slot-`2` branch.
 
@@ -22644,6 +22714,42 @@ theorem
       _ = Coeff.evalWith env
           oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution :=
           hselected
+
+/--
+Index split for the active strict-feeder frontier.
+
+The active `evalGateMatrices` entry in the strict feeder is the signal-zero
+full-basis entry `[0,0]`, while the selected backend contribution is the
+source slot-`2` branch at full basis index `32`.  This is only a compiled
+calibration guard: it does not prove the feeder and it leaves the required
+projection/path-normal-form theorem open.
+-/
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3 :
+    let active := oneTermRobinGamma3BoundaryPrefixRow0_n3
+    let selected :=
+      oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3
+        oneTermRobinGamma3BoundaryBranchContributionFocusedSlot
+    active.val = 0 ∧
+      selected.val = 32 ∧
+      active ≠ selected ∧
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.focusedSparseSlot =
+        2 ∧
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution =
+        Coeff.mul
+          (oneTermRobinGamma3BoundarySevenGateMatrix_n3 selected selected)
+          oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor := by
+  dsimp
+  have hselected :=
+    oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3
+  refine ⟨by native_decide, hselected.1, ?_, rfl, ?_⟩
+  · intro hEq
+    have hval := congrArg Fin.val hEq
+    have hactive : oneTermRobinGamma3BoundaryPrefixRow0_n3.val = 0 := by
+      native_decide
+    rw [hactive, hselected.1] at hval
+    omega
+  · rw [hselected.2]
+    rfl
 
 /--
 Diagnostic obstruction for the active selected-slot comparison.

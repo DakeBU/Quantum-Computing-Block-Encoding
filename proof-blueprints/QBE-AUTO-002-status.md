@@ -2,39 +2,41 @@
 
 - Task: `QBE-AUTO-002`
 - Title: Concrete Circuit Matrix Semantics Backend
-- Generated: `2026-06-13 15:53:25`
+- Generated: `2026-06-13 16:47:14`
 - Mode: `faithfulPaper`
 - Stage: Stage 2 DAG proof discharge, with faithful transcript checks still active
-- Latest cycle: `20260613-054606-QBE-AUTO-002-cycle01`
+- Latest cycle: `20260613-163714-QBE-AUTO-002-cycle01`
 - Blueprint: `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/proof-blueprints/QBE-AUTO-002.md`
 
 ## Dynamic Leaf Queue
 
-- finite_projection_feeder: prove the active clean projection equals the backend fold at evaluated level; status: active lower leaf; open; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` or one strict finite theorem feeding it
-- source_contract_target_correction: source-prepared field is recovered only with `Uniform(H)` explicit and a finite projection feeder; status: active correction; compiled bridge reused; Lean: `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_i...
+- source_prepared_projection_summation_correction: translate Eq. `ROBIN clarified` through prepared sparse-register projection, not the H-free row-0 shortcut; status: active lower1/lower3 leaf; Lean: no new Lean required before lower2
+- active_eval_gate_matrices_column0_bridge: prove `ActiveEval(env) = ExplicitSevenGate00(env)` at `evalWith` entry level without using the sorry-guarded raw matrix equality; status: active lower2 leaf; guard only; Lean: proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env`
+- source_prepared_sparse_clean_feeder: prove `SourcePreparedField(H, env)` or the equivalent uncast prepared sparse-clean equality under explicit source contract; status: active lower2 leaf after calibration; Lean: `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env` feeds the target
 
 ## Open Obligation Signals
 
-- finite projection feeder: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, or one strict finite `CircuitMatrixSemantics`/`Coeff.evalWith` theorem feeding it; class QBE-local finite projection/backend fold theorem tied to GHL2025 Eq. `ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Definition `def:block-encoding`; status active lower2 target; open
-- source-prepared recovery under `Uniform(H)`: Lean `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; class compiled route consuming the finite feeder under the explicit external clean-column contract; status compiled conditional; not closure without `hFold`
-- arbitrary-`H` source-prepared field: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`; `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env`; `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`; class needs a true all-`H` finite composition theorem or clean-column independence theorem; status retired as default lower target
-- all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024; status contract-only; allowed only as explicit `hUniform`; not formalized here
-- direct H-free evaluated-fold route: Lean diagnostic `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class diagnostic route with register-shape drift risk; status rejected as default lower target; do not assign
+- strict H-free row-0 to slot-2 feeder: Lean `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`; class compares different finite paths: active `[0,0]` and selected slot `2`/full index `32`; status retired; `shape_or_register_gap`
+- active column-0 tail-kill normal form: Lean `oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3`; class QBE-local explicit seven-gate path support; status proved by lower2; no semantic flag promoted
+- active evalGateMatrices column-0 bridge: Lean proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env`; class QBE-local fold/product associativity at `evalWith` entry level; status active lower2 leaf; guard only; open
+- source-prepared sparse-clean feeder: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`, or the equivalent uncast prepared sparse-clean comparison from `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env`; class source-shaped active/prepared finite composition theorem under explicit `Uniform(H)` in recovery; status blocked until the active-side guard is interpreted
+- evaluated fold recovery: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3 H env hUniform hActive`; class compiled route from source-prepared field to evaluated backend fold under `Uniform(H)`; status blocked on source-shaped field
+- all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024; status contract-only; keep explicit
 
 ## Trial Counts By Role
 
-- `lower`: 1074
-- `middle`: 797
-- `reviewer`: 688
-- `upper`: 1345
+- `lower`: 1092
+- `middle`: 801
+- `reviewer`: 690
+- `upper`: 1354
 
 ## Trial Counts By Status
 
-- `accepted`: 1433
-- `blocked`: 30
-- `compiled`: 489
-- `failed`: 39
-- `queued`: 1913
+- `accepted`: 1444
+- `blocked`: 34
+- `compiled`: 492
+- `failed`: 40
+- `queued`: 1927
 
 ## Local Paper Sources
 
@@ -42,22 +44,22 @@
 
 ## Recent Lean Declarations
 
-- `def oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21211`
-- `def oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21228`
-- `def oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21323`
-- `def oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21456`
-- `theorem oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21561`
-- `structure OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:21581`
-- `def oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21627`
-- `structure OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` at `QuantumBlockEncoding/RobinMatrix.lean:21855`
-- `def oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21898`
-- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:22476`
-- `structure OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:23441`
-- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23473`
-- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24300`
-- `theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24330`
-- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` at `QuantumBlockEncoding/RobinMatrix.lean:24343`
-- `theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24361`
+- `def oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21298`
+- `def oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21393`
+- `def oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21526`
+- `theorem oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21631`
+- `structure OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:21651`
+- `def oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21697`
+- `structure OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` at `QuantumBlockEncoding/RobinMatrix.lean:21925`
+- `def oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21968`
+- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:22546`
+- `theorem oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` at `QuantumBlockEncoding/RobinMatrix.lean:22727`
+- `structure OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:23547`
+- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23579`
+- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24406`
+- `theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24436`
+- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` at `QuantumBlockEncoding/RobinMatrix.lean:24449`
+- `theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24467`
 - `def gateMatricesMatchCircuit` at `QuantumBlockEncoding/CircuitSemantics.lean:41`
 - `structure CircuitMatrixSemantics` at `QuantumBlockEncoding/CircuitSemantics.lean:404`
 - `structure PreparedCircuitEntryTarget` at `QuantumBlockEncoding/CircuitSemantics.lean:436`
@@ -76,12 +78,26 @@
 ## Current Dirty Files
 
 - `MANIFEST.md`
-- `QuantumBlockEncoding/Automation.lean`
+- `QuantumBlockEncoding/RobinMatrix.lean`
 - `README.md`
-- `docs/agent_blueprint_formalization.md`
+- `conversion-windows/QBE-AUTO-002.md`
 - `docs/pro_prompt_policy.md`
-- `docs/prompts/`
-- `proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md`
+- `paper-notes/project-paper/cycle-updates/20260613-155325-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260613-155325-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260613-161435-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260613-161435-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260613-163714-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260613-163714-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/latest.md`
+- `paper-notes/project-paper/cycle-updates/latest.tex`
+- `proof-attempts/QBE-AUTO-002/finite-path-feeder-lower1-dag-20260613-160936.md`
+- `proof-attempts/QBE-AUTO-002/finite-path-feeder-lower2-index-split-20260613-155325.md`
+- `proof-attempts/QBE-AUTO-002/finite-path-feeder-lower2-tailkill-normalform-20260613-161435.md`
+- `proof-attempts/QBE-AUTO-002/finite-path-feeder-lower3-necessary-condition-20260613-160804.md`
+- `proof-attempts/QBE-AUTO-002/finite-path-feeder-middle-packet-20260613-1600.md`
+- `proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-packet-20260613-163714.md`
+- `proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-packet-20260613-1621.md`
+- `proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-lower1-20260613-163053.md`
 - `proof-blueprints/QBE-AUTO-002-status.json`
 - `proof-blueprints/QBE-AUTO-002-status.md`
 - `proof-blueprints/QBE-AUTO-002.md`
@@ -89,9 +105,14 @@
 - `research-wiki/retrieval-index/QBE-AUTO-002.json`
 - `tasks/QBE-AUTO-002.md`
 - `tools/qbe.py`
-- `tools/qbe_run_theorem_closure.sh`
-- `verifier-feedback/QBE-AUTO-002-current-ghl-feedback.md`
-- `verifier-feedback/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.json`
+- `verifier-feedback/QBE-AUTO-002/finite-path-feeder-lower1-20260613-160936.json`
+- `verifier-feedback/QBE-AUTO-002/finite-path-feeder-lower2-20260613-155325.json`
+- `verifier-feedback/QBE-AUTO-002/finite-path-feeder-lower2-tailkill-20260613-161435.json`
+- `verifier-feedback/QBE-AUTO-002/finite-path-feeder-lower3-20260613-160804.json`
+- `verifier-feedback/QBE-AUTO-002/finite-path-feeder-middle-20260613-1600.json`
+- `verifier-feedback/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-20260613-163714.json`
+- `verifier-feedback/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-20260613-1621.json`
+- `verifier-feedback/QBE-AUTO-002/source-prepared-projection-summation-lower3-20260613-163030.json`
 
 ## Controls
 

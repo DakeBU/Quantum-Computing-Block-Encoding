@@ -6,6 +6,165 @@ Updated: `2026-06-13`
 This ledger tracks the unproved semantic claims introduced by the circuit
 matrix semantics backend layer.
 
+## 2026-06-13 Middle Coordinator Obligation Sync For Run 20260613-163714
+
+This sync applies the latest upper handoff for
+`20260613-163714-QBE-AUTO-002-cycle01`.  The source-prepared correction remains
+active, but the next Lean worker should first close the active column-`0`
+guard bridge instead of trying the retired strict feeder or a broad
+source-shaped equality.
+
+| Obligation | Lean declaration or target | Dependency class | Status |
+|---|---|---|---|
+| strict H-free row-0 to slot-2 feeder | `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env` | compares different finite paths: active `[0,0]` and selected slot `2`/full index `32` | retired; `shape_or_register_gap` |
+| active column-0 tail-kill normal form | `oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3` | QBE-local explicit seven-gate path support | proved by lower2; no semantic flag promoted |
+| active evalGateMatrices column-0 bridge | proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env` | QBE-local fold/product associativity at `evalWith` entry level | active lower2 leaf; guard only; open |
+| source-prepared sparse-clean feeder | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`, or the equivalent uncast prepared sparse-clean comparison from `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env` | source-shaped active/prepared finite composition theorem under explicit `Uniform(H)` in recovery | blocked until the active-side guard is interpreted |
+| evaluated fold recovery | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3 H env hUniform hActive` | compiled route from source-prepared field to evaluated backend fold under `Uniform(H)` | blocked on source-shaped field |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024 | contract-only; keep explicit |
+
+Current lower packet:
+`proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-packet-20260613-163714.md`.
+
+Typed verifier feedback:
+`verifier-feedback/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-20260613-163714.json`.
+Lower feedback should use
+`leaf=active_eval_gate_matrices_column0_bridge`,
+`source_correspondence_ok=true`, `strict_hfree_feeder_retired=true`,
+`block_entry_ok=false`, `closed_theorem_ok=false`, and
+`error_class=shape_or_register_gap` unless the compiled guard enables a more
+specific source-shaped retarget.
+
+The first-case-study one-term theorem remains open.  No oracle, `H_W`, `R_y`,
+LCU, block-projection, normalized-equality, product-to-coefficient,
+circuit-unitarity, block-correctness, final-extraction, normalizer, or external
+primitive flag is promoted.
+
+## 2026-06-13 Middle Source-Prepared Projection/Summation Correction For Run 20260613-161435
+
+This sync applies the upper synthesis and lower1/lower3 finite-support audit
+from run `20260613-161435-QBE-AUTO-002-cycle01`.  The previous strict H-free
+finite-path feeder is retired as a lower2 theorem target.
+
+Retired target:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String -> Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+Reason for retirement: lower1/lower3 showed that the left side is the active
+H-free full-basis entry `[0,0]`, while the right side is the selected sparse
+slot `2` contribution at full index `32`.  This is a
+`shape_or_register_gap`, not a proof-search leaf.
+
+| Obligation | Lean declaration or target | Dependency class | Status |
+|---|---|---|---|
+| strict H-free row-0 to slot-2 feeder | `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env` | compares different finite paths: active `[0,0]` and selected slot `2`/full index `32` | retired; `shape_or_register_gap` |
+| source-prepared proof map | map Eq. `arbitrary sparcity`, Eq. `ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Definition `def:block-encoding` to the prepared sparse-register projection route | source-dependency audit plus QBE-local finite matrix semantics | active lower1/lower3 calibration |
+| source-prepared sparse-clean feeder | `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`, or the equivalent uncast prepared sparse-clean equality from `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env` | QBE-local finite active/prepared composition theorem; `Uniform(H)` remains explicit in theorem-facing recovery | active lower2 target after calibration; open |
+| evaluated fold recovery | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3 H env hUniform hActive` and `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_activePreparedEval_n3 H env hUniform` | compiled route from source-prepared field to evaluated backend fold under `Uniform(H)` | blocked only on source-shaped feeder |
+| optional active column-0 diagnostic bridge | proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env` | QBE-local guard documenting the retired H-free path | diagnostic only; not theorem closure |
+| all-slot sparse preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024 | contract-only; keep as explicit `hUniform` |
+
+Next lower packet:
+`proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-packet-20260613-1621.md`.
+
+Typed verifier feedback:
+`verifier-feedback/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-20260613-1621.json`.
+Lower feedback should use `leaf=source_prepared_projection_summation_correction`,
+`source_correspondence_ok=true`, `closed_theorem_ok=false`, and
+`block_entry_ok=false`.  Use `shape_or_register_gap` for any attempt to revive
+the retired H-free row-0 to slot-2 feeder.  Use `symbolic_bridge_gap` only after
+the lower packet fixes a source-shaped active/prepared statement and the
+remaining problem is a finite algebra bridge.
+
+The first-case-study one-term theorem remains open.  No oracle, `H_W`, `R_y`,
+LCU, block-projection, normalized-equality, product-to-coefficient,
+circuit-unitarity, block-correctness, final-extraction, normalizer, or external
+primitive flag is promoted.
+
+### 2026-06-13 Lower2 Tail-Kill Normal-Form Update
+
+Lower2 closed one evaluated tail-kill/focused-normal-form leaf for the active
+column-`0` explicit seven-gate entry:
+
+```lean
+oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3
+```
+
+This declaration proves that the explicit seven-gate `[0,0]` entry reduces to
+the two active `R_y` branches through `O_f[12,96]` and `O_f[12,97]`, that both
+of those function-oracle entries evaluate to zero in the focused finite
+witness, and that a future bridge
+`ActiveEval(env) = ExplicitSevenGate[0,0](env)` would imply
+`ActiveEval(env) = 0`.  It does not prove the strict selected-slot feeder and
+does not promote any semantic flag.
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `active_col0_tail_kill_normal_form` | explicit seven-gate `[0,0]` normal form plus `O_f[12,96] = O_f[12,97] = 0`; conditional bridge from active `evalGateMatrices` entry to zero | `oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3`; `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3` | lower 2 | `oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3` | `proof-attempts/QBE-AUTO-002/finite-path-feeder-lower2-tailkill-normalform-20260613-161435.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | proved |
+| `eval_gate_matrices_entry_bridge` | prove `ActiveEval(env) = ExplicitSevenGate[0,0](env)` without the diagnostic raw `Coeff` equality theorem | evaluated fold/association or direct support for the exact `evalGateMatrices` fold shape | lower 2 or refiner | proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3` | lower1 DAG packet | same gate | open |
+| `strict_selected_slot_feeder` | prove `ActiveEval(env) = SelectedContribution(env)` | requires a source-backed projection/summation theorem, not just the active column-`0` tail-kill normal form | middle retarget before lower proof | proposed `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3` | deployment packet | none | blocked internal; `shape_or_register_gap` |
+
+## 2026-06-13 Middle Finite Path Feeder Obligation Sync For Run 20260613-155325
+
+This sync applies the ChatGPT Pro finite-path feeder deployment for run
+`20260613-155325-QBE-AUTO-002-cycle01`.  It supersedes the 06:24 lower packet
+as the next assignment while preserving the same theorem-facing recovery route.
+
+The active lower leaf is `finite_path_feeder`.  The theorem-facing recovery
+target remains `finite_projection_feeder`.  The preferred strict feeder is:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String -> Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+| Obligation | Lean declaration or target | Dependency class | Status |
+|---|---|---|---|
+| finite path name map | map ChatGPT Pro names `p0...p7`, `G_UIndic`, `TailAfterRy`, and `FocusedPathEval` to existing Lean declarations or thin aliases | QBE-local finite path bookkeeping tied to GHL2025 Fig. `fig:1 term ROBIN` | lower1 first; open |
+| finite support verifier | determine whether `R_y` and `O_f` are unique-column or two-path-with-tail-kill for the active entry | QBE-local finite matrix/path diagnostic | lower3 first; open |
+| active/selected index split | `oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` | QBE-local finite path calibration guard: active entry `[0,0]`, selected slot `2` full index `32` | compiled by lower2; not feeder closure |
+| strict selected-slot feeder | `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`, or one selected-column/path-collapse/focused-normal-form lemma feeding it | QBE-local `Coeff.evalWith` theorem tied to Eq. `ROBIN clarified` and Definition `def:block-encoding` | active lower2 target after lower1/lower3 calibration; open |
+| evaluated fold recovery | `(oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3 env).mp hFeeder` | compiled route from strict feeder to `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` | blocked only on strict feeder |
+| source-prepared recovery under `Uniform(H)` | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold` | compiled source-prepared bridge under the explicit external clean-column contract | conditional; not closure without `hFold` |
+| raw diagnostic equality route | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | diagnostic route with register-shape drift risk | rejected as theorem closure |
+
+Next lower packet:
+`proof-attempts/QBE-AUTO-002/finite-path-feeder-middle-packet-20260613-1600.md`.
+
+Typed verifier feedback:
+`verifier-feedback/QBE-AUTO-002/finite-path-feeder-middle-20260613-1600.json`.
+Lower feedback should use `leaf=finite_path_feeder`,
+`source_correspondence_ok=true`, `raw_coeff_route_rejected=true`,
+`block_entry_ok=false`, `closed_theorem_ok=false`, and
+`error_class=symbolic_bridge_gap` until the strict feeder closes.  Use
+`shape_or_register_gap` if the route reuses the diagnostic seven-gate equality
+as theorem closure, and `invalid_route` if it adds assumptions, changes gate
+order, changes oracle contracts, or promotes semantic flags.
+
+The first-case-study one-term theorem remains open.  No oracle, `H_W`, `R_y`,
+LCU, block-projection, normalized-equality, product-to-coefficient,
+circuit-unitarity, block-correctness, final-extraction, normalizer, or external
+primitive flag is promoted.
+
 ## 2026-06-13 Final Middle Export Obligation Sync For Run 20260613-054606
 
 This sync applies the final source-contract target correction from run

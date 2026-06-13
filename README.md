@@ -165,8 +165,11 @@ flowchart TD
   J --> K["retrieval index + todos"]
   K --> L["Chinese 6h summary + technical report appendix"]
   K --> Q["self-contained ChatGPT Pro prompt"]
-  Q --> E
-  L --> E
+  Q --> X["ChatGPT Pro advisory answer"]
+  L --> Y["human expert top-level steering"]
+  X --> Z["next-cycle upper directive"]
+  Y --> Z
+  Z --> E
 ```
 
 The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
@@ -195,6 +198,11 @@ The Pro prompt is self-contained because ChatGPT Pro cannot read local files.
 It includes public paper links, the current theorem target, open GHL
 contribution obligations, open external technical lemmas, and recent verifier
 feedback.
+The human expert entry point is separate: after reading the Chinese summary
+and any Pro answer, the user records top-level source, modeling, and priority
+guidance for the next upper-director cycle.  Both inputs are advisory.  They
+must be translated into a Lean-checkable active leaf, source anchor, or
+explicit obligation before they can change the proof state.
 - Middle source-correspondence formalizer: maps source TeX, equations, figures,
   and cited primitives to Lean-facing contracts.
 - Middle memory/retrieval curator: retires stale targets, updates retrieval

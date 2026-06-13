@@ -12,13 +12,13 @@ available.
 
 \paragraph{Cycle.}
 Task \texttt{QBE-AUTO-002}, cycle \texttt{1}, run
-\texttt{runs/20260613-163714-QBE-AUTO-002-cycle01}.  Generated at
-\texttt{2026-06-13 16:47:14}.
+\texttt{runs/20260613-161435-QBE-AUTO-002-cycle01}.  Generated at
+\texttt{2026-06-13 16:27:59}.
 
 \paragraph{Lean status signal.}
 \begin{itemize}
-  \item \texttt{QuantumBlockEncoding/RobinMatrix.lean:24440:  sorry}
-  \item \texttt{QuantumBlockEncoding/RobinMatrix.lean:24470:  sorry}
+  \item \texttt{QuantumBlockEncoding/RobinMatrix.lean:24370:  sorry}
+  \item \texttt{QuantumBlockEncoding/RobinMatrix.lean:24400:  sorry}
 \end{itemize}
 
 \paragraph{Plain-language status.}
@@ -41,18 +41,17 @@ theorem or an explicit contract.
 \paragraph{Current proof-DAG frontier.}
 \begin{itemize}
   \item source\_prepared\_projection\_summation\_correction: translate Eq. \textasciigrave{}ROBIN clarified\textasciigrave{} through prepared sparse-register projection, not the H-free row-0 shortcut; status: active lower1/lower3 leaf; Lean: no new Lean required before lower2
-  \item active\_eval\_gate\_matrices\_column0\_bridge: prove \textasciigrave{}ActiveEval(env) = ExplicitSevenGate00(env)\textasciigrave{} at \textasciigrave{}evalWith\textasciigrave{} entry level without using the sorry-guarded raw matrix equality; status: active lower2 leaf; guard only; Lean: proposed \textasciigrave{}oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry\_eq\_sevenGateMatrix\_n3 env\textasciigrave{}
   \item source\_prepared\_sparse\_clean\_feeder: prove \textasciigrave{}SourcePreparedField(H, env)\textasciigrave{} or the equivalent uncast prepared sparse-clean equality under explicit source contract; status: active lower2 leaf after calibration; Lean: \textasciigrave{}oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_activeEval\_iff\_uncastPreparedSparseCleanEntry\_n3 H env\textasciigrave{} feeds the target
 \end{itemize}
 
 \paragraph{Open obligation signal.}
 \begin{itemize}
   \item strict H-free row-0 to slot-2 feeder: Lean \textasciigrave{}oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder\_n3 env\textasciigrave{}; class compares different finite paths: active \textasciigrave{}[0,0]\textasciigrave{} and selected slot \textasciigrave{}2\textasciigrave{}/full index \textasciigrave{}32\textasciigrave{}; status retired; \textasciigrave{}shape\_or\_register\_gap\textasciigrave{}
-  \item active column-0 tail-kill normal form: Lean \textasciigrave{}oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm\_n3\textasciigrave{}; class QBE-local explicit seven-gate path support; status proved by lower2; no semantic flag promoted
-  \item active evalGateMatrices column-0 bridge: Lean proposed \textasciigrave{}oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry\_eq\_sevenGateMatrix\_n3 env\textasciigrave{}; class QBE-local fold/product associativity at \textasciigrave{}evalWith\textasciigrave{} entry level; status active lower2 leaf; guard only; open
-  \item source-prepared sparse-clean feeder: Lean \textasciigrave{}(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3 H env).activeToPreparedSingletonEvalStatement\textasciigrave{}, or the equivalent uncast prepared sparse-clean comparison from \textasciigrave{}oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_activeEval\_iff\_uncastPreparedSparseCleanEntry\_n3 H env\textasciigrave{}; class source-shaped active/prepared finite composition theorem under explicit \textasciigrave{}Uniform(H)\textasciigrave{} in recovery; status blocked until the active-side guard is interpreted
-  \item evaluated fold recovery: Lean \textasciigrave{}oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_of\_activePreparedEval\_n3 H env hUniform hActive\textasciigrave{}; class compiled route from source-prepared field to evaluated backend fold under \textasciigrave{}Uniform(H)\textasciigrave{}; status blocked on source-shaped field
-  \item all-slot sparse preparation: Lean \textasciigrave{}oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3 H\textasciigrave{}; class external cited contract from GHL2025 Eq. \textasciigrave{}arbitrary sparcity\textasciigrave{} and Shukla--Vedula 2024; status contract-only; keep explicit
+  \item source-prepared proof map: Lean map Eq. \textasciigrave{}arbitrary sparcity\textasciigrave{}, Eq. \textasciigrave{}ROBIN clarified\textasciigrave{}, Fig. \textasciigrave{}fig:1 term ROBIN\textasciigrave{}, and Definition \textasciigrave{}def:block-encoding\textasciigrave{} to the prepared sparse-register projection route; class source-dependency audit plus QBE-local finite matrix semantics; status active lower1/lower3 calibration
+  \item source-prepared sparse-clean feeder: Lean \textasciigrave{}(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3 H env).activeToPreparedSingletonEvalStatement\textasciigrave{}, or the equivalent uncast prepared sparse-clean equality from \textasciigrave{}oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_activeEval\_iff\_uncastPreparedSparseCleanEntry\_n3 H env\textasciigrave{}; class QBE-local finite active/prepared composition theorem; \textasciigrave{}Uniform(H)\textasciigrave{} remains explicit in theorem-facing recovery; status active lower2 target after calibration; open
+  \item evaluated fold recovery: Lean \textasciigrave{}oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_of\_activePreparedEval\_n3 H env hUniform hActive\textasciigrave{} and \textasciigrave{}oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_iff\_activePreparedEval\_n3 H env hUniform\textasciigrave{}; class compiled route from source-prepared field to evaluated backend fold under \textasciigrave{}Uniform(H)\textasciigrave{}; status blocked only on source-shaped feeder
+  \item optional active column-0 diagnostic bridge: Lean proposed \textasciigrave{}oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry\_eq\_sevenGateMatrix\_n3 env\textasciigrave{}; class QBE-local guard documenting the retired H-free path; status diagnostic only; not theorem closure
+  \item all-slot sparse preparation: Lean \textasciigrave{}oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3 H\textasciigrave{}; class external cited contract from GHL2025 Eq. \textasciigrave{}arbitrary sparcity\textasciigrave{} and Shukla--Vedula 2024; status contract-only; keep as explicit \textasciigrave{}hUniform\textasciigrave{}
 \end{itemize}
 
 \paragraph{Open GHL contribution obligations.}
@@ -79,21 +78,21 @@ theorem or an explicit contract.
 
 \paragraph{Recent typed verifier feedback.}
 \begin{itemize}
-  \item Leaf \texttt{finite\_path\_feeder}, class \texttt{shape\_or\_register\_gap}; next route: Prove the evalWith-level bridge from evalGateMatrices active [0,0] to explicit sevenGateMatrix [0,0] without using oneTermRobinGamma3BoundaryEvalGateMatrices\_eq\_sevenGateMatrix\_n3; then have middle retarget the strict selected-slot feeder if the slot-0/slot-2 mismatch remains..
-  \item Leaf \texttt{source\_prepared\_projection\_summation\_correction}, class \texttt{shape\_or\_register\_gap}; next route: prove evaluated active column-0 diagnostic bridge, then assign branch-correct source-prepared sparse-clean feeder or retarget active signal entry.
-  \item Leaf \texttt{source\_prepared\_projection\_summation\_correction}, class \texttt{shape\_or\_register\_gap}; next route: Keep the H-free strict feeder retired. Assign lower2 a source-shaped finite composition leaf feeding oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_activeEval\_iff\_uncastPreparedSparseCleanEntry\_n3 H env, or the diagnostic active column-0 bridge only as a guard; do not prove ActiveEval(env) = selectedSlotContribution directly..
   \item Leaf \texttt{source\_prepared\_projection\_summation\_correction}, class \texttt{shape\_or\_register\_gap}; next route: lower1 maps the corrected source-prepared proof step; lower3 checks branch-correct prepared projection/summation shape; lower2 proves one source-shaped active/prepared sparse-clean feeder under explicit Uniform(H), one strict finite lemma feeding it, or only the active [0,0] diagnostic bridge as a guard..
   \item Leaf \texttt{finite\_path\_feeder}, class \texttt{shape\_or\_register\_gap}; next route: prove evalWith-level evalGateMatrices [0,0] to explicit seven-gate [0,0] bridge, derive active zero diagnostic, then retarget finite feeder through source-prepared projection/summation.
   \item Leaf \texttt{finite\_path\_feeder}, class \texttt{symbolic\_bridge\_gap}; next route: Finish lower1/lower3 path-support calibration, then prove one focused evaluated path-normal-form or tail-kill lemma feeding oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder\_n3 env without using diagnostic sorry routes..
+  \item Leaf \texttt{finite\_path\_feeder}, class \texttt{shape\_or\_register\_gap}; next route: Middle should retire or restate the strict row-0-to-slot-2 feeder. Assign lower2 either a true finite projection/summation theorem expanding signal-zero [0,0] as the seven-slot fold, or the source-prepared hUniform route; do not prove evalGateMatrices[0,0] = selectedSlotContribution directly..
+  \item Leaf \texttt{finite\_path\_feeder}, class \texttt{symbolic\_bridge\_gap}; next route: lower1 path-name map, lower3 R\_y/O\_f support-shape diagnostics, then lower2 one strict selected-slot feeder or direct feeder lemma.
+  \item Leaf \texttt{finite\_projection\_feeder}, class \texttt{source\_translation\_gap}; next route: Lower2 proves the finite projection feeder for oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3 env, or one strict theorem feeding it, and the result is consumed only through the explicit hUniform source-prepared bridge..
 \end{itemize}
 
 \paragraph{Recent proof-attempt memory.}
 \begin{itemize}
-  \item \texttt{proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-packet-20260613-163714.md}
-  \item \texttt{proof-attempts/QBE-AUTO-002/finite-path-feeder-lower2-tailkill-normalform-20260613-161435.md}
-  \item \texttt{proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-lower1-20260613-163053.md}
   \item \texttt{proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-packet-20260613-1621.md}
   \item \texttt{proof-attempts/QBE-AUTO-002/finite-path-feeder-lower2-index-split-20260613-155325.md}
+  \item \texttt{proof-attempts/QBE-AUTO-002/finite-path-feeder-lower1-dag-20260613-160936.md}
+  \item \texttt{proof-attempts/QBE-AUTO-002/finite-path-feeder-lower3-necessary-condition-20260613-160804.md}
+  \item \texttt{proof-attempts/QBE-AUTO-002/finite-path-feeder-middle-packet-20260613-1600.md}
 \end{itemize}
 
 \paragraph{Article-writing rule.}

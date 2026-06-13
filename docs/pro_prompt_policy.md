@@ -14,6 +14,13 @@ obligations, open external technical lemmas, recent verifier feedback, and the
 exact kind of answer needed next.  Local file paths and Lean names may appear
 only as labels for patching this repository later.
 
+The human expert review is a separate post-cycle channel.  After the Chinese
+summary and any Pro answer are available, the user may give source-level,
+modeling, convention, or priority guidance.  The next upper director must
+combine the Pro advice and human steering into one Lean-checkable active leaf,
+source anchor, or named obligation.  Neither Pro prose nor human prose closes a
+theorem by itself.
+
 For faithful-paper mode, the prompt must say explicitly that Pro may not add
 assumptions, change the oracle contract, reorder the circuit, or replace the
 paper construction.  For exploratory mode, it must first state the acceptance

@@ -1,0 +1,32 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-155325-QBE-AUTO-002-cycle01",
+  "role": "lower3-necessary-condition-verifier",
+  "leaf": "finite_path_feeder",
+  "checked_statement": "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env",
+  "source_correspondence_ok": false,
+  "source_correspondence_note": "The selected source/backend branch is slot 2 at full index 32, while the strict feeder lhs is the active [0,0] entry.",
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": false,
+  "finite_matrix_note": "Existing Lean-local diagnostics give selectedSlotContribution = sevenGateMatrix[32,32] * projection factor, but the explicit sevenGateMatrix[0,0] evaluates to 0.",
+  "block_entry_ok": false,
+  "block_entry_note": "The current feeder compares a signal-zero row-0 active entry against a selected slot-2 backend branch without the missing projection/summation theorem.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "ry_branch_shape": "two-path-with-tail-kill; not unique-column",
+  "of_branch_shape": "diagonal on clean branch, but active [0,0] suffix kills both row-96/97 paths through O_f[12,96] and O_f[12,97]",
+  "diagnostics_used": [
+    "oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3",
+    "oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3_transcript",
+    "oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3",
+    "oneTermRobinGamma3BoundarySevenGateColumn0TwoPathEval_n3",
+    "oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3",
+    "oneTermRobinGamma3BoundaryActiveSelectedSlotComparison_diagnosticSevenGateObstruction_n3"
+  ],
+  "diagnostic_sorry_dependency": "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3 remains diagnostic/sorry and was not used as theorem closure.",
+  "gate": "python3 tools/qbe.py check passed with known diagnostic sorry warnings at QuantumBlockEncoding/RobinMatrix.lean:24366 and 24397.",
+  "error_class": "shape_or_register_gap",
+  "next_route": "Middle should retire or restate the strict row-0-to-slot-2 feeder. Assign lower2 either a true finite projection/summation theorem expanding signal-zero [0,0] as the seven-slot fold, or the source-prepared hUniform route; do not prove evalGateMatrices[0,0] = selectedSlotContribution directly."
+}
