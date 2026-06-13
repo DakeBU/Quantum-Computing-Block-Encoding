@@ -75,6 +75,7 @@ RETRIEVAL_INDEX_DIR = ROOT / "research-wiki" / "retrieval-index"
 EFFICIENCY_DIR = ROOT / "runs" / "efficiency"
 CONTEXT_PACK_DIR = ROOT / "runs" / "context-packs"
 PROJECT_ARTICLE_UPDATE_DIR = ROOT / "paper-notes" / "project-paper" / "cycle-updates"
+PRO_PROMPT_DIR = ROOT / "runs" / "pro-prompts"
 
 AGENT_ROLES = ("upper", "middle", "lower", "reviewer")
 TRIAL_KINDS = ("plan", "attempt", "build", "review", "proposal", "compression", "handoff")
@@ -95,6 +96,7 @@ WORK_DIRS = [
     "runs",
     "runs/efficiency",
     "runs/context-packs",
+    "runs/pro-prompts",
     "paper-notes/project-paper/cycle-updates",
     "research-wiki/papers",
     "research-wiki/ideas",
@@ -279,6 +281,15 @@ def latest_run_dir() -> Path | None:
         if p.is_dir() and re.search(r"-cycle[0-9]+$", p.name)
     ]
     return sorted(runs)[-1] if runs else None
+
+
+def resolved_cycle(requested_cycle: int, run_dir: Path) -> int:
+    if requested_cycle > 0:
+        return requested_cycle
+    match = re.search(r"-cycle(\d+)$", run_dir.name)
+    if match:
+        return int(match.group(1))
+    return 1
 
 
 def latest_report_run_dir() -> Path | None:
@@ -2989,6 +3000,162 @@ def write_memory_refresh(task_id: str, cycle: int, run_dir: Path) -> tuple[Path,
     return digest_path, todo_path, index_path
 
 
+def chatgpt_pro_prompt_text(task_id: str, cycle: int, run_dir: Path) -> str:
+    snapshot = memory_snapshot_state(task_id, cycle, run_dir)
+    title = str(snapshot.get("title", task_id))
+    dynamic = snapshot.get("dynamic_leaf_queue", [])
+    obligations = snapshot.get("open_obligation_signals", [])
+    changed = git_changed_files()
+    return f"""# ChatGPT Pro Prompt: ABEIS {task_id} cycle {cycle}
+
+Copy everything below this line into ChatGPT Pro.
+
+---
+
+You are helping with ABEIS, an Auto-Block-Encoding-in-Sleep Lean 4 project for
+quantum oracle and block-encoding circuit formalization.  You cannot access my
+local files.  Please use only the public links below and the self-contained
+status copied into this prompt.  Local Lean names and file paths are labels to
+help me patch my repository later; do not assume you can open them.
+
+## Public sources you may use
+
+- Guseynov--Huang--Liu, "Quantum framework for simulating linear PDEs with
+  Robin boundary conditions": https://arxiv.org/abs/2506.20478
+- PDF: https://arxiv.org/pdf/2506.20478
+- The relevant source-paper region is the one-term Robin block-encoding circuit
+  around the paper's Fig. 4 and the theorem/equations corresponding to the
+  Robin boundary construction.  In my local source map this is tracked as
+  `main.tex:1098-1164`, but you should cite the public paper by theorem,
+  equation, figure, and page/section rather than relying on local line numbers.
+
+## Current ABEIS task
+
+Task: `{task_id}`
+
+Title: {title}
+
+Run label: `{run_dir.name}`
+
+Cycle: `{cycle}`
+
+ABEIS is in faithful-reproduction mode.  Do not add assumptions, change the
+oracle contract, change the gate order, or replace the paper's construction by
+a different construction.  If the paper relies on a previous theorem or a
+standard quantum primitive, classify it as an external technical lemma rather
+than silently proving a stronger or different statement.
+
+## What remains open according to the current retrieval index
+
+### Active proof-DAG leaves
+
+{chr(10).join(f"- {item}" for item in dynamic if item) or "- No active proof-DAG leaf was recorded."}
+
+### Open obligation signals
+
+{chr(10).join(f"- {item}" for item in obligations if item) or "- No compact obligation signal was recorded."}
+
+### Open GHL paper-contribution obligations
+
+{markdown_table(snapshot.get('open_ghl_contribution_obligations', []), [
+    ('id', 'id'),
+    ('paper anchor', 'main_tex_anchor'),
+    ('paper object', 'paper_object'),
+    ('Lean/status', 'lean_status'),
+    ('external lemma?', 'depends_on_external_technical_lemma'),
+], limit=12)}
+
+### Open external technical-lemma obligations
+
+{markdown_table(snapshot.get('open_external_technical_lemma_obligations', []), [
+    ('id', 'id'),
+    ('source', 'source'),
+    ('status', 'lean_status'),
+    ('used by', 'used_by'),
+    ('next action', 'next_action'),
+], limit=12)}
+
+### Current Lean `sorry` scan
+
+{chr(10).join(f"- `{line}`" for line in snapshot.get('lean_sorries', [])) or "- No `sorry` was recorded by the snapshot."}
+
+### Recent typed verifier feedback
+
+{markdown_table(snapshot.get('recent_verifier_feedback', []), [
+    ('leaf', 'leaf'),
+    ('error class', 'error_class'),
+    ('finite matrix ok', 'finite_matrix_ok'),
+    ('block entry ok', 'block_entry_ok'),
+    ('next route', 'next_route'),
+], limit=10)}
+
+## Important local lesson from previous failed attempts
+
+Do not try to prove raw symbolic `Coeff` constructor equality between two large
+matrices if the route only differs by associativity or expression-tree shape.
+The current intended route is semantic: prove the finite evaluated entry/path
+identity at the `evalWith` or block-entry level, then bridge it to the named
+Lean theorem.  A fast finite matrix/path-sum check is useful only as a necessary
+condition; Lean still has to prove the final theorem.
+
+## What I need from you
+
+Please return a source-faithful plan that I can paste back into my local ABEIS
+system.  I need concrete proof engineering, not a high-level summary.
+
+1. Identify the exact paper theorem/figure/equation that should close the
+   currently open one-term Robin block-entry equality.
+2. Split the proof into a small dependency DAG.  Mark each node as one of:
+   paper contribution, external technical lemma, local matrix-semantics lemma,
+   finite-index arithmetic lemma, or rejected/stale route.
+3. For the smallest next Lean leaf, propose a Lean-facing statement shape and a
+   proof route.  You may use pseudo-Lean if exact local names are unavailable,
+   but keep the variables, hypotheses, and equality target precise.
+4. Explain which finite non-Lean checks are necessary-condition filters before
+   spending Lean time, and why they cannot reject a theorem that Lean could
+   actually prove.
+5. List any theorem from the paper's references that must be treated as an
+   external technical lemma rather than being assumed silently.
+6. Do not claim the whole GHL theorem is complete unless every item above is
+   closed by a Lean-level theorem route.
+
+## Current dirty files, for context only
+
+{chr(10).join(f"- `{path}`" for path in changed[:40]) or "- No dirty files were listed."}
+"""
+
+
+def write_cycle_pro_prompt(task_id: str, cycle: int, run_dir: Path) -> tuple[Path, Path, Path]:
+    text = chatgpt_pro_prompt_text(task_id, cycle, run_dir)
+    run_path = run_dir / "chatgpt_pro_prompt.md"
+    archive_path = PRO_PROMPT_DIR / f"{slugify(task_id)}-cycle{cycle:03d}.md"
+    latest_path = PRO_PROMPT_DIR / f"{slugify(task_id)}-latest.md"
+    write_text(run_path, text)
+    write_text(archive_path, text)
+    write_text(latest_path, text)
+    add_manifest("qbe.py cycle-pro-prompt", run_path, "pro-prompt", f"Wrote ChatGPT Pro prompt for {task_id} cycle {cycle}")
+    add_manifest("qbe.py cycle-pro-prompt", archive_path, "pro-prompt", f"Archived ChatGPT Pro prompt for {task_id} cycle {cycle}")
+    return run_path, archive_path, latest_path
+
+
+def cmd_cycle_pro_prompt(args: argparse.Namespace) -> int:
+    cmd_init(argparse.Namespace())
+    if args.run_id == "latest":
+        run_dir = latest_run_dir()
+        if run_dir is None:
+            raise SystemExit("no run directories found")
+    else:
+        run_dir = ROOT / "runs" / args.run_id
+    if not run_dir.exists():
+        raise SystemExit(f"run directory not found: {display_path(run_dir)}")
+    cycle = resolved_cycle(args.cycle, run_dir)
+    run_path, archive_path, latest_path = write_cycle_pro_prompt(args.id, cycle, run_dir)
+    print(f"pro-prompt: {display_path(run_path)}")
+    print(f"pro-prompt-archive: {display_path(archive_path)}")
+    print(f"pro-prompt-latest: {display_path(latest_path)}")
+    return 0
+
+
 def cmd_memory_refresh(args: argparse.Namespace) -> int:
     cmd_init(argparse.Namespace())
     if args.run_id == "latest":
@@ -2999,7 +3166,8 @@ def cmd_memory_refresh(args: argparse.Namespace) -> int:
         run_dir = ROOT / "runs" / args.run_id
     if not run_dir.exists():
         raise SystemExit(f"run directory not found: {display_path(run_dir)}")
-    digest_path, todo_path, index_path = write_memory_refresh(args.id, args.cycle, run_dir)
+    cycle = resolved_cycle(args.cycle, run_dir)
+    digest_path, todo_path, index_path = write_memory_refresh(args.id, cycle, run_dir)
     print(f"memory-digest: {display_path(digest_path)}")
     print(f"memory-todo: {display_path(todo_path)}")
     print(f"retrieval-index: {display_path(index_path)}")
@@ -3854,7 +4022,8 @@ def cmd_cycle_zh_summary(args: argparse.Namespace) -> int:
         run_dir = ROOT / "runs" / args.run_id
     if not run_dir.exists():
         raise SystemExit(f"run directory not found: {rel(run_dir)}")
-    run_path, archive_path = write_cycle_zh_summary(args.id, args.cycle, run_dir)
+    cycle = resolved_cycle(args.cycle, run_dir)
+    run_path, archive_path = write_cycle_zh_summary(args.id, cycle, run_dir)
     print(f"zh-summary: {display_path(run_path)}")
     print(f"zh-summary-archive: {display_path(archive_path)}")
     return 0
@@ -5541,6 +5710,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_zh_summary.add_argument("--cycle", type=int, default=1)
     p_zh_summary.add_argument("--run-id", default="latest")
     p_zh_summary.set_defaults(func=cmd_cycle_zh_summary)
+
+    p_pro_prompt = sub.add_parser("cycle-pro-prompt", help="write a self-contained ChatGPT Pro prompt for unresolved leaves")
+    p_pro_prompt.add_argument("id")
+    p_pro_prompt.add_argument("--cycle", type=int, default=1)
+    p_pro_prompt.add_argument("--run-id", default="latest")
+    p_pro_prompt.set_defaults(func=cmd_cycle_pro_prompt)
 
     p_memory = sub.add_parser("memory-refresh", help="refresh compact task memory and retrieval index")
     p_memory.add_argument("id")

@@ -1,4 +1,15 @@
 {
+  "active_override": {
+    "accepted_external_plan": "chatgpt_pro_finite_evaluated_path_comparison",
+    "active_packet": "proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md",
+    "leaf": "finite_path_feeder",
+    "next_route": "Map illustrative path names to existing Lean declarations, check finite path/support shape, then prove one selected-column/path-collapse/focused-normal-form/strict-feeder lemma.",
+    "raw_coeff_route_rejected": true,
+    "required_bridge": "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3",
+    "required_consumption_route": "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold",
+    "strict_feeder": "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env",
+    "updated": "2026-06-13"
+  },
   "cycle": 12,
   "dynamic_leaf_queue": [
     "finite_projection_feeder: prove the active clean projection equals the backend fold at evaluated level; status: active lower leaf; open; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` or one strict finite theorem feeding it",

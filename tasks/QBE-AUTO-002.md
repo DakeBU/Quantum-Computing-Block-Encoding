@@ -57,6 +57,97 @@ GHL2025 Robin circuit skeleton into a checkable block-encoding statement.
 This is not an innovation/open-problem task.  It is infrastructure required to
 finish the paper-reproduction mode for `QBE-AUTO-001`.
 
+## Immediate 6h Focus: ChatGPT Pro Finite Path Feeder Deployment (2026-06-13)
+
+This directive supersedes all older immediate directives for the next active
+6h proof batch.
+
+The current route is accepted:
+
+```text
+selected active seven-gate entry
+  -> focused evaluated path normal form
+  <- backend selected contribution
+  -> strict feeder
+  -> oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
+  -> source-prepared Fig. 4 bridge under explicit hUniform
+```
+
+The deployment packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md
+```
+
+Read that packet before lower work.  The active theorem-facing lower target is
+still `finite_projection_feeder`, but now lower work must follow the finite
+evaluated path-comparison plan.  The preferred strict feeder is:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+Then recover the named target through the compiled bridge:
+
+```lean
+oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3
+```
+
+and consume that result through:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+  H env hUniform hFold
+```
+
+Lower-agent split for this batch:
+
+| Lower profile | Required action |
+|---|---|
+| lower1: natural-language proof architect | Map the ChatGPT Pro path plan to existing Lean declarations. Produce exact path indices, selected-column facts that already exist, missing selected-column facts, and one recommended lower2 lemma. |
+| lower2: Lean implementation worker | Prove exactly one selected-column/path-collapse/strict-feeder lemma. Edit only `QuantumBlockEncoding/RobinMatrix.lean`, except that tiny generic wrappers may go in `QuantumBlockEncoding/CircuitSemantics.lean` if genuinely reusable. |
+| lower3: necessary-condition verifier | Check path indices, `R_y` branch shape, `O_f` branch shape, and tail-kill requirements before lower2 attempts a large proof. Write typed feedback under `verifier-feedback/QBE-AUTO-002/`. |
+
+Implementation calibration:
+
+- ChatGPT Pro's names such as `G_UIndic`, `p1`, `p2`, `TailAfterRy`, and
+  `FocusedPathEval` are illustrative.  Do not paste them blindly.  Map them to
+  existing declarations first, or add only thin aliases.
+- Prefer existing declarations:
+  `oneTermRobinGamma3BoundaryPrefixRow0_n3`,
+  `oneTermRobinGamma3BoundaryPrefixMatrix_n3`,
+  `oneTermRobinGamma3BoundarySuffixMatrix_n3`,
+  `oneTermRobinGamma3BoundarySevenGateMatrix_n3`,
+  `oneTermRobinGamma3BoundaryBackendBranchContribution_n3`,
+  `oneTermRobinGamma3BoundaryBranchContributionFocusedSlot`,
+  `oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3`,
+  `oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3`,
+  `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_uncastActiveCircuitEntryEval_n3`,
+  `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3`, and
+  `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3`.
+- Use `Matrix.evalWith_mul_apply`, `Matrix.evalWith_mul_unique_path`,
+  `Matrix.evalWith_mul_two_path`, `Matrix.evalWith_mul_eq_zero_of_all_paths_zero`,
+  and `Matrix.evalWith_mul_identity_right_apply`.
+- Do not attack raw symbolic `Coeff` equality as the main theorem.
+- Do not add `hUniform` to the strict feeder.
+- Do not change the paper circuit, oracle contracts, gate order, normalizer, or
+  theorem assumptions.
+- Do not promote oracle, `H_W`, `R_y`, LCU/QSVT, unitarity, or final
+  block-correctness flags.
+
+Reviewer must reject any cycle that ignores this deployment packet and returns
+to raw constructor equality, broad theorem closure, or already retired
+arbitrary-`H` prepared targets.
+
 ## Phase Discipline
 
 This task is currently in **Phase 1: faithful paper transcript and contract
@@ -218,6 +309,118 @@ Current known compiled inputs:
 Non-goals:
 
 - Do not spend the batch proving the frozen H-free raw fold directly.
+
+## Current Run Directive: 2026-06-13 ChatGPT Pro Finite Path Feeder Active Override
+
+This is the active directive for the next 6h batch.  It supersedes every older
+`Immediate 6h Focus` section above.
+
+Use:
+
+```text
+proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md
+```
+
+as the lower-facing plan.  The accepted route is the finite evaluated
+path-comparison feeder:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+Then use
+`oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3`
+to obtain `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, and
+consume it only through
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+H env hUniform hFold`.
+
+Mandatory lower split:
+
+- lower1 maps ChatGPT Pro's illustrative names (`p0...p7`, `G_UIndic`,
+  `TailAfterRy`, `FocusedPathEval`) to existing Lean declarations or explicit
+  thin aliases.  It must identify existing selected-column facts, missing
+  selected-column facts, and whether `R_y`/`O_f` are unique-column or
+  two-path-with-tail-kill in the current implementation.
+- lower3 records finite/path/support diagnostics in `verifier-feedback/` before
+  lower2 attempts a large proof.
+- lower2 proves one ready selected-column, path-collapse, focused-normal-form,
+  or strict-feeder lemma.  It must not add assumptions, change the circuit, or
+  prove raw symbolic `Coeff` constructor equality as theorem closure.
+
+Reviewer rejects any route that ignores this directive, reassigns the retired
+arbitrary-`H` prepared target, attacks raw `Coeff` equality as the main theorem,
+or promotes oracle/`H_W`/`R_y`/LCU/QSVT/unitarity/final block-correctness flags.
+
+## Immediate 6h Focus: ChatGPT Pro Finite Path Feeder Active Override (2026-06-13 FINAL)
+
+This final immediate directive exists because `sleep-run` focused context
+selects the last `Immediate` section.  It supersedes every older immediate or
+current directive above.
+
+Use this packet:
+
+```text
+proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md
+```
+
+The accepted route is:
+
+```text
+selected active seven-gate entry
+  -> focused evaluated path normal form
+  <- backend selected contribution
+  -> strict feeder
+  -> evaluated backend fold
+  -> source-prepared Fig. 4 bridge under explicit hUniform
+```
+
+Preferred strict feeder:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+Then use
+`oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3`
+to obtain `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, and
+consume it only through
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+H env hUniform hFold`.
+
+Next 6h lower-agent plan:
+
+- lower1 maps ChatGPT Pro's illustrative names (`p0...p7`, `G_UIndic`,
+  `TailAfterRy`, `FocusedPathEval`) to existing Lean declarations or thin
+  aliases, and identifies one ready lower2 lemma.
+- lower3 checks finite path/support shape, especially whether `R_y` and `O_f`
+  are unique-column or two-path-with-tail-kill in the current implementation.
+- lower2 proves exactly one selected-column, path-collapse,
+  focused-normal-form, or strict-feeder lemma.  It must not add assumptions,
+  change gate order, change oracle contracts, add `hUniform` to the strict
+  feeder, or use raw symbolic `Coeff` constructor equality as theorem closure.
+
+Reviewer rejects any route that ignores the deployment packet, reassigns the
+retired arbitrary-`H` prepared target, attacks raw equality as the main theorem,
+or promotes oracle/`H_W`/`R_y`/LCU/QSVT/unitarity/final block-correctness flags.
 - Do not promote `productToCoefficientProved`, `lcuCorrectProved`,
   `blockProjectionProved`, `blockCorrectProved`,
   `normalizedBlockEqualityProved`, `circuitUnitarityProved`, or
@@ -3096,6 +3299,127 @@ oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
 product-to-coefficient, circuit-unitarity, block-correctness,
 final-extraction, normalizer, or external primitive flag is promoted.
 
+## Immediate 6h Focus: ChatGPT Pro Finite Path Feeder Active Override (2026-06-13 EOF)
+
+This EOF immediate directive is the active next-batch directive.  It supersedes
+every older immediate or current directive above.
+
+Use this packet:
+
+```text
+proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md
+```
+
+The accepted route is:
+
+```text
+selected active seven-gate entry
+  -> focused evaluated path normal form
+  <- backend selected contribution
+  -> strict feeder
+  -> evaluated backend fold
+  -> source-prepared Fig. 4 bridge under explicit hUniform
+```
+
+Preferred strict feeder:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+Then use
+`oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3`
+to obtain `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, and
+consume it only through
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+H env hUniform hFold`.
+
+Next 6h lower-agent plan:
+
+- lower1 maps ChatGPT Pro's illustrative names (`p0...p7`, `G_UIndic`,
+  `TailAfterRy`, `FocusedPathEval`) to existing Lean declarations or thin
+  aliases, and identifies one ready lower2 lemma.
+- lower3 checks finite path/support shape, especially whether `R_y` and `O_f`
+  are unique-column or two-path-with-tail-kill in the current implementation.
+- lower2 proves exactly one selected-column, path-collapse,
+  focused-normal-form, or strict-feeder lemma.  It must not add assumptions,
+  change gate order, change oracle contracts, add `hUniform` to the strict
+  feeder, or use raw symbolic `Coeff` constructor equality as theorem closure.
+
+Reviewer rejects any route that ignores the deployment packet, reassigns the
+retired arbitrary-`H` prepared target, attacks raw equality as the main theorem,
+or promotes oracle/`H_W`/`R_y`/LCU/QSVT/unitarity/final block-correctness flags.
+
+## Immediate 6h Focus: ChatGPT Pro Finite Path Feeder Active Override (2026-06-13 TRUE FINAL)
+
+This final immediate directive is intentionally placed at the end of the task
+file because `sleep-run` focused context selects the last `Immediate` section.
+It supersedes every older immediate or current directive above.
+
+Use this packet:
+
+```text
+proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md
+```
+
+The accepted route is:
+
+```text
+selected active seven-gate entry
+  -> focused evaluated path normal form
+  <- backend selected contribution
+  -> strict feeder
+  -> evaluated backend fold
+  -> source-prepared Fig. 4 bridge under explicit hUniform
+```
+
+Preferred strict feeder:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+Then use
+`oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3`
+to obtain `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, and
+consume it only through
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+H env hUniform hFold`.
+
+Next 6h lower-agent plan:
+
+- lower1 maps ChatGPT Pro's illustrative names (`p0...p7`, `G_UIndic`,
+  `TailAfterRy`, `FocusedPathEval`) to existing Lean declarations or thin
+  aliases, and identifies one ready lower2 lemma.
+- lower3 checks finite path/support shape, especially whether `R_y` and `O_f`
+  are unique-column or two-path-with-tail-kill in the current implementation.
+- lower2 proves exactly one selected-column, path-collapse,
+  focused-normal-form, or strict-feeder lemma.  It must not add assumptions,
+  change gate order, change oracle contracts, add `hUniform` to the strict
+  feeder, or use raw symbolic `Coeff` constructor equality as theorem closure.
+
+Reviewer rejects any route that ignores the deployment packet, reassigns the
+retired arbitrary-`H` prepared target, attacks raw equality as the main theorem,
+or promotes oracle/`H_W`/`R_y`/LCU/QSVT/unitarity/final block-correctness flags.
+
 ## Current Run Directive: 2026-06-13 Source-Prepared Contract Clarification
 
 This directive records the middle source-contract clarification for run
@@ -3328,3 +3652,63 @@ The gate remains `python3 tools/qbe.py check`, then `lake build`, then
 oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
 product-to-coefficient, circuit-unitarity, block-correctness,
 final-extraction, normalizer, or external primitive flag is promoted.
+
+## Immediate 6h Focus: ChatGPT Pro Finite Path Feeder Active Override (2026-06-13 ACTUAL EOF)
+
+This actual EOF immediate directive is the active next-batch directive.  It
+supersedes every older immediate or current directive above.
+
+Use this packet:
+
+```text
+proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md
+```
+
+The accepted route is:
+
+```text
+selected active seven-gate entry
+  -> focused evaluated path normal form
+  <- backend selected contribution
+  -> strict feeder
+  -> evaluated backend fold
+  -> source-prepared Fig. 4 bridge under explicit hUniform
+```
+
+Preferred strict feeder:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+Then use
+`oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3`
+to obtain `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, and
+consume it only through
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+H env hUniform hFold`.
+
+Next 6h lower-agent plan:
+
+- lower1 maps ChatGPT Pro's illustrative names (`p0...p7`, `G_UIndic`,
+  `TailAfterRy`, `FocusedPathEval`) to existing Lean declarations or thin
+  aliases, and identifies one ready lower2 lemma.
+- lower3 checks finite path/support shape, especially whether `R_y` and `O_f`
+  are unique-column or two-path-with-tail-kill in the current implementation.
+- lower2 proves exactly one selected-column, path-collapse,
+  focused-normal-form, or strict-feeder lemma.  It must not add assumptions,
+  change gate order, change oracle contracts, add `hUniform` to the strict
+  feeder, or use raw symbolic `Coeff` constructor equality as theorem closure.
+
+Reviewer rejects any route that ignores the deployment packet, reassigns the
+retired arbitrary-`H` prepared target, attacks raw equality as the main theorem,
+or promotes oracle/`H_W`/`R_y`/LCU/QSVT/unitarity/final block-correctness flags.

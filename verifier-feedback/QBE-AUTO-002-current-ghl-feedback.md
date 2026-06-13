@@ -8,6 +8,54 @@ Scope: Guseynov--Huang--Liu 2025 one-term Robin block-encoding circuit
 semantics, currently focused on the finite `n = 3` matrix-entry bridge needed
 for the theorem-facing Fig. 4 route.
 
+## 2026-06-13 ChatGPT Pro Finite-Path Feeder Override
+
+The ChatGPT Pro response supplied by the user is accepted as the next 6h plan
+after calibration to existing Lean names.
+
+Accepted route:
+
+```text
+selected active seven-gate entry
+  -> focused evaluated path normal form
+  <- backend selected contribution
+  -> strict feeder
+  -> oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
+  -> source-prepared Fig. 4 bridge under explicit hUniform
+```
+
+The active packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md
+```
+
+Typed override:
+
+```json
+{
+  "task": "QBE-AUTO-002",
+  "leaf": "finite_path_feeder",
+  "supersedes_leaf": "arbitrary_H_source_prepared_finite_composition_leaf_as_default_lower_target",
+  "source_correspondence_ok": true,
+  "finite_matrix_ok": "must be checked by lower3 before large lower2 proof",
+  "block_entry_ok": false,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "accepted_external_plan": "chatgpt_pro_finite_evaluated_path_comparison",
+  "strict_feeder": "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env",
+  "required_consumption_route": "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3, then oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold",
+  "raw_coeff_route_rejected": true,
+  "next_route": "lower1 maps path names to existing Lean declarations; lower3 checks path/support shape; lower2 proves one selected-column/path-collapse/focused-normal-form/strict-feeder lemma"
+}
+```
+
+Reviewer must reject direct reuse of illustrative names such as `G_UIndic`,
+`p1`, `p2`, or `TailAfterRy` unless they are mapped to existing declarations or
+introduced as thin aliases.  Reviewer must also reject any attempt to prove the
+two raw diagnostic `sorry` declarations as theorem closure by brute-force
+unfolding.
+
 ## 2026-06-13 Middle Memory Retrieval Override
 
 The current default lower target is `finite_projection_feeder`, not the

@@ -5001,3 +5001,18 @@ block-encoding formalization lifecycle.
 | 2026-06-13 13:19:00 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-AUTO-002.json` | memory | Wrote retrieval index for QBE-AUTO-002 |
 | 2026-06-13 13:19:00 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
 | 2026-06-13 13:19:01 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |
+| 2026-06-13 15:33:40 | qbe.py init | `QBE.md` | init | Initialized QBE workflow files |
+| 2026-06-13 15:33:40 | qbe.py cycle-pro-prompt | `runs/20260613-054606-QBE-AUTO-002-cycle01/chatgpt_pro_prompt.md` | pro-prompt | Wrote ChatGPT Pro prompt for QBE-AUTO-002 cycle 0 |
+| 2026-06-13 15:33:40 | qbe.py cycle-pro-prompt | `runs/pro-prompts/QBE-AUTO-002-cycle000.md` | pro-prompt | Archived ChatGPT Pro prompt for QBE-AUTO-002 cycle 0 |
+| 2026-06-13 15:34:54 | qbe.py cycle-pro-prompt | `runs/20260613-054606-QBE-AUTO-002-cycle01/chatgpt_pro_prompt.md` | pro-prompt | Wrote ChatGPT Pro prompt for QBE-AUTO-002 cycle 0 |
+| 2026-06-13 15:34:54 | qbe.py cycle-pro-prompt | `runs/pro-prompts/QBE-AUTO-002-cycle000.md` | pro-prompt | Archived ChatGPT Pro prompt for QBE-AUTO-002 cycle 0 |
+| 2026-06-13 15:36:25 | qbe.py cycle-pro-prompt | `runs/20260613-054606-QBE-AUTO-002-cycle01/chatgpt_pro_prompt.md` | pro-prompt | Wrote ChatGPT Pro prompt for QBE-AUTO-002 cycle 1 |
+| 2026-06-13 15:36:25 | qbe.py cycle-pro-prompt | `runs/pro-prompts/QBE-AUTO-002-cycle001.md` | pro-prompt | Archived ChatGPT Pro prompt for QBE-AUTO-002 cycle 1 |
+| 2026-06-13 15:53:24 | qbe.py update-task | `tasks/QBE-AUTO-002.md` | task | Updated QBE-AUTO-002 to active |
+| 2026-06-13 15:53:24 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-13 15:53:24 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-13 15:53:25 | qbe.py write-context-pack | `runs/context-packs/QBE-AUTO-002-cycle001.md` | context | Wrote compact context pack for QBE-AUTO-002 cycle 1 |
+| 2026-06-13 15:53:25 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-13 15:53:25 | qbe.py blueprint-status | `proof-blueprints/QBE-AUTO-002-status.md` | blueprint | Wrote blueprint status for QBE-AUTO-002 |
+| 2026-06-13 15:53:25 | qbe.py blueprint-refresh | `proof-blueprints/QBE-AUTO-002.md` | blueprint | Refreshed proof blueprint for QBE-AUTO-002 |
+| 2026-06-13 15:53:25 | qbe.py run-cycle | `runs/20260613-155325-QBE-AUTO-002-cycle01` | run | Created run cycle for QBE-AUTO-002 |

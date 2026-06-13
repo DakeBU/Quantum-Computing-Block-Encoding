@@ -109,6 +109,7 @@ python3 tools/qbe.py sleep-run "$TASK_ID" \
 final_code=$?
 python3 tools/qbe.py cycle-zh-summary "$TASK_ID" --cycle "$cycle" --run-id latest
 python3 tools/qbe.py memory-refresh "$TASK_ID" --cycle "$cycle" --run-id latest
+python3 tools/qbe.py cycle-pro-prompt "$TASK_ID" --cycle "$cycle" --run-id latest
 python3 tools/qbe.py project-article-update "$TASK_ID" --cycle "$cycle" --run-id latest
 python3 tools/qbe.py efficiency-report --task "$TASK_ID"
 python3 tools/qbe.py human-status "$TASK_ID"

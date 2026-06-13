@@ -110,6 +110,28 @@ structure TrialRecordSpec where
   note : String
 deriving Repr, DecidableEq
 
+inductive PostCycleArtifactKind where
+  | chineseSummary
+  | chatgptProPrompt
+  | retrievalIndex
+  | technicalReportUpdate
+  | verifierFeedback
+deriving Repr, DecidableEq
+
+structure PostCycleArtifactSpec where
+  kind : PostCycleArtifactKind
+  pathPattern : String
+  selfContainedForExternalModel : Bool
+  note : String
+deriving Repr, DecidableEq
+
+structure WorkflowCheckSpec where
+  name : String
+  checks : List String
+  inspiredBy : String
+  note : String
+deriving Repr, DecidableEq
+
 def leanBuildGate : AcceptanceGate where
   name := "Lean build"
   command := "lake build && lake build Tests"
@@ -141,6 +163,50 @@ def trialRecordSpec : TrialRecordSpec where
     "notes"
   ]
   note := "Inspired by Learning Beyond Gradients trial logs; used here as proof-search memory."
+
+def postCycleArtifactSpecs : List PostCycleArtifactSpec :=
+  [
+    {
+      kind := PostCycleArtifactKind.chineseSummary
+      pathPattern := "paper-notes/GHL2025/markdown/cycle-summaries/latest.md"
+      selfContainedForExternalModel := false
+      note := "Human-facing Chinese source audit for the latest long run."
+    },
+    {
+      kind := PostCycleArtifactKind.chatgptProPrompt
+      pathPattern := "runs/pro-prompts/<task-id>-latest.md"
+      selfContainedForExternalModel := true
+      note := "Prompt assumes ChatGPT Pro cannot read local files."
+    },
+    {
+      kind := PostCycleArtifactKind.retrievalIndex
+      pathPattern := "research-wiki/retrieval-index/<task-id>.json"
+      selfContainedForExternalModel := false
+      note := "Compact upper/middle memory for the next cycle."
+    },
+    {
+      kind := PostCycleArtifactKind.technicalReportUpdate
+      pathPattern := "paper-notes/project-paper/cycle-updates/latest.tex"
+      selfContainedForExternalModel := false
+      note := "Middle-agent public writing update; must not overclaim theorem closure."
+    }
+  ]
+
+def workflowCheckSpecs : List WorkflowCheckSpec :=
+  [
+    {
+      name := "Blueprint DAG refinement"
+      checks := ["active leaf recorded", "solved nodes preserved", "failed route classified"]
+      inspiredBy := "arXiv:2606.06468"
+      note := "Goedel-Architect-like blueprint control, specialized to oracle/block-encoding leaves."
+    },
+    {
+      name := "Agent trajectory audit"
+      checks := ["required artifacts exist", "role handoff recorded", "stale route not reassigned unchanged"]
+      inspiredBy := "arXiv:2606.06523"
+      note := "Lean4Agent-like workflow verification; separate from the quantum theorem."
+    }
+  ]
 
 def threeLayerAgentContracts : List AgentContract :=
   [

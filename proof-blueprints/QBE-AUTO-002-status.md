@@ -2,7 +2,7 @@
 
 - Task: `QBE-AUTO-002`
 - Title: Concrete Circuit Matrix Semantics Backend
-- Generated: `2026-06-13 13:18:49`
+- Generated: `2026-06-13 15:53:25`
 - Mode: `faithfulPaper`
 - Stage: Stage 2 DAG proof discharge, with faithful transcript checks still active
 - Latest cycle: `20260613-054606-QBE-AUTO-002-cycle01`
@@ -75,46 +75,23 @@
 
 ## Current Dirty Files
 
-- `HUMAN_STATUS.md`
 - `MANIFEST.md`
-- `QuantumBlockEncoding/RobinMatrix.lean`
-- `REPORTS.zh.md`
-- `conversion-windows/QBE-AUTO-002.md`
-- `paper-notes/GHL2025/latex/sections/00_status.tex`
-- `paper-notes/GHL2025/markdown/00_status.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260613-014033-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260613-042537-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260613-054606-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/latest.md`
-- `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`
-- `paper-notes/GHL2025/markdown/unresolved-failures.zh.md`
-- `paper-notes/project-paper/cycle-updates/20260613-014033-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-014033-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-022313-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-022313-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-031339-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-031339-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-033618-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-033618-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-040302-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-040302-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-042537-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-042537-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-045026-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-045026-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-050943-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-050943-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-052836-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-052836-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-054606-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-054606-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/latest.md`
-- `paper-notes/project-paper/cycle-updates/latest.tex`
-- `proof-attempts/QBE-AUTO-002/active-prepared-composition-interface-lower2-blocked-20260613-0400.md`
-- `proof-attempts/QBE-AUTO-002/evaluated-backend-fold-current-run-middle-packet-20260613-0435.md`
-- `proof-attempts/QBE-AUTO-002/evaluated-backend-fold-lower2-blocked-20260613-044732.md`
-- `proof-attempts/QBE-AUTO-002/evaluated-backend-fold-lower2-blocked-20260613-050601.md`
-- `proof-attempts/QBE-AUTO-002/finite-projection-feeder-final-middle-packet-20260613-0624.md`
+- `QuantumBlockEncoding/Automation.lean`
+- `README.md`
+- `docs/agent_blueprint_formalization.md`
+- `docs/pro_prompt_policy.md`
+- `docs/prompts/`
+- `proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md`
+- `proof-blueprints/QBE-AUTO-002-status.json`
+- `proof-blueprints/QBE-AUTO-002-status.md`
+- `proof-blueprints/QBE-AUTO-002.md`
+- `proof-obligations/QBE-AUTO-002.md`
+- `research-wiki/retrieval-index/QBE-AUTO-002.json`
+- `tasks/QBE-AUTO-002.md`
+- `tools/qbe.py`
+- `tools/qbe_run_theorem_closure.sh`
+- `verifier-feedback/QBE-AUTO-002-current-ghl-feedback.md`
+- `verifier-feedback/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.json`
 
 ## Controls
 

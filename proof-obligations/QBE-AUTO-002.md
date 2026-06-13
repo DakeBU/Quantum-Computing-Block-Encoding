@@ -14952,6 +14952,59 @@ LCU, block-projection, normalized-equality, product-to-coefficient,
 circuit-unitarity, block-correctness, final-extraction, normalizer, or external
 primitive flag is promoted.
 
+### 2026-06-13 ChatGPT Pro Finite-Path Feeder Deployment EOF
+
+The user supplied a ChatGPT Pro proof plan.  Middle accepts the plan as the next
+6h route after calibrating illustrative names to existing Lean declarations.
+This supersedes the older next packet
+`proof-attempts/QBE-AUTO-002/source-prepared-uniform-target-correction-middle-packet-20260613-0606.md`.
+
+The active packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md
+```
+
+The active route is not raw `Coeff` constructor equality.  It is:
+
+```text
+selected active seven-gate entry
+  -> focused evaluated path normal form
+  <- backend selected contribution
+  -> strict feeder
+  -> evaluated backend fold
+  -> source-prepared bridge under explicit hUniform
+```
+
+Preferred strict feeder:
+
+```lean
+theorem oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3
+    (env : String → Rat) :
+    Coeff.evalWith env
+      ((evalGateMatrices
+        (GHL2025.oneTermRobinGateMatrixPlaceholders
+          (oneTermParameters 3)))
+        oneTermRobinGamma3BoundaryPrefixRow0_n3
+        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution
+```
+
+| Obligation | Lean declaration or target | Dependency class | Status |
+|---|---|---|---|
+| finite path map | map ChatGPT Pro's `p0...p7`, `G_UIndic`, `TailAfterRy`, and focused normal form to existing Lean declarations or thin aliases | QBE-local finite path bookkeeping tied to GHL2025 Fig. 4 | lower1/lower3 first; open |
+| selected-column facts | one selected-column lemma per gate, with two-path-and-tail-kill only where `R_y` or `O_f` has an orthogonal branch | GHL source instantiated as finite entry semantics | lower2 one lemma at a time; open |
+| active entry focused normal form | `oneTermRobinGamma3BoundaryActiveEntryEval_eq_focusedPathEval_n3 env` or equivalent | QBE-local finite matrix semantics using `Matrix.evalWith_mul_*` | open |
+| backend selected contribution focused normal form | `oneTermRobinGamma3BoundaryBackendFocusedContributionEval_eq_focusedPathEval_n3 env` or equivalent | QBE-local finite matrix semantics | open |
+| strict feeder | `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env` | QBE-local finite projection theorem | active target after path map; open |
+| evaluated fold recovery | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_holds_n3 env` via `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalComparison_iff_evaluatedBackendFold_n3` | compiled bridge consumption | blocked only on strict feeder |
+| diagnostic raw equality cleanup | replace raw diagnostic `sorry` declarations with honest `_goal : Prop` or evaluated semantic theorem after strict feeder compiles | proof hygiene | do not attack first |
+
+Reviewer must reject attempts that ignore this packet, retry raw constructor
+equality as theorem closure, reassign the retired arbitrary-`H` prepared target,
+or promote oracle/`H_W`/`R_y`/LCU/QSVT/unitarity/final block-correctness flags.
+
 ### 2026-06-13 Middle Source-Contract Target Correction EOF
 
 For run `20260613-054606-QBE-AUTO-002-cycle01`, middle re-read the GHL2025

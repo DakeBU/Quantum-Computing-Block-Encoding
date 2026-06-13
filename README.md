@@ -164,6 +164,8 @@ flowchart TD
   O --> J
   J --> K["retrieval index + todos"]
   K --> L["Chinese 6h summary + technical report appendix"]
+  K --> Q["self-contained ChatGPT Pro prompt"]
+  Q --> E
   L --> E
 ```
 
@@ -178,6 +180,21 @@ The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
   trial memory, rejected routes, and human summaries are current.
 - Middle coordinator: turns upper decisions into lower-1 proof-DAG, lower-2
   Lean, and lower-3 verifier packets.
+
+### Human And Pro Review Entry Points
+
+After a long run, the human-facing entry points are intentionally narrow:
+
+- Chinese status: `paper-notes/GHL2025/markdown/cycle-summaries/latest.md`.
+- ChatGPT Pro prompt: `runs/pro-prompts/QBE-AUTO-002-latest.md`.
+- Policy: [`docs/pro_prompt_policy.md`](docs/pro_prompt_policy.md).
+- Blueprint/workflow formalization notes:
+  [`docs/agent_blueprint_formalization.md`](docs/agent_blueprint_formalization.md).
+
+The Pro prompt is self-contained because ChatGPT Pro cannot read local files.
+It includes public paper links, the current theorem target, open GHL
+contribution obligations, open external technical lemmas, and recent verifier
+feedback.
 - Middle source-correspondence formalizer: maps source TeX, equations, figures,
   and cited primitives to Lean-facing contracts.
 - Middle memory/retrieval curator: retires stale targets, updates retrieval
@@ -533,6 +550,7 @@ math-writing skill.
 | `python3 tools/qbe.py write-context-pack ...` | Write a compact long-run context pack. |
 | `python3 tools/qbe.py efficiency-report ...` | Summarize recent long-run efficiency, quota/build signals, and next controls. |
 | `python3 tools/qbe.py cycle-zh-summary ...` | Write the Chinese source-aligned audit page. The 6h wrapper runs this once at the final audit; use `sleep-run --summary-each-cycle` only for short debugging runs. |
+| `python3 tools/qbe.py cycle-pro-prompt ...` | Write a self-contained ChatGPT Pro prompt for the remaining unresolved leaves. |
 | `python3 tools/qbe.py memory-refresh ...` | Refresh `memory_digest.md`, cycle todo, GHL todo, technical-lemma todo, and the compact retrieval JSON. |
 | `python3 tools/qbe.py human-status ...` | Refresh `HUMAN_STATUS.md`, the single human-facing dashboard for the latest run. |
 | `python3 tools/qbe.py project-article-update ...` | Write the article-facing cycle packet and mirror generated status into the technical report. |
@@ -663,6 +681,8 @@ task boundary explicit.
 | Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer constructions that reduce formal gaps. | Faithful paper-reproduction mode should not use evolutionary mutation to change the paper construction; [EoH][eoh]-like exploration belongs only after the acceptance predicate is explicit. |
 | Lean proof diagnostics and theorem reuse | [MathCode][mathcode] provides Lean proof-analysis tools, theorem-store-like reuse, persistent REPL/LSP feedback, tree-of-subgoals proving, multi-planner search, and skills/plugins. | QBE uses a similar idea for reviewer scans, proof-attempt memory, reusable projection/gate lemmas, and future focused-check tooling. | [MathCode][mathcode] is a general math formalization agent; QBE is a domain-specific system for quantum oracle/block-encoding circuit matrices. QBE must not accept stored assumptions or proof-search scores as theorem closure. |
 | Blueprint and dynamic proof-DAG control | [LeanMarathon][leanmarathon] and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | [LeanMarathon][leanmarathon] targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |
+| Blueprint generation and refinement | [Goedel-Architect][goedel-architect-paper] uses a blueprint DAG, preserves solved nodes, and refines failed nodes by diagnosis. | QBE now treats post-cycle memory, Pro prompts, and active leaves as a diagnosis pipeline: wrong statement, missing dependency, proof too hard, or stale route. | Goedel-Architect is a general Lean proving architecture; QBE specializes the blueprint to quantum oracle/circuit source correspondence. |
+| Workflow and trajectory verification | [Lean4Agent][lean4agent-paper] models agent workflows and trajectories in Lean. | QBE records a future route for Lean-checking the orchestration layer itself: required artifacts, role pre/postconditions, and stale-route trajectory checks. | Workflow verification audits the process; it never replaces Lean proof of the quantum theorem. |
 | Quantum circuit generation evaluation taxonomy | [Generative AI for Quantum Circuits and Quantum Code][quantum-circuit-review] organizes circuit-generation systems by artifact type, training regime, and syntax/semantic/hardware evaluation layers. | QBE uses the taxonomy to separate pre-Lean diagnostics from proof closure: syntax and finite simulation are useful search signals, while Lean theorems remain the final certificate. | The review concerns generated QASM/Qiskit/circuit artifacts; QBE targets block-encoding/oracle theorem reproduction and construction. |
 | Tool-server and hierarchical reward feedback | [QUASAR][quasar] uses tool-augmented quantum simulators and hierarchical reward feedback for quantum assembly generation. | QBE borrows the idea of structured search signals for lower agents, but translates them into proof-DAG leaves, verifier-feedback fields, and rejected-route memory. | [QUASAR][quasar] optimizes generated circuit programs; QBE cannot treat reward as proof. |
 | Typed verifier fields | [QASM-Eval][qasm-eval] validates OpenQASM-3 programs with syntax, state, and timeline checks. | QBE mirrors this as `verifier-feedback/` fields and as lower 3, a necessary-condition verifier for finite matrix/path/support checks before Lean theorem closure. | QASM-Eval validates executable programs; QBE uses such checks only before Lean theorem closure. |
@@ -823,6 +843,8 @@ every small lemma.
 [eoh]: https://github.com/FeiLiu36/EoH
 [leanmarathon]: https://github.com/YuanheZ/LeanMarathon
 [mathcode]: https://github.com/math-ai-org/mathcode
+[goedel-architect-paper]: https://arxiv.org/abs/2606.06468
+[lean4agent-paper]: https://arxiv.org/abs/2606.06523
 [quantum-circuit-review]: https://arxiv.org/abs/2603.16216
 [quasar]: https://github.com/benyucong/QUASAR
 [quasar-paper]: https://arxiv.org/abs/2510.00967
