@@ -3,7 +3,7 @@
 Task id: `QBE-AUTO-002`
 Title: Concrete Circuit Matrix Semantics Backend
 Mode: `faithfulPaper`
-Updated: `2026-06-14 01:28:29`
+Updated: `2026-06-14 16:31:08`
 Blueprint stage: `Stage 2 DAG proof discharge, with faithful transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -16,40 +16,22 @@ oracle contracts to stay explicit.
 ## Current Directive
 
 ````text
-## Current Run Directive: 2026-06-14 Source-Prepared Active-Field Contract For Run 20260614-004100
+## Current Run Directive: 2026-06-14 Pro-Assessed Source-Prepared Target Repair For Next 6h
 
-This directive implements the upper synthesis in
-`runs/20260614-004100-QBE-AUTO-002-cycle01/dialogue.md`.
+This directive supersedes the `2026-06-14 Source-Prepared Active-Field
+Contract` directive below for the next 6h batch.  Full assessment:
 
-The selected-slot obstruction leaf is now closed:
-
-```lean
-oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md
 ```
 
-It proves that the selected gamma3 boundary contribution is nonzero under the
-all-one selected-branch environment.  Therefore the following routes stay
-retired:
+ChatGPT Pro's response is directionally correct: the H-free evaluated backend
+fold and direct row-`0` to selected sparse slot feeder are retired and must not
+be revived.  The full Fig. `fig:1 term ROBIN` theorem-facing object must keep
+both `H_W^(kappa)` side preparations.
 
-```lean
-oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
-oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
-```
-
-The first is a `finite_matrix_counterexample` as an all-environment H-free
-root, and the second is still a `shape_or_register_gap` comparing active row
-`0` with selected sparse slot `2`.
-
-The source object now under audit is the full prepared Fig. `fig:1 term ROBIN`
-clean projection from Definition `def:block-encoding`, not the local H-free
-seven-gate backend by itself.  The Lean field naming the current
-source-prepared active/prepared comparison is:
-
-```lean
-(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
-```
-
-Accepted equivalent views are:
+Local correction: in the current Lean file, these names still compare the old
+H-free active signal-zero entry with the prepared clean entry:
 
 ```lean
 oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
@@ -57,55 +39,58 @@ oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
 (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
 ```
 
-Do not assign closure of this field as an arbitrary-`H` theorem.  Existing
-compiled wiring shows that, under the explicit clean-column contract
+Under
 
 ```lean
 hUniform :
   oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
 ```
 
-the current active/prepared field routes back to the retired evaluated backend
-fold.  The next lower work must therefore record the source contract and one
-formal guard before proof search continues.
+the existing compiled bridge routes that comparison back to the retired H-free
+backend fold.  Therefore these names are diagnostic wrappers unless middle
+first restates the theorem-facing left-hand side.  Do not make the whole next
+batch prove this arbitrary-`H` active/prepared comparison.
 
-The next lower-facing source contract is:
-
-```text
-proof-attempts/QBE-AUTO-002/source-prepared-active-field-source-contract-20260614-0102.md
-```
-
-Allowed lower work:
-
-1. lower1 maps Eq. `arbitrary sparcity`, Eq. `angles for Ry`, Theorem
-   `theorem: 1 term robin`, Eq. `ROBIN clarified`, Fig.
-   `fig:1 term ROBIN`, Definition `def:block-encoding`, and the Fig. 4
-   visual audit to the source-prepared active/prepared field and its guard.
-2. lower3 checks only source-prepared branch/register shape: full Fig. 4
-   preparation versus the H-free backend component, downstream-only
-   `hUniform`, and the selected-slot nonzero witness.
-3. lower2 may prove exactly one guard leaf in
-   `QuantumBlockEncoding/RobinMatrix.lean`:
+The next source-faithful target is the prepared clean projection itself:
 
 ```lean
-theorem oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3
-    (H : Matrix 8 8 Coeff) (env : String → Rat)
-    (hUniform :
-      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
-    (hActive :
-      oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env) :
-    Coeff.evalWith env
-      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution = 0
+Coeff.evalWith env
+  ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+=
+Coeff.evalWith env
+  (blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
 ```
 
-This guard is source-correspondence evidence only.  It must not be used to
-claim the one-term theorem, the source-prepared field, oracle correctness,
-`H_W`, `R_y`, LCU, unitarity, block-projection, normalizer,
-product-to-coefficient, block-correctness, or final extraction.
+Known compiled route material:
 
-Lower2 must not prove the retired H-free fold, revive the row-`0` to slot-`2`
-feeder, add assumptions to the paper theorem, or use sorry-guarded raw `Coeff`
-constructor equality as theorem closure.
+```lean
+oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3
+oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3
+```
+
+Next lower work:
+
+1. lower1 writes the source-proof DAG showing that Fig. 4's clean block-entry
+   object is the prepared composite clean projection, not the H-free seven-gate
+   `[0,0]` entry alone.
+2. lower3 checks the necessary condition for this prepared clean-entry route
+   and confirms that the H-free fold/direct feeder remain retired.
+3. lower2 may prove the selected-zero guard only as a quick diagnostic.  If the
+   guard is not closed quickly, stop and restate the source-facing target.  The
+   main Lean work is to add one theorem-facing prepared-projection route theorem
+   that reuses the compiled prepared clean-entry backend bridge and keeps
+   product, LCU, block-correctness, and final-extraction flags false.
+
+Scheduling rule for this batch: run one upper director pass, middle
+source-correspondence/memory refresh, lower1 and lower3 in parallel, lower2
+after lower1/lower3 confirm the leaf, one reviewer pass after lower2, then one
+Chinese summary and one ChatGPT Pro prompt at the end.  Avoid another
+upper/middle/reviewer-only batch.
 ````
 
 ## Dynamic Leaf Queue
@@ -116,8 +101,7 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| source_prepared_active_field_contract: source-prepared active/prepared field is the paper-facing object under audit; status: active source-correspondence leaf; Lean: `SourceActiveField(H, env)` | candidate |
-| source_prepared_active_field_forces_selected_zero_guard: `Uniform(H)` and `ActivePreparedEval(H, env)` imply `SelectedSlot(env) = 0`; status: active guard leaf; Lean: proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3` | candidate |
+| prepared_projection_restatement_leaf: restate theorem-facing Fig. 4 clean projection as `PreparedCleanEntry(H, env) = BackendFold(env)` under `Uniform(H)`; status: active next leaf; Lean: `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`; ... | candidate |
 
 ## Open Obligation Signals
 
@@ -179,10 +163,10 @@ Recent task-relevant declarations:
 | theorem | `oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23128` |
 | structure | `OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:23948` |
 | def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23980` |
-| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24837` |
-| theorem | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24867` |
-| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` | `QuantumBlockEncoding/RobinMatrix.lean:24880` |
-| theorem | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24898` |
+| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24872` |
+| theorem | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24902` |
+| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` | `QuantumBlockEncoding/RobinMatrix.lean:24915` |
+| theorem | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24933` |
 | def | `gateMatricesMatchCircuit` | `QuantumBlockEncoding/CircuitSemantics.lean:41` |
 | structure | `CircuitMatrixSemantics` | `QuantumBlockEncoding/CircuitSemantics.lean:404` |
 | structure | `PreparedCircuitEntryTarget` | `QuantumBlockEncoding/CircuitSemantics.lean:436` |
@@ -213,15 +197,7 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-.
-
-## 2026-06-14 01:10:50 - middle
-
-Middle source-correspondence sync complete: selected-slot nonzero witness is compiled and stale as work; H-free evaluated fold is retired as finite_matrix_counterexample; direct row-0 to slot-2 feeder remains shape_or_register_gap. New lower-facing contract is proof-attempts/QBE-AUTO-002/source-prepared-active-field-source-contract-20260614-0102.md, with optional lower2 guard oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests, with only known diagnostic sorry warnings.
-
-## 2026-06-14 01:14:44 - middle
-
-Memory/retrieval pass complete: retired the compiled selected-slot witness as lower work, kept the H-free fold retired as finite_matrix_counterexample and the direct row-0 to slot-2 feeder as shape_or_register_gap, corrected the blueprint dynamic queue to source_prepared_active_field_contract plus source_prepared_active_field_forces_selected_zero_guard, and wrote runs/20260614-004100-QBE-AUTO-002-cycle01/22_middle_memory_retrieval_result.md. Next lower packets should read the source-prepared active-field contract, add lower1/lower3 typed feedback, then let lower2 prove only the selected-zero guard. Gate passed: python3 tools/qbe.py check.
+then let lower2 prove only the selected-zero guard. Gate passed: python3 tools/qbe.py check.
 
 ## 2026-06-14 01:17:37 - middle
 
@@ -234,6 +210,10 @@ Middle coordinator sync complete: retired selected-slot witness and H-free fold 
 ## 2026-06-14 01:24:30 - middle
 
 Gate after final middle sync passed: python3 tools/qbe.py check; lake build && lake build Tests. Only known diagnostic sorry warnings remain at QuantumBlockEncoding/RobinMatrix.lean:24867 and :24898. Active lower target remains the source-prepared selected-zero guard only.
+
+## 2026-06-14 01:29:18 - reviewer
+
+Reviewer audit complete. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests, with only the known diagnostic sorry warnings at QuantumBlockEncoding/RobinMatrix.lean:24867 and :24898. No new hidden Prop/trivial/admit/axiom shortcuts or semantic proved-flag promotions were found in the diff. Source anchors for Eq. arbitrary sparcity, Eq. angles for Ry, Theorem theorem: 1 term robin, Eq. ROBIN clarified, Fig. fig:1 term ROBIN, and Definition def:block-encoding were verified in the local TeX. Active frontier is source_prepared_active_field_contract plus the proposed selected-zero guard; the selected-slot witness is compiled/stale, and the H-free fold/direct row0-to-slot2 feeder stay retired. Blocking for theorem closure: the two diagnostic sorries remain and the source-prepared selected-zero guard is not yet proved. Advisory/report gap: HUMAN_STATUS.md and unresolved-failures.zh.md link runs/20260614-004100-QBE-AUTO-002-cycle01/zh_summary.md, but that file is absent. Next lower work should run lower1/lower3 source and shape feedback, then lower2 only oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3.
 ````
 
 ## Gate Policy

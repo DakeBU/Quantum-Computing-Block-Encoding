@@ -2,7 +2,7 @@
 
 - Task: `QBE-AUTO-002`
 - Title: Concrete Circuit Matrix Semantics Backend
-- Generated: `2026-06-14 01:20:38`
+- Generated: `2026-06-14 16:31:08`
 - Mode: `faithfulPaper`
 - Stage: Stage 2 DAG proof discharge, with faithful transcript checks still active
 - Latest cycle: `20260614-004100-QBE-AUTO-002-cycle01`
@@ -10,8 +10,7 @@
 
 ## Dynamic Leaf Queue
 
-- source_prepared_active_field_contract: source-prepared active/prepared field is the paper-facing object under audit; status: active source-correspondence leaf; Lean: `SourceActiveField(H, env)`
-- source_prepared_active_field_forces_selected_zero_guard: `Uniform(H)` and `ActivePreparedEval(H, env)` imply `SelectedSlot(env) = 0`; status: active guard leaf; Lean: proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3`
+- prepared_projection_restatement_leaf: restate theorem-facing Fig. 4 clean projection as `PreparedCleanEntry(H, env) = BackendFold(env)` under `Uniform(H)`; status: active next leaf; Lean: `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`; ...
 
 ## Open Obligation Signals
 
@@ -26,17 +25,17 @@
 ## Trial Counts By Role
 
 - `lower`: 1142
-- `middle`: 823
-- `reviewer`: 696
+- `middle`: 826
+- `reviewer`: 699
 - `upper`: 1379
 
 ## Trial Counts By Status
 
-- `accepted`: 1486
+- `accepted`: 1489
 - `blocked`: 37
-- `compiled`: 505
+- `compiled`: 506
 - `failed`: 42
-- `queued`: 1969
+- `queued`: 1971
 - `rejected`: 1
 
 ## Local Paper Sources
@@ -57,10 +56,10 @@
 - `theorem oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23128`
 - `structure OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:23948`
 - `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23980`
-- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24837`
-- `theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24867`
-- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` at `QuantumBlockEncoding/RobinMatrix.lean:24880`
-- `theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24898`
+- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24872`
+- `theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24902`
+- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` at `QuantumBlockEncoding/RobinMatrix.lean:24915`
+- `theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24933`
 - `def gateMatricesMatchCircuit` at `QuantumBlockEncoding/CircuitSemantics.lean:41`
 - `structure CircuitMatrixSemantics` at `QuantumBlockEncoding/CircuitSemantics.lean:404`
 - `structure PreparedCircuitEntryTarget` at `QuantumBlockEncoding/CircuitSemantics.lean:436`
@@ -81,43 +80,15 @@
 - `MANIFEST.md`
 - `QuantumBlockEncoding/RobinMatrix.lean`
 - `conversion-windows/QBE-AUTO-002.md`
-- `paper-notes/GHL2025/latex/sections/00_status.tex`
-- `paper-notes/GHL2025/markdown/00_status.md`
-- `paper-notes/project-paper/cycle-updates/20260613-170242-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-170242-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-172255-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-172255-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-174250-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-174250-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-180059-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-180059-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260613-182230-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260613-182230-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260614-004100-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260614-004100-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/latest.md`
-- `paper-notes/project-paper/cycle-updates/latest.tex`
-- `proof-attempts/QBE-AUTO-002/finite-path-feeder-lower1-dag-20260613-173942.md`
-- `proof-attempts/QBE-AUTO-002/finite-path-feeder-lower3-necessary-condition-20260613-173848.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-active-field-source-contract-20260614-0102.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-lower1-route-guard-20260613-181816.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-lower2-20260613-181849.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-lower3-necessary-condition-20260613-181816.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-middle-packet-20260613-180059.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-obstruction-lower1-20260613-183730.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-obstruction-lower2-20260613-184156.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-obstruction-lower3-necessary-condition-20260613-183628.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-obstruction-middle-packet-20260613-182230.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-lower1-20260613-165304.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-lower2-20260613-170051.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-lower3-necessary-condition-20260613-165208.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-contract-retarget-20260613-171137.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-contract-retarget-lower1-20260613-171851.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-contract-retarget-lower2-active-zero-20260613-171910.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-contract-retarget-lower3-20260613-171754.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-lower1-20260613-175631.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-lower2-20260613-175826.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-lower3-necessary-condition-20260613-175554.md`
+- `proof-attempts/QBE-AUTO-002/chat1h-lower1-source-dag-20260614-162018.md`
+- `proof-attempts/QBE-AUTO-002/chat1h-middle-synthesis-20260614-162018.md`
+- `proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md`
+- `proof-blueprints/QBE-AUTO-002-status.json`
+- `proof-blueprints/QBE-AUTO-002-status.md`
+- `proof-blueprints/QBE-AUTO-002.md`
+- `tasks/QBE-AUTO-002.md`
+- `tools/qbe.py`
+- `verifier-feedback/QBE-AUTO-002/chat1h-lower3-prepared-projection-20260614-162018.json`
 
 ## Controls
 

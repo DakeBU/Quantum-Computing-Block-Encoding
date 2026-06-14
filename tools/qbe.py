@@ -1335,6 +1335,13 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
         section
         for section in sections
         if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
+        and "prepared_projection_restatement_leaf" in section
+    ]
+    if not priority_sections:
+        priority_sections = [
+        section
+        for section in sections
+        if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
         and "source_prepared_active_field_contract" in section
     ]
     if not priority_sections:

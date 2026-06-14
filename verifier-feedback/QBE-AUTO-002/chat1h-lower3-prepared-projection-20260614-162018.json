@@ -1,0 +1,49 @@
+{
+  "task": "QBE-AUTO-002",
+  "role": "lower3-necessary-condition-verifier",
+  "created_at": "2026-06-14T16:20:18+09:00",
+  "leaf": "prepared_projection_restatement_leaf",
+  "checked_statement": "Coeff.evalWith env ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix oneTermRobinGamma3BoundarySparseCleanIndex_n3 oneTermRobinGamma3BoundarySparseCleanIndex_n3) = Coeff.evalWith env (blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3) under hUniform : oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H",
+  "error_class": "no_finite_matrix_obstruction_for_prepared_clean_projection",
+  "finite_matrix_ok": "yes_no_necessary_condition_obstruction_detected_for_prepared_clean_entry_route",
+  "finite_matrix_obstruction": false,
+  "finite_matrix_note": "The finite selected-slot obstruction applies to the retired H-free evaluated backend fold because oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3 plus oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3 refutes all-env selected-slot vanishing. It does not refute the prepared clean projection route, whose equality is already compiled under hUniform by oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 and exposed through oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3.",
+  "block_entry_ok": "true_for_prepared_clean_projection_only",
+  "block_entry_note": "The checked block entry is the prepared singleton clean-clean entry selected by oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3, not the H-free active signal-zero row-0 entry. Product, normalized block equality, LCU, block-correctness, and final extraction remain false/not promoted.",
+  "source_correspondence_ok": "true_for_restatement_leaf_false_for_old_active_prepared_closure",
+  "source_correspondence_note": "The source-facing Fig. 4 clean projection keeps both H_W^(kappa) side preparations and is represented by the prepared composite clean entry. The old active/prepared names oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3, oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3, and (oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement still compare the H-free active signal-zero entry with the prepared entry; under Uniform(H) they route back to the retired H-free fold and should be diagnostic wrappers only.",
+  "retired_routes_ok": true,
+  "retired_routes": [
+    {
+      "route": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env",
+      "status": "retired",
+      "error_class": "finite_matrix_counterexample",
+      "reason": "Compiled iff reduces the H-free fold to selected-slot contribution vanishing; the all-one selected-slot witness evaluates that contribution to 1."
+    },
+    {
+      "route": "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env",
+      "status": "retired",
+      "error_class": "shape_or_register_gap",
+      "reason": "Direct feeder compares active row/col 0 with selected sparse slot 2 / full index 32, as recorded by oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3."
+    }
+  ],
+  "selected_zero_guard": {
+    "status": "diagnostic_only",
+    "proposed_leaf": "oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3",
+    "note": "This guard may document why the old active/prepared field is not theorem closure. It must not be used to prove the one-term theorem, the source-prepared clean projection route, oracle correctness, product-to-coefficient, block correctness, or final extraction."
+  },
+  "compiled_route_material_checked": [
+    "oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3",
+    "oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3",
+    "oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3",
+    "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3",
+    "oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3"
+  ],
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "long_build_run": false,
+  "closed_theorem_ok": false,
+  "next_route": "Proceed with the theorem-facing prepared projection restatement: use or wrap oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 / oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 under hUniform, and keep product, LCU, block-correctness, final-extraction, and active/prepared composition flags false. Treat the selected-zero guard as a quick diagnostic only; do not revive the H-free fold or direct row-0-to-slot-2 feeder."
+}

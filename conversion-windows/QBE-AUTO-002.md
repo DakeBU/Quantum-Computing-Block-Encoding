@@ -8,6 +8,59 @@ matrix-semantics backend needed by `QBE-AUTO-001`.
 
 ---
 
+## 2026-06-14 Pro-Assessed Source-Prepared Target Repair For Next 6h
+
+This sync follows the ChatGPT Pro assessment and the local upper-agent audit.
+The assessment is mostly correct: the H-free evaluated backend fold and the
+direct row-`0` to selected sparse slot feeder stay retired.  The full Fig.
+`fig:1 term ROBIN` theorem-facing object must include both `H_W^(kappa)` side
+preparations.
+
+Local correction: in the current Lean file, the active/prepared names
+
+- `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env`
+- `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`
+- `(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement`
+
+still compare the old H-free active signal-zero entry with the prepared clean
+entry.  Under `Uniform(H)`, compiled bridges route that comparison back to the
+retired H-free fold.  Therefore the next theorem-facing target should be the
+prepared clean projection itself, not the H-free active/prepared equality.
+
+Definitions first:
+
+- `PreparedCleanEntry(H, env)` is
+  `Coeff.evalWith env
+  ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+  oneTermRobinGamma3BoundarySparseCleanIndex_n3
+  oneTermRobinGamma3BoundarySparseCleanIndex_n3)`.
+- `BackendFold(env)` is
+  `Coeff.evalWith env (blockExtractionBranchContributionSum
+  oneTermRobinGamma3BoundaryBackendBranchContribution_n3)`.
+- `Uniform(H)` is
+  `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+- `ActivePreparedOld(H, env)` is the old diagnostic active/prepared comparison;
+  it is not theorem closure.
+
+Updated proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `prepared_projection_restatement_leaf` | restate theorem-facing Fig. 4 clean projection as `PreparedCleanEntry(H, env) = BackendFold(env)` under `Uniform(H)` | Fig. 4 audit; Definition `def:block-encoding`; compiled prepared clean-entry bridge | middle/lower2 | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`; new wrapper allowed | this section and `proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active next leaf |
+| `source_prepared_guard_diagnostic` | if cheap, prove that the old active/prepared field plus `Uniform(H)` forces selected-slot vanishing | old active/prepared bridge; selected-slot nonzero witness; H-free fold retirement | lower2 optional | proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3` | same plan file | same gate | diagnostic only; do not spend whole batch |
+| `retired_hfree_routes` | H-free fold and direct row-`0` to slot-`2` feeder | selected-slot nonzero witness; finite matrix feedback | reviewer | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; proposed `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3` | previous obstruction packets | none | retired; reject revival |
+
+Lower schedule for the next 6h batch:
+
+1. lower1 writes the source DAG proving that the paper-facing object is the
+   prepared clean projection.
+2. lower3 checks the necessary finite condition for the prepared clean route
+   and confirms the H-free route remains rejected.
+3. lower2 adds one wrapper theorem around the compiled prepared clean-entry
+   backend bridge, or proves the diagnostic guard only if it is immediate.
+4. reviewer accepts only if the Lean gate passes and no theorem-facing flag is
+   promoted beyond what the wrapper actually proves.
+
 ## 2026-06-14 Middle Source-Prepared Active-Field Contract For Run 20260614-004100
 
 This sync follows the director synthesis in

@@ -22173,6 +22173,29 @@ theorem
     H env hUniform
 
 /--
+Bookkeeping leaf for the prepared-projection restatement.
+
+This exposes the theorem-facing Fig. 4 clean projection as the prepared
+singleton clean entry evaluated against the backend branch fold under the
+explicit clean-column contract.
+-/
+theorem
+    oneTermRobinGamma3BoundaryPreparedProjectionRestatement_leaf_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H) :
+    Coeff.evalWith env
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) =
+      Coeff.evalWith env
+        (blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3) := by
+  exact
+    oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+      H env hUniform
+
+/--
 Theorem-facing prepared projection target for the focused boundary branch.
 
 The selected entry is the clean entry of the prepared singleton semantics for
@@ -23509,6 +23532,47 @@ theorem
         hexpansion)
 
 /--
+No-go guard for the current backend-expansion statement.
+
+The all-one selected-branch environment makes the focused selected-slot
+contribution evaluate to `1`, while any backend-expansion proof would force the
+same evaluated contribution to vanish through the evaluated backend fold.
+-/
+theorem oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3 :
+    ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement := by
+  intro hexpansion
+  let env : String → Rat :=
+    fun name =>
+      if name = "f_3_0" then 1
+      else if name = "N_f_inv" then 1
+      else if name = "boundary_cos_half_0_2" then 1
+      else if name = "sqrt_kappa_inv" then 1
+      else 0
+  have hFold :=
+    oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_backendExpansion_n3
+      env hexpansion
+  have hZero :
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution =
+        0 :=
+    (oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3
+      env).1 hFold
+  have hOne :
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution =
+        1 := by
+    simpa [env] using
+      oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3
+  have hContradiction : (1 : Rat) = 0 := by
+    calc
+      (1 : Rat) =
+          Coeff.evalWith env
+            oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution :=
+          hOne.symm
+      _ = 0 := hZero
+  exact (by native_decide : ¬ ((1 : Rat) = 0)) hContradiction
+
+/--
 The raw full-entry fold also closes the prepared-sandwich evaluated target once
 the explicit `H_W^(kappa)` clean-column contract is supplied.
 
@@ -24741,6 +24805,62 @@ theorem
     rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 /--
+Strict projection/summation product bridge for the focused boundary leaf.
+
+This theorem does not prove the backend expansion.  It reduces the finite
+projection/summation side of the product bridge to the single named smaller
+obligation
+`oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`.
+From that obligation it derives the local branch-sum equality, the backend
+branch-contribution predicate, and the fact that the fixed finite product map
+is still the unproved `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+-/
+theorem
+    oneTermRobinGamma3BoundaryProjectionSummationProductBridge_leaf_n3
+    (hbackend :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement) :
+    oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ∧
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      let bridge :=
+        oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+      let obligation :=
+        oneTermRobinGamma3ProductToCoefficientObligation 3
+          ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+      bridge.productObligation = obligation ∧
+        obligation.proved = false ∧
+        bridge.productBridgeProved = false ∧
+        bridge.branchDecompositionProved = false ∧
+        bridge.normalizedBlockEqualityProved = false ∧
+        bridge.productToCoefficientProved = false ∧
+        bridge.lcuCorrectProved = false ∧
+        bridge.blockProjectionProved = false ∧
+        bridge.blockCorrectProved = false ∧
+        bridge.finalExtractionProved = false := by
+  have hprojection :
+      oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement :=
+    oneTermRobinGamma3BoundaryBackendProjectionStatement_of_backendExpansion_n3
+      hbackend
+  have hbranch :
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.signalBlockEntry =
+        oneTermRobinGamma3BoundaryBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+    oneTermRobinGamma3BoundaryBackendProjectionStatement_equivBranchSum_n3.1
+      hprojection
+  have hpredicate :
+      oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3
+        oneTermRobinGamma3BoundaryBackendBranchContribution_n3 :=
+    oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_of_targetProjection_n3
+      hprojection
+  dsimp [oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3,
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3]
+  exact ⟨hprojection, hbranch, hpredicate, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl⟩
+
+/--
 Source-correct evaluated backend-fold closure through the prepared projection route.
 
 This is the primary theorem-facing route: the active signal-zero entry equals the
@@ -24801,6 +24921,41 @@ theorem
   exact
     oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
       H env hUniform hActive
+
+/--
+Diagnostic guard for the source-prepared active field.
+
+If the remaining active/prepared source field is supplied under the explicit
+clean-column contract, then the selected slot contribution must vanish after
+evaluation.  This routes through the source-correct evaluated backend-fold
+theorem and keeps the theorem-facing downstream flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hActive :
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement) :
+    Coeff.evalWith env
+        oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution =
+        0 ∧
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).productToCoefficientProved = false ∧
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).lcuCorrectProved = false ∧
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).blockProjectionProved = false ∧
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).blockCorrectProved = false ∧
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).finalExtractionProved = false := by
+  have hActiveComposite :
+      oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env := by
+    simpa [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3] using hActive
+  have hFold :=
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3
+      H env hUniform hActiveComposite
+  have hZero :=
+    (oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3
+      env).1 hFold
+  dsimp [oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3]
+  exact ⟨hZero, rfl, rfl, rfl, rfl, rfl⟩
 
 /--
 The raw prepared-sandwich field closes the evaluated backend-fold target through

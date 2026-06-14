@@ -6,6 +6,82 @@ Mode: `faithfulPaper`
 Status: `active`
 Created: `2026-05-18`
 
+## Current Run Directive: 2026-06-14 Pro-Assessed Source-Prepared Target Repair For Next 6h
+
+This directive supersedes the `2026-06-14 Source-Prepared Active-Field
+Contract` directive below for the next 6h batch.  Full assessment:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md
+```
+
+ChatGPT Pro's response is directionally correct: the H-free evaluated backend
+fold and direct row-`0` to selected sparse slot feeder are retired and must not
+be revived.  The full Fig. `fig:1 term ROBIN` theorem-facing object must keep
+both `H_W^(kappa)` side preparations.
+
+Local correction: in the current Lean file, these names still compare the old
+H-free active signal-zero entry with the prepared clean entry:
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+Under
+
+```lean
+hUniform :
+  oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+```
+
+the existing compiled bridge routes that comparison back to the retired H-free
+backend fold.  Therefore these names are diagnostic wrappers unless middle
+first restates the theorem-facing left-hand side.  Do not make the whole next
+batch prove this arbitrary-`H` active/prepared comparison.
+
+The next source-faithful target is the prepared clean projection itself:
+
+```lean
+Coeff.evalWith env
+  ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    oneTermRobinGamma3BoundarySparseCleanIndex_n3)
+=
+Coeff.evalWith env
+  (blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+Known compiled route material:
+
+```lean
+oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3
+oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3
+```
+
+Next lower work:
+
+1. lower1 writes the source-proof DAG showing that Fig. 4's clean block-entry
+   object is the prepared composite clean projection, not the H-free seven-gate
+   `[0,0]` entry alone.
+2. lower3 checks the necessary condition for this prepared clean-entry route
+   and confirms that the H-free fold/direct feeder remain retired.
+3. lower2 may prove the selected-zero guard only as a quick diagnostic.  If the
+   guard is not closed quickly, stop and restate the source-facing target.  The
+   main Lean work is to add one theorem-facing prepared-projection route theorem
+   that reuses the compiled prepared clean-entry backend bridge and keeps
+   product, LCU, block-correctness, and final-extraction flags false.
+
+Scheduling rule for this batch: run one upper director pass, middle
+source-correspondence/memory refresh, lower1 and lower3 in parallel, lower2
+after lower1/lower3 confirm the leaf, one reviewer pass after lower2, then one
+Chinese summary and one ChatGPT Pro prompt at the end.  Avoid another
+upper/middle/reviewer-only batch.
+
 ## Current Run Directive: 2026-06-14 Source-Prepared Active-Field Contract For Run 20260614-004100
 
 This directive implements the upper synthesis in

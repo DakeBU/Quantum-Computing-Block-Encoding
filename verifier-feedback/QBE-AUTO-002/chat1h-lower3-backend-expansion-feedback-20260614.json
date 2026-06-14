@@ -1,0 +1,46 @@
+{
+  "finite_matrix_ok": {
+    "ok": false,
+    "checked_target": "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "reason": "The target is equivalent to the raw H-free unitary-entry fold by oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3 and to the uncast active row-0 fold by oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3. A proof of it feeds oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 for every env via oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_backendExpansion_n3. The compiled normal form oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3 would then force selectedSlotContribution = 0, but oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3 evaluates that selected slot to 1 under the all-one selected-branch environment.",
+    "counterexample_witness": "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3",
+    "route_to_contradiction": [
+      "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3",
+      "oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_backendExpansion_n3",
+      "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3",
+      "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3"
+    ]
+  },
+  "source_correspondence_ok": {
+    "ok": false,
+    "reason": "As a theorem target, the current backendExpansionStatement is the H-free signal-zero entry equals seven-slot backend fold. Existing route witnesses show this collapses to the retired all-env evaluated fold, not to the source-prepared Fig. 4 clean projection. Source-prepared wrappers are conditional recovery/alignment only and keep productToCoefficientProved, normalizedBlockEqualityProved, blockProjectionProved, blockCorrectProved, and finalExtractionProved false.",
+    "source_correct_forms_to_preserve": [
+      "oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3",
+      "oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3"
+    ]
+  },
+  "exact_remaining_obligation": {
+    "status": "current_backend_expansion_target_is_refuted_as_a_lower2_proof_target",
+    "do_not_assign": "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "if_formalizing_the_finding": "prove a no-go guard, e.g. not oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement, from the backendExpansion -> evaluatedFold -> selectedSlotZero route and the all-one nonzero witness",
+    "theorem_route_after_retarget": "middle should restate a source-prepared finite projection/product obligation that keeps the H_W^(kappa)^dagger and H_W^(kappa) sides, or continue with the already source-prepared product-to-coefficient map without reviving the H-free fold"
+  },
+  "non_lean_verifier_useful": true,
+  "recommended_lower2_target": {
+    "primary": "Do not try to prove the current backendExpansionStatement. If lower2 work is needed immediately, formalize the contradiction guard for this target using the compiled all-one witness.",
+    "next_theorem_after_guard": "Retarget to a source-prepared finite projection/product leaf, preferably the fixed product-to-coefficient obligation around oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 or a corrected source-prepared branch-decomposition lemma that does not imply all-env selected-slot vanishing.",
+    "required_flag_discipline": "Keep backendExpansionProved, projectionSummationProved, productToCoefficientProved, normalizedBlockEqualityProved, blockProjectionProved, blockCorrectProved, and finalExtractionProved false until the corrected source-prepared theorem is actually proved."
+  },
+  "stale_routes_to_exclude": [
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement as a direct lower2 theorem target",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3 as proof closure rather than a diagnostic equivalence",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryFold_n3 / oneTermRobinGamma3BoundaryBackendExpansionStatement_iff_uncastActiveEntryExpandedFold_n3 as source closure",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_backendExpansion_n3 as theorem progress",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env as an all-environment target",
+    "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env or any direct row-0-to-slot-2 selected feeder",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3 and other sorry-dependent H-free raw fold routes",
+    "oneTermRobinGamma3BoundaryRawEntryPreparedSandwichField_iff_backendExpansion_n3 as closure for the source-prepared route",
+    "(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement or active/prepared composite fields under hUniform when used to prove the retired H-free fold"
+  ]
+}
