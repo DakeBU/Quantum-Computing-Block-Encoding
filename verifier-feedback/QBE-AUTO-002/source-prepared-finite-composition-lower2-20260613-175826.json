@@ -1,0 +1,17 @@
+{
+  "leaf": "source_prepared_finite_composition_leaf",
+  "closed_declaration": "oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_uncastPreparedSparseCleanEntry_n3",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": true,
+  "closed_theorem_scope": "strict feeder only; the finite active/prepared composition equality remains open",
+  "retired_hfree_feeder": "shape_or_register_gap",
+  "retired_restatement_leaf": "compiled_stale_leaf",
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "prove the unwrapped sparse-clean evaluated equality or a source-backed finite-composition lemma feeding it; do not revive the H-free row-0 to slot-2 feeder"
+}

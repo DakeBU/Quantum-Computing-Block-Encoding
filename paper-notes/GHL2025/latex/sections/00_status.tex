@@ -11,54 +11,86 @@ The build gate after this export is
 \]
 It runs \Lean{lake build} and \Lean{lake build Tests}.
 
-\subsection{Current Frontier: Finite Projection Feeder Under Explicit Uniform Contract}
+\subsection{Current Frontier: Source-Prepared Active Field Guard}
 
-Definitions first.  \Lean{Uniform(H)} denotes
+Definitions first.  \Lean{SelectedSlot(env)} denotes
+\[
+  \Lean{Coeff.evalWith\ env\ oneTermRobinGamma3BoundaryProjectionSummationObstruction\_n3.selectedSlotContribution}.
+\]
+\Lean{SourceActiveField(H, env)} denotes
+\[
+  \Lean{(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3\ H\ env).activeToPreparedSingletonEvalStatement}.
+\]
+\Lean{ActivePreparedEval(H, env)} denotes
+\[
+  \Lean{oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement\_n3\ H\ env}.
+\]
+\Lean{Uniform(H)} denotes
 \[
   \Lean{oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3\ H}.
 \]
-\Lean{EvaluatedBackendFold(env)} denotes
-\[
-  \Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3\ env}.
-\]
-\Lean{SourcePreparedField(H, env)} denotes the active-to-prepared singleton
-field of
-\[
-  \Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3\ H\ env}.
-\]
-The active export frontier is \Lean{finite\_projection\_feeder}: prove
-\Lean{EvaluatedBackendFold(env)} or one strict finite theorem feeding it, then
-consume the result through
-\[
-  \Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_activeEval\_of\_evaluatedBackendFold\_n3\ H\ env\ hUniform\ hFold}.
-\]
-The arbitrary-\Lean{H} \Lean{SourcePreparedField(H, env)} target is retired as
-the default lower target unless a true all-\Lean{H} composition or clean-column
-independence theorem is assigned.  The sparse-clean to fold bridge remains
-compiled route wiring only; it does not prove the evaluated backend fold, the
-final one-term Robin block-encoding theorem, or any external
-sparse-preparation/oracle primitive.
+
+The selected-slot witness
+\Lean{oneTermRobinGamma3BoundarySelectedSlotContribution\_allOne\_nonzero\_n3}
+is now a compiled Lean theorem.  It records that the selected gamma3 boundary
+contribution is nonzero under the all-one selected-branch environment, so it is
+not an active lower target.
+
+The all-environment H-free fold
+\Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3\ env}
+remains retired as a finite-matrix counterexample, because the compiled normal
+form
+\Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_iff\_selectedSlotContributionEval\_zero\_n3}
+would force \Lean{SelectedSlot(env) = 0}.  The direct row-\(0\) to selected
+slot-\(2\) feeder
+\Lean{oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder\_n3\ env}
+remains retired as a shape/register gap.
+
+The current source-facing object is the full Fig.~\Lean{fig:1 term ROBIN} clean
+projection from Definition~\Lean{def:block-encoding}, represented by
+\Lean{SourceActiveField(H, env)}.  Existing compiled route wiring shows that
+\Lean{Uniform(H)} and the current active/prepared field route back to the
+retired H-free fold.  The next Lean target is therefore only the diagnostic
+guard
+\Lean{oneTermRobinGamma3BoundarySourcePreparedActiveEval\_forces\_selectedSlotContribution\_zero\_n3};
+it is evidence for restating the source-prepared target, not theorem closure.
 
 \[
 \begin{array}{lll}
 \text{Item} & \text{Lean declaration or target} & \text{Status}\\
-\text{finite projection feeder} &
+\text{selected-slot nonzero witness} &
+\Lean{oneTermRobinGamma3BoundarySelectedSlotContribution\_allOne\_nonzero\_n3} &
+\text{proved; stale as lower work}\\
+\text{H-free evaluated backend fold} &
 \Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3\ env} &
-\text{active lower2 leaf; open}\\
-\text{source-prepared recovery} &
-\Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_activeEval\_of\_evaluatedBackendFold\_n3} &
-\text{compiled conditional; not closure without } \Lean{hFold}\\
-\text{arbitrary-}\Lean{H}\text{ source-prepared field} &
-\Lean{SourcePreparedField(H, env)} &
-\text{retired as default lower target}\\
-\text{post-feeder sparse-clean to fold bridge} &
-\Lean{oneTermRobinGamma3BoundaryUncastPreparedSparseCleanEntryEval\_iff\_evaluatedBackendFold\_n3} &
-\text{compiled route wiring; retired}\\
-\text{external sparse preparation} &
-\Lean{oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3\ H} &
-\text{contract-only}
+\text{retired; finite matrix counterexample}\\
+\text{direct row-}0\text{ to selected slot feeder} &
+\Lean{oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder\_n3\ env} &
+\text{retired; shape/register gap}\\
+\text{source-prepared active field} &
+\Lean{SourceActiveField(H, env)} &
+\text{active source audit; not theorem closure}\\
+\text{selected-zero guard} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedActiveEval\_forces\_selectedSlotContribution\_zero\_n3} &
+\text{active lower2 guard}\\
+\text{all-slot sparse preparation} &
+\Lean{Uniform(H)} &
+\text{external contract; downstream-only}
 \end{array}
 \]
+
+\subsection{Next Lower Packet}
+
+The lower-facing source contract is
+\Lean{proof-attempts/QBE-AUTO-002/source-prepared-active-field-source-contract-20260614-0102.md}.
+Lower1 should map the source anchors to \Lean{SourceActiveField(H, env)}.
+Lower3 should check only the full Fig.~\Lean{fig:1 term ROBIN} branch/register
+shape and typed feedback fields.  Lower2 may prove only the selected-zero guard
+after the source/shape packets are available or record a typed blocker.
+
+The guard, if proved, must not promote the one-term Robin theorem, oracle
+correctness, \Lean{H\_W}, boundary \Lean{R\_y}, LCU, unitarity, normalizer,
+block-projection, block-correctness, or final extraction.
 
 \begin{longtable}{p{0.25\textwidth}p{0.42\textwidth}p{0.22\textwidth}}
 \hline

@@ -3,7 +3,7 @@
 Task id: `QBE-AUTO-002`
 Title: Concrete Circuit Matrix Semantics Backend
 Mode: `faithfulPaper`
-Updated: `2026-06-13 16:47:14`
+Updated: `2026-06-14 01:28:29`
 Blueprint stage: `Stage 2 DAG proof discharge, with faithful transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -16,64 +16,96 @@ oracle contracts to stay explicit.
 ## Current Directive
 
 ````text
-## Current Run Directive: 2026-06-13 Middle Coordinator Synthesis For Run 20260613-163714
+## Current Run Directive: 2026-06-14 Source-Prepared Active-Field Contract For Run 20260614-004100
 
-This directive implements the latest upper handoff in
-`runs/20260613-163714-QBE-AUTO-002-cycle01/dialogue.md`.  If a focused prompt
-replays the older ChatGPT Pro strict-feeder override, treat it as stale.  The
-strict H-free feeder
+This directive implements the upper synthesis in
+`runs/20260614-004100-QBE-AUTO-002-cycle01/dialogue.md`.
+
+The selected-slot obstruction leaf is now closed:
 
 ```lean
+oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3
+```
+
+It proves that the selected gamma3 boundary contribution is nonzero under the
+all-one selected-branch environment.  Therefore the following routes stay
+retired:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
 oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
 ```
 
-remains retired as `shape_or_register_gap`: it compares the active H-free
-full-basis entry `[0,0]` with the selected sparse slot `2` contribution at full
-index `32`.
+The first is a `finite_matrix_counterexample` as an all-environment H-free
+root, and the second is still a `shape_or_register_gap` comparing active row
+`0` with selected sparse slot `2`.
 
-The active source-faithful route is still the prepared sparse-register
-projection route under explicit
+The source object now under audit is the full prepared Fig. `fig:1 term ROBIN`
+clean projection from Definition `def:block-encoding`, not the local H-free
+seven-gate backend by itself.  The Lean field naming the current
+source-prepared active/prepared comparison is:
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
+```
+
+Accepted equivalent views are:
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+Do not assign closure of this field as an arbitrary-`H` theorem.  Existing
+compiled wiring shows that, under the explicit clean-column contract
 
 ```lean
 hUniform :
   oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
 ```
 
-The next lower2 Lean leaf is the guard-only evaluated column-`0` bridge:
+the current active/prepared field routes back to the retired evaluated backend
+fold.  The next lower work must therefore record the source contract and one
+formal guard before proof search continues.
 
-```lean
-theorem oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3
-    (env : String -> Rat) :
-    Coeff.evalWith env
-      ((evalGateMatrices
-        (GHL2025.oneTermRobinGateMatrixPlaceholders
-          (oneTermParameters 3)))
-        oneTermRobinGamma3BoundaryPrefixRow0_n3
-        oneTermRobinGamma3BoundaryPrefixRow0_n3) =
-    Coeff.evalWith env
-      (oneTermRobinGamma3BoundarySevenGateMatrix_n3
-        oneTermRobinGamma3BoundaryPrefixRow0_n3
-        oneTermRobinGamma3BoundaryPrefixRow0_n3)
-```
-
-This bridge may use matrix associativity or entry-level product congruence, but
-must not use the sorry-guarded raw theorem
-`oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` as closure.
-It is a diagnostic guard only.  If it compiles, combine it with
-`oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3` to record the
-active H-free column-`0` behavior, then middle must retarget before any worker
-tries to prove a direct source-shaped feeder from the H-free active entry.
-
-Current packet:
+The next lower-facing source contract is:
 
 ```text
-proof-attempts/QBE-AUTO-002/source-prepared-col0-diagnostic-middle-packet-20260613-163714.md
+proof-attempts/QBE-AUTO-002/source-prepared-active-field-source-contract-20260614-0102.md
 ```
 
-No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
-product-to-coefficient, circuit-unitarity, block-correctness,
-final-extraction, normalizer, or external primitive flag is promoted.  The
-first-case-study one-term theorem remains open.
+Allowed lower work:
+
+1. lower1 maps Eq. `arbitrary sparcity`, Eq. `angles for Ry`, Theorem
+   `theorem: 1 term robin`, Eq. `ROBIN clarified`, Fig.
+   `fig:1 term ROBIN`, Definition `def:block-encoding`, and the Fig. 4
+   visual audit to the source-prepared active/prepared field and its guard.
+2. lower3 checks only source-prepared branch/register shape: full Fig. 4
+   preparation versus the H-free backend component, downstream-only
+   `hUniform`, and the selected-slot nonzero witness.
+3. lower2 may prove exactly one guard leaf in
+   `QuantumBlockEncoding/RobinMatrix.lean`:
+
+```lean
+theorem oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hActive :
+      oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env) :
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution = 0
+```
+
+This guard is source-correspondence evidence only.  It must not be used to
+claim the one-term theorem, the source-prepared field, oracle correctness,
+`H_W`, `R_y`, LCU, unitarity, block-projection, normalizer,
+product-to-coefficient, block-correctness, or final extraction.
+
+Lower2 must not prove the retired H-free fold, revive the row-`0` to slot-`2`
+feeder, add assumptions to the paper theorem, or use sorry-guarded raw `Coeff`
+constructor equality as theorem closure.
 ````
 
 ## Dynamic Leaf Queue
@@ -84,19 +116,19 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| source_prepared_projection_summation_correction: translate Eq. `ROBIN clarified` through prepared sparse-register projection, not the H-free row-0 shortcut; status: active lower1/lower3 leaf; Lean: no new Lean required before lower2 | candidate |
-| active_eval_gate_matrices_column0_bridge: prove `ActiveEval(env) = ExplicitSevenGate00(env)` at `evalWith` entry level without using the sorry-guarded raw matrix equality; status: active lower2 leaf; guard only; Lean: proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env` | candidate |
-| source_prepared_sparse_clean_feeder: prove `SourcePreparedField(H, env)` or the equivalent uncast prepared sparse-clean equality under explicit source contract; status: active lower2 leaf after calibration; Lean: `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env` feeds the target | candidate |
+| source_prepared_active_field_contract: source-prepared active/prepared field is the paper-facing object under audit; status: active source-correspondence leaf; Lean: `SourceActiveField(H, env)` | candidate |
+| source_prepared_active_field_forces_selected_zero_guard: `Uniform(H)` and `ActivePreparedEval(H, env)` imply `SelectedSlot(env) = 0`; status: active guard leaf; Lean: proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3` | candidate |
 
 ## Open Obligation Signals
 
 ```text
-strict H-free row-0 to slot-2 feeder: Lean `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`; class compares different finite paths: active `[0,0]` and selected slot `2`/full index `32`; status retired; `shape_or_register_gap`
-active column-0 tail-kill normal form: Lean `oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3`; class QBE-local explicit seven-gate path support; status proved by lower2; no semantic flag promoted
-active evalGateMatrices column-0 bridge: Lean proposed `oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env`; class QBE-local fold/product associativity at `evalWith` entry level; status active lower2 leaf; guard only; open
-source-prepared sparse-clean feeder: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`, or the equivalent uncast prepared sparse-clean comparison from `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env`; class source-shaped active/prepared finite composition theorem under explicit `Uniform(H)` in recovery; status blocked until the active-side guard is interpreted
-evaluated fold recovery: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3 H env hUniform hActive`; class compiled route from source-prepared field to evaluated backend fold under `Uniform(H)`; status blocked on source-shaped field
-all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024; status contract-only; keep explicit
+selected-slot nonzero obstruction: Lean `oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3`; class QBE-local finite evaluator witness for the selected gamma3 branch; status proved; stale as lower work
+H-free evaluated backend fold: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; class compiled normal form plus nonzero selected-slot witness; status retired as active target; `finite_matrix_counterexample`
+direct H-free selected-slot feeder: Lean proposed `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`; class active row `0` versus selected sparse slot `2` / full index `32`; status retired; `shape_or_register_gap`
+source-prepared active-field contract: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` and equivalents; class GHL Fig. `fig:1 term ROBIN` / Definition `def:block-encoding` source-correspondence audit; status active middle/lower1/lower3 contract leaf; not theorem closure
+active field forces selected-zero guard: Lean proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3 H env hUniform hActive`; class QBE-local diagnostic consequence of source-prepared-to-fold wiring plus selected-zero normal form; status active lower2 guard leaf
+corrected source-prepared target: Lean restated theorem-facing clean projection after the guard/source audit; class source-contract audit plus finite branch/register diagnostics; status blocked until guard or reviewer restatement
+all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula; status contract-only; downstream-only
 ```
 
 ## Lean Declaration Index
@@ -105,52 +137,52 @@ Recent task-relevant declarations:
 
 | Kind | Lean name | File |
 |---|---|---|
-| def | `oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:18978` |
-| theorem | `oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19102` |
-| structure | `OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19124` |
-| def | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19179` |
-| def | `oneTermRobinGamma3BoundarySparseCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19323` |
-| def | `oneTermRobinGamma3BoundarySparseSlotIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19327` |
-| def | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19337` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19352` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19366` |
-| structure | `OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19453` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19494` |
-| structure | `OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField` | `QuantumBlockEncoding/RobinMatrix.lean:19625` |
-| def | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19659` |
-| theorem | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19860` |
-| theorem | `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19876` |
-| structure | `OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap` | `QuantumBlockEncoding/RobinMatrix.lean:19895` |
-| def | `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19929` |
-| def | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20028` |
-| def | `oneTermRobinGamma3BoundaryPreparedCompositeGate_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20110` |
-| def | `oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20125` |
-| theorem | `oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20130` |
-| def | `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20145` |
-| structure | `OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface` | `QuantumBlockEncoding/RobinMatrix.lean:20227` |
-| def | `oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20267` |
-| abbrev | `oneTermRobinGamma3BoundaryActiveFullDim_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20421` |
-| def | `oneTermRobinGamma3BoundaryActiveCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20426` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20653` |
-| structure | `OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:20828` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20865` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21281` |
-| def | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21298` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21393` |
-| def | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21526` |
-| theorem | `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21631` |
-| structure | `OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:21651` |
-| def | `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21697` |
-| structure | `OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:21925` |
-| def | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21968` |
-| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22546` |
-| theorem | `oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22727` |
-| structure | `OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:23547` |
-| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23579` |
-| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24406` |
-| theorem | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24436` |
-| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` | `QuantumBlockEncoding/RobinMatrix.lean:24449` |
-| theorem | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24467` |
+| theorem | `oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19361` |
+| structure | `OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19383` |
+| def | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19438` |
+| def | `oneTermRobinGamma3BoundarySparseCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19582` |
+| def | `oneTermRobinGamma3BoundarySparseSlotIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19586` |
+| def | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19596` |
+| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19611` |
+| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19625` |
+| structure | `OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19712` |
+| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19753` |
+| structure | `OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField` | `QuantumBlockEncoding/RobinMatrix.lean:19884` |
+| def | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19918` |
+| theorem | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20119` |
+| theorem | `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20135` |
+| structure | `OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap` | `QuantumBlockEncoding/RobinMatrix.lean:20154` |
+| def | `oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20188` |
+| def | `oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20287` |
+| def | `oneTermRobinGamma3BoundaryPreparedCompositeGate_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20369` |
+| def | `oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20384` |
+| theorem | `oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20389` |
+| def | `oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20404` |
+| structure | `OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface` | `QuantumBlockEncoding/RobinMatrix.lean:20486` |
+| def | `oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20526` |
+| abbrev | `oneTermRobinGamma3BoundaryActiveFullDim_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20680` |
+| def | `oneTermRobinGamma3BoundaryActiveCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20685` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20912` |
+| structure | `OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:21087` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21124` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21540` |
+| def | `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21557` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21652` |
+| def | `oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21785` |
+| theorem | `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21890` |
+| structure | `OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:21910` |
+| def | `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21956` |
+| structure | `OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:22184` |
+| def | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22227` |
+| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22837` |
+| theorem | `oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23077` |
+| theorem | `oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23128` |
+| structure | `OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:23948` |
+| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23980` |
+| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24837` |
+| theorem | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24867` |
+| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` | `QuantumBlockEncoding/RobinMatrix.lean:24880` |
+| theorem | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24898` |
 | def | `gateMatricesMatchCircuit` | `QuantumBlockEncoding/CircuitSemantics.lean:41` |
 | structure | `CircuitMatrixSemantics` | `QuantumBlockEncoding/CircuitSemantics.lean:404` |
 | structure | `PreparedCircuitEntryTarget` | `QuantumBlockEncoding/CircuitSemantics.lean:436` |
@@ -181,23 +213,27 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-emma if middle states it; lower3 checks branch-correct finite support. No raw Coeff equality, no hUniform added to strict feeder, no semantic flag promotion.
+.
 
-## 2026-06-13 16:27:44 - middle
+## 2026-06-14 01:10:50 - middle
 
-Middle sync complete: retired the strict H-free finite-path feeder as shape_or_register_gap after lower1/lower3; source-prepared projection/summation correction is now the active leaf, with Uniform(H) explicit and lower packet proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-correction-middle-packet-20260613-1621.md. Blueprint/status, obligations, conversion window, run memory/todo, retrieval index, article update, and verifier feedback refreshed. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests, with known diagnostic sorries only.
+Middle source-correspondence sync complete: selected-slot nonzero witness is compiled and stale as work; H-free evaluated fold is retired as finite_matrix_counterexample; direct row-0 to slot-2 feeder remains shape_or_register_gap. New lower-facing contract is proof-attempts/QBE-AUTO-002/source-prepared-active-field-source-contract-20260614-0102.md, with optional lower2 guard oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests, with only known diagnostic sorry warnings.
 
-## 2026-06-13 16:32:01 - lower
+## 2026-06-14 01:14:44 - middle
 
-Lower3 necessary-condition verifier wrote verifier-feedback/QBE-AUTO-002/source-prepared-projection-summation-lower3-20260613-163030.json. Source-prepared projection/summation correction is shape-valid under explicit hUniform; retired H-free ActiveEval=selectedSlotContribution remains rejected as shape_or_register_gap because row0 and selected slot2/full index32 are different finite paths. No Lean declarations edited. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests, with known diagnostic sorries at RobinMatrix.lean:24366 and 24397.
+Memory/retrieval pass complete: retired the compiled selected-slot witness as lower work, kept the H-free fold retired as finite_matrix_counterexample and the direct row-0 to slot-2 feeder as shape_or_register_gap, corrected the blueprint dynamic queue to source_prepared_active_field_contract plus source_prepared_active_field_forces_selected_zero_guard, and wrote runs/20260614-004100-QBE-AUTO-002-cycle01/22_middle_memory_retrieval_result.md. Next lower packets should read the source-prepared active-field contract, add lower1/lower3 typed feedback, then let lower2 prove only the selected-zero guard. Gate passed: python3 tools/qbe.py check.
 
-## 2026-06-13 16:33:47 - lower
+## 2026-06-14 01:17:37 - middle
 
-Lower1 addendum written: proof-attempts/QBE-AUTO-002/source-prepared-projection-summation-lower1-20260613-163053.md maps the corrected source-prepared route Eq. arbitrary sparcity -> Fig. fig:1 term ROBIN -> prepared sparse clean entry -> backend fold under explicit Uniform(H). It keeps oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 retired as shape_or_register_gap because it compares active row 0 with sparse slot 2/full index 32. Recommended next lower2 leaf is only the evaluated active column-0 diagnostic bridge oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3 env; do not use it as theorem closure. Gate passed via python3 tools/qbe.py check, which ran lake build and lake build Tests with only known diagnostic sorries.
+Report/export sync complete: wrote runs/20260614-004100-QBE-AUTO-002-cycle01/23_middle_report_export_result.md. Final audit should refresh HUMAN_STATUS.md, REPORTS.zh.md, unresolved-failures.zh.md, paper-notes/GHL2025 markdown/latex status, and project-paper latest/generated status for this run; current project-paper latest still points at 20260613-182230 and no current-run article_update exists. Raw logs, JSON feedback, retrieval JSON, and prompt files are not human entry points. Open blocker: source-prepared active-field contract plus selected-zero guard; do not claim GHL theorem closure, H-free fold validity, arbitrary-H closure, or external primitive/block-correctness formalization. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests, with known diagnostic sorry warnings.
 
-## 2026-06-13 16:36:28 - lower
+## 2026-06-14 01:24:02 - middle
 
-Lower2 handoff: closed oneTermRobinGamma3BoundaryActiveColumn0TailKillNormalForm_n3 in QuantumBlockEncoding/RobinMatrix.lean. Gate passed: python3 tools/qbe.py check and lake build && lake build Tests, with only the known diagnostic sorry warnings now at RobinMatrix.lean:24436 and 24467. Remaining Lean bridge: prove Coeff.evalWith env ((evalGateMatrices (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3))) oneTermRobinGamma3BoundaryPrefixRow0_n3 oneTermRobinGamma3BoundaryPrefixRow0_n3) = Coeff.evalWith env (oneTermRobinGamma3BoundarySevenGateMatrix_n3 oneTermRobinGamma3BoundaryPrefixRow0_n3 oneTermRobinGamma3BoundaryPrefixRow0_n3) without using the diagnostic raw Coeff equality theorem; strict selected-slot feeder remains blocked by active row-0 versus selected slot-2 shape gap.
+Middle coordinator sync complete: retired selected-slot witness and H-free fold routes remain recorded; active frontier is source_prepared_active_field_contract plus selected-zero guard. Refreshed GHL status export, project article update, human status, blueprint status, memory digest, todo, and ABEIS generated appendix. Next lower split: lower1 source map, lower3 branch/register verifier, lower2 only oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3 after feedback.
+
+## 2026-06-14 01:24:30 - middle
+
+Gate after final middle sync passed: python3 tools/qbe.py check; lake build && lake build Tests. Only known diagnostic sorry warnings remain at QuantumBlockEncoding/RobinMatrix.lean:24867 and :24898. Active lower target remains the source-prepared selected-zero guard only.
 ````
 
 ## Gate Policy

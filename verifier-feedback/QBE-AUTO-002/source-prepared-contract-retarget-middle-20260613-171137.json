@@ -1,0 +1,19 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-170242-QBE-AUTO-002-cycle01",
+  "role": "middle-coordinator",
+  "leaf": "source_prepared_contract_retarget",
+  "source_correspondence_ok": true,
+  "strict_hfree_feeder_retired": true,
+  "column0_bridge_compiled": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "active_col0_guard_compiled; source_prepared_target_requires_lower3_recheck",
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "closed_theorem_scope": "middle retarget only; one-term Robin theorem remains open",
+  "error_class": "shape_or_register_gap",
+  "next_route": "Use the compiled column-0 bridge only as diagnostic evidence; lower1/lower3 retarget the proof map to the prepared singleton clean entry, then lower2 proves either ActiveEval column-0 zero as a guard or one branch-correct source-prepared sparse-clean feeder."
+}

@@ -1,0 +1,33 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-182230-QBE-AUTO-002-cycle01",
+  "role": "middle-coordinator",
+  "leaf": "branch_correct_evaluated_backend_fold_obstruction",
+  "checked_statement": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env / ActiveEntry(env) = BackendFold(env)",
+  "source_correspondence_ok": false,
+  "source_correspondence_note": "The all-env H-free fold reduces to selectedSlotContribution(env)=0, while GHL2025 Eq. ROBIN clarified treats the selected boundary branch as a nonzero contribution. The current row-0 active entry and selected slot-2 branch are not the same finite path.",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": false,
+  "finite_matrix_note": "Compiled facts give ActiveEntry(env)=0 and BackendFold(env)=SelectedSlot(env); lower3 recorded an all-one selected-slot witness evaluating to 1.",
+  "block_entry_ok": false,
+  "block_entry_note": "The old root fold is retired as an active all-env proof target. Lower2 should formalize a counterexample or a route-guard implication first.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "closed_lean_declaration": null,
+  "diagnostics_used": [
+    "oneTermRobinGamma3BoundaryActiveEvalColumn0_zero_n3",
+    "oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3",
+    "oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3",
+    "oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3"
+  ],
+  "retired_root": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env",
+  "retired_hfree_feeder": "shape_or_register_gap",
+  "preferred_lower2_leaf": "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3",
+  "fallback_lower2_leaf": "oneTermRobinGamma3BoundaryEvaluatedBackendFold_forces_selectedSlotContribution_zero_n3",
+  "error_class": "finite_matrix_counterexample",
+  "secondary_error_class": "shape_or_register_gap",
+  "next_route": "Formalize one obstruction leaf, then middle/reviewer must restate the source-prepared target before new proof search. Keep hUniform downstream-only and do not promote oracle/H_W/R_y/LCU/unitarity/block flags."
+}

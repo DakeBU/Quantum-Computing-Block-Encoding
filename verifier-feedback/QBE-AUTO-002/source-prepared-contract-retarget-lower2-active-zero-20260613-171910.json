@@ -1,0 +1,19 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-170242-QBE-AUTO-002-cycle01",
+  "role": "lower2",
+  "leaf": "active_eval_zero_diagnostic",
+  "source_correspondence_ok": true,
+  "strict_hfree_feeder_retired": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": "checked_by_compiled_column0_bridge_and_seven_gate_tail_kill",
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": true,
+  "closed_theorem_scope": "diagnostic guard only; active H-free column-0 eval is zero",
+  "closed_declaration": "oneTermRobinGamma3BoundaryActiveEvalColumn0_zero_n3",
+  "error_class": "shape_or_register_gap",
+  "next_route": "Use the zero guard only as diagnostic evidence; next lower2 theorem-facing work is a branch-correct source-prepared sparse-clean feeder through oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3 H env under explicit hUniform."
+}

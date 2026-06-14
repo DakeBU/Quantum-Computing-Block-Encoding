@@ -1,10 +1,10 @@
 # GHL2025 Fig. 4 视觉审计
 
-生成时间：`2026-06-13 13:19:00`
+生成时间：`2026-06-14 01:30:28`
 
 任务：`QBE-AUTO-002`
 
-对应 run：`runs/20260613-054606-QBE-AUTO-002-cycle01`
+对应 run：`runs/20260614-004100-QBE-AUTO-002-cycle01`
 
 图源：`outer_papers/quantum/GHL2025/Figures/1_term_ROBIN.pdf`
 

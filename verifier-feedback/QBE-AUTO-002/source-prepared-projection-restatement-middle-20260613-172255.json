@@ -1,0 +1,22 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-172255-QBE-AUTO-002-cycle01",
+  "role": "middle-coordinator",
+  "leaf": "source_prepared_projection_restatement",
+  "source_correspondence_ok": true,
+  "prepared_projection_entry_selected": true,
+  "strict_hfree_feeder_retired": true,
+  "active_selected_index_split_compiled": true,
+  "prepared_projection_backend_bridge_compiled": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "pending_lower3_recheck_for_prepared_projection_route",
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "closed_theorem_scope": "middle restatement only; one-term Robin theorem remains open",
+  "error_class": "source_translation_gap",
+  "retired_route_error_class": "shape_or_register_gap",
+  "next_route": "Use preparedProjectionEntry plus the active/prepared entry field. Lower2 may prove exactly one route/restatement leaf from ActiveSignalEntry(env)=PreparedProjectionEntry(H,env) to oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env under explicit hUniform; lower3 should reject any revived H-free selected-slot feeder."
+}

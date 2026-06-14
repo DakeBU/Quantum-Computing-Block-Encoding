@@ -1,0 +1,31 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260614-004100-QBE-AUTO-002-cycle01",
+  "role": "middle-source-correspondence-formalizer",
+  "leaf": "source_prepared_active_field_contract",
+  "checked_statement": "(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement",
+  "source_correspondence_ok": "false_for_closure_current_target",
+  "source_correspondence_note": "The source object is the full prepared Fig. fig:1 term ROBIN clean projection, but current compiled wiring sends the active/prepared field plus Uniform(H) back to the retired evaluated backend fold. This must be recorded as a source-translation guard before further proof search.",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "selected_slot_counterexample_compiled",
+  "finite_matrix_note": "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3 is compiled and refutes selected-slot vanishing for the all-one selected-branch environment.",
+  "block_entry_ok": false,
+  "block_entry_note": "The source-prepared active/prepared field and one-term theorem remain open. The next Lean target is only a guard showing the current field plus Uniform(H) forces selected-slot zero.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "external_contracts": [
+    "GHL2025 Eq. arbitrary sparcity / H_W^(kappa) clean-column contract",
+    "GHL2025 O_D^{BS}",
+    "GHL2025 O_f",
+    "GHL2025 boundary R_y",
+    "LCU/block-composition contract"
+  ],
+  "retired_hfree_fold": "finite_matrix_counterexample",
+  "retired_hfree_feeder": "shape_or_register_gap",
+  "closed_witness": "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3",
+  "proposed_guard_leaf": "oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3",
+  "error_class": "source_translation_gap",
+  "next_route": "Lower1 maps the source-prepared contract; lower3 checks branch/register shape; lower2 may prove only the source-prepared-active-field-forces-selected-zero guard, then middle must restate the theorem-facing source-prepared target."
+}

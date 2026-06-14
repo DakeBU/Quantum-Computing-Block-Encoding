@@ -1335,6 +1335,20 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
         section
         for section in sections
         if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
+        and "source_prepared_active_field_contract" in section
+    ]
+    if not priority_sections:
+        priority_sections = [
+        section
+        for section in sections
+        if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
+        and "branch_correct_evaluated_backend_fold_obstruction" in section
+    ]
+    if not priority_sections:
+        priority_sections = [
+        section
+        for section in sections
+        if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
         and "source_prepared_projection_summation_correction" in section
     ]
     if not priority_sections:
@@ -1427,10 +1441,16 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
         ]
     if not priority_sections:
         return []
-    section = priority_sections[-1]
+    section = priority_sections[0]
     rows: list[tuple[int, str]] = []
     priority = {
+        "source_prepared_active_field_contract": 0,
+        "source_prepared_active_field_forces_selected_zero_guard": 1,
         "source_prepared_projection_summation_correction": 0,
+        "selected_slot_nonzero_counterexample": 0,
+        "fold_forces_selected_zero_guard": 1,
+        "hfree_evaluated_backend_fold": 10,
+        "source_prepared_retarget": 12,
         "source_prepared_sparse_clean_feeder": 1,
         "evaluated_backend_fold_recovery": 2,
         "active_col0_diagnostic_bridge": 8,
@@ -1464,6 +1484,10 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
         "branch_sum_to_unitary_fold_bridge": 6,
         "prepared_clean_equivalent_bridge": 7,
         "prepared_sparse_clean_entry_bridge": 8,
+        "prepared_projection_restatement_leaf": 0,
+        "active_prepared_entry_field": 1,
+        "prepared_projection_entry_backend_bridge": 6,
+        "source_prepared_active_field_unwrapped": 8,
     }
     for line in section.splitlines():
         stripped = line.strip()

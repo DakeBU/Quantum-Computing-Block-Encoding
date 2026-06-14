@@ -1,0 +1,27 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-180059-QBE-AUTO-002-cycle01",
+  "role": "middle-coordinator-synthesis",
+  "leaf": "branch_correct_evaluated_backend_fold",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The current route follows the 18:04 upper handoff: compare the active clean entry with the full backend branch fold, then recover the source-prepared field under the explicit H_W^(kappa) clean-column contract.",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "pending_lower3",
+  "block_entry_ok": false,
+  "block_entry_note": "The evaluated backend fold and the finite active/prepared equality remain open. Existing source-prepared and sparse-clean theorems are route wiring only.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "retired_hfree_feeder": "shape_or_register_gap",
+  "retired_hfree_feeder_note": "Active full index 0 is not the selected sparse slot 2 / full index 32 contribution.",
+  "compiled_route_wiring": [
+    "oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_uncastPreparedSparseCleanEntry_n3",
+    "oneTermRobinGamma3BoundaryFiniteActivePreparedComposition_reducesToBackendFold_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3"
+  ],
+  "stale_leaf_policy": "Do not reassign compiled feeder or restatement lemmas as new lower2 work.",
+  "error_class": "symbolic_bridge_gap",
+  "secondary_error_class_if_arbitrary_H": "source_translation_gap",
+  "next_route": "Lower2 should prove exactly one evalWith-level branch-correct full backend-fold leaf, preferably ActiveEntry(env) = BackendFold(env), without adding hUniform or reviving the selected-slot shortcut."
+}

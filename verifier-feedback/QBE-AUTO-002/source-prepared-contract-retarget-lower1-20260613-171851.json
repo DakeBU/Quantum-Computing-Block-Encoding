@@ -1,0 +1,20 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-170242-QBE-AUTO-002-cycle01",
+  "role": "lower-natural-language-proof-architect",
+  "leaf": "source_prepared_contract_retarget",
+  "source_correspondence_ok": "true_for_prepared_projection_entry_false_for_activeToPreparedSingleton_as_closure",
+  "strict_hfree_feeder_retired": true,
+  "column0_bridge_compiled": true,
+  "active_eval_zero_compiled": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "active_col0_zero_checked; prepared_composition_not_checked",
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "closed_theorem_scope": "proof-design only; one-term Robin theorem remains open",
+  "error_class": "shape_or_register_gap",
+  "next_route": "Retarget the theorem-facing source-prepared projection to preparedProjectionEntry; do not revive ActiveEval = selectedSlotContribution or use ActiveEval = PreparedSparseClean as closure."
+}

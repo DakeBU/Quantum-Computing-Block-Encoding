@@ -1,0 +1,22 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260613-174250-QBE-AUTO-002-cycle01",
+  "role": "middle-coordinator",
+  "leaf": "source_prepared_finite_composition_leaf",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "Latest upper handoff keeps the theorem-facing route on the full source-prepared Fig. 4 clean-entry path. The direct ChatGPT Pro H-free row-0 to selected slot-2 feeder is recorded as audited and rejected by lower3.",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": null,
+  "finite_matrix_note": "No new finite check was run by middle. Existing lower3 feedback rejects the direct H-free strict feeder as shape_or_register_gap.",
+  "block_entry_ok": false,
+  "block_entry_note": "The active/prepared finite composition field remains open.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "closed_theorem_note": "The route restatement theorem is compiled, but the one-term Robin theorem and active/prepared entry field remain open.",
+  "retired_hfree_feeder": "shape_or_register_gap",
+  "retired_restatement_leaf": "compiled_stale_leaf",
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Lower2 proves exactly one source-prepared active/prepared finite-composition leaf, preferably the uncast evaluated statement or cached ActivePreparedEntryTarget field; lower3 rejects any revived H-free row-0 to slot-2 feeder."
+}

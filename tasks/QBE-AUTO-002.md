@@ -6,6 +6,453 @@ Mode: `faithfulPaper`
 Status: `active`
 Created: `2026-05-18`
 
+## Current Run Directive: 2026-06-14 Source-Prepared Active-Field Contract For Run 20260614-004100
+
+This directive implements the upper synthesis in
+`runs/20260614-004100-QBE-AUTO-002-cycle01/dialogue.md`.
+
+The selected-slot obstruction leaf is now closed:
+
+```lean
+oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3
+```
+
+It proves that the selected gamma3 boundary contribution is nonzero under the
+all-one selected-branch environment.  Therefore the following routes stay
+retired:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
+oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
+```
+
+The first is a `finite_matrix_counterexample` as an all-environment H-free
+root, and the second is still a `shape_or_register_gap` comparing active row
+`0` with selected sparse slot `2`.
+
+The source object now under audit is the full prepared Fig. `fig:1 term ROBIN`
+clean projection from Definition `def:block-encoding`, not the local H-free
+seven-gate backend by itself.  The Lean field naming the current
+source-prepared active/prepared comparison is:
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
+```
+
+Accepted equivalent views are:
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+```
+
+Do not assign closure of this field as an arbitrary-`H` theorem.  Existing
+compiled wiring shows that, under the explicit clean-column contract
+
+```lean
+hUniform :
+  oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+```
+
+the current active/prepared field routes back to the retired evaluated backend
+fold.  The next lower work must therefore record the source contract and one
+formal guard before proof search continues.
+
+The next lower-facing source contract is:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-active-field-source-contract-20260614-0102.md
+```
+
+Allowed lower work:
+
+1. lower1 maps Eq. `arbitrary sparcity`, Eq. `angles for Ry`, Theorem
+   `theorem: 1 term robin`, Eq. `ROBIN clarified`, Fig.
+   `fig:1 term ROBIN`, Definition `def:block-encoding`, and the Fig. 4
+   visual audit to the source-prepared active/prepared field and its guard.
+2. lower3 checks only source-prepared branch/register shape: full Fig. 4
+   preparation versus the H-free backend component, downstream-only
+   `hUniform`, and the selected-slot nonzero witness.
+3. lower2 may prove exactly one guard leaf in
+   `QuantumBlockEncoding/RobinMatrix.lean`:
+
+```lean
+theorem oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hActive :
+      oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env) :
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution = 0
+```
+
+This guard is source-correspondence evidence only.  It must not be used to
+claim the one-term theorem, the source-prepared field, oracle correctness,
+`H_W`, `R_y`, LCU, unitarity, block-projection, normalizer,
+product-to-coefficient, block-correctness, or final extraction.
+
+Lower2 must not prove the retired H-free fold, revive the row-`0` to slot-`2`
+feeder, add assumptions to the paper theorem, or use sorry-guarded raw `Coeff`
+constructor equality as theorem closure.
+
+## Current Run Directive: 2026-06-13 Backend-Fold Obstruction Retarget For Run 20260613-182230
+
+This directive implements the upper handoff in
+`runs/20260613-182230-QBE-AUTO-002-cycle01/dialogue.md`.
+
+Retire the all-environment H-free evaluated backend fold as an active lower2
+proof target:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
+```
+
+The compiled normal form
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3
+```
+
+shows that this target is equivalent to
+
+```lean
+Coeff.evalWith env
+  oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution = 0
+```
+
+Lower3 has already recorded a finite all-one environment where the selected
+slot-`2` contribution evaluates nonzero.  Therefore the old root fold is
+classified as `finite_matrix_counterexample`, not as a tactic gap.  The older
+direct row-`0` to selected slot-`2` feeder remains retired as
+`shape_or_register_gap`.
+
+The next lower packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-obstruction-middle-packet-20260613-182230.md
+```
+
+Allowed lower work:
+
+1. lower1 writes the source/DAG obstruction map from Eq. `ROBIN clarified`,
+   Fig. `fig:1 term ROBIN`, Definition `def:block-encoding`, and the lower3
+   finite diagnostic to one exact lower2 obstruction leaf.
+2. lower3 verifies that the old root remains a finite counterexample, that the
+   direct row-`0` to slot-`2` feeder remains `shape_or_register_gap`, and that
+   `hUniform` stays downstream-only.
+3. lower2 proves exactly one formal obstruction leaf in
+   `QuantumBlockEncoding/RobinMatrix.lean`: preferred
+   `oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3`,
+   fallback
+   `oneTermRobinGamma3BoundaryEvaluatedBackendFold_forces_selectedSlotContribution_zero_n3`.
+
+Lower2 must not prove the retired root fold, revive
+`oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3`, add `hUniform` to
+the H-free statement, use sorry-guarded raw diagnostics as theorem closure, or
+promote oracle, `H_W`, `R_y`, LCU, unitarity, block-projection, normalizer,
+product-to-coefficient, block-correctness, or final-extraction flags.
+
+## Current Run Directive: 2026-06-13 Branch-Correct Source-Prepared Backend Fold For Run 20260613-180059
+
+This directive implements the upper handoff in
+`runs/20260613-180059-QBE-AUTO-002-cycle01/dialogue.md`.
+
+The ChatGPT Pro finite-path deployment packet remains trial memory, but the
+direct H-free feeder
+
+```lean
+oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
+```
+
+remains retired as `shape_or_register_gap`: it compares active full index `0`
+with selected sparse slot `2` / full index `32`.
+
+The already compiled route-wiring leaves are stale as lower targets:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedProjectionEntryEval_n3
+oneTermRobinGamma3BoundaryActivePreparedCompositeEval_of_uncastPreparedSparseCleanEntry_n3
+oneTermRobinGamma3BoundaryFiniteActivePreparedComposition_reducesToBackendFold_n3
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3
+```
+
+The current branch-correct local field is the evaluated backend fold:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
+```
+
+with uncast form:
+
+```lean
+Coeff.evalWith env
+  ((evalGateMatrices
+    (GHL2025.oneTermRobinGateMatrixPlaceholders
+      (oneTermParameters 3)))
+    oneTermRobinGamma3BoundaryPrefixRow0_n3
+    oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+Coeff.evalWith env
+  (blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+The sparse-register preparation contract remains explicit and downstream:
+
+```lean
+hUniform :
+  oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+```
+
+The next lower packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-backend-fold-middle-packet-20260613-180059.md
+```
+
+Allowed lower work:
+
+1. lower1 maps Eq. `ROBIN clarified`, Fig. `fig:1 term ROBIN`, Definition
+   `def:block-encoding`, and the Fig. 4 audit to the full evaluated backend
+   fold and names one lower2 feeder into that fold.
+2. lower3 checks that the target is the full branch sum, that source-prepared
+   recovery uses `hUniform` only after the fold, and that the direct row-`0` to
+   slot-`2` route remains rejected.
+3. lower2 proves exactly one evalWith-level branch-correct backend-fold leaf or
+   one strict feeder into it.  Lower2 edits only
+   `QuantumBlockEncoding/RobinMatrix.lean` unless middle explicitly authorizes
+   a small generic wrapper.
+
+Lower2 must not add `hUniform` to the H-free fold, revive the selected-slot
+feeder, prove arbitrary-`H` closure without a source-backed finite-composition
+bridge, use sorry-guarded raw declarations as theorem closure, or promote
+oracle, `H_W`, `R_y`, LCU, unitarity, block-projection, normalizer,
+product-to-coefficient, block-correctness, or final-extraction flags.
+
+## Current Run Directive: 2026-06-13 Source-Prepared Finite Composition For Run 20260613-174250
+
+This directive implements the upper handoff in
+`runs/20260613-174250-QBE-AUTO-002-cycle01/dialogue.md`.
+
+The ChatGPT Pro finite-path feeder deployment packet remains part of trial
+memory, but lower3 rejected the direct strict H-free feeder
+
+```lean
+oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
+```
+
+as `shape_or_register_gap`: the left side is the active full-basis row `0`
+two-path tail-kill diagnostic, while the selected source contribution is sparse
+slot `2` at full index `32`.  Do not reassign this theorem unless middle first
+changes the source-backed active index contract.
+
+The prepared-projection restatement leaf is already compiled and is stale as a
+lower target:
+
+```lean
+oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedProjectionEntryEval_n3
+```
+
+The current theorem-facing local field is the source-prepared finite
+composition equality.  Accepted equivalent targets are:
+
+```lean
+(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
+oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement
+```
+
+The sparse-register preparation contract remains explicit and is used only for
+downstream backend recovery:
+
+```lean
+hUniform :
+  oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+```
+
+The next lower packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-finite-composition-middle-packet-20260613-174250.md
+```
+
+Allowed lower work:
+
+1. lower1 maps GHL2025 Eq. `arbitrary sparcity`, Eq. `ROBIN clarified`, Fig.
+   `fig:1 term ROBIN`, Definition `def:block-encoding`, and the Fig. 4 audit
+   to the active/prepared field, the cached entry target, and the compiled
+   downstream backend recovery bridges.
+2. lower3 checks finite path/support shape for the source-prepared field and
+   rejects any revived standalone active row-`0` to selected slot-`2` feeder as
+   `shape_or_register_gap`.
+3. lower2 proves exactly one source-prepared finite-composition leaf or one
+   strict feeder into that leaf.  Lower2 edits only
+   `QuantumBlockEncoding/RobinMatrix.lean` unless middle explicitly authorizes
+   a small generic `CircuitSemantics` wrapper.
+
+Lower2 must not reprove the compiled restatement leaf, revive the H-free
+selected-slot feeder, use the sorry-guarded raw declarations as theorem
+closure, add assumptions to the paper theorem, or promote oracle, `H_W`,
+`R_y`, LCU, unitarity, block-projection, normalizer, product-to-coefficient, or
+final-extraction flags.
+
+## Current Run Directive: 2026-06-13 Prepared Projection Restatement For Run 20260613-172255
+
+This directive implements the latest upper handoff in
+`runs/20260613-172255-QBE-AUTO-002-cycle01/dialogue.md`.  If focused context
+replays the ChatGPT Pro strict H-free feeder override, treat that route as
+stale for this run.  The strict H-free feeder
+
+```lean
+oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
+```
+
+remains retired as `shape_or_register_gap`: the left side is the active
+full-basis row `0` entry, while the selected source contribution is sparse slot
+`2` at full index `32`.
+
+The current theorem-facing route must be restated around the prepared
+projection entry and the active/prepared composition field.  The prepared-side
+bridge is already compiled:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
+  H env hUniform
+```
+
+The remaining local field is the active/prepared entry comparison carried by
+
+```lean
+oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H
+```
+
+or, at evaluation level, the proposition exposed by
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3
+  H env
+```
+
+The sparse-register preparation contract must stay explicit:
+
+```lean
+hUniform :
+  oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+```
+
+The next lower packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-projection-restatement-middle-packet-20260613-172255.md
+```
+
+Allowed lower work:
+
+1. lower1 maps GHL2025 Eq. `arbitrary sparcity`, Eq. `ROBIN clarified`, Fig.
+   `fig:1 term ROBIN`, Definition `def:block-encoding`, and the Fig. 4 audit
+   to `preparedProjectionEntry`, `oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3`,
+   and the compiled prepared-entry backend bridge.
+2. lower3 checks that the prepared projection entry uses the full
+   source-prepared route with both `H_W` sides, while the active seven-gate
+   row remains diagnostic-only and H-free.
+3. lower2 proves exactly one source-shaped restatement or route leaf, not the
+   root theorem.  Preferred leaf:
+
+```lean
+theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedProjectionEntryEval_n3
+    (H : Matrix 8 8 Coeff) (env : String -> Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hEntry :
+      let target :=
+        oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+      Coeff.evalWith env
+        oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+      Coeff.evalWith env target.preparedProjectionEntry) :
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env
+```
+
+Lower2 must not prove or revive the H-free selected-slot feeder, must not use
+the sorry-guarded raw declarations as theorem closure, must not add assumptions
+to the paper theorem, and must not promote oracle, `H_W`, `R_y`, LCU,
+unitarity, block-projection, normalizer, or final-extraction flags.
+
+## Current Run Directive: 2026-06-13 Source-Prepared Contract Retarget For Run 20260613-170242
+
+This directive implements the upper synthesis in
+`runs/20260613-170242-QBE-AUTO-002-cycle01/dialogue.md`.
+
+The previously assigned column-`0` bridge is no longer open:
+
+```lean
+oneTermRobinGamma3BoundaryEvalGateMatricesColumn0Entry_eq_sevenGateMatrix_n3
+```
+
+compiled as a diagnostic guard.  It proves only that the H-free active
+`evalGateMatrices[0,0]` entry agrees with the explicit seven-gate `[0,0]`
+entry.  Together with
+
+```lean
+oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3
+```
+
+it shows the active H-free column-`0` route is a zero diagnostic path.  This
+does not prove the selected sparse slot contribution, does not close the
+one-term Robin theorem, and does not promote any oracle, `H_W`, `R_y`, LCU,
+unitarity, block-projection, normalizer, or final-extraction flag.
+
+The strict H-free selected-slot feeder remains retired:
+
+```lean
+oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env
+```
+
+It compares active full-basis index `0` with selected sparse slot `2` / full
+index `32`; classify every revival as `shape_or_register_gap`.
+
+The current source-faithful route is still
+`source_prepared_projection_summation_correction`, now retargeted to the
+prepared singleton clean entry in the full Fig. `fig:1 term ROBIN` route.  The
+paper-facing contract keeps the sparse-register preparation hypothesis
+explicit:
+
+```lean
+hUniform :
+  oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+```
+
+The next lower packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/source-prepared-contract-retarget-20260613-171137.md
+```
+
+Allowed lower work:
+
+1. lower1 maps GHL2025 Eq. `arbitrary sparcity`, Eq. `ROBIN clarified`, Fig.
+   `fig:1 term ROBIN`, Definition `def:block-encoding`, and the Fig. 4 visual
+   audit to the prepared singleton clean-entry interface.
+2. lower3 records finite path/support feedback for active full index `0`,
+   selected slot `2` / full index `32`, the two `R_y` tails, `O_f` tail-kill,
+   and the presence of both `H_W` sides in the source-prepared route.
+3. lower2 proves exactly one small Lean leaf.  Preferred first guard leaf:
+   `oneTermRobinGamma3BoundaryActiveEvalColumn0_zero_n3 (env : String -> Rat)`
+   from the compiled column-`0` bridge and
+   `oneTermRobinGamma3BoundarySevenGateColumn0Eval_zero_n3`.  If middle/lower1
+   selects the theorem-facing leaf instead, target only the uncast prepared
+   sparse-clean comparison exposed by
+   `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3
+   H env`.
+
+Lower2 must not use the sorry-guarded raw declarations
+`oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` or
+`oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` as theorem
+closure, must not add `hUniform` to the retired H-free feeder, and must not
+change the paper circuit, oracle contracts, gate order, normalizer, or theorem
+assumptions.
+
 ## Current Run Directive: 2026-06-13 Middle Coordinator Synthesis For Run 20260613-163714
 
 This directive implements the latest upper handoff in
