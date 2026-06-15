@@ -1,0 +1,59 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260615-032327-QBE-AUTO-002-cycle01",
+  "role": "lower3-necessary-condition-verifier",
+  "created_at": "2026-06-15T03:45:40+09:00",
+  "leaf": "source_slot2_product_fixed_map_guard",
+  "active_leaf_checked": "oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3",
+  "active_leaf_reason": "The current directive only asks lower work to verify that the source-prepared slot-2 product guard is present and compiled. This is a necessary condition before retiring the retarget guard and assigning a separate coefficient/normalizer proof packet.",
+  "necessary_condition_checked": "The guard must consume oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3, point at oneTermRobinGamma3ProductToCoefficientObligation 3 0 0, and leave product-to-coefficient, normalizer/block equality, LCU, block projection, block correctness, and final extraction unproved.",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The checked declaration follows the compiled source-prepared projection/product route and does not revive the refuted raw backendExpansionStatement or an equivalent SignalEntryFold target.",
+  "lean_edited": false,
+  "lean_parse_ok": true,
+  "lean_parse_command": "lake env lean QuantumBlockEncoding/RobinMatrix.lean",
+  "lean_parse_result": "passed with the two known diagnostic sorry warnings at QuantumBlockEncoding/RobinMatrix.lean:25293 and QuantumBlockEncoding/RobinMatrix.lean:25324",
+  "lean_build_ok": true,
+  "lean_build_command": "python3 tools/qbe.py check",
+  "lean_build_result": "passed; qbe.py check ran lake build and lake build Tests successfully, with only the two known diagnostic sorry warnings",
+  "finite_matrix_ok": true,
+  "finite_matrix_note": "No finite/register contradiction attaches to the retarget guard. The finite counterexample remains attached only to the forbidden raw backendExpansionStatement route.",
+  "block_entry_ok": true,
+  "block_entry_note": "The guard records the source-prepared projection entry equality to the projected slot-2 branch product and keeps the fixed product-map pointer unproved.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": false,
+  "normalizer_note": "The coefficient/normalizer algebra for oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 remains open.",
+  "closed_theorem_ok": true,
+  "closed_theorem_note": "The guard itself is present and compiles; this is not closure of oneTermRobinGamma3ProductToCoefficientObligation 3 0 0.",
+  "product_to_coefficient_ok": false,
+  "small_executable_or_lean_local_diagnostic": {
+    "new_lean_added": false,
+    "existing_lean_diagnostics_used": [
+      "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3",
+      "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3"
+    ],
+    "parse_command": "lake env lean QuantumBlockEncoding/RobinMatrix.lean",
+    "gate_command": "python3 tools/qbe.py check"
+  },
+  "raw_backend_expansion_rejection": {
+    "rejected_target": "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "finite_matrix_ok": false,
+    "block_entry_ok": false,
+    "no_go_guard": "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+    "error_class": "finite_matrix_counterexample",
+    "note": "The raw backendExpansionStatement remains route memory only and must not be reassigned as a theorem-facing lower2 target."
+  },
+  "forbidden_promotions_checked_false": [
+    "product_to_coefficient",
+    "normalized_block_equality",
+    "lcu_correct",
+    "block_projection",
+    "block_correct",
+    "final_extraction",
+    "oracle_correctness",
+    "unitarity"
+  ],
+  "error_class": "stale_leaf",
+  "next_route": "Retire the source_slot2_product_fixed_map_guard leaf as compiled route memory. Future lower work should use the new coefficient/normalizer packet for oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 and must not revive backendExpansionStatement or SignalEntryFold."
+}

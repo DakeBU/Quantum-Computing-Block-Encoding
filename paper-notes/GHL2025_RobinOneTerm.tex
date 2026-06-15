@@ -8,6 +8,59 @@ truth.  The Lean files are the source of truth; this file records the theorem
 shape, notation, and proof obligations so that a human can compare the
 formalization with the paper.
 
+\subsection{Current Frontier: Post-Audit Theorem-Facing Finite Block Projection Interface}
+
+Definitions first.  The theorem-facing Fig. 4 transcript is
+\[
+  \texttt{GHL2025.oneTermRobinTheoremFacingFig4Circuit}.
+\]
+The active seven-gate backend component is
+\[
+  \texttt{GHL2025.oneTermRobinCircuit}.
+\]
+The finite block-composition contract under audit is
+\[
+  \texttt{oneTermRobinFiniteBlockCompositionContract\ 3},
+\]
+and the focused root obligation remains
+\[
+  \texttt{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0}.
+\]
+
+The finite source-prepared normalized projection bridge is compiled route
+memory:
+\[
+\begin{array}{l}
+\texttt{oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge\_n3}\\
+\texttt{oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge\_n3\_transcript}.
+\end{array}
+\]
+It keeps product-to-coefficient, normalized-block equality, LCU, block
+projection, block correctness, final extraction, oracle correctness, unitarity,
+and resource flags false.
+
+The current source audit classifies the next blocker as a source-translation
+gap.  The paper's theorem, Robin coefficient equation, Fig. 4 circuit, and
+block-encoding definition are theorem-facing, but the finite block-composition
+contract is still wired through
+\[
+  \texttt{oneTermRobinCircuitSemantics\ 3}
+  \quad\text{and}\quad
+  \texttt{GHL2025.oneTermRobinCircuit}.
+\]
+The compiled non-promoting audit target is
+\[
+  \texttt{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit\_n3}.
+\]
+The next Lean packet is the non-promoting interface target
+\[
+  \texttt{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface\_n3}.
+\]
+It must record the source-prepared projection target, the finite
+block-composition contract, the compiled audit, and the false flags only.  It
+must not promote normalized-block equality, product-to-coefficient closure,
+oracle correctness, unitarity, final extraction, or resource claims.
+
 \subsection{Target Operator}
 
 The one-term Robin construction block-encodes the discretized operator

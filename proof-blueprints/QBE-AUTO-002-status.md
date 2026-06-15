@@ -2,41 +2,42 @@
 
 - Task: `QBE-AUTO-002`
 - Title: Concrete Circuit Matrix Semantics Backend
-- Generated: `2026-06-14 16:31:08`
+- Generated: `2026-06-15 06:08:39`
 - Mode: `faithfulPaper`
 - Stage: Stage 2 DAG proof discharge, with faithful transcript checks still active
-- Latest cycle: `20260614-004100-QBE-AUTO-002-cycle01`
+- Latest cycle: `20260615-053748-QBE-AUTO-002-cycle01`
 - Blueprint: `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/proof-blueprints/QBE-AUTO-002.md`
 
 ## Dynamic Leaf Queue
 
-- prepared_projection_restatement_leaf: restate theorem-facing Fig. 4 clean projection as `PreparedCleanEntry(H, env) = BackendFold(env)` under `Uniform(H)`; status: active next leaf; Lean: `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`; ...
+- 1. lower1 validates the source map and keeps the focused branch fixed to system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`.
+- 2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript split, active-backend contract wiring, and all false theorem flags before lower2 edits Lean.
+- 3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for the one bridge theorem above. If it already exists, lower2 should make no Lean edit and log `error_class=stale_leaf`.
 
 ## Open Obligation Signals
 
-- selected-slot nonzero obstruction: Lean `oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3`; class QBE-local finite evaluator witness for the selected gamma3 branch; status proved; stale as lower work
-- H-free evaluated backend fold: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; class compiled normal form plus nonzero selected-slot witness; status retired as active target; `finite_matrix_counterexample`
-- direct H-free selected-slot feeder: Lean proposed `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`; class active row `0` versus selected sparse slot `2` / full index `32`; status retired; `shape_or_register_gap`
-- source-prepared active-field contract: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` and equivalents; class GHL Fig. `fig:1 term ROBIN` / Definition `def:block-encoding` source-correspondence audit; status active middle/lower1/lower3 contract leaf; not theorem closure
-- active field forces selected-zero guard: Lean proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3 H env hUniform hActive`; class QBE-local diagnostic consequence of source-prepared-to-fold wiring plus selected-zero normal form; status active lower2 guard leaf
-- corrected source-prepared target: Lean restated theorem-facing clean projection after the guard/source audit; class source-contract audit plus finite branch/register diagnostics; status blocked until guard or reviewer restatement
-- all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula; status contract-only; downstream-only
+- theorem-facing finite block/projection interface: Lean `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3`; class QBE-local non-promoting interface packet; status compiled; stale as lower work
+- source-prepared slot-`2` normalizer route: Lean `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3`; class QBE-local semantic bridge under explicit source contracts; status compiled route memory
+- theorem-facing projection-interface normalizer bridge: Lean planned `oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3`; class internal paper-step interface glue plus local coefficient normalizer bridge; status active lower2 leaf after lower1/lower3 checks
+- fixed product-to-coefficient theorem for `(0,0)`: Lean `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`; class coefficient equality plus corrected theorem-facing finite block/projection route; status open; blocked
+- finite block-composition closure: Lean `(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality`, `.blockProjection`, `.lcuComposition`, `.finalExtraction`; class contract-only LCU/block composition background plus local finite projection theorem; status false; forbidden as this leaf
+- diagnostic raw equality route: Lean `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class existing diagnostic `sorry` route; status forbidden as dependency
 
 ## Trial Counts By Role
 
-- `lower`: 1142
-- `middle`: 826
-- `reviewer`: 699
-- `upper`: 1379
+- `lower`: 1259
+- `middle`: 864
+- `reviewer`: 712
+- `upper`: 1428
 
 ## Trial Counts By Status
 
-- `accepted`: 1489
-- `blocked`: 37
-- `compiled`: 506
+- `accepted`: 1596
+- `blocked`: 39
+- `compiled`: 525
 - `failed`: 42
-- `queued`: 1971
-- `rejected`: 1
+- `queued`: 2058
+- `rejected`: 3
 
 ## Local Paper Sources
 
@@ -44,22 +45,22 @@
 
 ## Recent Lean Declarations
 
-- `def oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21652`
-- `def oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21785`
-- `theorem oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21890`
-- `structure OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:21910`
-- `def oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:21956`
-- `structure OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` at `QuantumBlockEncoding/RobinMatrix.lean:22184`
-- `def oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:22227`
-- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` at `QuantumBlockEncoding/RobinMatrix.lean:22837`
-- `theorem oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23077`
-- `theorem oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23128`
-- `structure OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:23948`
-- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23980`
-- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24872`
-- `theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24902`
-- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` at `QuantumBlockEncoding/RobinMatrix.lean:24915`
-- `theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24933`
+- `theorem oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23196`
+- `theorem oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23247`
+- `theorem oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` at `QuantumBlockEncoding/RobinMatrix.lean:23637`
+- `structure OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` at `QuantumBlockEncoding/RobinMatrix.lean:24108`
+- `def oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24140`
+- `structure OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation` at `QuantumBlockEncoding/RobinMatrix.lean:24913`
+- `def oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3` at `QuantumBlockEncoding/RobinMatrix.lean:24937`
+- `structure OneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge` at `QuantumBlockEncoding/RobinMatrix.lean:25201`
+- `def oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3` at `QuantumBlockEncoding/RobinMatrix.lean:25251`
+- `structure OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit` at `QuantumBlockEncoding/RobinMatrix.lean:25408`
+- `def oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3` at `QuantumBlockEncoding/RobinMatrix.lean:25466`
+- `def oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3` at `QuantumBlockEncoding/RobinMatrix.lean:25708`
+- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` at `QuantumBlockEncoding/RobinMatrix.lean:26091`
+- `theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` at `QuantumBlockEncoding/RobinMatrix.lean:26121`
+- `theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` at `QuantumBlockEncoding/RobinMatrix.lean:26134`
+- `theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` at `QuantumBlockEncoding/RobinMatrix.lean:26152`
 - `def gateMatricesMatchCircuit` at `QuantumBlockEncoding/CircuitSemantics.lean:41`
 - `structure CircuitMatrixSemantics` at `QuantumBlockEncoding/CircuitSemantics.lean:404`
 - `structure PreparedCircuitEntryTarget` at `QuantumBlockEncoding/CircuitSemantics.lean:436`
@@ -80,15 +81,43 @@
 - `MANIFEST.md`
 - `QuantumBlockEncoding/RobinMatrix.lean`
 - `conversion-windows/QBE-AUTO-002.md`
-- `proof-attempts/QBE-AUTO-002/chat1h-lower1-source-dag-20260614-162018.md`
-- `proof-attempts/QBE-AUTO-002/chat1h-middle-synthesis-20260614-162018.md`
-- `proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md`
-- `proof-blueprints/QBE-AUTO-002-status.json`
-- `proof-blueprints/QBE-AUTO-002-status.md`
-- `proof-blueprints/QBE-AUTO-002.md`
-- `tasks/QBE-AUTO-002.md`
-- `tools/qbe.py`
-- `verifier-feedback/QBE-AUTO-002/chat1h-lower3-prepared-projection-20260614-162018.json`
+- `paper-notes/GHL2025/latex/sections/00_status.tex`
+- `paper-notes/GHL2025/markdown/00_status.md`
+- `paper-notes/GHL2025_RobinOneTerm.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-010153-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-010153-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-013025-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-013025-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-015440-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-015440-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-021428-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-021428-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-022953-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-022953-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-024629-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-024629-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-030358-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-030358-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-034853-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-034853-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-041049-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-041049-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-050133-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-050133-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-052017-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-052017-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/latest.md`
+- `paper-notes/project-paper/cycle-updates/latest.tex`
+- `proof-attempts/QBE-AUTO-002/backend-expansion-correction-lower1-dag-20260615-024629.md`
+- `proof-attempts/QBE-AUTO-002/backend-expansion-correction-lower2-blocked-20260615-024629.md`
+- `proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-0233.md`
+- `proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-024629.md`
+- `proof-attempts/QBE-AUTO-002/backend-expansion-route-retarget-lower-proof-architect-20260615-032040.md`
+- `proof-attempts/QBE-AUTO-002/backend-expansion-route-retarget-middle-packet-20260615-030358.md`
+- `proof-attempts/QBE-AUTO-002/finite-normalized-projection-lower1-proof-architect-20260615-042926.md`
+- `proof-attempts/QBE-AUTO-002/finite-normalized-projection-middle-packet-20260615-0419.md`
+- `proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-lower1-proof-architect-20260615-034610.md`
+- `proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-lower1-proof-architect-20260615-034853.md`
 
 ## Controls
 

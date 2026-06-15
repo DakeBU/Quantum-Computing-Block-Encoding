@@ -1,0 +1,76 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260615-034853-QBE-AUTO-002-cycle01",
+  "role": "lower3-necessary-condition-verifier",
+  "created_at_jst": "2026-06-15 04:07:15 JST",
+  "leaf": "conditional_normalizer_product_bridge",
+  "active_leaf_reason": "This leaf is a necessary condition for the fixed gamma3 product route because it connects the source-prepared slot-2 projection/product equality to the expected target entry after multiplying by the theorem normalizer, but only under the explicit clean-column and coefficient-normalizer hypotheses.",
+  "necessary_condition_checked": "The compiled bridge must use focused sparse slot 2, clean projection index 0, the source-prepared product equality, the focused clean-column consequence of the all-slot H_W^(kappa) contract, and oneTermRobinGamma3BoundaryProductUnderContractsEval_n3. It must leave the fixed product-to-coefficient obligation and all downstream semantic flags false.",
+  "status": "compiled_bridge_verified_root_open",
+  "supersedes_feedback": "verifier-feedback/QBE-AUTO-002/product-to-coefficient-normalizer-lower3-20260615-034853.json",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "compiled_conditional_under_explicit_hypotheses",
+  "closed_theorem_ok": true,
+  "product_to_coefficient": false,
+  "error_class": null,
+  "active_lean_target": "oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3",
+  "compiled_declarations": [
+    "oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3"
+  ],
+  "executable_diagnostic": {
+    "command": "lake env lean --stdin",
+    "input_summary": "#check fully qualified declarations under QuantumBlockEncoding.Examples.RobinHeat",
+    "qualified_namespace": "QuantumBlockEncoding.Examples.RobinHeat",
+    "checked_declarations": [
+      "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3",
+      "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3",
+      "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation",
+      "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsEval_n3",
+      "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3"
+    ],
+    "result": "passed"
+  },
+  "finite_matrix_note": "The checked bridge is the n=3 finite route over Matrix 8 8 Coeff and its theorem statement includes the target entry equality for packet.sourceTarget.preparedProjectionEntry times productRoute.theoremNormalizer.",
+  "block_entry_note": "The theorem conclusion proves the evaluated prepared projection entry times the theorem normalizer equals the evaluated expected target entry under hUniform, hentry, hND, hNF, hkappa, and hkappaSqrt.",
+  "root_obligation": {
+    "human_readable": "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "lean_term": "oneTermRobinGamma3ProductToCoefficientObligation 3 <0> <0>",
+    "proved": false
+  },
+  "false_flags_preserved": [
+    "packet.fixedProductObligation.proved",
+    "productRoute.productObligation.proved",
+    "productRoute.productToCoefficientProved",
+    "productRoute.normalizedBlockEqualityProved",
+    "productRoute.lcuCorrectProved",
+    "productRoute.blockProjectionProved",
+    "productRoute.blockCorrectProved",
+    "productRoute.finalExtractionProved"
+  ],
+  "rejected_routes": [
+    {
+      "route": "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+      "reason": "forbidden by compiled finite counterexample oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3"
+    },
+    {
+      "route": "SignalEntryFold-equivalent proposition",
+      "reason": "forbidden by the same backendExpansionStatement finite counterexample"
+    },
+    {
+      "route": "reassign conditional_normalizer_product_bridge as an open lower2 proof target",
+      "reason": "the active bridge is now compiled and should be treated as route memory, not as an open theorem"
+    }
+  ],
+  "next_route": "Use the compiled conditional bridge as route memory; next proof work must target the remaining finite normalized-block/projection bridge for oneTermRobinGamma3ProductToCoefficientObligation 3 0 0, not the retired backendExpansionStatement or SignalEntryFold route.",
+  "notes": [
+    "No theorem-facing Lean declaration was edited by this verifier pass.",
+    "This diagnostic accepts the conditional bridge only; it does not close or promote product-to-coefficient, normalized-block equality, LCU correctness, block correctness, final extraction, oracle correctness, unitarity, or resource claims.",
+    "The earlier lower3 feedback in this run recorded closed_theorem_ok=false before lower2 completed; this post-lower record supersedes it."
+  ]
+}

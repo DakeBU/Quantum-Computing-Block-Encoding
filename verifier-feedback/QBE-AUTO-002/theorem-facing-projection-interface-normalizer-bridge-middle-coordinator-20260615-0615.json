@@ -1,0 +1,50 @@
+{
+  "task": "QBE-AUTO-002",
+  "role": "middle",
+  "kind": "coordinator_synthesis",
+  "run": "20260615-053748-QBE-AUTO-002-cycle01",
+  "checked_at": "2026-06-15T06:15:00+09:00",
+  "leaf": "theorem_facing_projection_interface_normalizer_bridge",
+  "root_obligation": "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "planned_lean_target": "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3",
+  "allowed_write_scope": [
+    "QuantumBlockEncoding/RobinMatrix.lean"
+  ],
+  "lower_packets": {
+    "lower1": "Validate the source map for system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`; no Lean edit.",
+    "lower3": "Check compiled interface, planned theorem absence/staleness, source-prepared clean entry, active-backend contract wiring, theorem-facing/active circuit split, normalizer hypotheses, and false theorem flags before lower2 edits Lean.",
+    "lower2": "Prove only `oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3` in `QuantumBlockEncoding/RobinMatrix.lean`, or log `stale_leaf` if it already exists."
+  },
+  "compiled_route_memory": [
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript",
+    "oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+    "oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3"
+  ],
+  "stale_lower_targets": [
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript",
+    "oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3 when reassigned as new lower work"
+  ],
+  "rejected_targets": [
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+    "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3",
+    "(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality"
+  ],
+  "article_update_action": "deferred; run has no article_update.md or article_update.tex, and report/export maintainer reserved project-paper updates for final audit",
+  "next_route": "lower1 and lower3 validate the theorem-facing projection-interface normalizer bridge; then lower2 proves only the planned interface-field normalizer theorem before any root product-to-coefficient attempt"
+}

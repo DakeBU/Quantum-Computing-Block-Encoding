@@ -1,10 +1,10 @@
 # ABEIS Human Status
 
-Generated: `2026-06-14 01:30:30`
+Generated: `2026-06-15 06:23:41`
 
 Task: `QBE-AUTO-002` — Concrete Circuit Matrix Semantics Backend
 
-Latest run: `runs/20260614-004100-QBE-AUTO-002-cycle01`
+Latest run: `runs/20260615-053748-QBE-AUTO-002-cycle01`
 
 这个文件是人类入口。正常情况下，你只需要先看这个文件，再决定是否打开更细的 `zh_summary.md`、`memory_digest.md`、Lean 文件或 proof-attempt 文件。
 
@@ -18,53 +18,54 @@ Latest run: `runs/20260614-004100-QBE-AUTO-002-cycle01`
 
 ## Latest Links
 
-- 最新中文总结：`runs/20260614-004100-QBE-AUTO-002-cycle01/zh_summary.md`
-- 最新 memory digest：`runs/20260614-004100-QBE-AUTO-002-cycle01/memory_digest.md`
-- 最新下一步 todo：`runs/20260614-004100-QBE-AUTO-002-cycle01/todo.md`
-- 最新 dialogue：`runs/20260614-004100-QBE-AUTO-002-cycle01/dialogue.md`
-- 最新技术报告 update：`runs/20260614-004100-QBE-AUTO-002-cycle01/article_update.md`
+- 最新中文总结：`runs/20260615-053748-QBE-AUTO-002-cycle01/zh_summary.md`
+- 最新 memory digest：`runs/20260615-053748-QBE-AUTO-002-cycle01/memory_digest.md`
+- 最新下一步 todo：`runs/20260615-053748-QBE-AUTO-002-cycle01/todo.md`
+- 最新 dialogue：`runs/20260615-053748-QBE-AUTO-002-cycle01/dialogue.md`
+- 最新技术报告 update：`runs/20260615-053748-QBE-AUTO-002-cycle01/article_update.md`
 - 报告/日志阅读入口说明：`REPORTS.zh.md`
 - GHL 未完成/失败原因中文地图：`paper-notes/GHL2025/markdown/unresolved-failures.zh.md`
 - GHL Fig. 4 视觉审计：`paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`
-- 最新 efficiency report：`Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/efficiency/20260614-013028-QBE-AUTO-002-efficiency.md`
+- 最新 efficiency report：`Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/efficiency/20260615-062339-QBE-AUTO-002-efficiency.md`
 - 压缩检索 JSON：`research-wiki/retrieval-index/QBE-AUTO-002.json`
 
 ## Build And Sorry Status
 
-- `QuantumBlockEncoding/RobinMatrix.lean:24871:  sorry`
-- `QuantumBlockEncoding/RobinMatrix.lean:24901:  sorry`
+- `QuantumBlockEncoding/RobinMatrix.lean:26125:  sorry`
+- `QuantumBlockEncoding/RobinMatrix.lean:26155:  sorry`
 
 ## 6h Batch Log Signal
 
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: Build completed successfully (16 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24867:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24898:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: Build completed successfully (18 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24867:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24898:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: Build completed successfully (16 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24867:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24898:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: Build completed successfully (18 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: Reviewer audit complete. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests, with only the known diagnostic sorry warnings at QuantumBlockEncoding/RobinMatrix.lean:24867 and :24898. No new hidden Prop/trivial/admit/axiom shortcuts or semantic proved-flag promotions were found in the diff. Source anchors for Eq. arbitrary sparcity, Eq. angles for Ry, Theorem theorem: 1 term robin, Eq. ROBIN clarified, Fig. fig:1 term ROBIN, and Definition def:block-encoding were verified in the local TeX. Active frontier is source_prepared_active_field_contract plus the proposed selected-zero guard; the selected-slot witness is compiled/stale, and the H-free fold/direct row0-to-slot2 feeder stay retired. Blocking for theorem closure: the two diagnostic sorries remain and the source-prepared selected-zero guard is not yet proved. Advisory/report gap: HUMAN_STATUS.md and unresolved-failures.zh.md link runs/20260614-004100-QBE-AUTO-002-cycle01/zh_summary.md, but that file is absent. Next lower work should run lower1/lower3 source and shape feedback, then lower2 only oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3.
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: runs/20260614-004100-QBE-AUTO-002-cycle01/dialogue.md:43:Reviewer audit complete. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests, with only the known diagnostic sorry warnings at QuantumBlockEncoding/RobinMatrix.lean:24867 and :24898. No new hidden Prop/trivial/admit/axiom shortcuts or semantic proved-flag promotions were found in the diff. Source anchors for Eq. arbitrary sparcity, Eq. angles for Ry, Theorem theorem: 1 term robin, Eq. ROBIN clarified, Fig. fig:1 term ROBIN, and Definition def:block-encoding were verified in the local TeX. Active frontier is source_prepared_active_field_contract plus the proposed selected-zero guard; the selected-slot witness is compiled/stale, and the H-free fold/direct row0-to-slot2 feeder stay retired. Blocking for theorem closure: the two diagnostic sorries remain and the source-prepared selected-zero guard is not yet proved. Advisory/report gap: HUMAN_STATUS.md and unresolved-failures.zh.md link runs/20260614-004100-QBE-AUTO-002-cycle01/zh_summary.md, but that file is absent. Next lower work should run lower1/lower3 source and shape feedback, then lower2 only oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3.
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24867:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24898:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: Build completed successfully (16 jobs).
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24867:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:24898:8: declaration uses `sorry`
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-pro-plan-20260613-155324.log`: Build completed successfully (18 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: Build completed successfully (16 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26121:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26152:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: Build completed successfully (18 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: 1944:    check_runs = len(re.findall(r"\$ lake build|\$ python3 tools/qbe.py check|Build completed successfully", text))
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26121:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26152:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: Build completed successfully (16 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26121:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26152:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: Build completed successfully (18 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: ## Reviewer Findings
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26121:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26152:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: Build completed successfully (16 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26121:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26152:8: declaration uses `sorry`
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-codex-6h-source-prepared-product-tmux-20260615-010152.log`: Build completed successfully (18 jobs).
 
 ## Trial Memory Counts
 
 | total | compiled/pass | failed | blocked |
 |---:|---:|---:|---:|
-| 4046 | 565 | 42 | 37 |
+| 4272 | 616 | 42 | 39 |
 
 ## Current Active Proof Leaves
 
-- source_prepared_active_field_contract: source-prepared active/prepared field is the paper-facing object under audit; status: active source-correspondence leaf; Lean: `SourceActiveField(H, env)`
-- source_prepared_active_field_forces_selected_zero_guard: `Uniform(H)` and `ActivePreparedEval(H, env)` imply `SelectedSlot(env) = 0`; status: active guard leaf; Lean: proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3`
+- 1. lower1 validates the source map and keeps the focused branch fixed to system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`.
+- 2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript split, active-backend contract wiring, and all false theorem flags before lower2 edits Lean.
+- 3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for the one bridge theorem above. If it already exists, lower2 should make no Lean edit and log `error_class=stale_leaf`.
 
 ## GHL Contribution Todo
 
@@ -96,8 +97,8 @@ Latest run: `runs/20260614-004100-QBE-AUTO-002-cycle01`
 2. For report/log reading rules, read `REPORTS.zh.md`.
 3. For a plain Chinese map of unfinished GHL source steps and failed Lean routes, read `paper-notes/GHL2025/markdown/unresolved-failures.zh.md`.
 4. For the Fig. 4 circuit image audit, read `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`.
-5. For human-readable cycle details, read `runs/20260614-004100-QBE-AUTO-002-cycle01/zh_summary.md`.
-6. For what the next agents should read, use `runs/20260614-004100-QBE-AUTO-002-cycle01/memory_digest.md` and `runs/20260614-004100-QBE-AUTO-002-cycle01/todo.md`.
+5. For human-readable cycle details, read `runs/20260615-053748-QBE-AUTO-002-cycle01/zh_summary.md`.
+6. For what the next agents should read, use `runs/20260615-053748-QBE-AUTO-002-cycle01/memory_digest.md` and `runs/20260615-053748-QBE-AUTO-002-cycle01/todo.md`.
 7. For machine retrieval, use `research-wiki/retrieval-index/QBE-AUTO-002.json`.
 8. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
 
@@ -119,11 +120,11 @@ Latest run: `runs/20260614-004100-QBE-AUTO-002-cycle01`
 
 ## Recent Run Directories
 
-- `runs/20260614-004100-QBE-AUTO-002-cycle01`
-- `runs/20260613-182230-QBE-AUTO-002-cycle01`
-- `runs/20260613-180059-QBE-AUTO-002-cycle01`
-- `runs/20260613-174250-QBE-AUTO-002-cycle01`
-- `runs/20260613-172255-QBE-AUTO-002-cycle01`
-- `runs/20260613-170242-QBE-AUTO-002-cycle01`
-- `runs/20260613-163714-QBE-AUTO-002-cycle01`
-- `runs/20260613-161435-QBE-AUTO-002-cycle01`
+- `runs/20260615-053748-QBE-AUTO-002-cycle01`
+- `runs/20260615-052017-QBE-AUTO-002-cycle01`
+- `runs/20260615-050133-QBE-AUTO-002-cycle01`
+- `runs/20260615-043649-QBE-AUTO-002-cycle01`
+- `runs/20260615-041049-QBE-AUTO-002-cycle01`
+- `runs/20260615-034853-QBE-AUTO-002-cycle01`
+- `runs/20260615-032327-QBE-AUTO-002-cycle01`
+- `runs/20260615-030358-QBE-AUTO-002-cycle01`

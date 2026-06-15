@@ -1,0 +1,91 @@
+{
+  "task": "QBE-AUTO-002",
+  "role": "middle",
+  "kind": "source_contract_packet",
+  "run": "20260615-053748-QBE-AUTO-002-cycle01",
+  "checked_at": "2026-06-15T05:58:39+09:00",
+  "leaf": "theorem_facing_projection_interface_normalizer_bridge",
+  "root_obligation": "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "lower1 validates the source map, lower3 checks compiled interface and normalizer guards, then lower2 proves only oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3 or logs stale_leaf if it already exists",
+  "source_anchors": [
+    "GHL2025 Theorem theorem: 1 term robin",
+    "GHL2025 Eq. ROBIN clarified",
+    "GHL2025 Fig. fig:1 term ROBIN",
+    "GHL2025 Definition def:block-encoding",
+    "GHL2025 Eq. arbitrary sparcity",
+    "GHL2025 Eq. angles for Ry"
+  ],
+  "planned_lean_target": "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3",
+  "allowed_write_scope": [
+    "QuantumBlockEncoding/RobinMatrix.lean"
+  ],
+  "compiled_route_memory": [
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript",
+    "oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+    "oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3"
+  ],
+  "required_hypotheses": [
+    "hUniform : oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H",
+    "hentry : env \"boundary_cos_half_0_2\" = Coeff.evalWith env (GHL2025.boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2)",
+    "hND : env \"N_D_inv\" * env \"N_D\" = 1",
+    "hNF : env \"N_f_inv\" * env \"N_f\" = 1",
+    "hkappa : env \"kappa_inv\" * env \"kappa\" = 1",
+    "hkappaSqrt : env \"sqrt_kappa_inv\" * env \"sqrt_kappa_inv\" = env \"kappa_inv\""
+  ],
+  "expected_bridge_equality": "Coeff.evalWith env interface.sourcePreparedProjectionEntry * Coeff.evalWith env interface.normalizedProjectionBridge.theoremNormalizer = Coeff.evalWith env interface.normalizedProjectionBridge.expectedTargetEntry",
+  "must_remain_false": [
+    "interface.correctedFiniteBlockProjectionEquality.proved",
+    "interface.correctedFiniteBlockProjectionEqualityProved",
+    "interface.fixedProductObligation.proved",
+    "interface.finiteBlockNormalizedEquality.proved",
+    "interface.finiteBlockProjectionObligation.proved",
+    "interface.finiteBlockLCUCompositionObligation.proved",
+    "interface.finiteBlockFinalExtractionObligation.proved",
+    "interface.normalizedBlockEqualityProved",
+    "interface.productToCoefficientProved",
+    "interface.lcuCorrectProved",
+    "interface.blockProjectionProved",
+    "interface.blockCorrectProved",
+    "interface.finalExtractionProved",
+    "interface.oracleCorrectProved",
+    "interface.unitaryProved",
+    "interface.resourceClaimProved"
+  ],
+  "rejected_targets": [
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+    "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3",
+    "(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality"
+  ],
+  "external_contracts": [
+    {
+      "id": "ShuklaVedula2024.HWkappaUniformSuperposition",
+      "status": "contract-only",
+      "used_as": "hUniform only"
+    },
+    {
+      "id": "GHL2025.RyBoundary.CorrectedAngleBoundarySlot2",
+      "status": "source-backed-correction; contract-only",
+      "used_as": "hentry only"
+    },
+    {
+      "id": "LCU.StandardBlockEncoding",
+      "status": "contract-only",
+      "used_as": "background only; no finite block-composition flag may be promoted"
+    }
+  ],
+  "notes": "This is a source-correspondence packet. It does not edit Lean, prove the root obligation, replace the paper circuit, mutate the active backend contract, or promote theorem-facing semantic flags."
+}

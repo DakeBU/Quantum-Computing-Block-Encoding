@@ -11,7 +11,240 @@ The build gate after this export is
 \]
 It runs \Lean{lake build} and \Lean{lake build Tests}.
 
-\subsection{Current Frontier: Source-Prepared Active Field Guard}
+\subsection{Current Frontier: Post-Audit Theorem-Facing Finite Block Projection Interface}
+
+Definitions first.  \Lean{TheoremFacingFig4Circuit} is
+\Lean{GHL2025.oneTermRobinTheoremFacingFig4Circuit}.
+\Lean{ActiveBackendCircuit} is \Lean{GHL2025.oneTermRobinCircuit}.
+\Lean{FiniteBlockContract} is
+\[
+  \Lean{oneTermRobinFiniteBlockCompositionContract\ 3}.
+\]
+\Lean{FixedProductObligation} is
+\[
+  \Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0}.
+\]
+
+The finite source-prepared normalized projection packet is compiled route
+memory:
+\[
+\begin{array}{l}
+\Lean{oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge\_n3}\\
+\Lean{oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge\_n3\_transcript}.
+\end{array}
+\]
+It does not prove product-to-coefficient closure or normalized-block equality.
+All downstream theorem flags remain false.
+
+The current source audit finds a theorem-facing contract mismatch.  GHL2025
+Theorem \texttt{theorem: 1 term robin}, Eq. \texttt{ROBIN clarified}, Fig.
+\texttt{fig:1 term ROBIN}, and Definition \texttt{def:block-encoding} point to
+the full Fig. 4 construction, while the finite block-composition contract is
+wired through
+\[
+  \Lean{oneTermRobinCircuitSemantics\ 3}
+  \quad\text{and}\quad
+  \Lean{GHL2025.oneTermRobinCircuit},
+\]
+the active seven-gate backend component.  The theorem-facing and active
+transcripts have separate Lean guards:
+\[
+\begin{array}{l}
+\Lean{GHL2025.oneTermRobinTheoremFacingFig4Circuit\_gateList}\\
+\Lean{GHL2025.oneTermRobinActiveBackendCircuit\_gateList}.
+\end{array}
+\]
+
+\[
+\begin{array}{lll}
+\text{Item} & \text{Lean declaration or target} & \text{Status}\\
+\text{normalized projection packet} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge\_n3} &
+\text{compiled route memory}\\
+\text{finite block-composition contract} &
+\Lean{oneTermRobinFiniteBlockCompositionContract\ 3} &
+\text{source-translation gap}\\
+\text{theorem-facing contract audit} &
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit\_n3} &
+\text{compiled route memory}\\
+\text{theorem-facing block/projection interface} &
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface\_n3} &
+\text{active lower packet after checks}\\
+\text{fixed product-to-coefficient theorem} &
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0} &
+\text{open; blocked on corrected interface}
+\end{array}
+\]
+
+The active packet is
+\Lean{proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-packet-20260615-0507.md}.
+The current typed feedback is
+\Lean{verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-20260615-0507.json}.
+
+No oracle, \Lean{H\_W}, boundary \Lean{R\_y}, LCU, unitarity, normalizer,
+block-projection, block-correctness, product-to-coefficient, resource, or final
+extraction flag is promoted by this interface packet.
+
+\subsection{Current Frontier: Source-Contract Route Retarget Guard}
+
+Definitions first.  \Lean{SourceSlot2Product(H, env)} is the evaluated equality
+from the source-prepared clean projection to
+\Lean{oneTermRobinGamma3BoundaryProjectionSummationTarget\_n3.projectedBranchProduct}.
+\Lean{FixedProductObligation} is
+\[
+  \Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0}.
+\]
+\Lean{BackendExpansionRaw} is
+\[
+  \Lean{oneTermRobinGamma3BoundaryBackendBranchContributionTarget\_n3.backendExpansionStatement}.
+\]
+
+Lower1 and lower3 classified \Lean{BackendExpansionRaw} as a source-contract
+gap for the theorem-facing route.  It is equivalent to the raw signal-entry
+fold and is refuted by
+\Lean{oneTermRobinGamma3BoundaryBackendExpansionStatement\_not\_n3}, so it is
+not a lower2 theorem target.
+
+The source-backed route now consumes the compiled source-prepared bridge
+\[
+  \Lean{oneTermRobinGamma3BoundarySourcePreparedProjection\_slot2\_to\_projectedBranchProduct\_n3}.
+\]
+Middle added the retarget guard
+\[
+  \Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product\_feedsFixedProductMap\_n3}.
+\]
+This guard attaches the source-prepared slot-\(2\) projected-product equality
+to \Lean{FixedProductObligation} and keeps product-to-coefficient, branch
+decomposition, normalized block equality, LCU, block projection, block
+correctness, and final extraction false.
+
+\[
+\begin{array}{lll}
+\text{Item} & \text{Lean declaration or target} & \text{Status}\\
+\text{raw backend expansion} &
+\Lean{oneTermRobinGamma3BoundaryBackendBranchContributionTarget\_n3.backendExpansionStatement} &
+\text{refuted; route memory only}\\
+\text{source-prepared slot-2 projected product} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjection\_slot2\_to\_projectedBranchProduct\_n3} &
+\text{compiled route memory}\\
+\text{retarget guard into fixed product map} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product\_feedsFixedProductMap\_n3} &
+\text{compiled; false flags checked}\\
+\text{fixed product-to-coefficient theorem} &
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0} &
+\text{open; future coefficient/normalizer packet}
+\end{array}
+\]
+
+The active packet is
+\Lean{proof-attempts/QBE-AUTO-002/backend-expansion-route-retarget-middle-packet-20260615-030358.md}.
+The current typed feedback is
+\Lean{verifier-feedback/QBE-AUTO-002/backend-expansion-route-retarget-middle-20260615-030358.json}.
+
+The theorem-facing one-term Robin block encoding remains open.  No oracle,
+\Lean{H\_W}, boundary \Lean{R\_y}, LCU, unitarity, normalizer,
+block-projection, block-correctness, product-to-coefficient, or final
+extraction flag is promoted by this guard.
+
+\subsection{Current Frontier: Backend-Expansion Correction Audit}
+
+Definitions first.  \Lean{SourceProjection(H, env)} denotes
+\[
+  \Lean{Coeff.evalWith\ env\ (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3\ H\ env).preparedProjectionEntry}.
+\]
+\Lean{BackendFold(env)} denotes
+\[
+  \Lean{Coeff.evalWith\ env\ (blockExtractionBranchContributionSum\ oneTermRobinGamma3BoundaryBackendBranchContribution\_n3)}.
+\]
+\Lean{SelectedSlot(env)} denotes
+\[
+  \Lean{Coeff.evalWith\ env\ oneTermRobinGamma3BoundaryProjectionSummationObstruction\_n3.selectedSlotContribution}.
+\]
+\Lean{ProjectedBranchProduct(env)} denotes
+\[
+  \Lean{Coeff.evalWith\ env\ oneTermRobinGamma3BoundaryProjectionSummationTarget\_n3.projectedBranchProduct}.
+\]
+\Lean{BackendExpansionRaw} denotes
+\[
+  \Lean{oneTermRobinGamma3BoundaryBackendBranchContributionTarget\_n3.backendExpansionStatement}.
+\]
+\Lean{SignalEntryFold} denotes
+\[
+  \Lean{oneTermRobinGamma3BoundaryProjectionSummationTarget\_n3.signalUnitaryEntry}
+  =
+  \Lean{blockExtractionBranchContributionSum\ oneTermRobinGamma3BoundaryBackendBranchContribution\_n3}.
+\]
+\Lean{hUniform} is the sparse-preparation hypothesis
+\[
+  \Lean{oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3\ H}.
+\]
+\Lean{hentry} is the selected boundary-entry hypothesis
+\[
+  \Lean{env\ "boundary\_cos\_half\_0\_2"\ =\ Coeff.evalWith\ env\ (GHL2025.boundaryRotationNormalizedCoefficient\ (oneTermParameters\ 3)\ 0\ 2)}.
+\]
+
+The source-prepared product/projection packet and both bridge leaves are
+compiled:
+\[
+\begin{array}{l}
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation\_n3}\\
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation\_n3\_transcript}\\
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjection\_to\_backendFold\_n3}\\
+\Lean{oneTermRobinGamma3BoundaryBackendFold\_to\_slot2ProjectedProduct\_n3}\\
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjection\_slot2\_to\_projectedBranchProduct\_n3}.
+\end{array}
+\]
+They are route memory, not active lower work.  The next frontier is the
+projection/backend branch-sum step feeding
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0}.
+
+The raw backend-expansion target is not an active proof goal.  It is
+equivalent to \Lean{SignalEntryFold} by
+\Lean{oneTermRobinGamma3BoundaryBackendExpansionStatement\_equivUnitaryEntryFold\_n3},
+but the current statement is refuted by
+\Lean{oneTermRobinGamma3BoundaryBackendExpansionStatement\_not\_n3}.  The
+immediate work is a source-dependency/proof-DAG correction audit: lower1 and
+lower3 must name a corrected source-facing projection/backend leaf or record a
+source-contract gap before lower2 attempts a Lean proof.
+
+\[
+\begin{array}{lll}
+\text{Item} & \text{Lean declaration or target} & \text{Status}\\
+\text{source-prepared packet} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation\_n3} &
+\text{compiled; stale as lower work}\\
+\text{source projection to backend fold} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjection\_to\_backendFold\_n3} &
+\text{compiled; stale as lower work}\\
+\text{backend fold to projected product} &
+\Lean{oneTermRobinGamma3BoundaryBackendFold\_to\_slot2ProjectedProduct\_n3} &
+\text{compiled; stale as lower work}\\
+\text{source projection to projected product} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjection\_slot2\_to\_projectedBranchProduct\_n3} &
+\text{compiled; stale as lower work}\\
+\text{unchanged backend expansion} &
+\Lean{oneTermRobinGamma3BoundaryBackendBranchContributionTarget\_n3.backendExpansionStatement} &
+\text{refuted; do not prove unchanged}\\
+\text{corrected projection/backend leaf} &
+\text{to be named by the correction packet} &
+\text{active correction frontier}\\
+\text{fixed product-to-coefficient} &
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0} &
+\text{open; blocked on corrected projection/backend route}
+\end{array}
+\]
+
+The active packet is
+\Lean{proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-0233.md}.
+The current typed feedback is
+\Lean{verifier-feedback/QBE-AUTO-002/backend-expansion-correction-middle-20260615-0233.json}.
+
+The theorem-facing one-term Robin block encoding remains open.  No oracle,
+\Lean{H\_W}, boundary \Lean{R\_y}, LCU, unitarity, normalizer,
+block-projection, block-correctness, product-to-coefficient, or final
+extraction flag is promoted by this correction packet.
+
+\subsection{Previous Frontier: Source-Prepared Active Field Guard}
 
 Definitions first.  \Lean{SelectedSlot(env)} denotes
 \[
@@ -79,7 +312,7 @@ it is evidence for restating the source-prepared target, not theorem closure.
 \end{array}
 \]
 
-\subsection{Next Lower Packet}
+\subsection{Previous Lower Packet}
 
 The lower-facing source contract is
 \Lean{proof-attempts/QBE-AUTO-002/source-prepared-active-field-source-contract-20260614-0102.md}.
@@ -2628,3 +2861,77 @@ prepared sparse clean-clean entry.  Equivalent Lean-facing targets are
 All theorem-facing oracle, sparse-preparation, normalizer, LCU, block
 projection, block-correctness, and final-extraction flags remain unproved.  The
 first-case-study one-term theorem is still open.
+
+\subsection{2026-06-15 Source-Prepared Projection/Product Bridge Frontier}
+
+Definition first.  The source-prepared clean projection is the
+\Lean{preparedProjectionEntry} field of
+\[
+  \Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3\ H\ env}.
+\]
+The backend fold is
+\[
+  \Lean{blockExtractionBranchContributionSum\ oneTermRobinGamma3BoundaryBackendBranchContribution\_n3},
+\]
+and the projected branch product is
+\[
+  \Lean{oneTermRobinGamma3BoundaryProjectionSummationTarget\_n3.projectedBranchProduct}.
+\]
+
+The packet
+\[
+  \Lean{oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation\_n3}
+\]
+now compiles and is no longer a lower-agent target.  It records the Fig.~\(\Lean{fig:1 term ROBIN}\)
+prepared clean projection, the fixed product obligation
+\[
+  \Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0},
+\]
+and false product, LCU, block, and final flags.  It does not prove the product
+coefficient or the final one-term theorem.
+
+\[
+\begin{array}{lll}
+\text{bridge leaf} & \text{Lean target} & \text{status} \\
+\hline
+\text{source-prepared projection to backend fold} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjection\_to\_backendFold\_n3} &
+\text{active if absent; direct wrapper under } \Lean{hUniform} \\
+\text{backend fold to slot-2 projected product} &
+\Lean{oneTermRobinGamma3BoundaryBackendFold\_to\_slot2ProjectedProduct\_n3} &
+\text{next mathematical leaf under } \Lean{hentry} \\
+\text{source-prepared projection to slot-2 projected product} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedProjection\_slot2\_to\_projectedBranchProduct\_n3} &
+\text{open composite}
+\end{array}
+\]
+
+The first bridge uses GHL2025 Eq.~\(\Lean{arbitrary sparcity}\) only through
+the explicit contract
+\[
+  \Lean{oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement\_n3\ H}.
+\]
+The second bridge uses GHL2025 Eq.~\(\Lean{angles for Ry}\) only through the
+selected entry hypothesis matching \(\Lean{boundary\_cos\_half\_0\_2}\).
+
+The forbidden route remains
+\[
+  \Lean{oneTermRobinGamma3BoundaryBackendBranchContributionTarget\_n3.backendExpansionStatement},
+\]
+which is guarded by
+\[
+  \Lean{oneTermRobinGamma3BoundaryBackendExpansionStatement\_not\_n3}.
+\]
+The diagnostic \Lean{sorry} declarations
+\[
+\begin{gathered}
+  \Lean{oneTermRobinGamma3BoundaryUnitaryEntry\_eq\_backendFold\_n3},\\
+  \Lean{oneTermRobinGamma3BoundaryEvalGateMatrices\_eq\_sevenGateMatrix\_n3}
+\end{gathered}
+\]
+are not dependencies of this bridge.
+
+No oracle, \(\Lean{H\_W}\), \(\Lean{R\_y}\), LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, normalizer, or external primitive flag is
+promoted.  The first-case-study one-term theorem remains open.

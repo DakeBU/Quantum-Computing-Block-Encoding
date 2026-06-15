@@ -1,0 +1,75 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260615-013025-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "created_at": "2026-06-15T01:40:58+09:00",
+  "leaf": "source_prepared_projection_to_projected_branch_product",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": null,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Prove oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3 if absent; otherwise prove oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3, then compose them into oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3.",
+  "source_anchors": [
+    "GHL2025 Eq. arbitrary sparcity",
+    "GHL2025 Fig. fig:1 term ROBIN",
+    "GHL2025 Definition def:block-encoding",
+    "GHL2025 Eq. ROBIN clarified",
+    "GHL2025 Eq. angles for Ry",
+    "paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md"
+  ],
+  "compiled_packet_retired": {
+    "leaf": "source_prepared_product_projection_packet",
+    "declarations": [
+      "OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation",
+      "oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3_transcript"
+    ],
+    "status": "compiled_stale_as_lower2_target",
+    "reason": "Lower3 verified the packet as source-prepared route memory with false downstream flags; the next active work is the evaluated bridge from prepared projection to projected branch product."
+  },
+  "ready_dependencies": [
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3",
+    "oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3",
+    "oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3"
+  ],
+  "active_leaf_contract": {
+    "first_target": "oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3",
+    "next_target": "oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3",
+    "composite_target": "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+    "hUniform_role": "Used only to identify the source-prepared projection entry with the backend fold through the compiled clean-column contract.",
+    "hentry_role": "Used only by oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3 to identify the selected slot contribution with projectedBranchProduct."
+  },
+  "finite_shape_requirements": {
+    "source_prepared_clean_index": 0,
+    "focused_sparse_slot": 2,
+    "focused_branch_full_basis_index": 32,
+    "fixed_product_obligation": "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0"
+  },
+  "forbidden_routes": [
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryProjectionSummationProductBridge_leaf_n3 as closure",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env as main target",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic",
+    "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+    "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3"
+  ],
+  "flags_not_promoted": [
+    "productToCoefficientProved",
+    "lcuCorrectProved",
+    "blockProjectionProved",
+    "blockCorrectProved",
+    "finalExtractionProved",
+    "normalizedBlockEqualityProved",
+    "oracleCorrectProved",
+    "unitaryProved"
+  ],
+  "artifact": "proof-attempts/QBE-AUTO-002/source-prepared-projection-product-bridge-middle-packet-20260615-013025.md"
+}

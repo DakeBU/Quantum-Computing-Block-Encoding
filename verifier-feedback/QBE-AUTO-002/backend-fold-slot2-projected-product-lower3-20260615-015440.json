@@ -1,0 +1,82 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260615-015440-QBE-AUTO-002-cycle01",
+  "role": "lower3-necessary-condition-verifier",
+  "created_at": "2026-06-15T02:08:51+09:00",
+  "leaf": "backend_fold_to_slot2_projected_product",
+  "active_leaf_reason": "The source-prepared projection-to-backend-fold wrapper is already compiled as oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3. The next lower2 leaf is the H-free-in-signature but source-route-local evaluated bridge from the compiled backend branch fold to the slot-2 projected branch product under hentry.",
+  "necessary_condition_checked": "Before lower2 proves oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3, the backend fold must collapse to the same selected slot contribution that the projected-product evaluator rewrites to oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct.",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The checked leaf matches the current proof-DAG contract, not the final paper theorem. It composes only QBE-local evaluated objects already attached to the source-prepared route: hUniform is consumed in the previous source-prepared wrapper, and hentry is consumed only by the selected-slot evaluator.",
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_matrix_note": "Existing Lean diagnostics fix the source-prepared clean index at 0, the focused sparse slot at 2, and the selected backend full basis index at 32. The backend fold collapse is compiled by oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3, and the selected contribution-to-projected-product evaluator is compiled by oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3.",
+  "block_entry_ok": true,
+  "block_entry_note": "The checked leaf does not assert the full signal-block projection/summation theorem. It only bridges blockExtractionBranchContributionSum oneTermRobinGamma3BoundaryBackendBranchContribution_n3 to oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct after the selected slot-2 contribution has been isolated.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "closed_theorem_note": "oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3 and the composite oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3 are still absent from QuantumBlockEncoding/RobinMatrix.lean.",
+  "small_executable_or_lean_local_diagnostic": {
+    "new_lean_added": false,
+    "reason": "Existing Lean-local transcript and support diagnostics are sufficient for this lower3 check; adding theorem-facing Lean would risk promoting the active lower2 proof.",
+    "existing_declarations_used": [
+      "oneTermRobinGamma3BoundarySparseCleanIndex_n3",
+      "oneTermRobinGamma3BoundarySparseSlotIndex_n3",
+      "oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3",
+      "oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3",
+      "oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3",
+      "oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3_transcript",
+      "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3"
+    ]
+  },
+  "shape_checks": {
+    "source_prepared_clean_index": 0,
+    "focused_sparse_slot": 2,
+    "focused_branch_full_basis_index": 32,
+    "fixed_product_obligation": "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "backend_fold_collapse_compiled": true,
+    "selected_slot_projected_product_eval_compiled": true,
+    "source_prepared_projection_to_backend_fold_present": true,
+    "backend_fold_to_slot2_projected_product_present": false,
+    "composite_source_projection_slot2_product_present": false,
+    "hUniform_scope_ok": true,
+    "hentry_scope_ok": true
+  },
+  "forbidden_route_check": {
+    "backend_expansion_parent_required_for_active_leaf": false,
+    "projection_summation_product_bridge_used_as_closure": false,
+    "hfree_evaluated_backend_fold_main_route": false,
+    "active_selected_slot_feeder_used": false,
+    "unitary_entry_eq_backend_fold_sorry_used": false,
+    "eval_gate_matrices_eq_seven_gate_matrix_sorry_used": false,
+    "known_diagnostic_sorry_count": 2,
+    "diagnostic_sorries_are_forbidden_route_only": true
+  },
+  "flag_promotion_check": {
+    "productToCoefficientProved": false,
+    "lcuCorrectProved": false,
+    "blockProjectionProved": false,
+    "blockCorrectProved": false,
+    "finalExtractionProved": false,
+    "normalizedBlockEqualityProved": false,
+    "oracleCorrectProved": false,
+    "unitaryProved": false
+  },
+  "rejection": {
+    "finite_counterexample_found": false,
+    "rejected_routes": [
+      "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement as parent",
+      "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env as main route",
+      "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env",
+      "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+      "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3"
+    ],
+    "reason": "The finite/path checks support the active bridge leaf, but they also keep the H-free row-0 diagnostics rejected because row 0 and selected slot 2 are distinct full-basis entries."
+  },
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Lower2 should prove exactly one theorem: oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3 by calc-transitivity through oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3 env and oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3 env hentry. After that, compose it with oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3."
+}

@@ -1,0 +1,47 @@
+{
+  "task": "QBE-AUTO-002",
+  "role": "middle",
+  "kind": "packet",
+  "prepared_at": "2026-06-15T05:07:00+09:00",
+  "leaf": "theorem_facing_finite_block_projection_interface",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "pending lower3 necessary-condition check",
+  "block_entry_ok": "pending non-promoting interface; no block equality promoted",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "N_D*N_f*kappa remains attached through oneTermRobinFiniteBlockCompositionContract 3 and the source-prepared route; no normalizer equality promoted",
+  "closed_theorem_ok": false,
+  "dependencies": [
+    "oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3",
+    "oneTermRobinFiniteBlockCompositionContract 3",
+    "GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList",
+    "GHL2025.oneTermRobinActiveBackendCircuit_gateList"
+  ],
+  "planned_declarations": [
+    "OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript"
+  ],
+  "forbidden_routes": [
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+    "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3",
+    "SignalEntryFold-equivalent routes"
+  ],
+  "product_to_coefficient": false,
+  "normalized_block_equality": false,
+  "lcu_correct": false,
+  "block_projection": false,
+  "block_correct": false,
+  "final_extraction": false,
+  "oracle_correct": false,
+  "unitarity": false,
+  "resource_claim": false,
+  "error_class": "source_translation_gap",
+  "next_route": "lower1 validates the source map and lower3 verifies necessary conditions, then lower2 compiles only the non-promoting theorem-facing finite block/projection interface packet in QuantumBlockEncoding/RobinMatrix.lean."
+}

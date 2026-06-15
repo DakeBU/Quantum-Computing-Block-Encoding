@@ -1,0 +1,98 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260615-030358-QBE-AUTO-002-cycle01",
+  "role": "lower3-necessary-condition-verifier",
+  "created_at": "2026-06-15T03:20:18+09:00",
+  "leaf": "source_slot2_product_fixed_map_guard",
+  "active_leaf_checked": "oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3",
+  "lean_declaration_checked": "oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3",
+  "active_leaf_reason": "After the raw backendExpansionStatement was refuted, middle retargeted the frontier to a guard that consumes the compiled source-prepared slot-2 projection/product equality and attaches it to oneTermRobinGamma3ProductToCoefficientObligation 3 0 0. The necessary condition is that the guard preserves the source-prepared entry, focused slot, fixed product obligation, and false downstream flags without reviving the raw H-free backend expansion.",
+  "necessary_condition_checked": "The guard must use clean projection index 0, focused sparse slot 2, selected branch full-basis index 32, and the fixed product route oneTermRobinGamma3ProductToCoefficientObligation 3 0 0. It must also keep product-to-coefficient, normalizer/block equality, LCU, block projection, block correctness, and final extraction unproved.",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The checked guard follows the source-prepared route already compiled by oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3. It does not claim the refuted raw backendExpansionStatement and does not close the fixed coefficient theorem.",
+  "lean_edited": false,
+  "lean_parse_ok": true,
+  "lean_parse_command": "lake env lean QuantumBlockEncoding/RobinMatrix.lean",
+  "lean_parse_result": "passed with the two known diagnostic sorry warnings at QuantumBlockEncoding/RobinMatrix.lean:25293 and QuantumBlockEncoding/RobinMatrix.lean:25324",
+  "lean_build_ok": true,
+  "lean_build_note": "No Lean source was edited in this lower3 pass. Gates passed: python3 tools/qbe.py check, lake build, and lake build Tests, with only the two known diagnostic sorry warnings.",
+  "finite_matrix_ok": true,
+  "finite_matrix_note": "No finite/register contradiction was found against the retarget guard. Existing compiled route memory fixes clean index 0, focused sparse slot 2, selected full-basis index 32, and the signal block entry [0,0]. The finite counterexample remains attached only to the forbidden raw backendExpansionStatement.",
+  "block_entry_ok": true,
+  "block_entry_note": "The checked guard records the source-prepared projection entry equality to the slot-2 projected branch product and the fixed product-map pointer, while leaving the product-to-coefficient theorem unproved.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": false,
+  "normalizer_note": "The coefficient/normalizer algebra for oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 remains open.",
+  "closed_theorem_ok": true,
+  "closed_theorem_note": "The guard oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3 is compiled. This is not closure of oneTermRobinGamma3ProductToCoefficientObligation 3 0 0.",
+  "product_to_coefficient_ok": false,
+  "small_executable_or_lean_local_diagnostic": {
+    "new_lean_added": false,
+    "existing_lean_diagnostics_used": [
+      "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3",
+      "oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3",
+      "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+      "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3"
+    ],
+    "parse_command": "lake env lean QuantumBlockEncoding/RobinMatrix.lean"
+  },
+  "finite_shape_checks": {
+    "clean_projection_index": {
+      "value": 0,
+      "declaration": "oneTermRobinGamma3BoundarySparseCleanIndex_n3"
+    },
+    "focused_sparse_slot": {
+      "value": 2,
+      "declarations": [
+        "oneTermRobinGamma3BoundaryBranchContributionFocusedSlot",
+        "oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.focusedSparseSlot"
+      ]
+    },
+    "selected_branch_full_basis_index": {
+      "value": 32,
+      "evidence": "oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3"
+    },
+    "fixed_product_obligation": {
+      "human_readable": "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+      "lean_term": "oneTermRobinGamma3ProductToCoefficientObligation 3 <0> <0>",
+      "proved": false
+    },
+    "downstream_flags_checked_false": [
+      "bridge.branchDecompositionProved",
+      "bridge.normalizedBlockEqualityProved",
+      "bridge.productToCoefficientProved",
+      "bridge.lcuCorrectProved",
+      "bridge.blockProjectionProved",
+      "bridge.blockCorrectProved",
+      "bridge.finalExtractionProved",
+      "packet.productRouteConsumed",
+      "packet.productToCoefficientProved",
+      "packet.lcuCorrectProved",
+      "packet.blockProjectionProved",
+      "packet.blockCorrectProved",
+      "packet.finalExtractionProved"
+    ]
+  },
+  "raw_backend_expansion_rejection": {
+    "rejected_target": "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "finite_matrix_ok": false,
+    "block_entry_ok": false,
+    "no_go_guard": "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+    "counterexample_theorem": "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3",
+    "reason": "The all-one selected-branch environment evaluates the selected slot contribution to 1. Any proof of the unchanged backendExpansionStatement would force the same contribution to 0 through the evaluated backend fold, so the raw target remains an invalid lower2 theorem target.",
+    "error_class": "finite_matrix_counterexample"
+  },
+  "forbidden_route_check": {
+    "prove_backendExpansionStatement_unchanged": false,
+    "diagnostic_sorry_dependency_used": false,
+    "hfree_evaluated_fold_as_theorem_closure_used": false,
+    "product_to_coefficient_promoted": false,
+    "normalizer_promoted": false,
+    "lcu_or_block_composition_promoted": false,
+    "oracle_correctness_or_unitarity_promoted": false,
+    "final_block_extraction_promoted": false
+  },
+  "error_class": null,
+  "next_route": "Prepare the coefficient/normalizer packet for oneTermRobinGamma3ProductToCoefficientObligation 3 0 0. Do not assign lower2 to the unchanged backendExpansionStatement or to SignalEntryFold."
+}

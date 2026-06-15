@@ -3,7 +3,7 @@
 Task id: `QBE-AUTO-002`
 Title: Concrete Circuit Matrix Semantics Backend
 Mode: `faithfulPaper`
-Updated: `2026-06-14 16:31:08`
+Updated: `2026-06-15 06:21:02`
 Blueprint stage: `Stage 2 DAG proof discharge, with faithful transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -16,81 +16,108 @@ oracle contracts to stay explicit.
 ## Current Directive
 
 ````text
-## Current Run Directive: 2026-06-14 Pro-Assessed Source-Prepared Target Repair For Next 6h
+## Current Run Directive: 2026-06-15 Theorem-Facing Projection-Interface Normalizer Bridge Prepared
 
-This directive supersedes the `2026-06-14 Source-Prepared Active-Field
-Contract` directive below for the next 6h batch.  Full assessment:
-
-```text
-proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md
-```
-
-ChatGPT Pro's response is directionally correct: the H-free evaluated backend
-fold and direct row-`0` to selected sparse slot feeder are retired and must not
-be revived.  The full Fig. `fig:1 term ROBIN` theorem-facing object must keep
-both `H_W^(kappa)` side preparations.
-
-Local correction: in the current Lean file, these names still compare the old
-H-free active signal-zero entry with the prepared clean entry:
+This directive supersedes the post-audit projection-interface packet after
+lower2 compiled it as non-promoting route memory:
 
 ```lean
-oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env
-oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env
-(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement
+OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript
 ```
 
-Under
+Lower3 postcompile feedback records that the interface is now stale as lower
+work: the source-prepared projection target is attached to the finite block
+contract, `oneTermRobinFiniteBlockCompositionContract 3` still uses
+`oneTermRobinCircuitSemantics 3`, the theorem-facing Fig. 4 transcript remains
+distinct from the active seven-gate backend, and every theorem-facing semantic
+flag remains false.
+
+The root obligation remains open and is still forbidden as a direct lower2
+target:
+
+```lean
+oneTermRobinGamma3ProductToCoefficientObligation 3 0 0
+```
+
+The new active leaf is a theorem-facing projection-interface normalizer
+bridge.  Middle prepared:
+
+```text
+proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-packet-20260615-0558.md
+verifier-feedback/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-20260615-0558.json
+```
+
+The planned lower2 declaration is:
+
+```lean
+oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3
+```
+
+This theorem should expose the already compiled source-prepared slot-`2`
+normalizer evaluator through the fields of
+`oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3`.
+It may assume only the existing explicit contracts:
 
 ```lean
 hUniform :
   oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
+hentry :
+  env "boundary_cos_half_0_2" =
+    Coeff.evalWith env
+      (GHL2025.boundaryRotationNormalizedCoefficient
+        (oneTermParameters 3) 0 2)
+hND : env "N_D_inv" * env "N_D" = 1
+hNF : env "N_f_inv" * env "N_f" = 1
+hkappa : env "kappa_inv" * env "kappa" = 1
+hkappaSqrt :
+  env "sqrt_kappa_inv" * env "sqrt_kappa_inv" = env "kappa_inv"
 ```
 
-the existing compiled bridge routes that comparison back to the retired H-free
-backend fold.  Therefore these names are diagnostic wrappers unless middle
-first restates the theorem-facing left-hand side.  Do not make the whole next
-batch prove this arbitrary-`H` active/prepared comparison.
-
-The next source-faithful target is the prepared clean projection itself:
+The expected bridge equality is the interface-field version of the compiled
+route:
 
 ```lean
-Coeff.evalWith env
-  ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
-    oneTermRobinGamma3BoundarySparseCleanIndex_n3
-    oneTermRobinGamma3BoundarySparseCleanIndex_n3)
-=
-Coeff.evalWith env
-  (blockExtractionBranchContributionSum
-    oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+Coeff.evalWith env interface.sourcePreparedProjectionEntry *
+    Coeff.evalWith env interface.normalizedProjectionBridge.theoremNormalizer =
+  Coeff.evalWith env interface.normalizedProjectionBridge.expectedTargetEntry
 ```
 
-Known compiled route material:
+The bridge must also restate that `correctedFiniteBlockProjectionEquality`,
+the fixed product obligation, normalized-block equality, LCU correctness,
+block projection, block correctness, final extraction, oracle correctness,
+unitarity, and resource claims remain false.  It must not replace the paper
+circuit, mutate `oneTermRobinFiniteBlockCompositionContract 3`, add new
+assumptions, use the diagnostic `sorry` routes, or prove the root obligation.
+
+Lower-agent split:
+
+1. lower1 validates the source map and keeps the focused branch fixed to
+   system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch
+   basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`.
+2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript
+   split, active-backend contract wiring, and all false theorem flags before
+   lower2 edits Lean.
+3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for
+   the one bridge theorem above.  If it already exists, lower2 should make no
+   Lean edit and log `error_class=stale_leaf`.
+
+Forbidden lower2 targets remain:
 
 ```lean
-oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3
-oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3
-oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3
-oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3
+oneTermRobinGamma3ProductToCoefficientObligation 3 0 0
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3
+oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3
+oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3
+(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality
 ```
 
-Next lower work:
-
-1. lower1 writes the source-proof DAG showing that Fig. 4's clean block-entry
-   object is the prepared composite clean projection, not the H-free seven-gate
-   `[0,0]` entry alone.
-2. lower3 checks the necessary condition for this prepared clean-entry route
-   and confirms that the H-free fold/direct feeder remain retired.
-3. lower2 may prove the selected-zero guard only as a quick diagnostic.  If the
-   guard is not closed quickly, stop and restate the source-facing target.  The
-   main Lean work is to add one theorem-facing prepared-projection route theorem
-   that reuses the compiled prepared clean-entry backend bridge and keeps
-   product, LCU, block-correctness, and final-extraction flags false.
-
-Scheduling rule for this batch: run one upper director pass, middle
-source-correspondence/memory refresh, lower1 and lower3 in parallel, lower2
-after lower1/lower3 confirm the leaf, one reviewer pass after lower2, then one
-Chinese summary and one ChatGPT Pro prompt at the end.  Avoid another
-upper/middle/reviewer-only batch.
+No oracle, `H_W`, boundary `R_y`, LCU/block composition, oracle correctness,
+unitarity, normalized block equality, block correctness, final extraction,
+resource, normalizer-free, or product-to-coefficient flag is promoted by this
+middle packet.
 ````
 
 ## Dynamic Leaf Queue
@@ -101,18 +128,19 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| prepared_projection_restatement_leaf: restate theorem-facing Fig. 4 clean projection as `PreparedCleanEntry(H, env) = BackendFold(env)` under `Uniform(H)`; status: active next leaf; Lean: `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`; ... | candidate |
+| 1. lower1 validates the source map and keeps the focused branch fixed to system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`. | candidate |
+| 2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript split, active-backend contract wiring, and all false theorem flags before lower2 edits Lean. | candidate |
+| 3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for the one bridge theorem above. If it already exists, lower2 should make no Lean edit and log `error_class=stale_leaf`. | candidate |
 
 ## Open Obligation Signals
 
 ```text
-selected-slot nonzero obstruction: Lean `oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3`; class QBE-local finite evaluator witness for the selected gamma3 branch; status proved; stale as lower work
-H-free evaluated backend fold: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; class compiled normal form plus nonzero selected-slot witness; status retired as active target; `finite_matrix_counterexample`
-direct H-free selected-slot feeder: Lean proposed `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`; class active row `0` versus selected sparse slot `2` / full index `32`; status retired; `shape_or_register_gap`
-source-prepared active-field contract: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` and equivalents; class GHL Fig. `fig:1 term ROBIN` / Definition `def:block-encoding` source-correspondence audit; status active middle/lower1/lower3 contract leaf; not theorem closure
-active field forces selected-zero guard: Lean proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3 H env hUniform hActive`; class QBE-local diagnostic consequence of source-prepared-to-fold wiring plus selected-zero normal form; status active lower2 guard leaf
-corrected source-prepared target: Lean restated theorem-facing clean projection after the guard/source audit; class source-contract audit plus finite branch/register diagnostics; status blocked until guard or reviewer restatement
-all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula; status contract-only; downstream-only
+theorem-facing finite block/projection interface: Lean `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3`; class QBE-local non-promoting interface packet; status compiled; stale as lower work
+source-prepared slot-`2` normalizer route: Lean `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3`; class QBE-local semantic bridge under explicit source contracts; status compiled route memory
+theorem-facing projection-interface normalizer bridge: Lean planned `oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3`; class internal paper-step interface glue plus local coefficient normalizer bridge; status active lower2 leaf after lower1/lower3 checks
+fixed product-to-coefficient theorem for `(0,0)`: Lean `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`; class coefficient equality plus corrected theorem-facing finite block/projection route; status open; blocked
+finite block-composition closure: Lean `(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality`, `.blockProjection`, `.lcuComposition`, `.finalExtraction`; class contract-only LCU/block composition background plus local finite projection theorem; status false; forbidden as this leaf
+diagnostic raw equality route: Lean `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class existing diagnostic `sorry` route; status forbidden as dependency
 ```
 
 ## Lean Declaration Index
@@ -121,17 +149,6 @@ Recent task-relevant declarations:
 
 | Kind | Lean name | File |
 |---|---|---|
-| theorem | `oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19361` |
-| structure | `OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19383` |
-| def | `oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19438` |
-| def | `oneTermRobinGamma3BoundarySparseCleanIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19582` |
-| def | `oneTermRobinGamma3BoundarySparseSlotIndex_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19586` |
-| def | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19596` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19611` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19625` |
-| structure | `OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget` | `QuantumBlockEncoding/RobinMatrix.lean:19712` |
-| def | `oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19753` |
-| structure | `OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField` | `QuantumBlockEncoding/RobinMatrix.lean:19884` |
 | def | `oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3` | `QuantumBlockEncoding/RobinMatrix.lean:19918` |
 | theorem | `oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20119` |
 | theorem | `oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3` | `QuantumBlockEncoding/RobinMatrix.lean:20135` |
@@ -156,17 +173,28 @@ Recent task-relevant declarations:
 | theorem | `oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21890` |
 | structure | `OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:21910` |
 | def | `oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:21956` |
-| structure | `OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:22184` |
-| def | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22227` |
-| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22837` |
-| theorem | `oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23077` |
-| theorem | `oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23128` |
-| structure | `OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:23948` |
-| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23980` |
-| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24872` |
-| theorem | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24902` |
-| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` | `QuantumBlockEncoding/RobinMatrix.lean:24915` |
-| theorem | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24933` |
+| structure | `OneTermRobinGamma3BoundarySourcePreparedProjectionTarget` | `QuantumBlockEncoding/RobinMatrix.lean:22207` |
+| def | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22250` |
+| theorem | `oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22491` |
+| theorem | `oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22514` |
+| theorem | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22549` |
+| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3` | `QuantumBlockEncoding/RobinMatrix.lean:22956` |
+| theorem | `oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23196` |
+| theorem | `oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23247` |
+| theorem | `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` | `QuantumBlockEncoding/RobinMatrix.lean:23637` |
+| structure | `OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget` | `QuantumBlockEncoding/RobinMatrix.lean:24108` |
+| def | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24140` |
+| structure | `OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation` | `QuantumBlockEncoding/RobinMatrix.lean:24913` |
+| def | `oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3` | `QuantumBlockEncoding/RobinMatrix.lean:24937` |
+| structure | `OneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge` | `QuantumBlockEncoding/RobinMatrix.lean:25201` |
+| def | `oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3` | `QuantumBlockEncoding/RobinMatrix.lean:25251` |
+| structure | `OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit` | `QuantumBlockEncoding/RobinMatrix.lean:25408` |
+| def | `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3` | `QuantumBlockEncoding/RobinMatrix.lean:25466` |
+| def | `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3` | `QuantumBlockEncoding/RobinMatrix.lean:25708` |
+| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3` | `QuantumBlockEncoding/RobinMatrix.lean:26091` |
+| theorem | `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3` | `QuantumBlockEncoding/RobinMatrix.lean:26121` |
+| theorem | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic` | `QuantumBlockEncoding/RobinMatrix.lean:26134` |
+| theorem | `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3` | `QuantumBlockEncoding/RobinMatrix.lean:26152` |
 | def | `gateMatricesMatchCircuit` | `QuantumBlockEncoding/CircuitSemantics.lean:41` |
 | structure | `CircuitMatrixSemantics` | `QuantumBlockEncoding/CircuitSemantics.lean:404` |
 | structure | `PreparedCircuitEntryTarget` | `QuantumBlockEncoding/CircuitSemantics.lean:436` |
@@ -197,23 +225,23 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-then let lower2 prove only the selected-zero guard. Gate passed: python3 tools/qbe.py check.
+Obligation 3 0 0. lower1 source DAG, lower3 guard diagnostics, lower2 one named Lean leaf only after the packet. Reject root attack, backendExpansion/raw diagnostic sorry routes, seven-gate-as-Fig4 substitution, and semantic-flag promotion. Gate passed with only known RobinMatrix diagnostic sorry warnings.
 
-## 2026-06-14 01:17:37 - middle
+## 2026-06-15 06:03:25 - middle
 
-Report/export sync complete: wrote runs/20260614-004100-QBE-AUTO-002-cycle01/23_middle_report_export_result.md. Final audit should refresh HUMAN_STATUS.md, REPORTS.zh.md, unresolved-failures.zh.md, paper-notes/GHL2025 markdown/latex status, and project-paper latest/generated status for this run; current project-paper latest still points at 20260613-182230 and no current-run article_update exists. Raw logs, JSON feedback, retrieval JSON, and prompt files are not human entry points. Open blocker: source-prepared active-field contract plus selected-zero guard; do not claim GHL theorem closure, H-free fold validity, arbitrary-H closure, or external primitive/block-correctness formalization. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests, with known diagnostic sorry warnings.
+middle source-correspondence sync complete: retired theorem-facing finite block/projection interface as compiled stale route memory; prepared theorem-facing projection-interface normalizer bridge packet and verifier feedback; next lower2 target is oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3 only; root product-to-coefficient and semantic flag promotion remain forbidden; gate passed via python3 tools/qbe.py check with only known RobinMatrix diagnostic sorry warnings.
 
-## 2026-06-14 01:24:02 - middle
+## 2026-06-15 06:09:39 - middle
 
-Middle coordinator sync complete: retired selected-slot witness and H-free fold routes remain recorded; active frontier is source_prepared_active_field_contract plus selected-zero guard. Refreshed GHL status export, project article update, human status, blueprint status, memory digest, todo, and ABEIS generated appendix. Next lower split: lower1 source map, lower3 branch/register verifier, lower2 only oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3 after feedback.
+middle memory/retrieval curator complete: retired compiled contract-audit and projection-interface leaves as stale lower targets; recorded rejected root/backendExpansion/diagnostic-sorry/semantic-flag routes; active leaf remains theorem_facing_projection_interface_normalizer_bridge with planned Lean target oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3; wrote 22_middle_memory_retrieval-output.md and middle-memory verifier JSON; refreshed blueprint status cards; gate passed via python3 tools/qbe.py check with only known RobinMatrix diagnostic sorry warnings.
 
-## 2026-06-14 01:24:30 - middle
+## 2026-06-15 06:12:47 - middle
 
-Gate after final middle sync passed: python3 tools/qbe.py check; lake build && lake build Tests. Only known diagnostic sorry warnings remain at QuantumBlockEncoding/RobinMatrix.lean:24867 and :24898. Active lower target remains the source-prepared selected-zero guard only.
+middle report/export maintainer complete: wrote runs/20260615-053748-QBE-AUTO-002-cycle01/23_middle_report_export-output.md. Final audit should refresh HUMAN_STATUS.md, REPORTS.zh.md, any zh_summary/article_update packets, GHL Markdown/LaTeX status exports, project-paper latest update, and ABEIS generated_cycle_status from the current run. Raw logs, verifier JSON, proof-attempt packets, machine retrieval JSON, trials files, and generated cycle updates are not primary human entry points. Human blocker: compiled ProjectionInterface is route memory; active blocker is oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3 before final coefficient/product bridge. Forbidden claims unchanged: no GHL theorem closure or oracle/H_W/R_y/LCU/block/final/unitary/resource/product promotion. Gate passed: python3 tools/qbe.py check with only known RobinMatrix diagnostic sorry warnings.
 
-## 2026-06-14 01:29:18 - reviewer
+## 2026-06-15 06:18:03 - middle
 
-Reviewer audit complete. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests, with only the known diagnostic sorry warnings at QuantumBlockEncoding/RobinMatrix.lean:24867 and :24898. No new hidden Prop/trivial/admit/axiom shortcuts or semantic proved-flag promotions were found in the diff. Source anchors for Eq. arbitrary sparcity, Eq. angles for Ry, Theorem theorem: 1 term robin, Eq. ROBIN clarified, Fig. fig:1 term ROBIN, and Definition def:block-encoding were verified in the local TeX. Active frontier is source_prepared_active_field_contract plus the proposed selected-zero guard; the selected-slot witness is compiled/stale, and the H-free fold/direct row0-to-slot2 feeder stay retired. Blocking for theorem closure: the two diagnostic sorries remain and the source-prepared selected-zero guard is not yet proved. Advisory/report gap: HUMAN_STATUS.md and unresolved-failures.zh.md link runs/20260614-004100-QBE-AUTO-002-cycle01/zh_summary.md, but that file is absent. Next lower work should run lower1/lower3 source and shape feedback, then lower2 only oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3.
+middle coordinator synthesis complete: read source-correspondence, memory/retrieval, and report/export outputs; wrote 24_middle_coordinator_synthesis-output.md and theorem-facing projection-interface normalizer coordinator feedback JSON; active leaf remains theorem_facing_projection_interface_normalizer_bridge with planned lower2 target oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3; no Lean or article update edit; gate passed via python3 tools/qbe.py check with only the two known RobinMatrix diagnostic sorry warnings.
 ````
 
 ## Gate Policy

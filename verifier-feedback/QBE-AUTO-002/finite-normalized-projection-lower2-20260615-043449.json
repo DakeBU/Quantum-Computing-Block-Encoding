@@ -1,0 +1,38 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260615-041049-QBE-AUTO-002-cycle01",
+  "role": "lower-implementation-worker",
+  "created_at_jst": "2026-06-15 04:34:49 JST",
+  "leaf": "finite_source_prepared_normalized_projection_bridge",
+  "status": "compiled",
+  "lean_declarations_closed": [
+    "OneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge",
+    "oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3_transcript"
+  ],
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": "reuses compiled finite projection product bridge and finite block-composition contract; no new finite equality is asserted",
+  "block_entry_ok": "non-promoting packet attaches the source-prepared projection route to the finite block contract while leaving the actual normalized block equality open",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "conditional normalizer bridge is referenced by name; explicit normalizer hypotheses remain in the existing conditional theorem",
+  "closed_theorem_ok": true,
+  "product_to_coefficient": false,
+  "normalized_block_equality": false,
+  "lcu_correct": false,
+  "block_projection": false,
+  "block_correct": false,
+  "final_extraction": false,
+  "forbidden_backend_expansion_route_used": false,
+  "error_class": null,
+  "next_route": "retire this lower2 packet as compiled route memory; prepare the finite normalized block/projection equality or final coefficient bridge before attempting oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+  "gate": {
+    "command": "python3 tools/qbe.py check",
+    "lake_build": true,
+    "lake_build_tests": true,
+    "warnings": [
+      "QuantumBlockEncoding/RobinMatrix.lean has the two known diagnostic sorry warnings"
+    ]
+  }
+}

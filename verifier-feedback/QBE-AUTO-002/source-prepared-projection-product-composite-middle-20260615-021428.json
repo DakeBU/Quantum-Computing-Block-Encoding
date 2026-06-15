@@ -1,0 +1,28 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260615-021428-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "leaf": "source_projection_slot2_product",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Prove oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3 by composing oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3 H env hUniform with oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3 env hentry.",
+  "forbidden_routes": [
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryProjectionSummationProductBridge_leaf_n3",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic",
+    "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+    "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3"
+  ],
+  "accepted_dependencies": [
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3",
+    "oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3"
+  ]
+}

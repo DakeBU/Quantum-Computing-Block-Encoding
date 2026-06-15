@@ -1,0 +1,53 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260615-032327-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "leaf": "conditional_normalizer_product_bridge",
+  "status": "queued",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": true,
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "conditional_under_explicit_hypotheses",
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Prove oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3 from the compiled source-prepared slot-2 product bridge plus oneTermRobinGamma3BoundaryProductUnderContractsEval_n3; do not revive backendExpansionStatement.",
+  "source_anchors": [
+    "GHL2025 theorem: 1 term robin",
+    "GHL2025 Eq. ROBIN clarified",
+    "GHL2025 Eq. arbitrary sparcity",
+    "GHL2025 Eq. angles for Ry",
+    "GHL2025 Fig. fig:1 term ROBIN",
+    "GHL2025 Definition def:block-encoding",
+    "research-wiki/cited-results/GHL2025.md"
+  ],
+  "active_lean_target": "oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3",
+  "optional_feeder": "oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3",
+  "open_root": "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+  "compiled_dependencies": [
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3",
+    "oneTermRobinGamma3BoundaryProductUnderContractsEval_n3",
+    "oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3_transcript"
+  ],
+  "forbidden_targets": [
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+    "any proposition equivalent to SignalEntryFold"
+  ],
+  "forbidden_promotions": [
+    "product_to_coefficient",
+    "normalized_block_equality",
+    "lcu_correct",
+    "block_projection",
+    "block_correct",
+    "final_extraction",
+    "oracle_correctness",
+    "unitarity",
+    "resource_claims"
+  ],
+  "notes": "The leaf is a non-promoting conditional normalizer bridge. The final product-to-coefficient obligation remains false until a later finite normalized-block/projection bridge and cited LCU contract are supplied."
+}

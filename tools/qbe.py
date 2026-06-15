@@ -4440,15 +4440,12 @@ def focused_task_contract(task_text: str) -> str:
         if line.startswith("## "):
             break
         header.append(line)
-    matches = list(re.finditer(r"^## Immediate .*?$", task_text, flags=re.M))
-    if not matches:
-        matches = list(re.finditer(r"^## Current Run Directive.*?$", task_text, flags=re.M))
-    if not matches:
+    directive = extract_preferred_section(
+        task_text,
+        [r"^## Current Run Directive.*?$", r"^## Immediate .*?$"],
+    )
+    if not directive:
         return task_text.strip()
-    start = matches[-1].start()
-    next_match = re.search(r"^## (?!Immediate|Current Run Directive).*$", task_text[start + 1 :], flags=re.M)
-    end = start + 1 + next_match.start() if next_match else len(task_text)
-    directive = task_text[start:end].strip()
     prefix = "\n".join(header).strip()
     return (
         (prefix + "\n\n" if prefix else "")

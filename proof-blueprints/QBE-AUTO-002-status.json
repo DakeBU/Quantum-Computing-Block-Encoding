@@ -4,15 +4,113 @@
     "MANIFEST.md",
     "QuantumBlockEncoding/RobinMatrix.lean",
     "conversion-windows/QBE-AUTO-002.md",
-    "proof-attempts/QBE-AUTO-002/chat1h-lower1-source-dag-20260614-162018.md",
-    "proof-attempts/QBE-AUTO-002/chat1h-middle-synthesis-20260614-162018.md",
-    "proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md",
+    "paper-notes/GHL2025/latex/sections/00_status.tex",
+    "paper-notes/GHL2025/markdown/00_status.md",
+    "paper-notes/GHL2025_RobinOneTerm.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-010153-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-010153-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-013025-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-013025-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-015440-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-015440-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-021428-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-021428-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-022953-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-022953-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-024629-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-024629-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-030358-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-030358-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-034853-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-034853-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-041049-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-041049-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-050133-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-050133-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/20260615-052017-QBE-AUTO-002-cycle01.md",
+    "paper-notes/project-paper/cycle-updates/20260615-052017-QBE-AUTO-002-cycle01.tex",
+    "paper-notes/project-paper/cycle-updates/latest.md",
+    "paper-notes/project-paper/cycle-updates/latest.tex",
+    "proof-attempts/QBE-AUTO-002/backend-expansion-correction-lower1-dag-20260615-024629.md",
+    "proof-attempts/QBE-AUTO-002/backend-expansion-correction-lower2-blocked-20260615-024629.md",
+    "proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-0233.md",
+    "proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-024629.md",
+    "proof-attempts/QBE-AUTO-002/backend-expansion-route-retarget-lower-proof-architect-20260615-032040.md",
+    "proof-attempts/QBE-AUTO-002/backend-expansion-route-retarget-middle-packet-20260615-030358.md",
+    "proof-attempts/QBE-AUTO-002/finite-normalized-projection-lower1-proof-architect-20260615-042926.md",
+    "proof-attempts/QBE-AUTO-002/finite-normalized-projection-middle-packet-20260615-0419.md",
+    "proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-lower1-proof-architect-20260615-034610.md",
+    "proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-lower1-proof-architect-20260615-034853.md",
+    "proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-middle-packet-20260615-032327.md",
+    "proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-middle-synthesis-20260615-034853.md",
+    "proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-postlower-lower1-proof-architect-20260615-0405.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-product-projection-lower1-dag-20260615.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-product-projection-middle-packet-20260615.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-product-projection-plan-20260615-pro.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-product-bridge-lower1-dag-20260615-013025.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-product-bridge-middle-packet-20260615-013025.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-product-bridge-middle-packet-20260615-015440.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-product-composite-lower-proof-architect-20260615-022953.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-product-composite-lower1-dag-20260615-015440.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-product-composite-lower1-handoff-20260615-021428.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-projection-product-composite-middle-packet-20260615-021428.md",
+    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-lower1-proof-architect-20260615-045438.md",
+    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-middle-packet-20260615-0448.md",
+    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower-proof-architect-20260615-053127.md",
+    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower1-proof-architect-20260615-051627.md",
+    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-packet-20260615-0507.md",
+    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-synthesis-20260615-0525.md",
+    "proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-packet-20260615-0558.md",
     "proof-blueprints/QBE-AUTO-002-status.json",
     "proof-blueprints/QBE-AUTO-002-status.md",
     "proof-blueprints/QBE-AUTO-002.md",
+    "proof-obligations/QBE-AUTO-002.md",
+    "research-wiki/retrieval-index/QBE-AUTO-002.json",
     "tasks/QBE-AUTO-002.md",
     "tools/qbe.py",
-    "verifier-feedback/QBE-AUTO-002/chat1h-lower3-prepared-projection-20260614-162018.json"
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-correction-lower1-20260615-024629.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-correction-lower2-20260615-024629.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-correction-lower3-20260615-024334.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-correction-lower3-20260615-024629.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-correction-middle-20260615-0233.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-correction-middle-20260615-024629.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-route-retarget-lower1-20260615-032040.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-route-retarget-lower3-20260615-030358.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-route-retarget-middle-20260615-030358.json",
+    "verifier-feedback/QBE-AUTO-002/backend-expansion-route-retarget-stale-lower3-20260615-032327.json",
+    "verifier-feedback/QBE-AUTO-002/backend-fold-slot2-projected-product-lower3-20260615-015440.json",
+    "verifier-feedback/QBE-AUTO-002/finite-normalized-projection-lower1-20260615-042926.json",
+    "verifier-feedback/QBE-AUTO-002/finite-normalized-projection-lower2-20260615-043449.json",
+    "verifier-feedback/QBE-AUTO-002/finite-normalized-projection-lower3-20260615-042925.json",
+    "verifier-feedback/QBE-AUTO-002/finite-normalized-projection-lower3-postcompile-20260615-045603.json",
+    "verifier-feedback/QBE-AUTO-002/finite-normalized-projection-middle-20260615-0419.json",
+    "verifier-feedback/QBE-AUTO-002/product-to-coefficient-normalizer-lower1-20260615-034610.json",
+    "verifier-feedback/QBE-AUTO-002/product-to-coefficient-normalizer-lower3-20260615-034853.json",
+    "verifier-feedback/QBE-AUTO-002/product-to-coefficient-normalizer-lower3-postlower-20260615-040715.json",
+    "verifier-feedback/QBE-AUTO-002/product-to-coefficient-normalizer-middle-20260615-032327.json",
+    "verifier-feedback/QBE-AUTO-002/product-to-coefficient-normalizer-middle-20260615-034853.json",
+    "verifier-feedback/QBE-AUTO-002/product-to-coefficient-normalizer-middle-postlower-20260615-034853.json",
+    "verifier-feedback/QBE-AUTO-002/product-to-coefficient-normalizer-postlower-lower1-20260615-0405.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-product-projection-lower3-20260615.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-product-projection-middle-20260615.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-projection-product-bridge-lower3-20260615-013025.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-projection-product-bridge-middle-20260615-013025.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-projection-product-bridge-middle-20260615-015440.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-projection-product-composite-lower3-20260615-021428.json",
+    "verifier-feedback/QBE-AUTO-002/source-prepared-projection-product-composite-middle-20260615-021428.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-lower1-20260615-045438.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-lower2-20260615-045948.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-middle-20260615-0448.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-stale-lower-20260615-051549.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower-proof-architect-20260615-053127.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower1-20260615-051627.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower3-20260615-051821.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower3-postlower2-20260615-053620.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower3-recheck-20260615-053215.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-20260615-0507.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-synthesis-20260615-0525.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-20260615-0558.json",
+    "verifier-feedback/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-memory-20260615-0606.json"
   ],
   "controls_absorbed": [
     "ASTIS-style compact context/status artifacts for long runs",
@@ -22,77 +120,13 @@
   ],
   "conversion_window": "Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/conversion-windows/QBE-AUTO-002.md",
   "dynamic_leaf_queue": [
-    "prepared_projection_restatement_leaf: restate theorem-facing Fig. 4 clean projection as `PreparedCleanEntry(H, env) = BackendFold(env)` under `Uniform(H)`; status: active next leaf; Lean: `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`; ..."
+    "1. lower1 validates the source map and keeps the focused branch fixed to system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`.",
+    "2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript split, active-backend contract wiring, and all false theorem flags before lower2 edits Lean.",
+    "3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for the one bridge theorem above. If it already exists, lower2 should make no Lean edit and log `error_class=stale_leaf`."
   ],
-  "generated": "2026-06-14 16:31:08",
-  "latest_cycle": "20260614-004100-QBE-AUTO-002-cycle01",
+  "generated": "2026-06-15 06:08:39",
+  "latest_cycle": "20260615-053748-QBE-AUTO-002-cycle01",
   "lean_declarations": [
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "structure",
-      "line": "19884",
-      "name": "OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "19918",
-      "name": "oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "theorem",
-      "line": "20119",
-      "name": "oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "theorem",
-      "line": "20135",
-      "name": "oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "structure",
-      "line": "20154",
-      "name": "OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "20188",
-      "name": "oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "20287",
-      "name": "oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "20369",
-      "name": "oneTermRobinGamma3BoundaryPreparedCompositeGate_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "20384",
-      "name": "oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "theorem",
-      "line": "20389",
-      "name": "oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3"
-    },
-    {
-      "file": "QuantumBlockEncoding/RobinMatrix.lean",
-      "kind": "def",
-      "line": "20404",
-      "name": "oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3"
-    },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
@@ -180,67 +214,133 @@
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "22184",
+      "line": "22207",
       "name": "OneTermRobinGamma3BoundarySourcePreparedProjectionTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "22227",
+      "line": "22250",
       "name": "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "22491",
+      "name": "oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "22514",
+      "name": "oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "22549",
+      "name": "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "22837",
+      "line": "22956",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "23077",
+      "line": "23196",
       "name": "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "23128",
+      "line": "23247",
       "name": "oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "theorem",
+      "line": "23637",
+      "name": "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "structure",
-      "line": "23948",
+      "line": "24108",
       "name": "OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "def",
-      "line": "23980",
+      "line": "24140",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "structure",
+      "line": "24913",
+      "name": "OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "def",
+      "line": "24937",
+      "name": "oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "structure",
+      "line": "25201",
+      "name": "OneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "def",
+      "line": "25251",
+      "name": "oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "structure",
+      "line": "25408",
+      "name": "OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "def",
+      "line": "25466",
+      "name": "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
+      "kind": "def",
+      "line": "25708",
+      "name": "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3"
+    },
+    {
+      "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "24872",
+      "line": "26091",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "24902",
+      "line": "26121",
       "name": "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "24915",
+      "line": "26134",
       "name": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic"
     },
     {
       "file": "QuantumBlockEncoding/RobinMatrix.lean",
       "kind": "theorem",
-      "line": "24933",
+      "line": "26152",
       "name": "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3"
     },
     {
@@ -337,30 +437,29 @@
   ],
   "mode": "faithfulPaper",
   "open_obligation_signals": [
-    "selected-slot nonzero obstruction: Lean `oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3`; class QBE-local finite evaluator witness for the selected gamma3 branch; status proved; stale as lower work",
-    "H-free evaluated backend fold: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; class compiled normal form plus nonzero selected-slot witness; status retired as active target; `finite_matrix_counterexample`",
-    "direct H-free selected-slot feeder: Lean proposed `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`; class active row `0` versus selected sparse slot `2` / full index `32`; status retired; `shape_or_register_gap`",
-    "source-prepared active-field contract: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement` and equivalents; class GHL Fig. `fig:1 term ROBIN` / Definition `def:block-encoding` source-correspondence audit; status active middle/lower1/lower3 contract leaf; not theorem closure",
-    "active field forces selected-zero guard: Lean proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3 H env hUniform hActive`; class QBE-local diagnostic consequence of source-prepared-to-fold wiring plus selected-zero normal form; status active lower2 guard leaf",
-    "corrected source-prepared target: Lean restated theorem-facing clean projection after the guard/source audit; class source-contract audit plus finite branch/register diagnostics; status blocked until guard or reviewer restatement",
-    "all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula; status contract-only; downstream-only"
+    "theorem-facing finite block/projection interface: Lean `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3`; class QBE-local non-promoting interface packet; status compiled; stale as lower work",
+    "source-prepared slot-`2` normalizer route: Lean `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3`; class QBE-local semantic bridge under explicit source contracts; status compiled route memory",
+    "theorem-facing projection-interface normalizer bridge: Lean planned `oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3`; class internal paper-step interface glue plus local coefficient normalizer bridge; status active lower2 leaf after lower1/lower3 checks",
+    "fixed product-to-coefficient theorem for `(0,0)`: Lean `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`; class coefficient equality plus corrected theorem-facing finite block/projection route; status open; blocked",
+    "finite block-composition closure: Lean `(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality`, `.blockProjection`, `.lcuComposition`, `.finalExtraction`; class contract-only LCU/block composition background plus local finite projection theorem; status false; forbidden as this leaf",
+    "diagnostic raw equality route: Lean `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class existing diagnostic `sorry` route; status forbidden as dependency"
   ],
   "proof_obligations": "Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/proof-obligations/QBE-AUTO-002.md",
   "stage": "Stage 2 DAG proof discharge, with faithful transcript checks still active",
   "task_id": "QBE-AUTO-002",
   "title": "Concrete Circuit Matrix Semantics Backend",
   "trial_counts_by_role": {
-    "lower": 1142,
-    "middle": 826,
-    "reviewer": 699,
-    "upper": 1379
+    "lower": 1259,
+    "middle": 864,
+    "reviewer": 712,
+    "upper": 1428
   },
   "trial_counts_by_status": {
-    "accepted": 1489,
-    "blocked": 37,
-    "compiled": 506,
+    "accepted": 1596,
+    "blocked": 39,
+    "compiled": 525,
     "failed": 42,
-    "queued": 1971,
-    "rejected": 1
+    "queued": 2058,
+    "rejected": 3
   }
 }

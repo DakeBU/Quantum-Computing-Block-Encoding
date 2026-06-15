@@ -1,0 +1,75 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260615-013025-QBE-AUTO-002-cycle01",
+  "role": "lower3-necessary-condition-verifier",
+  "created_at": "2026-06-15T01:51:30+09:00",
+  "leaf": "source_prepared_projection_to_projected_branch_product",
+  "active_leaf_reason": "The run dialogue and middle packet retire the compiled source-prepared product/projection packet and the older H-free strict feeder. The active bridge starts from the full Fig. 4 source-prepared clean projection and routes to the slot-2 projected branch product.",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The route starts from (H_W^kappa)^dagger * U_gamma3_boundary * H_W^kappa through oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3, uses hUniform only for the prepared projection to backend fold bridge, and uses hentry only for the selected slot contribution to projectedBranchProduct evaluator.",
+  "lean_parse_ok": true,
+  "lean_build_ok": null,
+  "finite_matrix_ok": true,
+  "finite_matrix_note": "The focused branch remains sparse slot 2 at full branch basis index 32, and the backend fold collapse to selectedSlotContribution is compiled by oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3. The selected contribution evaluates to projectedBranchProduct under hentry by oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3.",
+  "block_entry_ok": true,
+  "block_entry_note": "The source-prepared clean entry is the preparedProjectionEntry of oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 at oneTermRobinGamma3BoundarySparseCleanIndex_n3. The source-prepared projection to backend fold leaf is already compiled as oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "closed_theorem_note": "No composite source-prepared projection to slot-2 projectedBranchProduct theorem is present yet; the first subleaf is compiled, and the next absent subleaf is backend fold to slot-2 projected product.",
+  "small_executable_or_lean_local_diagnostic": {
+    "new_lean_added": false,
+    "reason": "Existing Lean-local diagnostics and route lemmas are sufficient; adding theorem-facing Lean was not needed for this lower3 check.",
+    "existing_declarations_used": [
+      "oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3",
+      "oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3",
+      "oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3",
+      "oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3_transcript",
+      "oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3_transcript",
+      "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+      "oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3",
+      "oneTermRobinGamma3BoundaryActiveEvalColumn0_zero_n3",
+      "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3"
+    ]
+  },
+  "shape_checks": {
+    "route_starts_from_prepared_projection": true,
+    "hfree_active_row_zero_route_rejected": true,
+    "source_prepared_clean_index": 0,
+    "focused_sparse_slot": 2,
+    "focused_branch_full_basis_index": 32,
+    "fixed_product_obligation": "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "source_prepared_projection_to_backend_fold_present": true,
+    "backend_fold_to_slot2_projected_product_present": false,
+    "composite_source_projection_slot2_product_present": false,
+    "hUniform_scope_ok": true,
+    "hentry_scope_ok": true
+  },
+  "strict_feeder_diagnostic": {
+    "checked_statement": "oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env",
+    "status": "rejected_for_current_route",
+    "reason": "The H-free active row-0 entry is a slot-0 two-path tail-kill diagnostic with evaluated value 0, while the selected backend contribution is sparse slot 2 at full index 32 and is nonzero under the all-one selected-branch environment. It must not be revived as the source-prepared projection/product bridge.",
+    "ry_branch_shape": "two_path_with_tail_kill_on_hfree_row_zero",
+    "of_branch_shape": "two_path_with_tail_kill_on_hfree_row_zero"
+  },
+  "forbidden_dependencies_absent": {
+    "backend_expansion_parent_used": false,
+    "raw_unitary_entry_backend_fold_sorry_used": false,
+    "raw_eval_gate_matrices_matrix_sorry_used": false,
+    "diagnostic_evaluated_backend_fold_used": false
+  },
+  "flags_promoted": {
+    "productToCoefficientProved": false,
+    "lcuCorrectProved": false,
+    "blockProjectionProved": false,
+    "blockCorrectProved": false,
+    "finalExtractionProved": false,
+    "normalizedBlockEqualityProved": false,
+    "oracleCorrectProved": false,
+    "unitaryProved": false
+  },
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Do not repeat the compiled source-prepared product/projection packet and do not revive the H-free strict feeder. Lower2 should prove oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3 from oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3 and oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3, then compose it with oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3."
+}

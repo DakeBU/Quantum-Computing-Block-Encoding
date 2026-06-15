@@ -1,0 +1,43 @@
+{
+  "task": "QBE-AUTO-002",
+  "run_id": "20260615-024629-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "leaf": "backend_expansion_correction",
+  "source_correspondence_ok": false,
+  "source_dependency_class": "contract-drift",
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": false,
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "closed_theorem_ok": false,
+  "error_class": "finite_matrix_counterexample",
+  "counterexample_guard": "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+  "refuted_target": "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+  "equivalence_route_memory": "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3",
+  "compiled_route_memory": [
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3",
+    "oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3"
+  ],
+  "source_anchors": [
+    "GHL2025 Eq. ROBIN clarified",
+    "GHL2025 Fig. fig:1 term ROBIN",
+    "GHL2025 Definition def:block-encoding",
+    "GHL2025 Theorem theorem: 1 term robin",
+    "research-wiki/cited-results/GHL2025.md"
+  ],
+  "source_note": "outer_papers/quantum/GHL2025/main.tex is absent in this checkout; public artifacts should cite maintained source anchors and checked-in proof notes, not the local path.",
+  "lower2_allowed_now": false,
+  "allowed_write_scope_after_correction": [
+    "QuantumBlockEncoding/RobinMatrix.lean"
+  ],
+  "forbidden_routes": [
+    "prove backendExpansionStatement unchanged",
+    "use diagnostic sorry declarations",
+    "revive old H-free evaluated fold as theorem-facing route",
+    "promote product-to-coefficient, normalizer, LCU/block, oracle, unitarity, block-correctness, or final-extraction flags"
+  ],
+  "next_route": "lower1/lower3 must name a corrected projection/backend target or record a source-contract gap before lower2 Lean proof search."
+}

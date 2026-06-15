@@ -8,6 +8,587 @@ matrix-semantics backend needed by `QBE-AUTO-001`.
 
 ---
 
+## 2026-06-15 Middle Theorem-Facing Projection-Interface Normalizer Bridge
+
+This sync follows the upper source/visual, proof-DAG, and process/memory
+handoffs in `runs/20260615-053748-QBE-AUTO-002-cycle01/dialogue.md`.
+The compiled theorem-facing finite block/projection interface is now route
+memory, not an active lower2 leaf:
+
+```lean
+OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript
+```
+
+Definitions first.  `ProjectionInterface(H, env)` is
+`oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3 H env`.
+`NormalizerBridge(H, env)` is the compiled conditional theorem
+`oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3 H env`.
+`FiniteBlockContract` is `oneTermRobinFiniteBlockCompositionContract 3`.
+`SourcePreparedProjectionTarget(H, env)` is
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env`.
+
+Source-dependency audit:
+
+| Source anchor | Paper role | Current Lean interface | Classification |
+|---|---|---|---|
+| Eq. `arbitrary sparcity` | $H_W^{(\kappa)}$ uniform sparse-register preparation | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external contract; existing cited row `ShuklaVedula2024.HWkappaUniformSuperposition` |
+| Eq. `angles for Ry` | boundary rotation coefficient convention | explicit `hentry` hypothesis using `boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2` | source-backed corrected-angle contract; existing cited row `GHL2025.RyBoundary.CorrectedAngleBoundarySlot2` |
+| Theorem `theorem: 1 term robin` | normalizer $N_D N_f \kappa$ and resource claim | `FiniteBlockContract.normalizer` and false resource flags | internal theorem target; root still open |
+| Eq. `ROBIN clarified` | focused boundary $\gamma_3$ coefficient with normalizer $N_D N_f \kappa$ | compiled `NormalizerBridge(H, env)` | QBE-local semantic bridge; route memory |
+| Fig. `fig:1 term ROBIN` | full theorem-facing circuit transcript | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList` | compiled transcript guard |
+| Definition `def:block-encoding` | signal-zero clean block projection | `ProjectionInterface(H, env).sourcePreparedProjectionEntry` and finite block contract fields | active theorem-facing interface normalizer leaf |
+
+The source proof map for the next leaf is:
+
+| Source step | Lean declaration, hypothesis, or obligation | Status |
+|---|---|---|
+| The source-prepared Fig. 4 sandwich selects the clean prepared entry for system `(0,0)`, sparse slot `2`, and branch basis `[32,32]`. | `SourcePreparedProjectionTarget(H, env)` and `ProjectionInterface(H, env).sourcePreparedProjectionEntry` | compiled |
+| The sparse-preparation result supplies the clean-column amplitude used by the prepared-entry evaluator. | `hUniform : oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external contract only |
+| The corrected boundary coefficient convention identifies the slot-`2` boundary rotation entry. | `hentry : env "boundary_cos_half_0_2" = Coeff.evalWith env (GHL2025.boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2)` | explicit contract |
+| The normalizer factors cancel under the explicit inverse hypotheses. | `hND`, `hNF`, `hkappa`, `hkappaSqrt` | local coefficient hypotheses |
+| The source-prepared slot-`2` product times the theorem normalizer reaches the expected target entry. | `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3` | compiled route memory |
+| The same equality must be exposed through `ProjectionInterface(H, env)` fields while all theorem flags remain false. | planned `oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3` | active lower2 leaf |
+| The fixed product-to-coefficient root closes. | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | blocked; do not assign |
+
+Proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `theorem_facing_projection_interface` | package `SourcePreparedProjectionTarget(H, env)`, `FiniteBlockContract`, transcript guards, and false theorem flags | source projection target, finite contract, contract audit | none | `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3` | projection-interface packets | previous `python3 tools/qbe.py check` | compiled route memory; stale as lower work |
+| `source_slot2_normalizer_bridge` | source-prepared slot-`2` projection times theorem normalizer equals expected target entry under explicit contracts | slot-`2` product bridge, focused clean column, coefficient identities | none | `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3` | normalizer packets | previous `python3 tools/qbe.py check` | compiled route memory |
+| `theorem_facing_projection_interface_normalizer_bridge` | expose the compiled normalizer equality through `ProjectionInterface(H, env)` fields and keep every theorem flag false | compiled projection interface, compiled normalizer bridge, source/cited contracts | lower2 after lower1/lower3 | planned `oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3` | `proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-packet-20260615-0558.md` | `python3 tools/qbe.py check` | active leaf |
+| `root_product_to_coefficient` | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | theorem-facing projection-interface normalizer bridge and final coefficient bridge | later | existing obligation only | proof-obligation ledger | full gate plus proof-map sync | blocked; `proved = false` |
+
+Lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for:
+
+```lean
+oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3
+```
+
+The target equality is:
+
+```lean
+let interface :=
+  oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3 H env
+Coeff.evalWith env interface.sourcePreparedProjectionEntry *
+    Coeff.evalWith env interface.normalizedProjectionBridge.theoremNormalizer =
+  Coeff.evalWith env interface.normalizedProjectionBridge.expectedTargetEntry
+```
+
+The theorem must also preserve the false fields for
+`correctedFiniteBlockProjectionEquality`, fixed product-to-coefficient,
+normalized-block equality, LCU correctness, block projection, block
+correctness, final extraction, oracle correctness, unitarity, and resource
+claims.  It is not the root product-to-coefficient theorem and not a proof of
+the finite block-composition contract.
+
+## 2026-06-15 Middle Post-Audit Theorem-Facing Finite Block/Projection Interface
+
+This sync follows the upper handoff in
+`runs/20260615-052017-QBE-AUTO-002-cycle01/dialogue.md` and the lower1/lower3
+projection-interface evidence from the same theorem-closure batch.
+
+Definitions first.  `SourcePreparedProjectionTarget(H, env)` is
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env`.
+`FiniteBlockContract` is `oneTermRobinFiniteBlockCompositionContract 3`.
+`CompiledContractAudit(H, env)` is
+`oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3 H env`.
+
+The compiled contract audit is route memory:
+
+```lean
+OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3_transcript
+```
+
+The active lower2 leaf is the non-promoting projection-interface packet:
+
+```lean
+OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript
+```
+
+Source-dependency audit:
+
+| Source anchor | Paper role | Current Lean interface | Classification |
+|---|---|---|---|
+| Eq. `arbitrary sparcity` | $\kappa$-uniform preparation $H_W^{(\kappa)}$ | contract-only uniform-column statements | external contract route, not this leaf |
+| Theorem `theorem: 1 term robin` | theorem normalizer $N_D N_f \kappa$ and resource claim | root theorem still open | future theorem closure |
+| Eq. `ROBIN clarified` | boundary $\gamma_3$ coefficient branch plus omitted bulk branches | focused source-prepared finite branch route | compiled route memory |
+| Fig. `fig:1 term ROBIN` | full theorem-facing circuit transcript | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList` | compiled transcript guard |
+| Definition `def:block-encoding` | clean block projection equation | `oneTermRobinFiniteBlockCompositionContract 3` plus source-prepared projection target | internal source-translation gap |
+
+The source-prepared projection route is fixed to system entry `(0,0)`, sparse
+slot `2`, signal block `[0,0]`, branch basis `[32,32]`, and normalizer
+$N_D N_f \kappa$.  Lower3 verified that the theorem-facing transcript has ten
+gates, the active backend transcript has seven gates, and the finite block
+contract still consumes `oneTermRobinCircuitSemantics 3`.
+
+Proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `source_prepared_projection_target` | clean source-prepared projection for system `(0,0)`, slot `2`, branch `[32,32]` | prepared composite semantics, clean sparse index, $H_W^{(\kappa)}$ clean-column contract | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | source-prepared projection packets | previous gate | compiled route memory |
+| `theorem_facing_contract_audit` | record theorem-facing Fig. 4 transcript versus active backend finite contract wiring | theorem-facing and active gate-list guards, finite block contract, normalized projection packet | none | `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3` | theorem-facing audit packet | previous `python3 tools/qbe.py check` | compiled route memory |
+| `theorem_facing_finite_block_projection_interface` | tie `SourcePreparedProjectionTarget(H, env)`, `FiniteBlockContract`, and `CompiledContractAudit(H, env)` together while recording the missing corrected projection equality | source projection target, finite block contract, compiled audit, lower3 guard checks | lower2 | planned `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3` | `proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-synthesis-20260615-0525.md` | `python3 tools/qbe.py check` | active leaf |
+| `root_product_to_coefficient` | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | corrected theorem-facing finite block/projection equality and final coefficient bridge | later | existing obligation only | proof-obligation ledger | full gate plus proof-map sync | blocked; `proved = false` |
+
+Lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for the
+projection-interface declarations above.  This packet must not replace the
+paper circuit, mutate the active backend contract, add assumptions, or promote
+normalized-block equality, LCU correctness, block projection, block
+correctness, final extraction, oracle correctness, unitarity, resource claims,
+or product-to-coefficient closure.
+
+## 2026-06-15 Middle Theorem-Facing Finite Block Contract Audit
+
+This sync follows the upper handoff in
+`runs/20260615-043649-QBE-AUTO-002-cycle01/dialogue.md`.  The finite
+source-prepared normalized projection packet is compiled route memory:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3
+oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3_transcript
+```
+
+Definitions first.  `TheoremFacingFig4Circuit` is
+`GHL2025.oneTermRobinTheoremFacingFig4Circuit`, the full source-facing Fig. 4
+transcript.  `ActiveBackendCircuit` is `GHL2025.oneTermRobinCircuit`, the
+active seven-gate backend component consumed by `oneTermRobinCircuitSemantics`.
+`FiniteBlockContract` is `oneTermRobinFiniteBlockCompositionContract 3`.
+
+Source-dependency audit:
+
+| Source anchor | Paper role | Current Lean interface | Classification |
+|---|---|---|---|
+| Eq. `arbitrary sparcity` | $\kappa$-uniform preparation $H_W^{(\kappa)}$ | contract-only uniform-column statements | external contract route, not this leaf |
+| Theorem `theorem: 1 term robin` | theorem normalizer $N_D N_f \kappa$ and resource claim | root theorem still open | future theorem closure |
+| Eq. `ROBIN clarified` | boundary $\gamma_3$ coefficient branch plus omitted bulk branches | focused source-prepared finite branch route | compiled route memory |
+| Fig. `fig:1 term ROBIN` | full theorem-facing circuit transcript | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList` | compiled transcript guard |
+| Definition `def:block-encoding` | clean block projection equation | `oneTermRobinFiniteBlockCompositionContract 3` | source-translation gap: contract is wired to active backend semantics |
+
+The immediate issue is not a tactic failure and not an external cited theorem
+gap.  `oneTermRobinFiniteBlockCompositionContract 3` is source-anchored to the
+one-term theorem/Fig. 4 but is wired through:
+
+```lean
+oneTermRobinCircuitSemantics 3
+GHL2025.oneTermRobinCircuit
+```
+
+The active proof-DAG leaf is therefore an audit packet, not a proof of
+normalized-block equality:
+
+```lean
+OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3_transcript
+```
+
+Proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `finite_source_prepared_normalized_projection_bridge` | source-prepared normalized projection bridge for system `(0,0)`, slot `2`, branch `[32,32]` | conditional normalizer bridge, finite product bridge, source-prepared product/projection obligation | compiled lower2 route | `oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3` | finite-normalized-projection packets | `python3 tools/qbe.py check` | compiled route memory |
+| `theorem_facing_finite_block_contract_audit` | record theorem-facing Fig. 4 transcript versus active backend finite contract wiring | theorem-facing and active gate-list guards, finite block contract, normalized projection packet | lower2 after lower1/lower3 | `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3` | `proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-middle-packet-20260615-0448.md` | `python3 tools/qbe.py check` | active leaf |
+| `product_to_coefficient_3_0_0` | focused coefficient equality and normalizer algebra | corrected theorem-facing finite block/projection interface | future packet | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligation ledger | same gate | blocked |
+
+Lower-agent packet:
+
+| Lower role | Packet | Write scope | Acceptance |
+|---|---|---|---|
+| lower1 proof architect | Validate the source map and keep the branch fixed to system `(0,0)`, sparse slot `2`, branch `[32,32]`, source-prepared projection, and normalizer `N_D*N_f*kappa`. | no Lean write | confirms this is a contract audit, not normalized equality closure |
+| lower3 verifier | Check the theorem-facing and active backend transcript guards, finite-contract wiring to `oneTermRobinCircuitSemantics 3`, compiled normalized-projection bridge, and false flags. | `verifier-feedback/QBE-AUTO-002/` | typed feedback with `error_class=source_translation_gap` if drift remains |
+| lower2 Lean worker | Add only the non-promoting audit declarations if absent. | `QuantumBlockEncoding/RobinMatrix.lean` only | compiles with all theorem flags false; stale if declarations already exist |
+
+No oracle, `H_W`, boundary `R_y`, LCU/block composition, oracle correctness,
+unitarity, normalized block equality, block correctness, final extraction,
+resource, normalizer-free, or product-to-coefficient flag is promoted by this
+sync.
+
+## 2026-06-15 Middle Source-Contract Route-Retarget Guard
+
+This sync follows the upper handoff in
+`runs/20260615-030358-QBE-AUTO-002-cycle01/dialogue.md` and the lower1/lower3
+correction packets from the 02:46 run.  The unchanged raw backend expansion is
+not source-facing theorem work:
+
+```lean
+oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3 :
+  ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+Definitions first.  `SourceSlot2Product(H, env)` is
+
+```lean
+Coeff.evalWith env
+  (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+    H env).preparedProjectionEntry =
+Coeff.evalWith env
+  oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct
+```
+
+`FixedProductObligation` is
+
+```lean
+oneTermRobinGamma3ProductToCoefficientObligation 3
+  ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+```
+
+The compiled source-facing bridge is:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3
+```
+
+The route-retarget guard that now consumes that bridge is:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3
+```
+
+It attaches `SourceSlot2Product(H, env)` to `FixedProductObligation` and
+checks that the product, branch-decomposition, normalized-block, LCU, block,
+and final-extraction flags remain false.  It is not a proof of
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+Source-dependency classification:
+
+| Missing ingredient | Classification | Evidence | Next route |
+|---|---|---|---|
+| unchanged raw backend expansion | source-contract gap with finite counterexample | `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` and lower3 JSON | do not assign lower2 |
+| source-prepared slot-`2` projection/product bridge | internal paper step plus QBE-local route wiring | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | compiled route memory |
+| fixed product map consumes source-prepared slot-`2` bridge | QBE-local retarget guard | `oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3` | compiled guard |
+| coefficient equality and normalizer algebra | internal paper step plus local coefficient algebra | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | open future packet |
+
+Proof-translation map:
+
+| Source step | Lean declaration or obligation | Status |
+|---|---|---|
+| Definition `def:block-encoding` selects the clean source-prepared projection. | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` | compiled |
+| Fig. `fig:1 term ROBIN` and Eq. `arbitrary sparcity` route the prepared projection to the backend fold under `hUniform`. | `oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3` | compiled |
+| Eq. `ROBIN clarified` and the boundary-entry convention route the backend fold to the slot-`2` projected product under `hentry`. | `oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3` | compiled |
+| The prepared projection reaches the slot-`2` projected product. | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | compiled |
+| The fixed product map consumes this source-prepared slot-`2` equality without promoting theorem flags. | `oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3` | compiled in this sync |
+| The coefficient equals the normalized target entry. | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | open; not assigned here |
+
+Proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `backend_expansion_raw` | raw H-free backend expansion equivalent to `SignalEntryFold` | all-one selected-slot counterexample | none | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | lower1/lower3 correction packets | Lean no-go guard | refuted; forbidden |
+| `source_projection_slot2_product` | source-prepared projection entry evaluates to slot-`2` projected branch product | source-prepared backend bridge; backend-fold-to-product bridge | none | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | source-prepared composite packet | previous full gate | compiled; route memory |
+| `source_slot2_product_retargeted_fixed_map` | attach the compiled slot-`2` source-prepared equality to the fixed product map with false flags | `source_projection_slot2_product`; finite product bridge | middle/lower2 guard | `oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3` | `proof-attempts/QBE-AUTO-002/backend-expansion-route-retarget-middle-packet-20260615-030358.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | compiled guard |
+| `product_to_coefficient_3_0_0` | prove focused coefficient equality and normalizer algebra | retarget guard; boundary coefficient convention; coefficient route | future upper/middle packet | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligation ledger | same gate | open; not assigned |
+
+Lower-agent packet:
+
+| Lower role | Packet | Write scope | Acceptance |
+|---|---|---|---|
+| lower1 natural-language proof architect | Reuse the route-retarget packet; do not search for another raw branch-sum target. | no write needed unless adding a short postscript under `proof-attempts/QBE-AUTO-002/` | preserves source-contract gap for raw backend expansion |
+| lower2 Lean worker | If absent, prove only `oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3`; if present, no edit and log `stale_leaf`. | `QuantumBlockEncoding/RobinMatrix.lean` only | guard compiles; no downstream flag promotion |
+| lower3 verifier | Check clean index `0`, focused slot `2`, branch basis index `32`, fixed product `3 0 0`, and false flags. | `verifier-feedback/QBE-AUTO-002/` | typed feedback with `closed_theorem_ok=true` for the guard and product theorem still false |
+
+No oracle, `H_W`, boundary `R_y`, LCU/block composition, oracle correctness,
+unitarity, normalized block equality, block correctness, final extraction,
+normalizer, or product-to-coefficient flag is promoted by this sync.
+
+## 2026-06-15 Middle Backend-Expansion Correction Audit
+
+This sync follows the upper handoff in
+`runs/20260615-022953-QBE-AUTO-002-cycle01/dialogue.md`.  The
+source-prepared projection/product composite is compiled route memory:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3
+```
+
+The next scientific frontier is the projection/backend branch-sum step feeding
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, but the current raw
+Lean target is not assignable as an unchanged proof goal.  Lean already has:
+
+```lean
+oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3 :
+  ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+Definitions first.  `BackendExpansionRaw` is:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+`SignalEntryFold` is:
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+  blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+The compiled equivalence
+`oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`
+shows that `BackendExpansionRaw` and `SignalEntryFold` have the same remaining
+content.  The compiled negation shows that this content, as currently stated,
+cannot be the next lower2 theorem.
+
+Source-dependency audit:
+
+| Source anchor | Current Lean interface | Dependency class | Status |
+|---|---|---|---|
+| GHL2025 Eq. `ROBIN clarified` | focused slot-`2` branch and fixed product `3 0 0` | internal paper step plus local finite algebra | compiled up to projected branch product; coefficient theorem open |
+| GHL2025 Fig. `fig:1 term ROBIN` | full source-prepared circuit route | theorem-facing prepared transcript | route memory compiled |
+| GHL2025 Definition `def:block-encoding` | clean signal projection / signal-zero entry | QBE-local projection backend | correction frontier |
+| current Lean `BackendExpansionRaw` | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | contract drift for theorem-facing branch-sum closure | refuted by `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` |
+| external sparse preparation/oracle/LCU rows | cited-results obligations | external cited result or contract-only background | not a closure route for this leaf |
+
+Proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `source_projection_slot2_product` | source-prepared projection evaluates to slot-`2` projected branch product | source wrapper; backend-fold bridge | none | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | `proof-attempts/QBE-AUTO-002/source-prepared-projection-product-composite-middle-packet-20260615-021428.md` | previous full gate | compiled; stale |
+| `product_to_coefficient_3_0_0` | fixed product-to-coefficient equality | projection/product bridge; normalizer algebra; boundary coefficient convention | later | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligation ledger | full gate | open |
+| `backend_expansion_raw` | raw backend expansion / signal-entry fold | all-one selected-branch counterexample guard | none | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | `proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-0233.md` | none | refuted; do not prove unchanged |
+| `backend_expansion_correction` | corrected source-facing projection/backend branch-sum proposition | source audit; finite necessary-condition check | lower1 and lower3 first | to be named by correction packet | same packet | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active correction frontier |
+
+Lower-agent split:
+
+| Lower role | Packet | Write scope | Acceptance |
+|---|---|---|---|
+| lower1 natural-language proof architect | Write the source-dependency/proof-DAG correction packet for the projection/backend frontier. | `proof-attempts/QBE-AUTO-002/` | names a corrected source-facing Lean proposition or records a source-contract gap |
+| lower3 necessary-condition verifier | Record the raw-target counterexample and any corrected finite shape constraints. | `verifier-feedback/QBE-AUTO-002/` | typed feedback with `error_class=finite_matrix_counterexample` for the unchanged raw target |
+| lower2 Lean worker | Do not prove `BackendExpansionRaw` unchanged; wait for the corrected leaf. | `QuantumBlockEncoding/RobinMatrix.lean` only after correction | one corrected leaf plus `python3 tools/qbe.py check`, `lake build`, and `lake build Tests` |
+
+No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness,
+final-extraction, normalizer, or external primitive flag is promoted by this
+sync.  The first-case-study one-term theorem remains open.
+
+## 2026-06-15 Middle Source-Prepared Projection/Product Composite Leaf
+
+This sync follows the upper handoff in
+`runs/20260615-021428-QBE-AUTO-002-cycle01/dialogue.md`.  The packet
+`oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3`, the
+source projection wrapper
+`oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3`, and
+the backend fold bridge
+`oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3` are all
+compiled route memory.  They are stale as lower2 targets.
+
+Definitions first.  `SourceProjection(H, env)` is
+
+```lean
+Coeff.evalWith env
+  (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+    H env).preparedProjectionEntry
+```
+
+`BackendFold(env)` is
+
+```lean
+Coeff.evalWith env
+  (blockExtractionBranchContributionSum
+    oneTermRobinGamma3BoundaryBackendBranchContribution_n3)
+```
+
+`ProjectedBranchProduct(env)` is
+
+```lean
+Coeff.evalWith env
+  oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct
+```
+
+`hUniform` is
+`oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+`hentry` is the boundary-entry convention
+`env "boundary_cos_half_0_2" = Coeff.evalWith env
+(GHL2025.boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2)`.
+
+The active lower2 target is exactly:
+
+```lean
+theorem oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) :
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).preparedProjectionEntry =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct
+```
+
+The intended proof is a two-step evaluated composition:
+
+```lean
+calc
+  Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).preparedProjectionEntry =
+    Coeff.evalWith env
+      (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+        H env).backendBranchFold :=
+      oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3
+        H env hUniform
+  _ =
+    Coeff.evalWith env
+      oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct :=
+      oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3
+        env hentry
+```
+
+The hypothesis `hUniform` enters only in the first equality.  The hypothesis
+`hentry` enters only in the second equality.  This composite does not prove
+the fixed product-to-coefficient theorem, normalizer algebra, LCU/block
+composition, oracle correctness, unitarity, or final extraction.
+
+Source-contract audit:
+
+| Source anchor | Current Lean interface | Dependency class | Status |
+|---|---|---|---|
+| GHL2025 Eq. `arbitrary sparcity` | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external sparse-preparation contract | consumed only by the first bridge; not formalized here |
+| GHL2025 Fig. `fig:1 term ROBIN` | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` | theorem-facing prepared sandwich transcript | compiled target |
+| GHL2025 Definition `def:block-encoding` | source-prepared clean projection entry | QBE-local clean projection interface | compiled target; active composite starts here |
+| GHL2025 Eq. `ROBIN clarified` | slot-`2` projected branch product and fixed product `3 0 0` | GHL-internal branch/product algebra | composite bridge active; coefficient theorem still open |
+| GHL2025 Eq. `angles for Ry` | selected boundary coefficient entry | coefficient convention hypothesis `hentry` | consumed only by the second bridge |
+
+Proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `source_prepared_product_packet` | packet tying the source-prepared projection target to the fixed product obligation and false flags | source-prepared target; product route; finite bridge | none | `oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3` | earlier packet and lower3 JSON | previous full gate | compiled; stale |
+| `source_projection_to_backend_fold` | prepared projection entry evaluates to backend fold under `hUniform` | source-prepared clean-column contract; prepared backend bridge | none | `oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3` | bridge packets | previous full gate | compiled; stale |
+| `backend_fold_to_slot2_projected_product` | backend fold evaluates to the slot-`2` projected branch product under `hentry` | backend fold collapse; selected-slot product evaluator | none | `oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3` | `proof-attempts/QBE-AUTO-002/source-prepared-projection-product-bridge-middle-packet-20260615-015440.md` | previous full gate | compiled; stale |
+| `source_projection_slot2_product` | prepared projection entry evaluates to slot-`2` projected branch product | previous two bridge leaves | lower2 | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | `proof-attempts/QBE-AUTO-002/source-prepared-projection-product-composite-middle-packet-20260615-021428.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active leaf |
+| `product_to_coefficient_3_0_0` | fixed product-to-coefficient equality | projection/product bridge; normalizer algebra; boundary coefficient convention | later | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligations ledger | same gate | open; not assigned |
+| `backend_expansion_parent` | H-free backend-expansion parent | selected-slot nonzero contradiction | none | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | obstruction memory | none | forbidden by `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` |
+
+Lower-agent split:
+
+| Lower role | Packet | Write scope | Acceptance |
+|---|---|---|---|
+| lower1 natural-language proof architect | Existing bridge DAG remains sufficient; no new proof design is needed unless lower2 finds a statement mismatch. | existing `proof-attempts/QBE-AUTO-002/source-prepared-projection-product-bridge-lower1-dag-20260615-013025.md` | keeps `hUniform` and `hentry` scopes separated |
+| lower2 Lean worker | Prove exactly `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` by composing the two compiled bridge leaves. | `QuantumBlockEncoding/RobinMatrix.lean` only | `python3 tools/qbe.py check`, `lake build`, and `lake build Tests`; no new `sorry`; no theorem-flag promotion |
+| lower3 necessary-condition verifier | Recheck only if lower2 changes statement shape. | verifier JSON only | clean index `0`, sparse slot `2`, full index `32`, fixed product `3 0 0`, no backend expansion, no diagnostic `sorry` route |
+
+Typed verifier-feedback mirror:
+
+| Field | Value |
+|---|---|
+| `leaf` | `source_projection_slot2_product` |
+| `source_correspondence_ok` | `true` |
+| `lean_parse_ok` | `null` |
+| `lean_build_ok` | `null` |
+| `finite_matrix_ok` | `true` |
+| `block_entry_ok` | `true` |
+| `ancilla_cleanup_ok` | `null` |
+| `normalizer_ok` | `null` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `next_route` | prove `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` by composing the two compiled bridge leaves |
+
+No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness,
+final-extraction, normalizer, or external primitive flag is promoted by this
+sync.  The first-case-study one-term theorem remains open.
+
+## 2026-06-15 Middle Source-Prepared Product/Projection Packet
+
+This sync follows the upper director packet in
+`runs/20260615-010153-QBE-AUTO-002-cycle01/11_upper_director_synthesis.md`
+and supersedes the stale 2026-06-13 focused feeder text still present in the
+generated lower prompts.  The active route is the source-prepared projection of
+the full Fig. `fig:1 term ROBIN` object,
+`(H_W^(kappa))^dagger * U_gamma3_boundary * H_W^(kappa)`, not the H-free
+seven-gate backend fold by itself.
+
+Definitions first:
+
+- `SourcePreparedTarget(H, env)` is
+  `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env`.
+- `PreparedProjectionEntry(H, env)` is
+  `(SourcePreparedTarget(H, env)).preparedProjectionEntry`.
+- `PreparedBackendField(H, env)` is
+  `(SourcePreparedTarget(H, env)).preparedSingletonToBackendEvalStatement`.
+- `FixedProductObligation` is
+  `oneTermRobinGamma3ProductToCoefficientObligation 3
+  ⟨0, by native_decide⟩ ⟨0, by native_decide⟩`.
+- `ProductRoute` is
+  `oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3`.
+- `FiniteProductBridge` is
+  `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3`.
+- `Uniform(H)` is
+  `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`.
+
+Source-contract audit:
+
+| Source anchor | Paper object | Lean correspondence | Classification |
+|---|---|---|---|
+| GHL2025 Eq. `arbitrary sparcity`, citing Shukla--Vedula 2024 | $H_W^{(\kappa)}\ket{0}$ prepares a uniform sparse-register superposition | `Uniform(H)` and the cited-results row `ShuklaVedula2024.HWkappaUniformSuperposition` | external cited contract; clean-column use only |
+| GHL2025 Eq. `angles for Ry` | boundary controlled $R_y$ rotations use the boundary coefficient convention | existing boundary-rotation route records and `GHL2025.RyBoundary` cited row | later coefficient/normalizer obligation; not part of this packet |
+| GHL2025 Theorem `theorem: 1 term robin` | one-term Robin block-encoding with normalizer $N_D N_f \kappa$ | QBE theorem-facing route through `CircuitBlockEncodingClaim` and `FixedProductObligation` | root theorem remains open |
+| GHL2025 Eq. `ROBIN clarified` | focused gamma3 boundary branch contributes the clean coefficient | `ProductRoute` and `FiniteProductBridge` | internal finite projection/product route; coefficient proof still false |
+| GHL2025 Fig. `fig:1 term ROBIN` and `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | full circuit includes both `H_W` side preparations and cleanup | `SourcePreparedTarget(H, env)` selects the prepared clean projection; active seven-gate backend is only a component | source-prepared route; H-free route retired |
+| GHL2025 Definition `def:block-encoding` | clean signal/system projection after the theorem-facing circuit | `PreparedProjectionEntry(H, env)` feeding `FixedProductObligation` | projection target; local finite bridge still open |
+
+Proof-translation map:
+
+| Proof step | Lean declaration or obligation | Status |
+|---|---|---|
+| Select the source-prepared clean projection for the full Fig. 4 object. | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` | compiled |
+| Under the explicit clean-column contract, evaluate the prepared clean entry as the backend fold. | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3 H env hUniform`; `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3 H env hUniform` | compiled conditional bridge |
+| Attach the prepared backend equality to the fixed product map without closing the product theorem. | `oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3 H env hUniform`; `oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3 H env hUniform` | compiled route wiring |
+| Record a source-prepared product/projection packet that points at the target, product route, finite bridge, backend field, and fixed product obligation. | proposed `OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation` and `oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3` | active lower2 bookkeeping leaf |
+| Prove the first mathematical projection leaf after the packet. | split through compiled `oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3` and proposed `oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3`; then compose as proposed `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | first wrapper compiled; next leaf must not use `backendExpansionStatement` |
+| Finish the coefficient equality and normalizer algebra. | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` and later algebra leaves | open; not assigned in this packet |
+
+Proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `source_prepared_projection_target` | Select prepared clean projection from the full Fig. 4 source object. | Fig. 4 audit; Definition `def:block-encoding` | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3` | this section; paper status export | project gate already passed before this cycle | proved route record |
+| `prepared_backend_eval` | Under `Uniform(H)`, `PreparedProjectionEntry(H, env)` evaluates to the backend fold. | Eq. `arbitrary sparcity`; Shukla--Vedula contract row | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3` | this section; cited-results rows | compiled conditional bridge | proved conditional |
+| `fixed_product_map` | Keep the route attached to `FixedProductObligation` with all product/block/final flags false. | `ProductRoute`; `FiniteProductBridge`; compiled prepared backend bridge | none | `oneTermRobinGamma3BoundaryPreparedCleanEntryBackendEval_feedsFixedProductMap_n3`; `oneTermRobinGamma3BoundaryProductToCoefficientObligation_preparedCompositeCleanEntryBackendEval_n3` | this section; proof-obligation ledger | compiled route wiring | proved wiring; theorem false |
+| `backend_expansion_parent_no_go` | Reject routes through `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`. | selected-slot nonzero obstruction | reviewer | `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` | obstruction memory | compiled guard | proved no-go |
+| `source_prepared_product_packet` | Package the source target, product route, finite bridge, backend field, fixed product obligation, no-go guard, and false semantic flags. | all nodes above | lower2 | proposed `OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation`; proposed transcript theorem | `proof-attempts/QBE-AUTO-002/source-prepared-product-projection-middle-packet-20260615.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active leaf |
+| `slot2_projected_product_bridge` | Relate the source-prepared projection/backend fold to the slot-`2` projected branch product without `backendExpansionStatement`. | `source_prepared_product_packet`; `FiniteProductBridge`; finite branch decomposition | lower2 after packet | proposed `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` or two-step split | future proof-attempt packet | same gate | next mathematical leaf |
+| `product_to_coefficient_3_0_0` | Prove the focused coefficient equality and normalizer algebra for the theorem entry. | slot-`2` projected product bridge; boundary `R_y`; `O_f`; normalizer contracts | later | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligation ledger | same gate | open |
+
+Stale or forbidden leaves:
+
+- `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`;
+- `oneTermRobinGamma3BoundaryProjectionSummationProductBridge_leaf_n3` as a closure route, because it depends on the refuted parent;
+- `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`;
+- `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3 env`;
+- `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env` as the main theorem route;
+- `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3` as new lower work;
+- `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`;
+- `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`.
+
+Lower-agent split:
+
+| Lower role | Packet | Write scope | Acceptance |
+|---|---|---|---|
+| lower1 natural-language proof architect | Map the source anchors above to the packet fields and first projection leaf. | `proof-attempts/QBE-AUTO-002/source-prepared-product-projection-lower1-dag-20260615.md` only | no Lean edits; names the ready lower2 target exactly |
+| lower2 Lean worker | Add only the product/projection obligation record, `n = 3` instance, and transcript theorem.  If it compiles quickly, add only the wrapper `oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3`. | `QuantumBlockEncoding/RobinMatrix.lean` only | `python3 tools/qbe.py check`, `lake build`, and `lake build Tests`; no new `sorry`; all downstream flags false |
+| lower3 necessary-condition verifier | Check no dependency on the refuted backend expansion parent, no diagnostic `sorry` dependency, correct source-prepared route, full index `32`, sparse slot `2`, and fixed product obligation `3 0 0`. | `verifier-feedback/QBE-AUTO-002/source-prepared-product-projection-lower3-20260615.json` and optional proof-attempt note | typed feedback; no Lean edits unless later assigned as refiner |
+
+Typed verifier feedback should use
+`leaf=source_prepared_product_projection_packet`,
+`source_correspondence_ok=true`, `finite_matrix_ok=null`,
+`block_entry_ok=true` only for the packet route, and
+`error_class=stale_leaf` or `invalid_route` for any revival of the forbidden
+H-free or backend-expansion routes.
+
 ## 2026-06-14 Pro-Assessed Source-Prepared Target Repair For Next 6h
 
 This sync follows the ChatGPT Pro assessment and the local upper-agent audit.
@@ -46,7 +627,7 @@ Updated proof-DAG frontier:
 
 | Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
 |---|---|---|---|---|---|---|---|
-| `prepared_projection_restatement_leaf` | restate theorem-facing Fig. 4 clean projection as `PreparedCleanEntry(H, env) = BackendFold(env)` under `Uniform(H)` | Fig. 4 audit; Definition `def:block-encoding`; compiled prepared clean-entry bridge | middle/lower2 | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`; new wrapper allowed | this section and `proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active next leaf |
+| `prepared_projection_restatement_leaf` | restate theorem-facing Fig. 4 clean projection as `PreparedCleanEntry(H, env) = BackendFold(env)` under `Uniform(H)` | Fig. 4 audit; Definition `def:block-encoding`; compiled prepared clean-entry bridge | none | `oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3`; `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3` | this section and `proof-attempts/QBE-AUTO-002/source-prepared-target-repair-plan-20260614-pro.md` | already compiled | compiled route; superseded by `source_prepared_product_packet` |
 | `source_prepared_guard_diagnostic` | if cheap, prove that the old active/prepared field plus `Uniform(H)` forces selected-slot vanishing | old active/prepared bridge; selected-slot nonzero witness; H-free fold retirement | lower2 optional | proposed `oneTermRobinGamma3BoundarySourcePreparedActiveEval_forces_selectedSlotContribution_zero_n3` | same plan file | same gate | diagnostic only; do not spend whole batch |
 | `retired_hfree_routes` | H-free fold and direct row-`0` to slot-`2` feeder | selected-slot nonzero witness; finite matrix feedback | reviewer | `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; proposed `oneTermRobinGamma3BoundaryActiveSelectedSlotEvalFeeder_n3` | previous obstruction packets | none | retired; reject revival |
 
@@ -201,6 +782,540 @@ No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
 product-to-coefficient, circuit-unitarity, block-correctness,
 final-extraction, normalizer, or external primitive flag is promoted.  The
 first-case-study one-term theorem remains open.
+
+## 2026-06-15 Backend-Expansion Correction Current-Run Mirror
+
+This final pointer is the active conversion-window state for run
+`20260615-024629-QBE-AUTO-002-cycle01`.  The full middle packet is
+`proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-024629.md`.
+
+Current active correction:
+
+| Node | Lean declaration or target | Status | Next owner |
+|---|---|---|---|
+| source-prepared projection/product composite | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | compiled route memory; stale as lower2 target | none |
+| unchanged backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | refuted by `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3`; verifier class `finite_matrix_counterexample` | none |
+| corrected projection/backend branch-sum | to be named only if source audit supports it | active correction obligation, or else `source-contract-gap` | lower1/lower3 first |
+| fixed product-to-coefficient route | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | open; blocked on corrected projection/backend route | later |
+
+Lower2 has no current Lean edit.  If lower2 runs before lower1/lower3 name a
+corrected source-facing projection/backend leaf, it should log
+`error_class=finite_matrix_counterexample` and leave
+`QuantumBlockEncoding/RobinMatrix.lean` unchanged.  Public source anchors are
+the maintained GHL2025 proof notes, Eq. `ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Definition `def:block-encoding`, Theorem
+`theorem: 1 term robin`, and `research-wiki/cited-results/GHL2025.md`.
+
+## 2026-06-15 Middle Post-Audit Theorem-Facing Finite Block/Projection Interface EOF Pointer
+
+This final EOF pointer is the active conversion-window state for run
+`20260615-050133-QBE-AUTO-002-cycle01`.  It supersedes the earlier
+theorem-facing contract-audit packet after lower2 compiled:
+
+```lean
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3_transcript
+```
+
+The next lower2 leaf is the non-promoting interface packet:
+
+```lean
+OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript
+```
+
+The packet is defined by:
+
+```text
+proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-packet-20260615-0507.md
+verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-20260615-0507.json
+```
+
+Active proof-DAG frontier:
+
+| Node | Lean declaration or target | Status | Next owner |
+|---|---|---|---|
+| finite normalized projection bridge | `oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3` | compiled route memory; stale lower target | none |
+| theorem-facing contract audit | `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3` | compiled route memory; false flags checked | none |
+| theorem-facing finite block/projection interface | planned `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3` | active non-promoting interface leaf | lower1/lower3 checks, then lower2 |
+| fixed product-to-coefficient route | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | open; blocked on corrected theorem-facing block/projection route | later |
+
+No oracle, `H_W`, boundary `R_y`, LCU/block composition, normalized-block
+equality, block correctness, final extraction, resource, normalizer-free,
+oracle correctness, unitarity, diagnostic `sorry` route, or
+product-to-coefficient flag is promoted.
+
+## 2026-06-15 Middle Post-Audit Theorem-Facing Finite Block/Projection Interface Sync
+
+This EOF sync supersedes the audit packet as active lower work.  Lower2
+compiled:
+
+```lean
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3_transcript
+```
+
+as non-promoting route memory.  The audit records the theorem-facing Fig. 4
+transcript split from the active seven-gate backend and keeps every product,
+normalized-block, LCU, block, final, oracle, unitary, and resource flag false.
+
+Middle prepared the next source-proof translation packet:
+
+```text
+proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-packet-20260615-0507.md
+verifier-feedback/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-20260615-0507.json
+```
+
+Updated proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `finite_source_prepared_normalized_projection_bridge` | source-prepared normalized projection packet for system `(0,0)`, sparse slot `2`, branch `[32,32]` | conditional normalizer bridge; finite projection product bridge; finite block contract | none | `oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3` | finite-normalized-projection packets | previous `python3 tools/qbe.py check` | compiled route memory; stale as lower work |
+| `theorem_facing_finite_block_contract_audit` | record Fig. 4 transcript guard, active backend guard, active finite contract wiring, compiled normalized projection bridge, and false flags | transcript guards; finite block contract; normalized projection bridge | none | `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3` | theorem-facing audit packet | previous `python3 tools/qbe.py check` | compiled route memory |
+| `theorem_facing_finite_block_projection_interface` | non-promoting interface tying `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` to `oneTermRobinFiniteBlockCompositionContract 3` while recording the active-backend wiring gap | compiled contract audit; source-prepared projection target; finite block contract transcript; false theorem flags | lower2 after lower1/lower3 checks | planned `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3` | `proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-packet-20260615-0507.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active leaf |
+| `root_product_to_coefficient` | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | corrected theorem-facing finite block/projection equality and final coefficient bridge | later | existing obligation only | proof-obligation ledger | full gate plus proof-map sync | blocked; `proved = false` |
+
+Typed verifier-feedback state:
+
+| Field | Value |
+|---|---|
+| `leaf` | `theorem_facing_finite_block_projection_interface` |
+| `source_correspondence_ok` | `true` |
+| `lean_parse_ok` | `null` |
+| `lean_build_ok` | `null` |
+| `finite_matrix_ok` | `pending lower3 necessary-condition check` |
+| `block_entry_ok` | `pending non-promoting interface; no block equality promoted` |
+| `normalizer_ok` | `N_D*N_f*kappa remains attached through the finite contract and source-prepared route` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `source_translation_gap` |
+| `next_route` | lower1 validates the source map, lower3 verifies necessary conditions, then lower2 compiles only the non-promoting interface packet |
+
+Lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` for:
+
+```lean
+OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript
+```
+
+No oracle, `H_W`, boundary `R_y`, LCU/block composition, normalized-block
+equality, block correctness, final extraction, resource, normalizer-free,
+oracle correctness, unitarity, or product-to-coefficient flag is promoted.
+
+## 2026-06-15 Finite Normalized Projection Middle Sync
+
+Current run: `20260615-041049-QBE-AUTO-002-cycle01`.
+
+Middle prepared the next source-proof translation packet:
+
+```text
+proof-attempts/QBE-AUTO-002/finite-normalized-projection-middle-packet-20260615-0419.md
+verifier-feedback/QBE-AUTO-002/finite-normalized-projection-middle-20260615-0419.json
+```
+
+Definitions first. The compiled conditional normalizer bridge is:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3
+```
+
+It starts from the source-prepared projection entry:
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env)
+  .preparedProjectionEntry
+```
+
+and keeps the fixed obligation false:
+
+```lean
+oneTermRobinGamma3ProductToCoefficientObligation 3 0 0
+```
+
+The next active planning leaf is:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3
+```
+
+Source-dependency audit:
+
+| Source step | Lean declaration or contract | Classification | Status |
+|---|---|---|---|
+| Eq. `arbitrary sparcity` clean sparse-register amplitudes | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` and focused feeder | external cited contract | compiled only under explicit hypothesis |
+| Eq. `angles for Ry` selected boundary entry convention | explicit `hentry` | source convention | hypothesis of compiled bridge |
+| Eq. `ROBIN clarified` gamma3 branch | `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3` | QBE-local coefficient bridge | compiled route memory |
+| Definition `def:block-encoding` signal-zero block entry | `oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3`; `oneTermRobinFiniteBlockCompositionContract 3` | internal paper step plus QBE finite projection interface | active planning leaf |
+| Standard LCU/block composition | `oneTermRobinFiniteBlockCompositionContract 3.normalizedBlockEquality` | external or downstream contract | false; not promoted |
+| Raw H-free backend expansion | `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` | finite counterexample | forbidden |
+
+Proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `conditional_normalizer_product_bridge` | source-prepared slot-`2` projection times theorem normalizer equals expected target entry under explicit hypotheses | source slot-`2` product equality; focused clean column; coefficient identities | none | `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3` | product normalizer synthesis and lower1 post-lower packet | previous full gate | compiled route memory |
+| `source_prepared_fixed_product_guard` | source-prepared slot-`2` equality is attached to `FixedProductObligation` while flags stay false | compiled source-prepared route | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3` | retarget packet | previous full gate | compiled; stale |
+| `finite_source_prepared_normalized_projection_bridge` | package source-prepared projection with the finite block-composition target and normalized equality obligation | compiled conditional normalizer bridge; finite projection product bridge; Definition `def:block-encoding` | lower2 after verifier | planned `oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3` plus transcript | `proof-attempts/QBE-AUTO-002/finite-normalized-projection-middle-packet-20260615-0419.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active planning leaf |
+| `fixed_product_to_coefficient_3_0_0` | close the exact focused product-to-coefficient root | finite source-prepared normalized projection bridge plus later cited contract discharge | later | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligation ledger | full gate plus proof-map sync | open root; `proved = false` |
+| `backend_expansion_raw_no_go` | raw backend expansion or any `SignalEntryFold`-equivalent proposition | compiled finite counterexample | none | `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` | backend-expansion correction packets | none | refuted; forbidden |
+
+Verifier feedback mirror:
+
+| Field | Value |
+|---|---|
+| `leaf` | `finite_source_prepared_normalized_projection_bridge` |
+| `source_correspondence_ok` | `true` |
+| `lean_parse_ok` | `null` |
+| `lean_build_ok` | `null` |
+| `finite_matrix_ok` | `indices_compiled_bridge_not_proved` |
+| `block_entry_ok` | `pending_source_prepared_projection_bridge` |
+| `ancilla_cleanup_ok` | `null` |
+| `normalizer_ok` | `conditional_bridge_compiled_under_explicit_hypotheses` |
+| `closed_theorem_ok` | `false` |
+| `product_to_coefficient` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `next_route` | lower3 verifies the finite normalized projection conditions, then lower2 implements `oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3` as a non-promoting packet |
+
+No oracle, `H_W`, boundary `R_y`, LCU/block composition, oracle correctness,
+unitarity, normalized block equality, block correctness, final extraction,
+resource, normalizer-free, or product-to-coefficient flag is promoted by this
+middle sync.
+
+## 2026-06-15 Product-To-Coefficient Normalizer Post-Lower Closure
+
+Current run: `20260615-034853-QBE-AUTO-002-cycle01`.
+
+The assigned conditional normalizer bridge is now compiled:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3
+```
+
+The allowed feeder is also compiled:
+
+```lean
+oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3
+```
+
+| Block | Interface | Lean declaration | Status |
+|---|---|---|---|
+| `focused_clean_column_from_all_slots` | instantiate the all-slot sparse-preparation contract at focused slot `2` | `oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3` | compiled |
+| `conditional_normalizer_product_bridge` | source-prepared slot-`2` product times theorem normalizer equals the expected target entry under explicit hypotheses | `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3` | compiled conditional bridge |
+| `fixed_product_to_coefficient_3_0_0` | close the exact root obligation | `oneTermRobinGamma3ProductToCoefficientObligation 3 ⟨0,_⟩ ⟨0,_⟩` | still open; `proved = false` |
+
+The compiled bridge preserves the fixed product obligation and all downstream
+semantic flags as false. It does not prove sparse preparation, boundary `R_y`,
+LCU/block composition, normalized-block equality, block correctness, final
+extraction, resources, or the product-to-coefficient root.
+
+## 2026-06-15 Product-To-Coefficient Normalizer Current-Run EOF Pointer
+
+Current run: `20260615-034853-QBE-AUTO-002-cycle01`.
+
+Definition: `conditional_normalizer_product_bridge` is the local bridge from
+the compiled source-prepared slot-`2` product equality to the expected target
+entry after multiplying by the theorem normalizer under explicit coefficient
+hypotheses. It is not the root product-to-coefficient theorem.
+
+The active Lean target is:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3
+```
+
+The optional feeder, allowed only if the clean-column specialization blocks the
+bridge, is:
+
+```lean
+oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3
+```
+
+| Block | Interface | Paper source | Lean declaration | Depends on | Reused by | Status |
+|---|---|---|---|---|---|---|
+| `source_sparse_uniform_contract` | all sparse slots expose the clean-column amplitude | GHL2025 Eq. `arbitrary sparcity`; Shukla--Vedula cited row | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | cited external preparation contract | active bridge through focused clean column | contract-only obligation |
+| `source_slot2_product_fixed_map_guard` | source-prepared slot-`2` product feeds the fixed product map | GHL2025 Fig. `fig:1 term ROBIN`; Eq. `ROBIN clarified`; Eq. `angles for Ry` | `oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3` | source-prepared projection/product bridge | route memory for the active bridge | compiled; stale as lower target |
+| `conditional_normalizer_product_bridge` | source-prepared slot-`2` product times normalizer equals the expected target entry under explicit hypotheses | GHL2025 Theorem `theorem: 1 term robin`; Eq. `ROBIN clarified`; Definition `def:block-encoding` | proposed `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3` | slot-`2` product equality; focused clean column; `oneTermRobinGamma3BoundaryProductUnderContractsEval_n3` | future product-to-coefficient route | active leaf |
+| `fixed_product_to_coefficient_3_0_0` | close the exact root obligation | GHL2025 one-term theorem plus cited LCU/block-composition row | `oneTermRobinGamma3ProductToCoefficientObligation 3 ⟨0,_⟩ ⟨0,_⟩` | conditional bridge plus later finite normalized-block/projection bridge | final one-term theorem route | open; `proved = false` |
+| `backend_expansion_raw_no_go` | unchanged raw backend expansion and `SignalEntryFold` equivalents | refuted route memory, not a source-backed target | `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` | compiled counterexample | none | forbidden |
+
+Source-dependency classification: the active bridge is a QBE-local symbolic
+bridge under explicit hypotheses. The external sparse-preparation and
+LCU/block-composition ingredients remain cited or contract-only obligations,
+and the root product-to-coefficient theorem remains false.
+
+No oracle, `H_W`, boundary `R_y`, LCU/block composition, normalized-block
+equality, block correctness, final extraction, resource, or
+product-to-coefficient flag is promoted by this current-run pointer.
+
+## 2026-06-15 Middle Product-To-Coefficient/Normalizer Packet EOF Sync
+
+Current run: `20260615-032327-QBE-AUTO-002-cycle01`.
+
+This EOF sync supersedes the stale route-retarget guard as the next lower2
+assignment. The guard
+`oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3`
+is compiled route memory only. It is not a theorem-facing lower target, and it
+does not prove `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.
+
+The active packet is:
+
+```text
+proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-middle-packet-20260615-032327.md
+```
+
+Source translation:
+
+| Source anchor | Lean-facing object | Status |
+|---|---|---|
+| GHL2025 Theorem `theorem: 1 term robin` | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | open root; `proved = false` |
+| Eq. `ROBIN clarified` | focused gamma3 slot-`2` projected product and target entry | conditional algebra compiled in `oneTermRobinGamma3BoundaryProductUnderContractsEval_n3` |
+| Eq. `arbitrary sparcity` | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external contract; not proved here |
+| Eq. `angles for Ry` | `hentry` for `boundary_cos_half_0_2` | explicit hypothesis; no `R_y` flag promoted |
+| Fig. `fig:1 term ROBIN` | source-prepared projection entry to slot-`2` projected product | compiled by `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` |
+| Definition `def:block-encoding` | clean projection and normalized-block comparison | still a downstream proof obligation |
+
+Updated proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `source_sparse_uniform_contract` | all sparse slots have clean-column amplitude `sqrt_kappa_inv` | GHL2025 Eq. `arbitrary sparcity`; Shukla--Vedula cited row | none | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | `research-wiki/cited-results/GHL2025.md` | contract only | external obligation |
+| `source_slot2_product_fixed_map_guard` | source-prepared slot-`2` product feeds the fixed product map | source uniform contract; boundary entry convention | none | `oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3` | backend-expansion route-retarget packet | already compiled | retired as lower target |
+| `focused_clean_column_from_all_slots` | derive the focused product-route clean-column hypothesis from all slots | `source_sparse_uniform_contract` | lower2 if needed | proposed `oneTermRobinGamma3BoundaryHWKappaUniformAllSlots_to_productRouteFocusedCleanColumn_n3` | active packet | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | optional feeder |
+| `conditional_normalizer_product_bridge` | source-prepared slot-`2` product times theorem normalizer equals expected target entry under explicit coefficient hypotheses | slot-`2` bridge; focused clean column; product-under-contracts eval | lower2 | proposed `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3` | active packet | same gate | active leaf |
+| `fixed_product_to_coefficient_3_0_0` | final product-to-coefficient obligation | conditional bridge plus finite normalized-block/projection bridge and cited LCU contract | later | `oneTermRobinGamma3ProductToCoefficientObligation 3 ⟨0,_⟩ ⟨0,_⟩` | proof-obligation ledger | same gate plus proof-map sync | open |
+| `backend_expansion_raw_no_go` | unchanged raw backend expansion or `SignalEntryFold`-equivalent target | compiled finite counterexample | none | `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` | verifier feedback | none | refuted; forbidden |
+
+Lower2 edits only `QuantumBlockEncoding/RobinMatrix.lean`, and only for
+`oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3` or the
+named focused-clean-column feeder if that feeder is the direct blocker. The
+root `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` remains open.
+
+No oracle, `H_W`, boundary `R_y`, LCU/block composition, oracle correctness,
+unitarity, normalized-block equality, block correctness, final extraction,
+resource, normalizer-free, or product-to-coefficient flag is promoted by this
+EOF sync.
+
+## 2026-06-15 Middle Backend-Expansion Correction Audit EOF Pointer
+
+Current run: `20260615-024629-QBE-AUTO-002-cycle01`.
+
+This pointer supersedes older EOF route records for the active frontier.  The
+source-prepared product/projection composite and its two bridge leaves are
+compiled route memory:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3
+oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3
+oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3
+```
+
+The raw backend-expansion proposition is typed route memory but is not a valid
+lower2 theorem target:
+
+```lean
+oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
+```
+
+It is equivalent to the full signal-zero fold by
+`oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3`,
+and it is refuted by
+`oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3`.
+
+The local TeX source path named by the run prompt is absent in this checkout.
+Public source anchors for this audit remain the maintained GHL2025 proof notes,
+Eq. `ROBIN clarified`, Fig. `fig:1 term ROBIN`, Definition
+`def:block-encoding`, Theorem `theorem: 1 term robin`, and
+`research-wiki/cited-results/GHL2025.md`.
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `source_projection_slot2_product` | source-prepared projection entry evaluates to slot-`2` projected branch product | source-prepared backend bridge; backend-fold-to-product bridge | none | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | `proof-attempts/QBE-AUTO-002/source-prepared-projection-product-composite-middle-packet-20260615-021428.md` | previous full gate | proved; stale as lower2 target |
+| `backend_expansion_raw` | raw H-free backend expansion, equivalent to the full signal-zero fold | all-one selected-slot finite no-go guard | none | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | `proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-024629.md` | none | refuted; do not prove unchanged |
+| `backend_expansion_correction_source_audit` | decide whether source anchors support a corrected source-facing branch-sum leaf or force a source-contract gap | GHL2025 anchors; compiled no-go guard; lower3 finite rejection | lower1 | no new Lean declaration | current middle packet | `python3 tools/qbe.py check` | active lower1 leaf |
+| `backend_expansion_correction_verifier` | record necessary-condition rejection for the unchanged raw target and shape constraints for any corrected leaf | `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3`; selected-slot all-one diagnostic | lower3 | no theorem-facing Lean edit | `verifier-feedback/QBE-AUTO-002/backend-expansion-correction-middle-20260615-024629.json` | `python3 tools/qbe.py check` | active lower3 leaf |
+| `backend_expansion_corrected_lean_leaf` | one corrected projection/backend proposition if lower1/lower3 name one | lower1 source audit; lower3 necessary-condition packet | lower2 after correction only | to be named later in `QuantumBlockEncoding/RobinMatrix.lean` | future lower packet | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | blocked until named |
+| `product_to_coefficient_3_0_0` | fixed product-to-coefficient equality | compiled source projection/product route; corrected projection/backend route; normalizer algebra; boundary coefficient convention | later | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligation ledger | full gate | open; do not promote |
+
+Source-dependency classification: unchanged `backendExpansionStatement` is
+`contract-drift` with verifier class `finite_matrix_counterexample`.  The next
+source-facing branch-sum statement is either an `internal-paper-step` supported
+by the maintained GHL2025 anchors or a `source-contract-gap`; lower1 must write
+that classification before lower2 edits Lean.
+
+Lower2 has no current Lean edit.  If lower2 runs before lower1/lower3 name a
+corrected leaf, it should log `error_class=finite_matrix_counterexample` and
+make no changes.  No oracle, `H_W`, `R_y`, LCU, block-projection,
+normalized-equality, product-to-coefficient, circuit-unitarity,
+block-correctness, final-extraction, normalizer, or external primitive flag is
+promoted.
+
+## 2026-06-15 Middle Current-Run Projection/Product Second-Leaf Sync
+
+This sync follows the upper handoff in
+`runs/20260615-015440-QBE-AUTO-002-cycle01/dialogue.md`.  The source-prepared
+product/projection packet and the first source-projection-to-backend-fold
+wrapper are both compiled and stale as lower2 targets.  The bridge below also
+compiled later in the same proof route and is stale as lower2 work.  This
+subsection is historical route memory; the current active leaf is the composite
+section above.
+
+```lean
+oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3
+```
+
+Definitions first.  `BackendFold(env)` is
+`Coeff.evalWith env (blockExtractionBranchContributionSum
+oneTermRobinGamma3BoundaryBackendBranchContribution_n3)`.  `SelectedSlot(env)`
+is `Coeff.evalWith env
+oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3.selectedSlotContribution`.
+`ProjectedBranchProduct(env)` is `Coeff.evalWith env
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct`.
+The hypothesis `hentry` is the selected boundary-entry convention
+`env "boundary_cos_half_0_2" = Coeff.evalWith env
+(GHL2025.boundaryRotationNormalizedCoefficient (oneTermParameters 3) 0 2)`.
+
+The local TeX path advertised by the focused context is absent in this
+checkout.  This source audit therefore uses the maintained source map, Fig. 4
+visual audit, cited-results memory, and compiled transcript records.  Public
+anchors remain GHL2025 Eq. `arbitrary sparcity`, Eq. `ROBIN clarified`,
+Eq. `angles for Ry`, Fig. `fig:1 term ROBIN`, and Definition
+`def:block-encoding`.
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `source_prepared_product_packet` | source target, fixed product `3 0 0`, finite bridge, and false flags | source-prepared target; finite product bridge | none | `oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3` | earlier packet and lower3 feedback | previous full gate | compiled; stale |
+| `source_projection_to_backend_fold` | prepared projection entry evaluates to backend fold under `hUniform` | source-prepared backend bridge | none | `oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3` | current packet | previous full gate | compiled; stale |
+| `backend_fold_to_slot2_projected_product` | backend fold evaluates to slot-`2` projected product under `hentry` | `oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3`; `oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3` | none | `oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3` | `proof-attempts/QBE-AUTO-002/source-prepared-projection-product-bridge-middle-packet-20260615-015440.md` | previous full gate | compiled; stale |
+| `source_projection_slot2_product` | prepared projection entry evaluates to slot-`2` projected product | previous two bridge leaves | lower2 | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | `proof-attempts/QBE-AUTO-002/source-prepared-projection-product-composite-middle-packet-20260615-021428.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active composite leaf |
+| `product_to_coefficient_3_0_0` | fixed product-to-coefficient equality | projection/product bridge; coefficient convention; normalizer algebra | later | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligations ledger | same gate | open; not assigned |
+
+Verifier-feedback mirror:
+
+| Field | Value |
+|---|---|
+| `leaf` | `backend_fold_to_slot2_projected_product` |
+| `source_correspondence_ok` | `true` |
+| `lean_parse_ok` | `true` |
+| `lean_build_ok` | `true` |
+| `finite_matrix_ok` | `true` |
+| `block_entry_ok` | `true` |
+| `ancilla_cleanup_ok` | `null` |
+| `normalizer_ok` | `null` |
+| `closed_theorem_ok` | `true` |
+| `error_class` | `none` |
+| `next_route` | prove `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` from the two compiled bridge leaves |
+
+No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness,
+final-extraction, normalizer, or external primitive flag is promoted by this
+sync.  The first-case-study one-term theorem remains open.
+
+## 2026-06-15 Middle Source-Prepared Projection/Product Bridge Sync
+
+Current run: `20260615-013025-QBE-AUTO-002-cycle01`.
+
+Definitions first.  The source-prepared target is
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+```
+
+and its prepared projection entry is
+
+```lean
+(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env)
+  .preparedProjectionEntry
+```
+
+The backend fold is
+
+```lean
+blockExtractionBranchContributionSum
+  oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+```
+
+and the projected branch product is
+
+```lean
+oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct
+```
+
+The source-prepared product/projection packet is now compiled and stale as a
+lower2 target:
+
+```lean
+OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation
+oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3
+oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3_transcript
+```
+
+It remains route memory only.  It records the full Fig. `fig:1 term ROBIN`
+clean projection, fixed product obligation
+`oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`, and false
+product/LCU/block/final flags.  It does not prove the slot-`2`
+projection/product bridge.
+
+The active bridge is split into two smaller Lean leaves:
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3
+oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3
+```
+
+The first leaf should be a direct wrapper over the compiled source-prepared
+bridge
+`oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_preparedProjectionEntryEval_eq_backend_n3`
+under the explicit `hUniform` contract.  The second leaf should compose
+`oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3`
+with `oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3`
+under the boundary-entry hypothesis `hentry`.  The composite target is
+
+```lean
+oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3
+```
+
+Source-dependency audit:
+
+| Source anchor | Current Lean interface | Dependency class | Status |
+|---|---|---|---|
+| GHL2025 Eq. `arbitrary sparcity` | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H` | external sparse-preparation contract | used only as `hUniform`; not formalized here |
+| GHL2025 Fig. `fig:1 term ROBIN` | `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env` | theorem-facing prepared sandwich transcript | compiled target |
+| GHL2025 Definition `def:block-encoding` | source-prepared clean projection entry | QBE-local clean projection interface | compiled target; bridge active |
+| GHL2025 Eq. `ROBIN clarified` | slot-`2` projected branch product and fixed product `3 0 0` | GHL-internal branch/product algebra | projected product bridge active; coefficient theorem open |
+| GHL2025 Eq. `angles for Ry` | selected boundary coefficient entry | coefficient convention hypothesis `hentry` | used only by selected-slot evaluator |
+
+Updated proof-DAG frontier:
+
+| Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
+|---|---|---|---|---|---|---|---|
+| `source_prepared_product_packet` | packet tying the source-prepared projection target to the fixed product obligation and false flags | source-prepared target; product route; finite bridge | none | `oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3` | `proof-attempts/QBE-AUTO-002/source-prepared-product-projection-middle-packet-20260615.md`; lower3 JSON | previous full gate | compiled; stale as lower2 target |
+| `source_projection_to_backend_fold` | prepared projection entry evaluates to backend fold under `hUniform` | source-prepared clean-column contract; prepared backend bridge | lower 2 | `oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3` | `proof-attempts/QBE-AUTO-002/source-prepared-projection-product-bridge-middle-packet-20260615-013025.md` | `python3 tools/qbe.py check`; `lake build`; `lake build Tests` | active leaf if absent |
+| `backend_fold_to_slot2_projected_product` | backend fold evaluates to the slot-`2` projected branch product under `hentry` | backend fold collapse; selected-slot product evaluator | lower 2 after wrapper | `oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3` | same packet | same gate | next mathematical leaf |
+| `source_projection_slot2_product` | prepared projection entry evaluates to slot-`2` projected branch product | previous two leaves | lower 2 after both leaves | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | same packet | same gate | open composite |
+| `product_to_coefficient_3_0_0` | fixed product-to-coefficient equality | projection/product bridge; normalizer algebra; boundary coefficient convention | later | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | proof-obligations ledger | same gate | open; not assigned |
+| `backend_expansion_parent` | H-free backend-expansion parent | selected-slot nonzero contradiction | none | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | obstruction memory | none | forbidden by `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3` |
+
+Verifier-feedback mirror:
+
+| Field | Value |
+|---|---|
+| `leaf` | `source_prepared_projection_to_projected_branch_product` |
+| `source_correspondence_ok` | `true` |
+| `lean_parse_ok` | `null` |
+| `lean_build_ok` | `null` |
+| `finite_matrix_ok` | `null` |
+| `block_entry_ok` | `true` |
+| `ancilla_cleanup_ok` | `null` |
+| `normalizer_ok` | `null` |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `symbolic_bridge_gap` |
+| `next_route` | `oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3`, then `oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3` |
+
+No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
+product-to-coefficient, circuit-unitarity, block-correctness,
+final-extraction, normalizer, or external primitive flag is promoted by this
+sync.  The first-case-study one-term theorem remains open.
 
 ## 2026-06-13 Middle Branch-Correct Source-Prepared Backend Fold For Run 20260613-180059
 
@@ -22156,3 +23271,26 @@ No oracle, `H_W`, `R_y`, LCU, block-projection, normalized-equality,
 product-to-coefficient, circuit-unitarity, block-correctness,
 final-extraction, normalizer, or external primitive flag is promoted.  The
 first-case-study one-term theorem remains open.
+
+## 2026-06-15 Backend-Expansion Correction True EOF Mirror
+
+This final pointer is the active conversion-window state for run
+`20260615-024629-QBE-AUTO-002-cycle01`.  The full middle packet is
+`proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-024629.md`.
+
+Current active correction:
+
+| Node | Lean declaration or target | Status | Next owner |
+|---|---|---|---|
+| source-prepared projection/product composite | `oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3` | compiled route memory; stale as lower2 target | none |
+| unchanged backend expansion | `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement` | refuted by `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3`; verifier class `finite_matrix_counterexample` | none |
+| corrected projection/backend branch-sum | to be named only if source audit supports it | active correction obligation, or else `source-contract-gap` | lower1/lower3 first |
+| fixed product-to-coefficient route | `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0` | open; blocked on corrected projection/backend route | later |
+
+Lower2 has no current Lean edit.  If lower2 runs before lower1/lower3 name a
+corrected source-facing projection/backend leaf, it should log
+`error_class=finite_matrix_counterexample` and leave
+`QuantumBlockEncoding/RobinMatrix.lean` unchanged.  Public source anchors are
+the maintained GHL2025 proof notes, Eq. `ROBIN clarified`, Fig.
+`fig:1 term ROBIN`, Definition `def:block-encoding`, Theorem
+`theorem: 1 term robin`, and `research-wiki/cited-results/GHL2025.md`.
