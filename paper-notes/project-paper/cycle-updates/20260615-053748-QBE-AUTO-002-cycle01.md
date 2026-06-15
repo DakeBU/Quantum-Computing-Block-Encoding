@@ -1,6 +1,6 @@
 # Project Article Update: QBE-AUTO-002 cycle 14
 
-Generated: `2026-06-15 06:23:31`
+Generated: `2026-06-15 13:23:02`
 
 Run directory: `runs/20260615-053748-QBE-AUTO-002-cycle01`
 
@@ -146,32 +146,32 @@ reviewer gate: python3 tools/qbe.py check passed, running lake build and lake bu
 ## Current changed files
 
 - `MANIFEST.md`
-- `QuantumBlockEncoding/RobinMatrix.lean`
-- `conversion-windows/QBE-AUTO-002.md`
-- `paper-notes/GHL2025/latex/sections/00_status.tex`
-- `paper-notes/GHL2025/markdown/00_status.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/20260615-053748-QBE-AUTO-002-cycle01.md`
-- `paper-notes/GHL2025/markdown/cycle-summaries/latest.md`
-- `paper-notes/GHL2025_RobinOneTerm.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-010153-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-010153-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-013025-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-013025-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-015440-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-015440-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-021428-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-021428-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-022953-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-022953-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-024629-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-024629-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-030358-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-030358-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-034853-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-034853-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-041049-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-041049-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-050133-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-050133-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-052017-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-052017-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260615-053748-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260615-053748-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/latest.md`
+- `paper-notes/project-paper/cycle-updates/latest.tex`
+- `runs/20260517-181600-QBE-AUTO-001-cycle01/`
+- `runs/20260517-213858-QBE-AUTO-001-cycle01/`
+- `runs/20260517-214705-QBE-AUTO-001-cycle01/`
+- `runs/20260517-234836-QBE-AUTO-001-cycle01/`
+- `runs/20260518-001604-QBE-AUTO-001-cycle02/`
+- `runs/20260518-004234-QBE-AUTO-001-cycle03/`
+- `runs/20260518-010257-QBE-AUTO-001-cycle04/`
+- `runs/20260518-020239-QBE-AUTO-001-cycle01/`
+- `runs/20260518-051657-QBE-AUTO-001-cycle02/`
+- `runs/20260518-052832-QBE-AUTO-001-cycle03/`
+- `runs/20260518-101100-QBE-AUTO-001-cycle04/`
+- `runs/20260518-124930-QBE-AUTO-002-cycle01/`
+- `runs/20260518-125623-QBE-AUTO-002-cycle01/`
+- `runs/20260519-133457-QBE-AUTO-002-cycle01/`
+- `runs/20260519-133901-QBE-AUTO-002-cycle01/`
+- `runs/20260519-135334-QBE-AUTO-002-cycle02/`
+- `runs/20260519-143514-QBE-AUTO-002-cycle03/`
+- `runs/20260520-030521-QBE-AUTO-002-cycle01/`
+- `runs/20260520-033720-QBE-AUTO-002-cycle02/`
+- `runs/20260520-035340-QBE-AUTO-002-cycle03/`
+- `runs/20260520-125217-QBE-AUTO-002-cycle01/`
+- `runs/20260520-125343-QBE-AUTO-002-cycle01/`
+- `runs/20260520-132745-QBE-AUTO-002-cycle02/`
+- `runs/20260520-134806-QBE-AUTO-002-cycle03/`
+- `runs/20260520-234624-QBE-AUTO-002-cycle01/`

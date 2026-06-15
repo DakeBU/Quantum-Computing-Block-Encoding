@@ -16,6 +16,15 @@ Agentic Theorem Provers", arXiv:2602.10512v2.  The paper models theorem proving
 as verifier-guided search and explains why a hierarchical prover can need far
 less successful trace data when it represents repeated subproofs as a reusable
 proof DAG with memoized blocks instead of flattening every occurrence.
+The same arXiv item is also cited in some bibliographies under the
+cut-elimination framing "Don't Eliminate Cut"; QBE treats this as the same
+source, not a second independent reference.
+
+Use the companion statistical-provability lesson from arXiv:2602.10538 when
+reviewing run efficiency: a local proof route is improving if it raises the
+finite-budget chance of a Lean-verified proof, reduces average truncated proof
+length, or moves work to a reusable high-mass proof state.  It is not improving
+merely because it creates more prose or longer prompt context.
 
 It also studies the similar blueprint/DAG-control pattern in LeanMarathon:
 target review first, then proof discharge from dynamic leaves with worker and
@@ -119,6 +128,8 @@ attempt it without changing the theorem statement.
 - Reviewer also rejects lower-agent work that ignores the active leaf, repeats
   a stale route, or fails to record the natural-language-to-Lean dependency
   map after a blocked proof.
+- Reviewer records whether the attempted leaf shortened future proof search:
+  new reusable block, reused existing block, stale duplicate, or flat replay.
 
 ## Faithful Paper Mode
 
@@ -133,3 +144,10 @@ Candidate populations should evolve proof/oracle DAGs, not just flat scripts.
 Scores may include smaller flat-risk estimates, more reused blocks, fewer
 obligations, faster Lean checks, and better local test coverage.  A score is
 not a proof; Lean-checked acceptance remains final.
+
+If the task is genuinely exploratory, borrow the split used by
+Conjecturing-Proving Loop and LeanConjecturer: generate candidate oracle or
+circuit statements first, filter them by syntax/dimension/non-triviality and
+small finite block-entry diagnostics, then spend lower-agent proof effort only
+on survivors.  Do not use conjecture generation to alter a faithful paper
+theorem.

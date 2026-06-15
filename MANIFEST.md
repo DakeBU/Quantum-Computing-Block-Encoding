@@ -5846,3 +5846,12 @@ block-encoding formalization lifecycle.
 | 2026-06-15 06:23:39 | qbe.py human-status | `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | review | Wrote GHL Fig. 4 visual audit for QBE-AUTO-002 |
 | 2026-06-15 06:23:39 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
 | 2026-06-15 06:23:41 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |
+| 2026-06-15 12:22:34 | qbe.py project-article-update | `runs/20260615-053748-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 14 |
+| 2026-06-15 12:22:34 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260615-053748-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 14 |
+| 2026-06-15 12:22:34 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-15 12:24:10 | qbe.py project-article-update | `runs/20260615-053748-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 14 |
+| 2026-06-15 12:24:10 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260615-053748-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 14 |
+| 2026-06-15 12:24:10 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-15 13:23:03 | qbe.py project-article-update | `runs/20260615-053748-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-AUTO-002 cycle 14 |
+| 2026-06-15 13:23:03 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260615-053748-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-AUTO-002 cycle 14 |
+| 2026-06-15 13:23:03 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |

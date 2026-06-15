@@ -4,17 +4,10 @@
 /.env
 /.DS_Store
 
-# Keep raw sleep-run artifacts out of git, but commit the lightweight
-# human-facing summaries that collaborators need to review on GitHub.
-/runs/*/*
-!/runs/*/
-!/runs/*/zh_summary.md
-!/runs/*/todo.md
-!/runs/*/memory_digest.md
-!/runs/*/chatgpt_pro_prompt.md
-!/runs/*/article_update.md
-!/runs/*/article_update.tex
-!/runs/*/dialogue.md
+# Keep raw sleep-run directories out of git. Human-facing cycle summaries are
+# mirrored under paper-notes/GHL2025/markdown/cycle-summaries/, and self-contained
+# Pro prompts are mirrored under runs/pro-prompts/.
+/runs/*/
 !/runs/pro-prompts/
 !/runs/pro-prompts/*.md
 /runs/trials.jsonl

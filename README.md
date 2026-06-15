@@ -124,6 +124,9 @@ QBE's automation stack is layered:
 | Lean harness control | [LeanMarathon][leanmarathon] | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
 | Proof diagnostics | [MathCode][mathcode] | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
 | Typed verifier feedback | [QASM-Eval][qasm-eval] and [Qiskit QuantumKatas][qiskit-quantumkatas] | Parser/build/finite-matrix/test-style fields used as pre-Lean diagnostics, never as theorem closure. |
+| Reusable cuts / lemma DAGs | [Sonoda--Akiyama--Uezato 2026][hierarchical-provers] | Do not flatten repeated circuit-entry proofs; introduce source-faithful intermediate lemmas and memoize them in the proof DAG. |
+| Statistical provability | [Sonoda--Akiyama--Uezato 2026][statistical-provability] | Track finite-budget proof success, verifier-call cost, average truncated proof length, and repeated-state failures as harness metrics. |
+| Conjecture/prove loops | [Conjecturing-Proving Loop][cpl-paper] and [LeanConjecturer][leanconjecturer-paper] | In exploratory mode, generate oracle/circuit conjectures separately from proof attempts, then filter by Lean syntax, non-triviality, dimensions, and block-entry diagnostics. |
 
 The [LeanMarathon][leanmarathon]-like control layer does not replace the
 [Learning Beyond Gradients][lbg]-like hierarchy or the [EoH][eoh]-like
@@ -136,6 +139,32 @@ process/memory audit, and director synthesis.  The middle panel separates
 source correspondence, retrieval/memory curation, report/export maintenance,
 and coordinator synthesis.  The 6h wrapper runs these panels at the final
 audit by default, while inner proof-search cycles stay lightweight.
+
+QBE absorbs external automation ideas only when they solve a failure observed
+in block-encoding runs.  Long GHL2025 cycles showed three recurring problems:
+agents re-expanded the same circuit-entry algebra, middle summaries drifted
+away from the source circuit diagram, and lower agents sometimes used
+finite-matrix checks as if they were formal proofs.  The adopted response is
+domain-specific:
+
+| Observed QBE failure | Absorbed mechanism | Not absorbed |
+| --- | --- | --- |
+| Repeated circuit-entry proofs and stale local algebra. | LeanMarathon-style dynamic leaves plus Sonoda--Akiyama--Uezato-style reusable proof cuts. | A flat transcript loop that asks every lower agent to rederive the same matrix entry. |
+| Need to search for new oracle/circuit constructions in future work. | EoH-style candidate populations and CPL/LeanConjecturer-style candidate generation, but only in exploratory mode. | Mutation of a faithful paper theorem, hidden extra assumptions, or reward-only acceptance. |
+| Expensive Lean attempts on wrong circuit transcripts. | QASM/Qiskit-style typed pre-Lean diagnostics: parser, support, finite entry, and dimension checks. | Treating simulator/test success as theorem closure. |
+| Human and agent confusion about source-paper correspondence. | ARIS-style plain files plus LBG-style long/compact memory split and middle Lean/Markdown/LaTeX windows. | A hidden database or opaque chat-only memory that collaborators cannot audit. |
+
+The resulting QBE-specific workflow is:
+
+```text
+paper theorem or new oracle goal
+-> register/circuit/operator contract
+-> source-faithful proof DAG with reusable circuit cuts
+-> optional finite necessary-condition diagnostics
+-> one lower Lean leaf
+-> Lean gate
+-> Markdown/LaTeX correspondence and next active leaf
+```
 
 ![Layer-panel agent stack](docs/assets/agent_stack.svg)
 
@@ -227,9 +256,10 @@ citations, Markdown math with `$...$`/`$$...$$`, and no hidden assumptions.
 For repeated proof work, agents use
 `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md`, which encodes the lesson
 of Sonoda--Akiyama--Uezato
-([arXiv:2602.10512v2](https://arxiv.org/abs/2602.10512)): successful theorem
-proving should reuse named proof blocks as a DAG rather than repeatedly
-flattening the same local proof trace.
+([arXiv:2602.10512v2][hierarchical-provers]), also circulated under the
+cut-elimination framing "Don't Eliminate Cut": successful theorem proving
+should reuse named proof blocks as a DAG rather than repeatedly flattening the
+same local proof trace.
 A DAG is a directed acyclic graph: nodes are definitions, lemmas, external
 contracts, and theorem targets; an edge `A -> B` means that `B` depends on
 `A`.  QBE schedules lower agents on active leaves of this graph.  When
@@ -253,6 +283,11 @@ quantum-circuit evaluation systems such as [QASM-Eval][qasm-eval] and
 `error_class`, and `next_route` in `runs/trials.jsonl` and
 `runs/trials_summary.csv`.  These fields help upper and middle agents choose
 the next leaf; they do not prove a block encoding.
+For finite-budget evaluation, QBE also records metrics motivated by
+[statistical provability][statistical-provability]: active agent time, Lean
+gate calls, repeated stale leaves, and whether the average proof attempt is
+getting shorter because reusable lemmas are being introduced rather than
+inlined.
 For long-horizon Lean control, agents use
 `.agents/skills/qbe-proof-blueprint/SKILL.md`, influenced by similar
 blueprint/DAG-control patterns in
@@ -863,5 +898,13 @@ every small lemma.
 [microsoft-quantumkatas]: https://github.com/microsoft/QuantumKatas
 [ai-mandel]: https://github.com/artificial-scientist-lab/ai-mandel
 [ai-mandel-paper]: https://arxiv.org/abs/2511.11752
+[hierarchical-provers]: https://arxiv.org/abs/2602.10512
+[statistical-provability]: https://arxiv.org/abs/2602.10538
+[cpl-paper]: https://arxiv.org/abs/2509.14274
+[cpl-repo]: https://github.com/auto-res/ConjecturingProvingLoop
+[leanconjecturer-paper]: https://arxiv.org/abs/2506.22005
+[leanconjecturer-repo]: https://github.com/auto-res/LeanConjecturer
+[lean-rademacher-paper]: https://arxiv.org/abs/2503.19605
+[lean-rademacher-repo]: https://github.com/auto-res/lean-rademacher
 [lean-quantuminfo]: https://github.com/Timeroot/Lean-QuantumInfo
 [optimizationproblems]: https://github.com/teorth/optimizationproblems
