@@ -3,9 +3,23 @@
 /.claude/
 /.env
 /.DS_Store
-/runs/*/
+
+# Keep raw sleep-run artifacts out of git, but commit the lightweight
+# human-facing summaries that collaborators need to review on GitHub.
+/runs/*/*
+!/runs/*/
+!/runs/*/zh_summary.md
+!/runs/*/todo.md
+!/runs/*/memory_digest.md
+!/runs/*/chatgpt_pro_prompt.md
+!/runs/*/article_update.md
+!/runs/*/article_update.tex
+!/runs/*/dialogue.md
+!/runs/pro-prompts/
+!/runs/pro-prompts/*.md
 /runs/trials.jsonl
 /runs/trials_summary.csv
+
 __pycache__/
 *.pyc
 /Math Writing Tips.pdf
