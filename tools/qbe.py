@@ -830,9 +830,9 @@ contract:
 The system should construct a unitary candidate `U_A`, prove in Lean that it
 contains the requested operator block, and score the candidate by:
 
-1. auxiliary qubits `a` (smaller is better),
+1. depth / parallel schedule length (smaller is better),
 2. gate count (smaller is better),
-3. depth when gate count ties (smaller is better; parallel layers matter),
+3. auxiliary qubits `a` (smaller is better),
 4. unresolved oracle calls (smaller is better).
 
 State whether this is a direct operator-to-block-encoding construction task, a
@@ -844,7 +844,7 @@ Hybrid strategy:
 
 - `operatorBlockEncoding`: given `A`, search for candidate `U_A`
   constructions, prove the block-entry and unitarity contracts, and rank
-  candidates by auxiliary qubits, gate count, depth, and unresolved oracle
+  candidates by depth, gate count, auxiliary qubits, and unresolved oracle
   calls.
 - `paperBenchmark` / `faithfulPaper`: reproduce a cited construction as a
   source-faithful baseline.  Do not mutate the paper construction while proving
@@ -873,12 +873,12 @@ Hybrid strategy:
 The default candidate score is defined in Lean as `BlockEncodingCost`:
 
 ```text
-(auxiliaryQubits, gateCount, depth, oracleCalls)
+(depth, gateCount, auxiliaryQubits, oracleCalls)
 ```
 
-Selection is lexicographic in that order.  In particular, if two candidates
-use the same number of auxiliary qubits and gates, the one with smaller depth
-is better.
+Selection is lexicographic in that order.  In particular, a shallower
+parallel schedule beats a deeper one even if it temporarily uses more
+auxiliary qubits; lower gate count breaks depth ties.
 
 ## Conversion Window
 
@@ -906,7 +906,7 @@ Expected file and declarations:
 - [ ] Unitarity of `U_A` is proved or recorded as a named obligation.
 - [ ] Normalization `alpha` is explicit.
 - [ ] Auxiliary qubit count `a` is explicit.
-- [ ] Resource score `(a, gateCount, depth, oracleCalls)` is explicit.
+- [ ] Resource score `(depth, gateCount, a, oracleCalls)` is explicit.
 - [ ] Candidate comparison against the current baseline is recorded when relevant.
 - [ ] `lake build && lake build Tests` succeeds.
 
@@ -4450,9 +4450,9 @@ def strategy_for_mode(mode: str) -> str:
   dimension/unitarity/block-entry/resource mismatch, and which proof leaf is
   next.
 - Candidate selection is lexicographic by `BlockEncodingCost`:
-  auxiliary qubits first, then gate count, then depth, then unresolved oracle
-  calls.  If two candidates have the same number of gates, prefer the one with
-  smaller depth because parallel layers are better than sequential gates.
+  depth first, then gate count, then auxiliary qubits, then unresolved oracle
+  calls.  Prefer parallel schedules even if they use extra clean workspace;
+  then reduce gates and auxiliary dimension after depth stops improving.
 - A candidate is accepted only after Lean proves the unitary and block-entry
   contracts for the stated target.  Resource scores rank candidates; they do
   not replace the theorem.
@@ -4601,7 +4601,7 @@ Local paper-source archive for agent work:
   trial memory, but the scientific target is Lean-checked quantum circuit
   matrix construction: given an operator/query-oracle target `A`, synthesize a
   candidate unitary `U_A`, prove the requested block-entry relation in Lean,
-  and compare candidates by auxiliary qubits, gate count, depth, and unresolved
+  and compare candidates by depth, gate count, auxiliary qubits, and unresolved
   oracle calls.
 - Upper is the human-facing project director: choose the cycle objective,
   decide whether the task is operator construction, paper baseline
@@ -4635,8 +4635,8 @@ Local paper-source archive for agent work:
 - In `operatorBlockEncoding` mode, the fixed target is the user-provided
   operator/matrix `A`, normalizer `alpha`, and block projector.  Agents may
   search over candidate unitary/circuit families, but every candidate must
-  record its `BlockEncodingCost = (auxiliaryQubits, gateCount, depth,
-  oracleCalls)` and Lean obligations.  Necessary-condition simulators and
+  record its `BlockEncodingCost`, ordered as `(depth, gateCount,
+  auxiliaryQubits, oracleCalls)`, and Lean obligations.  Necessary-condition simulators and
   finite checks may reject bad candidates; only Lean proves acceptance.
 - In `paperBenchmark` or `faithfulPaper` mode, reproduce the cited paper's
   construction as a baseline candidate.  Do not

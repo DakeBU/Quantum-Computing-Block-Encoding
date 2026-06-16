@@ -33,6 +33,24 @@ example :
   simp [BlockEncodingCost.betterThan]
 
 example :
+    BlockEncodingCost.betterThan
+      { auxiliaryQubits := 5, gateCount := 10, depth := 4, oracleCalls := 0 }
+      { auxiliaryQubits := 1, gateCount := 10, depth := 5, oracleCalls := 0 } := by
+  simp [BlockEncodingCost.betterThan]
+
+example :
+    BlockEncodingCost.betterThan
+      { auxiliaryQubits := 2, gateCount := 9, depth := 4, oracleCalls := 0 }
+      { auxiliaryQubits := 1, gateCount := 10, depth := 4, oracleCalls := 0 } := by
+  simp [BlockEncodingCost.betterThan]
+
+example :
+    BlockEncodingCost.betterThan
+      { auxiliaryQubits := 1, gateCount := 10, depth := 4, oracleCalls := 0 }
+      { auxiliaryQubits := 2, gateCount := 10, depth := 4, oracleCalls := 0 } := by
+  simp [BlockEncodingCost.betterThan]
+
+example :
     gridSize (3 + 1) = 2 * gridSize 3 := by
   native_decide
 

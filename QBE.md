@@ -6,7 +6,7 @@
 - Build gate: run `python3 tools/qbe.py check`
 - Primary target: given a query operator \(A\), synthesize a block-encoding
   unitary \(U_A\), prove the block-entry and unitarity contract in Lean, and
-  rank candidates by auxiliary qubits, gate count, depth, and unresolved oracle
+  rank candidates by depth, gate count, auxiliary qubits, and unresolved oracle
   calls.
 - Active paper benchmark: `QBE-AUTO-002`, the Guseynov-Huang-Liu Robin
   construction, used as the first source-backed training case for the platform.

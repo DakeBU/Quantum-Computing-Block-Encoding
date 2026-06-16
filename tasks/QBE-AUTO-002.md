@@ -1,10 +1,61 @@
 # Concrete Circuit Matrix Semantics Backend
 
 Task id: `QBE-AUTO-002`
-Kind: `oracleRealization`
-Mode: `faithfulPaper`
+Kind: `paperBenchmark`
+Mode: `paperBenchmark`
 Status: `active`
 Created: `2026-05-18`
+
+## Current Run Directive: 2026-06-17 GHL Theorem 3 Baseline Then BE Improvement
+
+This directive supersedes older lower-level GHL directives for the next 6h
+active run.  The upper agent must keep the task scientifically ordered:
+
+1. **Close the GHL paper benchmark baseline first.**  Locate the paper theorem
+   corresponding to the Guseynov--Huang--Liu block-encoding theorem
+   (the run should treat this as Theorem 3 / the main BE construction theorem,
+   using the local source map if numbering differs).  Prove the paper's own
+   block-encoding construction in Lean without changing the paper construction,
+   hidden assumptions, oracle contracts, normalizer, register layout, or gate
+   order.
+2. **After the baseline is Lean-closed, start improvement search for the same
+   operator.**  Create or update a candidate population for the same target
+   operator and compare candidates by the current QBE score order:
+   `(depth, gateCount, auxiliaryQubits, oracleCalls)`.  Depth is first because
+   parallel schedules are preferred; gate count breaks depth ties; auxiliary
+   dimension `a` is optimized after that; unresolved oracle calls are minimized
+   last.  Candidate mutations may use EoH-style population search and LBG-style
+   middle-agent rule/memory updates, but they must not be confused with the
+   source-fixed paper benchmark.
+3. **If the GHL baseline is closed and improvement search stagnates for many
+   generations, switch to the fallback operator-construction task**
+   `QBE-OP-OPTCTRL-001`, titled `Operator of optimal control paper`.  Its
+   target is the operator shown in the user's image:
+
+   ```text
+   E_k := |0><k|_time ⊗ |0><1|_type ⊗ I_n
+   ```
+
+   Treat it as an `operatorBlockEncoding` exploration task: define the operator
+   contract, construct candidate block encodings, prove the block-entry and
+   unitarity contracts, and evolve candidates by the same score order.
+
+Required agent split for this run:
+
+| Agent role | Required behavior |
+|---|---|
+| upper target/source panel | Verify the exact GHL theorem source location and decide whether the current active Lean leaf really feeds the paper's BE theorem.  If the theorem numbering in the local TeX differs from "Theorem 3", record the correct anchor but keep the target as the main GHL BE theorem. |
+| middle correspondence/memory panel | Keep three ledgers synchronized: GHL baseline proof DAG, candidate-population/improvement ledger for the post-baseline phase, and fallback `QBE-OP-OPTCTRL-001` operator contract.  Do not spend tokens polishing writing until a Lean theorem, score change, or blocker changes. |
+| lower 1 natural-language construction/proof architect | Produce the smallest source-backed proof DAG leaf that moves the GHL BE theorem toward closure.  After closure, propose a population schema for improved BE candidates. |
+| lower 2 Lean worker | Edit only the assigned Lean leaf.  Do not attack root theorem or old H-free false routes unless upper/middle explicitly retarget them with a new source-backed theorem. |
+| lower 3 verifier/resource scorer | Before lower2 spends a large proof attempt, check finite matrix entry, unitarity/block-entry necessary conditions, register shape, and the resource score `(depth, gateCount, auxiliaryQubits, oracleCalls)`.  After baseline closure, also check diversity and non-duplication in the candidate population. |
+| reviewer | Reject any run that mutates the paper construction before the baseline closes, promotes a diagnostic score to theorem status, changes `A`, changes `alpha`, hides an oracle, or claims improvement without a Lean-checked candidate and explicit score. |
+
+At the end of the 6h active run, write one Chinese summary and one ChatGPT Pro
+prompt.  The Chinese summary must say which exact GHL theorem/source anchor is
+still not closed, or else say the baseline closed and list the current best
+candidate score.  The Pro prompt must be self-contained for an external model
+that cannot read local files.
 
 ## Current Run Directive: 2026-06-15 Theorem-Facing Projection-Interface Normalizer Bridge Prepared
 

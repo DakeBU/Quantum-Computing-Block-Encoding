@@ -2,9 +2,9 @@
 
 Task id: `QBE-AUTO-002`
 Title: Concrete Circuit Matrix Semantics Backend
-Mode: `faithfulPaper`
-Updated: `2026-06-15 06:21:02`
-Blueprint stage: `Stage 2 DAG proof discharge, with faithful transcript checks still active`
+Mode: `paperBenchmark`
+Updated: `2026-06-17 01:35:01`
+Blueprint stage: `Stage 2 DAG proof discharge, with source-transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
 automation.  It follows a similar control pattern to LeanMarathon's evolving
@@ -16,108 +16,56 @@ oracle contracts to stay explicit.
 ## Current Directive
 
 ````text
-## Current Run Directive: 2026-06-15 Theorem-Facing Projection-Interface Normalizer Bridge Prepared
+## Current Run Directive: 2026-06-17 GHL Theorem 3 Baseline Then BE Improvement
 
-This directive supersedes the post-audit projection-interface packet after
-lower2 compiled it as non-promoting route memory:
+This directive supersedes older lower-level GHL directives for the next 6h
+active run.  The upper agent must keep the task scientifically ordered:
 
-```lean
-OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface
-oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
-oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript
-```
+1. **Close the GHL paper benchmark baseline first.**  Locate the paper theorem
+   corresponding to the Guseynov--Huang--Liu block-encoding theorem
+   (the run should treat this as Theorem 3 / the main BE construction theorem,
+   using the local source map if numbering differs).  Prove the paper's own
+   block-encoding construction in Lean without changing the paper construction,
+   hidden assumptions, oracle contracts, normalizer, register layout, or gate
+   order.
+2. **After the baseline is Lean-closed, start improvement search for the same
+   operator.**  Create or update a candidate population for the same target
+   operator and compare candidates by the current QBE score order:
+   `(depth, gateCount, auxiliaryQubits, oracleCalls)`.  Depth is first because
+   parallel schedules are preferred; gate count breaks depth ties; auxiliary
+   dimension `a` is optimized after that; unresolved oracle calls are minimized
+   last.  Candidate mutations may use EoH-style population search and LBG-style
+   middle-agent rule/memory updates, but they must not be confused with the
+   source-fixed paper benchmark.
+3. **If the GHL baseline is closed and improvement search stagnates for many
+   generations, switch to the fallback operator-construction task**
+   `QBE-OP-OPTCTRL-001`, titled `Operator of optimal control paper`.  Its
+   target is the operator shown in the user's image:
 
-Lower3 postcompile feedback records that the interface is now stale as lower
-work: the source-prepared projection target is attached to the finite block
-contract, `oneTermRobinFiniteBlockCompositionContract 3` still uses
-`oneTermRobinCircuitSemantics 3`, the theorem-facing Fig. 4 transcript remains
-distinct from the active seven-gate backend, and every theorem-facing semantic
-flag remains false.
+   ```text
+   E_k := |0><k|_time ⊗ |0><1|_type ⊗ I_n
+   ```
 
-The root obligation remains open and is still forbidden as a direct lower2
-target:
+   Treat it as an `operatorBlockEncoding` exploration task: define the operator
+   contract, construct candidate block encodings, prove the block-entry and
+   unitarity contracts, and evolve candidates by the same score order.
 
-```lean
-oneTermRobinGamma3ProductToCoefficientObligation 3 0 0
-```
+Required agent split for this run:
 
-The new active leaf is a theorem-facing projection-interface normalizer
-bridge.  Middle prepared:
+| Agent role | Required behavior |
+|---|---|
+| upper target/source panel | Verify the exact GHL theorem source location and decide whether the current active Lean leaf really feeds the paper's BE theorem.  If the theorem numbering in the local TeX differs from "Theorem 3", record the correct anchor but keep the target as the main GHL BE theorem. |
+| middle correspondence/memory panel | Keep three ledgers synchronized: GHL baseline proof DAG, candidate-population/improvement ledger for the post-baseline phase, and fallback `QBE-OP-OPTCTRL-001` operator contract.  Do not spend tokens polishing writing until a Lean theorem, score change, or blocker changes. |
+| lower 1 natural-language construction/proof architect | Produce the smallest source-backed proof DAG leaf that moves the GHL BE theorem toward closure.  After closure, propose a population schema for improved BE candidates. |
+| lower 2 Lean worker | Edit only the assigned Lean leaf.  Do not attack root theorem or old H-free false routes unless upper/middle explicitly retarget them with a new source-backed theorem. |
+| lower 3 verifier/resource scorer | Before lower2 spends a large proof attempt, check finite matrix entry, unitarity/block-entry necessary conditions, register shape, and the resource score `(depth, gateCount, auxiliaryQubits, oracleCalls)`.  After baseline closure, also check diversity and non-duplication in the candidate population. |
+| reviewer | Reject any run that mutates the paper construction before the baseline closes, promotes a diagnostic score to theorem status, changes `A`, changes `alpha`, hides an oracle, or claims improvement without a Lean-checked candidate and explicit score. |
 
-```text
-proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-packet-20260615-0558.md
-verifier-feedback/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-20260615-0558.json
-```
-
-The planned lower2 declaration is:
-
-```lean
-oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3
-```
-
-This theorem should expose the already compiled source-prepared slot-`2`
-normalizer evaluator through the fields of
-`oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3`.
-It may assume only the existing explicit contracts:
-
-```lean
-hUniform :
-  oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H
-hentry :
-  env "boundary_cos_half_0_2" =
-    Coeff.evalWith env
-      (GHL2025.boundaryRotationNormalizedCoefficient
-        (oneTermParameters 3) 0 2)
-hND : env "N_D_inv" * env "N_D" = 1
-hNF : env "N_f_inv" * env "N_f" = 1
-hkappa : env "kappa_inv" * env "kappa" = 1
-hkappaSqrt :
-  env "sqrt_kappa_inv" * env "sqrt_kappa_inv" = env "kappa_inv"
-```
-
-The expected bridge equality is the interface-field version of the compiled
-route:
-
-```lean
-Coeff.evalWith env interface.sourcePreparedProjectionEntry *
-    Coeff.evalWith env interface.normalizedProjectionBridge.theoremNormalizer =
-  Coeff.evalWith env interface.normalizedProjectionBridge.expectedTargetEntry
-```
-
-The bridge must also restate that `correctedFiniteBlockProjectionEquality`,
-the fixed product obligation, normalized-block equality, LCU correctness,
-block projection, block correctness, final extraction, oracle correctness,
-unitarity, and resource claims remain false.  It must not replace the paper
-circuit, mutate `oneTermRobinFiniteBlockCompositionContract 3`, add new
-assumptions, use the diagnostic `sorry` routes, or prove the root obligation.
-
-Lower-agent split:
-
-1. lower1 validates the source map and keeps the focused branch fixed to
-   system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch
-   basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`.
-2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript
-   split, active-backend contract wiring, and all false theorem flags before
-   lower2 edits Lean.
-3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for
-   the one bridge theorem above.  If it already exists, lower2 should make no
-   Lean edit and log `error_class=stale_leaf`.
-
-Forbidden lower2 targets remain:
-
-```lean
-oneTermRobinGamma3ProductToCoefficientObligation 3 0 0
-oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement
-oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3
-oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3
-oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3
-(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality
-```
-
-No oracle, `H_W`, boundary `R_y`, LCU/block composition, oracle correctness,
-unitarity, normalized block equality, block correctness, final extraction,
-resource, normalizer-free, or product-to-coefficient flag is promoted by this
-middle packet.
+At the end of the 6h active run, write one Chinese summary and one ChatGPT Pro
+prompt.  The Chinese summary must say which exact GHL theorem/source anchor is
+still not closed, or else say the baseline closed and list the current best
+candidate score.  The Pro prompt must be self-contained for an external model
+that cannot read local files.
 ````
 
 ## Dynamic Leaf Queue
@@ -128,9 +76,9 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| 1. lower1 validates the source map and keeps the focused branch fixed to system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`. | candidate |
-| 2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript split, active-backend contract wiring, and all false theorem flags before lower2 edits Lean. | candidate |
-| 3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for the one bridge theorem above. If it already exists, lower2 should make no Lean edit and log `error_class=stale_leaf`. | candidate |
+| 1. **Close the GHL paper benchmark baseline first.** Locate the paper theorem corresponding to the Guseynov--Huang--Liu block-encoding theorem (the run should treat this as Theorem 3 / the main BE construction theorem, using the local source map if numberin... | candidate |
+| 2. **After the baseline is Lean-closed, start improvement search for the same operator.** Create or update a candidate population for the same target operator and compare candidates by the current QBE score order: `(depth, gateCount, auxiliaryQubits, oracle... | candidate |
+| 3. **If the GHL baseline is closed and improvement search stagnates for many generations, switch to the fallback operator-construction task** `QBE-OP-OPTCTRL-001`, titled `Operator of optimal control paper`. Its target is the operator shown in the user's im... | candidate |
 
 ## Open Obligation Signals
 
@@ -225,15 +173,7 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-Obligation 3 0 0. lower1 source DAG, lower3 guard diagnostics, lower2 one named Lean leaf only after the packet. Reject root attack, backendExpansion/raw diagnostic sorry routes, seven-gate-as-Fig4 substitution, and semantic-flag promotion. Gate passed with only known RobinMatrix diagnostic sorry warnings.
-
-## 2026-06-15 06:03:25 - middle
-
-middle source-correspondence sync complete: retired theorem-facing finite block/projection interface as compiled stale route memory; prepared theorem-facing projection-interface normalizer bridge packet and verifier feedback; next lower2 target is oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3 only; root product-to-coefficient and semantic flag promotion remain forbidden; gate passed via python3 tools/qbe.py check with only known RobinMatrix diagnostic sorry warnings.
-
-## 2026-06-15 06:09:39 - middle
-
-middle memory/retrieval curator complete: retired compiled contract-audit and projection-interface leaves as stale lower targets; recorded rejected root/backendExpansion/diagnostic-sorry/semantic-flag routes; active leaf remains theorem_facing_projection_interface_normalizer_bridge with planned Lean target oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3; wrote 22_middle_memory_retrieval-output.md and middle-memory verifier JSON; refreshed blueprint status cards; gate passed via python3 tools/qbe.py check with only known RobinMatrix diagnostic sorry warnings.
+tic-flag routes; active leaf remains theorem_facing_projection_interface_normalizer_bridge with planned Lean target oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3; wrote 22_middle_memory_retrieval-output.md and middle-memory verifier JSON; refreshed blueprint status cards; gate passed via python3 tools/qbe.py check with only known RobinMatrix diagnostic sorry warnings.
 
 ## 2026-06-15 06:12:47 - middle
 
@@ -242,6 +182,10 @@ middle report/export maintainer complete: wrote runs/20260615-053748-QBE-AUTO-00
 ## 2026-06-15 06:18:03 - middle
 
 middle coordinator synthesis complete: read source-correspondence, memory/retrieval, and report/export outputs; wrote 24_middle_coordinator_synthesis-output.md and theorem-facing projection-interface normalizer coordinator feedback JSON; active leaf remains theorem_facing_projection_interface_normalizer_bridge with planned lower2 target oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3; no Lean or article update edit; gate passed via python3 tools/qbe.py check with only the two known RobinMatrix diagnostic sorry warnings.
+
+## 2026-06-15 06:22:50 - reviewer
+
+reviewer gate: python3 tools/qbe.py check passed, running lake build and lake build Tests, with only the two known RobinMatrix diagnostic sorry warnings. Lean interface packet is compiled non-promoting route memory: source-prepared projection is attached, active backend contract remains oneTermRobinCircuitSemantics 3, Fig. 4 and active backend guards remain distinct, and theorem-facing product/LCU/block/final/oracle/unitary/resource flags remain false. Blocking review finding: human-facing proof exports and project-paper latest packet are stale relative to the current task/conversion/blueprint; paper-notes/GHL2025 markdown/latex status and project-paper latest still describe the retired projection-interface leaf instead of active theorem_facing_projection_interface_normalizer_bridge / planned oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3. Next route: refresh those exports, then lower1/lower3 validate source/normalizer guards before lower2 proves only the planned normalizer bridge theorem.
 ````
 
 ## Gate Policy

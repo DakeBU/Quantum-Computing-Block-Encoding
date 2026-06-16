@@ -24,10 +24,10 @@ and a candidate unitary `U_A` satisfying a block-entry statement such as:
 The search target is not only correctness.  Among Lean-checkable candidates,
 ABEIS ranks constructions by:
 
-1. auxiliary qubits `a`, smaller is better;
+1. circuit depth, smaller is better because parallel layers are preferable to
+   sequential gates;
 2. gate count, smaller is better;
-3. depth when gate count ties, smaller is better because parallel layers are
-   preferable to sequential gates;
+3. auxiliary qubits `a`, smaller is better;
 4. unresolved oracle calls, smaller is better until they are expanded.
 
 Thus paper constructions are baselines and training data, not the whole
@@ -48,7 +48,7 @@ flowchart LR
   C --> D["lower population proposes U_A candidates"]
   D --> E["finite/unitarity/block-entry diagnostics"]
   E --> F["Lean certificate attempt"]
-  F --> G["resource score: a, gates, depth, oracle calls"]
+  F --> G["resource score: depth, gates, a, oracle calls"]
   G --> H["candidate archive and next mutation"]
   F --> I["accepted Lean-checked construction"]
 ```
@@ -464,7 +464,7 @@ Expected outputs:
 
 - Lean declarations in `QuantumBlockEncoding/MyOperator.lean`,
 - candidate records in `candidate-populations/`,
-- candidate scores `(auxiliaryQubits, gateCount, depth, oracleCalls)`,
+- candidate scores ordered as `(depth, gateCount, auxiliaryQubits, oracleCalls)`,
 - tests under `Tests/`,
 - a symbol map in `conversion-windows/QBE-OP-001.md`,
 - readable derivations in `paper-notes/`,

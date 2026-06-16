@@ -19,7 +19,7 @@ Each task should record:
   `(<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha`,
 - candidate unitary/circuit family,
 - auxiliary qubit count `a`,
-- score `(auxiliaryQubits, gateCount, depth, oracleCalls)`,
+- score ordered as `(depth, gateCount, auxiliaryQubits, oracleCalls)`,
 - source paper or open problem,
 - Lean declarations to create or repair,
 - proof obligations,

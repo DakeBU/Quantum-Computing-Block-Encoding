@@ -2,17 +2,17 @@
 
 - Task: `QBE-AUTO-002`
 - Title: Concrete Circuit Matrix Semantics Backend
-- Generated: `2026-06-15 06:08:39`
-- Mode: `faithfulPaper`
-- Stage: Stage 2 DAG proof discharge, with faithful transcript checks still active
+- Generated: `2026-06-17 01:35:01`
+- Mode: `paperBenchmark`
+- Stage: Stage 2 DAG proof discharge, with source-transcript checks still active
 - Latest cycle: `20260615-053748-QBE-AUTO-002-cycle01`
 - Blueprint: `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/proof-blueprints/QBE-AUTO-002.md`
 
 ## Dynamic Leaf Queue
 
-- 1. lower1 validates the source map and keeps the focused branch fixed to system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`.
-- 2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript split, active-backend contract wiring, and all false theorem flags before lower2 edits Lean.
-- 3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for the one bridge theorem above. If it already exists, lower2 should make no Lean edit and log `error_class=stale_leaf`.
+- 1. **Close the GHL paper benchmark baseline first.** Locate the paper theorem corresponding to the Guseynov--Huang--Liu block-encoding theorem (the run should treat this as Theorem 3 / the main BE construction theorem, using the local source map if numberin...
+- 2. **After the baseline is Lean-closed, start improvement search for the same operator.** Create or update a candidate population for the same target operator and compare candidates by the current QBE score order: `(depth, gateCount, auxiliaryQubits, oracle...
+- 3. **If the GHL baseline is closed and improvement search stagnates for many generations, switch to the fallback operator-construction task** `QBE-OP-OPTCTRL-001`, titled `Operator of optimal control paper`. Its target is the operator shown in the user's im...
 
 ## Open Obligation Signals
 
@@ -26,17 +26,17 @@
 ## Trial Counts By Role
 
 - `lower`: 1259
-- `middle`: 864
-- `reviewer`: 712
+- `middle`: 870
+- `reviewer`: 715
 - `upper`: 1428
 
 ## Trial Counts By Status
 
-- `accepted`: 1596
+- `accepted`: 1600
 - `blocked`: 39
-- `compiled`: 525
+- `compiled`: 526
 - `failed`: 42
-- `queued`: 2058
+- `queued`: 2062
 - `rejected`: 3
 
 ## Local Paper Sources
@@ -79,45 +79,21 @@
 ## Current Dirty Files
 
 - `MANIFEST.md`
-- `QuantumBlockEncoding/RobinMatrix.lean`
-- `conversion-windows/QBE-AUTO-002.md`
-- `paper-notes/GHL2025/latex/sections/00_status.tex`
-- `paper-notes/GHL2025/markdown/00_status.md`
-- `paper-notes/GHL2025_RobinOneTerm.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-010153-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-010153-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-013025-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-013025-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-015440-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-015440-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-021428-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-021428-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-022953-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-022953-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-024629-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-024629-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-030358-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-030358-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-034853-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-034853-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-041049-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-041049-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-050133-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-050133-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/20260615-052017-QBE-AUTO-002-cycle01.md`
-- `paper-notes/project-paper/cycle-updates/20260615-052017-QBE-AUTO-002-cycle01.tex`
-- `paper-notes/project-paper/cycle-updates/latest.md`
-- `paper-notes/project-paper/cycle-updates/latest.tex`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-correction-lower1-dag-20260615-024629.md`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-correction-lower2-blocked-20260615-024629.md`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-0233.md`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-correction-middle-packet-20260615-024629.md`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-route-retarget-lower-proof-architect-20260615-032040.md`
-- `proof-attempts/QBE-AUTO-002/backend-expansion-route-retarget-middle-packet-20260615-030358.md`
-- `proof-attempts/QBE-AUTO-002/finite-normalized-projection-lower1-proof-architect-20260615-042926.md`
-- `proof-attempts/QBE-AUTO-002/finite-normalized-projection-middle-packet-20260615-0419.md`
-- `proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-lower1-proof-architect-20260615-034610.md`
-- `proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-lower1-proof-architect-20260615-034853.md`
+- `QBE.md`
+- `QuantumBlockEncoding/BlockEncoding.lean`
+- `README.md`
+- `Tests/Basic.lean`
+- `docs/agent_orchestration.md`
+- `docs/sleep_run_guide.md`
+- `proof-blueprints/QBE-AUTO-002-status.json`
+- `proof-blueprints/QBE-AUTO-002-status.md`
+- `proof-blueprints/QBE-AUTO-002.md`
+- `tasks/QBE-AUTO-002.md`
+- `tasks/QBE-OP-OPTCTRL-001.md`
+- `tasks/README.md`
+- `tools/qbe.py`
+- `tools/qbe_codex_agent.sh`
+- `tools/qbe_run_theorem_closure.sh`
 
 ## Controls
 

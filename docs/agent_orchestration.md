@@ -51,8 +51,8 @@ Operator block-encoding construction mode is the default.  The input is a
 fixed operator \(A\), normalizer \(\alpha\), and clean-block convention.  Agents
 search for candidate unitaries or circuits \(U_A\), prove unitarity and the
 exact block-entry theorem in Lean, and compare candidates by
-`BlockEncodingCost`: auxiliary qubits first, then gate count, then parallel
-depth, then unresolved oracle calls.
+`BlockEncodingCost`: parallel depth first, then gate count, then auxiliary
+qubits, then unresolved oracle calls.
 
 Paper benchmark mode is used for targets such as GHL2025.  The agents
 translate the paper's construction as a fixed baseline, not as the whole

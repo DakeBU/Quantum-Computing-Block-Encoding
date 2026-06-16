@@ -65,7 +65,7 @@ Operator block-encoding construction:
 - use when the user gives a target operator \(A\), normalizer \(\alpha\), and
   clean-block convention,
 - search for candidate unitaries or circuits \(U_A\),
-- score candidates by auxiliary qubits, gate count, parallel depth, and
+- score candidates by parallel depth, gate count, auxiliary qubits, and
   unresolved oracle calls,
 - use `candidate-populations/` for alternative candidates and rejected routes,
 - use non-Lean verifier feedback only as necessary-condition diagnostics,

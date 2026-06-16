@@ -42,9 +42,9 @@ structure BlockEncodingSpec (α : Type u) (rows cols : Nat) where
 Resource score for comparing two candidate block encodings of the same
 operator.  The search order is deliberately domain-specific:
 
-1. fewer auxiliary qubits,
+1. smaller circuit depth,
 2. fewer gates,
-3. smaller depth when the gate count ties,
+3. fewer auxiliary qubits,
 4. fewer unresolved oracle calls.
 -/
 structure BlockEncodingCost where
@@ -68,12 +68,13 @@ def fromSpec (spec : BlockEncodingSpec α rows cols) : BlockEncodingCost :=
 
 /-- Strict lexicographic improvement used by candidate-population selection. -/
 def betterThan (x y : BlockEncodingCost) : Prop :=
-  x.auxiliaryQubits < y.auxiliaryQubits ∨
-  (x.auxiliaryQubits = y.auxiliaryQubits ∧
+  x.depth < y.depth ∨
+  (x.depth = y.depth ∧
     (x.gateCount < y.gateCount ∨
       (x.gateCount = y.gateCount ∧
-        (x.depth < y.depth ∨
-          (x.depth = y.depth ∧ x.oracleCalls < y.oracleCalls)))))
+        (x.auxiliaryQubits < y.auxiliaryQubits ∨
+          (x.auxiliaryQubits = y.auxiliaryQubits ∧
+            x.oracleCalls < y.oracleCalls)))))
 
 /-- Non-strict version for accepting a candidate as no worse than a baseline. -/
 def noWorseThan (x y : BlockEncodingCost) : Prop :=
