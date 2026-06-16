@@ -1,9 +1,9 @@
 # ASTIS Reference Notes
 
-Sibling local reference:
+Sibling repository reference:
 
 ```text
-/home/nitanda_sub/mark/repos/Auto-Sampling-Theory-In-Sleep
+../Auto-Sampling-Theory-In-Sleep
 ```
 
 ABEIS and ASTIS are separate auto-Lean-in-sleep projects.  ASTIS targets

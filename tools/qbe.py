@@ -403,7 +403,8 @@ def init_texts() -> dict[Path, str]:
 
 - Active task: none
 - Build gate: run `python3 tools/qbe.py check`
-- Primary target: Guseynov-Huang-Liu Robin block encoding skeleton
+- Primary target: given operator `A`, synthesize and Lean-verify a candidate
+  block-encoding unitary `U_A`, then rank candidates by `BlockEncodingCost`
 
 ## Operating Rule
 
@@ -448,7 +449,9 @@ session.
 
 ## Current Focus
 
-- Finish primary target skeleton into concrete Lean semantics.
+- Given an operator `A`, normalizer `alpha`, and block projector, construct
+  candidate block-encoding unitaries `U_A`, prove their Lean contracts, and
+  rank them by `BlockEncodingCost`.
 
 ## Important Constraints
 
@@ -505,13 +508,13 @@ referenced Lean declaration is build-tested for the exact statement being used.
         PAPER_CONTRIBUTION_DIR / "README.md": """# Paper Contribution Memory
 
 This retrieval layer separates a paper's own contributions from external
-technical lemmas.  Faithful-reproduction agents should consult this directory
-before assigning lower-agent work so that paper steps, cited primitives, and
-standard facts are not mixed together.
+technical lemmas.  Paper-benchmark agents should consult this directory before
+assigning lower-agent work so that paper steps, cited primitives, and standard
+facts are not mixed together.
 """,
         GHL_CONTRIBUTION_DIR / "README.md": """# Guseynov-Huang-Liu 2025 Contribution Memory
 
-This directory tracks the first ABEIS faithful-reproduction case study:
+This directory tracks the first ABEIS paper-benchmark case study:
 Guseynov--Huang--Liu 2025.  The generated `index.md`, `source-map.md`, and
 `todo.md` files are refreshed from the source-anchor table, proof obligations,
 trial logs, verifier feedback, and Lean `sorry` scan.
@@ -528,9 +531,10 @@ failed Lean attempts.
 """,
         ROOT / "proof-attempts" / "README.md": """# Proof Attempts
 
-Faithful paper-reproduction mode may use local proof-attempt populations for a
-fixed Lean theorem or lemma.  These records are for tactic/proof-script search,
-not for changing the paper construction.
+Paper-benchmark mode may use local proof-attempt populations for a fixed Lean
+theorem or lemma.  These records are for tactic/proof-script search, not for
+changing the paper construction.  Operator-construction mode should use
+`candidate-populations/` for competing `U_A` families.
 
 Each record should identify:
 
@@ -560,20 +564,23 @@ python3 tools/qbe.py blueprint-refresh <task-id>
 """,
         ROOT / "candidate-populations" / "README.md": """# Candidate Populations
 
-Exploratory construction mode may maintain EoH-like populations of candidate
-oracle or block-encoding constructions.
+Operator-block-encoding and exploratory-improvement modes maintain EoH-like
+populations of candidate unitaries/circuits for the same fixed operator target.
 
 Each candidate family should identify:
 
-- target acceptance predicate,
+- target operator `A`, normalizer `alpha`, and block projector,
 - construction idea,
+- auxiliary qubit count,
+- gate count, depth, and unresolved oracle calls,
 - Lean declarations and file scope,
-- partial score such as typechecks, dimension checks, small-case block tests,
-  normalizer progress, resource progress, and remaining obligations,
+- partial diagnostics such as typechecks, dimension checks, small-case block
+  tests, unitarity tests, block-entry checks, normalizer progress, schedule
+  checks, resource progress, and remaining obligations,
 - status: rejected, active, promising, merged, or proved.
 
-A score is only a search guide.  A construction is accepted only when the Lean
-target and proof obligations are satisfied.
+A `BlockEncodingCost` score is only a search guide.  A construction is accepted
+only when the Lean target and proof obligations are satisfied.
 """,
         ROOT / "verifier-feedback" / "README.md": """# Verifier Feedback
 
@@ -589,7 +596,7 @@ machine-readable fields instead of only prose:
 {
   "task": "QBE-AUTO-002",
   "leaf": "slot-three-branch-vanish",
-  "mode": "faithfulPaper",
+  "mode": "operatorBlockEncoding",
   "source_correspondence_ok": true,
   "lean_parse_ok": true,
   "lean_build_ok": false,
@@ -597,6 +604,11 @@ machine-readable fields instead of only prose:
   "block_entry_ok": false,
   "ancilla_cleanup_ok": null,
   "normalizer_ok": true,
+  "unitarity_ok": null,
+  "auxiliary_qubits": 1,
+  "gate_count": null,
+  "depth": null,
+  "oracle_calls": 6,
   "closed_theorem_ok": false,
   "error_class": "symbolic_bridge_gap",
   "next_route": "prove evalWith-level entry bridge for full index 48"
@@ -807,25 +819,66 @@ Created: `{now}`
 
 ## Goal
 
-State the oracle or block-encoding target precisely.
+State the query-operator target precisely.  The preferred input is a finite
+matrix/operator `A`, a normalizer `alpha`, and the requested block-entry
+contract:
 
-State whether this is faithful paper reproduction or exploratory construction.
-Faithful tasks reproduce a cited construction.  Exploratory tasks search for a
-new construction against a Lean-checkable acceptance predicate.
+```text
+(<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha
+```
+
+The system should construct a unitary candidate `U_A`, prove in Lean that it
+contains the requested operator block, and score the candidate by:
+
+1. auxiliary qubits `a` (smaller is better),
+2. gate count (smaller is better),
+3. depth when gate count ties (smaller is better; parallel layers matter),
+4. unresolved oracle calls (smaller is better).
+
+State whether this is a direct operator-to-block-encoding construction task, a
+paper benchmark task, or an exploratory improvement task.  Paper benchmark
+tasks reproduce a cited construction as a baseline; improvement tasks may
+search for a better construction only after the original target is fixed.
 
 Hybrid strategy:
 
-- `faithfulPaper`: use Learning-Beyond-Gradients-style trial memory and, when a
-  fixed lemma fails, maintain a local proof-attempt population for proof routes.
-  Do not mutate the paper construction.
+- `operatorBlockEncoding`: given `A`, search for candidate `U_A`
+  constructions, prove the block-entry and unitarity contracts, and rank
+  candidates by auxiliary qubits, gate count, depth, and unresolved oracle
+  calls.
+- `paperBenchmark` / `faithfulPaper`: reproduce a cited construction as a
+  source-faithful baseline.  Do not mutate the paper construction while proving
+  the baseline.
 - `exploratoryConstruction`: use Learning-Beyond-Gradients-style trial memory
   plus EoH-style candidate populations for circuit ideas.  Candidate scores are
-  search hints only; Lean proof obligations decide acceptance.
+  search hints only; Lean proof obligations decide acceptance.  This mode may
+  improve a baseline after the original operator target is fixed.
 
 ## Source
 
 - Paper/open problem: `{args.source or "TBD"}`
 - Lean target: `{args.target_lean}`
+
+## Operator Contract
+
+- Operator/matrix `A`: `TBD`
+- System qubits `n`: `TBD`
+- Normalizer `alpha`: `TBD`
+- Required block: top-left / selected ancilla state / custom projector: `TBD`
+- Free parameters allowed in the oracle: `TBD`
+- Required exactness or error tolerance: `TBD`
+
+## Candidate Score
+
+The default candidate score is defined in Lean as `BlockEncodingCost`:
+
+```text
+(auxiliaryQubits, gateCount, depth, oracleCalls)
+```
+
+Selection is lexicographic in that order.  In particular, if two candidates
+use the same number of auxiliary qubits and gates, the one with smaller depth
+is better.
 
 ## Conversion Window
 
@@ -847,11 +900,14 @@ Expected file and declarations:
 
 ## Proof Obligations
 
-- [ ] Matrix/operator target is defined.
-- [ ] Circuit or circuit schema is defined.
-- [ ] Normalization is explicit.
-- [ ] Ancilla layout is explicit.
-- [ ] Resource expression is explicit.
+- [ ] Matrix/operator target `A` is defined.
+- [ ] Candidate unitary `U_A` or circuit schema is defined.
+- [ ] Block-entry contract is stated with the exact ancilla projector.
+- [ ] Unitarity of `U_A` is proved or recorded as a named obligation.
+- [ ] Normalization `alpha` is explicit.
+- [ ] Auxiliary qubit count `a` is explicit.
+- [ ] Resource score `(a, gateCount, depth, oracleCalls)` is explicit.
+- [ ] Candidate comparison against the current baseline is recorded when relevant.
 - [ ] `lake build && lake build Tests` succeeds.
 
 ## Agent Notes
@@ -1263,7 +1319,7 @@ def infer_blueprint_stage(task_text: str, proof_obligation_text: str) -> str:
         any(marker in lower for marker in ["current run directive", "immediate 6h focus", "lower agent", "fixed theorem"])
         and any(marker in lower for marker in ["unproved", "remain false", "proved := false", "proof target", "dynamic leaf"])
     ):
-        return "Stage 2 DAG proof discharge, with faithful transcript checks still active"
+        return "Stage 2 DAG proof discharge, with source-transcript checks still active"
     if "phase 1" in lower or "transcript" in lower or "contract capture" in lower:
         return "Stage 1 target/transcript stabilization"
     if "unproved" in lower or "remain false" in lower or "proved := false" in lower:
@@ -1905,7 +1961,7 @@ def build_context_pack(task_id: str, cycle: int) -> str:
             "## Control Discipline",
             "",
             "- Use this compact context before reading long historical files.",
-            "- In faithful-paper mode, reproduce the paper construction and do not add assumptions.",
+            "- In paper-benchmark mode, reproduce the paper construction and do not add assumptions.",
             "- Translate the selected LaTeX proof fragment into Lean-facing declarations before lower proof search.",
             "- Maintain a proof-DAG frontier: root theorem, dependencies, active leaves, stale leaves, and owner lower profile.",
             "- Lower 1 writes the natural-language DAG proof packet; lower 2 compiles one ready Lean leaf; lower 3, if present, runs finite/path/support diagnostics before a large Lean proof.",
@@ -3087,7 +3143,7 @@ Run label: `{run_dir.name}`
 
 Cycle: `{cycle}`
 
-ABEIS is in faithful-reproduction mode.  Do not add assumptions, change the
+ABEIS is in paper-benchmark mode.  Do not add assumptions, change the
 oracle contract, change the gate order, or replace the paper's construction by
 a different construction.  If the paper relies on a previous theorem or a
 standard quantum primitive, classify it as an external technical lemma rather
@@ -3740,7 +3796,7 @@ Lean declarations, source anchors, or explicit obligations.
   quantum oracle assumptions into Lean-checked block-encoding/circuit
   certificates.
 - Keep the first case study honest: Guseynov--Huang--Liu 2025 is the first
-  faithful reproduction target, but final completion depends on the current
+  paper-benchmark target, but final completion depends on the current
   Lean gate and `sorry` status below.
 - If this cycle only changes proof-route memory or obstruction analysis, update
   the report's evidence/appendix status, not the headline contribution.
@@ -4196,7 +4252,13 @@ def infer_task_mode(task_text: str) -> str:
     mode_match = re.search(r"^Mode:\s*`?([A-Za-z0-9_-]+)`?", task_text, flags=re.M)
     if mode_match:
         mode = mode_match.group(1)
-        if mode in {"faithfulPaper", "exploratoryConstruction", "unspecified"}:
+        if mode in {
+            "operatorBlockEncoding",
+            "paperBenchmark",
+            "faithfulPaper",
+            "exploratoryConstruction",
+            "unspecified",
+        }:
             return mode
     text = task_text.lower()
     faithful_markers = [
@@ -4215,6 +4277,27 @@ def infer_task_mode(task_text: str) -> str:
         "innovation",
         "candidate construction",
     ]
+    paper_benchmark_markers = [
+        "paperbenchmark",
+        "paper benchmark",
+        "benchmark case",
+        "baseline candidate",
+    ]
+    operator_markers = [
+        "operatorblockencoding",
+        "operator-to-block-encoding",
+        "operator to block encoding",
+        "given operator",
+        "given matrix",
+        "candidate unitary",
+        "u_a",
+        "auxiliary qubits",
+        "blockencodingcost",
+    ]
+    if any(marker in text for marker in operator_markers):
+        return "operatorBlockEncoding"
+    if any(marker in text for marker in paper_benchmark_markers):
+        return "paperBenchmark"
     if any(marker in text for marker in faithful_markers):
         return "faithfulPaper"
     if any(marker in text for marker in exploratory_markers):
@@ -4319,15 +4402,18 @@ def verifier_feedback_contract() -> str:
 - Every lower attempt should classify progress with small fields when possible:
   `leaf`, `source_correspondence_ok`, `lean_parse_ok`, `lean_build_ok`,
   `finite_matrix_ok`, `block_entry_ok`, `ancilla_cleanup_ok`, `normalizer_ok`,
-  `closed_theorem_ok`, `error_class`, and `next_route`.
+  `unitarity_ok`, `resource_score`, `auxiliary_qubits`, `gate_count`,
+  `depth`, `oracle_calls`, `closed_theorem_ok`, `error_class`, and
+  `next_route`.
 - Suggested `error_class` values: `source_translation_gap`,
   `shape_or_register_gap`, `finite_matrix_counterexample`,
   `symbolic_bridge_gap`, `lean_tactic_gap`, `external_contract_gap`,
   `stale_leaf`, and `invalid_route`.
-- In faithful-paper mode, feedback may rank proof routes for the same fixed
+- In paper-benchmark mode, feedback may rank proof routes for the same fixed
   statement, but it must not mutate the paper circuit, oracle contract, theorem,
-  or assumptions.  In exploratory mode, feedback may score candidate families,
-  but a score is not proof.
+  or assumptions.  In operator-block-encoding and exploratory modes, feedback
+  may score candidate families by `BlockEncodingCost`, but a score is not
+  proof.
 - Log structured feedback with:
 
 ```bash
@@ -4345,7 +4431,33 @@ hardware scheduling checks are not relevant to the current proof blocker.
 
 
 def strategy_for_mode(mode: str) -> str:
-    if mode == "faithfulPaper":
+    if mode == "operatorBlockEncoding":
+        return """Hybrid strategy for this mode:
+
+- Treat the user-provided operator `A` and normalizer `alpha` as the fixed
+  scientific target.  Do not weaken the operator, add hidden promises, or
+  change the requested block projector to rescue a candidate.
+- Maintain an EoH-like candidate population under `candidate-populations/`.
+  Each candidate must name its unitary/circuit family, auxiliary qubits `a`,
+  gate count, depth/layer schedule, unresolved oracle calls, and current Lean
+  obligations.
+- Use necessary-condition feedback before expensive Lean proof search:
+  dimension checks, unitarity checks on small symbolic/numeric instances,
+  block-entry extraction checks, ancilla-cleanup checks, and schedule/depth
+  checks.  These diagnostics may reject a candidate but do not prove it.
+- Use the Learning-Beyond-Gradients-like loop to update compact memory after
+  every attempt: which construction family improved, which failed by
+  dimension/unitarity/block-entry/resource mismatch, and which proof leaf is
+  next.
+- Candidate selection is lexicographic by `BlockEncodingCost`:
+  auxiliary qubits first, then gate count, then depth, then unresolved oracle
+  calls.  If two candidates have the same number of gates, prefer the one with
+  smaller depth because parallel layers are better than sequential gates.
+- A candidate is accepted only after Lean proves the unitary and block-entry
+  contracts for the stated target.  Resource scores rank candidates; they do
+  not replace the theorem.
+"""
+    if mode in {"faithfulPaper", "paperBenchmark"}:
         return """Hybrid strategy for this mode:
 
 - Use the Learning-Beyond-Gradients-like loop as the main process: Lean
@@ -4364,6 +4476,10 @@ def strategy_for_mode(mode: str) -> str:
 - No agent may add a hypothesis, side condition, replacement oracle, or
   substitute circuit to make the statement easier.  If the paper step cannot
   yet be reproduced, record the exact obstruction as a proof obligation.
+- Paper benchmark mode produces a baseline candidate and score.  After the
+  baseline is source-faithful, a separate `operatorBlockEncoding` or
+  `exploratoryConstruction` task may try to improve auxiliary qubits, gate
+  count, depth, or unresolved oracle calls for the same operator target.
 """
     if mode == "exploratoryConstruction":
         return """Hybrid strategy for this mode:
@@ -4388,11 +4504,13 @@ def strategy_for_mode(mode: str) -> str:
     return """Hybrid strategy for this mode:
 
 - The upper agent must classify the task before broad lower-agent work begins.
-- If this is faithful paper reproduction, use LBG-style proof maintenance and
-  local proof-attempt populations only for fixed statements.
-- If this is exploratory construction, use LBG-style memory plus EoH-like
-  candidate populations for circuit ideas after the acceptance predicate is
-  precise.
+- If this is operator block-encoding construction, fix `A`, `alpha`, and the
+  block projector before candidate search.
+- If this is a paper benchmark, use LBG-style proof maintenance and local
+  proof-attempt populations only for fixed source statements.
+- If this is exploratory improvement, use LBG-style memory plus EoH-like
+  candidate populations for circuit ideas after the acceptance predicate and
+  baseline score are precise.
 """
 
 
@@ -4481,10 +4599,14 @@ Local paper-source archive for agent work:
 
 - QBE uses ARIS-style plain-file coordination and Learning-Beyond-Gradients-style
   trial memory, but the scientific target is Lean-checked quantum circuit
-  matrix construction.
+  matrix construction: given an operator/query-oracle target `A`, synthesize a
+  candidate unitary `U_A`, prove the requested block-entry relation in Lean,
+  and compare candidates by auxiliary qubits, gate count, depth, and unresolved
+  oracle calls.
 - Upper is the human-facing project director: choose the cycle objective,
-  decide whether the task is faithful paper reproduction or exploratory
-  construction, and compress memory for the next cycle.  In long runs, QBE can
+  decide whether the task is operator construction, paper baseline
+  reproduction, or exploratory improvement, and compress memory for the next
+  cycle.  In long runs, QBE can
   replace one broad upper pass with a bounded upper panel: source/visual audit,
   proof-DAG strategy, process/memory audit, and director synthesis.
 - Middle is the workflow maintainer: synchronize Lean, Markdown, and LaTeX;
@@ -4497,8 +4619,8 @@ Local paper-source archive for agent work:
   task, run the gate if they edit Lean, and report useful failures without
   changing the scientific objective.
 - Reviewer is the gatekeeper: audit the diff, build status, hidden oracle
-  assumptions, normalizers, ancillas, resource counts, links, and Markdown math
-  discipline.
+  assumptions, normalizers, ancillas, `BlockEncodingCost`, schedule/depth,
+  resource counts, links, and Markdown math discipline.
 	- Lean source is authoritative for correctness.  Markdown and LaTeX are the
 	  human-readable proof map.  JSONL/CSV trial logs are the process memory.
 
@@ -4510,11 +4632,18 @@ Local paper-source archive for agent work:
 
 	Mode discipline:
 
-- In `faithfulPaper` mode, reproduce the cited paper's construction.  Do not
+- In `operatorBlockEncoding` mode, the fixed target is the user-provided
+  operator/matrix `A`, normalizer `alpha`, and block projector.  Agents may
+  search over candidate unitary/circuit families, but every candidate must
+  record its `BlockEncodingCost = (auxiliaryQubits, gateCount, depth,
+  oracleCalls)` and Lean obligations.  Necessary-condition simulators and
+  finite checks may reject bad candidates; only Lean proves acceptance.
+- In `paperBenchmark` or `faithfulPaper` mode, reproduce the cited paper's
+  construction as a baseline candidate.  Do not
   invent a replacement oracle or block encoding, and do not add assumptions,
   side conditions, or easier variants.  If a paper step is missing or too hard,
   record the exact proof obligation and keep `proved := false`.
-- In faithful paper theorem-closure cycles, distinguish the current paper's own
+- In paper-benchmark theorem-closure cycles, distinguish the current paper's own
   proof contribution from primitives it explicitly cites.  External oracle,
   state-preparation, arithmetic, and LCU/block-composition results may be used
   as precise typed contracts with `SemanticObligation`s and cited-results rows.
@@ -4527,8 +4656,10 @@ Local paper-source archive for agent work:
   boundary endpoint.  Upper and middle must split boundary and bulk transcript
   targets, then assign lower work to the branch-correct target.
 - In `exploratoryConstruction` mode, propose new oracle/block-encoding
-  constructions only against a precise Lean-checkable acceptance target.  Do
-  not weaken the target or add assumptions to make a candidate pass.
+  constructions only against a precise Lean-checkable acceptance target.  This
+  mode is allowed to improve a paper baseline, but not to change the operator
+  being encoded.  Do not weaken the target or add assumptions to make a
+  candidate pass.
 - If the mode is `unspecified`, the upper agent must classify the task before
   lower agents perform broad code changes.
 - Prefer referencing shared Lean declarations and existing paper-note
@@ -4566,16 +4697,16 @@ Local paper-source archive for agent work:
   it as a dependency.  Reviewer must reject uncited or hallucinated prior
   results and any dependency marked as proved without a Lean declaration,
   explicit contract, or proof obligation.
-- A cited-results row is enough for faithful theorem closure only when it is a
+- A cited-results row is enough for paper-benchmark theorem closure only when it is a
   precise contract and is not marked proved.  It is not enough for gate-level
   completion of that cited primitive; that belongs to a later task.
-- Treat repeated proof failure in faithful-paper mode as a source-dependency
+- Treat repeated proof failure in paper-benchmark mode as a source-dependency
   signal.  Upper and middle should re-read the local TeX source and its
   bibliography around the failing theorem before assigning more lower proof
   search.  If the paper relies on an external result, middle must add a
   precise cited-results entry and lower must not invent the missing theorem or
   add a new assumption.
-- Faithful proof translation invariant: if the source TeX contains a proof or
+- Paper-benchmark proof translation invariant: if the source TeX contains a proof or
   proof sketch for the target statement, upper and middle must translate that
   proof structure before declaring the Lean task blocked.  Each proof sentence
   or displayed equation should be classified as an existing Lean declaration,
@@ -4622,7 +4753,7 @@ Human-facing correspondence rule:
   `research-wiki/paper-contributions/GHL2025/`, while cited primitives,
   standard facts, and reusable contracts live under
   `research-wiki/technical-lemmas/`.
-- Lean compilation alone is not enough for faithful paper-reproduction mode;
+- Lean compilation alone is not enough for paper-benchmark mode;
   humans must be able to compare the Lean names with the original theorem,
   equations, normalizers, register layout, and resource statement.
 - Proof-export cadence is deliberately slower than Lean search.  Do not spend
@@ -4678,7 +4809,7 @@ scientific process coherent.
 
 Produce:
 
-1. Task mode for this cycle: faithful paper reproduction, exploratory
+1. Task mode for this cycle: operator construction, paper benchmark, exploratory
    construction, or blocked pending human input.
 2. One precise objective.
 3. Current proof-DAG frontier: highest theorem, dependency nodes, active
@@ -4699,12 +4830,12 @@ Produce:
 10. Any cited prior results or classical facts that the next cycle depends on,
    including whether they are already formalized or still obligations.
 
-In faithful paper mode, preserve the paper construction and isolate every
+In paper-benchmark mode, preserve the paper construction and isolate every
 unimplemented oracle as a proof obligation; do not permit new assumptions or
 replacement conditions.  In exploratory mode, require a Lean-checkable target
 before search begins and reject any target-weakening shortcut.
 
-Faithful paper mode has a phase order.  Phase 1 is a fast, complete paper
+Paper-benchmark mode has a phase order.  Phase 1 is a fast, complete paper
 transcript: map the paper's theorem, equations, circuit fragments, oracle
 contracts, register layout, normalizers, and proof steps into Lean declarations
 or explicit obligations.  Do not slow Phase 1 down with broad library
@@ -4712,14 +4843,14 @@ architecture, general-purpose abstractions, or non-critical proofs.  Phase 2,
 after the transcript and contracts are complete, may reorganize shared APIs for
 teaching, reuse by other papers, and exploratory construction mode.
 
-Before assigning lower work in faithful paper mode, run a source-contract
+Before assigning lower work in paper-benchmark mode, run a source-contract
 audit: compare each Lean oracle/circuit contract with the paper's stated
 register-level transformation, normalizer, ancilla cleanup condition, and
 resource claim.  If a Lean declaration uses a simplified or drifted register
 map, make the next objective a correction of that contract rather than a proof
 attempt for the drifted statement.
 
-When a faithful-paper proof block fails or becomes blocked, run a source
+When a paper-benchmark proof block fails or becomes blocked, run a source
 dependency audit before assigning more lower proof search: inspect the local
 TeX source around the statement, inspect nearby citations and bibliography
 entries, decide whether the missing ingredient is internal, external, or a QBE
@@ -4751,7 +4882,7 @@ what has actually been proved, failed, or left as an obligation.  Upper should
 use that synchronized proof map, not raw Lean diffs alone, when planning the
 next cycle.
 
-If a faithful-mode lower attempt fails on a fixed lemma, ask the middle agent to
+If a paper-benchmark lower attempt fails on a fixed lemma, ask the middle agent to
 start or update a `proof-attempts/` record rather than changing the theorem.
 If a repeated local argument appears, ask middle to introduce a
 `qbe-hierarchical-proof-dag` block and assign lower work against that block. If
@@ -4879,13 +5010,13 @@ status, failed goals, and remaining obligations back into Markdown and LaTeX
 so humans can compare them with the original paper in the next reflection
 cycle.
 
-In faithful paper mode, optimize for Phase 1 first: complete the paper transcript
+In paper-benchmark mode, optimize for Phase 1 first: complete the paper transcript
 and exact Lean contracts before asking lower agents to prove non-critical
 sublemmas or to build reusable library architecture.  If a proof-route lemma is
 useful but not on the transcript critical path, record it as proof-route memory
 and schedule it later.
 
-For faithful theorem-closure mode, the current paper's theorem should close
+For paper-benchmark theorem-closure mode, the current paper's theorem should close
 under precise cited contracts before agents recursively formalize the cited
 oracle/state-preparation/LCU papers.  Upper and middle must regulate this every
 cycle: external cited work is backlog unless the active paper theorem cannot be
@@ -4908,7 +5039,7 @@ Prefer small Lean changes that keep the repository compiling.  Do not bury a
 failed oracle construction in prose; promote it to a proof obligation or open
 problem.
 
-In faithful mode, maintain proof-attempt populations only for fixed Lean
+In paper-benchmark mode, maintain proof-attempt populations only for fixed Lean
 targets.  In exploratory mode, maintain candidate-population records that track
 candidate family, partial score, changed files, remaining obligations, and next
 mutation or recombination step.
@@ -4918,7 +5049,7 @@ paper-note definitions to reuse.  Do not create a second definition for a
 matrix, normalizer, register layout, or theorem statement when a reference to
 the existing one will do.
 
-In faithful paper mode, maintain a source-contract audit before every lower
+In paper-benchmark mode, maintain a source-contract audit before every lower
 packet.  For each oracle or gate, record the paper anchor, exact input
 registers, exact output registers, clean ancillas, and the Lean declaration
 that represents that transformation.  Local source copies may be used while
@@ -5079,7 +5210,7 @@ Look for:
 12. Missing cited-results memory for prior work or "standard" facts used by the
 	    paper.  Reject a dependency if the source, exact statement, Lean status, or
 	    dependent use sites are vague.
-13. Missing source-dependency audit after a faithful-paper proof block gets
+13. Missing source-dependency audit after a paper-benchmark proof block gets
 	    stuck.  Reviewer should ask whether middle re-read the local TeX source and
 	    bibliography, whether the failure is internal/external/contractual, and
 	    whether the next lower packet is justified by that classification.
@@ -5101,20 +5232,20 @@ Look for:
     failure was source translation, shape/register, finite-matrix,
     symbolic-bridge, Lean-tactic, external-contract, stale-leaf, or invalid-route.
 
-Classify findings as blocking or advisory.  If the current task is faithful
-paper reproduction, reject unrecorded invention and any added assumption or
+Classify findings as blocking or advisory.  If the current task is a paper
+benchmark, reject unrecorded invention and any added assumption or
 side condition.  Also reject proof work on a Lean oracle contract whose
 register-level transformation, ancilla cleanup, or normalizer does not match
 the paper.  Public docs should not require a local absolute path to a paper
 source; cite the paper and stable theorem/equation/figure anchors instead.  If
 Lean fails, localize the failure and suggest the next smallest repair.
 
-In faithful paper mode, also check phase discipline.  During Phase 1, broad
+In paper-benchmark mode, also check phase discipline.  During Phase 1, broad
 library reorganization, non-critical proof polishing, and reusable API design
 are advisory at best; they should not displace completing the paper transcript,
 oracle contracts, and proof-obligation map.
 
-In faithful mode, check that proof-attempt populations did not alter the paper
+In paper-benchmark mode, check that proof-attempt populations did not alter the paper
 construction.  In exploratory mode, check that candidate scores are treated as
 search guidance rather than proof of correctness.
 """
@@ -5127,11 +5258,11 @@ or proof-obligation promotion.  Respect the file scope given by the upper or
 middle agent, and assume other agents may be editing nearby documentation.
 
 Run the Lean gate if you edit Lean, or explain why it was not run.  Do not
-change the scientific objective.  In faithful paper mode, do not replace the
+change the scientific objective.  In paper-benchmark mode, do not replace the
 paper construction with a new one and do not add assumptions.  In exploratory
 mode, keep every proposed construction tied to the acceptance predicate.
 
-In faithful paper mode, respect phase order.  If the assigned task is part of
+In paper-benchmark mode, respect phase order.  If the assigned task is part of
 Phase 1, implement only the narrow paper-transcript or contract item you were
 given.  Do not introduce broad abstractions, reorganize the library, or switch
 to a non-critical proof because it looks reusable.
@@ -5158,7 +5289,7 @@ Also write typed verifier feedback when possible.  At minimum, include the leaf
 id, one `error_class`, and one `next_route`; if you edited Lean, include
 `lean_parse_ok`, `lean_build_ok`, and `closed_theorem_ok`.
 
-In faithful mode, record failed proof scripts or lemma routes under
+In paper-benchmark mode, record failed proof scripts or lemma routes under
 `proof-attempts/` when useful.  In exploratory mode, record candidate-family
 changes under `candidate-populations/` when useful, especially when the attempt
 improves a partial Lean score but does not yet prove the target.
@@ -5659,10 +5790,16 @@ def build_parser() -> argparse.ArgumentParser:
     p_task = sub.add_parser("new-task", help="create a task contract in tasks/")
     p_task.add_argument("id")
     p_task.add_argument("--title", required=True)
-    p_task.add_argument("--kind", default="paperFormalization")
+    p_task.add_argument("--kind", default="operatorBlockEncoding")
     p_task.add_argument(
         "--mode",
-        choices=["faithfulPaper", "exploratoryConstruction", "unspecified"],
+        choices=[
+            "operatorBlockEncoding",
+            "paperBenchmark",
+            "faithfulPaper",
+            "exploratoryConstruction",
+            "unspecified",
+        ],
         default="unspecified",
     )
     p_task.add_argument("--source", default="")

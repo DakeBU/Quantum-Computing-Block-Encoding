@@ -4,10 +4,9 @@ QBE keeps a local development checkout of
 [YuanheZ/LeanMarathon](https://github.com/YuanheZ/LeanMarathon) as a design
 reference, together with the paper
 [LeanMarathon: Toward Reliable AI Co-Mathematicians through Long-Horizon Lean Autoformalization](https://arxiv.org/abs/2606.05400).
-The shared local checkout is
-`/home/nitanda_sub/mark/repos/outer_repos/automation_systems/LeanMarathon`, and
-the shared local PDF is
-`/home/nitanda_sub/mark/repos/outer_papers/automation_systems/LeanMarathon-2606.05400.pdf`.
+When a local checkout is present, the shared external-root convention places it
+under `../outer_repos/automation_systems/LeanMarathon`; the corresponding paper
+belongs under `../outer_papers/automation_systems/`.
 
 ## Similar Patterns Studied
 

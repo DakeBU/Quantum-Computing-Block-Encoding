@@ -1,8 +1,8 @@
 # Sleep Run Guide
 
-Sleep run mode is for unattended construction search. It creates repeated
-upper/middle/lower/reviewer cycles, can run bounded upper and middle panels at
-checkpoints, and uses Lean as the acceptance gate.
+Sleep run mode is for unattended block-encoding construction and proof search.
+It creates repeated upper/middle/lower/reviewer cycles, can run bounded upper
+and middle panels at checkpoints, and uses Lean as the acceptance gate.
 
 ![QBE automation pipeline](assets/qbe_pipeline.svg)
 
@@ -48,19 +48,33 @@ python3 tools/qbe.py trial-log --task QBE-AUTO-002 \
   --feedback-field next_route="prove evalWith-level entry bridge for full index 48"
 ```
 
-For GHL2025, the useful feedback layers are source correspondence,
-register/shape checks, finite matrix-entry checks, support/vanish/cancellation
-checks, symbolic bridge classification, and Lean build status.  Timeline,
+For an operator-construction task, the useful feedback layers are dimension
+checks, finite unitarity checks, block-entry checks, ancilla-cleanup checks,
+normalizer checks, circuit depth estimates, and Lean build status.  For the
+GHL2025 paper benchmark, source correspondence and register/shape checks are
+also required because the construction is fixed by the source.  Timeline,
 pulse, hardware transpilation, and output-distribution-only checks are not
-useful for the current one-term Robin blocker.
+proofs of a block-encoding contract.
 
 ## Choose The Mode First
 
 Before an unattended run, decide which mode the task uses.
 
-Faithful paper reproduction:
+Operator block-encoding construction:
 
-- use when reproducing GHL2025 or another cited paper,
+- use when the user gives a target operator \(A\), normalizer \(\alpha\), and
+  clean-block convention,
+- search for candidate unitaries or circuits \(U_A\),
+- score candidates by auxiliary qubits, gate count, parallel depth, and
+  unresolved oracle calls,
+- use `candidate-populations/` for alternative candidates and rejected routes,
+- use non-Lean verifier feedback only as necessary-condition diagnostics,
+- accept a construction only after Lean proves unitarity and the exact
+  block-entry theorem.
+
+Paper benchmark:
+
+- use when translating GHL2025 or another cited paper construction,
 - keep the paper construction fixed,
 - record missing oracle details as proof obligations,
 - use `proof-attempts/` for competing proof routes of the same fixed lemma,
@@ -69,10 +83,11 @@ Faithful paper reproduction:
   worker, and necessary-condition verifier.  Use one lower worker only for
   cheap maintenance cycles.
 
-Exploratory construction:
+Exploratory improvement:
 
-- use when searching for a new block encoding or oracle realization,
-- start from a precise Lean acceptance predicate,
+- use when starting from a paper benchmark or baseline candidate and searching
+  for a better implementation of the same operator contract,
+- keep the target operator and block-entry predicate fixed,
 - use `candidate-populations/` for competing circuit families and partial
   Lean scores,
 - let lower agents try alternative constructions in separated file scopes,
@@ -80,8 +95,8 @@ Exploratory construction:
 - promote repeated failures to open-problem proposals.
 
 The upper prompt must state the mode.  The reviewer should reject a run that
-mixes faithful reproduction and exploratory invention without recording the
-branch.
+changes the operator contract, mutates a paper benchmark inside the benchmark
+task, or accepts a diagnostic score as if it were a Lean theorem.
 
 ## Dry Run
 
@@ -144,7 +159,7 @@ The command template receives these placeholders:
 Example shape:
 
 ```bash
-python3 tools/qbe.py sleep-run QBE-AUTO-001 \
+python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 8 \
   --lower-count 3 \
   --context-mode focused \
@@ -158,7 +173,7 @@ After a long run, summarize the log and trial memory before assigning the next
 round:
 
 ```bash
-python3 tools/qbe.py efficiency-report --task QBE-AUTO-001
+python3 tools/qbe.py efficiency-report --task QBE-OP-001
 ```
 
 Use your own agent CLI flags. The only QBE-side expectation is that the command
@@ -180,13 +195,56 @@ python3 tools/qbe.py sleep-run QBE-AUTO-002 \
 This is appropriate for final audits or repeated drift.  It is usually too
 expensive for every inner proof-search cycle.
 
-## Faithful GHL2025 Semantics Run
+## Operator Construction Run
 
-After the first faithful skeleton pass, the active infrastructure target is
-`QBE-AUTO-002`: the circuit matrix semantics backend needed to finish the
-GHL2025 Robin block-extraction proof statement.
+For a new target, create an operator-first task.  The task file should name
+the matrix/operator \(A\), the normalizer \(\alpha\), the clean ancilla state,
+and the desired block-entry equation.
 
 Run one small dry-run first:
+
+```bash
+python3 tools/qbe.py new-task QBE-OP-001 \
+  --kind operatorBlockEncoding \
+  --mode operatorBlockEncoding \
+  --title "Block encoding for the target operator A"
+python3 tools/qbe.py blueprint-refresh QBE-OP-001
+python3 tools/qbe.py sleep-run QBE-OP-001 \
+  --cycles 1 \
+  --lower-count 3 \
+  --context-mode focused \
+  --blueprint-refresh \
+  --dry-run
+```
+
+Then start a Codex unattended run:
+
+```bash
+mkdir -p runs/logs
+nohup bash -lc '
+python3 tools/qbe.py sleep-run QBE-OP-001 \
+  --cycles 4 \
+  --lower-count 3 \
+  --parallel-lower \
+  --context-mode focused \
+  --blueprint-refresh \
+  --agent-cmd '"'"'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"'"'"' \
+  --execute \
+  --check-each-cycle
+' > runs/logs/codex-qbe-op-001-$(date +%Y%m%d-%H%M%S).log 2>&1 &
+```
+
+Lower 1 proposes the candidate family and proof DAG, lower 2 proves one Lean
+leaf, and lower 3 runs necessary-condition diagnostics such as finite unitarity
+or block-entry checks.  Candidate changes belong in `candidate-populations/`
+and must keep the same target operator.
+
+## GHL2025 Paper Benchmark Run
+
+`QBE-AUTO-002` is the first paper benchmark.  It translates the
+Guseynov--Huang--Liu Robin construction into the same operator/circuit
+semantics used by the general platform.  The paper construction is fixed in
+this mode; improvements belong in a separate operator-improvement task.
 
 ```bash
 python3 tools/qbe.py blueprint-refresh QBE-AUTO-002
@@ -198,28 +256,6 @@ python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --dry-run
 ```
 
-Then start a Claude-only unattended run:
-
-```bash
-mkdir -p runs/logs
-nohup bash -lc '
-python3 tools/qbe.py sleep-run QBE-AUTO-002 \
-  --cycles 4 \
-  --lower-count 3 \
-  --context-mode focused \
-  --blueprint-refresh \
-  --agent-cmd '"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
-  --execute \
-  --check-each-cycle
-' > runs/logs/claude-qbe-auto-002-$(date +%Y%m%d-%H%M%S).log 2>&1 &
-```
-
-This mode is intentionally conservative in target, not in useful role
-separation: lower 1 writes the proof DAG, lower 2 proves one Lean leaf, and
-lower 3 runs necessary-condition diagnostics.  There is still no exploratory
-block-encoding invention, and every Lean change must be mirrored in the
-conversion window, LaTeX proof map, or proof-obligation ledger.
-
 ## Overnight Checklist
 
 Before starting:
@@ -228,20 +264,20 @@ Before starting:
 python3 tools/qbe.py check
 python3 tools/qbe.py list-literature
 python3 tools/qbe.py next-task
-python3 tools/qbe.py blueprint-refresh QBE-AUTO-001
+python3 tools/qbe.py blueprint-refresh QBE-OP-001
 ```
 
 Prepare the active task:
 
 ```bash
-python3 tools/qbe.py update-task QBE-AUTO-001 --status active --active
-python3 tools/qbe.py conversion-window QBE-AUTO-001 --title "Robin one-term block encoding"
+python3 tools/qbe.py update-task QBE-OP-001 --status active --active
+python3 tools/qbe.py conversion-window QBE-OP-001 --title "Target operator block encoding"
 ```
 
 Start the run:
 
 ```bash
-python3 tools/qbe.py sleep-run QBE-AUTO-001 \
+python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 8 \
   --lower-count 3 \
   --blueprint-refresh \
@@ -274,7 +310,7 @@ Learning Beyond Gradients logs repeated heuristic-search trials as JSONL and
 rewrites compact summaries for later agent iterations. QBE applies the same
 shape to proof search:
 
-- environment score becomes Lean gate status and construction score,
+- environment score becomes Lean gate status and `BlockEncodingCost`,
 - replay artifacts become conversion windows, proof obligations, and diffs,
 - policy edits become Lean/circuit edits,
 - failure modes become open problems or rejected directions,

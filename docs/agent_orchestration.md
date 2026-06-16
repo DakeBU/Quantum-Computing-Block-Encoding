@@ -1,8 +1,8 @@
 # Agent Orchestration
 
 QBE uses ARIS-style plain files, but the target is different: an overnight run
-must move one block-encoding/oracle task closer to a Lean-checked circuit
-certificate.
+must move one query-operator task closer to a Lean-checked block-encoding
+circuit certificate.
 
 The implementation is intentionally local and inspectable:
 
@@ -35,7 +35,7 @@ free-form chat room.
   the active task.  It is a QBE-specific adaptation of the blueprint/DAG
   control pattern studied in LeanMarathon.
 
-Every nontrivial cycle should leave three kinds of evidence:
+Every nontrivial cycle should leave four kinds of evidence:
 
 - a Lean change, test, or explicit proof obligation,
 - a Markdown/LaTeX correspondence update when paper notation is involved,
@@ -43,29 +43,37 @@ Every nontrivial cycle should leave three kinds of evidence:
 - an article-facing update packet that tells the project technical report what
   can safely be updated and what must not be overclaimed.
 
-## Two Hybrid Strategy Modes
+## Three Strategy Modes
 
-QBE deliberately separates two kinds of automation.
+QBE deliberately separates three kinds of automation.
 
-Faithful paper-reproduction mode is used for targets such as GHL2025.  The
-agents must reproduce the paper's construction, not invent a substitute.  If a
-paper says "assume an oracle", the gap becomes a circuit-level proof
-obligation unless the paper gives enough detail to formalize the oracle.  The
-search policy is LBG-like proof-system maintenance: record Lean feedback,
-failed proof routes, and reviewer findings; if a fixed lemma fails, keep a
-small proof-attempt population under `proof-attempts/`.
+Operator block-encoding construction mode is the default.  The input is a
+fixed operator \(A\), normalizer \(\alpha\), and clean-block convention.  Agents
+search for candidate unitaries or circuits \(U_A\), prove unitarity and the
+exact block-entry theorem in Lean, and compare candidates by
+`BlockEncodingCost`: auxiliary qubits first, then gate count, then parallel
+depth, then unresolved oracle calls.
 
-Exploratory construction mode is used for new theoretical conditions where the
-paper or open problem does not already provide a gate-level block encoding.
-Agents may propose new circuit matrices, but only against an explicit
-Lean-checkable acceptance predicate.  The search policy combines LBG-like
-memory with an EoH-like candidate-evolution layer under
-`candidate-populations/`: initialize, mutate, recombine, score partial Lean
-progress, archive, and retry.  Partial scores are search guidance; Lean proof
+Paper benchmark mode is used for targets such as GHL2025.  The agents
+translate the paper's construction as a fixed baseline, not as the whole
+purpose of the project.  If a paper says "assume an oracle", the gap becomes a
+circuit-level proof obligation unless the paper gives enough detail to
+formalize the oracle.  The search policy is LBG-like proof-system maintenance:
+record Lean feedback, failed proof routes, and reviewer findings; if a fixed
+lemma fails, keep a small proof-attempt population under `proof-attempts/`.
+
+Exploratory improvement mode starts from a paper benchmark or baseline
+candidate and searches for a better implementation of the same operator
+contract.  Agents may mutate and recombine circuit matrices, but only against
+an explicit Lean-checkable acceptance predicate.  The search policy combines
+LBG-like memory with an EoH-like candidate-evolution layer under
+`candidate-populations/`.  Partial scores are search guidance; Lean proof
 obligations decide acceptance.
 
 The upper agent must identify the mode before broad lower-agent work begins.
-The reviewer rejects any cycle that silently mixes the two modes.
+The reviewer rejects any cycle that changes the operator contract, mutates a
+paper benchmark inside the benchmark task, or treats a diagnostic score as a
+theorem.
 
 ## Adaptive Layer Panels
 
@@ -76,10 +84,10 @@ QBE can split the planning layers into bounded specialist panels.
 
 Upper panel:
 
-- source/visual auditor: paper text, equations, figures, register transcript,
-  normalizer, and cleanup;
-- proof-DAG strategist: root theorem, active leaf, stale leaves, and
-  necessary-condition checks;
+- target/source auditor: operator \(A\), normalizer, block projector, optional
+  paper text, figures, register transcript, and cleanup;
+- proof-DAG strategist: root theorem, active leaf, stale leaves, candidate
+  families, and necessary-condition checks;
 - process/memory auditor: trial logs, rejected routes, human reports, and
   compact retrieval state;
 - director: synthesizes the three audits into one objective.
@@ -235,9 +243,12 @@ the final lower packet.
 
 Lower agents:
 
-- lower 1 writes source-faithful natural-language proof DAGs,
-- lower 2 implements exactly one assigned Lean leaf,
-- lower 3 runs necessary-condition diagnostics and typed feedback,
+- lower 1 writes natural-language construction/proof DAGs tied to the fixed
+  operator contract and, when present, the cited paper source,
+- lower 2 implements exactly one assigned Lean leaf or candidate repair,
+- lower 3 runs necessary-condition diagnostics and typed feedback, including
+  finite unitarity, clean-block entry checks, cleanup checks, and schedule/depth
+  checks,
 - lower 4, when scheduled, refines a concrete Lean failure,
 - all lower agents edit only the assigned scope and report blockers without
   changing the objective.
@@ -246,8 +257,10 @@ Reviewer:
 
 - checks the diff, build result, and docs correspondence,
 - looks for hidden oracle assumptions,
-- checks normalizers, ancillas, resource counts, and citations,
-- enforces faithful-vs-exploratory mode discipline,
+- checks normalizers, ancillas, `BlockEncodingCost`, resource counts, and
+  citations,
+- enforces operator-construction, paper-benchmark, and improvement-mode
+  discipline,
 - decides whether a gap should become an open problem.
 
 ## Cycle Anatomy
@@ -256,16 +269,18 @@ One cycle should look like this:
 
 1. Upper reads the task, trial memory, dialogue, and current diff, then chooses
    the exact objective and mode.
-2. Middle updates the conversion window, paper note, and proof-obligation
-   ledger, then gives lower agents concrete Lean targets.
+2. Middle updates the operator/Lean/Markdown/LaTeX correspondence window,
+   optional paper note, and proof-obligation ledger, then gives lower agents
+   concrete candidate or Lean targets.
 3. Lower agents attempt those targets in narrow file scopes and run the gate
    when they edit Lean.
 4. Reviewer audits the result, records blocking/advisory findings, and
    recommends the next smallest objective.
 
 If a lower agent discovers that the assignment is too broad, it should record
-the missing lemma or circuit as a proof obligation instead of inventing a new
-project direction.
+the missing lemma or circuit as a proof obligation.  If it proposes a different
+candidate \(U_A\), it must keep the same target operator and record the
+candidate score separately.
 
 ## Create A Prompt Deck
 

@@ -28,7 +28,7 @@ Lean proof workflow, not the scientific task.
 | Reuse memory | The theorem-store idea records proved theorems so future proof attempts can import and reuse them. | QBE should maintain a domain-specific theorem/proof-block library for reusable matrix-index, projection, LCU-contract, and gate-semantics lemmas. |
 | Lemma discovery | Lean LSP plus external lemma search gives the prover structured suggestions before tactic search. | Middle agents should search existing QBE declarations and Mathlib-style names before creating duplicate circuit/projection lemmas. |
 | Tree-of-subgoals | Hard proofs can be decomposed into `have ... := by sorry` skeletons, solved independently, then stitched back and checked. | QBE can use the same idea only as an internal proof-attempt workflow: placeholders must not remain in committed accepted proof targets, and every stitched result must pass `lake build`. |
-| Multi-planner | Several planners propose different proof strategies before a prover chooses one. | In faithful mode, multiple plans may compete only for the same fixed theorem. In exploratory mode, this becomes candidate construction search under a Lean-checkable acceptance predicate. |
+| Multi-planner | Several planners propose different proof strategies before a prover chooses one. | In paper-benchmark mode, multiple plans may compete only for the same fixed theorem. In operator-construction or improvement mode, this becomes candidate construction search under a Lean-checkable acceptance predicate. |
 | Extensibility | Skills, tools, and plugins provide domain-specific strategies and analysis commands. | QBE already has `.agents/skills/`; new skills should encode block-encoding-specific proof diagnostics, source-dependency audits, and projection proof patterns. |
 | Scheduled loops | Recurring agent loops can continue monitoring or proving over time. | QBE's `sleep-run` is the corresponding overnight proof loop, with upper/middle/lower/reviewer roles and trial memory. |
 
@@ -36,8 +36,9 @@ Lean proof workflow, not the scientific task.
 
 - QBE should not become a general natural-language-to-Lean service.
 - QBE should not store conversational assumptions as accepted axioms for
-  faithful paper reproduction. If an assumption is needed, it must be a cited
-  contract or explicit proof obligation with `proved := false`.
+  paper benchmarks or operator-construction tasks. If an assumption is needed,
+  it must be a cited contract or explicit proof obligation with
+  `proved := false`.
 - QBE should not accept proof-search scores as correctness. The Lean theorem
   and all required semantic obligations remain the final judge.
 - QBE should not copy MathCode code without a license audit. The local checkout

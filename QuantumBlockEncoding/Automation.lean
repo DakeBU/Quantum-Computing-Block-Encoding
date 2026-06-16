@@ -13,12 +13,15 @@ inductive AutomationStage where
   | literatureTriage
   | formalSpec
   | circuitSearch
+  | candidateScoring
   | leanProof
   | review
   | documented
 deriving Repr, DecidableEq
 
 inductive TaskKind where
+  | operatorBlockEncoding
+  | paperBenchmark
   | paperFormalization
   | oracleRealization
   | blockEncodingSearch
@@ -212,25 +215,25 @@ def threeLayerAgentContracts : List AgentContract :=
   [
     {
       role := AgentRole.upper,
-      responsibility := "Choose the next formalization objective, compress trial memory, and reject weak directions.",
+      responsibility := "Fix the operator target, choose candidate families or proof leaves, compress trial memory, and reject weak directions.",
       writes := ["runs/<run-id>/10_upper_director.md", "runs/<run-id>/90_handoff.md"],
       mustLogTrial := true
     },
     {
       role := AgentRole.middle,
-      responsibility := "Maintain the LaTeX/Markdown/Lean conversion window and proof-obligation ledger.",
+      responsibility := "Maintain the operator/candidate Lean--Markdown--LaTeX conversion window and proof-obligation ledger.",
       writes := ["conversion-windows/", "proof-obligations/", "tasks/"],
       mustLogTrial := true
     },
     {
       role := AgentRole.lower,
-      responsibility := "Attempt one concrete circuit construction, proof repair, or open-problem promotion.",
+      responsibility := "Attempt one concrete candidate unitary/circuit construction, resource-score improvement, proof repair, or open-problem promotion.",
       writes := ["QuantumBlockEncoding/", "Tests/", "paper-notes/"],
       mustLogTrial := true
     },
     {
       role := AgentRole.reviewer,
-      responsibility := "Review diffs, oracle assumptions, resources, citations, and Lean build results.",
+      responsibility := "Review diffs, operator targets, hidden oracle assumptions, BlockEncodingCost, citations, and Lean build results.",
       writes := ["reviews/", "runs/<run-id>/dialogue.md"],
       mustLogTrial := true
     }
@@ -262,35 +265,35 @@ def seedAutomationTasks : List AutomationTask :=
   [
     {
       id := "QBE-AUTO-001",
-      title := "Complete the Guseynov-Huang-Liu Robin one-term block encoding skeleton",
-      kind := TaskKind.paperFormalization,
+      title := "Construct and score a block encoding for a user-specified query operator",
+      kind := TaskKind.operatorBlockEncoding,
       status := TaskStatus.active,
-      stage := AutomationStage.formalSpec,
-      source := "Guseynov-Huang-Liu 2026 primary target",
+      stage := AutomationStage.circuitSearch,
+      source := "User-provided operator/matrix A, normalizer alpha, and block projector",
+      targetLean := "QuantumBlockEncoding/BlockEncoding.lean",
+      artifacts := conversionArtifacts "OperatorBlockEncodingCandidate",
+      gates := defaultGates
+    },
+    {
+      id := "QBE-AUTO-002",
+      title := "Benchmark the Guseynov-Huang-Liu Robin block-encoding construction",
+      kind := TaskKind.paperBenchmark,
+      status := TaskStatus.planned,
+      stage := AutomationStage.leanProof,
+      source := "Guseynov-Huang-Liu 2025/2026 paper benchmark",
       targetLean := "QuantumBlockEncoding/GHL2025.lean",
       artifacts := conversionArtifacts "GHL2025_RobinOneTerm",
       gates := defaultGates
     },
     {
-      id := "QBE-AUTO-002",
-      title := "Create a concrete gate-semantics backend for the circuit IR",
-      kind := TaskKind.oracleRealization,
-      status := TaskStatus.planned,
-      stage := AutomationStage.circuitSearch,
-      source := "Project automation roadmap",
-      targetLean := "QuantumBlockEncoding/Circuit.lean",
-      artifacts := conversionArtifacts "CircuitSemantics",
-      gates := defaultGates
-    },
-    {
       id := "QBE-AUTO-003",
-      title := "Generate new open block-encoding problems from failed oracle assumptions",
-      kind := TaskKind.openProblemProposal,
+      title := "Improve a fixed operator block encoding against a baseline score",
+      kind := TaskKind.blockEncodingSearch,
       status := TaskStatus.planned,
-      stage := AutomationStage.literatureTriage,
-      source := "Open problem registry",
+      stage := AutomationStage.candidateScoring,
+      source := "Candidate population and baseline BlockEncodingCost",
       targetLean := "QuantumBlockEncoding/OpenProblems.lean",
-      artifacts := conversionArtifacts "OpenProblemDiscovery",
+      artifacts := conversionArtifacts "BlockEncodingImprovement",
       gates := defaultGates
     }
   ]

@@ -19,6 +19,23 @@ example : automationTaskCount = 3 := rfl
 
 example : threeLayerAgentContracts.length = 4 := rfl
 
+example :
+    (Resource.parallel (Resource.ofCounts 1 0 0) (Resource.ofCounts 0 1 0)).depth = 1 := by
+  native_decide
+
+example :
+    (Resource.ofCounts 1 1 0).depth = 2 := rfl
+
+example :
+    BlockEncodingCost.betterThan
+      { auxiliaryQubits := 1, gateCount := 10, depth := 4, oracleCalls := 0 }
+      { auxiliaryQubits := 1, gateCount := 10, depth := 5, oracleCalls := 0 } := by
+  simp [BlockEncodingCost.betterThan]
+
+example :
+    gridSize (3 + 1) = 2 * gridSize 3 := by
+  native_decide
+
 -- CircuitSemantics tests: first matrix-semantics backend layer
 
 example : qubitDim 3 = 8 := rfl
@@ -293,8 +310,10 @@ example (p : GHL2025.OneTermRobinParameters)
     (GHL2025.oneTermRobinSpec p mat).resource.pureAncilla = 2 * p.n :=
   GHL2025.oneTermRobinSpec_ancilla p mat
 
--- Spec circuit local cost: 3 CNOTs from SWAP placeholder, oracle calls are free
-example : Circuit.resource GHL2025.oneTermRobinCircuit = Resource.ofCounts 0 3 0 :=
+-- Spec circuit local cost: 3 CNOTs from SWAP placeholder, 6 unresolved oracle calls
+example :
+    Circuit.resource GHL2025.oneTermRobinCircuit =
+      Resource.ofCountsWithDepth 0 3 6 0 9 :=
   GHL2025.oneTermRobinSpec_circuitCost
 
 -- Spec circuit gate count: 7 gates (U_indic, O_DT^S, Ry_boundary, O_D^BS, O_f, SWAP, (O_D^BS)^†)

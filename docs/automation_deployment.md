@@ -72,20 +72,36 @@ lake build && lake build Tests
 The repository is allowed to contain skeletons and planned work, but completed
 claims must compile.
 
-## Two Hybrid Strategy Modes
+## Three Strategy Modes
 
-QBE supports two explicit automation modes.  Both use trial memory and Lean
+QBE supports three explicit automation modes.  All use trial memory and Lean
 gates, but they use different search policies.
 
-### Faithful Paper Reproduction
+### Operator Block-Encoding Construction
+
+Use this mode when the user gives a target operator \(A\), normalizer
+\(\alpha\), and clean-block convention.  The agents search for candidate
+unitaries or circuits \(U_A\), prove the exact block-entry and unitarity
+statements in Lean, and rank candidates by auxiliary qubits, gate count,
+parallel depth, and unresolved oracle calls.
+
+Operator mode rules:
+
+- keep the operator contract fixed,
+- store alternative candidates under `candidate-populations/`,
+- use parser/unit-test/simulator-style checks only as necessary-condition
+  diagnostics,
+- accept only Lean-closed block-entry and unitarity theorems.
+
+### Paper Benchmark
 
 Use this mode when the goal is to reproduce an existing paper, such as the
 GHL2025 Robin-boundary construction.  The upper agent should state that the
-cycle is faithful mode, and lower agents should only implement definitions,
-lemmas, circuit matrices, tests, or proof obligations that are needed for the
-paper's construction.
+cycle is paper-benchmark mode, and lower agents should only implement
+definitions, lemmas, circuit matrices, tests, or proof obligations that are
+needed for the paper's construction.
 
-Faithful mode rules:
+Paper-benchmark rules:
 
 - do not replace the paper construction with a new oracle,
 - keep every unimplemented oracle as a named proof obligation,
@@ -201,10 +217,18 @@ tokens.  It should be used only after a full planning cycle has identified a
 single theorem or a single strictly smaller obstruction as the lower-agent
 target.
 
-## Faithful Agent Loop
+### Exploratory Improvement
+
+Use this mode after a paper benchmark or baseline candidate exists and the
+goal is to improve the same operator contract.  The target \(A\) and block
+predicate remain fixed, but candidate circuits may be mutated, recombined, and
+ranked by `BlockEncodingCost`.
+
+## Paper-Benchmark Agent Loop
 
 1. Select a paper target from `Literature.lean` or `tasks/`.
-2. Create or update a task contract that says the target is faithful mode.
+2. Create or update a task contract that says the target is paper-benchmark
+   mode.
 3. Create a conversion window with `tools/qbe.py conversion-window`.
 4. Translate paper notation into Lean declarations.
 5. Add circuit semantics and tests in small steps.

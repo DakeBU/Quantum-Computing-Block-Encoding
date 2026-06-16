@@ -4,7 +4,12 @@
 
 - Active task: `QBE-AUTO-002`
 - Build gate: run `python3 tools/qbe.py check`
-- Primary target: Guseynov-Huang-Liu Robin block encoding, now moving from faithful skeleton to circuit matrix semantics.
+- Primary target: given a query operator \(A\), synthesize a block-encoding
+  unitary \(U_A\), prove the block-entry and unitarity contract in Lean, and
+  rank candidates by auxiliary qubits, gate count, depth, and unresolved oracle
+  calls.
+- Active paper benchmark: `QBE-AUTO-002`, the Guseynov-Huang-Liu Robin
+  construction, used as the first source-backed training case for the platform.
 
 ## Operating Rule
 
@@ -25,11 +30,17 @@ succeeds.
 5. Read `docs/agent_orchestration.md`, `docs/sleep_run_guide.md`, and
    `docs/article_to_lean_workflow.md`.
 
-Faithful paper-reproduction mode must keep three views synchronized:
+Operator-construction and paper-benchmark modes must keep three views
+synchronized:
 
 - Lean source in `QuantumBlockEncoding/`
 - Markdown conversion windows in `conversion-windows/`
 - LaTeX proof maps in `paper-notes/`
+
+In `operatorBlockEncoding` mode, the synchronized views must also record the
+fixed operator \(A\), normalizer \(\alpha\), candidate unitary or circuit, and
+`BlockEncodingCost`.  In `paperBenchmark` mode, the paper construction is a
+fixed baseline; improvements belong in a separate operator/improvement task.
 
 ## Automation Memory
 

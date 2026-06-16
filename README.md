@@ -1,29 +1,79 @@
 # Auto-Lean-in-Sleep: Block Encoding for Quantum Computing
 
-Lean 4 project for turning quantum oracle assumptions into concrete
-gate-level circuit matrices and Lean-checked block-encoding certificates.
+Lean 4 project for turning a requested quantum query operator into concrete
+block-encoding candidates, gate-level circuit matrices, resource scores, and
+Lean-checked certificates.
 
 The project target is:
 
 ```text
-specific problem -> concrete circuit matrix -> Lean-checked oracle/block-encoding certificate
+operator/query-oracle contract A
+-> candidate unitary U_A and circuit schedule
+-> Lean-checked block-entry and unitarity certificate
+-> resource-ranked construction
 ```
 
-The project explicitly avoids stopping at "assume an oracle exists". If a paper
-uses an oracle, this repository asks for the matrix, circuit schema, ancilla
-layout, normalizer, and resource count needed to run it on a quantum computer.
+The project explicitly avoids stopping at "assume an oracle exists".  ABEIS
+asks for the actual operator `A`, a normalizer `alpha`, an ancilla projector,
+and a candidate unitary `U_A` satisfying a block-entry statement such as:
+
+```text
+(<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha
+```
+
+The search target is not only correctness.  Among Lean-checkable candidates,
+ABEIS ranks constructions by:
+
+1. auxiliary qubits `a`, smaller is better;
+2. gate count, smaller is better;
+3. depth when gate count ties, smaller is better because parallel layers are
+   preferable to sequential gates;
+4. unresolved oracle calls, smaller is better until they are expanded.
+
+Thus paper constructions are baselines and training data, not the whole
+purpose of the project.  After a paper baseline is formalized, the same system
+can try to improve the construction for the same operator target.
 
 ![QBE automation pipeline](docs/assets/qbe_pipeline.svg)
 
-## First Faithful Reproduction Case
+## Core Workflow
 
-ABEIS is a general auto-Lean-in-sleep system for gate-level quantum oracle and
-block-encoding formalization.  Its first faithful paper-reproduction case is
-the Robin-boundary PDE simulation construction:
+ABEIS is an auto-Lean-in-sleep system for operator-to-block-encoding
+construction:
 
-- Nikita Guseynov, Xiajie Huang, Nana Liu,
+```mermaid
+flowchart LR
+  A["user gives A, alpha, block projector"] --> B["upper fixes the contract"]
+  B --> C["middle writes Lean/Markdown/LaTeX correspondence"]
+  C --> D["lower population proposes U_A candidates"]
+  D --> E["finite/unitarity/block-entry diagnostics"]
+  E --> F["Lean certificate attempt"]
+  F --> G["resource score: a, gates, depth, oracle calls"]
+  G --> H["candidate archive and next mutation"]
+  F --> I["accepted Lean-checked construction"]
+```
+
+The universal one-ancilla completion
+
+```text
+U_A = [[A, (I - A† A)^(1/2)],
+       [(I - A† A)^(1/2), -A†]]
+```
+
+is a useful existence baseline when `A` is properly scaled, but it is usually
+not the construction ABEIS wants to stop at.  The system should search for
+structured circuits with fewer gates, shallower schedules, fewer unresolved
+oracle calls, or clearer reusable proof components.
+
+## Benchmark Paper Cases
+
+Paper reproduction remains important, but as benchmark data for the core
+operator-construction system.  The first benchmark case is the Robin-boundary
+PDE simulation construction:
+
+- Guseynov--Huang--Liu 2025,
   [Quantum framework for simulating linear PDEs with Robin boundary conditions](https://arxiv.org/abs/2506.20478),
-  arXiv 2025 / published 2026. Status: `active faithful reproduction`.
+  arXiv 2025 / published 2026. Status: `active paper benchmark`.
 
 The first-case Lean file is:
 
@@ -54,8 +104,11 @@ Compiled Lean source of truth:
 
 - `QuantumBlockEncoding/Core.lean`: base finite index and grid helpers.
 - `QuantumBlockEncoding/Circuit.lean`: circuit and gate-level placeholders.
-- `QuantumBlockEncoding/BlockEncoding.lean`: block-encoding contracts.
-- `QuantumBlockEncoding/GHL2025.lean`: first faithful reproduction case.
+- `QuantumBlockEncoding/BlockEncoding.lean`: operator targets, candidate
+  block encodings, verified certificates, and `BlockEncodingCost`.
+- `QuantumBlockEncoding/Resources.lean`: auxiliary qubits, gate counts,
+  oracle-call counts, and depth/schedule resource bookkeeping.
+- `QuantumBlockEncoding/GHL2025.lean`: first paper-benchmark case.
 - `QuantumBlockEncoding/Literature.lean`: clickable literature registry.
 - `QuantumBlockEncoding/OpenProblems.lean`: Lean-registered open problems.
 - `QuantumBlockEncoding/Automation.lean`: compiled automation contracts.
@@ -107,7 +160,7 @@ machine-specific absolute path.
 QBE adapts the [ARIS][aris] plain-file automation pattern to Lean proof work:
 
 ```text
-literature/open problem -> formal spec -> circuit search -> Lean proof -> review -> docs
+operator contract -> candidate unitary search -> resource score -> Lean proof -> review -> docs
 ```
 
 The implementation also borrows the trial-memory pattern from
@@ -120,17 +173,17 @@ QBE's automation stack is layered:
 |---|---|---|
 | Plain-file substrate | [ARIS][aris] | Skills, task files, conversion windows, manifests, wiki pages, reviews, and run logs. |
 | Iterative controller | [Learning Beyond Gradients][lbg] | Upper/middle/lower plus reviewer cycles, trial memory, failure compression, and proof-system maintenance. |
-| Exploratory search | [EoH][eoh] | Candidate populations for new circuit/oracle constructions, only after a Lean-checkable target is fixed. |
+| Candidate search | [EoH][eoh] | Candidate populations for block-encoding unitaries/circuits after the operator target is fixed. |
 | Lean harness control | [LeanMarathon][leanmarathon] | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
 | Proof diagnostics | [MathCode][mathcode] | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
 | Typed verifier feedback | [QASM-Eval][qasm-eval] and [Qiskit QuantumKatas][qiskit-quantumkatas] | Parser/build/finite-matrix/test-style fields used as pre-Lean diagnostics, never as theorem closure. |
 | Reusable cuts / lemma DAGs | [Sonoda--Akiyama--Uezato 2026][hierarchical-provers] | Do not flatten repeated circuit-entry proofs; introduce source-faithful intermediate lemmas and memoize them in the proof DAG. |
 | Statistical provability | [Sonoda--Akiyama--Uezato 2026][statistical-provability] | Track finite-budget proof success, verifier-call cost, average truncated proof length, and repeated-state failures as harness metrics. |
-| Conjecture/prove loops | [Conjecturing-Proving Loop][cpl-paper] and [LeanConjecturer][leanconjecturer-paper] | In exploratory mode, generate oracle/circuit conjectures separately from proof attempts, then filter by Lean syntax, non-triviality, dimensions, and block-entry diagnostics. |
+| Conjecture/prove loops | [Conjecturing-Proving Loop][cpl-paper] and [LeanConjecturer][leanconjecturer-paper] | Generate candidate unitary/circuit conjectures separately from proof attempts, then filter by Lean syntax, non-triviality, dimensions, resource score, and block-entry diagnostics. |
 
 The [LeanMarathon][leanmarathon]-like control layer does not replace the
 [Learning Beyond Gradients][lbg]-like hierarchy or the [EoH][eoh]-like
-exploration layer.  It makes those existing loops more reliable by forcing
+candidate-population layer.  It makes those existing loops more reliable by forcing
 agents to work from a current proof blueprint and by retiring stale dynamic
 leaves before lower agents spend more proof-search tokens.  For long theorem
 closure runs, QBE can split planning and translation roles into bounded panels.
@@ -150,20 +203,20 @@ domain-specific:
 | Observed QBE failure | Absorbed mechanism | Not absorbed |
 | --- | --- | --- |
 | Repeated circuit-entry proofs and stale local algebra. | LeanMarathon-style dynamic leaves plus Sonoda--Akiyama--Uezato-style reusable proof cuts. | A flat transcript loop that asks every lower agent to rederive the same matrix entry. |
-| Need to search for new oracle/circuit constructions in future work. | EoH-style candidate populations and CPL/LeanConjecturer-style candidate generation, but only in exploratory mode. | Mutation of a faithful paper theorem, hidden extra assumptions, or reward-only acceptance. |
-| Expensive Lean attempts on wrong circuit transcripts. | QASM/Qiskit-style typed pre-Lean diagnostics: parser, support, finite entry, and dimension checks. | Treating simulator/test success as theorem closure. |
+| Need to search for better `U_A` candidates for a fixed operator. | EoH-style candidate populations and CPL/LeanConjecturer-style candidate generation, controlled by `BlockEncodingCost`. | Hidden extra assumptions, changed operator targets, or reward-only acceptance. |
+| Expensive Lean attempts on wrong circuit transcripts. | QASM/Qiskit-style typed pre-Lean diagnostics: parser, support, finite entry, dimension, unitarity, block-entry, and schedule checks. | Treating simulator/test success as theorem closure. |
 | Human and agent confusion about source-paper correspondence. | ARIS-style plain files plus LBG-style long/compact memory split and middle Lean/Markdown/LaTeX windows. | A hidden database or opaque chat-only memory that collaborators cannot audit. |
 
 The resulting QBE-specific workflow is:
 
 ```text
-paper theorem or new oracle goal
--> register/circuit/operator contract
--> source-faithful proof DAG with reusable circuit cuts
--> optional finite necessary-condition diagnostics
--> one lower Lean leaf
+operator A, alpha, and block projector
+-> candidate U_A family and circuit/layer schedule
+-> BlockEncodingCost and baseline comparison
+-> finite necessary-condition diagnostics
+-> one lower Lean leaf for unitarity or block-entry correctness
 -> Lean gate
--> Markdown/LaTeX correspondence and next active leaf
+-> candidate archive, Markdown/LaTeX correspondence, and next active leaf
 ```
 
 ![Layer-panel agent stack](docs/assets/agent_stack.svg)
@@ -172,7 +225,9 @@ paper theorem or new oracle goal
 
 ```mermaid
 flowchart TD
-  A["paper source / external lemma sources"] --> B["upper source/visual audit"]
+  A["operator contract A / alpha / projector"] --> B["upper target audit"]
+  S["paper baseline / external lemma sources"] --> B
+  S --> C["upper proof-DAG strategist"]
   A --> C["upper proof-DAG strategist"]
   J["trial logs + human reports"] --> D["upper process/memory audit"]
   B --> E["upper director synthesis"]
@@ -184,12 +239,14 @@ flowchart TD
   F --> I["middle coordinator synthesis"]
   G --> I
   H --> I
-  I --> M["lower natural-language proof architect"]
+  I --> M["lower natural-language construction architect"]
   I --> N["lower Lean implementation worker"]
   I --> P["lower necessary-condition verifier"]
+  I --> R["lower candidate mutator / scheduler"]
   M --> O["Lean gate / finite matrix feedback / verifier feedback"]
   N --> O
   P --> O
+  R --> O
   O --> J
   J --> K["retrieval index + todos"]
   K --> L["Chinese 6h summary + technical report appendix"]
@@ -204,10 +261,11 @@ flowchart TD
 The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
 
 - Upper director: chooses strategy and compresses memory.
-- Upper source/visual auditor: checks paper text, equations, figures, register
-  transcript, normalizer, and ancilla cleanup before Lean work is assigned.
-- Upper proof-DAG strategist: chooses the root theorem, active leaf, stale
-  leaves to retire, and necessary-condition checks.
+- Upper target/source auditor: checks the operator `A`, normalizer `alpha`,
+  projector, paper baseline if any, register transcript, and ancilla cleanup
+  before Lean work is assigned.
+- Upper proof-DAG strategist: chooses the root theorem, active leaf, candidate
+  family to mutate, stale leaves to retire, and necessary-condition checks.
 - Upper process/memory auditor: checks whether reports, verifier feedback,
   trial memory, rejected routes, and human summaries are current.
 - Middle coordinator: turns upper decisions into lower-1 proof-DAG, lower-2
@@ -232,18 +290,19 @@ and any Pro answer, the user records top-level source, modeling, and priority
 guidance for the next upper-director cycle.  Both inputs are advisory.  They
 must be translated into a Lean-checkable active leaf, source anchor, or
 explicit obligation before they can change the proof state.
-- Middle source-correspondence formalizer: maps source TeX, equations, figures,
-  and cited primitives to Lean-facing contracts.
+- Middle source-correspondence formalizer: maps operator contracts, source TeX,
+  equations, figures, and cited primitives to Lean-facing contracts.
 - Middle memory/retrieval curator: retires stale targets, updates retrieval
   packets, verifier-feedback fields, and rejected-route memory.
 - Middle report/export maintainer: updates Chinese status, Markdown/LaTeX proof
   maps, and technical-report status only at the right cadence.
-- Lower natural-language proof architect: translates the active source proof
-  fragment into a dependency DAG and ordered lemma list.
+- Lower natural-language construction architect: translates the active operator
+  target or source proof fragment into a candidate/proof DAG and ordered lemma
+  list.
 - Lower Lean implementation worker: proves exactly one ready Lean leaf.
 - Lower necessary-condition verifier: runs finite matrix, path-support,
-  branch-vanish, shape/register, or convention diagnostics that must pass if
-  the Lean leaf is true.
+  branch-vanish, unitarity, block-entry, shape/register, schedule/depth, or
+  convention diagnostics that must pass if the Lean leaf is true.
 - Lower refiner/reducer, optional: after a concrete Lean failure, isolates a
   smaller lemma or repairs a specific route such as `maxRecDepth`.
 - Reviewer: checks Lean build, hidden oracle assumptions, resources, links, and
@@ -308,32 +367,31 @@ python3 tools/qbe.py write-context-pack QBE-AUTO-002 --cycle 1
 python3 tools/qbe.py efficiency-report --task QBE-AUTO-002
 ```
 
-QBE has two hybrid strategy modes:
+QBE now distinguishes three strategy modes:
 
-- Faithful paper reproduction: reproduce a specific paper's circuit/block
-  encoding in Lean.  GHL2025 is the first case study in this mode.  The strategy is
-  [Learning Beyond Gradients][lbg]-like proof-system maintenance: Lean feedback, failed proof routes, tests,
-  and reviewer notes are written into memory and compressed into the next
-  cycle.  If a fixed lemma fails, lower agents may maintain a local
-  proof-attempt population, but they must not mutate the paper construction.
-- Exploratory construction: search for new oracle or block-encoding
-  constructions under a precise Lean-checkable target.  The strategy combines
-  [Learning Beyond Gradients][lbg]-like memory with an [EoH][eoh]-like candidate-evolution layer: lower agents can
-  maintain candidate circuit families, mutate or recombine them, score partial
-  progress, and archive rejected designs.  Lean proof obligations remain the
-  final acceptance gate.
+- Operator block-encoding construction: the user supplies an operator/matrix
+  `A`, a normalizer `alpha`, and the block projector.  Agents search over
+  candidate unitaries `U_A`, prove the block-entry and unitarity contracts in
+  Lean, and rank candidates by `BlockEncodingCost`.
+- Paper benchmark: reproduce a paper construction as a source-faithful
+  baseline candidate.  The paper construction is not mutated while it is being
+  formalized.  Once the baseline and its score exist, a separate operator task
+  can try to improve the same target.
+- Exploratory improvement: improve a fixed operator target or paper baseline.
+  This mode uses [Learning Beyond Gradients][lbg]-like memory plus an
+  [EoH][eoh]-like candidate population.  Candidates may be mutated or
+  recombined, but each candidate must keep the same acceptance predicate.
 
-In faithful mode, agents must not invent a replacement construction or add new
-hypotheses, side conditions, or easier theorem variants.  Missing oracle
-details become proof obligations.  In exploratory mode, agents may search, but
-every candidate must be tied to the original acceptance predicate and logged as
-trial memory.
+The acceptance rule is the same in all modes: diagnostics and scores guide
+search, but only Lean closes the block-encoding certificate.  A lower auxiliary
+dimension, shallower depth, or smaller gate count is not accepted if the
+block-entry theorem or unitarity theorem is missing.
 
 ## Sibling System Comparison
 
 | System | Mathematical domain | Domain-specific proof object | Paper mode | New-problem mode |
 | --- | --- | --- | --- | --- |
-| [ABEIS/QBE](https://github.com/DakeBU/Quantum-Computing-Block-Encoding) | Quantum block encoding | matrices, circuits, oracles, block-encoding invariants | Reproduce block-encoding papers and preserve paper-level operators. | Search for new block encodings and verified oracle constructions. |
+| [ABEIS/QBE](https://github.com/DakeBU/Quantum-Computing-Block-Encoding) | Quantum block encoding | operator targets, candidate unitaries, circuits, cost scores, block-entry invariants | Build paper baselines without mutating the source construction. | Search for better block encodings of a fixed operator target. |
 | [ASTIS](https://github.com/DakeBU/Auto-Sampling-Theory-In-Sleep) | Sampling theory and stochastic analysis | SDEs, distributions, KL/FI/LSI/PI chains, convergence bounds | Reproduce sampling papers with Lean statements and source-aligned proof maps. | Prove new sampling or diffusion claims from the accumulated library. |
 | [AGTIS](https://github.com/DakeBU/Auto-Colored-Graph-Theory-In-Sleep) | Colored graph theory | labels/SRLGs, labelled cuts, dual walks, winding, algorithmic obstruction certificates | Reproduce WDV2023 first, then label-cut and multigraph papers. | Prove new labelled-cut, SRLG, coloring, or labelled-matching statements with Lean verification. |
 
@@ -343,65 +401,99 @@ the natural-language proof keeps the result inspectable by humans.
 
 
 
-## For Paper Authors
+## For Operator And Oracle Authors
 
-Use this repository when your paper says or implies an oracle such as "assume
-access to $O_A$", but the eventual quantum algorithm needs a concrete
-gate-level circuit matrix, ancilla layout, normalizer, and resource statement.
+Use this repository when you can describe the operator your algorithm needs,
+but you do not yet have a concrete block-encoding circuit that is both
+resource-conscious and formally verified.  The preferred task input is:
 
-There are two entry points.
+- the matrix/operator `A`,
+- the normalizer `alpha`,
+- the block projector or clean ancilla state,
+- any allowed free parameters,
+- whether the encoding must be exact or approximate,
+- the resource baseline to beat, if one is known.
 
-### Reproduce An Existing Paper
+### Construct A Block Encoding For A Given Operator
 
-Use faithful paper-reproduction mode when the construction already exists in a
-paper and you want QBE to formalize it.
+This is the default ABEIS use case.
 
 1. Register a task:
 
 ```bash
-python3 tools/qbe.py new-task QBE-PAPER-001 \
-  --kind paperReproduction \
-  --mode faithfulPaper \
-  --title "Formalize my paper's block encoding" \
-  --source "arXiv:XXXX.XXXXX" \
-  --target-lean "QuantumBlockEncoding/MyPaper.lean"
+python3 tools/qbe.py new-task QBE-OP-001 \
+  --kind operatorBlockEncoding \
+  --mode operatorBlockEncoding \
+  --title "Construct a block encoding for my query operator" \
+  --source "operator supplied by user / arXiv:XXXX.XXXXX" \
+  --target-lean "QuantumBlockEncoding/MyOperator.lean"
 ```
 
-2. Paste the theorem, oracle definition, source equations, and expected
-resource statement into the task.
+2. Fill the `Operator Contract` section in `tasks/QBE-OP-001.md`.
+
+At minimum, state:
+
+```text
+A : Matrix (2^n) (2^n)
+alpha : normalizer
+target block: (<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha
+allowed free parameters: ...
+```
 
 3. Create the conversion window:
 
 ```bash
-python3 tools/qbe.py conversion-window QBE-PAPER-001 \
-  --title "My paper oracle-to-circuit map"
+python3 tools/qbe.py conversion-window QBE-OP-001 \
+  --title "Operator-to-block-encoding workspace"
 ```
 
-4. Run a conservative agent loop:
+4. Run a candidate-search loop:
 
 ```bash
-python3 tools/qbe.py update-task QBE-PAPER-001 --status active --active
-python3 tools/qbe.py sleep-run QBE-PAPER-001 \
-  --cycles 3 \
-  --lower-count 1 \
-  --agent-cmd 'bash tools/qbe_claude_faithful.sh {root} {prompt}' \
+python3 tools/qbe.py update-task QBE-OP-001 --status active --active
+python3 tools/qbe.py sleep-run QBE-OP-001 \
+  --cycles 6 \
+  --lower-count 3 \
+  --parallel-lower \
+  --agent-cmd 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"' \
   --execute \
   --check-each-cycle
 ```
 
 Expected outputs:
 
-- Lean declarations in `QuantumBlockEncoding/MyPaper.lean`,
+- Lean declarations in `QuantumBlockEncoding/MyOperator.lean`,
+- candidate records in `candidate-populations/`,
+- candidate scores `(auxiliaryQubits, gateCount, depth, oracleCalls)`,
 - tests under `Tests/`,
-- a symbol map in `conversion-windows/QBE-PAPER-001.md`,
+- a symbol map in `conversion-windows/QBE-OP-001.md`,
 - readable derivations in `paper-notes/`,
 - remaining gaps in `proof-obligations/`,
 - run memory in `runs/trials.jsonl` and `runs/trials_summary.csv`.
 
-### Search For A New Oracle Construction
+### Use A Paper Construction As Baseline
+
+Use paper-benchmark mode when a paper already gives a construction and you want
+ABEIS to formalize it first as a baseline.  The baseline task should not
+optimize or mutate the construction; it should recover the paper's `U_A`,
+normalizer, ancilla layout, and resource score.  Then open a separate
+`operatorBlockEncoding` or `exploratoryConstruction` task to improve that same
+operator target.
+
+```bash
+python3 tools/qbe.py new-task QBE-PAPER-001 \
+  --kind paperBenchmark \
+  --mode paperBenchmark \
+  --title "Benchmark my paper's block encoding" \
+  --source "arXiv:XXXX.XXXXX" \
+  --target-lean "QuantumBlockEncoding/MyPaperBaseline.lean"
+```
+
+### Improve A Baseline Construction
 
 Use exploratory construction mode when your theoretical algorithm needs an
-oracle, but no paper gives a gate-level implementation yet.
+oracle or when a paper baseline exists but you want a better construction for
+the same `A`.
 
 1. Draft the open problem:
 
@@ -417,7 +509,7 @@ python3 tools/qbe.py new-open-problem QBE-EXP-001 \
 python3 tools/qbe.py new-task QBE-EXP-001 \
   --kind exploratoryConstruction \
   --mode exploratoryConstruction \
-  --title "Search for a circuit realizing my oracle condition" \
+  --title "Improve a block encoding for my operator target" \
   --source "open problem / arXiv:XXXX.XXXXX" \
   --target-lean "QuantumBlockEncoding/OpenProblems.lean"
 ```
@@ -425,12 +517,12 @@ python3 tools/qbe.py new-task QBE-EXP-001 \
 3. State the Lean-checkable acceptance predicate before running agents.  A good
 target says:
 
-- the target matrix/operator,
-- the allowed ancilla registers,
-- the required block entry,
+- the target matrix/operator `A`,
+- the allowed auxiliary registers and initial clean state,
+- the required block entry or projector,
 - the normalizer,
-- the resource expression,
-- what counts as a successful circuit matrix.
+- the baseline candidate score, if any,
+- what counts as an improvement under `BlockEncodingCost`.
 
 4. Run multiple lower agents only after the target is precise:
 
@@ -438,7 +530,7 @@ target says:
 python3 tools/qbe.py sleep-run QBE-EXP-001 \
   --cycles 6 \
   --lower-count 3 \
-  --agent-cmd 'cd {root} && claude -p --permission-mode bypassPermissions --effort high "$(cat {prompt})"' \
+  --agent-cmd 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"' \
   --execute \
   --check-each-cycle
 ```
@@ -463,7 +555,7 @@ Append role messages to the shared dialogue board:
 
 ```bash
 python3 tools/qbe.py agent-note latest --role upper \
-  --message "Cycle objective: remove one abstract Robin oracle assumption."
+  --message "Cycle objective: define the target operator and score two candidate block encodings."
 ```
 
 Log trial memory:
@@ -476,7 +568,11 @@ python3 tools/qbe.py trial-log \
   --status blocked \
   --lean-gate not-run \
   --from-git \
-  --notes "Coefficient oracle still needs a reversible arithmetic circuit."
+  --feedback-field auxiliary_qubits=1 \
+  --feedback-field gate_count=unknown \
+  --feedback-field depth=unknown \
+  --feedback-field error_class=block_entry_gap \
+  --notes "Candidate unitary has the right dimension, but the block-entry proof is still missing."
 
 python3 tools/qbe.py trial-summary
 ```
@@ -488,10 +584,13 @@ Full guide:
 - [Article to Lean workflow](docs/article_to_lean_workflow.md)
 - [ASTIS reference notes](docs/astis_reference_notes.md)
 
-## First Case: GHL2025 Faithful Run
+## Benchmark Case: GHL2025 Robin Operator
 
-For the first paper-reproduction case, use `QBE-AUTO-002` as the infrastructure
-task that makes the GHL2025 circuit semantics concrete:
+For the first paper-benchmark case, use `QBE-AUTO-002` as the infrastructure
+task that makes the GHL2025 Robin operator and circuit semantics concrete.
+This is a baseline task: reproduce the paper construction and its resource
+score first, then open a separate operator/improvement task if you want a
+shallower or lower-gate construction for the same operator.
 
 ```bash
 cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
@@ -508,9 +607,9 @@ QBE_UPPER_PANEL_FINAL=1 \
 QBE_UPPER_PANEL_INNER=0 \
 QBE_MIDDLE_PANEL_FINAL=1 \
 QBE_MIDDLE_PANEL_INNER=0 \
-QBE_AGENT_CMD='"'"'bash tools/qbe_claude_faithful.sh {root} {prompt}'"'"' \
+QBE_AGENT_CMD='"'"'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"'"'"' \
 bash tools/qbe_run_theorem_closure.sh QBE-AUTO-002
-' > runs/logs/claude-qbe-auto-002-$(date +%Y%m%d-%H%M%S).log 2>&1 &
+' > runs/logs/codex-qbe-auto-002-$(date +%Y%m%d-%H%M%S).log 2>&1 &
 ```
 
 `QBE_HOURS=6` is an active-agent-time budget: retry sleep caused by quota or
@@ -550,7 +649,8 @@ Human and agent status should start from the compact reports, not from raw logs:
 
 ## Lean/LaTeX/Markdown Conversion
 
-Every serious paper target should use a conversion window.
+Every serious operator target or paper benchmark should use a conversion
+window.
 
 ![Conversion window](docs/assets/conversion_window.svg)
 
@@ -563,8 +663,9 @@ python3 tools/qbe.py conversion-window QBE-AUTO-001 \
 
 The conversion window has three synchronized panes:
 
-- LaTeX: exact theorem/proof notation from the paper.
-- Markdown: construction explanation, design choices, and rejected paths.
+- LaTeX: exact theorem/proof notation from the paper or user-facing theorem.
+- Markdown: operator contract, construction explanation, design choices,
+  candidate scores, and rejected paths.
 - Lean: declaration names, target files, and buildable code.
 
 Any symbol that cannot be mapped to Lean becomes a proof obligation or an open
@@ -594,7 +695,7 @@ math-writing skill.
 | `python3 tools/qbe.py efficiency-report ...` | Summarize recent long-run efficiency, quota/build signals, and next controls. |
 | `python3 tools/qbe.py cycle-zh-summary ...` | Write the Chinese source-aligned audit page. The 6h wrapper runs this once at the final audit; use `sleep-run --summary-each-cycle` only for short debugging runs. |
 | `python3 tools/qbe.py cycle-pro-prompt ...` | Write a self-contained ChatGPT Pro prompt for the remaining unresolved leaves. |
-| `python3 tools/qbe.py memory-refresh ...` | Refresh `memory_digest.md`, cycle todo, GHL todo, technical-lemma todo, and the compact retrieval JSON. |
+| `python3 tools/qbe.py memory-refresh ...` | Refresh `memory_digest.md`, cycle todo, benchmark/paper todo, technical-lemma todo, and the compact retrieval JSON. |
 | `python3 tools/qbe.py human-status ...` | Refresh `HUMAN_STATUS.md`, the single human-facing dashboard for the latest run. |
 | `python3 tools/qbe.py project-article-update ...` | Write the article-facing cycle packet and mirror generated status into the technical report. |
 | `python3 tools/qbe.py new-open-problem ...` | Draft an open problem proposal. |
@@ -610,7 +711,7 @@ math-writing skill.
 The source of truth is `QuantumBlockEncoding/Literature.lean`. This README
 mirrors the initial checklist with clickable links.
 
-First faithful reproduction case:
+First paper-benchmark case:
 
 | Status | Paper | Target |
 | --- | --- | --- |
@@ -669,8 +770,8 @@ This repository cites external work by original source link:
 - [FeiLiu36/EoH][eoh]:
   similar pattern for evolutionary candidate search with initialization,
   mutation, recombination/crossover, selection pressure, and archives. QBE
-  keeps this only for exploratory circuit/oracle construction under a fixed
-  Lean target; faithful paper mode does not mutate paper constructions.
+  uses this for operator-block-encoding candidate populations under a fixed
+  Lean target; paper-benchmark mode does not mutate paper constructions.
 - [Timeroot/Lean-QuantumInfo][lean-quantuminfo]:
   style reference for finite-dimensional quantum information formalization.
 - [teorth/optimizationproblems][optimizationproblems]:
@@ -696,8 +797,8 @@ For the sibling auto-Lean control-surface comparison, see
 If you use [ARIS][aris] in your research, please cite:
 
 ```bibtex
-@misc{huangbu2026autoblockencoding,
-  author = {{Bu}, Dake and {Huang}, Xiajie},
+@misc{abeis2026,
+  author = {{Anonymous ABEIS Contributors}},
   title = {{Auto-Lean-in-Sleep: Block Encoding for Quantum Computing}},
   year = {2026},
   month = {May},
@@ -717,19 +818,19 @@ task boundary explicit.
 | --- | --- | --- | --- |
 | LLM-readable workflow packets | [ARIS][aris] uses single-purpose `SKILL.md` files for empirical research workflows. | `tools/qbe.py run-cycle` generates task-specific role prompts for upper, middle, lower, and reviewer agents. | [ARIS][aris] targets literature, experiments, reviews, and paper writing; QBE targets Lean-checked circuit/oracle formalization. |
 | Plain-file project memory | [ARIS][aris] uses Markdown templates, `MANIFEST.md`, research wiki pages, and review artifacts instead of a database. | `tasks/`, `conversion-windows/`, `paper-notes/`, `proof-obligations/`, `runs/`, and `research-wiki/` are plain files that humans and agents can inspect and edit. | QBE adds a stricter Lean/LaTeX/Markdown correspondence layer because theorem proving must preserve source-paper notation. |
-| Independent review loop | [ARIS][aris] uses reviewer models to check claims, experiments, citations, and writing. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, resource counts, citations, and faithful-vs-exploratory mode discipline. | In QBE, review cannot accept a claim merely because it reads well; the Lean gate and explicit proof obligations control completion. |
+| Independent review loop | [ARIS][aris] uses reviewer models to check claims, experiments, citations, and writing. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, `BlockEncodingCost`, citations, and mode discipline. | In QBE, review cannot accept a claim merely because it reads well; the Lean gate and explicit proof obligations control completion. |
 | Trial memory and feedback compression | [Learning Beyond Gradients][lbg] records policy attempts in `trials.jsonl`, `summary.csv`, videos, logs, and rejected directions. | QBE records proof/circuit attempts in `runs/trials.jsonl` and `runs/trials_summary.csv`; rejected constructions become proof obligations or open problems. | [Learning Beyond Gradients][lbg] optimizes empirical behavior of heuristic policies; QBE uses similar memory discipline to organize theorem-proving attempts whose final target is formal verification. |
 | Hierarchical proof-system maintenance | [Learning Beyond Gradients][lbg] treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | QBE keeps an upper/middle/lower plus reviewer hierarchy: upper chooses strategy, middle maintains Lean/Markdown/LaTeX and memory, lower proves local leaves, reviewer gates claims. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
-| Population-style candidate evolution | [EoH][eoh] evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea only in exploratory mode: maintain families of candidate circuit constructions, vary them, evaluate them against Lean-checkable obligations, and keep rejected designs as memory. | [EoH][eoh] is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction is accepted only when the Lean target and proof obligations are satisfied. |
-| Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer constructions that reduce formal gaps. | Faithful paper-reproduction mode should not use evolutionary mutation to change the paper construction; [EoH][eoh]-like exploration belongs only after the acceptance predicate is explicit. |
+| Population-style candidate evolution | [EoH][eoh] evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea for operator-block-encoding construction: maintain families of candidate unitaries/circuits, vary them, evaluate them against necessary diagnostics and Lean-checkable obligations, and keep rejected designs as memory. | [EoH][eoh] is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction is accepted only when the Lean target and proof obligations are satisfied. |
+| Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps candidate scores, trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer lower-ancilla, lower-gate, shallower constructions that also reduce formal gaps. | Paper-benchmark mode should not use evolutionary mutation to change the paper construction; population search belongs to operator construction or improvement tasks after the acceptance predicate is explicit. |
 | Lean proof diagnostics and theorem reuse | [MathCode][mathcode] provides Lean proof-analysis tools, theorem-store-like reuse, persistent REPL/LSP feedback, tree-of-subgoals proving, multi-planner search, and skills/plugins. | QBE uses a similar idea for reviewer scans, proof-attempt memory, reusable projection/gate lemmas, and future focused-check tooling. | [MathCode][mathcode] is a general math formalization agent; QBE is a domain-specific system for quantum oracle/block-encoding circuit matrices. QBE must not accept stored assumptions or proof-search scores as theorem closure. |
 | Blueprint and dynamic proof-DAG control | [LeanMarathon][leanmarathon] and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | [LeanMarathon][leanmarathon] targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |
 | Blueprint generation and refinement | [Goedel-Architect][goedel-architect-paper] uses a blueprint DAG, preserves solved nodes, and refines failed nodes by diagnosis. | QBE now treats post-cycle memory, Pro prompts, and active leaves as a diagnosis pipeline: wrong statement, missing dependency, proof too hard, or stale route. | Goedel-Architect is a general Lean proving architecture; QBE specializes the blueprint to quantum oracle/circuit source correspondence. |
 | Workflow and trajectory verification | [Lean4Agent][lean4agent-paper] models agent workflows and trajectories in Lean. | QBE records a future route for Lean-checking the orchestration layer itself: required artifacts, role pre/postconditions, and stale-route trajectory checks. | Workflow verification audits the process; it never replaces Lean proof of the quantum theorem. |
-| Quantum circuit generation evaluation taxonomy | [Generative AI for Quantum Circuits and Quantum Code][quantum-circuit-review] organizes circuit-generation systems by artifact type, training regime, and syntax/semantic/hardware evaluation layers. | QBE uses the taxonomy to separate pre-Lean diagnostics from proof closure: syntax and finite simulation are useful search signals, while Lean theorems remain the final certificate. | The review concerns generated QASM/Qiskit/circuit artifacts; QBE targets block-encoding/oracle theorem reproduction and construction. |
+| Quantum circuit generation evaluation taxonomy | [Generative AI for Quantum Circuits and Quantum Code][quantum-circuit-review] organizes circuit-generation systems by artifact type, training regime, and syntax/semantic/hardware evaluation layers. | QBE uses the taxonomy to separate pre-Lean diagnostics from proof closure: syntax, dimension, finite simulation, block-entry, unitarity, and schedule checks are useful search signals, while Lean theorems remain the final certificate. | The review concerns generated QASM/Qiskit/circuit artifacts; QBE targets operator-to-block-encoding construction with formal certificates. |
 | Tool-server and hierarchical reward feedback | [QUASAR][quasar] uses tool-augmented quantum simulators and hierarchical reward feedback for quantum assembly generation. | QBE borrows the idea of structured search signals for lower agents, but translates them into proof-DAG leaves, verifier-feedback fields, and rejected-route memory. | [QUASAR][quasar] optimizes generated circuit programs; QBE cannot treat reward as proof. |
 | Typed verifier fields | [QASM-Eval][qasm-eval] validates OpenQASM-3 programs with syntax, state, and timeline checks. | QBE mirrors this as `verifier-feedback/` fields and as lower 3, a necessary-condition verifier for finite matrix/path/support checks before Lean theorem closure. | QASM-Eval validates executable programs; QBE uses such checks only before Lean theorem closure. |
-| Kata-style deterministic tests | [Qiskit QuantumKatas][qiskit-quantumkatas] adapts [Microsoft QuantumKatas][microsoft-quantumkatas] into deterministic LLM evaluation tasks. | QBE treats this as a model for future `BlockEncodingKatas`: small deterministic circuit/oracle lemmas that teach agents and humans before full paper reproduction. | Kata tests are excellent pedagogy and regression checks, but they do not replace source-paper block-encoding proof obligations. |
+| Kata-style deterministic tests | [Qiskit QuantumKatas][qiskit-quantumkatas] adapts [Microsoft QuantumKatas][microsoft-quantumkatas] into deterministic LLM evaluation tasks. | QBE treats this as a model for future `BlockEncodingKatas`: small deterministic operator/candidate/unitarity/block-entry lemmas that teach agents and humans before full paper benchmarks. | Kata tests are excellent pedagogy and regression checks, but they do not replace block-encoding proof obligations. |
 | Natural-language idea to tool-executable loop | [AI-Mandel][ai-mandel] turns literature-derived quantum-physics ideas into tool-executable configurations. | QBE keeps a natural-language proof architect lower agent that translates source proofs into dependency DAGs before the Lean implementation worker attacks one leaf; lower 3 checks necessary finite/tool feedback before large proof search. | AI-Mandel targets executable physics designs; QBE targets Lean-checked oracle/block-encoding certificates. |
 
 The analogy is:
@@ -751,17 +852,24 @@ goal -> Lean formalization -> proof diagnostics -> theorem reuse -> repair loop
 source proof + target statements -> reviewed blueprint -> dynamic proof leaves -> CI gate -> refiner repair
 
 QBE proof pipeline:
-paper/open condition -> oracle contract -> circuit matrix -> Lean check -> review -> proof map
+operator A + alpha + projector
+  -> candidate U_A and circuit schedule
+  -> necessary diagnostics and BlockEncodingCost
+  -> Lean block-entry/unitarity check
+  -> review and proof map
 ```
 
 The practical split is:
 
 ```text
-faithfulPaper:
-LBG-like memory loop + local proof-attempt population for fixed lemmas
+operatorBlockEncoding:
+fixed operator target + EoH-like candidate population + Lean certificate
+
+paperBenchmark:
+paper-fixed baseline + LBG-like proof memory + no construction mutation
 
 exploratoryConstruction:
-[Learning Beyond Gradients][lbg]-like memory loop + [EoH][eoh]-like candidate population for circuit families
+fixed target or baseline + candidate mutation/recombination + resource improvement
 ```
 
 The [LeanMarathon][leanmarathon]-like control layer in QBE is the proof blueprint:
@@ -799,15 +907,17 @@ QBE's many Markdown files are therefore not decoration.  They play the same
 operational role that [ARIS][aris] skills, templates, manifests, and research-wiki
 pages play: they are the stable interface between humans, agents, and the next
 cycle.  The extra QBE-specific layers are the Lean/LaTeX/Markdown conversion
-window and the proof blueprint, because a theorem-proving project must preserve
-both source-paper notation and checked declaration dependencies.
+window, candidate-score archive, and proof blueprint, because a
+block-encoding project must preserve the operator contract, candidate
+construction, source-paper notation when a benchmark is used, and checked
+declaration dependencies.
 
 ## Cited Result Memory
 
 Papers often use previous theorems or "standard" circuit primitives inside a
 proof.  QBE records those dependencies under
 [`research-wiki/cited-results/`](research-wiki/cited-results/) so future
-faithful-paper runs and exploratory-construction runs can reuse the same
+paper-benchmark, operator-construction, and exploratory-improvement runs can reuse the same
 audited memory.
 
 The current retrieval layer separates three memories:
@@ -837,7 +947,7 @@ the source, exact statement, Lean status, and dependent use sites.
 
 ## Source Dependency Audits
 
-For faithful-paper reproduction, QBE treats repeated Lean failure as a signal
+For paper benchmarks, QBE treats repeated Lean failure as a signal
 to re-read the source paper before spending more lower-agent proof search.
 Middle and upper agents should inspect the local TeX source, nearby citations,
 and bibliography, then classify the missing ingredient as an internal paper
@@ -864,7 +974,7 @@ When the source TeX contains a proof or proof sketch, QBE also requires a proof
 translation map.  Middle agents should break the source proof into steps and
 map each step to an existing Lean declaration, a new local lemma, an external
 cited result, or a source-contract gap.  Upper agents plan lower work from this
-map so faithful-paper mode remains a translation of the paper proof rather
+map so paper-benchmark mode remains a translation of the paper proof rather
 than unconstrained tactic search.
 
 ## Proof Exports

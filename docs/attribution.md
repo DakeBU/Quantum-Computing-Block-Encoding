@@ -23,10 +23,11 @@ paper or repository.
 - [FeiLiu36/EoH](https://github.com/FeiLiu36/EoH).
   Similar patterns studied for evolutionary search over structured candidates:
   initialization, mutation, recombination/crossover, selection pressure, and
-  population archives.  QBE keeps this idea for exploratory construction mode,
+  population archives.  QBE keeps this idea for operator-construction and
+  exploratory-improvement modes,
   where candidate circuit/oracle families may evolve under a fixed
-  Lean-checkable acceptance predicate.  Faithful paper-reproduction mode does
-  not use EoH-style mutation to alter a paper's construction.
+  Lean-checkable acceptance predicate.  Paper-benchmark mode does not use
+  EoH-style mutation to alter a paper's construction.
 - [math-ai-org/mathcode](https://github.com/math-ai-org/mathcode).
   Similar patterns studied for Lean proof diagnostics, theorem-store-like reuse
   memory, persistent Lean feedback, tree-of-subgoals proving, multi-planner

@@ -10,9 +10,9 @@ machine-readable fields instead of only prose:
 
 ```json
 {
-  "task": "QBE-AUTO-002",
-  "leaf": "slot-three-branch-vanish",
-  "mode": "faithfulPaper",
+  "task": "QBE-OP-001",
+  "leaf": "candidate-unitarity-check",
+  "mode": "operatorBlockEncoding",
   "source_correspondence_ok": true,
   "lean_parse_ok": true,
   "lean_build_ok": false,
@@ -20,9 +20,14 @@ machine-readable fields instead of only prose:
   "block_entry_ok": false,
   "ancilla_cleanup_ok": null,
   "normalizer_ok": true,
+  "unitarity_ok": false,
+  "auxiliary_qubits": 1,
+  "gate_count": 42,
+  "depth": 17,
+  "oracle_calls": 3,
   "closed_theorem_ok": false,
-  "error_class": "symbolic_bridge_gap",
-  "next_route": "prove evalWith-level entry bridge for full index 48"
+  "error_class": "finite_matrix_counterexample",
+  "next_route": "repair candidate U_A before asking Lean to prove the final block-entry theorem"
 }
 ```
 
@@ -38,4 +43,7 @@ Suggested classes:
 - `invalid_route`
 
 Scores and booleans are diagnostics.  They must not be promoted into
-paper-theorem status unless a named Lean declaration closes the exact target.
+theorem status unless a named Lean declaration closes the exact target.  In
+paper-benchmark mode, diagnostics must not mutate the paper construction; in
+operator-construction mode, they may guide the next candidate in
+`candidate-populations/`.

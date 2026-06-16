@@ -261,9 +261,13 @@ theorem oneTermRobinSpec_ancilla (p : OneTermRobinParameters)
     (mat : Matrix (gridSize p.n) (gridSize p.n) Coeff) :
     (oneTermRobinSpec p mat).resource.pureAncilla = 2 * p.n := rfl
 
-/-- The spec's circuit local cost: oracle calls are free, the SWAP placeholder costs 3 CNOTs. figure:1_term_ROBIN --/
+/--
+The spec's circuit local cost: the SWAP placeholder costs 3 CNOTs and each
+unexpanded oracle call is counted as one unresolved call in the candidate score.
+figure:1_term_ROBIN
+-/
 theorem oneTermRobinSpec_circuitCost :
-    Circuit.resource oneTermRobinCircuit = Resource.ofCounts 0 3 0 := rfl
+    Circuit.resource oneTermRobinCircuit = Resource.ofCountsWithDepth 0 3 6 0 9 := rfl
 
 /-- Evaluating the symbolic normalizer `N_D · N_f · κ` under an environment gives
 the product of the three symbol values. -/

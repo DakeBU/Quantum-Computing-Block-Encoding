@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" role="img" aria-labelledby="title desc">
-  <title id="title">QBE automation pipeline</title>
-  <desc id="desc">Pipeline from paper or open problem to Lean checked block encoding certificate.</desc>
+  <title id="title">Operator-first ABEIS pipeline</title>
+  <desc id="desc">Pipeline from a target query operator to ranked Lean-checked block-encoding candidates.</desc>
   <defs>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
       <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
@@ -10,46 +10,46 @@
     </filter>
   </defs>
   <rect x="0" y="0" width="1120" height="430" fill="#f8fafc"/>
-  <text x="56" y="54" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" fill="#111827">Quantum Block-Encoding Automation Pipeline</text>
-  <text x="56" y="84" font-family="Inter,Arial,sans-serif" font-size="15" fill="#475569">The project does not stop at an assumed oracle. It searches for a concrete circuit matrix and checks the claim in Lean.</text>
+  <text x="56" y="54" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" fill="#111827">Operator-First Block-Encoding Automation</text>
+  <text x="56" y="84" font-family="Inter,Arial,sans-serif" font-size="15" fill="#475569">Input a concrete query operator A; ABEIS searches for U_A, proves the clean block in Lean, and ranks usable circuits.</text>
 
   <g filter="url(#shadow)">
-    <rect x="56" y="128" width="168" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-    <text x="82" y="164" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">Paper or Gap</text>
-    <text x="82" y="193" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">arXiv, theorem,</text>
-    <text x="82" y="212" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">assumed oracle</text>
+    <rect x="48" y="128" width="176" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="74" y="160" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#0f172a">Operator Contract</text>
+    <text x="74" y="189" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">A, alpha, clean</text>
+    <text x="74" y="208" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">ancilla block</text>
 
-    <rect x="280" y="128" width="168" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-    <text x="306" y="164" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">Formal Spec</text>
-    <text x="306" y="193" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">operator, block,</text>
-    <text x="306" y="212" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">normalizer</text>
+    <rect x="272" y="128" width="176" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="298" y="160" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#0f172a">Candidates</text>
+    <text x="298" y="189" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">unitary U_A, gates,</text>
+    <text x="298" y="208" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">schedule, ancillas</text>
 
-    <rect x="504" y="128" width="168" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-    <text x="530" y="164" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">Circuit Search</text>
-    <text x="530" y="193" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">gates, ancillas,</text>
-    <text x="530" y="212" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">resource counts</text>
+    <rect x="496" y="128" width="176" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="522" y="160" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#0f172a">Cheap Diagnostics</text>
+    <text x="522" y="189" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">unitary, block,</text>
+    <text x="522" y="208" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">cleanup, depth</text>
 
-    <rect x="728" y="128" width="168" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-    <text x="754" y="164" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">Lean Gate</text>
-    <text x="754" y="193" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">lake build</text>
-    <text x="754" y="212" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">lake build Tests</text>
+    <rect x="720" y="128" width="176" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="746" y="160" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#0f172a">Lean Certificate</text>
+    <text x="746" y="189" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">unitary plus exact</text>
+    <text x="746" y="208" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">block-entry theorem</text>
 
-    <rect x="952" y="128" width="112" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-    <text x="978" y="164" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">Review</text>
-    <text x="978" y="193" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">docs and</text>
-    <text x="978" y="212" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">registry</text>
+    <rect x="944" y="128" width="128" height="112" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="970" y="160" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#0f172a">Ranking</text>
+    <text x="970" y="189" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">aux, gates,</text>
+    <text x="970" y="208" font-family="Inter,Arial,sans-serif" font-size="13" fill="#475569">depth, oracles</text>
   </g>
 
-  <path d="M224 184 H268" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
-  <path d="M448 184 H492" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
-  <path d="M672 184 H716" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
-  <path d="M896 184 H940" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M224 184 H260" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M448 184 H484" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M672 184 H708" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M896 184 H932" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
 
-  <path d="M1008 248 C1008 340 150 340 140 248" fill="none" stroke="#0f766e" stroke-width="3" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
-  <text x="365" y="365" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" fill="#0f766e">failed or incomplete proof becomes a new trial, proof obligation, or open problem</text>
+  <path d="M1008 250 C1008 342 144 342 136 250" fill="none" stroke="#0f766e" stroke-width="3" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <text x="325" y="366" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" fill="#0f766e">failed diagnostics or Lean errors become candidate memory, proof obligations, and next-cycle tasks</text>
 
-  <rect x="56" y="286" width="235" height="44" rx="7" fill="#ecfeff" stroke="#67e8f9"/>
-  <text x="74" y="313" font-family="Inter,Arial,sans-serif" font-size="14" fill="#155e75">Source: literature registry with clickable links</text>
-  <rect x="800" y="286" width="264" height="44" rx="7" fill="#f0fdf4" stroke="#86efac"/>
-  <text x="818" y="313" font-family="Inter,Arial,sans-serif" font-size="14" fill="#166534">Only compiled claims are treated as closed</text>
+  <rect x="56" y="286" width="310" height="44" rx="7" fill="#ecfeff" stroke="#67e8f9"/>
+  <text x="74" y="313" font-family="Inter,Arial,sans-serif" font-size="14" fill="#155e75">Paper constructions enter as fixed benchmarks</text>
+  <rect x="744" y="286" width="328" height="44" rx="7" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="762" y="313" font-family="Inter,Arial,sans-serif" font-size="14" fill="#166534">Only compiled Lean theorems count as certificates</text>
 </svg>
