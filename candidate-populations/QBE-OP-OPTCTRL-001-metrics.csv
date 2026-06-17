@@ -1,0 +1,7 @@
+generation,tier,best_depth,best_gate_count,best_auxiliary_qubits,best_oracle_calls,strict_improvement,event
+0,oracle-baseline,1,1,1,1,false,one unresolved permutation-completion oracle; separate tier
+1,expanded-logical,6,6,1,0,true,sequential logical reversible expansion found by BFS
+2,expanded-logical,5,6,1,0,true,depth scheduler parallelizes final X2 and CX01 layer
+3,expanded-logical,5,6,1,0,false,zero-extra-ancilla mutation rejected by nonunitary target necessary condition
+4,expanded-logical,5,6,1,0,false,two-ancilla workspace mutation no better
+5,expanded-logical,5,6,1,0,false,state-cycle crossover no strict improvement

@@ -3,7 +3,7 @@
 Task id: `QBE-OP-OPTCTRL-001`
 Kind: `operatorBlockEncoding`
 Mode: `operatorBlockEncoding`
-Status: `planned`
+Status: `active`
 Created: `2026-06-17 01:30`
 
 ## Goal
@@ -124,6 +124,38 @@ Expected file and declarations:
 - [ ] Resource score `(depth, gateCount, a, oracleCalls)` is explicit.
 - [ ] Candidate comparison against the current baseline is recorded when relevant.
 - [ ] `lake build && lake build Tests` succeeds.
+
+## Generation 0 Result: One-Ancilla Permutation Completion
+
+Lean file:
+
+```lean
+QuantumBlockEncoding/OptimalControl.lean
+```
+
+Compiled declarations:
+
+- `OptimalControl.exampleOperator`: concrete $E_1$ for one time qubit, one
+  type qubit, and one state qubit.
+- `OptimalControl.exampleUnitary`: 16-dimensional one-ancilla permutation
+  completion.
+- `OptimalControl.exampleImage_isPermutation`: finite permutation certificate.
+- `OptimalControl.example_cleanBlock`: clean block equals the target operator.
+- `OptimalControl.exampleVerified`: verified candidate packaging the unitarity
+  proxy and block-entry proof.
+- `OptimalControl.exampleCandidate_cost`: current score.
+
+Current score:
+
+```text
+(depth = 1, gateCount = 1, auxiliaryQubits = 1, oracleCalls = 1)
+```
+
+Interpretation: this is a mathematically verified oracle-level candidate, not
+yet a decomposed gate-level circuit.  The next explore step should try to
+replace the single unresolved oracle call with an explicit reversible circuit
+for the four-cycle completion, then compare the resulting depth/gate count
+against this baseline.
 
 ## Agent Notes
 

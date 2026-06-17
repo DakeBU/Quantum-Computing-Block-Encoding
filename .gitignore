@@ -10,6 +10,9 @@
 /runs/*/
 !/runs/pro-prompts/
 !/runs/pro-prompts/*.md
+!/runs/manual-multiagent/
+!/runs/manual-multiagent/**/
+!/runs/manual-multiagent/**/*.md
 /runs/trials.jsonl
 /runs/trials_summary.csv
 

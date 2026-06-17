@@ -54,6 +54,54 @@ example :
     gridSize (3 + 1) = 2 * gridSize 3 := by
   native_decide
 
+example :
+    OptimalControl.exampleUnitary
+      (OptimalControl.cleanIndex OptimalControl.targetState0)
+      (OptimalControl.cleanIndex OptimalControl.sourceState0) = 1 := by
+  native_decide
+
+example :
+    OptimalControl.exampleUnitary
+      (OptimalControl.cleanIndex OptimalControl.targetState1)
+      (OptimalControl.cleanIndex OptimalControl.sourceState1) = 1 := by
+  native_decide
+
+example :
+    OptimalControl.exampleUnitary
+      (OptimalControl.cleanIndex OptimalControl.sourceState0)
+      (OptimalControl.cleanIndex OptimalControl.targetState0) = 0 := by
+  native_decide
+
+example : OptimalControl.IsPermutation OptimalControl.exampleImage :=
+  OptimalControl.exampleImage_isPermutation
+
+example :
+    OptimalControl.exampleCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 1, depth := 1, oracleCalls := 1 } :=
+  OptimalControl.exampleCandidate_cost
+
+example :
+    ∀ x : Fin 8,
+      OptimalControl.reducedDepth5Image x = OptimalControl.reducedTargetImage x :=
+  OptimalControl.reducedDepth5Image_eq_target
+
+example :
+    ∀ x : Fin 16,
+      OptimalControl.liftReducedImage OptimalControl.reducedDepth5Image x =
+        OptimalControl.exampleImage x :=
+  OptimalControl.reducedDepth5_lifts_exampleImage
+
+example :
+    OptimalControl.reducedDepth5Cost.gateCount = 6 :=
+  OptimalControl.reducedDepth5Cost_gateCount
+
+example :
+    OptimalControl.reducedDepth5Cost.depth = 5 := rfl
+
+example :
+    OptimalControl.reducedDepth5Cost.oracleCalls = 0 :=
+  OptimalControl.reducedDepth5Cost_oracleFree
+
 -- CircuitSemantics tests: first matrix-semantics backend layer
 
 example : qubitDim 3 = 8 := rfl
