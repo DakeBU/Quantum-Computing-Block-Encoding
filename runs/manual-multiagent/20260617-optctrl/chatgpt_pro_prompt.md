@@ -1,5 +1,10 @@
 # ChatGPT Pro Prompt: QBE-OP-OPTCTRL-001 depth-5 logical construction
 
+Update note: this prompt is retained as history.  It was written before the
+ChatGPT Pro equality-flag construction and the subsequent evolved depth-2
+clean-block completion.  For the current state, use
+`runs/manual-multiagent/20260617-optctrl-pro/chatgpt_pro_prompt.md`.
+
 Copy everything below this line into ChatGPT Pro.
 
 ---

@@ -102,6 +102,61 @@ example :
     OptimalControl.reducedDepth5Cost.oracleCalls = 0 :=
   OptimalControl.reducedDepth5Cost_oracleFree
 
+example :
+    OptimalControl.CleanBlockE1 OptimalControl.proEqTransferImage :=
+  OptimalControl.proEqTransfer_cleanBlock
+
+example :
+    OptimalControl.IsPermutation OptimalControl.proEqTransferImage :=
+  OptimalControl.proEqTransferImage_isPermutation
+
+example :
+    OptimalControl.IsPermutation
+      (OptimalControl.liftReducedImage OptimalControl.proEqTransferImage) :=
+  OptimalControl.proEqTransferFull_isPermutation
+
+example :
+    OptimalControl.proEqTransferCost.gateCount = 4 :=
+  OptimalControl.proEqTransferCost_gateCount
+
+example :
+    OptimalControl.proEqTransferCost.depth = 4 := rfl
+
+example :
+    OptimalControl.proEqTransferCost.betterThan
+      OptimalControl.reducedDepth5Cost :=
+  OptimalControl.proEqTransferCost_betterThan_depth5
+
+example :
+    OptimalControl.CleanBlockE1 OptimalControl.evolvedEqFlipImage :=
+  OptimalControl.evolvedEqFlip_cleanBlock
+
+example :
+    OptimalControl.IsPermutation OptimalControl.evolvedEqFlipImage :=
+  OptimalControl.evolvedEqFlipImage_isPermutation
+
+example :
+    OptimalControl.IsPermutation
+      (OptimalControl.liftReducedImage OptimalControl.evolvedEqFlipImage) :=
+  OptimalControl.evolvedEqFlipFull_isPermutation
+
+example :
+    OptimalControl.evolvedEqFlipCost.gateCount = 4 :=
+  OptimalControl.evolvedEqFlipCost_gateCount
+
+example :
+    OptimalControl.evolvedEqFlipCost.depth = 2 := rfl
+
+example :
+    OptimalControl.evolvedEqFlipCost.betterThan
+      OptimalControl.proEqTransferCost :=
+  OptimalControl.evolvedEqFlipCost_betterThan_pro
+
+example :
+    OptimalControl.evolvedEqFlipCost.betterThan
+      OptimalControl.reducedDepth5Cost :=
+  OptimalControl.evolvedEqFlipCost_betterThan_depth5
+
 -- CircuitSemantics tests: first matrix-semantics backend layer
 
 example : qubitDim 3 = 8 := rfl

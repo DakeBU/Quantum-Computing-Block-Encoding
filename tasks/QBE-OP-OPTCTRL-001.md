@@ -157,6 +157,67 @@ replace the single unresolved oracle call with an explicit reversible circuit
 for the four-cycle completion, then compare the resulting depth/gate count
 against this baseline.
 
+## Generation 7 Result: Evolved Clean-Block Completion
+
+The search target was corrected from “realize the old fixed permutation
+completion” to “realize any unitary/permutation completion whose clean block is
+`E_1`”.  This is the right block-encoding acceptance predicate because the
+non-clean blocks are free completion data.
+
+Current concrete finite champion:
+
+```text
+Layer 1: CCX(type,time;aux)
+Layer 2: X(type), X(time), X(aux) in parallel
+```
+
+Lean bit order:
+
+```text
+bit 0 = type
+bit 1 = time
+bit 2 = auxiliary
+```
+
+Compiled declarations:
+
+- `OptimalControl.evolvedEqFlipImage`
+- `OptimalControl.evolvedEqFlipImage_isPermutation`
+- `OptimalControl.evolvedEqFlipFull_isPermutation`
+- `OptimalControl.evolvedEqFlip_cleanBlock`
+- `OptimalControl.evolvedEqFlipCost`
+- `OptimalControl.evolvedEqFlipCost_gateCount`
+- `OptimalControl.evolvedEqFlipCost_betterThan_pro`
+- `OptimalControl.evolvedEqFlipCost_betterThan_depth5`
+
+Current expanded logical score:
+
+```text
+depth = 2
+gateCount = 4
+auxiliaryQubits = 1
+oracleCalls = 0
+```
+
+Scope:
+
+- verified for the concrete `r = 1`, `k = 1`, one-state-bit instance;
+- proof is currently finite permutation/function semantics plus clean-block
+  equality;
+- not yet connected to full gate-matrix semantics;
+- not yet generalized to arbitrary time-register width or arbitrary state
+  dimension.
+
+Next priority:
+
+1. Generalize `evolvedEqFlipImage` to arbitrary passive state dimension.
+2. Determine the right general `r`-bit time construction and resource model:
+   mixed-polarity MCX, explicit `X` conjugations, or an equality oracle tier.
+3. Add full gate-matrix semantics for `{X,CNOT,Toffoli}` or explicitly keep the
+   current finite-permutation witness as a verifier-feedback stage.
+4. Reflect or archive the finite lower-bound search showing depth `2` is the
+   first clean-block depth for the concrete logical library.
+
 ## Agent Notes
 
 Do not mark this task complete unless the Lean build gate passes.

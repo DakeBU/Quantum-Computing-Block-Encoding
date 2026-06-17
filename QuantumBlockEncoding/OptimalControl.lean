@@ -126,13 +126,14 @@ theorem exampleImage_isPermutation : IsPermutation exampleImage := by
 
 The oracle-level candidate above is a correct block encoding, but it hides the
 permutation completion inside one opaque oracle call.  The first explore-mode
-mutation expands the active three-bit permutation on `(aux,time,type)` while
-leaving the state bit passive.  The gate library here is the logical reversible
-library `{X, CNOT, Toffoli}`; later hardware backends can decompose Toffoli into
-elementary one- and two-qubit gates.
+mutation expands the active three-bit permutation while leaving the state bit
+passive.  In the reduced index used below, bit `0` is `type`, bit `1` is
+`time`, and bit `2` is the block-encoding auxiliary bit.  The gate library here
+is the logical reversible library `{X, CNOT, Toffoli}`; later hardware backends
+can decompose Toffoli into elementary one- and two-qubit gates.
 -/
 
-/-- The reduced three-bit permutation induced by `exampleImage` on `(aux,time,type)`. -/
+/-- The reduced three-bit permutation induced by `exampleImage` on `(type,time,aux)`. -/
 def reducedTargetImage (x : Fin 8) : Fin 8 :=
   if x.val = 0 then ⟨7, by decide⟩
   else if x.val = 1 then ⟨5, by decide⟩
@@ -165,6 +166,17 @@ def redX2 (x : Fin 8) : Fin 8 :=
   else if x.val = 6 then ⟨2, by decide⟩
   else ⟨3, by decide⟩
 
+/-- Logical `X` on reduced bit 1. -/
+def redX1 (x : Fin 8) : Fin 8 :=
+  if x.val = 0 then ⟨2, by decide⟩
+  else if x.val = 1 then ⟨3, by decide⟩
+  else if x.val = 2 then ⟨0, by decide⟩
+  else if x.val = 3 then ⟨1, by decide⟩
+  else if x.val = 4 then ⟨6, by decide⟩
+  else if x.val = 5 then ⟨7, by decide⟩
+  else if x.val = 6 then ⟨4, by decide⟩
+  else ⟨5, by decide⟩
+
 /-- Logical CNOT with control reduced bit 0 and target reduced bit 1. -/
 def redCX01 (x : Fin 8) : Fin 8 :=
   if x.val = 1 then ⟨3, by decide⟩
@@ -179,6 +191,22 @@ def redCX10 (x : Fin 8) : Fin 8 :=
   else if x.val = 3 then ⟨2, by decide⟩
   else if x.val = 6 then ⟨7, by decide⟩
   else if x.val = 7 then ⟨6, by decide⟩
+  else x
+
+/-- Logical CNOT with control reduced bit 2 and target reduced bit 0. -/
+def redCX20 (x : Fin 8) : Fin 8 :=
+  if x.val = 4 then ⟨5, by decide⟩
+  else if x.val = 5 then ⟨4, by decide⟩
+  else if x.val = 6 then ⟨7, by decide⟩
+  else if x.val = 7 then ⟨6, by decide⟩
+  else x
+
+/-- Logical CNOT with control reduced bit 2 and target reduced bit 1. -/
+def redCX21 (x : Fin 8) : Fin 8 :=
+  if x.val = 4 then ⟨6, by decide⟩
+  else if x.val = 6 then ⟨4, by decide⟩
+  else if x.val = 5 then ⟨7, by decide⟩
+  else if x.val = 7 then ⟨5, by decide⟩
   else x
 
 /-- Logical Toffoli with controls reduced bits 0,1 and target reduced bit 2. -/
@@ -204,7 +232,7 @@ theorem reducedDepth5Image_eq_target :
     ∀ x : Fin 8, reducedDepth5Image x = reducedTargetImage x := by
   native_decide
 
-/-- Extract the active `(aux,time,type)` register from the full index. -/
+/-- Extract the active `(type,time,aux)` register from the full index. -/
 def reducedOfFull (x : Fin 16) : Fin 8 :=
   ⟨x.val / 2, by omega⟩
 
@@ -227,6 +255,74 @@ theorem reducedDepth5_lifts_exampleImage :
     ∀ x : Fin 16, liftReducedImage reducedDepth5Image x = exampleImage x := by
   native_decide
 
+/--
+Matrix induced by a reduced active-register permutation lifted over the passive
+state bit.
+-/
+def unitaryFromReducedImage (f : Fin 8 → Fin 8) : Matrix 16 16 Rat :=
+  fun row col => if row = liftReducedImage f col then 1 else 0
+
+/-- The clean block condition for the concrete optimal-control target. -/
+def CleanBlockE1 (f : Fin 8 → Fin 8) : Prop :=
+  ∀ row col : Fin 8,
+    unitaryFromReducedImage f (cleanIndex row) (cleanIndex col) =
+      exampleOperator row col
+
+/--
+ChatGPT Pro's structured equality-flag/transfer construction specialized to
+the concrete `r = 1, k = 1` instance:
+
+1. `CCX(type,time;aux)` flags `time=1,type=1`.
+2. `CX(aux,time)` transfers flagged `time` to `0`.
+3. `CX(aux,type)` transfers flagged `type` to `0`.
+4. `X(aux)` moves the selected branch back into the clean block.
+-/
+def proEqTransferImage (x : Fin 8) : Fin 8 :=
+  redX2 (redCX20 (redCX21 (redCCX012 x)))
+
+/-- Pro's reduced active-register map is a permutation. -/
+theorem proEqTransferImage_isPermutation :
+    IsPermutation proEqTransferImage := by
+  unfold IsPermutation
+  native_decide
+
+/-- Pro's full active-plus-state completion is a permutation. -/
+theorem proEqTransferFull_isPermutation :
+    IsPermutation (liftReducedImage proEqTransferImage) := by
+  unfold IsPermutation
+  native_decide
+
+/-- Pro's construction has the required clean block for the concrete target. -/
+theorem proEqTransfer_cleanBlock : CleanBlockE1 proEqTransferImage := by
+  unfold CleanBlockE1
+  native_decide
+
+/--
+An evolved child of the Pro construction.  The same equality flag is followed
+by a parallel layer of three `X` gates on `(type,time,aux)`.  This uses the
+freedom in the unitary completion: it does not reproduce `exampleImage`, but it
+does satisfy the same clean-block contract.
+-/
+def evolvedEqFlipImage (x : Fin 8) : Fin 8 :=
+  redX2 (redX1 (redX0 (redCCX012 x)))
+
+/-- The evolved reduced active-register map is a permutation. -/
+theorem evolvedEqFlipImage_isPermutation :
+    IsPermutation evolvedEqFlipImage := by
+  unfold IsPermutation
+  native_decide
+
+/-- The evolved full active-plus-state completion is a permutation. -/
+theorem evolvedEqFlipFull_isPermutation :
+    IsPermutation (liftReducedImage evolvedEqFlipImage) := by
+  unfold IsPermutation
+  native_decide
+
+/-- The evolved depth-2 construction has the required clean block. -/
+theorem evolvedEqFlip_cleanBlock : CleanBlockE1 evolvedEqFlipImage := by
+  unfold CleanBlockE1
+  native_decide
+
 /-- Lightweight score for the logical reversible gate library `{X,CNOT,Toffoli}`. -/
 structure LogicalReversibleCost where
   auxiliaryQubits : Nat
@@ -241,6 +337,16 @@ namespace LogicalReversibleCost
 
 def gateCount (c : LogicalReversibleCost) : Nat :=
   c.xGates + c.cnotGates + c.toffoliGates
+
+/-- Lexicographic order inside one fixed logical reversible gate library. -/
+def betterThan (x y : LogicalReversibleCost) : Prop :=
+  x.depth < y.depth ∨
+  (x.depth = y.depth ∧
+    (x.gateCount < y.gateCount ∨
+      (x.gateCount = y.gateCount ∧
+        (x.auxiliaryQubits < y.auxiliaryQubits ∨
+          (x.auxiliaryQubits = y.auxiliaryQubits ∧
+            x.oracleCalls < y.oracleCalls)))))
 
 end LogicalReversibleCost
 
@@ -260,6 +366,47 @@ theorem reducedDepth5Cost_gateCount :
 theorem reducedDepth5Cost_oracleFree :
     reducedDepth5Cost.oracleCalls = 0 := by
   rfl
+
+/-- Expanded score for Pro's equality-flag/transfer construction. -/
+def proEqTransferCost : LogicalReversibleCost where
+  auxiliaryQubits := 1
+  xGates := 1
+  cnotGates := 2
+  toffoliGates := 1
+  depth := 4
+  oracleCalls := 0
+
+theorem proEqTransferCost_gateCount :
+    proEqTransferCost.gateCount = 4 := by
+  rfl
+
+theorem proEqTransferCost_betterThan_depth5 :
+    proEqTransferCost.betterThan reducedDepth5Cost := by
+  unfold LogicalReversibleCost.betterThan
+  native_decide
+
+/-- Expanded score for the evolved equality-flag/parallel-flip construction. -/
+def evolvedEqFlipCost : LogicalReversibleCost where
+  auxiliaryQubits := 1
+  xGates := 3
+  cnotGates := 0
+  toffoliGates := 1
+  depth := 2
+  oracleCalls := 0
+
+theorem evolvedEqFlipCost_gateCount :
+    evolvedEqFlipCost.gateCount = 4 := by
+  rfl
+
+theorem evolvedEqFlipCost_betterThan_pro :
+    evolvedEqFlipCost.betterThan proEqTransferCost := by
+  unfold LogicalReversibleCost.betterThan
+  native_decide
+
+theorem evolvedEqFlipCost_betterThan_depth5 :
+    evolvedEqFlipCost.betterThan reducedDepth5Cost := by
+  unfold LogicalReversibleCost.betterThan
+  native_decide
 
 /-- Matrix of the one-ancilla permutation unitary completion. -/
 def exampleUnitary : Matrix 16 16 Rat :=

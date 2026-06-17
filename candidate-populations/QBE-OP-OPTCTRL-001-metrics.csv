@@ -5,3 +5,5 @@ generation,tier,best_depth,best_gate_count,best_auxiliary_qubits,best_oracle_cal
 3,expanded-logical,5,6,1,0,false,zero-extra-ancilla mutation rejected by nonunitary target necessary condition
 4,expanded-logical,5,6,1,0,false,two-ancilla workspace mutation no better
 5,expanded-logical,5,6,1,0,false,state-cycle crossover no strict improvement
+6,expanded-logical,4,4,1,0,true,ChatGPT Pro equality-flag transfer completion improves clean-block candidate
+7,expanded-logical,2,4,1,0,true,EoH mutation replaces controlled transfer by parallel X flips after equality flag

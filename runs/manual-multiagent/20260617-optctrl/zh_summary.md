@@ -1,5 +1,11 @@
 # QBE-OP-OPTCTRL-001 中文摘要
 
+> 更新说明：这个文件记录的是 ChatGPT Pro 注入前的一轮结果。当时的 expanded
+> champion 是 depth-5 fixed-permutation completion。后续 Pro 注入和 EoH-style
+> mutation 已经把当前 concrete clean-block champion 更新为 depth-2、4 个逻辑门的
+> `evolvedEqFlipImage`。最新中文总结见
+> `runs/manual-multiagent/20260617-optctrl-pro/zh_summary.md`。
+
 ## 目标算子是什么
 
 本轮 explore-mode 任务研究最优控制论文里的查询算子族
