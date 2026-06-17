@@ -550,6 +550,101 @@ def gateX_time : Gate :=
 def gateX_aux : Gate :=
   Gate.oneQubit "X" 3
 
+/-- Logical CNOT from type to time in the concrete layout. -/
+def gateCX_type_time : Gate :=
+  Gate.cnot 1 2
+
+/-- Logical CNOT from time to type in the concrete layout. -/
+def gateCX_time_type : Gate :=
+  Gate.cnot 2 1
+
+/-- Logical CNOT from auxiliary to type in the concrete layout. -/
+def gateCX_aux_type : Gate :=
+  Gate.cnot 3 1
+
+/-- Logical CNOT from auxiliary to time in the concrete layout. -/
+def gateCX_aux_time : Gate :=
+  Gate.cnot 3 2
+
+/-- The depth-5 fixed-completion circuit in sequential-list form. -/
+def reducedDepth5Circuit : Circuit :=
+  [ gateCCX_type_time_aux
+  , gateCX_type_time
+  , gateCX_time_type
+  , gateX_type
+  , gateX_aux
+  , gateCX_type_time
+  ]
+
+/-- The depth-5 fixed-completion schedule. -/
+def reducedDepth5Schedule : LayeredCircuit :=
+  [ [gateCCX_type_time_aux]
+  , [gateCX_type_time]
+  , [gateCX_time_type]
+  , [gateX_type]
+  , [gateX_aux, gateCX_type_time]
+  ]
+
+/-- Gate matrices for the depth-5 fixed-completion circuit. -/
+def reducedDepth5GateMatrices : List (GateMatrix Rat 4) :=
+  [ reducedGateMatrix gateCCX_type_time_aux redCCX012
+  , reducedGateMatrix gateCX_type_time redCX01
+  , reducedGateMatrix gateCX_time_type redCX10
+  , reducedGateMatrix gateX_type redX0
+  , reducedGateMatrix gateX_aux redX2
+  , reducedGateMatrix gateCX_type_time redCX01
+  ]
+
+/-- The gate-matrix labels match the depth-5 circuit transcript. -/
+theorem reducedDepth5GateMatrices_matchCircuit :
+    gateMatricesMatchCircuit reducedDepth5Circuit reducedDepth5GateMatrices = true := by
+  native_decide
+
+/-- Evaluate reduced logical reversible gates as basis-state permutations. -/
+def evalReducedGateImages (gates : List (Fin 8 → Fin 8)) (x : Fin 8) : Fin 8 :=
+  gates.foldl (fun y gateImage => gateImage y) x
+
+/-- Reduced permutation images of the depth-5 logical circuit. -/
+def reducedDepth5GateImages : List (Fin 8 → Fin 8) :=
+  [redCCX012, redCX01, redCX10, redX0, redX2, redCX01]
+
+/-- The depth-5 logical reversible circuit implements `reducedDepth5Image`. -/
+theorem reducedDepth5GateImages_eval :
+    ∀ x : Fin 8,
+      evalReducedGateImages reducedDepth5GateImages x = reducedDepth5Image x := by
+  native_decide
+
+/-- Pro's equality-flag/transfer circuit in sequential-list form. -/
+def proEqTransferCircuit : Circuit :=
+  [gateCCX_type_time_aux, gateCX_aux_time, gateCX_aux_type, gateX_aux]
+
+/-- Pro's equality-flag/transfer schedule. -/
+def proEqTransferSchedule : LayeredCircuit :=
+  [[gateCCX_type_time_aux], [gateCX_aux_time], [gateCX_aux_type], [gateX_aux]]
+
+/-- Gate matrices for Pro's equality-flag/transfer circuit. -/
+def proEqTransferGateMatrices : List (GateMatrix Rat 4) :=
+  [ reducedGateMatrix gateCCX_type_time_aux redCCX012
+  , reducedGateMatrix gateCX_aux_time redCX21
+  , reducedGateMatrix gateCX_aux_type redCX20
+  , reducedGateMatrix gateX_aux redX2
+  ]
+
+/-- The gate-matrix labels match Pro's circuit transcript. -/
+theorem proEqTransferGateMatrices_matchCircuit :
+    gateMatricesMatchCircuit proEqTransferCircuit proEqTransferGateMatrices = true := by
+  native_decide
+
+/-- Reduced permutation images of Pro's logical circuit. -/
+def proEqTransferGateImages : List (Fin 8 → Fin 8) :=
+  [redCCX012, redCX21, redCX20, redX2]
+
+/-- Pro's logical reversible circuit implements `proEqTransferImage`. -/
+theorem proEqTransferGateImages_eval :
+    ∀ x : Fin 8,
+      evalReducedGateImages proEqTransferGateImages x = proEqTransferImage x := by
+  native_decide
+
 /-- The evolved depth-2 circuit in sequential-list form. -/
 def evolvedEqFlipCircuit : Circuit :=
   [gateCCX_type_time_aux, gateX_type, gateX_time, gateX_aux]
@@ -570,10 +665,6 @@ def evolvedEqFlipGateMatrices : List (GateMatrix Rat 4) :=
 theorem evolvedEqFlipGateMatrices_matchCircuit :
     gateMatricesMatchCircuit evolvedEqFlipCircuit evolvedEqFlipGateMatrices = true := by
   native_decide
-
-/-- Evaluate reduced logical reversible gates as basis-state permutations. -/
-def evalReducedGateImages (gates : List (Fin 8 → Fin 8)) (x : Fin 8) : Fin 8 :=
-  gates.foldl (fun y gateImage => gateImage y) x
 
 /-- Reduced permutation images of the evolved logical circuit. -/
 def evolvedEqFlipGateImages : List (Fin 8 → Fin 8) :=
@@ -597,9 +688,93 @@ theorem evolvedEqFlipGateImages_lift_eval :
         liftReducedImage evolvedEqFlipImage x := by
   native_decide
 
-/-- Resource record for the logical `{X,CNOT,Toffoli}` interpretation. -/
+/--
+Resource record for the depth-5 logical `{X,CNOT,Toffoli}` interpretation.
+The current `Resource` type has no Toffoli field, so `cnot` stores all
+controlled logical gates in this tier.
+-/
+def reducedDepth5Resource : Resource :=
+  Resource.ofCountsWithDepth 2 4 0 0 5
+
+/--
+Resource record for Pro's logical `{X,CNOT,Toffoli}` interpretation.  The
+current `Resource` type has no Toffoli field, so `cnot` stores all controlled
+logical gates in this tier.
+-/
+def proEqTransferResource : Resource :=
+  Resource.ofCountsWithDepth 1 3 0 0 4
+
+/--
+Resource record for the evolved logical `{X,CNOT,Toffoli}` interpretation.
+The current `Resource` type has no Toffoli field, so `cnot` stores the single
+logical Toffoli in this tier.
+-/
 def evolvedEqFlipResource : Resource :=
   Resource.ofCountsWithDepth 3 1 0 0 2
+
+/-- Verified candidate data for the older depth-5 concrete logical BE. -/
+def reducedDepth5Candidate : OperatorBlockEncodingCandidate Rat 3 where
+  auxiliaryQubits := 1
+  target := exampleTarget
+  unitary := reducedDepth5Unitary
+  layout := exampleLayout
+  circuit := reducedDepth5Circuit
+  schedule := reducedDepth5Schedule
+  resource := reducedDepth5Resource
+  layoutMatches := rfl
+  isUnitary := IsRationalOrthogonal reducedDepth5Unitary
+  blockContainsTarget :=
+    ∀ row col : Fin 8,
+      reducedDepth5Unitary (cleanIndex row) (cleanIndex col) =
+        exampleOperator row col
+
+/-- Verified concrete depth-5 block encoding for `E_1`. -/
+def reducedDepth5Verified : VerifiedOperatorBlockEncoding Rat 3 where
+  candidate := reducedDepth5Candidate
+  unitaryProof := by
+    unfold reducedDepth5Candidate
+    exact reducedDepth5Unitary_isRationalOrthogonal
+  blockProof := by
+    unfold reducedDepth5Candidate
+    exact reducedDepth5Unitary_cleanBlock
+
+/-- The verified depth-5 candidate has the advertised logical-library score. -/
+theorem reducedDepth5Candidate_cost :
+    reducedDepth5Candidate.cost =
+      { auxiliaryQubits := 1, gateCount := 6, depth := 5, oracleCalls := 0 } := by
+  native_decide
+
+/-- Verified candidate data for Pro's equality-flag/transfer BE. -/
+def proEqTransferCandidate : OperatorBlockEncodingCandidate Rat 3 where
+  auxiliaryQubits := 1
+  target := exampleTarget
+  unitary := proEqTransferUnitary
+  layout := exampleLayout
+  circuit := proEqTransferCircuit
+  schedule := proEqTransferSchedule
+  resource := proEqTransferResource
+  layoutMatches := rfl
+  isUnitary := IsRationalOrthogonal proEqTransferUnitary
+  blockContainsTarget :=
+    ∀ row col : Fin 8,
+      proEqTransferUnitary (cleanIndex row) (cleanIndex col) =
+        exampleOperator row col
+
+/-- Verified concrete Pro block encoding for `E_1`. -/
+def proEqTransferVerified : VerifiedOperatorBlockEncoding Rat 3 where
+  candidate := proEqTransferCandidate
+  unitaryProof := by
+    unfold proEqTransferCandidate
+    exact proEqTransferUnitary_isRationalOrthogonal
+  blockProof := by
+    unfold proEqTransferCandidate
+    exact proEqTransferUnitary_cleanBlock
+
+/-- The verified Pro candidate has the advertised logical-library score. -/
+theorem proEqTransferCandidate_cost :
+    proEqTransferCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 4, depth := 4, oracleCalls := 0 } := by
+  native_decide
 
 /--
 Final concrete block-encoding candidate for the one-time-bit, one-type-bit,

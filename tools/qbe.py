@@ -2918,6 +2918,7 @@ def article_delta_markdown(task_id: str) -> str:
                 "- Update the generated appendix with the current optimal-control construction status: concrete logical reversible permutation-matrix certificate `evolvedEqFlipVerified`, score `(2,4,1,0)`, and the remaining generalization/hardware/lower-bound obligations.",
                 "- Do not replay the full population history in Overleaf; keep history in `candidate-populations/` and verifier-feedback packets.",
                 "- State the semantic tier precisely: concrete `r=1,k=1` logical `{X,CNOT,Toffoli}` permutation-matrix BE, not a hardware-decomposed or general-family theorem.",
+                "- State the certified-population rule: only candidates with named Lean certificates can be evolutionary parents or plotted solution points; Pro/Python/simulator ideas stay in the insight pool until Lean promotes them.",
             ]
         )
     elif is_ghl_case_task(task_id):
@@ -2945,7 +2946,7 @@ def suggested_project_paper_edits_markdown(task_id: str) -> str:
 | `main/evidence.tex` | Mention the concrete explore-mode improvement only as process evidence and name the Lean declarations supporting it. |
 | `main/lean_platform.tex` | Note that candidate populations can optimize over non-unique unitary completions, with Lean checking clean-block equality. |
 | `appendix/generated_cycle_status.tex` | This file is overwritten automatically and should show only the latest current construction status. |
-| Figures/tables | Reuse the PNG as a certified concrete logical BE curve; label it clearly as not hardware-decomposed and not generalized. |"""
+| Figures/tables | Reuse the PNG only as a certified concrete logical BE curve; label it clearly as not hardware-decomposed and not generalized.  Never plot insight-pool proposals as achieved points. |"""
     if is_ghl_case_task(task_id):
         return """| Report location | Safe update |
 |---|---|
@@ -2963,7 +2964,8 @@ def do_not_claim_markdown(task_id: str) -> str:
     if task_id == "QBE-OP-OPTCTRL-001":
         return """- Do not claim a generalized optimal-control theorem while the construction is only proved for the concrete `r=1,k=1` finite instance.
 - Do not claim hardware-gate optimality before choosing and proving a hardware decomposition/resource model.
-- Do not treat finite verifier scores or population-search convergence as mathematical optimality theorems."""
+- Do not treat finite verifier scores or population-search convergence as mathematical optimality theorems.
+- Do not use unverified Pro/Python/simulator proposals as evolutionary parents; they are insight-pool records until Lean certificates promote them."""
     if is_ghl_case_task(task_id):
         return """- Do not say the Guseynov--Huang--Liu one-term theorem is complete while any
   theorem-facing `sorry` or root block-extraction obligation remains.
@@ -4325,7 +4327,17 @@ def validate_candidate_metrics(task_id: str) -> tuple[bool, list[str]]:
             errors.append(f"{rel(path)} row {i}: plotted non-oracle row has no champion_id")
         if not certs:
             errors.append(f"{rel(path)} row {i}: plotted non-oracle row has no Lean certificates")
-        if "python" in certs.lower() or "finite verifier" in certs.lower():
+        certs_lower = certs.lower()
+        verifier_only_markers = [
+            "python",
+            "finite verifier",
+            "simulator",
+            "insight",
+            "proposal",
+            "search signal",
+            "rank signal",
+        ]
+        if any(marker in certs_lower for marker in verifier_only_markers):
             errors.append(f"{rel(path)} row {i}: verifier-only text appears in Lean certificate field")
     if errors:
         return False, errors
@@ -4757,6 +4769,12 @@ def strategy_for_mode(mode: str) -> str:
   Each candidate must name its unitary/circuit family, auxiliary qubits `a`,
   gate count, depth/layer schedule, unresolved oracle calls, and current Lean
   obligations.
+- Keep two pools distinct: the certified population contains only candidates
+  with named Lean certificates for the required semantic tier, clean-block
+  equality, and resource score; the insight pool contains Pro suggestions,
+  Python searches, simulator traces, and reviewer ideas.  Mutation, crossover,
+  recombination, champion selection, and final plots may use certified parents
+  only.  An insight-pool idea must first be promoted by a Lean proof task.
 - Use necessary-condition feedback before expensive Lean proof search:
   dimension checks, unitarity checks on small symbolic/numeric instances,
   block-entry extraction checks, ancilla-cleanup checks, and schedule/depth
@@ -4806,6 +4824,10 @@ def strategy_for_mode(mode: str) -> str:
 - Use the EoH-like loop only inside the search space: maintain candidate
   populations under `candidate-populations/`, with initialization, mutation,
   crossover/backbone recombination, selection, and archive pressure.
+- Keep the certified population and insight pool separate.  Proposals from
+  ChatGPT Pro, Python search, simulators, or reviewers may guide a lower-agent
+  proof task, but they are not parents and not achieved solutions until Lean
+  proves the stated certificate and resource score.
 - Represent candidates as reusable oracle/proof DAGs when possible, following
   `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md`; do not keep only a flat
   tactic or gate script when components can be shared.
@@ -4953,7 +4975,9 @@ Local paper-source archive for agent work:
   search over candidate unitary/circuit families, but every candidate must
   record its `BlockEncodingCost`, ordered as `(depth, gateCount,
   auxiliaryQubits, oracleCalls)`, and Lean obligations.  Necessary-condition simulators and
-  finite checks may reject bad candidates; only Lean proves acceptance.
+  finite checks may reject bad candidates; only Lean proves acceptance.  Keep
+  unproved ideas in an insight pool.  Only Lean-certified candidates may be
+  used as evolutionary parents or plotted as achieved solutions.
 - In `paperBenchmark` or `faithfulPaper` mode, reproduce the cited paper's
   construction as a baseline candidate.  Do not
   invent a replacement oracle or block encoding, and do not add assumptions,

@@ -18,6 +18,24 @@ The oracle-level baseline and the expanded logical-gate population are kept in
 separate tiers.  A candidate with one unresolved oracle call is useful as a
 correctness baseline, but it is not treated as a one-gate hardware circuit.
 
+## Certified Population Rule
+
+The evolutionary population has two explicitly separate pools.
+
+- **Certified population**: candidates whose stated semantic tier has been
+  closed by named Lean declarations.  Only these candidates may be selected as
+  parents for mutation, crossover, recombination, or champion curves.
+- **Insight pool**: Python searches, simulator traces, ChatGPT Pro proposals,
+  reviewer suggestions, and hand-written circuit ideas that have not yet been
+  Lean-certified.  These may guide the next Lean proof task, but they are not
+  parents and are not plotted as achieved solutions.
+
+This is a hard correctness invariant.  Evolution may use a non-certified idea
+only by first assigning a lower-agent Lean task that proves the candidate's
+unitarity/approved semantic-tier statement, clean-block equality, and resource
+score.  After that proof compiles, the candidate can be promoted into the
+certified population.
+
 Plotting rule: final metric curves plot only candidates whose block-encoding
 certificate has been closed at the task's required semantic tier.  For this
 task the approved final tier is the concrete logical reversible
@@ -44,15 +62,15 @@ deliberately left as a later backend task.
 | Generation | Agent route | Candidate | Lean declarations / verifier | Expanded score | Selection result |
 |---:|---|---|---|---|---|
 | 0 | upper baseline | `one-ancilla-permutation-completion-example` | `OptimalControl.exampleVerified` | oracle tier `(1, 1, 1, 1)` | correctness baseline only |
-| 1 | lower-searcher BFS | sequential logical expansion `X2; CCX012; CX01; X0; CX10; CX01` | finite Python verifier only | `(6, 6, 1, 0)` | search signal only; not plotted as a solution |
+| 1 | lower-searcher BFS | sequential logical expansion `X2; CCX012; CX01; X0; CX10; CX01` | finite Python verifier only | `(6, 6, 1, 0)` | insight pool only; not a parent and not plotted as a solution |
 | 2 | lower-searcher depth scheduler + Lean worker | depth-5 expansion `CCX012; CX01; CX10; X0; {X2, CX01}` | `OptimalControl.reducedDepth5Unitary_isRationalOrthogonal`, `OptimalControl.reducedDepth5Unitary_cleanBlock`, `OptimalControl.reducedDepth5Cost_gateCount` | `(5, 6, 1, 0)` | concrete logical permutation-matrix BE certificate |
-| 3 | mutation: zero extra ancilla | direct system-register unitary attempt | rejected by necessary condition: target operator is not unitary on the system register | none | rejected |
-| 4 | mutation: add workspace ancilla | two-ancilla workspace completion | finite score no better: auxiliary qubits increase without depth/gate decrease | `(≥5, ≥6, 2, 0)` | rejected |
-| 5 | crossover/collaboration | split source-target cycles by state bit | same active reduced permutation after factoring passive state bit | `(5, 6, 1, 0)` | no strict improvement |
+| 3 | mutation from certified Gen 2 | direct system-register unitary attempt | rejected by necessary condition: target operator is not unitary on the system register | none | rejected |
+| 4 | mutation from certified Gen 2 | two-ancilla workspace completion | finite score no better: auxiliary qubits increase without depth/gate decrease | `(>=5, >=6, 2, 0)` | insight only; not promoted |
+| 5 | crossover/collaboration from certified Gen 2 | split source-target cycles by state bit | same active reduced permutation after factoring passive state bit | `(5, 6, 1, 0)` | no strict improvement |
 
 ## Explore Run 2: Pro Injection and Evolved Completion
 
-ChatGPT Pro injected a structured construction:
+ChatGPT Pro injected a structured construction into the insight pool:
 
 ```text
 O_eq(k,1) ; controlled transfer V_k ; final X_a
@@ -64,14 +82,16 @@ For the concrete `r = 1, k = 1` Lean bit order, this becomes:
 CCX(type,time;aux); CX(aux,time); CX(aux,type); X(aux)
 ```
 
-This construction does not realize the old permutation `exampleImage`, but it
-does not need to.  A block encoding only constrains the clean block.  Lean
-therefore checks it against `exampleOperator` directly.
+This construction did not become a parent merely because it was suggested.
+First Lean checked it against `exampleOperator` directly, because a block
+encoding constrains the clean block rather than the irrelevant off-block
+completion.  Only after `OptimalControl.proEqTransferVerified` compiled was it
+promoted from insight to certified population.
 
 | Generation | Agent route | Candidate | Lean declarations / verifier | Expanded score | Selection result |
 |---:|---|---|---|---|---|
 | 6 | Pro injection | `pro-eq-transfer-r1-k1` = `CCX012; CX21; CX20; X2` | `OptimalControl.proEqTransferUnitary_isRationalOrthogonal`, `OptimalControl.proEqTransferUnitary_cleanBlock`, `OptimalControl.proEqTransferCost_betterThan_depth5` | `(4, 4, 1, 0)` | concrete logical permutation-matrix BE certificate; strictly improves depth-5 |
-| 7 | EoH mutation/collaboration | `evolved-eq-flip-r1-k1` = `CCX012; {X0, X1, X2}` | `OptimalControl.evolvedEqFlipVerified`, `OptimalControl.evolvedEqFlipUnitary_isRationalOrthogonal`, `OptimalControl.evolvedEqFlipUnitary_cleanBlock`, `OptimalControl.evolvedEqFlipGateImages_eval`, `OptimalControl.evolvedEqFlipCandidate_cost` | `(2, 4, 1, 0)` | current concrete logical champion |
+| 7 | EoH mutation/collaboration from certified Gen 6 plus insight-pool simplification | `evolved-eq-flip-r1-k1` = `CCX012; {X0, X1, X2}` | `OptimalControl.evolvedEqFlipVerified`, `OptimalControl.evolvedEqFlipUnitary_isRationalOrthogonal`, `OptimalControl.evolvedEqFlipUnitary_cleanBlock`, `OptimalControl.evolvedEqFlipGateImages_eval`, `OptimalControl.evolvedEqFlipCandidate_cost` | `(2, 4, 1, 0)` | current concrete logical champion |
 
 Current certified-search status:
 

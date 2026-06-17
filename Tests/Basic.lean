@@ -116,6 +116,28 @@ example :
   OptimalControl.reducedDepth5Unitary_cleanBlock
 
 example :
+    gateMatricesMatchCircuit
+      OptimalControl.reducedDepth5Circuit
+      OptimalControl.reducedDepth5GateMatrices = true :=
+  OptimalControl.reducedDepth5GateMatrices_matchCircuit
+
+example :
+    ∀ x : Fin 8,
+      OptimalControl.evalReducedGateImages
+          OptimalControl.reducedDepth5GateImages x =
+        OptimalControl.reducedDepth5Image x :=
+  OptimalControl.reducedDepth5GateImages_eval
+
+example :
+    OptimalControl.reducedDepth5Candidate.cost =
+      { auxiliaryQubits := 1, gateCount := 6, depth := 5, oracleCalls := 0 } :=
+  OptimalControl.reducedDepth5Candidate_cost
+
+example :
+    OptimalControl.reducedDepth5Verified.candidate =
+      OptimalControl.reducedDepth5Candidate := rfl
+
+example :
     OptimalControl.reducedDepth5Cost.gateCount = 6 :=
   OptimalControl.reducedDepth5Cost_gateCount
 
@@ -140,6 +162,28 @@ example :
           (OptimalControl.cleanIndex row) (OptimalControl.cleanIndex col) =
         OptimalControl.exampleOperator row col :=
   OptimalControl.proEqTransferUnitary_cleanBlock
+
+example :
+    gateMatricesMatchCircuit
+      OptimalControl.proEqTransferCircuit
+      OptimalControl.proEqTransferGateMatrices = true :=
+  OptimalControl.proEqTransferGateMatrices_matchCircuit
+
+example :
+    ∀ x : Fin 8,
+      OptimalControl.evalReducedGateImages
+          OptimalControl.proEqTransferGateImages x =
+        OptimalControl.proEqTransferImage x :=
+  OptimalControl.proEqTransferGateImages_eval
+
+example :
+    OptimalControl.proEqTransferCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 4, depth := 4, oracleCalls := 0 } :=
+  OptimalControl.proEqTransferCandidate_cost
+
+example :
+    OptimalControl.proEqTransferVerified.candidate =
+      OptimalControl.proEqTransferCandidate := rfl
 
 example :
     OptimalControl.IsPermutation OptimalControl.proEqTransferImage :=

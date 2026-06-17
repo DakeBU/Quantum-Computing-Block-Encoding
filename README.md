@@ -742,6 +742,25 @@ or candidate ledgers, but not as final plotted solution points.  Use:
 python3 tools/qbe.py validate-candidate-metrics QBE-OP-OPTCTRL-001
 ```
 
+Certified-parent rule: QBE keeps a hard boundary between the certified
+population and the insight pool.
+
+- A certified population member has named Lean declarations for the required
+  semantic tier, clean-block equality, and resource score.  Only certified
+  members can be selected as parents for mutation, crossover, recombination, or
+  champion curves.
+- An insight-pool member may come from Python search, a simulator, ChatGPT Pro,
+  a reviewer idea, or a hand-written circuit.  It can be useful, but it is not
+  a parent and not an achieved solution until a lower-agent Lean task promotes
+  it by proving the stated block-encoding certificate.
+
+This rule also applies to universal constructions such as the one-ancilla
+completion in Eq. (3.4) of
+[Explicit Quantum Circuits for Block Encodings of Certain Sparse Matrices](https://arxiv.org/abs/2203.10236).
+That construction is an important correctness baseline for suitably scaled
+operators, but an ABEIS run must still instantiate the target, semantic tier,
+and resource model before the candidate enters the certified population.
+
 ## Literature Roadmap
 
 The source of truth is `QuantumBlockEncoding/Literature.lean`. This README
@@ -857,7 +876,8 @@ task boundary explicit.
 | Independent review loop | [ARIS][aris] uses reviewer models to check claims, experiments, citations, and writing. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, `BlockEncodingCost`, citations, and mode discipline. | In QBE, review cannot accept a claim merely because it reads well; the Lean gate and explicit proof obligations control completion. |
 | Trial memory and feedback compression | [Learning Beyond Gradients][lbg] records policy attempts in `trials.jsonl`, `summary.csv`, videos, logs, and rejected directions. | QBE records proof/circuit attempts in `runs/trials.jsonl` and `runs/trials_summary.csv`; rejected constructions become proof obligations or open problems. | [Learning Beyond Gradients][lbg] optimizes empirical behavior of heuristic policies; QBE uses similar memory discipline to organize theorem-proving attempts whose final target is formal verification. |
 | Hierarchical proof-system maintenance | [Learning Beyond Gradients][lbg] treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | QBE keeps an upper/middle/lower plus reviewer hierarchy: upper chooses strategy, middle maintains Lean/Markdown/LaTeX and memory, lower proves local leaves, reviewer gates claims. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
-| Population-style candidate evolution | [EoH][eoh] evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea for operator-block-encoding construction: maintain families of candidate unitaries/circuits, vary them, evaluate them against necessary diagnostics and Lean-checkable obligations, and keep rejected designs as memory. | [EoH][eoh] is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction is accepted only when the Lean target and proof obligations are satisfied. |
+| Population-style candidate evolution | [EoH][eoh] evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea for operator-block-encoding construction: maintain families of candidate unitaries/circuits, vary them, evaluate them against necessary diagnostics and Lean-checkable obligations, and keep rejected designs as memory. | [EoH][eoh] is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction enters the certified population only when the Lean target and proof obligations are satisfied. |
+| Certified population versus insight pool | [EoH][eoh] keeps evaluated individuals and archives for reuse. | QBE splits this into two pools: Lean-certified candidates can be parents for mutation/crossover, while Pro suggestions, simulators, and Python searches are insight-pool records until Lean promotes them. | This prevents an unverified but attractive circuit from becoming the basis of later evolution or from appearing in solution plots. |
 | Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps candidate scores, trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer lower-ancilla, lower-gate, shallower constructions that also reduce formal gaps. | Paper-benchmark mode should not use evolutionary mutation to change the paper construction; population search belongs to operator construction or improvement tasks after the acceptance predicate is explicit. |
 | Lean proof diagnostics and theorem reuse | [MathCode][mathcode] provides Lean proof-analysis tools, theorem-store-like reuse, persistent REPL/LSP feedback, tree-of-subgoals proving, multi-planner search, and skills/plugins. | QBE uses a similar idea for reviewer scans, proof-attempt memory, reusable projection/gate lemmas, and future focused-check tooling. | [MathCode][mathcode] is a general math formalization agent; QBE is a domain-specific system for quantum oracle/block-encoding circuit matrices. QBE must not accept stored assumptions or proof-search scores as theorem closure. |
 | Blueprint and dynamic proof-DAG control | [LeanMarathon][leanmarathon] and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | [LeanMarathon][leanmarathon] targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |

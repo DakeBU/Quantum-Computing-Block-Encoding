@@ -83,6 +83,21 @@ gate-matrix block-encoding semantics, finite permutation/function semantics
 plus clean-block equality is pre-final evidence only.  Such a witness belongs
 in the candidate ledger, not in the final solution curve.
 
+## Certified-parent policy
+
+QBE evolutionary search has two pools:
+
+- the certified population, containing only candidates with named Lean
+  certificates for the required semantic tier, clean-block equality, and
+  plotted resource score;
+- the insight pool, containing Python searches, simulator traces, Pro
+  suggestions, reviewer ideas, and unproved circuit sketches.
+
+Only certified population members may be used as mutation, crossover, or
+recombination parents.  Insight-pool records can trigger a Lean proof task, but
+they cannot be selected as parents, marked as champions, or plotted as
+solutions until Lean promotes them.
+
 Rule for future final plots: require gate-matrix semantics unless the task
 explicitly names another approved final semantic tier before plotting.
 
