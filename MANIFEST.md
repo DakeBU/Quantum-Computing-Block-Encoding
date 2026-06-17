@@ -6252,3 +6252,58 @@ block-encoding formalization lifecycle.
 | 2026-06-17 06:42:23 | qbe.py human-status | `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | review | Wrote GHL Fig. 4 visual audit for QBE-AUTO-002 |
 | 2026-06-17 06:42:24 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
 | 2026-06-17 06:42:25 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |
+| 2026-06-17 17:20:47 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:20:47 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:20:48 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:20:48 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:20:48 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 17:22:41 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:22:41 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:22:42 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:22:42 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:22:42 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 17:25:00 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:25:00 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:25:01 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:25:01 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:25:01 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 17:27:08 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:27:08 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:27:09 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:27:09 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:27:09 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 17:30:17 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:30:17 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:30:18 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:30:18 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:30:18 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 17:31:15 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:31:15 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:31:16 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:31:16 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:31:16 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 17:38:16 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:38:16 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:38:17 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:38:17 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:38:17 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 17:52:05 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:52:05 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:52:06 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:52:06 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:52:06 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 17:54:01 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:54:01 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 17:54:02 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:54:02 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 17:54:02 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 18:18:01 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 18:18:01 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 18:18:02 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 18:18:02 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 18:18:02 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-17 18:23:10 | qbe.py memory-refresh | `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 18:23:10 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-17 18:23:11 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 18:23:11 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-17 18:23:11 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |

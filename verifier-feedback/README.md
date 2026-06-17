@@ -47,3 +47,54 @@ theorem status unless a named Lean declaration closes the exact target.  In
 paper-benchmark mode, diagnostics must not mutate the paper construction; in
 operator-construction mode, they may guide the next candidate in
 `candidate-populations/`.
+
+## Necessary-condition policy
+
+A non-Lean verifier may reject a candidate only when the failed check is a true
+necessary condition for the Lean theorem.  In other words, if the verifier says
+`reject`, there should be no possible Lean proof of the stated candidate without
+changing the candidate, target, index map, or resource model.
+
+Allowed exact filters include:
+
+- register dimensions and index ranges;
+- exact finite permutation/injectivity/surjectivity checks for permutation
+  completions;
+- exact clean-block entries for a finite candidate;
+- exact support/path checks showing whether unwanted clean branches survive;
+- exact schedule/resource consistency checks;
+- parser/type-shape checks that the intended object cannot even be stated.
+
+Disallowed as rejection filters:
+
+- approximate simulation with tolerances unless the theorem itself has the same
+  tolerance and the check is one-sided;
+- reward scores, heuristic similarity, or model confidence;
+- a check for one arbitrary completion when the block-encoding target allows
+  many different unitary completions;
+- a hardware-cost preference presented as a correctness failure.
+
+## Plotting policy
+
+Candidate-population curves are evidence in the technical report, so every
+final plotted solution point must be a Lean-compiled correct candidate at the
+semantic tier required by the stated task.  For a task that still requires
+gate-matrix block-encoding semantics, finite permutation/function semantics
+plus clean-block equality is pre-final evidence only.  Such a witness belongs
+in the candidate ledger, not in the final solution curve.
+
+Rule for future final plots: require gate-matrix semantics unless the task
+explicitly names another approved final semantic tier before plotting.
+
+For block encodings, a final plotted point needs named Lean declarations for:
+
+1. the requested unitarity/gate-matrix semantics, or an explicitly approved
+   final semantic tier for that task;
+2. the clean-block equality for the requested operator;
+3. the resource score being plotted.
+
+Python-only finite searches, simulator results, and pre-final finite witnesses
+may appear in verifier feedback reports or candidate ledgers, but not as final
+solution points in metrics plots.  If a row in a metrics CSV only carries
+forward a previous final champion, it must name that champion and its Lean
+certificates.

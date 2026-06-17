@@ -1,9 +1,4 @@
-generation,tier,best_depth,best_gate_count,best_auxiliary_qubits,best_oracle_calls,strict_improvement,event
-0,oracle-baseline,1,1,1,1,false,one unresolved permutation-completion oracle; separate tier
-1,expanded-logical,6,6,1,0,true,sequential logical reversible expansion found by BFS
-2,expanded-logical,5,6,1,0,true,depth scheduler parallelizes final X2 and CX01 layer
-3,expanded-logical,5,6,1,0,false,zero-extra-ancilla mutation rejected by nonunitary target necessary condition
-4,expanded-logical,5,6,1,0,false,two-ancilla workspace mutation no better
-5,expanded-logical,5,6,1,0,false,state-cycle crossover no strict improvement
-6,expanded-logical,4,4,1,0,true,ChatGPT Pro equality-flag transfer completion improves clean-block candidate
-7,expanded-logical,2,4,1,0,true,EoH mutation replaces controlled transfer by parallel X flips after equality flag
+generation,tier,champion_id,best_depth,best_gate_count,best_auxiliary_qubits,best_oracle_calls,strict_improvement,lean_certificates,event
+2,concrete-logical-permutation-matrix,reduced-depth5-fixed-completion,5,6,1,0,true,"reducedDepth5Unitary_isRationalOrthogonal; reducedDepth5Unitary_cleanBlock; reducedDepth5Cost_gateCount",first concrete logical permutation-matrix BE certificate
+6,concrete-logical-permutation-matrix,pro-eq-transfer-r1-k1,4,4,1,0,true,"proEqTransferUnitary_isRationalOrthogonal; proEqTransferUnitary_cleanBlock; proEqTransferCost_gateCount; proEqTransferCost_betterThan_depth5",ChatGPT Pro equality-flag transfer certificate improves depth and gate count
+7,concrete-logical-permutation-matrix,evolved-eq-flip-r1-k1,2,4,1,0,true,"evolvedEqFlipVerified; evolvedEqFlipUnitary_isRationalOrthogonal; evolvedEqFlipUnitary_cleanBlock; evolvedEqFlipGateImages_eval; evolvedEqFlipCandidate_cost",EoH mutation reaches current concrete logical champion

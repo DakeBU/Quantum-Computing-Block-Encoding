@@ -1,0 +1,641 @@
+{
+  "cycle": 1,
+  "dynamic_leaf_queue": [],
+  "generated": "2026-06-17 18:23:09",
+  "ghl_contributions": [
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Banded-sparse-access oracle",
+      "english_status": "External contract/backlog: reversible extension, injectivity, dagger cleanup, and unitarity remain obligations.",
+      "id": "ODBS",
+      "is_ghl_contribution": false,
+      "lean_decl": "bandedSparseAccessPaperMatrix / oracle contract helpers",
+      "lean_status": "contract/backlog：已有 active matrix helper；完整 reversible extension、injectivity、dagger cleanup、unitarity 仍是义务。",
+      "main_tex_anchor": "main.tex:784-798",
+      "meaning": "定义 $\\hat{O}^{BS}_D |0\\rangle^{n-l}|s\\rangle^l|i\\rangle^n = |r_{si}\\rangle^n|i\\rangle^n$，并从前一篇 PDE block-encoding 论文引用资源估计。",
+      "open": true,
+      "paper_object": "Lemma 1，banded-sparse-access oracle"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Sparse-amplitude oracle for a banded-sparse matrix",
+      "english_status": "External contract/backlog: normalizer, square-root/arccos semantics, and two-by-two unitarity remain obligations.",
+      "id": "ODTS",
+      "is_ghl_contribution": false,
+      "lean_decl": "sparse-amplitude oracle contract helpers",
+      "lean_status": "contract/backlog：已有 route record 和 matrix interface；nonzero normalizer、sqrt/arccos 语义、二乘二 unitarity 仍是义务。",
+      "main_tex_anchor": "main.tex:822-843",
+      "meaning": "clean branch 的振幅是 $D^{(s)}/\\mathcal{N}_D$，另有 square-root complement 分支保证 unitary。",
+      "open": true,
+      "paper_object": "Lemma 3，banded-sparse matrix 的 sparse-amplitude oracle"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Amplitude oracle for a piecewise-polynomial coefficient",
+      "english_status": "External contract/backlog: clean branch is typed; bounds, orthogonality, cleanup, and unitary completion remain obligations.",
+      "id": "Of",
+      "is_ghl_contribution": false,
+      "lean_decl": "coefficient-amplitude oracle contract helpers",
+      "lean_status": "contract/backlog：clean branch 已 typed；$\\mathcal{N}_f$ bound、orthogonality、workspace cleanup、unitary completion 还没有完整形式化。",
+      "main_tex_anchor": "main.tex:870-908",
+      "meaning": "$\\hat{O}_f$ 的 clean branch 振幅是 $f(x_j)/\\mathcal{N}_f$，其余分支与 clean workspace 正交。",
+      "open": true,
+      "paper_object": "Theorem 5，piece-wise polynomial function 的 amplitude oracle"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Uniform sparse-register preparation",
+      "english_status": "The theorem-facing route uses a clean-column contract; full gate-level state-preparation remains external/backlog.",
+      "id": "HW",
+      "is_ghl_contribution": false,
+      "lean_decl": "HUniform / prepared sparse-register contract",
+      "lean_status": "theorem-facing route 已部分使用 clean-column contract；完整 gate-level state-preparation proof 仍是 external/backlog。",
+      "main_tex_anchor": "main.tex:948-955",
+      "meaning": "制备 $\\kappa^{-1/2}\\sum_{s=0}^{\\kappa-1}|s\\rangle$，并引用 Shukla--Vedula 的实现复杂度。",
+      "open": true,
+      "paper_object": "Sparse-register preparation $H_W^{(\\kappa)}$"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "Indicator unitary",
+      "english_status": "Permutation and self-inverse helpers compile, but this is not yet the final block-encoding proof.",
+      "id": "Uindic",
+      "is_ghl_contribution": true,
+      "lean_decl": "indicator permutation and dagger slot helpers",
+      "lean_status": "permutation/self-inverse helper 和 theorem-facing $U_{\\mathrm{indic}}^\\dagger$ slot 已编译；它仍不是 final block-encoding proof。",
+      "main_tex_anchor": "main.tex:1056-1066",
+      "meaning": "在 bulk region $K_1 \\le i \\le K_2$ 精确把 indicator qubit 置为 $|1\\rangle$。",
+      "open": true,
+      "paper_object": "Indicator unitary $U_{\\mathrm{indic}}(K_1,K_2)$"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Boundary-controlled Ry rotations",
+      "english_status": "Active convention audit: the Ry angle convention must be source-supported before closing the boundary amplitude proof.",
+      "id": "RyBoundary",
+      "is_ghl_contribution": true,
+      "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+      "lean_status": "active convention audit：标准 $R_y(\\theta)$ 给出 $\\cos(\\theta/2)$，所以 Lean route 必须确认论文 convention，或使用有原文/引用支持的 doubled-angle 修正。",
+      "main_tex_anchor": "main.tex:1077-1085",
+      "meaning": "boundary entry 逐元素处理，角度写作 $\\theta_j^s = \\arccos(D_j^{(s)}/\\mathcal{N}_D)$。",
+      "open": true,
+      "paper_object": "Boundary controlled $R_y$ rotations"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "One-term Robin block-encoding theorem",
+      "english_status": "Main active target: the theorem-facing Lean statement is not closed.",
+      "id": "RobinTheorem",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobin... theorem-facing statements",
+      "lean_status": "main active target：还没有作为 theorem-facing Lean statement 闭合。",
+      "main_tex_anchor": "main.tex:1098-1109",
+      "meaning": "声称构造 $A_k$ 的 $(\\mathcal{N}_D\\mathcal{N}_f\\kappa, \\lceil\\log_2 n\\rceil + \\lceil\\log_2 G_f\\rceil + \\lceil\\log_2\\kappa\\rceil + 4, 0)$ block-encoding。",
+      "open": true,
+      "paper_object": "Theorem：one-term Robin block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Gamma wavefunction slices and coefficient product",
+      "english_status": "Several finite boundary lemmas exist; the final projection/product bridge is still open.",
+      "id": "GammaSlices",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobinGamma3... entry/product lemmas",
+      "lean_status": "finite boundary instance 已有不少 route lemma；最终 projection/product bridge 还没闭合。",
+      "main_tex_anchor": "main.tex:1111-1119",
+      "meaning": "给出 $\\gamma_1,\\gamma_2,\\gamma_3$ wavefunction slices；关键 clean branch 是 $\\gamma_3$ 系数 $f(x_i)D_i^{(s)}/(\\mathcal{N}_D\\mathcal{N}_f\\kappa)$。",
+      "open": true,
+      "paper_object": "Eq. ROBIN clarified"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Figure 4 Robin circuit transcript",
+      "english_status": "Transcript guard compiles for visible indicator dagger and H preparation; the active seven-gate backend remains a component.",
+      "id": "FigRobin",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobinGamma3... transcript/fold guards",
+      "lean_status": "theorem-facing transcript guard 已编译：显式 $U_{\\mathrm{indic}}^\\dagger$ 和两侧 $H_W$ prepared route 可见；active backend 七门列表仍是独立 H-free component。",
+      "main_tex_anchor": "main.tex:1122-1164",
+      "meaning": "指定完整 gate order：$H_W^{(\\kappa)}$、$U_{\\mathrm{indic}}$、$\\hat O^S_{D^T}$ 或 boundary $R_y$、$\\hat O^{BS}_{D^T}$、$U_{\\mathrm{indic}}^\\dagger$、$\\hat O_f$、SWAP、$(\\hat O_D^{BS})^\\dagger$、$(H_W^{(\\kappa)})^T$。",
+      "open": true,
+      "paper_object": "Fig. 1-term Robin circuit caption"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "One-dimensional Hamiltonian block encoding",
+      "english_status": "Deferred until the one-term Robin theorem closes.",
+      "id": "OneD",
+      "is_ghl_contribution": true,
+      "lean_decl": "planned LCU/Hamiltonian statements",
+      "lean_status": "one-term Robin 闭合之后再做；不是当前 active theorem blocker。",
+      "main_tex_anchor": "main.tex:1171-1278",
+      "meaning": "用 LCU 组合 $A_k$、$A_k^\\dagger$、$B$、$x_\\xi$ 来 block-encode $H$。",
+      "open": true,
+      "paper_object": "One-dimensional Hamiltonian block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "Multidimensional block encoding",
+      "english_status": "Planned; depends on one-term and LCU abstractions.",
+      "id": "MultiD",
+      "is_ghl_contribution": true,
+      "lean_decl": "planned multidimensional statements",
+      "lean_status": "planned；依赖 one-term 和 LCU abstractions。",
+      "main_tex_anchor": "main.tex:1596-1649",
+      "meaning": "把 1D 构造推广到 $A^{(d)}$、$B^{(d)}$ 和多维 oracle。",
+      "open": true,
+      "paper_object": "Multi-dimensional block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Hamiltonian simulation/QSVT application",
+      "english_status": "External theorem application; not part of the current gate-level Robin circuit closure.",
+      "id": "QSVT",
+      "is_ghl_contribution": false,
+      "lean_decl": "external QSVT simulation theorem application",
+      "lean_status": "external theorem application；不是当前 gate-level Robin circuit closure 的一部分。",
+      "main_tex_anchor": "main.tex:1676-1694",
+      "meaning": "通过引用 Gilyén et al. theorem，把 block-encoding 用于 Hamiltonian simulation。",
+      "open": true,
+      "paper_object": "Hamiltonian simulation/QSVT theorem"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Clean-block block-encoding definition",
+      "english_status": "Used as the semantic target; the final circuit entry/projection bridge remains open.",
+      "id": "BlockEncodingDef",
+      "is_ghl_contribution": false,
+      "lean_decl": "BlockEncoding semantic predicate",
+      "lean_status": "已作为 semantic target 使用；final one-term theorem 仍需把 circuit entry/projection 接到该定义。",
+      "main_tex_anchor": "main.tex:2027-2035",
+      "meaning": "定义所有 theorem statement 使用的 clean ancilla projection 和 approximation condition。",
+      "open": true,
+      "paper_object": "Block-encoding definition"
+    }
+  ],
+  "lean_sorries": [
+    "QuantumBlockEncoding/RobinMatrix.lean:26968:  sorry",
+    "QuantumBlockEncoding/RobinMatrix.lean:26998:  sorry"
+  ],
+  "mode": "operatorBlockEncoding",
+  "next_lower_tasks": [
+    {
+      "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+      "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
+      "role": "lower-1-natural-language-proof-architect"
+    },
+    {
+      "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+      "must_write": "Lean declaration plus trial-log verifier-feedback fields",
+      "role": "lower-2-lean-implementation-worker"
+    },
+    {
+      "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+      "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
+      "role": "lower-3-necessary-condition-verifier"
+    }
+  ],
+  "open_external_technical_lemma_obligations": [
+    {
+      "dependencies": [
+        "sparse slot injectivity",
+        "reversible extension",
+        "finite matrix unitarity"
+      ],
+      "id": "tl-ghl-lemma1-banded-sparse-access",
+      "lean_decl": "bandedSparseAccessPaperMatrix / ODBS contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Keep as explicit external contract until the exact cited construction is formalized or imported as a theorem.",
+      "source": "GHL2025 main.tex:784-798; previous PDE block-encoding construction",
+      "statement": "Banded-sparse-access oracle maps sparse slot and row index to the corresponding column index, with a reversible/unitary completion and dagger cleanup.",
+      "tags": [
+        "GHL2025",
+        "oracle",
+        "sparse-access",
+        "external-primitive"
+      ],
+      "used_by": [
+        "GHL2025 Fig. 4",
+        "Robin boundary ODBS dagger cleanup"
+      ]
+    },
+    {
+      "dependencies": [
+        "nonzero normalizer",
+        "sqrt/arccos semantics",
+        "2x2 unitarity"
+      ],
+      "id": "tl-ghl-lemma3-sparse-amplitude",
+      "lean_decl": "ODTS sparse-amplitude contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Maintain the clean-branch contract and isolate any missing unitarity proof as an external technical lemma.",
+      "source": "GHL2025 main.tex:822-843",
+      "statement": "Sparse-amplitude oracle prepares clean-branch amplitudes D_j^(s)/N_D plus an orthogonal complement branch.",
+      "tags": [
+        "GHL2025",
+        "amplitude-oracle",
+        "normalizer"
+      ],
+      "used_by": [
+        "GHL2025 gamma_1/gamma_2/gamma_3 slices"
+      ]
+    },
+    {
+      "dependencies": [
+        "piecewise-polynomial evaluator",
+        "N_f bound",
+        "workspace orthogonality"
+      ],
+      "id": "tl-ghl-theorem5-piecewise-polynomial-of",
+      "lean_decl": "coefficient-amplitude oracle contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Use only as a named contract in the current theorem; do not invent stronger smoothness or range assumptions.",
+      "source": "GHL2025 main.tex:870-908",
+      "statement": "Coefficient oracle O_f prepares clean-branch amplitude f(x_j)/N_f for the piecewise-polynomial coefficient function.",
+      "tags": [
+        "GHL2025",
+        "coefficient-oracle",
+        "piecewise-polynomial"
+      ],
+      "used_by": [
+        "GHL2025 one-term Robin operator A_k = f(x) partial_x^m"
+      ]
+    },
+    {
+      "dependencies": [
+        "finite register size",
+        "uniform-column normalization",
+        "dagger cleanup"
+      ],
+      "id": "tl-uniform-sparse-register-preparation",
+      "lean_decl": "HUniform / prepared sparse-register contract",
+      "lean_status": "contract-only",
+      "next_action": "Keep as a theorem-facing contract unless the exact state-preparation proof is needed to close a resource theorem.",
+      "source": "GHL2025 main.tex:948-955; Shukla--Vedula 2024",
+      "statement": "H_W^(kappa) prepares the uniform sparse-register superposition kappa^(-1/2) sum_s |s>.",
+      "tags": [
+        "state-preparation",
+        "Hadamard",
+        "external-primitive"
+      ],
+      "used_by": [
+        "GHL2025 Fig. 4 left/right sparse-register preparation"
+      ]
+    },
+    {
+      "dependencies": [
+        "R_y convention audit",
+        "cos(theta/2) versus cos(theta)",
+        "source-supported angle translation"
+      ],
+      "id": "tl-ry-boundary-amplitude-convention",
+      "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+      "lean_status": "obligation",
+      "next_action": "Do not silently change the paper angle; prove the convention bridge or record the exact cited convention.",
+      "source": "GHL2025 main.tex:1077-1085",
+      "statement": "Boundary rotations must implement the paper's desired amplitude D_j^(s)/N_D under the correct R_y convention.",
+      "tags": [
+        "GHL2025",
+        "Ry",
+        "source-audit",
+        "boundary"
+      ],
+      "used_by": [
+        "GHL2025 boundary-entry branch",
+        "active gamma_3 coefficient leaf"
+      ]
+    },
+    {
+      "dependencies": [
+        "closed one-term/LCU block encodings",
+        "QSVT theorem import or contract"
+      ],
+      "id": "tl-qsvt-blockencoding-simulation",
+      "lean_decl": "planned external QSVT theorem application",
+      "lean_status": "paper-cited",
+      "next_action": "Defer until the one-term Robin theorem and LCU combination are closed.",
+      "source": "GHL2025 main.tex:1676-1694; Gilyen et al. 2019",
+      "statement": "A closed block encoding can be used as input to QSVT/Hamiltonian simulation complexity theorems.",
+      "tags": [
+        "QSVT",
+        "simulation",
+        "external-theorem"
+      ],
+      "used_by": [
+        "GHL2025 Hamiltonian simulation section"
+      ]
+    },
+    {
+      "dependencies": [
+        "projector index convention",
+        "normalizer alpha",
+        "approximation epsilon"
+      ],
+      "id": "tl-clean-block-definition",
+      "lean_decl": "BlockEncoding semantic predicate",
+      "lean_status": "contract-only",
+      "next_action": "Use as the final target predicate; ensure circuit entry lemmas are bridged to this semantic definition.",
+      "source": "GHL2025 main.tex:2027-2035",
+      "statement": "Block encoding is defined by a clean-ancilla projection whose top-left block approximates A/alpha.",
+      "tags": [
+        "block-encoding",
+        "definition",
+        "clean-ancilla"
+      ],
+      "used_by": [
+        "all theorem-facing block-encoding statements"
+      ]
+    }
+  ],
+  "open_ghl_contribution_obligations": [
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "Indicator unitary",
+      "english_status": "Permutation and self-inverse helpers compile, but this is not yet the final block-encoding proof.",
+      "id": "Uindic",
+      "is_ghl_contribution": true,
+      "lean_decl": "indicator permutation and dagger slot helpers",
+      "lean_status": "permutation/self-inverse helper 和 theorem-facing $U_{\\mathrm{indic}}^\\dagger$ slot 已编译；它仍不是 final block-encoding proof。",
+      "main_tex_anchor": "main.tex:1056-1066",
+      "meaning": "在 bulk region $K_1 \\le i \\le K_2$ 精确把 indicator qubit 置为 $|1\\rangle$。",
+      "open": true,
+      "paper_object": "Indicator unitary $U_{\\mathrm{indic}}(K_1,K_2)$"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Boundary-controlled Ry rotations",
+      "english_status": "Active convention audit: the Ry angle convention must be source-supported before closing the boundary amplitude proof.",
+      "id": "RyBoundary",
+      "is_ghl_contribution": true,
+      "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+      "lean_status": "active convention audit：标准 $R_y(\\theta)$ 给出 $\\cos(\\theta/2)$，所以 Lean route 必须确认论文 convention，或使用有原文/引用支持的 doubled-angle 修正。",
+      "main_tex_anchor": "main.tex:1077-1085",
+      "meaning": "boundary entry 逐元素处理，角度写作 $\\theta_j^s = \\arccos(D_j^{(s)}/\\mathcal{N}_D)$。",
+      "open": true,
+      "paper_object": "Boundary controlled $R_y$ rotations"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "One-term Robin block-encoding theorem",
+      "english_status": "Main active target: the theorem-facing Lean statement is not closed.",
+      "id": "RobinTheorem",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobin... theorem-facing statements",
+      "lean_status": "main active target：还没有作为 theorem-facing Lean statement 闭合。",
+      "main_tex_anchor": "main.tex:1098-1109",
+      "meaning": "声称构造 $A_k$ 的 $(\\mathcal{N}_D\\mathcal{N}_f\\kappa, \\lceil\\log_2 n\\rceil + \\lceil\\log_2 G_f\\rceil + \\lceil\\log_2\\kappa\\rceil + 4, 0)$ block-encoding。",
+      "open": true,
+      "paper_object": "Theorem：one-term Robin block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Gamma wavefunction slices and coefficient product",
+      "english_status": "Several finite boundary lemmas exist; the final projection/product bridge is still open.",
+      "id": "GammaSlices",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobinGamma3... entry/product lemmas",
+      "lean_status": "finite boundary instance 已有不少 route lemma；最终 projection/product bridge 还没闭合。",
+      "main_tex_anchor": "main.tex:1111-1119",
+      "meaning": "给出 $\\gamma_1,\\gamma_2,\\gamma_3$ wavefunction slices；关键 clean branch 是 $\\gamma_3$ 系数 $f(x_i)D_i^{(s)}/(\\mathcal{N}_D\\mathcal{N}_f\\kappa)$。",
+      "open": true,
+      "paper_object": "Eq. ROBIN clarified"
+    },
+    {
+      "depends_on_external_technical_lemma": true,
+      "english_object": "Figure 4 Robin circuit transcript",
+      "english_status": "Transcript guard compiles for visible indicator dagger and H preparation; the active seven-gate backend remains a component.",
+      "id": "FigRobin",
+      "is_ghl_contribution": true,
+      "lean_decl": "oneTermRobinGamma3... transcript/fold guards",
+      "lean_status": "theorem-facing transcript guard 已编译：显式 $U_{\\mathrm{indic}}^\\dagger$ 和两侧 $H_W$ prepared route 可见；active backend 七门列表仍是独立 H-free component。",
+      "main_tex_anchor": "main.tex:1122-1164",
+      "meaning": "指定完整 gate order：$H_W^{(\\kappa)}$、$U_{\\mathrm{indic}}$、$\\hat O^S_{D^T}$ 或 boundary $R_y$、$\\hat O^{BS}_{D^T}$、$U_{\\mathrm{indic}}^\\dagger$、$\\hat O_f$、SWAP、$(\\hat O_D^{BS})^\\dagger$、$(H_W^{(\\kappa)})^T$。",
+      "open": true,
+      "paper_object": "Fig. 1-term Robin circuit caption"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "One-dimensional Hamiltonian block encoding",
+      "english_status": "Deferred until the one-term Robin theorem closes.",
+      "id": "OneD",
+      "is_ghl_contribution": true,
+      "lean_decl": "planned LCU/Hamiltonian statements",
+      "lean_status": "one-term Robin 闭合之后再做；不是当前 active theorem blocker。",
+      "main_tex_anchor": "main.tex:1171-1278",
+      "meaning": "用 LCU 组合 $A_k$、$A_k^\\dagger$、$B$、$x_\\xi$ 来 block-encode $H$。",
+      "open": true,
+      "paper_object": "One-dimensional Hamiltonian block-encoding"
+    },
+    {
+      "depends_on_external_technical_lemma": false,
+      "english_object": "Multidimensional block encoding",
+      "english_status": "Planned; depends on one-term and LCU abstractions.",
+      "id": "MultiD",
+      "is_ghl_contribution": true,
+      "lean_decl": "planned multidimensional statements",
+      "lean_status": "planned；依赖 one-term 和 LCU abstractions。",
+      "main_tex_anchor": "main.tex:1596-1649",
+      "meaning": "把 1D 构造推广到 $A^{(d)}$、$B^{(d)}$ 和多维 oracle。",
+      "open": true,
+      "paper_object": "Multi-dimensional block-encoding"
+    }
+  ],
+  "open_obligation_signals": [],
+  "recent_proof_attempts": [],
+  "recent_trials": [],
+  "recent_verifier_feedback": [
+    {
+      "block_entry_ok": "",
+      "closed_theorem_ok": "",
+      "error_class": "manual-packet",
+      "finite_matrix_ok": "",
+      "leaf": "pro-construction-search",
+      "next_route": [],
+      "role": "reviewer",
+      "status": "packet",
+      "timestamp": "2026-06-17 17:06:44",
+      "trial_id": "verifier-feedback/QBE-OP-OPTCTRL-001/pro-construction-search.md"
+    },
+    {
+      "block_entry_ok": "",
+      "closed_theorem_ok": "",
+      "error_class": "manual-packet",
+      "finite_matrix_ok": "",
+      "leaf": "evolved-cleanblock-search",
+      "next_route": [],
+      "role": "reviewer",
+      "status": "packet",
+      "timestamp": "2026-06-17 17:06:23",
+      "trial_id": "verifier-feedback/QBE-OP-OPTCTRL-001/evolved-cleanblock-search.md"
+    },
+    {
+      "block_entry_ok": "",
+      "closed_theorem_ok": "",
+      "error_class": "manual-packet",
+      "finite_matrix_ok": "",
+      "leaf": "reduced-depth-search",
+      "next_route": [],
+      "role": "reviewer",
+      "status": "packet",
+      "timestamp": "2026-06-17 16:21:20",
+      "trial_id": "verifier-feedback/QBE-OP-OPTCTRL-001/reduced-depth-search.md"
+    }
+  ],
+  "run_dir": "runs/manual-multiagent/20260617-optctrl-pro",
+  "source_main_tex": "",
+  "stage": "Stage unknown; upper must classify before broad lower work",
+  "task_id": "QBE-OP-OPTCTRL-001",
+  "technical_lemmas": [
+    {
+      "dependencies": [
+        "sparse slot injectivity",
+        "reversible extension",
+        "finite matrix unitarity"
+      ],
+      "id": "tl-ghl-lemma1-banded-sparse-access",
+      "lean_decl": "bandedSparseAccessPaperMatrix / ODBS contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Keep as explicit external contract until the exact cited construction is formalized or imported as a theorem.",
+      "source": "GHL2025 main.tex:784-798; previous PDE block-encoding construction",
+      "statement": "Banded-sparse-access oracle maps sparse slot and row index to the corresponding column index, with a reversible/unitary completion and dagger cleanup.",
+      "tags": [
+        "GHL2025",
+        "oracle",
+        "sparse-access",
+        "external-primitive"
+      ],
+      "used_by": [
+        "GHL2025 Fig. 4",
+        "Robin boundary ODBS dagger cleanup"
+      ]
+    },
+    {
+      "dependencies": [
+        "nonzero normalizer",
+        "sqrt/arccos semantics",
+        "2x2 unitarity"
+      ],
+      "id": "tl-ghl-lemma3-sparse-amplitude",
+      "lean_decl": "ODTS sparse-amplitude contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Maintain the clean-branch contract and isolate any missing unitarity proof as an external technical lemma.",
+      "source": "GHL2025 main.tex:822-843",
+      "statement": "Sparse-amplitude oracle prepares clean-branch amplitudes D_j^(s)/N_D plus an orthogonal complement branch.",
+      "tags": [
+        "GHL2025",
+        "amplitude-oracle",
+        "normalizer"
+      ],
+      "used_by": [
+        "GHL2025 gamma_1/gamma_2/gamma_3 slices"
+      ]
+    },
+    {
+      "dependencies": [
+        "piecewise-polynomial evaluator",
+        "N_f bound",
+        "workspace orthogonality"
+      ],
+      "id": "tl-ghl-theorem5-piecewise-polynomial-of",
+      "lean_decl": "coefficient-amplitude oracle contract helpers",
+      "lean_status": "contract-only",
+      "next_action": "Use only as a named contract in the current theorem; do not invent stronger smoothness or range assumptions.",
+      "source": "GHL2025 main.tex:870-908",
+      "statement": "Coefficient oracle O_f prepares clean-branch amplitude f(x_j)/N_f for the piecewise-polynomial coefficient function.",
+      "tags": [
+        "GHL2025",
+        "coefficient-oracle",
+        "piecewise-polynomial"
+      ],
+      "used_by": [
+        "GHL2025 one-term Robin operator A_k = f(x) partial_x^m"
+      ]
+    },
+    {
+      "dependencies": [
+        "finite register size",
+        "uniform-column normalization",
+        "dagger cleanup"
+      ],
+      "id": "tl-uniform-sparse-register-preparation",
+      "lean_decl": "HUniform / prepared sparse-register contract",
+      "lean_status": "contract-only",
+      "next_action": "Keep as a theorem-facing contract unless the exact state-preparation proof is needed to close a resource theorem.",
+      "source": "GHL2025 main.tex:948-955; Shukla--Vedula 2024",
+      "statement": "H_W^(kappa) prepares the uniform sparse-register superposition kappa^(-1/2) sum_s |s>.",
+      "tags": [
+        "state-preparation",
+        "Hadamard",
+        "external-primitive"
+      ],
+      "used_by": [
+        "GHL2025 Fig. 4 left/right sparse-register preparation"
+      ]
+    },
+    {
+      "dependencies": [
+        "R_y convention audit",
+        "cos(theta/2) versus cos(theta)",
+        "source-supported angle translation"
+      ],
+      "id": "tl-ry-boundary-amplitude-convention",
+      "lean_decl": "boundary rotation coefficient/evalWith lemmas",
+      "lean_status": "obligation",
+      "next_action": "Do not silently change the paper angle; prove the convention bridge or record the exact cited convention.",
+      "source": "GHL2025 main.tex:1077-1085",
+      "statement": "Boundary rotations must implement the paper's desired amplitude D_j^(s)/N_D under the correct R_y convention.",
+      "tags": [
+        "GHL2025",
+        "Ry",
+        "source-audit",
+        "boundary"
+      ],
+      "used_by": [
+        "GHL2025 boundary-entry branch",
+        "active gamma_3 coefficient leaf"
+      ]
+    },
+    {
+      "dependencies": [
+        "closed one-term/LCU block encodings",
+        "QSVT theorem import or contract"
+      ],
+      "id": "tl-qsvt-blockencoding-simulation",
+      "lean_decl": "planned external QSVT theorem application",
+      "lean_status": "paper-cited",
+      "next_action": "Defer until the one-term Robin theorem and LCU combination are closed.",
+      "source": "GHL2025 main.tex:1676-1694; Gilyen et al. 2019",
+      "statement": "A closed block encoding can be used as input to QSVT/Hamiltonian simulation complexity theorems.",
+      "tags": [
+        "QSVT",
+        "simulation",
+        "external-theorem"
+      ],
+      "used_by": [
+        "GHL2025 Hamiltonian simulation section"
+      ]
+    },
+    {
+      "dependencies": [
+        "projector index convention",
+        "normalizer alpha",
+        "approximation epsilon"
+      ],
+      "id": "tl-clean-block-definition",
+      "lean_decl": "BlockEncoding semantic predicate",
+      "lean_status": "contract-only",
+      "next_action": "Use as the final target predicate; ensure circuit entry lemmas are bridged to this semantic definition.",
+      "source": "GHL2025 main.tex:2027-2035",
+      "statement": "Block encoding is defined by a clean-ancilla projection whose top-left block approximates A/alpha.",
+      "tags": [
+        "block-encoding",
+        "definition",
+        "clean-ancilla"
+      ],
+      "used_by": [
+        "all theorem-facing block-encoding statements"
+      ]
+    }
+  ],
+  "title": "Operator of optimal control paper"
+}

@@ -1,4 +1,4 @@
-import QuantumBlockEncoding.BlockEncoding
+import QuantumBlockEncoding.CircuitSemantics
 
 /-!
 # Optimal-control operator block-encoding sandbox
@@ -56,6 +56,18 @@ def exampleOperator : Matrix 8 8 Rat :=
 /-- Clean-ancilla embedding into the first half of the one-ancilla space. -/
 def cleanIndex (i : Fin 8) : Fin 16 :=
   ⟨i.val, by omega⟩
+
+def exampleTarget : QueryOperatorTarget Rat 8 8 where
+  operator := exampleOperator
+  normalizer := 1
+  source := "QBE-OP-OPTCTRL-001: E_k = |0><k|_time ⊗ |0><1|_type ⊗ I_n"
+  semanticContract := "clean one-ancilla block equals E_1 exactly"
+  freeParameters := ["time qubits = 1", "type qubits = 1", "state qubits = 1", "k = 1"]
+
+def exampleLayout : RegisterLayout where
+  systemQubits := 3
+  signalQubits := 1
+  pureAncillas := 0
 
 /--
 Permutation image for the one-ancilla unitary completion.
@@ -255,6 +267,12 @@ theorem reducedDepth5_lifts_exampleImage :
     ∀ x : Fin 16, liftReducedImage reducedDepth5Image x = exampleImage x := by
   native_decide
 
+/-- The depth-5 full active-plus-state completion is a permutation. -/
+theorem reducedDepth5Full_isPermutation :
+    IsPermutation (liftReducedImage reducedDepth5Image) := by
+  unfold IsPermutation
+  native_decide
+
 /--
 Matrix induced by a reduced active-register permutation lifted over the passive
 state bit.
@@ -267,6 +285,62 @@ def CleanBlockE1 (f : Fin 8 → Fin 8) : Prop :=
   ∀ row col : Fin 8,
     unitaryFromReducedImage f (cleanIndex row) (cleanIndex col) =
       exampleOperator row col
+
+/-- Column inner products for concrete rational matrix-level unitarity checks. -/
+def columnInner {n : Nat} (U : Matrix n n Rat) (i j : Fin n) : Rat :=
+  (List.finRange n).foldl (fun acc k => acc + U k i * U k j) 0
+
+/-- Row inner products for concrete rational matrix-level unitarity checks. -/
+def rowInner {n : Nat} (U : Matrix n n Rat) (i j : Fin n) : Rat :=
+  (List.finRange n).foldl (fun acc k => acc + U i k * U j k) 0
+
+/--
+Concrete real/rational unitary proxy for this finite permutation-matrix
+sandbox.  Since all entries are rational and all current exact circuits are
+real, this is the finite `UᵀU = I` and `UUᵀ = I` condition.
+-/
+def IsRationalOrthogonal {n : Nat} (U : Matrix n n Rat) : Prop :=
+  (∀ i j : Fin n, columnInner U i j = Matrix.identity n Rat i j) ∧
+    (∀ i j : Fin n, rowInner U i j = Matrix.identity n Rat i j)
+
+/--
+The target operator itself is not unitary.  Therefore an exact unscaled
+zero-auxiliary block encoding cannot use `E_1` as the whole unitary matrix.
+One auxiliary qubit is locally necessary for this concrete exact construction
+model.
+-/
+theorem exampleOperator_not_rationalOrthogonal :
+    ¬ IsRationalOrthogonal exampleOperator := by
+  intro h
+  have hbad :
+      columnInner exampleOperator targetState0 targetState0 ≠
+        Matrix.identity 8 Rat targetState0 targetState0 := by
+    native_decide
+  exact hbad (h.1 targetState0 targetState0)
+
+/-- The depth-5 fixed-completion candidate has the required clean block. -/
+theorem reducedDepth5_cleanBlock : CleanBlockE1 reducedDepth5Image := by
+  unfold CleanBlockE1
+  native_decide
+
+/-- Matrix of the depth-5 fixed-completion logical circuit. -/
+def reducedDepth5Unitary : Matrix 16 16 Rat :=
+  unitaryFromReducedImage reducedDepth5Image
+
+/-- The depth-5 fixed-completion matrix is rational orthogonal/unitary. -/
+theorem reducedDepth5Unitary_isRationalOrthogonal :
+    IsRationalOrthogonal reducedDepth5Unitary := by
+  unfold IsRationalOrthogonal columnInner rowInner reducedDepth5Unitary
+    unitaryFromReducedImage liftReducedImage reducedOfFull stateOfFull
+    reducedDepth5Image redCX01 redX2 redX0 redCX10 redCCX012
+  native_decide
+
+/-- The depth-5 fixed-completion matrix has the required clean block. -/
+theorem reducedDepth5Unitary_cleanBlock :
+    ∀ row col : Fin 8,
+      reducedDepth5Unitary (cleanIndex row) (cleanIndex col) =
+        exampleOperator row col :=
+  reducedDepth5_cleanBlock
 
 /--
 ChatGPT Pro's structured equality-flag/transfer construction specialized to
@@ -296,6 +370,25 @@ theorem proEqTransferFull_isPermutation :
 theorem proEqTransfer_cleanBlock : CleanBlockE1 proEqTransferImage := by
   unfold CleanBlockE1
   native_decide
+
+/-- Matrix of Pro's equality-flag/transfer construction. -/
+def proEqTransferUnitary : Matrix 16 16 Rat :=
+  unitaryFromReducedImage proEqTransferImage
+
+/-- Pro's equality-flag/transfer matrix is rational orthogonal/unitary. -/
+theorem proEqTransferUnitary_isRationalOrthogonal :
+    IsRationalOrthogonal proEqTransferUnitary := by
+  unfold IsRationalOrthogonal columnInner rowInner proEqTransferUnitary
+    unitaryFromReducedImage liftReducedImage reducedOfFull stateOfFull
+    proEqTransferImage redX2 redCX20 redCX21 redCCX012
+  native_decide
+
+/-- Pro's equality-flag/transfer matrix has the required clean block. -/
+theorem proEqTransferUnitary_cleanBlock :
+    ∀ row col : Fin 8,
+      proEqTransferUnitary (cleanIndex row) (cleanIndex col) =
+        exampleOperator row col :=
+  proEqTransfer_cleanBlock
 
 /--
 An evolved child of the Pro construction.  The same equality flag is followed
@@ -408,6 +501,143 @@ theorem evolvedEqFlipCost_betterThan_depth5 :
   unfold LogicalReversibleCost.betterThan
   native_decide
 
+/-- Matrix of the evolved depth-2 logical gate product. -/
+def evolvedEqFlipUnitary : Matrix 16 16 Rat :=
+  unitaryFromReducedImage evolvedEqFlipImage
+
+/--
+The evolved matrix is a concrete rational unitary matrix in the project-local
+real/permutation sense: both its column and row Gram matrices are identity.
+-/
+theorem evolvedEqFlipUnitary_isRationalOrthogonal :
+    IsRationalOrthogonal evolvedEqFlipUnitary := by
+  unfold IsRationalOrthogonal columnInner rowInner evolvedEqFlipUnitary
+    unitaryFromReducedImage liftReducedImage reducedOfFull stateOfFull
+    evolvedEqFlipImage redX2 redX1 redX0 redCCX012
+  native_decide
+
+/-- The evolved concrete matrix has the required clean block. -/
+theorem evolvedEqFlipUnitary_cleanBlock :
+    ∀ row col : Fin 8,
+      evolvedEqFlipUnitary (cleanIndex row) (cleanIndex col) =
+        exampleOperator row col :=
+  evolvedEqFlip_cleanBlock
+
+/-- Full-space gate matrix for a reduced active-register permutation. -/
+def reducedGateMatrix (gate : Gate) (f : Fin 8 → Fin 8) :
+    GateMatrix Rat 4 where
+  gate := gate
+  matrix := unitaryFromReducedImage f
+  unitary := {
+    description := "logical reversible permutation gate matrix"
+    source := "QBE-OP-OPTCTRL-001 concrete logical gate library"
+    proved := true
+  }
+
+/-- Logical Toffoli gate `CCX(type,time;aux)` in the concrete layout. -/
+def gateCCX_type_time_aux : Gate :=
+  Gate.multiControlled [(1, true), (2, true)] (Gate.oneQubit "X" 3)
+
+/-- Logical `X` on the type bit in the concrete layout. -/
+def gateX_type : Gate :=
+  Gate.oneQubit "X" 1
+
+/-- Logical `X` on the time bit in the concrete layout. -/
+def gateX_time : Gate :=
+  Gate.oneQubit "X" 2
+
+/-- Logical `X` on the block-encoding auxiliary bit in the concrete layout. -/
+def gateX_aux : Gate :=
+  Gate.oneQubit "X" 3
+
+/-- The evolved depth-2 circuit in sequential-list form. -/
+def evolvedEqFlipCircuit : Circuit :=
+  [gateCCX_type_time_aux, gateX_type, gateX_time, gateX_aux]
+
+/-- The evolved depth-2 schedule: one Toffoli layer, then three parallel flips. -/
+def evolvedEqFlipSchedule : LayeredCircuit :=
+  [[gateCCX_type_time_aux], [gateX_type, gateX_time, gateX_aux]]
+
+/-- Gate matrices for the evolved concrete circuit. -/
+def evolvedEqFlipGateMatrices : List (GateMatrix Rat 4) :=
+  [ reducedGateMatrix gateCCX_type_time_aux redCCX012
+  , reducedGateMatrix gateX_type redX0
+  , reducedGateMatrix gateX_time redX1
+  , reducedGateMatrix gateX_aux redX2
+  ]
+
+/-- The gate-matrix labels match the evolved circuit transcript. -/
+theorem evolvedEqFlipGateMatrices_matchCircuit :
+    gateMatricesMatchCircuit evolvedEqFlipCircuit evolvedEqFlipGateMatrices = true := by
+  native_decide
+
+/-- Evaluate reduced logical reversible gates as basis-state permutations. -/
+def evalReducedGateImages (gates : List (Fin 8 → Fin 8)) (x : Fin 8) : Fin 8 :=
+  gates.foldl (fun y gateImage => gateImage y) x
+
+/-- Reduced permutation images of the evolved logical circuit. -/
+def evolvedEqFlipGateImages : List (Fin 8 → Fin 8) :=
+  [redCCX012, redX0, redX1, redX2]
+
+/--
+The logical reversible circuit implements exactly the reduced permutation used
+to build `evolvedEqFlipUnitary`.  This is the efficient semantic bridge for the
+current logical reversible tier; the heavier raw `evalGateMatrices` product is
+left to a later backend if the project chooses a hardware decomposition.
+-/
+theorem evolvedEqFlipGateImages_eval :
+    ∀ x : Fin 8,
+      evalReducedGateImages evolvedEqFlipGateImages x = evolvedEqFlipImage x := by
+  native_decide
+
+/-- The lifted logical circuit implements the full active-plus-state image. -/
+theorem evolvedEqFlipGateImages_lift_eval :
+    ∀ x : Fin 16,
+      liftReducedImage (evalReducedGateImages evolvedEqFlipGateImages) x =
+        liftReducedImage evolvedEqFlipImage x := by
+  native_decide
+
+/-- Resource record for the logical `{X,CNOT,Toffoli}` interpretation. -/
+def evolvedEqFlipResource : Resource :=
+  Resource.ofCountsWithDepth 3 1 0 0 2
+
+/--
+Final concrete block-encoding candidate for the one-time-bit, one-type-bit,
+one-state-bit optimal-control target.  This is final only for this concrete
+logical gate-matrix tier; general `k`, wider time registers, and hardware
+decomposition remain separate tasks.
+-/
+def evolvedEqFlipCandidate : OperatorBlockEncodingCandidate Rat 3 where
+  auxiliaryQubits := 1
+  target := exampleTarget
+  unitary := evolvedEqFlipUnitary
+  layout := exampleLayout
+  circuit := evolvedEqFlipCircuit
+  schedule := evolvedEqFlipSchedule
+  resource := evolvedEqFlipResource
+  layoutMatches := rfl
+  isUnitary := IsRationalOrthogonal evolvedEqFlipUnitary
+  blockContainsTarget :=
+    ∀ row col : Fin 8,
+      evolvedEqFlipUnitary (cleanIndex row) (cleanIndex col) =
+        exampleOperator row col
+
+/-- Verified concrete depth-2 block encoding for `E_1`. -/
+def evolvedEqFlipVerified : VerifiedOperatorBlockEncoding Rat 3 where
+  candidate := evolvedEqFlipCandidate
+  unitaryProof := by
+    unfold evolvedEqFlipCandidate
+    exact evolvedEqFlipUnitary_isRationalOrthogonal
+  blockProof := by
+    unfold evolvedEqFlipCandidate
+    exact evolvedEqFlipUnitary_cleanBlock
+
+/-- The verified evolved candidate has the advertised logical-library score. -/
+theorem evolvedEqFlipCandidate_cost :
+    evolvedEqFlipCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 4, depth := 2, oracleCalls := 0 } := by
+  native_decide
+
 /-- Matrix of the one-ancilla permutation unitary completion. -/
 def exampleUnitary : Matrix 16 16 Rat :=
   fun row col => if row = exampleImage col then 1 else 0
@@ -421,18 +651,6 @@ theorem example_cleanBlock :
       exampleUnitary (cleanIndex row) (cleanIndex col) =
         exampleOperator row col := by
   native_decide
-
-def exampleTarget : QueryOperatorTarget Rat 8 8 where
-  operator := exampleOperator
-  normalizer := 1
-  source := "QBE-OP-OPTCTRL-001: E_k = |0><k|_time ⊗ |0><1|_type ⊗ I_n"
-  semanticContract := "clean one-ancilla block equals E_1 exactly"
-  freeParameters := ["time qubits = 1", "type qubits = 1", "state qubits = 1", "k = 1"]
-
-def exampleLayout : RegisterLayout where
-  systemQubits := 3
-  signalQubits := 1
-  pureAncillas := 0
 
 def exampleCircuit : Circuit :=
   [Gate.oracleCall "optimal-control-one-ancilla-permutation-completion"]

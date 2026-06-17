@@ -76,6 +76,7 @@ EFFICIENCY_DIR = ROOT / "runs" / "efficiency"
 CONTEXT_PACK_DIR = ROOT / "runs" / "context-packs"
 PROJECT_ARTICLE_UPDATE_DIR = ROOT / "paper-notes" / "project-paper" / "cycle-updates"
 PRO_PROMPT_DIR = ROOT / "runs" / "pro-prompts"
+MANUAL_MULTIAGENT_DIR = ROOT / "runs" / "manual-multiagent"
 
 AGENT_ROLES = ("upper", "middle", "lower", "reviewer")
 TRIAL_KINDS = ("plan", "attempt", "build", "review", "proposal", "compression", "handoff")
@@ -97,6 +98,7 @@ WORK_DIRS = [
     "runs/efficiency",
     "runs/context-packs",
     "runs/pro-prompts",
+    "runs/manual-multiagent",
     "paper-notes/project-paper/cycle-updates",
     "research-wiki/papers",
     "research-wiki/ideas",
@@ -281,6 +283,35 @@ def latest_run_dir() -> Path | None:
         if p.is_dir() and re.search(r"-cycle[0-9]+$", p.name)
     ]
     return sorted(runs)[-1] if runs else None
+
+
+def latest_manual_multiagent_dir() -> Path | None:
+    if not MANUAL_MULTIAGENT_DIR.exists():
+        return None
+    runs = [path for path in MANUAL_MULTIAGENT_DIR.glob("*") if path.is_dir()]
+    return max(runs, key=lambda path: path.stat().st_mtime) if runs else None
+
+
+def resolve_run_dir_arg(run_id: str, *, prefer_manual: bool = False) -> Path:
+    if run_id == "latest":
+        run_dir = latest_manual_multiagent_dir() if prefer_manual else latest_run_dir()
+        if run_dir is None:
+            raise SystemExit("no run directories found")
+        return run_dir
+    if run_id == "latest-manual":
+        run_dir = latest_manual_multiagent_dir()
+        if run_dir is None:
+            raise SystemExit("no manual multi-agent directories found")
+        return run_dir
+    candidates = [
+        ROOT / "runs" / run_id,
+        ROOT / run_id,
+        Path(run_id).expanduser(),
+    ]
+    for candidate in candidates:
+        if candidate.exists() and candidate.is_dir():
+            return candidate
+    raise SystemExit(f"run directory not found: {run_id}")
 
 
 def resolved_cycle(requested_cycle: int, run_dir: Path) -> int:
@@ -2639,7 +2670,13 @@ def recent_verifier_feedback(task_id: str, limit: int = 8) -> list[dict[str, obj
             break
     if feedback_rows:
         return feedback_rows
-    feedback_files = sorted(VERIFIER_FEEDBACK_DIR.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
+    task_feedback_dir = VERIFIER_FEEDBACK_DIR / task_id
+    if task_feedback_dir.exists():
+        feedback_files = sorted(task_feedback_dir.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
+    else:
+        feedback_files = sorted(VERIFIER_FEEDBACK_DIR.glob(f"{task_id}*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
+    if not feedback_files and is_ghl_case_task(task_id):
+        feedback_files = sorted(VERIFIER_FEEDBACK_DIR.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
     for path in feedback_files[:limit]:
         feedback_rows.append(
             {
@@ -2821,6 +2858,131 @@ def plain_language_status_en() -> str:
     )
 
 
+def is_ghl_case_task(task_id: str) -> bool:
+    title, task_text = task_context(task_id)
+    haystack = f"{task_id}\n{title}\n{task_text}"
+    return "GHL" in haystack or "Guseynov" in haystack or task_id in {"QBE-AUTO-001", "QBE-AUTO-002"}
+
+
+def task_plain_language_status_en(task_id: str) -> str:
+    if task_id == "QBE-OP-OPTCTRL-001":
+        return (
+            "This cycle is an exploratory block-encoding construction task.  "
+            "The target is the concrete optimal-control transfer operator "
+            "E_1.  The current report should state the best Lean-certified "
+            "concrete logical reversible permutation-matrix block encoding, "
+            "its resource score, and the remaining generalization, lower-bound, "
+            "and hardware-decomposition obligations."
+        )
+    if is_ghl_case_task(task_id):
+        return plain_language_status_en()
+    title, _ = task_context(task_id)
+    return (
+        f"This cycle tracks the current construction status for {title}.  "
+        "The generated appendix should state only the latest Lean-supported "
+        "claim and open obligations for this task."
+    )
+
+
+def manuscript_rule_latex(task_id: str) -> str:
+    if task_id == "QBE-OP-OPTCTRL-001":
+        return (
+            "The project report may discuss this cycle as process evidence and "
+            "as a concrete logical reversible permutation-matrix block "
+            "encoding.  It must not claim a generalized optimal-control "
+            "theorem, arbitrary-register construction, hardware-gate "
+            "optimality, or Lean-proved lower bound until the corresponding "
+            "Lean declarations and resource model are closed."
+        )
+    if is_ghl_case_task(task_id):
+        return (
+            "The project report may discuss this cycle as process evidence.  It must not\n"
+            "claim completion of the first case study \\citep{guseynovHuangLiu2025} unless\n"
+            "the final theorem-facing block-extraction statement is closed in Lean and the\n"
+            "Markdown/LaTeX proof map has been synchronized."
+        )
+    return (
+        "The project report may discuss this cycle as process evidence.  It must not "
+        "claim a completed theorem or globally optimal construction unless the "
+        "corresponding Lean declaration and resource certificate are named."
+    )
+
+
+def article_delta_markdown(task_id: str) -> str:
+    common = [
+        "- Keep the main system claim: ABEIS is an auto-proof harness for turning quantum oracle assumptions into Lean-checked block-encoding/circuit certificates.",
+    ]
+    if task_id == "QBE-OP-OPTCTRL-001":
+        common.extend(
+            [
+                "- Update the generated appendix with the current optimal-control construction status: concrete logical reversible permutation-matrix certificate `evolvedEqFlipVerified`, score `(2,4,1,0)`, and the remaining generalization/hardware/lower-bound obligations.",
+                "- Do not replay the full population history in Overleaf; keep history in `candidate-populations/` and verifier-feedback packets.",
+                "- State the semantic tier precisely: concrete `r=1,k=1` logical `{X,CNOT,Toffoli}` permutation-matrix BE, not a hardware-decomposed or general-family theorem.",
+            ]
+        )
+    elif is_ghl_case_task(task_id):
+        common.extend(
+            [
+                "- Keep the first case study honest: Guseynov--Huang--Liu 2025 is the first paper-benchmark target, but final completion depends on the current Lean gate and `sorry` status below.",
+                "- If this cycle only changes proof-route memory or obstruction analysis, update the report's evidence/appendix status, not the headline contribution.",
+                "- If this cycle closes a named Lean theorem, middle should export the theorem to Markdown and LaTeX proof notes before strengthening the project-paper claim.",
+            ]
+        )
+    else:
+        common.extend(
+            [
+                "- Update the generated appendix with only the current task champion, Lean-supported claims, and open obligations.",
+                "- Keep detailed history in task ledgers and run artifacts, not the Overleaf appendix.",
+            ]
+        )
+    return "\n".join(common)
+
+
+def suggested_project_paper_edits_markdown(task_id: str) -> str:
+    if task_id == "QBE-OP-OPTCTRL-001":
+        return """| Report location | Safe update |
+|---|---|
+| `main/evidence.tex` | Mention the concrete explore-mode improvement only as process evidence and name the Lean declarations supporting it. |
+| `main/lean_platform.tex` | Note that candidate populations can optimize over non-unique unitary completions, with Lean checking clean-block equality. |
+| `appendix/generated_cycle_status.tex` | This file is overwritten automatically and should show only the latest current construction status. |
+| Figures/tables | Reuse the PNG as a certified concrete logical BE curve; label it clearly as not hardware-decomposed and not generalized. |"""
+    if is_ghl_case_task(task_id):
+        return """| Report location | Safe update |
+|---|---|
+| `main/evidence.tex` | Add only stable harness lessons from this cycle, with no stronger claim than the Lean gate supports. |
+| `main/ghl_case_study.tex` | Update the case-study status if a theorem, source-contract correction, or obstruction was accepted by reviewer. |
+| `appendix/generated_cycle_status.tex` | This file is overwritten automatically and can be included as the latest machine-generated status appendix. |
+| Figures/tables | Add or revise a figure only if the cycle changed the system design, proof-DAG frontier, or article-facing evidence. |"""
+    return """| Report location | Safe update |
+|---|---|
+| `main/evidence.tex` | Add only stable, Lean-supported lessons from this cycle. |
+| `appendix/generated_cycle_status.tex` | This file is overwritten automatically and should show only the latest status. |"""
+
+
+def do_not_claim_markdown(task_id: str) -> str:
+    if task_id == "QBE-OP-OPTCTRL-001":
+        return """- Do not claim a generalized optimal-control theorem while the construction is only proved for the concrete `r=1,k=1` finite instance.
+- Do not claim hardware-gate optimality before choosing and proving a hardware decomposition/resource model.
+- Do not treat finite verifier scores or population-search convergence as mathematical optimality theorems."""
+    if is_ghl_case_task(task_id):
+        return """- Do not say the Guseynov--Huang--Liu one-term theorem is complete while any
+  theorem-facing `sorry` or root block-extraction obligation remains.
+- Do not present a cited oracle/state-preparation/LCU/QSVT primitive as proved
+  unless a build-tested Lean declaration is named.
+- Do not turn proof-search scores, agent self-assessments, or natural-language
+  proof sketches into accepted mathematical claims."""
+    return """- Do not claim the task theorem is complete without naming the closing Lean declaration.
+- Do not turn proof-search scores or natural-language sketches into accepted mathematical claims."""
+
+
+def contribution_obligation_heading(task_id: str) -> str:
+    return "Open first-case-study obligations" if is_ghl_case_task(task_id) else "Open current-task contribution obligations"
+
+
+def cited_contract_heading(task_id: str) -> str:
+    return "Open cited-contract obligations" if is_ghl_case_task(task_id) else "Open current-task cited-contract obligations"
+
+
 def prelean_verifier_rows_en() -> list[dict[str, object]]:
     return [
         {
@@ -2869,6 +3031,7 @@ def prelean_verifier_table_en() -> str:
 
 
 def memory_digest_markdown(snapshot: dict[str, object]) -> str:
+    task_id = str(snapshot.get("task_id", ""))
     sorries = snapshot.get("lean_sorries", [])
     sorries_text = "\n".join(f"- `{line}`" for line in sorries) if sorries else "- No `sorry` detected."
     dynamic = snapshot.get("dynamic_leaf_queue", [])
@@ -2900,7 +3063,7 @@ separate from the next lower-agent task package.
 
 ## Plain-language status
 
-{plain_language_status_en()}
+{task_plain_language_status_en(task_id)}
 
 ## Pre-Lean verifier candidates
 
@@ -2920,7 +3083,7 @@ contract.
 
 {dynamic_text}
 
-## Open GHL contribution obligations
+## {contribution_obligation_heading(task_id)}
 
 {markdown_table(snapshot.get('open_ghl_contribution_obligations', []), [
     ('id', 'id'),
@@ -2930,7 +3093,7 @@ contract.
     ('external lemma?', 'depends_on_external_technical_lemma'),
 ])}
 
-## Open external technical lemma obligations
+## {cited_contract_heading(task_id)}
 
 {markdown_table(snapshot.get('open_external_technical_lemma_obligations', []), [
     ('id', 'id'),
@@ -2955,13 +3118,20 @@ contract.
 
 
 def todo_markdown(snapshot: dict[str, object]) -> str:
+    task_id = str(snapshot.get("task_id", ""))
+    if task_id == "QBE-OP-OPTCTRL-001":
+        lower1_first_step = "Read the current construction status and candidate population row for the active optimal-control block-encoding witness."
+    elif is_ghl_case_task(task_id):
+        lower1_first_step = "Read the first open GHL contribution row below."
+    else:
+        lower1_first_step = "Read the first open current-task contribution row below."
     return f"""# Next Todo Packet: {snapshot.get('task_id')} cycle {snapshot.get('cycle')}
 
 Generated: `{snapshot.get('generated')}`
 
 ## Lower 1: Natural-language proof architect
 
-1. Read the first open GHL contribution row below.
+1. {lower1_first_step}
 2. Write the exact source-proof translation: source anchor, local theorem goal,
    dependency DAG, external technical lemmas, and route rejected by verifier.
 3. Do not change Lean code.
@@ -2983,7 +3153,7 @@ Generated: `{snapshot.get('generated')}`
 4. If the diagnostic fails, ask middle to repair the target before lower 2
    spends another large proof attempt.
 
-## Open GHL contribution obligations
+## {contribution_obligation_heading(task_id)}
 
 {markdown_table(snapshot.get('open_ghl_contribution_obligations', []), [
     ('id', 'id'),
@@ -2992,7 +3162,7 @@ Generated: `{snapshot.get('generated')}`
     ('Lean/status', 'lean_status'),
 ], limit=8)}
 
-## Open external technical lemma obligations
+## {cited_contract_heading(task_id)}
 
 {markdown_table(snapshot.get('open_external_technical_lemma_obligations', []), [
     ('id', 'id'),
@@ -3774,6 +3944,9 @@ def project_article_update_markdown(task_id: str, cycle: int, run_dir: Path) -> 
         ],
         limit=8,
     )
+    if not is_ghl_case_task(task_id):
+        open_ghl_text = "_Not applicable to this task._"
+        open_technical_text = "_No task-specific cited-contract obligations were detected by the compact memory layer._"
     return f"""# Project Article Update: {task_id} cycle {cycle}
 
 Generated: `{now_stamp()}`
@@ -3792,17 +3965,7 @@ Lean declarations, source anchors, or explicit obligations.
 
 ## Article-facing delta
 
-- Keep the main system claim: ABEIS is an auto-proof harness for turning
-  quantum oracle assumptions into Lean-checked block-encoding/circuit
-  certificates.
-- Keep the first case study honest: Guseynov--Huang--Liu 2025 is the first
-  paper-benchmark target, but final completion depends on the current
-  Lean gate and `sorry` status below.
-- If this cycle only changes proof-route memory or obstruction analysis, update
-  the report's evidence/appendix status, not the headline contribution.
-- If this cycle closes a named Lean theorem, middle should export the theorem
-  to Markdown and LaTeX proof notes before strengthening the project-paper
-  claim.
+{article_delta_markdown(task_id)}
 
 ## Lean status signal
 
@@ -3810,7 +3973,11 @@ Lean declarations, source anchors, or explicit obligations.
 
 ## Plain-language status for readers
 
-{plain_language_status_en()}
+{task_plain_language_status_en(task_id)}
+
+## Current construction status
+
+{task_article_status_markdown(task_id, run_dir)}
 
 ## Pre-Lean verifier candidates
 
@@ -3829,11 +3996,11 @@ survived this cheaper test; the final claim still needs a Lean theorem.
 
 {obligation_text}
 
-## Open GHL contribution obligations
+## {contribution_obligation_heading(task_id)}
 
 {open_ghl_text}
 
-## Open external technical lemma obligations
+## {cited_contract_heading(task_id)}
 
 {open_technical_text}
 
@@ -3847,21 +4014,11 @@ survived this cheaper test; the final claim still needs a Lean theorem.
 
 ## Suggested project-paper edits
 
-| Report location | Safe update |
-|---|---|
-| `main/evidence.tex` | Add only stable harness lessons from this cycle, with no stronger claim than the Lean gate supports. |
-| `main/ghl_case_study.tex` | Update the case-study status if a theorem, source-contract correction, or obstruction was accepted by reviewer. |
-| `appendix/generated_cycle_status.tex` | This file is overwritten automatically and can be included as the latest machine-generated status appendix. |
-| Figures/tables | Add or revise a figure only if the cycle changed the system design, proof-DAG frontier, or article-facing evidence. |
+{suggested_project_paper_edits_markdown(task_id)}
 
 ## Do not claim
 
-- Do not say the Guseynov--Huang--Liu one-term theorem is complete while any
-  theorem-facing `sorry` or root block-extraction obligation remains.
-- Do not present a cited oracle/state-preparation/LCU/QSVT primitive as proved
-  unless a build-tested Lean declaration is named.
-- Do not turn proof-search scores, agent self-assessments, or natural-language
-  proof sketches into accepted mathematical claims.
+{do_not_claim_markdown(task_id)}
 
 ## Dialogue tail
 
@@ -3916,6 +4073,94 @@ def project_article_public_markdown(markdown: str) -> str:
     return article_status_plain(markdown)
 
 
+def latest_run_summary_path(run_dir: Path) -> Path | None:
+    candidates = [
+        run_dir / "zh_summary.md",
+        run_dir / "summary.md",
+    ]
+    for path in candidates:
+        if path.exists():
+            return path
+    return None
+
+
+def task_article_status_markdown(task_id: str, run_dir: Path) -> str:
+    """Short latest-only manuscript status for the current task."""
+    title, task_text = task_context(task_id)
+    population_path = ROOT / "candidate-populations" / f"{task_id}.md"
+    summary_path = latest_run_summary_path(run_dir)
+    lines = [
+        f"### Current construction status: `{task_id}`",
+        "",
+        f"Task title: {title}",
+        "",
+    ]
+    if task_id == "QBE-OP-OPTCTRL-001" or "evolvedEqFlipCost" in task_text:
+        lines.extend(
+            [
+                "Current concrete logical BE certificate: `OptimalControl.evolvedEqFlipVerified`.",
+                "",
+                "- Target: concrete `E_1 = |0><1|_time ⊗ |0><1|_type ⊗ I_state` with one time bit, one type bit, one passive state bit, and one block-encoding auxiliary bit.",
+                "- Lean certificates: `evolvedEqFlipVerified`, `evolvedEqFlipUnitary_isRationalOrthogonal`, `evolvedEqFlipUnitary_cleanBlock`, `evolvedEqFlipGateImages_eval`, `evolvedEqFlipCandidate_cost`, and `exampleOperator_not_rationalOrthogonal`.",
+                "- Certified logical score: `(depth = 2, gateCount = 4, auxiliaryQubits = 1, oracleCalls = 0)` in the concrete `{X,CNOT,Toffoli}` logical reversible permutation-matrix tier.",
+                "- Scope: final for this concrete `r=1,k=1` logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; not yet generalized to arbitrary time width/state dimension, not hardware-decomposed, and not a Lean-proved depth lower bound.",
+                "- Plot policy: plotted points must name rational-orthogonal matrix and clean-block Lean certificates at this semantic tier.",
+                "- Next manuscript-facing action: state the concrete certificate and list the generalization, hardware-decomposition, and lower-bound obligations.",
+                "",
+            ]
+        )
+    elif population_path.exists():
+        lines.extend(
+            [
+                f"Candidate population exists at `{rel(population_path)}`.",
+                "The generated report should describe only the current champion and open obligations, not the full population history.",
+                "",
+            ]
+        )
+    else:
+        lines.extend([plain_language_status_en(), ""])
+    if summary_path:
+        lines.append(f"Latest human-readable cycle summary: `{rel(summary_path)}`.")
+    if population_path.exists():
+        lines.append(f"Candidate population ledger: `{rel(population_path)}`.")
+    return "\n".join(lines)
+
+
+def task_article_status_latex(task_id: str, run_dir: Path) -> str:
+    """LaTeX version of the latest-only task status for Overleaf."""
+    title, task_text = task_context(task_id)
+    summary_path = latest_run_summary_path(run_dir)
+    population_path = ROOT / "candidate-populations" / f"{task_id}.md"
+    if task_id == "QBE-OP-OPTCTRL-001" or "evolvedEqFlipCost" in task_text:
+        items = [
+            "Current concrete logical BE certificate: \\texttt{OptimalControl.evolvedEqFlipVerified}.",
+            "Target: concrete \\(E_1=|0\\rangle\\langle 1|_{time}\\otimes |0\\rangle\\langle 1|_{type}\\otimes I_{state}\\) with one time bit, one type bit, one passive state bit, and one block-encoding auxiliary bit.",
+            "Lean certificates: \\texttt{evolvedEqFlipVerified}, \\texttt{evolvedEqFlipUnitary\\_isRationalOrthogonal}, \\texttt{evolvedEqFlipUnitary\\_cleanBlock}, \\texttt{evolvedEqFlipGateImages\\_eval}, \\texttt{evolvedEqFlipCandidate\\_cost}, and \\texttt{exampleOperator\\_not\\_rationalOrthogonal}.",
+            "Certified logical score: \\((\\mathrm{depth}=2,\\mathrm{gateCount}=4,\\mathrm{auxiliaryQubits}=1,\\mathrm{oracleCalls}=0)\\) in the concrete \\(\\{X,\\mathrm{CNOT},\\mathrm{Toffoli}\\}\\) logical reversible permutation-matrix tier.",
+            "Scope: final for this concrete \\(r=1,k=1\\) logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; arbitrary-register generalization, hardware decomposition, and Lean-proved depth lower bounds remain open.",
+            "Plot policy: plotted points must name rational-orthogonal matrix and clean-block Lean certificates at this semantic tier.",
+            "Manuscript rule: present this as the current concrete certificate, not as a general-family or hardware-optimality theorem.",
+        ]
+    elif population_path.exists():
+        items = [
+            "A candidate population ledger exists for this task.",
+            "This generated appendix should summarize only the current champion and open obligations, not the full search history.",
+        ]
+    else:
+        items = [latex_escape(plain_language_status_en())]
+    if summary_path:
+        items.append(f"Latest human-readable summary: \\texttt{{{latex_escape(rel(summary_path))}}}.")
+    if population_path.exists():
+        items.append(f"Candidate ledger: \\texttt{{{latex_escape(rel(population_path))}}}.")
+    item_text = "\n".join(f"  \\item {item}" for item in items)
+    return f"""\\paragraph{{Current construction status for \\texttt{{{latex_escape(task_id)}}}.}}
+Task title: {latex_escape(title)}.
+\\begin{{itemize}}
+{item_text}
+\\end{{itemize}}
+"""
+
+
 def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str:
     state = blueprint_status_state(task_id)
     memory = memory_snapshot_state(task_id, cycle, run_dir)
@@ -3933,7 +4178,9 @@ def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str
         f"  \\item {latex_escape(article_status_plain(item))}" for item in obligations[:3]
     ) or "  \\item No compact obligation signal was detected; inspect the proof-obligation ledger directly."
     open_ghl_rows = memory.get("open_ghl_contribution_obligations", [])
-    if isinstance(open_ghl_rows, list) and open_ghl_rows:
+    if not is_ghl_case_task(task_id):
+        open_ghl_items = "  \\item Not applicable to this task."
+    elif isinstance(open_ghl_rows, list) and open_ghl_rows:
         open_ghl_items = "\n".join(
             "  \\item \\texttt{%s}: %s; status %s."
             % (
@@ -3946,7 +4193,9 @@ def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str
     else:
         open_ghl_items = "  \\item No open first-case-study contribution obligation was detected."
     open_technical_rows = memory.get("open_external_technical_lemma_obligations", [])
-    if isinstance(open_technical_rows, list) and open_technical_rows:
+    if not is_ghl_case_task(task_id):
+        open_technical_items = "  \\item No task-specific cited-contract obligation was detected by the compact memory layer."
+    elif isinstance(open_technical_rows, list) and open_technical_rows:
         open_technical_items = "\n".join(
             "  \\item \\texttt{%s}: %s; next action %s."
             % (
@@ -3992,19 +4241,21 @@ generated at \\texttt{{{latex_escape(now_stamp())}}}.
 \\end{{itemize}}
 
 \\paragraph{{Plain-language status for this case study.}}
-{latex_escape(plain_language_status_en())}
+{latex_escape(task_plain_language_status_en(task_id))}
+
+{task_article_status_latex(task_id, run_dir)}
 
 \\paragraph{{Current proof-DAG frontier.}}
 \\begin{{itemize}}
 {dynamic_items}
 \\end{{itemize}}
 
-\\paragraph{{Open first-case-study obligations.}}
+\\paragraph{{{latex_escape(contribution_obligation_heading(task_id))}.}}
 \\begin{{itemize}}
 {open_ghl_items}
 \\end{{itemize}}
 
-\\paragraph{{Open cited-contract obligations.}}
+\\paragraph{{{latex_escape(cited_contract_heading(task_id))}.}}
 \\begin{{itemize}}
 {open_technical_items}
 \\end{{itemize}}
@@ -4015,10 +4266,7 @@ generated at \\texttt{{{latex_escape(now_stamp())}}}.
 \\end{{itemize}}
 
 \\paragraph{{Manuscript rule.}}
-The project report may discuss this cycle as process evidence.  It must not
-claim completion of the first case study \\citep{{guseynovHuangLiu2025}} unless
-the final theorem-facing block-extraction statement is closed in Lean and the
-Markdown/LaTeX proof map has been synchronized.
+{manuscript_rule_latex(task_id)}
 """
 
 
@@ -4056,19 +4304,41 @@ def write_project_article_update(
     return run_md, archive_md, run_tex, archive_tex, external_written
 
 
+def validate_candidate_metrics(task_id: str) -> tuple[bool, list[str]]:
+    path = ROOT / "candidate-populations" / f"{task_id}-metrics.csv"
+    if not path.exists():
+        return True, [f"no metrics CSV found for {task_id}; skipping candidate-curve validation"]
+    errors: list[str] = []
+    with path.open(newline="", encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+    required = {"generation", "tier", "champion_id", "lean_certificates"}
+    missing = required - set(rows[0].keys() if rows else [])
+    if missing:
+        errors.append(f"{rel(path)} missing required columns: {', '.join(sorted(missing))}")
+    for i, row in enumerate(rows, start=2):
+        tier = str(row.get("tier", ""))
+        if tier in {"oracle-baseline", "final-be-status", "status"}:
+            continue
+        champion = str(row.get("champion_id", "")).strip()
+        certs = str(row.get("lean_certificates", "")).strip()
+        if not champion:
+            errors.append(f"{rel(path)} row {i}: plotted non-oracle row has no champion_id")
+        if not certs:
+            errors.append(f"{rel(path)} row {i}: plotted non-oracle row has no Lean certificates")
+        if "python" in certs.lower() or "finite verifier" in certs.lower():
+            errors.append(f"{rel(path)} row {i}: verifier-only text appears in Lean certificate field")
+    if errors:
+        return False, errors
+    return True, [f"candidate metrics validated: {rel(path)}"]
+
+
 def cmd_project_article_update(args: argparse.Namespace) -> int:
-    if args.run_id == "latest":
-        run_dir = latest_run_dir()
-        if run_dir is None:
-            raise SystemExit("no run directories found")
-    else:
-        run_dir = ROOT / "runs" / args.run_id
-    if not run_dir.exists():
-        raise SystemExit(f"run directory not found: {display_path(run_dir)}")
+    run_dir = resolve_run_dir_arg(args.run_id)
+    cycle = resolved_cycle(args.cycle, run_dir)
     article_root = Path(args.article_root).expanduser() if args.article_root else None
     run_md, archive_md, run_tex, archive_tex, external = write_project_article_update(
         args.id,
-        args.cycle,
+        cycle,
         run_dir,
         article_root,
     )
@@ -4079,6 +4349,52 @@ def cmd_project_article_update(args: argparse.Namespace) -> int:
     for path in external:
         print(f"article-update-external: {display_path(path)}")
     return 0
+
+
+def cmd_manual_cycle_closeout(args: argparse.Namespace) -> int:
+    """Close out a manual/chat-window multi-agent cycle with report sync."""
+    cmd_init(argparse.Namespace())
+    run_dir = resolve_run_dir_arg(args.run_id, prefer_manual=args.run_id == "latest")
+    cycle = resolved_cycle(args.cycle, run_dir)
+    summary_path = latest_run_summary_path(run_dir)
+    if summary_path is None:
+        print(
+            "warning: no zh_summary.md or summary.md found in "
+            f"{display_path(run_dir)}; write a human-readable summary before publishing this cycle"
+        )
+    metrics_ok, metrics_messages = validate_candidate_metrics(args.id)
+    for message in metrics_messages:
+        print(("candidate-metrics-ok: " if metrics_ok else "candidate-metrics-error: ") + message)
+    if not metrics_ok:
+        return 1
+    digest_path, todo_path, index_path = write_memory_refresh(args.id, cycle, run_dir)
+    article_root = Path(args.article_root).expanduser() if args.article_root else None
+    run_md, archive_md, run_tex, archive_tex, external = write_project_article_update(
+        args.id,
+        cycle,
+        run_dir,
+        article_root,
+    )
+    print(f"manual-closeout-run: {display_path(run_dir)}")
+    if summary_path:
+        print(f"manual-closeout-summary: {display_path(summary_path)}")
+    print(f"manual-closeout-memory: {display_path(digest_path)}")
+    print(f"manual-closeout-todo: {display_path(todo_path)}")
+    print(f"manual-closeout-index: {display_path(index_path)}")
+    print(f"manual-closeout-article: {display_path(run_md)}")
+    print(f"manual-closeout-article-tex: {display_path(run_tex)}")
+    for path in external:
+        print(f"manual-closeout-overleaf: {display_path(path)}")
+    if not external:
+        print("warning: no external technical-report appendix was written; check --article-root")
+    return 0
+
+
+def cmd_validate_candidate_metrics(args: argparse.Namespace) -> int:
+    ok, messages = validate_candidate_metrics(args.id)
+    for message in messages:
+        print(message)
+    return 0 if ok else 1
 
 
 def cmd_cycle_zh_summary(args: argparse.Namespace) -> int:
@@ -5884,6 +6200,31 @@ def build_parser() -> argparse.ArgumentParser:
         help="optional technical-report root; defaults to QBE_PROJECT_ARTICLE_ROOT or ../Auto_Proof_Papers/ABEIS",
     )
     p_article_update.set_defaults(func=cmd_project_article_update)
+
+    p_manual_closeout = sub.add_parser(
+        "manual-cycle-closeout",
+        help="close a manual/chat-window multi-agent cycle by refreshing memory and the technical-report appendix",
+    )
+    p_manual_closeout.add_argument("id")
+    p_manual_closeout.add_argument("--cycle", type=int, default=0)
+    p_manual_closeout.add_argument(
+        "--run-id",
+        default="latest-manual",
+        help="manual run id under runs/, e.g. manual-multiagent/20260617-optctrl-pro, or latest-manual",
+    )
+    p_manual_closeout.add_argument(
+        "--article-root",
+        default="",
+        help="optional technical-report root; defaults to QBE_PROJECT_ARTICLE_ROOT or ../Auto_Proof_Papers/ABEIS",
+    )
+    p_manual_closeout.set_defaults(func=cmd_manual_cycle_closeout)
+
+    p_validate_metrics = sub.add_parser(
+        "validate-candidate-metrics",
+        help="ensure a candidate-population metrics CSV does not plot verifier-only or pre-final witnesses as final solutions",
+    )
+    p_validate_metrics.add_argument("id")
+    p_validate_metrics.set_defaults(func=cmd_validate_candidate_metrics)
 
     p_trial = sub.add_parser("trial-log", help="append one trial record to runs/trials.jsonl")
     p_trial.add_argument("--task", required=True)

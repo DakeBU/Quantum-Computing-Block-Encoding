@@ -104,15 +104,28 @@ Layer 1: CCX012
 Layer 2: {X0, X1, X2}
 ```
 
-这个 evolved 候选已经通过：
+这个 evolved 候选现在已经提升为当前具体语义层的正式 Lean 证书。这里的“具体语义层”
+指的是：`r = 1, k = 1`，一个 state bit，逻辑可逆门库 `{X,CNOT,Toffoli}`，并且
+用一个真实的 `16 x 16` rational orthogonal matrix 作为完整 unitary matrix。
 
-- `evolvedEqFlipFull_isPermutation`：完整 completion 是 permutation；
-- `evolvedEqFlip_cleanBlock`：clean block 等于具体 `E_1`；
-- `evolvedEqFlipCost_gateCount`：逻辑门数为 `4`；
-- `evolvedEqFlipCost_betterThan_pro`：严格优于 Pro 候选；
-- `evolvedEqFlipCost_betterThan_depth5`：严格优于旧 depth-5 候选。
+它已经通过：
 
-当前 concrete finite champion 的逻辑评分是：
+- `evolvedEqFlipVerified`：封装成 `VerifiedOperatorBlockEncoding Rat 3`；
+- `evolvedEqFlipUnitary_isRationalOrthogonal`：完整 `16 x 16` 矩阵满足 rational
+  orthogonal/unitary 条件；
+- `evolvedEqFlipUnitary_cleanBlock`：clean block 等于具体 `E_1`；
+- `evolvedEqFlipGateImages_eval`：逻辑门序列在 basis permutation 语义下实现该矩阵的
+  underlying permutation；
+- `evolvedEqFlipCandidate_cost`：资源评分为 `(depth = 2, gateCount = 4,
+  auxiliaryQubits = 1, oracleCalls = 0)`。
+- `exampleOperator_not_rationalOrthogonal`：目标 `E_1` 本身不是 unitary/orthogonal，
+  因此在 exact unscaled whole-matrix 模型下，`a = 0` 不可能直接成立。
+
+因此，下面的 depth 2 可以画在最终指标图里，但必须写清楚它只是在这个具体逻辑
+permutation-matrix 语义层成立：不是硬件分解后的门深度，不是一般 `k,n` 定理，也不是
+Lean 证明过的全局最优下界。
+
+当前 concrete logical BE certificate 的逻辑评分是：
 
 ```text
 depth = 2
@@ -126,29 +139,25 @@ oracleCalls = 0
 1. Toffoli/CCX 标记唯一目标 clean 输入；
 2. 三个互不共享 qubit 的 `X` 门并行执行。
 
-## 必须 Lean 形式化的内容
+## 这轮已经完成的 Lean 形式化
 
-需要在 Lean 中补齐以下对象和定理。
+这轮已经补齐了以下对象和定理。
 
-1. 定义一般的 register layout：time register、type register、state register、flag
-   ancilla、clean/block ancilla，以及 `k` 的合法范围。
-2. 定义目标矩阵 `E_k`：当且仅当输入列满足 `(T = k, tau = 1)` 且输出行满足
+1. 定义具体目标矩阵 `E_1`：当且仅当输入列满足 `(T = 1, tau = 1)` 且输出行满足
    `(T = 0, tau = 0)`、state 相同，矩阵元为 `1`；否则为 `0`。
-3. 定义 `O_eq` 的有限置换或矩阵语义，并证明它正确设置 flag：flag 等于
-   `((T = k) ∧ (tau = 1))`。
-4. 定义 `V_k` 的置换/受控置换语义，并证明在 flag 为 true 的分支上，
-   `(T, tau)` 被送到 `(0, 0)`，state register 不变。
-5. 定义 `X_a` 的语义，并证明选中分支进入 clean block，未选中分支进入 ancilla `1`
-   或其他非 clean block。
-6. 证明组合 `U_k := X_a · V_k · O_eq` 是酉的，或者以有限置换双射证明作为酉性代理。
-7. 证明 clean block 等式：
+2. 定义 `evolvedEqFlipUnitary`，也就是完整 `16 x 16` unitary matrix。
+3. 证明 `evolvedEqFlipUnitary_isRationalOrthogonal`，即完整矩阵是真正的 rational
+   orthogonal/unitary matrix。
+4. 证明 clean block 等式：
 
 ```text
-(<0^a| ⊗ I) U_k (|0^a> ⊗ I) = E_k
+(<0^a| ⊗ I) evolvedEqFlipUnitary (|0^a> ⊗ I) = E_1
 ```
 
-8. 明确记录资源：ancilla 数、depth、gate count、oracle calls。若 `O_eq` 或 `V_k`
-   仍是 oracle 级对象，必须在 score 中保留 unresolved oracle calls。
+5. 定义逻辑门序列 `CCX012; {X0, X1, X2}`，并证明它在 basis permutation 语义下实现
+   `evolvedEqFlipUnitary` 的 underlying permutation。
+6. 封装 `evolvedEqFlipVerified`，作为这个具体实例的 verified block encoding。
+7. 明确记录资源：ancilla 数、depth、gate count、oracle calls。
 
 ## 与先前 depth-5 有限候选的比较
 
@@ -161,19 +170,21 @@ qubit、一个 state qubit、`k = 1`，并且 active reduced register 为
 depth = 5, gateCount = 6, auxiliaryQubits = 1, oracleCalls = 0
 ```
 
-这个 depth-5 候选还不是一般 `k`、一般 state 维度的完整矩阵语义定理；它是一个已被
-有限搜索和 Lean reduced-permutation 证书支持的具体候选。
+这个 depth-5 候选现在也有 rational orthogonal matrix 证书和 clean-block 证书，因此
+可以作为同一 concrete logical permutation-matrix tier 的已验证旧候选。
 
 新注入的 ChatGPT Pro 构造更像一般化的 proof architecture：它解释了如何用
 `O_eq`、`V_k`、`X_a` 把任意 `E_k` 的选中分支放进 clean block，并把所有非选中分支
-排除到 ancilla `1`。在具体实例上，它已经被 Lean 验证为优于 depth-5 候选；并且由它
-启发出的 evolved 候选进一步把 depth 降到 `2`。
+排除到 ancilla `1`。在具体实例上，Pro 候选已经有 rational orthogonal matrix 和
+clean-block 证书，优于 depth-5 候选；由它启发出的 evolved 候选进一步把 depth 降到
+`2`，并封装成当前 concrete logical BE certificate。
 
 ## 还没完成的事情
 
 - 这些结论目前只针对具体 `r = 1, k = 1`、一个 state bit 的实例。
-- 还没有把 `{X,CNOT,Toffoli}` 接入完整 gate-matrix semantics；当前证明使用有限
-  permutation/function 语义和 clean-block 等式。
-- 还没有把 depth-2 的 finite lower-bound 搜索反射进 Lean，只是 verifier feedback。
+- depth 2 的指标属于逻辑可逆门库 `{X,CNOT,Toffoli}`；还不是硬件分解后的深度。
+- 已经证明了 `a = 0` 的 whole-matrix obstruction；但还没有把 depth-1 不可能性的
+  finite lower-bound 搜索反射进 Lean；目前不能说
+  Lean 已经证明 depth 2 最优。
 - 下一步应该把 evolved 思路推广到一般 time register width、一般 `k` 和任意 state
   dimension，并明确 MCX / mixed-polarity control 的资源模型。

@@ -81,6 +81,10 @@ example :
   OptimalControl.exampleCandidate_cost
 
 example :
+    ¬ OptimalControl.IsRationalOrthogonal OptimalControl.exampleOperator :=
+  OptimalControl.exampleOperator_not_rationalOrthogonal
+
+example :
     ∀ x : Fin 8,
       OptimalControl.reducedDepth5Image x = OptimalControl.reducedTargetImage x :=
   OptimalControl.reducedDepth5Image_eq_target
@@ -90,6 +94,26 @@ example :
       OptimalControl.liftReducedImage OptimalControl.reducedDepth5Image x =
         OptimalControl.exampleImage x :=
   OptimalControl.reducedDepth5_lifts_exampleImage
+
+example :
+    OptimalControl.IsPermutation
+      (OptimalControl.liftReducedImage OptimalControl.reducedDepth5Image) :=
+  OptimalControl.reducedDepth5Full_isPermutation
+
+example :
+    OptimalControl.CleanBlockE1 OptimalControl.reducedDepth5Image :=
+  OptimalControl.reducedDepth5_cleanBlock
+
+example :
+    OptimalControl.IsRationalOrthogonal OptimalControl.reducedDepth5Unitary :=
+  OptimalControl.reducedDepth5Unitary_isRationalOrthogonal
+
+example :
+    ∀ row col : Fin 8,
+      OptimalControl.reducedDepth5Unitary
+          (OptimalControl.cleanIndex row) (OptimalControl.cleanIndex col) =
+        OptimalControl.exampleOperator row col :=
+  OptimalControl.reducedDepth5Unitary_cleanBlock
 
 example :
     OptimalControl.reducedDepth5Cost.gateCount = 6 :=
@@ -105,6 +129,17 @@ example :
 example :
     OptimalControl.CleanBlockE1 OptimalControl.proEqTransferImage :=
   OptimalControl.proEqTransfer_cleanBlock
+
+example :
+    OptimalControl.IsRationalOrthogonal OptimalControl.proEqTransferUnitary :=
+  OptimalControl.proEqTransferUnitary_isRationalOrthogonal
+
+example :
+    ∀ row col : Fin 8,
+      OptimalControl.proEqTransferUnitary
+          (OptimalControl.cleanIndex row) (OptimalControl.cleanIndex col) =
+        OptimalControl.exampleOperator row col :=
+  OptimalControl.proEqTransferUnitary_cleanBlock
 
 example :
     OptimalControl.IsPermutation OptimalControl.proEqTransferImage :=
@@ -132,6 +167,17 @@ example :
   OptimalControl.evolvedEqFlip_cleanBlock
 
 example :
+    OptimalControl.IsRationalOrthogonal OptimalControl.evolvedEqFlipUnitary :=
+  OptimalControl.evolvedEqFlipUnitary_isRationalOrthogonal
+
+example :
+    ∀ row col : Fin 8,
+      OptimalControl.evolvedEqFlipUnitary
+          (OptimalControl.cleanIndex row) (OptimalControl.cleanIndex col) =
+        OptimalControl.exampleOperator row col :=
+  OptimalControl.evolvedEqFlipUnitary_cleanBlock
+
+example :
     OptimalControl.IsPermutation OptimalControl.evolvedEqFlipImage :=
   OptimalControl.evolvedEqFlipImage_isPermutation
 
@@ -156,6 +202,28 @@ example :
     OptimalControl.evolvedEqFlipCost.betterThan
       OptimalControl.reducedDepth5Cost :=
   OptimalControl.evolvedEqFlipCost_betterThan_depth5
+
+example :
+    gateMatricesMatchCircuit
+      OptimalControl.evolvedEqFlipCircuit
+      OptimalControl.evolvedEqFlipGateMatrices = true :=
+  OptimalControl.evolvedEqFlipGateMatrices_matchCircuit
+
+example :
+    ∀ x : Fin 8,
+      OptimalControl.evalReducedGateImages
+          OptimalControl.evolvedEqFlipGateImages x =
+        OptimalControl.evolvedEqFlipImage x :=
+  OptimalControl.evolvedEqFlipGateImages_eval
+
+example :
+    OptimalControl.evolvedEqFlipCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 4, depth := 2, oracleCalls := 0 } :=
+  OptimalControl.evolvedEqFlipCandidate_cost
+
+example :
+    OptimalControl.evolvedEqFlipVerified.candidate =
+      OptimalControl.evolvedEqFlipCandidate := rfl
 
 -- CircuitSemantics tests: first matrix-semantics backend layer
 

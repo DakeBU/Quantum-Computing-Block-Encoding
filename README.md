@@ -698,6 +698,8 @@ math-writing skill.
 | `python3 tools/qbe.py memory-refresh ...` | Refresh `memory_digest.md`, cycle todo, benchmark/paper todo, technical-lemma todo, and the compact retrieval JSON. |
 | `python3 tools/qbe.py human-status ...` | Refresh `HUMAN_STATUS.md`, the single human-facing dashboard for the latest run. |
 | `python3 tools/qbe.py project-article-update ...` | Write the article-facing cycle packet and mirror generated status into the technical report. |
+| `python3 tools/qbe.py manual-cycle-closeout ...` | Close a chat-window/manual multi-agent loop by refreshing memory and mirroring the latest-only Overleaf appendix. Use this whenever work did not go through `sleep-run`. |
+| `python3 tools/qbe.py validate-candidate-metrics ...` | Check that a candidate-population metrics CSV does not plot verifier-only or pre-final witnesses as final solutions. |
 | `python3 tools/qbe.py new-open-problem ...` | Draft an open problem proposal. |
 | `python3 tools/qbe.py agent-brief ...` | Generate an agent context packet. |
 | `python3 tools/qbe.py run-cycle ... --upper-panel --middle-panel` | Create one multi-agent prompt deck; panel flags also create specialist upper and middle prompts. |
@@ -705,6 +707,40 @@ math-writing skill.
 | `python3 tools/qbe.py agent-note ...` | Append to a run dialogue board. |
 | `python3 tools/qbe.py trial-log ...` | Append one JSONL trial record. |
 | `python3 tools/qbe.py trial-summary` | Rewrite and print trial summaries. |
+
+Report rule: every completed loop, whether produced by `sleep-run` or by a
+manual/chat-window multi-agent session, must update the generated technical
+report appendix.  `sleep-run` does this unless `--skip-article-update` is used.
+For manual sessions, run:
+
+```bash
+python3 tools/qbe.py manual-cycle-closeout QBE-OP-OPTCTRL-001 \
+  --run-id manual-multiagent/20260617-optctrl-pro
+```
+
+The Overleaf-facing appendix is latest-only: it should describe the current
+construction status and open obligations, not replay the full iteration history.
+
+Pre-Lean verifier rule: use parser, dimension, support, finite permutation,
+finite block-entry, schedule, or exact symbolic checks only when they are true
+necessary conditions for the Lean theorem.  They may reject a circuit transcript
+that cannot possibly satisfy the target operator, but they must not be
+approximate heuristics that could reject a Lean-provable construction.  If a
+diagnostic is merely a search reward or empirical hint, record it as
+`proposal`/`rank-signal`, not as verifier rejection.
+
+Plot rule: every solution drawn in a final candidate-population curve must be a
+Lean-compiled correct candidate at the semantic tier required by that task.  A
+finite permutation proxy plus clean-block equality is valuable pre-final
+evidence, but if the task still requires a gate-matrix block-encoding theorem,
+that witness must stay in the ledger and must not be drawn as a final achieved
+solution.  Python-only finite searches, simulator results, rejected mutations,
+pre-final witnesses, and reward scores can appear in verifier-feedback tables
+or candidate ledgers, but not as final plotted solution points.  Use:
+
+```bash
+python3 tools/qbe.py validate-candidate-metrics QBE-OP-OPTCTRL-001
+```
 
 ## Literature Roadmap
 
