@@ -1,0 +1,45 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-054403-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "kind": "retarget_packet",
+  "timestamp_jst": "2026-06-17 05:50:20 JST",
+  "leaf": "source_prepared_prepared_composite_field",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "Retargets from the rejected H-free evaluated backend fold to the source-prepared prepared-composite field anchored at GHL2025 theorem: 1 term robin, Eq. ROBIN clarified, Eq. arbitrary sparcity, Fig. fig:1 term ROBIN, and def:block-encoding.",
+  "source_dependency_classification": "internal-paper-step needing a Lean finite matrix interface",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "pending lower3 check for prepared-composite clean-entry field; direct H-free evaluated fold already rejected",
+  "block_entry_ok": "source-prepared prepared-composite field only; root block encoding not closed",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "conditional only through explicit hUniform and existing normalizer hypotheses; no normalizer flag promoted",
+  "unitarity_ok": null,
+  "resource_score": {
+    "phase": "paperBenchmark baseline; candidate scoring deferred",
+    "score": null
+  },
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7,
+    "prepared_singleton_gate_count": 1
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "retired_routes": [
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env as direct all-environment H-free lower2 target",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement"
+  ],
+  "active_lean_anchors": [
+    "oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env",
+    "oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3",
+    "oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_obstruction_n3"
+  ],
+  "planned_lower2_declaration": "oneTermRobinGamma3BoundaryPreparedCompositeSourceProjectionAudit_n3",
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Lower1 maps the Fig. 4 source-prepared prepared-composite field; lower3 checks the finite prepared-composite entry condition; lower2 may then compile exactly one non-promoting audit wrapper and must not prove the rejected H-free fold."
+}

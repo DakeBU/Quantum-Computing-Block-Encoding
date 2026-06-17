@@ -1,0 +1,38 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-054403-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "kind": "attempt",
+  "timestamp_jst": "2026-06-17 05:56:58 JST",
+  "leaf": "source_prepared_prepared_composite_field",
+  "source_correspondence_ok": "pending lower1 confirmation; middle packet claims correspondence but lower2 precondition is not satisfied",
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": "pending lower3 prepared-composite clean-entry diagnostic",
+  "block_entry_ok": "not checked by lower2; source-prepared prepared-composite field only",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "not promoted; only existing hUniform/normalizer-contract routes inspected",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7,
+    "prepared_singleton_gate_count": 1
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "lean_edit_made": false,
+  "planned_declaration": "oneTermRobinGamma3BoundaryPreparedCompositeSourceProjectionAudit_n3",
+  "checked_existing_anchors": [
+    "oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_obstruction_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_exposesUncastSevenGate_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldSourceBridgeAudit_n3",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+    "oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3"
+  ],
+  "error_class": "source_translation_gap",
+  "next_route": "Run lower1 source-proof map and lower3 finite prepared-composite clean-entry diagnostic; if both confirm, compile exactly the non-promoting audit wrapper oneTermRobinGamma3BoundaryPreparedCompositeSourceProjectionAudit_n3."
+}

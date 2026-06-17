@@ -1,0 +1,35 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-051350-QBE-AUTO-002-cycle01",
+  "role": "lower1",
+  "kind": "attempt",
+  "timestamp_jst": "2026-06-17 05:37:34 JST",
+  "leaf": "evaluated_backend_fold_source_bridge",
+  "source_correspondence_ok": false,
+  "source_correspondence_note": "The source-prepared route is valid, but direct all-env closure of oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env or RawPreparedSandwichField(H) drops the paper's prepared H_W^(kappa) projection and reuses the H-free active backend surface.",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": false,
+  "finite_matrix_note": "Lean has oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3; the all-one diagnostic environment used by oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3 makes the selected contribution evaluate to 1.",
+  "block_entry_ok": false,
+  "block_entry_note": "Prepared clean entry to backend fold is compiled under hUniform; active H-free entry to backend fold is not a valid theorem-facing block entry.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "source-corrected product feeder normalizer route compiled under explicit hND, hNF, hkappa, hkappaSqrt; not relevant to direct H-free fold closure",
+  "unitarity_ok": null,
+  "resource_score": {
+    "phase": "paperBenchmark baseline",
+    "score": null
+  },
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "semantic_promotion_ok": false,
+  "error_class": "finite_matrix_counterexample",
+  "next_route": "Do not prove the all-env EvaluatedFoldStatement(env), RawPreparedSandwichField(H), generic projection, or backend-expansion surface. If lower2 edits Lean, compile only a non-promoting EvaluatedBackendFoldSourceBridgeAudit wrapper recording the no-go facts, or wait for middle to restate the theorem-facing finite block/projection contract around prepared composite semantics.",
+  "artifact": "proof-attempts/QBE-AUTO-002/evaluated-backend-fold-source-bridge-lower1-dag-20260617-053734.md"
+}

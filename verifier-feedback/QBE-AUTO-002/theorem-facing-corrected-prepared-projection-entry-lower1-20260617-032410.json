@@ -1,0 +1,49 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-030416-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "profile": "natural-language proof architect",
+  "kind": "handoff",
+  "timestamp_jst": "2026-06-17 03:24:10 JST",
+  "leaf": "theorem_facing_corrected_prepared_projection_entry",
+  "active_lean_target": "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_correctedPreparedProjectionEntry_n3",
+  "source_anchors": [
+    "GHL2025 Theorem theorem: 1 term robin",
+    "GHL2025 Eq. ROBIN clarified boundary gamma3 branch",
+    "GHL2025 Eq. arbitrary sparcity",
+    "GHL2025 Eq. angles for Ry",
+    "GHL2025 Fig. fig:1 term ROBIN",
+    "GHL2025 Definition def:block-encoding"
+  ],
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The active leaf exposes the source-prepared clean projection entry from the theorem-facing interface and compares it with the normalized projection bridge's projectedBranchProduct. It avoids the refuted generic H-free backend projection surface.",
+  "lean_parse_ok": true,
+  "lean_parse_note": "A temporary lake env lean --stdin check passed for the exact wrapper theorem shape on 2026-06-17 03:24 JST.",
+  "lean_build_ok": null,
+  "lean_build_note": "No Lean source file was edited by this lower1 pass; project gate is run after artifact creation.",
+  "finite_matrix_ok": null,
+  "finite_matrix_note": "Lower1 performed source/proof-shape design only. The planned route reuses the compiled slot-2 prepared projection theorem and should still receive lower3 shape feedback before lower2 edits Lean.",
+  "block_entry_ok": "prepared_interface_wrapper_shape_checked",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "unchanged_conditional_bridge_memory",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "closed_theorem_note": "The theorem is ready for lower2 but has not been added to RobinMatrix.lean by this lower1 pass.",
+  "forbidden_routes": [
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryBranchContribution_sum_n3 if it means the generic backend projection surface",
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 from this leaf"
+  ],
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "lower3 rechecks that the wrapper unfolds to interface.sourcePreparedProjectionEntry and interface.normalizedProjectionBridge.projectedBranchProduct with all theorem flags false, then lower2 adds exactly one non-promoting wrapper theorem oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_correctedPreparedProjectionEntry_n3 in RobinMatrix.lean",
+  "artifact": "proof-attempts/QBE-AUTO-002/theorem-facing-corrected-prepared-projection-entry-lower1-dag-20260617-032410.md"
+}

@@ -1,11 +1,10 @@
 {
-  "cycle": 14,
+  "cycle": 13,
   "dynamic_leaf_queue": [
-    "1. lower1 validates the source map and keeps the focused branch fixed to system entry `(0,0)`, sparse slot `2`, source-prepared projection, branch basis `[32,32]`, signal block `[0,0]`, and normalizer `N_D*N_f*kappa`.",
-    "2. lower3 verifies the compiled interface, normalizer bridge inputs, transcript split, active-backend contract wiring, and all false theorem flags before lower2 edits Lean.",
-    "3. lower2 may edit only `QuantumBlockEncoding/RobinMatrix.lean` and only for the one bridge theorem above. If it already exists, lower2 should make no Lean edit and log `error_class=stale_leaf`."
+    "prepared_composite_source_projection_audit: non-promoting wrapper that exposes `PreparedCompositeSemantics(H)`, the rejected active/prepared field, lower3 finite obstruction, and false theorem flags; status: active audit-only leaf; Lean: planned `oneTermRobinGamma3BoundaryPreparedCompositeSourceProjectionAudit_n3`",
+    "source_contract_repair: restate the theorem-facing projection contract so it does not equate the H-free active backend entry with the prepared singleton clean entry; status: active source-contract repair; Lean: Markdown/Lean contract target not yet fixed"
   ],
-  "generated": "2026-06-15 06:23:30",
+  "generated": "2026-06-17 06:42:13",
   "ghl_contributions": [
     {
       "depends_on_external_technical_lemma": true,
@@ -178,10 +177,10 @@
     }
   ],
   "lean_sorries": [
-    "QuantumBlockEncoding/RobinMatrix.lean:26125:  sorry",
-    "QuantumBlockEncoding/RobinMatrix.lean:26155:  sorry"
+    "QuantumBlockEncoding/RobinMatrix.lean:26968:  sorry",
+    "QuantumBlockEncoding/RobinMatrix.lean:26998:  sorry"
   ],
-  "mode": "faithfulPaper",
+  "mode": "paperBenchmark",
   "next_lower_tasks": [
     {
       "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
@@ -445,242 +444,247 @@
     }
   ],
   "open_obligation_signals": [
-    "theorem-facing finite block/projection interface: Lean `oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3`; class QBE-local non-promoting interface packet; status compiled; stale as lower work",
-    "source-prepared slot-`2` normalizer route: Lean `oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3`; class QBE-local semantic bridge under explicit source contracts; status compiled route memory",
-    "theorem-facing projection-interface normalizer bridge: Lean planned `oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3`; class internal paper-step interface glue plus local coefficient normalizer bridge; status active lower2 leaf after lower1/lower3 checks",
-    "fixed product-to-coefficient theorem for `(0,0)`: Lean `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`; class coefficient equality plus corrected theorem-facing finite block/projection route; status open; blocked",
-    "finite block-composition closure: Lean `(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality`, `.blockProjection`, `.lcuComposition`, `.finalExtraction`; class contract-only LCU/block composition background plus local finite projection theorem; status false; forbidden as this leaf",
-    "diagnostic raw equality route: Lean `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class existing diagnostic `sorry` route; status forbidden as dependency"
+    "prepared-composite source field: Lean `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env`; `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`; source target `activeToPreparedSingletonEvalStatement`; class direct active/prepared equality; status rejected by finite matrix counterexample; do not assign",
+    "prepared-composite source projection audit: Lean planned `oneTermRobinGamma3BoundaryPreparedCompositeSourceProjectionAudit_n3`; class QBE-local false-flag wrapper over source-prepared route memory and lower3 obstruction; status active audit-only leaf; no semantic promotion",
+    "source-contract repair: Lean corrected theorem-facing projection contract that avoids equating the H-free seven-gate entry with the prepared singleton clean entry; class internal GHL step plus QBE-local finite projection semantics; status active middle/lower1 route; no Lean proof search until exact contract is fixed",
+    "evaluated backend-fold source bridge audit: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldSourceBridgeAudit_n3`; class non-promoting route wrapper; status compiled; retired as lower target",
+    "direct H-free evaluated fold: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`; class active seven-gate backend shortcut; status rejected by finite matrix counterexample; do not assign",
+    "generic backend projection/expansion route: Lean `oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3`; `oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3`; class invalid route / no-go guard; status refuted; do not assign",
+    "`H_W^(kappa)` clean column: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula; status contract-only; do not mark formalized",
+    "fixed gamma3 product-to-coefficient root: Lean `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`; class coefficient equality plus finite normalized-block/projection bridge; status blocked; do not assign directly",
+    "product, normalized block, LCU, block projection, block correctness, final extraction, oracle, unitarity, and resources: Lean finite block contract fields and theorem-facing flags; class downstream theorem obligations; status false/unproved; no promotion",
+    "post-baseline candidate population: Lean score `(depth, gateCount, auxiliaryQubits, oracleCalls)` for the same operator; class baseline theorem must close first; status deferred",
+    "fallback `QBE-OP-OPTCTRL-001`: Lean rank-one time/type partial-isometry operator tensored with `I_n`; class fallback only after baseline closure and improvement stagnation; status planned; not active"
   ],
   "recent_proof_attempts": [
-    "proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-packet-20260615-0558.md",
-    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower-proof-architect-20260615-053127.md",
-    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-synthesis-20260615-0525.md",
-    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-lower1-proof-architect-20260615-051627.md",
-    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-projection-interface-middle-packet-20260615-0507.md",
-    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-lower1-proof-architect-20260615-045438.md",
-    "proof-attempts/QBE-AUTO-002/theorem-facing-finite-block-contract-audit-middle-packet-20260615-0448.md",
-    "proof-attempts/QBE-AUTO-002/finite-normalized-projection-lower1-proof-architect-20260615-042926.md",
-    "proof-attempts/QBE-AUTO-002/finite-normalized-projection-middle-packet-20260615-0419.md",
-    "proof-attempts/QBE-AUTO-002/product-to-coefficient-normalizer-postlower-lower1-proof-architect-20260615-0405.md"
+    "proof-attempts/QBE-AUTO-002/source-contract-repair-middle-packet-20260617-063535.md",
+    "proof-attempts/QBE-AUTO-002/prepared-composite-source-projection-audit-middle-packet-20260617-062017.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-prepared-composite-field-lower1-dag-20260617-055706.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-prepared-composite-field-lower3-diagnostic-20260617-055759.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-prepared-composite-field-lower2-blocked-20260617-055658.md",
+    "proof-attempts/QBE-AUTO-002/source-prepared-prepared-composite-field-middle-packet-20260617-055020.md",
+    "proof-attempts/QBE-AUTO-002/evaluated-backend-fold-source-bridge-lower1-dag-20260617-053734.md",
+    "proof-attempts/QBE-AUTO-002/evaluated-backend-fold-source-bridge-lower3-diagnostic-20260617-053733.md",
+    "proof-attempts/QBE-AUTO-002/evaluated-backend-fold-source-bridge-middle-packet-20260617-052330.md",
+    "proof-attempts/QBE-AUTO-002/source-corrected-product-feeder-lower3-postcompile-diagnostic-20260617-051000.md"
   ],
   "recent_trials": [
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01",
       "kind": "build",
       "lean_gate": "pass",
       "role": "reviewer",
       "status": "compiled",
-      "timestamp": "2026-06-15 06:23:29",
-      "trial_id": "20260615-053748-QBE-AUTO-002-cycle01-build-gate"
+      "timestamp": "2026-06-17 06:42:12",
+      "trial_id": "20260617-060327-QBE-AUTO-002-cycle01-build-gate"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01/40_reviewer.md",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01/40_reviewer.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "reviewer",
       "status": "accepted",
-      "timestamp": "2026-06-15 06:23:28",
-      "trial_id": "20260615-053748-QBE-AUTO-002-cycle01-40_reviewer"
+      "timestamp": "2026-06-17 06:42:11",
+      "trial_id": "20260617-060327-QBE-AUTO-002-cycle01-40_reviewer"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01",
       "kind": "handoff",
       "lean_gate": "",
       "role": "reviewer",
       "status": "queued",
-      "timestamp": "2026-06-15 06:22:55",
-      "trial_id": "20260615-062255-QBE-AUTO-002-reviewer-handoff"
+      "timestamp": "2026-06-17 06:41:10",
+      "trial_id": "20260617-064110-QBE-AUTO-002-reviewer-handoff"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01/20_middle_formalizer.md",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01/20_middle_formalizer.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "middle",
       "status": "accepted",
-      "timestamp": "2026-06-15 06:18:41",
-      "trial_id": "20260615-053748-QBE-AUTO-002-cycle01-20_middle_formalizer"
+      "timestamp": "2026-06-17 06:38:28",
+      "trial_id": "20260617-060327-QBE-AUTO-002-cycle01-20_middle_formalizer"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01",
       "kind": "handoff",
       "lean_gate": "",
       "role": "middle",
       "status": "queued",
-      "timestamp": "2026-06-15 06:18:03",
-      "trial_id": "20260615-061803-QBE-AUTO-002-middle-handoff"
+      "timestamp": "2026-06-17 06:37:58",
+      "trial_id": "20260617-063758-QBE-AUTO-002-middle-handoff"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01/23_middle_report_export.md",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01/23_middle_report_export.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "middle",
       "status": "accepted",
-      "timestamp": "2026-06-15 06:13:04",
-      "trial_id": "20260615-053748-QBE-AUTO-002-cycle01-23_middle_report_export"
+      "timestamp": "2026-06-17 06:33:10",
+      "trial_id": "20260617-060327-QBE-AUTO-002-cycle01-23_middle_report_export"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01",
       "kind": "handoff",
       "lean_gate": "",
       "role": "middle",
       "status": "queued",
-      "timestamp": "2026-06-15 06:12:51",
-      "trial_id": "20260615-061251-QBE-AUTO-002-middle-handoff"
+      "timestamp": "2026-06-17 06:32:20",
+      "trial_id": "20260617-063220-QBE-AUTO-002-middle-handoff"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01/22_middle_memory_retrieval.md",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01/22_middle_memory_retrieval.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "middle",
       "status": "accepted",
-      "timestamp": "2026-06-15 06:10:30",
-      "trial_id": "20260615-053748-QBE-AUTO-002-cycle01-22_middle_memory_retrieval"
+      "timestamp": "2026-06-17 06:29:45",
+      "trial_id": "20260617-060327-QBE-AUTO-002-cycle01-22_middle_memory_retrieval"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01",
       "kind": "handoff",
-      "lean_gate": "pass",
+      "lean_gate": "",
       "role": "middle",
       "status": "queued",
-      "timestamp": "2026-06-15 06:09:45",
-      "trial_id": "20260615-060945-QBE-AUTO-002-middle-handoff"
+      "timestamp": "2026-06-17 06:28:48",
+      "trial_id": "20260617-062848-QBE-AUTO-002-middle-handoff"
     },
     {
-      "artifact": "runs/20260615-053748-QBE-AUTO-002-cycle01/21_middle_source_correspondence.md",
+      "artifact": "runs/20260617-060327-QBE-AUTO-002-cycle01/21_middle_source_correspondence.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "middle",
       "status": "accepted",
-      "timestamp": "2026-06-15 06:04:25",
-      "trial_id": "20260615-053748-QBE-AUTO-002-cycle01-21_middle_source_correspondence"
+      "timestamp": "2026-06-17 06:25:26",
+      "trial_id": "20260617-060327-QBE-AUTO-002-cycle01-21_middle_source_correspondence"
     }
   ],
   "recent_verifier_feedback": [
     {
-      "block_entry_ok": null,
+      "block_entry_ok": false,
       "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": null,
-      "leaf": "theorem_facing_projection_interface_normalizer_bridge",
-      "next_route": "lower1 and lower3 should validate the theorem-facing projection-interface normalizer bridge; lower2 should prove only oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3 in QuantumBlockEncoding/RobinMatrix.lean or log stale_leaf if it already exists.",
+      "error_class": "finite_matrix_counterexample",
+      "finite_matrix_ok": "false for ActivePreparedEval/UncastActivePreparedEval/SourcePreparedActiveEval; null for an audit-only wrapper",
+      "leaf": "prepared_composite_source_projection_audit",
+      "next_route": "Repair the source-facing projection contract, or compile only a non-promoting prepared-composite source projection audit wrapper with all theorem flags false.",
       "role": "middle",
       "status": "queued",
-      "timestamp": "2026-06-15 06:09:45",
-      "trial_id": "20260615-060945-QBE-AUTO-002-middle-handoff"
+      "timestamp": "2026-06-17 06:24:41",
+      "trial_id": "20260617-062441-QBE-AUTO-002-middle-handoff"
     },
     {
-      "block_entry_ok": true,
+      "block_entry_ok": false,
       "closed_theorem_ok": false,
-      "error_class": "stale_leaf",
-      "finite_matrix_ok": true,
-      "leaf": "theorem_facing_finite_block_projection_interface",
-      "next_route": "Retire theorem_facing_finite_block_projection_interface as compiled non-promoting route memory. Middle should prepare the corrected theorem-facing finite block/projection equality or final coefficient bridge before any attempt at oneTermRobinGamma3ProductToCoefficientObligation 3 0 0.",
+      "error_class": "finite_matrix_counterexample",
+      "finite_matrix_ok": false,
+      "leaf": "source_prepared_prepared_composite_field",
+      "next_route": "Middle should repair the source contract or assign only a non-promoting obstruction/audit wrapper with all theorem flags false. Lower2 must not prove the active/prepared composite equality, the H-free evaluated backend fold, or generic backend expansion/projection surfaces.",
       "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-15 05:37:04",
-      "trial_id": "20260615-053704-QBE-AUTO-002-lower-attempt"
+      "status": "rejected",
+      "timestamp": "2026-06-17 06:02:54",
+      "trial_id": "20260617-060254-QBE-AUTO-002-lower-attempt"
     },
     {
-      "block_entry_ok": true,
-      "closed_theorem_ok": false,
-      "error_class": "source_translation_gap",
-      "finite_matrix_ok": true,
-      "leaf": "theorem_facing_finite_block_projection_interface",
-      "next_route": "lower2 may compile only OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface, oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3, and oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript in QuantumBlockEncoding/RobinMatrix.lean as a non-promoting interface packet.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-15 05:34:48",
-      "trial_id": "20260615-053448-QBE-AUTO-002-lower-attempt"
-    },
-    {
-      "block_entry_ok": "interface_only",
+      "block_entry_ok": "prepared-composite audit route only; root block-encoding not closed",
       "closed_theorem_ok": false,
       "error_class": "source_translation_gap",
-      "finite_matrix_ok": true,
-      "leaf": "theorem_facing_finite_block_projection_interface",
-      "next_route": "lower2 compiles only the non-promoting theorem-facing finite block/projection interface packet in QuantumBlockEncoding/RobinMatrix.lean; if the declarations already exist, lower2 logs stale_leaf and makes no Lean edit.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-15 05:34:40",
-      "trial_id": "20260615-053440-QBE-AUTO-002-lower-attempt"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": true,
-      "error_class": "source_translation_gap",
-      "finite_matrix_ok": true,
-      "leaf": "theorem_facing_finite_block_projection_interface",
-      "next_route": "Prepare the corrected theorem-facing finite block/projection equality before attempting oneTermRobinGamma3ProductToCoefficientObligation 3 0 0.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-15 05:34:35",
-      "trial_id": "20260615-053435-QBE-AUTO-002-lower-attempt"
-    },
-    {
-      "block_entry_ok": "interface_only",
-      "closed_theorem_ok": false,
-      "error_class": "source_translation_gap",
-      "finite_matrix_ok": true,
-      "leaf": "theorem_facing_finite_block_projection_interface",
-      "next_route": "lower2 compiles only the non-promoting theorem-facing finite block/projection interface packet in QuantumBlockEncoding/RobinMatrix.lean. Do not target root product-to-coefficient, backendExpansionStatement, diagnostic sorry routes, or any semantic-flag promotion.",
-      "role": "middle",
-      "status": "queued",
-      "timestamp": "2026-06-15 05:28:51",
-      "trial_id": "20260615-052851-QBE-AUTO-002-middle-handoff"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": false,
-      "error_class": "source_translation_gap",
-      "finite_matrix_ok": true,
-      "leaf": "theorem_facing_finite_block_projection_interface",
-      "next_route": "lower2 may compile only OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface, oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3, and its transcript in QuantumBlockEncoding/RobinMatrix.lean as a non-promoting interface packet. Do not target oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 or backendExpansionStatement.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-15 05:19:33",
-      "trial_id": "20260615-051933-QBE-AUTO-002-lower-attempt"
-    },
-    {
-      "block_entry_ok": "blocked_by_missing_theorem_facing_finite_block_projection_equality",
-      "closed_theorem_ok": false,
-      "error_class": "source_translation_gap",
-      "finite_matrix_ok": "not_attempted_interface_packet_only",
-      "leaf": "theorem_facing_finite_block_projection_interface",
-      "next_route": "lower3 verifies the source-prepared projection target, compiled audit, active backend wiring, and false flags; then lower2 compiles only the non-promoting theorem-facing finite block/projection interface packet in QuantumBlockEncoding/RobinMatrix.lean.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-15 05:18:27",
-      "trial_id": "20260615-051827-QBE-AUTO-002-lower-attempt"
-    },
-    {
-      "block_entry_ok": null,
-      "closed_theorem_ok": true,
-      "error_class": "stale_leaf",
-      "finite_matrix_ok": null,
-      "leaf": "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3",
-      "next_route": "Retire the theorem-facing finite block contract audit as compiled route memory; prepare or validate oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3 before attempting oneTermRobinGamma3ProductToCoefficientObligation 3 0 0.",
+      "finite_matrix_ok": "pending_lower3_for_prepared_composite_entry; direct H-free evaluated fold already rejected",
+      "leaf": "source_prepared_prepared_composite_field",
+      "next_route": "Lower3 should check the finite prepared-composite entry condition against the source branch. If it survives, lower2 may compile exactly one non-promoting PreparedCompositeSourceProjectionAudit wrapper with all theorem flags false; if it fails, lower2 should make no Lean edit and log finite_matrix_counterexample.",
       "role": "lower",
       "status": "blocked",
-      "timestamp": "2026-06-15 05:16:47",
-      "trial_id": "20260615-051647-QBE-AUTO-002-lower-attempt"
+      "timestamp": "2026-06-17 06:01:08",
+      "trial_id": "20260617-060108-QBE-AUTO-002-lower-attempt"
     },
     {
-      "block_entry_ok": "pending non-promoting interface; no block equality promoted",
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "finite_matrix_counterexample",
+      "finite_matrix_ok": false,
+      "leaf": "source_prepared_prepared_composite_field",
+      "next_route": "Middle should repair the source contract or assign only a non-promoting audit wrapper that records this finite obstruction; lower2 must not prove the active/prepared composite equality or the H-free evaluated backend fold.",
+      "role": "lower",
+      "status": "rejected",
+      "timestamp": "2026-06-17 05:59:42",
+      "trial_id": "20260617-055942-QBE-AUTO-002-lower-attempt"
+    },
+    {
+      "block_entry_ok": "not checked by lower2; source-prepared prepared-composite field only",
       "closed_theorem_ok": false,
       "error_class": "source_translation_gap",
-      "finite_matrix_ok": "pending lower3 necessary-condition check",
-      "leaf": "theorem_facing_finite_block_projection_interface",
-      "next_route": "lower1 validates the source map and lower3 verifies necessary conditions, then lower2 compiles only the non-promoting theorem-facing finite block/projection interface packet in QuantumBlockEncoding/RobinMatrix.lean.",
+      "finite_matrix_ok": "pending lower3 prepared-composite clean-entry diagnostic",
+      "leaf": "source_prepared_prepared_composite_field",
+      "next_route": "Run lower1 source-proof map and lower3 finite prepared-composite clean-entry diagnostic; if both confirm, compile exactly the non-promoting audit wrapper oneTermRobinGamma3BoundaryPreparedCompositeSourceProjectionAudit_n3.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-17 05:57:56",
+      "trial_id": "20260617-055756-QBE-AUTO-002-lower-attempt"
+    },
+    {
+      "block_entry_ok": "evaluated active signal entry / source-prepared singleton bridge only; root block encoding not closed",
+      "closed_theorem_ok": true,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "route packaging only; reuses compiled expanded slot-zero exposure and prepared clean-entry product-map route, no new finite equality proved",
+      "leaf": "evaluated_backend_fold_source_bridge",
+      "next_route": "Use oneTermRobinGamma3BoundaryEvaluatedBackendFoldSourceBridgeAudit_n3 as route memory; the next narrow proof must supply the active/prepared finite entry field or raw prepared-sandwich equivalent without reviving generic projection/backend expansion.",
+      "role": "lower",
+      "status": "compiled",
+      "timestamp": "2026-06-17 05:42:53",
+      "trial_id": "20260617-054253-QBE-AUTO-002-lower-attempt"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "finite_matrix_counterexample",
+      "finite_matrix_ok": false,
+      "leaf": "evaluated_backend_fold_source_bridge",
+      "next_route": "Do not prove the all-env EvaluatedFoldStatement(env), RawPreparedSandwichField(H), generic projection, or backend-expansion surface. If lower2 edits Lean, compile only a non-promoting EvaluatedBackendFoldSourceBridgeAudit wrapper recording the no-go facts, or wait for middle to restate the theorem-facing finite block/projection contract around prepared composite semantics.",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-17 05:41:56",
+      "trial_id": "20260617-054156-QBE-AUTO-002-lower-handoff"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "finite_matrix_counterexample",
+      "finite_matrix_ok": false,
+      "leaf": "evaluated_backend_fold_source_bridge",
+      "next_route": "Lower2 should make no Lean edit for the direct H-free evaluated fold. Middle/lower1 should repair the active leaf to a source-prepared finite matrix field, or record the source/register contract gap before assigning another proof attempt.",
+      "role": "lower",
+      "status": "rejected",
+      "timestamp": "2026-06-17 05:38:55",
+      "trial_id": "20260617-053855-QBE-AUTO-002-lower-attempt"
+    },
+    {
+      "block_entry_ok": "evaluated active signal entry / prepared singleton bridge only; no root block-encoding closure claimed",
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "pending lower3 check for the evaluated active [0,0] equality exposed by oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesExpandedSlotZeroFold_n3",
+      "leaf": "evaluated_backend_fold_source_bridge",
+      "next_route": "lower1 source-maps the evaluated backend-fold bridge, lower3 checks the finite evaluated [0,0] equality and no-go guards, then lower2 compiles at most one source-constrained non-promoting leaf; do not revive generic projection/backend expansion",
       "role": "middle",
+      "status": "queued",
+      "timestamp": "2026-06-17 05:32:22",
+      "trial_id": "20260617-053222-QBE-AUTO-002-middle-handoff"
+    },
+    {
+      "block_entry_ok": "prepared/product feeder only; no signal block branch-sum closure is claimed",
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "source_corrected_product_feeder",
+      "next_route": "Review/accept oneTermRobinGamma3BoundarySourceCorrectedProductFeederAudit_n3 as a non-promoting source-corrected feeder if it was produced by lower2; then middle/lower1 should name the next source-backed finite normalized block/projection or product-to-coefficient leaf. Do not revive the generic projection/backend expansion surface.",
+      "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-15 05:11:06",
-      "trial_id": "20260615-051106-QBE-AUTO-002-middle-attempt"
+      "timestamp": "2026-06-17 05:13:21",
+      "trial_id": "20260617-051321-QBE-AUTO-002-lower-attempt"
     }
   ],
-  "run_dir": "runs/20260615-053748-QBE-AUTO-002-cycle01",
+  "run_dir": "runs/20260617-060327-QBE-AUTO-002-cycle01",
   "source_main_tex": "outer_papers/quantum/GHL2025/main.tex",
-  "stage": "Stage 2 DAG proof discharge, with faithful transcript checks still active",
+  "stage": "Stage 2 DAG proof discharge, with source-transcript checks still active",
   "task_id": "QBE-AUTO-002",
   "technical_lemmas": [
     {

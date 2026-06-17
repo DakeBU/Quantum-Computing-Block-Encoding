@@ -1,0 +1,69 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-034830-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "profile": "natural-language proof architect",
+  "kind": "handoff",
+  "timestamp_jst": "2026-06-17 04:03:39 JST",
+  "leaf": "branch_decomposition_projection_bridge",
+  "artifact": "proof-attempts/QBE-AUTO-002/branch-decomposition-projection-bridge-lower1-dag-20260617-040339.md",
+  "active_lean_target": "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_branchDecompositionProjectionBridge_n3",
+  "source_anchors": [
+    "GHL2025 Theorem theorem: 1 term robin",
+    "GHL2025 Eq. ROBIN clarified boundary gamma3 branch",
+    "GHL2025 Fig. fig:1 term ROBIN",
+    "GHL2025 Definition def:block-encoding",
+    "GHL2025 Eq. arbitrary sparcity"
+  ],
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The leaf packages the theorem-facing source-prepared projection entry and the boundary slot-2 projected branch product while preserving the refutation of the unchanged raw backend projection route.",
+  "local_source_note": "outer_papers/quantum/GHL2025/main.tex was not present in this checkout; source anchors were checked through research-wiki/paper-contributions/GHL2025/source-map.md, conversion-windows/QBE-AUTO-002.md, proof-obligations/QBE-AUTO-002.md, and paper-notes/GHL2025/markdown/00_status.md.",
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "lean_build_commands": [
+    "python3 tools/qbe.py check",
+    "lake build && lake build Tests"
+  ],
+  "lean_build_note": "Both gates passed with only the known RobinMatrix diagnostic sorry warnings at lines 26469 and 26500.",
+  "finite_matrix_ok": "not_rerun_by_lower1",
+  "block_entry_ok": "source_prepared_projection_entry_only",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "not_promoted; previous finiteBlockNormalizerEval wrapper is route memory",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "postscript_after_concurrent_lower2": {
+    "observed": true,
+    "closed_declaration": "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_branchDecompositionProjectionBridge_n3",
+    "dialogue_timestamp_jst": "2026-06-17 04:06:17 JST",
+    "current_leaf_status": "closed by lower2 after this proof-design artifact was written",
+    "current_next_route": "retire branch_decomposition_projection_bridge and refresh the source-backed fixed_product_to_coefficient frontier for oneTermRobinGamma3ProductToCoefficientObligation 3 0 0"
+  },
+  "non_promoting_false_flags_checked_in_plan": [
+    "interface.correctedFiniteBlockProjectionEquality.proved",
+    "interface.correctedFiniteBlockProjectionEqualityProved",
+    "interface.fixedProductObligation.proved",
+    "interface.finiteBlockNormalizedEquality.proved",
+    "interface.finiteBlockProjectionObligation.proved",
+    "interface.finiteBlockLCUCompositionObligation.proved",
+    "interface.finiteBlockFinalExtractionObligation.proved",
+    "interface.normalizedBlockEqualityProved",
+    "interface.productToCoefficientProved",
+    "interface.lcuCorrectProved",
+    "interface.blockProjectionProved",
+    "interface.blockCorrectProved",
+    "interface.finalExtractionProved",
+    "interface.oracleCorrectProved",
+    "interface.unitaryProved",
+    "interface.resourceClaimProved"
+  ],
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "lower3 checks source-prepared entry shape, no-go guard, and false flags; then lower2 compiles exactly one non-promoting wrapper oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_branchDecompositionProjectionBridge_n3 without touching backendExpansionStatement, generic projectionSummationStatement, product-to-coefficient, normalized-block equality, LCU, block, oracle, unitary, final-extraction, resource, post-baseline search, or OPTCTRL."
+}

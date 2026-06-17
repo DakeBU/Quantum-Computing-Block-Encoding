@@ -1,0 +1,51 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-041033-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "kind": "handoff",
+  "status": "queued",
+  "timestamp_jst": "2026-06-17 04:16:47 JST",
+  "leaf": "fixed_product_to_coefficient_pre_audit",
+  "planned_lean_target": "oneTermRobinGamma3BoundaryFixedProductToCoefficientPreAudit_n3",
+  "target_file": "QuantumBlockEncoding/RobinMatrix.lean",
+  "source_anchors": [
+    "GHL2025 Theorem theorem: 1 term robin",
+    "GHL2025 Eq. eq: ROBIN clarified boundary gamma3 branch",
+    "GHL2025 Fig. fig:1 term ROBIN",
+    "GHL2025 Definition def:block-encoding"
+  ],
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "explicit hND/hNF/hkappa/hkappaSqrt hypotheses required",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "compiled_route_memory": [
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_branchDecompositionProjectionBridge_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_finiteBlockNormalizerEval_n3",
+    "oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript",
+    "oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3"
+  ],
+  "forbidden_routes": [
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryProjectionSummationProductBridge_leaf_n3 as a closure route",
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "post-baseline candidate search",
+    "QBE-OP-OPTCTRL-001"
+  ],
+  "closed_theorem_ok": false,
+  "semantic_promotion_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Lower2 should compile the non-promoting fixed-product pre-audit wrapper; lower3 should verify BackendGap remains active and the generic backend projection statement remains rejected."
+}

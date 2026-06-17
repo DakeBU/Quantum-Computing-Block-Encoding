@@ -1,0 +1,49 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-060327-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "kind": "memory_retrieval",
+  "timestamp_jst": "2026-06-17 06:26:59 JST",
+  "primary_active_leaf": "source_contract_repair",
+  "secondary_audit_leaf": "prepared_composite_source_projection_audit",
+  "stale_lower_targets_to_retire": [
+    "source_prepared_prepared_composite_field as theorem target",
+    "oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env",
+    "oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env",
+    "(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env",
+    "generic backend expansion/projection surfaces",
+    "direct product-to-coefficient, normalized block, LCU, oracle, unitarity, resource, post-baseline, or OPTCTRL promotion"
+  ],
+  "rejected_routes": [
+    "uniform clean-column H plus all-one selected-branch environment rejects active/prepared equality",
+    "H-free active seven-gate backend is not the full theorem-facing Fig. 4 prepared sandwich",
+    "evaluated backend-fold source bridge is compiled route memory only",
+    "prepared-composite audit wrapper must keep all theorem flags false"
+  ],
+  "active_leaf_dependencies": [
+    "GHL2025 theorem: 1 term robin",
+    "GHL2025 Eq. arbitrary sparcity",
+    "GHL2025 Eq. ROBIN clarified",
+    "GHL2025 Fig. fig:1 term ROBIN",
+    "GHL2025 Definition def:block-encoding",
+    "oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H",
+    "oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env",
+    "oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_obstruction_n3",
+    "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3"
+  ],
+  "typed_feedback_status": {
+    "lower3_counterexample_fields_complete": true,
+    "middle_packet_lean_fields_null_by_design": true,
+    "blueprint_status_refreshed": true,
+    "missing_future_lower2_fields": [
+      "closed_theorem_ok=false",
+      "finite_matrix_ok=null for audit wrapper",
+      "block_entry_ok=false",
+      "semantic_promotion_ok=true",
+      "false theorem flags unchanged"
+    ]
+  },
+  "next_route": "Assign lower1 to repair the source-facing projection contract and lower3 to check the finite branch/register condition before lower2 proof search; lower2 may otherwise compile only the non-promoting audit wrapper."
+}

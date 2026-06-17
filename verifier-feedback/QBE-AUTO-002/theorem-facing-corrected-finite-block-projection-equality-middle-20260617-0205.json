@@ -1,0 +1,46 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-015528-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "kind": "packet",
+  "leaf": "theorem_facing_corrected_finite_block_projection_equality",
+  "source_correspondence_ok": "pending_lower1_source_contract_audit",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "blocked_for_unchanged_h_free_backend_route",
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "compiled_route_memory_via oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": null,
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "error_class": "source_translation_gap",
+  "active_lean_target": "(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement",
+  "equivalent_targets": [
+    "oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env",
+    "oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env",
+    "(oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3 H).entryEqualityStatement"
+  ],
+  "compiled_route_memory": [
+    "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3",
+    "oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3",
+    "oneTermRobinGamma3BoundaryPreparedCompositeCleanEntryEval_eq_backend_n3"
+  ],
+  "no_go_guard": "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+  "paper_anchor": "GHL2025 theorem: 1 term robin; eq: arbitrary sparcity; eq:angles for Ry; eq: ROBIN clarified; fig:1 term ROBIN; def:block-encoding",
+  "next_route": "lower1 maps the source proof for the corrected finite block/projection equality; lower3 checks active/prepared circuit shape, H_W side-gate absence, no-go guard, and false flags; lower2 proves only a source-backed active/prepared field or a middle-named corrected prepared finite block/projection contract after those checks.",
+  "forbidden_routes": [
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+    "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3",
+    "(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality"
+  ],
+  "post_baseline_improvement_status": "deferred until GHL baseline root closes",
+  "fallback_optctrl_status": "deferred; contract exists in tasks/QBE-OP-OPTCTRL-001.md"
+}

@@ -23669,6 +23669,24 @@ theorem oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3 :
   exact (by native_decide : ¬ ((1 : Rat) = 0)) hContradiction
 
 /--
+No-go guard for the generic projection-summation surface.
+
+The generic `BlockExtractionBranchContributionTarget.projectionSummationStatement`
+is equivalent to the backend-expansion statement for the current target.  The
+unchanged backend-expansion route is already refuted by
+`oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3`, so this theorem
+records that the active lower target must be restated as a corrected
+source-backed branch statement before it can be proved.
+-/
+theorem oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3 :
+    ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement := by
+  intro hprojection
+  exact
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3
+      (BlockExtractionBranchContributionTarget.backendExpansionStatement_of_projectionSummationStatement
+        oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3 hprojection)
+
+/--
 The raw full-entry fold also closes the prepared-sandwich evaluated target once
 the explicit `H_W^(kappa)` clean-column contract is supplied.
 
@@ -25902,6 +25920,831 @@ theorem
     GHL2025.oneTermRobinTheoremFacingFig4Circuit,
     GHL2025.oneTermRobinCircuit]
   repeat (first | constructor | exact hdistinct | rfl)
+
+/--
+Prepared-circuit contract correction for the theorem-facing finite block
+projection interface.
+
+This wrapper exposes the source-prepared singleton clean entry carried by
+`oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H` through the
+theorem-facing finite block interface.  It records that the finite block
+contract still uses the active seven-gate backend semantics and keeps the
+active/prepared composition field, corrected finite projection equality, and
+all downstream theorem flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_preparedCircuitContractCorrection_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat) :
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    let gap := oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3 H
+    let sourceTarget :=
+      oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env
+    let prepared :=
+      oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H
+    let clean := oneTermRobinGamma3BoundarySparseCleanIndex_n3
+    interface.sourcePreparedProjectionTarget = sourceTarget ∧
+      interface.sourcePreparedProjectionEntry =
+        prepared.matrix clean clean ∧
+      sourceTarget.preparedSemantics = prepared ∧
+      sourceTarget.preparedProjectionEntry =
+        prepared.matrix clean clean ∧
+      interface.contractClaimSemantics = oneTermRobinCircuitSemantics 3 ∧
+      interface.contractUsesActiveBackendSemantics = true ∧
+      interface.theoremFacingCircuit ≠ interface.activeBackendCircuit ∧
+      gap.rawEntryContractProved = true ∧
+      gap.sparsePreparationAbsenceProved = true ∧
+      gap.preparedCircuitEntryEqualityProved = false ∧
+      sourceTarget.activeProjectionBackendUsesPreparedEntry = false ∧
+      sourceTarget.activePreparedEntryEqualityProved = false ∧
+      interface.correctedFiniteBlockProjectionEquality.proved = false ∧
+      interface.correctedFiniteBlockProjectionEqualityProved = false ∧
+      interface.fixedProductObligation.proved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.oracleCorrectProved = false ∧
+      interface.unitaryProved = false ∧
+      interface.resourceClaimProved = false := by
+  have hdistinct :
+      GHL2025.oneTermRobinTheoremFacingFig4Circuit ≠
+        GHL2025.oneTermRobinCircuit := by
+    dsimp [GHL2025.oneTermRobinTheoremFacingFig4Circuit,
+      GHL2025.oneTermRobinCircuit]
+    native_decide
+  have _hinterface :=
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3_transcript
+      H env
+  have _hgap :=
+    oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3_transcript H
+  have _hsource :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3_transcript
+      H env
+  dsimp [
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3,
+    oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3,
+    oneTermRobinFiniteBlockCompositionContract,
+    defaultOneTermRobinCircuitBlockClaim,
+    oneTermRobinCircuitBlockClaim,
+    GHL2025.oneTermRobinTheoremFacingFig4Circuit,
+    GHL2025.oneTermRobinCircuit]
+  repeat (first | constructor | exact hdistinct | rfl)
+
+/--
+The theorem-facing projection interface exposes the compiled source-prepared
+slot-`2` normalizer equality.
+
+This is interface glue only.  It reuses
+`oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3`
+through the theorem-facing packet fields and keeps the corrected finite
+block/projection equality, product-to-coefficient obligation, normalized block,
+LCU, block, final extraction, oracle, unitary, and resource flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2))
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    Coeff.evalWith env interface.sourcePreparedProjectionEntry *
+        Coeff.evalWith env
+          interface.normalizedProjectionBridge.theoremNormalizer =
+      Coeff.evalWith env
+        interface.normalizedProjectionBridge.expectedTargetEntry ∧
+      interface.correctedFiniteBlockProjectionEquality.proved = false ∧
+      interface.correctedFiniteBlockProjectionEqualityProved = false ∧
+      interface.fixedProductObligation.proved = false ∧
+      interface.finiteBlockNormalizedEquality.proved = false ∧
+      interface.finiteBlockProjectionObligation.proved = false ∧
+      interface.finiteBlockLCUCompositionObligation.proved = false ∧
+      interface.finiteBlockFinalExtractionObligation.proved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.oracleCorrectProved = false ∧
+      interface.unitaryProved = false ∧
+      interface.resourceClaimProved = false := by
+  have hNormalizer :=
+    oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3
+      H env hUniform hentry hND hNF hkappa hkappaSqrt
+  rcases hNormalizer with
+    ⟨hEval, _hFixed, _hFixedFalse, _hProductFalse,
+      _hProductToCoeff, _hNormalized, _hLCU, _hBlockProjection,
+      _hBlockCorrect, _hFinal⟩
+  dsimp [
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3]
+    at hEval ⊢
+  exact ⟨hEval, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+The theorem-facing finite block interface exposes the same normalizer used by
+the compiled normalized projection bridge.
+
+This is non-promoting interface glue.  It rewrites the already compiled
+normalizer evaluation through `interface.finiteBlockNormalizer` and keeps the
+corrected finite block/projection equality, normalized block, product, LCU,
+block, final extraction, oracle, unitary, and resource flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_finiteBlockNormalizerEval_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2))
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    Coeff.evalWith env interface.sourcePreparedProjectionEntry *
+        Coeff.evalWith env interface.finiteBlockNormalizer =
+      Coeff.evalWith env
+        interface.normalizedProjectionBridge.expectedTargetEntry ∧
+      interface.finiteBlockNormalizer =
+        interface.normalizedProjectionBridge.theoremNormalizer ∧
+      interface.correctedFiniteBlockProjectionEquality.proved = false ∧
+      interface.correctedFiniteBlockProjectionEqualityProved = false ∧
+      interface.fixedProductObligation.proved = false ∧
+      interface.finiteBlockNormalizedEquality.proved = false ∧
+      interface.finiteBlockProjectionObligation.proved = false ∧
+      interface.finiteBlockLCUCompositionObligation.proved = false ∧
+      interface.finiteBlockFinalExtractionObligation.proved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.oracleCorrectProved = false ∧
+      interface.unitaryProved = false ∧
+      interface.resourceClaimProved = false := by
+  have hNormalizer :=
+    oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3
+      H env hUniform hentry hND hNF hkappa hkappaSqrt
+  rcases hNormalizer with
+    ⟨hEval, _hcorr, _hcorrFlag, _hfixed, _hnormEq,
+      _hproj, _hlcu, _hfinal, _hnormFlag, _hprod, _hlcuFlag,
+      _hblockProj, _hblockCorrect, _hfinalFlag, _horacle, _hunitary,
+      _hresource⟩
+  dsimp [
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3,
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3,
+    oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3,
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3,
+    oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3,
+    oneTermRobinFiniteBlockCompositionContract]
+    at hEval ⊢
+  exact ⟨hEval, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+The theorem-facing projection interface exposes the source-prepared slot-`2`
+projected branch product.
+
+This is non-promoting interface glue.  It uses the compiled source-prepared
+slot-`2` product bridge and checks that the theorem-facing finite block,
+product, LCU, block, oracle, unitary, and resource flags remain false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) :
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    Coeff.evalWith env interface.sourcePreparedProjectionEntry =
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct ∧
+      interface.sourcePreparedProjectionEntry =
+        (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+          H env).preparedProjectionEntry ∧
+      interface.correctedFiniteBlockProjectionEquality.proved = false ∧
+      interface.correctedFiniteBlockProjectionEqualityProved = false ∧
+      interface.fixedProductObligation.proved = false ∧
+      interface.finiteBlockNormalizedEquality.proved = false ∧
+      interface.finiteBlockProjectionObligation.proved = false ∧
+      interface.finiteBlockLCUCompositionObligation.proved = false ∧
+      interface.finiteBlockFinalExtractionObligation.proved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.oracleCorrectProved = false ∧
+      interface.unitaryProved = false ∧
+      interface.resourceClaimProved = false := by
+  have hSlot :=
+    oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3
+      H env hUniform hentry
+  dsimp [
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3]
+    at hSlot ⊢
+  exact ⟨hSlot, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Corrected theorem-facing prepared projection entry for the focused boundary
+leaf.
+
+This wrapper exposes the source-prepared projection entry as the projected
+branch product carried by the theorem-facing normalized projection bridge.  It
+does not promote the corrected finite block/projection equality or any product,
+LCU, block, oracle, unitary, or resource flag.
+-/
+theorem
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_correctedPreparedProjectionEntry_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) :
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    Coeff.evalWith env interface.sourcePreparedProjectionEntry =
+        Coeff.evalWith env interface.normalizedProjectionBridge.projectedBranchProduct ∧
+      interface.sourcePreparedProjectionEntry =
+        (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+          H env).preparedProjectionEntry ∧
+      interface.correctedFiniteBlockProjectionEquality.proved = false ∧
+      interface.correctedFiniteBlockProjectionEqualityProved = false ∧
+      interface.fixedProductObligation.proved = false ∧
+      interface.finiteBlockProjectionObligation.proved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.oracleCorrectProved = false ∧
+      interface.unitaryProved = false ∧
+      interface.resourceClaimProved = false := by
+  have hSlot :=
+    oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3
+      H env hUniform hentry
+  dsimp [
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3,
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3]
+    at hSlot ⊢
+  exact ⟨hSlot, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+The theorem-facing finite block interface exposes the branch-decomposition
+projection bridge without promoting downstream obligations.
+
+This wrapper combines the normalized-projection product bridge, the direct
+slot-`2` projected product bridge, and the compiled no-go guard for the old
+generic backend projection-summation route.  The corrected finite block,
+product-to-coefficient, LCU, block, oracle, unitary, final-extraction, and
+resource flags all remain false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_branchDecompositionProjectionBridge_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2)) :
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    Coeff.evalWith env interface.sourcePreparedProjectionEntry =
+        Coeff.evalWith env
+          interface.normalizedProjectionBridge.projectedBranchProduct ∧
+      Coeff.evalWith env interface.sourcePreparedProjectionEntry =
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct ∧
+      interface.sourcePreparedProjectionEntry =
+        (oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3
+          H env).preparedProjectionEntry ∧
+      interface.theoremFacingCircuit ≠ interface.activeBackendCircuit ∧
+      ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ∧
+      interface.correctedFiniteBlockProjectionEquality.proved = false ∧
+      interface.correctedFiniteBlockProjectionEqualityProved = false ∧
+      interface.fixedProductObligation.proved = false ∧
+      interface.finiteBlockNormalizedEquality.proved = false ∧
+      interface.finiteBlockProjectionObligation.proved = false ∧
+      interface.finiteBlockLCUCompositionObligation.proved = false ∧
+      interface.finiteBlockFinalExtractionObligation.proved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.oracleCorrectProved = false ∧
+      interface.unitaryProved = false ∧
+      interface.resourceClaimProved = false := by
+  have hCorrect :=
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_correctedPreparedProjectionEntry_n3
+      H env hUniform hentry
+  have hSlot :=
+    oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3
+      H env hUniform hentry
+  have hNoGo :=
+    oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3
+  have hdistinct :
+      GHL2025.oneTermRobinTheoremFacingFig4Circuit ≠
+        GHL2025.oneTermRobinCircuit := by
+    dsimp [GHL2025.oneTermRobinTheoremFacingFig4Circuit,
+      GHL2025.oneTermRobinCircuit]
+    native_decide
+  dsimp [
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3,
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3,
+    oneTermRobinFiniteBlockCompositionContract,
+    defaultOneTermRobinCircuitBlockClaim,
+    oneTermRobinCircuitBlockClaim,
+    GHL2025.oneTermRobinTheoremFacingFig4Circuit,
+    GHL2025.oneTermRobinCircuit]
+    at hCorrect hSlot ⊢
+  exact ⟨hCorrect.1, hSlot.1, rfl, hdistinct, hNoGo,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Fixed product-to-coefficient pre-audit for the focused boundary leaf.
+
+This non-promoting wrapper connects the compiled theorem-facing branch bridge,
+the finite-block normalizer bridge, and the backend-gap packet to the still
+open `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`.  It records the
+active backend sparse-summand gap without proving the root product obligation
+or promoting downstream block-encoding flags.
+-/
+theorem
+    oneTermRobinGamma3BoundaryFixedProductToCoefficientPreAudit_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2))
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    let gap := oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3
+    let obligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env interface.sourcePreparedProjectionEntry =
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct ∧
+      Coeff.evalWith env interface.sourcePreparedProjectionEntry *
+          Coeff.evalWith env interface.finiteBlockNormalizer =
+        Coeff.evalWith env
+          interface.normalizedProjectionBridge.expectedTargetEntry ∧
+      interface.fixedProductObligation = obligation ∧
+      obligation.proved = false ∧
+      ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ∧
+      gap.exposesBranchContributionField = false ∧
+      gap.backendFieldAvailable = false ∧
+      gap.placeholderFamilyRejected = true ∧
+      gap.projectionSummationProved = false ∧
+      gap.productBridgeProved = false ∧
+      gap.normalizedBlockEqualityProved = false ∧
+      gap.productToCoefficientProved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false := by
+  have hBranch :=
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_branchDecompositionProjectionBridge_n3
+      H env hUniform hentry
+  have hNormalizer :=
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_finiteBlockNormalizerEval_n3
+      H env hUniform hentry hND hNF hkappa hkappaSqrt
+  have hNoGo :=
+    oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3
+  have _hGap := oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript
+  rcases hBranch with
+    ⟨_hNormProjected, hProjected, _hEntry, _hCircuitNe, _hNoGoFromBranch, _⟩
+  rcases hNormalizer with
+    ⟨hNorm, _hFiniteNormalizer, _⟩
+  dsimp [
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3,
+    oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3,
+    oneTermRobinFiniteBlockCompositionContract]
+    at hProjected hNorm ⊢
+  exact ⟨hProjected, hNorm, rfl, rfl, hNoGo, rfl, rfl, rfl, rfl,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+/--
+Source-corrected product feeder audit for the focused boundary leaf.
+
+This wrapper packages the source-prepared slot-`2` projection/product route,
+the explicit normalizer hypotheses, and the fixed product-to-coefficient
+pre-audit into one theorem-facing packet.  It deliberately keeps the old
+generic backend projection route refuted and leaves the fixed product
+obligation plus all downstream block-encoding flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundarySourceCorrectedProductFeederAudit_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2))
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    let packet :=
+      oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3
+        H env
+    let bridge := oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let productRoute := oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    let obligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    Coeff.evalWith env packet.sourceTarget.preparedProjectionEntry =
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct ∧
+      Coeff.evalWith env packet.sourceTarget.preparedProjectionEntry *
+          Coeff.evalWith env productRoute.theoremNormalizer =
+        Coeff.evalWith env productRoute.expectedTargetEntry ∧
+      Coeff.evalWith env interface.sourcePreparedProjectionEntry =
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct ∧
+      Coeff.evalWith env interface.sourcePreparedProjectionEntry *
+          Coeff.evalWith env interface.finiteBlockNormalizer =
+        Coeff.evalWith env
+          interface.normalizedProjectionBridge.expectedTargetEntry ∧
+      packet.fixedProductObligation = obligation ∧
+      interface.fixedProductObligation = obligation ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ∧
+      packet.forbiddenBackendExpansionParent = true ∧
+      packet.productRouteConsumed = false ∧
+      packet.productToCoefficientProved = false ∧
+      productRoute.productObligation.proved = false ∧
+      productRoute.productToCoefficientProved = false ∧
+      productRoute.normalizedBlockEqualityProved = false ∧
+      productRoute.lcuCorrectProved = false ∧
+      interface.contractUsesActiveBackendSemantics = true ∧
+      interface.theoremFacingCircuitSubstitutedForActive = false ∧
+      interface.activeBackendContractMutated = false ∧
+      interface.correctedFiniteBlockProjectionEquality.proved = false ∧
+      interface.correctedFiniteBlockProjectionEqualityProved = false ∧
+      interface.fixedProductObligation.proved = false ∧
+      interface.finiteBlockNormalizedEquality.proved = false ∧
+      interface.finiteBlockProjectionObligation.proved = false ∧
+      interface.finiteBlockLCUCompositionObligation.proved = false ∧
+      interface.finiteBlockFinalExtractionObligation.proved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.oracleCorrectProved = false ∧
+      interface.unitaryProved = false ∧
+      interface.resourceClaimProved = false := by
+  have hPacket :=
+    oneTermRobinGamma3BoundarySourcePreparedProjectionSlot2Product_feedsFixedProductMap_n3
+      H env hUniform hentry
+  have hNormalizer :=
+    oneTermRobinGamma3BoundarySourcePreparedSlot2Product_normalizerEval_n3
+      H env hUniform hentry hND hNF hkappa hkappaSqrt
+  have hPreAudit :=
+    oneTermRobinGamma3BoundaryFixedProductToCoefficientPreAudit_n3
+      H env hUniform hentry hND hNF hkappa hkappaSqrt
+  rcases hPacket with
+    ⟨hPacketProjection, hPacketFixed, _hPacketFixedFalse,
+      hBridgeFixed, _hBridgeBranch, _hBridgeNorm, _hBridgeProduct,
+      _hBridgeLCU, _hBridgeProjection, _hBridgeBlock, _hBridgeFinal,
+      hForbidden, hRouteUnused, hPacketProduct, _hPacketLCU,
+      _hPacketProjectionFlag, _hPacketBlock, _hPacketFinal⟩
+  rcases hNormalizer with
+    ⟨hPacketNormalizer, _hNormalizerFixed, hRouteObligationFalse,
+      hRouteProductFalse, hRouteNormalizedFalse, hRouteLCUFalse,
+      _hRouteProjectionFalse, _hRouteBlockFalse, _hRouteFinalFalse⟩
+  rcases hPreAudit with
+    ⟨hInterfaceProjection, hInterfaceNormalizer, hInterfaceFixed,
+      hObligationFalse, hNoGo, _hGapExposes, _hGapBackend,
+      _hGapPlaceholder, _hGapProjection, _hGapProduct,
+      _hGapNormalized, _hGapProductToCoeff, hInterfaceProduct,
+      hInterfaceNormalized, hInterfaceLCU, hInterfaceBlockProjection,
+      hInterfaceBlockCorrect, hInterfaceFinal⟩
+  dsimp [
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3,
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3,
+    oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3,
+    oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3,
+    oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3,
+    oneTermRobinFiniteBlockCompositionContract]
+    at hPacketProjection hPacketNormalizer hInterfaceProjection
+      hInterfaceNormalizer hPacketFixed hInterfaceFixed hBridgeFixed
+      hForbidden hRouteUnused hPacketProduct hRouteObligationFalse
+      hRouteProductFalse hRouteNormalizedFalse hRouteLCUFalse
+      hObligationFalse hNoGo hInterfaceProduct hInterfaceNormalized
+      hInterfaceLCU hInterfaceBlockProjection hInterfaceBlockCorrect
+      hInterfaceFinal ⊢
+  exact ⟨hPacketProjection, hPacketNormalizer, hInterfaceProjection,
+    hInterfaceNormalizer, hPacketFixed, hInterfaceFixed, hBridgeFixed,
+    hObligationFalse, hNoGo, hForbidden, hRouteUnused, hPacketProduct,
+    hRouteObligationFalse, hRouteProductFalse, hRouteNormalizedFalse,
+    hRouteLCUFalse, rfl, rfl, rfl, rfl, rfl, hObligationFalse,
+    rfl, rfl, rfl, rfl, hInterfaceProduct, hInterfaceNormalized,
+    hInterfaceLCU, hInterfaceBlockProjection, hInterfaceBlockCorrect,
+    hInterfaceFinal, rfl, rfl, rfl⟩
+
+/--
+Evaluated backend-fold source bridge audit for the focused boundary leaf.
+
+This non-promoting wrapper packages the compiled source-corrected product
+feeder, the evaluated backend-fold target transcript, the expanded slot-zero
+exposure, and the prepared clean-entry product-map route.  It keeps the old
+generic projection/backend-expansion surfaces refuted and leaves the evaluated
+fold, fixed product obligation, normalized block, LCU, block, final extraction,
+oracle, unitary, and resource flags false.
+-/
+theorem
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldSourceBridgeAudit_n3
+    (H : Matrix 8 8 Coeff) (env : String → Rat)
+    (hUniform :
+      oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H)
+    (hentry :
+      env "boundary_cos_half_0_2" =
+        Coeff.evalWith env
+          (GHL2025.boundaryRotationNormalizedCoefficient
+            (oneTermParameters 3) 0 2))
+    (hND : env "N_D_inv" * env "N_D" = 1)
+    (hNF : env "N_f_inv" * env "N_f" = 1)
+    (hkappa : env "kappa_inv" * env "kappa" = 1)
+    (hkappaSqrt :
+      env "sqrt_kappa_inv" * env "sqrt_kappa_inv" =
+        env "kappa_inv") :
+    let target :=
+      oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3 H env
+    let interface :=
+      oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3
+        H env
+    let packet :=
+      oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3
+        H env
+    let bridge := oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3
+    let productRoute := oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3
+    let obligation :=
+      oneTermRobinGamma3ProductToCoefficientObligation 3
+        ⟨0, by native_decide⟩ ⟨0, by native_decide⟩
+    let gates :=
+      GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)
+    target.sourcePreparedProjectionTarget =
+        oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env ∧
+      target.evaluatedBackendFoldStatement =
+        oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env ∧
+      target.backendBranchFold =
+        blockExtractionBranchContributionSum
+          oneTermRobinGamma3BoundaryBackendBranchContribution_n3 ∧
+      target.activePreparedEvalStatement =
+        target.sourcePreparedProjectionTarget.activeToPreparedSingletonEvalStatement ∧
+      (target.activePreparedEvalStatement ↔
+        target.evaluatedBackendFoldStatement) ∧
+      Gate.oracleCall "H_W^(kappa)" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      Gate.oracleCall "(H_W^(kappa))^dagger" ∉
+        gates.map (fun gateMatrix => gateMatrix.gate) ∧
+      (target.evaluatedBackendFoldStatement ↔
+        Coeff.evalWith env
+          ((evalGateMatrices gates)
+            oneTermRobinGamma3BoundaryPrefixRow0_n3
+            oneTermRobinGamma3BoundaryPrefixRow0_n3) =
+        Coeff.evalWith env
+          (((((((0 +
+            Coeff.mul
+              (oneTermRobinGamma3BoundarySevenGateMatrix_n3
+                oneTermRobinGamma3BoundaryPrefixRow0_n3
+                oneTermRobinGamma3BoundaryPrefixRow0_n3)
+              oneTermRobinGamma3BoundaryBranchEntrySelection_n3.projectionAmplitudeFactor) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨1, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨2, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨3, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨4, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨5, by native_decide⟩) +
+            oneTermRobinGamma3BoundaryBackendBranchContribution_n3
+              ⟨6, by native_decide⟩)) ∧
+      Coeff.evalWith env
+          target.sourcePreparedProjectionTarget.preparedProjectionEntry =
+        Coeff.evalWith env target.backendBranchFold ∧
+      target.sourcePreparedProjectionTarget.preparedProjectionEntry =
+        ((oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3 H).matrix
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3
+          oneTermRobinGamma3BoundarySparseCleanIndex_n3) ∧
+      Coeff.evalWith env packet.sourceTarget.preparedProjectionEntry =
+        Coeff.evalWith env
+          oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct ∧
+      Coeff.evalWith env packet.sourceTarget.preparedProjectionEntry *
+          Coeff.evalWith env productRoute.theoremNormalizer =
+        Coeff.evalWith env productRoute.expectedTargetEntry ∧
+      bridge.productObligation = obligation ∧
+      obligation.proved = false ∧
+      ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement ∧
+      ¬ oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement ∧
+      target.evaluatedBackendFoldProved = false ∧
+      target.rawCoeffFoldProved = false ∧
+      target.productToCoefficientProved = false ∧
+      target.lcuCorrectProved = false ∧
+      target.blockProjectionProved = false ∧
+      target.blockCorrectProved = false ∧
+      target.finalExtractionProved = false ∧
+      bridge.normalizedBlockEqualityProved = false ∧
+      bridge.productToCoefficientProved = false ∧
+      bridge.lcuCorrectProved = false ∧
+      bridge.blockProjectionProved = false ∧
+      bridge.blockCorrectProved = false ∧
+      bridge.finalExtractionProved = false ∧
+      productRoute.productToCoefficientProved = false ∧
+      productRoute.normalizedBlockEqualityProved = false ∧
+      productRoute.lcuCorrectProved = false ∧
+      interface.fixedProductObligation.proved = false ∧
+      interface.finiteBlockNormalizedEquality.proved = false ∧
+      interface.finiteBlockProjectionObligation.proved = false ∧
+      interface.finiteBlockLCUCompositionObligation.proved = false ∧
+      interface.finiteBlockFinalExtractionObligation.proved = false ∧
+      interface.productToCoefficientProved = false ∧
+      interface.normalizedBlockEqualityProved = false ∧
+      interface.lcuCorrectProved = false ∧
+      interface.blockProjectionProved = false ∧
+      interface.blockCorrectProved = false ∧
+      interface.finalExtractionProved = false ∧
+      interface.oracleCorrectProved = false ∧
+      interface.unitaryProved = false ∧
+      interface.resourceClaimProved = false := by
+  have hEquiv :=
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_activeEval_iff_statement_n3
+      H env hUniform
+  have hExpanded :=
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesExpandedSlotZeroFold_n3
+      H env
+  have hPrepared :=
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_preparedCleanEntryFeedsProductMap_n3
+      H env hUniform
+  have hFeeder :=
+    oneTermRobinGamma3BoundarySourceCorrectedProductFeederAudit_n3
+      H env hUniform hentry hND hNF hkappa hkappaSqrt
+  have hBackendNoGo :=
+    oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3
+  rcases hExpanded with
+    ⟨hKappaAbsent, hKappaDaggerAbsent, hExpandedIff,
+      _hExpandedFoldFalse, _hExpandedRawFalse, _hExpandedProductFalse,
+      _hExpandedFinalFalse⟩
+  rcases hPrepared with
+    ⟨hPreparedEval, hPreparedEntry, _hBackendFold, _hBridgeObligation,
+      hPreparedObligationFalse, hTargetFoldFalse, hTargetRawFalse,
+      hTargetProductFalse, hTargetLCUFalse, hTargetBlockProjectionFalse,
+      hTargetBlockCorrectFalse, hTargetFinalFalse, hBridgeNormalizedFalse,
+      hBridgeProductFalse, hBridgeLCUFalse, hBridgeBlockProjectionFalse,
+      hBridgeBlockCorrectFalse, hBridgeFinalFalse⟩
+  rcases hFeeder with
+    ⟨hPacketProjection, hPacketNormalizer, _hInterfaceProjection,
+      _hInterfaceNormalizer, _hPacketFixed, _hInterfaceFixed, hBridgeFixed,
+      hObligationFalse, hProjectionNoGo, _hForbidden, _hRouteUnused,
+      _hPacketProductFalse, _hRouteObligationFalse, hRouteProductFalse,
+      hRouteNormalizedFalse, hRouteLCUFalse, _hContractUsesActive,
+      _hTheoremFacingCircuitSubstituted, _hActiveBackendContractMutated,
+      _hCorrectedProjectionFalse, _hCorrectedProjectionProvedFalse,
+      hInterfaceFixedFalse, hInterfaceFiniteNormalizedFalse,
+      hInterfaceFiniteProjectionFalse, hInterfaceFiniteLCUFalse,
+      hInterfaceFiniteFinalFalse, hInterfaceProductFalse,
+      hInterfaceNormalizedFalse, hInterfaceLCUFalse,
+      hInterfaceBlockProjectionFalse, hInterfaceBlockCorrectFalse,
+      hInterfaceFinalFalse, hInterfaceOracleFalse, hInterfaceUnitaryFalse,
+      hInterfaceResourceFalse⟩
+  dsimp [
+    oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3,
+    oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3,
+    oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3,
+    oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3,
+    oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3,
+    oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3,
+    oneTermRobinFiniteBlockCompositionContract]
+    at hEquiv hExpandedIff hPreparedEval hPreparedEntry hPacketProjection
+      hPacketNormalizer hBridgeFixed hObligationFalse hProjectionNoGo
+      hPreparedObligationFalse hTargetFoldFalse hTargetRawFalse
+      hTargetProductFalse hTargetLCUFalse hTargetBlockProjectionFalse
+      hTargetBlockCorrectFalse hTargetFinalFalse hBridgeNormalizedFalse
+      hBridgeProductFalse hBridgeLCUFalse hBridgeBlockProjectionFalse
+      hBridgeBlockCorrectFalse hBridgeFinalFalse hRouteProductFalse
+      hRouteNormalizedFalse hRouteLCUFalse hInterfaceFixedFalse
+      hInterfaceFiniteNormalizedFalse hInterfaceFiniteProjectionFalse
+      hInterfaceFiniteLCUFalse hInterfaceFiniteFinalFalse
+      hInterfaceProductFalse hInterfaceNormalizedFalse hInterfaceLCUFalse
+      hInterfaceBlockProjectionFalse hInterfaceBlockCorrectFalse
+      hInterfaceFinalFalse hInterfaceOracleFalse hInterfaceUnitaryFalse
+      hInterfaceResourceFalse ⊢
+  exact ⟨rfl, rfl, rfl, rfl, hEquiv, hKappaAbsent,
+    hKappaDaggerAbsent, hExpandedIff, hPreparedEval, hPreparedEntry,
+    hPacketProjection, hPacketNormalizer, hBridgeFixed, hObligationFalse,
+    hBackendNoGo, hProjectionNoGo, hTargetFoldFalse, hTargetRawFalse,
+    hTargetProductFalse, hTargetLCUFalse, hTargetBlockProjectionFalse,
+    hTargetBlockCorrectFalse, hTargetFinalFalse, hBridgeNormalizedFalse,
+    hBridgeProductFalse, hBridgeLCUFalse, hBridgeBlockProjectionFalse,
+    hBridgeBlockCorrectFalse, hBridgeFinalFalse, hRouteProductFalse,
+    hRouteNormalizedFalse, hRouteLCUFalse, hInterfaceFixedFalse,
+    hInterfaceFiniteNormalizedFalse, hInterfaceFiniteProjectionFalse,
+    hInterfaceFiniteLCUFalse, hInterfaceFiniteFinalFalse,
+    hInterfaceProductFalse, hInterfaceNormalizedFalse, hInterfaceLCUFalse,
+    hInterfaceBlockProjectionFalse, hInterfaceBlockCorrectFalse,
+    hInterfaceFinalFalse, hInterfaceOracleFalse, hInterfaceUnitaryFalse,
+    hInterfaceResourceFalse⟩
 
 /--
 Strict projection/summation product bridge for the focused boundary leaf.

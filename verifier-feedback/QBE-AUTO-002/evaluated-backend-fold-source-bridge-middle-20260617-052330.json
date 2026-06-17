@@ -1,0 +1,54 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-051350-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "kind": "handoff",
+  "timestamp_jst": "2026-06-17 05:23:30 JST",
+  "leaf": "evaluated_backend_fold_source_bridge",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "Retires the compiled source-corrected product feeder and retargets the remaining source-prepared active/prepared finite-entry bridge for GHL2025 Theorem theorem: 1 term robin, Eq. ROBIN clarified, Eq. arbitrary sparcity, Eq. angles for Ry, Fig. fig:1 term ROBIN, and Definition def:block-encoding.",
+  "lean_parse_ok": true,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "pending lower3 check for the evaluated active [0,0] equality exposed by oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_exposesExpandedSlotZeroFold_n3",
+  "block_entry_ok": "evaluated active signal entry / prepared singleton bridge only; no root block-encoding closure claimed",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "true only when the feeder route is used under explicit hND, hNF, hkappa, and hkappaSqrt hypotheses",
+  "unitarity_ok": null,
+  "resource_score": {
+    "phase": "paperBenchmark baseline; candidate scoring deferred",
+    "score": null,
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7,
+    "prepared_singleton_gate_count": 1
+  },
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7,
+    "prepared_singleton_gate_count": 1
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "stale_leaves": [
+    "oneTermRobinGamma3BoundarySourceCorrectedProductFeederAudit_n3",
+    "oneTermRobinGamma3BoundaryFixedProductToCoefficientPreAudit_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_preparedCircuitContractCorrection_n3"
+  ],
+  "active_leaf_lean_targets": [
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env",
+    "(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3 H).rawEntryPreparedSandwichStatement",
+    "planned wrapper oneTermRobinGamma3BoundaryEvaluatedBackendFoldSourceBridgeAudit_n3 if lower2 only packages route memory"
+  ],
+  "forbidden_routes": [
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 direct proof",
+    "(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality direct proof",
+    "post-baseline candidate population before baseline closure",
+    "QBE-OP-OPTCTRL-001 before baseline closure and improvement stagnation"
+  ],
+  "semantic_promotion_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "lower1 source-maps the evaluated backend-fold bridge, lower3 checks the finite evaluated [0,0] equality and no-go guards, then lower2 compiles at most one source-constrained non-promoting leaf; do not revive generic projection/backend expansion"
+}

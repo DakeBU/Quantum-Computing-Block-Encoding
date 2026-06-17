@@ -1,0 +1,65 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-022209-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "profile": "necessary-condition verifier",
+  "kind": "attempt",
+  "timestamp_jst": "2026-06-17 02:36:45 JST",
+  "leaf": "prepared_projection_contract_leaf",
+  "active_lean_target": "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3",
+  "why_necessary": "The active lower2 leaf should expose the theorem-facing prepared clean projection entry and relate it to the focused slot-2 projected branch product. If this interface field instead used the rejected activeToPreparedSingletonEvalStatement route, changed the gate-shape guard, or promoted any product/block/oracle/unitary/resource flag, the GHL one-term Robin block-entry route would be proving the wrong target.",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The checked statement uses ProjectionInterface(H, env).sourcePreparedProjectionEntry, which unfolds to SourcePreparedProjectionTarget(H, env).preparedProjectionEntry. It consumes the compiled source-prepared slot-2 bridge oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3, not the rejected universal active/prepared field.",
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_matrix_note": "The diagnostic is finite at n=3 and typechecked as a temporary Lean stdin example over the existing Matrix 8 8 / clean-index interface. It checks the prepared projection interface shape, not the full root block-encoding theorem.",
+  "block_entry_ok": true,
+  "block_entry_note": "The prepared clean block entry satisfies Coeff.evalWith env interface.sourcePreparedProjectionEntry = Coeff.evalWith env oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.projectedBranchProduct under the existing hUniform and hentry hypotheses.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": null,
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "non_promoting_false_flags_checked": [
+    "interface.correctedFiniteBlockProjectionEquality.proved",
+    "interface.correctedFiniteBlockProjectionEqualityProved",
+    "interface.fixedProductObligation.proved",
+    "interface.finiteBlockNormalizedEquality.proved",
+    "interface.finiteBlockProjectionObligation.proved",
+    "interface.finiteBlockLCUCompositionObligation.proved",
+    "interface.finiteBlockFinalExtractionObligation.proved",
+    "interface.normalizedBlockEqualityProved",
+    "interface.productToCoefficientProved",
+    "interface.lcuCorrectProved",
+    "interface.blockProjectionProved",
+    "interface.blockCorrectProved",
+    "interface.finalExtractionProved",
+    "interface.oracleCorrectProved",
+    "interface.unitaryProved",
+    "interface.resourceClaimProved"
+  ],
+  "lean_local_diagnostic": {
+    "kind": "temporary stdin Lean example",
+    "command": "lake env lean --stdin",
+    "imports": [
+      "QuantumBlockEncoding.RobinMatrix"
+    ],
+    "checked_route": [
+      "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3",
+      "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3"
+    ],
+    "result": "passed"
+  },
+  "rejection": null,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Release lower2 to compile exactly one non-promoting wrapper theorem, oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3, using interface.sourcePreparedProjectionEntry and oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3. Do not target activeToPreparedSingletonEvalStatement, oneTermRobinGamma3ProductToCoefficientObligation 3 0 0, backendExpansionStatement, normalizedBlockEquality, blockProjection, LCU, finalExtraction, oracle, unitary, or resource closure."
+}

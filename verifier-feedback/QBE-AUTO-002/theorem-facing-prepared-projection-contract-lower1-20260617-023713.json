@@ -1,0 +1,44 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-022209-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "profile": "natural-language proof architect",
+  "kind": "proof_design",
+  "leaf": "theorem_facing_prepared_projection_contract",
+  "planned_lean_declaration": "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "The target uses ProjectionInterface(H, env).sourcePreparedProjectionEntry, the clean prepared projection from GHL2025 Fig. fig:1 term ROBIN and Definition def:block-encoding, specialized to the boundary gamma3 slot-2 branch in Eq. eq: ROBIN clarified.",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "pending_lower3_shape_check; rejected_universal_active_prepared_route_has_finite_counterexample",
+  "block_entry_ok": "prepared_projection_route_compiled_as_route_memory_not_root_closure",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "compiled_route_memory_via oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3; not required for this entry wrapper",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "secondary_error_class": "source_translation_gap_for_rejected_universal_active_prepared_field",
+  "dependencies": [
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3"
+  ],
+  "forbidden_routes": [
+    "(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement",
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality"
+  ],
+  "next_route": "lower3 checks preparedProjectionEntry shape and false flags, then lower2 compiles oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3 using oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3 without promoting product/block/oracle/unitary/resource flags.",
+  "post_baseline_improvement_status": "deferred_until_GHL_baseline_root_closes",
+  "fallback_optctrl_status": "deferred_until_baseline_closure_and_improvement_stagnation",
+  "artifact": "proof-attempts/QBE-AUTO-002/theorem-facing-prepared-projection-contract-lower1-dag-20260617-023713.md"
+}

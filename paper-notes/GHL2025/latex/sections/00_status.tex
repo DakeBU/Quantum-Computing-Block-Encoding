@@ -11,7 +11,334 @@ The build gate after this export is
 \]
 It runs \Lean{lake build} and \Lean{lake build Tests}.
 
-\subsection{Current Frontier: Post-Audit Theorem-Facing Finite Block Projection Interface}
+\subsection{Current Frontier: Evaluated Backend-Fold Source Bridge}
+
+Definitions first.  \Lean{EvaluatedFoldTarget(H, env)} is
+\[
+  \Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget\_n3\ H\ env}.
+\]
+\Lean{EvaluatedFoldStatement(env)} is
+\[
+  \Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3\ env}.
+\]
+\Lean{FixedProductObligation} is
+\[
+  \Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0}.
+\]
+
+The active paper anchor remains GHL2025 Theorem
+\texttt{theorem: 1 term robin}, the one-term Robin block-encoding theorem
+treated as Theorem 3 for this run.  The source fragments are Eq.
+\texttt{eq: arbitrary sparcity}, Eq. \texttt{eq:angles for Ry}, Eq.
+\texttt{eq: ROBIN clarified}, Fig. \texttt{fig:1 term ROBIN}, and Definition
+\texttt{def:block-encoding}.
+
+The compiled source-corrected feeder
+\[
+  \Lean{oneTermRobinGamma3BoundarySourceCorrectedProductFeederAudit\_n3}
+\]
+is route memory.  It packages the source-prepared slot-\Lean{2} product and
+normalizer route but keeps \Lean{FixedProductObligation} false.  The active
+leaf is now the source-constrained evaluated finite projection/backend fold
+\Lean{EvaluatedFoldStatement(env)}, with
+\[
+  \Lean{(oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField\_n3\ H).rawEntryPreparedSandwichStatement}
+\]
+as an allowed smaller equivalent field after lower1/lower3 checks.
+
+\[
+\begin{array}{lll}
+\text{Item} & \text{Lean declaration or target} & \text{Status}\\
+\text{source-corrected product feeder} &
+\Lean{oneTermRobinGamma3BoundarySourceCorrectedProductFeederAudit\_n3} &
+\text{compiled route memory}\\
+\text{evaluated backend-fold target} &
+\Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget\_n3} &
+\text{compiled obstruction record}\\
+\text{evaluated finite projection leaf} &
+\Lean{oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement\_n3\ env} &
+\text{active source-constrained leaf after lower1/lower3 checks}\\
+\text{raw prepared-sandwich field} &
+\Lean{RawPreparedSandwichField(H)} &
+\text{allowed equivalent field; open}\\
+\text{fixed product-to-coefficient theorem} &
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0} &
+\text{open; blocked}\\
+\text{post-baseline improvement population} &
+\text{same operator score }(\text{depth},\text{gateCount},\text{auxiliaryQubits},\text{oracleCalls}) &
+\text{deferred}\\
+\text{fallback task} &
+\Lean{QBE-OP-OPTCTRL-001} &
+\text{planned; not active}
+\end{array}
+\]
+
+The active packet is
+\Lean{proof-attempts/QBE-AUTO-002/evaluated-backend-fold-source-bridge-middle-packet-20260617-052330.md}.
+The current typed feedback is
+\Lean{verifier-feedback/QBE-AUTO-002/evaluated-backend-fold-source-bridge-middle-20260617-052330.json}.
+
+No new cited-result row is needed.  No oracle, \Lean{H\_W}, boundary
+\Lean{R\_y}, LCU, unitarity, block-projection, block-correctness,
+product-to-coefficient, resource, or final extraction flag is promoted by this
+retarget.
+
+\subsection{Previous Frontier: Prepared Projection Contract Retarget}
+
+Definitions first.  \Lean{ProjectionInterface(H, env)} is
+\[
+  \Lean{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface\_n3\ H\ env}.
+\]
+\Lean{PreparedProjectionEntry(H, env)} is the field
+\[
+  \Lean{ProjectionInterface(H, env).sourcePreparedProjectionEntry}.
+\]
+\Lean{FixedProductObligation} is
+\[
+  \Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0}.
+\]
+
+The active paper anchor remains GHL2025 Theorem
+\texttt{theorem: 1 term robin}, the one-term Robin block-encoding theorem
+treated as Theorem 3 for this run.  The source fragments are Eq.
+\texttt{eq: arbitrary sparcity}, Eq. \texttt{eq:angles for Ry}, Eq.
+\texttt{eq: ROBIN clarified}, Fig. \texttt{fig:1 term ROBIN}, and Definition
+\texttt{def:block-encoding}.
+
+Lower1 and lower3 rejected the universal active/prepared field
+\[
+  \Lean{(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3\ H\ env).activeToPreparedSingletonEvalStatement}
+\]
+as the next lower2 target.  The source-prepared paper route projects the clean
+entry of the Fig. \texttt{fig:1 term ROBIN} prepared circuit; the rejected
+target compares the H-free active seven-gate entry with an arbitrary prepared
+matrix \Lean{H}.
+
+The next Lean leaf is the prepared projection contract:
+\[
+  \Lean{oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface\_preparedProjectionSlot2Product\_n3}.
+\]
+It should prove that \Lean{PreparedProjectionEntry(H, env)} evaluates to the
+focused slot-\Lean{2} projected branch product under the explicit
+\Lean{H\_W(kappa)} clean-column and boundary-entry hypotheses.  It must
+keep the fixed product obligation, normalized-block equality, LCU, block
+projection, block correctness, final extraction, oracle correctness,
+unitarity, and resource claims false.
+
+\[
+\begin{array}{lll}
+\text{Item} & \text{Lean declaration or target} & \text{Status}\\
+\text{theorem-facing projection-interface normalizer bridge} &
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface\_normalizerEval\_n3} &
+\text{compiled route memory}\\
+\text{rejected universal active/prepared field} &
+\Lean{SourcePreparedProjectionTarget(H, env).activeToPreparedSingletonEvalStatement} &
+\text{rejected as current lower2 target}\\
+\text{prepared projection contract} &
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface\_preparedProjectionSlot2Product\_n3} &
+\text{active lower2 leaf after lower1/lower3 checks}\\
+\text{fixed product-to-coefficient theorem} &
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0} &
+\text{open; blocked}\\
+\text{post-baseline improvement population} &
+\text{same operator score }(\text{depth},\text{gateCount},\text{auxiliaryQubits},\text{oracleCalls}) &
+\text{deferred}\\
+\text{fallback task} &
+\Lean{QBE-OP-OPTCTRL-001} &
+\text{planned; not active}
+\end{array}
+\]
+
+The active packet is
+\Lean{proof-attempts/QBE-AUTO-002/theorem-facing-prepared-projection-contract-middle-packet-20260617-0227.md}.
+The current typed feedback is
+\Lean{verifier-feedback/QBE-AUTO-002/theorem-facing-prepared-projection-contract-middle-20260617-0227.json}.
+
+No new cited-result row is needed.  No oracle, \Lean{H\_W}, boundary
+\Lean{R\_y}, LCU, unitarity, block-projection, block-correctness,
+product-to-coefficient, resource, or final extraction flag is promoted by this
+retarget.
+
+\subsection{Previous Frontier: Corrected Finite Block/Projection Equality Audit}
+
+Definitions first.  \Lean{ProjectionInterface(H, env)} is
+\[
+  \Lean{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface\_n3\ H\ env}.
+\]
+\Lean{SourcePreparedProjectionTarget(H, env)} is
+\[
+  \Lean{oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3\ H\ env}.
+\]
+\Lean{ActivePreparedEval(H, env)} is
+\[
+  \Lean{oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement\_n3\ H\ env}.
+\]
+\Lean{ActivePreparedEntry(H)} is
+\[
+  \Lean{(oneTermRobinGamma3BoundaryActivePreparedEntryTarget\_n3\ H).entryEqualityStatement}.
+\]
+\Lean{FixedProductObligation} is
+\[
+  \Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0}.
+\]
+
+The active paper anchor remains GHL2025 Theorem
+\texttt{theorem: 1 term robin}, the one-term Robin block-encoding theorem
+treated as Theorem 3 for this run.  The active source fragments are Eq.
+\texttt{eq: arbitrary sparcity}, Eq. \texttt{eq:angles for Ry}, Eq.
+\texttt{eq: ROBIN clarified}, Fig. \texttt{fig:1 term ROBIN}, and Definition
+\texttt{def:block-encoding}.
+
+The theorem-facing projection-interface normalizer bridge is now compiled
+route memory:
+\[
+  \Lean{oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface\_normalizerEval\_n3}.
+\]
+It does not prove the root theorem or promote any finite block, oracle,
+unitarity, final extraction, or resource flag.
+
+The current frontier is the corrected theorem-facing finite block/projection
+equality feeding \Lean{FixedProductObligation}.  In Lean this is exposed by the
+source-prepared active/prepared clean-entry field
+\[
+\begin{array}{l}
+\Lean{(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget\_n3\ H\ env).activeToPreparedSingletonEvalStatement}\\
+\Lean{oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement\_n3\ H\ env}\\
+\Lean{oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement\_n3\ H\ env}\\
+\Lean{(oneTermRobinGamma3BoundaryActivePreparedEntryTarget\_n3\ H).entryEqualityStatement}.
+\end{array}
+\]
+This field compares the active seven-gate signal-zero entry with the clean
+entry of the prepared sparse-register sandwich singleton semantics.  It is
+audit-gated because
+\Lean{oneTermRobinGamma3BoundaryBackendExpansionStatement\_not\_n3} refutes the
+unchanged H-free backend-expansion route.  Lower work must first confirm
+whether the source proof supports this active/prepared equality as a finite
+composition theorem, or whether the theorem-facing finite block contract must
+be corrected to use a prepared block/projection contract.
+
+\[
+\begin{array}{lll}
+\text{Item} & \text{Lean declaration or target} & \text{Status}\\
+\text{theorem-facing projection-interface normalizer bridge} &
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface\_normalizerEval\_n3} &
+\text{compiled route memory}\\
+\text{active/prepared circuit-field package} &
+\Lean{oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget\_n3\ H\ env} &
+\text{compiled; equality false/unproved}\\
+\text{unchanged backend expansion} &
+\Lean{oneTermRobinGamma3BoundaryBackendBranchContributionTarget\_n3.backendExpansionStatement} &
+\text{refuted and forbidden}\\
+\text{corrected finite block/projection equality} &
+\Lean{SourcePreparedProjectionTarget(H, env).activeToPreparedSingletonEvalStatement} &
+\text{active audit frontier}\\
+\text{fixed product-to-coefficient theorem} &
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0} &
+\text{open; blocked}\\
+\text{post-baseline improvement population} &
+\text{same operator score }(\text{depth},\text{gateCount},\text{auxiliaryQubits},\text{oracleCalls}) &
+\text{deferred}
+\end{array}
+\]
+
+The active packet is
+\Lean{proof-attempts/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-middle-packet-20260617-0205.md}.
+The current typed feedback is
+\Lean{verifier-feedback/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-middle-20260617-0205.json}.
+
+No oracle, \Lean{H\_W}, boundary \Lean{R\_y}, LCU, unitarity,
+block-projection, block-correctness, product-to-coefficient, resource, or final
+extraction flag is promoted by this packet.
+
+\subsection{Previous Frontier: Theorem-Facing Projection-Interface Normalizer Bridge}
+
+Definitions first.  \Lean{ProjectionInterface(H, env)} is
+\[
+  \Lean{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface\_n3\ H\ env}.
+\]
+\Lean{NormalizerBridge(H, env)} is
+\[
+  \Lean{oneTermRobinGamma3BoundarySourcePreparedSlot2Product\_normalizerEval\_n3\ H\ env}.
+\]
+\Lean{FiniteBlockContract} is
+\[
+  \Lean{oneTermRobinFiniteBlockCompositionContract\ 3}.
+\]
+\Lean{FixedProductObligation} is
+\[
+  \Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0}.
+\]
+
+The active paper anchor remains GHL2025 Theorem
+\texttt{theorem: 1 term robin}, the one-term Robin block-encoding theorem.
+It is the theorem treated as the run's Theorem 3 when the introductory theorem
+environments are counted.  The active source fragments are Eq.
+\texttt{eq: arbitrary sparcity}, Eq. \texttt{eq:angles for Ry}, Eq.
+\texttt{eq: ROBIN clarified}, Fig. \texttt{fig:1 term ROBIN}, and Definition
+\texttt{def:block-encoding}.
+
+The theorem-facing finite block/projection interface is compiled route memory:
+\[
+\begin{array}{l}
+\Lean{OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface}\\
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface\_n3}\\
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface\_n3\_transcript}.
+\end{array}
+\]
+
+The current lower2 leaf is not the root product theorem.  It is the
+interface-field normalizer bridge
+\[
+  \Lean{oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface\_normalizerEval\_n3}.
+\]
+For \Lean{interface := ProjectionInterface(H, env)}, the Lean-facing equality is
+\[
+\begin{aligned}
+&\Lean{Coeff.evalWith\ env\ interface.sourcePreparedProjectionEntry}
+ \cdot
+ \Lean{Coeff.evalWith\ env\ interface.normalizedProjectionBridge.theoremNormalizer}\\
+&\qquad =
+ \Lean{Coeff.evalWith\ env\ interface.normalizedProjectionBridge.expectedTargetEntry}.
+\end{aligned}
+\]
+The hypotheses are the explicit uniform sparse-preparation contract, corrected
+boundary coefficient, and normalizer inverse identities.  The theorem must also
+restate that the corrected finite block/projection equality, fixed product
+obligation, normalized-block equality, LCU correctness, block projection, block
+correctness, final extraction, oracle correctness, unitarity, and resource
+claims remain false.
+
+\[
+\begin{array}{lll}
+\text{Item} & \text{Lean declaration or target} & \text{Status}\\
+\text{theorem-facing finite block/projection interface} &
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface\_n3} &
+\text{compiled route memory; stale as lower work}\\
+\text{source-prepared slot-2 normalizer route} &
+\Lean{oneTermRobinGamma3BoundarySourcePreparedSlot2Product\_normalizerEval\_n3} &
+\text{compiled under explicit source/cited contracts}\\
+\text{theorem-facing projection-interface normalizer bridge} &
+\Lean{oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface\_normalizerEval\_n3} &
+\text{active lower2 leaf after source and interface checks}\\
+\text{fixed product-to-coefficient theorem} &
+\Lean{oneTermRobinGamma3ProductToCoefficientObligation\ 3\ 0\ 0} &
+\text{open; blocked until this bridge and the final coefficient bridge compile}\\
+\text{finite block-composition closure} &
+\Lean{(oneTermRobinFiniteBlockCompositionContract\ 3).normalizedBlockEquality} &
+\text{false; forbidden as this leaf}
+\end{array}
+\]
+
+The active packet is
+\Lean{proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-packet-20260617-0145.md}.
+The current typed feedback is
+\Lean{verifier-feedback/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-20260617-0145.json}.
+
+No oracle, \Lean{H\_W}, boundary \Lean{R\_y}, LCU, unitarity, normalizer,
+block-projection, block-correctness, product-to-coefficient, resource, or final
+extraction flag is promoted by this bridge packet.
+
+\subsection{Previous Frontier: Post-Audit Theorem-Facing Finite Block Projection Interface}
 
 Definitions first.  \Lean{TheoremFacingFig4Circuit} is
 \Lean{GHL2025.oneTermRobinTheoremFacingFig4Circuit}.
@@ -85,7 +412,7 @@ No oracle, \Lean{H\_W}, boundary \Lean{R\_y}, LCU, unitarity, normalizer,
 block-projection, block-correctness, product-to-coefficient, resource, or final
 extraction flag is promoted by this interface packet.
 
-\subsection{Current Frontier: Source-Contract Route Retarget Guard}
+\subsection{Previous Frontier: Source-Contract Route Retarget Guard}
 
 Definitions first.  \Lean{SourceSlot2Product(H, env)} is the evaluated equality
 from the source-prepared clean projection to
@@ -146,7 +473,7 @@ The theorem-facing one-term Robin block encoding remains open.  No oracle,
 block-projection, block-correctness, product-to-coefficient, or final
 extraction flag is promoted by this guard.
 
-\subsection{Current Frontier: Backend-Expansion Correction Audit}
+\subsection{Previous Frontier: Backend-Expansion Correction Audit}
 
 Definitions first.  \Lean{SourceProjection(H, env)} denotes
 \[

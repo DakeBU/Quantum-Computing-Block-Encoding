@@ -1,0 +1,57 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-054403-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "kind": "attempt",
+  "timestamp_jst": "2026-06-17 05:57:59 JST",
+  "leaf": "source_prepared_prepared_composite_field",
+  "active_leaf_checked": [
+    "oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env",
+    "oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env",
+    "(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement"
+  ],
+  "source_correspondence_ok": false,
+  "source_correspondence_note": "The prepared singleton object is source-prepared, but proving the active/prepared equality as a theorem target equates the H-free active seven-gate [0,0] entry with the prepared clean entry. Under the uniform clean-column contract this is equivalent to the already rejected evaluated backend fold.",
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": false,
+  "finite_matrix_note": "Scratch Lean diagnostic constructs lower3UniformH with all clean-column entries sqrt_kappa_inv and lower3AllOneEnv with f_3_0=N_f_inv=boundary_cos_half_0_2=sqrt_kappa_inv=1. The active/prepared composite statement implies selectedSlotContribution evaluates to 0, contradicting the compiled all-one value 1.",
+  "block_entry_ok": false,
+  "block_entry_note": "The tested block-entry equality fails for the prepared-composite clean-entry field in the uniform all-one finite witness; no root block-encoding closure is available.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "conditional only; no normalizer flag promoted",
+  "unitarity_ok": null,
+  "resource_score": {
+    "phase": "paperBenchmark baseline",
+    "score": null,
+    "scoring_deferred": true
+  },
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7,
+    "prepared_singleton_gate_count": 1
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "lean_edit_made": false,
+  "diagnostic_command": "lake env lean --stdin",
+  "diagnostic_declarations_used": [
+    "oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3",
+    "oneTermRobinGamma3BoundaryActivePreparedCompositeEval_iff_evaluatedBackendFold_n3",
+    "oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_iff_selectedSlotContributionEval_zero_n3",
+    "oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3",
+    "oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_obstruction_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_iff_uncastPreparedSparseCleanEntry_n3"
+  ],
+  "rejected_routes": [
+    "proving oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env as an unconditional or uniform-column theorem",
+    "proving oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env as a theorem closure target",
+    "reviving oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env",
+    "using the generic backend expansion or projection-summation surfaces",
+    "promoting normalized block, LCU, oracle, unitary, final extraction, resource, post-baseline, or OPTCTRL flags"
+  ],
+  "error_class": "finite_matrix_counterexample",
+  "next_route": "Middle should repair the source contract or assign only a non-promoting audit wrapper that records this finite obstruction; lower2 must not prove the active/prepared composite equality or the H-free evaluated backend fold."
+}

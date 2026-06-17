@@ -1,0 +1,47 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-041033-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "profile": "natural-language proof architect",
+  "kind": "proof_design",
+  "status": "queued",
+  "timestamp_jst": "2026-06-17 04:22:16 JST",
+  "leaf": "fixed_product_to_coefficient_pre_audit",
+  "source_anchors": [
+    "GHL2025 main.tex:1098-1109 theorem: 1 term robin",
+    "GHL2025 main.tex:1111-1119 eq: ROBIN clarified boundary gamma3 branch",
+    "GHL2025 main.tex:1122-1164 fig:1 term ROBIN",
+    "GHL2025 main.tex:2027-2035 def:block-encoding",
+    "GHL2025 main.tex:948-955 eq: arbitrary sparcity"
+  ],
+  "source_correspondence_ok": true,
+  "lean_edited": false,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "qbe_check_ok": true,
+  "finite_matrix_ok": "not root-checked; coefficient-side finite equalities are compiled route memory",
+  "block_entry_ok": "true only for pre-audit packaging; root block-entry projection remains blocked by BackendGap",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "true under explicit hND/hNF/hkappa/hkappaSqrt hypotheses via finiteBlockNormalizerEval",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "compiled_route_memory": [
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_branchDecompositionProjectionBridge_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_finiteBlockNormalizerEval_n3",
+    "oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3",
+    "oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript"
+  ],
+  "planned_lean_target": "oneTermRobinGamma3BoundaryFixedProductToCoefficientPreAudit_n3",
+  "closed_theorem_ok": false,
+  "semantic_promotion_ok": false,
+  "gate_notes": "python3 tools/qbe.py check and explicit lake build && lake build Tests passed with the known two RobinMatrix diagnostic sorry warnings.",
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Lower2 should compile only the non-promoting pre-audit wrapper; after that, route to a backend-sourced sparse-summand interface for BlockExtractionTarget rather than projectionSummationStatement or backendExpansionStatement."
+}

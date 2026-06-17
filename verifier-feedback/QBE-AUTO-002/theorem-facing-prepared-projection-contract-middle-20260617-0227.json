@@ -1,0 +1,54 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-022209-QBE-AUTO-002-cycle01",
+  "role": "middle",
+  "kind": "packet",
+  "leaf": "theorem_facing_prepared_projection_contract",
+  "source_correspondence_ok": "true_for_prepared_projection_contract; false_for_unconstrained_active_prepared_field",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "lower3_rejected_universal_active_prepared_target; prepared_projection_contract_pending_lower3_check",
+  "block_entry_ok": "prepared_projection_route_compiled_as_route_memory_not_root_closure",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "compiled_route_memory_via oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "error_class": "source_translation_gap",
+  "secondary_error_class": "finite_matrix_counterexample_for_rejected_universal_active_prepared_route",
+  "planned_lean_declaration": "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3",
+  "allowed_write_scope": "QuantumBlockEncoding/RobinMatrix.lean",
+  "source_anchors": [
+    "GHL2025 theorem: 1 term robin",
+    "GHL2025 eq: arbitrary sparcity",
+    "GHL2025 eq:angles for Ry",
+    "GHL2025 eq: ROBIN clarified",
+    "GHL2025 fig:1 term ROBIN",
+    "GHL2025 def:block-encoding"
+  ],
+  "dependencies": [
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3"
+  ],
+  "forbidden_routes": [
+    "(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement",
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+    "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3"
+  ],
+  "post_baseline_improvement_status": "deferred_until_GHL_baseline_root_closes",
+  "fallback_optctrl_status": "deferred; contract exists in tasks/QBE-OP-OPTCTRL-001.md",
+  "next_route": "lower1 confirms the prepared projection contract source map, lower3 checks the preparedProjectionEntry shape and false flags, then lower2 compiles only oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3 without promoting product/block/oracle/unitary/resource flags.",
+  "artifact": "proof-attempts/QBE-AUTO-002/theorem-facing-prepared-projection-contract-middle-packet-20260617-0227.md"
+}

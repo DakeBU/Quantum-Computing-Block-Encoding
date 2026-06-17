@@ -1,0 +1,41 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-051350-QBE-AUTO-002-cycle01",
+  "role": "lower2",
+  "kind": "attempt",
+  "timestamp_jst": "2026-06-17 05:41:42 JST",
+  "leaf": "evaluated_backend_fold_source_bridge",
+  "source_correspondence_ok": true,
+  "source_correspondence_note": "Compiled the source-constrained non-promoting audit wrapper requested by the evaluated backend-fold source-bridge middle packet; it keeps GHL2025 theorem: 1 term robin / Eq. ROBIN clarified / Eq. arbitrary sparcity / Fig. fig:1 term ROBIN / def:block-encoding route fixed.",
+  "lean_declaration": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldSourceBridgeAudit_n3",
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": "route packaging only; reuses compiled expanded slot-zero exposure and prepared clean-entry product-map route, no new finite equality proved",
+  "block_entry_ok": "evaluated active signal entry / source-prepared singleton bridge only; root block encoding not closed",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "true only under explicit hUniform, hentry, hND, hNF, hkappa, and hkappaSqrt hypotheses inherited from the source-corrected feeder",
+  "unitarity_ok": null,
+  "resource_score": {
+    "phase": "paperBenchmark baseline; candidate scoring deferred",
+    "score": null
+  },
+  "auxiliary_qubits": null,
+  "gate_count": {
+    "theorem_facing_gate_count": 10,
+    "active_backend_gate_count": 7,
+    "prepared_singleton_gate_count": 1
+  },
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": true,
+  "closed_theorem": "oneTermRobinGamma3BoundaryEvaluatedBackendFoldSourceBridgeAudit_n3",
+  "root_evaluated_fold_closed": false,
+  "root_product_obligation_closed": false,
+  "semantic_promotion_ok": false,
+  "known_warnings": [
+    "QuantumBlockEncoding/RobinMatrix.lean:26964:8 declaration uses sorry",
+    "QuantumBlockEncoding/RobinMatrix.lean:26995:8 declaration uses sorry"
+  ],
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Use oneTermRobinGamma3BoundaryEvaluatedBackendFoldSourceBridgeAudit_n3 as route memory; the next narrow proof must supply the active/prepared finite entry field or raw prepared-sandwich equivalent without reviving generic projection/backend expansion."
+}

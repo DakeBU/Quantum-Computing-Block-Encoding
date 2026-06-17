@@ -1,0 +1,44 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-015528-QBE-AUTO-002-cycle01",
+  "role": "lower1-natural-language-proof-architect",
+  "kind": "handoff",
+  "leaf": "theorem_facing_corrected_finite_block_projection_equality",
+  "source_correspondence_ok": "false_for_unconstrained_activeToPreparedSingletonEvalStatement; true_for_compiled_prepared_projection_product_route",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": "false_for_unchanged_hfree_backend_route; active field exposes H-free seven-gate entry by compiled guard",
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": "compiled_route_memory_via oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3",
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": null,
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": false,
+  "error_class": "source_translation_gap",
+  "secondary_error_class": "contract_drift_if_lower2_proves_unconstrained_active_prepared_field",
+  "active_lean_target_rejected_until_retargeted": "(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement",
+  "source_backed_route_memory": [
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3",
+    "oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3",
+    "oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3",
+    "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3"
+  ],
+  "guards": [
+    "oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_exposesUncastSevenGate_n3",
+    "oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_obstruction_n3",
+    "oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3"
+  ],
+  "forbidden_routes": [
+    "oneTermRobinGamma3ProductToCoefficientObligation 3 0 0",
+    "oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement",
+    "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
+    "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3",
+    "(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality"
+  ],
+  "next_route": "Middle should name a corrected prepared-projection contract whose left side is preparedProjectionEntry, consuming oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3 and oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3; lower2 should compile only that non-promoting leaf and keep all product/block/oracle/unitary/resource flags false.",
+  "artifact": "proof-attempts/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-lower1-dag-20260617-021925.md"
+}

@@ -1,0 +1,33 @@
+{
+  "task": "QBE-AUTO-002",
+  "run": "20260617-013501-QBE-AUTO-002-cycle01",
+  "role": "lower",
+  "kind": "proof_dag_feedback",
+  "leaf": "theorem_facing_projection_interface_normalizer_bridge",
+  "planned_lean_target": "oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": "not_applicable_interface_glue",
+  "block_entry_ok": "pending_downstream_corrected_projection",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": null,
+  "gate_count": null,
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": "true_for_local_leaf_false_for_root",
+  "error_class": "stale_leaf",
+  "next_route": "Retire this local leaf as accepted route memory; middle should prepare the next coefficient bridge. Lower2 should not duplicate oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_normalizerEval_n3 unless a later merge breaks that exact declaration.",
+  "gate": {
+    "qbe_check": "passed",
+    "lake_build": "passed",
+    "lake_build_tests": "passed",
+    "warnings": [
+      "known diagnostic sorry warnings in QuantumBlockEncoding/RobinMatrix.lean"
+    ]
+  },
+  "artifact": "proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-lower1-dag-20260617-015141.md"
+}

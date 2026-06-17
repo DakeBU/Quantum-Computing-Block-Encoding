@@ -27,11 +27,11 @@ Task: `QBE-AUTO-002`
 
 Title: Concrete Circuit Matrix Semantics Backend
 
-Run label: `20260613-054606-QBE-AUTO-002-cycle01`
+Run label: `20260617-024407-QBE-AUTO-002-cycle01`
 
 Cycle: `1`
 
-ABEIS is in faithful-reproduction mode.  Do not add assumptions, change the
+ABEIS is in paper-benchmark mode.  Do not add assumptions, change the
 oracle contract, change the gate order, or replace the paper's construction by
 a different construction.  If the paper relies on a previous theorem or a
 standard quantum primitive, classify it as an external technical lemma rather
@@ -41,16 +41,19 @@ than silently proving a stronger or different statement.
 
 ### Active proof-DAG leaves
 
-- finite_projection_feeder: prove the active clean projection equals the backend fold at evaluated level; status: active lower leaf; open; Lean: `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` or one strict finite theorem feeding it
-- source_contract_target_correction: source-prepared field is recovered only with `Uniform(H)` explicit and a finite projection feeder; status: active correction; compiled bridge reused; Lean: `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_i...
+- 1. **Close the GHL paper benchmark baseline first.** Locate the paper theorem corresponding to the Guseynov--Huang--Liu block-encoding theorem (the run should treat this as Theorem 3 / the main BE construction theorem, using the local source map if numberin...
+- 2. **After the baseline is Lean-closed, start improvement search for the same operator.** Create or update a candidate population for the same target operator and compare candidates by the current QBE score order: `(depth, gateCount, auxiliaryQubits, oracle...
+- 3. **If the GHL baseline is closed and improvement search stagnates for many generations, switch to the fallback operator-construction task** `QBE-OP-OPTCTRL-001`, titled `Operator of optimal control paper`. Its target is the operator shown in the user's im...
 
 ### Open obligation signals
 
-- finite projection feeder: Lean `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env`, or one strict finite `CircuitMatrixSemantics`/`Coeff.evalWith` theorem feeding it; class QBE-local finite projection/backend fold theorem tied to GHL2025 Eq. `ROBIN clarified`, Fig. `fig:1 term ROBIN`, and Definition `def:block-encoding`; status active lower2 target; open
-- source-prepared recovery under `Uniform(H)`: Lean `oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold`; class compiled route consuming the finite feeder under the explicit external clean-column contract; status compiled conditional; not closure without `hFold`
-- arbitrary-`H` source-prepared field: Lean `(oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3 H env).activeToPreparedSingletonEvalStatement`; `oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3 H env`; `oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3 H env`; class needs a true all-`H` finite composition theorem or clean-column independence theorem; status retired as default lower target
-- all-slot sparse preparation: Lean `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`; class external cited contract from GHL2025 Eq. `arbitrary sparcity` and Shukla--Vedula 2024; status contract-only; allowed only as explicit `hUniform`; not formalized here
-- direct H-free evaluated-fold route: Lean diagnostic `oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3`; `oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3`; class diagnostic route with register-shape drift risk; status rejected as default lower target; do not assign
+- theorem-facing prepared projection contract: Lean `oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3`; class QBE-local interface glue over source-prepared slot-`2` product bridge; status compiled; route memory only
+- branch-sum projection theorem: Lean planned `oneTermRobinGamma3BoundaryBranchContribution_sum_n3`; equivalent `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.projectionSummationStatement`; class internal paper step plus QBE finite matrix/projection lemma; status active frontier after lower1/lower3 checks
+- unchanged raw backend expansion: Lean `oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3.backendExpansionStatement`; class old H-free route guarded by finite no-go theorem; status forbidden direct lower2 target
+- fixed product-to-coefficient theorem for `(0,0)`: Lean `oneTermRobinGamma3ProductToCoefficientObligation 3 0 0`; class coefficient equality plus branch-sum projection and normalizer bridges; status open; blocked
+- finite block-composition closure: Lean `(oneTermRobinFiniteBlockCompositionContract 3).normalizedBlockEquality`, `.blockProjection`, `.lcuComposition`, `.finalExtraction`; class contract-only LCU/block background plus local finite projection theorem; status false; forbidden as this leaf
+- post-baseline candidate population: Lean score `(depth, gateCount, auxiliaryQubits, oracleCalls)` for same operator; class baseline theorem must close first; status deferred
+- fallback `QBE-OP-OPTCTRL-001`: Lean OPTCTRL rank-one time/type partial-isometry operator tensored with `I_n`; class fallback only after baseline closure and improvement stagnation; status planned; not active
 
 ### Open GHL paper-contribution obligations
 
@@ -78,23 +81,23 @@ than silently proving a stronger or different statement.
 
 ### Current Lean `sorry` scan
 
-- `QuantumBlockEncoding/RobinMatrix.lean:24334:  sorry`
-- `QuantumBlockEncoding/RobinMatrix.lean:24364:  sorry`
+- `QuantumBlockEncoding/RobinMatrix.lean:26248:  sorry`
+- `QuantumBlockEncoding/RobinMatrix.lean:26278:  sorry`
 
 ### Recent typed verifier feedback
 
 | leaf | error class | finite matrix ok | block entry ok | next route |
 | --- | --- | --- | --- | --- |
-| finite_projection_feeder | source_translation_gap | not_checked_by_middle; recent lower2/lower3 feedback shows the arbitrary-H field depends on the prepared clean-column slots unless a true independence theorem is proved | False | Lower2 proves the finite projection feeder for oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env, or one strict theorem feeding it, and the result is consumed only through the explicit hUniform source-prepared bridge. |
-| source_contract_target_correction | source_translation_gap | not_checked_by_middle; lower2/lower3 feedback shows arbitrary-H closure needs true independence or explicit Uniform(H) | False | Lower2 proves one finite projection feeder for oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env, or a strict theorem feeding it, and the feeder is consumed only through oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_activeEval_of_evaluatedBackendFold_n3 H env hUniform hFold. |
-| source_prepared_finite_composition_leaf | symbolic_bridge_gap | not_checked_by_lower1 | False | lower2 proves SourcePreparedField(H, env), UncastActivePrepared(H, env), CachedPreparedEntry(H), the unwrapped sparse-clean evalWith equality, or one strict finite source-shaped feeder; return to middle if Uniform(H) is required |
-| source_prepared_finite_composition_leaf | source_translation_gap | prepared_clean_entry_depends_on_seven_H_clean_column_slots | False | Middle should either restate the source-prepared active field with Uniform(H) explicit, or assign a genuine finite composition/independence theorem that proves the arbitrary-H target without using the downstream hUniform bridge. |
-| source_prepared_finite_composition_leaf | symbolic_bridge_gap | shape_check_passed_no_counterexample; exact finite block-entry equality not proved | False | Prove SourcePreparedField(H, env), one accepted equivalent active/prepared target, the cached prepared-entry target, or one strict finite source-shaped theorem feeding those statements. If Uniform(H) is required for arbitrary H, ask middle to restate the contract-specific target rather than adding a lower-local hypothesis. |
-| source_prepared_finite_composition_leaf | symbolic_bridge_gap | not_closed; lower3_source_shape_checks_remain_partial | False | lower2 proves SourcePreparedField(H, env), UncastActivePrepared(H, env), CachedPreparedEntry(H), or one strict finite source-shaped theorem feeding those statements without adding Uniform(H) to the arbitrary-H target |
-| source_prepared_finite_composition_leaf | symbolic_bridge_gap | clean_column_transport_compiled | False | prove SourcePreparedField(H, env) or cached active/prepared entry equality; if Uniform(H) is required for arbitrary H, ask middle for contract-specific restatement |
-| source_prepared_finite_composition_leaf | source_translation_gap | source_shape_checks_passed_but_arbitrary_H_not_closed | False | Lower2 should prove SourcePreparedField(H, env), the cached PreparedCircuitEntryTarget equality, or one strict finite composition theorem directly feeding those statements. If the proof only becomes source-backed under Uniform(H), middle should restate the target with Uniform(H) explicit or require an independence theorem; lower should not add a local hUniform hypothesis. |
-| source_prepared_finite_composition_leaf | symbolic_bridge_gap | partial_lower3_source_shape_checks_passed | False | prove SourcePreparedField(H, env), an accepted active/prepared target, the cached prepared-entry equality, or one strict finite source-shaped feeder; use source_translation_gap if Uniform(H) is required for arbitrary H |
-| source_prepared_finite_composition_leaf | source_translation_gap | partial_source_shape_checks_passed | False | Lower2 should prove SourcePreparedField(H, env), the cached PreparedCircuitEntryTarget equality, the uncast active/prepared sparse clean-entry evalWith equality, or one strict finite composition theorem directly feeding those statements. If the proof needs only the paper clean-column contract, middle should restate the source-backed target with hUniform explicit rather than adding a lower-edit hypothesis. |
+| theorem_facing_branch_sum_projection_leaf | symbolic_bridge_gap | pending_lower3; unchanged backendExpansionStatement has existing no-go guard oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3 | False | lower1 writes the source-backed branch-sum proof map; lower3 checks finite branch-sum necessary conditions and the no-go guard; lower2 proves exactly one projection-summation leaf or a smaller typed obstruction without promoting product, block, oracle, unitary, resource, or final-extraction flags. |
+| theorem_facing_prepared_projection_contract | symbolic_bridge_gap | None | True | retire this leaf and assign the corrected theorem-facing finite block/projection equality before oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 |
+| theorem_facing_prepared_projection_contract | symbolic_bridge_gap | pending_lower3_shape_check; rejected_universal_active_prepared_route_has_finite_counterexample | prepared_projection_route_compiled_as_route_memory_not_root_closure | lower3 checks preparedProjectionEntry shape and false flags, then lower2 compiles oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3 using oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3 without promoting product/block/oracle/unitary/resource flags. |
+| prepared_projection_contract_leaf | symbolic_bridge_gap | True | True | Release lower2 to compile exactly one non-promoting wrapper theorem, oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3, using interface.sourcePreparedProjectionEntry and oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3. Do not target activeToPreparedSingletonEvalStatement, oneTermRobinGamma3ProductToCoefficientObligation 3 0 0, backendExpansionStatement, normalizedBlockEquality, blockProjection, LCU, finalExtraction, oracle, unitary, or resource closure. |
+| theorem_facing_prepared_projection_contract | source_translation_gap | lower3_rejected_universal_active_prepared_target; prepared_projection_contract_pending_lower3_check | prepared_projection_route_compiled_as_route_memory_not_root_closure | lower1 confirms the prepared projection contract source map, lower3 checks the preparedProjectionEntry shape and false flags, then lower2 compiles only oneTermRobinGamma3BoundaryTheoremFacingProjectionInterface_preparedProjectionSlot2Product_n3 without promoting product/block/oracle/unitary/resource flags. |
+| theorem_facing_corrected_finite_block_projection_equality | finite_matrix_counterexample | False | False | Middle should retarget the leaf to a corrected prepared finite block/projection contract whose block entry is the source-prepared singleton projection entry, or first add a source-backed statement explaining exactly how the theorem-facing Fig. 4 prepared circuit maps to the finite block contract. Do not use the H-free active backend expansion or promote normalizedBlockEquality, blockProjection, LCU, finalExtraction, oracle, unitary, or resource flags. |
+| theorem_facing_corrected_finite_block_projection_equality | source_translation_gap | pending_lower3_necessary_condition_check | not_closed | lower1 must classify the source-backed active/prepared equality, lower3 must check active/prepared shape, H_W side-gate absence, no-go guard, and false flags, then middle should either release this exact leaf to lower2 or name a non-promoting corrected prepared finite block/projection contract. |
+| theorem_facing_projection_interface_normalizer_bridge | stale_leaf |  |  | retire normalizer bridge as accepted route memory; middle prepares next coefficient bridge; lower2 should not duplicate the existing theorem |
+| theorem_facing_projection_interface_normalizer_bridge | stale_leaf | None | None | Retire this leaf for further lower2 assignment. Middle should update the DAG to the next narrow source-backed blocker after the interface-field normalizer bridge, without promoting product-to-coefficient, normalized-block, LCU, block, final-extraction, oracle, unitarity, or resource flags. |
+| theorem_facing_projection_interface_normalizer_bridge | symbolic_bridge_gap | None | None | prove corrected theorem-facing finite block/projection equality before oneTermRobinGamma3ProductToCoefficientObligation 3 0 0 |
 
 ## Important local lesson from previous failed attempts
 
@@ -129,17 +132,42 @@ system.  I need concrete proof engineering, not a high-level summary.
 ## Current dirty files, for context only
 
 - `MANIFEST.md`
-- `README.md`
-- `docs/agent_blueprint_formalization.md`
-- `docs/pro_prompt_policy.md`
-- `docs/prompts/`
-- `proof-attempts/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.md`
+- `QuantumBlockEncoding/RobinMatrix.lean`
+- `conversion-windows/QBE-AUTO-002.md`
+- `paper-notes/GHL2025/latex/sections/00_status.tex`
+- `paper-notes/GHL2025/markdown/00_status.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260617-015528-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/20260617-024407-QBE-AUTO-002-cycle01.md`
+- `paper-notes/GHL2025/markdown/cycle-summaries/latest.md`
+- `paper-notes/project-paper/cycle-updates/20260617-015528-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260617-015528-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/20260617-024407-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260617-024407-QBE-AUTO-002-cycle01.tex`
+- `paper-notes/project-paper/cycle-updates/latest.md`
+- `paper-notes/project-paper/cycle-updates/latest.tex`
+- `proof-attempts/QBE-AUTO-002/theorem-facing-branch-sum-projection-middle-packet-20260617-025033.md`
+- `proof-attempts/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-lower1-dag-20260617-021925.md`
+- `proof-attempts/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-lower2-blocked-20260617-021800.md`
+- `proof-attempts/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-middle-packet-20260617-0205.md`
+- `proof-attempts/QBE-AUTO-002/theorem-facing-prepared-projection-contract-lower1-dag-20260617-023713.md`
+- `proof-attempts/QBE-AUTO-002/theorem-facing-prepared-projection-contract-middle-packet-20260617-0227.md`
+- `proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-lower1-dag-20260617-015141.md`
+- `proof-attempts/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-packet-20260617-0145.md`
 - `proof-blueprints/QBE-AUTO-002-status.json`
 - `proof-blueprints/QBE-AUTO-002-status.md`
 - `proof-blueprints/QBE-AUTO-002.md`
 - `proof-obligations/QBE-AUTO-002.md`
 - `research-wiki/retrieval-index/QBE-AUTO-002.json`
-- `tasks/QBE-AUTO-002.md`
-- `tools/qbe.py`
-- `verifier-feedback/QBE-AUTO-002-current-ghl-feedback.md`
-- `verifier-feedback/QBE-AUTO-002/chatgpt-pro-finite-path-feeder-deployment-20260613.json`
+- `runs/pro-prompts/QBE-AUTO-002-cycle001.md`
+- `runs/pro-prompts/QBE-AUTO-002-latest.md`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-branch-sum-projection-middle-20260617-025033.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-lower1-20260617-021925.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-lower2-blocked-20260617-021800.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-lower3-20260617-021813.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-corrected-finite-block-projection-equality-middle-20260617-0205.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-prepared-projection-contract-lower1-20260617-023713.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-prepared-projection-contract-lower3-20260617-023645.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-prepared-projection-contract-middle-20260617-0227.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-lower1-20260617-015141.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-lower3-postcompile-20260617-015301.json`
+- `verifier-feedback/QBE-AUTO-002/theorem-facing-projection-interface-normalizer-bridge-middle-20260617-0145.json`
