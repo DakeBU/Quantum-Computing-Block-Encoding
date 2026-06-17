@@ -65,17 +65,43 @@ not the construction ABEIS wants to stop at.  The system should search for
 structured circuits with fewer gates, shallower schedules, fewer unresolved
 oracle calls, or clearer reusable proof components.
 
+## Primary Operator-Evolution Case
+
+The current technical-report case study is `QBE-OP-OPTCTRL-001`, not GHL2025.
+It models the intended ABEIS workflow:
+
+1. the user fixes a target operator
+   `E_k = |0><k|_time ⊗ |0><1|_type ⊗ I`;
+2. the system starts from a correct one-ancilla block-encoding seed;
+3. lower agents propose or mutate candidate completions;
+4. Pro/Python/simulator ideas stay in the insight pool until Lean promotes
+   them;
+5. only Lean-certified candidates enter the evolutionary population and metric
+   curves.
+
+Current certified concrete logical champion:
+
+```text
+evolved-eq-flip-r1-k1
+score = (depth = 2, gateCount = 4, auxiliaryQubits = 1, oracleCalls = 0)
+Lean certificate = OptimalControl.evolvedEqFlipVerified
+```
+
+This is a concrete `r = 1, k = 1` logical reversible permutation-matrix result.
+It is not yet a hardware-decomposed theorem, a general arbitrary-register
+theorem, or a Lean-proved global optimality theorem.
+
 ## Benchmark Paper Cases
 
 Paper reproduction remains important, but as benchmark data for the core
-operator-construction system.  The first benchmark case is the Robin-boundary
+operator-construction system.  An active benchmark case is the Robin-boundary
 PDE simulation construction:
 
 - Guseynov--Huang--Liu 2025,
   [Quantum framework for simulating linear PDEs with Robin boundary conditions](https://arxiv.org/abs/2506.20478),
   arXiv 2025 / published 2026. Status: `active paper benchmark`.
 
-The first-case Lean file is:
+The benchmark-track Lean file is:
 
 ```text
 QuantumBlockEncoding/GHL2025.lean
@@ -584,7 +610,7 @@ Full guide:
 - [Article to Lean workflow](docs/article_to_lean_workflow.md)
 - [ASTIS reference notes](docs/astis_reference_notes.md)
 
-## Benchmark Case: GHL2025 Robin Operator
+## Secondary Benchmark Case: GHL2025 Robin Operator
 
 For the first paper-benchmark case, use `QBE-AUTO-002` as the infrastructure
 task that makes the GHL2025 Robin operator and circuit semantics concrete.

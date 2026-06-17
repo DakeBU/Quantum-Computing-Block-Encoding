@@ -2896,8 +2896,8 @@ def manuscript_rule_latex(task_id: str) -> str:
         )
     if is_ghl_case_task(task_id):
         return (
-            "The project report may discuss this cycle as process evidence.  It must not\n"
-            "claim completion of the first case study \\citep{guseynovHuangLiu2025} unless\n"
+            "The project report may discuss this cycle as paper-benchmark process evidence.  It must not\n"
+            "claim completion of the GHL2025 paper-benchmark track \\citep{guseynovHuangLiu2025} unless\n"
             "the final theorem-facing block-extraction statement is closed in Lean and the\n"
             "Markdown/LaTeX proof map has been synchronized."
         )
@@ -2924,7 +2924,7 @@ def article_delta_markdown(task_id: str) -> str:
     elif is_ghl_case_task(task_id):
         common.extend(
             [
-                "- Keep the first case study honest: Guseynov--Huang--Liu 2025 is the first paper-benchmark target, but final completion depends on the current Lean gate and `sorry` status below.",
+                "- Keep the paper-benchmark track honest: Guseynov--Huang--Liu 2025 is secondary benchmark data, not the main technical-report case study; final completion depends on the current Lean gate and `sorry` status below.",
                 "- If this cycle only changes proof-route memory or obstruction analysis, update the report's evidence/appendix status, not the headline contribution.",
                 "- If this cycle closes a named Lean theorem, middle should export the theorem to Markdown and LaTeX proof notes before strengthening the project-paper claim.",
             ]
@@ -2978,7 +2978,7 @@ def do_not_claim_markdown(task_id: str) -> str:
 
 
 def contribution_obligation_heading(task_id: str) -> str:
-    return "Open first-case-study obligations" if is_ghl_case_task(task_id) else "Open current-task contribution obligations"
+    return "Open paper-benchmark obligations" if is_ghl_case_task(task_id) else "Open current-task contribution obligations"
 
 
 def cited_contract_heading(task_id: str) -> str:
@@ -4044,7 +4044,7 @@ def article_status_plain(value: object) -> str:
     )
     text = re.sub(
         r"\bGHL2025\s+main\.tex\s+lines?\s+[0-9,\-\sand]+",
-        "the first-case-study source theorem and definition passages",
+        "the paper-benchmark source theorem and definition passages",
         text,
     )
     text = re.sub(
@@ -4059,14 +4059,14 @@ def article_status_plain(value: object) -> str:
         flags=re.I,
     )
     replacements = [
-        ("GHL Fig.", "the first-case-study figure"),
-        ("GHL one-term", "the first-case-study one-term"),
-        ("GHL-style", "first-case-study-style"),
-        ("Guseynov--Huang--Liu", "the first case study"),
+        ("GHL Fig.", "the paper-benchmark figure"),
+        ("GHL one-term", "the paper-benchmark one-term"),
+        ("GHL-style", "paper-benchmark-style"),
+        ("Guseynov--Huang--Liu", "the GHL2025 paper-benchmark track"),
     ]
     for old, new in replacements:
         text = text.replace(old, new)
-    text = text.replace("the the first case study", "the first case study")
+    text = text.replace("the the GHL2025 paper-benchmark track", "the GHL2025 paper-benchmark track")
     return text
 
 
@@ -4193,7 +4193,7 @@ def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str
             for row in open_ghl_rows[:4]
         )
     else:
-        open_ghl_items = "  \\item No open first-case-study contribution obligation was detected."
+        open_ghl_items = "  \\item No open paper-benchmark contribution obligation was detected."
     open_technical_rows = memory.get("open_external_technical_lemma_obligations", [])
     if not is_ghl_case_task(task_id):
         open_technical_items = "  \\item No task-specific cited-contract obligation was detected by the compact memory layer."
