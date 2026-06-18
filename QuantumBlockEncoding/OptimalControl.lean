@@ -814,6 +814,16 @@ def evolvedEqFlipVerified : VerifiedOperatorBlockEncoding Rat 3 where
     unfold evolvedEqFlipCandidate
     exact evolvedEqFlipUnitary_cleanBlock
 
+/--
+The exact evolved candidate is also a zero-error approximate block encoding.
+This is the Lean anchor for Scenario 1 of the adaptive exact-to-approximate
+policy: after exact convergence, approximate search may continue, but the
+current champion already satisfies every nonnegative requested tolerance.
+-/
+def evolvedEqFlipZeroErrorApprox :
+    VerifiedApproximateOperatorBlockEncoding Rat 3 :=
+  evolvedEqFlipVerified.asZeroErrorApprox
+
 /-- The verified evolved candidate has the advertised logical-library score. -/
 theorem evolvedEqFlipCandidate_cost :
     evolvedEqFlipCandidate.cost =

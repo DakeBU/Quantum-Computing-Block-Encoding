@@ -6382,3 +6382,6 @@ block-encoding formalization lifecycle.
 | 2026-06-18 20:23:42 | qbe.py problem-latex-export | `runs/manual-multiagent/20260618-lexelim-ek-convergence/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
 | 2026-06-18 20:23:42 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260618-lexelim-ek-convergence.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
 | 2026-06-18 20:23:42 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-18 22:02:31 | qbe.py problem-latex-export | `runs/20260617-060327-QBE-AUTO-002-cycle01/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 9 |
+| 2026-06-18 22:02:31 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260617-060327-QBE-AUTO-002-cycle01.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 9 |
+| 2026-06-18 22:02:31 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |

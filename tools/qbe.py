@@ -2616,6 +2616,7 @@ OPTCTRL_MARKDOWN_ASSETS = {
     "pro": "optctrl_pro.png",
     "evolved": "optctrl_evolved.png",
     "evolution": "optctrl_evolution.png",
+    "adaptive_policy": "adaptive_be_policy.png",
 }
 
 
@@ -2660,10 +2661,20 @@ clean block 正好等于上面的 `E_1`，并且 Lean 证明这个说法。
 
 ## 收敛图
 
-下图只画已经通过 Lean 证书的候选。Python 搜索、模拟器输出、ChatGPT
-Pro 建议在通过 Lean 之前只属于 insight pool，不会被画成已完成结果。
+下图只画已经通过 Lean 证书的候选。蓝色区域是精确 BE 搜索；绿色区域是
+精确冠军收敛后的近似 BE 阶段。Python 搜索、模拟器输出、ChatGPT Pro
+建议在通过 Lean 之前只属于 insight pool，不会被画成已完成结果。
 
 ![E_1 block-encoding certified evolution]({img["evolution"]})
+
+## 精确到近似的策略
+
+![Adaptive exact-to-approximate BE policy]({img["adaptive_policy"]})
+
+本主案例属于 Scenario 1：第 7 代已经得到 exact BE，并且
+`OptimalControl.evolvedEqFlipZeroErrorApprox` 把它包装为 `epsilon = 0` 的
+approximate BE。后续近似阶段可以继续搜索更少门的近似构造，但目前没有
+更便宜的候选被 Lean 证书提升到 certified population。
 
 ## 各代 Lean-verified block encoding 线路图
 
@@ -2763,11 +2774,22 @@ verify that statement.
 
 ## Convergence Plot
 
-Only Lean-certified candidates are plotted as achieved constructions.  Python
-searches, simulator traces, and ChatGPT Pro ideas stay in the insight pool
-until Lean promotes them.
+Only Lean-certified candidates are plotted as achieved constructions.  The
+blue region is exact-BE search; the green region is the approximate-BE phase
+after exact convergence.  Python searches, simulator traces, and ChatGPT Pro
+ideas stay in the insight pool until Lean promotes them.
 
 ![E_1 block-encoding certified evolution]({img["evolution"]})
+
+## Exact-To-Approximate Policy
+
+![Adaptive exact-to-approximate BE policy]({img["adaptive_policy"]})
+
+This main case is Scenario 1: generation 7 already gives an exact BE, and
+`OptimalControl.evolvedEqFlipZeroErrorApprox` packages it as an `epsilon = 0`
+approximate BE.  The approximate phase may continue searching for a cheaper
+approximate construction, but no cheaper candidate is currently promoted by
+Lean certificates.
 
 ## Lean-Verified Block-Encoding Circuits By Generation
 
@@ -4850,7 +4872,9 @@ system register.  In the ABEIS Lean development this non-unitarity obstruction
 is recorded by \\texttt{{OptimalControl.exampleOperator\\_not\\_rationalOrthogonal}}.
 
 Add one block-encoding auxiliary qubit \\(a\\), initialized and projected in
-\\(|0\\rangle_a\\).  Consider the logical reversible circuit
+\\(|0\\rangle_a\\).  We use computational-basis states
+\\(|a,t,b,s\\rangle\\), where \\(t,b,a\\in\\{{0,1\\}}\\) and
+\\(s\\in\\{{0,1\\}}\\).  Consider the logical reversible circuit
 \\[
   U_{{\\mathrm{{evo}}}}
   =
@@ -4860,7 +4884,7 @@ Add one block-encoding auxiliary qubit \\(a\\), initialized and projected in
 where the three \\(X\\) gates act on disjoint qubits and hence form one
 parallel layer after the Toffoli layer.  The state register \\(S\\) is untouched.
 
-\\paragraph{{Claim.}}
+\\paragraph{{Theorem.}}
 The circuit \\(U_{{\\mathrm{{evo}}}}\\) is an exact one-ancilla block encoding of
 \\(E_1\\):
 \\[
@@ -4878,29 +4902,78 @@ its certified score is
   =
   (4,2,1,0).
 \\]
+Equivalently, it is also an \\((\\alpha,a,\\varepsilon)=(1,1,0)\\)
+approximate block encoding.
 
 \\paragraph{{Proof.}}
-The Toffoli gate computes the equality flag for the selected input branch
-\\((T,\\tau)=(1,1)\\) into the auxiliary qubit \\(a\\).  On that selected branch,
-the following parallel layer flips \\(a\\), \\(T\\), and \\(\\tau\\), sending
-\\(|0\\rangle_a|1\\rangle_T|1\\rangle_\\tau\\) to
-\\(|0\\rangle_a|0\\rangle_T|0\\rangle_\\tau\\).  On every non-selected branch,
-the auxiliary qubit ends in \\(|1\\rangle_a\\) after the final parallel layer,
-so those amplitudes vanish under the left clean projection
-\\(\\langle 0|_a\\).  The register \\(S\\) is never acted on, giving the tensor
-factor \\(I_S\\).
+We prove the claim on computational basis states; linearity then gives the
+matrix identity.  The Toffoli first maps
+\\[
+  |a,t,b,s\\rangle
+  \\longmapsto
+  |a\\oplus tb,t,b,s\\rangle .
+\\]
+The parallel layer \\(X_aX_TX_\\tau\\) then maps this state to
+\\[
+  |1\\oplus a\\oplus tb,\\;1\\oplus t,\\;1\\oplus b,\\;s\\rangle .
+\\]
+Thus \\(U_{{\\mathrm{{evo}}}}\\) is unitary, because it is a composition of
+reversible elementary gates.  In the finite Lean model this is the rational
+orthogonality theorem
+\\[
+  \\texttt{{OptimalControl.evolvedEqFlipUnitary\\_isRationalOrthogonal}}.
+\\]
 
-The formal Lean certificate names the corresponding \\(16\\times16\\) rational
-orthogonal matrix and proves the clean-block equality directly:
+Now restrict the input auxiliary to the clean value \\(a=0\\).  The above formula
+becomes
+\\[
+  U_{{\\mathrm{{evo}}}}|0,t,b,s\\rangle
+  =
+  |1\\oplus tb,\\;1\\oplus t,\\;1\\oplus b,\\;s\\rangle .
+\\]
+Projecting the output auxiliary onto \\(\\langle 0|_a\\) keeps exactly the
+branches with \\(1\\oplus tb=0\\), namely \\(t=b=1\\).  The four cases are
+\\[
+\\begin{{array}}{{c|c|c}}
+(t,b) & U_{{\\mathrm{{evo}}}}|0,t,b,s\\rangle
+  & (\\langle0|_a\\otimes I)U_{{\\mathrm{{evo}}}}|0,t,b,s\\rangle \\\\
+\\hline
+(0,0) & |1,1,1,s\\rangle & 0 \\\\
+(0,1) & |1,1,0,s\\rangle & 0 \\\\
+(1,0) & |1,0,1,s\\rangle & 0 \\\\
+(1,1) & |0,0,0,s\\rangle & |0\\rangle_T|0\\rangle_\\tau|s\\rangle_S .
+\\end{{array}}
+\\]
+Therefore the clean block sends \\(|1\\rangle_T|1\\rangle_\\tau|s\\rangle_S\\)
+to \\(|0\\rangle_T|0\\rangle_\\tau|s\\rangle_S\\) and sends all other
+\\((T,\\tau)\\)-basis branches to zero.  This is exactly
+\\[
+  |0\\rangle\\langle1|_T\\otimes
+  |0\\rangle\\langle1|_\\tau\\otimes I_S
+  =
+  E_1 .
+\\]
+The formal Lean certificate proves the same clean-block equality entrywise:
 \\[
   \\texttt{{OptimalControl.evolvedEqFlipVerified}},
   \\quad
-  \\texttt{{OptimalControl.evolvedEqFlipUnitary\\_isRationalOrthogonal}},
-  \\quad
   \\texttt{{OptimalControl.evolvedEqFlipUnitary\\_cleanBlock}}.
 \\]
-The resource record is certified by
-\\texttt{{OptimalControl.evolvedEqFlipCandidate\\_cost}}.
+The resource count is also explicit.  The circuit has one Toffoli gate and
+three \\(X\\) gates, hence gate count \\(4\\).  The Toffoli layer must precede
+the flips, but the three flips act on disjoint qubits and form one parallel
+layer, hence depth \\(2\\).  It uses one block-encoding auxiliary qubit and no
+oracle calls.  This resource tuple is certified by
+\\[
+  \\texttt{{OptimalControl.evolvedEqFlipCandidate\\_cost}}.
+\\]
+
+Finally, the approximate block-encoding statement follows from exactness.
+With \\(\\alpha=1\\) and \\(\\varepsilon=0\\), the norm error is zero.  The Lean
+project records this zero-error approximate certificate as
+\\[
+  \\texttt{{OptimalControl.evolvedEqFlipZeroErrorApprox}}.
+\\]
 
 \\paragraph{{Finite convergence diagnostic.}}
 After correcting the resource order to
@@ -5545,10 +5618,21 @@ def strategy_for_mode(mode: str) -> str:
   every attempt: which construction family improved, which failed by
   dimension/unitarity/block-entry/resource mismatch, and which proof leaf is
   next.
-- Candidate selection is lexicographic by `BlockEncodingCost`:
-  depth first, then gate count, then auxiliary qubits, then unresolved oracle
-  calls.  Prefer parallel schedules even if they use extra clean workspace;
-  then reduce gates and auxiliary dimension after depth stops improving.
+- Candidate selection is lexicographic by `BlockEncodingCost` inside one
+  semantic/asymptotic tier: gate count first, then parallel depth, then
+  auxiliary qubits, then unresolved oracle calls.  Gate-count improvements
+  dominate depth improvements; parallel schedules break gate-count ties.
+- Prefer exact block encodings first.  If exact search reaches the user's
+  resource floor before the configured budget, enter Scenario 1 and continue
+  approximate-improvement search with the exact champion as an epsilon-zero
+  incumbent.  If exact search stalls or misses the floor, enter Scenario 2 and
+  switch to approximate search, relaxing epsilon only when the task explicitly
+  permits it.
+- If neither exact nor approximate populations improve after the configured
+  stall window, upper/reviewer may increase bounded parallel upper, middle, or
+  lower agent panels for a fixed number of generations.  Lack of improvement
+  after the configured max panel size is evidence of construction saturation,
+  not proof of optimality.
 - A candidate is accepted only after Lean proves the unitary and block-entry
   contracts for the stated target.  Resource scores rank candidates; they do
   not replace the theorem.
@@ -5879,8 +5963,13 @@ Human-facing correspondence rule:
   proof blocks into the technical-report update and into
   `paper-notes/problem-exports/<task-id>/latest.tex`.  Paper-benchmark tasks
   may additionally maintain paper-specific Overleaf files under `paper-notes/`.
-  Reviewer should then audit that each proof export matches the compiled Lean
-  declarations.
+  A problem export must be step-by-step enough for a human reader to verify:
+  state the target operator, define the candidate unitary/circuit, prove
+  unitarity or reversibility, prove the clean-block equality branch by branch
+  or entry by entry, prove the resource tuple, and state the exact or
+  approximate error claim.  Reviewer should then audit that each proof export
+  matches the compiled Lean declarations and does not claim unproved
+  optimality.
 - Project-paper cadence: the paper-specific LaTeX export is an appendix input
   to the larger article "Auto-Lean-in-Sleep: Block Encoding for Quantum
   Computing".  During Lean-heavy cycles, do not spend lower-agent effort on

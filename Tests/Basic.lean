@@ -269,6 +269,28 @@ example :
     OptimalControl.evolvedEqFlipVerified.candidate =
       OptimalControl.evolvedEqFlipCandidate := rfl
 
+example :
+    OptimalControl.evolvedEqFlipZeroErrorApprox.approxCandidate.epsilon = 0 := rfl
+
+example :
+    OptimalControl.evolvedEqFlipZeroErrorApprox.approxCandidate.candidate =
+      OptimalControl.evolvedEqFlipCandidate := rfl
+
+example : BlockEncodingSearchPhase.exactSearch ≠
+    BlockEncodingSearchPhase.relaxedApproxSearch := by
+  decide
+
+example :
+    (AdaptiveBlockEncodingPolicy.mk
+      20
+      5
+      { auxiliaryQubits := 1, gateCount := 4, depth := 2, oracleCalls := 0 }
+      (0 : Rat)
+      true
+      3
+      4
+      6).requiredCost.gateCount = 4 := rfl
+
 -- CircuitSemantics tests: first matrix-semantics backend layer
 
 example : qubitDim 3 = 8 := rfl

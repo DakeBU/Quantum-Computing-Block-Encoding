@@ -72,13 +72,20 @@ Operator block-encoding construction:
 
 - use when the user gives a target operator \(A\), normalizer \(\alpha\), and
   clean-block convention,
-- search for candidate unitaries or circuits \(U_A\),
+- record `maxExactIterations`, `exactStallIterations`, `requiredCost`,
+  `requestedEpsilon`, `allowRelaxedEpsilon`, and maximum upper/middle/lower
+  agent counts,
+- search for exact candidate unitaries or circuits \(U_A\) first,
 - score candidates by asymptotic scale first, then gate count, parallel depth,
   auxiliary qubits, and unresolved oracle calls within one concrete tier,
+- after exact convergence, continue approximate-improvement search only with
+  the exact champion as an `epsilon = 0` incumbent,
+- if exact search stalls or misses the resource floor, switch to approximate
+  search and report any relaxed epsilon explicitly,
 - use `candidate-populations/` for alternative candidates and rejected routes,
 - use non-Lean verifier feedback only as necessary-condition diagnostics,
-- accept a construction only after Lean proves unitarity and the exact
-  block-entry theorem.
+- accept a construction only after Lean proves unitarity plus the exact
+  block-entry theorem or the declared approximation-bound theorem.
 
 Paper benchmark:
 
@@ -243,7 +250,8 @@ expensive for every inner proof-search cycle.
 
 For a new target, create an operator-first task.  The task file should name
 the matrix/operator \(A\), the normalizer \(\alpha\), the clean ancilla state,
-and the desired block-entry equation.
+the desired exact block-entry equation, the tolerated
+\(\varepsilon\)-approximate equation, and the exact-search resource budget.
 
 Run one small dry-run first:
 

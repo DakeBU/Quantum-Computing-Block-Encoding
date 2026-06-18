@@ -59,6 +59,11 @@ search for candidate unitaries or circuits \(U_A\), prove unitarity and the
 exact block-entry theorem in Lean, and compare candidates by
 `BlockEncodingCost`: asymptotic scale first, then gate count, parallel depth,
 auxiliary qubits, and unresolved oracle calls within a fixed concrete tier.
+The controller prefers exact block encodings first.  If exact search reaches
+the user's resource floor before the configured budget, the run enters an
+approximate-improvement phase with the exact champion as an `epsilon = 0`
+incumbent.  If exact search stalls or misses the floor, the run switches to
+approximate search and reports any relaxed epsilon explicitly.
 
 Paper benchmark mode is used for targets such as GHL2025.  The agents
 translate the paper's construction as a fixed baseline, not as the whole
@@ -147,6 +152,11 @@ This scheduler determines agent count:
   any lower workers.
 - If a concrete Lean failure has a known class, add lower 4 as a reducer; do
   not use it as a fourth broad proof searcher.
+- If exact or approximate construction stalls for the configured number of
+  generations, upper/reviewer may temporarily increase the upper, middle, or
+  lower panel sizes.  Each increase gets a fixed generation budget.  If the
+  population still does not improve by the max panel size, the run records
+  saturation for that task tier and stops expanding agent count.
 
 ## Blueprint And DAG Control
 

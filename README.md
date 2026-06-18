@@ -15,10 +15,16 @@ operator/query-oracle contract A
 
 ABEIS does not stop at "assume an oracle exists".  A task should state the
 operator `A`, normalizer `alpha`, clean ancilla projector, and the desired
-block-entry equation:
+exact block-entry equation:
 
 ```text
 (<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha
+```
+
+It may also state an accepted approximation budget:
+
+```text
+|| A - alpha * ((<0^a| ⊗ I) U_A (|0^a> ⊗ I)) || <= epsilon
 ```
 
 Among Lean-certified candidates, ABEIS ranks constructions by asymptotic tier
@@ -39,18 +45,32 @@ for the same fixed operator target.
 ```mermaid
 flowchart LR
   A["user gives A, alpha, projector"] --> B["upper fixes target"]
+  A --> A2["user gives resource floor, epsilon, iteration limits"]
   B --> C["middle keeps Lean <-> natural-language map"]
-  C --> D["lower population proposes U_A"]
+  C --> D["lower population proposes exact U_A"]
   D --> E["finite/unitarity/block-entry diagnostics"]
-  E --> F["Lean certificate attempt"]
-  F --> G["resource score"]
-  G --> H["candidate archive and next mutation"]
-  F --> I["accepted Lean-checked construction"]
+  E --> F["Lean exact certificate attempt"]
+  F --> G{"meets resource floor before limit?"}
+  G -- yes --> H["Scenario 1: approximate-improvement phase"]
+  G -- no/stalled --> I["Scenario 2: relaxed approximate search"]
+  H --> J["Lean approximate certificate attempt"]
+  I --> J
+  J --> K["resource score and candidate archive"]
+  K --> L["dynamic agent-count audit"]
 ```
 
 ABEIS uses diagnostics as search signals, not as proofs.  A candidate enters
 the certified population only after Lean proves the advertised theorem at the
 task's semantic tier.
+
+![Adaptive exact-to-approximate block-encoding loop](docs/assets/adaptive_be_policy.png)
+
+If exact search fails to meet the user-specified resource floor within the
+configured budget, the upper layer may switch to approximate BE search.  If a
+fixed number of generations does not improve the population, the upper layer
+may increase upper/middle/lower parallel agent counts up to the configured
+maximum.  More agents are not assumed to be better; the increase is itself a
+controlled experiment.
 
 ## Main Case Study
 
@@ -68,18 +88,22 @@ The run demonstrates the intended loop:
 3. maintain a population of candidate completions;
 4. keep Pro/simulator/Python ideas in the insight pool until Lean promotes
    them;
-5. plot only Lean-certified candidates.
+5. after exact convergence, enter the approximate phase with the exact
+   champion as an `epsilon = 0` incumbent;
+6. plot only Lean-certified candidates.
 
 Current certified logical champion:
 
 ```text
 evolved-eq-flip-r1-k1
 Lean certificate = OptimalControl.evolvedEqFlipVerified
+zero-error approximate certificate = OptimalControl.evolvedEqFlipZeroErrorApprox
 comparison tuple = (gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 0)
 ```
 
 Certified metric curve, in the EoH-style sense that each plotted point is a
-generation champion and lower values are better:
+generation champion and lower values are better.  Blue is exact search; green
+is the post-convergence approximate phase:
 
 ![Certified evolution for E_k](docs/assets/optctrl_evolution.png)
 
@@ -91,6 +115,7 @@ Lean-certified snapshots:
 | 2 | <img src="docs/assets/optctrl_depth5.png" alt="Depth-5 logical completion" width="220"> | `OptimalControl.reducedDepth5Verified` | `(6, 5, 1, 0)` |
 | 6 | <img src="docs/assets/optctrl_pro.png" alt="Equality-transfer candidate" width="220"> | `OptimalControl.proEqTransferVerified` | `(4, 4, 1, 0)` |
 | 7 | <img src="docs/assets/optctrl_evolved.png" alt="Evolved champion" width="220"> | `OptimalControl.evolvedEqFlipVerified` | `(4, 2, 1, 0)` |
+| 8-9 | same exact champion reused as approximate incumbent | `OptimalControl.evolvedEqFlipZeroErrorApprox` | `(4, 2, 1, 0)`, `epsilon = 0` |
 
 This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general
@@ -260,6 +285,14 @@ python3 tools/qbe.py new-task QBE-OP-001 \
   --title "Construct a block encoding for my query operator" \
   --source "operator supplied by user / arXiv:XXXX.XXXXX" \
   --target-lean "QuantumBlockEncoding/MyOperator.lean"
+```
+
+The task file should also record:
+
+```text
+maxExactIterations, exactStallIterations, requiredCost,
+requestedEpsilon, allowRelaxedEpsilon,
+maxUpperAgents, maxMiddleAgents, maxLowerAgents
 ```
 
 Run a small search batch:

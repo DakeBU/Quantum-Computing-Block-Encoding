@@ -76,6 +76,25 @@ gate transcript to the underlying basis permutation.  This tier is final for
 the concrete `r = 1, k = 1` logical-library instance, but it is not a hardware
 decomposition theorem and not a general `k,n` theorem.
 
+## Adaptive Exact-To-Approximate Rule
+
+The population now has two search phases.
+
+1. **Exact phase.**  Search for candidates satisfying the exact clean-block
+   equation.  These candidates have `epsilon = 0`.
+2. **Approximate phase.**  After exact convergence, or after exact search
+   stalls beyond the configured budget, search for candidates satisfying
+   `||A - alpha * block(U_A)|| <= epsilon`.  Approximate candidates may be
+   selected only if their approximation inequality, unitarity, and resource
+   score are certified at the task's chosen norm/backend tier.
+
+For this concrete main case, Scenario 1 is active: exact search produced the
+Lean-certified champion `evolved-eq-flip-r1-k1`.  Lean declaration
+`OptimalControl.evolvedEqFlipZeroErrorApprox` packages that same construction
+as a zero-error approximate certificate.  The post-convergence approximate
+phase therefore starts with a correct epsilon-zero incumbent.  No cheaper
+approximate candidate has been promoted.
+
 ## Generation 0
 
 | Candidate | Lean declarations | Status | Score | Notes |
@@ -123,6 +142,8 @@ promoted from insight to certified population.
 |---:|---|---|---|---|---|
 | 6 | Pro injection | `pro-eq-transfer-r1-k1` = `CCX012; CX21; CX20; X2` | `OptimalControl.proEqTransferVerified`, `OptimalControl.proEqTransferUnitary_isRationalOrthogonal`, `OptimalControl.proEqTransferUnitary_cleanBlock`, `OptimalControl.proEqTransferGateImages_eval`, `OptimalControl.proEqTransferCost_betterThan_depth5` | `(4, 4, 1, 0)` | concrete logical permutation-matrix BE certificate; strictly improves depth-5 |
 | 7 | EoH mutation/collaboration from certified Gen 6 plus insight-pool simplification | `evolved-eq-flip-r1-k1` = `CCX012; {X0, X1, X2}` | `OptimalControl.evolvedEqFlipVerified`, `OptimalControl.evolvedEqFlipUnitary_isRationalOrthogonal`, `OptimalControl.evolvedEqFlipUnitary_cleanBlock`, `OptimalControl.evolvedEqFlipGateImages_eval`, `OptimalControl.evolvedEqFlipCandidate_cost` | `(4, 2, 1, 0)` | current concrete logical champion |
+| 8 | approximate phase entry after exact convergence | reuse `evolved-eq-flip-r1-k1` as epsilon-zero approximate incumbent | `OptimalControl.evolvedEqFlipZeroErrorApprox` plus the exact certificates above | `(4, 2, 1, 0)`, `epsilon = 0` | Scenario 1 incumbent; approximate search may continue but has no promoted improvement |
+| 9 | adaptive agent-count audit | do not add agents for this closed finite reduced target | exact finite verifier still rejects `<=3` gates and depth-1 with `<=4` gates | unchanged | stopped for this concrete logical tier; next useful work is generalization or a different backend |
 
 LexElim-In active-set status after Generation 7:
 

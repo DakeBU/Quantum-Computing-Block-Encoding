@@ -86,11 +86,15 @@ gates, but they use different search policies.
 ### Operator Block-Encoding Construction
 
 Use this mode when the user gives a target operator \(A\), normalizer
-\(\alpha\), and clean-block convention.  The agents search for candidate
+\(\alpha\), clean-block convention, resource floor, exact-search budget, and
+accepted tolerance \(\varepsilon\).  The agents first search for candidate
 unitaries or circuits \(U_A\), prove the exact block-entry and unitarity
 statements in Lean, and rank candidates by asymptotic scale first, then gate
 count, parallel depth, auxiliary qubits, and unresolved oracle calls within one
-concrete tier.
+concrete tier.  If exact search converges, the exact champion becomes the
+zero-error incumbent for approximate improvement.  If exact search stalls or
+misses the resource floor, the controller switches to approximate search and
+may relax \(\varepsilon\) only when the user allows it.
 
 Operator mode rules:
 
@@ -101,7 +105,10 @@ Operator mode rules:
   correctness, necessary diagnostics, asymptotic tier, or resource tuple order,
 - use parser/unit-test/simulator-style checks only as necessary-condition
   diagnostics,
-- accept only Lean-closed block-entry and unitarity theorems.
+- accept only Lean-closed exact block-entry and unitarity theorems in exact
+  phase,
+- in approximate phase, accept only Lean-closed unitarity plus a declared
+  approximation-bound theorem.
 
 ### Paper Benchmark
 
@@ -188,6 +195,24 @@ memory, and problem-specific LaTeX proof notes.  Synchronizing the ABEIS
 authors' technical report is maintainer infrastructure and requires an
 explicit maintainer command such as `project-article-update` or
 `sleep-run --project-article-update`.
+
+## Adaptive Exact-To-Approximate Controller
+
+Operator tasks should record `maxExactIterations`, `exactStallIterations`,
+`requiredCost`, `requestedEpsilon`, `allowRelaxedEpsilon`, and maximum
+upper/middle/lower agent counts.  The controller uses two scenarios:
+
+- Scenario 1: exact BE reaches the resource floor before the exact budget.
+  Keep the exact champion as an `epsilon = 0` approximate incumbent, then
+  search for cheaper approximate candidates if the user's tolerance permits.
+- Scenario 2: exact BE misses the floor or stalls.  Switch to approximate BE
+  search.  If the user allows relaxation, the report must state the relaxed
+  epsilon explicitly.
+
+If neither exact nor approximate populations improve after the configured
+window, upper may increase parallel agent counts for a fixed number of
+generations.  If that also fails, report convergence or stall rather than
+spending more tokens on duplicated attempts.
 
 ## Layer-Panel Agent Stack
 

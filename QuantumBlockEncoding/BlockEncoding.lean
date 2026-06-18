@@ -134,6 +134,84 @@ structure VerifiedOperatorBlockEncoding (α : Type u) (systemQubits : Nat) where
   blockProof : candidate.blockContainsTarget
 
 /--
+An approximate block-encoding candidate for the same operator-first interface.
+
+The mathematical backend should instantiate `approximationBound` with the
+norm inequality
+
+`‖A - α * ((⟨0^a| ⊗ I) U (|0^a⟩ ⊗ I))‖ ≤ ε`.
+
+The field is deliberately a proposition, because different finite backends may
+start with different norms or exact-rational surrogate checks before connecting
+to a full analytic norm library.
+-/
+structure ApproximateOperatorBlockEncodingCandidate
+    (α : Type u) (systemQubits : Nat) where
+  candidate : OperatorBlockEncodingCandidate α systemQubits
+  epsilon : α
+  approximationBound : Prop
+
+/--
+A verified approximate block encoding.  Exact block encodings are the special
+case `epsilon = 0` when the backend proves that exact equality implies the
+chosen norm bound.
+-/
+structure VerifiedApproximateOperatorBlockEncoding
+    (α : Type u) (systemQubits : Nat) where
+  approxCandidate : ApproximateOperatorBlockEncodingCandidate α systemQubits
+  unitaryProof : approxCandidate.candidate.isUnitary
+  approximationProof : approxCandidate.approximationBound
+
+namespace VerifiedOperatorBlockEncoding
+
+/--
+Package an exact certificate as a zero-error approximate certificate when the
+chosen approximate proposition is the same exact block predicate.  Analytic
+backends can later replace this with a theorem connecting exact block equality
+to a concrete operator-norm inequality.
+-/
+def asZeroErrorApprox [OfNat α 0]
+    (v : VerifiedOperatorBlockEncoding α systemQubits) :
+    VerifiedApproximateOperatorBlockEncoding α systemQubits where
+  approxCandidate := {
+    candidate := v.candidate
+    epsilon := 0
+    approximationBound := v.candidate.blockContainsTarget
+  }
+  unitaryProof := v.unitaryProof
+  approximationProof := v.blockProof
+
+end VerifiedOperatorBlockEncoding
+
+/--
+User-level stopping and relaxation policy for operator block-encoding search.
+
+The harness first searches for exact block encodings.  If a certified exact
+candidate meeting `requiredCost` appears before `maxExactIterations`, it may
+enter a post-convergence approximate-improvement phase for the user's requested
+epsilon.  If the exact search stalls, the upper layer may switch to approximate
+search and, if allowed, relax beyond the requested epsilon.
+-/
+structure AdaptiveBlockEncodingPolicy (α : Type u) where
+  maxExactIterations : Nat
+  exactStallIterations : Nat
+  requiredCost : BlockEncodingCost
+  requestedEpsilon : α
+  allowRelaxedEpsilon : Bool
+  maxUpperAgents : Nat
+  maxMiddleAgents : Nat
+  maxLowerAgents : Nat
+deriving Repr
+
+/-- High-level phase labels used by the candidate-population ledger. -/
+inductive BlockEncodingSearchPhase where
+  | exactSearch
+  | exactConvergedApproxSearch
+  | relaxedApproxSearch
+  | stopped
+deriving Repr, DecidableEq
+
+/--
 A verified block encoding.  The three proposition fields are intentionally
 parameters of the certificate so that early project files can state workflows
 without committing to a specific matrix norm or unitary semantics.  A mathlib

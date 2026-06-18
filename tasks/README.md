@@ -17,9 +17,13 @@ Each task should record:
 - target operator/matrix `A` and normalizer `alpha`,
 - required block projector, usually
   `(<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha`,
+- accepted approximation budget, usually
+  `|| A - alpha * ((<0^a| ⊗ I) U_A (|0^a> ⊗ I)) || <= epsilon`,
+- exact-search budget, stall budget, and whether epsilon relaxation is allowed,
 - candidate unitary/circuit family,
 - auxiliary qubit count `a`,
-- score ordered as `(depth, gateCount, auxiliaryQubits, oracleCalls)`,
+- score ordered as `(gateCount, depth, auxiliaryQubits, oracleCalls)` inside
+  one semantic/asymptotic tier,
 - source paper or open problem,
 - Lean declarations to create or repair,
 - proof obligations,
@@ -31,9 +35,13 @@ must state the same Lean-checkable operator target before construction search
 starts.
 
 Operator construction and exploratory tasks should use `candidate-populations/`
-to keep competing circuit families and partial Lean/resource scores.  Paper
-benchmark tasks may use `proof-attempts/` to keep several proof routes for the
-same source theorem.
+to keep competing circuit families and partial Lean/resource scores.  They
+should prefer exact block encodings first.  If exact search reaches the user's
+resource floor, keep that exact champion as an `epsilon = 0` approximate
+incumbent and continue only if approximate search can find a cheaper certified
+candidate.  If exact search stalls or misses the floor, switch to approximate
+search and report any relaxed epsilon explicitly.  Paper benchmark tasks may
+use `proof-attempts/` to keep several proof routes for the same source theorem.
 
 Do not mark a task complete unless:
 
