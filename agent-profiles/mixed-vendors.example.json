@@ -1,0 +1,13 @@
+{
+  "description": "Example only. Replace commands with the CLIs or wrappers installed on your machine.",
+  "commands": {
+    "upper": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "middle": "cd {root} && claude -p --permission-mode bypassPermissions --max-budget-usd 4 \"$(cat {prompt})\"",
+    "lower1": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "lower2": "cd {root} && claude -p --permission-mode bypassPermissions --max-budget-usd 6 \"$(cat {prompt})\"",
+    "lower3": "cd {root} && bash tools/vendor_agent_wrapper.example.sh glm \"{prompt}\"",
+    "reviewer": "cd {root} && bash tools/vendor_agent_wrapper.example.sh gemini \"{prompt}\"",
+    "default": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\""
+  }
+}
+

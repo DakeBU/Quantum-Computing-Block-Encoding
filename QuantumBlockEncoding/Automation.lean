@@ -53,6 +53,17 @@ inductive AgentRole where
   | reviewer
 deriving Repr, DecidableEq
 
+inductive AgentBackendKind where
+  | codex
+  | claude
+  | gpt
+  | gemini
+  | glm
+  | minimax
+  | localWrapper
+  | custom
+deriving Repr, DecidableEq
+
 inductive TrialKind where
   | plan
   | attempt
@@ -179,6 +190,14 @@ structure AgentPanelSizeSpec where
   reviewerCount : Nat
   useWhen : String
   avoidWhen : String
+deriving Repr, DecidableEq
+
+structure AgentBackendProfileSpec where
+  role : AgentRole
+  slot : String
+  allowedBackends : List AgentBackendKind
+  commandProfileKey : String
+  note : String
 deriving Repr, DecidableEq
 
 structure WorkflowInvariantSpec where
@@ -368,6 +387,106 @@ def agentPanelSizeSpecs : List AgentPanelSizeSpec :=
       reviewerCount := 1
       useWhen := "one concrete Lean failure needs a dedicated reducer/refiner in addition to architect, worker, and verifier"
       avoidWhen := "failure class is unknown; run upper/middle audit first"
+    }
+  ]
+
+def agentBackendProfileSpecs : List AgentBackendProfileSpec :=
+  [
+    {
+      role := AgentRole.upper
+      slot := "upper strategy and source/target audit"
+      allowedBackends := [
+        AgentBackendKind.codex,
+        AgentBackendKind.claude,
+        AgentBackendKind.gpt,
+        AgentBackendKind.gemini,
+        AgentBackendKind.glm,
+        AgentBackendKind.minimax,
+        AgentBackendKind.localWrapper,
+        AgentBackendKind.custom
+      ]
+      commandProfileKey := "upper"
+      note := "Upper can use any strong reasoning backend; the profile mechanism records the user's choice without changing Lean acceptance."
+    },
+    {
+      role := AgentRole.middle
+      slot := "Lean/natural-language correspondence and memory"
+      allowedBackends := [
+        AgentBackendKind.codex,
+        AgentBackendKind.claude,
+        AgentBackendKind.gpt,
+        AgentBackendKind.gemini,
+        AgentBackendKind.glm,
+        AgentBackendKind.minimax,
+        AgentBackendKind.localWrapper,
+        AgentBackendKind.custom
+      ]
+      commandProfileKey := "middle"
+      note := "Middle may use a writing-strong or source-correspondence-strong backend; generated claims still need Lean anchors."
+    },
+    {
+      role := AgentRole.lower
+      slot := "lower1 natural-language architect"
+      allowedBackends := [
+        AgentBackendKind.codex,
+        AgentBackendKind.claude,
+        AgentBackendKind.gpt,
+        AgentBackendKind.gemini,
+        AgentBackendKind.glm,
+        AgentBackendKind.minimax,
+        AgentBackendKind.localWrapper,
+        AgentBackendKind.custom
+      ]
+      commandProfileKey := "lower1"
+      note := "Lower1 can be a natural-language proof/circuit designer."
+    },
+    {
+      role := AgentRole.lower
+      slot := "lower2 Lean implementation worker"
+      allowedBackends := [
+        AgentBackendKind.codex,
+        AgentBackendKind.claude,
+        AgentBackendKind.gpt,
+        AgentBackendKind.gemini,
+        AgentBackendKind.glm,
+        AgentBackendKind.minimax,
+        AgentBackendKind.localWrapper,
+        AgentBackendKind.custom
+      ]
+      commandProfileKey := "lower2"
+      note := "Lower2 should use a backend that can edit Lean reliably and respect the local build gate."
+    },
+    {
+      role := AgentRole.lower
+      slot := "lower3 necessary-condition verifier"
+      allowedBackends := [
+        AgentBackendKind.codex,
+        AgentBackendKind.claude,
+        AgentBackendKind.gpt,
+        AgentBackendKind.gemini,
+        AgentBackendKind.glm,
+        AgentBackendKind.minimax,
+        AgentBackendKind.localWrapper,
+        AgentBackendKind.custom
+      ]
+      commandProfileKey := "lower3"
+      note := "Lower3 may be a model or deterministic local script; it cannot certify final correctness."
+    },
+    {
+      role := AgentRole.reviewer
+      slot := "reviewer"
+      allowedBackends := [
+        AgentBackendKind.codex,
+        AgentBackendKind.claude,
+        AgentBackendKind.gpt,
+        AgentBackendKind.gemini,
+        AgentBackendKind.glm,
+        AgentBackendKind.minimax,
+        AgentBackendKind.localWrapper,
+        AgentBackendKind.custom
+      ]
+      commandProfileKey := "reviewer"
+      note := "Reviewer backend is user-selectable; the final authority remains lake build and named Lean declarations."
     }
   ]
 

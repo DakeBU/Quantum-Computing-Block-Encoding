@@ -20,7 +20,10 @@ and middle panels at checkpoints, and uses Lean as the acceptance gate.
    summaries, human status, and article-facing status once at the final audit.
 
 It does not require a specific vendor. The external command can be Codex CLI,
-Claude Code, a shell wrapper, or a manual script that reads one prompt file.
+Claude Code, a GPT/OpenAI wrapper, Gemini, GLM, Minimax, or a manual script
+that reads one prompt file.  Use `--agent-cmd` for one backend across every
+role, or `--agent-profile` when each layer or lower slot should use a
+different backend.
 
 ## Verifier Feedback Layers
 
@@ -178,6 +181,42 @@ python3 tools/qbe.py efficiency-report --task QBE-OP-001
 
 Use your own agent CLI flags. The only QBE-side expectation is that the command
 returns success or failure and leaves artifacts in the repository.
+
+## Mixed-Backend Profiles
+
+For ARIS-style user choice, put a JSON profile under `agent-profiles/` and map
+each role to the command installed on the user's machine.  ABEIS resolves
+prompt-specific keys first, then role keys, then `default`.
+
+```json
+{
+  "commands": {
+    "upper": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "middle": "cd {root} && claude -p --permission-mode bypassPermissions \"$(cat {prompt})\"",
+    "lower1": "cd {root} && bash tools/vendor_agent_wrapper.example.sh gpt \"{prompt}\"",
+    "lower2": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "lower3": "cd {root} && bash tools/vendor_agent_wrapper.example.sh gemini \"{prompt}\"",
+    "reviewer": "cd {root} && bash tools/vendor_agent_wrapper.example.sh glm \"{prompt}\"",
+    "default": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\""
+  }
+}
+```
+
+Then run:
+
+```bash
+python3 tools/qbe.py sleep-run QBE-OP-001 \
+  --cycles 4 \
+  --lower-count 3 \
+  --parallel-lower \
+  --agent-profile mixed-vendors.example.json \
+  --execute \
+  --check-each-cycle
+```
+
+The profile only chooses who attempts each role.  It does not change the
+acceptance standard: a candidate becomes certified only after the configured
+Lean gate proves the advertised theorem.
 
 Use panels deliberately:
 

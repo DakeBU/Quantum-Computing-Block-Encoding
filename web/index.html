@@ -12,7 +12,7 @@
         <p class="eyebrow">Auto-Block-Encoding-in-Sleep</p>
         <h1>Oracle-to-Block-Encoding Task Builder</h1>
       </div>
-      <div class="status-pill">Static local prototype</div>
+      <div class="status-pill">Static web app</div>
     </header>
 
     <main class="layout">
@@ -80,6 +80,87 @@
           <textarea id="constraints" spellcheck="false" placeholder="Register sizes, allowed gates, exact/approximate tolerance, free oracle parameters, source paper URL, non-goals."></textarea>
         </label>
 
+        <fieldset class="agent-grid">
+          <legend>Agent backend preferences</legend>
+          <p class="hint compact">
+            These are preferences for the generated ABEIS packet.  The website
+            does not call model APIs; your local harness or server runner maps
+            these choices to installed CLIs or wrappers.
+          </p>
+          <label>
+            Upper
+            <select id="upperBackend">
+              <option value="codex">Codex</option>
+              <option value="claude">Claude</option>
+              <option value="gpt">GPT/OpenAI wrapper</option>
+              <option value="gemini">Gemini</option>
+              <option value="glm">GLM</option>
+              <option value="minimax">Minimax</option>
+              <option value="custom">Custom wrapper</option>
+            </select>
+          </label>
+          <label>
+            Middle
+            <select id="middleBackend">
+              <option value="claude">Claude</option>
+              <option value="codex">Codex</option>
+              <option value="gpt">GPT/OpenAI wrapper</option>
+              <option value="gemini">Gemini</option>
+              <option value="glm">GLM</option>
+              <option value="minimax">Minimax</option>
+              <option value="custom">Custom wrapper</option>
+            </select>
+          </label>
+          <label>
+            Lower 1 architect
+            <select id="lower1Backend">
+              <option value="gpt">GPT/OpenAI wrapper</option>
+              <option value="codex">Codex</option>
+              <option value="claude">Claude</option>
+              <option value="gemini">Gemini</option>
+              <option value="glm">GLM</option>
+              <option value="minimax">Minimax</option>
+              <option value="custom">Custom wrapper</option>
+            </select>
+          </label>
+          <label>
+            Lower 2 Lean worker
+            <select id="lower2Backend">
+              <option value="codex">Codex</option>
+              <option value="claude">Claude</option>
+              <option value="gpt">GPT/OpenAI wrapper</option>
+              <option value="gemini">Gemini</option>
+              <option value="glm">GLM</option>
+              <option value="minimax">Minimax</option>
+              <option value="custom">Custom wrapper</option>
+            </select>
+          </label>
+          <label>
+            Lower 3 verifier
+            <select id="lower3Backend">
+              <option value="codex">Codex</option>
+              <option value="claude">Claude</option>
+              <option value="gpt">GPT/OpenAI wrapper</option>
+              <option value="gemini">Gemini</option>
+              <option value="glm">GLM</option>
+              <option value="minimax">Minimax</option>
+              <option value="custom">Custom wrapper</option>
+            </select>
+          </label>
+          <label>
+            Reviewer
+            <select id="reviewerBackend">
+              <option value="claude">Claude</option>
+              <option value="codex">Codex</option>
+              <option value="gpt">GPT/OpenAI wrapper</option>
+              <option value="gemini">Gemini</option>
+              <option value="glm">GLM</option>
+              <option value="minimax">Minimax</option>
+              <option value="custom">Custom wrapper</option>
+            </select>
+          </label>
+        </fieldset>
+
         <div class="actions">
           <button id="buildPacket" type="button">Build Task Packet</button>
           <button id="copyPacket" type="button" class="secondary">Copy Markdown</button>
@@ -107,8 +188,9 @@
     </main>
 
     <footer>
-      Inspired by user-friendly automated algorithm design front ends such as LLM4AD_Next,
-      but specialized to Lean-checked quantum block-encoding certificates.
+      Static website for preparing ABEIS task packets.  Inspired by user-friendly
+      automated algorithm design front ends such as LLM4AD_Next, but specialized
+      to Lean-checked quantum block-encoding certificates.
     </footer>
 
     <script src="app.js"></script>

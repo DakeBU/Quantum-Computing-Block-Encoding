@@ -79,6 +79,7 @@ PROJECT_ARTICLE_UPDATE_DIR = ROOT / "paper-notes" / "project-paper" / "cycle-upd
 PROBLEM_EXPORT_DIR = ROOT / "paper-notes" / "problem-exports"
 PRO_PROMPT_DIR = ROOT / "runs" / "pro-prompts"
 MANUAL_MULTIAGENT_DIR = ROOT / "runs" / "manual-multiagent"
+AGENT_PROFILE_DIR = ROOT / "agent-profiles"
 
 AGENT_ROLES = ("upper", "middle", "lower", "reviewer")
 TRIAL_KINDS = ("plan", "attempt", "build", "review", "proposal", "compression", "handoff")
@@ -101,6 +102,7 @@ WORK_DIRS = [
     "runs/context-packs",
     "runs/pro-prompts",
     "runs/manual-multiagent",
+    "agent-profiles",
     "paper-notes/project-paper/cycle-updates",
     "paper-notes/problem-exports",
     "research-wiki/papers",
@@ -6653,6 +6655,97 @@ def prompt_role(path: Path) -> str:
     return "lower"
 
 
+def prompt_profile_keys(prompt: Path) -> list[str]:
+    """Return most-specific to least-specific command keys for a prompt."""
+    stem = prompt.stem
+    role = prompt_role(prompt)
+    keys = [stem]
+    match = re.search(r"30_lower_searcher_(\d+)", prompt.name)
+    if match:
+        keys.extend([f"lower{match.group(1)}", "lower"])
+    elif role == "upper":
+        keys.extend(["upper"])
+    elif role == "middle":
+        keys.extend(["middle"])
+    elif role == "reviewer":
+        keys.extend(["reviewer"])
+    else:
+        keys.append(role)
+    keys.append("default")
+    # Preserve order while removing duplicates.
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for key in keys:
+        if key not in seen:
+            ordered.append(key)
+            seen.add(key)
+    return ordered
+
+
+def resolve_agent_profile_path(value: str) -> Path:
+    path = Path(value).expanduser()
+    if path.exists():
+        return path
+    named = AGENT_PROFILE_DIR / value
+    if named.exists():
+        return named
+    if not value.endswith(".json"):
+        named_json = AGENT_PROFILE_DIR / f"{value}.json"
+        if named_json.exists():
+            return named_json
+    raise SystemExit(f"agent profile not found: {value}")
+
+
+def load_agent_command_profile(profile: str = "", cmd_file: str = "") -> dict[str, str]:
+    """Load role/model command templates.
+
+    JSON shape:
+
+    {
+      "default": "...",
+      "upper": "...",
+      "middle": "...",
+      "lower1": "...",
+      "lower2": "...",
+      "lower3": "...",
+      "reviewer": "..."
+    }
+
+    Values use the same placeholders as --agent-cmd: {root}, {prompt},
+    {run_dir}, {task}, {cycle}, and {role}.
+    """
+    commands: dict[str, str] = {}
+    source = profile or cmd_file
+    if source:
+        path = resolve_agent_profile_path(source)
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            raise SystemExit(f"agent profile must be a JSON object: {display_path(path)}")
+        raw = data.get("commands", data)
+        if not isinstance(raw, dict):
+            raise SystemExit(f"agent profile commands must be a JSON object: {display_path(path)}")
+        for key, value in raw.items():
+            if not isinstance(value, str):
+                raise SystemExit(f"agent profile command for {key!r} must be a string")
+            if value.strip():
+                commands[str(key)] = value.strip()
+    return commands
+
+
+def agent_command_for_prompt(
+    profile_commands: dict[str, str],
+    fallback_template: str,
+    prompt: Path,
+) -> str:
+    for key in prompt_profile_keys(prompt):
+        if key in profile_commands:
+            return profile_commands[key]
+    if fallback_template.strip():
+        return fallback_template
+    keys = ", ".join(prompt_profile_keys(prompt))
+    raise SystemExit(f"no agent command template for {rel(prompt)}; tried keys: {keys}")
+
+
 def upper_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
     """Return upper prompts in execution order.
 
@@ -6738,8 +6831,9 @@ def log_agent_attempt(
 
 def cmd_sleep_run(args: argparse.Namespace) -> int:
     cmd_init(argparse.Namespace())
-    if args.execute and not args.agent_cmd:
-        raise SystemExit("--execute requires --agent-cmd")
+    profile_commands = load_agent_command_profile(args.agent_profile, args.agent_cmd_file)
+    if args.execute and not args.agent_cmd and not profile_commands:
+        raise SystemExit("--execute requires --agent-cmd or --agent-profile/--agent-cmd-file")
     if args.dry_run and args.execute:
         raise SystemExit("--dry-run and --execute cannot be used together")
     if args.upper_every < 0 or args.middle_every < 0 or args.reviewer_every < 0:
@@ -6768,7 +6862,8 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             and (cycle - 1) % args.reviewer_every == 0
         ):
             prompts.append(run_dir / "40_reviewer.md")
-        if args.dry_run or not args.agent_cmd:
+        has_agent_template = bool(args.agent_cmd or profile_commands)
+        if args.dry_run or not has_agent_template:
             print("dry run: prompt deck created, no external agent command executed")
             continue
         if not args.execute:
@@ -6780,7 +6875,8 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             lower_prompts = [prompt for prompt in prompts if prompt_role(prompt) == "lower"]
             post_prompts = [prompt for prompt in prompts if prompt_role(prompt) == "reviewer"]
             for prompt in pre_prompts:
-                command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
+                command = format_agent_command(template, prompt, run_dir, args.id, cycle)
                 print("$ " + command)
                 code = subprocess.run(command, cwd=ROOT, shell=True).returncode
                 log_agent_attempt(args.id, run_dir, prompt, command, code)
@@ -6790,7 +6886,8 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             if cycle_code == 0 and lower_prompts:
                 running = []
                 for prompt in lower_prompts:
-                    command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                    template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
+                    command = format_agent_command(template, prompt, run_dir, args.id, cycle)
                     print("$ " + command)
                     process = subprocess.Popen(command, cwd=ROOT, shell=True)
                     running.append((prompt, command, process))
@@ -6801,7 +6898,8 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                         cycle_code = code
             if cycle_code == 0:
                 for prompt in post_prompts:
-                    command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                    template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
+                    command = format_agent_command(template, prompt, run_dir, args.id, cycle)
                     print("$ " + command)
                     code = subprocess.run(command, cwd=ROOT, shell=True).returncode
                     log_agent_attempt(args.id, run_dir, prompt, command, code)
@@ -6810,8 +6908,9 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                         break
         else:
             for prompt in prompts:
-                command = format_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
-                code = run_agent_command(args.agent_cmd, prompt, run_dir, args.id, cycle)
+                template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
+                command = format_agent_command(template, prompt, run_dir, args.id, cycle)
+                code = run_agent_command(template, prompt, run_dir, args.id, cycle)
                 log_agent_attempt(args.id, run_dir, prompt, command, code)
                 if code != 0:
                     cycle_code = code
@@ -7101,6 +7200,16 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep.add_argument("--cycles", type=int, default=8)
     p_sleep.add_argument("--lower-count", type=int, default=3)
     p_sleep.add_argument("--agent-cmd", default="")
+    p_sleep.add_argument(
+        "--agent-profile",
+        default="",
+        help="JSON profile under agent-profiles/ or a path mapping roles/lower slots to command templates",
+    )
+    p_sleep.add_argument(
+        "--agent-cmd-file",
+        default="",
+        help="alias for --agent-profile; kept for users who think in command-file terms",
+    )
     p_sleep.add_argument("--execute", action="store_true")
     p_sleep.add_argument("--dry-run", action="store_true")
     p_sleep.add_argument("--check-each-cycle", action="store_true")

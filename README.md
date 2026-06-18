@@ -147,19 +147,23 @@ lake build && lake build Tests
 ## Web Task Builder
 
 For mathematicians or quantum-algorithm authors who do not want to begin from
-GitHub, ABEIS now includes a static local web entry point:
+GitHub, ABEIS includes a static web entry point in `web/`.  It is intended to
+be deployed as a normal website through GitHub Pages, Cloudflare Pages, Netlify,
+or any static-file host.  This repository includes
+`.github/workflows/pages.yml`, so GitHub Pages can publish the `web/` directory
+from GitHub Actions.  Local preview is only for editing the page:
 
 ```bash
 cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
 python3 -m http.server 8080 -d web
 ```
 
-Open `http://localhost:8080/`.  The page lets a user paste a LaTeX oracle,
-matrix, or natural-language operator description, choose the report language
-used for closeout summaries, record a baseline construction, and generate a
-Markdown task packet for the upper/middle/lower/reviewer agent loop.  It is a
-local prototype: it does not upload data and does not certify anything by
-itself.  The design borrows the low-entry-barrier UI lesson from
+The deployed page lets a user paste a LaTeX oracle, matrix, or natural-language
+operator description, choose the report language used for closeout summaries,
+record a baseline construction, and generate a Markdown task packet for the
+upper/middle/lower/reviewer agent loop.  It does not certify anything by
+itself; Lean remains the verification authority.  The design borrows the
+low-entry-barrier UI lesson from
 [LLM4AD_Next][llm4ad-next] and its online demo, while keeping ABEIS-specific
 Lean certificate discipline.
 
@@ -558,6 +562,24 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --execute \
   --check-each-cycle
 ```
+
+Use a mixed-vendor profile when different layers should run on different
+agent backends:
+
+```bash
+python3 tools/qbe.py sleep-run QBE-OP-001 \
+  --cycles 6 \
+  --lower-count 3 \
+  --parallel-lower \
+  --agent-profile mixed-vendors.example.json \
+  --execute \
+  --check-each-cycle
+```
+
+Profiles live in `agent-profiles/` and can dispatch upper, middle, lower, and
+reviewer prompts to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax,
+or local tools.  A provider command only needs to read `{prompt}` and return a
+meaningful exit code.
 
 Expected outputs:
 

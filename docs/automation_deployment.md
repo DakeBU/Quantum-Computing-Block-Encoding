@@ -241,6 +241,44 @@ goal is to improve the same operator contract.  The target \(A\) and block
 predicate remain fixed, but candidate circuits may be mutated, recombined, and
 ranked by `BlockEncodingCost`.
 
+### Mixed-Backend Agent Profiles
+
+ABEIS does not hard-code one model vendor.  The harness can dispatch different
+roles, and different lower slots, to different installed agent backends:
+Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, deterministic local
+scripts, or custom shell commands.  This mirrors the ARIS-style principle that
+the user controls the research workflow, while ABEIS keeps Lean as the final
+certificate gate.
+
+Profiles live under `agent-profiles/`.  A profile maps prompt stems or role
+keys to command templates.  Prompt-stem keys such as `30_lower_searcher_1`
+win first, then slot keys such as `lower1`, then role keys such as `lower`,
+then `default`.
+
+```bash
+python3 tools/qbe.py sleep-run QBE-OP-001 \
+  --cycles 4 \
+  --lower-count 3 \
+  --parallel-lower \
+  --agent-profile mixed-vendors.example.json \
+  --execute \
+  --check-each-cycle
+```
+
+The useful default split for hard block-encoding work is:
+
+- upper: strongest target-audit and planning model available,
+- middle: model or toolchain that is good at Lean/natural-language
+  correspondence and memory compression,
+- lower1: natural-language construction/proof architect,
+- lower2: Lean implementation worker,
+- lower3: deterministic or model-assisted necessary-condition verifier,
+- reviewer: independent backend when possible.
+
+This profile mechanism changes search diversity and cost.  It does not change
+what counts as success: only named Lean declarations and the configured build
+gate certify a block-encoding candidate.
+
 ## Paper-Benchmark Agent Loop
 
 1. Select a paper target from `Literature.lean` or `tasks/`.
