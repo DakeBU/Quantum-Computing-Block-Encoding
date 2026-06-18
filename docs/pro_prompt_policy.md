@@ -4,16 +4,16 @@ Every completed long ABEIS loop must leave two human-facing artifacts:
 
 - `runs/<run-id>/summary.md`: preferred-language status for humans, with
   source-paper or operator-contract anchors and the reason each remaining Lean
-  proof is still open.  Paper benchmark tracks may also archive language-
-  suffixed summaries under `paper-notes/<paper-key>/markdown/cycle-summaries/`.
-- `runs/pro-prompts/QBE-AUTO-002-latest.md`: a self-contained prompt that can be
-  pasted into ChatGPT Pro when the local agents did not close the target.
+  proof is still open.
+- `runs/<run-id>/chatgpt_pro_prompt.md`: a self-contained prompt that can be
+  pasted into ChatGPT Pro or another external advisor when the local agents
+  did not close the target.
 
 The Pro prompt assumes ChatGPT Pro cannot read local files.  It must therefore
-include public paper links, the current theorem target, open GHL contribution
-obligations, open external technical lemmas, recent verifier feedback, and the
-exact kind of answer needed next.  Local file paths and Lean names may appear
-only as labels for patching this repository later.
+include public paper links when relevant, the current theorem target, open
+operator obligations, open external technical lemmas, recent verifier feedback,
+and the exact kind of answer needed next. Local file paths and Lean names may
+appear only as labels for patching this repository later.
 
 The human expert review is a separate post-cycle channel.  After the
 preferred-language summary and any Pro answer are available, the user may give source-level,
@@ -30,5 +30,5 @@ predicate and Lean-checkable target before asking for new constructions.
 Manual regeneration:
 
 ```bash
-python3 tools/qbe.py cycle-pro-prompt QBE-AUTO-002 --run-id latest --cycle <N>
+python3 tools/qbe.py cycle-pro-prompt <task-id> --run-id latest --cycle <N>
 ```

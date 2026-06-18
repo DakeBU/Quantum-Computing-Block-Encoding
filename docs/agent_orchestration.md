@@ -233,22 +233,24 @@ ABEIS technical report.  This adapts the useful ARIS paper-writing discipline
 to theorem proving: every manuscript claim must be backed by Lean, a source
 anchor, a cited-result row, a proof-attempt record, or an explicit obligation.
 
-Every 6h/convergence closeout writes:
+Every 6h/convergence closeout writes public-facing problem artifacts:
+
+```text
+runs/<run-id>/problem_export.tex
+paper-notes/problem-exports/<task-id>/latest.tex
+```
+
+Maintainer runs may additionally request project-paper update packets:
 
 ```text
 runs/<run-id>/article_update.md
 runs/<run-id>/article_update.tex
-runs/<run-id>/problem_export.tex
-paper-notes/project-paper/cycle-updates/<run-id>.md
-paper-notes/project-paper/cycle-updates/<run-id>.tex
-paper-notes/project-paper/cycle-updates/latest.md
-paper-notes/project-paper/cycle-updates/latest.tex
-paper-notes/problem-exports/<task-id>/<run-id>.tex
 paper-notes/problem-exports/<task-id>/latest.tex
 ```
 
 If `../Auto_Proof_Papers/ABEIS/main.tex` exists, QBE also mirrors the latest
-generated status into:
+generated status into the local technical-report workspace only when the
+maintainer explicitly enables the project-article update:
 
 ```text
 ../Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex
@@ -258,7 +260,7 @@ generated status into:
 Use the command manually when needed:
 
 ```bash
-python3 tools/qbe.py project-article-update QBE-AUTO-002 \
+python3 tools/qbe.py project-article-update <task-id> \
   --cycle 1 \
   --run-id latest
 ```

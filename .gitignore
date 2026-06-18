@@ -4,17 +4,26 @@
 /.env
 /.DS_Store
 
-# Keep raw sleep-run directories out of git. Human-facing cycle summaries are
-# mirrored under paper-notes/GHL2025/markdown/cycle-summaries/, and self-contained
-# Pro prompts are mirrored under runs/pro-prompts/.
-/runs/*/
-!/runs/pro-prompts/
-!/runs/pro-prompts/*.md
-!/runs/manual-multiagent/
-!/runs/manual-multiagent/**/
-!/runs/manual-multiagent/**/*.md
+# Public releases keep curated docs, Lean code, candidate summaries, and proof
+# exports. Raw agent traces, local dashboards, and project-paper maintenance
+# packets stay local unless a maintainer deliberately curates them.
+/HUMAN_STATUS.md
+/REPORTS*.md
+/findings.md
+/runs/**
+!/runs/README.md
 /runs/trials.jsonl
 /runs/trials_summary.csv
+/paper-notes/*/markdown/cycle-summaries/
+/paper-notes/project-paper/
+/paper-notes/problem-exports/*/20*.tex
+!/paper-notes/problem-exports/*/latest.tex
+/proof-attempts/QBE-AUTO-*/
+/proof-blueprints/QBE-AUTO-*
+/proof-obligations/QBE-AUTO-*.md
+/research-wiki/retrieval-index/QBE-AUTO-*.json
+/verifier-feedback/QBE-AUTO-*/
+/verifier-feedback/QBE-AUTO-*-*.md
 
 __pycache__/
 *.pyc

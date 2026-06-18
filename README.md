@@ -280,19 +280,21 @@ For longer unattended runs and theorem-closure batches, see
 
 ## Human Outputs
 
-Use these files first instead of raw logs:
+Use the curated public artifacts first:
 
-- [`HUMAN_STATUS.md`](HUMAN_STATUS.md): current build/sorry status and active
-  leaves.
-- [`REPORTS.zh.md`](REPORTS.zh.md): where to read each human-facing report.
-- `runs/<run-id>/summary.md`: preferred-language run summary.
-- `runs/pro-prompts/<task-id>-latest.md`: self-contained prompt for ChatGPT
-  Pro or another external advisor.
+- [`tasks/QBE-OP-OPTCTRL-001.md`](tasks/QBE-OP-OPTCTRL-001.md): the main
+  operator task.
+- [`candidate-populations/QBE-OP-OPTCTRL-001.md`](candidate-populations/QBE-OP-OPTCTRL-001.md):
+  Lean-checked candidate population and final choice.
+- [`candidate-populations/QBE-OP-OPTCTRL-001-metrics.png`](candidate-populations/QBE-OP-OPTCTRL-001-metrics.png):
+  convergence plot for the main case.
 - `paper-notes/problem-exports/<task-id>/latest.tex`: problem-specific LaTeX
   proof note.
 
-For paper benchmarks, additional source-aligned notes may appear under
-`paper-notes/<paper-key>/`.
+Local runs also generate maintainer-only summaries such as
+`HUMAN_STATUS.md`, `REPORTS.<lang>.md`, `runs/<run-id>/summary.<lang>.md`,
+and `runs/<run-id>/chatgpt_pro_prompt.md`. These files are intentionally
+ignored by git so public releases do not accumulate raw agent traces.
 
 ## Related Work And Similar Patterns
 
