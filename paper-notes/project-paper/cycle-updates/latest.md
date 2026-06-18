@@ -1,6 +1,6 @@
 # Project Article Update: QBE-OP-OPTCTRL-001 cycle 1
 
-Generated: `2026-06-17 18:23:10`
+Generated: `2026-06-18 11:45:02`
 
 Run directory: `runs/manual-multiagent/20260617-optctrl-pro`
 
@@ -20,6 +20,7 @@ Lean declarations, source anchors, or explicit obligations.
 - Update the generated appendix with the current optimal-control construction status: concrete logical reversible permutation-matrix certificate `evolvedEqFlipVerified`, score `(2,4,1,0)`, and the remaining generalization/hardware/lower-bound obligations.
 - Do not replay the full population history in Overleaf; keep history in `candidate-populations/` and verifier-feedback packets.
 - State the semantic tier precisely: concrete `r=1,k=1` logical `{X,CNOT,Toffoli}` permutation-matrix BE, not a hardware-decomposed or general-family theorem.
+- State the certified-population rule: only candidates with named Lean certificates can be evolutionary parents or plotted solution points; Pro/Python/simulator ideas stay in the insight pool until Lean promotes them.
 
 ## Lean status signal
 
@@ -98,13 +99,14 @@ _No task-specific cited-contract obligations were detected by the compact memory
 | `main/evidence.tex` | Mention the concrete explore-mode improvement only as process evidence and name the Lean declarations supporting it. |
 | `main/lean_platform.tex` | Note that candidate populations can optimize over non-unique unitary completions, with Lean checking clean-block equality. |
 | `appendix/generated_cycle_status.tex` | This file is overwritten automatically and should show only the latest current construction status. |
-| Figures/tables | Reuse the PNG as a certified concrete logical BE curve; label it clearly as not hardware-decomposed and not generalized. |
+| Figures/tables | Reuse the PNG only as a certified concrete logical BE curve; label it clearly as not hardware-decomposed and not generalized.  Never plot insight-pool proposals as achieved points. |
 
 ## Do not claim
 
 - Do not claim a generalized optimal-control theorem while the construction is only proved for the concrete `r=1,k=1` finite instance.
 - Do not claim hardware-gate optimality before choosing and proving a hardware decomposition/resource model.
 - Do not treat finite verifier scores or population-search convergence as mathematical optimality theorems.
+- Do not use unverified Pro/Python/simulator proposals as evolutionary parents; they are insight-pool records until Lean certificates promote them.
 
 ## Dialogue tail
 
@@ -114,22 +116,14 @@ No substantive dialogue handoff was recorded yet.
 
 ## Current changed files
 
+- `.agents/skills/qbe-project-paper-update/SKILL.md`
+- `.agents/skills/qbe-proof-export/SKILL.md`
 - `MANIFEST.md`
-- `QuantumBlockEncoding/OptimalControl.lean`
 - `README.md`
-- `Tests/Basic.lean`
-- `candidate-populations/QBE-OP-OPTCTRL-001-metrics.csv`
-- `candidate-populations/QBE-OP-OPTCTRL-001-metrics.png`
-- `candidate-populations/QBE-OP-OPTCTRL-001.md`
-- `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md`
-- `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.tex`
+- `docs/agent_orchestration.md`
+- `paper-notes/problem-exports/`
+- `paper-notes/project-paper/cycle-updates/20260617-060327-QBE-AUTO-002-cycle01.md`
+- `paper-notes/project-paper/cycle-updates/20260617-060327-QBE-AUTO-002-cycle01.tex`
 - `paper-notes/project-paper/cycle-updates/latest.md`
 - `paper-notes/project-paper/cycle-updates/latest.tex`
-- `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json`
-- `runs/manual-multiagent/20260617-optctrl-pro/article_update.md`
-- `runs/manual-multiagent/20260617-optctrl-pro/article_update.tex`
-- `runs/manual-multiagent/20260617-optctrl-pro/memory_digest.md`
-- `runs/manual-multiagent/20260617-optctrl-pro/todo.md`
-- `runs/manual-multiagent/20260617-optctrl-pro/zh_summary.md`
 - `tools/qbe.py`
-- `verifier-feedback/README.md`

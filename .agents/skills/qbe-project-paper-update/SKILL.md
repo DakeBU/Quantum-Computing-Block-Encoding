@@ -6,8 +6,10 @@ argument-hint: "[task id or report path]"
 
 # QBE Project Paper Update
 
-Use this skill at the end of every multi-hour active proof cycle, or whenever
-`tools/qbe.py project-article-update` reports a manuscript-facing delta.
+Use this skill at the end of every multi-hour active proof batch, at
+convergence closeout, or whenever `tools/qbe.py project-article-update`
+reports a manuscript-facing delta.  Do not use it inside routine proof-search
+cycles merely because a lower agent edited Lean.
 
 The goal is not prose polish.  The goal is to keep the technical report aligned
 with what the Lean project actually proves, what the paper-source audit says,
@@ -36,25 +38,29 @@ Read these before changing the project paper:
 3. `proof-blueprints/<task-id>.md`
 4. `conversion-windows/<task-id>.md`
 5. `proof-obligations/<task-id>.md`
-6. relevant `paper-notes/` Markdown/LaTeX exports
+6. relevant `paper-notes/` Markdown exports and closeout LaTeX exports
 7. relevant `research-wiki/cited-results/` entries
 8. the ABEIS technical report under `../Auto_Proof_Papers/ABEIS`
 
 ## Cadence
 
-Every executed `sleep-run` cycle should produce:
+Every 6h/convergence closeout should produce:
 
 - `runs/<run-id>/article_update.md`
 - `runs/<run-id>/article_update.tex`
+- `runs/<run-id>/problem_export.tex`
 - `paper-notes/project-paper/cycle-updates/<run-id>.md`
 - `paper-notes/project-paper/cycle-updates/<run-id>.tex`
 - `paper-notes/project-paper/cycle-updates/latest.md`
 - `paper-notes/project-paper/cycle-updates/latest.tex`
+- `paper-notes/problem-exports/<task-id>/<run-id>.tex`
+- `paper-notes/problem-exports/<task-id>/latest.tex`
 
 If the external technical-report directory exists, the latest generated status
 should also be mirrored to:
 
 - `../Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex`
+- `../Auto_Proof_Papers/ABEIS/problem_exports/<task-id>.tex`
 
 Manual article edits should be less frequent.  Update the main report only when
 the cycle adds a stable system lesson, a stable proof status change, or a
@@ -69,7 +75,7 @@ Good updates:
 - update the case-study status after a Lean theorem, contract correction, or
   source audit is accepted;
 - add a figure for a stable process concept, proof-DAG frontier, or
-  Lean/Markdown/LaTeX conversion mechanism;
+  Lean/natural-language conversion and closeout-export mechanism;
 - update the generated status appendix with current `sorry` and obligation
   status.
 
@@ -107,8 +113,9 @@ todo list or proof obligation instead.
 - Use `\citep{...}` or `\citet{...}` for every named paper, system, or
   repository discussed in the report.
 - Do not write local absolute paths into article source.
-- Do not use `GHL` as unexplained shorthand in the report.  Prefer
-  "the first case study" after the full cited name is introduced.
+- Do not use `GHL` as unexplained shorthand in the report.  Treat GHL2025 as a
+  secondary paper-benchmark track unless the current task explicitly says
+  otherwise.
 - Keep generated status text separate from polished narrative.  Generated
   status can be overwritten every cycle; polished sections should change only
   after stable evidence appears.

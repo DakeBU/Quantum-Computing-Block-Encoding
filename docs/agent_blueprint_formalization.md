@@ -15,8 +15,22 @@ conditions, normalizers, and source-paper correspondence are distinct nodes.
 ## Lean4Agent Similar Pattern
 
 [arXiv:2606.06523](https://arxiv.org/abs/2606.06523) motivates verifying the
-agent workflow itself.  ABEIS can eventually model the upper/middle/lower/
-reviewer workflow as Lean data:
+agent workflow itself.  ABEIS uses this now at the process-contract level and
+keeps a stronger formalization as a next step.
+
+Already implemented in ABEIS:
+
+- `QuantumBlockEncoding/Automation.lean` compiles role types, task kinds,
+  acceptance gates, post-cycle artifact kinds, and workflow check specs.
+- The harness distinguishes certified candidates from insight-pool candidates:
+  only Lean-closed candidates can be plotted as solved or used as evolutionary
+  parents.
+- Six-hour closeouts require a Chinese human summary and a self-contained
+  ChatGPT Pro prompt when the target remains unfinished.
+- Inner cycles maintain Lean/natural-language correspondence; LaTeX proof
+  notes are closeout artifacts, not per-lemma distractions.
+
+Next process-verification target:
 
 - structural checks: required agents and artifact edges exist;
 - semantic checks: every lower task has a precondition and postcondition;

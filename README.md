@@ -44,7 +44,7 @@ construction:
 ```mermaid
 flowchart LR
   A["user gives A, alpha, block projector"] --> B["upper fixes the contract"]
-  B --> C["middle writes Lean/Markdown/LaTeX correspondence"]
+  B --> C["middle keeps Lean <-> natural-language proof map"]
   C --> D["lower population proposes U_A candidates"]
   D --> E["finite/unitarity/block-entry diagnostics"]
   E --> F["Lean certificate attempt"]
@@ -143,13 +143,15 @@ Automation and knowledge artifacts:
 
 - `tools/qbe.py`: no-dependency project CLI.
 - `tasks/`: task contracts.
-- `conversion-windows/`: synchronized Lean/LaTeX/Markdown workspaces.
+- `conversion-windows/`: synchronized Lean and natural-language proof maps.
 - `proof-obligations/`: explicit proof and oracle gaps.
 - `proof-blueprints/`: compact task system-of-record snapshots for long runs.
 - `open-problem-proposals/`: draft open problems.
 - `runs/`: prompt decks, dialogue boards, context packs, efficiency reports,
   trial logs, and summaries.
 - `agent-briefs/`: generated context packets for agents.
+- `paper-notes/problem-exports/`: closeout LaTeX proof notes for users to copy
+  into their own papers.
 - `research-wiki/`: persistent paper/idea/claim/gap memory.
 
 Shared external development references live outside this repository:
@@ -165,7 +167,7 @@ Shared external development references live outside this repository:
   such as [ARIS][aris], [Learning Beyond Gradients][lbg], [EoH][eoh],
   [LeanMarathon][leanmarathon], and [MathCode][mathcode].
 - `../outer_repos/quantum/`: quantum-formalization references such as
-  [Lean-QuantumInfo][lean-quantuminfo].
+  [Lean-QuantumInfo][lean-quantuminfo] and [lean-quantum][lean-quantum].
 - `../outer_repos/sampling_theory_sde/`:
   [ASTIS](https://github.com/DakeBU/Auto-Sampling-Theory-In-Sleep)-facing
   statistical-learning and
@@ -206,6 +208,8 @@ QBE's automation stack is layered:
 | Reusable cuts / lemma DAGs | [Sonoda--Akiyama--Uezato 2026][hierarchical-provers] | Do not flatten repeated circuit-entry proofs; introduce source-faithful intermediate lemmas and memoize them in the proof DAG. |
 | Statistical provability | [Sonoda--Akiyama--Uezato 2026][statistical-provability] | Track finite-budget proof success, verifier-call cost, average truncated proof length, and repeated-state failures as harness metrics. |
 | Conjecture/prove loops | [Conjecturing-Proving Loop][cpl-paper] and [LeanConjecturer][leanconjecturer-paper] | Generate candidate unitary/circuit conjectures separately from proof attempts, then filter by Lean syntax, non-triviality, dimensions, resource score, and block-entry diagnostics. |
+| Workflow verification | [Lean4Agent][lean4agent-paper] | Treat the agent workflow as a checkable process object: artifact edges, role pre/postconditions, and trajectory failure localization. |
+| Quantum Lean libraries | [Lean-QuantumInfo][lean-quantuminfo] and [lean-quantum][lean-quantum] | Style and semantic references for finite-dimensional quantum information, unitary/operator notation, traces, states, channels, and tensor conventions. |
 
 The [LeanMarathon][leanmarathon]-like control layer does not replace the
 [Learning Beyond Gradients][lbg]-like hierarchy or the [EoH][eoh]-like
@@ -231,7 +235,7 @@ domain-specific:
 | Repeated circuit-entry proofs and stale local algebra. | LeanMarathon-style dynamic leaves plus Sonoda--Akiyama--Uezato-style reusable proof cuts. | A flat transcript loop that asks every lower agent to rederive the same matrix entry. |
 | Need to search for better `U_A` candidates for a fixed operator. | EoH-style candidate populations and CPL/LeanConjecturer-style candidate generation, controlled by `BlockEncodingCost`. | Hidden extra assumptions, changed operator targets, or reward-only acceptance. |
 | Expensive Lean attempts on wrong circuit transcripts. | QASM/Qiskit-style typed pre-Lean diagnostics: parser, support, finite entry, dimension, unitarity, block-entry, and schedule checks. | Treating simulator/test success as theorem closure. |
-| Human and agent confusion about source-paper correspondence. | ARIS-style plain files plus LBG-style long/compact memory split and middle Lean/Markdown/LaTeX windows. | A hidden database or opaque chat-only memory that collaborators cannot audit. |
+| Human and agent confusion about source-paper or user-operator correspondence. | ARIS-style plain files plus LBG-style long/compact memory split, middle Lean/natural-language windows, and closeout LaTeX exports. | A hidden database, opaque chat-only memory, or LaTeX polishing during every proof-search iteration. |
 
 The resulting QBE-specific workflow is:
 
@@ -242,7 +246,8 @@ operator A, alpha, and block projector
 -> finite necessary-condition diagnostics
 -> one lower Lean leaf for unitarity or block-entry correctness
 -> Lean gate
--> candidate archive, Markdown/LaTeX correspondence, and next active leaf
+-> candidate archive, natural-language proof map, and next active leaf
+-> 6h/convergence closeout LaTeX exports
 ```
 
 ![Layer-panel agent stack](docs/assets/agent_stack.svg)
@@ -275,7 +280,8 @@ flowchart TD
   R --> O
   O --> J
   J --> K["retrieval index + todos"]
-  K --> L["Chinese 6h summary + technical report appendix"]
+  K --> L["Chinese 6h summary + technical-report update"]
+  K --> W["problem-specific LaTeX proof note"]
   K --> Q["self-contained ChatGPT Pro prompt"]
   Q --> X["ChatGPT Pro advisory answer"]
   L --> Y["human expert top-level steering"]
@@ -296,32 +302,14 @@ The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
   trial memory, rejected routes, and human summaries are current.
 - Middle coordinator: turns upper decisions into lower-1 proof-DAG, lower-2
   Lean, and lower-3 verifier packets.
-
-### Human And Pro Review Entry Points
-
-After a long run, the human-facing entry points are intentionally narrow:
-
-- Chinese status: `paper-notes/GHL2025/markdown/cycle-summaries/latest.md`.
-- ChatGPT Pro prompt: `runs/pro-prompts/QBE-AUTO-002-latest.md`.
-- Policy: [`docs/pro_prompt_policy.md`](docs/pro_prompt_policy.md).
-- Blueprint/workflow formalization notes:
-  [`docs/agent_blueprint_formalization.md`](docs/agent_blueprint_formalization.md).
-
-The Pro prompt is self-contained because ChatGPT Pro cannot read local files.
-It includes public paper links, the current theorem target, open GHL
-contribution obligations, open external technical lemmas, and recent verifier
-feedback.
-The human expert entry point is separate: after reading the Chinese summary
-and any Pro answer, the user records top-level source, modeling, and priority
-guidance for the next upper-director cycle.  Both inputs are advisory.  They
-must be translated into a Lean-checkable active leaf, source anchor, or
-explicit obligation before they can change the proof state.
 - Middle source-correspondence formalizer: maps operator contracts, source TeX,
   equations, figures, and cited primitives to Lean-facing contracts.
 - Middle memory/retrieval curator: retires stale targets, updates retrieval
   packets, verifier-feedback fields, and rejected-route memory.
-- Middle report/export maintainer: updates Chinese status, Markdown/LaTeX proof
-  maps, and technical-report status only at the right cadence.
+- Middle report/export maintainer: at 6h or convergence closeout, updates
+  Chinese status, the technical-report status packet, and the problem-specific
+  LaTeX proof note.  Routine inner cycles keep only Lean-to-natural-language
+  and natural-language-to-Lean proof maps.
 - Lower natural-language construction architect: translates the active operator
   target or source proof fragment into a candidate/proof DAG and ordered lemma
   list.
@@ -333,6 +321,30 @@ explicit obligation before they can change the proof state.
   smaller lemma or repairs a specific route such as `maxRecDepth`.
 - Reviewer: checks Lean build, hidden oracle assumptions, resources, links, and
   whether the panel outputs were followed.
+
+### Human And Pro Review Entry Points
+
+After a long run, the human-facing entry points are intentionally narrow:
+
+- Chinese status: task-specific; for paper-benchmark tracks see
+  `paper-notes/<paper-key>/markdown/cycle-summaries/latest.md`.
+- ChatGPT Pro prompt: `runs/pro-prompts/<task-id>-latest.md` when the task
+  still has unresolved proof leaves.
+- Problem-specific LaTeX proof note:
+  `paper-notes/problem-exports/<task-id>/latest.tex`.
+- Policy: [`docs/pro_prompt_policy.md`](docs/pro_prompt_policy.md).
+- Blueprint/workflow formalization notes:
+  [`docs/agent_blueprint_formalization.md`](docs/agent_blueprint_formalization.md).
+
+The Pro prompt is self-contained because ChatGPT Pro cannot read local files.
+It includes public paper links when relevant, the current theorem/operator
+target, open contribution obligations, open external technical lemmas, and
+recent verifier feedback.
+The human expert entry point is separate: after reading the Chinese summary
+and any Pro answer, the user records top-level source, modeling, and priority
+guidance for the next upper-director cycle.  Both inputs are advisory.  They
+must be translated into a Lean-checkable active leaf, source anchor, or
+explicit obligation before they can change the proof state.
 
 Documentation-writing agents also use
 `.agents/skills/qbe-math-writing/SKILL.md`.  The skill keeps mathematical prose
@@ -360,6 +372,15 @@ placeholder scans, hidden-axiom checks, proof statistics, theorem-store-like
 reuse memory, and fast feedback loops.  In QBE these diagnostics are advisory;
 the final acceptance gate remains the Lean theorem plus the explicit
 block-encoding proof obligations.
+For process-level verification, QBE follows the similar pattern of
+[Lean4Agent][lean4agent-paper] in a deliberately narrower way.  The compiled
+file `QuantumBlockEncoding/Automation.lean` records role types, task kinds,
+acceptance gates, post-cycle artifacts, and workflow checks.  This is not a
+proof of any quantum theorem.  It is a first Lean-side contract for the
+orchestration layer: candidates cannot be promoted from insight pool to
+certified population without a Lean theorem; long runs must write the required
+summary and Pro prompt; and stale routes should be localized rather than
+reissued unchanged.
 For typed attempt feedback, agents use
 `.agents/skills/qbe-verifier-feedback/SKILL.md`, influenced by non-Lean
 quantum-circuit evaluation systems such as [QASM-Eval][qasm-eval] and
@@ -653,6 +674,11 @@ interpretation, figure correspondence, stale leaves, or memory drift.
 correspondence, memory/retrieval, and report/export maintenance before the
 middle coordinator writes the next lower packet.  `QBE_MIDDLE_PANEL_INNER=0`
 prevents routine proof-search cycles from spending time on report/export work.
+In ordinary inner cycles, middle translates Lean results into concise natural
+language and translates natural-language proof plans into Lean-facing tasks; it
+does not produce LaTeX.  At the 6h or convergence closeout,
+`project-article-update` writes both the technical-report status packet and the
+problem-specific LaTeX proof note.
 The intended flow is:
 
 ```text
@@ -673,7 +699,7 @@ Human and agent status should start from the compact reports, not from raw logs:
 - [`paper-notes/GHL2025/markdown/unresolved-failures.zh.md`](paper-notes/GHL2025/markdown/unresolved-failures.zh.md): source-aligned GHL unfinished proof map.
 - [`paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md`](paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md): visual audit of GHL Fig. 4, including the distinction between the full circuit transcript and the seven-gate backend component.
 
-## Lean/LaTeX/Markdown Conversion
+## Lean/Natural-Language Conversion and Closeout LaTeX
 
 Every serious operator target or paper benchmark should use a conversion
 window.
@@ -687,20 +713,24 @@ python3 tools/qbe.py conversion-window QBE-AUTO-001 \
   --title "Robin one-term block encoding"
 ```
 
-The conversion window has three synchronized panes:
+During ordinary proof-search cycles, the conversion window has two active
+panes plus a delayed export target:
 
-- LaTeX: exact theorem/proof notation from the paper or user-facing theorem.
-- Markdown: operator contract, construction explanation, design choices,
+- Natural language / Markdown: operator contract, construction explanation,
+  proof strategy, Lean failure interpretation, design choices,
   candidate scores, and rejected paths.
 - Lean: declaration names, target files, and buildable code.
+- Closeout LaTeX: generated only at 6h or convergence closeout, both as a
+  technical-report update and as a problem-specific proof note for users.
 
 Any symbol that cannot be mapped to Lean becomes a proof obligation or an open
 problem. It should not remain an implicit oracle assumption.
 
-When updating Markdown or LaTeX, reuse existing Lean declarations and notation
-tables instead of redefining the same object in several places.  The reviewer
-agent is expected to flag duplicated definitions and prose that violates the
-math-writing skill.
+When updating Markdown, reuse existing Lean declarations and notation tables
+instead of redefining the same object in several places.  When closeout LaTeX
+is generated, it must copy only Lean-supported claims or explicitly mark
+obligations.  The reviewer agent is expected to flag duplicated definitions,
+unsupported LaTeX claims, and prose that violates the math-writing skill.
 
 ## Command Reference
 
@@ -714,7 +744,7 @@ math-writing skill.
 | `python3 tools/qbe.py next-task` | Suggest the next task. |
 | `python3 tools/qbe.py new-task ...` | Create a task contract. |
 | `python3 tools/qbe.py update-task ...` | Update task status and active task. |
-| `python3 tools/qbe.py conversion-window ...` | Create a Lean/LaTeX/Markdown window. |
+| `python3 tools/qbe.py conversion-window ...` | Create a Lean/natural-language proof-map window. |
 | `python3 tools/qbe.py blueprint-refresh ...` | Refresh a compact task proof blueprint. |
 | `python3 tools/qbe.py blueprint-status ...` | Write the current blueprint control status as Markdown and JSON. |
 | `python3 tools/qbe.py write-context-pack ...` | Write a compact long-run context pack. |
@@ -723,13 +753,14 @@ math-writing skill.
 | `python3 tools/qbe.py cycle-pro-prompt ...` | Write a self-contained ChatGPT Pro prompt for the remaining unresolved leaves. |
 | `python3 tools/qbe.py memory-refresh ...` | Refresh `memory_digest.md`, cycle todo, benchmark/paper todo, technical-lemma todo, and the compact retrieval JSON. |
 | `python3 tools/qbe.py human-status ...` | Refresh `HUMAN_STATUS.md`, the single human-facing dashboard for the latest run. |
-| `python3 tools/qbe.py project-article-update ...` | Write the article-facing cycle packet and mirror generated status into the technical report. |
+| `python3 tools/qbe.py project-article-update ...` | Write the closeout article-facing packet, mirror generated status into the technical report, and generate the problem-specific LaTeX proof note. |
+| `python3 tools/qbe.py problem-latex-export ...` | Regenerate only the problem-specific LaTeX proof note for copying into a user manuscript. |
 | `python3 tools/qbe.py manual-cycle-closeout ...` | Close a chat-window/manual multi-agent loop by refreshing memory and mirroring the latest-only Overleaf appendix. Use this whenever work did not go through `sleep-run`. |
 | `python3 tools/qbe.py validate-candidate-metrics ...` | Check that a candidate-population metrics CSV does not plot verifier-only or pre-final witnesses as final solutions. |
 | `python3 tools/qbe.py new-open-problem ...` | Draft an open problem proposal. |
 | `python3 tools/qbe.py agent-brief ...` | Generate an agent context packet. |
 | `python3 tools/qbe.py run-cycle ... --upper-panel --middle-panel` | Create one multi-agent prompt deck; panel flags also create specialist upper and middle prompts. |
-| `python3 tools/qbe.py sleep-run ... --upper-panel --middle-panel` | Create or execute repeated agent cycles. By default it refreshes compact memory each cycle but does not archive a Chinese summary each cycle; panel flags run specialist audits whenever that layer is scheduled. |
+| `python3 tools/qbe.py sleep-run ... --upper-panel --middle-panel` | Create or execute repeated agent cycles. By default it refreshes compact memory each cycle but writes technical-report/problem LaTeX only at batch closeout; use `--article-update-each-cycle` only for short debugging runs. |
 | `python3 tools/qbe.py agent-note ...` | Append to a run dialogue board. |
 | `python3 tools/qbe.py trial-log ...` | Append one JSONL trial record. |
 | `python3 tools/qbe.py trial-summary` | Rewrite and print trial summaries. |
@@ -855,6 +886,11 @@ This repository cites external work by original source link:
   Lean target; paper-benchmark mode does not mutate paper constructions.
 - [Timeroot/Lean-QuantumInfo][lean-quantuminfo]:
   style reference for finite-dimensional quantum information formalization.
+- [Hayata-Yamasaki-Group/lean-quantum][lean-quantum]:
+  reference Lean library for quantum states, qudits, quantum channels, partial
+  traces, entropy, and trace inequalities. QBE uses it as a memory/reference
+  library; it is not currently imported as a dependency. See
+  [lean-quantum Reference Notes](docs/lean_quantum_reference_notes.md).
 - [teorth/optimizationproblems][optimizationproblems]:
   style reference for open mathematical problem registries.
 - [math-ai-org/mathcode][mathcode]:
@@ -868,6 +904,25 @@ This repository cites external work by original source link:
   dynamic proof-DAG leaves, bounded worker/refiner scopes, and deterministic
   gates. QBE adapts those ideas to domain-specific block-encoding proof
   snapshots; see [LeanMarathon][leanmarathon] [Reference Notes](docs/leanmarathon_reference_notes.md).
+- [Goedel-Architect][goedel-architect-paper]:
+  similar pattern for blueprint generation, solved-node preservation, and
+  failed-node diagnosis/refinement.
+- [Lean4Agent][lean4agent-paper]:
+  similar pattern for Lean-level workflow and trajectory verification. QBE uses
+  this as a process-contract direction; see
+  [Lean4Agent Process Verification Notes](docs/lean4agent_process_verification_notes.md).
+- [Sonoda--Akiyama--Uezato hierarchical provers][hierarchical-provers] and
+  [statistical provability][statistical-provability]:
+  similar patterns for reusable proof cuts and finite-budget proof progress.
+- [LeanConjecturer][leanconjecturer-paper] and
+  [Conjecturing-Proving Loop][cpl-paper]:
+  similar patterns for separating candidate theorem generation from proving.
+- Quantum verifier-feedback references:
+  [Generative AI for Quantum Circuits and Quantum Code][quantum-circuit-review],
+  [QUASAR][quasar-paper], [QASM-Eval][qasm-eval-paper],
+  [Qiskit QuantumKatas][qiskit-quantumkatas-paper], and
+  [AI-Mandel][ai-mandel-paper]. QBE uses these only as pre-Lean diagnostic and
+  curriculum references.
 
 See [Attribution](docs/attribution.md) and [NOTICE](NOTICE.md).
 For the sibling auto-Lean control-surface comparison, see
@@ -898,22 +953,23 @@ task boundary explicit.
 | Similar pattern | Where it appears | QBE adaptation | Task boundary |
 | --- | --- | --- | --- |
 | LLM-readable workflow packets | [ARIS][aris] uses single-purpose `SKILL.md` files for empirical research workflows. | `tools/qbe.py run-cycle` generates task-specific role prompts for upper, middle, lower, and reviewer agents. | [ARIS][aris] targets literature, experiments, reviews, and paper writing; QBE targets Lean-checked circuit/oracle formalization. |
-| Plain-file project memory | [ARIS][aris] uses Markdown templates, `MANIFEST.md`, research wiki pages, and review artifacts instead of a database. | `tasks/`, `conversion-windows/`, `paper-notes/`, `proof-obligations/`, `runs/`, and `research-wiki/` are plain files that humans and agents can inspect and edit. | QBE adds a stricter Lean/LaTeX/Markdown correspondence layer because theorem proving must preserve source-paper notation. |
+| Plain-file project memory | [ARIS][aris] uses Markdown templates, `MANIFEST.md`, research wiki pages, and review artifacts instead of a database. | `tasks/`, `conversion-windows/`, `paper-notes/`, `proof-obligations/`, `runs/`, and `research-wiki/` are plain files that humans and agents can inspect and edit. | QBE adds a stricter Lean/natural-language proof-map layer during iterations plus closeout LaTeX exports because theorem proving must preserve the operator contract and source/user notation. |
 | Independent review loop | [ARIS][aris] uses reviewer models to check claims, experiments, citations, and writing. | The reviewer agent checks Lean build status, hidden oracle assumptions, normalizers, ancilla layout, `BlockEncodingCost`, citations, and mode discipline. | In QBE, review cannot accept a claim merely because it reads well; the Lean gate and explicit proof obligations control completion. |
 | Trial memory and feedback compression | [Learning Beyond Gradients][lbg] records policy attempts in `trials.jsonl`, `summary.csv`, videos, logs, and rejected directions. | QBE records proof/circuit attempts in `runs/trials.jsonl` and `runs/trials_summary.csv`; rejected constructions become proof obligations or open problems. | [Learning Beyond Gradients][lbg] optimizes empirical behavior of heuristic policies; QBE uses similar memory discipline to organize theorem-proving attempts whose final target is formal verification. |
-| Hierarchical proof-system maintenance | [Learning Beyond Gradients][lbg] treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | QBE keeps an upper/middle/lower plus reviewer hierarchy: upper chooses strategy, middle maintains Lean/Markdown/LaTeX and memory, lower proves local leaves, reviewer gates claims. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
+| Hierarchical proof-system maintenance | [Learning Beyond Gradients][lbg] treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | QBE keeps an upper/middle/lower plus reviewer hierarchy: upper chooses strategy, middle maintains Lean/natural-language proof maps and memory, lower proves local leaves, reviewer gates claims; closeout writes LaTeX. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
 | Population-style candidate evolution | [EoH][eoh] evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea for operator-block-encoding construction: maintain families of candidate unitaries/circuits, vary them, evaluate them against necessary diagnostics and Lean-checkable obligations, and keep rejected designs as memory. | [EoH][eoh] is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction enters the certified population only when the Lean target and proof obligations are satisfied. |
 | Certified population versus insight pool | [EoH][eoh] keeps evaluated individuals and archives for reuse. | QBE splits this into two pools: Lean-certified candidates can be parents for mutation/crossover, while Pro suggestions, simulators, and Python searches are insight-pool records until Lean promotes them. | This prevents an unverified but attractive circuit from becoming the basis of later evolution or from appearing in solution plots. |
 | Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps candidate scores, trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer lower-ancilla, lower-gate, shallower constructions that also reduce formal gaps. | Paper-benchmark mode should not use evolutionary mutation to change the paper construction; population search belongs to operator construction or improvement tasks after the acceptance predicate is explicit. |
 | Lean proof diagnostics and theorem reuse | [MathCode][mathcode] provides Lean proof-analysis tools, theorem-store-like reuse, persistent REPL/LSP feedback, tree-of-subgoals proving, multi-planner search, and skills/plugins. | QBE uses a similar idea for reviewer scans, proof-attempt memory, reusable projection/gate lemmas, and future focused-check tooling. | [MathCode][mathcode] is a general math formalization agent; QBE is a domain-specific system for quantum oracle/block-encoding circuit matrices. QBE must not accept stored assumptions or proof-search scores as theorem closure. |
 | Blueprint and dynamic proof-DAG control | [LeanMarathon][leanmarathon] and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | [LeanMarathon][leanmarathon] targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |
 | Blueprint generation and refinement | [Goedel-Architect][goedel-architect-paper] uses a blueprint DAG, preserves solved nodes, and refines failed nodes by diagnosis. | QBE now treats post-cycle memory, Pro prompts, and active leaves as a diagnosis pipeline: wrong statement, missing dependency, proof too hard, or stale route. | Goedel-Architect is a general Lean proving architecture; QBE specializes the blueprint to quantum oracle/circuit source correspondence. |
-| Workflow and trajectory verification | [Lean4Agent][lean4agent-paper] models agent workflows and trajectories in Lean. | QBE records a future route for Lean-checking the orchestration layer itself: required artifacts, role pre/postconditions, and stale-route trajectory checks. | Workflow verification audits the process; it never replaces Lean proof of the quantum theorem. |
+| Workflow and trajectory verification | [Lean4Agent][lean4agent-paper] models agent workflows and trajectories in Lean, including structural checks, pre/postcondition-style semantic checks, and trajectory failure localization. | QBE implements a first process-contract layer in `QuantumBlockEncoding/Automation.lean`: role contracts, required artifacts, post-cycle summaries, Pro prompts, and workflow checks. The planned next step is a `WorkflowCertificate` for promotion and stale-route invariants over run logs. | Workflow verification audits the agent process; it never replaces Lean proof of `U_A` unitarity and the block-entry theorem. |
+| Quantum information formalization | [Lean-QuantumInfo][lean-quantuminfo] and [lean-quantum][lean-quantum] formalize adjacent finite-dimensional quantum information objects in Lean. | QBE treats them as semantic/style references for traces, states, channels, adjoints, tensor products, and unitaries before adding any operator-level bridge. | These projects are not block-encoding search systems; QBE cannot cite them as proof that a new circuit implements the target oracle. |
 | Quantum circuit generation evaluation taxonomy | [Generative AI for Quantum Circuits and Quantum Code][quantum-circuit-review] organizes circuit-generation systems by artifact type, training regime, and syntax/semantic/hardware evaluation layers. | QBE uses the taxonomy to separate pre-Lean diagnostics from proof closure: syntax, dimension, finite simulation, block-entry, unitarity, and schedule checks are useful search signals, while Lean theorems remain the final certificate. | The review concerns generated QASM/Qiskit/circuit artifacts; QBE targets operator-to-block-encoding construction with formal certificates. |
-| Tool-server and hierarchical reward feedback | [QUASAR][quasar] uses tool-augmented quantum simulators and hierarchical reward feedback for quantum assembly generation. | QBE borrows the idea of structured search signals for lower agents, but translates them into proof-DAG leaves, verifier-feedback fields, and rejected-route memory. | [QUASAR][quasar] optimizes generated circuit programs; QBE cannot treat reward as proof. |
-| Typed verifier fields | [QASM-Eval][qasm-eval] validates OpenQASM-3 programs with syntax, state, and timeline checks. | QBE mirrors this as `verifier-feedback/` fields and as lower 3, a necessary-condition verifier for finite matrix/path/support checks before Lean theorem closure. | QASM-Eval validates executable programs; QBE uses such checks only before Lean theorem closure. |
+| Tool-server and hierarchical reward feedback | [QUASAR][quasar] uses tool-augmented quantum simulators and hierarchical reward feedback for quantum assembly generation. | QBE borrows the idea of structured search signals for lower agents: syntax, shape, finite semantic checks, proof progress, and final certificate. Only the final certificate can certify correctness. | [QUASAR][quasar] optimizes generated circuit programs; QBE cannot treat reward or simulator success as proof. |
+| Typed verifier fields | [QASM-Eval][qasm-eval] validates OpenQASM-3 programs with syntax, state, and timeline checks. | QBE mirrors this as `verifier-feedback/` fields and as lower 3, a necessary-condition verifier for finite matrix/path/support/schedule checks before Lean theorem closure. | QASM-Eval validates executable programs; QBE uses such checks only before Lean theorem closure and only when failure is a sound counterexample to the proposed target. |
 | Kata-style deterministic tests | [Qiskit QuantumKatas][qiskit-quantumkatas] adapts [Microsoft QuantumKatas][microsoft-quantumkatas] into deterministic LLM evaluation tasks. | QBE treats this as a model for future `BlockEncodingKatas`: small deterministic operator/candidate/unitarity/block-entry lemmas that teach agents and humans before full paper benchmarks. | Kata tests are excellent pedagogy and regression checks, but they do not replace block-encoding proof obligations. |
-| Natural-language idea to tool-executable loop | [AI-Mandel][ai-mandel] turns literature-derived quantum-physics ideas into tool-executable configurations. | QBE keeps a natural-language proof architect lower agent that translates source proofs into dependency DAGs before the Lean implementation worker attacks one leaf; lower 3 checks necessary finite/tool feedback before large proof search. | AI-Mandel targets executable physics designs; QBE targets Lean-checked oracle/block-encoding certificates. |
+| Natural-language idea to tool-executable loop | [AI-Mandel][ai-mandel] turns literature-derived quantum-physics ideas into tool-executable configurations. | QBE keeps a natural-language proof architect lower agent that translates source proofs or user oracle requirements into dependency DAGs before the Lean implementation worker attacks one leaf; lower 3 checks necessary finite/tool feedback before large proof search. | AI-Mandel targets executable physics designs; QBE targets Lean-checked oracle/block-encoding certificates. |
 
 The analogy is:
 
@@ -988,8 +1044,8 @@ proof-DAG, correspondence, or memory intervention inside the batch.
 QBE's many Markdown files are therefore not decoration.  They play the same
 operational role that [ARIS][aris] skills, templates, manifests, and research-wiki
 pages play: they are the stable interface between humans, agents, and the next
-cycle.  The extra QBE-specific layers are the Lean/LaTeX/Markdown conversion
-window, candidate-score archive, and proof blueprint, because a
+cycle.  The extra QBE-specific layers are the Lean/natural-language conversion
+window, closeout LaTeX proof export, candidate-score archive, and proof blueprint, because a
 block-encoding project must preserve the operator contract, candidate
 construction, source-paper notation when a benchmark is used, and checked
 declaration dependencies.
@@ -1061,7 +1117,18 @@ than unconstrained tactic search.
 
 ## Proof Exports
 
-Compiled Lean proof blocks are exported for human reading under
+Compiled Lean proof blocks are exported in two different ways.
+
+Problem-specific LaTeX notes live under
+[`paper-notes/problem-exports/`](paper-notes/problem-exports/).  These are the
+snippets a user can copy into their own article for the active oracle or block
+encoding problem:
+
+- Latest task proof note: `paper-notes/problem-exports/<task-id>/latest.tex`
+- Per-run archive: `paper-notes/problem-exports/<task-id>/<run-id>.tex`
+
+Paper-benchmark notes, when a source paper is being reproduced, may also live
+under a paper-specific directory such as
 [`paper-notes/GHL2025/`](paper-notes/GHL2025/):
 
 - Markdown proof notes: `paper-notes/GHL2025/markdown/`
@@ -1069,9 +1136,10 @@ Compiled Lean proof blocks are exported for human reading under
 - LaTeX section files: `paper-notes/GHL2025/latex/sections/`
 
 This export is intentionally batch-based.  Lower agents may prove many small
-Lean lemmas during a 5-hour run; the middle agent should translate accepted
-proof blocks into Markdown and LaTeX once at the end of the batch, not after
-every small lemma.
+Lean lemmas during a multi-hour run; the middle agent should translate the
+actual Lean status into concise Markdown/natural language during the run, then
+write the technical-report LaTeX and problem-specific LaTeX once at closeout,
+not after every small lemma.
 
 [aris]: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
 [lbg]: https://github.com/Trinkle23897/learning-beyond-gradients
@@ -1099,4 +1167,5 @@ every small lemma.
 [lean-rademacher-paper]: https://arxiv.org/abs/2503.19605
 [lean-rademacher-repo]: https://github.com/auto-res/lean-rademacher
 [lean-quantuminfo]: https://github.com/Timeroot/Lean-QuantumInfo
+[lean-quantum]: https://github.com/Hayata-Yamasaki-Group/lean-quantum
 [optimizationproblems]: https://github.com/teorth/optimizationproblems

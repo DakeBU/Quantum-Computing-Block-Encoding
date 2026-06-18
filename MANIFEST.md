@@ -6307,3 +6307,18 @@ block-encoding formalization lifecycle.
 | 2026-06-17 18:23:11 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
 | 2026-06-17 18:23:11 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
 | 2026-06-17 18:23:11 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-18 11:43:52 | qbe.py problem-latex-export | `runs/20260617-060327-QBE-AUTO-002-cycle01/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:43:52 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260617-060327-QBE-AUTO-002-cycle01.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:43:52 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-18 11:44:16 | qbe.py project-article-update | `runs/20260617-060327-QBE-AUTO-002-cycle01/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:44:16 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-060327-QBE-AUTO-002-cycle01.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:44:16 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-18 11:44:16 | qbe.py problem-latex-export | `runs/20260617-060327-QBE-AUTO-002-cycle01/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:44:16 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260617-060327-QBE-AUTO-002-cycle01.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:44:16 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-18 11:45:02 | qbe.py project-article-update | `runs/manual-multiagent/20260617-optctrl-pro/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:45:02 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260617-optctrl-pro.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:45:02 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-18 11:45:02 | qbe.py problem-latex-export | `runs/manual-multiagent/20260617-optctrl-pro/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:45:02 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260617-optctrl-pro.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 11:45:02 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |

@@ -52,6 +52,7 @@ EOH_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "EoH"
 LBG_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "learning-beyond-gradients"
 LEANMARATHON_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "LeanMarathon"
 LEAN_QUANTUM_INFO_LOCAL_REFERENCE = OUTER_REPOS_QUANTUM_ROOT / "Lean-QuantumInfo"
+LEAN_QUANTUM_LOCAL_REFERENCE = OUTER_REPOS_QUANTUM_ROOT / "lean-quantum"
 MATHCODE_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "mathcode"
 OPTIMIZATION_PROBLEMS_LOCAL_REFERENCE = OUTER_REPOS_MATH_ROOT / "optimizationproblems"
 LEANMARATHON_PDF = OUTER_PAPERS_AUTOMATION_ROOT / "LeanMarathon-2606.05400.pdf"
@@ -75,6 +76,7 @@ RETRIEVAL_INDEX_DIR = ROOT / "research-wiki" / "retrieval-index"
 EFFICIENCY_DIR = ROOT / "runs" / "efficiency"
 CONTEXT_PACK_DIR = ROOT / "runs" / "context-packs"
 PROJECT_ARTICLE_UPDATE_DIR = ROOT / "paper-notes" / "project-paper" / "cycle-updates"
+PROBLEM_EXPORT_DIR = ROOT / "paper-notes" / "problem-exports"
 PRO_PROMPT_DIR = ROOT / "runs" / "pro-prompts"
 MANUAL_MULTIAGENT_DIR = ROOT / "runs" / "manual-multiagent"
 
@@ -100,6 +102,7 @@ WORK_DIRS = [
     "runs/pro-prompts",
     "runs/manual-multiagent",
     "paper-notes/project-paper/cycle-updates",
+    "paper-notes/problem-exports",
     "research-wiki/papers",
     "research-wiki/ideas",
     "research-wiki/claims",
@@ -583,7 +586,8 @@ They are inspired by similar blueprint/DAG-control patterns in LeanMarathon,
 but adapted to QBE's block-encoding target:
 
 - Lean declarations are the correctness core;
-- Markdown and LaTeX artifacts are the human proof map;
+- Markdown/natural-language artifacts are the inner-cycle human proof map;
+- closeout LaTeX artifacts state accepted proof blocks for reports and user papers;
 - proof obligations and cited-results ledgers keep unproved contracts explicit;
 - dynamic leaf candidates tell lower agents which local proof node to attempt.
 
@@ -1149,7 +1153,9 @@ lake build && lake build Tests
 ## Three-Layer Agent Protocol
 
 - Upper agent: choose strategy, accept/reject directions, compress findings.
-- Middle agent: maintain LaTeX/Markdown/Lean translation and proof obligations.
+- Middle agent: maintain Lean-to-natural-language and natural-language-to-Lean
+  proof translation, proof obligations, and compact memory.  LaTeX export is a
+  closeout task, not an inner-cycle requirement.
 - Lower agents: try one concrete circuit/proof construction each.
 - Reviewer: check the actual Lean diff, resource assumptions, and citation trail.
 
@@ -1164,7 +1170,7 @@ Agents coordinate through `runs/<run-id>/dialogue.md` and append trial records t
 
 ## Working Instructions
 
-1. Use a conversion window for any LaTeX/Markdown/Lean translation.
+1. Use a conversion window for any natural-language/Lean translation.
 2. Put checked code in `QuantumBlockEncoding/`.
 3. Put unresolved theorem gaps in `proof-obligations/`.
 4. If a paper assumes an unimplemented oracle, draft an open problem proposal.
@@ -1735,7 +1741,7 @@ Recent task-relevant declarations:
     for path in artifacts:
         role = "task/proof map"
         if "conversion-windows" in str(path):
-            role = "Lean/Markdown/LaTeX conversion"
+            role = "Lean/natural-language conversion"
         elif "proof-obligations" in str(path):
             role = "open obligations"
         elif "paper-notes" in str(path):
@@ -1756,8 +1762,9 @@ Recent task-relevant declarations:
   Lean statements, source-paper prose, register layouts, normalizers, and
   cited contracts match before broad lower proving.
 - Stage 2 DAG proof discharge: lower agents work on dynamic leaves only;
-  reviewer accepts progress only through `python3 tools/qbe.py check` and
-  synchronized Markdown/LaTeX correspondence.
+  reviewer accepts inner-cycle progress only through `python3 tools/qbe.py check`
+  and synchronized Lean-to-natural-language proof status.  LaTeX exports are
+  checked at 6h/convergence closeout.
 - Mixed lower-agent proof mode: lower 1 writes the natural-language dependency
   proof and active-leaf table; lower 2 compiles exactly one ready Lean leaf;
   lower 3, when available, runs necessary-condition diagnostics such as finite
@@ -1931,10 +1938,10 @@ def blueprint_status_text(state: dict) -> str:
             "## Next-Cycle Rule",
             "",
             "- Upper must choose one dynamic leaf or one refiner illness area before lower work.",
-            "- Middle must map the selected paper proof fragment to Lean declarations or explicit obligations.",
+            "- Middle must map the selected source/user proof fragment to Lean declarations or explicit obligations in concise natural language.",
             "- Lower 1 writes the natural-language DAG proof packet; lower 2 proves one ready Lean leaf; lower 3, if present, runs finite/path/support diagnostics and records typed verifier feedback.",
             "- Lower must edit only the assigned local target and run `python3 tools/qbe.py check` after Lean edits.",
-            "- Reviewer accepts progress only when the Lean gate and the Markdown/LaTeX correspondence are synchronized.",
+            "- Reviewer accepts inner-cycle progress only when the Lean gate and the natural-language proof map are synchronized; LaTeX export is checked at closeout.",
         ]
     ) + "\n"
 
@@ -1993,10 +2000,10 @@ def build_context_pack(task_id: str, cycle: int) -> str:
             "",
             "- Use this compact context before reading long historical files.",
             "- In paper-benchmark mode, reproduce the paper construction and do not add assumptions.",
-            "- Translate the selected LaTeX proof fragment into Lean-facing declarations before lower proof search.",
+            "- Translate the selected source/user proof fragment into Lean-facing declarations before lower proof search.",
             "- Maintain a proof-DAG frontier: root theorem, dependencies, active leaves, stale leaves, and owner lower profile.",
             "- Lower 1 writes the natural-language DAG proof packet; lower 2 compiles one ready Lean leaf; lower 3, if present, runs finite/path/support diagnostics before a large Lean proof.",
-            "- Export newly accepted Lean proof blocks to Markdown/LaTeX in batch, not after every tiny edit.",
+            "- Export newly accepted Lean proof blocks to problem-specific LaTeX only at 6h/convergence closeout, not after every tiny edit.",
             "- Keep `python3 tools/qbe.py check` as the deterministic gate.",
         ]
     ) + "\n"
@@ -2899,7 +2906,7 @@ def manuscript_rule_latex(task_id: str) -> str:
             "The project report may discuss this cycle as paper-benchmark process evidence.  It must not\n"
             "claim completion of the GHL2025 paper-benchmark track \\citep{guseynovHuangLiu2025} unless\n"
             "the final theorem-facing block-extraction statement is closed in Lean and the\n"
-            "Markdown/LaTeX proof map has been synchronized."
+            "natural-language proof map and closeout LaTeX export have been synchronized."
         )
     return (
         "The project report may discuss this cycle as process evidence.  It must not "
@@ -2926,7 +2933,7 @@ def article_delta_markdown(task_id: str) -> str:
             [
                 "- Keep the paper-benchmark track honest: Guseynov--Huang--Liu 2025 is secondary benchmark data, not the main technical-report case study; final completion depends on the current Lean gate and `sorry` status below.",
                 "- If this cycle only changes proof-route memory or obstruction analysis, update the report's evidence/appendix status, not the headline contribution.",
-                "- If this cycle closes a named Lean theorem, middle should export the theorem to Markdown and LaTeX proof notes before strengthening the project-paper claim.",
+                "- If this 6h/convergence closeout closes a named Lean theorem, middle should export the theorem to the problem-specific LaTeX proof note before strengthening the project-paper claim.",
             ]
         )
     else:
@@ -4272,12 +4279,151 @@ generated at \\texttt{{{latex_escape(now_stamp())}}}.
 """
 
 
+def problem_specific_latex_export(task_id: str, cycle: int, run_dir: Path) -> str:
+    """Return a user-paper-facing LaTeX proof note for the active problem.
+
+    This is intentionally different from the technical-report update.  It is a
+    compact, copyable theorem/proof note for the mathematical problem being
+    solved.  It should not contain raw logs or local absolute paths.
+    """
+    title, task_text = task_context(task_id)
+    generated = latex_escape(now_stamp())
+    if task_id == "QBE-OP-OPTCTRL-001" or "evolvedEqFlipCost" in task_text:
+        return f"""% Auto-generated by tools/qbe.py problem-latex-export.
+% Problem-specific proof note for copying into a user manuscript.
+% Generated: {generated}.  Task: {latex_escape(task_id)}.
+% Requires ordinary amsmath/amssymb notation.  The Lean declaration names are
+% included as audit anchors and may be removed from a polished paper draft.
+
+\\subsection{{A concrete block encoding of the transfer operator}}
+
+Let \\(T\\) be a one-qubit time register, let \\(\\tau\\) be a one-qubit type
+register, and let \\(S\\) be a one-qubit passive state register.  For the
+concrete case \\(k=1\\), define
+\\[
+  E_1
+  =
+  |0\\rangle\\langle 1|_T
+  \\otimes
+  |0\\rangle\\langle 1|_\\tau
+  \\otimes I_S .
+\\]
+The operator \\(E_1\\) is a partial isometry and is not itself a unitary on the
+system register.  In the ABEIS Lean development this non-unitarity obstruction
+is recorded by \\texttt{{OptimalControl.exampleOperator\\_not\\_rationalOrthogonal}}.
+
+Add one block-encoding auxiliary qubit \\(a\\), initialized and projected in
+\\(|0\\rangle_a\\).  Consider the logical reversible circuit
+\\[
+  U_{{\\mathrm{{evo}}}}
+  =
+  \\bigl(X_a X_T X_\\tau\\bigr)
+  \\;\\mathrm{{CCX}}_{{\\tau,T\\to a}},
+\\]
+where the three \\(X\\) gates act on disjoint qubits and hence form one
+parallel layer after the Toffoli layer.  The state register \\(S\\) is untouched.
+
+\\paragraph{{Claim.}}
+The circuit \\(U_{{\\mathrm{{evo}}}}\\) is an exact one-ancilla block encoding of
+\\(E_1\\):
+\\[
+  (\\langle 0|_a\\otimes I_{{T\\tau S}})
+  U_{{\\mathrm{{evo}}}}
+  (|0\\rangle_a\\otimes I_{{T\\tau S}})
+  =
+  E_1 .
+\\]
+In the logical gate library \\(\\{{X,\\mathrm{{CNOT}},\\mathrm{{Toffoli}}\\}}\\),
+its certified score is
+\\[
+  (\\mathrm{{depth}},\\mathrm{{gateCount}},\\mathrm{{auxiliaryQubits}},
+  \\mathrm{{oracleCalls}})
+  =
+  (2,4,1,0).
+\\]
+
+\\paragraph{{Proof.}}
+The Toffoli gate computes the equality flag for the selected input branch
+\\((T,\\tau)=(1,1)\\) into the auxiliary qubit \\(a\\).  On that selected branch,
+the following parallel layer flips \\(a\\), \\(T\\), and \\(\\tau\\), sending
+\\(|0\\rangle_a|1\\rangle_T|1\\rangle_\\tau\\) to
+\\(|0\\rangle_a|0\\rangle_T|0\\rangle_\\tau\\).  On every non-selected branch,
+the auxiliary qubit ends in \\(|1\\rangle_a\\) after the final parallel layer,
+so those amplitudes vanish under the left clean projection
+\\(\\langle 0|_a\\).  The register \\(S\\) is never acted on, giving the tensor
+factor \\(I_S\\).
+
+The formal Lean certificate names the corresponding \\(16\\times16\\) rational
+orthogonal matrix and proves the clean-block equality directly:
+\\[
+  \\texttt{{OptimalControl.evolvedEqFlipVerified}},
+  \\quad
+  \\texttt{{OptimalControl.evolvedEqFlipUnitary\\_isRationalOrthogonal}},
+  \\quad
+  \\texttt{{OptimalControl.evolvedEqFlipUnitary\\_cleanBlock}}.
+\\]
+The resource record is certified by
+\\texttt{{OptimalControl.evolvedEqFlipCandidate\\_cost}}.
+
+\\paragraph{{Scope.}}
+This note proves the concrete \\(r=1,k=1\\) logical reversible
+permutation-matrix instance.  It is not a hardware-decomposed resource theorem,
+not yet a general arbitrary-register construction, and not a Lean-proved
+global optimality theorem.
+"""
+    status = task_article_status_latex(task_id, run_dir)
+    return f"""% Auto-generated by tools/qbe.py problem-latex-export.
+% Problem-specific proof/status note for copying into a user manuscript.
+% Generated: {generated}.  Task: {latex_escape(task_id)}.
+
+\\subsection{{Problem-specific proof note: \\texttt{{{latex_escape(task_id)}}}}}
+
+Task title: {latex_escape(title)}.
+
+{status}
+
+\\paragraph{{Use in a manuscript.}}
+This export is a problem-facing proof/status note, not a full technical-report
+section.  Copy only claims whose Lean declarations are named above.  Claims
+listed as obligations, cited contracts, diagnostics, or insight-pool proposals
+should remain assumptions or future work until a Lean certificate promotes
+them.
+"""
+
+
+def write_problem_latex_export(
+    task_id: str,
+    cycle: int,
+    run_dir: Path,
+    article_root: Path | None = None,
+) -> tuple[Path, Path, Path, list[Path]]:
+    latex = problem_specific_latex_export(task_id, cycle, run_dir)
+    task_slug = slugify(task_id)
+    export_dir = PROBLEM_EXPORT_DIR / task_slug
+    run_tex = run_dir / "problem_export.tex"
+    archive_tex = export_dir / f"{run_dir.name}.tex"
+    latest_tex = export_dir / "latest.tex"
+    write_text(run_tex, latex)
+    write_text(archive_tex, latex)
+    write_text(latest_tex, latex)
+    add_manifest("qbe.py problem-latex-export", run_tex, "article", f"Wrote problem-specific LaTeX export for {task_id} cycle {cycle}")
+    add_manifest("qbe.py problem-latex-export", archive_tex, "article", f"Archived problem-specific LaTeX export for {task_id} cycle {cycle}")
+    external_written: list[Path] = []
+    target_root = article_root or PROJECT_ARTICLE_ROOT
+    if target_root and target_root.exists():
+        ext_tex = target_root / "problem_exports" / f"{task_slug}.tex"
+        write_text(ext_tex, latex)
+        add_manifest("qbe.py problem-latex-export", ext_tex, "article", "Mirrored latest problem-specific LaTeX export")
+        external_written.append(ext_tex)
+    return run_tex, archive_tex, latest_tex, external_written
+
+
 def write_project_article_update(
     task_id: str,
     cycle: int,
     run_dir: Path,
     article_root: Path | None = None,
-) -> tuple[Path, Path, Path, Path, list[Path]]:
+) -> tuple[Path, Path, Path, Path, list[Path], tuple[Path, Path, Path, list[Path]]]:
     markdown = project_article_update_markdown(task_id, cycle, run_dir)
     latex = project_article_update_latex(task_id, cycle, run_dir)
     run_md = run_dir / "article_update.md"
@@ -4303,7 +4449,8 @@ def write_project_article_update(
         write_text(ext_md, project_article_public_markdown(markdown))
         add_manifest("qbe.py project-article-update", ext_tex, "article", "Mirrored latest generated status into the ABEIS technical report")
         external_written.extend([ext_tex, ext_md])
-    return run_md, archive_md, run_tex, archive_tex, external_written
+    problem_export = write_problem_latex_export(task_id, cycle, run_dir, target_root)
+    return run_md, archive_md, run_tex, archive_tex, external_written, problem_export
 
 
 def validate_candidate_metrics(task_id: str) -> tuple[bool, list[str]]:
@@ -4348,18 +4495,42 @@ def cmd_project_article_update(args: argparse.Namespace) -> int:
     run_dir = resolve_run_dir_arg(args.run_id)
     cycle = resolved_cycle(args.cycle, run_dir)
     article_root = Path(args.article_root).expanduser() if args.article_root else None
-    run_md, archive_md, run_tex, archive_tex, external = write_project_article_update(
+    run_md, archive_md, run_tex, archive_tex, external, problem_export = write_project_article_update(
         args.id,
         cycle,
         run_dir,
         article_root,
     )
+    problem_run_tex, problem_archive_tex, problem_latest_tex, problem_external = problem_export
     print(f"article-update: {display_path(run_md)}")
     print(f"article-update-archive: {display_path(archive_md)}")
     print(f"article-update-tex: {display_path(run_tex)}")
     print(f"article-update-tex-archive: {display_path(archive_tex)}")
     for path in external:
         print(f"article-update-external: {display_path(path)}")
+    print(f"problem-export-tex: {display_path(problem_run_tex)}")
+    print(f"problem-export-archive: {display_path(problem_archive_tex)}")
+    print(f"problem-export-latest: {display_path(problem_latest_tex)}")
+    for path in problem_external:
+        print(f"problem-export-external: {display_path(path)}")
+    return 0
+
+
+def cmd_problem_latex_export(args: argparse.Namespace) -> int:
+    run_dir = resolve_run_dir_arg(args.run_id)
+    cycle = resolved_cycle(args.cycle, run_dir)
+    article_root = Path(args.article_root).expanduser() if args.article_root else None
+    run_tex, archive_tex, latest_tex, external = write_problem_latex_export(
+        args.id,
+        cycle,
+        run_dir,
+        article_root,
+    )
+    print(f"problem-export-tex: {display_path(run_tex)}")
+    print(f"problem-export-archive: {display_path(archive_tex)}")
+    print(f"problem-export-latest: {display_path(latest_tex)}")
+    for path in external:
+        print(f"problem-export-external: {display_path(path)}")
     return 0
 
 
@@ -4381,12 +4552,13 @@ def cmd_manual_cycle_closeout(args: argparse.Namespace) -> int:
         return 1
     digest_path, todo_path, index_path = write_memory_refresh(args.id, cycle, run_dir)
     article_root = Path(args.article_root).expanduser() if args.article_root else None
-    run_md, archive_md, run_tex, archive_tex, external = write_project_article_update(
+    run_md, archive_md, run_tex, archive_tex, external, problem_export = write_project_article_update(
         args.id,
         cycle,
         run_dir,
         article_root,
     )
+    problem_run_tex, problem_archive_tex, problem_latest_tex, problem_external = problem_export
     print(f"manual-closeout-run: {display_path(run_dir)}")
     if summary_path:
         print(f"manual-closeout-summary: {display_path(summary_path)}")
@@ -4395,8 +4567,12 @@ def cmd_manual_cycle_closeout(args: argparse.Namespace) -> int:
     print(f"manual-closeout-index: {display_path(index_path)}")
     print(f"manual-closeout-article: {display_path(run_md)}")
     print(f"manual-closeout-article-tex: {display_path(run_tex)}")
+    print(f"manual-closeout-problem-tex: {display_path(problem_run_tex)}")
+    print(f"manual-closeout-problem-latest: {display_path(problem_latest_tex)}")
     for path in external:
         print(f"manual-closeout-overleaf: {display_path(path)}")
+    for path in problem_external:
+        print(f"manual-closeout-problem-overleaf: {display_path(path)}")
     if not external:
         print("warning: no external technical-report appendix was written; check --article-root")
     return 0
@@ -4947,11 +5123,13 @@ Local paper-source archive for agent work:
   cycle.  In long runs, QBE can
   replace one broad upper pass with a bounded upper panel: source/visual audit,
   proof-DAG strategy, process/memory audit, and director synthesis.
-- Middle is the workflow maintainer: synchronize Lean, Markdown, and LaTeX;
-  convert upper strategy into exact declarations, file scopes, proof
-  obligations, and lower-agent packets; maintain success/failure memory.  In
-  final audits or stale-context episodes, QBE can split this into a bounded
-  middle panel: source correspondence, memory/retrieval, report/export, and
+- Middle is the workflow maintainer: synchronize Lean with concise natural
+  language.  It translates lower Lean results into readable proof status and
+  translates natural-language proof plans into Lean-facing declarations, file
+  scopes, proof obligations, and lower-agent packets.  LaTeX is generated at
+  6h/convergence closeout, not during routine inner proof-search cycles.  In
+  final audits or stale-context episodes, QBE can split middle into a bounded
+  panel: source correspondence, memory/retrieval, report/export, and
   coordinator synthesis.
 - Lower agents are implementation workers: solve one assigned Lean/circuit
   task, run the gate if they edit Lean, and report useful failures without
@@ -4959,8 +5137,9 @@ Local paper-source archive for agent work:
 - Reviewer is the gatekeeper: audit the diff, build status, hidden oracle
   assumptions, normalizers, ancillas, `BlockEncodingCost`, schedule/depth,
   resource counts, links, and Markdown math discipline.
-	- Lean source is authoritative for correctness.  Markdown and LaTeX are the
-	  human-readable proof map.  JSONL/CSV trial logs are the process memory.
+	- Lean source is authoritative for correctness.  Markdown/natural language is
+	  the inner-cycle proof map; closeout LaTeX is the user/report proof export.
+	  JSONL/CSV trial logs are the process memory.
 
 	Verifier-feedback discipline:
 
@@ -5098,10 +5277,13 @@ Human-facing correspondence rule:
   equations, normalizers, register layout, and resource statement.
 - Proof-export cadence is deliberately slower than Lean search.  Do not spend
   tokens rewriting a polished proof document after every small lower-agent
-  change.  At the end of a multi-hour batch, middle should export all newly
-  accepted Lean proof blocks into Markdown and LaTeX under `paper-notes/`,
-  with a master Overleaf `main.tex` and section files.  Reviewer should then
-  audit that the proof export matches the compiled Lean declarations.
+  change.  During the batch, middle should keep concise Markdown/natural-language
+  proof maps.  At 6h/convergence closeout, middle should export accepted Lean
+  proof blocks into the technical-report update and into
+  `paper-notes/problem-exports/<task-id>/latest.tex`.  Paper-benchmark tasks
+  may additionally maintain paper-specific Overleaf files under `paper-notes/`.
+  Reviewer should then audit that each proof export matches the compiled Lean
+  declarations.
 - Project-paper cadence: the paper-specific LaTeX export is an appendix input
   to the larger article "Auto-Lean-in-Sleep: Block Encoding for Quantum
   Computing".  During Lean-heavy cycles, do not spend lower-agent effort on
@@ -5217,10 +5399,12 @@ wrong target cheaply.  If a previous lower target is already compiled, retire
 it instead of asking another worker to rediscover it.
 
 Require the middle agent to maintain two-way translation every cycle:
-paper/LaTeX-to-Lean for the next lower task, and Lean-to-Markdown/LaTeX for
-what has actually been proved, failed, or left as an obligation.  Upper should
-use that synchronized proof map, not raw Lean diffs alone, when planning the
-next cycle.
+source/user-problem-to-Lean for the next lower task, and Lean-to-concise
+Markdown/natural-language for what has actually been proved, failed, or left
+as an obligation.  Upper should use that synchronized proof map, not raw Lean
+diffs alone, when planning the next cycle.  LaTeX is produced at
+6h/convergence closeout through the technical-report packet and the
+problem-specific proof-note export.
 
 If a paper-benchmark lower attempt fails on a fixed lemma, ask the middle agent to
 start or update a `proof-attempts/` record rather than changing the theorem.
@@ -5321,9 +5505,12 @@ work while preserving a human-readable proof map.
 
 Maintain:
 
-1. Conversion windows: LaTeX symbols, Markdown explanations, Lean names,
-   normalizers, register layouts, and resource claims.
-2. Paper notes: readable theorem/proof sketches tied to source equations.
+1. Conversion windows: source/user symbols when present, concise Markdown
+   explanations, Lean names, normalizers, register layouts, and resource
+   claims.  In inner cycles, prefer natural language plus Lean names over
+   LaTeX prose.
+2. Paper/problem notes: readable theorem/proof sketches tied to source
+   equations or user-specified operator requirements.
 3. Proof obligations: every missing circuit, oracle, lemma, bound, and resource
    equality must be explicit.
 4. Trial memory: summarize what worked, what failed, and what should be tried
@@ -5337,18 +5524,19 @@ Maintain:
 8. Verifier-feedback memory: for each lower attempt, record the leaf id, typed
    success/failure fields, error class, and next route in `runs/trials.jsonl`
    and, when useful, under `verifier-feedback/`.
-9. Project-article update bridge: after each active cycle, ensure the generated
-   article update packet reflects the Lean status, proof-DAG frontier, and
-   safe manuscript edits.  If stable claims should move into the ABEIS
-   technical report, update only the relevant section or generated status
-   appendix and cite the supporting artifact.
+9. Closeout export bridge: at 6h closeout, convergence closeout, or explicit
+   `project-article-update`, ensure the generated technical-report packet and
+   problem-specific LaTeX proof note reflect the Lean status, proof-DAG
+   frontier, and safe manuscript edits.  Do not produce LaTeX during ordinary
+   inner proof-search cycles.
 
 You are responsible for two-way translation.  Before lower work, translate the
-paper's relevant LaTeX theorem/equation/circuit fragment into a Lean-facing
-contract.  After lower work, translate the actual Lean declarations, proof
-status, failed goals, and remaining obligations back into Markdown and LaTeX
-so humans can compare them with the original paper in the next reflection
-cycle.
+paper's relevant theorem/equation/circuit fragment or the user's operator
+requirement into a Lean-facing contract.  After lower work, translate the
+actual Lean declarations, proof status, failed goals, and remaining obligations
+back into concise Markdown/natural language so humans and upper agents can
+decide the next Lean task.  Export LaTeX only at 6h/convergence closeout or
+when the user explicitly asks for a proof-note export.
 
 In paper-benchmark mode, optimize for Phase 1 first: complete the paper transcript
 and exact Lean contracts before asking lower agents to prove non-critical
@@ -5423,12 +5611,13 @@ partial progress or a useful failure.  Update `runs/trials.jsonl` through
 `trial-log --feedback-field ...` and, if needed, write a durable JSON/Markdown
 packet under `verifier-feedback/<task-id>/`.
 
-Use `.agents/skills/qbe-project-paper-update/SKILL.md` at the end of a
-multi-hour active cycle or when `article_update.md` reports a manuscript-facing
-delta.  The update is concise and evidence-preserving: record what changed in
-Lean/proof memory, which report section can safely change, and which stronger
-claims remain forbidden until Lean and proof notes support them.  Do not spend
-lower-agent proof time on article polish.
+Use `.agents/skills/qbe-project-paper-update/SKILL.md` only at the end of a
+multi-hour active cycle, convergence closeout, or when the user explicitly
+asks for a manuscript-facing delta.  The update is concise and
+evidence-preserving: record what changed in Lean/proof memory, write the
+technical-report status packet, write the problem-specific LaTeX proof note,
+and list which stronger claims remain forbidden until Lean supports them.  Do
+not spend lower-agent proof time on article polish.
 
 When lower agents are available, middle must split the packet deliberately:
 lower 1 receives a natural-language DAG/proof packet with source anchors,
@@ -5440,9 +5629,10 @@ map and lower-3 diagnostics if they exist, not restart broad search.  Lower 4
 should be scheduled only as a refiner/reducer after a concrete Lean failure,
 for example to isolate a maxRecDepth route or factor out a reusable lemma.
 
-When editing Markdown or LaTeX, follow `.agents/skills/qbe-math-writing/SKILL.md`:
+When editing Markdown or closeout LaTeX, follow `.agents/skills/qbe-math-writing/SKILL.md`:
 definitions before theorem statements, short claim statements, precise
-justifications, and no unannounced assumptions.
+justifications, and no unannounced assumptions.  Markdown math uses `$` or
+`$$`; LaTeX `.tex` files may use ordinary LaTeX syntax.
 
 When a paper invokes a prior theorem, a "standard" result, or a classical
 subroutine, update `research-wiki/cited-results/` before lower work depends on
@@ -5527,7 +5717,9 @@ Look for:
 2. Oracle assumptions that should be gate-level circuits or explicit proof
    obligations.
 3. Normalizer, ancilla, register ordering, dimension, and resource-count drift.
-4. Markdown/LaTeX/Lean correspondence gaps, including Markdown math delimiters.
+4. Inner-cycle Lean/natural-language correspondence gaps, including Markdown
+   math delimiters; closeout LaTeX export gaps when the run is at a 6h or
+   convergence boundary.
 5. Citation or source-link gaps.
 6. Duplicated definitions that should be references to existing Lean or paper
    note declarations.
@@ -5544,9 +5736,11 @@ Look for:
 10. Verifier-feedback gaps covered by
    `.agents/skills/qbe-verifier-feedback/SKILL.md`, especially failures that
    lack typed fields and therefore cannot guide upper/middle scheduling.
-11. Missing two-way translation: after Lean changes, the Markdown/LaTeX proof
-	   map must say what was actually proved, what failed, and how that corresponds
-	   to the paper statement.
+11. Missing two-way translation: after Lean changes, the Markdown/natural-language
+	   proof map must say what was actually proved, what failed, and how that
+	   corresponds to the source or user problem statement.  At closeout, the
+	   technical-report update and problem-specific LaTeX export must match that
+	   map.
 12. Missing cited-results memory for prior work or "standard" facts used by the
 	    paper.  Reject a dependency if the source, exact statement, Lean status, or
 	    dependent use sites are vague.
@@ -6082,7 +6276,8 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
         if args.summary_each_cycle:
             write_cycle_zh_summary(args.id, cycle, run_dir)
         write_memory_refresh(args.id, cycle, run_dir)
-        if not args.skip_article_update:
+        write_article_this_cycle = args.article_update_each_cycle or cycle == args.cycles
+        if not args.skip_article_update and write_article_this_cycle:
             write_project_article_update(args.id, cycle, run_dir)
         if final_code != 0:
             return final_code
@@ -6152,7 +6347,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_update.add_argument("--active", action="store_true")
     p_update.set_defaults(func=cmd_update_task)
 
-    p_window = sub.add_parser("conversion-window", help="create a Lean/LaTeX/Markdown window")
+    p_window = sub.add_parser("conversion-window", help="create a Lean/natural-language conversion window")
     p_window.add_argument("id")
     p_window.add_argument("--title", required=True)
     p_window.set_defaults(func=cmd_conversion_window)
@@ -6224,6 +6419,20 @@ def build_parser() -> argparse.ArgumentParser:
         help="optional technical-report root; defaults to QBE_PROJECT_ARTICLE_ROOT or ../Auto_Proof_Papers/ABEIS",
     )
     p_article_update.set_defaults(func=cmd_project_article_update)
+
+    p_problem_export = sub.add_parser(
+        "problem-latex-export",
+        help="write a problem-specific LaTeX proof note for copying into a user manuscript",
+    )
+    p_problem_export.add_argument("id")
+    p_problem_export.add_argument("--cycle", type=int, default=1)
+    p_problem_export.add_argument("--run-id", default="latest")
+    p_problem_export.add_argument(
+        "--article-root",
+        default="",
+        help="optional technical-report root for mirroring problem_exports/<task>.tex",
+    )
+    p_problem_export.set_defaults(func=cmd_problem_latex_export)
 
     p_manual_closeout = sub.add_parser(
         "manual-cycle-closeout",
@@ -6372,7 +6581,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep.add_argument(
         "--skip-article-update",
         action="store_true",
-        help="do not write project-paper article_update artifacts after each executed cycle",
+        help="do not write closeout article/problem LaTeX artifacts",
+    )
+    p_sleep.add_argument(
+        "--article-update-each-cycle",
+        action="store_true",
+        help="legacy mode: write technical-report and problem LaTeX artifacts after every executed cycle instead of only at batch closeout",
     )
     p_sleep.set_defaults(func=cmd_sleep_run)
 

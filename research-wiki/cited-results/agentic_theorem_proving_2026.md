@@ -12,6 +12,7 @@ Source directory:
 | `cpl-2509.14274` | [arXiv:2509.14274](https://arxiv.org/abs/2509.14274), [repo](https://github.com/auto-res/ConjecturingProvingLoop) | In exploratory oracle/circuit construction, separate candidate generation from proving and feed verified Lean lemmas back into context packs. |
 | `leanconjecturer-2506.22005` | [arXiv:2506.22005](https://arxiv.org/abs/2506.22005), [repo](https://github.com/auto-res/LeanConjecturer) | Filter candidate block-encoding conjectures by Lean syntax, dimension shape, non-triviality, and finite block-entry diagnostics before lower proof search. |
 | `lean-rademacher-2503.19605` | [arXiv:2503.19605](https://arxiv.org/abs/2503.19605), [repo](https://github.com/auto-res/lean-rademacher) | Mostly an ASTIS reference; for ABEIS it is a process example for staging large formalizations as reusable technical-lemma pipelines. |
+| `lean4agent-2606.06523` | [arXiv:2606.06523](https://arxiv.org/abs/2606.06523) | Treat the agent workflow as an auditable object: structural role/artifact checks, semantic pre/postconditions, and trajectory failure localization. Current ABEIS implementation is a lightweight Lean process-contract layer in `QuantumBlockEncoding/Automation.lean`; future work is a log-level `WorkflowCertificate`. |
 
 ## Reviewer rules
 
@@ -23,3 +24,6 @@ Source directory:
   predicate, registers, matrix target, normalizer, and assumptions are fixed.
 - Faithful reproduction mode must not use conjecture generation to change a
   paper theorem.
+- Workflow verification is process verification: it can reject a bad run,
+  missing artifact, stale route, or uncertified population promotion, but it
+  cannot accept a quantum block-encoding theorem.

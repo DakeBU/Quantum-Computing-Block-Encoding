@@ -34,6 +34,12 @@ free-form chat room.
 - `proof-blueprints/<task-id>.md` is the compact system-of-record snapshot for
   the active task.  It is a QBE-specific adaptation of the blueprint/DAG
   control pattern studied in LeanMarathon.
+- `QuantumBlockEncoding/Automation.lean` is the compiled process-contract
+  layer.  Following the Lean4Agent workflow-verification pattern, it records
+  role contracts, required artifacts, and workflow invariants such as
+  certified-candidate promotion, closeout artifacts, and stale-route rejection.
+  These checks audit the agent process; they do not replace the Lean theorem
+  for the block encoding.
 
 Every nontrivial cycle should leave four kinds of evidence:
 
@@ -188,15 +194,18 @@ ABEIS technical report.  This adapts the useful ARIS paper-writing discipline
 to theorem proving: every manuscript claim must be backed by Lean, a source
 anchor, a cited-result row, a proof-attempt record, or an explicit obligation.
 
-Every executed `sleep-run` cycle writes:
+Every 6h/convergence closeout writes:
 
 ```text
 runs/<run-id>/article_update.md
 runs/<run-id>/article_update.tex
+runs/<run-id>/problem_export.tex
 paper-notes/project-paper/cycle-updates/<run-id>.md
 paper-notes/project-paper/cycle-updates/<run-id>.tex
 paper-notes/project-paper/cycle-updates/latest.md
 paper-notes/project-paper/cycle-updates/latest.tex
+paper-notes/problem-exports/<task-id>/<run-id>.tex
+paper-notes/problem-exports/<task-id>/latest.tex
 ```
 
 If `../Auto_Proof_Papers/ABEIS/main.tex` exists, QBE also mirrors the latest
@@ -204,6 +213,7 @@ generated status into:
 
 ```text
 ../Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex
+../Auto_Proof_Papers/ABEIS/problem_exports/<task-id>.tex
 ```
 
 Use the command manually when needed:
@@ -214,7 +224,7 @@ python3 tools/qbe.py project-article-update QBE-AUTO-002 \
   --run-id latest
 ```
 
-The generated status is safe to overwrite each cycle.  Polished report sections
+The generated status is safe to overwrite at closeout.  Polished report sections
 should change only when a stable Lean theorem, source-contract correction,
 reviewer finding, or system-design lesson is actually supported.
 
@@ -231,7 +241,7 @@ Upper agent:
 
 Middle coordinator:
 
-- owns the Lean/Markdown/LaTeX conversion layer,
+- owns the Lean/natural-language conversion layer during inner cycles,
 - maps paper symbols to Lean declarations,
 - maintains proof obligations and open assumptions,
 - records success and failure memory,
@@ -269,9 +279,10 @@ One cycle should look like this:
 
 1. Upper reads the task, trial memory, dialogue, and current diff, then chooses
    the exact objective and mode.
-2. Middle updates the operator/Lean/Markdown/LaTeX correspondence window,
+2. Middle updates the operator/Lean/natural-language correspondence window,
    optional paper note, and proof-obligation ledger, then gives lower agents
-   concrete candidate or Lean targets.
+   concrete candidate or Lean targets.  LaTeX export waits until 6h or
+   convergence closeout.
 3. Lower agents attempt those targets in narrow file scopes and run the gate
    when they edit Lean.
 4. Reviewer audits the result, records blocking/advisory findings, and

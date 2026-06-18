@@ -1,24 +1,32 @@
 ---
 name: qbe-proof-export
-description: Export accepted Lean proof blocks into synchronized Markdown and Overleaf-ready LaTeX proof notes.
+description: Export accepted Lean proof blocks into human-readable Markdown during proof work and closeout LaTeX proof notes for user manuscripts.
 argument-hint: "[task id or paper key]"
 ---
 
 # QBE Proof Export
 
-Use this at the end of a multi-hour faithful-paper batch, or when the user asks
-for human-readable proof documents.
+Use this at the end of a multi-hour batch, at convergence closeout, or when the
+user asks for human-readable proof documents.  During ordinary inner cycles,
+prefer concise Markdown/natural-language proof maps; LaTeX is a closeout
+artifact.
 
 ## Purpose
 
 Lean is the source of truth, but every accepted proof block must also have a
-human-readable proof map.  The export is not a changelog.  It is a mathematical
-document that states definitions before theorems, names the Lean declaration,
-and explains the proof without adding assumptions.
+human-readable proof map.  Inner-cycle maps explain what Lean proved, what
+failed, and what the next Lean task should be.  Closeout LaTeX is not a
+changelog; it is a mathematical note that states definitions before theorems,
+names the Lean declaration, and explains the proof without adding assumptions.
 
 ## Required Artifacts
 
-For paper key `GHL2025`, maintain:
+For every active task, maintain:
+
+- `paper-notes/problem-exports/<task-id>/latest.tex`
+- `paper-notes/problem-exports/<task-id>/<run-id>.tex`
+
+For paper key `GHL2025`, paper-benchmark exports may additionally maintain:
 
 - `paper-notes/GHL2025/markdown/*.md`
 - `paper-notes/GHL2025/latex/main.tex`
@@ -29,9 +37,10 @@ The LaTeX master file must compile in Overleaf with ordinary packages such as
 
 ## Cadence
 
-Do not export after every small lower-agent proof.  Export once per 5-hour
-batch, or when a major proof block is accepted.  This saves tokens while still
-keeping humans able to audit progress.
+Do not export LaTeX after every small lower-agent proof.  Export LaTeX once per
+6h/convergence closeout, or when a major proof block is accepted and the user
+asks for an immediate proof note.  This saves tokens while still keeping humans
+able to audit progress through inner-cycle Markdown/natural-language maps.
 
 ## Export Rule
 

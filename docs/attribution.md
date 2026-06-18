@@ -45,6 +45,13 @@ paper or repository.
   ideas to quantum block-encoding/oracle-circuit formalization while retaining
   its own ARIS/LBG/EoH-style local memory, hierarchy, reviewer loop, and
   exploration modes.
+- Ruida Wang, Jerry Huang, Pengcheng Wang, Xuanqing Liu, Luyang Kong,
+  Tong Zhang,
+  [Lean4Agent: Formal Modeling and Verification for Agent Workflow and Trajectory](https://arxiv.org/abs/2606.06523).
+  Similar pattern studied for Lean-level workflow and trajectory verification.
+  QBE adapts this only to process contracts and future log-invariant checks;
+  it does not treat workflow verification as a substitute for the quantum
+  theorem.
 
 ## Layered Design Summary
 
@@ -70,6 +77,11 @@ Lean/Markdown/LaTeX correspondence must be tracked explicitly.
 - [Timeroot/Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo),
   MIT License. Used as a style reference for finite-dimensional quantum
   formalization over matrices.
+- [Hayata-Yamasaki-Group/lean-quantum](https://github.com/Hayata-Yamasaki-Group/lean-quantum),
+  Apache-2.0 License. Used as a reference library for quantum states, qudits,
+  quantum channels, partial traces, entropy, trace inequalities, and
+  operator-theoretic Lean conventions. It is not currently imported as a QBE
+  dependency.
 - [teorth/optimizationproblems](https://github.com/teorth/optimizationproblems).
   Used as a style reference for concise open-problem registries.
 

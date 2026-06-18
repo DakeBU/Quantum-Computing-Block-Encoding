@@ -135,6 +135,19 @@ structure WorkflowCheckSpec where
   note : String
 deriving Repr, DecidableEq
 
+inductive CandidatePool where
+  | insight
+  | certified
+deriving Repr, DecidableEq
+
+structure WorkflowInvariantSpec where
+  name : String
+  precondition : String
+  requiredEvidence : List String
+  rejectionReason : String
+  inspiredBy : String
+deriving Repr, DecidableEq
+
 def leanBuildGate : AcceptanceGate where
   name := "Lean build"
   command := "lake build && lake build Tests"
@@ -208,6 +221,31 @@ def workflowCheckSpecs : List WorkflowCheckSpec :=
       checks := ["required artifacts exist", "role handoff recorded", "stale route not reassigned unchanged"]
       inspiredBy := "arXiv:2606.06523"
       note := "Lean4Agent-like workflow verification; separate from the quantum theorem."
+    }
+  ]
+
+def workflowInvariantSpecs : List WorkflowInvariantSpec :=
+  [
+    {
+      name := "Certified candidate promotion"
+      precondition := "candidate is proposed by a lower architect, simulator, Python search, ChatGPT Pro, or paper baseline",
+      requiredEvidence := ["Lean theorem closes the advertised unitarity/block-entry target", "resource record is attached", "reviewer confirms target operator did not change"],
+      rejectionReason := "candidate remains in insight pool and cannot be plotted as solved or used as an evolutionary parent",
+      inspiredBy := "arXiv:2606.06523 process verification plus EoH-style candidate archives"
+    },
+    {
+      name := "Closeout artifacts for unfinished long run"
+      precondition := "six-hour or convergence closeout ends with unfinished target",
+      requiredEvidence := ["Chinese summary exists", "self-contained ChatGPT Pro prompt exists", "retrieval index or todo is refreshed"],
+      rejectionReason := "next upper cycle lacks a reliable handoff",
+      inspiredBy := "arXiv:2606.06523 trajectory audit"
+    },
+    {
+      name := "No stale route replay"
+      precondition := "reviewer rejects a proof route or finite verifier contradicts a target",
+      requiredEvidence := ["error class recorded", "next route changes statement, dependency, semantic level, or finite witness"],
+      rejectionReason := "lower agent is repeating a known failed route",
+      inspiredBy := "arXiv:2606.06468 blueprint refinement and arXiv:2606.06523 failure localization"
     }
   ]
 
