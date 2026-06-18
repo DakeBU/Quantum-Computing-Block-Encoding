@@ -17,7 +17,12 @@ and middle panels at checkpoints, and uses Lean as the acceptance gate.
 5. Optionally calls an external agent command and runs `lake build`.
 6. Refreshes compact memory after each executed cycle.
 7. In the 6h wrapper, runs upper/middle panels and writes preferred-language
-   summaries, human status, and article-facing status once at the final audit.
+   summaries, compact memory, and a problem-specific LaTeX proof note once at
+   the final audit.
+
+Technical-report updates for the ABEIS project paper are maintainer-only.  A
+normal user run does not update the repository authors' technical report; use
+`--project-article-update` only when maintaining the ABEIS paper itself.
 
 It does not require a specific vendor. The external command can be Codex CLI,
 Claude Code, a GPT/OpenAI wrapper, Gemini, GLM, Minimax, or a manual script

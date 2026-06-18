@@ -34,8 +34,8 @@ example :
 
 example :
     BlockEncodingCost.betterThan
-      { auxiliaryQubits := 5, gateCount := 10, depth := 4, oracleCalls := 0 }
-      { auxiliaryQubits := 1, gateCount := 10, depth := 5, oracleCalls := 0 } := by
+      { auxiliaryQubits := 5, gateCount := 9, depth := 20, oracleCalls := 0 }
+      { auxiliaryQubits := 1, gateCount := 10, depth := 1, oracleCalls := 0 } := by
   simp [BlockEncodingCost.betterThan]
 
 example :

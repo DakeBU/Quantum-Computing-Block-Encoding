@@ -183,6 +183,12 @@ tools/qbe.py           stable local command surface for agents
 .agents/skills/        project-local workflow prompts
 ```
 
+The public/user closeout path writes preferred-language summaries, compact
+memory, and problem-specific LaTeX proof notes.  Synchronizing the ABEIS
+authors' technical report is maintainer infrastructure and requires an
+explicit maintainer command such as `project-article-update` or
+`sleep-run --project-article-update`.
+
 ## Layer-Panel Agent Stack
 
 The compiled contract in `QuantumBlockEncoding/Automation.lean` defines four

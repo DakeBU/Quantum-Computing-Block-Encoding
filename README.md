@@ -78,7 +78,8 @@ Lean certificate = OptimalControl.evolvedEqFlipVerified
 comparison tuple = (gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 0)
 ```
 
-Certified evolution curve:
+Certified metric curve, in the EoH-style sense that each plotted point is a
+generation champion and lower values are better:
 
 ![Certified evolution for E_k](docs/assets/optctrl_evolution.png)
 
@@ -239,6 +240,8 @@ flowchart TD
 Long runs write a human-facing summary in the requested language, a
 self-contained ChatGPT Pro prompt when unresolved leaves remain, and a
 problem-specific LaTeX note for users to copy into their own manuscripts.
+Updates to the ABEIS authors' technical report are maintainer-only and are not
+part of the default user workflow.
 
 ## Strategy Modes
 

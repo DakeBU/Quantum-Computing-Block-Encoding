@@ -4964,7 +4964,7 @@ def write_problem_latex_export(
     add_manifest("qbe.py problem-latex-export", run_tex, "article", f"Wrote problem-specific LaTeX export for {task_id} cycle {cycle}")
     add_manifest("qbe.py problem-latex-export", archive_tex, "article", f"Archived problem-specific LaTeX export for {task_id} cycle {cycle}")
     external_written: list[Path] = []
-    target_root = article_root or PROJECT_ARTICLE_ROOT
+    target_root = article_root
     if target_root and target_root.exists():
         ext_tex = target_root / "problem_exports" / f"{task_slug}.tex"
         write_text(ext_tex, latex)
@@ -5006,6 +5006,19 @@ def write_project_article_update(
         external_written.extend([ext_tex, ext_md])
     problem_export = write_problem_latex_export(task_id, cycle, run_dir, target_root)
     return run_md, archive_md, run_tex, archive_tex, external_written, problem_export
+
+
+def write_sleep_closeout_export(args: argparse.Namespace, cycle: int, run_dir: Path) -> None:
+    """Write closeout LaTeX artifacts for a sleep-run cycle.
+
+    Public users get the problem-specific proof note by default.  The ABEIS
+    project-paper update is maintainer infrastructure and is written only when
+    explicitly requested.
+    """
+    if args.project_article_update or args.article_update_each_cycle:
+        write_project_article_update(args.id, cycle, run_dir)
+    else:
+        write_problem_latex_export(args.id, cycle, run_dir)
 
 
 def validate_candidate_metrics(task_id: str) -> tuple[bool, list[str]]:
@@ -5109,28 +5122,38 @@ def cmd_manual_cycle_closeout(args: argparse.Namespace) -> int:
         return 1
     digest_path, todo_path, index_path = write_memory_refresh(args.id, cycle, run_dir)
     article_root = Path(args.article_root).expanduser() if args.article_root else None
-    run_md, archive_md, run_tex, archive_tex, external, problem_export = write_project_article_update(
-        args.id,
-        cycle,
-        run_dir,
-        article_root,
-    )
-    problem_run_tex, problem_archive_tex, problem_latest_tex, problem_external = problem_export
+    if args.project_article_update:
+        run_md, archive_md, run_tex, archive_tex, external, problem_export = write_project_article_update(
+            args.id,
+            cycle,
+            run_dir,
+            article_root,
+        )
+        problem_run_tex, problem_archive_tex, problem_latest_tex, problem_external = problem_export
+    else:
+        run_md = archive_md = run_tex = archive_tex = None
+        external = []
+        problem_run_tex, problem_archive_tex, problem_latest_tex, problem_external = write_problem_latex_export(
+            args.id,
+            cycle,
+            run_dir,
+        )
     print(f"manual-closeout-run: {display_path(run_dir)}")
     if summary_path:
         print(f"manual-closeout-summary: {display_path(summary_path)}")
     print(f"manual-closeout-memory: {display_path(digest_path)}")
     print(f"manual-closeout-todo: {display_path(todo_path)}")
     print(f"manual-closeout-index: {display_path(index_path)}")
-    print(f"manual-closeout-article: {display_path(run_md)}")
-    print(f"manual-closeout-article-tex: {display_path(run_tex)}")
+    if run_md and run_tex:
+        print(f"manual-closeout-article: {display_path(run_md)}")
+        print(f"manual-closeout-article-tex: {display_path(run_tex)}")
     print(f"manual-closeout-problem-tex: {display_path(problem_run_tex)}")
     print(f"manual-closeout-problem-latest: {display_path(problem_latest_tex)}")
     for path in external:
         print(f"manual-closeout-overleaf: {display_path(path)}")
     for path in problem_external:
         print(f"manual-closeout-problem-overleaf: {display_path(path)}")
-    if not external:
+    if args.project_article_update and not external:
         print("warning: no external technical-report appendix was written; check --article-root")
     return 0
 
@@ -6051,7 +6074,8 @@ memory.  Produce:
 
 1. Repeated failures that should become rejected-route memory.
 2. Missing or stale memory cards, cited-results rows, verifier-feedback fields,
-   preferred-language summaries, or article-update packets.
+   preferred-language summaries, problem-specific proof exports, or maintainer
+   article-update packets.
 3. Token/time waste risks in the next cycle.
 4. One concrete harness or prompt adjustment, if needed.
 5. The reports humans should read after the run.
@@ -6098,10 +6122,11 @@ Maintain:
 8. Verifier-feedback memory: for each lower attempt, record the leaf id, typed
    success/failure fields, error class, and next route in `runs/trials.jsonl`
    and, when useful, under `verifier-feedback/`.
-9. Closeout export bridge: at 6h closeout, convergence closeout, or explicit
-   `project-article-update`, ensure the generated technical-report packet and
-   problem-specific LaTeX proof note reflect the Lean status, proof-DAG
-   frontier, and safe manuscript edits.  Do not produce LaTeX during ordinary
+9. Closeout export bridge: at 6h or convergence closeout, ensure the
+   problem-specific LaTeX proof note reflects the Lean status, proof-DAG
+   frontier, and safe manuscript edits.  The ABEIS technical-report packet is
+   maintainer-only; update it only under explicit `project-article-update` or
+   `sleep-run --project-article-update`.  Do not produce LaTeX during ordinary
    inner proof-search cycles.
 
 You are responsible for two-way translation.  Before lower work, translate the
@@ -6185,13 +6210,13 @@ partial progress or a useful failure.  Update `runs/trials.jsonl` through
 `trial-log --feedback-field ...` and, if needed, write a durable JSON/Markdown
 packet under `verifier-feedback/<task-id>/`.
 
-Use `.agents/skills/qbe-project-paper-update/SKILL.md` only at the end of a
-multi-hour active cycle, convergence closeout, or when the user explicitly
-asks for a manuscript-facing delta.  The update is concise and
-evidence-preserving: record what changed in Lean/proof memory, write the
-technical-report status packet, write the problem-specific LaTeX proof note,
-and list which stronger claims remain forbidden until Lean supports them.  Do
-not spend lower-agent proof time on article polish.
+Use `.agents/skills/qbe-project-paper-update/SKILL.md` only for local ABEIS
+technical-report maintenance or when the user explicitly asks for a
+manuscript-facing delta.  Ordinary public-user closeout writes the
+problem-specific LaTeX proof note, not the ABEIS authors' technical report.
+The update is concise and evidence-preserving: record what changed in
+Lean/proof memory and list which stronger claims remain forbidden until Lean
+supports them.  Do not spend lower-agent proof time on article polish.
 
 When lower agents are available, middle must split the packet deliberately:
 lower 1 receives a natural-language DAG/proof packet with source anchors,
@@ -6313,8 +6338,8 @@ Look for:
 11. Missing two-way translation: after Lean changes, the Markdown/natural-language
 	   proof map must say what was actually proved, what failed, and how that
 	   corresponds to the source or user problem statement.  At closeout, the
-	   technical-report update and problem-specific LaTeX export must match that
-	   map.
+	   problem-specific LaTeX export must match that map.  The ABEIS
+	   technical-report update is required only in maintainer mode.
 12. Missing cited-results memory for prior work or "standard" facts used by the
 	    paper.  Reject a dependency if the source, exact statement, Lean status, or
 	    dependent use sites are vague.
@@ -6942,14 +6967,14 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                     write_cycle_summary(args.id, cycle, run_dir, args.report_language)
                 write_memory_refresh(args.id, cycle, run_dir)
                 if not args.skip_article_update:
-                    write_project_article_update(args.id, cycle, run_dir)
+                    write_sleep_closeout_export(args, cycle, run_dir)
                 return code
         if args.summary_each_cycle:
             write_cycle_summary(args.id, cycle, run_dir, args.report_language)
         write_memory_refresh(args.id, cycle, run_dir)
         write_article_this_cycle = args.article_update_each_cycle or cycle == args.cycles
         if not args.skip_article_update and write_article_this_cycle:
-            write_project_article_update(args.id, cycle, run_dir)
+            write_sleep_closeout_export(args, cycle, run_dir)
         if final_code != 0:
             return final_code
     return final_code
@@ -7115,7 +7140,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_manual_closeout = sub.add_parser(
         "manual-cycle-closeout",
-        help="close a manual/chat-window multi-agent cycle by refreshing memory and the technical-report appendix",
+        help="close a manual/chat-window multi-agent cycle by refreshing memory and problem-facing exports",
     )
     p_manual_closeout.add_argument("id")
     p_manual_closeout.add_argument("--cycle", type=int, default=0)
@@ -7127,7 +7152,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_manual_closeout.add_argument(
         "--article-root",
         default="",
-        help="optional technical-report root; defaults to QBE_PROJECT_ARTICLE_ROOT or ../Auto_Proof_Papers/ABEIS",
+        help="optional technical-report root; used only with --project-article-update",
+    )
+    p_manual_closeout.add_argument(
+        "--project-article-update",
+        action="store_true",
+        help="local maintainer mode: also update the ABEIS technical report appendix",
     )
     p_manual_closeout.set_defaults(func=cmd_manual_cycle_closeout)
 
@@ -7275,12 +7305,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep.add_argument(
         "--skip-article-update",
         action="store_true",
-        help="do not write closeout article/problem LaTeX artifacts",
+        help="legacy name: do not write closeout problem LaTeX or maintainer article artifacts",
+    )
+    p_sleep.add_argument(
+        "--project-article-update",
+        action="store_true",
+        help="local maintainer mode: mirror closeout status into the ABEIS technical report; public users normally leave this off",
     )
     p_sleep.add_argument(
         "--article-update-each-cycle",
         action="store_true",
-        help="legacy mode: write technical-report and problem LaTeX artifacts after every executed cycle instead of only at batch closeout",
+        help="local maintainer legacy mode: write technical-report and problem LaTeX artifacts after every executed cycle instead of only at batch closeout",
     )
     p_sleep.set_defaults(func=cmd_sleep_run)
 
