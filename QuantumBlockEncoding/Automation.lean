@@ -236,7 +236,7 @@ def workflowInvariantSpecs : List WorkflowInvariantSpec :=
     {
       name := "Closeout artifacts for unfinished long run"
       precondition := "six-hour or convergence closeout ends with unfinished target",
-      requiredEvidence := ["Chinese summary exists", "self-contained ChatGPT Pro prompt exists", "retrieval index or todo is refreshed"],
+      requiredEvidence := ["preferred-language summary exists", "self-contained ChatGPT Pro prompt exists", "retrieval index or todo is refreshed"],
       rejectionReason := "next upper cycle lacks a reliable handoff",
       inspiredBy := "arXiv:2606.06523 trajectory audit"
     },

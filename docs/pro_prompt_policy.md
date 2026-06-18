@@ -2,9 +2,10 @@
 
 Every completed long ABEIS loop must leave two human-facing artifacts:
 
-- `paper-notes/GHL2025/markdown/cycle-summaries/latest.md`: Chinese status for
-  humans, with source-paper anchors and the reason each remaining Lean proof is
-  still open.
+- `runs/<run-id>/summary.md`: preferred-language status for humans, with
+  source-paper or operator-contract anchors and the reason each remaining Lean
+  proof is still open.  Paper benchmark tracks may also archive language-
+  suffixed summaries under `paper-notes/<paper-key>/markdown/cycle-summaries/`.
 - `runs/pro-prompts/QBE-AUTO-002-latest.md`: a self-contained prompt that can be
   pasted into ChatGPT Pro when the local agents did not close the target.
 
@@ -14,8 +15,8 @@ obligations, open external technical lemmas, recent verifier feedback, and the
 exact kind of answer needed next.  Local file paths and Lean names may appear
 only as labels for patching this repository later.
 
-The human expert review is a separate post-cycle channel.  After the Chinese
-summary and any Pro answer are available, the user may give source-level,
+The human expert review is a separate post-cycle channel.  After the
+preferred-language summary and any Pro answer are available, the user may give source-level,
 modeling, convention, or priority guidance.  The next upper director must
 combine the Pro advice and human steering into one Lean-checkable active leaf,
 source anchor, or named obligation.  Neither Pro prose nor human prose closes a

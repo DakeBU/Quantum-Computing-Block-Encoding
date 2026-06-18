@@ -57,8 +57,8 @@ Operator block-encoding construction mode is the default.  The input is a
 fixed operator \(A\), normalizer \(\alpha\), and clean-block convention.  Agents
 search for candidate unitaries or circuits \(U_A\), prove unitarity and the
 exact block-entry theorem in Lean, and compare candidates by
-`BlockEncodingCost`: parallel depth first, then gate count, then auxiliary
-qubits, then unresolved oracle calls.
+`BlockEncodingCost`: asymptotic scale first, then gate count, parallel depth,
+auxiliary qubits, and unresolved oracle calls within a fixed concrete tier.
 
 Paper benchmark mode is used for targets such as GHL2025.  The agents
 translate the paper's construction as a fixed baseline, not as the whole
@@ -104,8 +104,8 @@ Middle panel:
   contracts;
 - memory/retrieval curator: proof-DAG status, verifier feedback, stale target
   retirement, and compact context;
-- report/export maintainer: Chinese summaries, Markdown/LaTeX proof maps, and
-  technical-report status;
+- report/export maintainer: preferred-language summaries, Markdown/LaTeX proof
+  maps, and technical-report status;
 - coordinator: writes exactly one lower-1 natural-language proof task, one
   lower-2 Lean implementation task, and one lower-3 verifier task.
 

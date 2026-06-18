@@ -431,12 +431,19 @@ namespace LogicalReversibleCost
 def gateCount (c : LogicalReversibleCost) : Nat :=
   c.xGates + c.cnotGates + c.toffoliGates
 
-/-- Lexicographic order inside one fixed logical reversible gate library. -/
+/--
+Lexicographic order inside one fixed logical reversible gate library.
+
+ABEIS compares asymptotic scale first outside this concrete record.  Once two
+candidates are in the same scale class for the chosen backend, the local
+priority is gate count, then parallel depth, then auxiliary qubits, then
+unexpanded oracle calls.
+-/
 def betterThan (x y : LogicalReversibleCost) : Prop :=
-  x.depth < y.depth ∨
-  (x.depth = y.depth ∧
-    (x.gateCount < y.gateCount ∨
-      (x.gateCount = y.gateCount ∧
+  x.gateCount < y.gateCount ∨
+  (x.gateCount = y.gateCount ∧
+    (x.depth < y.depth ∨
+      (x.depth = y.depth ∧
         (x.auxiliaryQubits < y.auxiliaryQubits ∨
           (x.auxiliaryQubits = y.auxiliaryQubits ∧
             x.oracleCalls < y.oracleCalls)))))

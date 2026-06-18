@@ -16,8 +16,8 @@ and middle panels at checkpoints, and uses Lean as the acceptance gate.
 4. Logs each cycle to `runs/trials.jsonl`.
 5. Optionally calls an external agent command and runs `lake build`.
 6. Refreshes compact memory after each executed cycle.
-7. In the 6h wrapper, runs upper/middle panels and writes Chinese summaries,
-   human status, and article-facing status once at the final audit.
+7. In the 6h wrapper, runs upper/middle panels and writes preferred-language
+   summaries, human status, and article-facing status once at the final audit.
 
 It does not require a specific vendor. The external command can be Codex CLI,
 Claude Code, a shell wrapper, or a manual script that reads one prompt file.
@@ -65,8 +65,8 @@ Operator block-encoding construction:
 - use when the user gives a target operator \(A\), normalizer \(\alpha\), and
   clean-block convention,
 - search for candidate unitaries or circuits \(U_A\),
-- score candidates by parallel depth, gate count, auxiliary qubits, and
-  unresolved oracle calls,
+- score candidates by asymptotic scale first, then gate count, parallel depth,
+  auxiliary qubits, and unresolved oracle calls within one concrete tier,
 - use `candidate-populations/` for alternative candidates and rejected routes,
 - use non-Lean verifier feedback only as necessary-condition diagnostics,
 - accept a construction only after Lean proves unitarity and the exact

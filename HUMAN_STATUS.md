@@ -1,12 +1,12 @@
 # ABEIS Human Status
 
-Generated: `2026-06-17 06:42:25`
+Generated: `2026-06-18 18:52:55`
 
 Task: `QBE-AUTO-002` — Concrete Circuit Matrix Semantics Backend
 
 Latest run: `runs/20260617-060327-QBE-AUTO-002-cycle01`
 
-这个文件是人类入口。正常情况下，你只需要先看这个文件，再决定是否打开更细的 `zh_summary.md`、`memory_digest.md`、Lean 文件或 proof-attempt 文件。
+这个文件是人类入口。正常情况下，你只需要先看这个文件，再决定是否打开更细的 `summary.md`、`memory_digest.md`、Lean 文件或 proof-attempt 文件。长跑总结语言由 `--report-language <lang>` 或环境变量 `QBE_REPORT_LANGUAGE=<lang>` 控制；中文兼容文件 `zh_summary.md` 仍会保留。
 
 ## One-Page Verdict
 
@@ -18,7 +18,7 @@ Latest run: `runs/20260617-060327-QBE-AUTO-002-cycle01`
 
 ## Latest Links
 
-- 最新中文总结：`runs/20260617-060327-QBE-AUTO-002-cycle01/zh_summary.md`
+- 最新母语/人类总结：`runs/20260617-060327-QBE-AUTO-002-cycle01/zh_summary.md`
 - 最新 memory digest：`runs/20260617-060327-QBE-AUTO-002-cycle01/memory_digest.md`
 - 最新下一步 todo：`runs/20260617-060327-QBE-AUTO-002-cycle01/todo.md`
 - 最新 dialogue：`runs/20260617-060327-QBE-AUTO-002-cycle01/dialogue.md`
@@ -36,7 +36,6 @@ Latest run: `runs/20260617-060327-QBE-AUTO-002-cycle01`
 
 ## 6h Batch Log Signal
 
-- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-be-then-opt-20260617-013500.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26964:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-be-then-opt-20260617-013500.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26995:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-be-then-opt-20260617-013500.log`: Build completed successfully (16 jobs).
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-be-then-opt-20260617-013500.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26964:8: declaration uses `sorry`
@@ -54,6 +53,7 @@ Latest run: `runs/20260617-060327-QBE-AUTO-002-cycle01`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-be-then-opt-20260617-013500.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26964:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-be-then-opt-20260617-013500.log`: warning: QuantumBlockEncoding/RobinMatrix.lean:26995:8: declaration uses `sorry`
 - `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-be-then-opt-20260617-013500.log`: Build completed successfully (18 jobs).
+- `Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/runs/logs/abeis-ghl-be-then-opt-20260617-013500.log`: [Wed Jun 17 06:42:25 JST 2026] theorem-closure batch finished; final_audit_exit=0 active_used=25334/21600
 
 ## Trial Memory Counts
 

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ABEIS Oracle-to-Block-Encoding Task Builder</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Auto-Block-Encoding-in-Sleep</p>
+        <h1>Oracle-to-Block-Encoding Task Builder</h1>
+      </div>
+      <div class="status-pill">Static local prototype</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel input-panel" aria-labelledby="input-title">
+        <h2 id="input-title">Target Oracle</h2>
+        <p class="hint">
+          Paste a LaTeX operator, matrix formula, or natural-language oracle requirement.
+          This page creates a task packet for ABEIS agents; Lean is still the final verifier.
+        </p>
+
+        <label>
+          Task name
+          <input id="taskName" value="operator-block-encoding-task" autocomplete="off">
+        </label>
+
+        <label>
+          Mode
+          <select id="mode">
+            <option value="operatorBlockEncoding">Construct a block encoding for my operator</option>
+            <option value="paperBenchmark">Reproduce a paper's construction</option>
+            <option value="exploratoryConstruction">Improve a known construction</option>
+          </select>
+        </label>
+
+        <label>
+          Preferred report language
+          <div class="language-row">
+            <select id="languagePreset">
+              <option value="zh">Chinese / 中文</option>
+              <option value="en">English</option>
+              <option value="ja">Japanese / 日本語</option>
+              <option value="ko">Korean / 한국어</option>
+              <option value="fr">French / français</option>
+              <option value="de">German / Deutsch</option>
+              <option value="es">Spanish / español</option>
+              <option value="custom">Custom</option>
+            </select>
+            <input id="languageCustom" placeholder="e.g. Vietnamese" disabled>
+          </div>
+        </label>
+
+        <label>
+          Operator or oracle description
+          <textarea id="oracleDescription" spellcheck="false">E_k = |0><k|_time \otimes |0><1|_type \otimes I_n</textarea>
+        </label>
+
+        <div class="grid two">
+          <label>
+            Normalizer alpha
+            <input id="normalizer" value="1">
+          </label>
+          <label>
+            Block projector / clean state
+            <input id="projector" value="|0^a><0^a| on auxiliary register">
+          </label>
+        </div>
+
+        <label>
+          Known baseline construction, if any
+          <textarea id="baseline" spellcheck="false" placeholder="Paste paper construction, circuit sketch, QASM, or leave blank."></textarea>
+        </label>
+
+        <label>
+          Constraints and free parameters
+          <textarea id="constraints" spellcheck="false" placeholder="Register sizes, allowed gates, exact/approximate tolerance, free oracle parameters, source paper URL, non-goals."></textarea>
+        </label>
+
+        <div class="actions">
+          <button id="buildPacket" type="button">Build Task Packet</button>
+          <button id="copyPacket" type="button" class="secondary">Copy Markdown</button>
+          <button id="downloadPacket" type="button" class="secondary">Download .md</button>
+        </div>
+      </section>
+
+      <section class="panel output-panel" aria-labelledby="output-title">
+        <div class="section-head">
+          <h2 id="output-title">Generated Agent Packet</h2>
+          <span id="copyStatus" aria-live="polite"></span>
+        </div>
+
+        <div class="score-card">
+          <h3>ABEIS acceptance and ranking</h3>
+          <ol>
+            <li>Correctness is accepted only after Lean proves unitarity and the requested block-entry theorem.</li>
+            <li>Compare asymptotic tiers first: polylogarithmic growth beats polynomial growth.</li>
+            <li>Inside one tier, rank by gate count, then depth, then auxiliary qubits, then unresolved oracle calls.</li>
+          </ol>
+        </div>
+
+        <pre id="packet" class="packet" tabindex="0"></pre>
+      </section>
+    </main>
+
+    <footer>
+      Inspired by user-friendly automated algorithm design front ends such as LLM4AD_Next,
+      but specialized to Lean-checked quantum block-encoding certificates.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

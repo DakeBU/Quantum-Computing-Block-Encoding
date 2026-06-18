@@ -34,7 +34,7 @@ record, or an explicit proof obligation.  Agent confidence is not evidence.
 Read these before changing the project paper:
 
 1. `runs/<run-id>/article_update.md`
-2. `runs/<run-id>/zh_summary.md`
+2. `runs/<run-id>/summary.md` or the task's configured language-specific summary
 3. `proof-blueprints/<task-id>.md`
 4. `conversion-windows/<task-id>.md`
 5. `proof-obligations/<task-id>.md`
@@ -122,7 +122,7 @@ todo list or proof obligation instead.
 
 ## Reviewer Checklist
 
-- Does the article update match `article_update.md` and `zh_summary.md`?
+- Does the article update match `article_update.md` and the latest human summary?
 - Does every strengthened claim have Lean/source/citation/run evidence?
 - Does the generated status appendix still say the case study is incomplete if
   theorem-facing `sorry` or root obligations remain?

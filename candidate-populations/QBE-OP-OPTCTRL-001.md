@@ -11,7 +11,7 @@ E_k := |0><k|_time ⊗ |0><1|_type ⊗ I_n
 Primary score order for expanded, non-oracle candidates:
 
 ```text
-(depth, gateCount, auxiliaryQubits, oracleCalls)
+asymptotic tier first, then (gateCount, depth, auxiliaryQubits, oracleCalls)
 ```
 
 The oracle-level baseline and the expanded logical-gate population are kept in
@@ -63,10 +63,10 @@ deliberately left as a later backend task.
 |---:|---|---|---|---|---|
 | 0 | upper baseline | `one-ancilla-permutation-completion-example` | `OptimalControl.exampleVerified` | oracle tier `(1, 1, 1, 1)` | correctness baseline only |
 | 1 | lower-searcher BFS | sequential logical expansion `X2; CCX012; CX01; X0; CX10; CX01` | finite Python verifier only | `(6, 6, 1, 0)` | insight pool only; not a parent and not plotted as a solution |
-| 2 | lower-searcher depth scheduler + Lean worker | depth-5 expansion `CCX012; CX01; CX10; X0; {X2, CX01}` | `OptimalControl.reducedDepth5Unitary_isRationalOrthogonal`, `OptimalControl.reducedDepth5Unitary_cleanBlock`, `OptimalControl.reducedDepth5Cost_gateCount` | `(5, 6, 1, 0)` | concrete logical permutation-matrix BE certificate |
+| 2 | lower-searcher depth scheduler + Lean worker | depth-5 expansion `CCX012; CX01; CX10; X0; {X2, CX01}` | `OptimalControl.reducedDepth5Unitary_isRationalOrthogonal`, `OptimalControl.reducedDepth5Unitary_cleanBlock`, `OptimalControl.reducedDepth5Cost_gateCount` | `(6, 5, 1, 0)` | concrete logical permutation-matrix BE certificate |
 | 3 | mutation from certified Gen 2 | direct system-register unitary attempt | rejected by necessary condition: target operator is not unitary on the system register | none | rejected |
 | 4 | mutation from certified Gen 2 | two-ancilla workspace completion | finite score no better: auxiliary qubits increase without depth/gate decrease | `(>=5, >=6, 2, 0)` | insight only; not promoted |
-| 5 | crossover/collaboration from certified Gen 2 | split source-target cycles by state bit | same active reduced permutation after factoring passive state bit | `(5, 6, 1, 0)` | no strict improvement |
+| 5 | crossover/collaboration from certified Gen 2 | split source-target cycles by state bit | same active reduced permutation after factoring passive state bit | `(6, 5, 1, 0)` | no strict improvement |
 
 ## Explore Run 2: Pro Injection and Evolved Completion
 
@@ -91,7 +91,7 @@ promoted from insight to certified population.
 | Generation | Agent route | Candidate | Lean declarations / verifier | Expanded score | Selection result |
 |---:|---|---|---|---|---|
 | 6 | Pro injection | `pro-eq-transfer-r1-k1` = `CCX012; CX21; CX20; X2` | `OptimalControl.proEqTransferUnitary_isRationalOrthogonal`, `OptimalControl.proEqTransferUnitary_cleanBlock`, `OptimalControl.proEqTransferCost_betterThan_depth5` | `(4, 4, 1, 0)` | concrete logical permutation-matrix BE certificate; strictly improves depth-5 |
-| 7 | EoH mutation/collaboration from certified Gen 6 plus insight-pool simplification | `evolved-eq-flip-r1-k1` = `CCX012; {X0, X1, X2}` | `OptimalControl.evolvedEqFlipVerified`, `OptimalControl.evolvedEqFlipUnitary_isRationalOrthogonal`, `OptimalControl.evolvedEqFlipUnitary_cleanBlock`, `OptimalControl.evolvedEqFlipGateImages_eval`, `OptimalControl.evolvedEqFlipCandidate_cost` | `(2, 4, 1, 0)` | current concrete logical champion |
+| 7 | EoH mutation/collaboration from certified Gen 6 plus insight-pool simplification | `evolved-eq-flip-r1-k1` = `CCX012; {X0, X1, X2}` | `OptimalControl.evolvedEqFlipVerified`, `OptimalControl.evolvedEqFlipUnitary_isRationalOrthogonal`, `OptimalControl.evolvedEqFlipUnitary_cleanBlock`, `OptimalControl.evolvedEqFlipGateImages_eval`, `OptimalControl.evolvedEqFlipCandidate_cost` | `(4, 2, 1, 0)` | current concrete logical champion |
 
 Current certified-search status:
 
@@ -99,7 +99,8 @@ Current certified-search status:
 Under the concrete one-time, one-type, one-state target and the logical
 {X,CNOT,Toffoli} library with disjoint-qubit layers, the current verified
 logical reversible permutation-matrix block encoding is the evolved depth-2
-clean-block completion (2, 4, 1, 0).
+clean-block completion, with record fields `depth = 2`, `gateCount = 4` and
+comparison tuple `(4, 2, 1, 0)`.
 ```
 
 This is not a global optimality theorem, not a hardware-gate theorem, and not

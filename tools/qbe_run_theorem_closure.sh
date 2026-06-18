@@ -107,12 +107,12 @@ python3 tools/qbe.py sleep-run "$TASK_ID" \
   "${final_upper_args[@]}" \
   "${final_middle_args[@]}"
 final_code=$?
-python3 tools/qbe.py cycle-zh-summary "$TASK_ID" --cycle "$cycle" --run-id latest
+python3 tools/qbe.py cycle-summary "$TASK_ID" --cycle "$cycle" --run-id latest --language "${QBE_REPORT_LANGUAGE:-zh}"
 python3 tools/qbe.py memory-refresh "$TASK_ID" --cycle "$cycle" --run-id latest
 python3 tools/qbe.py cycle-pro-prompt "$TASK_ID" --cycle "$cycle" --run-id latest
 python3 tools/qbe.py project-article-update "$TASK_ID" --cycle "$cycle" --run-id latest
 python3 tools/qbe.py efficiency-report --task "$TASK_ID"
-python3 tools/qbe.py human-status "$TASK_ID"
+python3 tools/qbe.py human-status "$TASK_ID" --language "${QBE_REPORT_LANGUAGE:-zh}"
 active_used="$(active_used_seconds)"
 echo "[$(date)] theorem-closure batch finished; final_audit_exit=$final_code active_used=${active_used}/${active_budget}"
 exit "$final_code"

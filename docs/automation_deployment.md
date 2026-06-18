@@ -82,8 +82,9 @@ gates, but they use different search policies.
 Use this mode when the user gives a target operator \(A\), normalizer
 \(\alpha\), and clean-block convention.  The agents search for candidate
 unitaries or circuits \(U_A\), prove the exact block-entry and unitarity
-statements in Lean, and rank candidates by auxiliary qubits, gate count,
-parallel depth, and unresolved oracle calls.
+statements in Lean, and rank candidates by asymptotic scale first, then gate
+count, parallel depth, auxiliary qubits, and unresolved oracle calls within one
+concrete tier.
 
 Operator mode rules:
 

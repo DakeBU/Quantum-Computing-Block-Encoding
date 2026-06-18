@@ -905,15 +905,18 @@ Hybrid strategy:
 
 ## Candidate Score
 
-The default candidate score is defined in Lean as `BlockEncodingCost`:
+The default candidate score is defined in Lean as `BlockEncodingCost`.
+ABEIS first compares asymptotic tiers, because polylogarithmic growth in
+the system size is qualitatively different from polynomial growth.  Inside
+one fixed asymptotic/logical-library tier, the concrete comparison tuple is:
 
 ```text
-(depth, gateCount, auxiliaryQubits, oracleCalls)
+(gateCount, depth, auxiliaryQubits, oracleCalls)
 ```
 
-Selection is lexicographic in that order.  In particular, a shallower
-parallel schedule beats a deeper one even if it temporarily uses more
-auxiliary qubits; lower gate count breaks depth ties.
+Selection is lexicographic in that order after the asymptotic tier check.
+In particular, fewer gates beats a shallower schedule; depth breaks
+gate-count ties; auxiliary qubits break gate/depth ties.
 
 ## Conversion Window
 
@@ -941,7 +944,7 @@ Expected file and declarations:
 - [ ] Unitarity of `U_A` is proved or recorded as a named obligation.
 - [ ] Normalization `alpha` is explicit.
 - [ ] Auxiliary qubit count `a` is explicit.
-- [ ] Resource score `(depth, gateCount, a, oracleCalls)` is explicit.
+- [ ] Asymptotic tier and concrete resource score `(gateCount, depth, a, oracleCalls)` are explicit.
 - [ ] Candidate comparison against the current baseline is recorded when relevant.
 - [ ] `lake build && lake build Tests` succeeds.
 
@@ -2411,18 +2414,188 @@ Run 目录：`{rel(run_dir)}`
 """
 
 
-def write_cycle_zh_summary(task_id: str, cycle: int, run_dir: Path) -> tuple[Path, Path]:
-    text = cycle_zh_summary_text(task_id, cycle, run_dir)
-    run_path = run_dir / "zh_summary.md"
-    archive_dir = ROOT / "paper-notes" / "GHL2025" / "markdown" / "cycle-summaries"
-    archive_path = archive_dir / f"{run_dir.name}.md"
-    latest_path = archive_dir / "latest.md"
+def normalize_report_language(language: str | None) -> str:
+    value = (language or os.environ.get("QBE_REPORT_LANGUAGE") or "zh").strip()
+    if not value:
+        value = "zh"
+    lowered = value.lower().replace("_", "-")
+    aliases = {
+        "chinese": "zh",
+        "zh-cn": "zh",
+        "zh-hans": "zh",
+        "mandarin": "zh",
+        "english": "en",
+        "japanese": "ja",
+        "korean": "ko",
+    }
+    return aliases.get(lowered, lowered)
+
+
+def report_language_label(language: str | None) -> str:
+    normalized = normalize_report_language(language)
+    labels = {
+        "zh": "Chinese",
+        "en": "English",
+        "ja": "Japanese",
+        "ko": "Korean",
+    }
+    return labels.get(normalized, normalized)
+
+
+def is_chinese_report_language(language: str | None) -> bool:
+    return normalize_report_language(language).startswith("zh")
+
+
+def summary_archive_dir(task_id: str) -> Path:
+    """Return the public archive for human-facing closeout summaries."""
+    safe_id = slugify(task_id)
+    if safe_id == "QBE-AUTO-002":
+        return ROOT / "paper-notes" / "GHL2025" / "markdown" / "cycle-summaries"
+    return ROOT / "paper-notes" / safe_id / "markdown" / "cycle-summaries"
+
+
+def cycle_summary_text(task_id: str, cycle: int, run_dir: Path, language: str | None = None) -> str:
+    lang = normalize_report_language(language)
+    if is_chinese_report_language(lang):
+        return cycle_zh_summary_text(task_id, cycle, run_dir)
+    title, _task_text = task_context(task_id)
+    state = blueprint_status_state(task_id)
+    memory = memory_snapshot_state(task_id, cycle, run_dir)
+    sorry_lines = lean_sorry_lines(limit=30)
+    changed_lines = git_changed_files()
+    dynamic = state.get("dynamic_leaf_queue", [])
+    obligations = state.get("open_obligation_signals", [])
+    sorry_text = "\n".join(f"- `{line}`" for line in sorry_lines) if sorry_lines else "- No `sorry` lines detected."
+    changed_text = "\n".join(f"- `{line}`" for line in changed_lines[:40]) if changed_lines else "- No uncommitted changes detected."
+    dynamic_text = "\n".join(f"- {item}" for item in dynamic) if dynamic else "- No dynamic proof-DAG leaf detected; upper should refresh the target."
+    obligation_text = "\n".join(f"- {item}" for item in obligations[:20]) if obligations else "- No compact obligation signals; inspect `proof-obligations/`."
+    open_ghl_text = markdown_table(
+        memory.get("open_ghl_contribution_obligations", []),
+        [
+            ("ID", "id"),
+            ("source anchor", "main_tex_anchor"),
+            ("paper object", "english_object"),
+            ("Lean/status", "lean_status"),
+            ("external lemma?", "depends_on_external_technical_lemma"),
+        ],
+        limit=10,
+    )
+    open_technical_text = markdown_table(
+        memory.get("open_external_technical_lemma_obligations", []),
+        [
+            ("ID", "id"),
+            ("source", "source"),
+            ("status", "lean_status"),
+            ("next action", "next_action"),
+        ],
+        limit=10,
+    )
+    feedback_text = markdown_table(
+        memory.get("recent_verifier_feedback", []),
+        [
+            ("leaf", "leaf"),
+            ("class", "error_class"),
+            ("finite", "finite_matrix_ok"),
+            ("entry", "block_entry_ok"),
+            ("next", "next_route"),
+        ],
+        limit=6,
+    )
+    lower_task_text = markdown_table(
+        memory.get("next_lower_tasks", []),
+        [
+            ("role", "role"),
+            ("goal", "goal"),
+            ("artifact", "must_write"),
+        ],
+    )
+    language_note = (
+        f"Preferred human report language: `{report_language_label(lang)}` (`{lang}`). "
+        "Agents should translate future human-facing closeout prose into this language. "
+        "This built-in fallback is English when no specialized translator agent has run."
+    )
+    return f"""# Cycle Summary: {task_id} cycle {cycle}
+
+Generated: `{now_stamp()}`
+
+Run directory: `{rel(run_dir)}`
+
+Task title: {title}
+
+{language_note}
+
+This file is the long-run human audit entry point. It does not replace Lean.
+It tells the next upper/middle agents what remains open, which feedback is
+trusted only as a necessary-condition diagnostic, and what lower agents should
+try next.
+
+## Plain-Language Status
+
+{task_plain_language_status_en(task_id)}
+
+## Lean Build / Sorry Status
+
+{sorry_text}
+
+## Current Dynamic Proof-DAG Leaf
+
+{dynamic_text}
+
+## Current Open Obligation Signals
+
+{obligation_text}
+
+## Paper Contribution Obligations
+
+{open_ghl_text}
+
+## External Technical Lemma Obligations
+
+{open_technical_text}
+
+## Recent Typed Verifier Feedback
+
+{feedback_text}
+
+## Next Lower-Agent Tasks
+
+{lower_task_text}
+
+## Current Uncommitted Files
+
+{changed_text}
+"""
+
+
+def write_cycle_summary(
+    task_id: str,
+    cycle: int,
+    run_dir: Path,
+    language: str | None = None,
+) -> tuple[Path, Path]:
+    lang = normalize_report_language(language)
+    text = cycle_summary_text(task_id, cycle, run_dir, lang)
+    if is_chinese_report_language(lang):
+        run_path = run_dir / "zh_summary.md"
+    else:
+        run_path = run_dir / f"summary.{lang}.md"
+    generic_path = run_dir / "summary.md"
+    archive_dir = summary_archive_dir(task_id)
+    archive_path = archive_dir / f"{run_dir.name}.{lang}.md"
+    latest_path = archive_dir / f"latest.{lang}.md"
     write_text(run_path, text)
+    write_text(generic_path, text)
     write_text(archive_path, text)
     write_text(latest_path, text)
-    add_manifest("qbe.py cycle-zh-summary", run_path, "review", f"Wrote Chinese cycle summary for {task_id} cycle {cycle}")
-    add_manifest("qbe.py cycle-zh-summary", archive_path, "paper-note", f"Archived Chinese cycle summary for {task_id} cycle {cycle}")
+    if is_chinese_report_language(lang):
+        write_text(archive_dir / "latest.md", text)
+    add_manifest("qbe.py cycle-summary", run_path, "review", f"Wrote {lang} cycle summary for {task_id} cycle {cycle}")
+    add_manifest("qbe.py cycle-summary", archive_path, "paper-note", f"Archived {lang} cycle summary for {task_id} cycle {cycle}")
     return run_path, archive_path
+
+
+def write_cycle_zh_summary(task_id: str, cycle: int, run_dir: Path) -> tuple[Path, Path]:
+    return write_cycle_summary(task_id, cycle, run_dir, "zh")
 
 
 def latest_proof_attempts(task_id: str, limit: int = 8) -> list[str]:
@@ -2922,7 +3095,7 @@ def article_delta_markdown(task_id: str) -> str:
     if task_id == "QBE-OP-OPTCTRL-001":
         common.extend(
             [
-                "- Update the generated appendix with the current optimal-control construction status: concrete logical reversible permutation-matrix certificate `evolvedEqFlipVerified`, score `(2,4,1,0)`, and the remaining generalization/hardware/lower-bound obligations.",
+                "- Update the generated appendix with the current optimal-control construction status: concrete logical reversible permutation-matrix certificate `evolvedEqFlipVerified`, comparison tuple `(4,2,1,0)`, and the remaining generalization/hardware/lower-bound obligations.",
                 "- Do not replay the full population history in Overleaf; keep history in `candidate-populations/` and verifier-feedback packets.",
                 "- State the semantic tier precisely: concrete `r=1,k=1` logical `{X,CNOT,Toffoli}` permutation-matrix BE, not a hardware-decomposed or general-family theorem.",
                 "- State the certified-population rule: only candidates with named Lean certificates can be evolutionary parents or plotted solution points; Pro/Python/simulator ideas stay in the insight pool until Lean promotes them.",
@@ -3660,7 +3833,7 @@ def ghl_failure_map_markdown(task_id: str, run_dir: Path) -> str:
     snapshot = memory_snapshot_state(task_id, 0, run_dir)
     sorries = snapshot.get("lean_sorries", [])
     sorry_text = "\n".join(f"- `{line}`" for line in sorries) if sorries else "- 当前没有检测到 `sorry`。"
-    latest_summary = run_dir / "zh_summary.md"
+    latest_summary = latest_run_summary_path(run_dir) or (run_dir / "summary.md")
     latest_memory = run_dir / "memory_digest.md"
     latest_todo = run_dir / "todo.md"
     text = """# GHL2025 未完成与失败原因中文地图
@@ -3763,11 +3936,13 @@ sed -n '1,180p' verifier-feedback/QBE-AUTO-002/evaluated-backend-fold-lower2-202
     )
 
 
-def human_status_markdown(task_id: str, run_dir: Path) -> str:
+def human_status_markdown(task_id: str, run_dir: Path, language: str | None = None) -> str:
+    lang = normalize_report_language(language)
     snapshot = memory_snapshot_state(task_id, 0, run_dir)
     title = snapshot.get("title", "")
     sorries = snapshot.get("lean_sorries", [])
     latest_runs = recent_task_run_dirs(task_id, limit=8)
+    latest_summary = latest_run_summary_path(run_dir) or (run_dir / "summary.md")
     latest_eff = latest_efficiency_report(task_id)
     trials = trial_count_summary(task_id)
     log_lines = latest_batch_log_signal()
@@ -3778,8 +3953,97 @@ def human_status_markdown(task_id: str, run_dir: Path) -> str:
         f"- `{rel(path)}`" for path in latest_runs
     ) or "- No run directories found."
     sorry_text = "\n".join(f"- `{line}`" for line in sorries) if sorries else "- 当前没有检测到 `sorry`。"
+    sorry_text_en = "\n".join(f"- `{line}`" for line in sorries) if sorries else "- No `sorry` lines detected."
     log_text = "\n".join(f"- {line}" for line in log_lines) if log_lines else "- No batch log signal found."
     dynamic_text = "\n".join(f"- {item}" for item in dynamic[:6]) if dynamic else "- No active proof-DAG leaf detected."
+    if not is_chinese_report_language(lang):
+        language_note = (
+            f"Preferred human report language: `{report_language_label(lang)}` (`{lang}`). "
+            "This dashboard is written in English as a built-in fallback when no "
+            "specialized translator agent has run; closeout agents should translate "
+            "human-facing prose into the requested language."
+        )
+        return f"""# ABEIS Human Status
+
+Generated: `{now_stamp()}`
+
+Task: `{task_id}` — {title}
+
+Latest run: `{rel(run_dir)}`
+
+{language_note}
+
+This is the human entry point.  Start here, then open `summary.md`,
+`memory_digest.md`, Lean files, or proof-attempt files only when more detail is
+needed.
+
+## One-Page Verdict
+
+- Latest run: `{rel(run_dir)}`.
+- Lean `sorry` count: {len(sorries)}.
+- Main warning: claims are accepted only when the named Lean theorem and
+  resource certificate compile.
+- Report language is selected by `--report-language <lang>`,
+  `--language <lang>`, or `QBE_REPORT_LANGUAGE=<lang>`.
+
+## Latest Links
+
+- Latest human summary: `{rel(latest_summary)}`
+- Latest memory digest: `{rel(run_dir / "memory_digest.md")}`
+- Latest todo: `{rel(run_dir / "todo.md")}`
+- Latest dialogue: `{rel(run_dir / "dialogue.md")}`
+- Latest article update: `{rel(run_dir / "article_update.md")}`
+- Report/log guide: `{rel(REPORTS_GUIDE)}`
+- Latest efficiency report: `{display_path(latest_eff) if latest_eff else "not found"}`
+- Compact retrieval JSON: `research-wiki/retrieval-index/{slugify(task_id)}.json`
+
+## Build And Sorry Status
+
+{sorry_text_en}
+
+## Batch Log Signal
+
+{log_text}
+
+## Trial Memory Counts
+
+| total | compiled/pass | failed | blocked |
+|---:|---:|---:|---:|
+| {trials["total"]} | {trials["compiled"]} | {trials["failed"]} | {trials["blocked"]} |
+
+## Current Active Proof Leaves
+
+{dynamic_text}
+
+## Current-Task Contribution Todo
+
+{markdown_table(open_ghl if isinstance(open_ghl, list) else [], [
+    ("id", "id"),
+    ("source", "main_tex_anchor"),
+    ("plain object", "english_object"),
+    ("status", "english_status"),
+], limit=8)}
+
+## External Technical Lemma Todo
+
+{markdown_table(open_technical if isinstance(open_technical, list) else [], [
+    ("id", "id"),
+    ("status", "lean_status"),
+    ("next action", "next_action"),
+], limit=8)}
+
+## Human Reading Order
+
+1. Start here: `HUMAN_STATUS.md`.
+2. Read the current summary: `{rel(latest_summary)}`.
+3. Read the compact agent handoff: `{rel(run_dir / "memory_digest.md")}` and `{rel(run_dir / "todo.md")}`.
+4. For exact Lean blockers, open the Lean file at the `sorry` lines above.
+5. For task-specific proof exports, check `paper-notes/problem-exports/`.
+
+## Recent Run Directories
+
+{latest_runs_text}
+"""
     return f"""# ABEIS Human Status
 
 Generated: `{now_stamp()}`
@@ -3788,7 +4052,7 @@ Task: `{task_id}` — {title}
 
 Latest run: `{rel(run_dir)}`
 
-这个文件是人类入口。正常情况下，你只需要先看这个文件，再决定是否打开更细的 `zh_summary.md`、`memory_digest.md`、Lean 文件或 proof-attempt 文件。
+这个文件是人类入口。正常情况下，你只需要先看这个文件，再决定是否打开更细的 `summary.md`、`memory_digest.md`、Lean 文件或 proof-attempt 文件。长跑总结语言由 `--report-language <lang>` 或环境变量 `QBE_REPORT_LANGUAGE=<lang>` 控制；中文兼容文件 `zh_summary.md` 仍会保留。
 
 ## One-Page Verdict
 
@@ -3800,7 +4064,7 @@ Latest run: `{rel(run_dir)}`
 
 ## Latest Links
 
-- 最新中文总结：`{rel(run_dir / "zh_summary.md")}`
+- 最新母语/人类总结：`{rel(latest_summary)}`
 - 最新 memory digest：`{rel(run_dir / "memory_digest.md")}`
 - 最新下一步 todo：`{rel(run_dir / "todo.md")}`
 - 最新 dialogue：`{rel(run_dir / "dialogue.md")}`
@@ -3852,7 +4116,7 @@ Latest run: `{rel(run_dir)}`
 2. For report/log reading rules, read `{rel(REPORTS_GUIDE)}`.
 3. For a plain Chinese map of unfinished GHL source steps and failed Lean routes, read `{rel(GHL_FAILURE_MAP)}`.
 4. For the Fig. 4 circuit image audit, read `{rel(GHL_FIG4_AUDIT)}`.
-5. For human-readable cycle details, read `{rel(run_dir / "zh_summary.md")}`.
+5. For human-readable cycle details, read `{rel(latest_summary)}`.
 6. For what the next agents should read, use `{rel(run_dir / "memory_digest.md")}` and `{rel(run_dir / "todo.md")}`.
 7. For machine retrieval, use `research-wiki/retrieval-index/{slugify(task_id)}.json`.
 8. For exact Lean blockers, open `QuantumBlockEncoding/RobinMatrix.lean` at the `sorry` lines above.
@@ -3879,14 +4143,14 @@ Latest run: `{rel(run_dir)}`
 """
 
 
-def write_human_status(task_id: str, run_dir: Path) -> Path:
+def write_human_status(task_id: str, run_dir: Path, language: str | None = None) -> Path:
     write_text(REPORTS_GUIDE, reports_guide_markdown(task_id, run_dir))
     add_manifest("qbe.py human-status", REPORTS_GUIDE, "review", f"Wrote report guide for {task_id}")
     write_text(GHL_FIG4_AUDIT, ghl_fig4_visual_audit_markdown(task_id, run_dir))
     add_manifest("qbe.py human-status", GHL_FIG4_AUDIT, "review", f"Wrote GHL Fig. 4 visual audit for {task_id}")
     write_text(GHL_FAILURE_MAP, ghl_failure_map_markdown(task_id, run_dir))
     add_manifest("qbe.py human-status", GHL_FAILURE_MAP, "review", f"Wrote GHL failure map for {task_id}")
-    write_text(HUMAN_STATUS, human_status_markdown(task_id, run_dir))
+    write_text(HUMAN_STATUS, human_status_markdown(task_id, run_dir, language))
     add_manifest("qbe.py human-status", HUMAN_STATUS, "review", f"Wrote human status dashboard for {task_id}")
     return HUMAN_STATUS
 
@@ -3901,7 +4165,7 @@ def cmd_human_status(args: argparse.Namespace) -> int:
         run_dir = ROOT / "runs" / args.run_id
     if not run_dir.exists():
         raise SystemExit(f"run directory not found: {display_path(run_dir)}")
-    path = write_human_status(args.id, run_dir)
+    path = write_human_status(args.id, run_dir, args.language)
     print(f"human-status: {display_path(path)}")
     return 0
 
@@ -4084,9 +4348,10 @@ def project_article_public_markdown(markdown: str) -> str:
 
 def latest_run_summary_path(run_dir: Path) -> Path | None:
     candidates = [
-        run_dir / "zh_summary.md",
         run_dir / "summary.md",
+        run_dir / "zh_summary.md",
     ]
+    candidates.extend(sorted(run_dir.glob("summary.*.md")))
     for path in candidates:
         if path.exists():
             return path
@@ -4111,7 +4376,7 @@ def task_article_status_markdown(task_id: str, run_dir: Path) -> str:
                 "",
                 "- Target: concrete `E_1 = |0><1|_time ⊗ |0><1|_type ⊗ I_state` with one time bit, one type bit, one passive state bit, and one block-encoding auxiliary bit.",
                 "- Lean certificates: `evolvedEqFlipVerified`, `evolvedEqFlipUnitary_isRationalOrthogonal`, `evolvedEqFlipUnitary_cleanBlock`, `evolvedEqFlipGateImages_eval`, `evolvedEqFlipCandidate_cost`, and `exampleOperator_not_rationalOrthogonal`.",
-                "- Certified logical score: `(depth = 2, gateCount = 4, auxiliaryQubits = 1, oracleCalls = 0)` in the concrete `{X,CNOT,Toffoli}` logical reversible permutation-matrix tier.",
+                "- Certified logical record fields: `depth = 2`, `gateCount = 4`, `auxiliaryQubits = 1`, `oracleCalls = 0`; comparison tuple `(gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 0)` in the concrete `{X,CNOT,Toffoli}` logical reversible permutation-matrix tier.",
                 "- Scope: final for this concrete `r=1,k=1` logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; not yet generalized to arbitrary time width/state dimension, not hardware-decomposed, and not a Lean-proved depth lower bound.",
                 "- Plot policy: plotted points must name rational-orthogonal matrix and clean-block Lean certificates at this semantic tier.",
                 "- Next manuscript-facing action: state the concrete certificate and list the generalization, hardware-decomposition, and lower-bound obligations.",
@@ -4145,7 +4410,7 @@ def task_article_status_latex(task_id: str, run_dir: Path) -> str:
             "Current concrete logical BE certificate: \\texttt{OptimalControl.evolvedEqFlipVerified}.",
             "Target: concrete \\(E_1=|0\\rangle\\langle 1|_{time}\\otimes |0\\rangle\\langle 1|_{type}\\otimes I_{state}\\) with one time bit, one type bit, one passive state bit, and one block-encoding auxiliary bit.",
             "Lean certificates: \\texttt{evolvedEqFlipVerified}, \\texttt{evolvedEqFlipUnitary\\_isRationalOrthogonal}, \\texttt{evolvedEqFlipUnitary\\_cleanBlock}, \\texttt{evolvedEqFlipGateImages\\_eval}, \\texttt{evolvedEqFlipCandidate\\_cost}, and \\texttt{exampleOperator\\_not\\_rationalOrthogonal}.",
-            "Certified logical score: \\((\\mathrm{depth}=2,\\mathrm{gateCount}=4,\\mathrm{auxiliaryQubits}=1,\\mathrm{oracleCalls}=0)\\) in the concrete \\(\\{X,\\mathrm{CNOT},\\mathrm{Toffoli}\\}\\) logical reversible permutation-matrix tier.",
+            "Certified logical record fields: \\(\\mathrm{depth}=2\\), \\(\\mathrm{gateCount}=4\\), \\(\\mathrm{auxiliaryQubits}=1\\), \\(\\mathrm{oracleCalls}=0\\); comparison tuple \\((\\mathrm{gateCount},\\mathrm{depth},\\mathrm{auxiliaryQubits},\\mathrm{oracleCalls})=(4,2,1,0)\\) in the concrete \\(\\{X,\\mathrm{CNOT},\\mathrm{Toffoli}\\}\\) logical reversible permutation-matrix tier.",
             "Scope: final for this concrete \\(r=1,k=1\\) logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; arbitrary-register generalization, hardware decomposition, and Lean-proved depth lower bounds remain open.",
             "Plot policy: plotted points must name rational-orthogonal matrix and clean-block Lean certificates at this semantic tier.",
             "Manuscript rule: present this as the current concrete certificate, not as a general-family or hardware-optimality theorem.",
@@ -4235,7 +4500,7 @@ def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str
 \\section{{Current Cycle Status}}
 \\label{{app:generated-cycle-status}}
 
-This appendix is intentionally short.  The full run logs, Chinese summaries,
+This appendix is intentionally short.  The full run logs, preferred-language summaries,
 and ChatGPT Pro prompts stay in the repository; the Overleaf report includes
 only the compact status needed to keep the manuscript honest and fast to
 compile.
@@ -4336,10 +4601,10 @@ The circuit \\(U_{{\\mathrm{{evo}}}}\\) is an exact one-ancilla block encoding o
 In the logical gate library \\(\\{{X,\\mathrm{{CNOT}},\\mathrm{{Toffoli}}\\}}\\),
 its certified score is
 \\[
-  (\\mathrm{{depth}},\\mathrm{{gateCount}},\\mathrm{{auxiliaryQubits}},
+  (\\mathrm{{gateCount}},\\mathrm{{depth}},\\mathrm{{auxiliaryQubits}},
   \\mathrm{{oracleCalls}})
   =
-  (2,4,1,0).
+  (4,2,1,0).
 \\]
 
 \\paragraph{{Proof.}}
@@ -4586,6 +4851,11 @@ def cmd_validate_candidate_metrics(args: argparse.Namespace) -> int:
 
 
 def cmd_cycle_zh_summary(args: argparse.Namespace) -> int:
+    args.language = "zh"
+    return cmd_cycle_summary(args)
+
+
+def cmd_cycle_summary(args: argparse.Namespace) -> int:
     if args.run_id == "latest":
         run_dir = latest_run_dir()
         if run_dir is None:
@@ -4595,9 +4865,10 @@ def cmd_cycle_zh_summary(args: argparse.Namespace) -> int:
     if not run_dir.exists():
         raise SystemExit(f"run directory not found: {rel(run_dir)}")
     cycle = resolved_cycle(args.cycle, run_dir)
-    run_path, archive_path = write_cycle_zh_summary(args.id, cycle, run_dir)
-    print(f"zh-summary: {display_path(run_path)}")
-    print(f"zh-summary-archive: {display_path(archive_path)}")
+    language = getattr(args, "language", None)
+    run_path, archive_path = write_cycle_summary(args.id, cycle, run_dir, language)
+    print(f"summary: {display_path(run_path)}")
+    print(f"summary-archive: {display_path(archive_path)}")
     return 0
 
 
@@ -5115,8 +5386,8 @@ Local paper-source archive for agent work:
   trial memory, but the scientific target is Lean-checked quantum circuit
   matrix construction: given an operator/query-oracle target `A`, synthesize a
   candidate unitary `U_A`, prove the requested block-entry relation in Lean,
-  and compare candidates by depth, gate count, auxiliary qubits, and unresolved
-  oracle calls.
+  and compare candidates by asymptotic tier first and then by gate count,
+  depth, auxiliary qubits, and unresolved oracle calls.
 - Upper is the human-facing project director: choose the cycle objective,
   decide whether the task is operator construction, paper baseline
   reproduction, or exploratory improvement, and compress memory for the next
@@ -5152,8 +5423,9 @@ Local paper-source archive for agent work:
 - In `operatorBlockEncoding` mode, the fixed target is the user-provided
   operator/matrix `A`, normalizer `alpha`, and block projector.  Agents may
   search over candidate unitary/circuit families, but every candidate must
-  record its `BlockEncodingCost`, ordered as `(depth, gateCount,
-  auxiliaryQubits, oracleCalls)`, and Lean obligations.  Necessary-condition simulators and
+  record its asymptotic tier plus concrete `BlockEncodingCost`, ordered as
+  `(gateCount, depth, auxiliaryQubits, oracleCalls)` inside one tier, and Lean
+  obligations.  Necessary-condition simulators and
   finite checks may reject bad candidates; only Lean proves acceptance.  Keep
   unproved ideas in an insight pool.  Only Lean-certified candidates may be
   used as evolutionary parents or plotted as achieved solutions.
@@ -5253,11 +5525,13 @@ Human-facing correspondence rule:
 - If a cycle changes Lean declarations tied to a paper construction, update the
   conversion window, a `paper-notes/*.tex` note, or a `proof-obligations/`
   ledger in the same cycle.
-- Chinese audit cadence: during long theorem-closure batches, do not spend
-  context or filesystem churn writing a full Chinese summary after every inner
-  proof-search cycle.  The 6h wrapper writes one source-aligned Chinese audit
-  page at the final upper/middle/reviewer audit.  Use `--summary-each-cycle`
-  only for short debugging runs where a summary after every cycle is desired.
+- Preferred-language audit cadence: during long theorem-closure batches, do not
+  spend context or filesystem churn writing a full human summary after every
+  inner proof-search cycle.  The 6h wrapper writes one source-aligned audit page
+  in the configured report language at the final upper/middle/reviewer audit.
+  Use `--report-language <lang>` or `QBE_REPORT_LANGUAGE=<lang>` to select the
+  user's mother tongue.  Use `--summary-each-cycle` only for short debugging
+  runs where a summary after every cycle is desired.
 - Figure-audit rule: if the active leaf depends on a paper circuit diagram,
   upper/middle/lower1 must use the figure audit or inspect the figure source
   directly before assigning Lean work.  For GHL2025 Fig. 4, read
@@ -5477,7 +5751,7 @@ memory.  Produce:
 
 1. Repeated failures that should become rejected-route memory.
 2. Missing or stale memory cards, cited-results rows, verifier-feedback fields,
-   Chinese summaries, or article-update packets.
+   preferred-language summaries, or article-update packets.
 3. Token/time waste risks in the next cycle.
 4. One concrete harness or prompt adjustment, if needed.
 5. The reports humans should read after the run.
@@ -5683,7 +5957,7 @@ Middle-panel profile: report/export maintainer.
 Focus only on human-readable exports.  Read the source-correspondence and
 memory curator notes if present.  Produce:
 
-1. Which Chinese status page, Markdown note, LaTeX status section, or technical
+1. Which preferred-language status page, Markdown note, LaTeX status section, or technical
    report appendix must be updated at the final audit.
 2. Which raw logs or generated files should not be human entry points.
 3. A concise human-facing explanation of any open blocker.
@@ -6268,13 +6542,13 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             write_trial_summary(load_jsonl(TRIAL_LOG))
             if code != 0:
                 if args.summary_each_cycle:
-                    write_cycle_zh_summary(args.id, cycle, run_dir)
+                    write_cycle_summary(args.id, cycle, run_dir, args.report_language)
                 write_memory_refresh(args.id, cycle, run_dir)
                 if not args.skip_article_update:
                     write_project_article_update(args.id, cycle, run_dir)
                 return code
         if args.summary_each_cycle:
-            write_cycle_zh_summary(args.id, cycle, run_dir)
+            write_cycle_summary(args.id, cycle, run_dir, args.report_language)
         write_memory_refresh(args.id, cycle, run_dir)
         write_article_this_cycle = args.article_update_each_cycle or cycle == args.cycles
         if not args.skip_article_update and write_article_this_cycle:
@@ -6386,7 +6660,14 @@ def build_parser() -> argparse.ArgumentParser:
     p_efficiency.add_argument("--json", action="store_true")
     p_efficiency.set_defaults(func=cmd_efficiency_report)
 
-    p_zh_summary = sub.add_parser("cycle-zh-summary", help="write a Chinese paper-source cycle summary")
+    p_summary = sub.add_parser("cycle-summary", help="write a human-facing cycle summary in the requested report language")
+    p_summary.add_argument("id")
+    p_summary.add_argument("--cycle", type=int, default=1)
+    p_summary.add_argument("--run-id", default="latest")
+    p_summary.add_argument("--language", default=os.environ.get("QBE_REPORT_LANGUAGE", "zh"))
+    p_summary.set_defaults(func=cmd_cycle_summary)
+
+    p_zh_summary = sub.add_parser("cycle-zh-summary", help="compatibility alias: write a Chinese paper-source cycle summary")
     p_zh_summary.add_argument("id")
     p_zh_summary.add_argument("--cycle", type=int, default=1)
     p_zh_summary.add_argument("--run-id", default="latest")
@@ -6407,6 +6688,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_human = sub.add_parser("human-status", help="write the root human-facing status dashboard")
     p_human.add_argument("id")
     p_human.add_argument("--run-id", default="latest")
+    p_human.add_argument("--language", default=os.environ.get("QBE_REPORT_LANGUAGE", "zh"))
     p_human.set_defaults(func=cmd_human_status)
 
     p_article_update = sub.add_parser("project-article-update", help="write an article-facing cycle update packet")
@@ -6527,7 +6809,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep.add_argument(
         "--summary-each-cycle",
         action="store_true",
-        help="write and archive the Chinese paper-source audit after every executed cycle; long 6h runs leave this off and write one final summary",
+        help="write and archive the human-facing source audit after every executed cycle; long 6h runs leave this off and write one final summary",
+    )
+    p_sleep.add_argument(
+        "--report-language",
+        default=os.environ.get("QBE_REPORT_LANGUAGE", "zh"),
+        help="preferred human report language for cycle summaries, e.g. zh, en, ja, ko, fr; default reads QBE_REPORT_LANGUAGE or zh",
     )
     p_sleep.add_argument(
         "--context-mode",

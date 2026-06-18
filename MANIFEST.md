@@ -6322,3 +6322,21 @@ block-encoding formalization lifecycle.
 | 2026-06-18 11:45:02 | qbe.py problem-latex-export | `runs/manual-multiagent/20260617-optctrl-pro/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
 | 2026-06-18 11:45:02 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260617-optctrl-pro.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
 | 2026-06-18 11:45:02 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-18 18:46:01 | qbe.py cycle-summary | `runs/manual-multiagent/20260617-optctrl-pro/summary.en.md` | review | Wrote en cycle summary for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 18:46:01 | qbe.py cycle-summary | `paper-notes/QBE-OP-OPTCTRL-001/markdown/cycle-summaries/20260617-optctrl-pro.en.md` | paper-note | Archived en cycle summary for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 18:50:16 | qbe.py human-status | `REPORTS.zh.md` | review | Wrote report guide for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 18:50:16 | qbe.py human-status | `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | review | Wrote GHL Fig. 4 visual audit for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 18:50:17 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 18:50:17 | qbe.py cycle-summary | `runs/manual-multiagent/20260617-optctrl-pro/summary.ja.md` | review | Wrote ja cycle summary for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 18:50:17 | qbe.py cycle-summary | `paper-notes/QBE-OP-OPTCTRL-001/markdown/cycle-summaries/20260617-optctrl-pro.ja.md` | paper-note | Archived ja cycle summary for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 18:50:18 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 18:50:41 | qbe.py human-status | `REPORTS.zh.md` | review | Wrote report guide for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 18:50:41 | qbe.py human-status | `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | review | Wrote GHL Fig. 4 visual audit for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 18:50:41 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 18:50:43 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 18:51:05 | qbe.py cycle-summary | `runs/manual-multiagent/20260617-optctrl-pro/zh_summary.md` | review | Wrote zh cycle summary for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 18:51:05 | qbe.py cycle-summary | `paper-notes/QBE-OP-OPTCTRL-001/markdown/cycle-summaries/20260617-optctrl-pro.zh.md` | paper-note | Archived zh cycle summary for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 18:52:53 | qbe.py human-status | `REPORTS.zh.md` | review | Wrote report guide for QBE-AUTO-002 |
+| 2026-06-18 18:52:53 | qbe.py human-status | `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | review | Wrote GHL Fig. 4 visual audit for QBE-AUTO-002 |
+| 2026-06-18 18:52:53 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
+| 2026-06-18 18:52:55 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |

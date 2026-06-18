@@ -24,11 +24,13 @@ and a candidate unitary `U_A` satisfying a block-entry statement such as:
 The search target is not only correctness.  Among Lean-checkable candidates,
 ABEIS ranks constructions by:
 
-1. circuit depth, smaller is better because parallel layers are preferable to
-   sequential gates;
-2. gate count, smaller is better;
-3. auxiliary qubits `a`, smaller is better;
-4. unresolved oracle calls, smaller is better until they are expanded.
+1. asymptotic scale first: polylogarithmic gate/depth/ancilla growth is
+   qualitatively better than polynomial-scale growth;
+2. within the same asymptotic tier, gate count is the primary concrete score;
+3. within the same gate-count tier, circuit depth is the next score because
+   parallel layers are preferable to sequential layers;
+4. within the same gate/depth tier, auxiliary qubits `a` are minimized;
+5. unresolved oracle calls remain a separate warning until they are expanded.
 
 Thus paper constructions are baselines and training data, not the whole
 purpose of the project.  After a paper baseline is formalized, the same system
@@ -48,7 +50,7 @@ flowchart LR
   C --> D["lower population proposes U_A candidates"]
   D --> E["finite/unitarity/block-entry diagnostics"]
   E --> F["Lean certificate attempt"]
-  F --> G["resource score: depth, gates, a, oracle calls"]
+  F --> G["resource score: scale, gates, depth, a, oracle calls"]
   G --> H["candidate archive and next mutation"]
   F --> I["accepted Lean-checked construction"]
 ```
@@ -83,7 +85,8 @@ Current certified concrete logical champion:
 
 ```text
 evolved-eq-flip-r1-k1
-score = (depth = 2, gateCount = 4, auxiliaryQubits = 1, oracleCalls = 0)
+record fields = (depth = 2, gateCount = 4, auxiliaryQubits = 1, oracleCalls = 0)
+comparison tuple = (gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 0)
 Lean certificate = OptimalControl.evolvedEqFlipVerified
 ```
 
@@ -122,6 +125,33 @@ The mandatory acceptance gate is always:
 
 ```bash
 lake build && lake build Tests
+```
+
+## Web Task Builder
+
+For mathematicians or quantum-algorithm authors who do not want to begin from
+GitHub, ABEIS now includes a static local web entry point:
+
+```bash
+cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
+python3 -m http.server 8080 -d web
+```
+
+Open `http://localhost:8080/`.  The page lets a user paste a LaTeX oracle,
+matrix, or natural-language operator description, choose the report language
+used for closeout summaries, record a baseline construction, and generate a
+Markdown task packet for the upper/middle/lower/reviewer agent loop.  It is a
+local prototype: it does not upload data and does not certify anything by
+itself.  The design borrows the low-entry-barrier UI lesson from
+[LLM4AD_Next][llm4ad-next] and its online demo, while keeping ABEIS-specific
+Lean certificate discipline.
+
+Report language can also be selected from the CLI:
+
+```bash
+export QBE_REPORT_LANGUAGE=ja
+python3 tools/qbe.py sleep-run QBE-OP-OPTCTRL-001 --report-language ja ...
+python3 tools/qbe.py cycle-summary QBE-OP-OPTCTRL-001 --run-id latest --language ja
 ```
 
 ## What This Repository Contains
@@ -280,7 +310,7 @@ flowchart TD
   R --> O
   O --> J
   J --> K["retrieval index + todos"]
-  K --> L["Chinese 6h summary + technical-report update"]
+  K --> L["preferred-language 6h summary + technical-report update"]
   K --> W["problem-specific LaTeX proof note"]
   K --> Q["self-contained ChatGPT Pro prompt"]
   Q --> X["ChatGPT Pro advisory answer"]
@@ -306,10 +336,10 @@ The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
   equations, figures, and cited primitives to Lean-facing contracts.
 - Middle memory/retrieval curator: retires stale targets, updates retrieval
   packets, verifier-feedback fields, and rejected-route memory.
-- Middle report/export maintainer: at 6h or convergence closeout, updates
-  Chinese status, the technical-report status packet, and the problem-specific
-  LaTeX proof note.  Routine inner cycles keep only Lean-to-natural-language
-  and natural-language-to-Lean proof maps.
+- Middle report/export maintainer: at 6h or convergence closeout, updates the
+  requested mother-tongue status page, the technical-report status packet, and
+  the problem-specific LaTeX proof note.  Routine inner cycles keep only
+  Lean-to-natural-language and natural-language-to-Lean proof maps.
 - Lower natural-language construction architect: translates the active operator
   target or source proof fragment into a candidate/proof DAG and ordered lemma
   list.
@@ -326,8 +356,11 @@ The current roles are compiled in `QuantumBlockEncoding/Automation.lean`:
 
 After a long run, the human-facing entry points are intentionally narrow:
 
-- Chinese status: task-specific; for paper-benchmark tracks see
-  `paper-notes/<paper-key>/markdown/cycle-summaries/latest.md`.
+- Mother-tongue status: task-specific; select it with
+  `--report-language <lang>` or `QBE_REPORT_LANGUAGE=<lang>`.  The current
+  run always writes `runs/<run-id>/summary.md`; paper-benchmark archives also
+  keep language-suffixed files such as
+  `paper-notes/<paper-key>/markdown/cycle-summaries/latest.zh.md`.
 - ChatGPT Pro prompt: `runs/pro-prompts/<task-id>-latest.md` when the task
   still has unresolved proof leaves.
 - Problem-specific LaTeX proof note:
@@ -340,7 +373,7 @@ The Pro prompt is self-contained because ChatGPT Pro cannot read local files.
 It includes public paper links when relevant, the current theorem/operator
 target, open contribution obligations, open external technical lemmas, and
 recent verifier feedback.
-The human expert entry point is separate: after reading the Chinese summary
+The human expert entry point is separate: after reading the mother-tongue summary
 and any Pro answer, the user records top-level source, modeling, and priority
 guidance for the next upper-director cycle.  Both inputs are advisory.  They
 must be translated into a Lean-checkable active leaf, source anchor, or
@@ -430,8 +463,8 @@ QBE now distinguishes three strategy modes:
   recombined, but each candidate must keep the same acceptance predicate.
 
 The acceptance rule is the same in all modes: diagnostics and scores guide
-search, but only Lean closes the block-encoding certificate.  A lower auxiliary
-dimension, shallower depth, or smaller gate count is not accepted if the
+search, but only Lean closes the block-encoding certificate.  A smaller gate
+count, shallower depth, or lower auxiliary dimension is not accepted if the
 block-entry theorem or unitarity theorem is missing.
 
 ## Sibling System Comparison
@@ -511,7 +544,8 @@ Expected outputs:
 
 - Lean declarations in `QuantumBlockEncoding/MyOperator.lean`,
 - candidate records in `candidate-populations/`,
-- candidate scores ordered as `(depth, gateCount, auxiliaryQubits, oracleCalls)`,
+- candidate scores ordered by asymptotic scale first, then
+  `(gateCount, depth, auxiliaryQubits, oracleCalls)` inside one concrete tier,
 - tests under `Tests/`,
 - a symbol map in `conversion-windows/QBE-OP-001.md`,
 - readable derivations in `paper-notes/`,
@@ -749,10 +783,11 @@ unsupported LaTeX claims, and prose that violates the math-writing skill.
 | `python3 tools/qbe.py blueprint-status ...` | Write the current blueprint control status as Markdown and JSON. |
 | `python3 tools/qbe.py write-context-pack ...` | Write a compact long-run context pack. |
 | `python3 tools/qbe.py efficiency-report ...` | Summarize recent long-run efficiency, quota/build signals, and next controls. |
-| `python3 tools/qbe.py cycle-zh-summary ...` | Write the Chinese source-aligned audit page. The 6h wrapper runs this once at the final audit; use `sleep-run --summary-each-cycle` only for short debugging runs. |
+| `python3 tools/qbe.py cycle-summary ... --language <lang>` | Write the human-facing source-aligned audit page in the requested report language. The 6h wrapper runs this once at the final audit; use `sleep-run --summary-each-cycle` only for short debugging runs. |
+| `python3 tools/qbe.py cycle-zh-summary ...` | Compatibility alias for Chinese summaries. |
 | `python3 tools/qbe.py cycle-pro-prompt ...` | Write a self-contained ChatGPT Pro prompt for the remaining unresolved leaves. |
 | `python3 tools/qbe.py memory-refresh ...` | Refresh `memory_digest.md`, cycle todo, benchmark/paper todo, technical-lemma todo, and the compact retrieval JSON. |
-| `python3 tools/qbe.py human-status ...` | Refresh `HUMAN_STATUS.md`, the single human-facing dashboard for the latest run. |
+| `python3 tools/qbe.py human-status ... --language <lang>` | Refresh `HUMAN_STATUS.md`, the single human-facing dashboard for the latest run, using the requested report language when available. |
 | `python3 tools/qbe.py project-article-update ...` | Write the closeout article-facing packet, mirror generated status into the technical report, and generate the problem-specific LaTeX proof note. |
 | `python3 tools/qbe.py problem-latex-export ...` | Regenerate only the problem-specific LaTeX proof note for copying into a user manuscript. |
 | `python3 tools/qbe.py manual-cycle-closeout ...` | Close a chat-window/manual multi-agent loop by refreshing memory and mirroring the latest-only Overleaf appendix. Use this whenever work did not go through `sleep-run`. |
@@ -914,6 +949,11 @@ This repository cites external work by original source link:
 - [Sonoda--Akiyama--Uezato hierarchical provers][hierarchical-provers] and
   [statistical provability][statistical-provability]:
   similar patterns for reusable proof cuts and finite-budget proof progress.
+- [Optima-CityU/LLM4AD_Next][llm4ad-next]:
+  similar pattern for lowering the entry barrier with an interactive
+  problem-to-runnable-pipeline interface. QBE adapts this as a static
+  oracle-to-task-packet web builder for non-GitHub users; Lean remains the
+  certificate gate.
 - [LeanConjecturer][leanconjecturer-paper] and
   [Conjecturing-Proving Loop][cpl-paper]:
   similar patterns for separating candidate theorem generation from proving.
@@ -970,6 +1010,7 @@ task boundary explicit.
 | Typed verifier fields | [QASM-Eval][qasm-eval] validates OpenQASM-3 programs with syntax, state, and timeline checks. | QBE mirrors this as `verifier-feedback/` fields and as lower 3, a necessary-condition verifier for finite matrix/path/support/schedule checks before Lean theorem closure. | QASM-Eval validates executable programs; QBE uses such checks only before Lean theorem closure and only when failure is a sound counterexample to the proposed target. |
 | Kata-style deterministic tests | [Qiskit QuantumKatas][qiskit-quantumkatas] adapts [Microsoft QuantumKatas][microsoft-quantumkatas] into deterministic LLM evaluation tasks. | QBE treats this as a model for future `BlockEncodingKatas`: small deterministic operator/candidate/unitarity/block-entry lemmas that teach agents and humans before full paper benchmarks. | Kata tests are excellent pedagogy and regression checks, but they do not replace block-encoding proof obligations. |
 | Natural-language idea to tool-executable loop | [AI-Mandel][ai-mandel] turns literature-derived quantum-physics ideas into tool-executable configurations. | QBE keeps a natural-language proof architect lower agent that translates source proofs or user oracle requirements into dependency DAGs before the Lean implementation worker attacks one leaf; lower 3 checks necessary finite/tool feedback before large proof search. | AI-Mandel targets executable physics designs; QBE targets Lean-checked oracle/block-encoding certificates. |
+| Low-entry-barrier web interface | [LLM4AD_Next][llm4ad-next] provides online and conversational entry points from problem description to runnable automated algorithm-design configuration. | QBE adds `web/`, a static oracle-to-task-packet builder where non-GitHub users paste a query operator, choose their report language, and receive an agent-ready packet. | LLM4AD_Next targets automated algorithm design pipelines; QBE targets Lean-checked block-encoding certificates, so the web packet is input, not proof. |
 
 The analogy is:
 
@@ -1146,6 +1187,7 @@ not after every small lemma.
 [eoh]: https://github.com/FeiLiu36/EoH
 [leanmarathon]: https://github.com/YuanheZ/LeanMarathon
 [mathcode]: https://github.com/math-ai-org/mathcode
+[llm4ad-next]: https://github.com/Optima-CityU/LLM4AD_Next
 [goedel-architect-paper]: https://arxiv.org/abs/2606.06468
 [lean4agent-paper]: https://arxiv.org/abs/2606.06523
 [quantum-circuit-review]: https://arxiv.org/abs/2603.16216
