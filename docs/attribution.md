@@ -28,6 +28,17 @@ paper or repository.
   where candidate circuit/oracle families may evolve under a fixed
   Lean-checkable acceptance predicate.  Paper-benchmark mode does not use
   EoH-style mutation to alter a paper's construction.
+- Bo Xue, Yuanyu Wan, Zhichao Lu, Qingfu Zhang,
+  [Beyond the Lower Bound: Bridging Regret Minimization and Best Arm Identification in Lexicographic Bandits](https://xueb1996.github.io/pdf/AAAI-2026-Xue.pdf).
+  Similar pattern studied for elimination-based lexicographic active-set
+  selection.  QBE adapts the scheduler idea to candidate block encodings and
+  proof routes: hard Lean/necessary-condition gates dominate resource and
+  process signals.  QBE does not inherit the paper's stochastic-bandit
+  assumptions or sample-complexity theorems.
+- [Optima-CityU/LLM4AD_Next](https://github.com/Optima-CityU/LLM4AD_Next).
+  Similar pattern studied for low-entry-barrier problem-to-configuration user
+  interfaces.  QBE adapts this as a static oracle-to-task-packet web builder
+  for users who do not want to begin from GitHub commands.
 - [math-ai-org/mathcode](https://github.com/math-ai-org/mathcode).
   Similar patterns studied for Lean proof diagnostics, theorem-store-like reuse
   memory, persistent Lean feedback, tree-of-subgoals proving, multi-planner
@@ -64,6 +75,8 @@ QBE combines these references as a layered system:
   maintenance.
 - EoH-like exploration: candidate populations for new circuit/oracle
   constructions, used only after the target predicate is fixed.
+- LexElim-like selection: active-set filtering for candidate/proof-route
+  populations under hard/soft lexicographic feedback.
 - LeanMarathon-like harness control: proof-blueprint snapshots, target review,
   dynamic proof leaves, refiner-style repair, and deterministic gates.
 

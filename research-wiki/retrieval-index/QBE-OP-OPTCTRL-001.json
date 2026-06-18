@@ -1,7 +1,7 @@
 {
   "cycle": 1,
   "dynamic_leaf_queue": [],
-  "generated": "2026-06-17 18:23:09",
+  "generated": "2026-06-18 20:23:41",
   "ghl_contributions": [
     {
       "depends_on_external_technical_lemma": true,
@@ -449,6 +449,18 @@
       "closed_theorem_ok": "",
       "error_class": "manual-packet",
       "finite_matrix_ok": "",
+      "leaf": "lexelim-convergence-finite-search-20260618",
+      "next_route": [],
+      "role": "reviewer",
+      "status": "packet",
+      "timestamp": "2026-06-18 20:11:35",
+      "trial_id": "verifier-feedback/QBE-OP-OPTCTRL-001/lexelim-convergence-finite-search-20260618.md"
+    },
+    {
+      "block_entry_ok": "",
+      "closed_theorem_ok": "",
+      "error_class": "manual-packet",
+      "finite_matrix_ok": "",
       "leaf": "pro-construction-search",
       "next_route": [],
       "role": "reviewer",
@@ -481,7 +493,7 @@
       "trial_id": "verifier-feedback/QBE-OP-OPTCTRL-001/reduced-depth-search.md"
     }
   ],
-  "run_dir": "runs/manual-multiagent/20260617-optctrl-pro",
+  "run_dir": "runs/manual-multiagent/20260618-lexelim-ek-convergence",
   "source_main_tex": "",
   "stage": "Stage unknown; upper must classify before broad lower work",
   "task_id": "QBE-OP-OPTCTRL-001",

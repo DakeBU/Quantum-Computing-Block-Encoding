@@ -6340,3 +6340,45 @@ block-encoding formalization lifecycle.
 | 2026-06-18 18:52:53 | qbe.py human-status | `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` | review | Wrote GHL Fig. 4 visual audit for QBE-AUTO-002 |
 | 2026-06-18 18:52:53 | qbe.py human-status | `paper-notes/GHL2025/markdown/unresolved-failures.zh.md` | review | Wrote GHL failure map for QBE-AUTO-002 |
 | 2026-06-18 18:52:55 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-AUTO-002 |
+| 2026-06-18 19:40:54 | qbe.py memory-refresh | `runs/manual-multiagent/20260618-lexelim-ek-convergence/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:40:54 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 19:40:55 | qbe.py project-article-update | `runs/manual-multiagent/20260618-lexelim-ek-convergence/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:40:55 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260618-lexelim-ek-convergence.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:40:55 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-18 19:40:55 | qbe.py problem-latex-export | `runs/manual-multiagent/20260618-lexelim-ek-convergence/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:40:55 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260618-lexelim-ek-convergence.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:40:55 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-18 19:49:31 | qbe.py project-article-update | `runs/manual-multiagent/20260618-lexelim-ek-convergence/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:49:31 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260618-lexelim-ek-convergence.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:49:31 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-18 19:49:31 | qbe.py problem-latex-export | `runs/manual-multiagent/20260618-lexelim-ek-convergence/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:49:31 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260618-lexelim-ek-convergence.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 19:49:31 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-18 20:11:47 | qbe.py memory-refresh | `runs/manual-multiagent/20260618-lexelim-ek-convergence/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:11:47 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 20:11:48 | qbe.py project-article-update | `runs/manual-multiagent/20260618-lexelim-ek-convergence/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:11:48 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260618-lexelim-ek-convergence.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:11:48 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-18 20:11:48 | qbe.py problem-latex-export | `runs/manual-multiagent/20260618-lexelim-ek-convergence/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:11:48 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260618-lexelim-ek-convergence.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:11:48 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-18 20:22:39 | qbe.py optctrl-convergence-summary | `runs/manual-multiagent/20260618-lexelim-ek-convergence/zh_summary.md` | review | Wrote Chinese convergence summary with certified circuit figures |
+| 2026-06-18 20:22:39 | qbe.py optctrl-convergence-summary | `runs/manual-multiagent/20260618-lexelim-ek-convergence/summary.en.md` | review | Wrote English convergence summary with certified circuit figures |
+| 2026-06-18 20:22:39 | qbe.py memory-refresh | `runs/manual-multiagent/20260618-lexelim-ek-convergence/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:22:39 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 20:22:40 | qbe.py project-article-update | `runs/manual-multiagent/20260618-lexelim-ek-convergence/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:22:40 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260618-lexelim-ek-convergence.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:22:40 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-18 20:22:40 | qbe.py problem-latex-export | `runs/manual-multiagent/20260618-lexelim-ek-convergence/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:22:40 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260618-lexelim-ek-convergence.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:22:40 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-18 20:23:41 | qbe.py optctrl-convergence-summary | `runs/manual-multiagent/20260618-lexelim-ek-convergence/zh_summary.md` | review | Wrote Chinese convergence summary with certified circuit figures |
+| 2026-06-18 20:23:41 | qbe.py optctrl-convergence-summary | `runs/manual-multiagent/20260618-lexelim-ek-convergence/summary.en.md` | review | Wrote English convergence summary with certified circuit figures |
+| 2026-06-18 20:23:41 | qbe.py memory-refresh | `runs/manual-multiagent/20260618-lexelim-ek-convergence/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:23:41 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-18 20:23:42 | qbe.py project-article-update | `runs/manual-multiagent/20260618-lexelim-ek-convergence/article_update.md` | article | Wrote project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:23:42 | qbe.py project-article-update | `paper-notes/project-paper/cycle-updates/20260618-lexelim-ek-convergence.md` | article | Archived project article update for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:23:42 | qbe.py project-article-update | `Auto_Proof_Papers/ABEIS/appendix/generated_cycle_status.tex` | article | Mirrored latest generated status into the ABEIS technical report |
+| 2026-06-18 20:23:42 | qbe.py problem-latex-export | `runs/manual-multiagent/20260618-lexelim-ek-convergence/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:23:42 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260618-lexelim-ek-convergence.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-18 20:23:42 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |

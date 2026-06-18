@@ -18,6 +18,11 @@ dynamic leaves, bounded worker/refiner roles, and deterministic gates.
 Exploratory construction mode also preserves an
 [EoH](https://github.com/FeiLiu36/EoH)-like population layer for evolving
 candidate circuit/oracle families under a fixed acceptance predicate.
+For lexicographic candidate selection, it adds a LexElim-style scheduler
+inspired by Xue--Wan--Lu--Zhang's lexicographic bandit algorithms.  QBE uses
+the scheduler pattern, not the stochastic-bandit sample-complexity theorem:
+candidate circuits and proof routes are active arms, and feedback is a vector
+of hard and soft signals.
 
 ARIS optimizes the loop:
 
@@ -54,6 +59,7 @@ targets.
 | Plain-file substrate | ARIS | Skills, manifests, task files, conversion windows, wiki, reviews, and run logs. |
 | Iterative controller | Learning Beyond Gradients | Upper/middle/lower/reviewer cycles, trial memory, failure compression, and proof-system maintenance. |
 | Exploratory search | EoH | Candidate populations for new circuit/oracle constructions, only in exploratory mode. |
+| Lexicographic scheduler | Xue--Wan--Lu--Zhang 2026 | Active-set filtering with hard Lean gates, necessary diagnostics, asymptotic tiers, and `(gateCount, depth, auxiliaryQubits, oracleCalls)` in priority order. |
 | Lean harness control | LeanMarathon | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
 | Proof diagnostics | MathCode | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
 
@@ -90,6 +96,9 @@ Operator mode rules:
 
 - keep the operator contract fixed,
 - store alternative candidates under `candidate-populations/`,
+- use `LexElim-In`: all feedback fields may guide the next candidate pull, but
+  lower-priority proof-progress or token-cost signals cannot override Lean
+  correctness, necessary diagnostics, asymptotic tier, or resource tuple order,
 - use parser/unit-test/simulator-style checks only as necessary-condition
   diagnostics,
 - accept only Lean-closed block-entry and unitarity theorems.
@@ -109,7 +118,12 @@ Paper-benchmark rules:
 - when a fixed lemma fails, record proof routes under `proof-attempts/` instead
   of changing the statement,
 - update the Markdown/LaTeX proof map whenever Lean declarations move,
-- prefer one lower worker per cycle when the target is delicate,
+- use `LexElim-Out`: filter proof routes layer by layer, and do not compare
+  lower-priority resource improvements before the source theorem and Lean
+  statement are correct,
+- prefer one lower worker per cycle when one exact proof leaf is already
+  selected; use three lower roles when proof architecture, Lean implementation,
+  and necessary diagnostics are genuinely separate,
 - use reviewer findings to prevent hidden oracle assumptions.
 
 ### Exploratory Construction
@@ -125,6 +139,8 @@ Exploratory mode rules:
   multiple construction ideas compete,
 - allow EoH-like mutation, recombination, selection, and archive pressure only
   inside that candidate space,
+- use LexElim-In active-set filtering so hard rejection and certified
+  domination retire candidates, while soft failures only reduce priority,
 - record all failed constructions in the trial memory,
 - promote repeated failures to open-problem proposals,
 - keep reusable circuit lemmas in shared Lean modules,

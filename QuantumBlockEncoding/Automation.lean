@@ -114,7 +114,7 @@ structure TrialRecordSpec where
 deriving Repr, DecidableEq
 
 inductive PostCycleArtifactKind where
-  | chineseSummary
+  | preferredLanguageSummary
   | chatgptProPrompt
   | retrievalIndex
   | technicalReportUpdate
@@ -138,6 +138,47 @@ deriving Repr, DecidableEq
 inductive CandidatePool where
   | insight
   | certified
+deriving Repr, DecidableEq
+
+inductive LexElimSchedulerMode where
+  | lexElimOut
+  | lexElimIn
+deriving Repr, DecidableEq
+
+inductive LexObjectiveClass where
+  | hardCorrectness
+  | necessaryDiagnostic
+  | asymptoticTier
+  | concreteResource
+  | proofProgress
+  | processCost
+deriving Repr, DecidableEq
+
+structure LexObjectiveSpec where
+  name : String
+  priority : Nat
+  objectiveClass : LexObjectiveClass
+  hardGate : Bool
+  note : String
+deriving Repr, DecidableEq
+
+structure LexElimSchedulerSpec where
+  mode : LexElimSchedulerMode
+  useCase : String
+  activeSet : String
+  eliminationRule : String
+  promotionRule : String
+  inspiredBy : String
+deriving Repr, DecidableEq
+
+structure AgentPanelSizeSpec where
+  taskClass : String
+  upperCount : Nat
+  middleCount : Nat
+  lowerCount : Nat
+  reviewerCount : Nat
+  useWhen : String
+  avoidWhen : String
 deriving Repr, DecidableEq
 
 structure WorkflowInvariantSpec where
@@ -183,10 +224,10 @@ def trialRecordSpec : TrialRecordSpec where
 def postCycleArtifactSpecs : List PostCycleArtifactSpec :=
   [
     {
-      kind := PostCycleArtifactKind.chineseSummary
-      pathPattern := "paper-notes/GHL2025/markdown/cycle-summaries/latest.md"
+      kind := PostCycleArtifactKind.preferredLanguageSummary
+      pathPattern := "runs/<run-id>/summary.md"
       selfContainedForExternalModel := false
-      note := "Human-facing Chinese source audit for the latest long run."
+      note := "Human-facing source/operator audit in the user's configured report language."
     },
     {
       kind := PostCycleArtifactKind.chatgptProPrompt
@@ -221,6 +262,112 @@ def workflowCheckSpecs : List WorkflowCheckSpec :=
       checks := ["required artifacts exist", "role handoff recorded", "stale route not reassigned unchanged"]
       inspiredBy := "arXiv:2606.06523"
       note := "Lean4Agent-like workflow verification; separate from the quantum theorem."
+    }
+  ]
+
+def blockEncodingLexObjectiveSpecs : List LexObjectiveSpec :=
+  [
+    {
+      name := "Lean-certified target correctness"
+      priority := 0
+      objectiveClass := LexObjectiveClass.hardCorrectness
+      hardGate := true
+      note := "Candidate must keep the fixed operator target and close the advertised unitarity/block-entry theorem before certification."
+    },
+    {
+      name := "Necessary-condition diagnostics"
+      priority := 1
+      objectiveClass := LexObjectiveClass.necessaryDiagnostic
+      hardGate := true
+      note := "Exact parser, dimension, finite matrix, unitarity, block-entry, or schedule diagnostics may reject only when failure is a necessary contradiction to the Lean target."
+    },
+    {
+      name := "Asymptotic tier"
+      priority := 2
+      objectiveClass := LexObjectiveClass.asymptoticTier
+      hardGate := false
+      note := "Polylogarithmic-scale constructions dominate polynomial-scale constructions before concrete gate/depth/auxiliary comparisons."
+    },
+    {
+      name := "Concrete resource tuple"
+      priority := 3
+      objectiveClass := LexObjectiveClass.concreteResource
+      hardGate := false
+      note := "Inside one semantic/asymptotic tier, compare (gateCount, depth, auxiliaryQubits, oracleCalls) lexicographically."
+    },
+    {
+      name := "Reusable proof progress"
+      priority := 4
+      objectiveClass := LexObjectiveClass.proofProgress
+      hardGate := false
+      note := "Named reusable lemmas, smaller proof-DAG leaves, and retired stale routes increase scheduling priority but do not certify a candidate."
+    },
+    {
+      name := "Token and wall-clock cost"
+      priority := 5
+      objectiveClass := LexObjectiveClass.processCost
+      hardGate := false
+      note := "Use process cost to avoid repeated low-value routes after higher-priority correctness and resource facts have been respected."
+    }
+  ]
+
+def lexElimSchedulerSpecs : List LexElimSchedulerSpec :=
+  [
+    {
+      mode := LexElimSchedulerMode.lexElimOut
+      useCase := "faithful paper benchmark or delicate theorem closure"
+      activeSet := "proof routes and candidate statements for one fixed source theorem"
+      eliminationRule := "filter layer-by-layer: source faithfulness, Lean statement correctness, necessary diagnostics, then proof progress"
+      promotionRule := "no candidate or route is promoted unless the corresponding Lean/source obligation for the current layer is satisfied"
+      inspiredBy := "Xue et al. 2026 LexElim-Out for lexicographic bandits"
+    },
+    {
+      mode := LexElimSchedulerMode.lexElimIn
+      useCase := "operator construction or exploratory improvement with a fixed target"
+      activeSet := "candidate unitaries, circuit schedules, and proof routes"
+      eliminationRule := "use all feedback fields each round, but never let lower-priority soft rewards override hard Lean/diagnostic gates"
+      promotionRule := "only Lean-certified candidates enter the certified population; insight-pool candidates can guide but cannot parent evolution"
+      inspiredBy := "Xue et al. 2026 LexElim-In plus EoH-style candidate populations"
+    }
+  ]
+
+def agentPanelSizeSpecs : List AgentPanelSizeSpec :=
+  [
+    {
+      taskClass := "simple local Lean leaf"
+      upperCount := 1
+      middleCount := 1
+      lowerCount := 1
+      reviewerCount := 1
+      useWhen := "target statement and dependencies are already precise"
+      avoidWhen := "source correspondence, candidate population, or verifier feedback is stale"
+    },
+    {
+      taskClass := "standard exploratory block-encoding search"
+      upperCount := 1
+      middleCount := 1
+      lowerCount := 3
+      reviewerCount := 1
+      useWhen := "need a natural-language construction architect, one Lean worker, and one necessary-condition verifier in parallel"
+      avoidWhen := "no fixed operator target or acceptance predicate exists"
+    },
+    {
+      taskClass := "stale or high-risk final audit"
+      upperCount := 4
+      middleCount := 4
+      lowerCount := 3
+      reviewerCount := 1
+      useWhen := "source/visual audit, proof-DAG strategy, process memory, and report/export status must be separated before the next run"
+      avoidWhen := "inner loop proof search is making steady progress; extra panels would only add token overhead"
+    },
+    {
+      taskClass := "post-failure refiner"
+      upperCount := 1
+      middleCount := 1
+      lowerCount := 4
+      reviewerCount := 1
+      useWhen := "one concrete Lean failure needs a dedicated reducer/refiner in addition to architect, worker, and verifier"
+      avoidWhen := "failure class is unknown; run upper/middle audit first"
     }
   ]
 

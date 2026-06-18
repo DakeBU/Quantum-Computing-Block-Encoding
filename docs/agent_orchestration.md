@@ -113,6 +113,41 @@ The default 6h wrapper runs upper and middle panels only at the final audit.
 Enable inner panels only when the run is demonstrably losing source
 faithfulness or repeating stale work.
 
+## LexElim Scheduling
+
+QBE's candidate and proof-route scheduler is lexicographic.  It does not
+collapse all feedback into one scalar reward.  The scheduler keeps an active
+set of candidates or proof routes and filters them with this priority order:
+
+```text
+Lean-certified target correctness
+> necessary-condition diagnostics
+> asymptotic tier
+> (gateCount, depth, auxiliaryQubits, oracleCalls)
+> reusable proof-progress gain
+> token/time cost
+```
+
+Use `LexElim-Out` for faithful paper-benchmark and theorem-closure work.  It
+is deliberately conservative: the source theorem and Lean statement must be
+correct before lower-priority resource or proof-progress signals matter.
+
+Use `LexElim-In` for exploratory operator construction.  It uses all feedback
+fields when choosing the next candidate pull, but only hard rejection or
+certified domination retires a candidate.  Soft failures or high token cost
+lower priority; they do not delete useful insight.
+
+This scheduler determines agent count:
+
+- If the next action is one precise Lean leaf, use one lower worker.
+- If the task is exploratory or has mixed hard/soft feedback, use three lower
+  roles in parallel: natural-language architect, Lean worker, and
+  necessary-condition verifier.
+- If source correspondence or memory is stale, run upper/middle panels before
+  any lower workers.
+- If a concrete Lean failure has a known class, add lower 4 as a reducer; do
+  not use it as a fourth broad proof searcher.
+
 ## Blueprint And DAG Control
 
 LeanMarathon's useful control lesson for QBE is that long Lean runs need a
@@ -148,10 +183,14 @@ Use it before overnight work:
 ```bash
 python3 tools/qbe.py run-cycle QBE-AUTO-002 \
   --cycle 1 \
-  --lower-count 3 \
+  --lower-count 1 \
   --context-mode focused \
   --blueprint-refresh
 ```
+
+Use `--lower-count 3 --context-mode full` instead when the target is still an
+exploratory construction problem and the three lower roles must run in
+parallel.
 
 The upper/middle agents should retire stale leaves when the blueprint reports
 that a lower target is already compiled.  The lower agent should work on one
@@ -309,6 +348,7 @@ runs/20260517-153000-QBE-AUTO-001-cycle01/
   20_middle_formalizer.md
   30_lower_searcher_1.md
   30_lower_searcher_2.md
+  30_lower_searcher_3.md
   40_reviewer.md
   90_handoff.md
   dialogue.md
@@ -427,7 +467,7 @@ Use focused proof burst mode after the target is fixed:
 ```bash
 python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --cycles 12 \
-  --lower-count 3 \
+  --lower-count 1 \
   --context-mode focused \
   --blueprint-refresh \
   --upper-every 6 \

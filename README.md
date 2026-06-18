@@ -90,6 +90,23 @@ comparison tuple = (gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 
 Lean certificate = OptimalControl.evolvedEqFlipVerified
 ```
 
+Certified evolution curve:
+
+![Certified evolution for E_k](docs/assets/optctrl_evolution.png)
+
+Lean-certified circuit snapshots:
+
+| Generation | Circuit diagram | Lean certificate | Tuple `(gateCount, depth, auxiliaryQubits, oracleCalls)` |
+| --- | --- | --- | --- |
+| 0 | <img src="docs/assets/optctrl_oracle_baseline.png" alt="Oracle-level seed" width="220"> | `OptimalControl.exampleVerified` | `(1, 1, 1, 1)` |
+| 2 | <img src="docs/assets/optctrl_depth5.png" alt="Depth-5 logical completion" width="220"> | `OptimalControl.reducedDepth5Verified` | `(6, 5, 1, 0)` |
+| 6 | <img src="docs/assets/optctrl_pro.png" alt="Equality-transfer candidate" width="220"> | `OptimalControl.proEqTransferVerified` | `(4, 4, 1, 0)` |
+| 7 | <img src="docs/assets/optctrl_evolved.png" alt="Evolved champion" width="220"> | `OptimalControl.evolvedEqFlipVerified` | `(4, 2, 1, 0)` |
+
+These diagrams use standard wire/control notation at the logical reversible
+gate tier.  A candidate is shown here only after Lean has proved the relevant
+matrix-unitarity and clean-block certificate for the stated semantic tier.
+
 This is a concrete `r = 1, k = 1` logical reversible permutation-matrix result.
 It is not yet a hardware-decomposed theorem, a general arbitrary-register
 theorem, or a Lean-proved global optimality theorem.
@@ -232,6 +249,7 @@ QBE's automation stack is layered:
 | Plain-file substrate | [ARIS][aris] | Skills, task files, conversion windows, manifests, wiki pages, reviews, and run logs. |
 | Iterative controller | [Learning Beyond Gradients][lbg] | Upper/middle/lower plus reviewer cycles, trial memory, failure compression, and proof-system maintenance. |
 | Candidate search | [EoH][eoh] | Candidate populations for block-encoding unitaries/circuits after the operator target is fixed. |
+| Lexicographic selection | [Xue--Wan--Lu--Zhang 2026][lexelim-bandits] | LexElim-style active-set filtering for candidates and proof routes under hard/soft multi-objective feedback. |
 | Lean harness control | [LeanMarathon][leanmarathon] | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
 | Proof diagnostics | [MathCode][mathcode] | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
 | Typed verifier feedback | [QASM-Eval][qasm-eval] and [Qiskit QuantumKatas][qiskit-quantumkatas] | Parser/build/finite-matrix/test-style fields used as pre-Lean diagnostics, never as theorem closure. |
@@ -264,6 +282,7 @@ domain-specific:
 | --- | --- | --- |
 | Repeated circuit-entry proofs and stale local algebra. | LeanMarathon-style dynamic leaves plus Sonoda--Akiyama--Uezato-style reusable proof cuts. | A flat transcript loop that asks every lower agent to rederive the same matrix entry. |
 | Need to search for better `U_A` candidates for a fixed operator. | EoH-style candidate populations and CPL/LeanConjecturer-style candidate generation, controlled by `BlockEncodingCost`. | Hidden extra assumptions, changed operator targets, or reward-only acceptance. |
+| Candidate search has a true lexicographic order, not a weighted reward. | LexElim-style active-set filtering: hard correctness, necessary diagnostics, asymptotic tier, then `(gateCount, depth, auxiliaryQubits, oracleCalls)`. | Scalarizing gate/depth/auxiliary objectives or letting soft proof-progress rewards override Lean correctness. |
 | Expensive Lean attempts on wrong circuit transcripts. | QASM/Qiskit-style typed pre-Lean diagnostics: parser, support, finite entry, dimension, unitarity, block-entry, and schedule checks. | Treating simulator/test success as theorem closure. |
 | Human and agent confusion about source-paper or user-operator correspondence. | ARIS-style plain files plus LBG-style long/compact memory split, middle Lean/natural-language windows, and closeout LaTeX exports. | A hidden database, opaque chat-only memory, or LaTeX polishing during every proof-search iteration. |
 
@@ -303,10 +322,10 @@ flowchart TD
   I --> M["lower natural-language construction architect"]
   I --> N["lower Lean implementation worker"]
   I --> P["lower necessary-condition verifier"]
-  I --> R["lower candidate mutator / scheduler"]
   M --> O["Lean gate / finite matrix feedback / verifier feedback"]
   N --> O
   P --> O
+  O -->|classified Lean failure| R["optional lower reducer / refiner"]
   R --> O
   O --> J
   J --> K["retrieval index + todos"]
@@ -853,6 +872,45 @@ That construction is an important correctness baseline for suitably scaled
 operators, but an ABEIS run must still instantiate the target, semantic tier,
 and resource model before the candidate enters the certified population.
 
+LexElim scheduler rule: QBE treats exploratory block-encoding search as a
+lexicographic active-set problem, not as scalar reward maximization.  Inspired
+by [Xue--Wan--Lu--Zhang 2026][lexelim-bandits], candidates are filtered by
+hard and soft feedback in priority order:
+
+```text
+Lean-certified target correctness
+> necessary-condition diagnostics
+> asymptotic tier
+> (gateCount, depth, auxiliaryQubits, oracleCalls)
+> reusable proof-progress gain
+> token/time cost
+```
+
+`LexElim-Out` is used for faithful paper-benchmark or theorem-closure work:
+filter proof routes layer by layer and do not optimize lower-priority resource
+fields before the source theorem is correctly represented.  `LexElim-In` is
+used for exploratory operator construction: all feedback fields help schedule
+the next pull, but lower-priority soft signals cannot override hard Lean or
+necessary-condition gates.  The paper's stochastic-bandit bounds are not used
+as ABEIS guarantees; only the scheduler pattern is absorbed.
+
+Agent-count rule: ABEIS chooses the number of agents from the task state.
+More agents are useful only when their information roles differ.
+
+- Simple local Lean leaf: 1 upper, 1 middle, 1 lower, 1 reviewer.
+- Standard exploratory BE search: 1 upper, 1 middle, 3 lower, 1 reviewer.
+  Lower 1 writes the natural-language construction/proof DAG; lower 2 proves
+  one Lean leaf; lower 3 runs necessary-condition diagnostics.
+- Stale/high-risk closeout: bounded upper and middle panels plus the three
+  lower roles.  Use this when source correspondence, proof-DAG strategy, and
+  process memory must be separated.
+- Post-failure reducer: add lower 4 only after a concrete Lean failure has a
+  known failure class.
+
+This is the practical bridge between the LBG-style hierarchy, EoH-style
+candidate evolution, LeanMarathon-style proof-DAG control, Lean4Agent-style
+process checks, and LexElim-style active-set selection.
+
 ## Literature Roadmap
 
 The source of truth is `QuantumBlockEncoding/Literature.lean`. This README
@@ -999,7 +1057,8 @@ task boundary explicit.
 | Hierarchical proof-system maintenance | [Learning Beyond Gradients][lbg] treats code, tests, logs, summaries, and failure traces as the learnable system, not neural weights. | QBE keeps an upper/middle/lower plus reviewer hierarchy: upper chooses strategy, middle maintains Lean/natural-language proof maps and memory, lower proves local leaves, reviewer gates claims; closeout writes LaTeX. | QBE's maintained object is not a game policy or controller; it is a formal library for oracle/block-encoding construction. |
 | Population-style candidate evolution | [EoH][eoh] evolves heuristic algorithms with initialization, mutation, crossover, parent selection, objective evaluation, and population archives. | QBE uses a similar idea for operator-block-encoding construction: maintain families of candidate unitaries/circuits, vary them, evaluate them against necessary diagnostics and Lean-checkable obligations, and keep rejected designs as memory. | [EoH][eoh] is designed for automatic heuristic algorithm design under empirical objective scores; QBE cannot use score alone as correctness. A construction enters the certified population only when the Lean target and proof obligations are satisfied. |
 | Certified population versus insight pool | [EoH][eoh] keeps evaluated individuals and archives for reuse. | QBE splits this into two pools: Lean-certified candidates can be parents for mutation/crossover, while Pro suggestions, simulators, and Python searches are insight-pool records until Lean promotes them. | This prevents an unverified but attractive circuit from becoming the basis of later evolution or from appearing in solution plots. |
-| Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps candidate scores, trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer lower-ancilla, lower-gate, shallower constructions that also reduce formal gaps. | Paper-benchmark mode should not use evolutionary mutation to change the paper construction; population search belongs to operator construction or improvement tasks after the acceptance predicate is explicit. |
+| Selection and archive pressure | [EoH][eoh] keeps populations and best individuals in JSON files after objective evaluation. | QBE keeps candidate scores, trial summaries, proof-obligation status, and reusable Lean lemmas so future agents prefer lower-gate, shallower, lower-auxiliary constructions that also reduce formal gaps. | Paper-benchmark mode should not use evolutionary mutation to change the paper construction; population search belongs to operator construction or improvement tasks after the acceptance predicate is explicit. |
+| Lexicographic active-set filtering | [Xue--Wan--Lu--Zhang 2026][lexelim-bandits] studies lexicographic bandits and elimination-based best-arm identification. | QBE adapts the scheduler pattern: candidates/proof routes are arms, hard Lean and necessary-condition gates are high-priority objectives, and resource/proof-progress signals guide which arm to pull next. | The stochastic-bandit sample-complexity theory is not a QBE proof guarantee; ABEIS uses the pattern to avoid scalarizing hard and soft rewards. |
 | Lean proof diagnostics and theorem reuse | [MathCode][mathcode] provides Lean proof-analysis tools, theorem-store-like reuse, persistent REPL/LSP feedback, tree-of-subgoals proving, multi-planner search, and skills/plugins. | QBE uses a similar idea for reviewer scans, proof-attempt memory, reusable projection/gate lemmas, and future focused-check tooling. | [MathCode][mathcode] is a general math formalization agent; QBE is a domain-specific system for quantum oracle/block-encoding circuit matrices. QBE must not accept stored assumptions or proof-search scores as theorem closure. |
 | Blueprint and dynamic proof-DAG control | [LeanMarathon][leanmarathon] and its [paper](https://arxiv.org/abs/2606.05400) use an evolving Lean blueprint, target review, dynamic leaves, worker/refiner roles, and CI gates for long-horizon Lean autoformalization. | QBE adds `proof-blueprints/`, `blueprint-refresh`, `blueprint-status`, compact context packs, and efficiency reports as system-of-record control artifacts over Lean declarations, conversion windows, proof obligations, cited-results memory, and latest dialogue. | [LeanMarathon][leanmarathon] targets general research-math autoformalization. QBE specializes the idea to quantum block-encoding/oracle-circuit proofs, where source-paper registers, normalizers, ancilla cleanup, and resource contracts must remain explicit. |
 | Blueprint generation and refinement | [Goedel-Architect][goedel-architect-paper] uses a blueprint DAG, preserves solved nodes, and refines failed nodes by diagnosis. | QBE now treats post-cycle memory, Pro prompts, and active leaves as a diagnosis pipeline: wrong statement, missing dependency, proof too hard, or stale route. | Goedel-Architect is a general Lean proving architecture; QBE specializes the blueprint to quantum oracle/circuit source correspondence. |
@@ -1188,6 +1247,7 @@ not after every small lemma.
 [leanmarathon]: https://github.com/YuanheZ/LeanMarathon
 [mathcode]: https://github.com/math-ai-org/mathcode
 [llm4ad-next]: https://github.com/Optima-CityU/LLM4AD_Next
+[lexelim-bandits]: https://xueb1996.github.io/pdf/AAAI-2026-Xue.pdf
 [goedel-architect-paper]: https://arxiv.org/abs/2606.06468
 [lean4agent-paper]: https://arxiv.org/abs/2606.06523
 [quantum-circuit-review]: https://arxiv.org/abs/2603.16216

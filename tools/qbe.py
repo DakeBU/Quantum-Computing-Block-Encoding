@@ -865,10 +865,11 @@ contract:
 The system should construct a unitary candidate `U_A`, prove in Lean that it
 contains the requested operator block, and score the candidate by:
 
-1. depth / parallel schedule length (smaller is better),
-2. gate count (smaller is better),
-3. auxiliary qubits `a` (smaller is better),
-4. unresolved oracle calls (smaller is better).
+1. asymptotic tier first, especially polylogarithmic versus polynomial growth,
+2. gate count inside one tier,
+3. depth / parallel schedule length,
+4. auxiliary qubits `a`,
+5. unresolved oracle calls.
 
 State whether this is a direct operator-to-block-encoding construction task, a
 paper benchmark task, or an exploratory improvement task.  Paper benchmark
@@ -879,8 +880,8 @@ Hybrid strategy:
 
 - `operatorBlockEncoding`: given `A`, search for candidate `U_A`
   constructions, prove the block-entry and unitarity contracts, and rank
-  candidates by depth, gate count, auxiliary qubits, and unresolved oracle
-  calls.
+  candidates by asymptotic tier, then gate count, depth, auxiliary qubits, and
+  unresolved oracle calls.
 - `paperBenchmark` / `faithfulPaper`: reproduce a cited construction as a
   source-faithful baseline.  Do not mutate the paper construction while proving
   the baseline.
@@ -888,6 +889,15 @@ Hybrid strategy:
   plus EoH-style candidate populations for circuit ideas.  Candidate scores are
   search hints only; Lean proof obligations decide acceptance.  This mode may
   improve a baseline after the original operator target is fixed.
+
+LexElim scheduler discipline:
+
+- Use LexElim-Out for faithful paper/theorem closure: filter routes by source
+  faithfulness, correct Lean statement, necessary diagnostics, then proof
+  progress/resources.
+- Use LexElim-In for exploratory operator construction: read all feedback
+  fields each round, but do not let lower-priority soft rewards override hard
+  Lean correctness or necessary-condition diagnostics.
 
 ## Source
 
@@ -2596,6 +2606,258 @@ def write_cycle_summary(
 
 def write_cycle_zh_summary(task_id: str, cycle: int, run_dir: Path) -> tuple[Path, Path]:
     return write_cycle_summary(task_id, cycle, run_dir, "zh")
+
+
+OPTCTRL_MARKDOWN_ASSETS = {
+    "oracle": "optctrl_oracle_baseline.png",
+    "depth5": "optctrl_depth5.png",
+    "pro": "optctrl_pro.png",
+    "evolved": "optctrl_evolved.png",
+    "evolution": "optctrl_evolution.png",
+}
+
+
+def sync_optctrl_markdown_assets() -> dict[str, Path]:
+    """Copy current report PNGs into the main repo for README/run summaries."""
+    assets_dir = ROOT / "docs" / "assets"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    synced: dict[str, Path] = {}
+    for key, filename in OPTCTRL_MARKDOWN_ASSETS.items():
+        target = assets_dir / filename
+        source = PROJECT_ARTICLE_ROOT / "figures" / filename
+        if source.exists():
+            target.write_bytes(source.read_bytes())
+        synced[key] = target
+    return synced
+
+
+def markdown_link_from(base_dir: Path, target: Path) -> str:
+    return os.path.relpath(target, start=base_dir).replace(os.sep, "/")
+
+
+def optctrl_convergence_summary_text(language: str, run_dir: Path) -> str:
+    assets = sync_optctrl_markdown_assets()
+    img = {key: markdown_link_from(run_dir, path) for key, path in assets.items()}
+    if is_chinese_report_language(language):
+        return f"""# QBE-OP-OPTCTRL-001 多 agent 收敛运行总结
+
+生成日期：{now_stamp()}
+
+这是正式的收敛运行总结。当前聊天框作为人类交互顶层模块；upper、
+middle、lower、reviewer 的角色化交接记录在 `dialogue.md`。本文件是
+默认中文人类入口；英文版同步写在 `summary.en.md`。
+
+## 目标算子
+
+```text
+E_1 = |0><1|_time ⊗ |0><1|_type ⊗ I_state
+```
+
+目标不是只说明 oracle 存在，而是给出一个具体 unitary/circuit，使它的
+clean block 正好等于上面的 `E_1`，并且 Lean 证明这个说法。
+
+## 收敛图
+
+下图只画已经通过 Lean 证书的候选。Python 搜索、模拟器输出、ChatGPT
+Pro 建议在通过 Lean 之前只属于 insight pool，不会被画成已完成结果。
+
+![E_1 block-encoding certified evolution]({img["evolution"]})
+
+## 各代 Lean-verified block encoding 线路图
+
+这些图使用量子线路社区通用的 wire/control 记号；只展示已经有 Lean
+证书的 block-encoding 候选。
+
+### Generation 0：oracle-level seed
+
+![Oracle-level seed]({img["oracle"]})
+
+- Lean 证书：`OptimalControl.exampleVerified`
+- 资源 tuple：`(gateCount, depth, auxiliaryQubits, oracleCalls) = (1, 1, 1, 1)`
+- 解释：这是正确的一辅助量子比特 block-encoding seed，但包含一个未展开的
+  permutation-completion oracle，因此只作为 correctness baseline。
+
+### Generation 2：depth-5 logical completion
+
+![Depth-5 logical completion]({img["depth5"]})
+
+- Lean 证书：`OptimalControl.reducedDepth5Verified`
+- 关键 Lean 锚点：`reducedDepth5Unitary_isRationalOrthogonal`,
+  `reducedDepth5Unitary_cleanBlock`, `reducedDepth5GateImages_eval`
+- 资源 tuple：`(6, 5, 1, 0)`
+- 解释：这是第一个完全展开到逻辑 `{{X,CNOT,Toffoli}}` 门库的正确构造。
+
+### Generation 6：ChatGPT Pro equality-transfer candidate
+
+![Equality-transfer candidate]({img["pro"]})
+
+- Lean 证书：`OptimalControl.proEqTransferVerified`
+- 关键 Lean 锚点：`proEqTransferUnitary_isRationalOrthogonal`,
+  `proEqTransferUnitary_cleanBlock`, `proEqTransferGateImages_eval`
+- 资源 tuple：`(4, 4, 1, 0)`
+- 解释：Pro 的建议先进入 insight pool；Lean 证明通过后才升级为 certified
+  population。它给出了“先标记选中 branch，再移动到 clean block”的结构。
+
+### Generation 7：evolved equality-flag + parallel flips champion
+
+![Evolved champion]({img["evolved"]})
+
+- Lean 证书：`OptimalControl.evolvedEqFlipVerified`
+- 关键 Lean 锚点：`evolvedEqFlipUnitary_isRationalOrthogonal`,
+  `evolvedEqFlipUnitary_cleanBlock`, `evolvedEqFlipGateImages_eval`,
+  `evolvedEqFlipCandidate_cost`
+- 资源 tuple：`(4, 2, 1, 0)`
+- 线路：
+
+```text
+CCX(type,time -> auxiliary)
+then parallel X_type, X_time, X_auxiliary
+```
+
+这是当前 concrete logical `{{X,CNOT,Toffoli}}` tier 的冠军构造。
+
+## 为什么判断收敛
+
+lower necessary-condition verifier 对 reduced 三比特 `{{X,CNOT,Toffoli}}` 全
+方向逻辑门库做了精确枚举：
+
+- 3 个门以内没有任何正确 clean-block 构造；
+- 4 个门有正确构造；
+- 4 个门以内没有 depth 1 的分层构造；
+- depth 2 的 witness 正好是当前 Lean 已验证冠军。
+
+因此，在具体 `r = 1, k = 1` 逻辑门库层面，继续 mutation/crossover 追求
+更少门或更浅深度已经没有必要。这个 finite verifier 是收敛证据，不是
+Lean 形式化的 lower-bound theorem。
+
+## 边界
+
+这不是硬件门分解最优性结论，不是任意 `k` 或任意 time-register 宽度的
+通用 theorem，也不是 Lean 形式化 lower-bound theorem。下一步应该是：
+
+1. 把有限枚举 lower bound 形式化进 Lean，如果论文需要 theorem；
+2. 把 `r = 1, k = 1` 推广到更宽 time register；
+3. 加硬件门分解 backend 并重新评分；
+4. 把 operator-to-certificate 流程接到用户网页和母语报告接口。
+"""
+    return f"""# QBE-OP-OPTCTRL-001 Multi-Agent Convergence Run Summary
+
+Generated: {now_stamp()}
+
+This is the formal convergence-run summary.  The live chat acted as the human
+interaction top module; role-separated upper, middle, lower, and reviewer
+handoffs are recorded in `dialogue.md`.  The default Chinese human entry is
+`zh_summary.md`.
+
+## Target Operator
+
+```text
+E_1 = |0><1|_time ⊗ |0><1|_type ⊗ I_state
+```
+
+The task is not to assume an oracle exists.  The task is to construct a
+specific unitary/circuit whose clean block is exactly `E_1`, and to have Lean
+verify that statement.
+
+## Convergence Plot
+
+Only Lean-certified candidates are plotted as achieved constructions.  Python
+searches, simulator traces, and ChatGPT Pro ideas stay in the insight pool
+until Lean promotes them.
+
+![E_1 block-encoding certified evolution]({img["evolution"]})
+
+## Lean-Verified Block-Encoding Circuits By Generation
+
+These diagrams use the community-standard wire/control notation for quantum
+circuits.  Only candidates with Lean certificates are shown as achieved
+block-encoding constructions.
+
+### Generation 0: oracle-level seed
+
+![Oracle-level seed]({img["oracle"]})
+
+- Lean certificate: `OptimalControl.exampleVerified`
+- Resource tuple: `(gateCount, depth, auxiliaryQubits, oracleCalls) = (1, 1, 1, 1)`
+- Meaning: a correct one-ancilla seed, still containing one opaque
+  permutation-completion oracle.
+
+### Generation 2: depth-5 logical completion
+
+![Depth-5 logical completion]({img["depth5"]})
+
+- Lean certificate: `OptimalControl.reducedDepth5Verified`
+- Lean anchors: `reducedDepth5Unitary_isRationalOrthogonal`,
+  `reducedDepth5Unitary_cleanBlock`, `reducedDepth5GateImages_eval`
+- Resource tuple: `(6, 5, 1, 0)`
+- Meaning: the first correct construction fully expanded in the logical
+  `{{X,CNOT,Toffoli}}` gate library.
+
+### Generation 6: ChatGPT Pro equality-transfer candidate
+
+![Equality-transfer candidate]({img["pro"]})
+
+- Lean certificate: `OptimalControl.proEqTransferVerified`
+- Lean anchors: `proEqTransferUnitary_isRationalOrthogonal`,
+  `proEqTransferUnitary_cleanBlock`, `proEqTransferGateImages_eval`
+- Resource tuple: `(4, 4, 1, 0)`
+- Meaning: the Pro idea became a certified parent only after Lean proved it.
+  It exposed the branch-selection invariant.
+
+### Generation 7: evolved equality-flag plus parallel-flips champion
+
+![Evolved champion]({img["evolved"]})
+
+- Lean certificate: `OptimalControl.evolvedEqFlipVerified`
+- Lean anchors: `evolvedEqFlipUnitary_isRationalOrthogonal`,
+  `evolvedEqFlipUnitary_cleanBlock`, `evolvedEqFlipGateImages_eval`,
+  `evolvedEqFlipCandidate_cost`
+- Resource tuple: `(4, 2, 1, 0)`
+- Circuit:
+
+```text
+CCX(type,time -> auxiliary)
+then parallel X_type, X_time, X_auxiliary
+```
+
+This is the current champion at the concrete logical `{{X,CNOT,Toffoli}}` tier.
+
+## Why This Run Converged
+
+The lower necessary-condition verifier exhaustively enumerated the reduced
+three-bit logical `{{X,CNOT,Toffoli}}` orientation library:
+
+- no correct clean-block candidate exists with at most 3 gates;
+- correct 4-gate candidates exist;
+- no depth-1 layered candidate exists with at most 4 gates;
+- the depth-2 witness is exactly the current Lean-certified champion.
+
+This is convergence evidence for the concrete `r = 1, k = 1` logical library.
+It is not a Lean-formalized lower-bound theorem.
+
+## Scope
+
+This is not a hardware-optimality theorem, not a theorem for arbitrary `k` or
+arbitrary time-register width, and not a Lean-formalized lower-bound theorem.
+The next tasks are generalization, hardware decomposition, and optional Lean
+formalization of the finite lower-bound search.
+"""
+
+
+def write_optctrl_convergence_summaries(run_dir: Path) -> tuple[Path, Path, Path]:
+    zh = optctrl_convergence_summary_text("zh", run_dir)
+    en = optctrl_convergence_summary_text("en", run_dir)
+    zh_path = run_dir / "zh_summary.md"
+    summary_zh_path = run_dir / "summary.zh.md"
+    en_path = run_dir / "summary.en.md"
+    generic_path = run_dir / "summary.md"
+    write_text(zh_path, zh)
+    write_text(summary_zh_path, zh)
+    write_text(en_path, en)
+    write_text(generic_path, zh)
+    add_manifest("qbe.py optctrl-convergence-summary", zh_path, "review", "Wrote Chinese convergence summary with certified circuit figures")
+    add_manifest("qbe.py optctrl-convergence-summary", en_path, "review", "Wrote English convergence summary with certified circuit figures")
+    return zh_path, en_path, generic_path
 
 
 def latest_proof_attempts(task_id: str, limit: int = 8) -> list[str]:
@@ -4377,7 +4639,8 @@ def task_article_status_markdown(task_id: str, run_dir: Path) -> str:
                 "- Target: concrete `E_1 = |0><1|_time ⊗ |0><1|_type ⊗ I_state` with one time bit, one type bit, one passive state bit, and one block-encoding auxiliary bit.",
                 "- Lean certificates: `evolvedEqFlipVerified`, `evolvedEqFlipUnitary_isRationalOrthogonal`, `evolvedEqFlipUnitary_cleanBlock`, `evolvedEqFlipGateImages_eval`, `evolvedEqFlipCandidate_cost`, and `exampleOperator_not_rationalOrthogonal`.",
                 "- Certified logical record fields: `depth = 2`, `gateCount = 4`, `auxiliaryQubits = 1`, `oracleCalls = 0`; comparison tuple `(gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 0)` in the concrete `{X,CNOT,Toffoli}` logical reversible permutation-matrix tier.",
-                "- Scope: final for this concrete `r=1,k=1` logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; not yet generalized to arbitrary time width/state dimension, not hardware-decomposed, and not a Lean-proved depth lower bound.",
+                "- Finite verifier convergence signal: exact enumeration of the reduced three-bit `{X,CNOT,Toffoli}` orientation library found no clean-block candidate with at most 3 gates and no depth-1 layered candidate with at most 4 gates; the depth-2 witness matches `evolvedEqFlipVerified`.",
+                "- Scope: finite-verifier-converged for this concrete `r=1,k=1` logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; not yet generalized to arbitrary time width/state dimension, not hardware-decomposed, and not a Lean-proved depth lower bound.",
                 "- Plot policy: plotted points must name rational-orthogonal matrix and clean-block Lean certificates at this semantic tier.",
                 "- Next manuscript-facing action: state the concrete certificate and list the generalization, hardware-decomposition, and lower-bound obligations.",
                 "",
@@ -4394,9 +4657,9 @@ def task_article_status_markdown(task_id: str, run_dir: Path) -> str:
     else:
         lines.extend([plain_language_status_en(), ""])
     if summary_path:
-        lines.append(f"Latest human-readable cycle summary: `{rel(summary_path)}`.")
+        lines.append(f"Latest human-readable cycle summary in the project run artifacts: `{rel(summary_path)}`.")
     if population_path.exists():
-        lines.append(f"Candidate population ledger: `{rel(population_path)}`.")
+        lines.append(f"Candidate population ledger in the project repository: `{rel(population_path)}`.")
     return "\n".join(lines)
 
 
@@ -4411,7 +4674,8 @@ def task_article_status_latex(task_id: str, run_dir: Path) -> str:
             "Target: concrete \\(E_1=|0\\rangle\\langle 1|_{time}\\otimes |0\\rangle\\langle 1|_{type}\\otimes I_{state}\\) with one time bit, one type bit, one passive state bit, and one block-encoding auxiliary bit.",
             "Lean certificates: \\texttt{evolvedEqFlipVerified}, \\texttt{evolvedEqFlipUnitary\\_isRationalOrthogonal}, \\texttt{evolvedEqFlipUnitary\\_cleanBlock}, \\texttt{evolvedEqFlipGateImages\\_eval}, \\texttt{evolvedEqFlipCandidate\\_cost}, and \\texttt{exampleOperator\\_not\\_rationalOrthogonal}.",
             "Certified logical record fields: \\(\\mathrm{depth}=2\\), \\(\\mathrm{gateCount}=4\\), \\(\\mathrm{auxiliaryQubits}=1\\), \\(\\mathrm{oracleCalls}=0\\); comparison tuple \\((\\mathrm{gateCount},\\mathrm{depth},\\mathrm{auxiliaryQubits},\\mathrm{oracleCalls})=(4,2,1,0)\\) in the concrete \\(\\{X,\\mathrm{CNOT},\\mathrm{Toffoli}\\}\\) logical reversible permutation-matrix tier.",
-            "Scope: final for this concrete \\(r=1,k=1\\) logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; arbitrary-register generalization, hardware decomposition, and Lean-proved depth lower bounds remain open.",
+            "Finite verifier convergence signal: exact enumeration of the reduced three-bit \\(\\{X,\\mathrm{CNOT},\\mathrm{Toffoli}\\}\\) orientation library found no clean-block candidate with at most three gates and no depth-one layered candidate with at most four gates; the depth-two witness matches \\texttt{evolvedEqFlipVerified}.",
+            "Scope: finite-verifier-converged for this concrete \\(r=1,k=1\\) logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; arbitrary-register generalization, hardware decomposition, and Lean-proved depth lower bounds remain open.",
             "Plot policy: plotted points must name rational-orthogonal matrix and clean-block Lean certificates at this semantic tier.",
             "Manuscript rule: present this as the current concrete certificate, not as a general-family or hardware-optimality theorem.",
         ]
@@ -4423,9 +4687,9 @@ def task_article_status_latex(task_id: str, run_dir: Path) -> str:
     else:
         items = [latex_escape(plain_language_status_en())]
     if summary_path:
-        items.append(f"Latest human-readable summary: \\texttt{{{latex_escape(rel(summary_path))}}}.")
+        items.append("Latest human-readable summary exists in the project run artifacts.")
     if population_path.exists():
-        items.append(f"Candidate ledger: \\texttt{{{latex_escape(rel(population_path))}}}.")
+        items.append("Candidate ledger exists in the main ABEIS repository.")
     item_text = "\n".join(f"  \\item {item}" for item in items)
     return f"""\\paragraph{{Current construction status for \\texttt{{{latex_escape(task_id)}}}.}}
 Task title: {latex_escape(title)}.
@@ -4442,7 +4706,13 @@ def project_article_update_latex(task_id: str, cycle: int, run_dir: Path) -> str
     dynamic = state.get("dynamic_leaf_queue", [])
     obligations = state.get("open_obligation_signals", [])
     if sorry_lines:
-        sorry_items = "\n".join(f"  \\item \\texttt{{{latex_escape(line)}}}" for line in sorry_lines)
+        if task_id == "QBE-OP-OPTCTRL-001":
+            sorry_items = "\n".join(
+                ["  \\item The current transfer-operator certificate is carried by named declarations in \\texttt{QuantumBlockEncoding/OptimalControl.lean}; the repository-wide scan below reports unrelated paper-benchmark warnings."]
+                + [f"  \\item Repository-wide warning: \\texttt{{{latex_escape(line)}}}" for line in sorry_lines]
+            )
+        else:
+            sorry_items = "\n".join(f"  \\item \\texttt{{{latex_escape(line)}}}" for line in sorry_lines)
     else:
         sorry_items = "  \\item No \\texttt{sorry} was detected by the project scan."
     dynamic_items = "\n".join(
@@ -4630,6 +4900,24 @@ orthogonal matrix and proves the clean-block equality directly:
 The resource record is certified by
 \\texttt{{OptimalControl.evolvedEqFlipCandidate\\_cost}}.
 
+\\paragraph{{Finite convergence diagnostic.}}
+After correcting the resource order to
+\\[
+  \\mathrm{{gateCount}}
+  \\;>\\;
+  \\mathrm{{depth}}
+  \\;>\\;
+  \\mathrm{{auxiliaryQubits}}
+  \\;>\\;
+  \\mathrm{{oracleCalls}},
+\\]
+the ABEIS verifier exhaustively enumerated the reduced three-bit logical gate
+library containing all orientations of \\(X\\), CNOT, and Toffoli.  In that
+finite library there is no clean-block candidate with at most three gates, no
+depth-one layered candidate with at most four gates, and the depth-two witness
+with four gates is exactly the construction above.  This is recorded as a
+finite verifier result rather than as a Lean lower-bound theorem.
+
 \\paragraph{{Scope.}}
 This note proves the concrete \\(r=1,k=1\\) logical reversible
 permutation-matrix instance.  It is not a hardware-decomposed resource theorem,
@@ -4804,6 +5092,8 @@ def cmd_manual_cycle_closeout(args: argparse.Namespace) -> int:
     cmd_init(argparse.Namespace())
     run_dir = resolve_run_dir_arg(args.run_id, prefer_manual=args.run_id == "latest")
     cycle = resolved_cycle(args.cycle, run_dir)
+    if args.id == "QBE-OP-OPTCTRL-001":
+        write_optctrl_convergence_summaries(run_dir)
     summary_path = latest_run_summary_path(run_dir)
     if summary_path is None:
         print(
@@ -5419,6 +5709,14 @@ Local paper-source archive for agent work:
 	```
 
 	Mode discipline:
+
+- LexElim scheduler rule: QBE does not scalarize hard and soft rewards.  Use
+  LexElim-Out for faithful theorem closure: filter source faithfulness, correct
+  Lean statement, necessary diagnostics, then proof progress/resources.  Use
+  LexElim-In for exploratory construction: all feedback fields may schedule
+  the next candidate pull, but only hard rejection or certified domination
+  retires a candidate.  Soft proof-progress and token-cost signals never
+  override Lean correctness or necessary-condition diagnostics.
 
 - In `operatorBlockEncoding` mode, the fixed target is the user-provided
   operator/matrix `A`, normalizer `alpha`, and block projector.  Agents may
