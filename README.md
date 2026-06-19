@@ -39,7 +39,7 @@ Paper constructions are treated as baselines and training data.  Once a paper
 baseline is formalized, the same system can try to improve the construction
 for the same fixed operator target.
 
-![QBE automation pipeline](docs/assets/qbe_pipeline.svg)
+![ABEIS control loop](docs/assets/abeis_loop.png)
 
 ## Core Workflow
 
@@ -65,8 +65,6 @@ flowchart LR
 ABEIS uses diagnostics as search signals, not as proofs.  A candidate enters
 the certified population only after Lean proves the advertised theorem at the
 task's semantic tier.
-
-![Adaptive exact-to-approximate block-encoding loop](docs/assets/adaptive_be_policy.png)
 
 If exact search fails to meet the user-specified resource floor within the
 configured budget, the upper layer may switch to approximate BE search.  If a
@@ -110,15 +108,9 @@ is the post-convergence approximate phase:
 
 ![Certified evolution for E_k](docs/assets/optctrl_evolution.png)
 
-Lean-certified snapshots:
+Lean-certified storyboard:
 
-| Generation | Circuit | Lean certificate | Tuple |
-| --- | --- | --- | --- |
-| 0 | <img src="docs/assets/optctrl_oracle_baseline.png" alt="Oracle-level seed" width="220"> | `OptimalControl.exampleVerified` | `(1, 1, 1, 1)` |
-| 2 | <img src="docs/assets/optctrl_depth5.png" alt="Depth-5 logical completion" width="220"> | `OptimalControl.reducedDepth5Verified` | `(6, 5, 1, 0)` |
-| 6 | <img src="docs/assets/optctrl_pro.png" alt="Equality-transfer candidate" width="220"> | `OptimalControl.proEqTransferVerified` | `(4, 4, 1, 0)` |
-| 7 | <img src="docs/assets/optctrl_evolved.png" alt="Evolved champion" width="220"> | `OptimalControl.evolvedEqFlipVerified` | `(4, 2, 1, 0)` |
-| 8-9 | same exact champion reused as approximate incumbent | `OptimalControl.evolvedEqFlipZeroErrorApprox` | `(4, 2, 1, 0)`, `epsilon = 0` |
+![Lean-certified transfer-operator candidates](docs/assets/optctrl_storyboard.png)
 
 This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general

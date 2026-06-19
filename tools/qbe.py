@@ -2644,11 +2644,13 @@ def write_cycle_zh_summary(task_id: str, cycle: int, run_dir: Path) -> tuple[Pat
 
 
 OPTCTRL_MARKDOWN_ASSETS = {
+    "abeis_loop": "abeis_loop.png",
     "oracle": "optctrl_oracle_baseline.png",
     "depth5": "optctrl_depth5.png",
     "pro": "optctrl_pro.png",
     "evolved": "optctrl_evolved.png",
     "evolution": "optctrl_evolution.png",
+    "storyboard": "optctrl_storyboard.png",
     "adaptive_policy": "adaptive_be_policy.png",
 }
 

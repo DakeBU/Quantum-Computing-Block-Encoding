@@ -4,7 +4,7 @@ Sleep run mode is for unattended block-encoding construction and proof search.
 It creates repeated upper/middle/lower/reviewer cycles, can run bounded upper
 and middle panels at checkpoints, and uses Lean as the acceptance gate.
 
-![QBE automation pipeline](assets/qbe_pipeline.svg)
+![ABEIS control loop](assets/abeis_loop.png)
 
 ## What It Does
 

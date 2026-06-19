@@ -8,7 +8,5 @@ import QuantumBlockEncoding.GHL2025
 import QuantumBlockEncoding.Literature
 import QuantumBlockEncoding.OpenProblems
 import QuantumBlockEncoding.OptimalControl
-import QuantumBlockEncoding.Papers.GHL2025
 import QuantumBlockEncoding.Resources
-import QuantumBlockEncoding.RobinMatrix
 import QuantumBlockEncoding.TechnicalLemmas
