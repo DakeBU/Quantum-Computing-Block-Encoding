@@ -1,0 +1,62 @@
+[
+  {
+    "system": "Qiskit-QuantumKatas",
+    "local_reference": "outer_repos/quantum/llm_circuit_verifier_feedback/Qiskit-QuantumKatas",
+    "route_kind": "custom kata evaluator",
+    "same_be_task": true,
+    "semantic_level": "finite Qiskit Operator block equality inside Python test",
+    "status": "passed",
+    "median_ms": 248.0374425649643,
+    "measured_repeats": 20,
+    "requires_api_key": false,
+    "requires_extra_dependencies": true,
+    "final_be_certificate": false,
+    "harness_comparison_role": "Runnable executable-code route for the same finite E_1 task; useful for artifact-route ablation, not a reusable Lean theorem.",
+    "detail": "passed"
+  },
+  {
+    "system": "QASM-Eval",
+    "local_reference": "outer_repos/quantum/llm_circuit_verifier_feedback/QASM-Eval",
+    "route_kind": "OpenQASM completion evaluator",
+    "same_be_task": false,
+    "semantic_level": "syntax/element/distribution/timeline evaluator; the smoke target is the same gate transcript but not block-entry equality over all basis states",
+    "status": "blocked-env",
+    "median_ms": null,
+    "measured_repeats": 0,
+    "requires_api_key": false,
+    "requires_extra_dependencies": true,
+    "final_be_certificate": false,
+    "harness_comparison_role": "Typed executable feedback and pass@k protocol; not directly a BE theorem verifier.",
+    "detail": "RuntimeError: semantic judge unavailable: No module named 'openqasm3'"
+  },
+  {
+    "system": "QUASAR",
+    "local_reference": "outer_repos/quantum/llm_circuit_verifier_feedback/QUASAR",
+    "route_kind": "tool-server / hierarchical reward system",
+    "same_be_task": false,
+    "semantic_level": "not available locally",
+    "status": "not-runnable",
+    "median_ms": null,
+    "measured_repeats": 0,
+    "requires_api_key": true,
+    "requires_extra_dependencies": true,
+    "final_be_certificate": false,
+    "harness_comparison_role": "Harness/reward-design comparison only until runnable code is available.",
+    "detail": "Repository README says code is to be released after acceptance."
+  },
+  {
+    "system": "AI-Mandel",
+    "local_reference": "outer_repos/quantum/llm_circuit_verifier_feedback/ai-mandel",
+    "route_kind": "idea-to-tool-executable quantum-physics loop",
+    "same_be_task": false,
+    "semantic_level": "script compile smoke only; PyTheus execution is not a BE verifier",
+    "status": "passed",
+    "median_ms": 10.892987251281738,
+    "measured_repeats": 5,
+    "requires_api_key": true,
+    "requires_extra_dependencies": true,
+    "final_be_certificate": false,
+    "harness_comparison_role": "Research-loop and expert-tool staging comparison; not a direct circuit verifier for E_1.",
+    "detail": "passed"
+  }
+]

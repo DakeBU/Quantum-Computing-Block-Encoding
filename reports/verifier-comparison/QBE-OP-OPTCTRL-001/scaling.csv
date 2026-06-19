@@ -1,0 +1,15 @@
+verifier,time_qubits,total_qubits_with_ancilla,matrix_dimension,status,median_ms,detail
+dense_numpy_block,1,4,16,passed,0.01979246735572815,passed dense finite block check
+qiskit_operator_dense,1,4,16,passed,0.40786340832710266,passed dense finite block check
+dense_numpy_block,2,5,32,passed,0.03803148865699768,passed dense finite block check
+qiskit_operator_dense,2,5,32,passed,2.096276730298996,passed dense finite block check
+dense_numpy_block,3,6,64,passed,0.06807968020439148,passed dense finite block check
+qiskit_operator_dense,3,6,64,passed,6.033491343259811,passed dense finite block check
+dense_numpy_block,4,7,128,passed,0.13919919729232788,passed dense finite block check
+qiskit_operator_dense,4,7,128,passed,39.071276783943176,passed dense finite block check
+dense_numpy_block,5,8,256,passed,0.28812140226364136,passed dense finite block check
+qiskit_operator_dense,5,8,256,passed,196.54421508312225,passed dense finite block check
+dense_numpy_block,6,9,512,passed,0.6372816860675812,passed dense finite block check
+qiskit_operator_dense,6,9,512,passed,1214.4160717725754,passed dense finite block check
+dense_numpy_block,7,10,1024,passed,1.4525987207889557,passed dense finite block check
+qiskit_operator_dense,7,10,1024,passed,8219.175044447184,passed dense finite block check

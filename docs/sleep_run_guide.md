@@ -221,7 +221,7 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 4 \
   --lower-count 3 \
   --parallel-lower \
-  --agent-profile mixed-vendors.example.json \
+  --agent-profile codex-parallel.example.json \
   --execute \
   --check-each-cycle
 ```

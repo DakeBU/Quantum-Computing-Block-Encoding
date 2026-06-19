@@ -103,8 +103,10 @@ Operator mode rules:
 - use `LexElim-In`: all feedback fields may guide the next candidate pull, but
   lower-priority proof-progress or token-cost signals cannot override Lean
   correctness, necessary diagnostics, asymptotic tier, or resource tuple order,
-- use parser/unit-test/simulator-style checks only as necessary-condition
-  diagnostics,
+- use parser/unit-test/simulator-style checks according to their semantic
+  strength: Qiskit `Operator` equality can be a complete finite-instance check
+  for a fully instantiated small circuit, while QASM/timeline/pulse tests are
+  diagnostics unless the theorem is stated with exactly that semantics,
 - accept only Lean-closed exact block-entry and unitarity theorems in exact
   phase,
 - in approximate phase, accept only Lean-closed unitarity plus a declared
@@ -291,7 +293,7 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 4 \
   --lower-count 3 \
   --parallel-lower \
-  --agent-profile mixed-vendors.example.json \
+  --agent-profile codex-parallel.example.json \
   --execute \
   --check-each-cycle
 ```
@@ -309,6 +311,117 @@ The useful default split for hard block-encoding work is:
 This profile mechanism changes search diversity and cost.  It does not change
 what counts as success: only named Lean declarations and the configured build
 gate certify a block-encoding candidate.
+
+When a run claims parallel lower-agent exploration, it must actually use
+`--parallel-lower` or an equivalent external scheduler.  A single chat
+interaction, including a Codex conversation with a human, is a top-level
+human/upper interaction and must not be recorded as evidence that lower agents
+ran in parallel.  For tasks that become hard enough to trigger dynamic agent
+scaling, the upper layer should increase differentiated roles first
+(architect, Lean worker, finite verifier, reducer) and record whether the new
+role produced distinct information.
+
+## Verifier and Harness Comparisons
+
+ABEIS separates two experimental questions that are easy to confuse.
+
+The first question is artifact/verifier replacement: for the same operator
+target, how fast is it to check a finished Qiskit/OpenQASM artifact, a direct
+Lean artifact, or an ABEIS artifact?  For the concrete transfer-operator main
+case, `tools/compare_verifiers.py` benchmarks exact finite NumPy checks,
+Qiskit `Operator` checks, and the Lean `lake build Tests` gate.  It also
+generates a dense scaling plot for the same operator family.  Dense simulator
+checks materialize matrices of dimension exponential in the number of
+register qubits; they are excellent for small counterexamples and smoke tests,
+but they are not the desired large-register proof method.
+
+The second question is harness replacement: with the same model and prompt
+budget, does a Qiskit-only task loop, a direct Lean-only task loop, or the full
+ABEIS upper/middle/lower/reviewer loop produce an accepted artifact faster and
+with fewer tokens?  That experiment must measure route-total agent time,
+checker/compile time, input tokens, output tokens, total tokens, repair
+iterations, and final semantic level.  ABEIS now records agent wall time and a
+local prompt-token proxy in `runs/trials.jsonl`; exact provider token usage
+must be supplied by the backend wrapper.
+
+The protocol for the main-case ablation is generated at:
+
+```text
+reports/verifier-comparison/QBE-OP-OPTCTRL-001/agent_ablation_protocol.md
+```
+
+The route prompts and metrics template are generated at:
+
+```bash
+python3 tools/prepare_route_ablation.py
+```
+
+```text
+reports/route-ablation/QBE-OP-OPTCTRL-001/
+```
+
+Checker-only reference baselines are generated with:
+
+```bash
+python3 -m pip install qiskit
+python3 tools/run_route_ablation.py reference_qiskit
+python3 tools/run_route_ablation.py reference_lean
+```
+
+These baselines intentionally do not include AI writing or repair time.  To run
+an actual route-total experiment, call `tools/run_route_ablation.py` with
+`qiskit_only`, `lean_only`, or `abeis_multi_agent` and supply the same
+`--agent-cmd` or the same backend profile.  The `abeis_multi_agent` route
+requires `--execute-abeis` and uses a route-ablation mini-harness with compact
+upper/middle handoffs, parallel lower roles, reviewer, and `lake build Tests`.
+This prevents single-process chat work from being recorded as parallel
+lower-agent evidence.
+
+Do not compare Qiskit checker time with Lean agent-writing time.  Compare
+checker time with checker time, and route-total time/tokens with route-total
+time/tokens.
+
+For route-total `qiskit_only`, the runner sets `QBE_ROUTE_ARTIFACT` and then
+executes that path as the default checker.  This means the route must produce
+a real Python/Qiskit file, not only a text answer.  For `abeis_multi_agent`,
+the route is accepted as parallel evidence only when the runner launches at
+least two lower roles concurrently and records `parallel_claim_valid = true`.
+
+The deterministic helper
+`tools/route_ablation_agents/write_qiskit_reference.py` can be used only as a
+harness self-test.  It proves the artifact path and checker path work; it does
+not measure AI writing time, repair time, or token cost.
+
+ABEIS also ships a local external-repository comparison:
+
+```bash
+python3 -m pip install qiskit 'openqasm3[parser]'
+python3 tools/compare_external_quantum_verifiers.py
+```
+
+This script checks the downloaded Qiskit-QuantumKatas, QASM-Eval, QUASAR, and
+AI-Mandel repositories under `outer_repos/quantum/llm_circuit_verifier_feedback`.
+The current fair reading is:
+
+- Qiskit-QuantumKatas can run the same finite `E_1` block-entry task as a
+  custom Python/Qiskit kata with a deterministic `Operator` assertion.
+- QASM-Eval contributes typed OpenQASM feedback and pass@k protocol, but its
+  evaluator is not a BE clean-block verifier. With `openqasm3[parser]`
+  installed, the same gate transcript can be checked through QASM-Eval's
+  distribution-style smoke route.
+- QUASAR has no runnable local code yet, so only its tool/reward architecture
+  can be compared.
+- AI-Mandel compiles locally and is useful as a staged idea-to-tool workflow,
+  but it is not a verifier for the `E_1` block-encoding theorem.
+
+`tools/compare_verifiers.py` also writes
+`reports/verifier-comparison/QBE-OP-OPTCTRL-001/hard_scaling_forecast.md`.
+That report is a memory forecast, not a runtime benchmark: it estimates how
+large a dense complex128 unitary would be for harder members of the same
+transfer-operator family.  The forecast is part of the technical-report
+argument for Lean.  Finite executable verifiers are complete and fast for
+small instantiated circuits, but large-register claims should be closed by
+symbolic theorem checking rather than dense Hilbert-space simulation.
 
 ## Paper-Benchmark Agent Loop
 

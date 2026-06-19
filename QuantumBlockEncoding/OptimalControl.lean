@@ -830,6 +830,125 @@ theorem evolvedEqFlipCandidate_cost :
       { auxiliaryQubits := 1, gateCount := 4, depth := 2, oracleCalls := 0 } := by
   native_decide
 
+/-!
+## Direct route-ablation certificate
+
+The following declarations are the controlled route-ablation surface for the
+same concrete target, written directly from the four logical reversible gates
+specified in the route prompt.  The full four-qubit convention is
+state bit `0`, type bit `1`, time bit `2`, auxiliary bit `3`; after removing
+the passive state bit, the reduced active-register convention is
+type bit `0`, time bit `1`, auxiliary bit `2`.
+-/
+
+/--
+Route-ablation target block with entries `target[0, 6] = 1` and
+`target[1, 7] = 1`, and all other entries zero.
+-/
+def directRouteAblationTarget : Matrix 8 8 Rat :=
+  fun row col =>
+    if (row.val = 0 ∧ col.val = 6) ∨ (row.val = 1 ∧ col.val = 7) then
+      1
+    else
+      0
+
+/-- The route-ablation target is entrywise the concrete `E_1` target used above. -/
+theorem directRouteAblationTarget_eq_exampleOperator :
+    ∀ row col : Fin 8,
+      directRouteAblationTarget row col = exampleOperator row col := by
+  native_decide
+
+/-- Direct route-ablation circuit in sequential-list form. -/
+def directRouteAblationCircuit : Circuit :=
+  [gateCCX_type_time_aux, gateX_type, gateX_time, gateX_aux]
+
+/-- Direct route-ablation schedule: Toffoli first, then the three flips. -/
+def directRouteAblationSchedule : LayeredCircuit :=
+  [[gateCCX_type_time_aux], [gateX_type, gateX_time, gateX_aux]]
+
+/-- Reduced permutation images for the direct route-ablation circuit. -/
+def directRouteAblationGateImages : List (Fin 8 → Fin 8) :=
+  [redCCX012, redX0, redX1, redX2]
+
+/-- Reduced active-register image induced by the direct route-ablation circuit. -/
+def directRouteAblationImage (x : Fin 8) : Fin 8 :=
+  evalReducedGateImages directRouteAblationGateImages x
+
+/-- The direct route-ablation circuit is the stated `CCX; X(type); X(time); X(aux)` map. -/
+theorem directRouteAblationGateImages_eval :
+    ∀ x : Fin 8,
+      directRouteAblationImage x = redX2 (redX1 (redX0 (redCCX012 x))) := by
+  native_decide
+
+/-- The direct route-ablation image is a finite permutation. -/
+theorem directRouteAblationImage_isPermutation :
+    IsPermutation directRouteAblationImage := by
+  unfold IsPermutation
+  native_decide
+
+/-- Matrix of the direct route-ablation logical circuit. -/
+def directRouteAblationUnitary : Matrix 16 16 Rat :=
+  unitaryFromReducedImage directRouteAblationImage
+
+/--
+The direct route-ablation matrix is rational orthogonal/unitary in the
+project-local finite permutation sense.
+-/
+theorem directRouteAblationUnitary_isRationalOrthogonal :
+    IsRationalOrthogonal directRouteAblationUnitary := by
+  unfold IsRationalOrthogonal columnInner rowInner directRouteAblationUnitary
+    unitaryFromReducedImage liftReducedImage reducedOfFull stateOfFull
+    directRouteAblationImage directRouteAblationGateImages evalReducedGateImages
+    redX2 redX1 redX0 redCCX012
+  native_decide
+
+/--
+Named clean-block theorem for the controlled route ablation.  The top-left
+auxiliary block, with auxiliary input and output both `0`, is exactly the
+requested `E_1` matrix.
+-/
+theorem directRouteAblation_cleanBlock :
+    ∀ row col : Fin 8,
+      directRouteAblationUnitary (cleanIndex row) (cleanIndex col) =
+        directRouteAblationTarget row col := by
+  native_decide
+
+/-- Gate matrices for the direct route-ablation circuit. -/
+def directRouteAblationGateMatrices : List (GateMatrix Rat 4) :=
+  [ reducedGateMatrix gateCCX_type_time_aux redCCX012
+  , reducedGateMatrix gateX_type redX0
+  , reducedGateMatrix gateX_time redX1
+  , reducedGateMatrix gateX_aux redX2
+  ]
+
+/-- The direct route-ablation gate-matrix labels match its circuit transcript. -/
+theorem directRouteAblationGateMatrices_matchCircuit :
+    gateMatricesMatchCircuit
+      directRouteAblationCircuit directRouteAblationGateMatrices = true := by
+  native_decide
+
+/-- Logical-library cost for the direct route-ablation circuit. -/
+def directRouteAblationCost : LogicalReversibleCost where
+  auxiliaryQubits := 1
+  xGates := 3
+  cnotGates := 0
+  toffoliGates := 1
+  depth := 2
+  oracleCalls := 0
+
+/-- Resource tuple in route-ablation order: `(gateCount, depth, auxiliaryQubits, oracleCalls)`. -/
+def directRouteAblationResourceTuple : Nat × Nat × Nat × Nat :=
+  ( directRouteAblationCost.gateCount
+  , directRouteAblationCost.depth
+  , directRouteAblationCost.auxiliaryQubits
+  , directRouteAblationCost.oracleCalls
+  )
+
+/-- The direct route-ablation resource tuple is `(4, 2, 1, 0)`. -/
+theorem directRouteAblationResourceTuple_eq :
+    directRouteAblationResourceTuple = (4, 2, 1, 0) := by
+  rfl
+
 /-- Matrix of the one-ancilla permutation unitary completion. -/
 def exampleUnitary : Matrix 16 16 Rat :=
   fun row col => if row = exampleImage col then 1 else 0

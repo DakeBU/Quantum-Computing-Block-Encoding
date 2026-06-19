@@ -276,6 +276,42 @@ example :
     OptimalControl.evolvedEqFlipZeroErrorApprox.approxCandidate.candidate =
       OptimalControl.evolvedEqFlipCandidate := rfl
 
+example :
+    OptimalControl.directRouteAblationTarget
+        ⟨0, by native_decide⟩ ⟨6, by native_decide⟩ = 1 := by
+  native_decide
+
+example :
+    OptimalControl.directRouteAblationTarget
+        ⟨1, by native_decide⟩ ⟨7, by native_decide⟩ = 1 := by
+  native_decide
+
+example :
+    OptimalControl.directRouteAblationTarget
+        ⟨6, by native_decide⟩ ⟨0, by native_decide⟩ = 0 := by
+  native_decide
+
+example :
+    ∀ row col : Fin 8,
+      OptimalControl.directRouteAblationUnitary
+          (OptimalControl.cleanIndex row) (OptimalControl.cleanIndex col) =
+        OptimalControl.directRouteAblationTarget row col :=
+  OptimalControl.directRouteAblation_cleanBlock
+
+example :
+    OptimalControl.IsPermutation OptimalControl.directRouteAblationImage :=
+  OptimalControl.directRouteAblationImage_isPermutation
+
+example :
+    gateMatricesMatchCircuit
+      OptimalControl.directRouteAblationCircuit
+      OptimalControl.directRouteAblationGateMatrices = true :=
+  OptimalControl.directRouteAblationGateMatrices_matchCircuit
+
+example :
+    OptimalControl.directRouteAblationResourceTuple = (4, 2, 1, 0) :=
+  OptimalControl.directRouteAblationResourceTuple_eq
+
 example : BlockEncodingSearchPhase.exactSearch ≠
     BlockEncodingSearchPhase.relaxedApproxSearch := by
   decide

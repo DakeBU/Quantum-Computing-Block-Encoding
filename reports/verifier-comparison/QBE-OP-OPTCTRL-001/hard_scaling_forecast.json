@@ -1,0 +1,83 @@
+[
+  {
+    "time_qubits": 1,
+    "total_qubits_with_ancilla": 4,
+    "dense_dimension": 16,
+    "dense_unitary_entries": 256,
+    "dense_complex128_bytes": 4096,
+    "dense_complex128_human": "4.00 KiB",
+    "interpretation": "small finite smoke-check scale"
+  },
+  {
+    "time_qubits": 4,
+    "total_qubits_with_ancilla": 7,
+    "dense_dimension": 128,
+    "dense_unitary_entries": 16384,
+    "dense_complex128_bytes": 262144,
+    "dense_complex128_human": "256.00 KiB",
+    "interpretation": "small finite smoke-check scale"
+  },
+  {
+    "time_qubits": 8,
+    "total_qubits_with_ancilla": 11,
+    "dense_dimension": 2048,
+    "dense_unitary_entries": 4194304,
+    "dense_complex128_bytes": 67108864,
+    "dense_complex128_human": "64.00 MiB",
+    "interpretation": "small finite smoke-check scale"
+  },
+  {
+    "time_qubits": 12,
+    "total_qubits_with_ancilla": 15,
+    "dense_dimension": 32768,
+    "dense_unitary_entries": 1073741824,
+    "dense_complex128_bytes": 17179869184,
+    "dense_complex128_human": "16.00 GiB",
+    "interpretation": "workstation-scale dense check"
+  },
+  {
+    "time_qubits": 16,
+    "total_qubits_with_ancilla": 19,
+    "dense_dimension": 524288,
+    "dense_unitary_entries": 274877906944,
+    "dense_complex128_bytes": 4398046511104,
+    "dense_complex128_human": "4.00 TiB",
+    "interpretation": "large-memory dense check"
+  },
+  {
+    "time_qubits": 20,
+    "total_qubits_with_ancilla": 23,
+    "dense_dimension": 8388608,
+    "dense_unitary_entries": 70368744177664,
+    "dense_complex128_bytes": 1125899906842624,
+    "dense_complex128_human": "1.00 PiB",
+    "interpretation": "impractical for routine verifier feedback"
+  },
+  {
+    "time_qubits": 24,
+    "total_qubits_with_ancilla": 27,
+    "dense_dimension": 134217728,
+    "dense_unitary_entries": 18014398509481984,
+    "dense_complex128_bytes": 288230376151711744,
+    "dense_complex128_human": "256.00 PiB",
+    "interpretation": "impractical for routine verifier feedback"
+  },
+  {
+    "time_qubits": 28,
+    "total_qubits_with_ancilla": 31,
+    "dense_dimension": 2147483648,
+    "dense_unitary_entries": 4611686018427387904,
+    "dense_complex128_bytes": 73786976294838206464,
+    "dense_complex128_human": "64.00 EiB",
+    "interpretation": "symbolic theorem route required in practice"
+  },
+  {
+    "time_qubits": 32,
+    "total_qubits_with_ancilla": 35,
+    "dense_dimension": 34359738368,
+    "dense_unitary_entries": 1180591620717411303424,
+    "dense_complex128_bytes": 18889465931478580854784,
+    "dense_complex128_human": "16.00 ZiB",
+    "interpretation": "symbolic theorem route required in practice"
+  }
+]

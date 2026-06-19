@@ -25,6 +25,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 
@@ -132,6 +133,18 @@ def run_capture(cmd: list[str]) -> tuple[int, str]:
 
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
+
+
+def approx_token_count(text: str) -> int:
+    """Conservative local token proxy for harness accounting.
+
+    This is not provider billing data.  It is useful for comparing prompt
+    envelopes before exact provider usage is available.
+    """
+
+    if not text:
+        return 0
+    return max(1, (len(text) + 3) // 4)
 
 
 def write_new(path: Path, text: str) -> None:
@@ -5298,6 +5311,15 @@ def write_trial_summary(records: list[dict]) -> list[dict]:
                 "normalizer_ok": feedback.get("normalizer_ok", ""),
                 "closed_theorem_ok": feedback.get("closed_theorem_ok", ""),
                 "next_route": feedback.get("next_route", ""),
+                "agent_wall_time_s": record.get("harness_metrics", {}).get("agent_wall_time_s", "")
+                if isinstance(record.get("harness_metrics", {}), dict)
+                else "",
+                "prompt_chars": record.get("harness_metrics", {}).get("prompt_chars", "")
+                if isinstance(record.get("harness_metrics", {}), dict)
+                else "",
+                "estimated_input_tokens": record.get("harness_metrics", {}).get("estimated_input_tokens", "")
+                if isinstance(record.get("harness_metrics", {}), dict)
+                else "",
                 "notes": record.get("notes", ""),
             }
         )
@@ -5328,6 +5350,9 @@ def write_trial_summary(records: list[dict]) -> list[dict]:
             "normalizer_ok",
             "closed_theorem_ok",
             "next_route",
+            "agent_wall_time_s",
+            "prompt_chars",
+            "estimated_input_tokens",
             "notes",
         ]
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -6908,11 +6933,12 @@ def format_agent_command(template: str, prompt: Path, run_dir: Path, task_id: st
     )
 
 
-def run_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> int:
+def run_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> tuple[int, float]:
     command = format_agent_command(template, prompt, run_dir, task_id, cycle)
     print("$ " + command)
+    start = time.perf_counter()
     completed = subprocess.run(command, cwd=ROOT, shell=True)
-    return completed.returncode
+    return completed.returncode, time.perf_counter() - start
 
 
 def log_agent_attempt(
@@ -6921,8 +6947,17 @@ def log_agent_attempt(
     prompt: Path,
     command: str,
     code: int,
+    wall_time_s: float | None = None,
 ) -> None:
     status = "accepted" if code == 0 else "failed"
+    prompt_text = prompt.read_text(encoding="utf-8") if prompt.exists() else ""
+    harness_metrics = {
+        "agent_wall_time_s": wall_time_s,
+        "prompt_chars": len(prompt_text),
+        "estimated_input_tokens": approx_token_count(prompt_text),
+        "exact_token_accounting": False,
+        "detail": "Agent wall time and local prompt-token proxy; provider token usage is not inferred.",
+    }
     append_jsonl(
         TRIAL_LOG,
         {
@@ -6938,6 +6973,7 @@ def log_agent_attempt(
             "changed_files": git_changed_files(),
             "command": command,
             "notes": f"External agent command exit code {code}.",
+            "harness_metrics": harness_metrics,
         },
     )
     write_trial_summary(load_jsonl(TRIAL_LOG))
@@ -6992,8 +7028,9 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                 template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
                 command = format_agent_command(template, prompt, run_dir, args.id, cycle)
                 print("$ " + command)
+                start = time.perf_counter()
                 code = subprocess.run(command, cwd=ROOT, shell=True).returncode
-                log_agent_attempt(args.id, run_dir, prompt, command, code)
+                log_agent_attempt(args.id, run_dir, prompt, command, code, time.perf_counter() - start)
                 if code != 0:
                     cycle_code = code
                     break
@@ -7003,11 +7040,12 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                     template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
                     command = format_agent_command(template, prompt, run_dir, args.id, cycle)
                     print("$ " + command)
+                    start = time.perf_counter()
                     process = subprocess.Popen(command, cwd=ROOT, shell=True)
-                    running.append((prompt, command, process))
-                for prompt, command, process in running:
+                    running.append((prompt, command, process, start))
+                for prompt, command, process, start in running:
                     code = process.wait()
-                    log_agent_attempt(args.id, run_dir, prompt, command, code)
+                    log_agent_attempt(args.id, run_dir, prompt, command, code, time.perf_counter() - start)
                     if code != 0:
                         cycle_code = code
             if cycle_code == 0:
@@ -7015,8 +7053,9 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                     template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
                     command = format_agent_command(template, prompt, run_dir, args.id, cycle)
                     print("$ " + command)
+                    start = time.perf_counter()
                     code = subprocess.run(command, cwd=ROOT, shell=True).returncode
-                    log_agent_attempt(args.id, run_dir, prompt, command, code)
+                    log_agent_attempt(args.id, run_dir, prompt, command, code, time.perf_counter() - start)
                     if code != 0:
                         cycle_code = code
                         break
@@ -7024,8 +7063,8 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             for prompt in prompts:
                 template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
                 command = format_agent_command(template, prompt, run_dir, args.id, cycle)
-                code = run_agent_command(template, prompt, run_dir, args.id, cycle)
-                log_agent_attempt(args.id, run_dir, prompt, command, code)
+                code, wall_time_s = run_agent_command(template, prompt, run_dir, args.id, cycle)
+                log_agent_attempt(args.id, run_dir, prompt, command, code, wall_time_s)
                 if code != 0:
                     cycle_code = code
                     break

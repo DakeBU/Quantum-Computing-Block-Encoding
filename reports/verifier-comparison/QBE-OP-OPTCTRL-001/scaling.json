@@ -1,0 +1,128 @@
+[
+  {
+    "verifier": "dense_numpy_block",
+    "time_qubits": 1,
+    "total_qubits_with_ancilla": 4,
+    "matrix_dimension": 16,
+    "status": "passed",
+    "median_ms": 0.01979246735572815,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "qiskit_operator_dense",
+    "time_qubits": 1,
+    "total_qubits_with_ancilla": 4,
+    "matrix_dimension": 16,
+    "status": "passed",
+    "median_ms": 0.40786340832710266,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "dense_numpy_block",
+    "time_qubits": 2,
+    "total_qubits_with_ancilla": 5,
+    "matrix_dimension": 32,
+    "status": "passed",
+    "median_ms": 0.03803148865699768,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "qiskit_operator_dense",
+    "time_qubits": 2,
+    "total_qubits_with_ancilla": 5,
+    "matrix_dimension": 32,
+    "status": "passed",
+    "median_ms": 2.096276730298996,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "dense_numpy_block",
+    "time_qubits": 3,
+    "total_qubits_with_ancilla": 6,
+    "matrix_dimension": 64,
+    "status": "passed",
+    "median_ms": 0.06807968020439148,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "qiskit_operator_dense",
+    "time_qubits": 3,
+    "total_qubits_with_ancilla": 6,
+    "matrix_dimension": 64,
+    "status": "passed",
+    "median_ms": 6.033491343259811,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "dense_numpy_block",
+    "time_qubits": 4,
+    "total_qubits_with_ancilla": 7,
+    "matrix_dimension": 128,
+    "status": "passed",
+    "median_ms": 0.13919919729232788,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "qiskit_operator_dense",
+    "time_qubits": 4,
+    "total_qubits_with_ancilla": 7,
+    "matrix_dimension": 128,
+    "status": "passed",
+    "median_ms": 39.071276783943176,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "dense_numpy_block",
+    "time_qubits": 5,
+    "total_qubits_with_ancilla": 8,
+    "matrix_dimension": 256,
+    "status": "passed",
+    "median_ms": 0.28812140226364136,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "qiskit_operator_dense",
+    "time_qubits": 5,
+    "total_qubits_with_ancilla": 8,
+    "matrix_dimension": 256,
+    "status": "passed",
+    "median_ms": 196.54421508312225,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "dense_numpy_block",
+    "time_qubits": 6,
+    "total_qubits_with_ancilla": 9,
+    "matrix_dimension": 512,
+    "status": "passed",
+    "median_ms": 0.6372816860675812,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "qiskit_operator_dense",
+    "time_qubits": 6,
+    "total_qubits_with_ancilla": 9,
+    "matrix_dimension": 512,
+    "status": "passed",
+    "median_ms": 1214.4160717725754,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "dense_numpy_block",
+    "time_qubits": 7,
+    "total_qubits_with_ancilla": 10,
+    "matrix_dimension": 1024,
+    "status": "passed",
+    "median_ms": 1.4525987207889557,
+    "detail": "passed dense finite block check"
+  },
+  {
+    "verifier": "qiskit_operator_dense",
+    "time_qubits": 7,
+    "total_qubits_with_ancilla": 10,
+    "matrix_dimension": 1024,
+    "status": "passed",
+    "median_ms": 8219.175044447184,
+    "detail": "passed dense finite block check"
+  }
+]

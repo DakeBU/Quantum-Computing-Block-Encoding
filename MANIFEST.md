@@ -6385,3 +6385,24 @@ block-encoding formalization lifecycle.
 | 2026-06-18 22:02:31 | qbe.py problem-latex-export | `runs/20260617-060327-QBE-AUTO-002-cycle01/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 9 |
 | 2026-06-18 22:02:31 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-OPTCTRL-001/20260617-060327-QBE-AUTO-002-cycle01.tex` | article | Archived problem-specific LaTeX export for QBE-OP-OPTCTRL-001 cycle 9 |
 | 2026-06-18 22:02:31 | qbe.py problem-latex-export | `Auto_Proof_Papers/ABEIS/problem_exports/QBE-OP-OPTCTRL-001.tex` | article | Mirrored latest problem-specific LaTeX export |
+| 2026-06-19 02:21:01 | qbe.py init | `QBE.md` | init | Initialized QBE workflow files |
+| 2026-06-19 02:21:01 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-022101-QBE-OP-OPTCTRL-001-lower-attempt |
+| 2026-06-19 02:27:10 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-OPTCTRL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-OPTCTRL-001 |
+| 2026-06-19 02:28:22 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-022822-QBE-OP-OPTCTRL-001-lower-attempt |
+| 2026-06-19 02:30:48 | qbe.py run-cycle | `runs/20260619-023048-QBE-OP-OPTCTRL-001-cycle01` | run | Created run cycle for QBE-OP-OPTCTRL-001 |
+| 2026-06-19 02:31:26 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-OPTCTRL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-OPTCTRL-001 |
+| 2026-06-19 02:33:50 | qbe.py memory-refresh | `runs/20260619-023048-QBE-OP-OPTCTRL-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-OP-OPTCTRL-001 cycle 1 |
+| 2026-06-19 02:33:50 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-OPTCTRL-001.json` | memory | Wrote retrieval index for QBE-OP-OPTCTRL-001 |
+| 2026-06-19 02:37:54 | qbe.py agent-note | `runs/20260619-023048-QBE-OP-OPTCTRL-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-19 02:37:59 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-023759-QBE-OP-OPTCTRL-001-upper-handoff |
+| 2026-06-19 02:40:06 | qbe.py conversion-window | `conversion-windows/QBE-OP-OPTCTRL-001.md` | conversion | Created conversion window QBE-OP-OPTCTRL-001 |
+| 2026-06-19 02:41:56 | qbe.py run-cycle | `runs/20260619-024155-QBE-OP-OPTCTRL-001-cycle01` | run | Created run cycle for QBE-OP-OPTCTRL-001 |
+| 2026-06-19 02:42:31 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-OPTCTRL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-OPTCTRL-001 |
+| 2026-06-19 02:43:43 | qbe.py agent-note | `runs/20260619-024155-QBE-OP-OPTCTRL-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-19 02:43:47 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-024347-QBE-OP-OPTCTRL-001-upper-handoff |
+| 2026-06-19 02:55:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-025523-QBE-OP-OPTCTRL-001-upper-handoff |
+| 2026-06-19 02:57:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-025732-QBE-OP-OPTCTRL-001-middle-handoff |
+| 2026-06-19 02:59:42 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-025942-QBE-OP-OPTCTRL-001-lower-attempt |
+| 2026-06-19 03:00:53 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-030053-QBE-OP-OPTCTRL-001-lower-attempt |
+| 2026-06-19 03:03:19 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-030319-QBE-OP-OPTCTRL-001-lower-attempt |
+| 2026-06-19 03:06:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-030649-QBE-OP-OPTCTRL-001-reviewer-handoff |

@@ -1,0 +1,38 @@
+[
+  {
+    "route": "qiskit_operator_route",
+    "artifact": "Python/Qiskit circuit plus Operator equality check",
+    "measured": false,
+    "agent_wall_time_s": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "checker_wall_time_ms": 0.4619695246219635,
+    "compile_or_parse_time_ms": null,
+    "detail": "Only checker timing is measured. Need a controlled agent run that writes the Qiskit artifact from the same prompt."
+  },
+  {
+    "route": "lean_route",
+    "artifact": "Lean definitions, theorem statements, proofs, and lake build",
+    "measured": false,
+    "agent_wall_time_s": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "checker_wall_time_ms": 617.2166988253593,
+    "compile_or_parse_time_ms": 617.2166988253593,
+    "detail": "Only cached build timing is measured here. Existing run logs include agent work but were not produced under a controlled Qiskit-vs-Lean ablation."
+  },
+  {
+    "route": "abeis_multi_agent_route",
+    "artifact": "candidate population, Lean proof, verifier feedback, reports",
+    "measured": false,
+    "agent_wall_time_s": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "checker_wall_time_ms": 617.2166988253593,
+    "compile_or_parse_time_ms": 617.2166988253593,
+    "detail": "Requires a controlled sleep-run or manual multi-agent run with token accounting enabled. Do not infer this from checker time."
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "description": "Example Codex-only profile for real ABEIS parallel-lower route ablation. Replace the command if your Codex CLI uses a different invocation.",
+  "commands": {
+    "upper": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "middle": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "lower1": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "lower2": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "lower3": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "reviewer": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\"",
+    "default": "cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox \"$(cat {prompt})\""
+  }
+}

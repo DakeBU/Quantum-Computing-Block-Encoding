@@ -1,0 +1,41 @@
+[
+  {
+    "verifier": "numpy_exact_matrix",
+    "semantic_level": "exact finite matrix check",
+    "status": "passed",
+    "repeats": 500,
+    "median_ms": 0.026073306798934937,
+    "mean_ms": 0.02654223144054413,
+    "min_ms": 0.025641173124313354,
+    "max_ms": 0.06263703107833862,
+    "complete_for_main_case": true,
+    "final_acceptance_gate": false,
+    "detail": "passed exact finite check"
+  },
+  {
+    "verifier": "qiskit_operator",
+    "semantic_level": "exact finite Qiskit Operator check",
+    "status": "passed",
+    "repeats": 50,
+    "median_ms": 0.4619695246219635,
+    "mean_ms": 0.4692947119474411,
+    "min_ms": 0.4371665418148041,
+    "max_ms": 0.6152316927909851,
+    "complete_for_main_case": true,
+    "final_acceptance_gate": false,
+    "detail": "passed exact finite check"
+  },
+  {
+    "verifier": "lean_lake_build_tests",
+    "semantic_level": "formal theorem/proof gate",
+    "status": "passed",
+    "repeats": 1,
+    "median_ms": 617.2166988253593,
+    "mean_ms": 617.2166988253593,
+    "min_ms": 617.2166988253593,
+    "max_ms": 617.2166988253593,
+    "complete_for_main_case": true,
+    "final_acceptance_gate": true,
+    "detail": "\u26a0 [13/19] Replayed QuantumBlockEncoding.RobinMatrix\nwarning: QuantumBlockEncoding/RobinMatrix.lean:26964:8: declaration uses `sorry`\nwarning: QuantumBlockEncoding/RobinMatrix.lean:26995:8: declaration uses `sorry`\nBuild completed successfully (19 jobs)."
+  }
+]

@@ -24,6 +24,9 @@
 /research-wiki/retrieval-index/QBE-AUTO-*.json
 /verifier-feedback/QBE-AUTO-*/
 /verifier-feedback/QBE-AUTO-*-*.md
+/reports/route-ablation/*/runs/**
+!/reports/route-ablation/*/runs/
+!/reports/route-ablation/*/runs/README.md
 
 __pycache__/
 *.pyc

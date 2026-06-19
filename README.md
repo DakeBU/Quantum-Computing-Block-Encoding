@@ -121,6 +121,152 @@ This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general
 arbitrary-register theorem, or a Lean-proved global optimality theorem.
 
+### Verifier Timing
+
+ABEIS does not currently call QASM-Eval or Qiskit QuantumKatas as part of the
+default proof loop.  It implements local finite verifier packets and then
+requires Lean theorem closure.  For the main case, we added a direct timing
+comparison against an optional Qiskit `Operator` verifier:
+
+![Verifier timing comparison](docs/assets/verifier_time_comparison.png)
+
+On the measured environment, the exact finite NumPy verifier and the exact
+Qiskit `Operator` verifier are complete for this fully instantiated 4-qubit
+matrix instance, and both are much faster than the cached Lean gate.  Lean is
+still the final acceptance gate because it records reusable definitions,
+theorems, resource tuples, and future dependencies.  QASM-Eval-style
+distribution, timing, and pulse checks remain diagnostics unless the task's
+theorem has exactly that executable semantics.
+
+Reproduce the comparison:
+
+```bash
+python3 tools/compare_verifiers.py
+```
+
+If `qiskit` is not installed, the Qiskit row is reported as unavailable rather
+than silently replaced by a local check.
+
+This plot measures only checker wall time.  It does not measure the time an AI
+agent spends writing Qiskit code, writing Lean declarations/proofs, repairing
+failures, coordinating agents, or consuming tokens.  A fair harness comparison
+must separately record:
+
+- checker time: parser/simulator/Lean build time;
+- artifact-production time: agent wall time to write and repair the code;
+- token throughput: input, output, and total tokens per accepted candidate.
+
+The current route-total ablation has been run once with Codex on the same
+target:
+
+![Route-total ablation](docs/assets/route_ablation_times.png)
+
+All three routes passed.  The Qiskit-only route produced and executed a finite
+Python/Qiskit artifact, the Lean-only route produced a direct Lean theorem
+route, and the ABEIS route used real parallel lower agents
+(`lower_count = 3`).  The result is deliberately not presented as "ABEIS is
+fastest": this run shows that the current ABEIS Codex profile has substantial
+coordination/log overhead.  Its value is the stronger semantic artifact and
+the recorded proof/candidate memory.  The next engineering target is to make
+upper/middle/reviewer roles deterministic or low-token, while preserving
+parallel lower proof/circuit search.
+
+The generated file
+`reports/route-ablation/QBE-OP-OPTCTRL-001/latest_results.md` records the
+route-total rows.  Exact provider token counts are still marked unavailable
+unless the chosen model wrapper reports them.
+
+The second comparison is scaling.  For the family
+`E_k = |0><k|_time tensor |0><1|_type tensor I_state`, dense Qiskit
+`Operator` checking must materialize a `2^(r+3)` dimensional matrix, where `r`
+is the number of time-register qubits:
+
+![Dense verifier scaling](docs/assets/verifier_scaling_comparison.png)
+
+This is why simulator-style verification is valuable but should not be the
+only acceptance layer for block-encoding research.  It is excellent for small
+finite instances, counterexamples, and smoke tests.  For large-register
+operator families, ABEIS should move toward symbolic Lean theorems about
+registers and gates, so proof checking scales with proof structure rather than
+dense Hilbert-space dimension.  The current main case is certified for
+`r = 1`; the parametric all-`r` theorem is a future strengthening.
+
+The hard-scaling forecast makes the same point without pretending to run
+impossible dense checks:
+
+![Dense verifier memory forecast](docs/assets/verifier_hard_scaling_forecast.png)
+
+At `r = 20`, a full dense complex128 unitary for this simple family would
+already require about `1 PiB` of memory.  At `r = 32`, it is about `16 ZiB`.
+This is where ABEIS should stop asking a simulator to materialize the whole
+matrix and instead ask Lean for a symbolic theorem about the circuit family.
+
+The experimental comparison has two axes:
+
+- artifact route: Qiskit/OpenQASM task plus executable verifier, direct Lean
+  theorem route, and full ABEIS route;
+- harness route: their single-benchmark or tool-feedback loops versus ABEIS's
+  upper/middle/lower/reviewer loop with candidate populations and retrieval
+  memory.
+
+For each route ABEIS records route-total agent time, checker/compile time,
+input/output token proxies, repair iterations where available, and the final
+semantic level.  The protocol is recorded in
+`reports/verifier-comparison/QBE-OP-OPTCTRL-001/agent_ablation_protocol.md`.
+Controlled prompt packets for the three route-total ablations are generated at
+`reports/route-ablation/QBE-OP-OPTCTRL-001/`.
+
+External repository smoke comparison on the same local checkout:
+
+| System | Direct same finite BE task? | Local result | What it tells ABEIS |
+| --- | --- | --- | --- |
+| [Qiskit-QuantumKatas][qiskit-quantumkatas] | yes | custom kata passed | Best executable-code route for finite Qiskit comparison. |
+| [QASM-Eval][qasm-eval] | no | current local run `blocked-env` | Useful typed feedback/pass@k design; not a block-entry verifier. |
+| [QUASAR][quasar-paper] | no | local code not released | Harness/reward comparison only for now. |
+| [AI-Mandel][ai-mandel-paper] | no | script compile smoke passed | Useful staged idea-to-tool loop; not a BE verifier. |
+
+Full details are generated by:
+
+```bash
+python3 -m pip install qiskit 'openqasm3[parser]'
+python3 tools/compare_external_quantum_verifiers.py
+```
+
+The report is
+`reports/external-quantum-verifier-comparison/latest.md`.
+The combined comparison status is
+`reports/route-ablation/QBE-OP-OPTCTRL-001/comparison_status.md`.
+
+To prepare the route-total prompts again:
+
+```bash
+python3 tools/prepare_route_ablation.py
+```
+
+To record checker-only reference baselines:
+
+```bash
+python3 -m pip install qiskit
+python3 tools/run_route_ablation.py reference_qiskit
+python3 tools/run_route_ablation.py reference_lean
+```
+
+The current reference and route-total results are stored in
+`reports/route-ablation/QBE-OP-OPTCTRL-001/latest_results.md`.
+
+For route-total Qiskit-only runs, `tools/run_route_ablation.py` sets
+`QBE_ROUTE_ARTIFACT`; the agent must create a complete Python/Qiskit checker at
+that path, and the runner executes it.  Printed code snippets do not count as
+accepted artifacts.
+
+The repository includes a deterministic `qiskit_only` harness self-test using
+`tools/route_ablation_agents/write_qiskit_reference.py`.  This proves the
+artifact enforcement path works, but it is not an AI route-total baseline.
+
+The ABEIS route-total runner uses a short mini-harness: compact upper/middle
+handoffs, three parallel lower roles, reviewer, and `lake build Tests`.  Do
+not treat a single chat session as evidence of parallel lower-agent search.
+
 ## Benchmark Paper Cases
 
 Paper reproduction remains important, but as benchmark data for the core
@@ -229,19 +375,20 @@ ABEIS uses a layered multi-agent harness:
 
 The harness is vendor-neutral.  A profile under `agent-profiles/` can dispatch
 different roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax,
-or local tools:
+or local tools.  The checked-in Codex-only profile is the reproducible default:
 
 ```bash
 python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 6 \
   --lower-count 3 \
   --parallel-lower \
-  --agent-profile mixed-vendors.example.json \
+  --agent-profile codex-parallel.example.json \
   --execute \
   --check-each-cycle
 ```
 
-The profile changes search diversity and cost.  It does not change what counts
+Swap in a mixed-vendor profile when those wrappers are available.  The profile
+changes search diversity and cost.  It does not change what counts
 as success: only Lean-certified declarations and the build gate certify a
 candidate.
 
@@ -303,7 +450,7 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 2 \
   --lower-count 3 \
   --parallel-lower \
-  --agent-profile mixed-vendors.example.json \
+  --agent-profile codex-parallel.example.json \
   --execute \
   --check-each-cycle
 ```
@@ -343,7 +490,7 @@ gate-level quantum block-encoding certificates.
 | [MathCode][mathcode] | Proof diagnostics and theorem reuse. | Hidden-assumption scans and reusable proof-attempt memory. |
 | [Lean4Agent][lean4agent-paper] | Workflow/trajectory verification. | Lean-side process contracts in `Automation.lean`. |
 | [Lean-QuantumInfo][lean-quantuminfo], [lean-quantum][lean-quantum] | Quantum formalization references. | Style and semantic references for finite-dimensional quantum objects. |
-| [QASM-Eval][qasm-eval], [Qiskit QuantumKatas][qiskit-quantumkatas] | Typed circuit/test feedback. | Necessary-condition diagnostics before Lean proof closure. |
+| [QASM-Eval][qasm-eval], [Qiskit QuantumKatas][qiskit-quantumkatas] | Typed circuit/test feedback and executable Qiskit/QASM checks. | ABEIS distinguishes inspired feedback, optional exact finite Qiskit checks, and Lean-certified theorem closure. |
 | [QUASAR][quasar-paper], [AI-Mandel][ai-mandel-paper] | Tool-feedback loops for quantum artifacts. | Search signals only; not proof certificates. |
 | [LLM4AD_Next][llm4ad-next] | Low-entry-barrier web interface. | Static oracle-to-task-packet builder. |
 | [Lexicographic bandits][lexelim-bandits] | Lexicographic active-set filtering. | Prioritize correctness, diagnostics, asymptotic tier, and cost tuple. |

@@ -1,0 +1,7 @@
+verifier,semantic_level,status,repeats,median_ms,mean_ms,min_ms,max_ms,complete_for_main_case,final_acceptance_gate,detail
+numpy_exact_matrix,exact finite matrix check,passed,500,0.026073306798934937,0.02654223144054413,0.025641173124313354,0.06263703107833862,True,False,passed exact finite check
+qiskit_operator,exact finite Qiskit Operator check,passed,50,0.4619695246219635,0.4692947119474411,0.4371665418148041,0.6152316927909851,True,False,passed exact finite check
+lean_lake_build_tests,formal theorem/proof gate,passed,1,617.2166988253593,617.2166988253593,617.2166988253593,617.2166988253593,True,True,"⚠ [13/19] Replayed QuantumBlockEncoding.RobinMatrix
+warning: QuantumBlockEncoding/RobinMatrix.lean:26964:8: declaration uses `sorry`
+warning: QuantumBlockEncoding/RobinMatrix.lean:26995:8: declaration uses `sorry`
+Build completed successfully (19 jobs)."
