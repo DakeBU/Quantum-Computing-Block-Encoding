@@ -25,7 +25,7 @@
 | Gate/circuit transcript for `U_n` | middle arithmetic transcript compiled as `CubicStatePreparation.arithmeticCubicCircuit`; rank-one wrapper transcript compiled as `CubicStatePreparation.arithmeticRankOneCubicCircuit` |
 | Exact Hadamard-counting candidate transcript | proof architecture in `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-CAND-SHAPE-001.md`; Lean interface compiled as `CubicStatePreparation.hadamardCountingCubic*`; semantic proof open |
 | Repair Hadamard-counting nonzero-column rejection | compiled in `CubicStatePreparation.hadamardCountingCubicCircuit`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2`, and focused `Tests/Basic.lean` checks; the repaired transcript uses a separate nonzero-column reject signal before `nz` cleanup |
-| Prove Hadamard-counting threshold path count | active leaf `CUBIC-HCOUNT-COUNT-001`; planned Lean declarations `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, `hadamardCountingCubic_threshold_le_pathCapacity`, and `hadamardCountingCubic_thresholdPathCount`; packet in `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-COUNT-001.md` |
+| Prove Hadamard-counting threshold path count | compiled leaf `CUBIC-HCOUNT-COUNT-001`: `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, reusable helper `hadamardCountingCubic_thresholdFilterLength`, capacity bound `hadamardCountingCubic_threshold_le_pathCapacity`, and count theorem `hadamardCountingCubic_thresholdPathCount`; focused `Tests/Basic.lean` checks pass |
 | Block-entry theorem for `O_n` | target-shape bridge compiled: `rankOneCleanBlockContract_pointwise_eq`; semantic zero-filter, row-generation, amplitude, and unitarity proofs remain open |
 | Approximation theorem with `epsilon <= 1e-10` or explicit relaxation | open |
 | Unitarity theorem for `U_n` | open |
@@ -52,8 +52,8 @@
 | CUBIC-HCOUNT-RATIO-001 | Prove `cubicAmplitude n j / conservativeNormalizer n = j.val^3 / (gridSize n)^4`. | CUBIC-HCOUNT-IFACE-001, rational division algebra | lower Lean | `rat_div_cube_div_eq`, `cubicAmplitude_div_conservativeNormalizer_eq` | compiled; semantic Hadamard-counting proof still open |
 | CUBIC-VER-CAND-001:HCOUNT-SEMANTIC | Necessary-condition checks for the old daggered Hadamard-counting transcript and the repaired separate-reject transcript. | CUBIC-HCOUNT-IFACE-001, CUBIC-HCOUNT-RATIO-001 proof map | verifier lower | `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-cand-001-hcount-semantic.md` | repaired finite diagnostic passed; old daggered route remains rejected |
 | CUBIC-HCOUNT-REJECT-REPAIR-001 | Repair the zero-input rejection convention so nonzero input columns cannot return clean identity entries. | CUBIC-HCOUNT-IFACE-001, CUBIC-HCOUNT-RATIO-001, CUBIC-VER-CAND-001:HCOUNT-SEMANTIC | lower Lean | `hadamardCountingCubicCircuit_rejectSignalRepair`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2`, focused `Tests/Basic.lean` checks, `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-REJECT-REPAIR-001.md` | compiled interface repair; finite repaired diagnostic passed; retired as active target |
-| CUBIC-HCOUNT-COUNT-001 | Prove the threshold path-count leaf: for fixed row `j`, exactly `j.val ^ 3` values of `t : Fin (gridSize (3 * n))` satisfy `t.val < j.val ^ 3`. | CUBIC-HCOUNT-RATIO-001, CUBIC-HCOUNT-REJECT-REPAIR-001, finite path diagnostic | lower Lean | planned `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, `hadamardCountingCubic_threshold_le_pathCapacity`, `hadamardCountingCubic_thresholdPathCount`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-COUNT-001.md` | active leaf |
-| CUBIC-HCOUNT-UNITARY-001 | Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels. | CUBIC-HCOUNT-COUNT-001, future semantics for oracle labels | future lower Lean | planned semantic theorem | blocked internal |
+| CUBIC-HCOUNT-COUNT-001 | Prove the threshold path-count leaf: for fixed row `j`, exactly `j.val ^ 3` values of `t : Fin (gridSize (3 * n))` satisfy `t.val < j.val ^ 3`. | CUBIC-HCOUNT-RATIO-001, CUBIC-HCOUNT-REJECT-REPAIR-001, finite path diagnostic | lower Lean | `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, `hadamardCountingCubic_thresholdCountP_finRange`, `hadamardCountingCubic_thresholdFilterLength`, `hadamardCountingCubic_threshold_le_pathCapacity`, `hadamardCountingCubic_thresholdPathCount`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-COUNT-001.md` | compiled; not a block certificate |
+| CUBIC-HCOUNT-UNITARY-001 | Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels. | CUBIC-HCOUNT-COUNT-001, future semantics for oracle labels | future lower Lean | planned semantic theorem | next symbolic bridge leaf |
 | CUBIC-HCOUNT-BLOCK-001 | Prove the repaired clean block satisfies the route-specific clean-block contract. | CUBIC-HCOUNT-COUNT-001, CUBIC-HCOUNT-UNITARY-001, Hadamard-sandwich semantic lemma | future lower Lean | planned clean-block theorem | blocked internal |
 
 ## Source-Correspondence Contract
@@ -63,7 +63,7 @@
 | Source anchor | User/task contract in `tasks/QBE-OP-CUBIC-STATEPREP-001.md`; no paper archive is active. |
 | Object translated | Unnormalized rank-one operator `O_n = |v_n><0^n|`, where `v_n[j] = (j / 2^n)^3`. |
 | Lean target surface | `gridPoint`, `cubicAmplitude`, `cubicOperator`, `cubicNormSq`, `conservativeNormalizer`, `cubicTarget`. |
-| Active lower leaves | `CUBIC-HCOUNT-COUNT-001` is the next active Lean leaf.  `CUBIC-HCOUNT-RATIO-001` is compiled, `CUBIC-HCOUNT-REJECT-REPAIR-001` is compiled and finite-checks clean for `n = 1, 2`, and the old daggered route remains rejected. |
+| Active lower leaves | `CUBIC-HCOUNT-COUNT-001` is compiled.  `CUBIC-HCOUNT-RATIO-001` and `CUBIC-HCOUNT-REJECT-REPAIR-001` are compiled, finite checks for the repaired reject convention remain clean for `n = 1, 2`, and the old daggered route remains rejected.  The next symbolic bridge is `CUBIC-HCOUNT-UNITARY-001` or an equivalent Hadamard-sandwich semantic lemma before `CUBIC-HCOUNT-BLOCK-001`. |
 | External technical lemma | `classical-sixth-power-sum` in `research-wiki/cited-results/classical-power-sums.md`, status `obligation` unless a Lean helper builds. |
 | Owned by task | Target vector, rank-one operator interpretation, exact norm diagnostic, requested epsilon, and adaptive policy. |
 | QBE-local glue | Block-encoding records, clean-block projector convention, normalizer bookkeeping, resource tuple, verifier-feedback fields. |
@@ -104,9 +104,16 @@ Completed diagnostic:
   `block_entry_ok=false` because nonzero input columns return to clean ancillas
   and leak identity entries.  `CUBIC-HCOUNT-REJECT-REPAIR-001` now records the
   separate reject-signal repair in Lean, and the repaired finite diagnostic
-  reports `finite_matrix_ok=true` and `block_entry_ok=true`.  The next route is
-  the symbolic threshold path-count leaf `CUBIC-HCOUNT-COUNT-001` before any
-  attempt at `CUBIC-HCOUNT-BLOCK-001`.
+  reports `finite_matrix_ok=true` and `block_entry_ok=true`.  The symbolic
+  threshold path-count leaf `CUBIC-HCOUNT-COUNT-001` is now compiled; the next
+  route is `CUBIC-HCOUNT-UNITARY-001` or an equivalent Hadamard-sandwich
+  semantic bridge before any attempt at `CUBIC-HCOUNT-BLOCK-001`.
+- `CUBIC-HCOUNT-COUNT-001` compiled the symbolic threshold path-count bridge:
+  capacity identities for `gridSize (3*n)` and `gridSize (4*n)`, a reusable
+  `List.finRange` threshold-count helper, the cubic threshold capacity bound,
+  and `hadamardCountingCubic_thresholdPathCount`.  This closes the path-count
+  leaf only; unitarity and the Hadamard-sandwich clean-block theorem remain
+  open before candidate promotion.
 - `CUBIC-VER-001` records dense vector entries and one-auxiliary dense-unitary
   memory for `n = 4, 8, 12, 16, 20` in
   `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-001-scaling.md`.
@@ -134,12 +141,11 @@ Current scheduling note:
   Its old daggered nonzero-flag cleanup is rejected and must not feed
   `CUBIC-HCOUNT-BLOCK-001`.
 - Lower workers have compiled the separate reject-signal repair for the
-  zero-input rejection convention and reran the finite `n=1,2` semantic check.
-  Future workers should not rerun the stale `candidate_interface_gap`
-  diagnostic.  The next useful work is symbolic and fixed for this cycle:
-  prove `CUBIC-HCOUNT-COUNT-001`, the threshold path-count lemma for the
-  `3*n`-qubit register.  After that, schedule the unitary/Hadamard-sandwich
-  bridge before `CUBIC-HCOUNT-BLOCK-001`.
+  zero-input rejection convention, reran the finite `n=1,2` semantic check, and
+  compiled `CUBIC-HCOUNT-COUNT-001`, the threshold path-count lemma for the
+  `3*n`-qubit register.  Future workers should not rerun the stale
+  `candidate_interface_gap` diagnostic.  The next useful work is the
+  unitary/Hadamard-sandwich bridge before `CUBIC-HCOUNT-BLOCK-001`.
 
 Completed external same-target finite comparison:
 

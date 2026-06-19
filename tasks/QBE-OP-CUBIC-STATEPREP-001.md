@@ -167,14 +167,18 @@ certificate.
   `cubicAmplitude_div_conservativeNormalizer_eq`; do not reschedule this leaf
   unless the gate fails or the statement changes.  `CUBIC-HCOUNT-REJECT-REPAIR-001`
   is compiled as `hadamardCountingCubicCircuit_rejectSignalRepair` with the
-  default `n = 2` tuple `(8, 8, 21, 8)`.  The next Lean leaf should be one
-  symbolic bridge such as `CUBIC-HCOUNT-COUNT-001` or
-  `CUBIC-HCOUNT-UNITARY-001`, not the full block theorem.
+  default `n = 2` tuple `(8, 8, 21, 8)`.  `CUBIC-HCOUNT-COUNT-001` is compiled
+  as `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`,
+  `hadamardCountingCubic_threshold_le_pathCapacity`, and
+  `hadamardCountingCubic_thresholdPathCount`.  The next Lean leaf should be
+  `CUBIC-HCOUNT-UNITARY-001` or an equivalent Hadamard-sandwich semantic
+  bridge, not the full block theorem.
 - lower verifier/export worker: `CUBIC-VER-CAND-001:HCOUNT-SEMANTIC` rejected
   the old daggered nonzero-flag transcript, and
   `CUBIC-HCOUNT-REJECT-REPAIR-001` finite checks pass for `n = 1, 2`.  Do not
-  rerun the stale `candidate_interface_gap` diagnostic; only add a verifier
-  check if it constrains the next symbolic bridge.
+  rerun the stale `candidate_interface_gap` diagnostic; only rerun the
+  Hadamard-counting path diagnostic if the threshold register size, path
+  denominator, or accepted-path predicate changes.
 - reviewer: reject any candidate that treats the unnormalized vector as a
   unitary output state without either normalization or block-encoding scaling,
   and reject any promotion from finite diagnostics to the certified population

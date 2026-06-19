@@ -424,9 +424,51 @@ example :
   CubicStatePreparation.hadamardCountingCubicResource_eq 2
 
 example :
+    gridSize (3 * 2) = gridSize 2 ^ 3 :=
+  CubicStatePreparation.gridSize_three_mul_eq_cube 2
+
+example :
+    gridSize (4 * 2) = gridSize 2 ^ 4 :=
+  CubicStatePreparation.gridSize_four_mul_eq_fourth 2
+
+example :
+    (3 : Nat) ^ 3 <= gridSize (3 * 2) :=
+  by
+    exact CubicStatePreparation.hadamardCountingCubic_threshold_le_pathCapacity
+      2 ⟨3, by native_decide⟩
+
+example :
+    ((List.finRange (gridSize (3 * 2))).filter
+        (fun t => t.val < (3 : Nat) ^ 3)).length = 27 :=
+  by
+    exact CubicStatePreparation.hadamardCountingCubic_thresholdPathCount
+      2 ⟨3, by native_decide⟩
+
+example :
     CubicStatePreparation.cubicNormSq 2 ≤
       CubicStatePreparation.hadamardCountingCubicNormalizer 2 ^ 2 :=
   CubicStatePreparation.cubicNormSq_le_hadamardCountingCubicNormalizer_sq 2
+
+
+-- Cubic diagonal oracle tests
+
+example :
+    CubicDiagonalOracle.cubicDiagonalOperator 2
+      ⟨3, by native_decide⟩ ⟨3, by native_decide⟩ = (27 : Rat) / 64 := by
+  native_decide
+
+example :
+    CubicDiagonalOracle.cubicDiagonalOperator 2
+      ⟨3, by native_decide⟩ ⟨2, by native_decide⟩ = 0 := by
+  native_decide
+
+example :
+    CubicDiagonalOracle.amplitudeOracleResourceTuple 2 = (1, 1, 1, 1) :=
+  CubicDiagonalOracle.amplitudeOracleResourceTuple_eq 2
+
+example :
+    CubicStatePreparation.cubicAmplitude 2 ⟨3, by native_decide⟩ ≤ 1 :=
+  CubicDiagonalOracle.cubicAmplitude_le_one 2 ⟨3, by native_decide⟩
 
 -- CircuitSemantics tests: first matrix-semantics backend layer
 

@@ -1,8 +1,8 @@
-# 中文循环总结：QBE-OP-CUBIC-STATEPREP-001 cycle 1
+# 中文循环总结：QBE-OP-CUBIC-STATEPREP-001 cycle 3
 
-生成时间：`2026-06-19 13:43:21`
+生成时间：`2026-06-19 17:48:54`
 
-Run 目录：`runs/20260619-134036-QBE-OP-CUBIC-STATEPREP-001-cycle01`
+Run 目录：`runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03`
 
 任务标题：Cubic grid state-preparation operator
 
@@ -40,45 +40,62 @@ O_n = |v_n><0^n|,  v_n[j] = (j / 2^n)^3.
 
 - 已安装并使用 Qiskit 环境；cubic 同目标 finite external comparison 已完成，见 `reports/cubic-stateprep/external_comparison.md` 和 `reports/cubic-stateprep/external_comparison_scaling.png`。
 - NumPy dense completion 通过 `n = 1..6`，Qiskit `Operator` 通过 `n = 1..4`，Qiskit-QuantumKatas-style evaluator 通过 `n = 3`；这些都是 fixed small-n executable evidence。
-- QASM-Eval、QUASAR、AI-Mandel 在本地 artifact 中没有 direct same-task BE verifier route；它们仍可作为 typed feedback / harness 设计对比。
+- Qiskit export 已生成在 `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py`，但它只是 finite dense baseline，不是 final symbolic certificate。
+- QASM-Eval、QUASAR、AI-Mandel 在本地 artifact 中没有 direct same-task BE constructor/verifier route；它们仍可作为 typed feedback / harness 设计对比。
 - ABEIS 自己还没有 final cubic BE，因此不能说 cubic 最终构造已经优于外部系统；当前优势说法应限于目标：Lean 证明 symbolic family，避免大规模 dense statevector/unitary materialization。
 
 ## 当前 Lean 编译/`sorry` 状态
 
-- `QuantumBlockEncoding/RobinMatrix.lean:26968:  sorry`
-- `QuantumBlockEncoding/RobinMatrix.lean:26998:  sorry`
+- 当前没有检测到 `sorry`。
 
 ## 当前动态 proof-DAG leaf
 
 - # Proof Obligations: QBE-OP-CUBIC-STATEPREP-001
 - ## Target Obligations
 - | Obligation | Lean declaration or artifact | Status |
-- | Prove closed form for `sum_j (j/2^n)^6` | planned `CubicStatePreparation.cubicNormSq_closedForm`; DAG node CUBIC-NORM-001 | active leaf |
-- | Prove placeholder normalizer is sufficient | planned `CubicStatePreparation.cubicNormSq_le_conservativeNormalizer_sq`; DAG node CUBIC-ALPHA-001 | blocked on norm bridge |
+- | Prove closed form for `sum_j (j/2^n)^6` | planned `CubicStatePreparation.cubicNormSq_closedForm`; DAG node CUBIC-NORM-001; proof design in `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-NORM-001.md` | proof design recorded; diagnostic backlog, not a ser...
 - | Choose sharper normalizer `alpha` for final candidate, if useful | planned candidate-specific declaration | open |
-- | State block projector and clean-ancilla convention for first candidate | planned candidate contract | open |
 - ## Candidate Obligations
 - | Obligation | Status |
-- | CUBIC-NORM-001 | Closed rational formula for `cubicNormSq n`. | CUBIC-TGT-001, `classical-sixth-power-sum` | lower Lean | planned `cubicNormSq_closedForm` | active leaf |
+- | CUBIC-NORM-001 | Closed rational formula for `cubicNormSq n`. | CUBIC-NORM-001A, `classical-sixth-power-sum` | future lower Lean | planned `cubicNormSq_closedForm`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-NORM-001.md` | proof design recorded; dia...
+- | CUBIC-HCOUNT-UNITARY-001 | Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels. | CUBIC-HCOUNT-COUNT-001, future semantics for oracle labels | future lower Lean | planned semantic theorem | next symbolic bri...
+- | CUBIC-HCOUNT-BLOCK-001 | Prove the repaired clean block satisfies the route-specific clean-block contract. | CUBIC-HCOUNT-COUNT-001, CUBIC-HCOUNT-UNITARY-001, Hadamard-sandwich semantic lemma | future lower Lean | planned clean-block theorem | blocked int...
 
 ## 当前未完成义务信号
 
 - # Proof Obligations: QBE-OP-CUBIC-STATEPREP-001
 - ## Target Obligations
 - | Obligation | Lean declaration or artifact | Status |
-- | State block projector and clean-ancilla convention for first candidate | planned candidate contract | open |
+- | State block projector and clean-ancilla convention for first candidate | `CubicStatePreparation.rankOneCleanBlockContract`, `CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract`, `CubicStatePreparation.rankOneCleanBlockContract_pointwise_eq`, `CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract_pointwise_eq` | compiled contract bridge; semantic clean-block proof open |
 - ## Candidate Obligations
 - | Obligation | Status |
-- | Resource score `(gateCount, depth, auxiliaryQubits, oracleCalls)` | open |
+- | Repair Hadamard-counting nonzero-column rejection | compiled in `CubicStatePreparation.hadamardCountingCubicCircuit`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2`, and focused `Tests/Basic.lean` checks; the repaired transcript uses a separate nonzero-column reject signal before `nz` cleanup |
+- | Block-entry theorem for `O_n` | target-shape bridge compiled: `rankOneCleanBlockContract_pointwise_eq`; semantic zero-filter, row-generation, amplitude, and unitarity proofs remain open |
+- | Resource score `(gateCount, depth, auxiliaryQubits, oracleCalls)` | compiled for the unexpanded-oracle tier as `CubicStatePreparation.arithmeticCubicResourceTuple` and wrapper tuple `CubicStatePreparation.arithmeticRankOneCubicResourceTuple`; semantic expansion score open |
+- | CUBIC-CAND-001 | Arithmetic cubic amplitude-transduction interface plus rank-one wrapper shape audit. | CUBIC-TGT-001 | lower worker 5 / lower proof architect | `arithmeticCubicLayout`, `arithmeticCubicCircuit`, `arithmeticCubicNormalizer`, `arithmeticCubicResourceTuple`, `arithmeticCubicClaim`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-CAND-001.md` | compiled middle interface; semantic block proof open |
+- | CUBIC-CAND-SHAPE-001 | Rank-one wrapper transcript, resource tuple, clean-block contract, and target-shape bridge. | CUBIC-CAND-001, CUBIC-TGT-001 | lower worker 5 / lower Lean | `arithmeticRankOneCubicLayout`, `arithmeticRankOneCubicCircuit`, `arithmeticRankOneCubicResourceTuple`, `arithmeticRankOneCubicClaim`, `rankOneCleanBlockContract_pointwise_eq`, `arithmeticRankOneCubicCleanBlockContract_pointwise_eq` | compiled interface and pointwise bridge; zero-filter/row-generation semantics open |
+- | CUBIC-HCOUNT-IFACE-001 | Hadamard-counting layout, transcript, normalizer, resource tuple, clean-block contract bridge, and normalizer bridge. | CUBIC-TGT-001, CUBIC-ALPHA-001 | lower Lean | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicNormalizer`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | compiled interface; not a certificate |
+- | CUBIC-HCOUNT-REJECT-REPAIR-001 | Repair the zero-input rejection convention so nonzero input columns cannot return clean identity entries. | CUBIC-HCOUNT-IFACE-001, CUBIC-HCOUNT-RATIO-001, CUBIC-VER-CAND-001:HCOUNT-SEMANTIC | lower Lean | `hadamardCountingCubicCircuit_rejectSignalRepair`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2`, focused `Tests/Basic.lean` checks, `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-REJECT-REPAIR-001.md` | compiled interface repair; finite repaired diagnostic passed; retired as active target |
+- | CUBIC-HCOUNT-UNITARY-001 | Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels. | CUBIC-HCOUNT-COUNT-001, future semantics for oracle labels | future lower Lean | planned semantic theorem | next symbolic bridge leaf |
+- | CUBIC-HCOUNT-BLOCK-001 | Prove the repaired clean block satisfies the route-specific clean-block contract. | CUBIC-HCOUNT-COUNT-001, CUBIC-HCOUNT-UNITARY-001, Hadamard-sandwich semantic lemma | future lower Lean | planned clean-block theorem | blocked internal |
+- ## Source-Correspondence Contract
+- | Source anchor | User/task contract in `tasks/QBE-OP-CUBIC-STATEPREP-001.md`; no paper archive is active. |
+- | Active lower leaves | `CUBIC-HCOUNT-COUNT-001` is compiled.  `CUBIC-HCOUNT-RATIO-001` and `CUBIC-HCOUNT-REJECT-REPAIR-001` are compiled, finite checks for the repaired reject convention remain clean for `n = 1, 2`, and the old daggered route remains rejected.  The next symbolic bridge is `CUBIC-HCOUNT-UNITARY-001` or an equivalent Hadamard-sandwich semantic lemma before `CUBIC-HCOUNT-BLOCK-001`. |
+- | External technical lemma | `classical-sixth-power-sum` in `research-wiki/cited-results/classical-power-sums.md`, status `obligation` unless a Lean helper builds. |
+- | QBE-local glue | Block-encoding records, clean-block projector convention, normalizer bookkeeping, resource tuple, verifier-feedback fields. |
 
 ## 最近 typed verifier feedback
 
 | leaf | class | finite | entry | next |
 | --- | --- | --- | --- | --- |
-| CUBIC-ERR-001 | symbolic_bridge_gap |  | False | Close CUBIC-NORM-001 and CUBIC-ALPHA-001 before encoding the first-column entry-error-to-operator-error lemma. |
-| CUBIC-NORM-001 | symbolic_bridge_gap | True | None | Prove CUBIC-NORM-001 in Lean using the sixth-power sum bridge, or prove the conservative normalizer bound directly; do not run block-entry diagnostics until U_n, alpha, projector, and ancilla layout exist. |
-| CUBIC-DIAG-001 | None |  |  | CUBIC-NORM-001: formalize classical sixth-power-sum bridge for cubicNormSq_closedForm |
-| CUBIC-VER-001 | symbolic_bridge_gap | True | None | Send lower 2 to CUBIC-NORM-001; use dense rows only as future finite smoke tests. |
+| CUBIC-HCOUNT-COUNT-001 | symbolic_bridge_gap | True | True | CUBIC-HCOUNT-UNITARY-001 or an equivalent Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001 |
+| CUBIC-HCOUNT-COUNT-001 | symbolic_bridge_gap | True | True | CUBIC-HCOUNT-UNITARY-001 or equivalent Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001 |
+| CUBIC-HCOUNT-COUNT-001 | symbolic_bridge_gap | True | True | Keep CUBIC-HCOUNT-COUNT-001; schedule CUBIC-HCOUNT-UNITARY-001 or a Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001. |
+| CUBIC-HCOUNT-COUNT-001 | symbolic_bridge_gap | True | True | Schedule CUBIC-HCOUNT-UNITARY-001 or the Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001; do not promote the candidate from count diagnostics alone. |
+| CUBIC-HCOUNT-COUNT-001 | symbolic_bridge_gap | True | True | Prove gridSize_three_mul_eq_cube, gridSize_four_mul_eq_fourth, hadamardCountingCubic_threshold_le_pathCapacity, and hadamardCountingCubic_thresholdPathCount in Lean. |
+| CUBIC-HCOUNT-REJECT-REPAIR-001 | symbolic_bridge_gap | True | True | Promote the separate-reject convention into symbolic Hadamard-counting semantics before attempting CUBIC-HCOUNT-BLOCK-001. |
+| CUBIC-HCOUNT-REJECT-REPAIR-001 | symbolic_bridge_gap | True | True | Promote one symbolic bridge leaf: CUBIC-HCOUNT-COUNT-001 or CUBIC-HCOUNT-UNITARY-001 before CUBIC-HCOUNT-BLOCK-001. |
+| CUBIC-HCOUNT-REJECT-REPAIR-001 | symbolic_bridge_gap | True | True | Promote one symbolic bridge leaf: CUBIC-HCOUNT-COUNT-001 or CUBIC-HCOUNT-UNITARY-001 before CUBIC-HCOUNT-BLOCK-001 |
 
 ## 下一轮 lower-agent 分工
 
@@ -90,53 +107,36 @@ O_n = |v_n><0^n|,  v_n[j] = (j / 2^n)^3.
 
 ## 下一轮计划
 
-1. lower Lean worker 先关闭 `CUBIC-NORM-001`：证明或绕过 `cubicNormSq` 的第六次幂求和/normalizer bridge。
-2. middle 把 `CUBIC-NORM-001 -> CUBIC-ALPHA-001 -> CUBIC-ERR-001 -> candidate U_n` 的依赖 DAG 写清楚。
-3. lower architect 给出第一个 approximate arithmetic/transduction candidate 的明确 register、projector、alpha、epsilon budget。
-4. verifier worker 只在有具体 `U_n` 后运行有限 block-entry / Qiskit smoke test；不要把 dense scaling 当作 final proof。
+1. lower candidate architect 立刻给出第一个 concrete `U_n` 候选接口：register、projector、alpha、unitarity 证明形状、clean-block 证明形状、epsilon budget 和资源 tier。
+2. lower Lean worker 并行关闭一个小 proof leaf：`CUBIC-NORM-001` 或直接 `CUBIC-ALPHA-001`，但不得把它当作阻止候选构造的串行闸门。
+3. middle 把 active DAG 写成并行 frontier：`CUBIC-CAND-001`、`CUBIC-NORM-001/CUBIC-ALPHA-001`、`CUBIC-VER-CAND-001`。
+4. verifier worker 一旦有具体 `U_n`，就运行有限 block-entry / Qiskit fixed-instance necessary-condition check；如果还没有 `U_n`，记录 `candidate_interface_gap`，不要重复 norm-only diagnostics。
 5. reviewer 拒绝任何把未归一化向量当作 unitary output state 的候选，也拒绝没有 Lean theorem 的曲线点进入 certified population。
 
 ## 本轮 dialogue 末尾
 
 ```text
-# Dialogue: QBE-OP-CUBIC-STATEPREP-001 cycle 1
+001-CUBIC-HCOUNT-COUNT-001.md; the shared Lean worktree now contains gridSize_three_mul_eq_cube, gridSize_four_mul_eq_fourth, hadamardCountingCubic_thresholdCountP_finRange, hadamardCountingCubic_thresholdFilterLength, hadamardCountingCubic_threshold_le_pathCapacity, and hadamardCountingCubic_thresholdPathCount. I repaired one focused Tests/Basic.lean example that had omitted the concrete proposition for threshold_le_pathCapacity, refreshed the blueprint, and synchronized the proof-attempt/conversion-window status. closed_theorem_ok=true for the count leaf only; closed_theorem_ok=false for the block certificate. error_class=symbolic_bridge_gap remains for the semantic route. next_route=CUBIC-HCOUNT-UNITARY-001 or an equivalent Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001. Gate passed: python3 tools/qbe.py check.
 
-Append short role-tagged handoffs here.
+## 2026-06-19 17:48:20 - reviewer
 
-## 2026-06-19 13:42:54 - upper
-
-Upper source audit: mode exploratory operator construction; source anchor is the user task contract, no paper theorem or figure archive. Continue CUBIC-NORM-001; repair stale source-paper wording in retrieval memory if touched; no U_n, block-entry, unitarity, or ancilla diagnostics until alpha, projector, clean ancilla, and epsilon budget contracts are declared. Lower1 should prove the dependency route in prose, lower2 should attempt only cubicNormSq_closedForm or one named sixth-power helper, lower3 should wait for a concrete symbolic candidate.
+Reviewer gate passed: python3 tools/qbe.py check ran lake build and lake build Tests. No blocking issue found for CUBIC-HCOUNT-COUNT-001: the Lean diff only adds grid-size/capacity/List.finRange threshold-count lemmas plus focused tests, the conversion window/proof obligations keep unitarity and clean-block semantics open, and candidate promotion remains blocked until a named Lean clean-block/unitarity certificate builds. Finite threshold diagnostic passes for n=1..5 and is correctly labeled as necessary-condition feedback. Scans found no new shortcut or semantic-flag pattern in the cubic diff; existing RobinMatrix sorry/flag matches are outside this task. Advisory: candidate-populations certified-population intro under-reports the new compiled count leaf, though later sections state it correctly. Next route remains CUBIC-HCOUNT-UNITARY-001 or Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001.
 ```
 
 ## 当前未提交文件
 
 - `MANIFEST.md`
 - `QuantumBlockEncoding/CubicStatePreparation.lean`
+- `Tests/Basic.lean`
 - `candidate-populations/QBE-OP-CUBIC-STATEPREP-001.md`
 - `conversion-windows/QBE-OP-CUBIC-STATEPREP-001.md`
-- `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.zh.md`
-- `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/latest.md`
-- `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/latest.zh.md`
-- `paper-notes/problem-exports/QBE-OP-CUBIC-STATEPREP-001/latest.tex`
+- `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-COUNT-001.md`
 - `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md`
 - `proof-obligations/QBE-OP-CUBIC-STATEPREP-001.md`
-- `reports/cubic-stateprep/README.md`
-- `reports/cubic-stateprep/competitor_protocol.md`
-- `reports/cubic-stateprep/external_comparison.csv`
-- `reports/cubic-stateprep/external_comparison.json`
-- `reports/cubic-stateprep/external_comparison.md`
-- `reports/cubic-stateprep/external_comparison_scaling.png`
-- `reports/cubic-stateprep/latest.csv`
-- `reports/external-quantum-verifier-comparison/latest.csv`
-- `reports/external-quantum-verifier-comparison/latest.json`
-- `reports/external-quantum-verifier-comparison/latest.md`
 - `research-wiki/retrieval-index/QBE-OP-CUBIC-STATEPREP-001.json`
 - `tasks/QBE-OP-CUBIC-STATEPREP-001.md`
-- `tools/compare_cubic_external_quantum_verifiers.py`
-- `tools/compare_external_quantum_verifiers.py`
-- `tools/cubic_stateprep_diagnostics.py`
-- `tools/qbe.py`
-- `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-001-scaling.md`
+- `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-hcount-count-001-threshold.md`
+- `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic_hcount_count_001_threshold_check.py`
 
 ## 人类检查建议
 

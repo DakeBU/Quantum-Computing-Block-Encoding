@@ -3,7 +3,7 @@
 Task id: `QBE-OP-CUBIC-STATEPREP-001`
 Title: Cubic grid state-preparation operator
 Mode: `exploratoryConstruction`
-Updated: `2026-06-19 17:31:11`
+Updated: `2026-06-19 17:40:13`
 Blueprint stage: `Stage 2 DAG proof discharge, with source-transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -185,14 +185,18 @@ certificate.
   `cubicAmplitude_div_conservativeNormalizer_eq`; do not reschedule this leaf
   unless the gate fails or the statement changes.  `CUBIC-HCOUNT-REJECT-REPAIR-001`
   is compiled as `hadamardCountingCubicCircuit_rejectSignalRepair` with the
-  default `n = 2` tuple `(8, 8, 21, 8)`.  The next Lean leaf should be one
-  symbolic bridge such as `CUBIC-HCOUNT-COUNT-001` or
-  `CUBIC-HCOUNT-UNITARY-001`, not the full block theorem.
+  default `n = 2` tuple `(8, 8, 21, 8)`.  `CUBIC-HCOUNT-COUNT-001` is compiled
+  as `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`,
+  `hadamardCountingCubic_threshold_le_pathCapacity`, and
+  `hadamardCountingCubic_thresholdPathCount`.  The next Lean leaf should be
+  `CUBIC-HCOUNT-UNITARY-001` or an equivalent Hadamard-sandwich semantic
+  bridge, not the full block theorem.
 - lower verifier/export worker: `CUBIC-VER-CAND-001:HCOUNT-SEMANTIC` rejected
   the old daggered nonzero-flag transcript, and
   `CUBIC-HCOUNT-REJECT-REPAIR-001` finite checks pass for `n = 1, 2`.  Do not
-  rerun the stale `candidate_interface_gap` diagnostic; only add a verifier
-  check if it constrains the next symbolic bridge.
+  rerun the stale `candidate_interface_gap` diagnostic; only rerun the
+  Hadamard-counting path diagnostic if the threshold register size, path
+  denominator, or accepted-path predicate changes.
 - reviewer: reject any candidate that treats the unnormalized vector as a
   unitary output state without either normalization or block-encoding scaling,
   and reject any promotion from finite diagnostics to the certified population
@@ -207,14 +211,11 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| CUBIC-HCOUNT-COUNT-001: Prove the symbolic count of accepted threshold paths: for fixed row `j`, exactly `j.val ^ 3` values of `t : Fin (gridSize (3 * n))` satisfy `t.val < j.val ^ 3`.; status: active leaf; Lean: planned `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, `hadamardCountingCubic_threshold_le_pathCapacity`, `hadamardCountingCubic_thresholdPathCount` | candidate |
-| CUBIC-HCOUNT-UNITARY-001: Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels.; status: blocked internal; Lean: planned semantic theorem | candidate |
+| CUBIC-HCOUNT-COUNT-001: Prove the symbolic count of accepted threshold paths: for fixed row `j`, exactly `j.val ^ 3` values of `t : Fin (gridSize (3 * n))` satisfy `t.val < j.val ^ 3`.; status: compiled leaf; Lean: `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, `hadamardCountingCubic_threshold_le_pathCapacity`, `hadamardCountingCubic_thresholdPathCount` | retired |
+| CUBIC-HCOUNT-UNITARY-001: Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels.; status: next symbolic bridge leaf; Lean: planned semantic theorem | candidate |
 | CUBIC-HCOUNT-BLOCK-001: Prove the repaired clean block satisfies `hadamardCountingCubicCleanBlockContract n block`.; status: blocked internal; Lean: planned clean-block theorem | candidate |
 | CUBIC-HCOUNT-APPROX-001: Package exact error `0` into the requested approximate block-encoding record at `requestedEpsilon`.; status: blocked internal; Lean: planned `VerifiedApproximateOperatorBlockEncoding` witness | candidate |
 | CUBIC-ERR-001: Arithmetic approximation and rotation/transduction error budget sums to `1e-10`.; status: designed, blocked on wrapper semantics; Lean: `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-ERR-001.md` plus future Lean targets | candidate |
-| CUBIC-CAND-SHAPE-001: Rank-one wrapper transcript, resource tuple, clean-block contract, and target-shape bridge.; status: compiled wrapper interface; semantic matrix open; Lean: `arithmeticRankOneCubicLayout`, `arithmeticRankOneCubicCircuit`, `arithmeticRankOneCubicResourceTuple`, `arithmeticRankOneCubicClaim`, `arithmeticRankOneCubicCleanBlockContract_... | candidate |
-| CUBIC-HCOUNT-001: Hadamard-sandwich path counting realizes exact scaled entries `j^3 / 2^(4*n)`.; status: interface, normalizer bridge, and reject repair compiled; semantic proof open; Lean: `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hada... | candidate |
-| CUBIC-HCOUNT-RATIO-001: Algebra bridge from `v_n[j] / alpha` to `j^3 / (gridSize n)^4`.; status: proved; semantic Hadamard-counting proof still open; Lean: `rat_div_cube_div_eq`, `cubicAmplitude_div_conservativeNormalizer_eq` | candidate |
 
 ## Open Obligation Signals
 
@@ -228,10 +229,11 @@ before spending more proof-search tokens.
 | Block-entry theorem for `O_n` | target-shape bridge compiled: `rankOneCleanBlockContract_pointwise_eq`; semantic zero-filter, row-generation, amplitude, and unitarity proofs remain open |
 | CUBIC-CAND-SHAPE-001 | Rank-one wrapper transcript, resource tuple, clean-block contract, and target-shape bridge. | CUBIC-CAND-001, CUBIC-TGT-001 | lower worker 5 / lower Lean | `arithmeticRankOneCubicLayout`, `arithmeticRankOneCubicCircuit`, `arithmeticRankOneCubicResourceTuple`, `arithmeticRankOneCubicClaim`, `rankOneCleanBlockContract_pointwise_eq`, `arithmeticRankOneCubicCleanBlockContract_pointwise_eq` | compiled interface and pointwise bridge; zero-filter/row-generation semantics open |
 | CUBIC-HCOUNT-IFACE-001 | Hadamard-counting layout, transcript, normalizer, resource tuple, clean-block contract bridge, and normalizer bridge. | CUBIC-TGT-001, CUBIC-ALPHA-001 | lower Lean | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicNormalizer`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | compiled interface; not a certificate |
+| CUBIC-HCOUNT-UNITARY-001 | Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels. | CUBIC-HCOUNT-COUNT-001, future semantics for oracle labels | future lower Lean | planned semantic theorem | next symbolic bridge leaf |
 | CUBIC-HCOUNT-BLOCK-001 | Prove the repaired clean block satisfies the route-specific clean-block contract. | CUBIC-HCOUNT-COUNT-001, CUBIC-HCOUNT-UNITARY-001, Hadamard-sandwich semantic lemma | future lower Lean | planned clean-block theorem | blocked internal |
 ## Source-Correspondence Contract
 | Source anchor | User/task contract in `tasks/QBE-OP-CUBIC-STATEPREP-001.md`; no paper archive is active. |
-| Active lower leaves | `CUBIC-HCOUNT-COUNT-001` is the next active Lean leaf.  `CUBIC-HCOUNT-RATIO-001` is compiled, `CUBIC-HCOUNT-REJECT-REPAIR-001` is compiled and finite-checks clean for `n = 1, 2`, and the old daggered route remains rejected. |
+| Active lower leaves | `CUBIC-HCOUNT-COUNT-001` is compiled.  `CUBIC-HCOUNT-RATIO-001` and `CUBIC-HCOUNT-REJECT-REPAIR-001` are compiled, finite checks for the repaired reject convention remain clean for `n = 1, 2`, and the old daggered route remains rejected.  The next symbolic bridge is `CUBIC-HCOUNT-UNITARY-001` or an equivalent Hadamard-sandwich semantic lemma before `CUBIC-HCOUNT-BLOCK-001`. |
 | External technical lemma | `classical-sixth-power-sum` in `research-wiki/cited-results/classical-power-sums.md`, status `obligation` unless a Lean helper builds. |
 | Not allowed in next lower packet | No normalized state-preparation shortcut and no certification claim for an unproved candidate. Candidate theorem shapes are allowed and expected; Lean closure is required before promotion. |
 reports `finite_matrix_ok=true` and `block_entry_ok=true`.  The next route is
@@ -248,12 +250,6 @@ Recent task-relevant declarations:
 
 | Kind | Lean name | File |
 |---|---|---|
-| theorem | `hadamardCountingCubicResourceTuple_n2` | `QuantumBlockEncoding/CubicStatePreparation.lean:369` |
-| def | `hadamardCountingCubicClaim` | `QuantumBlockEncoding/CubicStatePreparation.lean:377` |
-| def | `hardModeUpperAgentSchedule` | `QuantumBlockEncoding/CubicStatePreparation.lean:400` |
-| def | `hardModeMiddleAgentSchedule` | `QuantumBlockEncoding/CubicStatePreparation.lean:402` |
-| def | `hardModeLowerAgentSchedule` | `QuantumBlockEncoding/CubicStatePreparation.lean:404` |
-| def | `hardModeExactStallWindow` | `QuantumBlockEncoding/CubicStatePreparation.lean:407` |
 | def | `hardModeConstructionStallWindow` | `QuantumBlockEncoding/CubicStatePreparation.lean:413` |
 | def | `hardModeLevelCycleBudget` | `QuantumBlockEncoding/CubicStatePreparation.lean:416` |
 | def | `relaxedEpsilonLadder` | `QuantumBlockEncoding/CubicStatePreparation.lean:424` |
@@ -277,20 +273,26 @@ Recent task-relevant declarations:
 | theorem | `gridSize_rat_pos` | `QuantumBlockEncoding/CubicStatePreparation.lean:554` |
 | theorem | `rat_div_cube_div_eq` | `QuantumBlockEncoding/CubicStatePreparation.lean:559` |
 | theorem | `cubicAmplitude_div_conservativeNormalizer_eq` | `QuantumBlockEncoding/CubicStatePreparation.lean:570` |
-| theorem | `gridPoint_nonneg` | `QuantumBlockEncoding/CubicStatePreparation.lean:577` |
-| theorem | `gridPoint_lt_one` | `QuantumBlockEncoding/CubicStatePreparation.lean:586` |
-| theorem | `gridPoint_le_one` | `QuantumBlockEncoding/CubicStatePreparation.lean:593` |
-| theorem | `rat_pow_le_one_of_nonneg_le_one` | `QuantumBlockEncoding/CubicStatePreparation.lean:597` |
-| theorem | `cubicAmplitude_sq_le_one` | `QuantumBlockEncoding/CubicStatePreparation.lean:611` |
-| theorem | `foldl_add_le_add_length` | `QuantumBlockEncoding/CubicStatePreparation.lean:617` |
-| theorem | `cubicNormSq_le_gridSize` | `QuantumBlockEncoding/CubicStatePreparation.lean:643` |
-| theorem | `gridSize_rat_le_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean:655` |
-| theorem | `cubicNormSq_le_conservativeNormalizer_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean:667` |
-| theorem | `cubicNormSq_le_arithmeticCubicNormalizer_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean:678` |
-| theorem | `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean:688` |
-| theorem | `cubicNormSq_n1` | `QuantumBlockEncoding/CubicStatePreparation.lean:693` |
-| theorem | `cubicNormSq_n2` | `QuantumBlockEncoding/CubicStatePreparation.lean:697` |
-| theorem | `cubicNormSq_n3` | `QuantumBlockEncoding/CubicStatePreparation.lean:701` |
+| theorem | `gridSize_three_mul_eq_cube` | `QuantumBlockEncoding/CubicStatePreparation.lean:578` |
+| theorem | `gridSize_four_mul_eq_fourth` | `QuantumBlockEncoding/CubicStatePreparation.lean:584` |
+| theorem | `hadamardCountingCubic_thresholdCountP_finRange` | `QuantumBlockEncoding/CubicStatePreparation.lean:595` |
+| theorem | `hadamardCountingCubic_thresholdFilterLength` | `QuantumBlockEncoding/CubicStatePreparation.lean:624` |
+| theorem | `hadamardCountingCubic_threshold_le_pathCapacity` | `QuantumBlockEncoding/CubicStatePreparation.lean:631` |
+| theorem | `hadamardCountingCubic_thresholdPathCount` | `QuantumBlockEncoding/CubicStatePreparation.lean:644` |
+| theorem | `gridPoint_nonneg` | `QuantumBlockEncoding/CubicStatePreparation.lean:652` |
+| theorem | `gridPoint_lt_one` | `QuantumBlockEncoding/CubicStatePreparation.lean:661` |
+| theorem | `gridPoint_le_one` | `QuantumBlockEncoding/CubicStatePreparation.lean:668` |
+| theorem | `rat_pow_le_one_of_nonneg_le_one` | `QuantumBlockEncoding/CubicStatePreparation.lean:672` |
+| theorem | `cubicAmplitude_sq_le_one` | `QuantumBlockEncoding/CubicStatePreparation.lean:686` |
+| theorem | `foldl_add_le_add_length` | `QuantumBlockEncoding/CubicStatePreparation.lean:692` |
+| theorem | `cubicNormSq_le_gridSize` | `QuantumBlockEncoding/CubicStatePreparation.lean:718` |
+| theorem | `gridSize_rat_le_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean:730` |
+| theorem | `cubicNormSq_le_conservativeNormalizer_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean:742` |
+| theorem | `cubicNormSq_le_arithmeticCubicNormalizer_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean:753` |
+| theorem | `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean:763` |
+| theorem | `cubicNormSq_n1` | `QuantumBlockEncoding/CubicStatePreparation.lean:768` |
+| theorem | `cubicNormSq_n2` | `QuantumBlockEncoding/CubicStatePreparation.lean:772` |
+| theorem | `cubicNormSq_n3` | `QuantumBlockEncoding/CubicStatePreparation.lean:776` |
 | structure | `RegisterLayout` | `QuantumBlockEncoding/BlockEncoding.lean:14` |
 | structure | `BlockEncodingSpec` | `QuantumBlockEncoding/BlockEncoding.lean:33` |
 | structure | `BlockEncodingCost` | `QuantumBlockEncoding/BlockEncoding.lean:50` |

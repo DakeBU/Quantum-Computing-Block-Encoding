@@ -46,7 +46,20 @@ python3 tools/qbe.py sleep-run QBE-OP-OPTCTRL-001 \
   --check-each-cycle
 ```
 
-The profile mechanism is vendor-neutral.  You can use Codex, Claude, GPT,
-Gemini, GLM, Minimax, or a local wrapper as long as the command reads the
-prompt and exits with a meaningful status code.
+The profile mechanism is vendor-neutral.  You can use Codex, Claude, GPT, Gemini, GLM, Minimax, or a local wrapper as long as the command reads the prompt and exits with a meaningful status code.
+
+For comparable results across ABEIS's three user entrypoints, keep one profile file as the source of truth.  The CLI template, an AI chat window, and the web task builder should all resolve to the same role commands.  If the website lets a user choose providers, it should emit a JSON profile with these same keys rather than hiding provider choices in front-end state.
+
+Recommended reproducibility fields to record with every long run:
+
+```text
+task id
+raw user prompt artifact
+agent profile path
+model names and provider wrappers
+report language
+active budget
+lower-count and hard-mode escalation policy
+Lean gate command
+```
 

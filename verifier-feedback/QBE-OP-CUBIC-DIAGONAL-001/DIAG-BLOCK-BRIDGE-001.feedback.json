@@ -1,0 +1,80 @@
+{
+  "ancilla_cleanup_ok": null,
+  "auxiliary_qubits": 1,
+  "block_entry_ok": true,
+  "closed_theorem_ok": false,
+  "depth": 1,
+  "error_class": "symbolic_bridge_gap",
+  "finite_matrix_ok": true,
+  "gate_count": 1,
+  "instances": [
+    {
+      "diagonal_entries": [
+        "0",
+        "1/8"
+      ],
+      "diagonal_formula_ok": true,
+      "grid_size": 2,
+      "n": 1,
+      "nonzero_outside_first_column_count": 1,
+      "normalizer": "1",
+      "normalizer_ok": true,
+      "off_diagonal_zero_ok": true,
+      "range_ok": true,
+      "rejects_rank_one_stateprep_shape": true
+    },
+    {
+      "diagonal_entries": [
+        "0",
+        "1/64",
+        "1/8",
+        "27/64"
+      ],
+      "diagonal_formula_ok": true,
+      "grid_size": 4,
+      "n": 2,
+      "nonzero_outside_first_column_count": 3,
+      "normalizer": "1",
+      "normalizer_ok": true,
+      "off_diagonal_zero_ok": true,
+      "range_ok": true,
+      "rejects_rank_one_stateprep_shape": true
+    },
+    {
+      "diagonal_entries": [
+        "0",
+        "1/512",
+        "1/64",
+        "27/512",
+        "1/8",
+        "125/512",
+        "27/64",
+        "343/512"
+      ],
+      "diagonal_formula_ok": true,
+      "grid_size": 8,
+      "n": 3,
+      "nonzero_outside_first_column_count": 7,
+      "normalizer": "1",
+      "normalizer_ok": true,
+      "off_diagonal_zero_ok": true,
+      "range_ok": true,
+      "rejects_rank_one_stateprep_shape": true
+    }
+  ],
+  "leaf": "DIAG-BLOCK-BRIDGE-001",
+  "lean_build_ok": null,
+  "lean_parse_ok": null,
+  "next_route": "implement primitiveOracleCleanBlock_eq_target from diagonalCleanBlockContract_pointwise_eq and cubicDiagonalTarget",
+  "normalizer_ok": true,
+  "oracle_calls": 1,
+  "resource_score": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "source_correspondence_ok": true,
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "unitarity_ok": null
+}

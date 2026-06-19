@@ -574,6 +574,81 @@ theorem cubicAmplitude_div_conservativeNormalizer_eq (n : Nat)
   simpa [cubicAmplitude, gridPoint, conservativeNormalizer] using
     rat_div_cube_div_eq (j.val : Rat) (gridSize n : Rat)
 
+/-- Path-register capacity identity for the Hadamard-counting route. -/
+theorem gridSize_three_mul_eq_cube (n : Nat) :
+    gridSize (3 * n) = gridSize n ^ 3 := by
+  rw [Nat.mul_comm 3 n]
+  simp [gridSize, Nat.pow_mul]
+
+/-- Four-register path-space identity for the Hadamard-counting denominator. -/
+theorem gridSize_four_mul_eq_fourth (n : Nat) :
+    gridSize (4 * n) = gridSize n ^ 4 := by
+  rw [Nat.mul_comm 4 n]
+  simp [gridSize, Nat.pow_mul]
+
+/--
+Reusable threshold count over `List.finRange`.
+
+If the threshold `k` fits in an `m`-element register, exactly `k` entries of
+`List.finRange m` have value strictly below `k`.
+-/
+theorem hadamardCountingCubic_thresholdCountP_finRange
+    (m k : Nat) (hk : k ≤ m) :
+    List.countP (fun t : Fin m => t.val < k) (List.finRange m) = k := by
+  induction m generalizing k with
+  | zero =>
+      have hk0 : k = 0 := Nat.eq_zero_of_le_zero hk
+      subst k
+      rfl
+  | succ m ih =>
+      cases k with
+      | zero =>
+          simp
+      | succ k =>
+          have hk' : k ≤ m := Nat.le_of_succ_le_succ hk
+          rw [List.finRange_succ, List.countP_cons, List.countP_map]
+          have hcomp :
+              List.countP
+                ((fun t : Fin (m + 1) =>
+                    decide (t.val < Nat.succ k)) ∘ Fin.succ)
+                (List.finRange m) =
+              List.countP
+                (fun t : Fin m => decide (t.val < k))
+                (List.finRange m) := by
+            congr 1
+            funext t
+            simp [Function.comp, Fin.succ]
+          rw [hcomp, ih k hk']
+          simp
+
+theorem hadamardCountingCubic_thresholdFilterLength
+    (m k : Nat) (hk : k ≤ m) :
+    ((List.finRange m).filter (fun t => t.val < k)).length = k := by
+  rw [← List.countP_eq_length_filter]
+  exact hadamardCountingCubic_thresholdCountP_finRange m k hk
+
+/-- The cubic threshold for row `j` fits in the `3*n`-qubit path register. -/
+theorem hadamardCountingCubic_threshold_le_pathCapacity
+    (n : Nat) (j : Fin (gridSize n)) :
+    j.val ^ 3 <= gridSize (3 * n) := by
+  have hle : j.val ^ 3 ≤ gridSize n ^ 3 :=
+    Nat.pow_le_pow_left (Nat.le_of_lt j.isLt) 3
+  simpa [gridSize_three_mul_eq_cube] using hle
+
+/--
+Symbolic accepted-path count for the Hadamard-counting threshold register.
+
+For fixed output row `j`, the `3*n`-qubit threshold register contributes
+exactly `j.val ^ 3` accepted values.
+-/
+theorem hadamardCountingCubic_thresholdPathCount
+    (n : Nat) (j : Fin (gridSize n)) :
+    ((List.finRange (gridSize (3 * n))).filter
+        (fun t => t.val < j.val ^ 3)).length = j.val ^ 3 := by
+  exact hadamardCountingCubic_thresholdFilterLength
+    (gridSize (3 * n)) (j.val ^ 3)
+    (hadamardCountingCubic_threshold_le_pathCapacity n j)
+
 theorem gridPoint_nonneg (n : Nat) (j : Fin (gridSize n)) :
     (0 : Rat) ≤ gridPoint n j := by
   unfold gridPoint
@@ -703,4 +778,119 @@ theorem cubicNormSq_n3 :
   native_decide
 
 end CubicStatePreparation
+
+namespace CubicDiagonalOracle
+
+/-- Task identifier used by the retrieval and verifier ledgers. -/
+def taskId : String := "QBE-OP-CUBIC-DIAGONAL-001"
+
+/-- The diagonal cubic oracle target `D_n[row,col] = (row/2^n)^3` if `row=col`, else zero. -/
+def cubicDiagonalOperator (n : Nat) :
+    Matrix (gridSize n) (gridSize n) Rat :=
+  fun row col =>
+    if row = col then CubicStatePreparation.cubicAmplitude n row else 0
+
+/-- Exact normalizer for the diagonal target at the primitive amplitude-oracle tier. -/
+def exactNormalizer (_n : Nat) : Rat := 1
+
+/-- Operator-first target record for the diagonal cubic oracle. -/
+def cubicDiagonalTarget (n : Nat) :
+    QueryOperatorTarget Rat (gridSize n) (gridSize n) where
+  operator := cubicDiagonalOperator n
+  normalizer := exactNormalizer n
+  source :=
+    "QBE-OP-CUBIC-DIAGONAL-001: D_n=sum_j (j/2^n)^3 |j><j|"
+  semanticContract :=
+    "diagonal cubic oracle; exact primitive amplitude-oracle route first"
+  freeParameters := [
+    "n positive",
+    "diagonal target, not rank-one state preparation",
+    "score order inside one tier: gateCount, depth, auxiliaryQubits, oracleCalls"
+  ]
+
+/-- One signal qubit and no pure workspace at the oracle-label tier. -/
+def amplitudeOracleLayout (n : Nat) : RegisterLayout where
+  systemQubits := n
+  signalQubits := 1
+  pureAncillas := 0
+
+/-- Oracle-level exact diagonal amplitude transcript. -/
+def amplitudeOracleCircuit (_n : Nat) : Circuit :=
+  [Gate.oracleCall "diag-cubic-amplitude-oracle"]
+
+/-- Resource of the oracle-label diagonal candidate. -/
+def amplitudeOracleResource (n : Nat) : Resource :=
+  (amplitudeOracleCircuit n).resource
+
+/-- Candidate score for the oracle-label diagonal candidate. -/
+def amplitudeOracleCost (n : Nat) : BlockEncodingCost :=
+  BlockEncodingCost.fromLayoutAndResource
+    (amplitudeOracleLayout n) (amplitudeOracleResource n)
+
+/-- Tuple in the QBE score order `(gateCount, depth, auxiliaryQubits, oracleCalls)`. -/
+def amplitudeOracleResourceTuple (n : Nat) : Nat × Nat × Nat × Nat :=
+  ( (amplitudeOracleCost n).gateCount
+  , (amplitudeOracleCost n).depth
+  , (amplitudeOracleCost n).auxiliaryQubits
+  , (amplitudeOracleCost n).oracleCalls
+  )
+
+theorem amplitudeOracleResource_eq (n : Nat) :
+    amplitudeOracleResource n = Resource.ofCountsWithDepth 0 0 1 0 1 := by
+  rfl
+
+theorem amplitudeOracleResourceTuple_eq (n : Nat) :
+    amplitudeOracleResourceTuple n = (1, 1, 1, 1) := by
+  simp [amplitudeOracleResourceTuple, amplitudeOracleCost, amplitudeOracleLayout,
+    amplitudeOracleResource, amplitudeOracleCircuit, BlockEncodingCost.fromLayoutAndResource,
+    RegisterLayout.auxiliaryQubits, Circuit.resource, Gate.resource, Resource.gates, Resource.ofCountsWithDepth]
+
+/-- Clean-block contract for the diagonal cubic candidate. -/
+def diagonalCleanBlockContract (n : Nat)
+    (block : Matrix (gridSize n) (gridSize n) Rat) : Prop :=
+  ∀ row col,
+    block row col =
+      if row = col then CubicStatePreparation.cubicAmplitude n row else 0
+
+theorem diagonalCleanBlockContract_pointwise_eq
+    (n : Nat) (block : Matrix (gridSize n) (gridSize n) Rat)
+    (h : diagonalCleanBlockContract n block) :
+    Matrix.PointwiseEq block (cubicDiagonalOperator n) := by
+  intro row col
+  simpa [cubicDiagonalOperator] using h row col
+
+theorem primitiveOracleCleanBlock_eq_target
+    (n : Nat) (block : Matrix (gridSize n) (gridSize n) Rat)
+    (h : diagonalCleanBlockContract n block) :
+    Matrix.PointwiseEq block (cubicDiagonalTarget n).operator := by
+  simpa [cubicDiagonalTarget] using
+    (diagonalCleanBlockContract_pointwise_eq n block h)
+
+/-- Amplitude range needed by the one-signal diagonal construction. -/
+theorem cubicAmplitude_le_one (n : Nat) (j : Fin (gridSize n)) :
+    CubicStatePreparation.cubicAmplitude n j ≤ 1 := by
+  exact CubicStatePreparation.rat_pow_le_one_of_nonneg_le_one
+    (CubicStatePreparation.gridPoint n j) 3
+    (CubicStatePreparation.gridPoint_nonneg n j)
+    (CubicStatePreparation.gridPoint_le_one n j)
+
+theorem cubicAmplitude_nonneg (n : Nat) (j : Fin (gridSize n)) :
+    0 ≤ CubicStatePreparation.cubicAmplitude n j := by
+  simpa [CubicStatePreparation.cubicAmplitude] using
+    (Rat.pow_nonneg (CubicStatePreparation.gridPoint_nonneg n j) :
+      0 ≤ CubicStatePreparation.gridPoint n j ^ 3)
+
+/-- Human-facing construction claim for the first exact diagonal route. -/
+def amplitudeOracleClaim : ConstructionClaim where
+  name := "diagonal-cubic-amplitude-oracle"
+  source := "QBE-OP-CUBIC-DIAGONAL-001 exploratory exact candidate"
+  target := "D_n = sum_j (j/2^n)^3 |j><j|"
+  normalization := "alpha = 1"
+  layout := "one signal qubit, no pure ancilla at the oracle-label tier"
+  resource := {
+    gates := CostExpr.atom "diag_cubic_amplitude_oracle"
+    pureAncilla := 0
+  }
+
+end CubicDiagonalOracle
 end QuantumBlockEncoding

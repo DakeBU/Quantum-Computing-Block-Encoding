@@ -1,5 +1,5 @@
 {
-  "cycle": 2,
+  "cycle": 3,
   "dynamic_leaf_queue": [
     "# Proof Obligations: QBE-OP-CUBIC-STATEPREP-001",
     "## Target Obligations",
@@ -9,10 +9,10 @@
     "## Candidate Obligations",
     "| Obligation | Status |",
     "| CUBIC-NORM-001 | Closed rational formula for `cubicNormSq n`. | CUBIC-NORM-001A, `classical-sixth-power-sum` | future lower Lean | planned `cubicNormSq_closedForm`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-NORM-001.md` | proof design recorded; dia...",
-    "| Active lower leaves | `CUBIC-HCOUNT-REJECT-REPAIR-001` is compiled at the interface/resource tier and finite-checks clean for `n = 1, 2`. `CUBIC-HCOUNT-RATIO-001` is compiled, the old daggered route remains rejected, and the next active route is a symboli...",
-    "| External technical lemma | `classical-sixth-power-sum` in `research-wiki/cited-results/classical-power-sums.md`, status `obligation` unless a Lean helper builds. |"
+    "| CUBIC-HCOUNT-UNITARY-001 | Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels. | CUBIC-HCOUNT-COUNT-001, future semantics for oracle labels | future lower Lean | planned semantic theorem | next symbolic bri...",
+    "| CUBIC-HCOUNT-BLOCK-001 | Prove the repaired clean block satisfies the route-specific clean-block contract. | CUBIC-HCOUNT-COUNT-001, CUBIC-HCOUNT-UNITARY-001, Hadamard-sandwich semantic lemma | future lower Lean | planned clean-block theorem | blocked int..."
   ],
-  "generated": "2026-06-19 17:19:33",
+  "generated": "2026-06-19 17:48:54",
   "ghl_contributions": [],
   "lean_sorries": [],
   "mode": "exploratoryConstruction",
@@ -48,109 +48,169 @@
     "| CUBIC-CAND-001 | Arithmetic cubic amplitude-transduction interface plus rank-one wrapper shape audit. | CUBIC-TGT-001 | lower worker 5 / lower proof architect | `arithmeticCubicLayout`, `arithmeticCubicCircuit`, `arithmeticCubicNormalizer`, `arithmeticCubicResourceTuple`, `arithmeticCubicClaim`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-CAND-001.md` | compiled middle interface; semantic block proof open |",
     "| CUBIC-CAND-SHAPE-001 | Rank-one wrapper transcript, resource tuple, clean-block contract, and target-shape bridge. | CUBIC-CAND-001, CUBIC-TGT-001 | lower worker 5 / lower Lean | `arithmeticRankOneCubicLayout`, `arithmeticRankOneCubicCircuit`, `arithmeticRankOneCubicResourceTuple`, `arithmeticRankOneCubicClaim`, `rankOneCleanBlockContract_pointwise_eq`, `arithmeticRankOneCubicCleanBlockContract_pointwise_eq` | compiled interface and pointwise bridge; zero-filter/row-generation semantics open |",
     "| CUBIC-HCOUNT-IFACE-001 | Hadamard-counting layout, transcript, normalizer, resource tuple, clean-block contract bridge, and normalizer bridge. | CUBIC-TGT-001, CUBIC-ALPHA-001 | lower Lean | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicNormalizer`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | compiled interface; not a certificate |",
-    "| CUBIC-HCOUNT-REJECT-REPAIR-001 | Repair the zero-input rejection convention so nonzero input columns cannot return clean identity entries. | CUBIC-HCOUNT-IFACE-001, CUBIC-HCOUNT-RATIO-001, CUBIC-VER-CAND-001:HCOUNT-SEMANTIC | lower Lean | `hadamardCountingCubicCircuit_rejectSignalRepair`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2`, focused `Tests/Basic.lean` checks, `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-REJECT-REPAIR-001.md` | compiled interface repair; finite repaired diagnostic passed; symbolic clean-block theorem open |",
+    "| CUBIC-HCOUNT-REJECT-REPAIR-001 | Repair the zero-input rejection convention so nonzero input columns cannot return clean identity entries. | CUBIC-HCOUNT-IFACE-001, CUBIC-HCOUNT-RATIO-001, CUBIC-VER-CAND-001:HCOUNT-SEMANTIC | lower Lean | `hadamardCountingCubicCircuit_rejectSignalRepair`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2`, focused `Tests/Basic.lean` checks, `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-REJECT-REPAIR-001.md` | compiled interface repair; finite repaired diagnostic passed; retired as active target |",
+    "| CUBIC-HCOUNT-UNITARY-001 | Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels. | CUBIC-HCOUNT-COUNT-001, future semantics for oracle labels | future lower Lean | planned semantic theorem | next symbolic bridge leaf |",
+    "| CUBIC-HCOUNT-BLOCK-001 | Prove the repaired clean block satisfies the route-specific clean-block contract. | CUBIC-HCOUNT-COUNT-001, CUBIC-HCOUNT-UNITARY-001, Hadamard-sandwich semantic lemma | future lower Lean | planned clean-block theorem | blocked internal |",
     "## Source-Correspondence Contract",
     "| Source anchor | User/task contract in `tasks/QBE-OP-CUBIC-STATEPREP-001.md`; no paper archive is active. |",
-    "| Active lower leaves | `CUBIC-HCOUNT-REJECT-REPAIR-001` is compiled at the interface/resource tier and finite-checks clean for `n = 1, 2`.  `CUBIC-HCOUNT-RATIO-001` is compiled, the old daggered route remains rejected, and the next active route is a symbolic separate-reject semantic bridge or `CUBIC-HCOUNT-COUNT-001` before `CUBIC-HCOUNT-BLOCK-001`. |",
+    "| Active lower leaves | `CUBIC-HCOUNT-COUNT-001` is compiled.  `CUBIC-HCOUNT-RATIO-001` and `CUBIC-HCOUNT-REJECT-REPAIR-001` are compiled, finite checks for the repaired reject convention remain clean for `n = 1, 2`, and the old daggered route remains rejected.  The next symbolic bridge is `CUBIC-HCOUNT-UNITARY-001` or an equivalent Hadamard-sandwich semantic lemma before `CUBIC-HCOUNT-BLOCK-001`. |",
     "| External technical lemma | `classical-sixth-power-sum` in `research-wiki/cited-results/classical-power-sums.md`, status `obligation` unless a Lean helper builds. |",
-    "| QBE-local glue | Block-encoding records, clean-block projector convention, normalizer bookkeeping, resource tuple, verifier-feedback fields. |",
-    "| Not allowed in next lower packet | No normalized state-preparation shortcut and no certification claim for an unproved candidate. Candidate theorem shapes are allowed and expected; Lean closure is required before promotion. |",
-    "reports `finite_matrix_ok=true` and `block_entry_ok=true`.  The next route is"
+    "| QBE-local glue | Block-encoding records, clean-block projector convention, normalizer bookkeeping, resource tuple, verifier-feedback fields. |"
   ],
   "recent_proof_attempts": [],
   "recent_trials": [
     {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03",
       "kind": "build",
       "lean_gate": "pass",
       "role": "reviewer",
       "status": "compiled",
-      "timestamp": "2026-06-19 17:19:32",
-      "trial_id": "20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02-build-gate"
+      "timestamp": "2026-06-19 17:48:53",
+      "trial_id": "20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03-build-gate"
     },
     {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02/40_reviewer.md",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03/40_reviewer.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "reviewer",
       "status": "accepted",
-      "timestamp": "2026-06-19 17:19:31",
-      "trial_id": "20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02-40_reviewer"
+      "timestamp": "2026-06-19 17:48:52",
+      "trial_id": "20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03-40_reviewer"
     },
     {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03",
       "kind": "handoff",
       "lean_gate": "",
       "role": "reviewer",
       "status": "queued",
-      "timestamp": "2026-06-19 17:18:53",
-      "trial_id": "20260619-171853-QBE-OP-CUBIC-STATEPREP-001-reviewer-handoff"
+      "timestamp": "2026-06-19 17:48:25",
+      "trial_id": "20260619-174825-QBE-OP-CUBIC-STATEPREP-001-reviewer-handoff"
     },
     {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02/30_lower_searcher_5.md",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_5.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-19 17:14:51",
-      "trial_id": "20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02-30_lower_searcher_5"
+      "timestamp": "2026-06-19 17:45:22",
+      "trial_id": "20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_5"
     },
     {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02/30_lower_searcher_4.md",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_4.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-19 17:14:51",
-      "trial_id": "20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02-30_lower_searcher_4"
+      "timestamp": "2026-06-19 17:45:22",
+      "trial_id": "20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_4"
     },
     {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02/30_lower_searcher_3.md",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_3.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-19 17:14:08",
-      "trial_id": "20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02-30_lower_searcher_3"
+      "timestamp": "2026-06-19 17:45:22",
+      "trial_id": "20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_3"
     },
     {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02/30_lower_searcher_2.md",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_2.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-19 17:14:08",
-      "trial_id": "20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02-30_lower_searcher_2"
+      "timestamp": "2026-06-19 17:45:21",
+      "trial_id": "20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_2"
     },
     {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_1.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 17:45:21",
+      "trial_id": "20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_1"
+    },
+    {
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03",
       "kind": "handoff",
       "lean_gate": "",
       "role": "lower",
       "status": "queued",
-      "timestamp": "2026-06-19 17:13:57",
-      "trial_id": "20260619-171357-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
+      "timestamp": "2026-06-19 17:44:49",
+      "trial_id": "20260619-174449-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
     },
     {
-      "artifact": "verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-cand-001-hcount-semantic.md",
-      "kind": "attempt",
-      "lean_gate": "pass",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-19 17:13:44",
-      "trial_id": "20260619-171344-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
-    },
-    {
-      "artifact": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02",
+      "artifact": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03",
       "kind": "handoff",
       "lean_gate": "",
       "role": "lower",
       "status": "queued",
-      "timestamp": "2026-06-19 17:13:24",
-      "trial_id": "20260619-171324-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
+      "timestamp": "2026-06-19 17:44:06",
+      "trial_id": "20260619-174406-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
     }
   ],
   "recent_verifier_feedback": [
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "CUBIC-HCOUNT-COUNT-001",
+      "next_route": "CUBIC-HCOUNT-UNITARY-001 or an equivalent Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 17:43:50",
+      "trial_id": "20260619-174350-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "CUBIC-HCOUNT-COUNT-001",
+      "next_route": "CUBIC-HCOUNT-UNITARY-001 or equivalent Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 17:42:25",
+      "trial_id": "20260619-174225-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "CUBIC-HCOUNT-COUNT-001",
+      "next_route": "Keep CUBIC-HCOUNT-COUNT-001; schedule CUBIC-HCOUNT-UNITARY-001 or a Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 17:41:07",
+      "trial_id": "20260619-174107-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "CUBIC-HCOUNT-COUNT-001",
+      "next_route": "Schedule CUBIC-HCOUNT-UNITARY-001 or the Hadamard-sandwich semantic bridge before CUBIC-HCOUNT-BLOCK-001; do not promote the candidate from count diagnostics alone.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 17:40:47",
+      "trial_id": "20260619-174047-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "CUBIC-HCOUNT-COUNT-001",
+      "next_route": "Prove gridSize_three_mul_eq_cube, gridSize_four_mul_eq_fourth, hadamardCountingCubic_threshold_le_pathCapacity, and hadamardCountingCubic_thresholdPathCount in Lean.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 17:37:55",
+      "trial_id": "20260619-173755-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
     {
       "block_entry_ok": true,
       "closed_theorem_ok": false,
@@ -210,69 +270,9 @@
       "status": "failed",
       "timestamp": "2026-06-19 17:07:35",
       "trial_id": "20260619-170735-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": "",
-      "closed_theorem_ok": "",
-      "error_class": "finite_matrix_counterexample",
-      "finite_matrix_ok": "",
-      "leaf": "CUBIC-HCOUNT-REJECT-REPAIR-001",
-      "next_route": "Implement sticky-nz interface/resource repair, run python3 tools/qbe.py check, then rerun repaired finite n=1/n=2 semantic diagnostic before CUBIC-HCOUNT-BLOCK-001.",
-      "role": "lower",
-      "status": "queued",
-      "timestamp": "2026-06-19 17:07:27",
-      "trial_id": "20260619-170727-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
-    },
-    {
-      "block_entry_ok": "",
-      "closed_theorem_ok": true,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": "",
-      "leaf": "CUBIC-HCOUNT-RATIO-001",
-      "next_route": "CUBIC-VER-CAND-001:HCOUNT-SEMANTIC finite n=1/n=2 clean-block, unitarity/reversibility, and ancilla-cleanup diagnostics",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-19 16:48:32",
-      "trial_id": "20260619-164832-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": "true for symbolic ratio bridge",
-      "closed_theorem_ok": "true for ratio theorem; false for full certificate",
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": null,
-      "leaf": "CUBIC-HCOUNT-RATIO-001",
-      "next_route": "Run finite n=1/n=2 Hadamard-counting semantic clean-block, unitarity, and ancilla-cleanup diagnostics before CUBIC-HCOUNT-BLOCK-001.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-19 16:48:19",
-      "trial_id": "20260619-164819-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": "",
-      "closed_theorem_ok": true,
-      "error_class": null,
-      "finite_matrix_ok": "",
-      "leaf": "CUBIC-HCOUNT-RATIO-001",
-      "next_route": "finite n=1/n=2 Hadamard-counting semantic clean-block/unitarity/ancilla diagnostics",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-19 16:48:04",
-      "trial_id": "20260619-164804-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": false,
-      "closed_theorem_ok": false,
-      "error_class": "finite_matrix_counterexample",
-      "finite_matrix_ok": false,
-      "leaf": "CUBIC-VER-CAND-001:HCOUNT-SEMANTIC",
-      "next_route": "Repair the zero-input rejection convention in CUBIC-HCOUNT-IFACE-001, then rerun the semantic diagnostic before CUBIC-HCOUNT-BLOCK-001.",
-      "role": "lower",
-      "status": "failed",
-      "timestamp": "2026-06-19 16:46:21",
-      "trial_id": "20260619-164621-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
     }
   ],
-  "run_dir": "runs/20260619-165301-QBE-OP-CUBIC-STATEPREP-001-cycle02",
+  "run_dir": "runs/20260619-171933-QBE-OP-CUBIC-STATEPREP-001-cycle03",
   "source_main_tex": "",
   "stage": "Stage 2 DAG proof discharge, with source-transcript checks still active",
   "task_id": "QBE-OP-CUBIC-STATEPREP-001",

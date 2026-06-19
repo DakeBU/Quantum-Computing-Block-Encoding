@@ -1,0 +1,55 @@
+{
+  "task_id": "QBE-OP-CUBIC-DIAGONAL-001",
+  "cycle": 1,
+  "generated": "2026-06-19 20:42 JST",
+  "mode": "exploratoryConstruction",
+  "source_anchor": "tasks/QBE-OP-CUBIC-DIAGONAL-001.md",
+  "lean_namespace": "QuantumBlockEncoding.CubicDiagonalOracle",
+  "lean_file": "QuantumBlockEncoding/CubicStatePreparation.lean",
+  "target": "D_n[row,col] = if row = col then (row / 2^n)^3 else 0",
+  "normalizer": "alpha = 1",
+  "active_leaf": {
+    "id": "DIAG-BLOCK-BRIDGE-001",
+    "planned_declaration": "CubicDiagonalOracle.primitiveOracleCleanBlock_eq_target",
+    "interface": "Any block satisfying diagonalCleanBlockContract is pointwise equal to (cubicDiagonalTarget n).operator.",
+    "dependencies": [
+      "CubicDiagonalOracle.diagonalCleanBlockContract_pointwise_eq",
+      "CubicDiagonalOracle.cubicDiagonalTarget",
+      "Matrix.PointwiseEq"
+    ],
+    "owner": "lower-2-lean-implementation-worker",
+    "status": "active leaf"
+  },
+  "dynamic_leaf_queue": [
+    "DIAG-BLOCK-BRIDGE-001: active Lean bridge from diagonalCleanBlockContract to cubicDiagonalTarget.operator",
+    "DIAG-PRIM-UNITARY-001: blocked primitive one-signal amplitude-oracle semantic contract",
+    "DIAG-ROOT-001: blocked exact primitive block-encoding certificate",
+    "DIAG-EXPORT-001: blocked Qiskit, QuantumKatas-style, and QASM3 export packet"
+  ],
+  "open_obligation_signals": [
+    "Primitive oracle semantics must remain explicit; do not encode unitarity or block correctness as True.",
+    "Executable exports are downstream of a named Lean certificate.",
+    "Rank-one state-preparation and normalized-vector routes are invalid for this task."
+  ],
+  "artifacts": [
+    "conversion-windows/QBE-OP-CUBIC-DIAGONAL-001.md",
+    "proof-obligations/QBE-OP-CUBIC-DIAGONAL-001.md",
+    "candidate-populations/QBE-OP-CUBIC-DIAGONAL-001.md",
+    "proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md",
+    "runs/20260619-203248-QBE-OP-CUBIC-DIAGONAL-001-cycle01/dialogue.md"
+  ],
+  "next_lower_tasks": [
+    {
+      "role": "lower-1-natural-language-proof-architect",
+      "goal": "Document the proof DAG and primitive-oracle semantic obligation for the fixed diagonal target."
+    },
+    {
+      "role": "lower-2-lean-implementation-worker",
+      "goal": "Compile primitiveOracleCleanBlock_eq_target only."
+    },
+    {
+      "role": "lower-3-necessary-condition-verifier",
+      "goal": "Check finite diagonal entries for n = 1, 2, 3 and log typed feedback."
+    }
+  ]
+}

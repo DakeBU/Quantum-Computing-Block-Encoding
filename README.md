@@ -277,12 +277,13 @@ lake build && lake build Tests
 
 ## Use ABEIS
 
-ABEIS can be used from the CLI or from the static task builder in `web/`.
-The web page helps a user paste a LaTeX oracle, matrix, or natural-language
-operator description and turn it into a task packet.  It does not certify
-proofs; Lean remains the verification authority.
+ABEIS has three equivalent user entrypoints.  All three must produce the same kind of task packet, agent profile, run logs, Lean gate, human-language summary, Pro-prompt, and optional post-Lean executable exports.  The intended rule is: if the same model backend and prompt profile are used, the CLI template, an AI chat window, and the website should differ only in convenience, not in scientific target or acceptance criteria.
 
-Main workflow:
+1. **Local CLI template.**  Download the repository, replace the operator text in a template command, and run `tools/qbe.py`.
+2. **AI chat window.**  Download the repository and tell Codex, Claude, GLM, Gemini, Minimax, or another coding agent: “Use the ABEIS system in this repository to solve the following operator block-encoding problem.”  The agent should call the same `ingest-user-problem`, `sleep-run`, and `check` commands as the CLI template.
+3. **Website task builder.**  Use the static website in `web/` or a deployed public site to paste the oracle description, choose the report language, choose agent backends, and generate the same task packet and agent profile.  Like LLM4AD_Next-style web front ends, the public ABEIS page should be a low-entry interface; model execution uses the user's own API keys or local CLI wrappers, and Lean remains the verification authority.
+
+Main local CLI workflow:
 
 ```bash
 python3 tools/qbe.py new-task QBE-OP-001 \
@@ -299,11 +300,7 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --check-each-cycle
 ```
 
-The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch
-roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local
-tools.  Long runs can write summaries in the user's chosen language and export
-a problem-specific LaTeX proof note at
-`paper-notes/problem-exports/<task-id>/latest.tex`.
+The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
 
 Users can also request post-certification executable outputs.  The static web
 builder and task packets support Qiskit, QuantumKatas-style exercises, and
@@ -311,6 +308,15 @@ OpenQASM/QASM exports.  The harness should generate and check those artifacts
 only after the corresponding Lean certificate is accepted, unless a task
 explicitly marks them as pre-Lean diagnostics.  See
 [`docs/executable_exports.md`](docs/executable_exports.md).
+
+Progress during a run is visible in these files:
+
+- `runs/<run-id>/dialogue.md`: role-tagged upper/middle/lower/reviewer handoffs.
+- `runs/<run-id>/summary.md` and `zh_summary.md` or the selected-language equivalent: human-readable closeout.
+- `runs/<run-id>/chatgpt_pro_prompt.md`: self-contained prompt for external deep reasoning if unresolved leaves remain.
+- `runs/<run-id>/todo.md` and `memory_digest.md`: compact next-cycle state.
+- `runs/logs/*.log`: raw execution log.
+- `paper-notes/problem-exports/<task-id>/latest.tex`: user-copyable proof note after closeout.
 
 Project layout:
 
