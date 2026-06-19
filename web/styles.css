@@ -131,6 +131,26 @@ legend {
   grid-column: 1 / -1;
 }
 
+.export-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  font-weight: 650;
+}
+
+.check-row input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
 input,
 select,
 textarea {

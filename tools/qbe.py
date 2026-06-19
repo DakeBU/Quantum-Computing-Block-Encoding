@@ -78,6 +78,7 @@ EFFICIENCY_DIR = ROOT / "runs" / "efficiency"
 CONTEXT_PACK_DIR = ROOT / "runs" / "context-packs"
 PROJECT_ARTICLE_UPDATE_DIR = ROOT / "paper-notes" / "project-paper" / "cycle-updates"
 PROBLEM_EXPORT_DIR = ROOT / "paper-notes" / "problem-exports"
+EXECUTABLE_EXPORT_DIR = ROOT / "executable-exports"
 PRO_PROMPT_DIR = ROOT / "runs" / "pro-prompts"
 MANUAL_MULTIAGENT_DIR = ROOT / "runs" / "manual-multiagent"
 AGENT_PROFILE_DIR = ROOT / "agent-profiles"
@@ -104,6 +105,7 @@ WORK_DIRS = [
     "runs/pro-prompts",
     "runs/manual-multiagent",
     "agent-profiles",
+    "executable-exports",
     "paper-notes/project-paper/cycle-updates",
     "paper-notes/problem-exports",
     "research-wiki/papers",
@@ -859,6 +861,11 @@ def cmd_next_task(_: argparse.Namespace) -> int:
 
 def task_template(args: argparse.Namespace) -> str:
     now = _dt.datetime.now().strftime("%Y-%m-%d %H:%M")
+    export_targets = getattr(args, "export_targets", "qiskit") or "none"
+    export_instantiation = (
+        getattr(args, "export_instantiation", "")
+        or "smallest certified instance first; record all register sizes and parameter values"
+    )
     return f"""# {args.title}
 
 Task id: `{args.id}`
@@ -927,6 +934,19 @@ LexElim scheduler discipline:
 - Required block: top-left / selected ancilla state / custom projector: `TBD`
 - Free parameters allowed in the oracle: `TBD`
 - Required exactness or error tolerance: `TBD`
+
+## Post-Lean Executable Exports
+
+- Requested targets: `{export_targets}`
+- Export policy: Lean-first.  Generate executable code only after a named Lean
+  declaration proves the advertised block-encoding theorem at the task's
+  semantic tier.
+- Concrete export instantiation: `{export_instantiation}`
+- Expected artifact root: `executable-exports/{slugify(args.id)}/`
+
+Supported target labels include `qiskit`, `quantum-katas`, and `qasm3`.
+Each export must state its Lean source declaration, register sizes, parameter
+values, normalizer, projector, resource tuple, and export check command.
 
 ## Candidate Score
 
@@ -5995,6 +6015,14 @@ Human-facing correspondence rule:
   approximate error claim.  Reviewer should then audit that each proof export
   matches the compiled Lean declarations and does not claim unproved
   optimality.
+- Post-Lean executable-export cadence: when a task asks for Qiskit,
+  QuantumKatas-style, OpenQASM/QASM, or another executable target, do not use
+  that artifact as the final proof unless the task explicitly declares a finite
+  executable semantic tier.  First close the named Lean certificate for the
+  advertised theorem.  Then middle should translate the Lean declarations,
+  register map, normalizer, projector, resource tuple, and concrete
+  instantiation into an export packet under `executable-exports/<task-id>/`;
+  lower export/verifier work may generate runnable code and record its checks.
 - Project-paper cadence: the paper-specific LaTeX export is an appendix input
   to the larger article "Auto-Lean-in-Sleep: Block Encoding for Quantum
   Computing".  During Lean-heavy cycles, do not spend lower-agent effort on
@@ -6242,6 +6270,11 @@ Maintain:
    maintainer-only; update it only under explicit `project-article-update` or
    `sleep-run --project-article-update`.  Do not produce LaTeX during ordinary
    inner proof-search cycles.
+10. Post-Lean executable export bridge: if the task requests Qiskit,
+    QuantumKatas-style, QASM/OpenQASM, or another executable output, create the
+    export plan only after the relevant Lean certificate is named.  The plan
+    must record the exact Lean theorem, concrete instantiation, register sizes,
+    normalizer, projector, resource tuple, target language, and export check.
 
 You are responsible for two-way translation.  Before lower work, translate the
 paper's relevant theorem/equation/circuit fragment or the user's operator
@@ -6401,6 +6434,9 @@ memory curator notes if present.  Produce:
 2. Which raw logs or generated files should not be human entry points.
 3. A concise human-facing explanation of any open blocker.
 4. Any manuscript claim that must remain forbidden until Lean closes it.
+5. If the Lean theorem has closed and the user requested executable outputs,
+   the required post-Lean export packet for Qiskit, QuantumKatas-style tests,
+   OpenQASM/QASM, or other selected targets.
 
 Do not assign Lean work and do not rewrite polished prose during inner proof
 search.  This role is mainly for final-audit synchronization.
@@ -6478,6 +6514,11 @@ Look for:
     handoff that says only "proof failed" without classifying whether the
     failure was source translation, shape/register, finite-matrix,
     symbolic-bridge, Lean-tactic, external-contract, stale-leaf, or invalid-route.
+18. Missing post-Lean executable-export discipline.  Reviewer should reject a
+    Qiskit, QuantumKatas-style, QASM/OpenQASM, or other executable artifact if
+    it is presented as a final theorem without a matching named Lean
+    certificate, or if it claims a larger parameter range than the Lean theorem
+    and concrete export instantiation justify.
 
 Classify findings as blocking or advisory.  If the current task is a paper
 benchmark, reject unrecorded invention and any added assumption or
@@ -7163,6 +7204,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_task.add_argument("--source", default="")
     p_task.add_argument("--target-lean", default="QuantumBlockEncoding/OpenProblems.lean")
+    p_task.add_argument(
+        "--export-targets",
+        default="qiskit",
+        help="comma-separated post-Lean executable targets, e.g. qiskit,quantum-katas,qasm3; use none to disable",
+    )
+    p_task.add_argument(
+        "--export-instantiation",
+        default="",
+        help="concrete register sizes/parameters for post-Lean executable exports",
+    )
     p_task.set_defaults(func=cmd_new_task)
 
     p_update = sub.add_parser("update-task", help="update task status")

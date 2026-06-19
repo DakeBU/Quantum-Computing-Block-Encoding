@@ -33,7 +33,7 @@ papers -> ideas -> experiments -> reviews -> paper
 QBE uses the analogous proof loop:
 
 ```text
-papers/open problems -> formal specs -> circuit search -> Lean proofs -> review -> docs
+papers/open problems -> formal specs -> circuit search -> Lean proofs -> review -> executable exports -> docs
 ```
 
 The LeanMarathon-like QBE control layer is:
@@ -78,6 +78,20 @@ lake build && lake build Tests
 The repository is allowed to contain skeletons and planned work, but completed
 claims must compile.
 
+When the user requests runnable code, the post-proof contract is:
+
+```text
+named Lean certificate
+  -> Qiskit / QuantumKatas / OpenQASM artifact
+  -> export-specific finite or parser checks
+  -> user-facing code package
+```
+
+See [`docs/executable_exports.md`](executable_exports.md).  These artifacts are
+deliverables after certification.  They are not substitutes for the Lean
+theorem unless the task explicitly declares a finite executable semantic tier
+as the final target.
+
 ## Three Strategy Modes
 
 QBE supports three explicit automation modes.  All use trial memory and Lean
@@ -110,7 +124,10 @@ Operator mode rules:
 - accept only Lean-closed exact block-entry and unitarity theorems in exact
   phase,
 - in approximate phase, accept only Lean-closed unitarity plus a declared
-  approximation-bound theorem.
+  approximation-bound theorem,
+- after the relevant Lean declaration closes, generate requested executable
+  exports such as Qiskit, QuantumKatas-style tests, or OpenQASM/QASM
+  transcripts and run their target-specific checks.
 
 ### Paper Benchmark
 

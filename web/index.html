@@ -80,6 +80,30 @@
           <textarea id="constraints" spellcheck="false" placeholder="Register sizes, allowed gates, exact/approximate tolerance, free oracle parameters, source paper URL, non-goals."></textarea>
         </label>
 
+        <fieldset class="export-grid">
+          <legend>Executable exports after Lean certification</legend>
+          <p class="hint compact">
+            ABEIS treats Lean as the proof authority.  These options request
+            runnable artifacts after the matching Lean theorem is accepted.
+          </p>
+          <label class="check-row">
+            <input id="exportQiskit" type="checkbox" checked>
+            <span>Qiskit Python circuit and finite assertions</span>
+          </label>
+          <label class="check-row">
+            <input id="exportQuantumKatas" type="checkbox">
+            <span>QuantumKatas-style task and tests</span>
+          </label>
+          <label class="check-row">
+            <input id="exportQasm3" type="checkbox">
+            <span>OpenQASM 3 transcript and parser/smoke checks</span>
+          </label>
+          <label>
+            Concrete export instantiation
+            <input id="exportInstantiation" value="smallest certified instance first; record all register sizes and parameter values">
+          </label>
+        </fieldset>
+
         <fieldset class="agent-grid">
           <legend>Agent backend preferences</legend>
           <p class="hint compact">
@@ -180,6 +204,7 @@
             <li>Correctness is accepted only after Lean proves unitarity and the requested block-entry theorem.</li>
             <li>Compare asymptotic tiers first: polylogarithmic growth beats polynomial growth.</li>
             <li>Inside one tier, rank by gate count, then depth, then auxiliary qubits, then unresolved oracle calls.</li>
+            <li>After Lean certification, generate the selected Qiskit, QuantumKatas, or QASM artifacts for users.</li>
           </ol>
         </div>
 

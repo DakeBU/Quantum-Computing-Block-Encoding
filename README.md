@@ -11,6 +11,7 @@ operator/query-oracle contract A
 -> candidate unitary U_A and circuit schedule
 -> Lean-checked block-entry and unitarity certificate
 -> resource-ranked construction
+-> post-Lean executable exports such as Qiskit, QuantumKatas, and QASM
 ```
 
 ABEIS does not stop at "assume an oracle exists".  A task should state the
@@ -55,8 +56,10 @@ flowchart LR
   G -- no/stalled --> I["Scenario 2: relaxed approximate search"]
   H --> J["Lean approximate certificate attempt"]
   I --> J
-  J --> K["resource score and candidate archive"]
-  K --> L["dynamic agent-count audit"]
+  J --> K["resource score and certified archive"]
+  K --> L["post-Lean executable exports"]
+  L --> M["Qiskit / QuantumKatas / QASM checks"]
+  M --> N["dynamic agent-count audit"]
 ```
 
 ABEIS uses diagnostics as search signals, not as proofs.  A candidate enters
@@ -155,6 +158,13 @@ as small-instance smoke tests, counterexample generators, and necessary
 condition diagnostics.  They are not promoted to scientific claims until the
 advertised block-entry, unitarity, cleanup, and resource statements are closed
 by Lean.
+
+After a Lean certificate closes, ABEIS can emit runnable artifacts for users:
+Qiskit Python circuits with exact finite assertions, QuantumKatas-style task
+and test files, and OpenQASM transcripts with parser/smoke checks.  These
+exports are engineering deliverables, not replacements for the Lean theorem.
+For symbolic families, the exported code records the concrete instantiation it
+implements; the Lean theorem remains the reusable, parameterized certificate.
 
 ## Why The ABEIS Harness
 
@@ -258,6 +268,13 @@ tools.  Long runs can write summaries in the user's chosen language and export
 a problem-specific LaTeX proof note at
 `paper-notes/problem-exports/<task-id>/latest.tex`.
 
+Users can also request post-certification executable outputs.  The static web
+builder and task packets support Qiskit, QuantumKatas-style exercises, and
+OpenQASM/QASM exports.  The harness should generate and check those artifacts
+only after the corresponding Lean certificate is accepted, unless a task
+explicitly marks them as pre-Lean diagnostics.  See
+[`docs/executable_exports.md`](docs/executable_exports.md).
+
 Project layout:
 
 - `QuantumBlockEncoding/`: Lean definitions, circuits, resources, and theorem
@@ -266,6 +283,8 @@ Project layout:
 - `candidate-populations/`: Lean-certified candidates and rejected routes.
 - `conversion-windows/`, `proof-blueprints/`, `proof-obligations/`: compact
   proof state and Lean/natural-language correspondence.
+- `executable-exports/`: post-Lean Qiskit, QuantumKatas, QASM, and related
+  runnable artifacts for certified constructions.
 - `tools/qbe.py`: orchestration CLI.
 - `docs/`: deployment and long-run guides.
 

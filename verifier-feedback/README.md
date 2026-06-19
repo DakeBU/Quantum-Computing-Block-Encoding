@@ -9,6 +9,8 @@ as QASM-Eval and Qiskit QuantumKatas.  ABEIS distinguishes three levels:
 - optional executable finite checks: for example a Qiskit `Operator` equality
   check on a fully instantiated small circuit;
 - Lean-certified theorem closure: the final reusable project certificate.
+- post-Lean export checks: Qiskit, QuantumKatas-style, or OpenQASM/QASM
+  artifacts generated after a named Lean certificate closes.
 
 For a fully instantiated finite matrix, a Qiskit `Operator` or exact NumPy
 matrix check can be complete for that concrete instance.  It still does not
@@ -16,6 +18,11 @@ replace Lean when the project needs a named theorem, reusable definitions,
 resource certificates, or a future dependency.  QASM-Eval-style distribution,
 timeline, and pulse checks are diagnostics unless the target theorem is stated
 with exactly that executable semantics.
+
+After Lean certification, the same executable tools become user-delivery
+checks.  In that mode they answer a different question: whether the generated
+Qiskit, QuantumKatas, or QASM artifact faithfully implements the certified
+construction at the stated concrete instance.
 
 Use this when a lower attempt fails or partially succeeds.  Record small,
 machine-readable fields instead of only prose:

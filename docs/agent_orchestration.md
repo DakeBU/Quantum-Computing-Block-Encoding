@@ -110,7 +110,8 @@ Middle panel:
 - memory/retrieval curator: proof-DAG status, verifier feedback, stale target
   retirement, and compact context;
 - report/export maintainer: preferred-language summaries, Markdown/LaTeX proof
-  maps, and technical-report status;
+  maps, problem proof notes, post-Lean executable export packets, and
+  maintainer-only technical-report status;
 - coordinator: writes exactly one lower-1 natural-language proof task, one
   lower-2 Lean implementation task, and one lower-3 verifier task.
 
@@ -248,7 +249,13 @@ Every 6h/convergence closeout writes public-facing problem artifacts:
 ```text
 runs/<run-id>/problem_export.tex
 paper-notes/problem-exports/<task-id>/latest.tex
+executable-exports/<task-id>/...
 ```
+
+Executable exports are generated only after the matching Lean declaration is
+named, unless the task explicitly marks an executable check as a pre-Lean
+diagnostic.  They may include Qiskit, QuantumKatas-style, OpenQASM/QASM, or
+other user-selected code targets.
 
 Maintainer runs may additionally request project-paper update packets:
 
