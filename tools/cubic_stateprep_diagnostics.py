@@ -56,7 +56,7 @@ def row(n: int, epsilon: float) -> dict:
         "epsilon": epsilon,
         "precision_bits_floor": precision_bits,
         "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
-        "dense_verifier_role": "small-instance smoke test only",
+        "dense_verifier_role": "small-instance fixed-instance executable check only",
     }
 
 
@@ -74,7 +74,11 @@ def main() -> int:
     (out_dir / "latest.json").write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
 
     with (out_dir / "latest.csv").open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(
+            f,
+            fieldnames=list(rows[0].keys()),
+            lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(rows)
 

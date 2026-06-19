@@ -27,7 +27,7 @@ Interpretation:
   family.  This is the same exponential bottleneck that prevents ordinary
   simulation from validating large quantum circuits by brute force.
 - ABEIS should use these checks for small finite instances, counterexamples,
-  and smoke tests.  The intended large-register route is a symbolic Lean
+  and fixed-instance executable checks.  The intended large-register route is a symbolic Lean
   theorem about registers and gate semantics, whose checking cost should
   scale with proof size rather than dense Hilbert-space dimension.
 - The current concrete main case is already Lean-certified for `r = 1`.

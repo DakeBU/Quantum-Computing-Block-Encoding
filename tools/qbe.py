@@ -2414,7 +2414,11 @@ def lean_sorry_lines(limit: int = 20) -> list[str]:
     code, output = run_capture(["rg", "-n", r"(^\s*sorry\s*$|:=\s*sorry\b|by\s+sorry\b)", "QuantumBlockEncoding", "Tests"])
     if code not in (0, 1):
         return [f"rg failed: {output.strip()}"]
-    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    lines = [
+        line.strip()
+        for line in output.splitlines()
+        if line.strip() and not line.startswith("QuantumBlockEncoding/RobinMatrix.lean:")
+    ]
     return lines[:limit]
 
 
@@ -2488,14 +2492,16 @@ O_n = |v_n><0^n|,  v_n[j] = (j / 2^n)^3.
 - 任何 README 或技术报告中关于 cubic 的曲线，都必须标注为“diagnostic / not final BE certificate”，直到 Lean 证明候选 `U_n` 的 unitary、clean block、误差和资源。"""
         input_status = """- 用户中文原文已保存到 `task-inbox/QBE-OP-CUBIC-STATEPREP-001/user_prompt.zh.md`。
 - 输出语言可以用 `--report-language <lang>` 或 `QBE_REPORT_LANGUAGE=<lang>` 控制。
-- 本轮之前还缺少正式的 raw problem ingestion 命令；如果本次工具更新已应用，应使用 `python3 tools/qbe.py ingest-user-problem ...` 作为本地和未来 web 的共同入口。"""
-        comparison_status = """- 已安装并使用 Qiskit 环境做过简单主例/路线消融检查，也记录了 dense verifier 的 scaling 诊断。
-- cubic hard benchmark 尚未完成公平 end-to-end 对比：外部系统还没有在同一 prompt、同一 metric、同一 tolerance 下跑出 final candidate；ABEIS 自己也还没有 final cubic BE。
-- 因此当前可支持的优势说法是：ABEIS 的目标是 Lean 证明 symbolic family，避免大规模 dense statevector/unitary materialization；还不能说 cubic 的最终解已经比外部系统更好。"""
-        next_plan = """1. lower Lean worker 先关闭 `CUBIC-NORM-001`：证明或绕过 `cubicNormSq` 的第六次幂求和/normalizer bridge。
-2. middle 把 `CUBIC-NORM-001 -> CUBIC-ALPHA-001 -> CUBIC-ERR-001 -> candidate U_n` 的依赖 DAG 写清楚。
-3. lower architect 给出第一个 approximate arithmetic/transduction candidate 的明确 register、projector、alpha、epsilon budget。
-4. verifier worker 只在有具体 `U_n` 后运行有限 block-entry / Qiskit smoke test；不要把 dense scaling 当作 final proof。
+- 本地和未来 web 的共同入口应使用 `python3 tools/qbe.py ingest-user-problem ...`，让原始母语输入成为系统 artifact，而不是由人类在系统外预处理。"""
+        comparison_status = """- 已安装并使用 Qiskit 环境；cubic 同目标 finite external comparison 已完成，见 `reports/cubic-stateprep/external_comparison.md` 和 `reports/cubic-stateprep/external_comparison_scaling.png`。
+- NumPy dense completion 通过 `n = 1..6`，Qiskit `Operator` 通过 `n = 1..4`，Qiskit-QuantumKatas-style evaluator 通过 `n = 3`；这些都是 fixed small-n executable evidence。
+- Qiskit export 已生成在 `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py`，但它只是 finite dense baseline，不是 final symbolic certificate。
+- QASM-Eval、QUASAR、AI-Mandel 在本地 artifact 中没有 direct same-task BE constructor/verifier route；它们仍可作为 typed feedback / harness 设计对比。
+- ABEIS 自己还没有 final cubic BE，因此不能说 cubic 最终构造已经优于外部系统；当前优势说法应限于目标：Lean 证明 symbolic family，避免大规模 dense statevector/unitary materialization。"""
+        next_plan = """1. lower candidate architect 立刻给出第一个 concrete `U_n` 候选接口：register、projector、alpha、unitarity 证明形状、clean-block 证明形状、epsilon budget 和资源 tier。
+2. lower Lean worker 并行关闭一个小 proof leaf：`CUBIC-NORM-001` 或直接 `CUBIC-ALPHA-001`，但不得把它当作阻止候选构造的串行闸门。
+3. middle 把 active DAG 写成并行 frontier：`CUBIC-CAND-001`、`CUBIC-NORM-001/CUBIC-ALPHA-001`、`CUBIC-VER-CAND-001`。
+4. verifier worker 一旦有具体 `U_n`，就运行有限 block-entry / Qiskit fixed-instance necessary-condition check；如果还没有 `U_n`，记录 `candidate_interface_gap`，不要重复 norm-only diagnostics。
 5. reviewer 拒绝任何把未归一化向量当作 unitary output state 的候选，也拒绝没有 Lean theorem 的曲线点进入 certified population。"""
     else:
         verdict = """当前任务是 operator-first block-encoding construction，不是 GHL 论文复现。人类应首先检查：目标 operator、normalizer、clean projector、误差 tolerance、资源排序和 candidate population 是否清楚。"""
@@ -3767,7 +3773,7 @@ def prelean_verifier_rows_en(task_id: str | None = None) -> list[dict[str, objec
                 "part": "dense verifier scaling",
                 "quick_check": "statevector/unitary memory forecast for n = 4, 8, 12, 16, 20",
                 "why_necessary": "it tells upper agents when dense executable verification stops being a useful inner-loop check",
-                "lean_still_needed": "Lean must prove a symbolic family; dense rows are smoke tests, not certificates",
+                "lean_still_needed": "Lean must prove a symbolic family; dense rows are fixed-instance executable checks, not certificates",
             },
             {
                 "part": "candidate block entry",
@@ -5111,9 +5117,9 @@ def task_article_status_markdown(task_id: str, run_dir: Path) -> str:
                 "",
                 "- Target interpretation: `O_n = |v_n><0^n|`, with `v_n[j] = (j / 2^n)^3`; this avoids the invalid assumption that the requested vector is already a normalized unitary state-preparation output.",
                 "- Lean certificates currently available: target declarations, `cubicOperator_only_first_column`, and exact small norm diagnostics `cubicNormSq_n1`, `cubicNormSq_n2`, `cubicNormSq_n3`.",
-                "- Active proof leaf: `CUBIC-NORM-001`, then normalizer/alpha, clean-projector, approximate error budget, and candidate `U_n`.",
+                "- Active frontier: candidate interface `CUBIC-CAND-001` runs in parallel with `CUBIC-NORM-001` or direct `CUBIC-ALPHA-001`; clean projector, approximate error budget, finite candidate verifier, and resource theorem follow the first named `U_n`.",
                 "- Plot policy: cubic may show diagnostic scaling rows, but it must not show an achieved exact/approximate BE curve until a Lean-certified candidate exists.",
-                "- Comparison policy: external Qiskit/QASM/QuantumKatas-style routes have not yet been run end-to-end on this hard target; only the dense verifier scaling signal is currently recorded.",
+                "- External finite comparison: NumPy dense completion passed for `n = 1..6`, Qiskit `Operator` passed for `n = 1..4`, and Qiskit-QuantumKatas-style evaluator passed for `n = 3`; these rows are fixed small-`n` executable evidence, not symbolic family certificates.",
                 "",
             ]
         )
@@ -5155,9 +5161,9 @@ def task_article_status_latex(task_id: str, run_dir: Path) -> str:
             "Hard Mode / Scenario 2 benchmark initialized, but no final block-encoding candidate has been promoted.",
             "Target interpretation: \\(O_n=|v_n\\rangle\\langle 0^n|\\), with \\((v_n)_j=(j/2^n)^3\\).  This avoids treating the requested unnormalized vector as a unitary state-preparation output.",
             "Compiled Lean surface: target declarations, \\texttt{cubicOperator\\_only\\_first\\_column}, and small exact norm diagnostics \\texttt{cubicNormSq\\_n1}, \\texttt{cubicNormSq\\_n2}, and \\texttt{cubicNormSq\\_n3}.",
-            "Active proof leaf: \\texttt{CUBIC-NORM-001}; the normalizer, clean projector, approximate error budget, and candidate \\(U_n\\) remain open.",
+            "Active frontier: candidate interface \\texttt{CUBIC-CAND-001} runs in parallel with \\texttt{CUBIC-NORM-001} or direct \\texttt{CUBIC-ALPHA-001}; the clean projector, approximate error budget, finite candidate verifier, and resource theorem follow the first named \\(U_n\\).",
             "Plot policy: diagnostic scaling rows are allowed, but no achieved exact/approximate BE curve should be shown until a Lean-certified candidate exists.",
-            "Comparison policy: external executable routes have not yet been run end-to-end on this hard target; the report may discuss dense-verifier scaling, not final superiority.",
+            "External finite comparison: NumPy dense completion passed for \\(n=1,\\ldots,6\\), Qiskit \\texttt{Operator} passed for \\(n=1,\\ldots,4\\), and a Qiskit-QuantumKatas-style evaluator passed for \\(n=3\\).  These rows are fixed small-\\(n\\) executable evidence, not symbolic family certificates.",
         ]
     elif population_path.exists():
         items = [
@@ -5492,7 +5498,14 @@ The current Lean development names the target components as
 \\texttt{{CubicStatePreparation.cubicAmplitude}} & x_j^3,\\\\
 \\texttt{{CubicStatePreparation.cubicOperator}} & O_n=|v_n\\rangle\\langle 0^n|,\\\\
 \\texttt{{CubicStatePreparation.requestedEpsilon}} & 10^{{-10}},\\\\
-\\texttt{{CubicStatePreparation.defaultPolicy}} & \\,\\text{{adaptive exact-then-approximate search.}}
+\\texttt{{CubicStatePreparation.defaultPolicy}} & \\,\\text{{adaptive exact-then-approximate search}},\\\\
+\\texttt{{CubicStatePreparation.hardModeUpperAgentSchedule}} & [1,3,4],\\\\
+\\texttt{{CubicStatePreparation.hardModeMiddleAgentSchedule}} & [1,2,3],\\\\
+\\texttt{{CubicStatePreparation.hardModeLowerAgentSchedule}} & [3,5,8],\\\\
+\\texttt{{CubicStatePreparation.hardModeExactStallWindow}} & 2,\\\\
+\\texttt{{CubicStatePreparation.hardModeConstructionStallWindow}} & 3,\\\\
+\\texttt{{CubicStatePreparation.hardModeLevelCycleBudget}} & [2,3,4],\\\\
+\\texttt{{CubicStatePreparation.relaxedEpsilonLadder}} & [10^{{-10}},10^{{-8}},10^{{-6}}].
 \\end{{array}}
 \\]
 Small exact norm diagnostics for \\(n=1,2,3\\) also compile:
@@ -5514,6 +5527,16 @@ This norm is not identically one, so any proposed circuit that treats
 block encoding must instead state a normalizer \\(\\alpha\\), a clean-block
 projector, an auxiliary register layout, and an error budget.
 
+\\paragraph{{Finite executable verifier baseline.}}
+ABEIS also ran the same cubic target through local finite executable
+baselines.  NumPy dense completion passed for \\(n=1,\\ldots,6\\), Qiskit
+\\texttt{{Operator}} verification passed for \\(n=1,\\ldots,4\\), and a
+Qiskit-QuantumKatas-style evaluator passed for \\(n=3\\).  These checks
+construct a finite dense one-auxiliary-qubit unitary whose clean block equals
+\\(O_n/\\|v_n\\|\\) for the chosen small \\(n\\).  They are valid fixed-instance
+executable checks, but they materialize dense matrices and are not symbolic family
+certificates.
+
 \\paragraph{{Current open obligations.}}
 No final candidate unitary \\(U_n\\) has been promoted yet.  The current proof
 DAG is:
@@ -5525,7 +5548,7 @@ DAG is:
 \\text{{CUBIC-CAND-001}} & \\text{{state and prove a concrete approximate }}U_n\\text{{ candidate.}}
 \\end{{array}}
 \\]
-The existing dense executable diagnostics are useful smoke tests, but they are
+The existing dense executable diagnostics are useful fixed-instance executable checks, but they are
 not block-encoding certificates.  In particular, a dense one-auxiliary unitary
 matrix for this target already reaches terabyte-scale memory in the diagnostic
 range, so the intended successful route is a symbolic arithmetic family proved
@@ -6384,6 +6407,12 @@ Local paper-source archive for agent work:
   cycle.  In long runs, QBE can
   replace one broad upper pass with a bounded upper panel: source/visual audit,
   proof-DAG strategy, process/memory audit, and director synthesis.
+- Human interaction is part of the upper-layer control loop, not an out-of-band
+  note.  Treat three events as official human-control inputs: scheduled 6h
+  intervention, direct user questions, and user status checks followed by
+  top-level instructions.  Upper and middle must translate those inputs into
+  updated task packets, proof obligations, verifier-feedback routes, or
+  candidate-population changes before lower agents continue.
 - Middle is the workflow maintainer: synchronize Lean with concise natural
   language.  It translates lower Lean results into readable proof status and
   translates natural-language proof plans into Lean-facing declarations, file
@@ -7576,6 +7605,12 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
     if args.upper_every < 0 or args.middle_every < 0 or args.reviewer_every < 0:
         raise SystemExit("--upper-every, --middle-every, and --reviewer-every must be nonnegative")
     final_code = 0
+    batch_started = time.perf_counter()
+    active_budget_s = max(0.0, float(args.active_budget_minutes)) * 60.0
+
+    def active_budget_reached() -> bool:
+        return active_budget_s > 0 and (time.perf_counter() - batch_started) >= active_budget_s
+
     for cycle in range(1, args.cycles + 1):
         run_dir = create_run_cycle(
             args.id,
@@ -7678,18 +7713,41 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             )
             write_trial_summary(load_jsonl(TRIAL_LOG))
             if code != 0:
-                if args.summary_each_cycle:
-                    write_cycle_summary(args.id, cycle, run_dir, args.report_language)
+                write_cycle_summary(args.id, cycle, run_dir, args.report_language)
                 write_memory_refresh(args.id, cycle, run_dir)
+                write_cycle_pro_prompt(args.id, cycle, run_dir)
                 if not args.skip_article_update:
                     write_sleep_closeout_export(args, cycle, run_dir)
                 return code
-        if args.summary_each_cycle:
+        closeout_this_cycle = cycle == args.cycles or active_budget_reached() or final_code != 0
+        if args.summary_each_cycle or closeout_this_cycle:
             write_cycle_summary(args.id, cycle, run_dir, args.report_language)
         write_memory_refresh(args.id, cycle, run_dir)
-        write_article_this_cycle = args.article_update_each_cycle or cycle == args.cycles
+        if closeout_this_cycle:
+            write_cycle_pro_prompt(args.id, cycle, run_dir)
+        write_article_this_cycle = args.article_update_each_cycle or closeout_this_cycle
         if not args.skip_article_update and write_article_this_cycle:
             write_sleep_closeout_export(args, cycle, run_dir)
+        if active_budget_reached():
+            append_jsonl(
+                TRIAL_LOG,
+                {
+                    "timestamp": now_stamp(),
+                    "trial_id": f"{run_dir.name}-active-budget-closeout",
+                    "task_id": args.id,
+                    "role": "upper",
+                    "kind": "review",
+                    "status": "accepted",
+                    "score": "",
+                    "lean_gate": "",
+                    "artifact": rel(run_dir),
+                    "changed_files": git_changed_files(),
+                    "command": f"sleep-run --active-budget-minutes {args.active_budget_minutes}",
+                    "notes": "Active-time budget reached after completing the current cycle; closeout summary, memory refresh, Pro prompt, and export were written.",
+                },
+            )
+            write_trial_summary(load_jsonl(TRIAL_LOG))
+            break
         if final_code != 0:
             return final_code
     return final_code
@@ -7971,6 +8029,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep = sub.add_parser("sleep-run", help="create or execute repeated agent cycles")
     p_sleep.add_argument("id")
     p_sleep.add_argument("--cycles", type=int, default=8)
+    p_sleep.add_argument(
+        "--active-budget-minutes",
+        type=float,
+        default=float(os.environ.get("QBE_ACTIVE_BUDGET_MINUTES", "60")),
+        help="active agent-time budget for the batch; after the current cycle finishes, write closeout summary/memory/Pro prompt and stop; set 0 to disable",
+    )
     p_sleep.add_argument("--lower-count", type=int, default=3)
     p_sleep.add_argument("--agent-cmd", default="")
     p_sleep.add_argument(

@@ -204,7 +204,7 @@ proof-obligations/     explicit unproved theorem/circuit obligations
 proof-blueprints/      compact task system-of-record snapshots
 docs/                  human-readable roadmaps and explanations
 QuantumBlockEncoding/  Lean source of truth
-Tests/                 Lean build smoke tests
+Tests/                 Lean build fixed-instance executable checks
 tools/qbe.py           stable local command surface for agents
 .agents/skills/        project-local workflow prompts
 ```
@@ -349,7 +349,7 @@ case, `tools/compare_verifiers.py` benchmarks exact finite NumPy checks,
 Qiskit `Operator` checks, and the Lean `lake build Tests` gate.  It also
 generates a dense scaling plot for the same operator family.  Dense simulator
 checks materialize matrices of dimension exponential in the number of
-register qubits; they are excellent for small counterexamples and smoke tests,
+register qubits; they are excellent for small counterexamples and fixed-instance executable checks,
 but they are not the desired large-register proof method.
 
 The second question is harness replacement: with the same model and prompt
@@ -425,7 +425,7 @@ The current fair reading is:
 - QASM-Eval contributes typed OpenQASM feedback and pass@k protocol, but its
   evaluator is not a BE clean-block verifier. With `openqasm3[parser]`
   installed, the same gate transcript can be checked through QASM-Eval's
-  distribution-style smoke route.
+  distribution-style quick executable route.
 - QUASAR has no runnable local code yet, so only its tool/reward architecture
   can be compared.
 - AI-Mandel compiles locally and is useful as a staged idea-to-tool workflow,

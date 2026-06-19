@@ -86,7 +86,7 @@ Recommended order:
 3. Add candidate circuit or circuit schema.
 4. Add block-encoding predicate instantiation.
 5. Add resource expression.
-6. Add smoke tests in `Tests/`.
+6. Add fixed-instance executable checks in `Tests/`.
 
 After each nontrivial Lean edit:
 
@@ -106,7 +106,7 @@ python3 tools/qbe.py trial-log \
   --status compiled \
   --lean-gate pass \
   --from-git \
-  --notes "Added the sparse-access skeleton and smoke tests."
+  --notes "Added the sparse-access skeleton and fixed-instance executable checks."
 ```
 
 Useful failure:

@@ -51,6 +51,52 @@ ABEIS should run the usual adaptive policy:
 The initial policy is compiled in Lean as
 `CubicStatePreparation.defaultPolicy`.
 
+Hard Mode escalation is also recorded in Lean:
+
+```text
+CubicStatePreparation.hardModeUpperAgentSchedule = [1, 3, 4]
+CubicStatePreparation.hardModeMiddleAgentSchedule = [1, 2, 3]
+CubicStatePreparation.hardModeLowerAgentSchedule = [3, 5, 8]
+CubicStatePreparation.hardModeExactStallWindow = 2
+CubicStatePreparation.hardModeConstructionStallWindow = 3
+CubicStatePreparation.hardModeLevelCycleBudget = [2, 3, 4]
+CubicStatePreparation.relaxedEpsilonLadder = [1e-10, 1e-8, 1e-6]
+```
+
+The upper panel must not jump directly to the largest panel.  The intended
+schedule is:
+
+| Phase | Trigger | Agent allocation | Goal |
+|---|---|---|---|
+| L0 exact contraction and candidate seeding | task starts or memory was stale | upper=1, middle=1, lower=3: candidate architect, Lean worker, verifier | seed at least one concrete `U_n` family while also closing target/norm leaves and rejecting wrong exact state-prep interpretations |
+| L1 requested-epsilon Scenario 2 | no closed leaf or no concrete candidate for 2 cycles | upper=3, middle=2, lower=5: 2 architects, 2 Lean workers, 1 verifier/export worker | find or repair a symbolic approximate candidate at `1e-10` |
+| L2 relaxed waypoint search | no improving certified/finite candidate for 3 cycles | upper=4, middle=3, lower=8 | try `1e-8`, then `1e-6` as waypoints, while keeping the final requested target visible |
+
+Every escalation must record whether the extra agents improved the certified
+population, the finite verifier population, or only the insight pool.
+
+## Population And Mutation Policy
+
+ABEIS keeps three separate populations:
+
+- **certified population**: Lean-proved candidates only; these are the only
+  candidates that may appear on achieved-resource curves;
+- **finite executable population**: Qiskit/NumPy/QuantumKatas-style candidates
+  that pass fixed-instance checks for small `n`; these may guide search but are
+  not accepted as family certificates;
+- **insight pool**: failed or unproved routes with a reusable idea, such as a
+  normalizer trick or an arithmetic transduction plan.
+
+At L1 and L2, lower agents should spend each generation on a mixture of:
+
+- mutation: alter one candidate route while preserving the target operator;
+- crossover: combine two useful ingredients, for example a normalizer bound
+  from one route and an arithmetic state-preparation skeleton from another;
+- repair: close exactly one Lean proof leaf or turn a failed finite check into
+  a smaller counterexample;
+- export: write Qiskit/QuantumKatas/QASM artifacts only for a concrete
+  candidate, with a clear semantic label.
+
 ## Score
 
 Within one asymptotic/backend tier, candidates are ranked by
@@ -75,6 +121,20 @@ candidate and an arithmetic polynomial candidate are not in the same tier.
   equivalent approximate state-preparation block.  The intended scaling target
   is polynomial in `n` and `log(1/epsilon)`, not table size.
 
+## External Tool Boundary
+
+Local public artifacts checked so far do not expose a direct generic function
+"given operator `O_n`, synthesize and prove a block encoding family."  The fair
+comparison therefore has two categories:
+
+- **direct fixed-instance executable checks**: NumPy dense completion, Qiskit
+  `Operator`, and a Qiskit-QuantumKatas-style evaluator can verify a concrete
+  small-`n` dense candidate;
+- **not direct BE constructors**: QASM-Eval provides useful typed QASM
+  feedback, QUASAR is a tool/reward-loop reference without a runnable same-task
+  local route, and AI-Mandel is a quantum-physics idea-to-tool loop rather than
+  a block-encoding verifier.
+
 ## Lean Surface
 
 Current compiled declarations:
@@ -95,14 +155,18 @@ certificate.
 
 ## Next Agent Packet
 
-- lower natural-language architect: write the approximate arithmetic synthesis
-  route and the error budget decomposition.
-- lower Lean worker: implement one small exact diagnostic lemma or one
-  reusable rational norm lemma; do not try to close the full analytic theorem
-  in a single pass.
-- lower verifier worker: dense statevector/unitary scaling for `n = 4, 8, 12,
-  16, 20` is recorded in
-  `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-001-scaling.md`;
-  wait for a concrete candidate before running new finite block-entry checks.
+- lower candidate architect: immediately propose one Lean-checkable candidate
+  family `U_n`, with register layout, block projector, normalizer `alpha`,
+  unitary argument, resource tier, and approximate error budget.  It is fine
+  if some analytic leaves remain obligations; do not wait for `CUBIC-NORM-001`
+  before naming a candidate.
+- lower Lean worker: close one small exact diagnostic lemma or reusable
+  rational normalizer lemma in parallel with candidate design.  Do not use this
+  leaf as a serial gate that blocks candidate seeding.
+- lower verifier/export worker: use the existing dense/Qiskit comparison as a
+  baseline and, once a candidate architect names `U_n`, run fixed-instance
+  necessary-condition checks for that candidate.  If no concrete candidate is
+  available, write a typed feedback packet saying the blocker is
+  `candidate_interface_gap`, not another norm-only retry.
 - reviewer: reject any candidate that treats the unnormalized vector as a
   unitary output state without either normalization or block-encoding scaling.

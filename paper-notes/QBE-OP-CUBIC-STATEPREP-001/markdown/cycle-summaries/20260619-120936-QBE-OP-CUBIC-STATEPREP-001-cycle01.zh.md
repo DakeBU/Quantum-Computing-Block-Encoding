@@ -1,6 +1,6 @@
 # 中文循环总结：QBE-OP-CUBIC-STATEPREP-001 cycle 1
 
-生成时间：`2026-06-19 13:16:17`
+生成时间：`2026-06-19 13:39:09`
 
 Run 目录：`runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01`
 
@@ -28,7 +28,7 @@ O_n = |v_n><0^n|,  v_n[j] = (j / 2^n)^3.
 
 - 用户中文原文已保存到 `task-inbox/QBE-OP-CUBIC-STATEPREP-001/user_prompt.zh.md`。
 - 输出语言可以用 `--report-language <lang>` 或 `QBE_REPORT_LANGUAGE=<lang>` 控制。
-- 本轮之前还缺少正式的 raw problem ingestion 命令；如果本次工具更新已应用，应使用 `python3 tools/qbe.py ingest-user-problem ...` 作为本地和未来 web 的共同入口。
+- 本地和未来 web 的共同入口应使用 `python3 tools/qbe.py ingest-user-problem ...`，让原始母语输入成为系统 artifact，而不是由人类在系统外预处理。
 
 ## Exact / Approximate / Hard Mode 曲线状态
 
@@ -38,9 +38,10 @@ O_n = |v_n><0^n|,  v_n[j] = (j / 2^n)^3.
 
 ## 外部系统公平对比状态
 
-- 已安装并使用 Qiskit 环境做过简单主例/路线消融检查，也记录了 dense verifier 的 scaling 诊断。
-- cubic hard benchmark 尚未完成公平 end-to-end 对比：外部系统还没有在同一 prompt、同一 metric、同一 tolerance 下跑出 final candidate；ABEIS 自己也还没有 final cubic BE。
-- 因此当前可支持的优势说法是：ABEIS 的目标是 Lean 证明 symbolic family，避免大规模 dense statevector/unitary materialization；还不能说 cubic 的最终解已经比外部系统更好。
+- 已安装并使用 Qiskit 环境；cubic 同目标 finite external comparison 已完成，见 `reports/cubic-stateprep/external_comparison.md` 和 `reports/cubic-stateprep/external_comparison_scaling.png`。
+- NumPy dense completion 通过 `n = 1..6`，Qiskit `Operator` 通过 `n = 1..4`，Qiskit-QuantumKatas-style evaluator 通过 `n = 3`；这些都是 fixed small-n executable evidence。
+- QASM-Eval、QUASAR、AI-Mandel 在本地 artifact 中没有 direct same-task BE verifier route；它们仍可作为 typed feedback / harness 设计对比。
+- ABEIS 自己还没有 final cubic BE，因此不能说 cubic 最终构造已经优于外部系统；当前优势说法应限于目标：Lean 证明 symbolic family，避免大规模 dense statevector/unitary materialization。
 
 ## 当前 Lean 编译/`sorry` 状态
 
@@ -115,46 +116,33 @@ Reviewer gate: python3 tools/qbe.py check, lake build, and lake build Tests all 
 
 ## 当前未提交文件
 
-- `.agents/skills/qbe-verifier-feedback/SKILL.md`
 - `MANIFEST.md`
-- `QuantumBlockEncoding.lean`
 - `QuantumBlockEncoding/CubicStatePreparation.lean`
-- `README.md`
-- `Tests/Basic.lean`
 - `candidate-populations/QBE-OP-CUBIC-STATEPREP-001.md`
 - `conversion-windows/QBE-OP-CUBIC-STATEPREP-001.md`
-- `docs/assets/verifier_hard_scaling_forecast.png`
-- `docs/assets/verifier_scaling_comparison.png`
-- `docs/assets/verifier_time_comparison.png`
-- `docs/executable_exports.md`
-- `paper-notes/problem-exports/QBE-OP-CUBIC-STATEPREP-001/`
-- `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-ERR-001.md`
+- `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.zh.md`
+- `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/latest.md`
+- `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/latest.zh.md`
+- `paper-notes/problem-exports/QBE-OP-CUBIC-STATEPREP-001/latest.tex`
 - `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md`
 - `proof-obligations/QBE-OP-CUBIC-STATEPREP-001.md`
-- `reports/cubic-stateprep/`
+- `reports/cubic-stateprep/README.md`
+- `reports/cubic-stateprep/competitor_protocol.md`
+- `reports/cubic-stateprep/external_comparison.csv`
+- `reports/cubic-stateprep/external_comparison.json`
+- `reports/cubic-stateprep/external_comparison.md`
+- `reports/cubic-stateprep/external_comparison_scaling.png`
+- `reports/cubic-stateprep/latest.csv`
 - `reports/external-quantum-verifier-comparison/latest.csv`
 - `reports/external-quantum-verifier-comparison/latest.json`
 - `reports/external-quantum-verifier-comparison/latest.md`
-- `reports/route-ablation/QBE-OP-OPTCTRL-001/latest_results.json`
-- `reports/route-ablation/QBE-OP-OPTCTRL-001/latest_results.md`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/hard_scaling_forecast.csv`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/hard_scaling_forecast.json`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/hard_scaling_forecast.md`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/harness_metrics_template.json`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/latest.csv`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/latest.json`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/latest.md`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/scaling.csv`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/scaling.json`
-- `reports/verifier-comparison/QBE-OP-OPTCTRL-001/scaling.md`
-- `requirements-executable.txt`
-- `research-wiki/cited-results/classical-power-sums.md`
-- `research-wiki/paper-contributions/GHL2025/index.md`
-- `research-wiki/paper-contributions/GHL2025/source-map.md`
-- `research-wiki/paper-contributions/GHL2025/todo.md`
 - `research-wiki/retrieval-index/QBE-OP-CUBIC-STATEPREP-001.json`
-- `research-wiki/technical-lemmas/index.md`
-- `research-wiki/technical-lemmas/todo.md`
+- `tasks/QBE-OP-CUBIC-STATEPREP-001.md`
+- `tools/compare_cubic_external_quantum_verifiers.py`
+- `tools/compare_external_quantum_verifiers.py`
+- `tools/cubic_stateprep_diagnostics.py`
+- `tools/qbe.py`
+- `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-001-scaling.md`
 
 ## 人类检查建议
 

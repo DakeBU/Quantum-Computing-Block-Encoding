@@ -4,14 +4,15 @@ Task: `QBE-OP-CUBIC-STATEPREP-001`
 
 ## Environment Note
 
-The local executable environment now uses:
+The executable environment should use the repository virtual environment:
 
 ```text
-/home/nitanda_sub/mark/.venv/bin/python
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-executable.txt
 ```
 
-with Qiskit installed.  This means Qiskit-based finite checks are runnable on
-this machine.  The report still must not claim that Qiskit, QASM-Eval, QUASAR,
+with Qiskit installed.  This means Qiskit-based finite checks are runnable when
+the optional executable dependencies are installed.  The report still must not claim that Qiskit, QASM-Eval, QUASAR,
 QuantumKatas, or AI-Mandel fails on this benchmark until each route is run with
 the shared prompt and metric protocol below.
 
@@ -42,6 +43,12 @@ Report:
 ## Current Status
 
 ABEIS has initialized the target in Lean and generated scaling diagnostics.
-No final approximate block-encoding candidate has been certified yet.  A fair
-external comparison should start only after the same dependencies are available
-for the competing route.
+No final approximate block-encoding candidate has been certified yet.
+
+The first fair executable comparison has now been run locally.  See
+`external_comparison.md` and `external_comparison_scaling.png`.  The result is:
+finite dense Qiskit/QuantumKatas-style checks can validate small instances of
+the same cubic target, but those checks materialize dense matrices and do not
+produce a symbolic theorem for arbitrary `n`.  The next ABEIS work remains the
+symbolic Scenario 2 route: norm/normalizer bridge, approximate arithmetic
+synthesis, candidate unitary transcript, and Lean block-entry theorem.

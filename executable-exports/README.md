@@ -18,9 +18,16 @@ Supported export targets:
   instance is small enough to materialize.
 - `quantum-katas`: kata-style task and deterministic tests for teaching or
   benchmark use.
-- `qasm3`: OpenQASM 3 transcript plus parser and smoke checks.
+- `qasm3`: OpenQASM 3 transcript plus parser and fixed-instance checks.
 
 Executable artifacts are useful to users who want to run the certified
 construction in a familiar quantum-programming environment.  They do not
 replace the Lean theorem, and passing an executable check does not promote an
 uncertified candidate into the certified population.
+
+Current Qiskit exports:
+
+| Task | Path | Status |
+|---|---|---|
+| `QBE-OP-OPTCTRL-001` | `QBE-OP-OPTCTRL-001/qiskit/export.py` | Lean-certified concrete champion exported to Qiskit |
+| `QBE-OP-CUBIC-STATEPREP-001` | `QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py` | fixed-instance dense baseline only; not a symbolic certificate |

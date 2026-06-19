@@ -38,5 +38,5 @@ block encoding。
 3.  用 reversible arithmetic 近似计算 `(j / 2^n)^3`；
 4.  把 arithmetic approximation、rotation synthesis、block-entry error
     分配到总误差 `1e-10` 内；
-5.  小规模用 executable verifier 做 smoke test，大规模用 Lean 证明
+5.  小规模用 executable verifier 做 fixed-instance executable check，大规模用 Lean 证明
     symbolic family。

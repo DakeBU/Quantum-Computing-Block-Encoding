@@ -433,7 +433,7 @@ def write_scaling_markdown(rows: list[ScalingTiming], path: Path) -> None:
         "  family.  This is the same exponential bottleneck that prevents ordinary",
         "  simulation from validating large quantum circuits by brute force.",
         "- ABEIS should use these checks for small finite instances, counterexamples,",
-        "  and smoke tests.  The intended large-register route is a symbolic Lean",
+        "  and fixed-instance executable checks.  The intended large-register route is a symbolic Lean",
         "  theorem about registers and gate semantics, whose checking cost should",
         "  scale with proof size rather than dense Hilbert-space dimension.",
         "- The current concrete main case is already Lean-certified for `r = 1`.",
@@ -464,7 +464,7 @@ def forecast_dense_unitary_rows(time_qubits: list[int]) -> list[ScalingForecast]
         entries = dimension * dimension
         bytes_complex128 = entries * 16
         if bytes_complex128 < 2**30:
-            interpretation = "small finite smoke-check scale"
+            interpretation = "small finite quick executable check scale"
         elif bytes_complex128 < 2**40:
             interpretation = "workstation-scale dense check"
         elif bytes_complex128 < 2**50:
@@ -516,7 +516,7 @@ def write_forecast_markdown(rows: list[ScalingForecast], path: Path) -> None:
         "  is a family over register size, because the dense verifier pays the",
         "  Hilbert-space dimension directly.",
         "- ABEIS therefore treats finite executable checks as counterexample and",
-        "  smoke-test layers, then asks Lean to certify the reusable block-encoding",
+        "  fixed-instance executable-check layers, then asks Lean to certify the reusable block-encoding",
         "  theorem and resource tuple.",
         "",
         "The forecast plot is generated at",

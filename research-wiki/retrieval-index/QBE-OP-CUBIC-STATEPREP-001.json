@@ -1,23 +1,20 @@
 {
-  "cycle": 1,
+  "cycle": 3,
   "dynamic_leaf_queue": [
     "# Proof Obligations: QBE-OP-CUBIC-STATEPREP-001",
     "## Target Obligations",
     "| Obligation | Lean declaration or artifact | Status |",
-    "| Prove closed form for `sum_j (j/2^n)^6` | planned `CubicStatePreparation.cubicNormSq_closedForm`; DAG node CUBIC-NORM-001 | active leaf |",
-    "| Prove placeholder normalizer is sufficient | planned `CubicStatePreparation.cubicNormSq_le_conservativeNormalizer_sq`; DAG node CUBIC-ALPHA-001 | blocked on norm bridge |",
+    "| Prove closed form for `sum_j (j/2^n)^6` | planned `CubicStatePreparation.cubicNormSq_closedForm`; DAG node CUBIC-NORM-001; proof design in `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-NORM-001.md` | proof design recorded; active Lean leaf |",
     "| Choose sharper normalizer `alpha` for final candidate, if useful | planned candidate-specific declaration | open |",
-    "| State block projector and clean-ancilla convention for first candidate | planned candidate contract | open |",
     "## Candidate Obligations",
     "| Obligation | Status |",
-    "| CUBIC-NORM-001 | Closed rational formula for `cubicNormSq n`. | CUBIC-TGT-001, `classical-sixth-power-sum` | lower Lean | planned `cubicNormSq_closedForm` | active leaf |"
+    "| CUBIC-NORM-001 | Closed rational formula for `cubicNormSq n`. | CUBIC-NORM-001A, `classical-sixth-power-sum` | lower Lean | planned `cubicNormSq_closedForm`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-NORM-001.md` | proof design recorded; active Lea...",
+    "| CUBIC-HCOUNT-RATIO-001 | Prove `cubicAmplitude n j / conservativeNormalizer n = j.val^3 / (gridSize n)^4`. | CUBIC-HCOUNT-IFACE-001, `gridSize_rat_ne_zero` | future lower Lean | planned ratio lemma | active Lean leaf |",
+    "| CUBIC-VER-CAND-001 | Necessary-condition checks for a concrete finite instance of the rank-one wrapper or Hadamard-counting transcript. | CUBIC-CAND-SHAPE-001, CUBIC-HCOUNT-IFACE-001 | future verifier lower | planned verifier-feedback artifact | active ne..."
   ],
-  "generated": "2026-06-19 13:18:50",
+  "generated": "2026-06-19 15:33:40",
   "ghl_contributions": [],
-  "lean_sorries": [
-    "QuantumBlockEncoding/RobinMatrix.lean:26968:  sorry",
-    "QuantumBlockEncoding/RobinMatrix.lean:26998:  sorry"
-  ],
+  "lean_sorries": [],
   "mode": "exploratoryConstruction",
   "next_lower_tasks": [
     {
@@ -42,157 +39,242 @@
     "# Proof Obligations: QBE-OP-CUBIC-STATEPREP-001",
     "## Target Obligations",
     "| Obligation | Lean declaration or artifact | Status |",
-    "| State block projector and clean-ancilla convention for first candidate | planned candidate contract | open |",
+    "| State block projector and clean-ancilla convention for first candidate | `CubicStatePreparation.rankOneCleanBlockContract`, `CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract`, `CubicStatePreparation.rankOneCleanBlockContract_pointwise_eq`, `CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract_pointwise_eq` | compiled contract bridge; semantic clean-block proof open |",
     "## Candidate Obligations",
     "| Obligation | Status |",
-    "| Resource score `(gateCount, depth, auxiliaryQubits, oracleCalls)` | open |"
+    "| Block-entry theorem for `O_n` | target-shape bridge compiled: `rankOneCleanBlockContract_pointwise_eq`; semantic zero-filter, row-generation, amplitude, and unitarity proofs remain open |",
+    "| Resource score `(gateCount, depth, auxiliaryQubits, oracleCalls)` | compiled for the unexpanded-oracle tier as `CubicStatePreparation.arithmeticCubicResourceTuple` and wrapper tuple `CubicStatePreparation.arithmeticRankOneCubicResourceTuple`; semantic expansion score open |",
+    "| CUBIC-CAND-001 | Arithmetic cubic amplitude-transduction interface plus rank-one wrapper shape audit. | CUBIC-TGT-001 | lower worker 5 / lower proof architect | `arithmeticCubicLayout`, `arithmeticCubicCircuit`, `arithmeticCubicNormalizer`, `arithmeticCubicResourceTuple`, `arithmeticCubicClaim`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-CAND-001.md` | compiled middle interface; semantic block proof open |",
+    "| CUBIC-CAND-SHAPE-001 | Rank-one wrapper transcript, resource tuple, clean-block contract, and target-shape bridge. | CUBIC-CAND-001, CUBIC-TGT-001 | lower worker 5 / lower Lean | `arithmeticRankOneCubicLayout`, `arithmeticRankOneCubicCircuit`, `arithmeticRankOneCubicResourceTuple`, `arithmeticRankOneCubicClaim`, `rankOneCleanBlockContract_pointwise_eq`, `arithmeticRankOneCubicCleanBlockContract_pointwise_eq` | compiled interface and pointwise bridge; zero-filter/row-generation semantics open |",
+    "| CUBIC-HCOUNT-IFACE-001 | Hadamard-counting layout, transcript, normalizer, resource tuple, clean-block contract bridge, and normalizer bridge. | CUBIC-TGT-001, CUBIC-ALPHA-001 | lower Lean | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicNormalizer`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | compiled interface; not a certificate |",
+    "| CUBIC-VER-CAND-001 | Necessary-condition checks for a concrete finite instance of the rank-one wrapper or Hadamard-counting transcript. | CUBIC-CAND-SHAPE-001, CUBIC-HCOUNT-IFACE-001 | future verifier lower | planned verifier-feedback artifact | active next diagnostic |",
+    "## Source-Correspondence Contract",
+    "| Source anchor | User/task contract in `tasks/QBE-OP-CUBIC-STATEPREP-001.md`; no paper archive is active. |",
+    "| External technical lemma | `classical-sixth-power-sum` in `research-wiki/cited-results/classical-power-sums.md`, status `obligation` unless a Lean helper builds. |",
+    "| QBE-local glue | Block-encoding records, clean-block projector convention, normalizer bookkeeping, resource tuple, verifier-feedback fields. |",
+    "| Not allowed in next lower packet | No normalized state-preparation shortcut and no certification claim for an unproved candidate. Candidate theorem shapes are allowed and expected; Lean closure is required before promotion. |",
+    "wrapper resource tuple, and pointwise bridge from the clean-block contract to",
+    "`O_n`.  The remaining blocker is semantic: choose finite matrices/contracts",
+    "unitarity obligations."
   ],
   "recent_proof_attempts": [],
   "recent_trials": [
     {
-      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03",
       "kind": "build",
       "lean_gate": "pass",
       "role": "reviewer",
       "status": "compiled",
-      "timestamp": "2026-06-19 12:56:22",
-      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-build-gate"
+      "timestamp": "2026-06-19 15:33:40",
+      "trial_id": "20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03-build-gate"
     },
     {
-      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/40_reviewer.md",
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03/40_reviewer.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "reviewer",
       "status": "accepted",
-      "timestamp": "2026-06-19 12:56:21",
-      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-40_reviewer"
+      "timestamp": "2026-06-19 15:33:38",
+      "trial_id": "20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03-40_reviewer"
     },
     {
-      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03",
       "kind": "handoff",
       "lean_gate": "",
       "role": "reviewer",
       "status": "queued",
-      "timestamp": "2026-06-19 12:55:43",
-      "trial_id": "20260619-125543-QBE-OP-CUBIC-STATEPREP-001-reviewer-handoff"
+      "timestamp": "2026-06-19 15:32:53",
+      "trial_id": "20260619-153253-QBE-OP-CUBIC-STATEPREP-001-reviewer-handoff"
     },
     {
-      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/30_lower_searcher_3.md",
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_5.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-19 12:51:37",
-      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-30_lower_searcher_3"
+      "timestamp": "2026-06-19 15:28:59",
+      "trial_id": "20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_5"
     },
     {
-      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/30_lower_searcher_2.md",
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_4.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-19 12:51:37",
-      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-30_lower_searcher_2"
+      "timestamp": "2026-06-19 15:28:59",
+      "trial_id": "20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_4"
     },
     {
-      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/30_lower_searcher_1.md",
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_3.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-19 12:51:37",
-      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-30_lower_searcher_1"
+      "timestamp": "2026-06-19 15:28:59",
+      "trial_id": "20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_3"
     },
     {
-      "artifact": "proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-ERR-001.md",
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03/30_lower_searcher_2.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
-      "status": "blocked",
-      "timestamp": "2026-06-19 12:51:15",
-      "trial_id": "20260619-125115-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:28:59",
+      "trial_id": "20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03-30_lower_searcher_2"
     },
     {
-      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03",
       "kind": "handoff",
       "lean_gate": "",
       "role": "lower",
       "status": "queued",
-      "timestamp": "2026-06-19 12:51:05",
-      "trial_id": "20260619-125105-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
+      "timestamp": "2026-06-19 15:28:18",
+      "trial_id": "20260619-152818-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
     },
     {
-      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
-      "kind": "handoff",
-      "lean_gate": "",
-      "role": "lower",
-      "status": "queued",
-      "timestamp": "2026-06-19 12:50:17",
-      "trial_id": "20260619-125017-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
-    },
-    {
-      "artifact": "verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-norm-001-necessary-condition.md",
+      "artifact": "verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-hcount-iface-001.md",
       "kind": "attempt",
       "lean_gate": "pass",
       "role": "lower",
-      "status": "blocked",
-      "timestamp": "2026-06-19 12:50:07",
-      "trial_id": "20260619-125007-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:28:10",
+      "trial_id": "20260619-152810-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "artifact": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-19 15:27:43",
+      "trial_id": "20260619-152743-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
     }
   ],
   "recent_verifier_feedback": [
     {
-      "block_entry_ok": false,
+      "block_entry_ok": "target-shape bridge compiled; concrete clean-block semantics not yet tested",
       "closed_theorem_ok": false,
       "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": "",
-      "leaf": "CUBIC-ERR-001",
-      "next_route": "Close CUBIC-NORM-001 and CUBIC-ALPHA-001 before encoding the first-column entry-error-to-operator-error lemma.",
+      "finite_matrix_ok": null,
+      "leaf": "CUBIC-HCOUNT-IFACE-001",
+      "next_route": "Prove CUBIC-HCOUNT-RATIO-001, or run n=1/n=2 clean-block finite diagnostics before attempting the symbolic Hadamard-sandwich theorem.",
       "role": "lower",
-      "status": "blocked",
-      "timestamp": "2026-06-19 12:51:15",
-      "trial_id": "20260619-125115-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:28:10",
+      "trial_id": "20260619-152810-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
     },
     {
-      "block_entry_ok": null,
+      "block_entry_ok": "",
+      "closed_theorem_ok": true,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "",
+      "leaf": "CUBIC-HCOUNT-ALPHA-001",
+      "next_route": "Prove CUBIC-HCOUNT-RATIO-001 or run finite n=1/n=2 Hadamard-counting clean-block diagnostics before attempting the semantic Hadamard-sandwich theorem.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:27:33",
+      "trial_id": "20260619-152733-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": "target-shape bridge compiled; semantic clean-block matrix not yet instantiated",
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": null,
+      "leaf": "CUBIC-HCOUNT-IFACE-001",
+      "next_route": "Run finite n=1 or n=2 clean-block checks for the Hadamard-counting labels, or prove CUBIC-HCOUNT-RATIO-001 before symbolic Hadamard-sandwich closure.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:27:28",
+      "trial_id": "20260619-152728-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
       "closed_theorem_ok": false,
       "error_class": "symbolic_bridge_gap",
       "finite_matrix_ok": true,
-      "leaf": "CUBIC-NORM-001",
-      "next_route": "Prove CUBIC-NORM-001 in Lean using the sixth-power sum bridge, or prove the conservative normalizer bound directly; do not run block-entry diagnostics until U_n, alpha, projector, and ancilla layout exist.",
+      "leaf": "CUBIC-VER-CAND-001:HCOUNT-PATH",
+      "next_route": "Compile CUBIC-HCOUNT-IFACE-001 layout/circuit/resource declarations, then attach Hadamard-sandwich and reversible-comparator semantics before theorem promotion.",
       "role": "lower",
-      "status": "blocked",
-      "timestamp": "2026-06-19 12:50:07",
-      "trial_id": "20260619-125007-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:24:12",
+      "trial_id": "20260619-152412-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": "designed_not_tested",
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": null,
+      "leaf": "CUBIC-HCOUNT-001",
+      "next_route": "Implement CUBIC-HCOUNT-IFACE-001 layout/circuit/resource declarations, then run n=1 or n=2 clean-block finite diagnostics before the Hadamard-sandwich semantic theorem.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:14:22",
+      "trial_id": "20260619-151422-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "shape_or_register_gap",
+      "finite_matrix_ok": null,
+      "leaf": "CUBIC-CAND-SHAPE-001",
+      "next_route": "Instantiate a finite n=1 or n=2 semantic matrix/verifier for the wrapped transcript before symbolic clean-block or unitarity proofs.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:14:06",
+      "trial_id": "20260619-151406-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": "contract_bridge_compiled_semantics_not_tested",
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": null,
+      "leaf": "CUBIC-CAND-SHAPE-001",
+      "next_route": "Instantiate finite semantic clean-block matrix for the rank-one wrapper or implement CUBIC-HCOUNT-IFACE-001, then test n=1 or n=2 before symbolic proof search.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:13:09",
+      "trial_id": "20260619-151309-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "finite_matrix_counterexample",
+      "finite_matrix_ok": false,
+      "leaf": "CUBIC-VER-CAND-001",
+      "next_route": "Repair CUBIC-CAND-SHAPE-001 with zero-input filtering and row-generation wrapper declarations, then rerun n=1 or n=2 support/block-entry verifier before symbolic theorem work.",
+      "role": "lower",
+      "status": "failed",
+      "timestamp": "2026-06-19 15:08:19",
+      "trial_id": "20260619-150819-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
     },
     {
       "block_entry_ok": "",
       "closed_theorem_ok": true,
       "error_class": null,
       "finite_matrix_ok": "",
-      "leaf": "CUBIC-DIAG-001",
-      "next_route": "CUBIC-NORM-001: formalize classical sixth-power-sum bridge for cubicNormSq_closedForm",
+      "leaf": "CUBIC-ALPHA-001",
+      "next_route": "CUBIC-CAND-SHAPE-001 should specify the zero-input filter and row-generation wrapper before semantic block proof; CUBIC-NORM-001 closed form remains diagnostic open work.",
       "role": "lower",
-      "status": "compiled",
-      "timestamp": "2026-06-19 12:48:55",
-      "trial_id": "20260619-124855-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+      "status": "accepted",
+      "timestamp": "2026-06-19 15:07:42",
+      "trial_id": "20260619-150742-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
     },
     {
-      "block_entry_ok": null,
-      "closed_theorem_ok": false,
+      "block_entry_ok": "",
+      "closed_theorem_ok": true,
       "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": true,
-      "leaf": "CUBIC-VER-001",
-      "next_route": "Send lower 2 to CUBIC-NORM-001; use dense rows only as future finite smoke tests.",
-      "role": "middle",
-      "status": "compiled",
-      "timestamp": "2026-06-19 12:45:36",
-      "trial_id": "20260619-124536-QBE-OP-CUBIC-STATEPREP-001-middle-attempt"
+      "finite_matrix_ok": "",
+      "leaf": "CUBIC-ALPHA-001",
+      "next_route": "Keep compiled conservative alpha bridge; retry CUBIC-NORM-001 only with a formal sixth-power-sum helper, or route candidate work through conservativeNormalizer.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 14:59:49",
+      "trial_id": "20260619-145949-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
     }
   ],
-  "run_dir": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+  "run_dir": "runs/20260619-152041-QBE-OP-CUBIC-STATEPREP-001-cycle03",
   "source_main_tex": "",
-  "stage": "Stage 1 target/transcript stabilization",
+  "stage": "Stage 2 DAG proof discharge, with source-transcript checks still active",
   "task_id": "QBE-OP-CUBIC-STATEPREP-001",
   "technical_lemmas": [],
   "title": "Cubic grid state-preparation operator"

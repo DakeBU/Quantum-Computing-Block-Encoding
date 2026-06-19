@@ -29,24 +29,24 @@ diagnostic.
 | --- | --- | --- |
 | Qiskit | Python/Qiskit circuit and helper functions. | Exact finite `Operator` or basis-action assertion when the instance is small enough. |
 | QuantumKatas style | A task file plus deterministic tests. | The tests match the certified concrete instance and resource record. |
-| OpenQASM 3 | Gate transcript or wrapper program. | Parser/smoke checks, plus semantic checks when the target tooling supports them. |
+| OpenQASM 3 | Gate transcript or wrapper program. | Parser and fixed-instance checks, plus semantic checks when the target tooling supports them. |
 
 ## Local Executable Environment
 
 The maintained local environment is:
 
 ```bash
-python3 -m virtualenv /home/nitanda_sub/mark/.venv
-/home/nitanda_sub/mark/.venv/bin/python -m pip install -r requirements-executable.txt
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-executable.txt
 ```
 
 When running executable-export checks or route-ablation comparisons, pass this
 Python explicitly:
 
 ```bash
-/home/nitanda_sub/mark/.venv/bin/python tools/run_route_ablation.py \
+.venv/bin/python tools/run_route_ablation.py \
   reference_qiskit \
-  --python /home/nitanda_sub/mark/.venv/bin/python
+  --python .venv/bin/python
 ```
 
 For symbolic Lean theorems, an executable export is usually a concrete

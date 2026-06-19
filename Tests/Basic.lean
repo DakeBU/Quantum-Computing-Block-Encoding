@@ -354,6 +354,55 @@ example :
     CubicStatePreparation.initialExpectedPhase =
       BlockEncodingSearchPhase.relaxedApproxSearch := rfl
 
+example :
+    CubicStatePreparation.arithmeticCubicDefaultPrecision = 40 := rfl
+
+example :
+    CubicStatePreparation.arithmeticCubicCircuit
+      2 CubicStatePreparation.arithmeticCubicDefaultPrecision =
+      [ Gate.oracleCall "cubic-load-j-over-2^n"
+      , Gate.oracleCall "cubic-square-fixed-point"
+      , Gate.oracleCall "cubic-multiply-by-x"
+      , Gate.oracleCall "cubic-amplitude-transduction-Ry"
+      , Gate.oracleCall "(cubic-multiply-by-x)^dagger"
+      , Gate.oracleCall "(cubic-square-fixed-point)^dagger"
+      , Gate.oracleCall "(cubic-load-j-over-2^n)^dagger"
+      ] := rfl
+
+example :
+    CubicStatePreparation.arithmeticCubicResource
+      2 CubicStatePreparation.arithmeticCubicDefaultPrecision =
+      Resource.ofCountsWithDepth 0 0 7 0 7 :=
+  CubicStatePreparation.arithmeticCubicResource_eq
+    2 CubicStatePreparation.arithmeticCubicDefaultPrecision
+
+example :
+    CubicStatePreparation.arithmeticCubicResourceTuple
+      2 CubicStatePreparation.arithmeticCubicDefaultPrecision =
+      (7, 7, 49, 7) := by
+  native_decide
+
+example :
+    CubicStatePreparation.hardModeUpperAgentSchedule.length = 3 ∧
+    CubicStatePreparation.hardModeMiddleAgentSchedule.length = 3 ∧
+    CubicStatePreparation.hardModeLowerAgentSchedule.length = 3 ∧
+    CubicStatePreparation.hardModeLevelCycleBudget.length = 3 :=
+  CubicStatePreparation.hardModeSchedules_have_three_levels
+
+example :
+    CubicStatePreparation.hardModeLowerAgentSchedule.getLast? = some 8 :=
+  CubicStatePreparation.hardModeLowerAgentSchedule_final
+
+example :
+    CubicStatePreparation.hadamardCountingCubicResourceTuple 2 =
+      (7, 7, 21, 7) :=
+  CubicStatePreparation.hadamardCountingCubicResourceTuple_n2
+
+example :
+    CubicStatePreparation.cubicNormSq 2 ≤
+      CubicStatePreparation.hadamardCountingCubicNormalizer 2 ^ 2 :=
+  CubicStatePreparation.cubicNormSq_le_hadamardCountingCubicNormalizer_sq 2
+
 -- CircuitSemantics tests: first matrix-semantics backend layer
 
 example : qubitDim 3 = 8 := rfl

@@ -11,9 +11,9 @@ The following systems are surveyed by
 | System | Local route | Current status on ABEIS main case |
 | --- | --- | --- |
 | Qiskit-QuantumKatas | custom Python/Qiskit kata evaluator | runnable same finite BE task |
-| QASM-Eval | OpenQASM completion evaluator | runnable same gate transcript smoke check, not clean-block BE proof |
+| QASM-Eval | OpenQASM completion evaluator | runnable same gate transcript parser/distribution check, not clean-block BE proof |
 | QUASAR | tool-server / hierarchical reward design | repository has no runnable local code yet |
-| AI-Mandel | staged idea-to-tool workflow | compile smoke only, not a BE verifier |
+| AI-Mandel | staged idea-to-tool workflow | Python compile check only, not a BE verifier |
 
 The latest measured table is
 `reports/external-quantum-verifier-comparison/latest.md`.
@@ -72,7 +72,6 @@ shows that dense Qiskit/NumPy unitary verification becomes a memory bottleneck
 for larger members of the same block-encoding family.  This supports the
 division of labor:
 
-- finite executable checks for small instances, smoke tests, and
+- finite executable checks for small instances, fixed-instance checks, and
   counterexamples;
 - Lean theorem closure for reusable large-register block-encoding claims.
-

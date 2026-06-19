@@ -9,7 +9,7 @@
     "epsilon": 1e-10,
     "precision_bits_floor": 34,
     "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
-    "dense_verifier_role": "small-instance smoke test only"
+    "dense_verifier_role": "small-instance fixed-instance executable check only"
   },
   {
     "n": 2,
@@ -21,7 +21,7 @@
     "epsilon": 1e-10,
     "precision_bits_floor": 34,
     "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
-    "dense_verifier_role": "small-instance smoke test only"
+    "dense_verifier_role": "small-instance fixed-instance executable check only"
   },
   {
     "n": 4,
@@ -33,7 +33,7 @@
     "epsilon": 1e-10,
     "precision_bits_floor": 34,
     "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
-    "dense_verifier_role": "small-instance smoke test only"
+    "dense_verifier_role": "small-instance fixed-instance executable check only"
   },
   {
     "n": 8,
@@ -45,7 +45,7 @@
     "epsilon": 1e-10,
     "precision_bits_floor": 34,
     "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
-    "dense_verifier_role": "small-instance smoke test only"
+    "dense_verifier_role": "small-instance fixed-instance executable check only"
   },
   {
     "n": 12,
@@ -57,7 +57,7 @@
     "epsilon": 1e-10,
     "precision_bits_floor": 34,
     "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
-    "dense_verifier_role": "small-instance smoke test only"
+    "dense_verifier_role": "small-instance fixed-instance executable check only"
   },
   {
     "n": 16,
@@ -69,7 +69,7 @@
     "epsilon": 1e-10,
     "precision_bits_floor": 34,
     "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
-    "dense_verifier_role": "small-instance smoke test only"
+    "dense_verifier_role": "small-instance fixed-instance executable check only"
   },
   {
     "n": 20,
@@ -81,6 +81,6 @@
     "epsilon": 1e-10,
     "precision_bits_floor": 34,
     "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
-    "dense_verifier_role": "small-instance smoke test only"
+    "dense_verifier_role": "small-instance fixed-instance executable check only"
   }
 ]

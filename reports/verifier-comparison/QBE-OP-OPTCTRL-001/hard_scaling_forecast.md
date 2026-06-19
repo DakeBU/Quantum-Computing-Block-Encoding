@@ -21,7 +21,7 @@ Why this matters:
   is a family over register size, because the dense verifier pays the
   Hilbert-space dimension directly.
 - ABEIS therefore treats finite executable checks as counterexample and
-  smoke-test layers, then asks Lean to certify the reusable block-encoding
+  fixed-instance executable-check layers, then asks Lean to certify the reusable block-encoding
   theorem and resource tuple.
 
 The forecast plot is generated at

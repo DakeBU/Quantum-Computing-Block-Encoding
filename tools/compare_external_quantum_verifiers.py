@@ -190,7 +190,7 @@ def qasm_eval_route() -> ExternalRouteResult:
         route_kind="OpenQASM completion evaluator",
         same_be_task=False,
         semantic_level=(
-            "syntax/element/distribution/timeline evaluator; the smoke target is the same "
+            "syntax/element/distribution/timeline evaluator; the quick check target is the same "
             "gate transcript but not block-entry equality over all basis states"
         ),
         status=status,
@@ -244,7 +244,7 @@ def ai_mandel_route() -> ExternalRouteResult:
         local_reference=rel_external(repo),
         route_kind="idea-to-tool-executable quantum-physics loop",
         same_be_task=False,
-        semantic_level="script compile smoke only; PyTheus execution is not a BE verifier",
+        semantic_level="script compile check only; PyTheus execution is not a BE verifier",
         status=status,
         median_ms=median_ms,
         measured_repeats=5 if median_ms is not None else 0,
@@ -266,7 +266,11 @@ def write_json(rows: list[ExternalRouteResult], path: Path) -> None:
 def write_csv(rows: list[ExternalRouteResult], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(asdict(rows[0]).keys()))
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=list(asdict(rows[0]).keys()),
+            lineterminator="\n",
+        )
         writer.writeheader()
         for row in rows:
             writer.writerow(asdict(row))
@@ -302,7 +306,7 @@ def write_markdown(rows: list[ExternalRouteResult], path: Path) -> None:
         "- QASM-Eval is valuable for typed syntax, element, distribution, and timeline",
         "  feedback.  Its released evaluator is not a block-entry verifier over all",
         "  basis states.  If the matching `openqasm3` parser stack is available,",
-        "  the local smoke route checks the same gate transcript through",
+        "  the local quick executable route checks the same gate transcript through",
         "  QASM-Eval's distribution-style policy; otherwise it is recorded as",
         "  `blocked-env` rather than counted as a pass.",
         "- QUASAR's local repository does not yet expose runnable code, so it can only",

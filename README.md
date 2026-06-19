@@ -66,6 +66,13 @@ ABEIS uses diagnostics as search signals, not as proofs.  A candidate enters
 the certified population only after Lean proves the advertised theorem at the
 task's semantic tier.
 
+Human interaction is a first-class upper-layer input, not an out-of-band chat.
+ABEIS records three human-facing intervention moments: scheduled 6h closeout,
+direct user questions, and user status checks followed by new top-level
+instructions.  Upper and middle agents should treat those interventions as
+strategy updates, then translate them into task packets, proof obligations, or
+candidate-population changes before lower agents continue.
+
 If exact search fails to meet the user-specified resource floor within the
 configured budget, the upper layer may switch to approximate BE search.  If a
 fixed number of generations does not improve the population, the upper layer
@@ -174,24 +181,33 @@ already require about `1 PiB` of memory.  At `r = 32`, it is about `16 ZiB`.
 This is where ABEIS should stop asking a simulator to materialize the whole
 matrix and instead ask Lean for a symbolic theorem about the circuit family.
 
-ABEIS still uses finite executable checks when they help.  They are excellent
-as small-instance smoke tests, counterexample generators, and necessary
-condition diagnostics.  They are not promoted to scientific claims until the
+ABEIS still uses finite executable checks when they help.  They are useful as
+small-instance checks, counterexample generators, and necessary-condition
+diagnostics.  They are not promoted to scientific claims until the
 advertised block-entry, unitarity, cleanup, and resource statements are closed
 by Lean.
 
 After a Lean certificate closes, ABEIS can emit runnable artifacts for users:
 Qiskit Python circuits with exact finite assertions, QuantumKatas-style task
-and test files, and OpenQASM transcripts with parser/smoke checks.  These
+and test files, and OpenQASM transcripts with parser and fixed-instance checks.  These
 exports are engineering deliverables, not replacements for the Lean theorem.
 For symbolic families, the exported code records the concrete instantiation it
 implements; the Lean theorem remains the reusable, parameterized certificate.
 
+Current Qiskit exports:
+
+- `executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py`: exported from a
+  Lean-certified exact concrete champion.
+- `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py`: finite
+  dense baseline for small `n`; useful evidence, not a symbolic certificate.
+
 ## Why The ABEIS Harness
 
-Qiskit QuantumKatas and QASM-Eval are good at testing submitted code.  QUASAR
-and AI-Mandel are useful examples of tool-feedback loops for quantum artifacts.
-ABEIS targets a stricter task:
+Qiskit QuantumKatas and QASM-Eval are good at testing submitted executable
+artifacts.  QUASAR and AI-Mandel are useful examples of tool-feedback loops
+for quantum artifacts.  Local public artifacts checked so far do not expose a
+direct generic BE constructor for "given operator `A`, synthesize and prove a
+symbolic block-encoding family."  ABEIS targets that stricter task:
 
 ```text
 given an oracle/operator requirement A,
