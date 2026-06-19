@@ -8,6 +8,16 @@ Leaf checked: `CUBIC-VER-CAND-001:HCOUNT-PATH`, against the candidate route
 Executable diagnostic:
 `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic_ver_cand_001_hcount_path_check.py`
 
+## Middle Update
+
+Updated on `2026-06-19 16:33:44 JST`: `CUBIC-HCOUNT-IFACE-001` now compiles
+the Hadamard-counting layout, transcript, normalizer, resource tuple,
+clean-block contract bridge, and normalizer bridge.  The finite path/support
+check below is still useful, but the next route is no longer "compile the
+interface."  The next verifier packet should test finite semantic clean-block,
+unitarity, and ancilla-cleanup conditions for `n = 1` or `n = 2`, while the
+Lean worker proves `CUBIC-HCOUNT-RATIO-001`.
+
 ## Necessary Condition
 
 The active Hadamard-counting route proposes the clean-block entry
@@ -64,10 +74,10 @@ block-encoding certificate.
 | `ancilla_cleanup_ok` | `designed_not_executed` |
 | `normalizer_ok` | `true` for `alpha = conservativeNormalizer n` in the checked entries |
 | `unitarity_ok` | `null` |
-| `resource_score` | `null`; `CUBIC-HCOUNT-IFACE-001` has not compiled a resource tuple yet |
+| `resource_score` | `stale pre-repair tuple was (7, 7, 21, 7); repaired separate-reject interface now has oracle-label tier n=2 tuple (8, 8, 21, 8)` |
 | `closed_theorem_ok` | `false` |
 | `error_class` | `symbolic_bridge_gap` |
-| `next_route` | `Compile CUBIC-HCOUNT-IFACE-001 layout/circuit/resource declarations, then attach Hadamard-sandwich and reversible-comparator semantics before theorem promotion.` |
+| `next_route` | `CUBIC-HCOUNT-RATIO-001 and the repaired finite n=1/n=2 Hadamard-counting semantic diagnostics are complete; schedule one symbolic bridge leaf such as CUBIC-HCOUNT-COUNT-001 or CUBIC-HCOUNT-UNITARY-001 before theorem promotion.` |
 
 ## Rejection Rule
 

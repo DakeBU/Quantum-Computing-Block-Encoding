@@ -57,9 +57,9 @@ Hard Mode escalation is also recorded in Lean:
 CubicStatePreparation.hardModeUpperAgentSchedule = [1, 3, 4]
 CubicStatePreparation.hardModeMiddleAgentSchedule = [1, 2, 3]
 CubicStatePreparation.hardModeLowerAgentSchedule = [3, 5, 8]
-CubicStatePreparation.hardModeExactStallWindow = 2
-CubicStatePreparation.hardModeConstructionStallWindow = 3
-CubicStatePreparation.hardModeLevelCycleBudget = [2, 3, 4]
+CubicStatePreparation.hardModeExactStallWindow = 1
+CubicStatePreparation.hardModeConstructionStallWindow = 1
+CubicStatePreparation.hardModeLevelCycleBudget = [1, 1, 1]
 CubicStatePreparation.relaxedEpsilonLadder = [1e-10, 1e-8, 1e-6]
 ```
 
@@ -69,8 +69,8 @@ schedule is:
 | Phase | Trigger | Agent allocation | Goal |
 |---|---|---|---|
 | L0 exact contraction and candidate seeding | task starts or memory was stale | upper=1, middle=1, lower=3: candidate architect, Lean worker, verifier | seed at least one concrete `U_n` family while also closing target/norm leaves and rejecting wrong exact state-prep interpretations |
-| L1 requested-epsilon Scenario 2 | no closed leaf or no concrete candidate for 2 cycles | upper=3, middle=2, lower=5: 2 architects, 2 Lean workers, 1 verifier/export worker | find or repair a symbolic approximate candidate at `1e-10` |
-| L2 relaxed waypoint search | no improving certified/finite candidate for 3 cycles | upper=4, middle=3, lower=8 | try `1e-8`, then `1e-6` as waypoints, while keeping the final requested target visible |
+| L1 requested-epsilon Scenario 2 | no closed leaf or no concrete candidate for 1 cycle | upper=3, middle=2, lower=5: 2 architects, 2 Lean workers, 1 verifier/export worker | find or repair a symbolic approximate candidate at `1e-10` |
+| L2 relaxed waypoint search | no improving certified/finite candidate for 1 cycle | upper=4, middle=3, lower=8 | try `1e-8`, then `1e-6` as one-hour waypoints, while keeping the final requested target visible |
 
 Every escalation must record whether the extra agents improved the certified
 population, the finite verifier population, or only the insight pool.
@@ -155,18 +155,27 @@ certificate.
 
 ## Next Agent Packet
 
-- lower candidate architect: immediately propose one Lean-checkable candidate
-  family `U_n`, with register layout, block projector, normalizer `alpha`,
-  unitary argument, resource tier, and approximate error budget.  It is fine
-  if some analytic leaves remain obligations; do not wait for `CUBIC-NORM-001`
-  before naming a candidate.
-- lower Lean worker: close one small exact diagnostic lemma or reusable
-  rational normalizer lemma in parallel with candidate design.  Do not use this
-  leaf as a serial gate that blocks candidate seeding.
-- lower verifier/export worker: use the existing dense/Qiskit comparison as a
-  baseline and, once a candidate architect names `U_n`, run fixed-instance
-  necessary-condition checks for that candidate.  If no concrete candidate is
-  available, write a typed feedback packet saying the blocker is
-  `candidate_interface_gap`, not another norm-only retry.
+- lower natural-language proof architect: keep the Hadamard-counting proof-DAG
+  branch fixed, with the repair leaf now compiled after the ratio bridge:
+  `CUBIC-TGT-001 -> CUBIC-ALPHA-001 -> CUBIC-HCOUNT-IFACE-001 ->
+  CUBIC-HCOUNT-RATIO-001 -> CUBIC-HCOUNT-REJECT-REPAIR-001 ->
+  CUBIC-HCOUNT-COUNT-001 -> CUBIC-HCOUNT-UNITARY-001 ->
+  CUBIC-HCOUNT-BLOCK-001 -> CUBIC-HCOUNT-APPROX-001`.  The selected repair is
+  the separate reject-signal convention; do not reopen the sticky-vs-reject
+  choice unless a later semantic proof finds a contradiction.
+- lower Lean worker: `CUBIC-HCOUNT-RATIO-001` is compiled as
+  `cubicAmplitude_div_conservativeNormalizer_eq`; do not reschedule this leaf
+  unless the gate fails or the statement changes.  `CUBIC-HCOUNT-REJECT-REPAIR-001`
+  is compiled as `hadamardCountingCubicCircuit_rejectSignalRepair` with the
+  default `n = 2` tuple `(8, 8, 21, 8)`.  The next Lean leaf should be one
+  symbolic bridge such as `CUBIC-HCOUNT-COUNT-001` or
+  `CUBIC-HCOUNT-UNITARY-001`, not the full block theorem.
+- lower verifier/export worker: `CUBIC-VER-CAND-001:HCOUNT-SEMANTIC` rejected
+  the old daggered nonzero-flag transcript, and
+  `CUBIC-HCOUNT-REJECT-REPAIR-001` finite checks pass for `n = 1, 2`.  Do not
+  rerun the stale `candidate_interface_gap` diagnostic; only add a verifier
+  check if it constrains the next symbolic bridge.
 - reviewer: reject any candidate that treats the unnormalized vector as a
-  unitary output state without either normalization or block-encoding scaling.
+  unitary output state without either normalization or block-encoding scaling,
+  and reject any promotion from finite diagnostics to the certified population
+  before a Lean clean-block theorem is named and build-tested.

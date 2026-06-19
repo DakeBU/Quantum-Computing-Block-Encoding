@@ -4,10 +4,10 @@ Task: `QBE-OP-CUBIC-STATEPREP-001`
 Leaf: `CUBIC-HCOUNT-001`, spawned from `CUBIC-CAND-SHAPE-001`
 Mode: exploratory construction
 Author role: lower natural-language proof architect
-Updated: `2026-06-19 15:20:41 JST`
+Updated: `2026-06-19 17:25:22 JST`
 Status: concrete candidate route designed; shared clean-block contract bridge
-compiled; Hadamard-counting Lean interface compiled; ratio/counting and
-semantic proofs remain open.
+compiled; Hadamard-counting Lean interface, ratio bridge, and separate-reject
+repair compiled; `CUBIC-HCOUNT-COUNT-001` is the active symbolic leaf.
 
 ## Source Fragment
 
@@ -146,8 +146,9 @@ unit vector.
 | CUBIC-ALPHA-001 | Conservative normalizer is sufficient for the target norm. | CUBIC-TGT-001 | lower Lean refiner | `cubicNormSq_le_conservativeNormalizer_sq` | proof obligations | `python3 tools/qbe.py check` | proved |
 | CUBIC-RANKONE-CONTRACT-001 | Reusable clean-block contract implies the scaled block is pointwise `O_n`. | CUBIC-TGT-001 | lower worker 5 | `rankOneCleanBlockContract`, `rankOneCleanBlockContract_pointwise_eq`, `arithmeticRankOneCubicCleanBlockContract_pointwise_eq` | candidate population and proof obligations | `python3 tools/qbe.py check` | compiled bridge |
 | CUBIC-HCOUNT-IFACE-001 | Define the Hadamard-counting layout, transcript, normalizer, resource tuple, clean-block contract bridge, and normalizer bridge. | CUBIC-TGT-001, CUBIC-ALPHA-001 | lower Lean worker | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicNormalizer`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | this file, candidate population | `python3 tools/qbe.py check` | compiled interface; not a certificate |
-| CUBIC-HCOUNT-RATIO-001 | Prove `cubicAmplitude n j / conservativeNormalizer n = j.val^3 / (gridSize n)^4`. | CUBIC-HCOUNT-IFACE-001, `gridSize_rat_ne_zero` | lower Lean worker | planned ratio lemma | this file | `python3 tools/qbe.py check` | active Lean leaf |
-| CUBIC-HCOUNT-COUNT-001 | Prove that exactly `j^3` threshold paths satisfy `t < j^3` in a `3*n`-qubit register. | CUBIC-HCOUNT-RATIO-001, `j.isLt`, `gridSize_pos` | lower Lean worker | planned finite-count lemma | this file | `python3 tools/qbe.py check` | open |
+| CUBIC-HCOUNT-RATIO-001 | Prove `cubicAmplitude n j / conservativeNormalizer n = j.val^3 / (gridSize n)^4`. | CUBIC-HCOUNT-IFACE-001, rational division algebra | lower Lean worker | `rat_div_cube_div_eq`, `cubicAmplitude_div_conservativeNormalizer_eq` | this file | `python3 tools/qbe.py check` | proved |
+| CUBIC-HCOUNT-REJECT-REPAIR-001 | Add the separate nonzero-column reject signal and keep `nz` cleanup. | CUBIC-HCOUNT-IFACE-001, CUBIC-HCOUNT-RATIO-001, finite semantic counterexample | lower Lean refiner | `hadamardCountingCubicCircuit_rejectSignalRepair`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2` | proof-attempt repair note | `python3 tools/qbe.py check` | proved dependency |
+| CUBIC-HCOUNT-COUNT-001 | Prove that exactly `j^3` threshold paths satisfy `t < j^3` in a `3*n`-qubit register. | CUBIC-HCOUNT-RATIO-001, CUBIC-HCOUNT-REJECT-REPAIR-001, `j.isLt`, `gridSize_pos` | lower Lean worker | planned `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, `hadamardCountingCubic_threshold_le_pathCapacity`, `hadamardCountingCubic_thresholdPathCount` | `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-COUNT-001.md` | `python3 tools/qbe.py check` | active leaf |
 | CUBIC-HCOUNT-UNITARY-001 | Prove the transcript is unitary as a composition of Hadamards and reversible permutations. | CUBIC-HCOUNT-IFACE-001, Hadamard/permutation semantics | future Lean backend | planned semantic theorem | this file | `python3 tools/qbe.py check` | blocked internal |
 | CUBIC-HCOUNT-BLOCK-001 | Prove the clean block satisfies `rankOneCleanBlockContract n (conservativeNormalizer n)`. | CUBIC-RANKONE-CONTRACT-001, CUBIC-HCOUNT-COUNT-001, CUBIC-HCOUNT-UNITARY-001 | future Lean worker | planned clean-block theorem | this file | `python3 tools/qbe.py check` | blocked internal |
 | CUBIC-HCOUNT-APPROX-001 | Package exact error `0` as an approximate block encoding at requested epsilon. | CUBIC-HCOUNT-BLOCK-001, `requestedEpsilon` positivity | future Lean worker | planned `VerifiedApproximateOperatorBlockEncoding` | this file | `python3 tools/qbe.py check` | blocked internal |
@@ -180,20 +181,19 @@ the full semantic matrix.
    `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` are compiled.
 
 5. The resource tuple and `hadamardCountingCubicResource_eq` are compiled for
-   the oracle-label resource count.  The default `n=2` tuple is
-   `(7, 7, 21, 7)`.
+   the repaired oracle-label resource count.  The default `n=2` tuple is
+   `(8, 8, 21, 8)`.
 
-6. Prove the ratio lemma:
+6. The ratio lemma is compiled:
 
    ```lean
    cubicAmplitude n j / conservativeNormalizer n =
      (j.val : Rat) ^ 3 / (gridSize n : Rat) ^ 4
    ```
 
-   The proof should unfold `cubicAmplitude`, `gridPoint`, and
-   `conservativeNormalizer`, then use `gridSize_rat_ne_zero`.
+   It is named `cubicAmplitude_div_conservativeNormalizer_eq`.
 
-7. Prove the path-size identities `gridSize (4*n) = gridSize n ^ 4` and
+7. Active leaf: prove the path-size identities `gridSize (4*n) = gridSize n ^ 4` and
    `gridSize (3*n) = gridSize n ^ 3`, or state equivalent local lemmas over
    powers of two if that is easier in the current arithmetic library.
 
@@ -252,11 +252,11 @@ large `VerifiedApproximateOperatorBlockEncoding` attempt.
 | `ancilla_cleanup_ok` | `designed: reject, nz, path, and workspace all projected to zero` |
 | `normalizer_ok` | `true for conservativeNormalizer via cubicNormSq_le_conservativeNormalizer_sq` |
 | `unitarity_ok` | `designed as Hadamards plus reversible permutations; not yet a Lean theorem` |
-| `resource_score` | `exact reversible path-counting tier; oracle-label tuple compiled as `(7, 7, auxiliaryQubits, 7)` with `n=2` diagnostic `(7, 7, 21, 7)` |
+| `resource_score` | `exact reversible path-counting tier; repaired oracle-label tuple compiled as `(8, 8, auxiliaryQubits, 8)` with `n=2` diagnostic `(8, 8, 21, 8)` |
 | `auxiliary_qubits` | `1 signal + 1 nz flag + 4*n path qubits + workspace seed hadamardCountingCubicWorkspace n` |
-| `gate_count` | `7 at the oracle-label tier; expanded reversible arithmetic tier open` |
-| `depth` | `7 at the oracle-label tier; expanded reversible arithmetic tier open` |
-| `oracle_calls` | `7 at the oracle-label tier` |
+| `gate_count` | `8 at the oracle-label tier; expanded reversible arithmetic tier open` |
+| `depth` | `8 at the oracle-label tier; expanded reversible arithmetic tier open` |
+| `oracle_calls` | `8 at the oracle-label tier` |
 | `closed_theorem_ok` | `false` |
 | `error_class` | `symbolic_bridge_gap` |
 | `next_route` | `Prove CUBIC-HCOUNT-RATIO-001, or run n=1/n=2 clean-block finite diagnostics before attempting the Hadamard-sandwich semantic theorem.` |

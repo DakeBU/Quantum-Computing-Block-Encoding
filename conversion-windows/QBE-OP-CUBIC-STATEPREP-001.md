@@ -81,8 +81,17 @@ clean-block contract bridge.  The semantic unitary matrix and finite verifier
 for the wrapper labels remain open.  `CUBIC-HCOUNT-001` adds an exact
 Hadamard-sandwich path-counting mutation that reuses the same clean-block
 contract and targets the entry identity `j^3 / 2^(4*n) = v_n[j] / alpha`;
-its layout, transcript, resource tuple, clean-block contract bridge, and
-normalizer bridge are compiled.
+its layout, transcript, resource tuple, clean-block contract bridge,
+normalizer bridge, and ratio bridge are compiled.  The finite semantic
+diagnostic `CUBIC-VER-CAND-001:HCOUNT-SEMANTIC` rejected the old daggered
+nonzero-flag transcript: nonzero input columns return to clean ancillas and
+leak identity entries.  `CUBIC-HCOUNT-REJECT-REPAIR-001` is now compiled as a
+separate nonzero-column reject signal in the transcript; the repaired finite
+semantic diagnostic passes for `n = 1, 2`.  Cycle 3 fixes the next active
+route as `CUBIC-HCOUNT-COUNT-001`: a symbolic threshold path-count leaf for the
+repaired Hadamard-counting branch.  The separate-reject convention is no longer
+up for selection; it is a compiled dependency unless a later symbolic semantic
+proof finds a contradiction.
 
 ## Markdown Explanation
 
@@ -94,9 +103,10 @@ The conservative norm/normalizer bridge is now compiled through the direct
 entrywise upper bound.  The exact closed rational expression for `cubicNormSq n`
 remains open as a diagnostic theorem.  In parallel, the first candidate route
 is named at the transcript/resource level, and the rank-one wrapper shape is
-now compiled.  The next proof obligation is to instantiate or contract the
-wrapper semantics for a finite `n = 1` or `n = 2` smoke test before attempting a
-symbolic clean-block theorem.
+now compiled.  The Hadamard-counting zero-input rejection convention has a
+compiled separate-reject repair and finite semantic support check, but this is
+still only interface and executable evidence.  The next proof obligation is a
+symbolic threshold path-count theorem before the clean-block theorem.
 
 The expected scalable candidate family is reversible arithmetic for `j/2^n`,
 cubic evaluation, and controlled rotation or equivalent amplitude transduction.
@@ -119,6 +129,10 @@ following ordered Lean-facing proof map.
 | Seed the arithmetic middle-block transcript. | Scenario 2 candidate interface. | `arithmeticCubicLayout`, `arithmeticCubicCircuit`, `arithmeticCubicResourceTuple`, `arithmeticCubicClaim`. | compiled middle-block interface |
 | Seed the rank-one wrapped candidate transcript. | Shape repair for `O_n = |v_n><0^n|`. | `arithmeticRankOneCubicLayout`, `arithmeticRankOneCubicCircuit`, `arithmeticRankOneCubicResourceTuple`, `arithmeticRankOneCubicClaim`. | compiled wrapper interface; semantic proof open |
 | Design exact Hadamard-counting mutation. | Shape repair with exact dyadic clean entries. | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`; proof note `CUBIC-HCOUNT-001`. | Lean interface and contract bridge compiled; semantic proof open |
+| Prove Hadamard-counting ratio bridge. | Exact scaled entry identity. | `rat_div_cube_div_eq`, `cubicAmplitude_div_conservativeNormalizer_eq`. | compiled; semantic proof still open |
+| Reject the old daggered nonzero-flag transcript. | Finite necessary-condition diagnostic. | `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-cand-001-hcount-semantic.md`. | completed rejected feedback: `finite_matrix_ok=false`, `block_entry_ok=false` |
+| Repair nonzero-column rejection. | Same target operator and Hadamard-counting route. | `hadamardCountingCubicCircuit_rejectSignalRepair`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2`, focused tests, and proof attempt `QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-REJECT-REPAIR-001.md`. | compiled; repaired finite diagnostic passed; symbolic clean-block proof open |
+| Prove threshold path counting. | Hadamard-counting accepted-path formula. | planned `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, `hadamardCountingCubic_threshold_le_pathCapacity`, and `hadamardCountingCubic_thresholdPathCount`; proof attempt `QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-COUNT-001.md`. | active leaf |
 | Prove a candidate approximate block encoding. | Scenario 2 policy. | planned `VerifiedApproximateOperatorBlockEncoding` instance or theorem. | open |
 
 ## Proof-DAG Frontier
@@ -128,14 +142,20 @@ following ordered Lean-facing proof map.
 | CUBIC-TGT-001 | Target operator entries for `O_n = |v_n><0^n|`. | none | middle/Lean target | `gridSize_pos`, `cubicOperator`, `cubicOperator_first_column`, `cubicOperator_only_first_column` | this window, Symbol Map | `python3 tools/qbe.py check` | proved |
 | CUBIC-DIAG-001 | Small exact norm diagnostics for `n = 1, 2, 3`. | CUBIC-TGT-001 | lower historical | `cubicNormSq_n1`, `cubicNormSq_n2`, `cubicNormSq_n3` | proof obligations | `python3 tools/qbe.py check` | proved, retired |
 | CUBIC-NORM-001A | Rewrite `cubicNormSq n` as a fold over `gridPoint n j ^ 6`. | CUBIC-TGT-001 | lower Lean refiner | `rat_cube_sq_eq_sixth`, `cubicAmplitude_sq_eq_gridPoint_sixth`, `cubicNormSq_sixthPowerFold` | proof obligations, this window | `python3 tools/qbe.py check` | proved |
-| CUBIC-NORM-001 | Closed rational form for `sum_j (j / 2^n)^6`. | CUBIC-NORM-001A, classical sixth-power sum | lower Lean | planned `cubicNormSq_closedForm` | this window, `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-NORM-001.md` | `lake build && lake build Tests` | proof design recorded; active Lean leaf |
+| CUBIC-NORM-001 | Closed rational form for `sum_j (j / 2^n)^6`. | CUBIC-NORM-001A, classical sixth-power sum | future lower Lean | planned `cubicNormSq_closedForm` | this window, `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-NORM-001.md` | `python3 tools/qbe.py check` | proof design recorded; diagnostic backlog, not a serial blocker |
 | CUBIC-ALPHA-001 | Prove chosen `alpha` is compatible with the target norm. | Direct entrywise norm bound | lower Lean | `cubicNormSq_le_conservativeNormalizer_sq`, `cubicNormSq_le_arithmeticCubicNormalizer_sq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | proof obligations | `lake build && lake build Tests` | proved |
 | CUBIC-ERR-001 | Arithmetic approximation and rotation/transduction error budget sums to `1e-10`. | CUBIC-ALPHA-001, CUBIC-CAND-SHAPE-001 | lower architect | `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-ERR-001.md` plus future Lean targets | candidate population | `python3 tools/qbe.py check` | designed, blocked on wrapper semantics |
 | CUBIC-CAND-001 | Arithmetic-transduction middle block, layout, normalizer, and resource tuple. | CUBIC-TGT-001 | lower worker 5 / lower proof architect | `arithmeticCubicLayout`, `arithmeticCubicCircuit`, `arithmeticCubicNormalizer`, `arithmeticCubicResourceTuple`, `arithmeticCubicClaim`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-CAND-001.md` | candidate population | `python3 tools/qbe.py check` | compiled middle-block interface |
 | CUBIC-CAND-SHAPE-001 | Rank-one wrapper transcript, resource tuple, clean-block contract, and target-shape bridge. | CUBIC-CAND-001, CUBIC-TGT-001 | lower Lean refiner | `arithmeticRankOneCubicLayout`, `arithmeticRankOneCubicCircuit`, `arithmeticRankOneCubicResourceTuple`, `arithmeticRankOneCubicClaim`, `arithmeticRankOneCubicCleanBlockContract_pointwise_eq`; `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-CAND-SHAPE-001.md` | candidate population, proof obligations | `python3 tools/qbe.py check` | compiled wrapper interface; semantic matrix open |
-| CUBIC-HCOUNT-001 | Hadamard-sandwich path counting realizes exact scaled entries `j^3 / 2^(4*n)`. | CUBIC-CAND-SHAPE-001, CUBIC-ALPHA-001 | lower proof architect / future Lean | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | candidate population, proof obligations | `python3 tools/qbe.py check` | interface and normalizer bridge compiled; semantic proof open |
-| CUBIC-HCOUNT-RATIO-001 | Algebra bridge from `v_n[j] / alpha` to `j^3 / (gridSize n)^4`. | CUBIC-HCOUNT-001, `gridSize_rat_ne_zero` | future lower Lean | planned ratio lemma | proof obligations | `python3 tools/qbe.py check` | active Lean leaf |
-| CUBIC-VER-CAND-001 | Fixed-instance necessary-condition check for the rank-one wrapped or Hadamard-counting transcript after oracle-label matrices are chosen. | CUBIC-CAND-SHAPE-001, CUBIC-HCOUNT-001 | future verifier lower | planned verifier-feedback artifact | verifier-feedback | `python3 tools/qbe.py check` plus finite script | active next diagnostic |
+| CUBIC-HCOUNT-001 | Hadamard-sandwich path counting realizes exact scaled entries `j^3 / 2^(4*n)`. | CUBIC-CAND-SHAPE-001, CUBIC-ALPHA-001 | lower proof architect / future Lean | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | candidate population, proof obligations | `python3 tools/qbe.py check` | interface, normalizer bridge, and reject repair compiled; semantic proof open |
+| CUBIC-HCOUNT-IFACE-001 | Hadamard-counting layout, transcript, normalizer, resource tuple, clean-block contract bridge, and normalizer bridge. | CUBIC-TGT-001, CUBIC-ALPHA-001 | lower Lean | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicNormalizer`, `hadamardCountingCubicResourceTuple`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | candidate population, proof obligations | `python3 tools/qbe.py check` | compiled interface; not a certificate |
+| CUBIC-HCOUNT-RATIO-001 | Algebra bridge from `v_n[j] / alpha` to `j^3 / (gridSize n)^4`. | CUBIC-HCOUNT-001, rational division algebra | lower Lean | `rat_div_cube_div_eq`, `cubicAmplitude_div_conservativeNormalizer_eq` | proof obligations | `python3 tools/qbe.py check` | proved; semantic Hadamard-counting proof still open |
+| CUBIC-VER-CAND-001:HCOUNT-SEMANTIC | Fixed-instance necessary-condition check for the old daggered route and repaired separate-reject route. | CUBIC-HCOUNT-IFACE-001, CUBIC-HCOUNT-RATIO-001 proof map | verifier lower | `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-cand-001-hcount-semantic.md` | verifier-feedback | `python3 tools/qbe.py check` plus finite script | repaired finite diagnostic passed; old daggered route remains rejected |
+| CUBIC-HCOUNT-REJECT-REPAIR-001 | Repair the zero-input rejection convention so nonzero input columns cannot return clean identity entries. | CUBIC-HCOUNT-IFACE-001, CUBIC-HCOUNT-RATIO-001, CUBIC-VER-CAND-001:HCOUNT-SEMANTIC | lower Lean | `hadamardCountingCubicCircuit_rejectSignalRepair`, `hadamardCountingCubicResource_eq`, `hadamardCountingCubicResourceTuple_n2`, focused `Tests/Basic.lean` checks | this window, proof obligations, candidate population | `python3 tools/qbe.py check` plus finite script | proved dependency; retired |
+| CUBIC-HCOUNT-COUNT-001 | Prove the symbolic count of accepted threshold paths: for fixed row `j`, exactly `j.val ^ 3` values of `t : Fin (gridSize (3 * n))` satisfy `t.val < j.val ^ 3`. | CUBIC-HCOUNT-RATIO-001, CUBIC-HCOUNT-REJECT-REPAIR-001, finite path diagnostic | lower Lean | planned `gridSize_three_mul_eq_cube`, `gridSize_four_mul_eq_fourth`, `hadamardCountingCubic_threshold_le_pathCapacity`, `hadamardCountingCubic_thresholdPathCount` | `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-HCOUNT-COUNT-001.md` | `python3 tools/qbe.py check` | active leaf |
+| CUBIC-HCOUNT-UNITARY-001 | Prove the repaired transcript is unitary as Hadamards plus reversible arithmetic/permutation labels. | CUBIC-HCOUNT-COUNT-001, future semantics for oracle labels | future lower Lean | planned semantic theorem | this window, proof obligations | `python3 tools/qbe.py check` | blocked internal |
+| CUBIC-HCOUNT-BLOCK-001 | Prove the repaired clean block satisfies `hadamardCountingCubicCleanBlockContract n block`. | CUBIC-HCOUNT-COUNT-001, CUBIC-HCOUNT-UNITARY-001, Hadamard-sandwich semantic lemma | future lower Lean | planned clean-block theorem | this window, proof obligations | `python3 tools/qbe.py check` | blocked internal |
+| CUBIC-HCOUNT-APPROX-001 | Package exact error `0` into the requested approximate block-encoding record at `requestedEpsilon`. | CUBIC-HCOUNT-BLOCK-001, positivity of `requestedEpsilon` | future lower Lean | planned `VerifiedApproximateOperatorBlockEncoding` witness | this window, candidate population | `python3 tools/qbe.py check` | blocked internal |
 | CUBIC-VER-001 | Dense-vs-symbolic scaling diagnostics and same-target finite external checks. | CUBIC-TGT-001 | verifier lower | `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-001-scaling.md`, `reports/cubic-stateprep/external_comparison.md` | verifier-feedback | `python3 tools/qbe.py check` plus local Qiskit run | diagnostic complete, not a certificate |
 
 ## Lean Declaration Plan
@@ -160,9 +180,16 @@ following ordered Lean-facing proof map.
 | `arithmeticRankOneCubicClaim` | `QuantumBlockEncoding/CubicStatePreparation.lean` | human-facing wrapped construction claim for the candidate archive | compiled; not certified |
 | `arithmeticRankOneCubicCleanBlockContract_pointwise_eq` | `QuantumBlockEncoding/CubicStatePreparation.lean` | bridge from the wrapped clean-block contract to `cubicOperator` | compiled; semantic clean-block proof open |
 | `hadamardCountingCubicLayout` | `QuantumBlockEncoding/CubicStatePreparation.lean` | exact path-counting mutation layout with reject signal, nonzero flag, `4*n` path qubits, and arithmetic workspace | compiled |
-| `hadamardCountingCubicCircuit` | `QuantumBlockEncoding/CubicStatePreparation.lean` | Hadamard-sandwich transcript for the exact count `#{t < j^3}` | compiled |
+| `hadamardCountingCubicCircuit` | `QuantumBlockEncoding/CubicStatePreparation.lean` | Hadamard-sandwich transcript with a separate nonzero-column reject signal | compiled |
+| `hadamardCountingCubicCircuit_rejectSignalRepair` | `QuantumBlockEncoding/CubicStatePreparation.lean` | exact-list theorem for the repaired `CUBIC-HCOUNT-REJECT-REPAIR-001` transcript | compiled |
 | `hadamardCountingCubicResourceTuple` | `QuantumBlockEncoding/CubicStatePreparation.lean` | resource tuple for the exact path-counting route | compiled |
 | `cubicNormSq_le_hadamardCountingCubicNormalizer_sq` | `QuantumBlockEncoding/CubicStatePreparation.lean` | route-specific normalizer bridge for Hadamard counting | compiled |
+| `rat_div_cube_div_eq` | `QuantumBlockEncoding/CubicStatePreparation.lean` | core rational identity `(a / b)^3 / b = a^3 / b^4` for the Hadamard-counting path ratio | compiled |
+| `cubicAmplitude_div_conservativeNormalizer_eq` | `QuantumBlockEncoding/CubicStatePreparation.lean` | active ratio leaf connecting `v_n[j] / alpha` to `j^3 / (gridSize n)^4` | compiled |
+| `gridSize_three_mul_eq_cube` | `QuantumBlockEncoding/CubicStatePreparation.lean` | planned path-register capacity identity `gridSize (3 * n) = gridSize n ^ 3` | active leaf |
+| `gridSize_four_mul_eq_fourth` | `QuantumBlockEncoding/CubicStatePreparation.lean` | planned path-space denominator identity `gridSize (4 * n) = gridSize n ^ 4` | active leaf |
+| `hadamardCountingCubic_threshold_le_pathCapacity` | `QuantumBlockEncoding/CubicStatePreparation.lean` | planned bound `j.val ^ 3 <= gridSize (3 * n)` for the threshold register | active leaf |
+| `hadamardCountingCubic_thresholdPathCount` | `QuantumBlockEncoding/CubicStatePreparation.lean` | planned count of `t : Fin (gridSize (3 * n))` with `t.val < j.val ^ 3` | active leaf |
 | `cubicApproxArithmeticBudget` | task-local Markdown now, Lean later | split total error into arithmetic, rotation, and block-extraction components | planned |
 | candidate `U_n` declaration | future Lean module or this file if small | matrix/circuit transcript for a concrete approximate block encoding | open |
 
@@ -203,7 +230,8 @@ end QuantumBlockEncoding
   represented in Lean by `arithmeticRankOneCubicCircuit` and
   `arithmeticRankOneCubicResourceTuple`.
 - [x] Hadamard-counting mutation interface, oracle-tier tuple, clean-block
-  contract bridge, and normalizer bridge are represented in Lean.
+  contract bridge, normalizer bridge, and separate nonzero-column reject repair
+  are represented in Lean.
 - [ ] Candidate semantic matrix is represented in Lean.
 - [ ] Block-encoding predicate is stated against that matrix.
 - [x] Clean-block target contract is stated by `rankOneCleanBlockContract`.
@@ -222,68 +250,126 @@ end QuantumBlockEncoding
 
 ## Current Lower-Facing Source Contract
 
-This inner-cycle packet now has parallel Lean-facing targets.  The source
-anchor is the user/task contract, not a paper proof.  The object remains the
-rank-one target operator with entries `v_n[j] = (j / 2^n)^3`; candidate work
-must preserve that operator and record unproved semantic leaves explicitly.
+This middle cycle narrows the lower work to the Hadamard-counting route.  The
+source anchor is the user/task contract, not a paper proof.  The object remains
+the rank-one target operator with entries `v_n[j] = (j / 2^n)^3`; candidate
+work must preserve that operator and record unproved semantic leaves
+explicitly.
 
 | Field | Contract |
 | --- | --- |
-| Leaf | `CUBIC-NORM-001` for exact norm diagnostics; `CUBIC-CAND-SHAPE-001` for wrapped candidate-interface workers |
+| Leaf | `CUBIC-HCOUNT-COUNT-001` is active.  `CUBIC-HCOUNT-RATIO-001` is compiled; `CUBIC-VER-CAND-001:HCOUNT-SEMANTIC` is completed rejected feedback for the old daggered transcript; `CUBIC-HCOUNT-REJECT-REPAIR-001` is compiled at the interface/resource tier and finite-checks clean for `n = 1, 2`; `CUBIC-NORM-001` remains a diagnostic backlog item, not a serial blocker |
 | Target file | `QuantumBlockEncoding/CubicStatePreparation.lean` |
-| Exact Lean intent | proof workers may still prove `CubicStatePreparation.cubicNormSq_closedForm`; candidate workers should use the compiled `arithmeticRankOneCubic*` wrapper interface and reuse `CubicStatePreparation.cubicNormSq_le_conservativeNormalizer_sq` without claiming certification |
-| Mathematical statement | `cubicNormSq n = sum_{j=0}^{2^n-1} (j / 2^n)^6`; the candidate route targets a clean block equal to `O_n / alpha` with `alpha = conservativeNormalizer n` before error is applied |
-| Dependencies ready | `gridSize`, `gridPoint`, `cubicAmplitude`, `cubicNormSq`, `cubicNormSq_n1`, `cubicNormSq_n2`, `cubicNormSq_n3` |
+| Exact Lean intent | prove a pure symbolic counting bridge for the threshold register before any full clean-block theorem: `gridSize (3 * n) = gridSize n ^ 3`, `j.val ^ 3 <= gridSize (3 * n)`, and the filtered `List.finRange` threshold count equals `j.val ^ 3` |
+| Mathematical statement | the Hadamard-counting clean block should have first-column entries `j^3 / (gridSize n)^4` and zero nonfirst columns, so multiplying by `alpha = conservativeNormalizer n` recovers `cubicOperator n` |
+| Dependencies ready | `gridSize`, `gridSize_pos`, `gridPoint`, `cubicAmplitude`, `conservativeNormalizer`, `gridSize_rat_ne_zero`, `cubicAmplitude_div_conservativeNormalizer_eq`, `rankOneCleanBlockContract`, `hadamardCountingCubicCleanBlockContract_pointwise_eq`, `cubicNormSq_le_hadamardCountingCubicNormalizer_sq`, and repaired transcript theorem `hadamardCountingCubicCircuit_rejectSignalRepair` |
+| Rejected route | the old daggered `hcount-zero-input-flag` transcript fails finite clean-block support because nonzero input columns return to clean ancillas and leak identity entries |
 | External/classical obligation | `classical-sixth-power-sum`, still an obligation for the closed-form route until the Lean helper builds; not required for a direct bound if all inequalities are local Lean lemmas |
 | Owned by task | the unnormalized rank-one target `cubicOperator` and its norm diagnostic |
-| QBE-local glue | `arithmeticCubicLayout`, `arithmeticCubicCircuit`, `arithmeticRankOneCubicLayout`, `arithmeticRankOneCubicCircuit`, `arithmeticRankOneCubicNormalizer`, wrapper resource tuple, later semantic matrix, projector, clean-ancilla, and Scenario 2 error-budget records |
+| QBE-local glue | `hadamardCountingCubicLayout`, `hadamardCountingCubicCircuit`, `hadamardCountingCubicNormalizer`, `hadamardCountingCubicResourceTuple`, the reusable clean-block contract, later semantic matrix, projector, clean-ancilla, and exact-error packaging records |
 | Forbidden changes | do not alter `cubicOperator`, normalize `v_n`, or claim a block encoding before the matrix, unitarity, clean-block, ancilla-cleanup, normalizer, and error leaves close |
-| Required feedback labels if blocked | `symbolic_bridge_gap`, `lean_tactic_gap`, or `external_contract_gap`, with `leaf=CUBIC-NORM-001` for the closed form or the candidate leaf id for candidate-interface work |
+| Required feedback labels if blocked | use `leaf=CUBIC-HCOUNT-COUNT-001`, `source_correspondence_ok=true`, `lean_parse_ok=<bool>`, `lean_build_ok=<bool>`, `finite_matrix_ok=true`, `block_entry_ok=true`, `ancilla_cleanup_ok=null`, `unitarity_ok=null`, and `error_class=<symbolic_bridge_gap|lean_tactic_gap>` |
 
 ## Lower-Agent Packet Split
 
-Lower 1 receives the natural-language DAG and error-budget packet.
+Lower 1 receives the natural-language count DAG packet.
 
 - Source anchor: user/task contract, not a paper theorem.
-- Target artifact: a Markdown proof-design note or dialogue handoff, with no
-  Lean edits unless the design exposes a definition-free helper.
-- Required content: source symbols, the dependency order
-  `CUBIC-TGT-001 -> CUBIC-NORM-001 -> CUBIC-ALPHA-001 -> CUBIC-ERR-001 ->
-  CUBIC-CAND-001`, and a Scenario 2 error budget that separates arithmetic
-  approximation, rotation/transduction, and block-entry error.
+- Target artifact: a concise Markdown proof-design note or dialogue handoff,
+  with no Lean edits unless the design exposes a definition-free helper.
+- Required content: the dependency order
+  `CUBIC-TGT-001 -> CUBIC-ALPHA-001 -> CUBIC-HCOUNT-IFACE-001 ->
+  CUBIC-HCOUNT-RATIO-001 -> CUBIC-HCOUNT-REJECT-REPAIR-001 ->
+  CUBIC-HCOUNT-COUNT-001 -> CUBIC-HCOUNT-UNITARY-001 ->
+  CUBIC-HCOUNT-BLOCK-001 -> CUBIC-HCOUNT-APPROX-001`.
+- Required proof map: define `N = gridSize n`, `alpha = conservativeNormalizer
+  n`, the threshold register `t : Fin (gridSize (3 * n))`, the full path
+  space of size `N^4`, and the accepted paths `(r,t)` with `r = j` and
+  `t < j^3`; map each step to the compiled Lean declarations or to a named
+  open semantic obligation.
+- Required decision: keep the separate reject-signal convention fixed.  Do not
+  reopen sticky-vs-reject unless the symbolic semantic theorem contradicts the
+  finite verifier feedback.
 - Required guardrail: do not treat the unnormalized vector as a unitary output
-  state and do not propose `U_n` as certified before alpha, projector, clean
-  ancilla, and epsilon budget are explicit.
+  state and do not mark the oracle-label transcript as certified before
+  Hadamard-sandwich, comparator, clean-ancilla, and unitarity semantics are
+  proved.
 
-Lower 2 receives the active Lean norm/normalizer bridge.
+Lower 2 receives the active Lean implementation packet:
+`CUBIC-HCOUNT-COUNT-001`.
 
-- Source anchor: user/task contract, target norm diagnostic for `v_n[j] = (j / 2^n)^3`.
+- Source anchor: user/task contract plus the finite path diagnostic in
+  `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-cand-001-hcount-path.md`.
 - Target file: `QuantumBlockEncoding/CubicStatePreparation.lean`.
-- Allowed write scope: add helper lemmas and the active norm theorem in `QuantumBlockEncoding/CubicStatePreparation.lean`; update this conversion window only if the theorem name changes; do not edit unrelated task files.
-- Exact theorem intent: the direct conservative bound is now compiled.  A future exact diagnostic worker may prove a closed form for `cubicNormSq n`, using `N = gridSize n`, equivalent to
-  `((N - 1) * (2 * N - 1) * (3 * N^4 - 6 * N^3 + 3 * N + 1)) / (42 * N^5)`, or prove
-  a sharper candidate-specific normalizer if a new alpha is introduced.
-- Allowed helper: a local rational sixth-power sum lemma for the closed-form
-  route, recorded as `classical-sixth-power-sum` until build-tested; a direct
-  bound route may instead add nonnegativity and finite-sum upper-bound helpers.
-- Forbidden route: do not introduce a normalized state-preparation unitary, do not change `cubicOperator`, and do not claim a candidate `U_n`.
-- Required gate after Lean edits: `python3 tools/qbe.py check`, then `lake build && lake build Tests`.
-- Required feedback fields if blocked: `leaf=CUBIC-NORM-001` or
-  `leaf=CUBIC-ALPHA-001`, `source_correspondence_ok=true`,
-  `lean_parse_ok=<bool>`, `lean_build_ok=<bool>`,
-  `error_class=<symbolic_bridge_gap|lean_tactic_gap|external_contract_gap>`,
-  and `next_route=<one narrow repair>`.
+- Test file: `Tests/Basic.lean`, limited to focused checks for the new pure
+  counting declarations.
+- Allowed write scope: new helper declarations named `gridSize_three_mul_eq_cube`,
+  `gridSize_four_mul_eq_fourth`, or beginning with
+  `hadamardCountingCubic_threshold`; tests that mention only these helpers are
+  allowed.  Do not edit `cubicOperator`, `gridPoint`, `cubicAmplitude`, the
+  rank-one clean-block contract, the circuit transcript, normalizer, resource
+  tuple, or already-proved ratio and reject-repair lemmas.
+- Exact Lean target: prove the path-register capacity and threshold-count
+  facts:
 
-Lower 3 has completed the first necessary-condition scaling packet.
+  ```lean
+  theorem gridSize_three_mul_eq_cube (n : Nat) :
+      gridSize (3 * n) = gridSize n ^ 3 := by
+    ...
 
-- Completed artifact:
-  `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-001-scaling.md`.
-- Diagnostic scope: dense vector entries and one-auxiliary dense-unitary memory
-  for `n = 4, 8, 12, 16, 20`, generated from
-  `reports/cubic-stateprep/latest.*`.
-- Next verifier work: wait for a concrete candidate instance, then run small
-  finite block-entry and unitarity smoke tests.  Do not rerun dense scaling as
-  a Lean substitute.
+  theorem gridSize_four_mul_eq_fourth (n : Nat) :
+      gridSize (4 * n) = gridSize n ^ 4 := by
+    ...
+
+  theorem hadamardCountingCubic_threshold_le_pathCapacity
+      (n : Nat) (j : Fin (gridSize n)) :
+      j.val ^ 3 <= gridSize (3 * n) := by
+    ...
+
+  theorem hadamardCountingCubic_thresholdPathCount
+      (n : Nat) (j : Fin (gridSize n)) :
+      ((List.finRange (gridSize (3 * n))).filter
+          (fun t => t.val < j.val ^ 3)).length = j.val ^ 3 := by
+    ...
+  ```
+- Forbidden route: do not introduce a normalized state-preparation unitary, do
+  not change `cubicOperator`, do not weaken the clean-block vanish condition,
+  and do not package a full candidate certificate.
+- Required gate after Lean edits: `python3 tools/qbe.py check`.
+- Next route after this leaf: `CUBIC-HCOUNT-UNITARY-001` or a Hadamard-sandwich
+  semantic bridge.  Do not attempt `CUBIC-HCOUNT-BLOCK-001` directly.
+- Required feedback fields if blocked: `leaf=CUBIC-HCOUNT-COUNT-001`,
+  `source_correspondence_ok=true`, `lean_parse_ok=<bool>`,
+  `lean_build_ok=<bool>`, `finite_matrix_ok=true`, `block_entry_ok=true`,
+  `error_class=<symbolic_bridge_gap|lean_tactic_gap>`, and
+  `next_route=<one narrow count/helper repair>`.
+
+Lower 3's repaired necessary-condition verifier packet is complete:
+`CUBIC-HCOUNT-REJECT-REPAIR-001`.
+
+- Source anchor: the Hadamard-counting transcript and path formula in
+  `proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-CAND-SHAPE-001.md`, plus
+  the repaired Lean interface from lower 2.
+- Target artifact:
+  `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-ver-cand-001-hcount-semantic.md`
+  now records both the old rejected route and the repaired finite check.
+- Diagnostic scope: instantiate `n = 1` or `n = 2` and check the clean-block
+  support, first-column entries after multiplying by `alpha`, clean auxiliary
+  projection, and unitarity/reversibility for any concrete finite matrices
+  used.  If only the path-count formula is checked, say that unitarity and
+  ancilla cleanup are still `designed_not_executed`.
+- Typed fields recorded: `leaf=CUBIC-HCOUNT-REJECT-REPAIR-001`,
+  `finite_matrix_ok=true`, `block_entry_ok=true`,
+  `ancilla_cleanup_ok=true`, `unitarity_ok=true`, `normalizer_ok=true`,
+  `closed_theorem_ok=false`, and `error_class=symbolic_bridge_gap`.
+- Stale route to reject: do not rerun the old `candidate_interface_gap`
+  diagnostic, and do not use the rejected daggered `nz` convention as evidence
+  for `CUBIC-HCOUNT-BLOCK-001`.
+- Next verifier scope: no verifier work is needed unless the Lean worker
+  changes the threshold register size, path denominator, or accepted-path
+  predicate.  If that happens, rerun only
+  `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic_ver_cand_001_hcount_path_check.py`
+  and log it as `leaf=CUBIC-HCOUNT-COUNT-001`.
 
 Lower 3 has also completed the first same-target external executable
 comparison.

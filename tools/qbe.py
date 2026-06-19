@@ -1709,10 +1709,21 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
             if "Updated proof-DAG frontier" in section and "unitary_fold_leaf" in section
         ]
     if not priority_sections:
+        priority_sections = [
+            section
+            for section in sections
+            if "Proof-DAG Frontier" in section or "Updated proof-DAG frontier" in section
+        ]
+    if not priority_sections:
         return []
     section = priority_sections[0]
     rows: list[tuple[int, str]] = []
     priority = {
+        "CUBIC-HCOUNT-COUNT-001": 0,
+        "CUBIC-HCOUNT-UNITARY-001": 1,
+        "CUBIC-HCOUNT-BLOCK-001": 2,
+        "CUBIC-HCOUNT-APPROX-001": 3,
+        "CUBIC-NORM-001": 10,
         "source_prepared_active_field_contract": 0,
         "source_prepared_active_field_forces_selected_zero_guard": 1,
         "source_prepared_projection_summation_correction": 0,
@@ -1775,6 +1786,7 @@ def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str
             for marker in [
                 "active",
                 "open",
+                "blocked",
                 "allowed",
                 "compiled feeder",
                 "compiled support",
@@ -4099,8 +4111,65 @@ def write_memory_refresh(task_id: str, cycle: int, run_dir: Path) -> tuple[Path,
     return digest_path, todo_path, index_path
 
 
+def cubic_stateprep_pro_prompt_text(task_id: str, cycle: int, run_dir: Path, snapshot: dict) -> str:
+    changed = git_changed_files()
+    def tail_file(path: Path, limit: int) -> str:
+        return path.read_text(encoding="utf-8")[-limit:] if path.exists() else "not yet available"
+    task_text = tail_file(ROOT / "tasks" / f"{slugify(task_id)}.md", 5000)
+    candidates = tail_file(ROOT / "candidate-populations" / f"{slugify(task_id)}.md", 6000)
+    obligations = tail_file(ROOT / "proof-obligations" / f"{slugify(task_id)}.md", 5000)
+    sorries = "\n".join(f"- `{line}`" for line in snapshot.get("lean_sorries", []))
+    dirty = "\n".join(f"- `{path}`" for path in changed[:50])
+    return f"""# ChatGPT Pro Prompt: ABEIS cubic state-preparation hard case, cycle {cycle}
+
+You cannot access my local files. Use only this self-contained prompt and public quantum-computing knowledge.
+
+## Target
+
+For positive integer `n`, `N = 2^n`, `x_j = j/N`, and `f(x)=x^3`. ABEIS formalizes the user request as the unnormalized rank-one operator
+
+```text
+O_n = |v_n><0^n|,    v_n[j] = (j / 2^n)^3.
+```
+
+Requested tolerance: `epsilon = 1e-10`. First try exact block encodings; if exact search stalls, use Scenario 2 approximate BE. Rank candidates within one asymptotic/backend tier by `(gateCount, depth, auxiliaryQubits, oracleCalls)`.
+
+## Current task packet
+
+```markdown
+{task_text}
+```
+
+## Candidate population
+
+```markdown
+{candidates}
+```
+
+## Proof obligations
+
+```markdown
+{obligations}
+```
+
+## Lean sorry scan
+
+{sorries or "- No `sorry` was recorded by the snapshot."}
+
+## Request
+
+Give a concrete construction/proof plan suitable for Lean formalization: propose BE families, split the best route into a proof DAG, mark Qiskit/NumPy necessary-condition checks, suggest mutation/crossover actions, give pseudo-Lean statement shapes, and if exact BE is unrealistic give the Scenario 2 error budget for `epsilon = 1e-10`.
+
+## Dirty files
+
+{dirty or "- No dirty files were listed."}
+"""
+
+
 def chatgpt_pro_prompt_text(task_id: str, cycle: int, run_dir: Path) -> str:
     snapshot = memory_snapshot_state(task_id, cycle, run_dir)
+    if task_id == "QBE-OP-CUBIC-STATEPREP-001":
+        return cubic_stateprep_pro_prompt_text(task_id, cycle, run_dir, snapshot)
     title = str(snapshot.get("title", task_id))
     dynamic = snapshot.get("dynamic_leaf_queue", [])
     obligations = snapshot.get("open_obligation_signals", [])
@@ -5502,9 +5571,9 @@ The current Lean development names the target components as
 \\texttt{{CubicStatePreparation.hardModeUpperAgentSchedule}} & [1,3,4],\\\\
 \\texttt{{CubicStatePreparation.hardModeMiddleAgentSchedule}} & [1,2,3],\\\\
 \\texttt{{CubicStatePreparation.hardModeLowerAgentSchedule}} & [3,5,8],\\\\
-\\texttt{{CubicStatePreparation.hardModeExactStallWindow}} & 2,\\\\
-\\texttt{{CubicStatePreparation.hardModeConstructionStallWindow}} & 3,\\\\
-\\texttt{{CubicStatePreparation.hardModeLevelCycleBudget}} & [2,3,4],\\\\
+\\texttt{{CubicStatePreparation.hardModeExactStallWindow}} & 1,\\\\
+\\texttt{{CubicStatePreparation.hardModeConstructionStallWindow}} & 1,\\\\
+\\texttt{{CubicStatePreparation.hardModeLevelCycleBudget}} & [1,1,1],\\\\
 \\texttt{{CubicStatePreparation.relaxedEpsilonLadder}} & [10^{{-10}},10^{{-8}},10^{{-6}}].
 \\end{{array}}
 \\]

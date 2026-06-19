@@ -336,6 +336,13 @@ example :
   native_decide
 
 example :
+    CubicStatePreparation.cubicAmplitude 2 ⟨3, by native_decide⟩ /
+        CubicStatePreparation.conservativeNormalizer 2 =
+      (3 : Rat) ^ 3 / (gridSize 2 : Rat) ^ 4 :=
+  CubicStatePreparation.cubicAmplitude_div_conservativeNormalizer_eq
+    2 ⟨3, by native_decide⟩
+
+example :
     CubicStatePreparation.cubicOperator 2
       ⟨3, by native_decide⟩ ⟨0, by native_decide⟩ =
       (27 : Rat) / 64 := by
@@ -395,8 +402,26 @@ example :
 
 example :
     CubicStatePreparation.hadamardCountingCubicResourceTuple 2 =
-      (7, 7, 21, 7) :=
+      (8, 8, 21, 8) :=
   CubicStatePreparation.hadamardCountingCubicResourceTuple_n2
+
+example :
+    CubicStatePreparation.hadamardCountingCubicCircuit 2 =
+      [ Gate.oracleCall "hcount-zero-input-flag"
+      , Gate.oracleCall "hcount-nonzero-column-reject"
+      , Gate.oracleCall "hcount-path-H-on-R-T"
+      , Gate.oracleCall "hcount-row-xor-R-into-system"
+      , Gate.oracleCall "hcount-cubic-threshold-compare"
+      , Gate.oracleCall "(hcount-cubic-threshold-compare)^dagger"
+      , Gate.oracleCall "hcount-path-H-on-R-T"
+      , Gate.oracleCall "(hcount-zero-input-flag)^dagger"
+      ] :=
+  CubicStatePreparation.hadamardCountingCubicCircuit_rejectSignalRepair 2
+
+example :
+    CubicStatePreparation.hadamardCountingCubicResource 2 =
+      Resource.ofCountsWithDepth 0 0 8 0 8 :=
+  CubicStatePreparation.hadamardCountingCubicResource_eq 2
 
 example :
     CubicStatePreparation.cubicNormSq 2 ≤

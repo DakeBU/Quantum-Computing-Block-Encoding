@@ -284,7 +284,8 @@ Register layout for the exact Hadamard-counting candidate.
 
 The signal qubit is the reject flag.  Pure ancillas are the nonzero-input flag,
 the `R,T` path registers of total width `4*n`, and the reversible
-cube/comparator workspace.
+cube/comparator workspace.  Nonzero input columns set the reject signal before
+the `nz` cleanup, so the clean projection cannot leak identity entries.
 -/
 def hadamardCountingCubicLayout (n : Nat) : RegisterLayout where
   systemQubits := n
@@ -295,11 +296,14 @@ def hadamardCountingCubicLayout (n : Nat) : RegisterLayout where
 Oracle-level transcript for the Hadamard-counting route.
 
 The row XOR is not uncomputed, because it writes the output system row for the
-rank-one operator.  The Hadamard layers and reversible arithmetic are still
-semantic obligations at this interface tier.
+rank-one operator.  The separate nonzero-column reject signal is applied before
+the `nz` cleanup, so nonzero input columns keep a clean-projection rejection
+witness.  The Hadamard layers and reversible arithmetic are still semantic
+obligations at this interface tier.
 -/
 def hadamardCountingCubicCircuit (_n : Nat) : Circuit :=
   [ Gate.oracleCall "hcount-zero-input-flag"
+  , Gate.oracleCall "hcount-nonzero-column-reject"
   , Gate.oracleCall "hcount-path-H-on-R-T"
   , Gate.oracleCall "hcount-row-xor-R-into-system"
   , Gate.oracleCall "hcount-cubic-threshold-compare"
@@ -307,6 +311,25 @@ def hadamardCountingCubicCircuit (_n : Nat) : Circuit :=
   , Gate.oracleCall "hcount-path-H-on-R-T"
   , Gate.oracleCall "(hcount-zero-input-flag)^dagger"
   ]
+
+/--
+The repaired transcript records a separate nonzero-column reject signal before
+the final `nz` cleanup.  This is the compiled surface for
+`CUBIC-HCOUNT-REJECT-REPAIR-001`; semantic clean-block correctness remains a
+future proof leaf.
+-/
+theorem hadamardCountingCubicCircuit_rejectSignalRepair (n : Nat) :
+    hadamardCountingCubicCircuit n =
+      [ Gate.oracleCall "hcount-zero-input-flag"
+      , Gate.oracleCall "hcount-nonzero-column-reject"
+      , Gate.oracleCall "hcount-path-H-on-R-T"
+      , Gate.oracleCall "hcount-row-xor-R-into-system"
+      , Gate.oracleCall "hcount-cubic-threshold-compare"
+      , Gate.oracleCall "(hcount-cubic-threshold-compare)^dagger"
+      , Gate.oracleCall "hcount-path-H-on-R-T"
+      , Gate.oracleCall "(hcount-zero-input-flag)^dagger"
+      ] := by
+  rfl
 
 /-- Oracle-level resource count for the Hadamard-counting route. -/
 def hadamardCountingCubicResource (n : Nat) : Resource :=
@@ -330,10 +353,10 @@ def hadamardCountingCubicResourceTuple (n : Nat) : Nat × Nat × Nat × Nat :=
   , (hadamardCountingCubicCost n).oracleCalls
   )
 
-/-- The Hadamard-counting interface has seven unresolved oracle-level calls. -/
+/-- The Hadamard-counting interface has eight unresolved oracle-level calls. -/
 theorem hadamardCountingCubicResource_eq (n : Nat) :
     hadamardCountingCubicResource n =
-      Resource.ofCountsWithDepth 0 0 7 0 7 := by
+      Resource.ofCountsWithDepth 0 0 8 0 8 := by
   rfl
 
 /-- Auxiliary qubits for the counting route include reject, `nz`, path, and workspace registers. -/
@@ -344,7 +367,7 @@ theorem hadamardCountingCubicLayout_auxiliaryQubits (n : Nat) :
 
 /-- Default small diagnostic score for the counting route at `n = 2`. -/
 theorem hadamardCountingCubicResourceTuple_n2 :
-    hadamardCountingCubicResourceTuple 2 = (7, 7, 21, 7) := by
+    hadamardCountingCubicResourceTuple 2 = (8, 8, 21, 8) := by
   native_decide
 
 /--
@@ -361,6 +384,7 @@ def hadamardCountingCubicClaim : ConstructionClaim where
     gates :=
       CostExpr.atom "path_hadamards(4*n)" +
       CostExpr.atom "zero_input_test(n)" +
+      CostExpr.atom "nonzero_column_reject(n)" +
       CostExpr.atom "row_xor(n)" +
       CostExpr.atom "cube_compare(n)"
     pureAncilla :=
@@ -530,6 +554,25 @@ theorem gridSize_rat_ne_zero (n : Nat) : (gridSize n : Rat) ≠ 0 := by
 theorem gridSize_rat_pos (n : Nat) : (0 : Rat) < (gridSize n : Rat) := by
   rw [Rat.natCast_pos]
   exact gridSize_pos n
+
+/-- Core rational normalization for the Hadamard-counting path ratio. -/
+theorem rat_div_cube_div_eq (a b : Rat) :
+    (a / b) ^ 3 / b = a ^ 3 / b ^ 4 := by
+  simp [Rat.div_def, Rat.pow_succ, Rat.inv_mul_rev, Rat.mul_assoc]
+  grind [Rat.mul_comm, Rat.mul_assoc]
+
+/--
+Arithmetic bridge for the Hadamard-counting path formula.
+
+After scaling by `alpha = conservativeNormalizer n = gridSize n`, the candidate
+clean-block entry `j^3 / gridSize^4` recovers the cubic target amplitude.
+-/
+theorem cubicAmplitude_div_conservativeNormalizer_eq (n : Nat)
+    (j : Fin (gridSize n)) :
+    cubicAmplitude n j / conservativeNormalizer n =
+      (j.val : Rat) ^ 3 / (gridSize n : Rat) ^ 4 := by
+  simpa [cubicAmplitude, gridPoint, conservativeNormalizer] using
+    rat_div_cube_div_eq (j.val : Rat) (gridSize n : Rat)
 
 theorem gridPoint_nonneg (n : Nat) (j : Fin (gridSize n)) :
     (0 : Rat) ≤ gridPoint n j := by

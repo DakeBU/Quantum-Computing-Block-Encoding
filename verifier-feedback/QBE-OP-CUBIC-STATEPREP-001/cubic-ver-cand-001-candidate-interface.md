@@ -5,6 +5,29 @@ Leaf: `CUBIC-VER-CAND-001`
 Executable diagnostic:
 `verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic_ver_cand_001_candidate_interface_check.py`
 
+## Supersession
+
+Superseded on `2026-06-19 16:33:44 JST` by the compiled candidate interfaces
+`arithmeticRankOneCubic*` and `hadamardCountingCubic*`.  This packet remains a
+historical target-shape guard, but its scheduling conclusion
+`candidate_interface_gap` is stale and must not be used as the next lower
+route.
+
+Current route:
+
+| Field | Value |
+|---|---|
+| `leaf` | `CUBIC-VER-CAND-001` |
+| `source_correspondence_ok` | `true` |
+| `lean_parse_ok` | `true` for the compiled interfaces |
+| `lean_build_ok` | `true` in the lower handoff that compiled the interfaces |
+| `finite_matrix_ok` | `null`; this historical script only checked target shape |
+| `block_entry_ok` | `null`; rerun as `CUBIC-VER-CAND-001:HCOUNT-SEMANTIC` |
+| `normalizer_ok` | `true` for `conservativeNormalizer` via the compiled route bridges |
+| `closed_theorem_ok` | `false` |
+| `error_class` | `stale_leaf` |
+| `next_route` | `Do not rerun candidate_interface_gap.  CUBIC-HCOUNT-RATIO-001 and the repaired finite n=1/n=2 Hadamard-counting diagnostics are complete; schedule one symbolic bridge leaf such as CUBIC-HCOUNT-COUNT-001 or CUBIC-HCOUNT-UNITARY-001 before CUBIC-HCOUNT-BLOCK-001.` |
+
 ## Scope
 
 This packet checks whether a block-entry verifier can run for the first
