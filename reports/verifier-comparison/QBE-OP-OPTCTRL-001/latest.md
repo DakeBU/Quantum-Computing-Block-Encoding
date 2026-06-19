@@ -16,9 +16,9 @@ Important interpretation:
 
 | Verifier | Semantic level | Status | Median ms | Complete for this case | Final gate |
 | --- | --- | --- | ---: | --- | --- |
-| `numpy_exact_matrix` | exact finite matrix check | passed | 0.026 | True | False |
-| `qiskit_operator` | exact finite Qiskit Operator check | passed | 0.462 | True | False |
-| `lean_lake_build_tests` | formal theorem/proof gate | passed | 617.217 | True | True |
+| `numpy_exact_matrix` | exact finite matrix check | passed | 0.029 | True | False |
+| `qiskit_operator` | exact finite Qiskit Operator check | passed | 0.507 | True | False |
+| `lean_lake_build_tests` | formal theorem/proof gate | passed | 484.032 | True | True |
 
 ## What this does not measure
 

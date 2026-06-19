@@ -7,20 +7,18 @@ checking for a general theorem.
 
 | Verifier | time qubits r | total qubits incl. ancilla | dense dimension | status | median ms |
 | --- | ---: | ---: | ---: | --- | ---: |
-| `dense_numpy_block` | 1 | 4 | 16 | passed | 0.020 |
-| `qiskit_operator_dense` | 1 | 4 | 16 | passed | 0.408 |
-| `dense_numpy_block` | 2 | 5 | 32 | passed | 0.038 |
-| `qiskit_operator_dense` | 2 | 5 | 32 | passed | 2.096 |
-| `dense_numpy_block` | 3 | 6 | 64 | passed | 0.068 |
-| `qiskit_operator_dense` | 3 | 6 | 64 | passed | 6.033 |
-| `dense_numpy_block` | 4 | 7 | 128 | passed | 0.139 |
-| `qiskit_operator_dense` | 4 | 7 | 128 | passed | 39.071 |
-| `dense_numpy_block` | 5 | 8 | 256 | passed | 0.288 |
-| `qiskit_operator_dense` | 5 | 8 | 256 | passed | 196.544 |
-| `dense_numpy_block` | 6 | 9 | 512 | passed | 0.637 |
-| `qiskit_operator_dense` | 6 | 9 | 512 | passed | 1214.416 |
-| `dense_numpy_block` | 7 | 10 | 1024 | passed | 1.453 |
-| `qiskit_operator_dense` | 7 | 10 | 1024 | passed | 8219.175 |
+| `dense_numpy_block` | 1 | 4 | 16 | passed | 0.026 |
+| `qiskit_operator_dense` | 1 | 4 | 16 | passed | 0.426 |
+| `dense_numpy_block` | 2 | 5 | 32 | passed | 0.080 |
+| `qiskit_operator_dense` | 2 | 5 | 32 | passed | 2.178 |
+| `dense_numpy_block` | 3 | 6 | 64 | passed | 0.072 |
+| `qiskit_operator_dense` | 3 | 6 | 64 | passed | 6.509 |
+| `dense_numpy_block` | 4 | 7 | 128 | passed | 0.141 |
+| `qiskit_operator_dense` | 4 | 7 | 128 | passed | 38.673 |
+| `dense_numpy_block` | 5 | 8 | 256 | passed | 0.297 |
+| `qiskit_operator_dense` | 5 | 8 | 256 | passed | 230.344 |
+| `dense_numpy_block` | 6 | 9 | 512 | passed | 0.633 |
+| `qiskit_operator_dense` | 6 | 9 | 512 | passed | 1425.881 |
 
 Interpretation:
 

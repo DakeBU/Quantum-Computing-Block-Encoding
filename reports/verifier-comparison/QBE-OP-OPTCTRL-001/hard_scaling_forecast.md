@@ -8,15 +8,10 @@ matrix verifier stores `dimension^2` complex entries.
 
 | time qubits r | total qubits incl. ancilla | dense dimension | complex128 memory | interpretation |
 | ---: | ---: | ---: | ---: | --- |
-| 1 | 4 | 16 | 4.00 KiB | small finite smoke-check scale |
-| 4 | 7 | 128 | 256.00 KiB | small finite smoke-check scale |
-| 8 | 11 | 2,048 | 64.00 MiB | small finite smoke-check scale |
-| 12 | 15 | 32,768 | 16.00 GiB | workstation-scale dense check |
+| 10 | 13 | 8,192 | 1.00 GiB | workstation-scale dense check |
 | 16 | 19 | 524,288 | 4.00 TiB | large-memory dense check |
 | 20 | 23 | 8,388,608 | 1.00 PiB | impractical for routine verifier feedback |
 | 24 | 27 | 134,217,728 | 256.00 PiB | impractical for routine verifier feedback |
-| 28 | 31 | 2,147,483,648 | 64.00 EiB | symbolic theorem route required in practice |
-| 32 | 35 | 34,359,738,368 | 16.00 ZiB | symbolic theorem route required in practice |
 
 Why this matters:
 

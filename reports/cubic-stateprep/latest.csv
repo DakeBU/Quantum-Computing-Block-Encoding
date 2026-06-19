@@ -1,0 +1,8 @@
+n,N,norm_sq_fraction,norm_approx,dense_vector_entries,dense_one_aux_unitary_memory,epsilon,precision_bits_floor,abeis_expected_route,dense_verifier_role
+1,2,1/64,0.125,2,256 B,1e-10,34,"symbolic arithmetic, then Lean family theorem",small-instance smoke test only
+2,4,397/2048,0.44028133761266786,4,1 KiB,1e-10,34,"symbolic arithmetic, then Lean family theorem",small-instance smoke test only
+4,16,3810365/2097152,1.347933091186892,16,16 KiB,1e-10,34,"symbolic arithmetic, then Lean family theorem",small-instance smoke test only
+8,256,79326205235005/2199023255552,6.006112027467893,256,4 MiB,1e-10,34,"symbolic arithmetic, then Lean family theorem",small-instance smoke test only
+12,4096,1348094926504548618045/2305843009213693952,24.17939162206459,4096,1 GiB,1e-10,34,"symbolic arithmetic, then Lean family theorem",small-instance smoke test only
+16,65536,22635408953845511612687175485/2417851639229258349412352,96.75632135377569,65536,256 GiB,1e-10,34,"symbolic arithmetic, then Lean family theorem",small-instance smoke test only
+20,1048576,379778159717727518419871926047723325/2535301200456458802993406410752,387.034974426147,1048576,64 TiB,1e-10,34,"symbolic arithmetic, then Lean family theorem",small-instance smoke test only

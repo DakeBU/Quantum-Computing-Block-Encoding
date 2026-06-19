@@ -76,60 +76,64 @@ Use exactly one primary class:
 Use `trial-log` with structured feedback:
 
 ```bash
-python3 tools/qbe.py trial-log --task QBE-AUTO-002 \
+python3 tools/qbe.py trial-log --task <task-id> \
   --role lower \
   --kind attempt \
   --status failed \
-  --artifact proof-attempts/QBE-AUTO-002/<file>.md \
-  --feedback-field leaf=slot-three-branch-vanish \
+  --artifact verifier-feedback/<task-id>/<file>.md \
+  --feedback-field leaf=<active-leaf-id> \
   --feedback-field source_correspondence_ok=true \
   --feedback-field lean_parse_ok=true \
   --feedback-field lean_build_ok=false \
   --feedback-field finite_matrix_ok=true \
   --feedback-field block_entry_ok=false \
   --feedback-field error_class=symbolic_bridge_gap \
-  --feedback-field next_route="prove evalWith-level entry bridge for full index 48"
+  --feedback-field next_route="<one narrow next proof or diagnostic route>"
 ```
 
 For larger payloads, write a JSON file under `verifier-feedback/<task-id>/` and
 pass it with `--feedback-json`.
 
-## What Is Useful For GHL2025 Now
+## Choosing Useful Diagnostics
 
-The current GHL2025 one-term Robin closure is a finite matrix-semantics proof
-route, not a hardware scheduling problem.  The useful diagnostics are:
+Choose diagnostics that are necessary for the target and cheaper than the next
+large Lean proof attempt.  A diagnostic is useful when failure proves the
+candidate or proof route is wrong, malformed, stale, or too underspecified to
+send to the Lean worker.
 
-- Lean parser/build checks;
-- small finite matrix-entry checks for `n = 3`;
-- support/vanish/cancellation checks for backend slots;
-- register and branch correspondence checks against Fig. 4 and the one-term
-  theorem source;
-- symbolic bridge checks, especially raw `Coeff` constructor equality versus
-  evaluated `evalWith` semantics;
-- proof-DAG stale-leaf checks.
+Useful diagnostics often include:
 
-The following are not useful for the current GHL blocker:
+- parser/build checks for files touched by the attempt;
+- dimension, register-layout, projector, and ancilla-count checks;
+- small finite matrix or statevector checks when the task has a finite
+  executable instance;
+- block-entry extraction checks for the clean block named in the target;
+- unitarity or reversibility checks for a proposed candidate circuit;
+- normalizer and error-budget checks for approximate block encodings;
+- schedule/depth/gate-count checks when resource ranking is part of the task;
+- proof-DAG stale-leaf checks against the current retrieval index.
 
-- timeline/scheduling checks;
-- pulse-level checks;
-- hardware transpilation checks;
-- output-distribution-only tests that ignore the full linear operator;
-- reward scores that treat a near miss as proof.
+Avoid diagnostics that do not constrain the active target.  For example,
+hardware transpilation, pulse-level timing, or output-distribution-only tests
+are usually irrelevant unless the user explicitly asks for that semantic tier.
 
-## Good GHL Leaf Decomposition
+## Leaf Decomposition Pattern
 
-For GHL-style gate-product entries, split failures this way:
+Split a failing lower attempt into this task-independent chain:
 
-1. `source`: Does this leaf correspond to the paper's boundary or bulk branch?
-2. `shape`: Are row/column indices, sparse slot, and full-basis index correct?
-3. `support`: Does the relevant gate entry vanish by support?
-4. `finite-eval`: Does the finite evaluated matrix entry reduce to the expected
-   scalar?
-5. `symbolic-bridge`: Is the remaining task only to connect evaluated semantics
-   to the named Lean theorem?
-6. `theorem`: Does a named Lean declaration close the exact target without new
-   assumptions?
+1. `target`: Does the Lean or executable statement encode the same operator,
+   projector, normalizer, and error tolerance as the user or source target?
+2. `shape`: Are dimensions, registers, indices, ancillas, and basis order
+   correct?
+3. `support`: Do impossible branches or zero entries vanish for the stated
+   reason?
+4. `finite-eval`: Do small checked instances agree with the intended matrix or
+   block-entry semantics?
+5. `symbolic-bridge`: If finite checks look right, what semantic bridge remains
+   between executable/numeric evidence and the named Lean declaration?
+6. `theorem`: Does a named Lean declaration close the exact or approximate
+   target without new assumptions?
 
-Middle should put this classification into the proof-obligation or
-conversion-window table before assigning another broad lower proof attempt.
-
+Middle should put this classification into the proof-obligation,
+candidate-population, verifier-feedback, or conversion-window table before
+assigning another broad lower proof attempt.

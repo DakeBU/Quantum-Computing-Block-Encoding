@@ -5,7 +5,7 @@
     "total_qubits_with_ancilla": 4,
     "matrix_dimension": 16,
     "status": "passed",
-    "median_ms": 0.01979246735572815,
+    "median_ms": 0.025860965251922607,
     "detail": "passed dense finite block check"
   },
   {
@@ -14,7 +14,7 @@
     "total_qubits_with_ancilla": 4,
     "matrix_dimension": 16,
     "status": "passed",
-    "median_ms": 0.40786340832710266,
+    "median_ms": 0.4261918365955353,
     "detail": "passed dense finite block check"
   },
   {
@@ -23,7 +23,7 @@
     "total_qubits_with_ancilla": 5,
     "matrix_dimension": 32,
     "status": "passed",
-    "median_ms": 0.03803148865699768,
+    "median_ms": 0.07987767457962036,
     "detail": "passed dense finite block check"
   },
   {
@@ -32,7 +32,7 @@
     "total_qubits_with_ancilla": 5,
     "matrix_dimension": 32,
     "status": "passed",
-    "median_ms": 2.096276730298996,
+    "median_ms": 2.1775178611278534,
     "detail": "passed dense finite block check"
   },
   {
@@ -41,7 +41,7 @@
     "total_qubits_with_ancilla": 6,
     "matrix_dimension": 64,
     "status": "passed",
-    "median_ms": 0.06807968020439148,
+    "median_ms": 0.07202476263046265,
     "detail": "passed dense finite block check"
   },
   {
@@ -50,7 +50,7 @@
     "total_qubits_with_ancilla": 6,
     "matrix_dimension": 64,
     "status": "passed",
-    "median_ms": 6.033491343259811,
+    "median_ms": 6.508674472570419,
     "detail": "passed dense finite block check"
   },
   {
@@ -59,7 +59,7 @@
     "total_qubits_with_ancilla": 7,
     "matrix_dimension": 128,
     "status": "passed",
-    "median_ms": 0.13919919729232788,
+    "median_ms": 0.14094635844230652,
     "detail": "passed dense finite block check"
   },
   {
@@ -68,7 +68,7 @@
     "total_qubits_with_ancilla": 7,
     "matrix_dimension": 128,
     "status": "passed",
-    "median_ms": 39.071276783943176,
+    "median_ms": 38.672808557748795,
     "detail": "passed dense finite block check"
   },
   {
@@ -77,7 +77,7 @@
     "total_qubits_with_ancilla": 8,
     "matrix_dimension": 256,
     "status": "passed",
-    "median_ms": 0.28812140226364136,
+    "median_ms": 0.29734522104263306,
     "detail": "passed dense finite block check"
   },
   {
@@ -86,7 +86,7 @@
     "total_qubits_with_ancilla": 8,
     "matrix_dimension": 256,
     "status": "passed",
-    "median_ms": 196.54421508312225,
+    "median_ms": 230.34440353512764,
     "detail": "passed dense finite block check"
   },
   {
@@ -95,7 +95,7 @@
     "total_qubits_with_ancilla": 9,
     "matrix_dimension": 512,
     "status": "passed",
-    "median_ms": 0.6372816860675812,
+    "median_ms": 0.6325803697109222,
     "detail": "passed dense finite block check"
   },
   {
@@ -104,25 +104,7 @@
     "total_qubits_with_ancilla": 9,
     "matrix_dimension": 512,
     "status": "passed",
-    "median_ms": 1214.4160717725754,
-    "detail": "passed dense finite block check"
-  },
-  {
-    "verifier": "dense_numpy_block",
-    "time_qubits": 7,
-    "total_qubits_with_ancilla": 10,
-    "matrix_dimension": 1024,
-    "status": "passed",
-    "median_ms": 1.4525987207889557,
-    "detail": "passed dense finite block check"
-  },
-  {
-    "verifier": "qiskit_operator_dense",
-    "time_qubits": 7,
-    "total_qubits_with_ancilla": 10,
-    "matrix_dimension": 1024,
-    "status": "passed",
-    "median_ms": 8219.175044447184,
+    "median_ms": 1425.880778580904,
     "detail": "passed dense finite block check"
   }
 ]

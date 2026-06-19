@@ -1,0 +1,199 @@
+{
+  "cycle": 1,
+  "dynamic_leaf_queue": [
+    "# Proof Obligations: QBE-OP-CUBIC-STATEPREP-001",
+    "## Target Obligations",
+    "| Obligation | Lean declaration or artifact | Status |",
+    "| Prove closed form for `sum_j (j/2^n)^6` | planned `CubicStatePreparation.cubicNormSq_closedForm`; DAG node CUBIC-NORM-001 | active leaf |",
+    "| Prove placeholder normalizer is sufficient | planned `CubicStatePreparation.cubicNormSq_le_conservativeNormalizer_sq`; DAG node CUBIC-ALPHA-001 | blocked on norm bridge |",
+    "| Choose sharper normalizer `alpha` for final candidate, if useful | planned candidate-specific declaration | open |",
+    "| State block projector and clean-ancilla convention for first candidate | planned candidate contract | open |",
+    "## Candidate Obligations",
+    "| Obligation | Status |",
+    "| CUBIC-NORM-001 | Closed rational formula for `cubicNormSq n`. | CUBIC-TGT-001, `classical-sixth-power-sum` | lower Lean | planned `cubicNormSq_closedForm` | active leaf |"
+  ],
+  "generated": "2026-06-19 13:18:50",
+  "ghl_contributions": [],
+  "lean_sorries": [
+    "QuantumBlockEncoding/RobinMatrix.lean:26968:  sorry",
+    "QuantumBlockEncoding/RobinMatrix.lean:26998:  sorry"
+  ],
+  "mode": "exploratoryConstruction",
+  "next_lower_tasks": [
+    {
+      "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+      "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
+      "role": "lower-1-natural-language-proof-architect"
+    },
+    {
+      "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+      "must_write": "Lean declaration plus trial-log verifier-feedback fields",
+      "role": "lower-2-lean-implementation-worker"
+    },
+    {
+      "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+      "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
+      "role": "lower-3-necessary-condition-verifier"
+    }
+  ],
+  "open_external_technical_lemma_obligations": [],
+  "open_ghl_contribution_obligations": [],
+  "open_obligation_signals": [
+    "# Proof Obligations: QBE-OP-CUBIC-STATEPREP-001",
+    "## Target Obligations",
+    "| Obligation | Lean declaration or artifact | Status |",
+    "| State block projector and clean-ancilla convention for first candidate | planned candidate contract | open |",
+    "## Candidate Obligations",
+    "| Obligation | Status |",
+    "| Resource score `(gateCount, depth, auxiliaryQubits, oracleCalls)` | open |"
+  ],
+  "recent_proof_attempts": [],
+  "recent_trials": [
+    {
+      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-19 12:56:22",
+      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-build-gate"
+    },
+    {
+      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/40_reviewer.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "reviewer",
+      "status": "accepted",
+      "timestamp": "2026-06-19 12:56:21",
+      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-40_reviewer"
+    },
+    {
+      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "reviewer",
+      "status": "queued",
+      "timestamp": "2026-06-19 12:55:43",
+      "trial_id": "20260619-125543-QBE-OP-CUBIC-STATEPREP-001-reviewer-handoff"
+    },
+    {
+      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/30_lower_searcher_3.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 12:51:37",
+      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-30_lower_searcher_3"
+    },
+    {
+      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/30_lower_searcher_2.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 12:51:37",
+      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-30_lower_searcher_2"
+    },
+    {
+      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/30_lower_searcher_1.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-19 12:51:37",
+      "trial_id": "20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01-30_lower_searcher_1"
+    },
+    {
+      "artifact": "proof-attempts/QBE-OP-CUBIC-STATEPREP-001-CUBIC-ERR-001.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-19 12:51:15",
+      "trial_id": "20260619-125115-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-19 12:51:05",
+      "trial_id": "20260619-125105-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
+    },
+    {
+      "artifact": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-19 12:50:17",
+      "trial_id": "20260619-125017-QBE-OP-CUBIC-STATEPREP-001-lower-handoff"
+    },
+    {
+      "artifact": "verifier-feedback/QBE-OP-CUBIC-STATEPREP-001/cubic-norm-001-necessary-condition.md",
+      "kind": "attempt",
+      "lean_gate": "pass",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-19 12:50:07",
+      "trial_id": "20260619-125007-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    }
+  ],
+  "recent_verifier_feedback": [
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "",
+      "leaf": "CUBIC-ERR-001",
+      "next_route": "Close CUBIC-NORM-001 and CUBIC-ALPHA-001 before encoding the first-column entry-error-to-operator-error lemma.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-19 12:51:15",
+      "trial_id": "20260619-125115-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "CUBIC-NORM-001",
+      "next_route": "Prove CUBIC-NORM-001 in Lean using the sixth-power sum bridge, or prove the conservative normalizer bound directly; do not run block-entry diagnostics until U_n, alpha, projector, and ancilla layout exist.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-19 12:50:07",
+      "trial_id": "20260619-125007-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": "",
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": "",
+      "leaf": "CUBIC-DIAG-001",
+      "next_route": "CUBIC-NORM-001: formalize classical sixth-power-sum bridge for cubicNormSq_closedForm",
+      "role": "lower",
+      "status": "compiled",
+      "timestamp": "2026-06-19 12:48:55",
+      "trial_id": "20260619-124855-QBE-OP-CUBIC-STATEPREP-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "CUBIC-VER-001",
+      "next_route": "Send lower 2 to CUBIC-NORM-001; use dense rows only as future finite smoke tests.",
+      "role": "middle",
+      "status": "compiled",
+      "timestamp": "2026-06-19 12:45:36",
+      "trial_id": "20260619-124536-QBE-OP-CUBIC-STATEPREP-001-middle-attempt"
+    }
+  ],
+  "run_dir": "runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01",
+  "source_main_tex": "",
+  "stage": "Stage 1 target/transcript stabilization",
+  "task_id": "QBE-OP-CUBIC-STATEPREP-001",
+  "technical_lemmas": [],
+  "title": "Cubic grid state-preparation operator"
+}

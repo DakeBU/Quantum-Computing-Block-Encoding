@@ -3,6 +3,7 @@ import QuantumBlockEncoding.BlockEncoding
 import QuantumBlockEncoding.Circuit
 import QuantumBlockEncoding.CircuitSemantics
 import QuantumBlockEncoding.Core
+import QuantumBlockEncoding.CubicStatePreparation
 import QuantumBlockEncoding.Examples.RobinHeat
 import QuantumBlockEncoding.GHL2025
 import QuantumBlockEncoding.Literature

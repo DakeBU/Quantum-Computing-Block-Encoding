@@ -327,6 +327,33 @@ example :
       4
       6).requiredCost.gateCount = 4 := rfl
 
+example :
+    CubicStatePreparation.requestedEpsilon = (1 : Rat) / 10000000000 := rfl
+
+example :
+    CubicStatePreparation.cubicAmplitude 2 ⟨3, by native_decide⟩ =
+      (27 : Rat) / 64 := by
+  native_decide
+
+example :
+    CubicStatePreparation.cubicOperator 2
+      ⟨3, by native_decide⟩ ⟨0, by native_decide⟩ =
+      (27 : Rat) / 64 := by
+  native_decide
+
+example :
+    CubicStatePreparation.cubicOperator 2
+      ⟨3, by native_decide⟩ ⟨1, by native_decide⟩ = 0 := by
+  native_decide
+
+example :
+    CubicStatePreparation.cubicNormSq 2 = (397 : Rat) / 2048 :=
+  CubicStatePreparation.cubicNormSq_n2
+
+example :
+    CubicStatePreparation.initialExpectedPhase =
+      BlockEncodingSearchPhase.relaxedApproxSearch := rfl
+
 -- CircuitSemantics tests: first matrix-semantics backend layer
 
 example : qubitDim 3 = 8 := rfl

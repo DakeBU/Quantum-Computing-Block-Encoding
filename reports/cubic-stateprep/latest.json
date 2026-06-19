@@ -1,0 +1,86 @@
+[
+  {
+    "n": 1,
+    "N": 2,
+    "norm_sq_fraction": "1/64",
+    "norm_approx": 0.125,
+    "dense_vector_entries": 2,
+    "dense_one_aux_unitary_memory": "256 B",
+    "epsilon": 1e-10,
+    "precision_bits_floor": 34,
+    "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
+    "dense_verifier_role": "small-instance smoke test only"
+  },
+  {
+    "n": 2,
+    "N": 4,
+    "norm_sq_fraction": "397/2048",
+    "norm_approx": 0.44028133761266786,
+    "dense_vector_entries": 4,
+    "dense_one_aux_unitary_memory": "1 KiB",
+    "epsilon": 1e-10,
+    "precision_bits_floor": 34,
+    "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
+    "dense_verifier_role": "small-instance smoke test only"
+  },
+  {
+    "n": 4,
+    "N": 16,
+    "norm_sq_fraction": "3810365/2097152",
+    "norm_approx": 1.347933091186892,
+    "dense_vector_entries": 16,
+    "dense_one_aux_unitary_memory": "16 KiB",
+    "epsilon": 1e-10,
+    "precision_bits_floor": 34,
+    "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
+    "dense_verifier_role": "small-instance smoke test only"
+  },
+  {
+    "n": 8,
+    "N": 256,
+    "norm_sq_fraction": "79326205235005/2199023255552",
+    "norm_approx": 6.006112027467893,
+    "dense_vector_entries": 256,
+    "dense_one_aux_unitary_memory": "4 MiB",
+    "epsilon": 1e-10,
+    "precision_bits_floor": 34,
+    "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
+    "dense_verifier_role": "small-instance smoke test only"
+  },
+  {
+    "n": 12,
+    "N": 4096,
+    "norm_sq_fraction": "1348094926504548618045/2305843009213693952",
+    "norm_approx": 24.17939162206459,
+    "dense_vector_entries": 4096,
+    "dense_one_aux_unitary_memory": "1 GiB",
+    "epsilon": 1e-10,
+    "precision_bits_floor": 34,
+    "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
+    "dense_verifier_role": "small-instance smoke test only"
+  },
+  {
+    "n": 16,
+    "N": 65536,
+    "norm_sq_fraction": "22635408953845511612687175485/2417851639229258349412352",
+    "norm_approx": 96.75632135377569,
+    "dense_vector_entries": 65536,
+    "dense_one_aux_unitary_memory": "256 GiB",
+    "epsilon": 1e-10,
+    "precision_bits_floor": 34,
+    "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
+    "dense_verifier_role": "small-instance smoke test only"
+  },
+  {
+    "n": 20,
+    "N": 1048576,
+    "norm_sq_fraction": "379778159717727518419871926047723325/2535301200456458802993406410752",
+    "norm_approx": 387.034974426147,
+    "dense_vector_entries": 1048576,
+    "dense_one_aux_unitary_memory": "64 TiB",
+    "epsilon": 1e-10,
+    "precision_bits_floor": 34,
+    "abeis_expected_route": "symbolic arithmetic, then Lean family theorem",
+    "dense_verifier_role": "small-instance smoke test only"
+  }
+]

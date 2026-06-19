@@ -116,6 +116,35 @@ This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general
 arbitrary-register theorem, or a Lean-proved global optimality theorem.
 
+## Active Hard Benchmark
+
+`QBE-OP-CUBIC-STATEPREP-001` is the first Scenario 2 benchmark:
+
+```text
+O_n |0^n> = sum_j (j / 2^n)^3 |j>
+```
+
+The vector on the right is not normalized, so the Lean target is the rank-one
+operator `O_n = |v_n><0^n|`.  ABEIS should try exact candidates briefly, then
+switch to approximate block-encoding search with the requested tolerance
+`epsilon = 1e-10`.
+
+Current status:
+
+- Lean target declarations compile in `QuantumBlockEncoding.CubicStatePreparation`;
+- the task, proof blueprint, proof obligations, candidate population, and
+  verifier feedback are initialized;
+- dense executable checks are treated as small-instance diagnostics, while the
+  intended scalable route is symbolic arithmetic plus Lean family proof;
+- no final approximate block-encoding candidate has been promoted yet.
+
+Human-readable diagnostics:
+
+```text
+reports/cubic-stateprep/latest.md
+reports/cubic-stateprep/zh_summary.md
+```
+
 ## Why Lean For Block Encodings
 
 Executable quantum tooling such as Qiskit, QuantumKatas, and QASM evaluators is

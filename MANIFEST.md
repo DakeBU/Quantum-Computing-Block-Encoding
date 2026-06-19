@@ -6406,3 +6406,90 @@ block-encoding formalization lifecycle.
 | 2026-06-19 03:00:53 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-030053-QBE-OP-OPTCTRL-001-lower-attempt |
 | 2026-06-19 03:03:19 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-030319-QBE-OP-OPTCTRL-001-lower-attempt |
 | 2026-06-19 03:06:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-030649-QBE-OP-OPTCTRL-001-reviewer-handoff |
+| 2026-06-19 11:50:30 | qbe.py update-task | `tasks/QBE-OP-CUBIC-STATEPREP-001.md` | task | Updated QBE-OP-CUBIC-STATEPREP-001 to active |
+| 2026-06-19 11:55:49 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 11:55:50 | qbe.py run-cycle | `runs/20260619-115549-QBE-OP-CUBIC-STATEPREP-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 11:56:27 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 11:56:28 | qbe.py run-cycle | `runs/20260619-115627-QBE-OP-CUBIC-STATEPREP-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 11:58:10 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 11:58:10 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 11:58:10 | qbe.py blueprint-status | `/tmp/qbe_cubic_status.md` | blueprint | Wrote blueprint status for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 11:58:24 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 11:58:25 | qbe.py run-cycle | `runs/20260619-115824-QBE-OP-CUBIC-STATEPREP-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:02:14 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:02:44 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:02:45 | qbe.py run-cycle | `runs/20260619-120244-QBE-OP-CUBIC-STATEPREP-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:03:53 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:03:54 | qbe.py run-cycle | `runs/20260619-120353-QBE-OP-CUBIC-STATEPREP-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:04:39 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:06:00 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:06:01 | qbe.py run-cycle | `runs/20260619-120600-QBE-OP-CUBIC-STATEPREP-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:06:45 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:08:12 | qbe.py agent-note | `runs/20260619-120600-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-19 12:08:55 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:08:56 | qbe.py run-cycle | `runs/20260619-120855-QBE-OP-CUBIC-STATEPREP-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:09:36 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:09:37 | qbe.py run-cycle | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:10:17 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:11:37 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-19 12:11:41 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-121141-QBE-OP-CUBIC-STATEPREP-001-upper-handoff |
+| 2026-06-19 12:13:15 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:14:28 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-19 12:14:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-121433-QBE-OP-CUBIC-STATEPREP-001-upper-handoff |
+| 2026-06-19 12:19:01 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:19:38 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-19 12:19:46 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-121946-QBE-OP-CUBIC-STATEPREP-001-upper-handoff |
+| 2026-06-19 12:23:15 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:23:41 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-19 12:23:45 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-122345-QBE-OP-CUBIC-STATEPREP-001-upper-handoff |
+| 2026-06-19 12:25:54 | qbe.py conversion-window | `conversion-windows/QBE-OP-CUBIC-STATEPREP-001.md` | conversion | Created conversion window QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:29:39 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:30:53 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-19 12:30:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-123058-QBE-OP-CUBIC-STATEPREP-001-middle-handoff |
+| 2026-06-19 12:33:29 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-STATEPREP-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:35:24 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-19 12:35:28 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-123528-QBE-OP-CUBIC-STATEPREP-001-middle-handoff |
+| 2026-06-19 12:39:49 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-19 12:39:49 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-123949-QBE-OP-CUBIC-STATEPREP-001-middle-handoff |
+| 2026-06-19 12:45:36 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-124536-QBE-OP-CUBIC-STATEPREP-001-middle-attempt |
+| 2026-06-19 12:45:54 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-19 12:45:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-124558-QBE-OP-CUBIC-STATEPREP-001-middle-handoff |
+| 2026-06-19 12:48:46 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-19 12:48:55 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-124855-QBE-OP-CUBIC-STATEPREP-001-lower-attempt |
+| 2026-06-19 12:48:59 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-124859-QBE-OP-CUBIC-STATEPREP-001-lower-handoff |
+| 2026-06-19 12:50:07 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-125007-QBE-OP-CUBIC-STATEPREP-001-lower-attempt |
+| 2026-06-19 12:50:13 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-19 12:50:18 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-125017-QBE-OP-CUBIC-STATEPREP-001-lower-handoff |
+| 2026-06-19 12:51:00 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-19 12:51:05 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-125105-QBE-OP-CUBIC-STATEPREP-001-lower-handoff |
+| 2026-06-19 12:51:15 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-125115-QBE-OP-CUBIC-STATEPREP-001-lower-attempt |
+| 2026-06-19 12:55:40 | qbe.py agent-note | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/dialogue.md` | dialogue | Appended reviewer note |
+| 2026-06-19 12:55:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260619-125543-QBE-OP-CUBIC-STATEPREP-001-reviewer-handoff |
+| 2026-06-19 12:56:23 | qbe.py cycle-summary | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/zh_summary.md` | review | Wrote zh cycle summary for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 12:56:23 | qbe.py cycle-summary | `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.zh.md` | paper-note | Archived zh cycle summary for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 12:56:23 | qbe.py memory-refresh | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 12:56:23 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-CUBIC-STATEPREP-001.json` | memory | Wrote retrieval index for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 12:56:23 | qbe.py problem-latex-export | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 12:56:23 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-CUBIC-STATEPREP-001/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.tex` | article | Archived problem-specific LaTeX export for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:13:41 | qbe.py cycle-summary | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/zh_summary.md` | review | Wrote zh cycle summary for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:13:41 | qbe.py cycle-summary | `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.zh.md` | paper-note | Archived zh cycle summary for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:13:41 | qbe.py problem-latex-export | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:13:41 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-CUBIC-STATEPREP-001/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.tex` | article | Archived problem-specific LaTeX export for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:14:41 | qbe.py memory-refresh | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:14:41 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-CUBIC-STATEPREP-001.json` | memory | Wrote retrieval index for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 13:14:42 | qbe.py cycle-summary | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/zh_summary.md` | review | Wrote zh cycle summary for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:14:42 | qbe.py cycle-summary | `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.zh.md` | paper-note | Archived zh cycle summary for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:14:42 | qbe.py problem-latex-export | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:14:42 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-CUBIC-STATEPREP-001/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.tex` | article | Archived problem-specific LaTeX export for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:15:47 | qbe.py human-status | `REPORTS.zh.md` | review | Wrote report guide for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 13:15:47 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 13:16:16 | qbe.py memory-refresh | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:16:16 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-CUBIC-STATEPREP-001.json` | memory | Wrote retrieval index for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 13:16:17 | qbe.py cycle-summary | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/zh_summary.md` | review | Wrote zh cycle summary for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:16:17 | qbe.py cycle-summary | `paper-notes/QBE-OP-CUBIC-STATEPREP-001/markdown/cycle-summaries/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01.zh.md` | paper-note | Archived zh cycle summary for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:16:17 | qbe.py human-status | `REPORTS.zh.md` | review | Wrote report guide for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 13:16:17 | qbe.py human-status | `HUMAN_STATUS.md` | review | Wrote human status dashboard for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 13:17:57 | qbe.py memory-refresh | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:17:57 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-CUBIC-STATEPREP-001.json` | memory | Wrote retrieval index for QBE-OP-CUBIC-STATEPREP-001 |
+| 2026-06-19 13:18:50 | qbe.py memory-refresh | `runs/20260619-120936-QBE-OP-CUBIC-STATEPREP-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-OP-CUBIC-STATEPREP-001 cycle 1 |
+| 2026-06-19 13:18:50 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-OP-CUBIC-STATEPREP-001.json` | memory | Wrote retrieval index for QBE-OP-CUBIC-STATEPREP-001 |

@@ -14,7 +14,8 @@
 !/runs/README.md
 /runs/trials.jsonl
 /runs/trials_summary.csv
-/paper-notes/*/markdown/cycle-summaries/
+/paper-notes/*/markdown/cycle-summaries/*
+!/paper-notes/*/markdown/cycle-summaries/*.md
 /paper-notes/project-paper/
 /paper-notes/problem-exports/*/20*.tex
 !/paper-notes/problem-exports/*/latest.tex

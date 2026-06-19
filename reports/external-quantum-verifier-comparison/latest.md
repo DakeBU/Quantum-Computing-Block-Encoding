@@ -9,10 +9,10 @@ the ABEIS main transfer-operator task.  It separates two questions:
 
 | System | Same finite BE task? | Status | Median ms | Semantic level | Role in fair comparison |
 | --- | --- | --- | ---: | --- | --- |
-| Qiskit-QuantumKatas | True | passed | 248.037 | finite Qiskit Operator block equality inside Python test | Runnable executable-code route for the same finite E_1 task; useful for artifact-route ablation, not a reusable Lean theorem. |
+| Qiskit-QuantumKatas | True | passed | 232.832 | finite Qiskit Operator block equality inside Python test | Runnable executable-code route for the same finite E_1 task; useful for artifact-route ablation, not a reusable Lean theorem. |
 | QASM-Eval | False | blocked-env |  | syntax/element/distribution/timeline evaluator; the smoke target is the same gate transcript but not block-entry equality over all basis states | Typed executable feedback and pass@k protocol; not directly a BE theorem verifier. |
 | QUASAR | False | not-runnable |  | not available locally | Harness/reward-design comparison only until runnable code is available. |
-| AI-Mandel | False | passed | 10.893 | script compile smoke only; PyTheus execution is not a BE verifier | Research-loop and expert-tool staging comparison; not a direct circuit verifier for E_1. |
+| AI-Mandel | False | passed | 10.639 | script compile smoke only; PyTheus execution is not a BE verifier | Research-loop and expert-tool staging comparison; not a direct circuit verifier for E_1. |
 
 Interpretation:
 

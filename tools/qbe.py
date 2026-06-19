@@ -89,6 +89,7 @@ TRIAL_STATUSES = ("queued", "running", "blocked", "failed", "compiled", "accepte
 
 WORK_DIRS = [
     "tasks",
+    "task-inbox",
     "conversion-windows",
     "paper-notes",
     "agent-briefs",
@@ -1017,6 +1018,83 @@ def cmd_new_task(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ingest_user_problem(args: argparse.Namespace) -> int:
+    """Record a raw user problem in any language as a first-class task input."""
+    cmd_init(argparse.Namespace())
+    safe_id = slugify(args.id)
+    lang = normalize_report_language(args.language)
+    raw = args.text or ""
+    if args.file:
+        raw = read_text(Path(args.file))
+    elif not raw and not sys.stdin.isatty():
+        raw = sys.stdin.read()
+    raw = raw.strip()
+    if not raw:
+        raise SystemExit("ingest-user-problem requires --text, --file, or stdin")
+    title = args.title.strip() or f"User operator task {safe_id}"
+    inbox_dir = ROOT / "task-inbox" / safe_id
+    prompt_path = inbox_dir / f"user_prompt.{lang}.md"
+    prompt_text = f"""# User Problem Input: {safe_id}
+
+Language: `{lang}`
+
+Task title: {title}
+
+Ingested: `{now_stamp()}`
+
+## Raw User Problem
+
+{raw}
+"""
+    write_text(prompt_path, prompt_text)
+    task_path = ROOT / "tasks" / f"{safe_id}.md"
+    if args.create_task or not task_path.exists():
+        task_text = f"""# {title}
+
+Task id: `{safe_id}`
+Kind: `{args.kind}`
+Mode: `{args.mode}`
+Status: `active`
+
+## Source Input
+
+- Raw user language: `{lang}`
+- Raw input artifact: `{rel(prompt_path)}`
+- Source: `{args.source}`
+- Requested tolerance: `{args.epsilon}`
+- Requested executable exports: `{args.export_targets}`
+
+## Raw User Problem
+
+{raw}
+
+## Agent Contract
+
+Upper agents must first translate this user-facing target into a precise
+operator, normalizer, clean-block projector, error tolerance, and resource
+metric.  Middle agents must preserve the raw-language source and explain any
+interpretation step.  Lower agents must not prove a different target.
+"""
+        write_text(task_path, task_text)
+        action = "Created"
+    else:
+        append_line(task_path, "")
+        append_line(task_path, f"## Additional Raw User Input: {now_stamp()}")
+        append_line(task_path, "")
+        append_line(task_path, f"- Language: `{lang}`")
+        append_line(task_path, f"- Artifact: `{rel(prompt_path)}`")
+        action = "Updated"
+    if args.active:
+        state = load_state()
+        state["active_task"] = safe_id
+        save_state(state)
+    add_manifest("qbe.py ingest-user-problem", prompt_path, "task", f"Ingested raw user problem for {safe_id}")
+    add_manifest("qbe.py ingest-user-problem", task_path, "task", f"{action} task from raw user problem {safe_id}")
+    print(f"ingested: {display_path(prompt_path)}")
+    print(f"task: {display_path(task_path)}")
+    return 0
+
+
 def cmd_update_task(args: argparse.Namespace) -> int:
     path = ROOT / "tasks" / f"{slugify(args.id)}.md"
     if not path.exists():
@@ -1364,16 +1442,49 @@ def current_obligation_table_rows(text: str, limit: int = 20) -> list[str]:
     return rows
 
 
-def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, str]]:
-    keywords = ("theorem", "lemma", "def", "structure", "inductive", "abbrev")
+def lean_index_files_for_task(task_text: str) -> list[Path]:
+    """Return the Lean files that are relevant enough for prompt-time indexing.
+
+    The default must be narrow.  A previous broad `QuantumBlockEncoding/*.lean`
+    scan pulled the historical `RobinMatrix.lean` proof-development file into
+    unrelated operator-construction prompts, wasting context and confusing the
+    active task.  Task-specific branches should name their own files; the
+    fallback excludes optional research modules with active obligations.
+    """
+
+    haystack = task_text.lower()
     if any(marker in task_text for marker in ["GHL2025", "Guseynov", "Robin", "QBE-AUTO-002"]):
-        files = [
+        return [
             ROOT / "QuantumBlockEncoding" / "GHL2025.lean",
             ROOT / "QuantumBlockEncoding" / "RobinMatrix.lean",
             ROOT / "QuantumBlockEncoding" / "CircuitSemantics.lean",
+            ROOT / "QuantumBlockEncoding" / "BlockEncoding.lean",
         ]
-    else:
-        files = sorted((ROOT / "QuantumBlockEncoding").glob("*.lean"))
+    if "QBE-OP-CUBIC-STATEPREP-001" in task_text or "cubic" in haystack or "state-preparation" in haystack:
+        return [
+            ROOT / "QuantumBlockEncoding" / "CubicStatePreparation.lean",
+            ROOT / "QuantumBlockEncoding" / "BlockEncoding.lean",
+            ROOT / "QuantumBlockEncoding" / "Core.lean",
+            ROOT / "QuantumBlockEncoding" / "Circuit.lean",
+        ]
+    if "QBE-OP-OPTCTRL-001" in task_text or "optimal-control" in haystack or "transfer-operator" in haystack:
+        return [
+            ROOT / "QuantumBlockEncoding" / "OptimalControl.lean",
+            ROOT / "QuantumBlockEncoding" / "BlockEncoding.lean",
+            ROOT / "QuantumBlockEncoding" / "CircuitSemantics.lean",
+            ROOT / "QuantumBlockEncoding" / "Core.lean",
+        ]
+    excluded = {"RobinMatrix.lean"}
+    return [
+        path
+        for path in sorted((ROOT / "QuantumBlockEncoding").glob("*.lean"))
+        if path.name not in excluded
+    ]
+
+
+def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, str]]:
+    keywords = ("theorem", "lemma", "def", "structure", "inductive", "abbrev")
+    files = lean_index_files_for_task(task_text)
     rows: list[dict[str, str]] = []
     decl_re = re.compile(r"^\s*(?:noncomputable\s+)?(" + "|".join(keywords) + r")\s+([A-Za-z0-9_'.]+)")
     for path in files:
@@ -1386,6 +1497,16 @@ def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, st
             name = match.group(2)
             if task_text and any(token in task_text for token in ["GHL2025", "Robin", "QBE-AUTO-002"]):
                 if not any(marker in name for marker in ["GHL", "Robin", "robin", "Circuit", "Block", "banded", "functionOracle", "boundary", "swap", "indicator", "oneTerm"]):
+                    continue
+            if task_text and ("QBE-OP-CUBIC-STATEPREP-001" in task_text or "cubic" in task_text.lower()):
+                if path.name == "CubicStatePreparation.lean":
+                    pass
+                elif not any(marker in name for marker in ["BlockEncoding", "QueryOperatorTarget", "Matrix", "gridSize", "Resource", "Circuit", "RegisterLayout", "Adaptive"]):
+                    continue
+            if task_text and ("QBE-OP-OPTCTRL-001" in task_text or "optimal-control" in task_text.lower()):
+                if path.name == "OptimalControl.lean":
+                    pass
+                elif not any(marker in name for marker in ["BlockEncoding", "QueryOperatorTarget", "Matrix", "Circuit", "RegisterLayout", "Adaptive", "Resource"]):
                     continue
             rows.append(
                 {
@@ -2315,7 +2436,144 @@ def current_ghl2025_focus() -> list[str]:
     ]
 
 
+def operator_construction_summary_zh(task_id: str, cycle: int, run_dir: Path) -> str:
+    title, _task_text = task_context(task_id)
+    state = blueprint_status_state(task_id)
+    memory = memory_snapshot_state(task_id, cycle, run_dir)
+    sorry_lines = lean_sorry_lines(limit=30)
+    changed_lines = git_changed_files()
+    latest_dialogue = read_text(run_dir / "dialogue.md") if (run_dir / "dialogue.md").exists() else ""
+    dialogue_tail = latest_dialogue[-1800:].strip() if latest_dialogue.strip() else "本轮 dialogue 还没有有效交接。"
+    dynamic = state.get("dynamic_leaf_queue", [])
+    obligations = state.get("open_obligation_signals", [])
+    sorry_text = "\n".join(f"- `{line}`" for line in sorry_lines) if sorry_lines else "- 当前没有检测到 `sorry`。"
+    changed_text = "\n".join(f"- `{line}`" for line in changed_lines[:40]) if changed_lines else "- 当前工作区没有未提交变更。"
+    dynamic_text = "\n".join(f"- {item}" for item in dynamic) if dynamic else "- blueprint 没有检测到动态 leaf；upper 需要刷新目标。"
+    obligation_text = "\n".join(f"- {item}" for item in obligations[:20]) if obligations else "- 没有 compact obligation signals；请检查 `proof-obligations/` 原文。"
+    feedback_text = markdown_table(
+        memory.get("recent_verifier_feedback", []),
+        [
+            ("leaf", "leaf"),
+            ("class", "error_class"),
+            ("finite", "finite_matrix_ok"),
+            ("entry", "block_entry_ok"),
+            ("next", "next_route"),
+        ],
+        limit=8,
+    )
+    lower_task_text = markdown_table(
+        memory.get("next_lower_tasks", []),
+        [
+            ("角色", "role"),
+            ("目标", "goal"),
+            ("产物", "must_write"),
+        ],
+    )
+    if task_id == "QBE-OP-CUBIC-STATEPREP-001":
+        verdict = """当前结论：这个 cubic 例子已经进入 Hard Mode / Scenario 2 的任务轨道，但还没有完成最终 block encoding。系统已经识别出它不是普通 unitary state preparation，因为
+
+```text
+sum_j (j / 2^n)^3 |j>
+```
+
+一般不是归一化量子态。因此 Lean 目标被固定为秩一算子
+
+```text
+O_n = |v_n><0^n|,  v_n[j] = (j / 2^n)^3.
+```
+
+这一步是正确的目标澄清，不是最终构造。当前还没有任何 cubic 候选进入 certified population；因此不能画“已经找到 final exact/approx BE”的曲线，也不能声称已经优于外部系统的最终构造。"""
+        curve_status = """- 简单主例 `QBE-OP-OPTCTRL-001` 已有 Lean-certified evolution curve：`docs/assets/optctrl_evolution.png`。
+- cubic hard benchmark 目前只有 Hard Mode 诊断曲线/表格：`reports/cubic-stateprep/latest.md` 和 dense verifier scaling；还没有 certified exact-phase / approximate-phase champion 曲线。
+- 任何 README 或技术报告中关于 cubic 的曲线，都必须标注为“diagnostic / not final BE certificate”，直到 Lean 证明候选 `U_n` 的 unitary、clean block、误差和资源。"""
+        input_status = """- 用户中文原文已保存到 `task-inbox/QBE-OP-CUBIC-STATEPREP-001/user_prompt.zh.md`。
+- 输出语言可以用 `--report-language <lang>` 或 `QBE_REPORT_LANGUAGE=<lang>` 控制。
+- 本轮之前还缺少正式的 raw problem ingestion 命令；如果本次工具更新已应用，应使用 `python3 tools/qbe.py ingest-user-problem ...` 作为本地和未来 web 的共同入口。"""
+        comparison_status = """- 已安装并使用 Qiskit 环境做过简单主例/路线消融检查，也记录了 dense verifier 的 scaling 诊断。
+- cubic hard benchmark 尚未完成公平 end-to-end 对比：外部系统还没有在同一 prompt、同一 metric、同一 tolerance 下跑出 final candidate；ABEIS 自己也还没有 final cubic BE。
+- 因此当前可支持的优势说法是：ABEIS 的目标是 Lean 证明 symbolic family，避免大规模 dense statevector/unitary materialization；还不能说 cubic 的最终解已经比外部系统更好。"""
+        next_plan = """1. lower Lean worker 先关闭 `CUBIC-NORM-001`：证明或绕过 `cubicNormSq` 的第六次幂求和/normalizer bridge。
+2. middle 把 `CUBIC-NORM-001 -> CUBIC-ALPHA-001 -> CUBIC-ERR-001 -> candidate U_n` 的依赖 DAG 写清楚。
+3. lower architect 给出第一个 approximate arithmetic/transduction candidate 的明确 register、projector、alpha、epsilon budget。
+4. verifier worker 只在有具体 `U_n` 后运行有限 block-entry / Qiskit smoke test；不要把 dense scaling 当作 final proof。
+5. reviewer 拒绝任何把未归一化向量当作 unitary output state 的候选，也拒绝没有 Lean theorem 的曲线点进入 certified population。"""
+    else:
+        verdict = """当前任务是 operator-first block-encoding construction，不是 GHL 论文复现。人类应首先检查：目标 operator、normalizer、clean projector、误差 tolerance、资源排序和 candidate population 是否清楚。"""
+        curve_status = "- 尚未检测到该任务的专用 certified evolution curve；只有 Lean 命名 theorem 支持的 candidate 才能画成 achieved point。"
+        input_status = "- 输出语言由 `--report-language <lang>` 或 `QBE_REPORT_LANGUAGE=<lang>` 控制；原始用户输入应通过 `task-inbox/` 或 `ingest-user-problem` 保留。"
+        comparison_status = "- 外部 verifier 可作为 pre-Lean diagnostic 或 post-Lean executable export；不能替代 Lean theorem closure。"
+        next_plan = "- upper 先刷新目标和资源 metric；middle 写 proof-DAG；lower 每次只关闭一个 active leaf。"
+    return f"""# 中文循环总结：{task_id} cycle {cycle}
+
+生成时间：`{now_stamp()}`
+
+Run 目录：`{rel(run_dir)}`
+
+任务标题：{title}
+
+这个文件是每轮长跑/收敛循环的人类审计入口。它不替代 Lean 证明；它负责告诉人类和下一轮 agent：当前有没有真正的 block-encoding 证书、哪些只是诊断、哪些曲线不能画成最终结果。
+
+## 本轮验收结论
+
+{verdict}
+
+## 母语输入与系统入口
+
+{input_status}
+
+## Exact / Approximate / Hard Mode 曲线状态
+
+{curve_status}
+
+## 外部系统公平对比状态
+
+{comparison_status}
+
+## 当前 Lean 编译/`sorry` 状态
+
+{sorry_text}
+
+## 当前动态 proof-DAG leaf
+
+{dynamic_text}
+
+## 当前未完成义务信号
+
+{obligation_text}
+
+## 最近 typed verifier feedback
+
+{feedback_text}
+
+## 下一轮 lower-agent 分工
+
+{lower_task_text}
+
+## 下一轮计划
+
+{next_plan}
+
+## 本轮 dialogue 末尾
+
+```text
+{dialogue_tail}
+```
+
+## 当前未提交文件
+
+{changed_text}
+
+## 人类检查建议
+
+1. 如果某个图或 README 说 cubic 已经有 final exact/approx BE，要求它给出 Lean theorem 名、资源 theorem 名、`python3 tools/qbe.py check` 结果和 problem export。
+2. 如果外部系统对比说“ABEIS 更好”，要求它说明是否已经同 prompt、同 tolerance、同 metric 跑完 end-to-end，而不是只做了 scaling forecast。
+3. 如果 agent 直接把用户中文问题翻译成英文后才进系统，要求改为 `ingest-user-problem` 或 web ingestion 入口，让原始母语输入成为系统 artifact。
+"""
+
+
 def cycle_zh_summary_text(task_id: str, cycle: int, run_dir: Path) -> str:
+    if not is_ghl_case_task(task_id):
+        return operator_construction_summary_zh(task_id, cycle, run_dir)
     title, task_text = task_context(task_id)
     state = blueprint_status_state(task_id)
     memory = memory_snapshot_state(task_id, cycle, run_dir)
@@ -3217,8 +3475,12 @@ def recent_trial_rows(task_id: str, limit: int = 8) -> list[dict[str, object]]:
 def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, object]:
     title, task_text = task_context(task_id)
     blueprint = blueprint_status_state(task_id)
-    ghl_rows = ghl_contribution_rows()
-    technical_rows = technical_lemma_rows()
+    if is_ghl_case_task(task_id):
+        ghl_rows = ghl_contribution_rows()
+        technical_rows = technical_lemma_rows()
+    else:
+        ghl_rows = []
+        technical_rows = []
     open_ghl = [
         row for row in ghl_rows
         if row.get("open") and row.get("is_ghl_contribution")
@@ -3486,7 +3748,61 @@ def cited_contract_heading(task_id: str) -> str:
     return "Open cited-contract obligations" if is_ghl_case_task(task_id) else "Open current-task cited-contract obligations"
 
 
-def prelean_verifier_rows_en() -> list[dict[str, object]]:
+def prelean_verifier_rows_en(task_id: str | None = None) -> list[dict[str, object]]:
+    if task_id == "QBE-OP-CUBIC-STATEPREP-001":
+        return [
+            {
+                "part": "target normalization",
+                "quick_check": "exact rational norm rows for sum_j (j/2^n)^6",
+                "why_necessary": "if the requested vector is not normalized, a unitary state-preparation interpretation is the wrong target",
+                "lean_still_needed": "Lean must prove the symbolic norm/normalizer bridge before any U_n candidate can be certified",
+            },
+            {
+                "part": "rank-one support",
+                "quick_check": "finite support check for O_n = |v_n><0^n|",
+                "why_necessary": "a candidate for a different column support would encode a different operator",
+                "lean_still_needed": "Lean must state and prove the clean-block equality against the rank-one operator",
+            },
+            {
+                "part": "dense verifier scaling",
+                "quick_check": "statevector/unitary memory forecast for n = 4, 8, 12, 16, 20",
+                "why_necessary": "it tells upper agents when dense executable verification stops being a useful inner-loop check",
+                "lean_still_needed": "Lean must prove a symbolic family; dense rows are smoke tests, not certificates",
+            },
+            {
+                "part": "candidate block entry",
+                "quick_check": "small-n Qiskit or exact matrix check after a concrete U_n, alpha, projector, and ancilla layout exist",
+                "why_necessary": "a failing finite block-entry check disproves the proposed candidate route",
+                "lean_still_needed": "Lean must prove unitarity, clean block, approximation error, and resource score for the advertised family",
+            },
+            {
+                "part": "epsilon budget",
+                "quick_check": "arithmetic, rotation, and transduction error ledger summing to 1e-10 or an explicit relaxed tolerance",
+                "why_necessary": "without a numerical budget, Scenario 2 approximate search has no acceptance target",
+                "lean_still_needed": "Lean must connect the budget to the operator-norm block-encoding definition",
+            },
+        ]
+    if task_id == "QBE-OP-OPTCTRL-001":
+        return [
+            {
+                "part": "finite clean-block equality",
+                "quick_check": "exact matrix or Qiskit Operator check for the concrete E_1 instance",
+                "why_necessary": "a wrong finite clean block cannot become a Lean certificate for the same concrete task",
+                "lean_still_needed": "Lean proves the matrix equality and resource record without relying on the executable checker",
+            },
+            {
+                "part": "unitarity/permutation",
+                "quick_check": "basis-action permutation check",
+                "why_necessary": "the candidate U_A must be a unitary completion, not just a linear map with the right block",
+                "lean_still_needed": "Lean proves rational orthogonality of the candidate matrix",
+            },
+            {
+                "part": "resource tuple",
+                "quick_check": "gate/depth/auxiliary/oracle count under the fixed lexicographic metric",
+                "why_necessary": "population ranking is invalid if candidate costs are not computed under the same metric",
+                "lean_still_needed": "Lean names the candidate cost theorem; finite search is only a convergence diagnostic",
+            },
+        ]
     return [
         {
             "part": "active [0,0] entry",
@@ -3521,9 +3837,9 @@ def prelean_verifier_rows_en() -> list[dict[str, object]]:
     ]
 
 
-def prelean_verifier_table_en() -> str:
+def prelean_verifier_table_en(task_id: str | None = None) -> str:
     return markdown_table(
-        prelean_verifier_rows_en(),
+        prelean_verifier_rows_en(task_id),
         [
             ("proof part", "part"),
             ("fast check", "quick_check"),
@@ -3576,7 +3892,7 @@ is wrong.  A pass only says that the target survived this exact finite check;
 Lean must still close the theorem or keep the dependency as an explicit
 contract.
 
-{prelean_verifier_table_en()}
+{prelean_verifier_table_en(task_id)}
 
 ## Lean theorem closure signal
 
@@ -3765,11 +4081,11 @@ def write_memory_refresh(task_id: str, cycle: int, run_dir: Path) -> tuple[Path,
     write_text(index_path, json.dumps(snapshot, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
     ghl_rows = snapshot.get("ghl_contributions", [])
     technical_rows = snapshot.get("technical_lemmas", [])
-    if isinstance(ghl_rows, list):
+    if is_ghl_case_task(task_id) and isinstance(ghl_rows, list):
         write_text(GHL_CONTRIBUTION_DIR / "index.md", ghl_contribution_index_markdown(ghl_rows))
         write_text(GHL_CONTRIBUTION_DIR / "source-map.md", ghl_contribution_index_markdown(ghl_rows))
         write_text(GHL_CONTRIBUTION_DIR / "todo.md", ghl_contribution_todo_markdown(ghl_rows))
-    if isinstance(technical_rows, list):
+    if is_ghl_case_task(task_id) and isinstance(technical_rows, list):
         write_text(TECHNICAL_LEMMA_DIR / "index.md", technical_lemma_index_markdown(technical_rows))
         write_text(TECHNICAL_LEMMA_DIR / "todo.md", technical_lemma_todo_markdown(technical_rows))
     add_manifest("qbe.py memory-refresh", digest_path, "memory", f"Wrote memory digest for {task_id} cycle {cycle}")
@@ -4365,6 +4681,88 @@ needed.
 
 {latest_runs_text}
 """
+    if not is_ghl_case_task(task_id):
+        language_note = (
+            f"偏好人类报告语言：`{report_language_label(lang)}` (`{lang}`)。"
+            "这个 dashboard 使用中文内置模板；未来 translator agent 可以翻译成用户指定母语。"
+        )
+        return f"""# ABEIS Human Status
+
+Generated: `{now_stamp()}`
+
+Task: `{task_id}` — {title}
+
+Latest run: `{rel(run_dir)}`
+
+{language_note}
+
+这个文件是 operator-construction 任务的人类入口。先看这里，再打开 `summary.md`、`memory_digest.md`、candidate population、verifier feedback 或 Lean 文件。
+
+## One-Page Verdict
+
+- 最新 run：`{rel(run_dir)}`。
+- 当前 `sorry` 数量：{len(sorries)}。
+- 核心验收规则：只有命名 Lean theorem、resource certificate、clean-block theorem 都编译通过的 candidate，才能进入 certified population 或画成 achieved curve。
+- 报告语言由 `--report-language <lang>`、`--language <lang>` 或 `QBE_REPORT_LANGUAGE=<lang>` 控制。
+
+## Latest Links
+
+- 最新母语/人类总结：`{rel(latest_summary)}`
+- 最新 memory digest：`{rel(run_dir / "memory_digest.md")}`
+- 最新下一步 todo：`{rel(run_dir / "todo.md")}`
+- 最新 dialogue：`{rel(run_dir / "dialogue.md")}`
+- 最新 problem LaTeX export：`paper-notes/problem-exports/{slugify(task_id)}/latest.tex`
+- Compact retrieval JSON：`research-wiki/retrieval-index/{slugify(task_id)}.json`
+
+## Build And Sorry Status
+
+{sorry_text}
+
+## Batch Log Signal
+
+{log_text}
+
+## Trial Memory Counts
+
+| total | compiled/pass | failed | blocked |
+|---:|---:|---:|---:|
+| {trials["total"]} | {trials["compiled"]} | {trials["failed"]} | {trials["blocked"]} |
+
+## Current Active Proof Leaves
+
+{dynamic_text}
+
+## Current-Task Contribution Todo
+
+{markdown_table(open_ghl if isinstance(open_ghl, list) else [], [
+    ("id", "id"),
+    ("source", "main_tex_anchor"),
+    ("plain object", "english_object"),
+    ("status", "english_status"),
+], limit=8)}
+
+## External Technical Lemma Todo
+
+{markdown_table(open_technical if isinstance(open_technical, list) else [], [
+    ("id", "id"),
+    ("status", "lean_status"),
+    ("next action", "next_action"),
+], limit=8)}
+
+## Human Reading Order
+
+1. Start here: `HUMAN_STATUS.md`.
+2. Read the current summary: `{rel(latest_summary)}`.
+3. Read `{rel(run_dir / "memory_digest.md")}` and `{rel(run_dir / "todo.md")}` for the next agent packet.
+4. Read `candidate-populations/{slugify(task_id)}.md` for certified candidates and insight-pool proposals.
+5. Read `verifier-feedback/{slugify(task_id)}/` for necessary-condition diagnostics.
+6. Read `paper-notes/problem-exports/{slugify(task_id)}/latest.tex` before copying any proof into a user manuscript.
+
+## Recent Run Directories
+
+{latest_runs_text}
+"""
+
     return f"""# ABEIS Human Status
 
 Generated: `{now_stamp()}`
@@ -4467,10 +4865,11 @@ Latest run: `{rel(run_dir)}`
 def write_human_status(task_id: str, run_dir: Path, language: str | None = None) -> Path:
     write_text(REPORTS_GUIDE, reports_guide_markdown(task_id, run_dir))
     add_manifest("qbe.py human-status", REPORTS_GUIDE, "review", f"Wrote report guide for {task_id}")
-    write_text(GHL_FIG4_AUDIT, ghl_fig4_visual_audit_markdown(task_id, run_dir))
-    add_manifest("qbe.py human-status", GHL_FIG4_AUDIT, "review", f"Wrote GHL Fig. 4 visual audit for {task_id}")
-    write_text(GHL_FAILURE_MAP, ghl_failure_map_markdown(task_id, run_dir))
-    add_manifest("qbe.py human-status", GHL_FAILURE_MAP, "review", f"Wrote GHL failure map for {task_id}")
+    if is_ghl_case_task(task_id):
+        write_text(GHL_FIG4_AUDIT, ghl_fig4_visual_audit_markdown(task_id, run_dir))
+        add_manifest("qbe.py human-status", GHL_FIG4_AUDIT, "review", f"Wrote GHL Fig. 4 visual audit for {task_id}")
+        write_text(GHL_FAILURE_MAP, ghl_failure_map_markdown(task_id, run_dir))
+        add_manifest("qbe.py human-status", GHL_FAILURE_MAP, "review", f"Wrote GHL failure map for {task_id}")
     write_text(HUMAN_STATUS, human_status_markdown(task_id, run_dir, language))
     add_manifest("qbe.py human-status", HUMAN_STATUS, "review", f"Wrote human status dashboard for {task_id}")
     return HUMAN_STATUS
@@ -4580,7 +4979,7 @@ because a failing exact finite check usually means the Lean target, circuit
 transcript, or index map is wrong.  A passing check only means the candidate
 survived this cheaper test; the final claim still needs a Lean theorem.
 
-{prelean_verifier_table_en()}
+{prelean_verifier_table_en(task_id)}
 
 ## Current proof-DAG frontier
 
@@ -4705,6 +5104,19 @@ def task_article_status_markdown(task_id: str, run_dir: Path) -> str:
                 "",
             ]
         )
+    elif task_id == "QBE-OP-CUBIC-STATEPREP-001":
+        lines.extend(
+            [
+                "Current status: Hard Mode / Scenario 2 benchmark initialized, but no final block-encoding candidate has been promoted.",
+                "",
+                "- Target interpretation: `O_n = |v_n><0^n|`, with `v_n[j] = (j / 2^n)^3`; this avoids the invalid assumption that the requested vector is already a normalized unitary state-preparation output.",
+                "- Lean certificates currently available: target declarations, `cubicOperator_only_first_column`, and exact small norm diagnostics `cubicNormSq_n1`, `cubicNormSq_n2`, `cubicNormSq_n3`.",
+                "- Active proof leaf: `CUBIC-NORM-001`, then normalizer/alpha, clean-projector, approximate error budget, and candidate `U_n`.",
+                "- Plot policy: cubic may show diagnostic scaling rows, but it must not show an achieved exact/approximate BE curve until a Lean-certified candidate exists.",
+                "- Comparison policy: external Qiskit/QASM/QuantumKatas-style routes have not yet been run end-to-end on this hard target; only the dense verifier scaling signal is currently recorded.",
+                "",
+            ]
+        )
     elif population_path.exists():
         lines.extend(
             [
@@ -4737,6 +5149,15 @@ def task_article_status_latex(task_id: str, run_dir: Path) -> str:
             "Scope: finite-verifier-converged for this concrete \\(r=1,k=1\\) logical-library instance, with the zero-auxiliary whole-matrix obstruction closed; arbitrary-register generalization, hardware decomposition, and Lean-proved depth lower bounds remain open.",
             "Plot policy: plotted points must name rational-orthogonal matrix and clean-block Lean certificates at this semantic tier.",
             "Manuscript rule: present this as the current concrete certificate, not as a general-family or hardware-optimality theorem.",
+        ]
+    elif task_id == "QBE-OP-CUBIC-STATEPREP-001":
+        items = [
+            "Hard Mode / Scenario 2 benchmark initialized, but no final block-encoding candidate has been promoted.",
+            "Target interpretation: \\(O_n=|v_n\\rangle\\langle 0^n|\\), with \\((v_n)_j=(j/2^n)^3\\).  This avoids treating the requested unnormalized vector as a unitary state-preparation output.",
+            "Compiled Lean surface: target declarations, \\texttt{cubicOperator\\_only\\_first\\_column}, and small exact norm diagnostics \\texttt{cubicNormSq\\_n1}, \\texttt{cubicNormSq\\_n2}, and \\texttt{cubicNormSq\\_n3}.",
+            "Active proof leaf: \\texttt{CUBIC-NORM-001}; the normalizer, clean projector, approximate error budget, and candidate \\(U_n\\) remain open.",
+            "Plot policy: diagnostic scaling rows are allowed, but no achieved exact/approximate BE curve should be shown until a Lean-certified candidate exists.",
+            "Comparison policy: external executable routes have not yet been run end-to-end on this hard target; the report may discuss dense-verifier scaling, not final superiority.",
         ]
     elif population_path.exists():
         items = [
@@ -5003,7 +5424,7 @@ oracle calls.  This resource tuple is certified by
   \\texttt{{OptimalControl.evolvedEqFlipCandidate\\_cost}}.
 \\]
 
-Finally, the approximate block-encoding statement follows from exactness.
+        Finally, the approximate block-encoding statement follows from exactness.
 With \\(\\alpha=1\\) and \\(\\varepsilon=0\\), the norm error is zero.  The Lean
 project records this zero-error approximate certificate as
 \\[
@@ -5033,6 +5454,90 @@ This note proves the concrete \\(r=1,k=1\\) logical reversible
 permutation-matrix instance.  It is not a hardware-decomposed resource theorem,
 not yet a general arbitrary-register construction, and not a Lean-proved
 global optimality theorem.
+"""
+    if task_id == "QBE-OP-CUBIC-STATEPREP-001":
+        return f"""% Auto-generated by tools/qbe.py problem-latex-export.
+% Problem-specific proof/status note for copying into a user manuscript.
+% Generated: {generated}.  Task: {latex_escape(task_id)}.
+% This is a current-status note, not a completed block-encoding theorem.
+
+\\subsection{{Cubic grid state-preparation operator: current formal target}}
+
+Let \\(n\\geq 1\\), let \\(N=2^n\\), and set \\(x_j=j/N\\) for
+\\(0\\leq j<N\\).  The user-level target is the operator whose action on the
+all-zero basis vector is
+\\[
+  O_n |0^n\\rangle
+  =
+  \\sum_{{j=0}}^{{N-1}} x_j^3 |j\\rangle .
+\\]
+The vector on the right is generally not normalized.  Therefore this is not,
+by itself, a unitary state-preparation specification.  ABEIS currently fixes
+the Lean-facing target as the rank-one linear operator
+\\[
+  O_n
+  =
+  |v_n\\rangle\\langle 0^n|,
+  \\qquad
+  (v_n)_j = (j/2^n)^3 .
+\\]
+Equivalently, \\(O_n\\) maps \\(|0^n\\rangle\\) to the requested unnormalized
+vector and maps every other computational-basis input to zero.
+
+\\paragraph{{Compiled Lean surface.}}
+The current Lean development names the target components as
+\\[
+\\begin{{array}}{{ll}}
+\\texttt{{CubicStatePreparation.gridPoint}} & x_j=j/2^n,\\\\
+\\texttt{{CubicStatePreparation.cubicAmplitude}} & x_j^3,\\\\
+\\texttt{{CubicStatePreparation.cubicOperator}} & O_n=|v_n\\rangle\\langle 0^n|,\\\\
+\\texttt{{CubicStatePreparation.requestedEpsilon}} & 10^{{-10}},\\\\
+\\texttt{{CubicStatePreparation.defaultPolicy}} & \\,\\text{{adaptive exact-then-approximate search.}}
+\\end{{array}}
+\\]
+Small exact norm diagnostics for \\(n=1,2,3\\) also compile:
+\\[
+  \\texttt{{cubicNormSq\\_n1}},\\qquad
+  \\texttt{{cubicNormSq\\_n2}},\\qquad
+  \\texttt{{cubicNormSq\\_n3}}.
+\\]
+
+\\paragraph{{Why Hard Mode is triggered.}}
+The squared norm that controls any exact or approximate block encoding is
+\\[
+  \\|v_n\\|^2
+  =
+  \\sum_{{j=0}}^{{2^n-1}} \\left(\\frac{{j}}{{2^n}}\\right)^6 .
+\\]
+This norm is not identically one, so any proposed circuit that treats
+\\(\\sum_j x_j^3|j\\rangle\\) as a normalized unitary output is rejected.  A
+block encoding must instead state a normalizer \\(\\alpha\\), a clean-block
+projector, an auxiliary register layout, and an error budget.
+
+\\paragraph{{Current open obligations.}}
+No final candidate unitary \\(U_n\\) has been promoted yet.  The current proof
+DAG is:
+\\[
+\\begin{{array}}{{ll}}
+\\text{{CUBIC-NORM-001}} & \\text{{prove a closed norm formula or a sufficient normalizer bound}},\\\\
+\\text{{CUBIC-ALPHA-001}} & \\text{{connect the chosen normalizer to }} \\|O_n\\|,\\\\
+\\text{{CUBIC-ERR-001}} & \\text{{split the }}10^{{-10}}\\text{{ tolerance across arithmetic and synthesis error}},\\\\
+\\text{{CUBIC-CAND-001}} & \\text{{state and prove a concrete approximate }}U_n\\text{{ candidate.}}
+\\end{{array}}
+\\]
+The existing dense executable diagnostics are useful smoke tests, but they are
+not block-encoding certificates.  In particular, a dense one-auxiliary unitary
+matrix for this target already reaches terabyte-scale memory in the diagnostic
+range, so the intended successful route is a symbolic arithmetic family proved
+in Lean.
+
+\\paragraph{{Current manuscript-safe claim.}}
+At the current status, it is safe to claim only that ABEIS has parsed the user
+target into a Lean-checkable rank-one operator, detected the normalization
+obstruction, initialized Scenario~2 approximate-search obligations, and
+recorded necessary-condition diagnostics.  It is not yet safe to claim a
+completed exact block encoding, a completed approximate block encoding, or a
+strictly better final circuit than external systems for this cubic benchmark.
 """
     status = task_article_status_latex(task_id, run_dir)
     return f"""% Auto-generated by tools/qbe.py problem-latex-export.
@@ -5604,7 +6109,15 @@ def local_paper_source_context(task_text: str) -> str:
     )
 
 
-def verifier_feedback_contract() -> str:
+def verifier_feedback_contract(task_id: str = "", task_text: str = "") -> str:
+    ghl_tail = ""
+    if task_id and is_ghl_case_task(task_id):
+        ghl_tail = """
+
+For GHL2025 one-term closure, useful pre-Lean diagnostics are finite
+matrix-entry checks and support/branch decomposition checks.  Timeline or
+hardware scheduling checks are not relevant to the current proof blocker.
+"""
     return """Typed verifier-feedback contract:
 
 - QBE borrows the useful shape of parser/unit-test/simulator feedback from
@@ -5633,11 +6146,7 @@ python3 tools/qbe.py trial-log --task <task> --role lower --kind attempt \\
   --feedback-field error_class=<class> \\
   --feedback-field next_route=\"<next narrow route>\"
 ```
-
-For GHL2025 one-term closure, useful pre-Lean diagnostics are finite
-matrix-entry checks and support/branch decomposition checks.  Timeline or
-hardware scheduling checks are not relevant to the current proof blocker.
-"""
+""" + ghl_tail
 
 
 def strategy_for_mode(mode: str) -> str:
@@ -5782,7 +6291,7 @@ def role_prompt(
     mode = infer_task_mode(task_text)
     strategy = strategy_for_mode(mode)
     paper_sources = local_paper_source_context(task_text)
-    verifier_feedback = verifier_feedback_contract()
+    verifier_feedback = verifier_feedback_contract(task_id, task_text)
     blueprint = blueprint_context(task_id)
     displayed_task_text = task_text.strip() if context_mode == "full" else focused_task_contract(task_text)
     context_note = (
@@ -5790,6 +6299,39 @@ def role_prompt(
         if context_mode == "full"
         else "Focused task context: stable header plus the latest immediate/current directive only."
     )
+    ghl_task = is_ghl_case_task(task_id)
+    ghl_figure_audit_rule = ""
+    if ghl_task:
+        ghl_figure_audit_rule = """- Figure-audit rule: if the active leaf depends on a paper circuit diagram,
+  upper/middle/lower1 must use the figure audit or inspect the figure source
+  directly before assigning Lean work.  For GHL2025 Fig. 4, read
+  `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` and keep the full
+  Fig. 4 transcript separate from the seven-gate backend component.
+"""
+    operator_scoped_retrieval = ""
+    if task_id.startswith("QBE-OP-") and not ghl_task:
+        operator_scoped_retrieval = f"""Task-scoped retrieval discipline for this operator target:
+
+- This task is driven by the user-provided operator target, not by a paper
+  source archive.  Do not start by running `list-literature`, broad `rg` over
+  the whole repository, or searches through unrelated paper memories.
+- Read only the task packet, proof blueprint, proof obligations, candidate
+  population, task-specific verifier feedback, task-specific reports, and the
+  Lean declaration index shown in this prompt unless upper explicitly upgrades
+  the task into a paper-source or cited-literature audit.
+- Task-local files to prefer:
+  `tasks/{task_id}.md`,
+  `proof-blueprints/{task_id}.md`,
+  `proof-obligations/{task_id}.md`,
+  `candidate-populations/{task_id}.md`,
+  `verifier-feedback/{task_id}/`,
+  `reports/{task_id}/` if it exists, and the Lean files named in the
+  declaration index.
+- If a command must search, scope it to one of those task-local files or to
+  the exact Lean module named by the blueprint.  Broad repository search is a
+  process bug for this cycle because it can import stale paper-benchmark
+  context into an operator-construction task.
+"""
     shared = f"""Task: {task_id} - {title}
 Mode: {mode}
 Cycle: {cycle}
@@ -5825,6 +6367,8 @@ Local paper-source archive for agent work:
 ```text
 {paper_sources}
 ```
+
+{operator_scoped_retrieval}
 
 	Operating model:
 
@@ -5960,11 +6504,11 @@ Local paper-source archive for agent work:
   and nearby citations have been checked and no paper-backed gate-level
   ingredient has been found.
 - Branch-correctness invariant: a focused finite example must satisfy the same
-  branch conditions as the source line it is used to check.  For GHL-style
-  boundary/bulk decompositions with thresholds `K_1` and `K_2`, boundary lines
-  require `j < K_1` or `K_2 < j`, while bulk lines require
-  `K_1 <= j <= K_2`.  A mismatch here is a planning bug to correct, not a
-  theorem failure or a human convention request.
+  branch conditions as the source/user target line it is used to check.  If a
+  problem has boundary/bulk cases, special register cases, or promise regions,
+  the diagnostic instance must be drawn from the same case as the theorem
+  branch.  A mismatch here is a planning bug to correct, not a theorem failure
+  or a human convention request.
 - Sparse-oracle faithfulness invariant: do not confuse sparse-register slots
   with nonzero coefficient values.  If the paper uses a fixed diagonal/band
   enumeration and says zero entries can be included, the index oracle still
@@ -5986,19 +6530,16 @@ Human-facing correspondence rule:
   Use `--report-language <lang>` or `QBE_REPORT_LANGUAGE=<lang>` to select the
   user's mother tongue.  Use `--summary-each-cycle` only for short debugging
   runs where a summary after every cycle is desired.
-- Figure-audit rule: if the active leaf depends on a paper circuit diagram,
-  upper/middle/lower1 must use the figure audit or inspect the figure source
-  directly before assigning Lean work.  For GHL2025 Fig. 4, read
-  `paper-notes/GHL2025/markdown/fig4-visual-audit.zh.md` and keep the full
-  Fig. 4 transcript separate from the seven-gate backend component.
+{ghl_figure_audit_rule}
 - Every executed cycle also refreshes `runs/<run-id>/memory_digest.md`,
   `runs/<run-id>/todo.md`, and
   `research-wiki/retrieval-index/{task_id}.json`.  Upper and middle agents
   should read this compact retrieval packet before replaying long logs.
 - The memory layer separates paper contributions from external technical
-  lemmas: GHL-owned proof steps live under
-  `research-wiki/paper-contributions/GHL2025/`, while cited primitives,
-  standard facts, and reusable contracts live under
+  lemmas: paper-owned proof steps live under
+  `research-wiki/paper-contributions/<paper-id>/`, user/operator targets live
+  under task-specific blueprints and candidate populations, while cited
+  primitives, standard facts, and reusable contracts live under
   `research-wiki/technical-lemmas/`.
 - Lean compilation alone is not enough for paper-benchmark mode;
   humans must be able to compare the Lean names with the original theorem,
@@ -6182,6 +6723,9 @@ Do not assign broad Lean proof search.  Produce:
    contract-drift.
 4. A short recommendation to the director: continue the current leaf, repair
    the source contract, or ask middle for a proof-translation packet.
+"""
+            if ghl_task:
+                body += """
 
 For GHL2025 Fig. 4, keep the full circuit transcript separate from the local
 seven-gate backend component.  The purpose is to prevent another cycle from
@@ -6402,8 +6946,8 @@ audit if present.  Produce:
    correspond to that object.
 3. Any external technical lemma or cited-result row needed by the next lower
    packet.
-4. A clear statement of what is GHL-owned, what is an external contract, and
-   what is QBE-local semantic glue.
+4. A clear statement of what is owned by the active paper or user target, what
+   is an external contract, and what is QBE-local semantic glue.
 5. One lower-facing source contract, with no article prose polish.
 """
         elif lower_index == -2:
@@ -7217,6 +7761,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="concrete register sizes/parameters for post-Lean executable exports",
     )
     p_task.set_defaults(func=cmd_new_task)
+
+    p_ingest = sub.add_parser(
+        "ingest-user-problem",
+        help="record a raw user problem in any language as the source artifact for an operator task",
+    )
+    p_ingest.add_argument("id")
+    p_ingest.add_argument("--title", default="")
+    p_ingest.add_argument("--language", default=os.environ.get("QBE_REPORT_LANGUAGE", "zh"))
+    p_ingest.add_argument("--file", default="", help="read raw user problem from this file")
+    p_ingest.add_argument("--text", default="", help="raw user problem text; stdin is also accepted")
+    p_ingest.add_argument("--kind", default="operatorBlockEncoding")
+    p_ingest.add_argument("--mode", default="exploratoryConstruction")
+    p_ingest.add_argument("--source", default="user-provided")
+    p_ingest.add_argument("--epsilon", default="")
+    p_ingest.add_argument("--export-targets", default="qiskit,quantum-katas,qasm3")
+    p_ingest.add_argument("--create-task", action="store_true", help="create or overwrite the task shell if absent")
+    p_ingest.add_argument("--active", action="store_true", help="set this task as active")
+    p_ingest.set_defaults(func=cmd_ingest_user_problem)
 
     p_update = sub.add_parser("update-task", help="update task status")
     p_update.add_argument("id")
