@@ -121,78 +121,27 @@ This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general
 arbitrary-register theorem, or a Lean-proved global optimality theorem.
 
-### Verifier Timing
+## Why Lean For Block Encodings
 
-ABEIS does not currently call QASM-Eval or Qiskit QuantumKatas as part of the
-default proof loop.  It implements local finite verifier packets and then
-requires Lean theorem closure.  For the main case, we added a direct timing
-comparison against an optional Qiskit `Operator` verifier:
+Executable quantum tooling such as Qiskit, QuantumKatas, and QASM evaluators is
+very useful for small concrete circuits: it can run a statevector, materialize
+a unitary, or check a sample OpenQASM program.  That is not enough for many
+block-encoding papers, where the real claim is a symbolic family of circuits
+indexed by register sizes, sparse-access promises, normalizers, and ancilla
+cleanup conditions.
 
-![Verifier timing comparison](docs/assets/verifier_time_comparison.png)
+For an `r`-qubit time register, dense statevector/unitary validation pays the
+Hilbert-space dimension directly.  Even a structurally simple family like
 
-On the measured environment, the exact finite NumPy verifier and the exact
-Qiskit `Operator` verifier are complete for this fully instantiated 4-qubit
-matrix instance, and both are much faster than the cached Lean gate.  Lean is
-still the final acceptance gate because it records reusable definitions,
-theorems, resource tuples, and future dependencies.  QASM-Eval-style
-distribution, timing, and pulse checks remain diagnostics unless the task's
-theorem has exactly that executable semantics.
-
-Reproduce the comparison:
-
-```bash
-python3 tools/compare_verifiers.py
+```text
+E_k = |0><k|_time ⊗ |0><1|_type ⊗ I_state
 ```
 
-If `qiskit` is not installed, the Qiskit row is reported as unavailable rather
-than silently replaced by a local check.
-
-This plot measures only checker wall time.  It does not measure the time an AI
-agent spends writing Qiskit code, writing Lean declarations/proofs, repairing
-failures, coordinating agents, or consuming tokens.  A fair harness comparison
-must separately record:
-
-- checker time: parser/simulator/Lean build time;
-- artifact-production time: agent wall time to write and repair the code;
-- token throughput: input, output, and total tokens per accepted candidate.
-
-The current route-total ablation has been run once with Codex on the same
-target:
-
-![Route-total ablation](docs/assets/route_ablation_times.png)
-
-All three routes passed.  The Qiskit-only route produced and executed a finite
-Python/Qiskit artifact, the Lean-only route produced a direct Lean theorem
-route, and the ABEIS route used real parallel lower agents
-(`lower_count = 3`).  The result is deliberately not presented as "ABEIS is
-fastest": this run shows that the current ABEIS Codex profile has substantial
-coordination/log overhead.  Its value is the stronger semantic artifact and
-the recorded proof/candidate memory.  The next engineering target is to make
-upper/middle/reviewer roles deterministic or low-token, while preserving
-parallel lower proof/circuit search.
-
-The generated file
-`reports/route-ablation/QBE-OP-OPTCTRL-001/latest_results.md` records the
-route-total rows.  Exact provider token counts are still marked unavailable
-unless the chosen model wrapper reports them.
-
-The second comparison is scaling.  For the family
-`E_k = |0><k|_time tensor |0><1|_type tensor I_state`, dense Qiskit
-`Operator` checking must materialize a `2^(r+3)` dimensional matrix, where `r`
-is the number of time-register qubits:
-
-![Dense verifier scaling](docs/assets/verifier_scaling_comparison.png)
-
-This is why simulator-style verification is valuable but should not be the
-only acceptance layer for block-encoding research.  It is excellent for small
-finite instances, counterexamples, and smoke tests.  For large-register
-operator families, ABEIS should move toward symbolic Lean theorems about
-registers and gates, so proof checking scales with proof structure rather than
-dense Hilbert-space dimension.  The current main case is certified for
-`r = 1`; the parametric all-`r` theorem is a future strengthening.
-
-The hard-scaling forecast makes the same point without pretending to run
-impossible dense checks:
+requires a dense `2^(r+3) × 2^(r+3)` matrix if we insist on checking it by
+materializing the full unitary.  ABEIS instead aims to prove symbolic Lean
+theorems about the circuit family.  The proof checker follows the proof
+structure; it does not need to enumerate the whole Hilbert space for every
+larger `r`.
 
 ![Dense verifier memory forecast](docs/assets/verifier_hard_scaling_forecast.png)
 
@@ -201,71 +150,46 @@ already require about `1 PiB` of memory.  At `r = 32`, it is about `16 ZiB`.
 This is where ABEIS should stop asking a simulator to materialize the whole
 matrix and instead ask Lean for a symbolic theorem about the circuit family.
 
-The experimental comparison has two axes:
+ABEIS still uses finite executable checks when they help.  They are excellent
+as small-instance smoke tests, counterexample generators, and necessary
+condition diagnostics.  They are not promoted to scientific claims until the
+advertised block-entry, unitarity, cleanup, and resource statements are closed
+by Lean.
 
-- artifact route: Qiskit/OpenQASM task plus executable verifier, direct Lean
-  theorem route, and full ABEIS route;
-- harness route: their single-benchmark or tool-feedback loops versus ABEIS's
-  upper/middle/lower/reviewer loop with candidate populations and retrieval
-  memory.
+## Why The ABEIS Harness
 
-For each route ABEIS records route-total agent time, checker/compile time,
-input/output token proxies, repair iterations where available, and the final
-semantic level.  The protocol is recorded in
-`reports/verifier-comparison/QBE-OP-OPTCTRL-001/agent_ablation_protocol.md`.
-Controlled prompt packets for the three route-total ablations are generated at
-`reports/route-ablation/QBE-OP-OPTCTRL-001/`.
+Qiskit QuantumKatas and QASM-Eval are good at testing submitted code.  QUASAR
+and AI-Mandel are useful examples of tool-feedback loops for quantum artifacts.
+ABEIS targets a stricter task:
 
-External repository smoke comparison on the same local checkout:
-
-| System | Direct same finite BE task? | Local result | What it tells ABEIS |
-| --- | --- | --- | --- |
-| [Qiskit-QuantumKatas][qiskit-quantumkatas] | yes | custom kata passed | Best executable-code route for finite Qiskit comparison. |
-| [QASM-Eval][qasm-eval] | no | current local run `blocked-env` | Useful typed feedback/pass@k design; not a block-entry verifier. |
-| [QUASAR][quasar-paper] | no | local code not released | Harness/reward comparison only for now. |
-| [AI-Mandel][ai-mandel-paper] | no | script compile smoke passed | Useful staged idea-to-tool loop; not a BE verifier. |
-
-Full details are generated by:
-
-```bash
-python3 -m pip install qiskit 'openqasm3[parser]'
-python3 tools/compare_external_quantum_verifiers.py
+```text
+given an oracle/operator requirement A,
+construct a candidate block-encoding unitary U_A,
+prove the block-entry theorem in Lean,
+and improve the construction by gate count, depth, and ancilla cost.
 ```
 
-The report is
-`reports/external-quantum-verifier-comparison/latest.md`.
-The combined comparison status is
-`reports/route-ablation/QBE-OP-OPTCTRL-001/comparison_status.md`.
+The harness is designed around that task:
 
-To prepare the route-total prompts again:
+- **Upper agents** keep the mathematical target fixed, so the search does not
+  drift into proving an easier oracle.
+- **Middle agents** translate between Lean, natural-language proof plans, and
+  reusable memory, so failed proof attempts become searchable guidance instead
+  of discarded chat logs.
+- **Lower agents** maintain a candidate population: natural-language architects
+  propose proof decompositions, Lean workers close proof leaves, and verifier
+  workers run small finite diagnostics before expensive theorem work.
+- **Reviewer agents** reject hidden assumptions, wrong resource tuples,
+  simulator-only claims, and unverified candidates.
 
-```bash
-python3 tools/prepare_route_ablation.py
-```
+This makes ABEIS closer to an automated theorem-proving laboratory for quantum
+block encodings than to a circuit simulator benchmark.  It can borrow Qiskit
+or QASM-style feedback as a front-end filter, but the final artifact is a
+Lean-checked certificate that can be reused by later papers and larger
+parameterized constructions.
 
-To record checker-only reference baselines:
-
-```bash
-python3 -m pip install qiskit
-python3 tools/run_route_ablation.py reference_qiskit
-python3 tools/run_route_ablation.py reference_lean
-```
-
-The current reference and route-total results are stored in
-`reports/route-ablation/QBE-OP-OPTCTRL-001/latest_results.md`.
-
-For route-total Qiskit-only runs, `tools/run_route_ablation.py` sets
-`QBE_ROUTE_ARTIFACT`; the agent must create a complete Python/Qiskit checker at
-that path, and the runner executes it.  Printed code snippets do not count as
-accepted artifacts.
-
-The repository includes a deterministic `qiskit_only` harness self-test using
-`tools/route_ablation_agents/write_qiskit_reference.py`.  This proves the
-artifact enforcement path works, but it is not an AI route-total baseline.
-
-The ABEIS route-total runner uses a short mini-harness: compact upper/middle
-handoffs, three parallel lower roles, reviewer, and `lake build Tests`.  Do
-not treat a single chat session as evidence of parallel lower-agent search.
+Detailed timing, route-ablation, and external-verifier records are kept in
+`reports/`.  They are intentionally not the main README narrative.
 
 ## Benchmark Paper Cases
 
@@ -304,148 +228,21 @@ The mandatory acceptance gate is:
 lake build && lake build Tests
 ```
 
-## Web Task Builder
+## Use ABEIS
 
-ABEIS includes a static web task builder in `web/`.  It lets a user paste a
-LaTeX oracle, matrix, or natural-language operator description, choose their
-report language, record a baseline construction, and generate a Markdown task
-packet for the agent loop.
+ABEIS can be used from the CLI or from the static task builder in `web/`.
+The web page helps a user paste a LaTeX oracle, matrix, or natural-language
+operator description and turn it into a task packet.  It does not certify
+proofs; Lean remains the verification authority.
 
-The page does not run agents and does not certify proofs.  Lean remains the
-verification authority.
-
-For a public repository, GitHub Pages can publish `web/` through
-`.github/workflows/pages.yml`.  The deployed project page normally has this
-shape:
-
-```text
-https://<github-user>.github.io/<repo-name>/
-```
-
-Report language is also available from the CLI:
-
-```bash
-export QBE_REPORT_LANGUAGE=ja
-python3 tools/qbe.py sleep-run QBE-OP-OPTCTRL-001 --report-language ja ...
-python3 tools/qbe.py cycle-summary QBE-OP-OPTCTRL-001 --run-id latest --language ja
-```
-
-## Repository Map
-
-Lean source:
-
-- `QuantumBlockEncoding/Core.lean`: finite-index and grid helpers.
-- `QuantumBlockEncoding/Circuit.lean`: circuit and gate-level interfaces.
-- `QuantumBlockEncoding/BlockEncoding.lean`: operator targets, candidates,
-  verified certificates, and `BlockEncodingCost`.
-- `QuantumBlockEncoding/Resources.lean`: gate count, depth, auxiliary qubits,
-  oracle calls, and schedule bookkeeping.
-- `QuantumBlockEncoding/GHL2025.lean`: first paper-benchmark case.
-- `QuantumBlockEncoding/Automation.lean`: compiled automation contracts.
-
-Agent and proof artifacts:
-
-- `tools/qbe.py`: project CLI.
-- `tasks/`: task contracts.
-- `conversion-windows/`: Lean and natural-language proof maps.
-- `candidate-populations/`: certified and rejected candidate records.
-- `proof-obligations/`: explicit proof and oracle gaps.
-- `proof-blueprints/`: compact system-of-record snapshots.
-- `runs/`: prompt decks, dialogue boards, trial logs, summaries, and Pro
-  prompts.
-- `paper-notes/problem-exports/`: closeout LaTeX proof notes for users.
-- `research-wiki/`: persistent cited-result, lemma, and retrieval memory.
-
-Public project artifacts cite original GitHub repositories, arXiv URLs,
-theorem/equation anchors, or bundled paper notes.  They should not depend on
-machine-specific local paths.
-
-## Agent Harness
-
-ABEIS uses a layered multi-agent harness:
-
-| Layer | Responsibility |
-| --- | --- |
-| Upper | Fix the operator target, choose strategy, audit source/candidate drift. |
-| Middle | Maintain Lean/natural-language correspondence, retrieval memory, and closeout reports. |
-| Lower 1 | Natural-language construction/proof architect. |
-| Lower 2 | Lean implementation worker for one ready proof leaf. |
-| Lower 3 | Necessary-condition verifier for exact finite checks. |
-| Reviewer | Reject hidden assumptions, wrong resources, stale routes, and unsupported promotions. |
-
-The harness is vendor-neutral.  A profile under `agent-profiles/` can dispatch
-different roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax,
-or local tools.  The checked-in Codex-only profile is the reproducible default:
-
-```bash
-python3 tools/qbe.py sleep-run QBE-OP-001 \
-  --cycles 6 \
-  --lower-count 3 \
-  --parallel-lower \
-  --agent-profile codex-parallel.example.json \
-  --execute \
-  --check-each-cycle
-```
-
-Swap in a mixed-vendor profile when those wrappers are available.  The profile
-changes search diversity and cost.  It does not change what counts
-as success: only Lean-certified declarations and the build gate certify a
-candidate.
-
-### Memory And Feedback Loop
-
-```mermaid
-flowchart TD
-  A["operator or paper source"] --> B["upper planning"]
-  B --> C["middle memory + correspondence"]
-  C --> D["lower architect / Lean worker / verifier"]
-  D --> E["Lean gate + typed feedback"]
-  E --> F["trial logs"]
-  F --> G["retrieval index + todos"]
-  G --> H["preferred-language summary"]
-  G --> I["ChatGPT Pro prompt"]
-  G --> J["LaTeX proof export"]
-  H --> B
-  I --> B
-```
-
-Long runs write a human-facing summary in the requested language, a
-self-contained ChatGPT Pro prompt when unresolved leaves remain, and a
-problem-specific LaTeX note for users to copy into their own manuscripts.
-Updates to the ABEIS authors' technical report are maintainer-only and are not
-part of the default user workflow.
-
-## Strategy Modes
-
-| Mode | Use when | Main rule |
-| --- | --- | --- |
-| `operatorBlockEncoding` | The user gives `A`, `alpha`, and a projector. | Search candidate `U_A`, prove unitarity and block entry, rank by cost. |
-| `paperBenchmark` | A paper already gives a construction. | Reproduce the paper baseline without mutating the construction. |
-| `exploratoryConstruction` | A baseline exists or the paper assumes an oracle. | Improve the same fixed target using candidate populations and Lean gates. |
-
-Create an operator task:
+Main workflow:
 
 ```bash
 python3 tools/qbe.py new-task QBE-OP-001 \
   --kind operatorBlockEncoding \
-  --mode operatorBlockEncoding \
   --title "Construct a block encoding for my query operator" \
-  --source "operator supplied by user / arXiv:XXXX.XXXXX" \
   --target-lean "QuantumBlockEncoding/MyOperator.lean"
-```
 
-The task file should also record:
-
-```text
-maxExactIterations, exactStallIterations, requiredCost,
-requestedEpsilon, allowRelaxedEpsilon,
-maxUpperAgents, maxMiddleAgents, maxLowerAgents
-```
-
-Run a small search batch:
-
-```bash
-python3 tools/qbe.py update-task QBE-OP-001 --status active --active
 python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 2 \
   --lower-count 3 \
@@ -455,26 +252,22 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --check-each-cycle
 ```
 
-For longer unattended runs and theorem-closure batches, see
-[`docs/sleep_run_guide.md`](docs/sleep_run_guide.md).
+The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch
+roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local
+tools.  Long runs can write summaries in the user's chosen language and export
+a problem-specific LaTeX proof note at
+`paper-notes/problem-exports/<task-id>/latest.tex`.
 
-## Human Outputs
+Project layout:
 
-Use the curated public artifacts first:
-
-- [`tasks/QBE-OP-OPTCTRL-001.md`](tasks/QBE-OP-OPTCTRL-001.md): the main
-  operator task.
-- [`candidate-populations/QBE-OP-OPTCTRL-001.md`](candidate-populations/QBE-OP-OPTCTRL-001.md):
-  Lean-checked candidate population and final choice.
-- [`candidate-populations/QBE-OP-OPTCTRL-001-metrics.png`](candidate-populations/QBE-OP-OPTCTRL-001-metrics.png):
-  convergence plot for the main case.
-- `paper-notes/problem-exports/<task-id>/latest.tex`: problem-specific LaTeX
-  proof note.
-
-Local runs also generate maintainer-only summaries such as
-`HUMAN_STATUS.md`, `REPORTS.<lang>.md`, `runs/<run-id>/summary.<lang>.md`,
-and `runs/<run-id>/chatgpt_pro_prompt.md`. These files are intentionally
-ignored by git so public releases do not accumulate raw agent traces.
+- `QuantumBlockEncoding/`: Lean definitions, circuits, resources, and theorem
+  certificates.
+- `tasks/`: operator or paper-benchmark contracts.
+- `candidate-populations/`: Lean-certified candidates and rejected routes.
+- `conversion-windows/`, `proof-blueprints/`, `proof-obligations/`: compact
+  proof state and Lean/natural-language correspondence.
+- `tools/qbe.py`: orchestration CLI.
+- `docs/`: deployment and long-run guides.
 
 ## Related Work And Similar Patterns
 
