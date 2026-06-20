@@ -1,6 +1,6 @@
 # 立方对角 oracle block-encoding 状态
 
-生成时间：2026-06-20 12:44 JST
+生成时间：2026-06-20 15:40 JST
 
 ## 目标
 
@@ -26,18 +26,20 @@ Lean 中的 `cubicDiagonalOperator`、`cubicDiagonalTarget` 和
 这些声明只是 expanded 路线的接口证据；它们不是旧的不透明谓词证明，也不是
 block-encoding 根证书。
 
-透明 clean-uncompute 接口现在已经编译：
+透明 clean-uncompute 接口已经编译：
 `ExpandedArithmeticCleanUncomputeWitness`、
 `expandedWorkspaceCleanUncomputedTransparent` 和
-`expandedWorkspaceCleanUncomputedTransparent_of_witness`。这只是接口证据，不是
-不透明 cleanup 谓词的证明，也还没有实例化固定分母路线。
+`expandedWorkspaceCleanUncomputedTransparent_of_witness`。固定分母的透明 cleanup
+见证也已经编译为 `fixedDenomExpandedArithmeticCleanUncomputeWitness` 和
+`fixedDenomWorkspaceCleanUncomputedTransparent`。这些只是接口和 cleanup 见证，不是
+不透明 cleanup 谓词的证明，也不是路线证书。
 
 当前 proof-DAG 活跃叶子是
-`DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001`。下一步 Lean 工作是用固定分母
-modular add/sub 的 compute/uncompute 步骤来实例化
-`expandedWorkspaceCleanUncomputedTransparent n (3 * n)`。另一个独立依赖
-`DIAG-RY-WORKSPACE-READONLY-001` 仍需要一个命名 Lean 陈述；在这之前，route-level
-cleanup 或 extraction 不能依赖这个 cleanup 见证。
+`DIAG-RY-WORKSPACE-READONLY-001`。下一步 Lean 工作是命名一个透明的
+controlled-rotation workspace-readonly 接口，把已有的透明角度约定和一个保持系统
+index、保持 arithmetic workspace 的 rotation step 连接起来。在这个 readonly 陈述以及
+后续 bridge 或合同重构出现之前，route-level cleanup 或 extraction 不能依赖这个
+cleanup 见证。
 
 clean-block extraction、unitarity/circuit semantics、根证书 `DIAG-ROOT-001` 和
 可执行导出仍然阻塞。
@@ -56,9 +58,9 @@ clean-block extraction、unitarity/circuit semantics、根证书 `DIAG-ROOT-001`
 
 ## 当前阻塞点
 
-expanded 路线已经有透明算术、透明 rotation 记账和透明 cleanup 接口，但还没有
-固定分母 cleanup 见证，也没有 Lean 中命名的 rotation workspace-readonly 陈述。之后
-还需要 route-level cleanup、clean-block extraction 和 unitarity，根证书才能关闭。
+expanded 路线已经有透明算术、透明 rotation 记账、透明 cleanup 接口和固定分母
+cleanup 见证，但还没有 Lean 中命名的 rotation workspace-readonly 陈述。之后还需要
+route-level cleanup、clean-block extraction 和 unitarity，根证书才能关闭。
 
 ## 目前不能写进手稿的主张
 

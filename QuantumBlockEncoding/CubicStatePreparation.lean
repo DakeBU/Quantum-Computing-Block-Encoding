@@ -1286,6 +1286,38 @@ theorem fixedDenomControlledRyRouteTransparent
   exact expandedRyCleanEntryForCubicAmplitudes_of_standardTier tier n
 
 /--
+Transparent controlled-rotation readonly interface for
+`DIAG-RY-WORKSPACE-READONLY-001`.
+
+This records that the controlled signal rotation is modeled as a step that may
+change only the signal qubit while preserving the system index and arithmetic
+workspace.  It is separate from the opaque backend predicate and from route
+cleanup.
+-/
+structure ExpandedControlledRyWorkspaceReadonlyWitness
+    (n workspaceQubits : Nat) where
+  backend : ExpandedCubicArithmeticBackend n workspaceQubits
+  angleConvention :
+    expandedControlledRyUsesCubicAngleTransparent n workspaceQubits
+  rotationStep :
+    Fin (gridSize n) -> backend.Workspace -> Fin 2 ->
+      Prod (Prod (Fin (gridSize n)) backend.Workspace) (Fin 2)
+  preserves_index :
+    forall j w signal, (rotationStep j w signal).1.1 = j
+  preserves_workspace :
+    forall j w signal, (rotationStep j w signal).1.2 = w
+
+/--
+Transparent readonly predicate backed by an explicit controlled-rotation step.
+
+This does not prove `expandedControlledRyUsesCubicAngle`,
+`expandedWorkspaceCleanUncomputed`, clean-block extraction, or unitarity.
+-/
+def expandedControlledRyWorkspaceReadonlyTransparent
+    (n workspaceQubits : Nat) : Prop :=
+  Nonempty (ExpandedControlledRyWorkspaceReadonlyWitness n workspaceQubits)
+
+/--
 Backend bridge obligation from the scalar-tier `R_y` clean-entry interface to
 the expanded route predicate.
 
@@ -1327,6 +1359,39 @@ theorem expandedControlledRyBackendBridge_iff_of_standardTier
   · intro hRoute
     intro _hScalar
     exact hRoute
+
+/--
+Transparent readonly-rotation interface for
+`DIAG-RY-WORKSPACE-READONLY-001`.
+
+This records that the controlled signal rotation may read the arithmetic
+workspace payload while preserving both the system index and workspace value.
+It does not prove `expandedWorkspaceCleanUncomputed` or any opaque route
+predicate.
+-/
+structure ExpandedControlledRyWorkspaceReadonlyWitness
+    (n workspaceQubits : Nat) where
+  backend : ExpandedCubicArithmeticBackend n workspaceQubits
+  angleConvention :
+    expandedControlledRyUsesCubicAngleTransparent n workspaceQubits
+  rotationStep :
+    Fin (gridSize n) -> backend.Workspace -> Fin 2 ->
+      Prod (Prod (Fin (gridSize n)) backend.Workspace) (Fin 2)
+  preserves_index :
+    forall j w signal, (rotationStep j w signal).1.1 = j
+  preserves_workspace :
+    forall j w signal, (rotationStep j w signal).1.2 = w
+
+/--
+Transparent predicate for a controlled-rotation step that preserves the
+arithmetic workspace.
+
+This is intentionally separate from route-level cleanup; a later packet must
+choose either a transparent cleanup contract refactor or a nontrivial bridge.
+-/
+def expandedControlledRyWorkspaceReadonlyTransparent
+    (n workspaceQubits : Nat) : Prop :=
+  Nonempty (ExpandedControlledRyWorkspaceReadonlyWitness n workspaceQubits)
 
 /-- Semantic obligation that the arithmetic workspace is returned clean. -/
 opaque expandedWorkspaceCleanUncomputed

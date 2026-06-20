@@ -38,6 +38,15 @@
         </label>
 
         <label>
+          Harness strategy
+          <select id="harnessMode">
+            <option value="hierarchical">Hierarchical Harness</option>
+            <option value="game">Game Harness</option>
+            <option value="parallel">Run both and compare</option>
+          </select>
+        </label>
+
+        <label>
           Preferred report language
           <div class="language-row">
             <select id="languagePreset">
@@ -109,9 +118,9 @@
           <p class="hint compact">
             These preferences are written into the generated ABEIS packet.  The website
             does not call model APIs; your local harness or server runner maps
-            them to installed CLIs or wrappers.  In party-parliament mode,
-            lower 1 is the natural-language opposition party and lower 2 is
-            the Lean governing party.
+            them to installed CLIs or wrappers.  In Game Harness mode, the
+            Natural-Language Team explores construction ideas while the Lean
+            Team formalizes selected candidates.
           </p>
           <label>
             Upper
@@ -138,7 +147,7 @@
             </select>
           </label>
           <label>
-            Natural-language party lower
+            Natural-language lower/team
             <select id="lower1Backend">
               <option value="gpt">GPT/OpenAI wrapper</option>
               <option value="codex">Codex</option>
@@ -150,7 +159,7 @@
             </select>
           </label>
           <label>
-            Lean party lower
+            Lean Team lower
             <select id="lower2Backend">
               <option value="codex">Codex</option>
               <option value="claude">Claude</option>
@@ -207,6 +216,7 @@
             <li>Compare asymptotic tiers first: polylogarithmic growth beats polynomial growth.</li>
             <li>Inside one tier, rank by gate count, then depth, then auxiliary qubits, then unresolved oracle calls.</li>
             <li>After Lean certification, generate the selected Qiskit, QuantumKatas, or QASM artifacts for users.</li>
+            <li>When a run closes, compare harnesses by generated exact/approximate evolution curves and circuit storyboards.</li>
           </ol>
         </div>
 

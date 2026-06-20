@@ -1,6 +1,6 @@
 # Candidate Population: QBE-OP-CUBIC-DIAGONAL-001
 
-Updated: 2026-06-20 12:44 JST
+Updated: 2026-06-20 15:40 JST
 
 Target:
 
@@ -134,7 +134,7 @@ Current active-leaf selection:
 
 | Candidate family | Active leaf | Certified status | Next route |
 |---|---|---|---|
-| reversible arithmetic plus controlled rotation | `DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001` | not certified | Instantiate the transparent cleanup witness for the fixed-denominator modular add/sub route; separately state `DIAG-RY-WORKSPACE-READONLY-001`; keep the opaque cleanup predicate, extraction, unitarity, root certificate, and exports blocked. |
+| reversible arithmetic plus controlled rotation | `DIAG-RY-WORKSPACE-READONLY-001` | not certified | State a transparent controlled-rotation workspace-readonly interface; keep the opaque cleanup predicate, extraction, unitarity, root certificate, and exports blocked. |
 
 Middle source-correspondence refresh at 2026-06-20 11:58 JST keeps the expanded
 route in the insight pool.  The lower clean-uncompute diagnostics are aligned
@@ -154,6 +154,34 @@ route-level proof of `expandedWorkspaceCleanUncomputed`, no extraction proof,
 no unitarity/circuit semantics, no root certificate, and no executable export
 authorization.
 
+Lower cleanup closeout at 2026-06-20 13:07 JST closes
+`DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001` as a transparent witness:
+`fixedDenomExpandedArithmeticCleanUncomputeWitness` and
+`fixedDenomWorkspaceCleanUncomputedTransparent` now compile.  This does not
+move the candidate into the certified population.  The next active leaf is
+`DIAG-RY-WORKSPACE-READONLY-001`, which must state that the controlled
+rotation reads the payload without modifying the system index or arithmetic
+workspace before any route-level cleanup bridge or contract refactor is used.
+
+Middle parliament reconciliation at 2026-06-20 16:02 JST keeps the certified
+population empty.  The expanded arithmetic-gate route stays in the insight pool
+with a reusable proof-DAG spine: transparent arithmetic, transparent rotation
+bookkeeping, transparent cleanup interface, and fixed-denominator cleanup
+witness are compiled, but the route has no readonly-rotation interface, no
+route-level cleanup proof, no clean-block extraction proof, no unitarity proof,
+and no `DIAG-ROOT-001` certificate.  The primitive oracle-label route remains a
+parked insight, not a certified candidate.  The approximate polynomial or
+QSVT-style route remains insight-only and is not activated this cycle.
+
+The shared insight population update for the next lower pass is:
+
+| Route | Parliament action | Reason |
+|---|---|---|
+| expanded arithmetic plus controlled `R_y` | preserve and continue | it is the only active route with compiled transparent subinterfaces; the next bottleneck is a narrow readonly-rotation interface |
+| primitive oracle-label amplitude oracle | preserve but park | it has a conditional contract and minimal primitive score, but no accepted primitive semantics; the exact rational subroute is rejected |
+| approximate diagonal route | preserve as dormant | exact search has not stalled at the current active leaf, so the approximate phase is not opened |
+| stale bridge and export routes | retire from lower assignment | direct opaque bridge retries and executable exports before `DIAG-ROOT-001` would bypass the current proof-DAG dependencies |
+
 ## Finite Executable Population
 
 No finite executable candidate is promoted.  Lower 3 has checked the expanded
@@ -167,7 +195,7 @@ certified block encodings and are not parents for the certified population.
 | Route | Reason kept | Status |
 |---|---|---|
 | primitive one-signal amplitude oracle | directly matches the diagonal target with $\alpha = 1$ and minimal unexpanded score; now has a compiled conditional contract bridge | parked unless primitive semantics are explicitly accepted |
-| arithmetic exact cube with controlled `R_y` | gate-level expansion route selected after the rational primitive witness rejection | compiled conditional interface; symbolic arithmetic compute witness compiled; fixed-denominator representation candidate specified for `DIAG-ARITH-REP-001`; capacity, algebra, fixed-denominator backend compute, fixed-denominator bridge normal-form, transparent arithmetic witness, transparent arithmetic clean-block contract refactor, controlled-`R_y` bridge normal-form, transparent rotation predicate, transparent rotation witness, transparent rotation clean-block contract refactor, and transparent clean-uncompute interface compiled; direct bridge retry is stale unless a named nontrivial semantics bridge is introduced; active next leaf is the fixed-denominator transparent cleanup witness plus separate rotation workspace-readonly statement |
+| arithmetic exact cube with controlled `R_y` | gate-level expansion route selected after the rational primitive witness rejection | compiled conditional interface; symbolic arithmetic compute witness compiled; fixed-denominator representation candidate specified for `DIAG-ARITH-REP-001`; capacity, algebra, fixed-denominator backend compute, fixed-denominator bridge normal-form, transparent arithmetic witness, transparent arithmetic clean-block contract refactor, controlled-`R_y` bridge normal-form, transparent rotation predicate, transparent rotation witness, transparent rotation clean-block contract refactor, transparent clean-uncompute interface, and fixed-denominator transparent cleanup witness compiled; direct bridge retry is stale unless a named nontrivial semantics bridge is introduced; active next leaf is the transparent rotation workspace-readonly interface |
 | approximate polynomial or QSVT-style diagonal function route | possible later approximate route for hardware-facing expansion | insight only |
 
 ## Rejected Or Retired Routes

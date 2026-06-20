@@ -47,12 +47,12 @@ for the same fixed operator target.
 flowchart LR
   A["user gives A, alpha, projector"] --> B["upper fixes target"]
   A --> A2["user gives resource floor, epsilon, iteration limits"]
-  B --> B1["natural-language party explores ideas"]
-  B --> B2["Lean party plans formalizable routes"]
-  B1 --> P["parliament exchanges insights and sets capacity"]
+  B --> B1["Natural-Language Team explores ideas"]
+  B --> B2["Lean Team plans formalizable routes"]
+  B1 --> P["Game Council exchanges insights and sets capacity"]
   B2 --> P
   P --> C["middle keeps Lean <-> natural-language map"]
-  C --> D["two-party lower population proposes exact U_A"]
+  C --> D["Game Harness lower population proposes exact U_A"]
   D --> E["finite/unitarity/block-entry diagnostics"]
   E --> F["Lean exact certificate attempt"]
   F --> G{"meets resource floor before limit?"}
@@ -224,30 +224,37 @@ symbolic block-encoding family."  ABEIS targets that stricter task:
 given an oracle/operator requirement A,
 construct a candidate block-encoding unitary U_A,
 prove the block-entry theorem in Lean,
-and improve the construction by gate count, depth, and ancilla cost.
+rank certified candidates by resources,
+and then export runnable circuits for users.
 ```
 
-The harness is designed around that task:
+ABEIS currently tests two compatible harness profiles.  Neither is declared
+better in advance.
 
-- **Upper agents** keep the mathematical target fixed, so the search does not
-  drift into proving an easier oracle.
-- **Middle agents** translate between Lean, natural-language proof plans, and
-  reusable memory, so failed proof attempts become searchable guidance instead
-  of discarded chat logs.
-- **Lower agents** maintain a candidate population: natural-language architects
-  propose proof decompositions, Lean workers close proof leaves, and verifier
-  workers run small finite diagnostics before expensive theorem work.
-- **Reviewer agents** reject hidden assumptions, wrong resource tuples,
-  simulator-only claims, and unverified candidates.
+| Harness | Organization | When it may help |
+| --- | --- | --- |
+| **Hierarchical Harness** | One upper/middle/lower/reviewer stack, with human and ChatGPT Pro as upper-level intervention channels.  The lower layer has a natural-language architect, a Lean worker, and a necessary-condition verifier.  Middle agents coordinate their handoffs and maintain the insight population. | Targets where one coherent planner can keep the natural-language and Lean tracks synchronized without much duplicated strategy work. |
+| **Game Harness** | Two semi-independent teams plus a Game Council: the Natural-Language Team explores proof/circuit ideas, the Lean Team translates selected ideas into Lean, and the Game Council compares handoffs, preserves useful insights, decides capacity increases, and decides exact-to-approximate phase switches. | Targets where the search needs more strategic diversity, or where natural-language construction ideas and Lean implementation attempts keep failing to reuse each other. |
 
-This makes ABEIS closer to an automated theorem-proving laboratory for quantum
-block encodings than to a circuit simulator benchmark.  It can borrow Qiskit
-or QASM-style feedback as a front-end filter, but the final artifact is a
-Lean-checked certificate that can be reused by later papers and larger
-parameterized constructions.
+Both harnesses use the same acceptance rule: only Lean-certified constructions
+enter the certified population or appear as achieved points in evolution
+curves.  Natural-language sketches, simulator checks, Qiskit tests, and Pro
+answers can guide search, but they are not final certificates.
 
-Detailed timing, route-ablation, and external-verifier records are kept in
-`reports/`.  They are intentionally not the main README narrative.
+Both harnesses also have the same user-facing closeout.  After a Lean
+certificate closes, ABEIS should export:
+
+- a step-by-step LaTeX block-encoding statement and proof that a user can copy
+  into a paper;
+- circuit diagrams and evolution curves for every Lean-certified exact or
+  approximate candidate used in the case study;
+- checked executable artifacts such as Qiskit, QuantumKatas-style tests, or
+  QASM for the certified construction.
+
+Detailed timing, route-ablation, external-verifier records, and harness-profile
+comparisons are kept in `reports/` and run directories.  The README states the
+scientific contract and the user workflow; the detailed evidence belongs in the
+technical report and generated case-study summaries.
 
 ## Benchmark Paper Cases
 
@@ -309,7 +316,34 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --check-each-cycle
 ```
 
-ABEIS exposes two compatible harness profiles.  The classic tri-role profile keeps the earlier lower layer: natural-language architect, Lean implementation worker, and necessary-condition verifier, with middle agents coordinating their handoffs.  The optional `--party-parliament` profile creates two cooperating parties: a natural-language opposition party for broad proof/construction ideas and a Lean governing party for formalization.  A parliament/chief-justice layer compares the two parties, preserves useful uncertified ideas as insight population, decides whether to increase party sizes for a fixed generation budget, and decides whether exact search should switch to approximate search.  Both profiles are retained because different block-encoding tasks may favor different organization patterns; route-ablation runs should test them side by side under the same model and budget.  For both profiles, a successful user-facing run must export a step-by-step LaTeX block-encoding proof after the Lean certificate closes and then emit checked executable code such as Qiskit, QuantumKatas-style tests, or QASM for the certified construction.
+Choose a harness profile explicitly when you want controlled comparisons:
+
+```bash
+# Hierarchical Harness, the default
+python3 tools/qbe.py sleep-run QBE-OP-001 \
+  --cycles 2 \
+  --hierarchical-harness \
+  --agent-profile codex-parallel.example.json \
+  --execute \
+  --check-each-cycle
+
+# Game Harness
+python3 tools/qbe.py sleep-run QBE-OP-001 \
+  --cycles 2 \
+  --game-harness \
+  --natural-lower-count 2 \
+  --lean-lower-count 2 \
+  --agent-profile codex-parallel.example.json \
+  --execute \
+  --check-each-cycle
+```
+
+For a fair profile comparison, run both harnesses in isolated worktrees with
+the same task packet, model profile, report language, active-time budget, and
+Lean gate.  Both profiles must produce the same closeout artifacts: selected-
+language summaries, ChatGPT Pro prompt if unresolved, a user-copyable LaTeX BE
+proof after Lean closure, and checked executable exports such as Qiskit,
+QuantumKatas-style tests, or QASM.
 
 The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
 

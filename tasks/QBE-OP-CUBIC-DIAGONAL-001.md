@@ -501,3 +501,63 @@ add/sub diagnostic records workspace-readonly rotation in an identity-read
 model, but there is no named Lean statement yet.  `DIAG-EXP-UNCOMP-001`,
 clean-block extraction, unitarity/circuit semantics, `DIAG-ROOT-001`, and all
 requested executable exports remain blocked.
+
+## Lower Update: Fixed-Denom Cleanup Witness Closed
+
+Updated: 2026-06-20 13:07 JST.
+
+`DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001` is closed as a transparent
+fixed-denominator cleanup witness.  The compiled declarations are
+`fixedDenomCubicComputeStep`, `fixedDenomCubicUncomputeStep`,
+`fixedDenomCubicComputeStep_matches_backend_on_clean`,
+`fixedDenomCubicUncomputeStep_after_compute`,
+`fixedDenomExpandedArithmeticCleanUncomputeWitness`, and
+`fixedDenomWorkspaceCleanUncomputedTransparent`.
+
+This is not a proof of `expandedWorkspaceCleanUncomputed`, not a
+controlled-rotation workspace-readonly statement, not extraction, not
+unitarity, not `DIAG-ROOT-001`, and not an export authorization.
+
+## Middle Update: Rotation Workspace-Readonly Packet
+
+Updated: 2026-06-20 15:40 JST.
+
+The next source-correspondence leaf is `DIAG-RY-WORKSPACE-READONLY-001`.
+The source anchor is still only the user-provided diagonal operator
+`D_n[row,col] = if row = col then (row / 2^n)^3 else 0`, with
+`exactNormalizer n = 1`.  No paper source, figure, or cited theorem is active.
+
+The lower-facing contract is to state a transparent readonly-rotation
+interface adjacent to the controlled-`R_y` route declarations in
+`QuantumBlockEncoding/CubicStatePreparation.lean`.  A suitable interface should
+tie the existing transparent angle convention
+`expandedControlledRyUsesCubicAngleTransparent n workspaceQubits` to a rotation
+step that preserves the system index and arithmetic workspace.  One acceptable
+shape is a witness record with fields:
+
+```lean
+structure ExpandedControlledRyWorkspaceReadonlyWitness
+    (n workspaceQubits : Nat) where
+  backend : ExpandedCubicArithmeticBackend n workspaceQubits
+  angleConvention :
+    expandedControlledRyUsesCubicAngleTransparent n workspaceQubits
+  rotationStep :
+    Fin (gridSize n) -> backend.Workspace -> Fin 2 ->
+      Prod (Prod (Fin (gridSize n)) backend.Workspace) (Fin 2)
+  preserves_index :
+    forall j w signal, (rotationStep j w signal).1.1 = j
+  preserves_workspace :
+    forall j w signal, (rotationStep j w signal).1.2 = w
+
+def expandedControlledRyWorkspaceReadonlyTransparent
+    (n workspaceQubits : Nat) : Prop :=
+  Nonempty (ExpandedControlledRyWorkspaceReadonlyWitness n workspaceQubits)
+```
+
+This leaf must not prove `expandedWorkspaceCleanUncomputed`, must not refactor
+`expandedAmplitudeOracleCleanBlockContract`, must not set any semantic
+proposition to `True`, must not add an axiom, must not switch to rank-one
+state preparation, and must not prepare executable exports.  After the
+readonly interface is named, middle can choose a transparent cleanup contract
+refactor or a nontrivial bridge for the route-level cleanup parent
+`DIAG-EXP-UNCOMP-001`.

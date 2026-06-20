@@ -1,6 +1,6 @@
 # Cubic Diagonal Oracle Block Encoding Status
 
-Generated: 2026-06-20 12:44 JST
+Generated: 2026-06-20 15:40 JST
 
 ## Target
 
@@ -26,19 +26,23 @@ The transparent controlled-`R_y` bookkeeping has also closed:
 predicate.  These declarations are route-interface evidence, not a proof of
 the old opaque predicates and not a block-encoding certificate.
 
-The transparent clean-uncompute interface is now compiled:
+The transparent clean-uncompute interface is compiled:
 `ExpandedArithmeticCleanUncomputeWitness`,
 `expandedWorkspaceCleanUncomputedTransparent`, and
-`expandedWorkspaceCleanUncomputedTransparent_of_witness`.  This is interface
-evidence only.  It does not prove the opaque cleanup predicate and does not
-instantiate the fixed-denominator route.
+`expandedWorkspaceCleanUncomputedTransparent_of_witness`.  The fixed-denominator
+transparent cleanup witness is also compiled as
+`fixedDenomExpandedArithmeticCleanUncomputeWitness` and
+`fixedDenomWorkspaceCleanUncomputedTransparent`.  These are interface and
+cleanup-witness evidence only.  They do not prove the opaque cleanup predicate
+and do not certify the route.
 
 The active proof-DAG leaf is now
-`DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001`.  The intended next Lean work is to
-instantiate `expandedWorkspaceCleanUncomputedTransparent n (3 * n)` using the
-fixed-denominator modular add/sub compute and uncompute steps.  A separate
-`DIAG-RY-WORKSPACE-READONLY-001` statement is still needed before route-level
-cleanup or extraction can depend on the cleanup witness.
+`DIAG-RY-WORKSPACE-READONLY-001`.  The intended next Lean work is to state a
+transparent controlled-rotation workspace-readonly interface, tying the
+existing transparent angle convention to a rotation step that preserves the
+system index and arithmetic workspace.  Route-level cleanup or extraction must
+not depend on the cleanup witness until this readonly statement and a later
+bridge or contract refactor are recorded.
 
 Clean-block extraction, unitarity/circuit semantics, the root certificate
 `DIAG-ROOT-001`, and executable exports remain blocked.
@@ -58,10 +62,10 @@ Clean-block extraction, unitarity/circuit semantics, the root certificate
 ## Blocker
 
 The expanded route has transparent arithmetic, transparent rotation
-bookkeeping, and a transparent cleanup interface, but it does not yet have a
-fixed-denominator cleanup witness or a Lean workspace-readonly rotation
-statement.  Later work still needs route-level cleanup, clean-block extraction,
-and unitarity before the root certificate can close.
+bookkeeping, a transparent cleanup interface, and a fixed-denominator cleanup
+witness.  It does not yet have a Lean workspace-readonly rotation statement.
+Later work still needs route-level cleanup, clean-block extraction, and
+unitarity before the root certificate can close.
 
 ## Claims Not Yet Allowed
 

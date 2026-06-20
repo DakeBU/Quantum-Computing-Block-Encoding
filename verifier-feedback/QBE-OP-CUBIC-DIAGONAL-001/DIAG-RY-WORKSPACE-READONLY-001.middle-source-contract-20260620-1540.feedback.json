@@ -1,0 +1,22 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-RY-WORKSPACE-READONLY-001",
+  "blocked_parent": "DIAG-EXP-UNCOMP-001",
+  "role": "middle",
+  "status": "queued",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_rotation_workspace_readonly_ok": true,
+  "lean_rotation_workspace_readonly_statement_present": false,
+  "available_cleanup_witness": "fixedDenomWorkspaceCleanUncomputedTransparent",
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "unitarity_ok": null,
+  "clean_block_extraction_ok": null,
+  "closed_theorem_ok": false,
+  "route_certificate_ok": false,
+  "exports_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "State the transparent controlled-rotation workspace-readonly interface; keep cleanup bridge, extraction, unitarity, root, and exports blocked."
+}
