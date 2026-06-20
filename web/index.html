@@ -128,6 +128,42 @@
           <textarea id="baseline" spellcheck="false" placeholder="Paste paper construction, circuit sketch, QASM, or leave blank."></textarea>
         </label>
 
+        <fieldset class="insight-grid">
+          <legend>User / Pro insight injection</legend>
+          <p class="hint compact">
+            Optional external ideas enter the insight pool.  In Game Harness
+            mode, the Game Council decides whether they go to the
+            Natural-Language Team for proof review, to the Lean Team for
+            formalization, or to rejected-route memory.  They are never plotted
+            as achieved solutions until Lean certifies them.
+          </p>
+          <label>
+            User intuition or strategy notes
+            <textarea id="userInsight" spellcheck="false" placeholder="Your own idea, preferred construction route, forbidden route, or resource intuition."></textarea>
+          </label>
+          <label>
+            ChatGPT Pro / external AI advice
+            <textarea id="proAdvice" spellcheck="false" placeholder="Paste Pro's diagnosis, proposed proof plan, or criticism. Include model/date if useful."></textarea>
+          </label>
+          <label>
+            Proposed candidate block encoding
+            <textarea id="proposedBE" spellcheck="false" placeholder="Optional: candidate U_A, circuit sketch, matrix formula, pseudocode, Qiskit/QASM, or gate schedule."></textarea>
+          </label>
+          <label>
+            Proposed proof or correctness argument
+            <textarea id="proposedProof" spellcheck="false" placeholder="Optional: natural-language proof, block-entry argument, unitarity proof, resource calculation, or approximation bound."></textarea>
+          </label>
+          <label>
+            Injection policy
+            <select id="insightPolicy">
+              <option value="review-first">Review first; do not send to Lean until Game Council approves</option>
+              <option value="parallel-review-and-lean">Send to Natural-Language Team and Lean Team in parallel</option>
+              <option value="lean-formalization-request">Treat as a formalization request for Lean Team after reviewer audit</option>
+              <option value="background-context-only">Background context only; do not prioritize unless agents independently agree</option>
+            </select>
+          </label>
+        </fieldset>
+
         <label>
           Constraints and free parameters
           <textarea id="constraints" spellcheck="false" placeholder="Register sizes, allowed gates, exact/approximate tolerance, free oracle parameters, source paper URL, non-goals."></textarea>

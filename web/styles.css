@@ -132,7 +132,8 @@ legend {
 }
 
 .export-grid,
-.runner-grid {
+.runner-grid,
+.insight-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 4px;

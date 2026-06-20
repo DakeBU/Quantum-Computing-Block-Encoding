@@ -13,6 +13,11 @@ const oracleDescription = document.getElementById("oracleDescription");
 const normalizer = document.getElementById("normalizer");
 const projector = document.getElementById("projector");
 const baseline = document.getElementById("baseline");
+const userInsight = document.getElementById("userInsight");
+const proAdvice = document.getElementById("proAdvice");
+const proposedBE = document.getElementById("proposedBE");
+const proposedProof = document.getElementById("proposedProof");
+const insightPolicy = document.getElementById("insightPolicy");
 const constraints = document.getElementById("constraints");
 const exportQiskit = document.getElementById("exportQiskit");
 const exportQuantumKatas = document.getElementById("exportQuantumKatas");
@@ -51,7 +56,7 @@ function harnessDescription(value) {
     hierarchical:
       "Hierarchical Harness: one upper/middle/lower/reviewer stack; middle coordinates the natural-language architect, Lean worker, and verifier.",
     game:
-      "Game Harness: two hierarchical teams compete and collaborate; the Natural-Language Team writes human proofs, the Lean Team writes compiled certificates, and the Game Council transfers insights.",
+      "Game Harness: two hierarchical teams compete and collaborate; the Natural-Language Team writes human proofs, the Lean Team writes compiled certificates, and the Game Council transfers user/Pro insights.",
     parallel:
       "Parallel comparison: run Hierarchical and Game harnesses in isolated worktrees with the same task, model profile, budget, and Lean gate.",
   };
@@ -271,6 +276,41 @@ Known baseline construction:
 ${baseline.value.trim() || "None supplied."}
 \`\`\`
 
+## User / Pro Insight Injection
+
+These optional inputs are search guidance, not proof certificates.  In Game
+Harness mode, the Game Council must route them explicitly: Natural-Language
+Team proof review, Lean Team formalization, parallel review/formalization, or
+rejected-route memory.  In Hierarchical Harness mode, upper and middle must
+turn them into work packets or record why they are ignored.  No candidate from
+this section may enter the certified population until Lean proves it.
+
+- Injection policy: \`${insightPolicy.value}\`
+
+User intuition or strategy notes:
+
+\`\`\`text
+${userInsight.value.trim() || "None supplied."}
+\`\`\`
+
+ChatGPT Pro / external AI advice:
+
+\`\`\`text
+${proAdvice.value.trim() || "None supplied."}
+\`\`\`
+
+Proposed candidate block encoding:
+
+\`\`\`text
+${proposedBE.value.trim() || "None supplied."}
+\`\`\`
+
+Proposed proof or correctness argument:
+
+\`\`\`text
+${proposedProof.value.trim() || "None supplied."}
+\`\`\`
+
 Constraints, free parameters, source links, and non-goals:
 
 \`\`\`text
@@ -322,7 +362,7 @@ Export requirements:
 ## Suggested Agent Packet
 
 - Hierarchical Harness: upper and middle agents maintain the target, proof DAG, insight population, and lower work packets for one natural-language architect, one Lean worker, and one verifier.
-- Game Harness: run two semi-independent hierarchical teams.  The Natural-Language Team competes by writing reviewer-plausible mathematical constructions and proofs.  The Lean Team competes by writing compiled Lean constructions and certificates.  The Game Council coordinates insight transfer, capacity increases, exact-to-approximate phase switches, and team-to-team translation.
+- Game Harness: run two semi-independent hierarchical teams.  The Natural-Language Team competes by writing reviewer-plausible mathematical constructions and proofs.  The Lean Team competes by writing compiled Lean constructions and certificates.  The Game Council coordinates insight transfer, user/ChatGPT-Pro input routing, capacity increases, exact-to-approximate phase switches, and team-to-team translation.
 - Translation rule: Lean-certified BE candidates go to the Natural-Language Team for human-readable LaTeX proof export.  Reviewer-plausible natural-language constructions go through the Game Council/reviewer and then to the Lean Team for formalization.
 - Reviewer: reject hidden assumptions, wrong metric ordering, simulator-only claims, and unverified candidates in plots.
 - Closeout: after Lean certification, export a step-by-step LaTeX BE proof, circuit diagrams, exact/approximate evolution curves, and checked executable artifacts such as Qiskit, QuantumKatas-style tests, or QASM.
@@ -399,6 +439,11 @@ languagePreset.addEventListener("change", () => {
   normalizer,
   projector,
   baseline,
+  userInsight,
+  proAdvice,
+  proposedBE,
+  proposedProof,
+  insightPolicy,
   constraints,
   exportQiskit,
   exportQuantumKatas,

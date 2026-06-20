@@ -241,7 +241,9 @@ enter the certified population or appear as achieved points in evolution
 curves.  Natural-language sketches, simulator checks, Qiskit tests, and Pro
 answers can guide search, but they are not final certificates.
 
-Both harnesses also have the same user-facing closeout.  If the Lean Team closes a certificate, the Natural-Language Team translates it into a human-readable proof note.  If the Natural-Language Team finds a reviewer-plausible construction first, the Game Council sends it to the Lean Team for formalization.  After a Lean certificate closes, ABEIS should export:
+Both harnesses also have the same user-facing closeout and external-insight rule.  Users may inject their own strategy notes, ChatGPT Pro answers, external AI suggestions, candidate block encodings, or natural-language proofs.  These inputs enter the insight pool.  In the Game Harness, the Game Council decides whether to route them to the Natural-Language Team for proof review, to the Lean Team for formalization, to both in parallel, or to rejected-route memory.  They are never accepted, plotted, or exported as achieved solutions until Lean certifies them.
+
+If the Lean Team closes a certificate, the Natural-Language Team translates it into a human-readable proof note.  If the Natural-Language Team finds a reviewer-plausible construction first, the Game Council sends it to the Lean Team for formalization.  After a Lean certificate closes, ABEIS should export:
 
 - a step-by-step LaTeX block-encoding statement and proof that a user can copy
   into a paper;
@@ -298,7 +300,7 @@ ABEIS has three equivalent user entrypoints.  All three must produce the same ki
 
 1. **Local CLI template.**  Download the repository, replace the operator text in a template command, and run `tools/qbe.py`.
 2. **AI chat window.**  Download the repository and tell Codex, Claude, GLM, Gemini, Minimax, or another coding agent: “Use the ABEIS system in this repository to solve the following operator block-encoding problem.”  The agent should call the same `ingest-user-problem`, `sleep-run`, and `check` commands as the CLI template.
-3. **Website task builder.**  Use the static website in `web/` or a deployed public site to paste the oracle description, choose the report language, choose agent backends, and generate the same task packet and agent profile.  Like LLM4AD_Next-style web front ends, the public ABEIS page should be a low-entry interface; model execution uses the user's own API keys or local CLI wrappers, and Lean remains the verification authority.
+3. **Website task builder.**  Use the static website in `web/` or a deployed public site to paste the oracle description, choose the report language, choose agent backends, optionally paste user/ChatGPT-Pro/external-AI construction ideas, and generate the same task packet and agent profile.  Like LLM4AD_Next-style web front ends, the public ABEIS page should be a low-entry interface; model execution uses the user's own API keys or local CLI wrappers, and Lean remains the verification authority.
 
 Main local CLI workflow:
 
