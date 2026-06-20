@@ -90,6 +90,9 @@ DEFAULT_LOWER_COUNT = 3
 DEFAULT_UPPER_PANEL = True
 DEFAULT_MIDDLE_PANEL = True
 DEFAULT_PARALLEL_LOWER = True
+DEFAULT_PARTY_PARLIAMENT = False
+DEFAULT_NATURAL_LOWER_COUNT = 2
+DEFAULT_LEAN_LOWER_COUNT = 2
 
 WORK_DIRS = [
     "tasks",
@@ -6822,9 +6825,12 @@ Produce:
 4. Non-goals and directions to stop pursuing, with reasons.
 5. Middle-agent instructions for conversion windows, paper notes, proof
    obligations, and memory.
-6. Layer-allocation decision for this cycle.  The default operator-construction
-   harness uses an upper specialist panel, a middle specialist panel, and three
-   complementary lower roles: lower 1 natural-language proof/construction
+6. Layer-allocation decision for this cycle.  In the classic tri-role
+   profile, spend enough budget in upper/middle/reviewer planning before lower
+   workers run: upper fixes target and search direction, middle translates and
+   maintains the insight population, reviewer blocks stale or unfounded lower
+   work.  The classic profile then uses an upper specialist panel, a middle
+   specialist panel, and three complementary lower roles: lower 1 natural-language proof/construction
    architect, lower 2 Lean implementation worker, and lower 3
    necessary-condition verifier.  Increase upper, middle, or lower parallelism
    only when the logs justify it: stale target or weak strategy increases
@@ -6978,6 +6984,48 @@ memory.  Produce:
 
 Do not ask lower agents to solve new mathematics from this profile; route that
 through the director synthesis.
+"""
+        elif lower_index == -11:
+            body += """
+
+Upper-party profile: natural-language opposition.
+
+This upper pass runs a full natural-language strategy review without editing
+Lean. Its job is to search for candidate block-encoding ideas, proof
+structures, invariants, approximate-relaxation routes, and reusable insights
+that may be missed by Lean-first workers. It must clearly separate
+mathematically plausible, reviewer-checked natural-language proof, and
+Lean-certified. It cannot declare acceptance. It should nominate insight
+population entries for the parliament handoff and identify which ideas should
+be translated by the Lean party.
+"""
+        elif lower_index == -12:
+            body += """
+
+Upper-party profile: Lean governing party.
+
+This upper pass plans only routes that can become Lean declarations in the
+current repository. It should decide which natural-language ideas are mature
+enough to formalize, which existing Lean declarations should be reused, and
+which candidate families should enter or leave the certified population. It
+should reject broad Lean attempts that are not tied to one active proof-DAG
+leaf or candidate-resource theorem.
+"""
+        elif lower_index == -13:
+            body += """
+
+Upper parliament profile: chief justice and capacity controller.
+
+This pass reads the natural-language party and Lean party upper handoffs, then
+issues a binding cycle decision. It must decide: first, which insight
+population items are worth preserving, recombining, or retiring; second, which
+party owns the next bottleneck; third, whether to increase natural-language
+lower agents, Lean lower agents, middle capacity, or upper capacity for a fixed
+generation budget; fourth, whether exact search has stalled enough to open the
+approximate-BE phase; and fifth, whether to generate or update the
+preferred-language ChatGPT Pro prompt because human or Pro intervention would
+be valuable. Only Lean-certified candidates are accepted or plotted as achieved
+solutions.
 """
         else:
             body += """
@@ -7194,6 +7242,42 @@ memory curator notes if present.  Produce:
 
 Do not assign Lean work and do not rewrite polished prose during inner proof
 search.  This role is mainly for final-audit synchronization.
+"""
+        elif lower_index == -21:
+            body += """
+
+Middle-party profile: natural-language insight curator.
+
+This middle pass serves the natural-language opposition party. It turns
+natural-language lower sketches into structured proof DAGs, candidate-family
+records, insight-population entries, and explicit handoff requests to the Lean
+party. It must not mark a construction as accepted. It should preserve why an
+uncertified idea is valuable, what theorem it would prove if formalized, and
+which finite or symbolic necessary checks should be run before Lean coding.
+"""
+        elif lower_index == -22:
+            body += """
+
+Middle-party profile: Lean translation curator.
+
+This middle pass serves the Lean governing party. It translates parliament
+insights into exact Lean declarations, file scopes, active proof-DAG leaves,
+resource-score theorems, and post-Lean executable export tasks. It must state
+which natural-language ideas are rejected, deferred, or ready for Lean lower
+workers, and it must keep certified candidates separate from speculative
+population entries.
+"""
+        elif lower_index == -23:
+            body += """
+
+Middle parliament profile: coordination clerk.
+
+This pass reconciles the two middle-party outputs into one lower-agent work
+packet. It should write the shared insight population update, the certified
+population update, the next natural-language lower tasks, the next Lean lower
+tasks, and any Pro-prompt trigger. It should also record whether the upper
+chief justice requested a capacity increase or an exact-to-approximate phase
+switch.
 """
         else:
             body += """
@@ -7429,6 +7513,30 @@ Expected output:
 Do not duplicate lower 2's broad proof attempt and do not invent a new route
 unless it directly repairs the reported failure.
 """
+        elif 100 < lower_index < 200:
+            body += f"""
+Lower profile for this prompt: natural-language opposition worker `{lower_index - 100}`.
+
+Work only in natural language, diagrams, proof DAGs, candidate descriptions,
+resource estimates, and necessary-condition plans. Do not edit Lean source.
+Your value is to explore mathematically plausible constructions, approximate
+relaxations, recombinations, and proof structures that may guide the Lean
+party. Every claim must be labelled as speculative, reviewer-plausible, or
+ready-for-Lean-translation. Preserve useful ideas in candidate-population or
+proof-attempt memory, but never mark them accepted.
+"""
+        elif 200 < lower_index < 300:
+            body += f"""
+Lower profile for this prompt: Lean governing worker `{lower_index - 200}`.
+
+Work only on Lean-facing construction and proof tasks. Read the parliament and
+natural-language party handoffs, select one formally stated leaf or candidate,
+and either add or repair compiling Lean declarations or write a typed failure
+that explains why the natural-language idea cannot yet be formalized. Do not
+accept a construction until the named Lean theorem and resource-score
+declarations compile. If you edit Lean, run `python3 tools/qbe.py check` when
+practical.
+"""
         elif lower_index > 4:
             body += f"""
 Lower profile for this prompt: auxiliary proof-route worker `{lower_index}`.
@@ -7450,6 +7558,9 @@ def create_run_cycle(
     blueprint_refresh: bool = False,
     upper_panel: bool = DEFAULT_UPPER_PANEL,
     middle_panel: bool = DEFAULT_MIDDLE_PANEL,
+    party_parliament: bool = DEFAULT_PARTY_PARLIAMENT,
+    natural_lower_count: int = DEFAULT_NATURAL_LOWER_COUNT,
+    lean_lower_count: int = DEFAULT_LEAN_LOWER_COUNT,
 ) -> Path:
     cmd_init(argparse.Namespace())
     if blueprint_refresh:
@@ -7501,6 +7612,14 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
                 ("upper", run_dir / "13_upper_process_memory.md", -3),
             ]
         )
+    if party_parliament:
+        prompt_files.extend(
+            [
+                ("upper", run_dir / "14_upper_natural_party.md", -11),
+                ("upper", run_dir / "15_upper_lean_party.md", -12),
+                ("upper", run_dir / "16_upper_parliament_chief_justice.md", -13),
+            ]
+        )
     prompt_files.append(("middle", run_dir / "20_middle_formalizer.md", 0))
     if middle_panel:
         prompt_files.extend(
@@ -7510,8 +7629,21 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
                 ("middle", run_dir / "23_middle_report_export.md", -3),
             ]
         )
-    for index in range(1, lower_count + 1):
-        prompt_files.append(("lower", run_dir / f"30_lower_searcher_{index}.md", index))
+    if party_parliament:
+        prompt_files.extend(
+            [
+                ("middle", run_dir / "24_middle_natural_party.md", -21),
+                ("middle", run_dir / "25_middle_lean_party.md", -22),
+                ("middle", run_dir / "26_middle_parliament_coordination.md", -23),
+            ]
+        )
+        for index in range(1, natural_lower_count + 1):
+            prompt_files.append(("lower", run_dir / f"31_natural_lower_{index}.md", 100 + index))
+        for index in range(1, lean_lower_count + 1):
+            prompt_files.append(("lower", run_dir / f"32_lean_lower_{index}.md", 200 + index))
+    else:
+        for index in range(1, lower_count + 1):
+            prompt_files.append(("lower", run_dir / f"30_lower_searcher_{index}.md", index))
     prompt_files.append(("reviewer", run_dir / "40_reviewer.md", 0))
     for role, path, lower_index in prompt_files:
         path.write_text(
@@ -7549,8 +7681,9 @@ Cycle: `{cycle}`
             "changed_files": [rel(p) for _, p, _ in prompt_files] + [rel(run_dir / "00_context.md"), rel(run_dir / "dialogue.md")],
             "command": "qbe.py run-cycle",
             "notes": (
-                f"Created prompt deck with {lower_count} lower agent(s); "
-                f"upper_panel={upper_panel}; middle_panel={middle_panel}."
+                f"Created prompt deck with {lower_count} legacy lower agent(s); "
+                f"party_parliament={party_parliament}; natural_lower_count={natural_lower_count}; "
+                f"lean_lower_count={lean_lower_count}; upper_panel={upper_panel}; middle_panel={middle_panel}."
             ),
         },
     )
@@ -7569,6 +7702,9 @@ def cmd_run_cycle(args: argparse.Namespace) -> int:
         args.blueprint_refresh,
         args.upper_panel,
         args.middle_panel,
+        getattr(args, "party_parliament", DEFAULT_PARTY_PARLIAMENT),
+        getattr(args, "natural_lower_count", DEFAULT_NATURAL_LOWER_COUNT),
+        getattr(args, "lean_lower_count", DEFAULT_LEAN_LOWER_COUNT),
     )
     print(f"created {rel(run_dir)}")
     print("agent prompts:")
@@ -7595,8 +7731,26 @@ def prompt_profile_keys(prompt: Path) -> list[str]:
     role = prompt_role(prompt)
     keys = [stem]
     match = re.search(r"30_lower_searcher_(\d+)", prompt.name)
+    natural_match = re.search(r"31_natural_lower_(\d+)", prompt.name)
+    lean_match = re.search(r"32_lean_lower_(\d+)", prompt.name)
     if match:
         keys.extend([f"lower{match.group(1)}", "lower"])
+    elif natural_match:
+        keys.extend([f"natural_lower{natural_match.group(1)}", "natural_lower", "lower"])
+    elif lean_match:
+        keys.extend([f"lean_lower{lean_match.group(1)}", "lean_lower", "lower"])
+    elif prompt.name == "14_upper_natural_party.md":
+        keys.extend(["upper_natural_party", "upper_party", "upper"])
+    elif prompt.name == "15_upper_lean_party.md":
+        keys.extend(["upper_lean_party", "upper_party", "upper"])
+    elif prompt.name == "16_upper_parliament_chief_justice.md":
+        keys.extend(["upper_parliament", "chief_justice", "upper"])
+    elif prompt.name == "24_middle_natural_party.md":
+        keys.extend(["middle_natural_party", "middle_party", "middle"])
+    elif prompt.name == "25_middle_lean_party.md":
+        keys.extend(["middle_lean_party", "middle_party", "middle"])
+    elif prompt.name == "26_middle_parliament_coordination.md":
+        keys.extend(["middle_parliament", "middle"])
     elif role == "upper":
         keys.extend(["upper"])
     elif role == "middle":
@@ -7695,7 +7849,12 @@ def upper_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
         run_dir / "12_upper_proof_dag.md",
         run_dir / "13_upper_process_memory.md",
     ]
-    return [path for path in specialists if path.exists()] + [director]
+    parliament = [
+        run_dir / "14_upper_natural_party.md",
+        run_dir / "15_upper_lean_party.md",
+        run_dir / "16_upper_parliament_chief_justice.md",
+    ]
+    return [path for path in specialists + parliament if path.exists()] + [director]
 
 
 def middle_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
@@ -7713,7 +7872,12 @@ def middle_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
         run_dir / "22_middle_memory_retrieval.md",
         run_dir / "23_middle_report_export.md",
     ]
-    return [path for path in specialists if path.exists()] + [coordinator]
+    parliament = [
+        run_dir / "24_middle_natural_party.md",
+        run_dir / "25_middle_lean_party.md",
+        run_dir / "26_middle_parliament_coordination.md",
+    ]
+    return [path for path in specialists + parliament if path.exists()] + [coordinator]
 
 
 def format_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> str:
@@ -7799,6 +7963,9 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             blueprint_refresh=args.blueprint_refresh,
             upper_panel=args.upper_panel,
             middle_panel=args.middle_panel,
+            party_parliament=getattr(args, "party_parliament", DEFAULT_PARTY_PARLIAMENT),
+            natural_lower_count=getattr(args, "natural_lower_count", DEFAULT_NATURAL_LOWER_COUNT),
+            lean_lower_count=getattr(args, "lean_lower_count", DEFAULT_LEAN_LOWER_COUNT),
         )
         print(f"cycle {cycle}: {rel(run_dir)}")
         prompts = []
@@ -7807,6 +7974,8 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
         if args.middle_every > 0 and (cycle - 1) % args.middle_every == 0:
             prompts.extend(middle_prompt_sequence(run_dir, args.middle_panel))
         prompts.extend(sorted(run_dir.glob("30_lower_searcher_*.md")))
+        prompts.extend(sorted(run_dir.glob("31_natural_lower_*.md")))
+        prompts.extend(sorted(run_dir.glob("32_lean_lower_*.md")))
         if (
             not args.skip_reviewer
             and args.reviewer_every > 0
@@ -8181,6 +8350,9 @@ def build_parser() -> argparse.ArgumentParser:
     p_cycle.add_argument("id")
     p_cycle.add_argument("--cycle", type=int, default=1)
     p_cycle.add_argument("--lower-count", type=int, default=DEFAULT_LOWER_COUNT)
+    p_cycle.add_argument("--party-parliament", action="store_true", default=DEFAULT_PARTY_PARLIAMENT, help="create the two-party natural-language/Lean parliament harness prompts")
+    p_cycle.add_argument("--natural-lower-count", type=int, default=DEFAULT_NATURAL_LOWER_COUNT, help="natural-language party lower-agent count in party-parliament mode")
+    p_cycle.add_argument("--lean-lower-count", type=int, default=DEFAULT_LEAN_LOWER_COUNT, help="Lean party lower-agent count in party-parliament mode")
     p_cycle.add_argument("--run-id", default="")
     p_cycle.add_argument(
         "--context-mode",
@@ -8231,6 +8403,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="active agent-time budget for the batch; after the current cycle finishes, write closeout summary/memory/Pro prompt and stop; set 0 to disable",
     )
     p_sleep.add_argument("--lower-count", type=int, default=DEFAULT_LOWER_COUNT)
+    p_sleep.add_argument("--party-parliament", action="store_true", default=DEFAULT_PARTY_PARLIAMENT, help="use the two-party natural-language/Lean parliament harness")
+    p_sleep.add_argument("--natural-lower-count", type=int, default=DEFAULT_NATURAL_LOWER_COUNT, help="natural-language party lower-agent count in party-parliament mode")
+    p_sleep.add_argument("--lean-lower-count", type=int, default=DEFAULT_LEAN_LOWER_COUNT, help="Lean party lower-agent count in party-parliament mode")
     p_sleep.add_argument("--agent-cmd", default="")
     p_sleep.add_argument(
         "--agent-profile",

@@ -7735,3 +7735,25 @@ block-encoding formalization lifecycle.
 | 2026-06-20 13:14:51 | qbe.py cycle-pro-prompt | `runs/pro-prompts/QBE-OP-CUBIC-DIAGONAL-001-cycle002.md` | pro-prompt | Archived ChatGPT Pro prompt for QBE-OP-CUBIC-DIAGONAL-001 cycle 2 |
 | 2026-06-20 13:14:51 | qbe.py problem-latex-export | `runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-OP-CUBIC-DIAGONAL-001 cycle 2 |
 | 2026-06-20 13:14:51 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-OP-CUBIC-DIAGONAL-001/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02.tex` | article | Archived problem-specific LaTeX export for QBE-OP-CUBIC-DIAGONAL-001 cycle 2 |
+| 2026-06-20 15:03:16 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:03:18 | qbe.py run-cycle | `runs/20260620-party-parliament-smoke-QBE-OP-CUBIC-DIAGONAL-001-cycle991` | run | Created run cycle for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:03:37 | qbe.py run-cycle | `runs/20260620-150334-QBE-OP-CUBIC-DIAGONAL-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:09:38 | qbe.py run-cycle | `runs/20260620-party-parliament-smoke2-QBE-OP-CUBIC-DIAGONAL-001-cycle992` | run | Created run cycle for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:14:06 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:14:09 | qbe.py run-cycle | `runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01` | run | Created run cycle for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:14:54 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:16:14 | qbe.py agent-note | `runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-20 15:16:14 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260620-151614-QBE-OP-CUBIC-DIAGONAL-001-upper-handoff |
+| 2026-06-20 15:18:29 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:19:52 | qbe.py agent-note | `runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-20 15:19:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260620-151957-QBE-OP-CUBIC-DIAGONAL-001-upper-handoff |
+| 2026-06-20 15:23:16 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:24:26 | qbe.py agent-note | `runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-20 15:24:31 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260620-152430-QBE-OP-CUBIC-DIAGONAL-001-upper-handoff |
+| 2026-06-20 15:26:46 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:28:11 | qbe.py agent-note | `runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-20 15:28:15 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260620-152814-QBE-OP-CUBIC-DIAGONAL-001-upper-handoff |
+| 2026-06-20 15:29:30 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-001 |
+| 2026-06-20 15:31:56 | qbe.py agent-note | `runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-20 15:31:57 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260620-153157-QBE-OP-CUBIC-DIAGONAL-001-upper-handoff |
+| 2026-06-20 15:33:18 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-001 |

@@ -47,8 +47,12 @@ for the same fixed operator target.
 flowchart LR
   A["user gives A, alpha, projector"] --> B["upper fixes target"]
   A --> A2["user gives resource floor, epsilon, iteration limits"]
-  B --> C["middle keeps Lean <-> natural-language map"]
-  C --> D["lower population proposes exact U_A"]
+  B --> B1["natural-language party explores ideas"]
+  B --> B2["Lean party plans formalizable routes"]
+  B1 --> P["parliament exchanges insights and sets capacity"]
+  B2 --> P
+  P --> C["middle keeps Lean <-> natural-language map"]
+  C --> D["two-party lower population proposes exact U_A"]
   D --> E["finite/unitarity/block-entry diagnostics"]
   E --> F["Lean exact certificate attempt"]
   F --> G{"meets resource floor before limit?"}
@@ -305,7 +309,7 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --check-each-cycle
 ```
 
-By default, `sleep-run` creates an upper specialist panel, a middle specialist panel, and three complementary lower roles that run in parallel: natural-language proof/construction architect, Lean implementation worker, and necessary-condition verifier.  The upper panel may recommend increasing upper, middle, or lower parallelism in later cycles only when the logs show a specific bottleneck or missing diversity; there are no user-facing fixed difficulty presets.
+ABEIS exposes two compatible harness profiles.  The classic tri-role profile keeps the earlier lower layer: natural-language architect, Lean implementation worker, and necessary-condition verifier, with middle agents coordinating their handoffs.  The optional `--party-parliament` profile creates two cooperating parties: a natural-language opposition party for broad proof/construction ideas and a Lean governing party for formalization.  A parliament/chief-justice layer compares the two parties, preserves useful uncertified ideas as insight population, decides whether to increase party sizes for a fixed generation budget, and decides whether exact search should switch to approximate search.  Both profiles are retained because different block-encoding tasks may favor different organization patterns; route-ablation runs should test them side by side under the same model and budget.  For both profiles, a successful user-facing run must export a step-by-step LaTeX block-encoding proof after the Lean certificate closes and then emit checked executable code such as Qiskit, QuantumKatas-style tests, or QASM for the certified construction.
 
 The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
 

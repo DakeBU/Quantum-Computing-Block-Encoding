@@ -3,7 +3,7 @@
 Task id: `QBE-OP-CUBIC-DIAGONAL-001`
 Title: Cubic diagonal oracle block encoding
 Mode: `exploratoryConstruction`
-Updated: `2026-06-20 13:12:26`
+Updated: `2026-06-20 15:33:18`
 Blueprint stage: `Stage 2 DAG proof discharge, with source-transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -635,11 +635,7 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-n=1..4: payload j^3 fits 3*n workspace, fixed-denominator amplitudes equal (j/2^n)^3, add/sub are inverse workspace permutations, and the finite rotation read model preserves workspace. No block-entry, extraction, unitarity, root certificate, or executable export claim. Remaining symbolic bridge gap: state DIAG-RY-WORKSPACE-READONLY-001 and package the fixed-denominator ExpandedArithmeticCleanUncomputeWitness in Lean before any route-level cleanup claim. Gate passed: python3 tools/qbe.py check.
-
-## 2026-06-20 13:07:32 - lower
-
-Lower architect packet recorded for DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001. Proof design instantiates the fixed-denominator transparent cleanup witness with modular add/sub over Fin (gridSize (3 * n)), using fixedDenomCubicArithmeticBackend, fixedDenomCubicArithmeticBackend_computes, fixedDenomCubicPayload_lt_capacity, and a modular right-inverse helper. No Lean edits. DIAG-RY-WORKSPACE-READONLY-001 remains separate before any route-level cleanup bridge, extraction, root certificate, or exports. Gate passed: python3 tools/qbe.py check.
+in (gridSize (3 * n)), using fixedDenomCubicArithmeticBackend, fixedDenomCubicArithmeticBackend_computes, fixedDenomCubicPayload_lt_capacity, and a modular right-inverse helper. No Lean edits. DIAG-RY-WORKSPACE-READONLY-001 remains separate before any route-level cleanup bridge, extraction, root certificate, or exports. Gate passed: python3 tools/qbe.py check.
 
 ## 2026-06-20 13:08:04 - lower
 
@@ -652,6 +648,10 @@ Lower worker5 closed DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 as a transparent fi
 ## 2026-06-20 13:09:04 - lower
 
 Lower refiner closeout for DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001: found the fixed-denominator transparent cleanup witness already compiled in QuantumBlockEncoding/CubicStatePreparation.lean as fixedDenomCubicModAddSub_eq_self, fixedDenomCubicComputeStep, fixedDenomCubicUncomputeStep, fixedDenomExpandedArithmeticCleanUncomputeWitness, and fixedDenomWorkspaceCleanUncomputedTransparent. Rejected duplicate route; kept opaque expandedWorkspaceCleanUncomputed, extraction, unitarity, root, and exports blocked. Gate passed: python3 tools/qbe.py check (lake build; lake build Tests). Next route: state DIAG-RY-WORKSPACE-READONLY-001 before any cleanup bridge or contract refactor.
+
+## 2026-06-20 13:14:10 - reviewer
+
+Reviewer gate: python3 tools/qbe.py check passed (lake build; lake build Tests). Lean fixed-denom transparent cleanup witness compiles as interface-only; no task-local hidden sorry/trivial/Prop:=True/axiom closure found. Blocking sync finding: after the 13:07 lower close, task contract, candidate population, reports/latest.md, problem-export latest.tex, retrieval index, and refreshed blueprint/frontier still treat DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 as active or absent in status; retire it and expose DIAG-RY-WORKSPACE-READONLY-001 as the next active dependency. Keep opaque expandedWorkspaceCleanUncomputed, extraction, unitarity, DIAG-ROOT-001, and exports blocked.
 ````
 
 ## Gate Policy

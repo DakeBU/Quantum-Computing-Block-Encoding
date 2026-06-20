@@ -64,7 +64,17 @@ function backendProfileJson() {
     {
       commands: {
         upper: backendCommand(upperBackend.value),
+        upper_natural_party: backendCommand(upperBackend.value),
+        upper_lean_party: backendCommand(upperBackend.value),
+        upper_parliament: backendCommand(upperBackend.value),
         middle: backendCommand(middleBackend.value),
+        middle_natural_party: backendCommand(middleBackend.value),
+        middle_lean_party: backendCommand(middleBackend.value),
+        middle_parliament: backendCommand(middleBackend.value),
+        natural_lower1: backendCommand(lower1Backend.value),
+        natural_lower2: backendCommand(lower1Backend.value),
+        lean_lower1: backendCommand(lower2Backend.value),
+        lean_lower2: backendCommand(lower2Backend.value),
         lower1: backendCommand(lower1Backend.value),
         lower2: backendCommand(lower2Backend.value),
         lower3: backendCommand(lower3Backend.value),
@@ -72,7 +82,17 @@ function backendProfileJson() {
       },
       selectedBackends: {
         upper: upperBackend.value,
+        upper_natural_party: upperBackend.value,
+        upper_lean_party: upperBackend.value,
+        upper_parliament: upperBackend.value,
         middle: middleBackend.value,
+        middle_natural_party: middleBackend.value,
+        middle_lean_party: middleBackend.value,
+        middle_parliament: middleBackend.value,
+        natural_lower1: lower1Backend.value,
+        natural_lower2: lower1Backend.value,
+        lean_lower1: lower2Backend.value,
+        lean_lower2: lower2Backend.value,
         lower1: lower1Backend.value,
         lower2: lower2Backend.value,
         lower3: lower3Backend.value,
@@ -199,13 +219,11 @@ Export requirements:
 
 ## Suggested Agent Packet
 
-- Upper target auditor: check the operator, normalizer, projector, free parameters, and whether the task is paper-faithful or exploratory.
-- Upper proof-DAG strategist: choose the minimal theorem leaf needed for the first Lean certificate.
-- Middle correspondence agent: translate the oracle description into Lean-facing definitions and a concise proof map.
-- Lower natural-language architect: propose one candidate circuit and write the expected block-entry proof.
-- Lower Lean worker: implement exactly one ready certificate leaf.
-- Lower verifier: run exact finite checks only when their failure is a necessary contradiction to the Lean goal.
-- Reviewer: reject hidden assumptions, wrong metric ordering, and unverified candidates in plots.
+- Natural-language opposition party: explore circuit ideas, proof DAGs, approximate relaxations, and insight-population entries without editing Lean.
+- Lean governing party: translate selected ideas into Lean declarations, resource-score theorems, and post-Lean executable exports.
+- Parliament/chief-justice layer: compare the two parties, decide capacity increases, decide exact-to-approximate phase switches, and trigger preferred-language ChatGPT Pro prompts when progress stalls.
+- Middle coordination: keep the Lean-to-natural-language and natural-language-to-Lean correspondence current so each party can reuse the other party ideas.
+- Reviewer: reject hidden assumptions, wrong metric ordering, simulator-only claims, and unverified candidates in plots.
 
 ## First Command Sketch
 
@@ -218,9 +236,14 @@ python3 tools/qbe.py new-task "${title}" \\
   --export-targets "${exportTargets.length ? exportTargets.join(",") : "none"}" \\
   --export-instantiation "${(exportInstantiation.value.trim() || "TBD").replace(/"/g, '\\"')}"
 python3 tools/qbe.py run-cycle "${title}"
-# Optional after saving the JSON above as agent-profiles/${title}.json:
+# Optional after saving the JSON above as agent-profiles/${title}.json.
+# This command uses the party-parliament profile.  For the classic tri-role profile,
+# remove --party-parliament, --natural-lower-count, and --lean-lower-count:
 python3 tools/qbe.py sleep-run "${title}" \\
   --cycles 2 \\
+  --party-parliament \\
+  --natural-lower-count 2 \\
+  --lean-lower-count 2 \\
   --agent-profile "${title}.json" \\
   --execute \\
   --check-each-cycle
