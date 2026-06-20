@@ -880,6 +880,729 @@ theorem cubicAmplitude_nonneg (n : Nat) (j : Fin (gridSize n)) :
     (Rat.pow_nonneg (CubicStatePreparation.gridPoint_nonneg n j) :
       0 ≤ CubicStatePreparation.gridPoint n j ^ 3)
 
+/-- Full matrix dimension of the unexpanded one-signal primitive oracle. -/
+def primitiveAmplitudeOracleDimension (n : Nat) : Nat :=
+  gridSize (n + (amplitudeOracleLayout n).auxiliaryQubits)
+
+/--
+External primitive matrix supplied by the oracle-label tier.
+
+This is only a named object for the semantic contract below.  The current file
+does not prove that this opaque matrix is a gate-expanded unitary.
+-/
+opaque primitiveAmplitudeOracleUnitary (n : Nat) :
+    Matrix (primitiveAmplitudeOracleDimension n)
+      (primitiveAmplitudeOracleDimension n) Rat
+
+/-- Explicit unitarity obligation for the primitive oracle-label matrix. -/
+opaque primitiveAmplitudeOracleIsUnitary (n : Nat)
+    (unitary : Matrix (primitiveAmplitudeOracleDimension n)
+      (primitiveAmplitudeOracleDimension n) Rat) : Prop
+
+/-- Explicit clean-block extraction obligation for the primitive oracle-label matrix. -/
+opaque primitiveAmplitudeOracleCleanBlockExtracts (n : Nat)
+    (unitary : Matrix (primitiveAmplitudeOracleDimension n)
+      (primitiveAmplitudeOracleDimension n) Rat)
+    (block : Matrix (gridSize n) (gridSize n) Rat) : Prop
+
+/--
+Primitive one-signal amplitude-oracle semantic contract.
+
+This contract keeps the unexpanded primitive tier honest: it requires both a
+unitarity obligation for the named oracle matrix and a clean-block extraction
+obligation whose extracted block satisfies the diagonal target contract.
+-/
+def primitiveAmplitudeOracleSemanticContract (n : Nat) : Prop :=
+  primitiveAmplitudeOracleIsUnitary n (primitiveAmplitudeOracleUnitary n) ∧
+    ∃ block : Matrix (gridSize n) (gridSize n) Rat,
+      primitiveAmplitudeOracleCleanBlockExtracts n
+        (primitiveAmplitudeOracleUnitary n) block ∧
+        diagonalCleanBlockContract n block
+
+theorem primitiveAmplitudeOracleSemanticContract_unitary
+    (n : Nat) (h : primitiveAmplitudeOracleSemanticContract n) :
+    primitiveAmplitudeOracleIsUnitary n (primitiveAmplitudeOracleUnitary n) :=
+  h.1
+
+theorem primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target
+    (n : Nat) (h : primitiveAmplitudeOracleSemanticContract n) :
+    ∃ block : Matrix (gridSize n) (gridSize n) Rat,
+      primitiveAmplitudeOracleCleanBlockExtracts n
+        (primitiveAmplitudeOracleUnitary n) block ∧
+        Matrix.PointwiseEq block (cubicDiagonalTarget n).operator := by
+  rcases h with ⟨_hUnitary, block, hExtract, hClean⟩
+  exact ⟨block, hExtract, primitiveOracleCleanBlock_eq_target n block hClean⟩
+
+/--
+Expanded arithmetic route layout.
+
+The workspace count is explicit because the reversible arithmetic, angle
+synthesis, and uncomputation proof are not yet fixed to one resource backend.
+-/
+def expandedAmplitudeOracleLayout (n workspaceQubits : Nat) : RegisterLayout where
+  systemQubits := n
+  signalQubits := 1
+  pureAncillas := workspaceQubits
+
+theorem expandedAmplitudeOracleLayout_auxiliaryQubits
+    (n workspaceQubits : Nat) :
+    (expandedAmplitudeOracleLayout n workspaceQubits).auxiliaryQubits =
+      1 + workspaceQubits := by
+  rfl
+
+/-- The expanded route targets the same exact normalizer `alpha = 1`. -/
+theorem expandedAmplitudeOracleNormalizer_eq (n _workspaceQubits : Nat) :
+    exactNormalizer n = 1 := by
+  rfl
+
+/--
+Scalar-tier contract for the standard `R_y` clean-entry identity.
+
+The project-local matrix layer is still exact `Rat`, so `arccos` and `cos`
+are represented here by backend-supplied scalar functions.  The contract keeps
+the standard convention explicit: for every rational amplitude `a` in `[0, 1]`,
+the clean signal entry of `R_y (2 * arccos a)` is exactly `a` after embedding
+into the backend scalar tier.
+-/
+structure StandardRyCleanEntryScalarTier where
+  Scalar : Type
+  ratAmplitude : Rat -> Scalar
+  thetaForAmplitude : Scalar -> Scalar
+  cleanEntry : Scalar -> Scalar
+  cleanEntry_of_range :
+    ∀ a : Rat, 0 ≤ a -> a ≤ 1 ->
+      cleanEntry (thetaForAmplitude (ratAmplitude a)) = ratAmplitude a
+  thetaFormula : String := "theta = 2 * arccos(amplitude)"
+  cleanEntryFormula : String := "cos(theta / 2)"
+
+/--
+Indexwise clean-entry obligation for the cubic diagonal amplitudes in a chosen
+standard-`R_y` scalar tier.
+-/
+def expandedRyCleanEntryForCubicAmplitudes
+    (tier : StandardRyCleanEntryScalarTier) (n : Nat) : Prop :=
+  ∀ j : Fin (gridSize n),
+    tier.cleanEntry
+        (tier.thetaForAmplitude
+          (tier.ratAmplitude (CubicStatePreparation.cubicAmplitude n j))) =
+      tier.ratAmplitude (CubicStatePreparation.cubicAmplitude n j)
+
+/--
+`DIAG-EXP-RY-001`: the standard scalar-tier `R_y` clean-entry contract applies
+to every cubic grid amplitude because the existing Lean range lemmas prove
+`0 <= (j / 2^n)^3 <= 1`.
+-/
+theorem expandedRyCleanEntryForCubicAmplitudes_of_standardTier
+    (tier : StandardRyCleanEntryScalarTier) (n : Nat) :
+    expandedRyCleanEntryForCubicAmplitudes tier n := by
+  intro j
+  exact tier.cleanEntry_of_range
+    (CubicStatePreparation.cubicAmplitude n j)
+    (cubicAmplitude_nonneg n j)
+    (cubicAmplitude_le_one n j)
+
+/--
+Semantic obligation that the expanded reversible arithmetic computes
+`a_j = (j / 2^n)^3` into the named workspace.
+-/
+opaque expandedArithmeticComputesCubicAmplitude
+    (n workspaceQubits : Nat) : Prop
+
+/--
+Backend-level shape for the expanded reversible arithmetic compute phase.
+
+The structure records only the compute half of the route: starting from a
+clean workspace, the backend returns the same system index together with a
+workspace whose distinguished amplitude register contains
+`CubicStatePreparation.cubicAmplitude n j`.  Clean uncompute remains the
+separate obligation `expandedWorkspaceCleanUncomputed`.
+-/
+structure ExpandedCubicArithmeticBackend (n workspaceQubits : Nat) where
+  Workspace : Type
+  workspaceQubitCount : Nat
+  workspaceQubitCount_eq : workspaceQubitCount = workspaceQubits
+  zeroWorkspace : Workspace
+  amplitudeRegister : Workspace -> Rat
+  compute : Fin (gridSize n) -> Workspace -> Fin (gridSize n) × Workspace
+
+/--
+Symbolic compute-phase backend for `DIAG-EXP-ARITH-BACKEND-001`.
+
+This witness records only the pointwise arithmetic value written by the compute
+phase.  It does not certify a reversible gate implementation, clean uncompute,
+or the bridge to `expandedArithmeticComputesCubicAmplitude`.
+-/
+def symbolicExpandedCubicArithmeticBackend (n workspaceQubits : Nat) :
+    ExpandedCubicArithmeticBackend n workspaceQubits where
+  Workspace := Rat
+  workspaceQubitCount := workspaceQubits
+  workspaceQubitCount_eq := rfl
+  zeroWorkspace := 0
+  amplitudeRegister := fun a => a
+  compute := fun j _workspace =>
+    (j, CubicStatePreparation.cubicAmplitude n j)
+
+/--
+Pointwise arithmetic-backend semantics for `DIAG-EXP-ARITH-001`.
+
+For each system index `j`, the compute phase preserves `j` and writes exactly
+the cubic diagonal amplitude into its distinguished amplitude register.
+-/
+def expandedArithmeticBackendComputesCubicAmplitude
+    {n workspaceQubits : Nat}
+    (backend : ExpandedCubicArithmeticBackend n workspaceQubits) : Prop :=
+  backend.workspaceQubitCount = workspaceQubits ∧
+    ∀ j : Fin (gridSize n),
+      (backend.compute j backend.zeroWorkspace).1 = j ∧
+        backend.amplitudeRegister ((backend.compute j backend.zeroWorkspace).2) =
+          CubicStatePreparation.cubicAmplitude n j
+
+/--
+The symbolic backend satisfies the pointwise compute contract for every system
+index.  The opaque expanded-route predicate still requires a separate backend
+bridge witness.
+-/
+theorem symbolicExpandedCubicArithmeticBackend_computes
+    (n workspaceQubits : Nat) :
+    expandedArithmeticBackendComputesCubicAmplitude
+      (symbolicExpandedCubicArithmeticBackend n workspaceQubits) := by
+  constructor
+  · rfl
+  · intro j
+    constructor <;> rfl
+
+/--
+Bridge obligation from a concrete arithmetic backend to the expanded route
+predicate.  This is conditional for the same reason as the rotation bridge:
+the backend must still justify that its pointwise compute semantics are the
+semantics of the route predicate used by the block-encoding contract.
+-/
+def expandedArithmeticBackendBridge
+    {n workspaceQubits : Nat}
+    (backend : ExpandedCubicArithmeticBackend n workspaceQubits) : Prop :=
+  expandedArithmeticBackendComputesCubicAmplitude backend ->
+    expandedArithmeticComputesCubicAmplitude n workspaceQubits
+
+theorem expandedArithmeticComputesCubicAmplitude_of_backendBridge
+    {n workspaceQubits : Nat}
+    (backend : ExpandedCubicArithmeticBackend n workspaceQubits)
+    (hBackend : expandedArithmeticBackendComputesCubicAmplitude backend)
+    (hBridge : expandedArithmeticBackendBridge backend) :
+    expandedArithmeticComputesCubicAmplitude n workspaceQubits :=
+  hBridge hBackend
+
+/--
+General normal form for arithmetic backend bridge proof search.
+
+Once a backend's pointwise compute contract is available, proving its bridge is
+equivalent to proving the opaque expanded-route predicate itself.  This lemma
+is a proof-reduction aid; it does not supply the route semantics.
+-/
+theorem expandedArithmeticBackendBridge_iff_of_computes
+    {n workspaceQubits : Nat}
+    (backend : ExpandedCubicArithmeticBackend n workspaceQubits)
+    (hBackend : expandedArithmeticBackendComputesCubicAmplitude backend) :
+    expandedArithmeticBackendBridge backend ↔
+      expandedArithmeticComputesCubicAmplitude n workspaceQubits := by
+  constructor
+  · intro hBridge
+    exact expandedArithmeticComputesCubicAmplitude_of_backendBridge
+      backend hBackend hBridge
+  · intro hRoute
+    intro _hBackend
+    exact hRoute
+
+/--
+Specialized conditional closure for the symbolic arithmetic backend.
+
+This does not prove the backend bridge witness; it only packages the already
+compiled pointwise compute proof with a future honest bridge witness for
+`DIAG-ARITH-BACKEND-BRIDGE-001`.
+-/
+theorem expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge
+    (n workspaceQubits : Nat)
+    (hBridge :
+      expandedArithmeticBackendBridge
+        (symbolicExpandedCubicArithmeticBackend n workspaceQubits)) :
+    expandedArithmeticComputesCubicAmplitude n workspaceQubits := by
+  exact expandedArithmeticComputesCubicAmplitude_of_backendBridge
+    (symbolicExpandedCubicArithmeticBackend n workspaceQubits)
+    (symbolicExpandedCubicArithmeticBackend_computes n workspaceQubits)
+    hBridge
+
+/--
+Normal form for the symbolic arithmetic bridge obligation.
+
+For the symbolic backend, the pointwise compute proof is already compiled, so
+the bridge obligation is logically equivalent to the opaque expanded-route
+predicate itself.  This is a proof-reduction lemma, not a bridge witness: it
+keeps `DIAG-ARITH-BACKEND-BRIDGE-001` blocked until a concrete route-semantics
+representation proves `expandedArithmeticComputesCubicAmplitude`.
+-/
+theorem symbolicExpandedCubicArithmeticBackend_bridge_iff
+    (n workspaceQubits : Nat) :
+    expandedArithmeticBackendBridge
+        (symbolicExpandedCubicArithmeticBackend n workspaceQubits) ↔
+      expandedArithmeticComputesCubicAmplitude n workspaceQubits := by
+  exact expandedArithmeticBackendBridge_iff_of_computes
+    (symbolicExpandedCubicArithmeticBackend n workspaceQubits)
+    (symbolicExpandedCubicArithmeticBackend_computes n workspaceQubits)
+
+/--
+`DIAG-ARITH-FIXED-DENOM-CAP-001`: the fixed-denominator cubic payload fits in
+the `3 * n`-qubit workspace register.
+-/
+theorem fixedDenomCubicPayload_lt_capacity
+    (n : Nat) (j : Fin (gridSize n)) :
+    j.val ^ 3 < gridSize (3 * n) := by
+  have hlt : j.val ^ 3 < gridSize n ^ 3 :=
+    Nat.pow_lt_pow_left j.isLt (by decide : 3 ≠ 0)
+  simpa [CubicStatePreparation.gridSize_three_mul_eq_cube] using hlt
+
+/--
+`DIAG-ARITH-FIXED-DENOM-ALG-001`: projecting the fixed-denominator payload
+`j.val ^ 3` by the `3 * n`-qubit denominator recovers the cubic grid
+amplitude.
+-/
+theorem fixedDenomCubicAmplitude_eq
+    (n : Nat) (j : Fin (gridSize n)) :
+    (j.val : Rat) ^ 3 / (gridSize (3 * n) : Rat) =
+      CubicStatePreparation.cubicAmplitude n j := by
+  rw [CubicStatePreparation.gridSize_three_mul_eq_cube]
+  simpa [CubicStatePreparation.cubicAmplitude, CubicStatePreparation.gridPoint]
+    using
+      (show (j.val : Rat) ^ 3 / (gridSize n : Rat) ^ 3 =
+          ((j.val : Rat) / (gridSize n : Rat)) ^ 3 by
+        simp [Rat.div_def, Rat.pow_succ, Rat.inv_mul_rev, Rat.mul_assoc]
+        grind [Rat.mul_comm, Rat.mul_assoc])
+
+/--
+`DIAG-ARITH-FIXED-DENOM-BACKEND-001`: concrete compute-phase backend whose
+`3 * n`-qubit workspace stores the fixed-denominator payload `j.val ^ 3`.
+-/
+def fixedDenomCubicArithmeticBackend (n : Nat) :
+    ExpandedCubicArithmeticBackend n (3 * n) where
+  Workspace := Fin (gridSize (3 * n))
+  workspaceQubitCount := 3 * n
+  workspaceQubitCount_eq := rfl
+  zeroWorkspace := ⟨0, CubicStatePreparation.gridSize_pos (3 * n)⟩
+  amplitudeRegister := fun payload =>
+    (payload.val : Rat) / (gridSize (3 * n) : Rat)
+  compute := fun j _workspace =>
+    (j, ⟨j.val ^ 3, fixedDenomCubicPayload_lt_capacity n j⟩)
+
+/--
+Pointwise compute contract for the fixed-denominator arithmetic backend.
+
+This closes the backend leaf only; the bridge to
+`expandedArithmeticComputesCubicAmplitude` remains a separate semantic
+obligation.
+-/
+theorem fixedDenomCubicArithmeticBackend_computes
+    (n : Nat) :
+    expandedArithmeticBackendComputesCubicAmplitude
+      (fixedDenomCubicArithmeticBackend n) := by
+  constructor
+  · rfl
+  · intro j
+    constructor
+    · rfl
+    · exact fixedDenomCubicAmplitude_eq n j
+
+/--
+Transparent arithmetic-route interface for `DIAG-ARITH-ROUTE-TRANSPARENT-001`.
+
+This records that some explicit backend satisfies the pointwise compute
+contract.  It is intentionally weaker than the opaque expanded-route predicate:
+using it as a route certificate still requires a later named bridge or contract
+refactor.
+-/
+def expandedArithmeticComputesCubicAmplitudeTransparent
+    (n workspaceQubits : Nat) : Prop :=
+  Exists fun backend : ExpandedCubicArithmeticBackend n workspaceQubits =>
+    expandedArithmeticBackendComputesCubicAmplitude backend
+
+/--
+Fixed-denominator witness for the transparent arithmetic route interface.
+
+This packages the already compiled fixed-denominator backend and its pointwise
+compute theorem.  It does not prove
+`expandedArithmeticComputesCubicAmplitude n (3 * n)`.
+-/
+theorem fixedDenomCubicArithmeticRouteTransparent
+    (n : Nat) :
+    expandedArithmeticComputesCubicAmplitudeTransparent n (3 * n) := by
+  exact ⟨fixedDenomCubicArithmeticBackend n,
+    fixedDenomCubicArithmeticBackend_computes n⟩
+
+/--
+Fixed-denominator normal form for the arithmetic bridge obligation.
+
+The concrete backend's pointwise compute proof is available, so direct bridge
+search is equivalent to proving the opaque expanded-route predicate itself.
+This records the remaining route-semantics gap without supplying a bridge
+witness.
+-/
+theorem fixedDenomCubicArithmeticBackend_bridge_iff
+    (n : Nat) :
+    expandedArithmeticBackendBridge (fixedDenomCubicArithmeticBackend n) ↔
+      expandedArithmeticComputesCubicAmplitude n (3 * n) := by
+  exact expandedArithmeticBackendBridge_iff_of_computes
+    (fixedDenomCubicArithmeticBackend n)
+    (fixedDenomCubicArithmeticBackend_computes n)
+
+/--
+Semantic obligation for the standard `R_y` convention on the signal qubit:
+for each basis index `j`, the route uses
+`theta_j = 2 * arccos ((j / 2^n)^3)`, so the clean entry is
+`cos (theta_j / 2) = (j / 2^n)^3`.
+-/
+opaque expandedControlledRyUsesCubicAngle
+    (n workspaceQubits : Nat) : Prop
+
+/--
+Transparent controlled-`R_y` angle-convention interface for
+`DIAG-RY-TRANSPARENT-INTERFACE-001`.
+
+This records only the already compiled scalar clean-entry fact for every
+standard tier.  It does not prove the opaque route predicate
+`expandedControlledRyUsesCubicAngle`.
+-/
+def expandedControlledRyUsesCubicAngleTransparent
+    (n _workspaceQubits : Nat) : Prop :=
+  forall tier : StandardRyCleanEntryScalarTier,
+    expandedRyCleanEntryForCubicAmplitudes tier n
+
+/--
+Fixed-denominator wrapper for the transparent controlled-`R_y` route.
+
+This packages the scalar-tier theorem at workspace size `3 * n`.  It does not
+provide a backend witness for `expandedControlledRyUsesCubicAngle`.
+-/
+theorem fixedDenomControlledRyRouteTransparent
+    (n : Nat) :
+    expandedControlledRyUsesCubicAngleTransparent n (3 * n) := by
+  intro tier
+  exact expandedRyCleanEntryForCubicAmplitudes_of_standardTier tier n
+
+/--
+Backend bridge obligation from the scalar-tier `R_y` clean-entry interface to
+the expanded route predicate.
+
+This is intentionally conditional: the file already proves the scalar
+clean-entry fact for cubic amplitudes, but a concrete backend must still justify
+that this fact is the semantics of the controlled rotation used by the route.
+-/
+def expandedControlledRyBackendBridge
+    (tier : StandardRyCleanEntryScalarTier)
+    (n workspaceQubits : Nat) : Prop :=
+  expandedRyCleanEntryForCubicAmplitudes tier n ->
+    expandedControlledRyUsesCubicAngle n workspaceQubits
+
+theorem expandedControlledRyUsesCubicAngle_of_backendBridge
+    (tier : StandardRyCleanEntryScalarTier)
+    (n workspaceQubits : Nat)
+    (hBridge : expandedControlledRyBackendBridge tier n workspaceQubits) :
+    expandedControlledRyUsesCubicAngle n workspaceQubits :=
+  hBridge (expandedRyCleanEntryForCubicAmplitudes_of_standardTier tier n)
+
+/--
+Normal form for controlled-rotation backend-bridge proof search.
+
+The scalar-tier clean-entry theorem is already compiled, so proving a backend
+bridge for the controlled rotation is equivalent to proving the opaque route
+predicate itself.  This is a proof-reduction lemma for
+`DIAG-RY-BACKEND-WITNESS-001`; it does not supply the missing backend
+semantics.
+-/
+theorem expandedControlledRyBackendBridge_iff_of_standardTier
+    (tier : StandardRyCleanEntryScalarTier)
+    (n workspaceQubits : Nat) :
+    expandedControlledRyBackendBridge tier n workspaceQubits ↔
+      expandedControlledRyUsesCubicAngle n workspaceQubits := by
+  constructor
+  · intro hBridge
+    exact expandedControlledRyUsesCubicAngle_of_backendBridge
+      tier n workspaceQubits hBridge
+  · intro hRoute
+    intro _hScalar
+    exact hRoute
+
+/-- Semantic obligation that the arithmetic workspace is returned clean. -/
+opaque expandedWorkspaceCleanUncomputed
+    (n workspaceQubits : Nat) : Prop
+
+/--
+Transparent clean-uncompute interface for
+`DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001`.
+
+This records the data needed to state honest reversible cleanup: a compute step
+matching the backend on clean workspace, an uncompute step that preserves the
+system index, and a two-sided cleanup condition after compute.  It does not
+prove the opaque route predicate `expandedWorkspaceCleanUncomputed`.
+-/
+structure ExpandedArithmeticCleanUncomputeWitness
+    (n workspaceQubits : Nat) where
+  backend : ExpandedCubicArithmeticBackend n workspaceQubits
+  computes : expandedArithmeticBackendComputesCubicAmplitude backend
+  computeStep :
+    Fin (gridSize n) -> backend.Workspace ->
+      Prod (Fin (gridSize n)) backend.Workspace
+  uncomputeStep :
+    Fin (gridSize n) -> backend.Workspace ->
+      Prod (Fin (gridSize n)) backend.Workspace
+  computeStep_matches_backend_on_clean :
+    forall j,
+      computeStep j backend.zeroWorkspace =
+        backend.compute j backend.zeroWorkspace
+  compute_preserves_index :
+    forall j w, (computeStep j w).1 = j
+  uncompute_preserves_index :
+    forall j w, (uncomputeStep j w).1 = j
+  uncompute_after_compute :
+    forall j w, uncomputeStep j (computeStep j w).2 = (j, w)
+
+/--
+Transparent cleanup predicate backed by an explicit reversible witness.
+
+This is intentionally separate from `expandedWorkspaceCleanUncomputed`; a later
+route must either instantiate this interface and refactor a contract to consume
+it, or supply a nontrivial bridge to the opaque predicate.
+-/
+def expandedWorkspaceCleanUncomputedTransparent
+    (n workspaceQubits : Nat) : Prop :=
+  Nonempty (ExpandedArithmeticCleanUncomputeWitness n workspaceQubits)
+
+theorem expandedWorkspaceCleanUncomputedTransparent_of_witness
+    {n workspaceQubits : Nat}
+    (w : ExpandedArithmeticCleanUncomputeWitness n workspaceQubits) :
+    expandedWorkspaceCleanUncomputedTransparent n workspaceQubits := by
+  exact ⟨w⟩
+
+private theorem fixedDenomCubicModAddSub_eq_self
+    {modulus workspace payload : Nat}
+    (hWorkspace : workspace < modulus) (hPayload : payload < modulus) :
+    ((workspace + payload) % modulus + modulus - payload) % modulus =
+      workspace := by
+  by_cases hlt : workspace + payload < modulus
+  · have hmod : (workspace + payload) % modulus =
+        workspace + payload := Nat.mod_eq_of_lt hlt
+    calc
+      ((workspace + payload) % modulus + modulus - payload) % modulus
+          = (workspace + payload + modulus - payload) % modulus := by
+              rw [hmod]
+      _ = (workspace + modulus) % modulus := by
+            congr 1
+            omega
+      _ = workspace % modulus := by
+            rw [Nat.add_mod_right]
+      _ = workspace := Nat.mod_eq_of_lt hWorkspace
+  · have hge : workspace + payload ≥ modulus := by omega
+    have hsum_lt : workspace + payload < 2 * modulus := by omega
+    have hsub_lt : workspace + payload - modulus < modulus := by omega
+    have hmod : (workspace + payload) % modulus =
+        workspace + payload - modulus := by
+      rw [Nat.mod_eq_sub_mod hge]
+      exact Nat.mod_eq_of_lt hsub_lt
+    calc
+      ((workspace + payload) % modulus + modulus - payload) % modulus
+          = (workspace + payload - modulus + modulus - payload) % modulus := by
+              rw [hmod]
+      _ = workspace % modulus := by
+            congr 1
+            omega
+      _ = workspace := Nat.mod_eq_of_lt hWorkspace
+
+/--
+Fixed-denominator reversible compute lift for
+`DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001`.
+
+This modular-add step agrees with `fixedDenomCubicArithmeticBackend` on clean
+workspace, but unlike the backend's overwrite-style compute field it is
+invertible on every workspace value.
+-/
+def fixedDenomCubicComputeStep (n : Nat) :
+    Fin (gridSize n) -> (fixedDenomCubicArithmeticBackend n).Workspace ->
+      Prod (Fin (gridSize n)) (fixedDenomCubicArithmeticBackend n).Workspace :=
+  fun j workspace =>
+    (j, ⟨(workspace.val + j.val ^ 3) % gridSize (3 * n),
+      Nat.mod_lt _ (CubicStatePreparation.gridSize_pos (3 * n))⟩)
+
+/-- Modular-subtract inverse for `fixedDenomCubicComputeStep`. -/
+def fixedDenomCubicUncomputeStep (n : Nat) :
+    Fin (gridSize n) -> (fixedDenomCubicArithmeticBackend n).Workspace ->
+      Prod (Fin (gridSize n)) (fixedDenomCubicArithmeticBackend n).Workspace :=
+  fun j workspace =>
+    (j, ⟨(workspace.val + gridSize (3 * n) - j.val ^ 3) % gridSize (3 * n),
+      Nat.mod_lt _ (CubicStatePreparation.gridSize_pos (3 * n))⟩)
+
+theorem fixedDenomCubicComputeStep_matches_backend_on_clean
+    (n : Nat) (j : Fin (gridSize n)) :
+    fixedDenomCubicComputeStep n j
+        (fixedDenomCubicArithmeticBackend n).zeroWorkspace =
+      (fixedDenomCubicArithmeticBackend n).compute j
+        (fixedDenomCubicArithmeticBackend n).zeroWorkspace := by
+  simp [fixedDenomCubicComputeStep, fixedDenomCubicArithmeticBackend,
+    Nat.mod_eq_of_lt (fixedDenomCubicPayload_lt_capacity n j)]
+
+theorem fixedDenomCubicUncomputeStep_after_compute
+    (n : Nat) (j : Fin (gridSize n))
+    (workspace : (fixedDenomCubicArithmeticBackend n).Workspace) :
+    fixedDenomCubicUncomputeStep n j
+        (fixedDenomCubicComputeStep n j workspace).2 =
+      (j, workspace) := by
+  apply Prod.ext
+  · rfl
+  · apply Fin.ext
+    simp [fixedDenomCubicComputeStep, fixedDenomCubicUncomputeStep]
+    exact fixedDenomCubicModAddSub_eq_self workspace.isLt
+      (fixedDenomCubicPayload_lt_capacity n j)
+
+/--
+Fixed-denominator witness for the transparent clean-uncompute interface.
+
+This packages modular add/sub cleanup only.  It does not prove the opaque
+predicate `expandedWorkspaceCleanUncomputed`, does not state controlled-rotation
+workspace-readonly semantics, and does not close extraction or unitarity.
+-/
+def fixedDenomExpandedArithmeticCleanUncomputeWitness
+    (n : Nat) : ExpandedArithmeticCleanUncomputeWitness n (3 * n) where
+  backend := fixedDenomCubicArithmeticBackend n
+  computes := fixedDenomCubicArithmeticBackend_computes n
+  computeStep := fixedDenomCubicComputeStep n
+  uncomputeStep := fixedDenomCubicUncomputeStep n
+  computeStep_matches_backend_on_clean := by
+    intro j
+    exact fixedDenomCubicComputeStep_matches_backend_on_clean n j
+  compute_preserves_index := by
+    intro j workspace
+    rfl
+  uncompute_preserves_index := by
+    intro j workspace
+    rfl
+  uncompute_after_compute := by
+    intro j workspace
+    exact fixedDenomCubicUncomputeStep_after_compute n j workspace
+
+theorem fixedDenomWorkspaceCleanUncomputedTransparent
+    (n : Nat) :
+    expandedWorkspaceCleanUncomputedTransparent n (3 * n) := by
+  exact expandedWorkspaceCleanUncomputedTransparent_of_witness
+    (fixedDenomExpandedArithmeticCleanUncomputeWitness n)
+
+/-- Clean-block extraction obligation for the expanded arithmetic/rotation route. -/
+opaque expandedAmplitudeOracleCleanBlockExtracts
+    (n workspaceQubits : Nat)
+    (block : Matrix (gridSize n) (gridSize n) Rat) : Prop
+
+/--
+Expanded-route clean-block contract for `DIAG-EXPANDED-CONTRACT-001`.
+
+This is an interface, not a proof of the expanded circuit.  It keeps the
+transparent arithmetic witness, transparent controlled-rotation witness, and
+clean-uncompute obligations explicit and requires the extracted clean block to
+satisfy the existing diagonal contract.
+-/
+def expandedAmplitudeOracleCleanBlockContract
+    (n workspaceQubits : Nat)
+    (block : Matrix (gridSize n) (gridSize n) Rat) : Prop :=
+  expandedArithmeticComputesCubicAmplitudeTransparent n workspaceQubits ∧
+    expandedControlledRyUsesCubicAngleTransparent n workspaceQubits ∧
+    expandedWorkspaceCleanUncomputed n workspaceQubits ∧
+    expandedAmplitudeOracleCleanBlockExtracts n workspaceQubits block ∧
+    diagonalCleanBlockContract n block
+
+theorem expandedAmplitudeOracleCleanBlockContract_diagonal
+    (n workspaceQubits : Nat)
+    (block : Matrix (gridSize n) (gridSize n) Rat)
+    (h : expandedAmplitudeOracleCleanBlockContract n workspaceQubits block) :
+    diagonalCleanBlockContract n block := by
+  exact h.2.2.2.2
+
+theorem expandedAmplitudeOracleCleanBlockContract_eq_target
+    (n workspaceQubits : Nat)
+    (block : Matrix (gridSize n) (gridSize n) Rat)
+    (h : expandedAmplitudeOracleCleanBlockContract n workspaceQubits block) :
+    Matrix.PointwiseEq block (cubicDiagonalTarget n).operator := by
+  exact primitiveOracleCleanBlock_eq_target n block
+    (expandedAmplitudeOracleCleanBlockContract_diagonal n workspaceQubits block h)
+
+/--
+Conditional semantic interface for an expanded arithmetic/rotation route with
+an explicit workspace size.
+-/
+def expandedAmplitudeOracleSemanticContract
+    (n workspaceQubits : Nat) : Prop :=
+  ∃ block : Matrix (gridSize n) (gridSize n) Rat,
+    expandedAmplitudeOracleCleanBlockContract n workspaceQubits block
+
+theorem expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target
+    (n workspaceQubits : Nat)
+    (h : expandedAmplitudeOracleSemanticContract n workspaceQubits) :
+    ∃ block : Matrix (gridSize n) (gridSize n) Rat,
+      expandedAmplitudeOracleCleanBlockExtracts n workspaceQubits block ∧
+        Matrix.PointwiseEq block (cubicDiagonalTarget n).operator := by
+  rcases h with ⟨block, hContract⟩
+  exact ⟨block, hContract.2.2.2.1,
+    expandedAmplitudeOracleCleanBlockContract_eq_target
+      n workspaceQubits block hContract⟩
+
+/-- Conditional candidate at the primitive oracle-label tier. -/
+def primitiveAmplitudeOracleCandidate (n : Nat) :
+    OperatorBlockEncodingCandidate Rat n where
+  auxiliaryQubits := (amplitudeOracleLayout n).auxiliaryQubits
+  target := cubicDiagonalTarget n
+  unitary := primitiveAmplitudeOracleUnitary n
+  layout := amplitudeOracleLayout n
+  circuit := amplitudeOracleCircuit n
+  resource := amplitudeOracleResource n
+  layoutMatches := rfl
+  isUnitary :=
+    primitiveAmplitudeOracleIsUnitary n (primitiveAmplitudeOracleUnitary n)
+  blockContainsTarget :=
+    ∃ block : Matrix (gridSize n) (gridSize n) Rat,
+      primitiveAmplitudeOracleCleanBlockExtracts n
+        (primitiveAmplitudeOracleUnitary n) block ∧
+        Matrix.PointwiseEq block (cubicDiagonalTarget n).operator
+
+theorem primitiveAmplitudeOracleCandidate_costTuple_eq (n : Nat) :
+    ( (primitiveAmplitudeOracleCandidate n).cost.gateCount
+    , (primitiveAmplitudeOracleCandidate n).cost.depth
+    , (primitiveAmplitudeOracleCandidate n).cost.auxiliaryQubits
+    , (primitiveAmplitudeOracleCandidate n).cost.oracleCalls
+    ) = (1, 1, 1, 1) := by
+  simp [OperatorBlockEncodingCandidate.cost, primitiveAmplitudeOracleCandidate,
+    amplitudeOracleLayout, amplitudeOracleResource, amplitudeOracleCircuit,
+    RegisterLayout.auxiliaryQubits, Circuit.resource, Gate.resource,
+    Resource.gates, Resource.ofCountsWithDepth]
+
+theorem primitiveAmplitudeOracleCandidate_unitary_from_contract
+    (n : Nat) (h : primitiveAmplitudeOracleSemanticContract n) :
+    (primitiveAmplitudeOracleCandidate n).isUnitary := by
+  simpa [primitiveAmplitudeOracleCandidate] using
+    primitiveAmplitudeOracleSemanticContract_unitary n h
+
+theorem primitiveAmplitudeOracleCandidate_block_from_contract
+    (n : Nat) (h : primitiveAmplitudeOracleSemanticContract n) :
+    (primitiveAmplitudeOracleCandidate n).blockContainsTarget := by
+  simpa [primitiveAmplitudeOracleCandidate] using
+    primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target n h
+
+/--
+Conditional exact certificate for the primitive oracle-label tier.
+
+This packages a verified block encoding only from an explicit proof of
+`primitiveAmplitudeOracleSemanticContract n`; the contract itself remains an
+open primitive-oracle obligation until such a proof or accepted primitive
+axiom is supplied.
+-/
+def primitiveAmplitudeOracleVerified
+    (n : Nat) (h : primitiveAmplitudeOracleSemanticContract n) :
+    VerifiedOperatorBlockEncoding Rat n where
+  candidate := primitiveAmplitudeOracleCandidate n
+  unitaryProof := primitiveAmplitudeOracleCandidate_unitary_from_contract n h
+  blockProof := primitiveAmplitudeOracleCandidate_block_from_contract n h
+
 /-- Human-facing construction claim for the first exact diagonal route. -/
 def amplitudeOracleClaim : ConstructionClaim where
   name := "diagonal-cubic-amplitude-oracle"

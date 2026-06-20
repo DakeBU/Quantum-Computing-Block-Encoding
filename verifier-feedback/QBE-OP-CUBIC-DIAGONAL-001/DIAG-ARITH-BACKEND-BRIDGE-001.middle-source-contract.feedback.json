@@ -1,0 +1,18 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "parent_leaf": "DIAG-EXP-ARITH-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_arithmetic_ok": true,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "workspace_representation_specified": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "supply expandedArithmeticBackendBridge for symbolicExpandedCubicArithmeticBackend, or replace it with a register-level backend carrying the same pointwise compute proof and bridge; otherwise record the missing concrete workspace/backend representation"
+}

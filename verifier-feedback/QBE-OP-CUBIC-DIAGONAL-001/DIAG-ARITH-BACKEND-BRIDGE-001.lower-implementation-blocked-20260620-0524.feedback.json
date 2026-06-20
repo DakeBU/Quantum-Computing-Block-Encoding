@@ -1,0 +1,28 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "blocked_by": "DIAG-ARITH-REP-001",
+  "role": "lower",
+  "profile": "Lean implementation worker",
+  "timestamp": "2026-06-20 05:24 JST",
+  "source_correspondence_ok": true,
+  "source_correspondence_detail": "The target remains the diagonal cubic operator D_n[row,col] = if row = col then (row / 2^n)^3 else 0 with exact normalizer alpha = 1.",
+  "lean_contract_names": [
+    "symbolicExpandedCubicArithmeticBackend",
+    "symbolicExpandedCubicArithmeticBackend_computes",
+    "expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge",
+    "symbolicExpandedCubicArithmeticBackend_bridge_iff"
+  ],
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "workspace_representation_specified": false,
+  "error_class": "symbolic_bridge_gap",
+  "remaining_lean_goal": "expandedArithmeticBackendBridge (symbolicExpandedCubicArithmeticBackend n workspaceQubits)",
+  "next_route": "Resolve DIAG-ARITH-REP-001 by naming a concrete workspace/register/backend representation before assigning the bridge witness to a Lean worker."
+}

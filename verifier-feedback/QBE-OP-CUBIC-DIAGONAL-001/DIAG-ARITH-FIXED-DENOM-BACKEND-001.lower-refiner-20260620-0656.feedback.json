@@ -1,0 +1,31 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-FIXED-DENOM-BACKEND-001",
+  "role": "lower",
+  "profile": "Lean refiner/reducer",
+  "updated": "2026-06-20 06:56 JST",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "qbe_check_ok": true,
+  "finite_matrix_ok": null,
+  "finite_arithmetic_ok": true,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "resource_score": null,
+  "auxiliary_qubits": "3 * n workspace qubits for the expanded arithmetic backend leaf",
+  "gate_count": null,
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": true,
+  "lean_declarations": [
+    "CubicDiagonalOracle.fixedDenomCubicArithmeticBackend",
+    "CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_computes"
+  ],
+  "rejected_route": "expandedArithmeticBackendBridge (fixedDenomCubicArithmeticBackend n)",
+  "rejected_route_message": "compiled bridge normal forms reduce the bridge goal to opaque expandedArithmeticComputesCubicAmplitude without a route-semantics witness",
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Do not retry the opaque bridge directly; define or accept a transparent backend-to-route semantics interface before another bridge attempt."
+}

@@ -1,0 +1,32 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-REP-001",
+  "blocked_parent": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "role": "middle",
+  "profile": "source-correspondence formalizer",
+  "timestamp": "2026-06-20 05:07 JST",
+  "source_correspondence_ok": true,
+  "source_correspondence_detail": "The active object remains the user-provided diagonal operator D_n[row,col] = if row = col then (row / 2^n)^3 else 0 with exact normalizer alpha = 1.",
+  "lean_contract_names": [
+    "symbolicExpandedCubicArithmeticBackend",
+    "symbolicExpandedCubicArithmeticBackend_computes",
+    "expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge",
+    "symbolicExpandedCubicArithmeticBackend_bridge_iff"
+  ],
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_arithmetic_ok": true,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "workspace_representation_specified": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Name a concrete workspace/register/backend representation for DIAG-ARITH-REP-001, or keep DIAG-ARITH-BACKEND-BRIDGE-001 blocked.",
+  "evidence": [
+    "verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/DIAG-ARITH-BACKEND-BRIDGE-001.lower-necessary-cycle03.feedback.json",
+    "verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/DIAG-ARITH-BACKEND-BRIDGE-001.lower-refiner-20260620-0446.feedback.json"
+  ]
+}

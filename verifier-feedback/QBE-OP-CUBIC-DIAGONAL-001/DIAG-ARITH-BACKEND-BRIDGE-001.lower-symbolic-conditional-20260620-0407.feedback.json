@@ -1,0 +1,19 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "role": "lower",
+  "timestamp": "2026-06-20 04:07 JST",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "conditional_theorem_closed": "CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge",
+  "workspace_representation_specified": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "introduce a concrete workspace/backend representation and then supply expandedArithmeticBackendBridge, or keep this leaf blocked"
+}

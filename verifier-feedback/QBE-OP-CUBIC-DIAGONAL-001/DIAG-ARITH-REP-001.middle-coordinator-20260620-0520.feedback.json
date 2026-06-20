@@ -1,0 +1,33 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-REP-001",
+  "blocked_parent": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "role": "middle",
+  "profile": "coordinator synthesis",
+  "timestamp": "2026-06-20 05:20 JST",
+  "source_correspondence_ok": true,
+  "source_correspondence_detail": "The active object remains the user-provided diagonal operator D_n[row,col] = if row = col then (row / 2^n)^3 else 0 with exact normalizer alpha = 1.",
+  "lean_contract_names": [
+    "symbolicExpandedCubicArithmeticBackend",
+    "symbolicExpandedCubicArithmeticBackend_computes",
+    "expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge",
+    "symbolicExpandedCubicArithmeticBackend_bridge_iff"
+  ],
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_arithmetic_ok": true,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "workspace_representation_specified": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Assign lower 1 to DIAG-ARITH-REP-001 only; lower 2 must wait until a concrete workspace/register/backend representation is named.",
+  "artifacts": [
+    "runs/20260620-045332-QBE-OP-CUBIC-DIAGONAL-001-cycle02/middle_coordinator_synthesis.md",
+    "runs/20260620-045332-QBE-OP-CUBIC-DIAGONAL-001-cycle02/todo.md",
+    "conversion-windows/QBE-OP-CUBIC-DIAGONAL-001.md"
+  ]
+}

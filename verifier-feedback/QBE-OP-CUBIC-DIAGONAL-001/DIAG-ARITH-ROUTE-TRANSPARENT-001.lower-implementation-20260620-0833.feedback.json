@@ -1,0 +1,28 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-ROUTE-TRANSPARENT-001",
+  "blocked_parent": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "source_correspondence_ok": true,
+  "workspace_representation_specified": true,
+  "capacity_lemma_compiled": true,
+  "amplitude_eq_lemma_compiled": true,
+  "backend_compute_compiled": true,
+  "transparent_leaf_closed": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_arithmetic_ok": true,
+  "finite_register_ok": true,
+  "block_entry_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "ancilla_cleanup_ok": null,
+  "closed_theorem_ok": true,
+  "route_certificate_ok": false,
+  "compiled_declarations": [
+    "expandedArithmeticComputesCubicAmplitudeTransparent",
+    "fixedDenomCubicArithmeticRouteTransparent"
+  ],
+  "gate": "python3 tools/qbe.py check",
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Choose a named bridge from expandedArithmeticComputesCubicAmplitudeTransparent to expandedArithmeticComputesCubicAmplitude, or refactor the expanded arithmetic contract to consume the transparent predicate directly; keep root and exports blocked."
+}

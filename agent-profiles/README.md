@@ -39,8 +39,6 @@ Example:
 ```bash
 python3 tools/qbe.py sleep-run QBE-OP-OPTCTRL-001 \
   --cycles 2 \
-  --lower-count 3 \
-  --parallel-lower \
   --agent-profile mixed-vendors.example.json \
   --execute \
   --check-each-cycle
@@ -59,7 +57,7 @@ agent profile path
 model names and provider wrappers
 report language
 active budget
-lower-count and hard-mode escalation policy
+lower-count, default panel settings, and adaptive scaling policy
 Lean gate command
 ```
 

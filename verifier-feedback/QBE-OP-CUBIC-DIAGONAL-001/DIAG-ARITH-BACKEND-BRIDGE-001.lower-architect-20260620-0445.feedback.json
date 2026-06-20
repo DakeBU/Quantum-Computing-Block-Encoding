@@ -1,0 +1,22 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "immediate_dependency": "DIAG-ARITH-REP-001",
+  "role": "lower",
+  "profile": "natural-language proof architect",
+  "checked_at": "2026-06-20 04:45 JST",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_arithmetic_ok": true,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "workspace_representation_specified": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Name a concrete workspace/register/backend representation for DIAG-ARITH-REP-001, then supply expandedArithmeticBackendBridge; otherwise keep the parent bridge blocked.",
+  "artifact": "proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-REP-001-lower-architect-20260620-0445.md"
+}

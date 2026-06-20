@@ -1,0 +1,30 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-RY-TRANSPARENT-INTERFACE-001",
+  "role": "lower",
+  "timestamp": "2026-06-20 10:42 JST",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "theta_convention_ok": true,
+  "normalizer_ok": true,
+  "block_entry_ok": null,
+  "unitarity_ok": null,
+  "ancilla_cleanup_ok": null,
+  "closed_theorem": "fixedDenomControlledRyRouteTransparent",
+  "closed_theorem_ok": true,
+  "transparent_rotation_leaf_closed": true,
+  "route_predicate_closed": false,
+  "root_certificate_ok": false,
+  "exports_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "failed_theorem": "expandedControlledRyBackendBridge tier n (3 * n)",
+  "failed_error": "unsolved goal: expandedControlledRyUsesCubicAngle n (3 * n)",
+  "patch_declarations": [
+    "expandedControlledRyUsesCubicAngleTransparent",
+    "fixedDenomControlledRyRouteTransparent"
+  ],
+  "next_route": "with middle approval, decide whether the expanded clean-block contract should consume expandedControlledRyUsesCubicAngleTransparent; keep opaque route predicate, uncompute, extraction, root, and exports blocked",
+  "notes": "Transparent scalar-angle wrapper compiled. This is not a backend witness and does not close the opaque controlled-Ry route predicate."
+}

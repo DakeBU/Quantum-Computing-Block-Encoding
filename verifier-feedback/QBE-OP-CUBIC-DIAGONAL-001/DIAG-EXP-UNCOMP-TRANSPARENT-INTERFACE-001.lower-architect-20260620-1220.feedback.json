@@ -1,0 +1,22 @@
+{
+  "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
+  "blocked_parent": "DIAG-EXP-UNCOMP-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_mod_add_sub_cleanup_ok": null,
+  "rotation_workspace_readonly_ok": null,
+  "transparent_interface_compiled_elsewhere": true,
+  "closed_interface_ok": true,
+  "finite_xor_diagnostic_reused_for_mod_add_sub": false,
+  "normalizer_ok": true,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "unitarity_ok": null,
+  "clean_block_extraction_ok": null,
+  "closed_theorem_ok": false,
+  "route_certificate_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Retire the transparent interface leaf; instantiate the fixed-denominator modular add/sub witness for expandedWorkspaceCleanUncomputedTransparent n (3 * n), and separately state rotation workspace-readonly semantics before any route-level cleanup bridge."
+}

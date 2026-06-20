@@ -1,0 +1,23 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-RY-TRANSPARENT-CONTRACT-001",
+  "role": "middle",
+  "kind": "implementation",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "theta_convention_ok": true,
+  "normalizer_ok": true,
+  "block_entry_ok": null,
+  "unitarity_ok": null,
+  "ancilla_cleanup_ok": null,
+  "closed_leaf_ok": true,
+  "closed_theorem_ok": false,
+  "route_certificate_ok": false,
+  "contract_refactor_ok": true,
+  "transparent_rotation_leaf_closed": true,
+  "route_predicate_closed": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Write the DIAG-EXP-UNCOMP-001 source contract against the fixed-denominator expanded route; do not prove expandedWorkspaceCleanUncomputed by trivial, by axiom, or by setting it to True; keep extraction, unitarity, root certificate, and exports blocked."
+}

@@ -1,55 +1,273 @@
 {
-  "task_id": "QBE-OP-CUBIC-DIAGONAL-001",
-  "cycle": 1,
-  "generated": "2026-06-19 20:42 JST",
-  "mode": "exploratoryConstruction",
-  "source_anchor": "tasks/QBE-OP-CUBIC-DIAGONAL-001.md",
-  "lean_namespace": "QuantumBlockEncoding.CubicDiagonalOracle",
-  "lean_file": "QuantumBlockEncoding/CubicStatePreparation.lean",
-  "target": "D_n[row,col] = if row = col then (row / 2^n)^3 else 0",
-  "normalizer": "alpha = 1",
-  "active_leaf": {
-    "id": "DIAG-BLOCK-BRIDGE-001",
-    "planned_declaration": "CubicDiagonalOracle.primitiveOracleCleanBlock_eq_target",
-    "interface": "Any block satisfying diagonalCleanBlockContract is pointwise equal to (cubicDiagonalTarget n).operator.",
-    "dependencies": [
-      "CubicDiagonalOracle.diagonalCleanBlockContract_pointwise_eq",
-      "CubicDiagonalOracle.cubicDiagonalTarget",
-      "Matrix.PointwiseEq"
-    ],
-    "owner": "lower-2-lean-implementation-worker",
-    "status": "active leaf"
-  },
+  "cycle": 2,
   "dynamic_leaf_queue": [
-    "DIAG-BLOCK-BRIDGE-001: active Lean bridge from diagonalCleanBlockContract to cubicDiagonalTarget.operator",
-    "DIAG-PRIM-UNITARY-001: blocked primitive one-signal amplitude-oracle semantic contract",
-    "DIAG-ROOT-001: blocked exact primitive block-encoding certificate",
-    "DIAG-EXPORT-001: blocked Qiskit, QuantumKatas-style, and QASM3 export packet"
+    "DIAG-PRIM-UNITARY-001: Name the primitive oracle-label matrix, unitarity obligation, clean-block extraction obligation, and prove the contract implies target clean-block equality.; status: compiled conditional bridge; Lean: `primitiveAmplitudeOracleSemanticContract`, `primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target`",
+    "DIAG-PRIM-WITNESS-001: Supply or explicitly accept a proof of `primitiveAmplitudeOracleSemanticContract n`, but not as a standard exact `Rat` one-signal/no-workspace completion.; status: blocked subroute; exact rational completion rejected and not assigned this cycle; Lean: target proof of `primitiveAmplitudeOracleSemanticContract n`",
+    "DIAG-EXPANDED-CONTRACT-001: Define the expanded arithmetic route contract: compute $a_j=(j/2^n)^3$, apply the correct controlled rotation, uncompute workspace, and extract the diagonal clean block.; status: compiled conditional interface; interface rebuild is stale; Lean: `expandedAmplitudeOracleLayout`, `expandedAmplitudeOracleCleanBlockContract`, `expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target`",
+    "DIAG-RY-BACKEND-WITNESS-001: Supply a concrete backend-semantics witness that the expanded route's controlled rotation uses the same scalar-tier angle and clean-entry convention.; status: blocked backend obligation; no current witness in the Lean surface; Lean: witness of `expandedControlledRyBackendBridge tier n workspaceQubits`",
+    "DIAG-ARITH-BACKEND-BRIDGE-001: Supply `hBridge : expandedArithmeticBackendBridge backend` for a concrete backend, or explicitly replace the opaque route predicate with the transparent route-semantics interface.; status: blocked parent; direct bridge search for the fixed-denominator backend is now explicitly equivalent to the opaque route predicate; Lean: required witness of `expandedArithmeticBackendBridge`; closure theorem `expandedArithmeticComputesCubicAmplitude_of_backendBridge`; refiner normal forms `expandedArithmeticBacke...",
+    "DIAG-ROOT-001: Exact operator block-encoding certificate for the selected primitive or expanded route.; status: blocked until a route certificate exists; Lean: `primitiveAmplitudeOracleVerified n h` for the primitive path, or planned expanded certificate",
+    "DIAG-EXPORT-001: Qiskit, QuantumKatas-style, and QASM3 export plan tied to the named Lean certificate.; status: blocked downstream; Lean: planned `executable-exports/QBE-OP-CUBIC-DIAGONAL-001/` packet"
   ],
-  "open_obligation_signals": [
-    "Primitive oracle semantics must remain explicit; do not encode unitarity or block correctness as True.",
-    "Executable exports are downstream of a named Lean certificate.",
-    "Rank-one state-preparation and normalized-vector routes are invalid for this task."
-  ],
-  "artifacts": [
-    "conversion-windows/QBE-OP-CUBIC-DIAGONAL-001.md",
-    "proof-obligations/QBE-OP-CUBIC-DIAGONAL-001.md",
-    "candidate-populations/QBE-OP-CUBIC-DIAGONAL-001.md",
-    "proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md",
-    "runs/20260619-203248-QBE-OP-CUBIC-DIAGONAL-001-cycle01/dialogue.md"
-  ],
+  "generated": "2026-06-20 13:14:51",
+  "ghl_contributions": [],
+  "lean_sorries": [],
+  "mode": "exploratoryConstruction",
   "next_lower_tasks": [
     {
-      "role": "lower-1-natural-language-proof-architect",
-      "goal": "Document the proof DAG and primitive-oracle semantic obligation for the fixed diagonal target."
+      "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+      "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
+      "role": "lower-1-natural-language-proof-architect"
     },
     {
-      "role": "lower-2-lean-implementation-worker",
-      "goal": "Compile primitiveOracleCleanBlock_eq_target only."
+      "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+      "must_write": "Lean declaration plus trial-log verifier-feedback fields",
+      "role": "lower-2-lean-implementation-worker"
     },
     {
-      "role": "lower-3-necessary-condition-verifier",
-      "goal": "Check finite diagonal entries for n = 1, 2, 3 and log typed feedback."
+      "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+      "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
+      "role": "lower-3-necessary-condition-verifier"
     }
-  ]
+  ],
+  "open_external_technical_lemma_obligations": [],
+  "open_ghl_contribution_obligations": [],
+  "open_obligation_signals": [
+    "Keep the target diagonal, not rank-one state preparation.: Lean `CubicDiagonalOracle.cubicDiagonalOperator`, `cubicDiagonalTarget`; class source/operator contract; status compiled; reviewer must reject rank-one routes",
+    "Record exact normalizer $\\alpha = 1$.: Lean `CubicDiagonalOracle.exactNormalizer`; class normalizer; status compiled",
+    "Prove amplitude range $0 \\le (j/2^n)^3 \\le 1$.: Lean `cubicAmplitude_nonneg`, `cubicAmplitude_le_one`; class internal Lean lemma; status compiled",
+    "Record one-signal primitive oracle-label resources.: Lean `amplitudeOracleLayout`, `amplitudeOracleResourceTuple_eq`, `primitiveAmplitudeOracleCandidate_costTuple_eq`; class resource equality; status compiled",
+    "Bridge a clean-block contract to the target operator.: Lean `CubicDiagonalOracle.primitiveOracleCleanBlock_eq_target`; class internal Lean lemma; status compiled; gate passed 2026-06-19 20:44 JST",
+    "State primitive one-signal oracle unitarity and clean-block extraction without hiding semantics.: Lean `primitiveAmplitudeOracleUnitary`, `primitiveAmplitudeOracleIsUnitary`, `primitiveAmplitudeOracleCleanBlockExtracts`, `primitiveAmplitudeOracleSemanticContract`, `primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target`; class oracle/circuit semantics; status compiled conditional contract; does not prove the primitive semantics",
+    "Provide a proof or accepted primitive-tier source for the semantic contract.: Lean `primitiveAmplitudeOracleSemanticContract n`; class external primitive contract; status blocked; not assigned this cycle without explicit primitive-tier acceptance",
+    "Retire the exact standard rational one-signal/no-workspace primitive witness subroute.: Lean verifier packet `DIAG-PRIM-WITNESS-001.rat-one-signal.*`; class necessary-condition rejection; status rejected for `n = 1, 2, 3` by determinant-square obstruction; target diagonal still passes",
+    "State the expanded reversible-arithmetic plus controlled-rotation contract.: Lean `expandedAmplitudeOracleLayout`, `expandedAmplitudeOracleCleanBlockContract`, `expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target`; class QBE-local semantic glue; status compiled conditional interface; semantic obligations open",
+    "Prove or refine the standard `R_y` clean-entry identity for the expanded route.: Lean scalar-tier interface `StandardRyCleanEntryScalarTier`, bridge `expandedRyCleanEntryForCubicAmplitudes_of_standardTier`; conditional bridge `expandedControlledRyUsesCubicAngle_of_backendBridge`; backend target `expandedControlledRyUsesCubicAngle`; class classical/scalar-tier technical lemma; status scalar range bridge compiled; conditional backend bridge compiled; concrete backend witness recorded as an open obligation",
+    "Prove or refine reversible cubic arithmetic into workspace.: Lean `ExpandedCubicArithmeticBackend`, `symbolicExpandedCubicArithmeticBackend`, `symbolicExpandedCubicArithmeticBackend_computes`, `expandedArithmeticBackendBridge`, theorem `expandedArithmeticComputesCubicAmplitude_of_backendBridge`, theorem `expandedArithmeticBackendBridge_iff_of_computes`, theorem `expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge`, theorem `symbolicExpandedCubicArithmeticBackend_bridge_iff`; compiled fixed-denominator lemmas `fixedDenomCubicPayload_lt_capacity`, `fixedDenomCubicAmplitude_eq`; compiled fixed-denominator backend `fixedDenomCubicArithmeticBackend` and `fixedDenomCubicArithmeticBackend_computes`; theorem `fixedDenomCubicArithmeticBackend_bridge_iff`; compiled transparent declarations `expandedArithmeticComputesCubicAmplitudeTransparent` and `fixedDenomCubicArithmeticRouteTransparent`; target `expandedArithmeticComputesCubicAmplitude` remains opaque; class QBE-local arithmetic semantic glue; status symbolic compute-phase backend, pointwise compute proof, general bridge normal form, symbolic-backend conditional closure, fixed-denominator capacity/algebra/backend compute proof, fixed-denominator bridge normal form, and transparent existential route witness compiled; `DIAG-ARITH-BACKEND-BRIDGE-001` remains blocked",
+    "Prove or refine clean uncompute for the arithmetic workspace.: Lean target `expandedWorkspaceCleanUncomputed`; planned technical lemma `tl-cubic-diagonal-clean-uncompute`; class QBE-local workspace semantic glue; status obligation",
+    "Produce an exact primitive block-encoding certificate or equivalent project-local certificate.: Lean `primitiveAmplitudeOracleVerified n h`; class root certificate; status conditional transformer compiled; unconditional certificate blocked on `h : primitiveAmplitudeOracleSemanticContract n`",
+    "Prove the expanded route's clean-block bridge once the interface exists.: Lean `expandedAmplitudeOracleCleanBlockContract_diagonal`, `expandedAmplitudeOracleCleanBlockContract_eq_target`, `expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target`; class internal Lean lemma after interface selection; status compiled conditional bridge; root certificate still blocked",
+    "Create Qiskit, QuantumKatas-style, and QASM3 exports.: Lean planned `executable-exports/QBE-OP-CUBIC-DIAGONAL-001/` packet; class post-Lean export; status blocked until a Lean certificate is named"
+  ],
+  "recent_proof_attempts": [],
+  "recent_trials": [
+    {
+      "artifact": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-20 13:14:50",
+      "trial_id": "20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02-build-gate"
+    },
+    {
+      "artifact": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02/40_reviewer.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "reviewer",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:14:48",
+      "trial_id": "20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02-40_reviewer"
+    },
+    {
+      "artifact": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "reviewer",
+      "status": "queued",
+      "timestamp": "2026-06-20 13:14:15",
+      "trial_id": "20260620-131415-QBE-OP-CUBIC-DIAGONAL-001-reviewer-handoff"
+    },
+    {
+      "artifact": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02/30_lower_searcher_5.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:10:06",
+      "trial_id": "20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02-30_lower_searcher_5"
+    },
+    {
+      "artifact": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02/30_lower_searcher_4.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:10:05",
+      "trial_id": "20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02-30_lower_searcher_4"
+    },
+    {
+      "artifact": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-20 13:09:08",
+      "trial_id": "20260620-130908-QBE-OP-CUBIC-DIAGONAL-001-lower-handoff"
+    },
+    {
+      "artifact": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-20 13:09:05",
+      "trial_id": "20260620-130905-QBE-OP-CUBIC-DIAGONAL-001-lower-handoff"
+    },
+    {
+      "artifact": "proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001-lower-worker5-20260620-1307.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:08:57",
+      "trial_id": "20260620-130857-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "artifact": "proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001-lower-worker5-20260620-1307.md",
+      "kind": "attempt",
+      "lean_gate": "pass",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:08:53",
+      "trial_id": "20260620-130853-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "artifact": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02/30_lower_searcher_3.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:08:39",
+      "trial_id": "20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02-30_lower_searcher_3"
+    }
+  ],
+  "recent_verifier_feedback": [
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": true,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "",
+      "leaf": "DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001",
+      "next_route": "State DIAG-RY-WORKSPACE-READONLY-001, then choose a nontrivial cleanup bridge or transparent contract refactor; keep extraction, unitarity, root, and exports blocked.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:08:57",
+      "trial_id": "20260620-130857-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": true,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001",
+      "next_route": "State DIAG-RY-WORKSPACE-READONLY-001, then choose a nontrivial cleanup bridge or transparent contract refactor; keep extraction, unitarity, root, and exports blocked.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:08:53",
+      "trial_id": "20260620-130853-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": null,
+      "leaf": "DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001",
+      "next_route": "state DIAG-RY-WORKSPACE-READONLY-001 or refactor only after middle exposes a transparent cleanup consumer; keep expandedWorkspaceCleanUncomputed, extraction, unitarity, DIAG-ROOT-001, and exports blocked",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:07:56",
+      "trial_id": "20260620-130756-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001",
+      "next_route": "Instantiate fixedDenomExpandedArithmeticCleanUncomputeWitness n and derive fixedDenomWorkspaceCleanUncomputedTransparent n; separately state DIAG-RY-WORKSPACE-READONLY-001 before any route-level cleanup bridge or extraction proof.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:07:32",
+      "trial_id": "20260620-130732-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001",
+      "next_route": "Implement the fixed-denominator modular add/sub witness for expandedWorkspaceCleanUncomputedTransparent n (3 * n), and separately state DIAG-RY-WORKSPACE-READONLY-001 before using cleanup evidence for any route-level clean-uncompute, block-entry, unitarity, root, or export claim.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 13:06:45",
+      "trial_id": "20260620-130645-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
+      "next_route": "Instantiate the fixed-denominator modular add/sub witness for the transparent clean-uncompute interface and add a named workspace-readonly rotation statement; keep block-entry, extraction, unitarity, root certificate, and exports blocked.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 12:24:04",
+      "trial_id": "20260620-122404-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "shape_or_register_gap",
+      "finite_matrix_ok": true,
+      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
+      "next_route": "Compile only ExpandedArithmeticCleanUncomputeWitness and expandedWorkspaceCleanUncomputedTransparent adjacent to expandedWorkspaceCleanUncomputed; then separately instantiate modular add/sub cleanup and state rotation workspace-readonly semantics.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-20 12:22:48",
+      "trial_id": "20260620-122248-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": true,
+      "error_class": "shape_or_register_gap",
+      "finite_matrix_ok": null,
+      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
+      "next_route": "instantiate the transparent cleanup witness for the fixed-denominator modular add/sub route and separately check that the controlled rotation is workspace-readonly",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 12:22:45",
+      "trial_id": "20260620-122245-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": true,
+      "error_class": "shape_or_register_gap",
+      "finite_matrix_ok": null,
+      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
+      "next_route": "instantiate ExpandedArithmeticCleanUncomputeWitness for the fixed-denominator modular add/sub route, then separately prove or record controlled-rotation workspace-readonly semantics before bridging to expandedWorkspaceCleanUncomputed",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 12:22:37",
+      "trial_id": "20260620-122237-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": true,
+      "error_class": "stale_leaf",
+      "finite_matrix_ok": "",
+      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
+      "next_route": "Retire the transparent interface leaf; next lower work should instantiate the fixed-denominator modular add/sub cleanup witness and separately check rotation workspace-readonly, without proving the opaque cleanup predicate by shortcut.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 12:22:21",
+      "trial_id": "20260620-122221-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    }
+  ],
+  "run_dir": "runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02",
+  "source_main_tex": "",
+  "stage": "Stage 2 DAG proof discharge, with source-transcript checks still active",
+  "task_id": "QBE-OP-CUBIC-DIAGONAL-001",
+  "technical_lemmas": [],
+  "title": "Cubic diagonal oracle block encoding"
 }

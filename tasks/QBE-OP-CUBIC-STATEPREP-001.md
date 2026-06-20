@@ -51,29 +51,19 @@ ABEIS should run the usual adaptive policy:
 The initial policy is compiled in Lean as
 `CubicStatePreparation.defaultPolicy`.
 
-Hard Mode escalation is also recorded in Lean:
+Adaptive scaling is recorded in Lean as an audit vocabulary, but users do not
+select a fixed difficulty preset.  The upper panel reads the latest logs, proof
+frontier, and candidate population, then decides which layer needs more
+capacity.  Increase upper capacity for target/semantic strategy failures,
+middle capacity for retrieval or Lean/natural-language translation drift, and
+lower capacity only when multiple independent leaves or candidate families are
+ready.  Each increase gets a fixed generation budget and must report whether it
+improved the certified population, the finite verifier population, or only the
+insight pool.  The relaxed epsilon ladder remains:
 
 ```text
-CubicStatePreparation.hardModeUpperAgentSchedule = [1, 3, 4]
-CubicStatePreparation.hardModeMiddleAgentSchedule = [1, 2, 3]
-CubicStatePreparation.hardModeLowerAgentSchedule = [3, 5, 8]
-CubicStatePreparation.hardModeExactStallWindow = 1
-CubicStatePreparation.hardModeConstructionStallWindow = 1
-CubicStatePreparation.hardModeLevelCycleBudget = [1, 1, 1]
 CubicStatePreparation.relaxedEpsilonLadder = [1e-10, 1e-8, 1e-6]
 ```
-
-The upper panel must not jump directly to the largest panel.  The intended
-schedule is:
-
-| Phase | Trigger | Agent allocation | Goal |
-|---|---|---|---|
-| L0 exact contraction and candidate seeding | task starts or memory was stale | upper=1, middle=1, lower=3: candidate architect, Lean worker, verifier | seed at least one concrete `U_n` family while also closing target/norm leaves and rejecting wrong exact state-prep interpretations |
-| L1 requested-epsilon Scenario 2 | no closed leaf or no concrete candidate for 1 cycle | upper=3, middle=2, lower=5: 2 architects, 2 Lean workers, 1 verifier/export worker | find or repair a symbolic approximate candidate at `1e-10` |
-| L2 relaxed waypoint search | no improving certified/finite candidate for 1 cycle | upper=4, middle=3, lower=8 | try `1e-8`, then `1e-6` as one-hour waypoints, while keeping the final requested target visible |
-
-Every escalation must record whether the extra agents improved the certified
-population, the finite verifier population, or only the insight pool.
 
 ## Population And Mutation Policy
 
@@ -87,7 +77,7 @@ ABEIS keeps three separate populations:
 - **insight pool**: failed or unproved routes with a reusable idea, such as a
   normalizer trick or an arithmetic transduction plan.
 
-At L1 and L2, lower agents should spend each generation on a mixture of:
+When adaptive scaling is active, lower agents should spend each generation on a mixture of:
 
 - mutation: alter one candidate route while preserving the target operator;
 - crossover: combine two useful ingredients, for example a normalizer bound

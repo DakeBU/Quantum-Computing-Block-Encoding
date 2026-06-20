@@ -1,0 +1,20 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-PRIM-WITNESS-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "error_class": "external_contract_gap",
+  "next_route": "Either record an accepted primitive-tier witness for primitiveAmplitudeOracleSemanticContract n, or open an expanded arithmetic/rotation leaf with an explicit scalar convention.",
+  "resource_score": [1, 1, 1, 1],
+  "gate_count": 1,
+  "depth": 1,
+  "auxiliary_qubits": 1,
+  "oracle_calls": 1
+}

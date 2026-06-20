@@ -1,0 +1,20 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-EXP-UNCOMP-001",
+  "role": "lower",
+  "kind": "attempt",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "edited_lean": false,
+  "exact_failed_theorem": "No Lean theorem attempted; direct lower-refiner closure of expandedWorkspaceCleanUncomputed n workspaceQubits was rejected before editing.",
+  "rejected_route": "Do not close expandedWorkspaceCleanUncomputed by trivial, by an axiom, or by setting an opaque semantic proposition to True; do not attack DIAG-ROOT-001 before the clean-uncompute contract exists.",
+  "error_class": "source_translation_gap",
+  "next_route": "Lower 1 should write the DIAG-EXP-UNCOMP-001 clean-uncompute contract against the fixed-denominator expanded route; after that, lower 2 may implement one adjacent Lean declaration that consumes the transparent clean-uncompute interface without proving opaque semantics by shortcut."
+}

@@ -217,12 +217,10 @@ python3 tools/qbe.py new-task "${title}" \\
   --target-lean "TBD" \\
   --export-targets "${exportTargets.length ? exportTargets.join(",") : "none"}" \\
   --export-instantiation "${(exportInstantiation.value.trim() || "TBD").replace(/"/g, '\\"')}"
-python3 tools/qbe.py run-cycle "${title}" --upper-panel --middle-panel
+python3 tools/qbe.py run-cycle "${title}"
 # Optional after saving the JSON above as agent-profiles/${title}.json:
 python3 tools/qbe.py sleep-run "${title}" \\
   --cycles 2 \\
-  --lower-count 3 \\
-  --parallel-lower \\
   --agent-profile "${title}.json" \\
   --execute \\
   --check-each-cycle

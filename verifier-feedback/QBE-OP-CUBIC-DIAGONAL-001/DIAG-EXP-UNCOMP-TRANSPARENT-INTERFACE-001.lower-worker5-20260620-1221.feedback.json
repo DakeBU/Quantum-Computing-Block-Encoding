@@ -1,0 +1,37 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
+  "blocked_parent": "DIAG-EXP-UNCOMP-001",
+  "role": "lower",
+  "worker_profile": "auxiliary proof-route worker 5",
+  "timestamp": "2026-06-20 12:21 JST",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "finite_mod_add_sub_cleanup_ok": null,
+  "rotation_workspace_readonly_ok": null,
+  "finite_xor_diagnostic_reused_for_mod_add_sub": false,
+  "normalizer_ok": true,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "unitarity_ok": null,
+  "clean_block_extraction_ok": null,
+  "closed_declarations": [
+    "ExpandedArithmeticCleanUncomputeWitness",
+    "expandedWorkspaceCleanUncomputedTransparent"
+  ],
+  "closed_theorem_ok": true,
+  "transparent_cleanup_interface_closed": true,
+  "opaque_cleanup_predicate_closed": false,
+  "route_certificate_ok": false,
+  "root_certificate_ok": false,
+  "exports_ok": false,
+  "error_class": "shape_or_register_gap",
+  "patch_file": "QuantumBlockEncoding/CubicStatePreparation.lean",
+  "artifact": "proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001-lower-worker5-20260620-1221.md",
+  "gate": "python3 tools/qbe.py check",
+  "next_route": "instantiate the transparent cleanup witness for the fixed-denominator modular add/sub route and separately check that the controlled rotation is workspace-readonly",
+  "notes": "The transparent interface compiled adjacent to expandedWorkspaceCleanUncomputed. It is not a proof of the opaque cleanup predicate, not a clean-block extraction proof, not unitarity, not a root certificate, and not export authorization."
+}
+

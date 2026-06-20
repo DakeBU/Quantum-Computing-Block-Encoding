@@ -1,0 +1,21 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-RY-TRANSPARENT-CONTRACT-001",
+  "role": "middle",
+  "kind": "source_contract",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": true,
+  "theta_convention_ok": true,
+  "normalizer_ok": true,
+  "block_entry_ok": null,
+  "unitarity_ok": null,
+  "ancilla_cleanup_ok": null,
+  "closed_theorem_ok": false,
+  "transparent_rotation_leaf_closed": true,
+  "route_predicate_closed": false,
+  "contract_refactor_expected": true,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "refactor expandedAmplitudeOracleCleanBlockContract so the rotation conjunct uses expandedControlledRyUsesCubicAngleTransparent; keep clean uncompute, extraction, unitarity, root certificate, and exports blocked"
+}

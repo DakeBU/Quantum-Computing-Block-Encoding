@@ -30,7 +30,7 @@ The intended user-facing entry is the deployed static website.
 
 The page turns a pasted operator/oracle description, baseline construction, constraints, preferred report language, and agent backend preferences into a Markdown task packet that can be given to ABEIS agents.  It is the web equivalent of `python3 tools/qbe.py ingest-user-problem ...`: the raw user language must remain visible as a source artifact, and the generated packet should be runnable by the same local `sleep-run` harness.
 
-The deployed website should follow the same practical model as low-entry automated-design web front ends: users can prepare a task without installing the repository, but model execution must use a configured backend owned by the user or by the deployment operator.  ABEIS should not silently change models between web, CLI, and chat-window modes.  To make runs comparable, use the same agent profile, report language, active-time budget, hard-mode policy, and Lean gate across all entrypoints.
+The deployed website should follow the same practical model as low-entry automated-design web front ends: users can prepare a task without installing the repository, but model execution must use a configured backend owned by the user or by the deployment operator.  ABEIS should not silently change models between web, CLI, and chat-window modes.  To make runs comparable, use the same agent profile, report language, active-time budget, adaptive scaling policy, and Lean gate across all entrypoints.
 
 Progress for a web-created task is inspected in the same artifacts as local runs: `runs/<run-id>/dialogue.md`, selected-language summary files, `chatgpt_pro_prompt.md`, `todo.md`, `memory_digest.md`, and `paper-notes/problem-exports/<task-id>/latest.tex`.
 

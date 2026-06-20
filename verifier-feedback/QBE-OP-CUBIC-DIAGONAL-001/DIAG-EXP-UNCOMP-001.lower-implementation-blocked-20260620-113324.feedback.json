@@ -1,0 +1,20 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-EXP-UNCOMP-001",
+  "role": "lower",
+  "kind": "implementation",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "route_certificate_ok": false,
+  "transparent_arithmetic_contract_closed": true,
+  "transparent_rotation_contract_closed": true,
+  "error_class": "source_translation_gap",
+  "next_route": "Middle/lower 1 should write the clean-uncompute source contract for the fixed-denominator expanded route before lower 2 edits Lean; do not prove expandedWorkspaceCleanUncomputed by trivial, by axiom, or by setting an opaque semantic proposition to True."
+}

@@ -201,6 +201,13 @@ Current Qiskit exports:
 - `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py`: finite
   dense baseline for small `n`; useful evidence, not a symbolic certificate.
 
+Current executable-export self-tests:
+
+| Task | Qiskit artifact | Status | What it checks |
+| --- | --- | --- | --- |
+| `QBE-OP-OPTCTRL-001` | `executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py` | passed: clean block error `0`, unitary error `0` | the exported four-qubit Qiskit circuit matches the Lean-certified concrete clean block and resources `(4,2,1,0)` |
+| `QBE-OP-CUBIC-STATEPREP-001` | `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py` | passed for finite `n=3`; clean block error about `2.8e-17` | a dense fixed-instance baseline only; not a symbolic family certificate |
+
 ## Why The ABEIS Harness
 
 Qiskit QuantumKatas and QASM-Eval are good at testing submitted executable
@@ -293,12 +300,12 @@ python3 tools/qbe.py new-task QBE-OP-001 \
 
 python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 2 \
-  --lower-count 3 \
-  --parallel-lower \
   --agent-profile codex-parallel.example.json \
   --execute \
   --check-each-cycle
 ```
+
+By default, `sleep-run` creates an upper specialist panel, a middle specialist panel, and three complementary lower roles that run in parallel: natural-language proof/construction architect, Lean implementation worker, and necessary-condition verifier.  The upper panel may recommend increasing upper, middle, or lower parallelism in later cycles only when the logs show a specific bottleneck or missing diversity; there are no user-facing fixed difficulty presets.
 
 The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
 

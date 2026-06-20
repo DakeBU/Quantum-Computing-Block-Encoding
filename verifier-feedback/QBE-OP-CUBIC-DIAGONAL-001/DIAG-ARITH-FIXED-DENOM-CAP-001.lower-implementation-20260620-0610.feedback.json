@@ -1,0 +1,22 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-FIXED-DENOM-CAP-001",
+  "blocked_parent": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "source_correspondence_ok": true,
+  "workspace_representation_specified": true,
+  "capacity_lemma_compiled": true,
+  "amplitude_eq_lemma_compiled": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "finite_arithmetic_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": true,
+  "closed_theorem": "CubicDiagonalOracle.fixedDenomCubicPayload_lt_capacity",
+  "related_compiled_theorem": "CubicDiagonalOracle.fixedDenomCubicAmplitude_eq",
+  "error_class": null,
+  "next_route": "Define fixedDenomCubicArithmeticBackend and prove fixedDenomCubicArithmeticBackend_computes; keep DIAG-ARITH-BACKEND-BRIDGE-001 blocked until a transparent backend-to-route semantics interface or accepted bridge witness exists."
+}

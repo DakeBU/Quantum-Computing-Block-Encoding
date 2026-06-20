@@ -1,0 +1,20 @@
+{
+  "ancilla_cleanup_ok": null,
+  "block_entry_ok": null,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "finite_arithmetic_ok": true,
+  "finite_matrix_ok": true,
+  "lean_build_ok": true,
+  "lean_parse_ok": true,
+  "lean_target": "CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude",
+  "leaf": "DIAG-EXP-ARITH-BACKEND-001",
+  "next_route": "Instantiate ExpandedCubicArithmeticBackend, prove expandedArithmeticBackendComputesCubicAmplitude, and supply expandedArithmeticBackendBridge, or record the missing concrete backend representation.",
+  "normalizer_ok": true,
+  "parent_leaf": "DIAG-EXP-ARITH-001",
+  "source_correspondence_ok": true,
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "technical_lemma": "tl-cubic-diagonal-reversible-cube-arithmetic",
+  "unitarity_ok": null,
+  "workspace_representation_specified": false
+}

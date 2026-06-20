@@ -1,0 +1,20 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-EXP-ARITH-TRANSPARENT-CONTRACT-001",
+  "blocked_parent": "DIAG-ROOT-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "route_certificate_ok": false,
+  "transparent_leaf_closed": true,
+  "opaque_route_predicate_closed": false,
+  "recommended_write_scope": "QuantumBlockEncoding/CubicStatePreparation.lean around expandedAmplitudeOracleCleanBlockContract only",
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Refactor expandedAmplitudeOracleCleanBlockContract to consume expandedArithmeticComputesCubicAmplitudeTransparent; keep rotation, uncompute, extraction, root, and exports blocked."
+}

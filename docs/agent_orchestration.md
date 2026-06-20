@@ -88,10 +88,14 @@ theorem.
 
 ## Adaptive Layer Panels
 
-Most inner cycles should stay cheap: one upper director, one middle
-coordinator, lower workers, and a build gate.  When a long run reaches its
-final audit, or when repeated failures show source, proof-DAG, or memory drift,
-QBE can split the planning layers into bounded specialist panels.
+Default operator-construction cycles use differentiated planning panels: an upper
+specialist panel, a middle specialist panel, three complementary lower roles,
+and a reviewer/build gate.  The point is not ceremony; block-encoding
+construction spends most of its intelligence on choosing the semantic tier,
+candidate family, resource target, and next proof leaf before Lean workers edit
+code.  For deliberately small local debugging, users may disable panels with
+`--no-upper-panel --no-middle-panel` and run lower prompts sequentially with
+`--sequential-lower`.
 
 Upper panel:
 
@@ -115,9 +119,12 @@ Middle panel:
 - coordinator: writes exactly one lower-1 natural-language proof task, one
   lower-2 Lean implementation task, and one lower-3 verifier task.
 
-The default 6h wrapper runs upper and middle panels only at the final audit.
-Enable inner panels only when the run is demonstrably losing source
-faithfulness or repeating stale work.
+There are no fixed public difficulty presets.  The upper panel decides from each
+cycle log whether to increase upper, middle, or lower parallelism.  Increase
+upper capacity when target selection, semantic-tier choice, or candidate-family
+strategy is weak; increase middle capacity when retrieval, Lean/natural-language
+translation, or stale-memory cleanup is the bottleneck; increase lower capacity
+only when there are several ready independent leaves or candidate families.
 
 ## LexElim Scheduling
 
@@ -153,11 +160,13 @@ This scheduler determines agent count:
   any lower workers.
 - If a concrete Lean failure has a known class, add lower 4 as a reducer; do
   not use it as a fourth broad proof searcher.
-- If exact or approximate construction stalls for the configured number of
-  generations, upper/reviewer may temporarily increase the upper, middle, or
-  lower panel sizes.  Each increase gets a fixed generation budget.  If the
-  population still does not improve by the max panel size, the run records
-  saturation for that task tier and stops expanding agent count.
+- If exact or approximate construction stalls, upper/reviewer may temporarily
+  increase the upper, middle, or lower panel sizes according to the bottleneck
+  observed in the logs.  Each increase gets a fixed generation budget and must
+  report whether it improved certified candidates, finite diagnostics, or only
+  the insight pool.  If the population still does not improve by the configured
+  max panel size, the run records saturation for that task tier and stops
+  expanding agent count.
 
 ## Blueprint And DAG Control
 
@@ -199,9 +208,10 @@ python3 tools/qbe.py run-cycle QBE-AUTO-002 \
   --blueprint-refresh
 ```
 
-Use `--lower-count 3 --context-mode full` instead when the target is still an
-exploratory construction problem and the three lower roles must run in
-parallel.
+For ordinary operator construction, use the default harness instead: full context,
+upper and middle panels enabled, and three lower roles running in parallel.
+Use `--lower-count 1 --no-upper-panel --no-middle-panel --sequential-lower`
+only for an intentionally focused local leaf check.
 
 The upper/middle agents should retire stale leaves when the blueprint reports
 that a lower target is already compiled.  The lower agent should work on one
@@ -355,7 +365,7 @@ candidate score separately.
 
 ```bash
 cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
-python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1 --lower-count 3
+python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1
 ```
 
 This creates a directory like:
@@ -430,7 +440,7 @@ semantics.  See `docs/mathcode_reference_notes.md`.
 Dry run first:
 
 ```bash
-python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 3 --lower-count 3 --dry-run
+python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 3 --dry-run
 ```
 
 This only creates prompt decks and trial records. It does not call any external
@@ -451,7 +461,6 @@ Example shape:
 ```bash
 python3 tools/qbe.py sleep-run QBE-AUTO-001 \
   --cycles 8 \
-  --lower-count 3 \
   --blueprint-refresh \
   --agent-cmd 'cd {root} && codex exec --full-auto "$(cat {prompt})"' \
   --execute \
@@ -473,7 +482,6 @@ Use a full planning cycle when the route is unclear:
 ```bash
 python3 tools/qbe.py sleep-run QBE-AUTO-002 \
   --cycles 1 \
-  --lower-count 3 \
   --context-mode full \
   --blueprint-refresh \
   --agent-cmd 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"' \

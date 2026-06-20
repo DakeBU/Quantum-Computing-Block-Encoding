@@ -1,0 +1,119 @@
+{
+  "ancilla_cleanup_ok": null,
+  "auxiliary_qubits": 1,
+  "block_entry_ok": true,
+  "closed_theorem_ok": false,
+  "depth": 1,
+  "error_class": "shape_or_register_gap",
+  "finite_matrix_ok": true,
+  "gate_count": 1,
+  "instances": [
+    {
+      "block_entry_ok": true,
+      "clean_block_dimension": 2,
+      "diagonal_entries": [
+        "0",
+        "1/8"
+      ],
+      "diagonal_formula_ok": true,
+      "full_unitary_dimension": 4,
+      "grid_size": 2,
+      "n": 1,
+      "normalizer": "1",
+      "normalizer_ok": true,
+      "off_diagonal_zero_ok": true,
+      "range_ok": true,
+      "rational_completion_determinant_product": "63/64",
+      "rational_completion_determinant_square_ok": false,
+      "rational_one_signal_no_workspace_rejected": true,
+      "rational_per_index_two_by_two_rotation_possible": false,
+      "real_two_by_two_rotation_possible": true,
+      "residual_norms_1_minus_a_sq": [
+        "1",
+        "63/64"
+      ]
+    },
+    {
+      "block_entry_ok": true,
+      "clean_block_dimension": 4,
+      "diagonal_entries": [
+        "0",
+        "1/64",
+        "1/8",
+        "27/64"
+      ],
+      "diagonal_formula_ok": true,
+      "full_unitary_dimension": 8,
+      "grid_size": 4,
+      "n": 2,
+      "normalizer": "1",
+      "normalizer_ok": true,
+      "off_diagonal_zero_ok": true,
+      "range_ok": true,
+      "rational_completion_determinant_product": "868635495/1073741824",
+      "rational_completion_determinant_square_ok": false,
+      "rational_one_signal_no_workspace_rejected": true,
+      "rational_per_index_two_by_two_rotation_possible": false,
+      "real_two_by_two_rotation_possible": true,
+      "residual_norms_1_minus_a_sq": [
+        "1",
+        "4095/4096",
+        "63/64",
+        "3367/4096"
+      ]
+    },
+    {
+      "block_entry_ok": true,
+      "clean_block_dimension": 8,
+      "diagonal_entries": [
+        "0",
+        "1/512",
+        "1/64",
+        "27/512",
+        "1/8",
+        "125/512",
+        "27/64",
+        "343/512"
+      ],
+      "diagonal_formula_ok": true,
+      "full_unitary_dimension": 16,
+      "grid_size": 8,
+      "n": 3,
+      "normalizer": "1",
+      "normalizer_ok": true,
+      "off_diagonal_zero_ok": true,
+      "range_ok": true,
+      "rational_completion_determinant_product": "2120359779721693190230351176375/5070602400912917605986812821504",
+      "rational_completion_determinant_square_ok": false,
+      "rational_one_signal_no_workspace_rejected": true,
+      "rational_per_index_two_by_two_rotation_possible": false,
+      "real_two_by_two_rotation_possible": true,
+      "residual_norms_1_minus_a_sq": [
+        "1",
+        "262143/262144",
+        "4095/4096",
+        "261415/262144",
+        "63/64",
+        "246519/262144",
+        "3367/4096",
+        "144495/262144"
+      ]
+    }
+  ],
+  "leaf": "DIAG-PRIM-WITNESS-001",
+  "lean_build_ok": null,
+  "lean_parse_ok": null,
+  "next_route": "Do not ask Lean to prove primitiveAmplitudeOracleSemanticContract n as a standard Rat one-signal/no-workspace unitary; either retarget the primitive contract to an explicitly accepted Real/Complex amplitude-oracle semantics, or open the expanded arithmetic route with a source-backed unitary convention.",
+  "normalizer_ok": true,
+  "oracle_calls": 1,
+  "rational_one_signal_no_workspace_rejected": true,
+  "resource_score": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "source_correspondence_ok": true,
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "unitarity_ok": false
+}

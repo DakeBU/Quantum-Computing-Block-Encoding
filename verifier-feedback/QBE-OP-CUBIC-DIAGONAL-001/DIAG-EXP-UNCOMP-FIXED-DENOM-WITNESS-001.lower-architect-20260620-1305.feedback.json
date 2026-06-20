@@ -1,0 +1,23 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "role": "lower-natural-language-proof-architect",
+  "updated": "2026-06-20 13:05 JST",
+  "leaf": "DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001",
+  "blocked_parent": "DIAG-EXP-UNCOMP-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": true,
+  "finite_mod_add_sub_cleanup_ok": true,
+  "rotation_workspace_readonly_ok": "finite-model-only",
+  "lean_rotation_workspace_readonly_statement_present": false,
+  "block_entry_ok": null,
+  "clean_block_extraction_ok": null,
+  "ancilla_cleanup_ok": null,
+  "unitarity_ok": null,
+  "normalizer_ok": true,
+  "closed_theorem_ok": false,
+  "route_certificate_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Instantiate fixedDenomExpandedArithmeticCleanUncomputeWitness n and derive fixedDenomWorkspaceCleanUncomputedTransparent n; separately state DIAG-RY-WORKSPACE-READONLY-001 before any route-level cleanup bridge or extraction proof."
+}

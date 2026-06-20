@@ -70,21 +70,23 @@ parent.
 
 ## Agent Count Rule
 
-ABEIS does not assume that more agents are always better.
+ABEIS does not assume that more agents are always better, but block-encoding
+construction normally needs more planning intelligence than blind Lean search.
+The default operator-construction harness therefore starts with an upper
+specialist panel, a middle specialist panel, three complementary lower roles,
+and a reviewer/gatekeeper:
 
-- Use 1 upper, 1 middle, 1 lower, and 1 reviewer for a simple local Lean leaf.
-- Use 1 upper, 1 middle, 3 lower agents, and 1 reviewer for ordinary
-  exploratory block-encoding search:
-  - lower 1: natural-language construction/proof architect;
-  - lower 2: Lean implementation worker;
-  - lower 3: necessary-condition verifier.
-- Use the upper/middle panels only for stale, high-risk, or closeout states:
-  source/target audit, proof-DAG strategy, process/memory audit, and director
-  synthesis; source correspondence, memory/retrieval, report/export, and
-  coordinator synthesis.
-- Add a fourth lower agent only after a concrete Lean failure needs a reducer
-  or refiner.
+- lower 1: natural-language construction/proof architect;
+- lower 2: Lean implementation worker;
+- lower 3: necessary-condition verifier.
+
+The upper panel may increase a specific layer only when the logs justify the
+intervention: increase upper for weak target/semantic strategy, middle for
+retrieval or translation drift, and lower for several ready independent leaves
+or candidate families.  Add lower 4 only after a concrete Lean failure needs a
+reducer or refiner.  Small one-leaf debugging runs may deliberately opt out of
+the default with `--no-upper-panel --no-middle-panel --sequential-lower`.
 
 This keeps the LBG-style hierarchy, the EoH-style candidate population, and the
-LeanMarathon/Lean4Agent-style process control from becoming expensive
-ceremony during a productive inner proof loop.
+LeanMarathon/Lean4Agent-style process control active where they matter, while
+still allowing humans to run a small deterministic leaf check when needed.

@@ -1,0 +1,23 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-ARITH-BACKEND-BRIDGE-001",
+  "role": "lower",
+  "profile": "Lean refiner/reducer",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "workspace_representation_specified": false,
+  "failed_theorem": "rejected_symbolicArithmeticBackendBridge",
+  "error_message": "<stdin>:7:68: error: unsolved goals; goal: expandedArithmeticComputesCubicAmplitude n workspaceQubits",
+  "rejected_route": "direct proof of expandedArithmeticBackendBridge for symbolicExpandedCubicArithmeticBackend by introducing the backend compute proof",
+  "reduction_lemma": "symbolicExpandedCubicArithmeticBackend_bridge_iff",
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "introduce DIAG-ARITH-REP-001 as a concrete workspace/backend representation, then prove expandedArithmeticComputesCubicAmplitude or keep the bridge leaf blocked",
+  "artifact": "proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-refiner-20260620-0446.md"
+}

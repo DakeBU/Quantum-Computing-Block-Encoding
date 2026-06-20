@@ -1,0 +1,20 @@
+{
+  "ancilla_cleanup_ok": null,
+  "block_entry_ok": true,
+  "closed_theorem": "CubicDiagonalOracle.expandedControlledRyUsesCubicAngle_of_backendBridge",
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "finite_matrix_ok": true,
+  "inherited_feedback": "verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/DIAG-EXP-RY-001.leaf.feedback.json",
+  "lean_build_ok": true,
+  "lean_parse_ok": true,
+  "lean_target": "CubicDiagonalOracle.expandedControlledRyUsesCubicAngle",
+  "leaf": "DIAG-RY-BRIDGE-001",
+  "next_route": "Supply a concrete hBridge witness for expandedControlledRyBackendBridge, or record that witness as an explicit backend obligation and move to DIAG-EXP-ARITH-001.",
+  "normalizer_ok": true,
+  "route_predicate_closed": false,
+  "source_correspondence_ok": true,
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "technical_lemma": "tl-cubic-diagonal-ry-clean-entry",
+  "unitarity_ok": true
+}

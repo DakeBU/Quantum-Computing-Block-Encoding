@@ -1,0 +1,18 @@
+{
+  "ancilla_cleanup_ok": null,
+  "block_entry_ok": null,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "finite_matrix_ok": null,
+  "lean_build_ok": true,
+  "lean_parse_ok": true,
+  "lean_target": "CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude",
+  "leaf": "DIAG-EXP-ARITH-001",
+  "next_route": "Prove expandedArithmeticComputesCubicAmplitude from an honest arithmetic backend, or record a concrete arithmetic backend obligation without closing opaque semantics by trivial.",
+  "normalizer_ok": true,
+  "route_predicate_closed": false,
+  "source_correspondence_ok": true,
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "technical_lemma": "tl-cubic-diagonal-reversible-cube-arithmetic",
+  "unitarity_ok": null
+}

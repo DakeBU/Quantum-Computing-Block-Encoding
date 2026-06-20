@@ -86,6 +86,10 @@ AGENT_PROFILE_DIR = ROOT / "agent-profiles"
 AGENT_ROLES = ("upper", "middle", "lower", "reviewer")
 TRIAL_KINDS = ("plan", "attempt", "build", "review", "proposal", "compression", "handoff")
 TRIAL_STATUSES = ("queued", "running", "blocked", "failed", "compiled", "accepted", "rejected")
+DEFAULT_LOWER_COUNT = 3
+DEFAULT_UPPER_PANEL = True
+DEFAULT_MIDDLE_PANEL = True
+DEFAULT_PARALLEL_LOWER = True
 
 WORK_DIRS = [
     "tasks",
@@ -2486,7 +2490,7 @@ def operator_construction_summary_zh(task_id: str, cycle: int, run_dir: Path) ->
         ],
     )
     if task_id == "QBE-OP-CUBIC-STATEPREP-001":
-        verdict = """当前结论：这个 cubic 例子已经进入 Hard Mode / Scenario 2 的任务轨道，但还没有完成最终 block encoding。系统已经识别出它不是普通 unitary state preparation，因为
+        verdict = """当前结论：这个 cubic 例子已经进入自适应 Scenario 2 任务轨道，但还没有完成最终 block encoding。系统已经识别出它不是普通 unitary state preparation，因为
 
 ```text
 sum_j (j / 2^n)^3 |j>
@@ -2500,7 +2504,7 @@ O_n = |v_n><0^n|,  v_n[j] = (j / 2^n)^3.
 
 这一步是正确的目标澄清，不是最终构造。当前还没有任何 cubic 候选进入 certified population；因此不能画“已经找到 final exact/approx BE”的曲线，也不能声称已经优于外部系统的最终构造。"""
         curve_status = """- 简单主例 `QBE-OP-OPTCTRL-001` 已有 Lean-certified evolution curve：`docs/assets/optctrl_evolution.png`。
-- cubic hard benchmark 目前只有 Hard Mode 诊断曲线/表格：`reports/cubic-stateprep/latest.md` 和 dense verifier scaling；还没有 certified exact-phase / approximate-phase champion 曲线。
+- cubic benchmark 目前只有自适应 Scenario 2 诊断曲线/表格：`reports/cubic-stateprep/latest.md` 和 dense verifier scaling；还没有 certified exact-phase / approximate-phase champion 曲线。
 - 任何 README 或技术报告中关于 cubic 的曲线，都必须标注为“diagnostic / not final BE certificate”，直到 Lean 证明候选 `U_n` 的 unitary、clean block、误差和资源。"""
         input_status = """- 用户中文原文已保存到 `task-inbox/QBE-OP-CUBIC-STATEPREP-001/user_prompt.zh.md`。
 - 输出语言可以用 `--report-language <lang>` 或 `QBE_REPORT_LANGUAGE=<lang>` 控制。
@@ -2539,7 +2543,7 @@ Run 目录：`{rel(run_dir)}`
 
 {input_status}
 
-## Exact / Approximate / Hard Mode 曲线状态
+## Exact / Approximate / 自适应阶段曲线状态
 
 {curve_status}
 
@@ -4166,10 +4170,108 @@ Give a concrete construction/proof plan suitable for Lean formalization: propose
 """
 
 
+def operator_construction_pro_prompt_text(task_id: str, cycle: int, run_dir: Path, snapshot: dict) -> str:
+    """Self-contained Pro prompt for operator-first construction tasks."""
+    changed = git_changed_files()
+
+    def tail_file(path: Path, limit: int) -> str:
+        return path.read_text(encoding="utf-8")[-limit:] if path.exists() else "not yet available"
+
+    task_text = tail_file(ROOT / "tasks" / f"{slugify(task_id)}.md", 6000)
+    candidates = tail_file(ROOT / "candidate-populations" / f"{slugify(task_id)}.md", 7000)
+    obligations = tail_file(ROOT / "proof-obligations" / f"{slugify(task_id)}.md", 7000)
+    proof_blueprint = tail_file(ROOT / "proof-blueprints" / f"{slugify(task_id)}.md", 5000)
+    verifier_rows = markdown_table(snapshot.get("recent_verifier_feedback", []), [
+        ("leaf", "leaf"),
+        ("error class", "error_class"),
+        ("finite matrix ok", "finite_matrix_ok"),
+        ("block entry ok", "block_entry_ok"),
+        ("next route", "next_route"),
+    ], limit=12)
+    sorries = "\n".join(f"- `{line}`" for line in snapshot.get("lean_sorries", []))
+    dirty = "\n".join(f"- `{path}`" for path in changed[:50])
+    active = "\n".join(f"- {item}" for item in snapshot.get("dynamic_leaf_queue", []) if item)
+    signals = "\n".join(f"- {item}" for item in snapshot.get("open_obligation_signals", []) if item)
+    return f"""# ChatGPT Pro Prompt: ABEIS operator-construction task `{task_id}`, cycle {cycle}
+
+You cannot access my local files. Use only this self-contained prompt and public quantum-computing knowledge.
+
+## ABEIS target mode
+
+This is an operator-first block-encoding construction task, not a paper-reproduction task.
+Do not cite or use the Guseynov--Huang--Liu Robin-boundary paper unless I explicitly ask for that paper benchmark.
+
+The goal is:
+
+1. Read the operator/oracle requirement from the task packet below.
+2. Propose or repair a block-encoding unitary family `U_A`.
+3. Rank candidates only after they have a clear semantic route to Lean certification.
+4. Use finite Python/Qiskit checks only as diagnostics or post-Lean executable exports; they do not replace the Lean theorem.
+5. Use the resource order configured by ABEIS: first compare asymptotic/resource tier, then within a tier prefer fewer gates, then lower depth, then fewer auxiliary qubits, then fewer oracle calls.
+
+## Current task packet
+
+```markdown
+{task_text}
+```
+
+## Current proof blueprint
+
+```markdown
+{proof_blueprint}
+```
+
+## Candidate population / rejected routes
+
+```markdown
+{candidates}
+```
+
+## Proof obligations
+
+```markdown
+{obligations}
+```
+
+## Active proof-DAG leaves
+
+{active or "- No active proof-DAG leaves were recorded in the compact snapshot."}
+
+## Open obligation signals
+
+{signals or "- No compact obligation signals were recorded in the compact snapshot."}
+
+## Recent typed verifier feedback
+
+{verifier_rows}
+
+## Lean sorry scan
+
+{sorries or "- No `sorry` was recorded by the snapshot."}
+
+## What I need from you
+
+Return a concrete, Lean-facing proof-engineering plan.
+
+1. State the best next candidate route and explain why it should remain in the candidate population.
+2. Split the route into a small proof DAG: target contract, unitarity, clean-block equality, approximation/error if any, and resource theorem.
+3. Pick exactly one smallest next Lean leaf and give a precise pseudo-Lean theorem statement shape.
+4. Identify which finite checks are necessary-condition filters and which are only post-Lean executable exports.
+5. If exact certification is blocked, propose the approximate block-encoding route and an epsilon budget, but do not call it certified until the Lean theorem is named.
+6. Identify stale/rejected routes that should not consume another lower-agent attempt.
+
+## Current dirty files, for context only
+
+{dirty or "- No dirty files were listed."}
+"""
+
+
 def chatgpt_pro_prompt_text(task_id: str, cycle: int, run_dir: Path) -> str:
     snapshot = memory_snapshot_state(task_id, cycle, run_dir)
     if task_id == "QBE-OP-CUBIC-STATEPREP-001":
         return cubic_stateprep_pro_prompt_text(task_id, cycle, run_dir, snapshot)
+    if not is_ghl_case_task(task_id):
+        return operator_construction_pro_prompt_text(task_id, cycle, run_dir, snapshot)
     title = str(snapshot.get("title", task_id))
     dynamic = snapshot.get("dynamic_leaf_queue", [])
     obligations = snapshot.get("open_obligation_signals", [])
@@ -5182,7 +5284,7 @@ def task_article_status_markdown(task_id: str, run_dir: Path) -> str:
     elif task_id == "QBE-OP-CUBIC-STATEPREP-001":
         lines.extend(
             [
-                "Current status: Hard Mode / Scenario 2 benchmark initialized, but no final block-encoding candidate has been promoted.",
+                "Current status: Adaptive Scenario 2 benchmark initialized, but no final block-encoding candidate has been promoted.",
                 "",
                 "- Target interpretation: `O_n = |v_n><0^n|`, with `v_n[j] = (j / 2^n)^3`; this avoids the invalid assumption that the requested vector is already a normalized unitary state-preparation output.",
                 "- Lean certificates currently available: target declarations, `cubicOperator_only_first_column`, and exact small norm diagnostics `cubicNormSq_n1`, `cubicNormSq_n2`, `cubicNormSq_n3`.",
@@ -5227,7 +5329,7 @@ def task_article_status_latex(task_id: str, run_dir: Path) -> str:
         ]
     elif task_id == "QBE-OP-CUBIC-STATEPREP-001":
         items = [
-            "Hard Mode / Scenario 2 benchmark initialized, but no final block-encoding candidate has been promoted.",
+            "Adaptive Scenario 2 benchmark initialized, but no final block-encoding candidate has been promoted.",
             "Target interpretation: \\(O_n=|v_n\\rangle\\langle 0^n|\\), with \\((v_n)_j=(j/2^n)^3\\).  This avoids treating the requested unnormalized vector as a unitary state-preparation output.",
             "Compiled Lean surface: target declarations, \\texttt{cubicOperator\\_only\\_first\\_column}, and small exact norm diagnostics \\texttt{cubicNormSq\\_n1}, \\texttt{cubicNormSq\\_n2}, and \\texttt{cubicNormSq\\_n3}.",
             "Active frontier: candidate interface \\texttt{CUBIC-CAND-001} runs in parallel with \\texttt{CUBIC-NORM-001} or direct \\texttt{CUBIC-ALPHA-001}; the clean projector, approximate error budget, finite candidate verifier, and resource theorem follow the first named \\(U_n\\).",
@@ -5584,7 +5686,7 @@ Small exact norm diagnostics for \\(n=1,2,3\\) also compile:
   \\texttt{{cubicNormSq\\_n3}}.
 \\]
 
-\\paragraph{{Why Hard Mode is triggered.}}
+\\paragraph{{Why the adaptive Scenario 2 branch is triggered.}}
 The squared norm that controls any exact or approximate block encoding is
 \\[
   \\|v_n\\|^2
@@ -6276,11 +6378,12 @@ def strategy_for_mode(mode: str) -> str:
   incumbent.  If exact search stalls or misses the floor, enter Scenario 2 and
   switch to approximate search, relaxing epsilon only when the task explicitly
   permits it.
-- If neither exact nor approximate populations improve after the configured
-  stall window, upper/reviewer may increase bounded parallel upper, middle, or
-  lower agent panels for a fixed number of generations.  Lack of improvement
-  after the configured max panel size is evidence of construction saturation,
-  not proof of optimality.
+- There is no fixed public "easy" or "hard" mode.  The default harness starts
+  with differentiated upper and middle panels plus three complementary lower
+  roles.  After each cycle, the upper panel decides from the logs, proof-DAG
+  frontier, population diversity, and marginal improvement whether to increase
+  upper, middle, or lower parallelism.  Extra agents are a controlled
+  intervention, not a permanent assumption that more agents are always better.
 - A candidate is accepted only after Lean proves the unitary and block-entry
   contracts for the stated target.  Resource scores rank candidates; they do
   not replace the theorem.
@@ -6719,17 +6822,24 @@ Produce:
 4. Non-goals and directions to stop pursuing, with reasons.
 5. Middle-agent instructions for conversion windows, paper notes, proof
    obligations, and memory.
-6. Lower-agent work packets with narrow file scopes and acceptance checks.
-   Assign lower 1 to natural-language dependency proof, lower 2 to one
-   compiling Lean active leaf, and lower 3, when available, to
-   necessary-condition diagnostics.  Use lower 4 only as a refiner/reducer
-   after a concrete Lean failure.
-7. The verifier-feedback fields expected from lower agents for this cycle,
+6. Layer-allocation decision for this cycle.  The default operator-construction
+   harness uses an upper specialist panel, a middle specialist panel, and three
+   complementary lower roles: lower 1 natural-language proof/construction
+   architect, lower 2 Lean implementation worker, and lower 3
+   necessary-condition verifier.  Increase upper, middle, or lower parallelism
+   only when the logs justify it: stale target or weak strategy increases
+   upper capacity; retrieval/translation drift increases middle capacity;
+   several ready independent leaves or candidate families increase lower
+   capacity.  Record the expected marginal gain and the fixed generation budget
+   for the increase.
+7. Lower-agent work packets with narrow file scopes and acceptance checks.
+   Use lower 4 only as a refiner/reducer after a concrete Lean failure.
+8. The verifier-feedback fields expected from lower agents for this cycle,
    including which finite-matrix, source-correspondence, or Lean-gate checks are
    meaningful and which ones are irrelevant.
-8. Reviewer checklist.
-9. A compressed handoff explaining what future agents should remember.
-10. Any cited prior results or classical facts that the next cycle depends on,
+9. Reviewer checklist.
+10. A compressed handoff explaining what future agents should remember.
+11. Any cited prior results or classical facts that the next cycle depends on,
    including whether they are already formalized or still obligations.
 
 In paper-benchmark mode, preserve the paper construction and isolate every
@@ -7338,8 +7448,8 @@ def create_run_cycle(
     run_id: str | None = None,
     context_mode: str = "full",
     blueprint_refresh: bool = False,
-    upper_panel: bool = False,
-    middle_panel: bool = False,
+    upper_panel: bool = DEFAULT_UPPER_PANEL,
+    middle_panel: bool = DEFAULT_MIDDLE_PANEL,
 ) -> Path:
     cmd_init(argparse.Namespace())
     if blueprint_refresh:
@@ -8070,7 +8180,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_cycle = sub.add_parser("run-cycle", help="create one upper/middle/lower/reviewer prompt deck")
     p_cycle.add_argument("id")
     p_cycle.add_argument("--cycle", type=int, default=1)
-    p_cycle.add_argument("--lower-count", type=int, default=3)
+    p_cycle.add_argument("--lower-count", type=int, default=DEFAULT_LOWER_COUNT)
     p_cycle.add_argument("--run-id", default="")
     p_cycle.add_argument(
         "--context-mode",
@@ -8085,13 +8195,29 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_cycle.add_argument(
         "--upper-panel",
+        dest="upper_panel",
         action="store_true",
-        help="also create source/visual, proof-DAG, and process/memory upper specialist prompts",
+        default=DEFAULT_UPPER_PANEL,
+        help="create source/visual, proof-DAG, and process/memory upper specialist prompts; enabled by default",
+    )
+    p_cycle.add_argument(
+        "--no-upper-panel",
+        dest="upper_panel",
+        action="store_false",
+        help="disable upper specialist prompts for a deliberately small cycle",
     )
     p_cycle.add_argument(
         "--middle-panel",
+        dest="middle_panel",
         action="store_true",
-        help="also create source-correspondence, memory/retrieval, and report/export middle specialist prompts",
+        default=DEFAULT_MIDDLE_PANEL,
+        help="create source-correspondence, memory/retrieval, and report/export middle specialist prompts; enabled by default",
+    )
+    p_cycle.add_argument(
+        "--no-middle-panel",
+        dest="middle_panel",
+        action="store_false",
+        help="disable middle specialist prompts for a deliberately small cycle",
     )
     p_cycle.set_defaults(func=cmd_run_cycle)
 
@@ -8104,7 +8230,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=float(os.environ.get("QBE_ACTIVE_BUDGET_MINUTES", "60")),
         help="active agent-time budget for the batch; after the current cycle finishes, write closeout summary/memory/Pro prompt and stop; set 0 to disable",
     )
-    p_sleep.add_argument("--lower-count", type=int, default=3)
+    p_sleep.add_argument("--lower-count", type=int, default=DEFAULT_LOWER_COUNT)
     p_sleep.add_argument("--agent-cmd", default="")
     p_sleep.add_argument(
         "--agent-profile",
@@ -8142,13 +8268,29 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_sleep.add_argument(
         "--upper-panel",
+        dest="upper_panel",
         action="store_true",
-        help="execute a bounded upper panel before director synthesis whenever upper runs",
+        default=DEFAULT_UPPER_PANEL,
+        help="execute a bounded upper panel before director synthesis whenever upper runs; enabled by default",
+    )
+    p_sleep.add_argument(
+        "--no-upper-panel",
+        dest="upper_panel",
+        action="store_false",
+        help="disable the upper specialist panel for this run",
     )
     p_sleep.add_argument(
         "--middle-panel",
+        dest="middle_panel",
         action="store_true",
-        help="execute a bounded middle panel before coordinator synthesis whenever middle runs",
+        default=DEFAULT_MIDDLE_PANEL,
+        help="execute a bounded middle panel before coordinator synthesis whenever middle runs; enabled by default",
+    )
+    p_sleep.add_argument(
+        "--no-middle-panel",
+        dest="middle_panel",
+        action="store_false",
+        help="disable the middle specialist panel for this run",
     )
     p_sleep.add_argument(
         "--upper-every",
@@ -8175,8 +8317,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_sleep.add_argument(
         "--parallel-lower",
+        dest="parallel_lower",
         action="store_true",
-        help="execute lower-agent prompts concurrently after upper/middle complete",
+        default=DEFAULT_PARALLEL_LOWER,
+        help="execute lower-agent prompts concurrently after upper/middle complete; enabled by default",
+    )
+    p_sleep.add_argument(
+        "--sequential-lower",
+        dest="parallel_lower",
+        action="store_false",
+        help="run lower-agent prompts sequentially for debugging or constrained environments",
     )
     p_sleep.add_argument(
         "--skip-article-update",

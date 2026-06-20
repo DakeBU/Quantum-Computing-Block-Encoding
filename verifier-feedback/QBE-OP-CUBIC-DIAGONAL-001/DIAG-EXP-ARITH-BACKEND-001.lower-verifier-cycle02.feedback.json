@@ -1,0 +1,80 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "DIAG-EXP-ARITH-BACKEND-001",
+  "parent_leaf": "DIAG-EXP-ARITH-001",
+  "lean_target": "CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude",
+  "backend_interface": "CubicDiagonalOracle.ExpandedCubicArithmeticBackend",
+  "backend_semantics": "CubicDiagonalOracle.expandedArithmeticBackendComputesCubicAmplitude",
+  "backend_bridge": "CubicDiagonalOracle.expandedArithmeticBackendBridge",
+  "diagnostic": "verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/diag_exp_arith_check.py",
+  "diagnostic_raw_feedback": "verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/DIAG-EXP-ARITH-001.lower-verifier-cycle02.raw.feedback.json",
+  "source_correspondence_ok": true,
+  "source_correspondence_detail": "The checked payload is a_j = (j / 2^n)^3, matching the user-provided diagonal target D_n[row,col] with alpha = 1.",
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": true,
+  "finite_arithmetic_ok": true,
+  "support_vanish_ok": true,
+  "system_preservation_ok": true,
+  "block_entry_ok": null,
+  "block_entry_detail": "No clean-block extraction is claimed for this arithmetic backend leaf. The induced finite diagonal entries match the target entries, and off-diagonal entries vanish, but the route block-entry theorem remains unproved.",
+  "ancilla_cleanup_ok": null,
+  "normalizer_ok": true,
+  "unitarity_ok": null,
+  "closed_theorem_ok": false,
+  "route_predicate_closed": false,
+  "workspace_representation_specified": false,
+  "workspace_capacity_checked": null,
+  "checked_ns": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "instance_summary": [
+    {
+      "n": 1,
+      "grid_size": 2,
+      "raw_payload_form": "j^3 / 2^(3*n)",
+      "max_raw_numerator": 1,
+      "exact_numerator_bits_needed": 1
+    },
+    {
+      "n": 2,
+      "grid_size": 4,
+      "raw_payload_form": "j^3 / 2^(3*n)",
+      "max_raw_numerator": 27,
+      "exact_numerator_bits_needed": 5
+    },
+    {
+      "n": 3,
+      "grid_size": 8,
+      "raw_payload_form": "j^3 / 2^(3*n)",
+      "max_raw_numerator": 343,
+      "exact_numerator_bits_needed": 9
+    },
+    {
+      "n": 4,
+      "grid_size": 16,
+      "raw_payload_form": "j^3 / 2^(3*n)",
+      "max_raw_numerator": 3375,
+      "exact_numerator_bits_needed": 12
+    },
+    {
+      "n": 5,
+      "grid_size": 32,
+      "raw_payload_form": "j^3 / 2^(3*n)",
+      "max_raw_numerator": 29791,
+      "exact_numerator_bits_needed": 15
+    }
+  ],
+  "executable_exports_created": false,
+  "resource_score": null,
+  "gate_count": null,
+  "depth": null,
+  "auxiliary_qubits": null,
+  "oracle_calls": null,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Instantiate a concrete ExpandedCubicArithmeticBackend, prove expandedArithmeticBackendComputesCubicAmplitude for it, and supply expandedArithmeticBackendBridge; otherwise keep the missing concrete workspace/backend representation as the blocker."
+}
