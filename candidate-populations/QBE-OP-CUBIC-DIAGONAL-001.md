@@ -163,7 +163,7 @@ move the candidate into the certified population.  The next active leaf is
 rotation reads the payload without modifying the system index or arithmetic
 workspace before any route-level cleanup bridge or contract refactor is used.
 
-Middle parliament reconciliation at 2026-06-20 16:02 JST keeps the certified
+Middle Game Council reconciliation at 2026-06-20 16:02 JST keeps the certified
 population empty.  The expanded arithmetic-gate route stays in the insight pool
 with a reusable proof-DAG spine: transparent arithmetic, transparent rotation
 bookkeeping, transparent cleanup interface, and fixed-denominator cleanup

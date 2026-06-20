@@ -1,8 +1,8 @@
-# 中文循环总结：QBE-OP-CUBIC-DIAGONAL-001 cycle 2
+# 中文循环总结：QBE-OP-CUBIC-DIAGONAL-001 cycle 1
 
-生成时间：`2026-06-20 13:14:51`
+生成时间：`2026-06-20 16:19:28`
 
-Run 目录：`runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02`
+Run 目录：`runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01`
 
 任务标题：Cubic diagonal oracle block encoding
 
@@ -35,6 +35,8 @@ Run 目录：`runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02`
 - DIAG-EXPANDED-CONTRACT-001: Define the expanded arithmetic route contract: compute $a_j=(j/2^n)^3$, apply the correct controlled rotation, uncompute workspace, and extract the diagonal clean block.; status: compiled conditional interface; interface rebuild is stale; Lean: `expandedAmplitudeOracleLayout`, `expandedAmplitudeOracleCleanBlockContract`, `expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target`
 - DIAG-RY-BACKEND-WITNESS-001: Supply a concrete backend-semantics witness that the expanded route's controlled rotation uses the same scalar-tier angle and clean-entry convention.; status: blocked backend obligation; no current witness in the Lean surface; Lean: witness of `expandedControlledRyBackendBridge tier n workspaceQubits`
 - DIAG-ARITH-BACKEND-BRIDGE-001: Supply `hBridge : expandedArithmeticBackendBridge backend` for a concrete backend, or explicitly replace the opaque route predicate with the transparent route-semantics interface.; status: blocked parent; direct bridge search for the fixed-denominator backend is now explicitly equivalent to the opaque route predicate; Lean: required witness of `expandedArithmeticBackendBridge`; closure theorem `expandedArithmeticComputesCubicAmplitude_of_backendBridge`; refiner normal forms `expandedArithmeticBacke...
+- DIAG-RY-WORKSPACE-READONLY-001: State that the controlled signal rotation reads the arithmetic payload and preserves the system index and workspace.; status: active leaf; Lean: planned `ExpandedControlledRyWorkspaceReadonlyWitness` and `expandedControlledRyWorkspaceReadonlyTransparent`
+- DIAG-EXP-UNCOMP-001: Prove or refactor route-level clean uncompute after arithmetic compute and controlled rotation.; status: blocked parent; Lean: opaque target `expandedWorkspaceCleanUncomputed`, or a later explicit transparent contract boundary
 - DIAG-ROOT-001: Exact operator block-encoding certificate for the selected primitive or expanded route.; status: blocked until a route certificate exists; Lean: `primitiveAmplitudeOracleVerified n h` for the primitive path, or planned expanded certificate
 - DIAG-EXPORT-001: Qiskit, QuantumKatas-style, and QASM3 export plan tied to the named Lean certificate.; status: blocked downstream; Lean: planned `executable-exports/QBE-OP-CUBIC-DIAGONAL-001/` packet
 
@@ -51,7 +53,7 @@ Run 目录：`runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02`
 - State the expanded reversible-arithmetic plus controlled-rotation contract.: Lean `expandedAmplitudeOracleLayout`, `expandedAmplitudeOracleCleanBlockContract`, `expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target`; class QBE-local semantic glue; status compiled conditional interface; semantic obligations open
 - Prove or refine the standard `R_y` clean-entry identity for the expanded route.: Lean scalar-tier interface `StandardRyCleanEntryScalarTier`, bridge `expandedRyCleanEntryForCubicAmplitudes_of_standardTier`; conditional bridge `expandedControlledRyUsesCubicAngle_of_backendBridge`; backend target `expandedControlledRyUsesCubicAngle`; class classical/scalar-tier technical lemma; status scalar range bridge compiled; conditional backend bridge compiled; concrete backend witness recorded as an open obligation
 - Prove or refine reversible cubic arithmetic into workspace.: Lean `ExpandedCubicArithmeticBackend`, `symbolicExpandedCubicArithmeticBackend`, `symbolicExpandedCubicArithmeticBackend_computes`, `expandedArithmeticBackendBridge`, theorem `expandedArithmeticComputesCubicAmplitude_of_backendBridge`, theorem `expandedArithmeticBackendBridge_iff_of_computes`, theorem `expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge`, theorem `symbolicExpandedCubicArithmeticBackend_bridge_iff`; compiled fixed-denominator lemmas `fixedDenomCubicPayload_lt_capacity`, `fixedDenomCubicAmplitude_eq`; compiled fixed-denominator backend `fixedDenomCubicArithmeticBackend` and `fixedDenomCubicArithmeticBackend_computes`; theorem `fixedDenomCubicArithmeticBackend_bridge_iff`; compiled transparent declarations `expandedArithmeticComputesCubicAmplitudeTransparent` and `fixedDenomCubicArithmeticRouteTransparent`; target `expandedArithmeticComputesCubicAmplitude` remains opaque; class QBE-local arithmetic semantic glue; status symbolic compute-phase backend, pointwise compute proof, general bridge normal form, symbolic-backend conditional closure, fixed-denominator capacity/algebra/backend compute proof, fixed-denominator bridge normal form, and transparent existential route witness compiled; `DIAG-ARITH-BACKEND-BRIDGE-001` remains blocked
-- Prove or refine clean uncompute for the arithmetic workspace.: Lean target `expandedWorkspaceCleanUncomputed`; planned technical lemma `tl-cubic-diagonal-clean-uncompute`; class QBE-local workspace semantic glue; status obligation
+- Prove or refine clean uncompute for the arithmetic workspace.: Lean target `expandedWorkspaceCleanUncomputed`; transparent witnesses `expandedWorkspaceCleanUncomputedTransparent`, `fixedDenomWorkspaceCleanUncomputedTransparent`; active readonly leaf `DIAG-RY-WORKSPACE-READONLY-001`; class QBE-local workspace and rotation/register semantic glue; status transparent cleanup interface and fixed-denominator cleanup witness compiled; opaque cleanup route remains blocked until readonly rotation semantics and a bridge or contract refactor are named
 - Produce an exact primitive block-encoding certificate or equivalent project-local certificate.: Lean `primitiveAmplitudeOracleVerified n h`; class root certificate; status conditional transformer compiled; unconditional certificate blocked on `h : primitiveAmplitudeOracleSemanticContract n`
 - Prove the expanded route's clean-block bridge once the interface exists.: Lean `expandedAmplitudeOracleCleanBlockContract_diagonal`, `expandedAmplitudeOracleCleanBlockContract_eq_target`, `expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target`; class internal Lean lemma after interface selection; status compiled conditional bridge; root certificate still blocked
 - Create Qiskit, QuantumKatas-style, and QASM3 exports.: Lean planned `executable-exports/QBE-OP-CUBIC-DIAGONAL-001/` packet; class post-Lean export; status blocked until a Lean certificate is named
@@ -60,14 +62,14 @@ Run 目录：`runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02`
 
 | leaf | class | finite | entry | next |
 | --- | --- | --- | --- | --- |
+| DIAG-RY-WORKSPACE-READONLY-001 | stale_leaf |  | None | middle should choose the next cleanup bridge or transparent contract-refactor route; keep extraction, unitarity, root certification, and exports blocked |
+| DIAG-RY-WORKSPACE-READONLY-001 | symbolic_bridge_gap | None | None | compile the transparent controlled-rotation workspace-readonly interface only; keep cleanup bridge, extraction, unitarity, root, and exports blocked |
+| DIAG-RY-WORKSPACE-READONLY-001 | symbolic_bridge_gap |  | None | Compile only the transparent controlled-rotation workspace-readonly interface, then keep cleanup bridge, extraction, unitarity, root, and exports blocked. |
+| DIAG-RY-WORKSPACE-READONLY-001 | symbolic_bridge_gap |  | None | Middle should choose either a transparent cleanup contract refactor or a nontrivial route cleanup bridge; keep extraction, unitarity, root, and exports blocked. |
+| DIAG-RY-WORKSPACE-READONLY-001 | symbolic_bridge_gap | None | None | Middle should decide whether to add a transparent cleanup contract refactor or a nontrivial cleanup bridge; keep extraction, unitarity, DIAG-ROOT-001, and exports blocked. |
+| DIAG-RY-WORKSPACE-READONLY-001 | symbolic_bridge_gap | None | None | compile the transparent controlled-rotation workspace-readonly interface only; keep cleanup bridge, extraction, unitarity, root, and exports blocked |
+| DIAG-RY-WORKSPACE-READONLY-001 | symbolic_bridge_gap |  | None | State the transparent controlled-rotation workspace-readonly interface; keep cleanup bridge, extraction, unitarity, root, and exports blocked. |
 | DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 | symbolic_bridge_gap |  | None | State DIAG-RY-WORKSPACE-READONLY-001, then choose a nontrivial cleanup bridge or transparent contract refactor; keep extraction, unitarity, root, and exports blocked. |
-| DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 | symbolic_bridge_gap | True | None | State DIAG-RY-WORKSPACE-READONLY-001, then choose a nontrivial cleanup bridge or transparent contract refactor; keep extraction, unitarity, root, and exports blocked. |
-| DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 | None | None | None | state DIAG-RY-WORKSPACE-READONLY-001 or refactor only after middle exposes a transparent cleanup consumer; keep expandedWorkspaceCleanUncomputed, extraction, unitarity, DIAG-ROOT-001, and exports blocked |
-| DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 | symbolic_bridge_gap | True | None | Instantiate fixedDenomExpandedArithmeticCleanUncomputeWitness n and derive fixedDenomWorkspaceCleanUncomputedTransparent n; separately state DIAG-RY-WORKSPACE-READONLY-001 before any route-level cleanup bridge or extraction proof. |
-| DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 | symbolic_bridge_gap | True | None | Implement the fixed-denominator modular add/sub witness for expandedWorkspaceCleanUncomputedTransparent n (3 * n), and separately state DIAG-RY-WORKSPACE-READONLY-001 before using cleanup evidence for any route-level clean-uncompute, block-entry, unitarity, root, or export claim. |
-| DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001 | symbolic_bridge_gap | True | None | Instantiate the fixed-denominator modular add/sub witness for the transparent clean-uncompute interface and add a named workspace-readonly rotation statement; keep block-entry, extraction, unitarity, root certificate, and exports blocked. |
-| DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001 | shape_or_register_gap | True | None | Compile only ExpandedArithmeticCleanUncomputeWitness and expandedWorkspaceCleanUncomputedTransparent adjacent to expandedWorkspaceCleanUncomputed; then separately instantiate modular add/sub cleanup and state rotation workspace-readonly semantics. |
-| DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001 | shape_or_register_gap | None | None | instantiate the transparent cleanup witness for the fixed-denominator modular add/sub route and separately check that the controlled rotation is workspace-readonly |
 
 ## 下一轮 lower-agent 分工
 
@@ -84,62 +86,28 @@ Run 目录：`runs/20260620-123024-QBE-OP-CUBIC-DIAGONAL-001-cycle02`
 ## 本轮 dialogue 末尾
 
 ```text
-icBackend, packaged fixedDenomExpandedArithmeticCleanUncomputeWitness, and derived fixedDenomWorkspaceCleanUncomputedTransparent. Did not prove expandedWorkspaceCleanUncomputed, did not state rotation workspace-readonly semantics, and did not touch extraction, unitarity, root certificate, or exports. Gate passed: python3 tools/qbe.py check (lake build; lake build Tests).
+G-RY-WORKSPACE-READONLY-001.lower-architect-20260620-160859.feedback.json. It labels the readonly interface as necessary but not sufficient for cleanup/root closure, keeps block-entry, unitarity, extraction, root, and exports blocked, and makes no Lean edits. Gate passed: python3 tools/qbe.py check.
 
-## 2026-06-20 13:09:04 - lower
+## 2026-06-20 16:14:28 - lower
 
-Lower refiner closeout for DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001: found the fixed-denominator transparent cleanup witness already compiled in QuantumBlockEncoding/CubicStatePreparation.lean as fixedDenomCubicModAddSub_eq_self, fixedDenomCubicComputeStep, fixedDenomCubicUncomputeStep, fixedDenomExpandedArithmeticCleanUncomputeWitness, and fixedDenomWorkspaceCleanUncomputedTransparent. Rejected duplicate route; kept opaque expandedWorkspaceCleanUncomputed, extraction, unitarity, root, and exports blocked. Gate passed: python3 tools/qbe.py check (lake build; lake build Tests). Next route: state DIAG-RY-WORKSPACE-READONLY-001 before any cleanup bridge or contract refactor.
 
-## 2026-06-20 13:14:10 - reviewer
+## 2026-06-20 16:18:25 - reviewer
 
-Reviewer gate: python3 tools/qbe.py check passed (lake build; lake build Tests). Lean fixed-denom transparent cleanup witness compiles as interface-only; no task-local hidden sorry/trivial/Prop:=True/axiom closure found. Blocking sync finding: after the 13:07 lower close, task contract, candidate population, reports/latest.md, problem-export latest.tex, retrieval index, and refreshed blueprint/frontier still treat DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 as active or absent in status; retire it and expose DIAG-RY-WORKSPACE-READONLY-001 as the next active dependency. Keep opaque expandedWorkspaceCleanUncomputed, extraction, unitarity, DIAG-ROOT-001, and exports blocked.
+Reviewer gate: python3 tools/qbe.py check passed (lake build; lake build Tests). Live Lean keeps a single ExpandedControlledRyWorkspaceReadonlyWitness / expandedControlledRyWorkspaceReadonlyTransparent interface; duplicate earlier placement was removed, and no root/opaque cleanup/export claim was introduced. Blocking sync finding: conversion window, proof obligations, candidate population, latest report, and frontier still describe DIAG-RY-WORKSPACE-READONLY-001 as active/planned despite the compiled interface and lower stale-leaf feedback. Retire it in durable maps and expose the next middle decision: transparent cleanup contract refactor or nontrivial cleanup bridge; keep expandedWorkspaceCleanUncomputed, extraction, unitarity, DIAG-ROOT-001, and exports blocked.
 ```
 
 ## 当前未提交文件
 
 - `MANIFEST.md`
 - `QuantumBlockEncoding/CubicStatePreparation.lean`
-- `README.md`
-- `agent-profiles/README.md`
-- `candidate-populations/QBE-OP-CUBIC-DIAGONAL-001.md`
-- `conversion-windows/QBE-OP-CUBIC-DIAGONAL-001.md`
-- `docs/agent_orchestration.md`
-- `docs/lexelim_scheduler_notes.md`
-- `paper-notes/QBE-OP-CUBIC-DIAGONAL-001/`
-- `paper-notes/problem-exports/QBE-OP-CUBIC-DIAGONAL-001/`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-architect-cycle02.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-architect.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-blocked-20260620-0329.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-blocked-20260620-0446.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-implementation-blocked-20260620-0524.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-refiner-20260620-0446.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-refiner-20260620-0524.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-lower-symbolic-conditional-20260620-0407.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-BACKEND-BRIDGE-001-route-interface.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-FIXED-DENOM-ALG-001-lower-refiner-20260620-061103.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-FIXED-DENOM-BACKEND-001-lower-architect-20260620-0655.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-FIXED-DENOM-BACKEND-001-lower-refiner-20260620-0656.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-FIXED-DENOM-CAP-001-lower-architect-20260620-0608.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-REP-001-fixed-denom-architect-20260620-0526.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-REP-001-lower-architect-20260620-0445.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-ROUTE-INTERFACE-001-lower-refiner-20260620-074847.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-ROUTE-TRANSPARENT-001-lower-architect-20260620-0832.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-ARITH-ROUTE-TRANSPARENT-001-lower-refiner-20260620-0833.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-ARITH-TRANSPARENT-CONTRACT-001-lower-architect-20260620-0917.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-ARITH-TRANSPARENT-CONTRACT-001-lower-refiner-20260620-0920.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-ARITH-TRANSPARENT-CONTRACT-001-middle-source-contract-20260620-0857.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-001-lower-architect-20260620-1134.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-001-lower-implementation-blocked-20260620-113324.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-001-lower-refiner-blocked-20260620-1135.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-001-lower-worker5-20260620-1133.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001-lower-architect-20260620-1305.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001-lower-worker5-20260620-1307.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001-lower-architect-20260620-1220.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001-lower-refiner-20260620-122154.md`
-- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001-lower-worker5-20260620-1221.md`
+- `proof-attempts/QBE-OP-CUBIC-DIAGONAL-001-DIAG-RY-WORKSPACE-READONLY-001-route-interface.md`
+- `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-001.md`
+- `verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/DIAG-RY-WORKSPACE-READONLY-001.lower-architect-20260620-160859.feedback.json`
 
 ## 人类检查建议
 
 1. 如果某个图或 README 说 cubic 已经有 final exact/approx BE，要求它给出 Lean theorem 名、资源 theorem 名、`python3 tools/qbe.py check` 结果和 problem export。
 2. 如果外部系统对比说“ABEIS 更好”，要求它说明是否已经同 prompt、同 tolerance、同 metric 跑完 end-to-end，而不是只做了 scaling forecast。
 3. 如果 agent 直接把用户中文问题翻译成英文后才进系统，要求改为 `ingest-user-problem` 或 web ingestion 入口，让原始母语输入成为系统 artifact。
+
+> Note: obsolete stale-leaf route names from an earlier harness vocabulary were removed from this public summary; the current run should use Hierarchical Harness or Game Harness terminology only.

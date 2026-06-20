@@ -46,6 +46,50 @@
           </select>
         </label>
 
+        <fieldset class="runner-grid">
+          <legend>Run location and API ownership</legend>
+          <p class="hint compact">
+            The public page should run with the user's own resources.  For a
+            static deployment, this section generates a runner packet; a
+            self-hosted runner can read the same fields and call the user's API.
+          </p>
+          <label>
+            Run location
+            <select id="runLocation">
+              <option value="localCli">Local CLI / my own server</option>
+              <option value="selfHostedRunner">Self-hosted web runner with my API key</option>
+              <option value="browserPacketOnly">Browser-only packet generation</option>
+            </select>
+          </label>
+          <label>
+            API provider
+            <select id="apiProvider">
+              <option value="openai">OpenAI / GPT / Codex</option>
+              <option value="anthropic">Anthropic / Claude</option>
+              <option value="gemini">Google Gemini</option>
+              <option value="glm">GLM</option>
+              <option value="minimax">Minimax</option>
+              <option value="custom">Custom OpenAI-compatible endpoint</option>
+            </select>
+          </label>
+          <label>
+            Default model
+            <input id="defaultModel" value="use agent-profile defaults" autocomplete="off">
+          </label>
+          <label>
+            Runner endpoint
+            <input id="runnerEndpoint" value="http://localhost:8088" autocomplete="off">
+          </label>
+          <label>
+            User API key
+            <input id="apiKey" type="password" placeholder="Stored only in your browser/session runner">
+          </label>
+          <label class="check-row">
+            <input id="redactApiKey" type="checkbox" checked>
+            <span>Redact API key from generated Markdown</span>
+          </label>
+        </fieldset>
+
         <label>
           Preferred report language
           <div class="language-row">
@@ -119,8 +163,9 @@
             These preferences are written into the generated ABEIS packet.  The website
             does not call model APIs; your local harness or server runner maps
             them to installed CLIs or wrappers.  In Game Harness mode, the
-            Natural-Language Team explores construction ideas while the Lean
-            Team formalizes selected candidates.
+            Natural-Language Team and Lean Team each have upper/middle/lower
+            layers.  They compete in their own language, then exchange useful
+            insights through the Game Council.
           </p>
           <label>
             Upper
@@ -147,7 +192,7 @@
             </select>
           </label>
           <label>
-            Natural-language lower/team
+            Natural-Language Team lower
             <select id="lower1Backend">
               <option value="gpt">GPT/OpenAI wrapper</option>
               <option value="codex">Codex</option>
@@ -159,7 +204,7 @@
             </select>
           </label>
           <label>
-            Lean Team lower
+            Lean Team lower/formalizer
             <select id="lower2Backend">
               <option value="codex">Codex</option>
               <option value="claude">Claude</option>
@@ -218,6 +263,16 @@
             <li>After Lean certification, generate the selected Qiskit, QuantumKatas, or QASM artifacts for users.</li>
             <li>When a run closes, compare harnesses by generated exact/approximate evolution curves and circuit storyboards.</li>
           </ol>
+        </div>
+
+        <div class="score-card report-card">
+          <h3>Run dashboard contract</h3>
+          <ul>
+            <li>Per-harness status: active phase, current champion, blocked leaf, and next action.</li>
+            <li>Exact and approximate BE curves: only Lean-certified candidates are plotted as achieved points.</li>
+            <li>Circuit storyboard: one diagram per certified exact/approximate candidate.</li>
+            <li>Reports: selected-language summary, ChatGPT Pro prompt when unresolved, and user-copyable LaTeX proof after Lean closure.</li>
+          </ul>
         </div>
 
         <pre id="packet" class="packet" tabindex="0"></pre>

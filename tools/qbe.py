@@ -90,6 +90,7 @@ DEFAULT_LOWER_COUNT = 3
 DEFAULT_UPPER_PANEL = True
 DEFAULT_MIDDLE_PANEL = True
 DEFAULT_PARALLEL_LOWER = True
+DEFAULT_PARALLEL_PANELS = True
 DEFAULT_GAME_HARNESS = False
 DEFAULT_NATURAL_LOWER_COUNT = 2
 DEFAULT_LEAN_LOWER_COUNT = 2
@@ -6829,7 +6830,7 @@ Produce:
    profile, spend enough budget in upper/middle/reviewer planning before lower
    workers run: upper fixes target and search direction, middle translates and
    maintains the insight population, reviewer blocks stale or unfounded lower
-   work.  The classic profile then uses an upper specialist panel, a middle
+   work.  The Hierarchical Harness then uses an upper specialist panel, a middle
    specialist panel, and three complementary lower roles: lower 1 natural-language proof/construction
    architect, lower 2 Lean implementation worker, and lower 3
    necessary-condition verifier.  Increase upper, middle, or lower parallelism
@@ -6988,43 +6989,67 @@ through the director synthesis.
         elif lower_index == -11:
             body += """
 
-Upper Game Harness profile: Natural-Language Team.
+Upper Game Harness profile: Natural-Language Hierarchical Team.
 
-This upper pass runs a full natural-language strategy review without editing
-Lean. Its job is to search for candidate block-encoding ideas, proof
-structures, invariants, approximate-relaxation routes, and reusable insights
-that may be missed by Lean-first workers. It must clearly separate
-mathematically plausible, reviewer-checked natural-language proof, and
-Lean-certified. It cannot declare acceptance. It should nominate insight
-population entries for the Game Council handoff and identify which ideas should
-be translated by the Lean Team.
+This upper pass is the strategy director for a full natural-language team, not
+a single sketch worker.  Its team has upper planning, middle memory, and lower
+natural-language construction workers.  Its competitive goal is to construct
+the best candidate block encoding and proof in human mathematics before the
+Lean Team does so in Lean.  It must maintain a natural-language candidate
+population, proof DAG, resource estimates, approximate-relaxation routes, and
+recombination ideas.  It cannot declare acceptance.  It may mark a construction
+as `reviewer-plausible` only when its own upper/middle audit finds the proof
+coherent and target-faithful.  Reviewer-plausible constructions must be handed
+to the Game Council for possible translation into Lean work packets.
+
+If the Lean Team produces a compiled BE certificate, this team owns the
+human-facing translation: write the step-by-step mathematical explanation that
+will later become the user's LaTeX proof note, including target operator,
+candidate unitary, clean-block proof, unitarity proof, resource tuple, and any
+exact/approximate error statement.
 """
         elif lower_index == -12:
             body += """
 
-Upper Game Harness profile: Lean Team.
+Upper Game Harness profile: Lean Hierarchical Team.
 
-This upper pass plans only routes that can become Lean declarations in the
-current repository. It should decide which natural-language ideas are mature
-enough to formalize, which existing Lean declarations should be reused, and
-which candidate families should enter or leave the certified population. It
-should reject broad Lean attempts that are not tied to one active proof-DAG
-leaf or candidate-resource theorem.
+This upper pass is the strategy director for a full Lean-facing team.  Its team
+also reasons in natural language at the upper and middle layers, but its lower
+workers write Lean construction and proof code.  Its competitive goal is to
+directly produce a Lean-certified block encoding, resource theorem, and export
+contract before the Natural-Language Team finishes a reviewer-plausible proof.
+It should decide which candidate families are worth encoding in Lean, which
+existing declarations should be reused, and which proof-DAG leaf is ready for
+one lower Lean worker.
+
+This team also owns translation from reviewer-plausible natural-language
+constructions into Lean: after Game Council or reviewer approval, produce exact
+Lean declarations, file scopes, theorem names, resource-score statements, and
+small diagnostics for the selected idea.  Reject any natural-language idea that
+changes the target, hides an oracle, lacks unitarity, or cannot state the
+projector/normalizer cleanly.
 """
         elif lower_index == -13:
             body += """
 
 Upper Game Harness profile: Game Council and capacity controller.
 
-This pass reads the Natural-Language Team and Lean Team upper handoffs, then
-issues a binding cycle decision. It must decide: first, which insight
-population items are worth preserving, recombining, or retiring; second, which
-team owns the next bottleneck; third, whether to increase natural-language
-lower agents, Lean lower agents, middle capacity, or upper capacity for a fixed
-generation budget; fourth, whether exact search has stalled enough to open the
-approximate-BE phase; and fifth, whether to generate or update the
-preferred-language ChatGPT Pro prompt because human or Pro intervention would
-be valuable. Only Lean-certified candidates are accepted or plotted as achieved
+This pass reads the Natural-Language Hierarchical Team and Lean Hierarchical
+Team upper/middle handoffs, then issues the binding cycle decision.  Treat the
+teams as competitors over the same fixed operator target and resource order:
+the Natural-Language Team competes by producing reviewer-plausible human proofs,
+while the Lean Team competes by producing compiled Lean certificates.  Treat
+them as collaborators over insight transfer: Lean-certified constructions must
+be sent to the Natural-Language Team for human-readable proof export, and
+reviewer-plausible natural-language constructions must be sent to the Lean Team
+for formalization.
+
+Decide which insight population items are preserved, recombined, retired, or
+translated; which team owns the next bottleneck; whether to increase upper,
+middle, natural-language lower, or Lean lower capacity for a fixed generation
+budget; whether exact search has stalled enough to open the approximate-BE
+phase; and whether to generate or update the preferred-language ChatGPT Pro
+prompt.  Only Lean-certified candidates are accepted or plotted as achieved
 solutions.
 """
         else:
@@ -7246,38 +7271,49 @@ search.  This role is mainly for final-audit synchronization.
         elif lower_index == -21:
             body += """
 
-Middle Game Harness profile: Natural-Language Team insight curator.
+Middle Game Harness profile: Natural-Language Hierarchical Team curator.
 
-This middle pass serves the Natural-Language Team. It turns
-natural-language lower sketches into structured proof DAGs, candidate-family
-records, insight-population entries, and explicit handoff requests to the Lean
-Team. It must not mark a construction as accepted. It should preserve why an
-uncertified idea is valuable, what theorem it would prove if formalized, and
-which finite or symbolic necessary checks should be run before Lean coding.
+This middle pass serves the Natural-Language Team's own hierarchy.  It turns
+lower natural-language sketches into structured proof DAGs, candidate-family
+records, resource estimates, insight-population entries, and reviewer-plausible
+proof packets.  It must not mark a construction as accepted.  It must label
+each candidate as speculative, reviewer-plausible, translated-to-Lean, or
+retired.
+
+It also owns Lean-to-human translation after a Lean success: when the Lean Team
+closes a named certificate, translate the compiled theorem into a step-by-step
+mathematical proof note for the user and list the circuit figures/evolution
+curves that should appear in the closeout.
 """
         elif lower_index == -22:
             body += """
 
-Middle Game Harness profile: Lean Team translation curator.
+Middle Game Harness profile: Lean Hierarchical Team formalization curator.
 
-This middle pass serves the Lean Team. It translates Game Council
-insights into exact Lean declarations, file scopes, active proof-DAG leaves,
-resource-score theorems, and post-Lean executable export tasks. It must state
-which natural-language ideas are rejected, deferred, or ready for Lean lower
-workers, and it must keep certified candidates separate from speculative
-population entries.
+This middle pass serves the Lean Team's own hierarchy.  It translates Game
+Council insights and reviewer-plausible natural-language proofs into exact Lean
+declarations, file scopes, active proof-DAG leaves, resource-score theorems,
+and post-Lean executable export tasks.  It must state which natural-language
+ideas are rejected, deferred, or ready for Lean lower workers, and it must keep
+certified candidates separate from speculative or reviewer-plausible population
+entries.
+
+It should also feed Lean failures back to the Natural-Language Team as concise
+mathematical blockers, so the natural-language side can repair proof ideas
+instead of repeating an unformalizable route.
 """
         elif lower_index == -23:
             body += """
 
 Middle Game Harness profile: Game Council coordination clerk.
 
-This pass reconciles the two team outputs into one lower-agent work
-packet. It should write the shared insight population update, the certified
-population update, the next natural-language lower tasks, the next Lean lower
-tasks, and any Pro-prompt trigger. It should also record whether the upper
-Game Council requested a capacity increase or an exact-to-approximate phase
-switch.
+This pass reconciles the two hierarchical team outputs into one shared cycle
+ledger.  It should write: the competition status, the collaboration/translation
+requests, the shared insight population update, the certified population update,
+the next Natural-Language Team lower tasks, the next Lean Team lower tasks, and
+any Pro-prompt trigger.  It should record whether the upper Game Council
+requested a capacity increase, a recombination step, a team-to-team translation
+step, or an exact-to-approximate phase switch.
 """
         else:
             body += """
@@ -7515,7 +7551,7 @@ unless it directly repairs the reported failure.
 """
         elif 100 < lower_index < 200:
             body += f"""
-Lower profile for this prompt: Natural-Language Team worker `{lower_index - 100}`.
+Lower profile for this prompt: Natural-Language Hierarchical Team worker `{lower_index - 100}`.
 
 Work only in natural language, diagrams, proof DAGs, candidate descriptions,
 resource estimates, and necessary-condition plans. Do not edit Lean source.
@@ -7527,10 +7563,9 @@ proof-attempt memory, but never mark them accepted.
 """
         elif 200 < lower_index < 300:
             body += f"""
-Lower profile for this prompt: Lean Team worker `{lower_index - 200}`.
+Lower profile for this prompt: Lean Hierarchical Team worker `{lower_index - 200}`.
 
-Work only on Lean-facing construction and proof tasks. Read the Game Council and
-Natural-Language Team handoffs, select one formally stated leaf or candidate,
+Work only on Lean-facing construction and proof tasks. Read your Lean Team middle packet, the Game Council handoff, and any reviewer-plausible Natural-Language Team construction selected for translation; select one formally stated leaf or candidate,
 and either add or repair compiling Lean declarations or write a typed failure
 that explains why the natural-language idea cannot yet be formalized. Do not
 accept a construction until the named Lean theorem and resource-score
@@ -7857,6 +7892,36 @@ def upper_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
     return [path for path in specialists + game_panel if path.exists()] + [director]
 
 
+
+def upper_prompt_stages(run_dir: Path, use_panel: bool, game_harness: bool) -> list[list[Path]]:
+    """Return upper prompts grouped by dependency stage.
+
+    Independent auditors and the two Game Harness team directors can run in
+    parallel.  The Game Council and director synthesis run after those
+    handoffs exist.
+    """
+    director = run_dir / "10_upper_director.md"
+    if not use_panel:
+        return [[director]]
+    independent = [
+        run_dir / "11_upper_source_visual.md",
+        run_dir / "12_upper_proof_dag.md",
+        run_dir / "13_upper_process_memory.md",
+    ]
+    if game_harness:
+        independent.extend(
+            [
+                run_dir / "14_upper_nl_team.md",
+                run_dir / "15_upper_lean_team.md",
+            ]
+        )
+    stages: list[list[Path]] = [[path for path in independent if path.exists()]]
+    if game_harness and (run_dir / "16_upper_game_council.md").exists():
+        stages.append([run_dir / "16_upper_game_council.md"])
+    stages.append([director])
+    return [stage for stage in stages if stage]
+
+
 def middle_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
     """Return middle prompts in execution order.
 
@@ -7880,6 +7945,40 @@ def middle_prompt_sequence(run_dir: Path, use_panel: bool) -> list[Path]:
     return [path for path in specialists + game_panel if path.exists()] + [coordinator]
 
 
+
+def middle_prompt_stages(run_dir: Path, use_panel: bool, game_harness: bool) -> list[list[Path]]:
+    """Return middle prompts grouped by dependency stage."""
+    coordinator = run_dir / "20_middle_formalizer.md"
+    if not use_panel:
+        return [[coordinator]]
+    independent = [
+        run_dir / "21_middle_source_correspondence.md",
+        run_dir / "22_middle_memory_retrieval.md",
+        run_dir / "23_middle_report_export.md",
+    ]
+    if game_harness:
+        independent.extend(
+            [
+                run_dir / "24_middle_nl_team.md",
+                run_dir / "25_middle_lean_team.md",
+            ]
+        )
+    stages: list[list[Path]] = [[path for path in independent if path.exists()]]
+    if game_harness and (run_dir / "26_middle_game_coordination.md").exists():
+        stages.append([run_dir / "26_middle_game_coordination.md"])
+    stages.append([coordinator])
+    return [stage for stage in stages if stage]
+
+
+def lower_prompt_sequence(run_dir: Path) -> list[Path]:
+    prompts: list[Path] = []
+    prompts.extend(sorted(run_dir.glob("30_lower_searcher_*.md")))
+    prompts.extend(sorted(run_dir.glob("31_nl_lower_*.md")))
+    prompts.extend(sorted(run_dir.glob("31_natural_lower_*.md")))
+    prompts.extend(sorted(run_dir.glob("32_lean_lower_*.md")))
+    return prompts
+
+
 def format_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> str:
     role = prompt_role(prompt)
     return template.format(
@@ -7898,6 +7997,46 @@ def run_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, 
     start = time.perf_counter()
     completed = subprocess.run(command, cwd=ROOT, shell=True)
     return completed.returncode, time.perf_counter() - start
+
+
+
+def execute_prompt_stage(
+    prompts: list[Path],
+    profile_commands: dict[str, str],
+    fallback_template: str,
+    run_dir: Path,
+    task_id: str,
+    cycle: int,
+    parallel: bool,
+) -> int:
+    if not prompts:
+        return 0
+    if parallel and len(prompts) > 1:
+        running = []
+        for prompt in prompts:
+            template = agent_command_for_prompt(profile_commands, fallback_template, prompt)
+            command = format_agent_command(template, prompt, run_dir, task_id, cycle)
+            print("$ " + command)
+            start = time.perf_counter()
+            process = subprocess.Popen(command, cwd=ROOT, shell=True)
+            running.append((prompt, command, process, start))
+        first_error = 0
+        for prompt, command, process, start in running:
+            code = process.wait()
+            log_agent_attempt(task_id, run_dir, prompt, command, code, time.perf_counter() - start)
+            if code != 0 and first_error == 0:
+                first_error = code
+        return first_error
+    for prompt in prompts:
+        template = agent_command_for_prompt(profile_commands, fallback_template, prompt)
+        command = format_agent_command(template, prompt, run_dir, task_id, cycle)
+        print("$ " + command)
+        start = time.perf_counter()
+        code = subprocess.run(command, cwd=ROOT, shell=True).returncode
+        log_agent_attempt(task_id, run_dir, prompt, command, code, time.perf_counter() - start)
+        if code != 0:
+            return code
+    return 0
 
 
 def log_agent_attempt(
@@ -7968,21 +8107,30 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             lean_lower_count=getattr(args, "lean_lower_count", DEFAULT_LEAN_LOWER_COUNT),
         )
         print(f"cycle {cycle}: {rel(run_dir)}")
-        prompts = []
+        stage_specs: list[tuple[list[Path], bool]] = []
         if args.upper_every > 0 and (cycle - 1) % args.upper_every == 0:
-            prompts.extend(upper_prompt_sequence(run_dir, args.upper_panel))
+            for stage in upper_prompt_stages(
+                run_dir,
+                args.upper_panel,
+                getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
+            ):
+                stage_specs.append((stage, args.parallel_panels))
         if args.middle_every > 0 and (cycle - 1) % args.middle_every == 0:
-            prompts.extend(middle_prompt_sequence(run_dir, args.middle_panel))
-        prompts.extend(sorted(run_dir.glob("30_lower_searcher_*.md")))
-        prompts.extend(sorted(run_dir.glob("31_nl_lower_*.md")))
-        prompts.extend(sorted(run_dir.glob("31_natural_lower_*.md")))
-        prompts.extend(sorted(run_dir.glob("32_lean_lower_*.md")))
+            for stage in middle_prompt_stages(
+                run_dir,
+                args.middle_panel,
+                getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
+            ):
+                stage_specs.append((stage, args.parallel_panels))
+        lower_prompts = lower_prompt_sequence(run_dir)
+        if lower_prompts:
+            stage_specs.append((lower_prompts, args.parallel_lower))
         if (
             not args.skip_reviewer
             and args.reviewer_every > 0
             and (cycle - 1) % args.reviewer_every == 0
         ):
-            prompts.append(run_dir / "40_reviewer.md")
+            stage_specs.append(([run_dir / "40_reviewer.md"], False))
         has_agent_template = bool(args.agent_cmd or profile_commands)
         if args.dry_run or not has_agent_template:
             print("dry run: prompt deck created, no external agent command executed")
@@ -7991,54 +8139,18 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             print("agent command configured but not executed; pass --execute to run it")
             continue
         cycle_code = 0
-        if args.parallel_lower:
-            pre_prompts = [prompt for prompt in prompts if prompt_role(prompt) in {"upper", "middle"}]
-            lower_prompts = [prompt for prompt in prompts if prompt_role(prompt) == "lower"]
-            post_prompts = [prompt for prompt in prompts if prompt_role(prompt) == "reviewer"]
-            for prompt in pre_prompts:
-                template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
-                command = format_agent_command(template, prompt, run_dir, args.id, cycle)
-                print("$ " + command)
-                start = time.perf_counter()
-                code = subprocess.run(command, cwd=ROOT, shell=True).returncode
-                log_agent_attempt(args.id, run_dir, prompt, command, code, time.perf_counter() - start)
-                if code != 0:
-                    cycle_code = code
-                    break
-            if cycle_code == 0 and lower_prompts:
-                running = []
-                for prompt in lower_prompts:
-                    template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
-                    command = format_agent_command(template, prompt, run_dir, args.id, cycle)
-                    print("$ " + command)
-                    start = time.perf_counter()
-                    process = subprocess.Popen(command, cwd=ROOT, shell=True)
-                    running.append((prompt, command, process, start))
-                for prompt, command, process, start in running:
-                    code = process.wait()
-                    log_agent_attempt(args.id, run_dir, prompt, command, code, time.perf_counter() - start)
-                    if code != 0:
-                        cycle_code = code
-            if cycle_code == 0:
-                for prompt in post_prompts:
-                    template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
-                    command = format_agent_command(template, prompt, run_dir, args.id, cycle)
-                    print("$ " + command)
-                    start = time.perf_counter()
-                    code = subprocess.run(command, cwd=ROOT, shell=True).returncode
-                    log_agent_attempt(args.id, run_dir, prompt, command, code, time.perf_counter() - start)
-                    if code != 0:
-                        cycle_code = code
-                        break
-        else:
-            for prompt in prompts:
-                template = agent_command_for_prompt(profile_commands, args.agent_cmd, prompt)
-                command = format_agent_command(template, prompt, run_dir, args.id, cycle)
-                code, wall_time_s = run_agent_command(template, prompt, run_dir, args.id, cycle)
-                log_agent_attempt(args.id, run_dir, prompt, command, code, wall_time_s)
-                if code != 0:
-                    cycle_code = code
-                    break
+        for stage, parallel in stage_specs:
+            cycle_code = execute_prompt_stage(
+                stage,
+                profile_commands,
+                args.agent_cmd,
+                run_dir,
+                args.id,
+                cycle,
+                parallel,
+            )
+            if cycle_code != 0:
+                break
         if cycle_code != 0:
             final_code = cycle_code
         if args.check_each_cycle:
@@ -8351,7 +8463,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_cycle.add_argument("id")
     p_cycle.add_argument("--cycle", type=int, default=1)
     p_cycle.add_argument("--lower-count", type=int, default=DEFAULT_LOWER_COUNT)
-    p_cycle.add_argument("--game-harness", dest="game_harness", action="store_true", default=DEFAULT_GAME_HARNESS, help="create the Game Harness prompts: Natural-Language Team, Lean Team, and Game Council")
+    p_cycle.add_argument("--game-harness", dest="game_harness", action="store_true", default=DEFAULT_GAME_HARNESS, help="create the Game Harness prompts: Natural-Language Hierarchical Team, Lean Hierarchical Team, and Game Council")
     p_cycle.add_argument("--hierarchical-harness", dest="game_harness", action="store_false", help="use the Hierarchical Harness prompts; this is the default")
     p_cycle.add_argument("--natural-lower-count", type=int, default=DEFAULT_NATURAL_LOWER_COUNT, help="natural-language Game Harness lower-agent count in Game Harness mode")
     p_cycle.add_argument("--lean-lower-count", type=int, default=DEFAULT_LEAN_LOWER_COUNT, help="Lean Game Harness lower-agent count in Game Harness mode")
@@ -8405,7 +8517,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="active agent-time budget for the batch; after the current cycle finishes, write closeout summary/memory/Pro prompt and stop; set 0 to disable",
     )
     p_sleep.add_argument("--lower-count", type=int, default=DEFAULT_LOWER_COUNT)
-    p_sleep.add_argument("--game-harness", dest="game_harness", action="store_true", default=DEFAULT_GAME_HARNESS, help="use the Game Harness: Natural-Language Team, Lean Team, and Game Council")
+    p_sleep.add_argument("--game-harness", dest="game_harness", action="store_true", default=DEFAULT_GAME_HARNESS, help="use the Game Harness: Natural-Language Hierarchical Team, Lean Hierarchical Team, and Game Council")
     p_sleep.add_argument("--hierarchical-harness", dest="game_harness", action="store_false", help="use the Hierarchical Harness; this is the default")
     p_sleep.add_argument("--natural-lower-count", type=int, default=DEFAULT_NATURAL_LOWER_COUNT, help="natural-language Game Harness lower-agent count in Game Harness mode")
     p_sleep.add_argument("--lean-lower-count", type=int, default=DEFAULT_LEAN_LOWER_COUNT, help="Lean Game Harness lower-agent count in Game Harness mode")
@@ -8469,6 +8581,19 @@ def build_parser() -> argparse.ArgumentParser:
         dest="middle_panel",
         action="store_false",
         help="disable the middle specialist panel for this run",
+    )
+    p_sleep.add_argument(
+        "--parallel-panels",
+        dest="parallel_panels",
+        action="store_true",
+        default=DEFAULT_PARALLEL_PANELS,
+        help="execute independent upper/middle panel prompts concurrently before synthesis; enabled by default",
+    )
+    p_sleep.add_argument(
+        "--sequential-panels",
+        dest="parallel_panels",
+        action="store_false",
+        help="run upper/middle panel prompts sequentially for debugging or constrained environments",
     )
     p_sleep.add_argument(
         "--upper-every",

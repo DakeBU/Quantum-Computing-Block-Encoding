@@ -11,24 +11,24 @@
     "DIAG-ROOT-001: Exact operator block-encoding certificate for the selected primitive or expanded route.; status: blocked until a route certificate exists; Lean: `primitiveAmplitudeOracleVerified n h` for the primitive path, or planned expanded certificate",
     "DIAG-EXPORT-001: Qiskit, QuantumKatas-style, and QASM3 export plan tied to the named Lean certificate.; status: blocked downstream; Lean: planned `executable-exports/QBE-OP-CUBIC-DIAGONAL-001/` packet"
   ],
-  "generated": "2026-06-20 15:56:28",
+  "generated": "2026-06-20 16:19:28",
   "ghl_contributions": [],
   "lean_sorries": [],
   "mode": "exploratoryConstruction",
   "next_lower_tasks": [
     {
-      "goal": "For DIAG-RY-WORKSPACE-READONLY-001, restate the user-provided diagonal target and the dependency DAG: transparent angle bookkeeping plus fixed-denominator cleanup witness imply the need for a controlled-Ry workspace-readonly interface before route-level cleanup.",
-      "must_write": "A short proof-attempt note or verifier-feedback handoff naming the source anchor, dependencies, blocked parent DIAG-EXP-UNCOMP-001, and forbidden routes.",
+      "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+      "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
       "role": "lower-1-natural-language-proof-architect"
     },
     {
-      "goal": "Implement only the transparent readonly-rotation interface in QuantumBlockEncoding/CubicStatePreparation.lean, adjacent to expandedControlledRyUsesCubicAngleTransparent and expandedWorkspaceCleanUncomputed.",
-      "must_write": "Planned Lean declarations ExpandedControlledRyWorkspaceReadonlyWitness and expandedControlledRyWorkspaceReadonlyTransparent, plus typed trial-log fields after python3 tools/qbe.py check.",
+      "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+      "must_write": "Lean declaration plus trial-log verifier-feedback fields",
       "role": "lower-2-lean-implementation-worker"
     },
     {
-      "goal": "Run only a finite/register readonly diagnostic for the controlled-rotation substep; keep block-entry, ancilla-cleanup, unitarity, extraction, route-certificate, and export fields null.",
-      "must_write": "verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/DIAG-RY-WORKSPACE-READONLY-001... plus trial-log feedback fields",
+      "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+      "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
       "role": "lower-3-necessary-condition-verifier"
     }
   ],
@@ -54,97 +54,169 @@
   "recent_proof_attempts": [],
   "recent_trials": [
     {
-      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/23_middle_report_export.md",
-      "kind": "attempt",
-      "lean_gate": "",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-20 15:54:42",
-      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-23_middle_report_export"
-    },
-    {
       "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01",
-      "kind": "handoff",
-      "lean_gate": "",
-      "role": "middle",
-      "status": "queued",
-      "timestamp": "2026-06-20 15:53:53",
-      "trial_id": "20260620-155353-QBE-OP-CUBIC-DIAGONAL-001-middle-handoff"
-    },
-    {
-      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/22_middle_memory_retrieval.md",
-      "kind": "attempt",
-      "lean_gate": "",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-20 15:51:24",
-      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-22_middle_memory_retrieval"
-    },
-    {
-      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01",
-      "kind": "handoff",
-      "lean_gate": "",
-      "role": "middle",
-      "status": "queued",
-      "timestamp": "2026-06-20 15:50:55",
-      "trial_id": "20260620-155055-QBE-OP-CUBIC-DIAGONAL-001-middle-handoff"
-    },
-    {
-      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/21_middle_source_correspondence.md",
-      "kind": "attempt",
-      "lean_gate": "",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-20 15:48:54",
-      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-21_middle_source_correspondence"
-    },
-    {
-      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01",
-      "kind": "handoff",
-      "lean_gate": "",
-      "role": "middle",
-      "status": "queued",
-      "timestamp": "2026-06-20 15:47:00",
-      "trial_id": "20260620-154700-QBE-OP-CUBIC-DIAGONAL-001-middle-handoff"
-    },
-    {
-      "artifact": "verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/DIAG-RY-WORKSPACE-READONLY-001.middle-source-contract-20260620-1540.feedback.json",
-      "kind": "plan",
+      "kind": "build",
       "lean_gate": "pass",
-      "role": "middle",
-      "status": "queued",
-      "timestamp": "2026-06-20 15:46:35",
-      "trial_id": "20260620-154635-QBE-OP-CUBIC-DIAGONAL-001-middle-plan"
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-20 16:19:27",
+      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-build-gate"
     },
     {
-      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/10_upper_director.md",
+      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/40_reviewer.md",
       "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
+      "role": "reviewer",
       "status": "accepted",
-      "timestamp": "2026-06-20 15:39:29",
-      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-10_upper_director"
+      "timestamp": "2026-06-20 16:19:21",
+      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-40_reviewer"
     },
     {
       "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01",
       "kind": "handoff",
       "lean_gate": "",
-      "role": "upper",
+      "role": "reviewer",
       "status": "queued",
-      "timestamp": "2026-06-20 15:38:04",
-      "trial_id": "20260620-153804-QBE-OP-CUBIC-DIAGONAL-001-upper-handoff"
+      "timestamp": "2026-06-20 16:18:31",
+      "trial_id": "20260620-161831-QBE-OP-CUBIC-DIAGONAL-001-reviewer-handoff"
     },
     {
-      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/16_upper_parliament_chief_justice.md",
+      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/32_lean_lower_2.md",
       "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
+      "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-20 15:36:26",
-      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-16_upper_parliament_chief_justice"
+      "timestamp": "2026-06-20 16:15:01",
+      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-32_lean_lower_2"
+    },
+    {
+      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/32_lean_lower_1.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 16:15:00",
+      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-32_lean_lower_1"
+    },
+    {
+      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/31_natural_lower_2.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 16:15:00",
+      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-31_natural_lower_2"
+    },
+    {
+      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01/31_natural_lower_1.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 16:15:00",
+      "trial_id": "20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01-31_natural_lower_1"
+    },
+    {
+      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-20 16:14:39",
+      "trial_id": "20260620-161439-QBE-OP-CUBIC-DIAGONAL-001-lower-handoff"
+    },
+    {
+      "artifact": "verifier-feedback/QBE-OP-CUBIC-DIAGONAL-001/DIAG-RY-WORKSPACE-READONLY-001.nl-team-worker1-postsync-20260620-1615.feedback.json",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-20 16:14:36",
+      "trial_id": "20260620-161436-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "artifact": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-20 16:13:24",
+      "trial_id": "20260620-161324-QBE-OP-CUBIC-DIAGONAL-001-lower-handoff"
     }
   ],
   "recent_verifier_feedback": [
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "stale_leaf",
+      "finite_matrix_ok": "",
+      "leaf": "DIAG-RY-WORKSPACE-READONLY-001",
+      "next_route": "middle should choose the next cleanup bridge or transparent contract-refactor route; keep extraction, unitarity, root certification, and exports blocked",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-20 16:14:36",
+      "trial_id": "20260620-161436-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": null,
+      "leaf": "DIAG-RY-WORKSPACE-READONLY-001",
+      "next_route": "compile the transparent controlled-rotation workspace-readonly interface only; keep cleanup bridge, extraction, unitarity, root, and exports blocked",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 16:13:20",
+      "trial_id": "20260620-161320-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "",
+      "leaf": "DIAG-RY-WORKSPACE-READONLY-001",
+      "next_route": "Compile only the transparent controlled-rotation workspace-readonly interface, then keep cleanup bridge, extraction, unitarity, root, and exports blocked.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-20 16:11:45",
+      "trial_id": "20260620-161145-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": "",
+      "leaf": "DIAG-RY-WORKSPACE-READONLY-001",
+      "next_route": "Middle should choose either a transparent cleanup contract refactor or a nontrivial route cleanup bridge; keep extraction, unitarity, root, and exports blocked.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 16:11:19",
+      "trial_id": "20260620-161119-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": null,
+      "leaf": "DIAG-RY-WORKSPACE-READONLY-001",
+      "next_route": "Middle should decide whether to add a transparent cleanup contract refactor or a nontrivial cleanup bridge; keep extraction, unitarity, DIAG-ROOT-001, and exports blocked.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 16:11:00",
+      "trial_id": "20260620-161100-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": null,
+      "leaf": "DIAG-RY-WORKSPACE-READONLY-001",
+      "next_route": "compile the transparent controlled-rotation workspace-readonly interface only; keep cleanup bridge, extraction, unitarity, root, and exports blocked",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-20 16:10:34",
+      "trial_id": "20260620-161034-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
+    },
     {
       "block_entry_ok": null,
       "closed_theorem_ok": false,
@@ -192,78 +264,6 @@
       "status": "accepted",
       "timestamp": "2026-06-20 13:07:56",
       "trial_id": "20260620-130756-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": null,
-      "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": true,
-      "leaf": "DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001",
-      "next_route": "Instantiate fixedDenomExpandedArithmeticCleanUncomputeWitness n and derive fixedDenomWorkspaceCleanUncomputedTransparent n; separately state DIAG-RY-WORKSPACE-READONLY-001 before any route-level cleanup bridge or extraction proof.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-20 13:07:32",
-      "trial_id": "20260620-130732-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": null,
-      "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": true,
-      "leaf": "DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001",
-      "next_route": "Implement the fixed-denominator modular add/sub witness for expandedWorkspaceCleanUncomputedTransparent n (3 * n), and separately state DIAG-RY-WORKSPACE-READONLY-001 before using cleanup evidence for any route-level clean-uncompute, block-entry, unitarity, root, or export claim.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-20 13:06:45",
-      "trial_id": "20260620-130645-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": null,
-      "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": true,
-      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
-      "next_route": "Instantiate the fixed-denominator modular add/sub witness for the transparent clean-uncompute interface and add a named workspace-readonly rotation statement; keep block-entry, extraction, unitarity, root certificate, and exports blocked.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-20 12:24:04",
-      "trial_id": "20260620-122404-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": null,
-      "closed_theorem_ok": false,
-      "error_class": "shape_or_register_gap",
-      "finite_matrix_ok": true,
-      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
-      "next_route": "Compile only ExpandedArithmeticCleanUncomputeWitness and expandedWorkspaceCleanUncomputedTransparent adjacent to expandedWorkspaceCleanUncomputed; then separately instantiate modular add/sub cleanup and state rotation workspace-readonly semantics.",
-      "role": "lower",
-      "status": "blocked",
-      "timestamp": "2026-06-20 12:22:48",
-      "trial_id": "20260620-122248-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": null,
-      "closed_theorem_ok": true,
-      "error_class": "shape_or_register_gap",
-      "finite_matrix_ok": null,
-      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
-      "next_route": "instantiate the transparent cleanup witness for the fixed-denominator modular add/sub route and separately check that the controlled rotation is workspace-readonly",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-20 12:22:45",
-      "trial_id": "20260620-122245-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": null,
-      "closed_theorem_ok": true,
-      "error_class": "shape_or_register_gap",
-      "finite_matrix_ok": null,
-      "leaf": "DIAG-EXP-UNCOMP-TRANSPARENT-INTERFACE-001",
-      "next_route": "instantiate ExpandedArithmeticCleanUncomputeWitness for the fixed-denominator modular add/sub route, then separately prove or record controlled-rotation workspace-readonly semantics before bridging to expandedWorkspaceCleanUncomputed",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-20 12:22:37",
-      "trial_id": "20260620-122237-QBE-OP-CUBIC-DIAGONAL-001-lower-attempt"
     }
   ],
   "run_dir": "runs/20260620-151406-QBE-OP-CUBIC-DIAGONAL-001-cycle01",

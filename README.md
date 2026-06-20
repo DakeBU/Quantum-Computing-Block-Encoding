@@ -234,15 +234,14 @@ better in advance.
 | Harness | Organization | When it may help |
 | --- | --- | --- |
 | **Hierarchical Harness** | One upper/middle/lower/reviewer stack, with human and ChatGPT Pro as upper-level intervention channels.  The lower layer has a natural-language architect, a Lean worker, and a necessary-condition verifier.  Middle agents coordinate their handoffs and maintain the insight population. | Targets where one coherent planner can keep the natural-language and Lean tracks synchronized without much duplicated strategy work. |
-| **Game Harness** | Two semi-independent teams plus a Game Council: the Natural-Language Team explores proof/circuit ideas, the Lean Team translates selected ideas into Lean, and the Game Council compares handoffs, preserves useful insights, decides capacity increases, and decides exact-to-approximate phase switches. | Targets where the search needs more strategic diversity, or where natural-language construction ideas and Lean implementation attempts keep failing to reuse each other. |
+| **Game Harness** | Two semi-independent hierarchical teams plus a Game Council.  The Natural-Language Team has its own upper/middle/lower stack and competes by producing reviewer-plausible human proofs.  The Lean Team has its own upper/middle/lower stack and competes by producing compiled Lean certificates.  The independent team directors and middle curators can run in parallel; the Game Council then transfers insights both ways, decides capacity increases, and controls exact-to-approximate phase switches. | Targets where strategic diversity matters, or where natural-language insight and Lean formalization keep failing to reuse each other. |
 
 Both harnesses use the same acceptance rule: only Lean-certified constructions
 enter the certified population or appear as achieved points in evolution
 curves.  Natural-language sketches, simulator checks, Qiskit tests, and Pro
 answers can guide search, but they are not final certificates.
 
-Both harnesses also have the same user-facing closeout.  After a Lean
-certificate closes, ABEIS should export:
+Both harnesses also have the same user-facing closeout.  If the Lean Team closes a certificate, the Natural-Language Team translates it into a human-readable proof note.  If the Natural-Language Team finds a reviewer-plausible construction first, the Game Council sends it to the Lean Team for formalization.  After a Lean certificate closes, ABEIS should export:
 
 - a step-by-step LaTeX block-encoding statement and proof that a user can copy
   into a paper;
@@ -345,7 +344,7 @@ language summaries, ChatGPT Pro prompt if unresolved, a user-copyable LaTeX BE
 proof after Lean closure, and checked executable exports such as Qiskit,
 QuantumKatas-style tests, or QASM.
 
-The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
+The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  The web page is a task builder and runner packet generator, not a public model-credit service: users provide their own API key, self-hosted runner endpoint, or local CLI wrappers.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
 
 Users can also request post-certification executable outputs.  The static web
 builder and task packets support Qiskit, QuantumKatas-style exercises, and

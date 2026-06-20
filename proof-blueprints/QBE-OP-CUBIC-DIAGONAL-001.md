@@ -3,7 +3,7 @@
 Task id: `QBE-OP-CUBIC-DIAGONAL-001`
 Title: Cubic diagonal oracle block encoding
 Mode: `exploratoryConstruction`
-Updated: `2026-06-20 16:08:27`
+Updated: `2026-06-20 17:11:56`
 Blueprint stage: `Stage 2 DAG proof discharge, with source-transcript checks still active`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -624,8 +624,6 @@ Recent task-relevant declarations:
 
 | Kind | Lean name | File |
 |---|---|---|
-| def | `expandedRyCleanEntryForCubicAmplitudes` | `QuantumBlockEncoding/CubicStatePreparation.lean:982` |
-| theorem | `expandedRyCleanEntryForCubicAmplitudes_of_standardTier` | `QuantumBlockEncoding/CubicStatePreparation.lean:995` |
 | structure | `ExpandedCubicArithmeticBackend` | `QuantumBlockEncoding/CubicStatePreparation.lean:1020` |
 | def | `symbolicExpandedCubicArithmeticBackend` | `QuantumBlockEncoding/CubicStatePreparation.lean:1035` |
 | def | `expandedArithmeticBackendComputesCubicAmplitude` | `QuantumBlockEncoding/CubicStatePreparation.lean:1051` |
@@ -647,26 +645,28 @@ Recent task-relevant declarations:
 | def | `expandedControlledRyBackendBridge` | `QuantumBlockEncoding/CubicStatePreparation.lean:1296` |
 | theorem | `expandedControlledRyUsesCubicAngle_of_backendBridge` | `QuantumBlockEncoding/CubicStatePreparation.lean:1302` |
 | theorem | `expandedControlledRyBackendBridge_iff_of_standardTier` | `QuantumBlockEncoding/CubicStatePreparation.lean:1318` |
-| structure | `ExpandedArithmeticCleanUncomputeWitness` | `QuantumBlockEncoding/CubicStatePreparation.lean:1344` |
-| def | `expandedWorkspaceCleanUncomputedTransparent` | `QuantumBlockEncoding/CubicStatePreparation.lean:1372` |
-| theorem | `expandedWorkspaceCleanUncomputedTransparent_of_witness` | `QuantumBlockEncoding/CubicStatePreparation.lean:1376` |
-| def | `fixedDenomCubicComputeStep` | `QuantumBlockEncoding/CubicStatePreparation.lean:1424` |
-| def | `fixedDenomCubicUncomputeStep` | `QuantumBlockEncoding/CubicStatePreparation.lean:1432` |
-| theorem | `fixedDenomCubicComputeStep_matches_backend_on_clean` | `QuantumBlockEncoding/CubicStatePreparation.lean:1439` |
-| theorem | `fixedDenomCubicUncomputeStep_after_compute` | `QuantumBlockEncoding/CubicStatePreparation.lean:1448` |
-| def | `fixedDenomExpandedArithmeticCleanUncomputeWitness` | `QuantumBlockEncoding/CubicStatePreparation.lean:1468` |
-| theorem | `fixedDenomWorkspaceCleanUncomputedTransparent` | `QuantumBlockEncoding/CubicStatePreparation.lean:1487` |
-| def | `expandedAmplitudeOracleCleanBlockContract` | `QuantumBlockEncoding/CubicStatePreparation.lean:1506` |
-| theorem | `expandedAmplitudeOracleCleanBlockContract_diagonal` | `QuantumBlockEncoding/CubicStatePreparation.lean:1515` |
-| theorem | `expandedAmplitudeOracleCleanBlockContract_eq_target` | `QuantumBlockEncoding/CubicStatePreparation.lean:1522` |
-| def | `expandedAmplitudeOracleSemanticContract` | `QuantumBlockEncoding/CubicStatePreparation.lean:1534` |
-| theorem | `expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target` | `QuantumBlockEncoding/CubicStatePreparation.lean:1539` |
-| def | `primitiveAmplitudeOracleCandidate` | `QuantumBlockEncoding/CubicStatePreparation.lean:1551` |
-| theorem | `primitiveAmplitudeOracleCandidate_costTuple_eq` | `QuantumBlockEncoding/CubicStatePreparation.lean:1568` |
-| theorem | `primitiveAmplitudeOracleCandidate_unitary_from_contract` | `QuantumBlockEncoding/CubicStatePreparation.lean:1579` |
-| theorem | `primitiveAmplitudeOracleCandidate_block_from_contract` | `QuantumBlockEncoding/CubicStatePreparation.lean:1585` |
-| def | `primitiveAmplitudeOracleVerified` | `QuantumBlockEncoding/CubicStatePreparation.lean:1599` |
-| def | `amplitudeOracleClaim` | `QuantumBlockEncoding/CubicStatePreparation.lean:1607` |
+| structure | `ExpandedControlledRyWorkspaceReadonlyWitness` | `QuantumBlockEncoding/CubicStatePreparation.lean:1340` |
+| def | `expandedControlledRyWorkspaceReadonlyTransparent` | `QuantumBlockEncoding/CubicStatePreparation.lean:1360` |
+| structure | `ExpandedArithmeticCleanUncomputeWitness` | `QuantumBlockEncoding/CubicStatePreparation.lean:1377` |
+| def | `expandedWorkspaceCleanUncomputedTransparent` | `QuantumBlockEncoding/CubicStatePreparation.lean:1405` |
+| theorem | `expandedWorkspaceCleanUncomputedTransparent_of_witness` | `QuantumBlockEncoding/CubicStatePreparation.lean:1409` |
+| def | `fixedDenomCubicComputeStep` | `QuantumBlockEncoding/CubicStatePreparation.lean:1457` |
+| def | `fixedDenomCubicUncomputeStep` | `QuantumBlockEncoding/CubicStatePreparation.lean:1465` |
+| theorem | `fixedDenomCubicComputeStep_matches_backend_on_clean` | `QuantumBlockEncoding/CubicStatePreparation.lean:1472` |
+| theorem | `fixedDenomCubicUncomputeStep_after_compute` | `QuantumBlockEncoding/CubicStatePreparation.lean:1481` |
+| def | `fixedDenomExpandedArithmeticCleanUncomputeWitness` | `QuantumBlockEncoding/CubicStatePreparation.lean:1501` |
+| theorem | `fixedDenomWorkspaceCleanUncomputedTransparent` | `QuantumBlockEncoding/CubicStatePreparation.lean:1520` |
+| def | `expandedAmplitudeOracleCleanBlockContract` | `QuantumBlockEncoding/CubicStatePreparation.lean:1539` |
+| theorem | `expandedAmplitudeOracleCleanBlockContract_diagonal` | `QuantumBlockEncoding/CubicStatePreparation.lean:1548` |
+| theorem | `expandedAmplitudeOracleCleanBlockContract_eq_target` | `QuantumBlockEncoding/CubicStatePreparation.lean:1555` |
+| def | `expandedAmplitudeOracleSemanticContract` | `QuantumBlockEncoding/CubicStatePreparation.lean:1567` |
+| theorem | `expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target` | `QuantumBlockEncoding/CubicStatePreparation.lean:1572` |
+| def | `primitiveAmplitudeOracleCandidate` | `QuantumBlockEncoding/CubicStatePreparation.lean:1584` |
+| theorem | `primitiveAmplitudeOracleCandidate_costTuple_eq` | `QuantumBlockEncoding/CubicStatePreparation.lean:1601` |
+| theorem | `primitiveAmplitudeOracleCandidate_unitary_from_contract` | `QuantumBlockEncoding/CubicStatePreparation.lean:1612` |
+| theorem | `primitiveAmplitudeOracleCandidate_block_from_contract` | `QuantumBlockEncoding/CubicStatePreparation.lean:1618` |
+| def | `primitiveAmplitudeOracleVerified` | `QuantumBlockEncoding/CubicStatePreparation.lean:1632` |
+| def | `amplitudeOracleClaim` | `QuantumBlockEncoding/CubicStatePreparation.lean:1640` |
 | structure | `RegisterLayout` | `QuantumBlockEncoding/BlockEncoding.lean:14` |
 | structure | `BlockEncodingSpec` | `QuantumBlockEncoding/BlockEncoding.lean:33` |
 | structure | `BlockEncodingCost` | `QuantumBlockEncoding/BlockEncoding.lean:50` |
@@ -696,27 +696,15 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-an interface attempt. Next retrieval packet: read task, conversion window active frontier, proof obligations top table, candidate active-leaf selection, latest dialogue, and the readonly verifier packet; do not read broad literature or restart cleanup/root/export work.
+s.
 
-## 2026-06-20 15:53:53 - middle
+## 2026-06-20 16:44:25 - upper
 
-Report/export audit complete: zh_status.md and latest.md are current to the 15:40 memory sync; latest.tex should be refreshed only at final audit or explicit proof-note export. Raw logs, trials, verifier JSON/raw files, diagnostic scripts, pycache, and retrieval index are not human entry points. Open blocker remains DIAG-RY-WORKSPACE-READONLY-001; no Qiskit, QuantumKatas-style, or QASM3 export packet until DIAG-ROOT-001 has a named Lean certificate. Gate passed: python3 tools/qbe.py check.
+Upper proof-DAG strategy: mode remains exploratoryConstruction for fixed diagonal D_n with alpha=1 and no paper/cited-source dependency. Root theorem is DIAG-ROOT-001; shortest live path is DIAG-EXP-UNCOMP-CONTRACT-REFRACTOR-001 or a nontrivial cleanup bridge -> DIAG-EXP-BLOCK-001 extraction -> unitarity/circuit semantics -> DIAG-ROOT-001 -> exports. DIAG-RY-WORKSPACE-READONLY-001 is compiled and stale; retire it plus stale direct opaque arithmetic/rotation bridge retries and all export/root attempts. Next objective: middle must synchronize conversion window, proof obligations, candidate population, and report maps, then choose the transparent cleanup contract refactor consuming fixedDenomWorkspaceCleanUncomputedTransparent plus expandedControlledRyWorkspaceReadonlyTransparent unless it can state a real nontrivial bridge. Lower1 writes the cleanup-boundary proof packet; lower2 edits only QuantumBlockEncoding/CubicStatePreparation.lean at expandedAmplitudeOracleCleanBlockContract after middle sync; lower3 checks only stale-map/finite-register necessary conditions and keeps block_entry, extraction, unitarity, root, and export fields null. Reviewer must require python3 tools/qbe.py check and reject True/trivial/axiom/opaque-predicate promotion, rank-one stateprep drift, and pre-certificate exports.
 
-## 2026-06-20 15:58:06 - middle
+## 2026-06-20 16:48:37 - upper
 
-Middle handoff: retired DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 as closed transparent cleanup memory and synchronized retrieval/todo/digest around active leaf DIAG-RY-WORKSPACE-READONLY-001. Lower 2 should add only ExpandedControlledRyWorkspaceReadonlyWitness and expandedControlledRyWorkspaceReadonlyTransparent in QuantumBlockEncoding/CubicStatePreparation.lean; keep expandedWorkspaceCleanUncomputed, clean-block extraction, unitarity, DIAG-ROOT-001, and exports blocked. Gate passed: python3 tools/qbe.py check.
-
-## 2026-06-20 16:00:33 - middle
-
-Middle verification pass: task-local memory is synchronized around active leaf DIAG-RY-WORKSPACE-READONLY-001. DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 remains retired as a closed transparent cleanup witness; lower 2 should add only the transparent controlled-Ry workspace-readonly interface in QuantumBlockEncoding/CubicStatePreparation.lean. Keep expandedWorkspaceCleanUncomputed, extraction, unitarity, DIAG-ROOT-001, and Qiskit/QuantumKatas/QASM3 exports blocked until named Lean certificates exist. Gate passed: python3 tools/qbe.py check (lake build; lake build Tests).
-
-## 2026-06-20 16:04:41 - middle
-
-Middle parliament reconciliation complete: certified population remains empty; expanded arithmetic plus controlled-Ry route stays in the insight pool; active lower leaf is DIAG-RY-WORKSPACE-READONLY-001 with lower 1/2/3 packets recorded in todo.md and 90_handoff.md. Chief justice requested no capacity increase and no exact-to-approx switch; Pro prompt trigger is off under the no-external-knowledge directive. Gate passed: python3 tools/qbe.py check.
-
-## 2026-06-20 16:06:54 - middle
-
-Middle refresh verified current memory is already synchronized: DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001 is retired as a closed transparent cleanup witness, and DIAG-RY-WORKSPACE-READONLY-001 remains the active lower leaf. Lower 2 should add only the transparent controlled-Ry workspace-readonly interface in QuantumBlockEncoding/CubicStatePreparation.lean; keep expandedWorkspaceCleanUncomputed, extraction, unitarity, DIAG-ROOT-001, and Qiskit/QuantumKatas/QASM3 exports blocked. Gate passed: python3 tools/qbe.py check.
+Upper process/memory audit: mode remains exploratoryConstruction for the fixed diagonal operator D_n with alpha=1 and no paper/cited-source dependency. DIAG-RY-WORKSPACE-READONLY-001 is compiled in Lean as ExpandedControlledRyWorkspaceReadonlyWitness / expandedControlledRyWorkspaceReadonlyTransparent, so it is stale for lower reassignment. Durable maps are inconsistent: conversion window, proof obligations, candidate population, reports, and refreshed blueprint still describe that leaf as active/planned, while dialogue/reviewer feedback says retire it. Some lower readonly feedback artifact paths referenced in dialogue/trials are missing from verifier-feedback; middle should restore or mark them missing and preserve the stale_leaf verdict. Next objective: middle must update conversion window, proof obligations, candidate population, preferred-language report, retrieval index, and proof blueprint to retire readonly and expose one active leaf: DIAG-EXP-UNCOMP-CONTRACT-REFRACTOR-001, choosing transparent cleanup contract refactor that consumes fixedDenomWorkspaceCleanUncomputedTransparent plus expandedControlledRyWorkspaceReadonlyTransparent, unless it can state a real nontrivial cleanup bridge. Lower1 writes the cleanup-boundary DAG only; lower2 edits only QuantumBlockEncoding/CubicStatePreparation.lean after middle sync; lower3 checks stale-map/register diagnostics only and keeps block-entry, extraction, unitarity, root, and export fields null. Stop direct opaque bridge retries, root attempts, and exports until a named Lean route certificate exists. Gate passed: python3 tools/qbe.py check.
 ````
 
 ## Gate Policy
