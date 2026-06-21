@@ -512,7 +512,7 @@ Selected block-encoding and oracle-construction targets:
 
 ```bibtex
 @misc{abeis2026,
-  author = {{Anonymous ABEIS Contributors}},
+  author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Zhang, Qingfu and Wong, Hau-san and Nitanda, Atsushi},
   title = {{Auto-Lean-in-Sleep: Block Encoding for Quantum Computing}},
   year = {2026},
   note = {Project page: \url{https://github.com/DakeBU/Quantum-Computing-Block-Encoding}}
