@@ -97,20 +97,28 @@ The current technical-report case study is the transfer-operator task:
 E_k = |0><k|_time ⊗ |0><1|_type ⊗ I
 ```
 
-ABEIS now records two useful runs for the concrete `r = 1, k = 1` instance.
+ABEIS now records two parallel attempts for the concrete `r = 1, k = 1`
+instance.  They are reported as separate attempts, not as a time-ordered
+history.
 
 | Run | Harness and inputs | Certified result | Score |
 | --- | --- | --- | --- |
-| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | clean-start Hierarchical Harness; no previous Pro answer or old optctrl memory | `coldE1Candidate_blockProjection` and `coldE1CandidateImage_permutation_certificate` | `(4,4,1,0)` |
-| `QBE-OP-OPTCTRL-001` | earlier Pro-assisted/evolution run; Pro idea entered only as insight-pool input before Lean promotion | `OptimalControl.evolvedEqFlipVerified` | `(4,2,1,0)` |
+| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | no-Pro Hierarchical Harness attempt; no Pro answer or old optctrl memory | `coldE1Candidate_blockProjection` and `coldE1CandidateImage_permutation_certificate` | `(4,4,1,0)` checkpoint |
+| `QBE-OP-OPTCTRL-001` | Pro-assisted evolution attempt; Pro idea entered only as insight-pool input before Lean promotion | `OptimalControl.evolvedEqFlipVerified` | `(4,2,1,0)` |
 
-The clean-start run proves the system can recover a correct finite
-permutation block encoding from the operator contract alone.  The earlier
-Pro-assisted run shows why the human/Pro intervention channel is useful:
+The no-Pro Hierarchical attempt proves the system can recover a correct finite
+permutation block encoding from the operator contract alone.  It is still
+being continued through the full convergence policy: after exact search stops
+improving, the harness should explicitly enter the approximate phase.  The
+Pro-assisted attempt shows why the human/Pro intervention channel is useful:
 external structure can improve the certified population after Lean promotes it
 from an untrusted idea to a theorem-backed candidate.
 
-![Clean-start versus Pro-assisted transfer-operator evolution](docs/assets/optctrl_hier_vs_pro.png)
+![Two parallel transfer-operator attempts](docs/assets/optctrl_hier_vs_pro.png)
+
+No-Pro Hierarchical Harness checkpoint storyboard:
+
+![No-Pro Hierarchical checkpoint storyboard](docs/assets/optctrl_cold_clean_storyboard.png)
 
 The intended loop is:
 
@@ -142,11 +150,15 @@ Lean-certified storyboard:
 
 ![Lean-certified transfer-operator candidates](docs/assets/optctrl_storyboard.png)
 
+Post-Lean Qiskit export results for human readers:
+
+![Post-Lean Qiskit export checks](docs/assets/qiskit_export_results.png)
+
 This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general
 arbitrary-register theorem, or a Lean-proved global optimality theorem.
 
-Clean-start Hierarchical Harness closeout:
+No-Pro Hierarchical Harness checkpoint gate:
 
 ```text
 candidate = COLD-CLEAN-PERM-001
@@ -337,7 +349,16 @@ ABEIS has three equivalent user entrypoints.  All three must produce the same ki
 
 1. **Local CLI template.**  Download the repository, replace the operator text in a template command, and run `tools/qbe.py`.
 2. **AI chat window.**  Download the repository and tell Codex, Claude, GLM, Gemini, Minimax, or another coding agent: “Use the ABEIS system in this repository to solve the following operator block-encoding problem.”  The agent should call the same `ingest-user-problem`, `sleep-run`, and `check` commands as the CLI template.
-3. **Website task builder.**  Use the static website in `web/` or a deployed public site to paste the oracle description, choose the report language, choose agent backends, optionally paste user/ChatGPT-Pro/external-AI construction ideas, and generate the same task packet and agent profile.  Like LLM4AD_Next-style web front ends, the public ABEIS page should be a low-entry interface; model execution uses the user's own API keys or local CLI wrappers, and Lean remains the verification authority.
+3. **Website task builder and dashboard.**  Use the website in `web/` in either
+   local mode or hosted mode.  Local mode means: download the repository, serve
+   `web/` in a browser, paste the oracle description, then run the generated
+   local CLI/runner command with Codex, Claude, GLM, Gemini, Minimax, or a
+   custom wrapper installed on that machine.  Hosted mode means: use the public
+   page without downloading first, but provide a user-owned API key or
+   self-hosted runner endpoint.  In both modes, the page generates the same task
+   packet and renders the same dashboard artifacts: exact/approximate curves,
+   certified circuit storyboards, selected-language summaries, Pro prompts, and
+   post-Lean Qiskit/QuantumKatas/QASM export status.
 
 Main local CLI workflow:
 
@@ -383,7 +404,7 @@ language summaries, ChatGPT Pro prompt if unresolved, a user-copyable LaTeX BE
 proof after Lean closure, and checked executable exports such as Qiskit,
 QuantumKatas-style tests, or QASM.
 
-The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  The web page is a task builder and runner packet generator, not a public model-credit service: users provide their own API key, self-hosted runner endpoint, or local CLI wrappers.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
+The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  The web page is not a public model-credit service.  In local-web mode it helps a downloaded checkout run local CLIs and then renders runner JSON.  In hosted-web mode it uses the user's API key or self-hosted runner endpoint.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
 
 Users can also request post-certification executable outputs.  The static web
 builder and task packets support Qiskit, QuantumKatas-style exercises, and
@@ -400,6 +421,10 @@ Progress during a run is visible in these files:
 - `runs/<run-id>/todo.md` and `memory_digest.md`: compact next-cycle state.
 - `runs/logs/*.log`: raw execution log.
 - `paper-notes/problem-exports/<task-id>/latest.tex`: user-copyable proof note after closeout.
+- `reports/<task-id>/dashboard.json`, `evolution.json`, and
+  `circuit_storyboard.json`: optional web-dashboard inputs for rendering
+  champion status, exact/approximate curves, BE diagrams, and executable export
+  checks.
 
 Project layout:
 

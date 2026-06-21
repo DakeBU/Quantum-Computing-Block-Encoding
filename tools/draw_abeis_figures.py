@@ -296,7 +296,7 @@ def draw_optctrl_hier_vs_pro():
         ax.set_ylim(-0.3, 6.6)
         ax.set_xlabel("Certified step", fontsize=13, fontweight="bold")
 
-    ax1.set_title("Clean-start Hierarchical Harness", fontsize=16, fontweight="bold", color=NAVY)
+    ax1.set_title("Attempt A: no-Pro Hierarchical Harness", fontsize=16, fontweight="bold", color=NAVY)
     ax1.set_ylabel("Lower is better", fontsize=13, fontweight="bold")
     cold_steps = [0, 1, 2]
     cold_gates = [None, 4, 4]
@@ -305,12 +305,12 @@ def draw_optctrl_hier_vs_pro():
     ax1.plot([1, 2], [4, 4], marker="s", ms=8, lw=3.0, color=ORANGE, label="Depth")
     ax1.scatter([0], [0], s=70, marker="x", color=RED, linewidth=2.4)
     ax1.annotate("target fixed", (0, 0), xytext=(10, 18), textcoords="offset points", fontsize=10, fontweight="bold", color=TEXT)
-    ax1.annotate("COLD-CLEAN-PERM-001\nLean block + permutation", (1, 4), xytext=(0, 18), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=TEXT)
+    ax1.annotate("COLD-CLEAN-PERM-001\nLean checkpoint", (1, 4), xytext=(0, 18), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=TEXT)
     ax1.annotate("Qiskit/export\npassed", (2, 4), xytext=(0, -38), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=GREEN)
     ax1.set_xticks(cold_steps)
     ax1.set_xticklabels(["target", "Lean", "export"])
 
-    ax2.set_title("Earlier Pro-assisted evolution", fontsize=16, fontweight="bold", color=NAVY)
+    ax2.set_title("Attempt B: Pro-assisted evolution", fontsize=16, fontweight="bold", color=NAVY)
     gens = [2, 6, 7, 8]
     gates = [6, 4, 4, 4]
     depths = [5, 4, 2, 2]
@@ -325,12 +325,110 @@ def draw_optctrl_hier_vs_pro():
 
     handles, labels_ = ax2.get_legend_handles_labels()
     fig.legend(handles, labels_, loc="lower center", ncol=2, frameon=True, fontsize=12)
-    fig.suptitle("Transfer-operator case: cold-start success and Pro-assisted improvement", fontsize=20, fontweight="bold", color=NAVY)
+    fig.suptitle("Transfer-operator case: two parallel certified attempts", fontsize=20, fontweight="bold", color=NAVY)
     fig.tight_layout(rect=(0, 0.08, 1, 0.93), pad=1.3)
     for path in [
         ARTICLE_FIG / "optctrl_hier_vs_pro.png",
         README_FIG / "optctrl_hier_vs_pro.png",
     ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
+def draw_optctrl_cold_clean_storyboard():
+    fig, ax = setup(15.6, 7.8)
+    label(ax, 5, 94, "Attempt A storyboard: no-Pro Hierarchical Harness checkpoint", fs=22, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        5,
+        89.7,
+        "This figure shows the currently Lean-certified clean-start candidate. It is a checkpoint under continued convergence testing, not a final optimality claim.",
+        fs=11.5,
+        color=MUTED,
+        ha="left",
+    )
+
+    group_box(ax, 5, 14, 90, 66, "", "#CBD5E1", "#FFFFFF")
+    label(ax, 9, 74, "COLD-CLEAN-PERM-001", fs=17, weight="bold", color=NAVY, ha="left")
+    badge(ax, 71, 71.8, 18, 5, "score (4,4,1,0)", fc=GREEN_L, ec=GREEN, fs=11.2)
+    label(ax, 9, 68.6, "Target:  E1 = |0><1|_T tensor |0><1|_tau tensor I_S", fs=12, color=TEXT, ha="left")
+    label(ax, 9, 64.7, "Full basis index: 8*a + 4*T + 2*tau + S.  Clean block projects a = 0 on both sides.", fs=10.8, color=MUTED, ha="left")
+
+    # Draw a compact circuit-level schematic.
+    x0, x1 = 12, 88
+    ys = [54, 45, 36, 27]
+    names = ["a", "T", "tau", "S"]
+    for nm, yy in zip(names, ys):
+        wire(ax, x0, x1, yy, nm)
+
+    # Logical permutation block.
+    gate(ax, 28, 24.2, 22, 32.8, "finite\npermutation\nU_pi", fc=BLUE_L, ec=BLUE, fs=13)
+    label(ax, 39, 60.2, "Lean proves U_pi is unitary by an explicit inverse table", fs=10.2, color=TEXT)
+    arrow(ax, 51, 54, 61, 54, color=GREEN, lw=2.5)
+    arrow(ax, 51, 45, 61, 45, color=GREEN, lw=2.5)
+    arrow(ax, 51, 36, 61, 36, color=GREEN, lw=2.5)
+    arrow(ax, 51, 27, 61, 27, color=GREEN, lw=2.5)
+
+    # Clean projection and target branch.
+    gate(ax, 63, 57.0, 17, 8.0, "clean\nprojector", fc=GREEN_L, ec=GREEN, fs=10.5)
+    gate(ax, 63, 18.7, 17, 8.0, "dirty branches\nremoved", fc=GRAY, ec="#64748B", fs=10.2)
+    label(ax, 55, 19.8, "(0,1,1,S) maps to (0,0,0,S);", fs=10.2, color=TEXT)
+    label(ax, 55, 16.7, "all other clean inputs leave the clean block.", fs=10.2, color=TEXT)
+
+    group_box(ax, 10, 6.5, 80, 5.5, "", GREEN, "#F4FBF6")
+    label(
+        ax,
+        50,
+        9.2,
+        "Lean certificates: blockProjection + permutation certificate.  Qiskit is a post-Lean executable export.",
+        fs=10.2,
+        weight="bold",
+        color=NAVY,
+    )
+
+    for path in [ARTICLE_FIG / "optctrl_cold_clean_storyboard.png", README_FIG / "optctrl_cold_clean_storyboard.png"]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
+def draw_qiskit_export_results():
+    fig, ax = setup(14.8, 7.2)
+    label(ax, 5, 94, "Post-Lean executable exports: Qiskit checks for the transfer operator", fs=21, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        5,
+        89.8,
+        "Qiskit is used here as a runnable artifact and finite self-test after Lean certification, not as the mathematical certificate.",
+        fs=12,
+        color=MUTED,
+        ha="left",
+    )
+
+    group_box(ax, 5, 16, 42, 66, "", "#CBD5E1", "#FFFFFF")
+    label(ax, 8, 77.5, "Attempt A: no-Pro", fs=15.5, weight="bold", color=NAVY, ha="left")
+    badge(ax, 31, 76.0, 12, 4.6, "(4,4,1,0)", fc=GREEN_L, ec=GREEN, fs=10.5)
+    box(ax, 9, 62, 34, 8, "Lean certificate", "blockProjection + permutation", fc=BLUE_L, ec=BLUE, fs=11.8, subfs=8.6)
+    box(ax, 9, 49, 34, 8, "Qiskit finite check", "matrix / block / unitarity", fc=GREEN_L, ec=GREEN, fs=11.8, subfs=8.6)
+    box(ax, 9, 36, 34, 8, "Status", "all finite export checks passed", fc="#FFFFFF", ec=GREEN, fs=12, subfs=9.5)
+    label(ax, 26, 27.5, "This export uses a finite permutation matrix;\nit is not a primitive hardware decomposition.", fs=10.4, color=MUTED)
+
+    group_box(ax, 53, 16, 42, 66, "", "#CBD5E1", "#FFFFFF")
+    label(ax, 56, 77.5, "Attempt B: Pro", fs=15.5, weight="bold", color=NAVY, ha="left")
+    badge(ax, 79, 76.0, 12, 4.6, "(4,2,1,0)", fc=GREEN_L, ec=GREEN, fs=10.5)
+    box(ax, 57, 62, 34, 8, "Lean certificate", "evolvedEqFlipVerified", fc=BLUE_L, ec=BLUE, fs=11.8, subfs=8.8)
+    box(ax, 57, 49, 34, 8, "Qiskit circuit", "4 qubits, 4 gates,\nQiskit depth 2", fc=GREEN_L, ec=GREEN, fs=11.4, subfs=8.0)
+    box(ax, 57, 36, 34, 8, "Errors", "clean-block error 0\nunitarity error 0", fc="#FFFFFF", ec=GREEN, fs=11.4, subfs=8.2)
+    label(ax, 74, 27.5, "The exported Python circuit is runnable\nand matches the Lean-certified matrix.", fs=10.4, color=MUTED)
+
+    arrow(ax, 43.5, 53, 52.5, 53, color=ORANGE, lw=2.8)
+    label(ax, 48, 58, "resource\nimprovement", fs=10.2, weight="bold", color=ORANGE)
+
+    group_box(ax, 11, 6.5, 78, 5.5, "", GREEN, "#F4FBF6")
+    label(ax, 50, 9.2, "Human-facing result: users receive both the Lean theorem names and runnable Qiskit export checks.", fs=10.8, weight="bold", color=NAVY)
+
+    for path in [ARTICLE_FIG / "qiskit_export_results.png", README_FIG / "qiskit_export_results.png"]:
         path.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(path, bbox_inches="tight", facecolor=BG)
     plt.close(fig)
@@ -343,6 +441,8 @@ def main():
     draw_optctrl_storyboard()
     draw_optctrl_evolution()
     draw_optctrl_hier_vs_pro()
+    draw_optctrl_cold_clean_storyboard()
+    draw_qiskit_export_results()
 
 
 if __name__ == "__main__":

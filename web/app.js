@@ -31,6 +31,37 @@ const lower3Backend = document.getElementById("lower3Backend");
 const reviewerBackend = document.getElementById("reviewerBackend");
 const packet = document.getElementById("packet");
 const copyStatus = document.getElementById("copyStatus");
+const dashboardJson = document.getElementById("dashboardJson");
+const dashboardView = document.getElementById("dashboardView");
+
+const sampleDashboard = {
+  task: "QBE-OP-OPTCTRL-COLD-CLEAN-001",
+  harness: "Hierarchical Harness",
+  phase: "exact search, continued convergence test",
+  champion: {
+    name: "COLD-CLEAN-PERM-001",
+    lean: "coldE1Candidate_blockProjection",
+    score: { gateCount: 4, depth: 4, auxiliaryQubits: 1, oracleCalls: 0 },
+    status: "Lean-certified checkpoint",
+  },
+  curves: [
+    { generation: 1, phase: "exact", gateCount: 4, depth: 4, auxiliaryQubits: 1 },
+    { generation: 2, phase: "exact", gateCount: 4, depth: 4, auxiliaryQubits: 1 },
+  ],
+  circuits: [
+    {
+      name: "COLD-CLEAN-PERM-001",
+      kind: "finite permutation",
+      lean: "coldE1CandidateImage_permutation_certificate",
+      score: "(4,4,1,0)",
+      sketch: "selected clean inputs (a,T,tau,S)=(0,1,1,S) map to (0,0,0,S); other clean inputs leave the clean block",
+    },
+  ],
+  exports: [
+    { target: "Qiskit", status: "passed", detail: "finite matrix, block-entry, unitarity, and Qiskit operator checks pass" },
+  ],
+  nextAction: "Continue exact convergence; if no improvement, enter approximate phase and plot epsilon ladder.",
+};
 
 function selectedLanguage() {
   if (languagePreset.value === "custom") {
@@ -90,6 +121,26 @@ ABEIS_DEFAULT_MODEL=${model}
 ABEIS_RUNNER_ENDPOINT=${endpoint}
 # Set this in your shell or self-hosted runner secret store, not in Git:
 ${keyName}=...`;
+}
+
+function localRunnerCommand(title) {
+  const profileName = `${title}.json`;
+  const harnessFlag = harnessMode.value === "game" ? "--game-harness" : "--hierarchical-harness";
+  const extra = harnessMode.value === "game" ? "  --natural-lower-count 2 \\\n  --lean-lower-count 2 \\\n" : "";
+  return `# In a downloaded checkout, serve the UI and run the task with local tools.
+python3 -m http.server 8080 -d web
+
+# In another terminal, save this packet and the generated profile, then run:
+python3 tools/qbe.py sleep-run "${title}" \\
+  ${harnessFlag} \\
+${extra}  --agent-profile "agent-profiles/${profileName}" \\
+  --execute \\
+  --check-each-cycle
+
+# The web dashboard can render:
+# reports/${title}/dashboard.json
+# reports/${title}/evolution.json
+# reports/${title}/circuit_storyboard.json`;
 }
 
 
@@ -239,6 +290,18 @@ ${runnerEnvTemplate()}
 The public ABEIS website should not spend project-owned model credits for users.
 Users either run the CLI locally, connect the page to their own self-hosted
 runner, or paste this task packet into their preferred AI coding agent.
+
+Local repository web mode uses the same packet.  Open \`web/index.html\`
+through a local static server, run the command below in the downloaded
+repository, and paste the resulting dashboard JSON back into the page:
+
+\`\`\`bash
+${localRunnerCommand(title)}
+\`\`\`
+
+Hosted web mode is different only in execution ownership: the page may talk to
+a user-owned runner endpoint or API-backed service, but the runner must still
+write the same ABEIS artifacts and the same Lean gate output.
 
 ## Agent Backend Preferences
 
@@ -396,6 +459,116 @@ ${sleepRunCommands(title, `${title}.json`)}
   packet.textContent = md;
 }
 
+function htmlEscape(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function normalizeScore(score) {
+  if (!score) {
+    return "unknown";
+  }
+  if (typeof score === "string") {
+    return score;
+  }
+  return `(${score.gateCount ?? "?"},${score.depth ?? "?"},${score.auxiliaryQubits ?? "?"},${score.oracleCalls ?? "?"})`;
+}
+
+function phaseClass(phase) {
+  return String(phase || "").toLowerCase().includes("approx") ? "approx" : "exact";
+}
+
+function renderCurve(curves) {
+  if (!Array.isArray(curves) || curves.length === 0) {
+    return `<p class="dashboard-empty">No certified evolution curve supplied yet.</p>`;
+  }
+  const maxValue = Math.max(
+    1,
+    ...curves.flatMap((point) => [Number(point.gateCount || 0), Number(point.depth || 0)]),
+  );
+  const rows = curves
+    .map((point) => {
+      const gate = Number(point.gateCount || 0);
+      const depth = Number(point.depth || 0);
+      const gateWidth = Math.max(4, (gate / maxValue) * 100);
+      const depthWidth = Math.max(4, (depth / maxValue) * 100);
+      return `<div class="curve-row ${phaseClass(point.phase)}">
+        <div class="curve-gen">Gen ${htmlEscape(point.generation ?? "?")}</div>
+        <div class="curve-bars">
+          <div class="bar-line"><span>gates</span><i style="width:${gateWidth}%"></i><b>${htmlEscape(gate)}</b></div>
+          <div class="bar-line depth"><span>depth</span><i style="width:${depthWidth}%"></i><b>${htmlEscape(depth)}</b></div>
+        </div>
+        <div class="curve-phase">${htmlEscape(point.phase || "exact")}</div>
+      </div>`;
+    })
+    .join("");
+  return `<div class="curve-list">${rows}</div>`;
+}
+
+function renderCircuitCards(circuits) {
+  if (!Array.isArray(circuits) || circuits.length === 0) {
+    return `<p class="dashboard-empty">No certified circuit storyboard supplied yet.</p>`;
+  }
+  return `<div class="circuit-grid">${circuits
+    .map(
+      (circuit) => `<article class="circuit-card-web">
+        <header>
+          <h4>${htmlEscape(circuit.name || "candidate")}</h4>
+          <span>${htmlEscape(circuit.score || normalizeScore(circuit.resource_score))}</span>
+        </header>
+        <div class="mini-circuit" aria-hidden="true">
+          <div class="wire-row"><b>a</b><i></i><em>U</em><i></i></div>
+          <div class="wire-row"><b>T</b><i></i><em>${htmlEscape(circuit.kind || "BE")}</em><i></i></div>
+          <div class="wire-row"><b>sys</b><i></i><em>I</em><i></i></div>
+        </div>
+        <p><strong>Lean:</strong> ${htmlEscape(circuit.lean || "pending")}</p>
+        <p>${htmlEscape(circuit.sketch || "No human-readable sketch supplied.")}</p>
+      </article>`,
+    )
+    .join("")}</div>`;
+}
+
+function renderExports(exports) {
+  if (!Array.isArray(exports) || exports.length === 0) {
+    return `<p class="dashboard-empty">No post-Lean executable export status supplied yet.</p>`;
+  }
+  return `<ul class="export-status">${exports
+    .map(
+      (item) => `<li><strong>${htmlEscape(item.target || "export")}:</strong> ${htmlEscape(item.status || "unknown")} — ${htmlEscape(item.detail || "")}</li>`,
+    )
+    .join("")}</ul>`;
+}
+
+function renderDashboardFromJson() {
+  let data;
+  try {
+    data = JSON.parse(dashboardJson.value.trim());
+  } catch (error) {
+    dashboardView.innerHTML = `<p class="dashboard-error">Could not parse JSON: ${htmlEscape(error.message)}</p>`;
+    return;
+  }
+  const champion = data.champion || {};
+  dashboardView.innerHTML = `<div class="dashboard-summary">
+      <div><span>Task</span><strong>${htmlEscape(data.task || "unknown")}</strong></div>
+      <div><span>Harness</span><strong>${htmlEscape(data.harness || "unknown")}</strong></div>
+      <div><span>Phase</span><strong>${htmlEscape(data.phase || "unknown")}</strong></div>
+      <div><span>Champion</span><strong>${htmlEscape(champion.name || "none")}</strong></div>
+      <div><span>Score</span><strong>${htmlEscape(normalizeScore(champion.score))}</strong></div>
+      <div><span>Status</span><strong>${htmlEscape(champion.status || "unknown")}</strong></div>
+    </div>
+    <h4>Certified exact/approximate curve</h4>
+    ${renderCurve(data.curves || data.evolution)}
+    <h4>Certified circuit storyboard</h4>
+    ${renderCircuitCards(data.circuits || data.storyboard)}
+    <h4>Post-Lean executable exports</h4>
+    ${renderExports(data.exports)}
+    <h4>Next action</h4>
+    <p class="next-action">${htmlEscape(data.nextAction || data.next_action || "No next action supplied.")}</p>`;
+}
+
 async function copyPacket() {
   await navigator.clipboard.writeText(packet.textContent);
   copyStatus.textContent = "Copied";
@@ -463,5 +636,12 @@ languagePreset.addEventListener("change", () => {
 document.getElementById("buildPacket").addEventListener("click", buildPacket);
 document.getElementById("copyPacket").addEventListener("click", copyPacket);
 document.getElementById("downloadPacket").addEventListener("click", downloadPacket);
+document.getElementById("renderDashboard").addEventListener("click", renderDashboardFromJson);
+document.getElementById("sampleDashboard").addEventListener("click", () => {
+  dashboardJson.value = JSON.stringify(sampleDashboard, null, 2);
+  renderDashboardFromJson();
+});
 
 buildPacket();
+dashboardJson.value = JSON.stringify(sampleDashboard, null, 2);
+renderDashboardFromJson();

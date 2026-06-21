@@ -311,6 +311,24 @@
           </ul>
         </div>
 
+        <div class="score-card dashboard-card">
+          <div class="section-head compact-head">
+            <h3>Run dashboard preview</h3>
+            <div class="actions mini-actions">
+              <button id="renderDashboard" type="button" class="secondary">Render JSON</button>
+              <button id="sampleDashboard" type="button" class="secondary">Load sample</button>
+            </div>
+          </div>
+          <p class="hint compact">
+            Local mode: run ABEIS in the downloaded repository and paste
+            `reports/&lt;task-id&gt;/dashboard.json` or `evolution.json` here.
+            Hosted mode: connect this page to a user-owned runner endpoint or
+            API-backed service, then render the same JSON outputs.
+          </p>
+          <textarea id="dashboardJson" spellcheck="false" placeholder='Paste runner JSON here, for example {"task":"...","champion":...,"curves":[...]}'></textarea>
+          <div id="dashboardView" class="dashboard-view" aria-live="polite"></div>
+        </div>
+
         <pre id="packet" class="packet" tabindex="0"></pre>
       </section>
     </main>
