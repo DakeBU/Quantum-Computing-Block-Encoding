@@ -103,14 +103,13 @@ history.
 
 | Run | Harness and inputs | Certified result | Score |
 | --- | --- | --- | --- |
-| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | no-Pro Hierarchical Harness attempt; no Pro answer or old optctrl memory | `coldE1Candidate_blockProjection` and `coldE1CandidateImage_permutation_certificate` | `(4,4,1,0)` checkpoint |
+| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | no-Pro Hierarchical Harness attempt; no Pro answer or old optctrl memory | `coldE1ExactImprove4Depth2_blockProjection` and `coldE1ExactImprove4Depth2Image_permutation_certificate` | `(4,2,1,0)` Lean-certified exact checkpoint; export/report sync pending |
 | `QBE-OP-OPTCTRL-001` | Pro-assisted evolution attempt; Pro idea entered only as insight-pool input before Lean promotion | `OptimalControl.evolvedEqFlipVerified` | `(4,2,1,0)` |
 
-The no-Pro Hierarchical attempt proves the system can recover a correct finite
-permutation block encoding from the operator contract alone.  It is still
-being continued through the full convergence policy: after exact search stops
-improving, the harness should explicitly enter the approximate phase.  The
-Pro-assisted attempt shows why the human/Pro intervention channel is useful:
+The no-Pro Hierarchical attempt proves the system can recover and improve a
+correct finite permutation block encoding from the operator contract alone.  It
+is currently in post-Lean export/report synchronization, not broad proof
+search.  The Pro-assisted attempt shows why the human/Pro intervention channel is useful:
 external structure can improve the certified population after Lean promotes it
 from an untrusted idea to a theorem-backed candidate.
 
@@ -375,6 +374,15 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --check-each-cycle
 ```
 
+`sleep-run` uses adaptive capacity by default: it starts with a small queue
+(upper director, middle coordinator, one lower worker, reviewer/build gate) and
+expands upper, middle, or lower capacity only after upper/reviewer memory
+records stagnation.  For operator construction, the default
+`--exact-stall-cycles 2` allows the controller to open Scenario 2 approximate
+search after a short exact-search patience budget when no Lean-certified exact
+candidate exists.  Add `--fixed-capacity` only for ablation runs where every
+cycle should consume the requested full panel and lower-agent counts.
+
 Choose a harness profile explicitly when you want controlled comparisons:
 
 ```bash
@@ -396,6 +404,19 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
   --execute \
   --check-each-cycle
 ```
+
+The harness-specific lower counts above are maxima under adaptive capacity, not
+a promise to run every listed agent in every cycle.  The controller starts
+small, expands only on recorded stagnation, and writes the effective capacity
+policy into each run's `00_context.md`.
+
+Case-study hyperparameters are recorded under `run-presets/`.  In particular,
+`run-presets/main_hier_high_to_low.md` records the no-Pro transfer-operator
+run that starts with high-capacity exact search and then switches to a reduced
+export/Qiskit/report closeout; `run-presets/hard_hier_hinted_exact_to_approx.md`
+records the hinted cubic-diagonal run that switches from exact search to
+Scenario 2 approximate search; and `run-presets/pro_assisted_optctrl.md`
+records the Pro-assisted transfer-operator attempt.
 
 For a fair profile comparison, run both harnesses in isolated worktrees with
 the same task packet, model profile, report language, active-time budget, and

@@ -256,8 +256,13 @@ python3 tools/qbe.py run-cycle QBE-AUTO-001 \
 Generate repeated decks:
 
 ```bash
-python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 8 --lower-count 3 --dry-run
+python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 8 --dry-run
 ```
+
+`sleep-run` defaults to adaptive capacity: small first cycle, then expansion
+only after upper/reviewer memory records stagnation.  Use
+`--fixed-capacity --lower-count 3` only for ablations that intentionally run
+the full requested queue every cycle.
 
 See `docs/agent_orchestration.md` and `docs/sleep_run_guide.md`.
 
@@ -308,7 +313,6 @@ then `default`.
 ```bash
 python3 tools/qbe.py sleep-run QBE-OP-001 \
   --cycles 4 \
-  --lower-count 3 \
   --parallel-lower \
   --agent-profile codex-parallel.example.json \
   --execute \

@@ -88,14 +88,15 @@ theorem.
 
 ## Adaptive Layer Panels
 
-Default operator-construction cycles use differentiated planning panels: an upper
-specialist panel, a middle specialist panel, three complementary lower roles,
-and a reviewer/build gate.  The point is not ceremony; block-encoding
-construction spends most of its intelligence on choosing the semantic tier,
-candidate family, resource target, and next proof leaf before Lean workers edit
-code.  For deliberately small local debugging, users may disable panels with
-`--no-upper-panel --no-middle-panel` and run lower prompts sequentially with
-`--sequential-lower`.
+Default `sleep-run` operator-construction cycles are adaptive and
+quota-conscious.  They start with a small queue: one upper director, one middle
+coordinator, one lower worker, and a reviewer/build gate.  The controller
+expands to differentiated planning panels only after upper/reviewer memory
+records stagnation or a blocked proof route.  The point is not ceremony;
+block-encoding construction spends most of its intelligence on choosing the
+semantic tier, candidate family, resource target, and next proof leaf before
+Lean workers edit code.  Use `--fixed-capacity` only for ablation runs that
+must consume the requested full panel and lower-agent counts every cycle.
 
 Upper panel:
 
@@ -208,10 +209,12 @@ python3 tools/qbe.py run-cycle QBE-AUTO-002 \
   --blueprint-refresh
 ```
 
-For ordinary operator construction, use the default harness instead: full context,
-upper and middle panels enabled, and three lower roles running in parallel.
-Use `--lower-count 1 --no-upper-panel --no-middle-panel --sequential-lower`
-only for an intentionally focused local leaf check.
+For ordinary operator construction, use the default adaptive harness instead:
+focused context is usually best, the first cycle is small, and later cycles
+increase upper, middle, or lower capacity only when the logs justify it.  Three
+parallel lower roles are a common expanded state, not the default first move.
+Use `--fixed-capacity --lower-count 1 --no-upper-panel --no-middle-panel
+--sequential-lower` only for an intentionally focused local leaf check.
 
 The upper/middle agents should retire stale leaves when the blueprint reports
 that a lower target is already compiled.  The lower agent should work on one

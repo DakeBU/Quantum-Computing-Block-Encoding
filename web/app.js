@@ -130,7 +130,9 @@ function localRunnerCommand(title) {
   return `# In a downloaded checkout, serve the UI and run the task with local tools.
 python3 -m http.server 8080 -d web
 
-# In another terminal, save this packet and the generated profile, then run:
+# In another terminal, save this packet and the generated profile, then run.
+# sleep-run is adaptive by default: it starts small and expands only after
+# recorded stagnation; any lower counts below are maxima, not per-cycle cost.
 python3 tools/qbe.py sleep-run "${title}" \\
   ${harnessFlag} \\
 ${extra}  --agent-profile "agent-profiles/${profileName}" \\

@@ -28,7 +28,14 @@ $$
 D_n[j,j] = (j/N)^3, \qquad D_n[j,k] = 0 \text{ for } j \ne k.
 $$
 
-The exact normalizer target is initially `alpha = 1`, since `0 <= (j/2^n)^3 < 1` for all grid points. If exact construction stalls under the active budget, upper may open an approximate-BE route and must record the accepted `epsilon` tier.
+The exact normalizer target is initially `alpha = 1`, since `0 <= (j/2^n)^3 < 1` for all grid points.
+
+Default adaptive policy for this hard benchmark:
+
+- spend only a short exact-search patience budget before broad expansion;
+- with the default `sleep-run --exact-stall-cycles 2`, if no Lean-certified exact candidate exists after that budget and upper/reviewer memory records stagnation or a blocked proof route, open Scenario 2 approximate-BE search;
+- initialize Scenario 2 at `epsilon = 1e-10`;
+- if no candidate can meet `1e-10` within the next bounded generation budget, upper may relax epsilon, but every relaxation must be recorded as an explicit epsilon-ladder decision in the memory digest, candidate population, selected-language summary, and Pro prompt.
 
 ## Resource Order
 

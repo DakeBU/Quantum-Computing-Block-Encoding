@@ -87,6 +87,9 @@ AGENT_ROLES = ("upper", "middle", "lower", "reviewer")
 TRIAL_KINDS = ("plan", "attempt", "build", "review", "proposal", "compression", "handoff")
 TRIAL_STATUSES = ("queued", "running", "blocked", "failed", "compiled", "accepted", "rejected")
 DEFAULT_LOWER_COUNT = 3
+DEFAULT_ADAPTIVE_BASE_LOWER_COUNT = 1
+DEFAULT_ADAPTIVE_EXPANDED_LOWER_COUNT = 3
+DEFAULT_EXACT_STALL_CYCLES = 2
 DEFAULT_UPPER_PANEL = True
 DEFAULT_MIDDLE_PANEL = True
 DEFAULT_PARALLEL_LOWER = True
@@ -113,6 +116,7 @@ WORK_DIRS = [
     "runs/context-packs",
     "runs/pro-prompts",
     "runs/manual-multiagent",
+    "run-presets",
     "agent-profiles",
     "executable-exports",
     "paper-notes/project-paper/cycle-updates",
@@ -7596,6 +7600,7 @@ def create_run_cycle(
     game_harness: bool = DEFAULT_GAME_HARNESS,
     natural_lower_count: int = DEFAULT_NATURAL_LOWER_COUNT,
     lean_lower_count: int = DEFAULT_LEAN_LOWER_COUNT,
+    harness_policy_note: str = "",
 ) -> Path:
     cmd_init(argparse.Namespace())
     if blueprint_refresh:
@@ -7632,6 +7637,10 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
 ```text
 {blueprint_context(task_id)}
 ```
+
+## Harness Capacity Policy
+
+{harness_policy_note or "Fixed-capacity cycle. Use the prompt deck as generated."}
 """
     (run_dir / "00_context.md").write_text(context, encoding="utf-8")
     (run_dir / "dialogue.md").write_text(
@@ -7718,7 +7727,8 @@ Cycle: `{cycle}`
             "notes": (
                 f"Created prompt deck with {lower_count} hierarchical lower agent(s); "
                 f"game_harness={game_harness}; natural_lower_count={natural_lower_count}; "
-                f"lean_lower_count={lean_lower_count}; upper_panel={upper_panel}; middle_panel={middle_panel}."
+                f"lean_lower_count={lean_lower_count}; upper_panel={upper_panel}; middle_panel={middle_panel}. "
+                f"Harness policy: {(harness_policy_note or 'fixed-capacity')[:240]}"
             ),
         },
     )
@@ -8077,6 +8087,158 @@ def log_agent_attempt(
     write_trial_summary(load_jsonl(TRIAL_LOG))
 
 
+def latest_task_run_dir(task_id: str) -> Path | None:
+    pattern = f"*-{slugify(task_id)}-cycle*"
+    candidates = sorted((ROOT / "runs").glob(pattern))
+    return candidates[-1] if candidates else None
+
+
+def adaptive_state_text(task_id: str, *, include_task: bool = True) -> str:
+    """Compact text used by the sleep-run capacity controller."""
+    parts: list[str] = []
+    if include_task:
+        for path in [
+            ROOT / "tasks" / f"{task_id}.md",
+            BLUEPRINT_DIR / f"{task_id}.md",
+        ]:
+            if path.exists():
+                parts.append(path.read_text(encoding="utf-8", errors="ignore")[-12000:])
+    retrieval = RETRIEVAL_INDEX_DIR / f"{task_id}.json"
+    if retrieval.exists():
+        parts.append(retrieval.read_text(encoding="utf-8", errors="ignore")[-12000:])
+    latest = latest_task_run_dir(task_id)
+    if latest is not None:
+        for name in ["memory_digest.md", "todo.md", "dialogue.md"]:
+            path = latest / name
+            if path.exists():
+                parts.append(path.read_text(encoding="utf-8", errors="ignore")[-8000:])
+    return "\n\n".join(parts)
+
+
+def adaptive_capacity_for_cycle(args: argparse.Namespace, cycle: int) -> dict[str, object]:
+    """Choose a quota-conscious prompt deck for a sleep-run cycle.
+
+    The default is deliberately small.  Upper/reviewer/memory signals must
+    justify any larger panel, and approximate search is opened only after a
+    short exact-stall budget unless the task already has an exact certificate.
+    """
+    full_text = adaptive_state_text(args.id, include_task=True)
+    memory_text = adaptive_state_text(args.id, include_task=False)
+    lowered = full_text.lower()
+    memory_lowered = memory_text.lower()
+    certified_exact = bool(
+        re.search(
+            r"(current best exact lean certificate|lean-certified exact|"
+            r"lean certificate.*epsilon\s*=\s*0|exact lean certificate)",
+            memory_lowered,
+        )
+    )
+    explicit_stagnation = bool(
+        re.search(
+            r"(stagnat|stalled|no improvement|blocked on|symbolic_bridge_gap|"
+            r"active leaf.*blocked|must open the approximate route|open approximate route|"
+            r"exact certification is blocked)",
+            memory_lowered,
+        )
+    )
+    maintenance_only = certified_exact and bool(
+        re.search(r"(export-sync|export/report|report/export|post-lean export|closeout)", memory_lowered)
+    )
+    operator_task = any(
+        marker in lowered
+        for marker in [
+            "operatorblockencoding",
+            "operator block-encoding",
+            "block-encoding",
+            "block encoding",
+        ]
+    )
+    exact_stall_cycles = max(0, int(getattr(args, "exact_stall_cycles", DEFAULT_EXACT_STALL_CYCLES)))
+    approximate_phase = (
+        operator_task
+        and not certified_exact
+        and exact_stall_cycles > 0
+        and (cycle > exact_stall_cycles or explicit_stagnation)
+        and (explicit_stagnation or "cubic-diagonal-clean" in args.id.lower())
+    )
+    expanded = (explicit_stagnation or approximate_phase) and not maintenance_only
+
+    max_hier_lower = max(0, int(getattr(args, "lower_count", DEFAULT_LOWER_COUNT)))
+    if expanded:
+        effective_lower = min(max_hier_lower, DEFAULT_ADAPTIVE_EXPANDED_LOWER_COUNT)
+        if max_hier_lower > 0:
+            effective_lower = max(2, effective_lower)
+        upper_panel = bool(getattr(args, "upper_panel", DEFAULT_UPPER_PANEL))
+        middle_panel = bool(getattr(args, "middle_panel", DEFAULT_MIDDLE_PANEL))
+        parallel_panels = bool(getattr(args, "parallel_panels", DEFAULT_PARALLEL_PANELS))
+        capacity_label = "expanded-stagnation"
+    else:
+        effective_lower = min(max_hier_lower, DEFAULT_ADAPTIVE_BASE_LOWER_COUNT)
+        upper_panel = False
+        middle_panel = False
+        parallel_panels = False
+        capacity_label = "base-small"
+
+    natural_max = max(0, int(getattr(args, "natural_lower_count", DEFAULT_NATURAL_LOWER_COUNT)))
+    lean_max = max(0, int(getattr(args, "lean_lower_count", DEFAULT_LEAN_LOWER_COUNT)))
+    if expanded:
+        natural_lower_count = min(natural_max, 2)
+        lean_lower_count = min(lean_max, 2)
+    else:
+        natural_lower_count = min(natural_max, 1)
+        lean_lower_count = min(lean_max, 1)
+
+    phase = "approximate" if approximate_phase else "exact"
+    note = (
+        f"Adaptive capacity `{capacity_label}`. Phase target: `{phase}`. "
+        f"Effective lower_count={effective_lower}; natural_lower_count={natural_lower_count}; "
+        f"lean_lower_count={lean_lower_count}; upper_panel={upper_panel}; "
+        f"middle_panel={middle_panel}. exact_stall_cycles={exact_stall_cycles}. "
+        "Default policy: start with a small queue, expand only after upper/reviewer "
+        "or retrieval memory records stagnation. "
+    )
+    if approximate_phase:
+        note += (
+            "Exact search has exceeded the short stall budget without a certified exact "
+            "candidate; Phase 2 is now active. Upper/middle must prioritize Scenario 2 "
+            "approximate-BE search rather than spending another broad cycle on the old "
+            "exact bridge. Use the exact-route artifacts only as reusable components or "
+            "negative evidence. Start from the requested epsilon if present, propose a "
+            "Lean-checkable approximate target, and relax epsilon only with an explicit "
+            "recorded ladder decision in the memory digest, candidate population, "
+            "selected-language summary, and Pro prompt."
+        )
+    elif maintenance_only:
+        note += (
+            "A Lean-certified exact candidate already exists and the active work is "
+            "export/report closeout, so broad proof-search panels are suppressed. "
+            "Use the small queue for synchronization, executable export, and reviewer audit."
+        )
+    elif expanded:
+        note += (
+            "Expansion is justified by recorded stagnation/blocked-route feedback. "
+            "Spend extra capacity on semantic-tier choice, candidate-family strategy, "
+            "Lean/natural-language translation, and one or two ready lower leaves."
+        )
+    else:
+        note += (
+            "Do not run broad panels or many lower workers yet; use this cycle to make "
+            "one concrete improvement or produce a precise reviewer stagnation signal."
+        )
+
+    return {
+        "lower_count": effective_lower,
+        "upper_panel": upper_panel,
+        "middle_panel": middle_panel,
+        "parallel_panels": parallel_panels,
+        "natural_lower_count": natural_lower_count,
+        "lean_lower_count": lean_lower_count,
+        "note": note,
+        "phase": phase,
+        "expanded": expanded,
+    }
+
+
 def cmd_sleep_run(args: argparse.Namespace) -> int:
     cmd_init(argparse.Namespace())
     profile_commands = load_agent_command_profile(args.agent_profile, args.agent_cmd_file)
@@ -8094,34 +8256,55 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
         return active_budget_s > 0 and (time.perf_counter() - batch_started) >= active_budget_s
 
     for cycle in range(1, args.cycles + 1):
+        if getattr(args, "adaptive_capacity", True):
+            effective = adaptive_capacity_for_cycle(args, cycle)
+            cycle_lower_count = int(effective["lower_count"])
+            cycle_upper_panel = bool(effective["upper_panel"])
+            cycle_middle_panel = bool(effective["middle_panel"])
+            cycle_parallel_panels = bool(effective["parallel_panels"])
+            cycle_natural_lower_count = int(effective["natural_lower_count"])
+            cycle_lean_lower_count = int(effective["lean_lower_count"])
+            harness_policy_note = str(effective["note"])
+        else:
+            cycle_lower_count = args.lower_count
+            cycle_upper_panel = args.upper_panel
+            cycle_middle_panel = args.middle_panel
+            cycle_parallel_panels = args.parallel_panels
+            cycle_natural_lower_count = getattr(args, "natural_lower_count", DEFAULT_NATURAL_LOWER_COUNT)
+            cycle_lean_lower_count = getattr(args, "lean_lower_count", DEFAULT_LEAN_LOWER_COUNT)
+            harness_policy_note = (
+                "Fixed-capacity sleep-run: adaptive capacity is disabled, so CLI "
+                "panel and lower-agent counts are used exactly."
+            )
         run_dir = create_run_cycle(
             args.id,
             cycle,
-            args.lower_count,
+            cycle_lower_count,
             context_mode=args.context_mode,
             blueprint_refresh=args.blueprint_refresh,
-            upper_panel=args.upper_panel,
-            middle_panel=args.middle_panel,
+            upper_panel=cycle_upper_panel,
+            middle_panel=cycle_middle_panel,
             game_harness=getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
-            natural_lower_count=getattr(args, "natural_lower_count", DEFAULT_NATURAL_LOWER_COUNT),
-            lean_lower_count=getattr(args, "lean_lower_count", DEFAULT_LEAN_LOWER_COUNT),
+            natural_lower_count=cycle_natural_lower_count,
+            lean_lower_count=cycle_lean_lower_count,
+            harness_policy_note=harness_policy_note,
         )
         print(f"cycle {cycle}: {rel(run_dir)}")
         stage_specs: list[tuple[list[Path], bool]] = []
         if args.upper_every > 0 and (cycle - 1) % args.upper_every == 0:
             for stage in upper_prompt_stages(
                 run_dir,
-                args.upper_panel,
+                cycle_upper_panel,
                 getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
             ):
-                stage_specs.append((stage, args.parallel_panels))
+                stage_specs.append((stage, cycle_parallel_panels))
         if args.middle_every > 0 and (cycle - 1) % args.middle_every == 0:
             for stage in middle_prompt_stages(
                 run_dir,
-                args.middle_panel,
+                cycle_middle_panel,
                 getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
             ):
-                stage_specs.append((stage, args.parallel_panels))
+                stage_specs.append((stage, cycle_parallel_panels))
         lower_prompts = lower_prompt_sequence(run_dir)
         if lower_prompts:
             stage_specs.append((lower_prompts, args.parallel_lower))
@@ -8510,6 +8693,25 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep = sub.add_parser("sleep-run", help="create or execute repeated agent cycles")
     p_sleep.add_argument("id")
     p_sleep.add_argument("--cycles", type=int, default=8)
+    p_sleep.add_argument(
+        "--adaptive-capacity",
+        dest="adaptive_capacity",
+        action="store_true",
+        default=True,
+        help="start sleep-run with a small prompt queue and expand upper/middle/lower only after recorded stagnation; enabled by default",
+    )
+    p_sleep.add_argument(
+        "--fixed-capacity",
+        dest="adaptive_capacity",
+        action="store_false",
+        help="disable adaptive capacity and use the requested panel/lower counts exactly",
+    )
+    p_sleep.add_argument(
+        "--exact-stall-cycles",
+        type=int,
+        default=int(os.environ.get("QBE_EXACT_STALL_CYCLES", str(DEFAULT_EXACT_STALL_CYCLES))),
+        help="operator-construction cycles to spend on exact search before adaptive Scenario 2 approximate search may open when no exact certificate exists",
+    )
     p_sleep.add_argument(
         "--active-budget-minutes",
         type=float,
