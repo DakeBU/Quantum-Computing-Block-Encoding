@@ -88,6 +88,10 @@ fixed number of generations does not improve the population, the upper layer
 may increase upper/middle/lower parallel agent counts up to the configured
 maximum.  More agents are not assumed to be better; the increase is itself a
 controlled experiment.
+Once Scenario 2 approximate search is opened, that is a phase lock: old exact
+leaves may remain as bounded dependencies or negative evidence, but the active
+objective must name an epsilon tier, an error budget, and a Lean-checkable
+approximate statement.
 
 ## Main Case Study
 
@@ -299,6 +303,8 @@ If the Lean Team closes a certificate, the Natural-Language Team translates it i
   approximate candidate used in the case study;
 - checked executable artifacts such as Qiskit, QuantumKatas-style tests, or
   QASM for the certified construction.
+- a proof-DAG figure showing the root target, dependencies, verified leaves,
+  rejected leaves, and postponed external contracts such as QSVT.
 
 Detailed timing, route-ablation, external-verifier records, and harness-profile
 comparisons are kept in `reports/` and run directories.  The README states the
@@ -446,6 +452,10 @@ Progress during a run is visible in these files:
   `circuit_storyboard.json`: optional web-dashboard inputs for rendering
   champion status, exact/approximate curves, BE diagrams, and executable export
   checks.
+- `reports/<task-id>/figures/`: reader-facing PNGs for the same information:
+  evolution curve, certified-circuit storyboard, Qiskit/export status, and
+  proof-DAG blueprint.  Only Lean-certified candidates may be plotted as
+  achieved solutions.
 
 Project layout:
 

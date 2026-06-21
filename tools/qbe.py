@@ -6386,6 +6386,13 @@ def strategy_for_mode(mode: str) -> str:
   incumbent.  If exact search stalls or misses the floor, enter Scenario 2 and
   switch to approximate search, relaxing epsilon only when the task explicitly
   permits it.
+- Phase-lock invariant: once the harness policy, task file, memory digest, or
+  reviewer says Phase 2/Scenario 2 approximate search is active, upper,
+  middle, and reviewer must reject plans that spend another broad cycle trying
+  to close the old exact root.  Exact-route leaves may be kept only as bounded
+  dependencies, reusable components, or negative evidence.  The active packet
+  must instead name an approximate target, an epsilon tier, an error budget,
+  and the Lean statement shape that would certify that tier.
 - There is no fixed public "easy" or "hard" mode.  The default harness starts
   with differentiated upper and middle panels plus three complementary lower
   roles.  After each cycle, the upper panel decides from the logs, proof-DAG
@@ -6436,6 +6443,11 @@ def strategy_for_mode(mode: str) -> str:
 - Represent candidates as reusable oracle/proof DAGs when possible, following
   `.agents/skills/qbe-hierarchical-proof-dag/SKILL.md`; do not keep only a flat
   tactic or gate script when components can be shared.
+- When Scenario 2 approximate search is active, the candidate population must
+  contain at least one approximate candidate row with epsilon tier, current
+  error source, proposed certificate theorem name, and the exact artifacts it
+  reuses or explicitly postpones as contracts.  Do not let an old exact bridge
+  remain the only active lower target.
 - Candidate scores are search guides: typechecking, dimension checks,
   small-case block tests, normalizer progress, resource progress, and reduced
   proof-obligation count.  These scores do not prove correctness.
@@ -6677,6 +6689,12 @@ Local paper-source archive for agent work:
   implement exactly one active Lean leaf from that plan; lower 3, when present,
   should run necessary-condition diagnostics that can reject a wrong target
   before a large Lean proof attempt.
+- Human-readable leaf rationale invariant: every active leaf assigned by upper
+  or middle must say, in the selected report language when practical, what
+  high-level theorem it serves, why the leaf is necessary, which part is a
+  local Lean proof, which part is an external contract such as QSVT, and when
+  the leaf should be retired.  A user should not need to read Lean goals to
+  understand why the system is spending time on that subproblem.
 - Apply `.agents/skills/qbe-proof-blueprint/SKILL.md` at the start of long
   runs or after a stale lower target is detected.  Refresh
   `proof-blueprints/<task-id>.md`, retire stale dynamic leaves, and then assign
@@ -6767,6 +6785,15 @@ Human-facing correspondence rule:
   approximate error claim.  Reviewer should then audit that each proof export
   matches the compiled Lean declarations and does not claim unproved
   optimality.
+- Visual closeout invariant: a convergence closeout or active-budget closeout
+  for an operator-construction task is incomplete unless it records the current
+  dashboard artifacts for readers: a PNG evolution curve, a PNG circuit
+  storyboard for Lean-certified candidates only, a Qiskit/export status figure
+  when executable export is requested, and a proof-DAG blueprint figure or
+  Mermaid source explaining how coarse proof nodes were refined, verified,
+  rejected, or postponed as external contracts.  If no Lean-certified
+  candidate exists, the figure must say "no certified candidate yet" rather
+  than plotting an achieved point.
 - Post-Lean executable-export cadence: when a task asks for Qiskit,
   QuantumKatas-style, OpenQASM/QASM, or another executable target, do not use
   that artifact as the final proof unless the task explicitly declares a finite
@@ -7397,6 +7424,13 @@ Look for:
     it is presented as a final theorem without a matching named Lean
     certificate, or if it claims a larger parameter range than the Lean theorem
     and concrete export instantiation justify.
+19. Missing reader-facing closeout figures.  At convergence or active-budget
+    closeout for an operator-construction task, reviewer should require
+    `reports/<task-id>/figures/` to contain the evolution curve, certified
+    circuit storyboard, Qiskit/export status figure when executable export is
+    requested, and a proof-DAG blueprint figure or Mermaid source.  If no
+    candidate is certified, the figures must say so rather than plotting an
+    unproved achieved point.
 
 Classify findings as blocking or advisory.  If the current task is a paper
 benchmark, reject unrecorded invention and any added assumption or
@@ -8206,7 +8240,9 @@ def adaptive_capacity_for_cycle(args: argparse.Namespace, cycle: int) -> dict[st
             "negative evidence. Start from the requested epsilon if present, propose a "
             "Lean-checkable approximate target, and relax epsilon only with an explicit "
             "recorded ladder decision in the memory digest, candidate population, "
-            "selected-language summary, and Pro prompt."
+            "selected-language summary, and Pro prompt. This is a phase lock, not a "
+            "suggestion: reviewer should reject any upper or middle plan whose active "
+            "root is the stale exact bridge instead of an epsilon-ladder candidate."
         )
     elif maintenance_only:
         note += (

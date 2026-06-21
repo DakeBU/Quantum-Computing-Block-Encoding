@@ -3,7 +3,7 @@
 Task id: `QBE-OP-CUBIC-DIAGONAL-CLEAN-001`
 Title: Task: QBE-OP-CUBIC-DIAGONAL-CLEAN-001
 Mode: `exploratoryConstruction`
-Updated: `2026-06-21 20:25:44`
+Updated: `2026-06-21 21:58:40`
 Blueprint stage: `Stage unknown; upper must classify before broad lower work`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -84,6 +84,31 @@ If unresolved, write a selected-language summary and a self-contained ChatGPT Pr
 - certified exact/approximate evolution curves;
 - circuit storyboards for Lean-certified candidates only;
 - Qiskit export and finite executable checks for each exported certified construction.
+
+## Current Phase-2 Directive For Resumed Hinted Run
+
+This task has already spent a high-capacity exact-search phase on the hinted
+`O_0`-then-QSVT route.  The exact `O_0` full-product bridge remains useful as
+a dependency and as negative evidence, but it is no longer allowed to be the
+only active root objective in the resumed reduced-budget phase.
+
+Upper and middle must now open Scenario 2 approximate search:
+
+- active root: `CD-APPROX-EPSILON-LADDER-001`;
+- initial tier: `epsilon = 1e-10`;
+- if that tier stalls under the bounded generation budget, record the next
+  relaxed epsilon tier explicitly;
+- acceptable work packets: approximate target statement, error-budget ledger,
+  QSVT-as-external-contract skeleton, approximate arithmetic/rotation
+  candidate, or a Lean theorem that packages a verified approximate candidate;
+- stale work packets: spending a whole cycle only on
+  `CD-O0-MuxRy-ConcreteBranchFullClean-001` or
+  `CD-O0-MuxRy-FullProduct-Bridge-001` without stating how it closes an
+  approximate epsilon tier.
+
+The final report must say plainly which parts are Lean-certified, which parts
+are external contracts such as QSVT, and which exact-route proof leaves were
+postponed because the run moved to approximate search.
 ````
 
 ## Dynamic Leaf Queue

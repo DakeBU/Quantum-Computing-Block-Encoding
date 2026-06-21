@@ -82,4 +82,7 @@ Closeout artifacts:
 - `paper-notes/problem-exports/QBE-OP-CUBIC-DIAGONAL-CLEAN-001/latest.tex`
 - `candidate-populations/QBE-OP-CUBIC-DIAGONAL-CLEAN-001.md`
 - `reports/QBE-OP-CUBIC-DIAGONAL-CLEAN-001/`
+- `reports/QBE-OP-CUBIC-DIAGONAL-CLEAN-001/figures/` with certified
+  evolution/storyboard PNGs when a candidate exists, or explicit "no certified
+  candidate yet" proof-DAG/epsilon-ladder PNGs otherwise
 - selected-language summary and Pro prompt at final closeout

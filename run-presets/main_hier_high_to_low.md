@@ -70,4 +70,6 @@ Closeout artifacts:
 - `paper-notes/problem-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/latest.tex`
 - `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/`
 - `reports/QBE-OP-OPTCTRL-COLD-CLEAN-001/`
+- `reports/QBE-OP-OPTCTRL-COLD-CLEAN-001/figures/` with evolution,
+  certified-circuit storyboard, Qiskit/export status, and proof-DAG PNGs
 - selected-language summary and Pro prompt at the final closeout run
