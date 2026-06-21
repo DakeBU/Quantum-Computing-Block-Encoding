@@ -1,0 +1,31 @@
+{
+  "task": "QBE-OP-OPTCTRL-COLD-CLEAN-001",
+  "leaf": "COLD-E1-EXPORT-001",
+  "candidate": "COLD-CLEAN-PERM-001",
+  "lean_module": "QuantumBlockEncoding.ColdStartTransferE1",
+  "matrix_index_order": ["signal", "T", "tau", "S"],
+  "system_index": "4*T + 2*tau + S",
+  "full_index": "8*signal + 4*T + 2*tau + S",
+  "signal_clean_index": 0,
+  "target_operator": "|0><1|_T tensor |0><1|_tau tensor I_S",
+  "normalizer": 1,
+  "epsilon": 0,
+  "candidate_image": [8, 9, 10, 11, 12, 13, 0, 1, 2, 3, 4, 5, 6, 7, 14, 15],
+  "resource_score": {
+    "gateCount": 4,
+    "depth": 4,
+    "auxiliaryQubits": 1,
+    "oracleCalls": 0
+  },
+  "lean_certificates": [
+    "coldE1Candidate_blockProjection",
+    "coldE1CandidateImage_permutation_certificate",
+    "coldE1HighLevelSeedCost_gateCount",
+    "coldE1HighLevelSeedCost_depth",
+    "coldE1HighLevelSeedCost_auxiliaryQubits",
+    "coldE1HighLevelSeedCost_oracleCalls",
+    "coldE1QueryTarget_normalizer",
+    "coldE1SourceLayout_auxiliaryQubits"
+  ],
+  "scope_note": "This export is an executable finite matrix check for the compiled candidate. It is not a primitive gate decomposition or hardware-optimality claim."
+}

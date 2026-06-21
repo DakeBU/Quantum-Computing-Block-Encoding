@@ -39,7 +39,12 @@ Paper constructions are treated as baselines and training data.  Once a paper
 baseline is formalized, the same system can try to improve the construction
 for the same fixed operator target.
 
-![ABEIS control loop](docs/assets/abeis_loop.png)
+ABEIS currently exposes two harness profiles.  Users can run either profile, or
+run both in isolated workspaces and compare the certified population curves.
+
+![Hierarchical Harness](docs/assets/hierarchical_harness.png)
+
+![Game Harness](docs/assets/game_harness.png)
 
 ## Core Workflow
 
@@ -86,14 +91,28 @@ controlled experiment.
 
 ## Main Case Study
 
-The current technical-report case study is the operator task
-`QBE-OP-OPTCTRL-001`:
+The current technical-report case study is the transfer-operator task:
 
 ```text
 E_k = |0><k|_time ⊗ |0><1|_type ⊗ I
 ```
 
-The run demonstrates the intended loop:
+ABEIS now records two useful runs for the concrete `r = 1, k = 1` instance.
+
+| Run | Harness and inputs | Certified result | Score |
+| --- | --- | --- | --- |
+| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | clean-start Hierarchical Harness; no previous Pro answer or old optctrl memory | `coldE1Candidate_blockProjection` and `coldE1CandidateImage_permutation_certificate` | `(4,4,1,0)` |
+| `QBE-OP-OPTCTRL-001` | earlier Pro-assisted/evolution run; Pro idea entered only as insight-pool input before Lean promotion | `OptimalControl.evolvedEqFlipVerified` | `(4,2,1,0)` |
+
+The clean-start run proves the system can recover a correct finite
+permutation block encoding from the operator contract alone.  The earlier
+Pro-assisted run shows why the human/Pro intervention channel is useful:
+external structure can improve the certified population after Lean promotes it
+from an untrusted idea to a theorem-backed candidate.
+
+![Clean-start versus Pro-assisted transfer-operator evolution](docs/assets/optctrl_hier_vs_pro.png)
+
+The intended loop is:
 
 1. fix the operator target;
 2. start from a correct one-ancilla block-encoding seed;
@@ -104,7 +123,7 @@ The run demonstrates the intended loop:
    champion as an `epsilon = 0` incumbent;
 6. plot only Lean-certified candidates.
 
-Current certified logical champion:
+Current certified logical champion from the Pro-assisted/evolved route:
 
 ```text
 evolved-eq-flip-r1-k1
@@ -126,6 +145,24 @@ Lean-certified storyboard:
 This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general
 arbitrary-register theorem, or a Lean-proved global optimality theorem.
+
+Clean-start Hierarchical Harness closeout:
+
+```text
+candidate = COLD-CLEAN-PERM-001
+Lean block theorem = coldE1Candidate_blockProjection
+permutation theorem = coldE1CandidateImage_permutation_certificate
+comparison tuple = (gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 4, 1, 0)
+Qiskit/export diagnostic = passed
+```
+
+Detailed human-readable status:
+
+```text
+reports/QBE-OP-OPTCTRL-COLD-CLEAN-001/latest.md
+reports/QBE-OP-OPTCTRL-COLD-CLEAN-001/zh_summary.md
+paper-notes/problem-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/latest.tex
+```
 
 ## Active Hard Benchmark
 

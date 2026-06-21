@@ -1,0 +1,106 @@
+% Problem-specific proof note for QBE-OP-OPTCTRL-COLD-CLEAN-001.
+% This file is intended for users who want to copy the mathematical
+% construction into their own manuscript.
+
+\subsection{A finite block encoding for a transfer operator}
+
+Let \(T\), \(\tau\), and \(S\) be one-qubit registers.  We order the system
+basis by
+\[
+  \operatorname{idx}(T,\tau,S)=4T+2\tau+S ,
+  \qquad T,\tau,S\in\{0,1\}.
+\]
+The target operator is
+\[
+  E_1
+  =
+  |0\rangle\!\langle 1|_T
+  \otimes
+  |0\rangle\!\langle 1|_\tau
+  \otimes I_S .
+\]
+Equivalently, its only nonzero entries are
+\[
+  E_1[\operatorname{idx}(0,0,0),\operatorname{idx}(1,1,0)] = 1,
+  \qquad
+  E_1[\operatorname{idx}(0,0,1),\operatorname{idx}(1,1,1)] = 1 .
+\]
+
+Add one block-encoding signal qubit \(a\), and order the full basis by
+\[
+  \operatorname{full}(a,T,\tau,S)
+  =
+  8a+4T+2\tau+S .
+\]
+Define a permutation \(\pi\) of the \(16\) full basis states by the table
+\[
+\begin{array}{c|cccccccccccccccc}
+x&0&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\
+\hline
+\pi(x)&8&9&10&11&12&13&0&1&2&3&4&5&6&7&14&15 .
+\end{array}
+\]
+Let \(U_\pi\) be the permutation matrix with
+\[
+  U_\pi[y,x]=
+  \begin{cases}
+    1,& y=\pi(x),\\
+    0,& \text{otherwise}.
+  \end{cases}
+\]
+
+\paragraph{Unitarity.}
+The table above is a permutation: it has the explicit inverse
+\[
+\begin{array}{c|cccccccccccccccc}
+y&0&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\
+\hline
+\pi^{-1}(y)&6&7&8&9&10&11&12&13&0&1&2&3&4&5&14&15 .
+\end{array}
+\]
+Therefore every row and every column of \(U_\pi\) has exactly one nonzero
+entry, so \(U_\pi\) is unitary.
+
+\paragraph{Clean-block calculation.}
+The clean block is the block selected by \(a=0\):
+\[
+  B[row,col] =
+  U_\pi[\operatorname{full}(0,row),\operatorname{full}(0,col)] .
+\]
+For the selected source states,
+\[
+  \pi(\operatorname{full}(0,1,1,0))=\operatorname{full}(0,0,0,0),
+  \qquad
+  \pi(\operatorname{full}(0,1,1,1))=\operatorname{full}(0,0,0,1).
+\]
+Thus the two desired entries of \(B\) equal \(1\).  For every other clean input
+column \(\operatorname{full}(0,T,\tau,S)\), the image under \(\pi\) has
+signal bit \(a=1\), so it contributes no entry to the \(a=0\) clean block.
+Hence \(B=E_1\).
+
+\paragraph{Certified statement.}
+The Lean development records this construction as
+\[
+  \texttt{coldE1CandidateImage},\qquad
+  \texttt{coldE1CandidateMatrix}.
+\]
+The theorem
+\[
+  \texttt{coldE1Candidate\_blockProjection}
+\]
+proves that the clean block equals \(E_1\), and
+\[
+  \texttt{coldE1CandidateImage\_permutation\_certificate}
+\]
+proves that the candidate image is a permutation.  The certified high-level
+resource tuple is
+\[
+  (\#\text{gates},\text{depth},\#\text{auxiliary qubits},\#\text{oracle calls})
+  =
+  (4,4,1,0).
+\]
+The exported Qiskit diagnostic checks the same finite permutation matrix and
+passes with zero block-entry and unitarity error.  This diagnostic is a
+post-Lean executable check; the reusable mathematical certificate is the Lean
+proof above.
+

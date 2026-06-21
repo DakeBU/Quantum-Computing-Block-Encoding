@@ -1,0 +1,262 @@
+{
+  "cycle": 2,
+  "dynamic_leaf_queue": [
+    "COLD-E1-SCOPE-AUDIT-001: Audit worktree scope and unrelated legacy/tooling changes before accepting this clean-start operator closeout.; status: active reviewer audit; Lean: no Lean declaration expected"
+  ],
+  "generated": "2026-06-21 01:25:33",
+  "ghl_contributions": [],
+  "lean_sorries": [],
+  "mode": "exploratoryConstruction",
+  "next_lower_tasks": [
+    {
+      "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+      "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
+      "role": "lower-1-natural-language-proof-architect"
+    },
+    {
+      "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+      "must_write": "Lean declaration plus trial-log verifier-feedback fields",
+      "role": "lower-2-lean-implementation-worker"
+    },
+    {
+      "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+      "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
+      "role": "lower-3-necessary-condition-verifier"
+    }
+  ],
+  "open_external_technical_lemma_obligations": [],
+  "open_ghl_contribution_obligations": [],
+  "open_obligation_signals": [
+    "target and clean projector match the task packet: Lean `coldE1Target`, `coldE1BlockProjection`; class existing Lean target; status proved target-side",
+    "stale source metadata is repaired to the clean-start task id: Lean `coldE1QueryTarget.source`; class contract drift repair; status patched and compiled in prior gate",
+    "define candidate image and matrix: Lean `coldE1CandidateImage`, `coldE1CandidateMatrix`; class internal construction leaf; status proved by lower cycle 1",
+    "finite candidate diagnostics: Lean `cold-e1-finite-verify-cycle01.feedback.json`; class verifier-feedback diagnostic; status passed; downstream block theorem proved",
+    "prove permutation or unitarity: Lean `coldE1CandidateImage_permutation_certificate`; class acceptance proof leaf; status proved as task-local image permutation package",
+    "prove clean-block equality: Lean `coldE1Candidate_blockProjection`; class root block-entry proof; status proved",
+    "certify resource tuple: Lean `coldE1HighLevelSeedCost_gateCount`, `coldE1HighLevelSeedCost_depth`, `coldE1HighLevelSeedCost_auxiliaryQubits`, `coldE1HighLevelSeedCost_oracleCalls`; class resource equality; status proved",
+    "prepare executable export: Lean export packet under `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/`; class post-Lean export; status passed finite/Qiskit diagnostic",
+    "closeout proof/status sync: Lean problem proof note, storyboard/evolution memory, and final report guardrails; class closeout documentation; status passed closeout sync",
+    "closeout scope audit: Lean current worktree contains unrelated legacy deletions plus tooling/manifest churn outside this operator construction; class reviewer/human acceptance scope; status active reviewer audit"
+  ],
+  "recent_proof_attempts": [],
+  "recent_trials": [
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-21 01:25:32",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-build-gate"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02/30_lower_searcher_4.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "failed",
+      "timestamp": "2026-06-21 01:25:31",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-30_lower_searcher_4"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02/30_lower_searcher_3.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "failed",
+      "timestamp": "2026-06-21 01:25:31",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-30_lower_searcher_3"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02/30_lower_searcher_2.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "failed",
+      "timestamp": "2026-06-21 01:25:31",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-30_lower_searcher_2"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02/30_lower_searcher_1.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "failed",
+      "timestamp": "2026-06-21 01:25:31",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-30_lower_searcher_1"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02/20_middle_formalizer.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-21 01:25:18",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-20_middle_formalizer"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "middle",
+      "status": "queued",
+      "timestamp": "2026-06-21 01:24:28",
+      "trial_id": "20260621-012428-QBE-OP-OPTCTRL-COLD-CLEAN-001-middle-handoff"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02/23_middle_report_export.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-21 01:21:07",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-23_middle_report_export"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02/22_middle_memory_retrieval.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-21 01:21:07",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-22_middle_memory_retrieval"
+    },
+    {
+      "artifact": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02/21_middle_source_correspondence.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-21 01:20:30",
+      "trial_id": "20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02-21_middle_source_correspondence"
+    }
+  ],
+  "recent_verifier_feedback": [
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "none",
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-CLOSEOUT-SYNC-001",
+      "next_route": "Reviewer gate and scope audit only; closeout proof/status artifacts have been refreshed from the compiled Lean certificates and passed export diagnostic. Do not reopen Lean proof search unless a concrete mismatch appears.",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-21 01:20:11",
+      "trial_id": "20260621-012011-QBE-OP-OPTCTRL-COLD-CLEAN-001-middle-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "none",
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-EXPORT-001",
+      "next_route": "Export packet finite checks pass; middle/reviewer should audit that this post-Lean artifact names the compiled Lean block, permutation, and resource certificates without claiming a primitive gate decomposition.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-21 00:54:27",
+      "trial_id": "20260621-005427-QBE-OP-OPTCTRL-COLD-CLEAN-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "stale_leaf",
+      "finite_matrix_ok": null,
+      "leaf": "COLD-E1-RESOURCE-001",
+      "next_route": "COLD-E1-EXPORT-001: create the post-Lean Qiskit/export packet and finite executable checks from the named Lean certificates.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-21 00:52:18",
+      "trial_id": "20260621-005218-QBE-OP-OPTCTRL-COLD-CLEAN-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "stale_leaf",
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-RESOURCE-001",
+      "next_route": "COLD-E1-EXPORT-001",
+      "role": "lower",
+      "status": "rejected",
+      "timestamp": "2026-06-21 00:52:03",
+      "trial_id": "20260621-005203-QBE-OP-OPTCTRL-COLD-CLEAN-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "none",
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-RESOURCE-001",
+      "next_route": "COLD-E1-EXPORT-001: create the post-Lean Qiskit/export packet and finite executable checks from the named Lean certificates.",
+      "role": "middle",
+      "status": "compiled",
+      "timestamp": "2026-06-21 00:49:28",
+      "trial_id": "20260621-004928-QBE-OP-OPTCTRL-COLD-CLEAN-001-middle-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "none",
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-BLOCK-001",
+      "next_route": "Retire COLD-E1-BLOCK-001; next assign COLD-E1-RESOURCE-001, or a named permutation/unitarity packaging theorem if the certificate interface requires it.",
+      "role": "lower",
+      "status": "compiled",
+      "timestamp": "2026-06-20 18:27:06",
+      "trial_id": "20260620-182706-QBE-OP-OPTCTRL-COLD-CLEAN-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-BLOCK-001",
+      "next_route": "resource certification and optional unitary/permutation packaging; do not reopen block theorem",
+      "role": "lower",
+      "status": "compiled",
+      "timestamp": "2026-06-20 18:27:03",
+      "trial_id": "20260620-182703-QBE-OP-OPTCTRL-COLD-CLEAN-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-BLOCK-001",
+      "next_route": "COLD-E1-RESOURCE-001: attach field equalities for coldE1HighLevelSeedCost, then package candidate if reviewer requires a stronger unitary certificate.",
+      "role": "lower",
+      "status": "compiled",
+      "timestamp": "2026-06-20 18:26:48",
+      "trial_id": "20260620-182648-QBE-OP-OPTCTRL-COLD-CLEAN-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-BLOCK-001",
+      "next_route": "Prove coldE1Candidate_blockProjection in QuantumBlockEncoding/ColdStartTransferE1.lean by finite row/column cases from the compiled candidate table.",
+      "role": "middle",
+      "status": "queued",
+      "timestamp": "2026-06-20 18:11:00",
+      "trial_id": "20260620-181100-QBE-OP-OPTCTRL-COLD-CLEAN-001-middle-handoff"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "COLD-E1-PERM-IMAGE-001",
+      "next_route": "Derive finite bijection/unitarity from coldE1CandidateImage_injective, then prove coldE1BlockProjection coldE1CandidateMatrix by finite cases.",
+      "role": "lower",
+      "status": "compiled",
+      "timestamp": "2026-06-20 17:49:21",
+      "trial_id": "20260620-174921-QBE-OP-OPTCTRL-COLD-CLEAN-001-lower-attempt"
+    }
+  ],
+  "run_dir": "runs/20260621-010002-QBE-OP-OPTCTRL-COLD-CLEAN-001-cycle02",
+  "source_main_tex": "",
+  "stage": "Stage 2 DAG proof discharge",
+  "task_id": "QBE-OP-OPTCTRL-COLD-CLEAN-001",
+  "technical_lemmas": [],
+  "title": "Task: QBE-OP-OPTCTRL-COLD-CLEAN-001"
+}

@@ -277,6 +277,39 @@ example :
       OptimalControl.evolvedEqFlipCandidate := rfl
 
 example :
+    coldE1Target (coldE1SystemIndex 0 0 0) (coldE1SystemIndex 1 1 0) = 1 :=
+  coldE1Target_support_state0
+
+example :
+    coldE1Target (coldE1SystemIndex 0 0 1) (coldE1SystemIndex 1 1 1) = 1 :=
+  coldE1Target_support_state1
+
+example :
+    Function.Injective coldE1CandidateImage ∧
+      Function.Surjective coldE1CandidateImage :=
+  coldE1CandidateImage_permutation_certificate
+
+example :
+    coldE1BlockProjection coldE1CandidateMatrix :=
+  coldE1Candidate_blockProjection
+
+example :
+    coldE1HighLevelSeedCost.gateCount = 4 :=
+  coldE1HighLevelSeedCost_gateCount
+
+example :
+    coldE1HighLevelSeedCost.depth = 4 :=
+  coldE1HighLevelSeedCost_depth
+
+example :
+    coldE1HighLevelSeedCost.auxiliaryQubits = 1 :=
+  coldE1HighLevelSeedCost_auxiliaryQubits
+
+example :
+    coldE1HighLevelSeedCost.oracleCalls = 0 :=
+  coldE1HighLevelSeedCost_oracleCalls
+
+example :
     OptimalControl.directRouteAblationTarget
         ⟨0, by native_decide⟩ ⟨6, by native_decide⟩ = 1 := by
   native_decide
