@@ -23,6 +23,7 @@ import datetime as _dt
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -2435,15 +2436,38 @@ def ghl2025_source_main_tex(task_text: str) -> Path | None:
 
 
 def lean_sorry_lines(limit: int = 20) -> list[str]:
-    code, output = run_capture(["rg", "-n", r"(^\s*sorry\s*$|:=\s*sorry\b|by\s+sorry\b)", "QuantumBlockEncoding", "Tests"])
-    if code not in (0, 1):
-        return [f"rg failed: {output.strip()}"]
-    lines = [
-        line.strip()
-        for line in output.splitlines()
-        if line.strip() and not line.startswith("QuantumBlockEncoding/RobinMatrix.lean:")
-    ]
-    return lines[:limit]
+    pattern_text = r"(^\s*sorry\s*$|:=\s*sorry\b|by\s+sorry\b)"
+    rg = shutil.which("rg")
+    if rg:
+        code, output = run_capture([rg, "-n", pattern_text, "QuantumBlockEncoding", "Tests"])
+        if code not in (0, 1):
+            return [f"rg failed: {output.strip()}"]
+        lines = [
+            line.strip()
+            for line in output.splitlines()
+            if line.strip() and not line.startswith("QuantumBlockEncoding/RobinMatrix.lean:")
+        ]
+        return lines[:limit]
+
+    pattern = re.compile(pattern_text)
+    lines: list[str] = []
+    for root in [ROOT / "QuantumBlockEncoding", ROOT / "Tests"]:
+        if not root.exists():
+            continue
+        for path in sorted(root.rglob("*.lean")):
+            rel = path.relative_to(ROOT).as_posix()
+            if rel == "QuantumBlockEncoding/RobinMatrix.lean":
+                continue
+            try:
+                text = path.read_text(encoding="utf-8")
+            except UnicodeDecodeError:
+                text = path.read_text(encoding="utf-8", errors="replace")
+            for line_no, line in enumerate(text.splitlines(), start=1):
+                if pattern.search(line):
+                    lines.append(f"{rel}:{line_no}:{line.strip()}")
+                    if len(lines) >= limit:
+                        return lines
+    return lines
 
 
 def current_ghl2025_focus() -> list[str]:
