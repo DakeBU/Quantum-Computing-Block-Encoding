@@ -42,6 +42,19 @@ This project also references:
   - Note: the local checkout inspected during development did not include a
     top-level license file, so QBE records citation/source links and does not
     reuse MathCode source code.
+- Xiyu Zhai, Xinyi Chen, Yiping Wang, Runlong Zhou, Liao Zhang, Simon S. Du,
+  Visored: A Controlled-Natural-Language Prover for LLM-Generated Mathematics
+  - Paper: https://arxiv.org/abs/2606.17581
+  - Repository: https://github.com/xiyuzhai-husky-lang/visored
+  - Role: similar pattern for controlled-natural-language proof packets,
+    localized diagnostics, rule-driven routine proof closure, and optional
+    emission to Lean.
+  - QBE adaptation: natural-language lower agents should produce constrained
+    proof packets, while Lean lower agents may work directly in Lean in
+    parallel.  Middle agents use the packet format as a two-way exchange
+    object between natural-language insights, Lean proof leaves, and human
+    proof exports.  QBE does not use Visored as an acceptance gate and does not
+    reuse Visored source code.
 - Yuanhe Zhang, Yuekai Sun, Taiji Suzuki, Jason D. Lee, Fanghui Liu,
   LeanMarathon: Toward Reliable AI Co-Mathematicians through Long-Horizon Lean
   Autoformalization

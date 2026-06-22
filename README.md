@@ -482,6 +482,7 @@ gate-level quantum block-encoding certificates.
 | [EoH][eoh] | Evolutionary candidate populations. | Mutate/recombine candidate block-encoding circuits under a fixed target. |
 | [LeanMarathon][leanmarathon] | Proof blueprint, dynamic leaves, CI gates. | Proof-blueprint snapshots and focused theorem-closure work. |
 | [MathCode][mathcode] | Proof diagnostics and theorem reuse. | Hidden-assumption scans and reusable proof-attempt memory. |
+| [Visored][visored-paper], [repo][visored-repo] | Controlled-natural-language proof surface with localized diagnostics and optional Lean emission. | Structured proof packets as a two-way exchange format between natural-language construction, Lean proof work, and human proof exports. |
 | [Lean4Agent][lean4agent-paper] | Workflow/trajectory verification. | Lean-side process contracts in `Automation.lean`. |
 | [Lean-QuantumInfo][lean-quantuminfo], [lean-quantum][lean-quantum] | Quantum formalization references. | Style and semantic references for finite-dimensional quantum objects. |
 | [QASM-Eval][qasm-eval], [Qiskit QuantumKatas][qiskit-quantumkatas] | Typed circuit/test feedback and executable Qiskit/QASM checks. | ABEIS distinguishes inspired feedback, optional exact finite Qiskit checks, and Lean-certified theorem closure. |
@@ -524,6 +525,8 @@ Selected block-encoding and oracle-construction targets:
 [eoh]: https://github.com/FeiLiu36/EoH
 [leanmarathon]: https://github.com/YuanheZ/LeanMarathon
 [mathcode]: https://github.com/math-ai-org/mathcode
+[visored-paper]: https://arxiv.org/abs/2606.17581
+[visored-repo]: https://github.com/xiyuzhai-husky-lang/visored
 [llm4ad-next]: https://github.com/Optima-CityU/LLM4AD_Next
 [lexelim-bandits]: https://xueb1996.github.io/pdf/AAAI-2026-Xue.pdf
 [lean4agent-paper]: https://arxiv.org/abs/2606.06523

@@ -51,6 +51,14 @@ python3 tools/qbe.py trial-summary
 - Upper agents choose the next objective and compress trial memory.
 - Middle agents maintain conversion windows and proof obligations.
 - Lower agents attempt one construction or proof repair each.
+- Natural-language lower agents should write controlled proof packets rather
+  than free-form essays: target, registers, assumptions, candidate unitary,
+  clean-block statement, local lemmas, external contracts, resource tuple, and
+  typed failure class.  Lean lower agents may work directly in Lean in parallel;
+  the controlled packet is a shared exchange format for natural-language ideas,
+  Lean-facing leaves, and human proof exports, not a required first stage.
+  This follows a similar CNL-diagnostic discipline to Visored while keeping
+  Lean as the acceptance gate.
 - Reviewer agents check Lean build status, oracle assumptions, resources, and
   citations.
 - Documentation-writing agents use `.agents/skills/qbe-math-writing/SKILL.md`:

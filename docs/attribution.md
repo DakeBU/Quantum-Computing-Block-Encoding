@@ -47,6 +47,16 @@ paper or repository.
   copy MathCode code.  The local checkout did not include a top-level license
   file at the time of inspection, so QBE records source links and citation
   metadata rather than license-dependent reuse.
+- Xiyu Zhai, Xinyi Chen, Yiping Wang, Runlong Zhou, Liao Zhang, Simon S. Du,
+  [Visored: A Controlled-Natural-Language Prover for LLM-Generated Mathematics](https://arxiv.org/abs/2606.17581)
+  and [xiyuzhai-husky-lang/visored](https://github.com/xiyuzhai-husky-lang/visored).
+  Similar patterns studied for a controlled-natural-language proof surface,
+  localized elaboration/solver diagnostics, rule-driven closure of routine
+  proof steps, and optional Lean emission.  QBE adapts this as a discipline for
+  structured proof packets that allow natural-language construction workers and
+  Lean workers to exchange ideas in both directions, while middle agents keep
+  Lean-facing leaves and human-readable proof exports aligned.  QBE does not
+  use Visored as a correctness gate and does not copy Visored source code.
 - Yuanhe Zhang, Yuekai Sun, Taiji Suzuki, Jason D. Lee, Fanghui Liu,
   [LeanMarathon: Toward Reliable AI Co-Mathematicians through Long-Horizon Lean Autoformalization](https://arxiv.org/abs/2606.05400)
   and [YuanheZ/LeanMarathon](https://github.com/YuanheZ/LeanMarathon).
@@ -77,6 +87,9 @@ QBE combines these references as a layered system:
   constructions, used only after the target predicate is fixed.
 - LexElim-like selection: active-set filtering for candidate/proof-route
   populations under hard/soft lexicographic feedback.
+- Visored-like interface discipline: controlled proof packets and localized
+  diagnostics as a two-way exchange format between natural-language proof
+  search, Lean proof search, and human proof exports.
 - LeanMarathon-like harness control: proof-blueprint snapshots, target review,
   dynamic proof leaves, refiner-style repair, and deterministic gates.
 
