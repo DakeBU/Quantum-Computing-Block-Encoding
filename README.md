@@ -4,6 +4,9 @@ ABEIS is a Lean 4 project and multi-agent harness for turning a requested
 quantum query operator into concrete block-encoding candidates, gate-level
 circuit matrices, resource scores, and Lean-checked certificates.
 
+![Hierarchical Harness](docs/assets/abeis_contract_pipeline_2x.png)
+
+
 The project is built around one contract:
 
 ```text
@@ -13,6 +16,15 @@ operator/query-oracle contract A
 -> resource-ranked construction
 -> post-Lean executable exports such as Qiskit, QuantumKatas, and QASM
 ```
+
+
+## News
+
+* **June 2026.** We released the first public version of ABEIS as a Lean-certified block-encoding construction library. The API-user website is under construction at https://dakebu.github.io/Quantum-Computing-Block-Encoding/. Feedback, issue reports, and suggested operator/oracle benchmarks are welcome.
+
+
+
+
 
 ABEIS does not stop at "assume an oracle exists".  A task should state the
 operator `A`, normalizer `alpha`, clean ancilla projector, and the desired
