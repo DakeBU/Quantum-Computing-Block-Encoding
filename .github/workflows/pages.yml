@@ -2,7 +2,7 @@ name: Deploy ABEIS Web Task Builder
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
     paths:
       - "web/**"
       - ".github/workflows/pages.yml"
@@ -14,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -23,15 +23,19 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
       - name: Upload web directory
         uses: actions/upload-pages-artifact@v3
         with:
           path: web
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
