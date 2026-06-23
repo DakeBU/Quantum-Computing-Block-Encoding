@@ -13,3 +13,6 @@ Use it to keep three statuses distinct:
 Do not treat a result as proved merely because it is standard, classical, or
 cited by a paper.  Record the source, the exact statement used, the Lean target
 or declaration, and each dependent QBE task.
+
+See `block-encoding-classics.md` for the initial block-encoding/QSVT/LCU source
+memory used by the ABEIS construction-card library.

@@ -1,0 +1,13 @@
+{
+  "auxiliary_qubits": 1,
+  "clean_block_error": 0.0,
+  "gate_count": 4,
+  "lean_certificate": "QuantumBlockEncoding.OptimalControl.evolvedEqFlipVerified",
+  "oracle_calls": 0,
+  "passed": true,
+  "qiskit_depth": 2,
+  "qiskit_qubits": 4,
+  "semantic_tier": "Lean-certified exact finite instance",
+  "task_id": "QBE-OP-OPTCTRL-001",
+  "unitary_error": 0.0
+}

@@ -25,3 +25,8 @@ Allowed statuses:
 
 This directory is retrieval memory.  A result closes a theorem only when the
 referenced Lean declaration is build-tested for the exact statement being used.
+
+For block-encoding construction templates, use
+`research-wiki/block-encoding-library/` first.  Technical-lemma cards should
+record dependencies that a chosen construction card needs, not replace the
+route selector.

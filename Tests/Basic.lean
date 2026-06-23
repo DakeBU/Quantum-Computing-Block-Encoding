@@ -655,6 +655,70 @@ example :
     (CircuitMatrixSemantics.ofGateMatrices
       [Gate.oneQubit "I" 0] [testIdentityGateMatrix] rfl).gateListMatches = rfl := rfl
 
+example :
+    BlockEncodingClassics.cleanBlockBy
+        OptimalControl.cleanIndex
+        (BlockEncodingClassics.permMatrix OptimalControl.exampleImage)
+        OptimalControl.targetState0
+        OptimalControl.sourceState0 =
+      (if OptimalControl.cleanIndex OptimalControl.targetState0 =
+          OptimalControl.exampleImage
+            (OptimalControl.cleanIndex OptimalControl.sourceState0) then
+        1
+      else
+        0) := by
+  rfl
+
+example :
+    (BlockEncodingClassics.tensorResourceCost
+      { auxiliaryQubits := 1, gateCount := 4, depth := 2, oracleCalls := 0 }
+      { auxiliaryQubits := 2, gateCount := 3, depth := 5, oracleCalls := 1 }).depth = 5 := by
+  rfl
+
+example :
+    (BlockEncodingClassics.productResourceCost
+      { auxiliaryQubits := 1, gateCount := 4, depth := 2, oracleCalls := 0 }
+      { auxiliaryQubits := 2, gateCount := 3, depth := 5, oracleCalls := 1 }).depth = 7 := by
+  rfl
+
+example :
+    Matrix.PointwiseEq
+      (BlockEncodingClassics.oneTermLCU OptimalControl.exampleOperator)
+      OptimalControl.exampleOperator :=
+  BlockEncodingClassics.oneTermLCU_cleanBlock OptimalControl.exampleOperator
+
+example :
+    Matrix.PointwiseEq
+      (Matrix.mul OptimalControl.exampleOperator (Matrix.identity 8 Rat))
+      (Matrix.mul OptimalControl.exampleOperator (Matrix.identity 8 Rat)) :=
+  BlockEncodingClassics.matrix_mul_congr_pointwise
+    (fun _ _ => rfl)
+    (fun _ _ => rfl)
+
+example :
+    Matrix.PointwiseEq
+      (BlockEncodingClassics.ExactCleanBlock.clean
+        (BlockEncodingClassics.partialPermutationCertificate
+          OptimalControl.cleanIndex
+          OptimalControl.exampleImage
+          OptimalControl.exampleOperator
+          (by
+            intro row col
+            simpa [OptimalControl.exampleUnitary,
+              BlockEncodingClassics.permMatrix]
+              using OptimalControl.example_cleanBlock row col)))
+      OptimalControl.exampleOperator :=
+  BlockEncodingClassics.ExactCleanBlock.clean_eq_target
+    (BlockEncodingClassics.partialPermutationCertificate
+      OptimalControl.cleanIndex
+      OptimalControl.exampleImage
+      OptimalControl.exampleOperator
+      (by
+        intro row col
+        simpa [OptimalControl.exampleUnitary,
+          BlockEncodingClassics.permMatrix]
+          using OptimalControl.example_cleanBlock row col))
+
 
 /-!
 Optional Robin/GHL paper-benchmark tests are intentionally not part of the

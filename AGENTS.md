@@ -68,6 +68,14 @@ python3 tools/qbe.py trial-summary
   a proof repeats local work.  Promote repeated bit arithmetic, matrix-index
   calculations, projection lemmas, and gate obligations to reusable Lean blocks
   instead of flattening them into repeated scripts.
+- Upper and middle agents should use
+  `.agents/skills/qbe-block-encoding-library/SKILL.md` before proposing a new
+  block-encoding route.  Route the target through the shared memory cards in
+  `research-wiki/block-encoding-library/` first, then assign lower agents a
+  small proof-DAG leaf.  Typical first routes are partial permutation, passive
+  tensor register, LCU, product/tensor arithmetic, sparse-access Gram
+  construction, density/purification, dilation fallback, or QSVT consumer
+  contract.
 
 The shared conversation board is `runs/<run-id>/dialogue.md`; persistent memory
 is `runs/trials.jsonl` plus `runs/trials_summary.csv`.

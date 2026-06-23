@@ -1,5 +1,6 @@
 import QuantumBlockEncoding.Automation
 import QuantumBlockEncoding.BlockEncoding
+import QuantumBlockEncoding.BlockEncodingClassics
 import QuantumBlockEncoding.Circuit
 import QuantumBlockEncoding.CircuitSemantics
 import QuantumBlockEncoding.Core

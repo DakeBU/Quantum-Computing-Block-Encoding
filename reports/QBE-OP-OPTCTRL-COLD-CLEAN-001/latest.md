@@ -22,7 +22,7 @@ matrix over `(signal,T,tau,S)`.
 | Target theorem | `coldE1Candidate_blockProjection` |
 | Permutation certificate | `coldE1CandidateImage_permutation_certificate` |
 | Resource tuple | `(gateCount, depth, auxiliaryQubits, oracleCalls) = (4,4,1,0)` |
-| Export check | `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/cold_e1_export_check.py` |
+| Export check | `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py` |
 | Qiskit/export status | `finite_matrix_ok=true`, `block_entry_ok=true`, `unitarity_ok=true`, `qiskit_export_ok=true` |
 
 The construction is a certified high-level finite permutation block encoding.
@@ -69,7 +69,6 @@ nonzero entries of `E_1`.
 - Lean source: `QuantumBlockEncoding/ColdStartTransferE1.lean`
 - Tests: `Tests/Basic.lean`
 - Qiskit-backed export check:
-  `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/cold_e1_export_check.py`
+  `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py`
 - Manuscript proof note:
   `paper-notes/problem-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/latest.tex`
-

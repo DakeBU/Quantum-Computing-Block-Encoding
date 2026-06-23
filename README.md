@@ -24,7 +24,7 @@ A Platform of Automatic Block-Encolding for Quantum Query Operator (Lean-validat
 
 ## News 🔥
 
-* **June 2026.** We released the first public version of ABEIS as a Lean-certified block-encoding construction library. The API-user website is under construction at https://dakebu.github.io/Quantum-Computing-Block-Encoding/. Feedback, issue reports, and suggested operator/oracle benchmarks are welcome.
+* **June 2026.** ABEIS is now public as a testing preview for Lean-certified block-encoding construction.  The API-user website placeholder is available at https://dakebu.github.io/Quantum-Computing-Block-Encoding/ while the hosted workflow is still being tested.  Feedback, issue reports, and suggested operator/oracle benchmarks are welcome.
 
 
 ---
@@ -143,7 +143,7 @@ history.
 
 | Run | Harness and inputs | Certified result | Score |
 | --- | --- | --- | --- |
-| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | no-Pro Hierarchical Harness attempt; no Pro answer or old optctrl memory | `coldE1ExactImprove4Depth2_blockProjection` and `coldE1ExactImprove4Depth2Image_permutation_certificate` | `(4,2,1,0)` Lean-certified exact checkpoint; export/report sync pending |
+| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | no-Pro Hierarchical Harness attempt; no Pro answer or old optctrl memory | `coldE1Candidate_blockProjection` and `coldE1CandidateImage_permutation_certificate` | `(4,4,1,0)` Lean-certified exact checkpoint; Qiskit export passed |
 | `QBE-OP-OPTCTRL-001` | Pro-assisted evolution attempt; Pro idea entered only as insight-pool input before Lean promotion | `OptimalControl.evolvedEqFlipVerified` | `(4,2,1,0)` |
 
 The no-Pro Hierarchical attempt proves the system can recover and improve a
@@ -205,6 +205,7 @@ Lean block theorem = coldE1Candidate_blockProjection
 permutation theorem = coldE1CandidateImage_permutation_certificate
 comparison tuple = (gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 4, 1, 0)
 Qiskit/export diagnostic = passed
+Qiskit artifact = executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py
 ```
 
 Detailed human-readable status:
@@ -290,6 +291,8 @@ Current Qiskit exports:
 
 - `executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py`: exported from a
   Lean-certified exact concrete champion.
+- `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py`:
+  exported from the no-Pro Lean-certified cold-clean checkpoint.
 - `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py`: finite
   dense baseline for small `n`; useful evidence, not a symbolic certificate.
 
@@ -298,6 +301,7 @@ Current executable-export self-tests:
 | Task | Qiskit artifact | Status | What it checks |
 | --- | --- | --- | --- |
 | `QBE-OP-OPTCTRL-001` | `executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py` | passed: clean block error `0`, unitary error `0` | the exported four-qubit Qiskit circuit matches the Lean-certified concrete clean block and resources `(4,2,1,0)` |
+| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py` | passed: clean block error `0`, unitary error `0`, export error `0` | the no-Pro finite permutation export matches the Lean-certified clean block and resources `(4,4,1,0)` |
 | `QBE-OP-CUBIC-STATEPREP-001` | `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py` | passed for finite `n=3`; clean block error about `2.8e-17` | a dense fixed-instance baseline only; not a symbolic family certificate |
 
 ## Why The ABEIS Harness
@@ -499,6 +503,10 @@ Project layout:
   certificates.
 - `tasks/`: operator or paper-benchmark contracts.
 - `candidate-populations/`: Lean-certified candidates and rejected routes.
+- `research-wiki/block-encoding-library/`: reusable construction memory cards
+  and route selector for partial permutations, LCU, product/tensor arithmetic,
+  sparse-access, dilation, QSVT consumers, and approximate dense/structured
+  block encodings.
 - `conversion-windows/`, `proof-blueprints/`, `proof-obligations/`: compact
   proof state and Lean/natural-language correspondence.
 - `executable-exports/`: post-Lean Qiskit, QuantumKatas, QASM, and related
@@ -544,6 +552,15 @@ Selected block-encoding and oracle-construction targets:
 | `planned` | Camps--Van Beeumen, [FABLE: Fast Approximate Quantum Circuits for Block-Encodings](https://arxiv.org/abs/2205.00081) | `QuantumBlockEncoding/Circuit.lean` |
 | `planned` | Gilyen--Su--Low--Wiebe, [Quantum singular value transformation and beyond](https://arxiv.org/abs/1806.01838) | `QuantumBlockEncoding/BlockEncoding.lean` |
 | `planned` | Childs--Wiebe, [Hamiltonian simulation using linear combinations of unitary operations](https://arxiv.org/abs/1202.5822) | `QuantumBlockEncoding/BlockEncoding.lean` |
+| `planned` | Low--Chuang, [Hamiltonian Simulation by Qubitization](https://quantum-journal.org/papers/q-2019-07-12-163/) | `QuantumBlockEncoding/BlockEncoding.lean` |
+| `planned` | Sunderhauf--Campbell--Camps, [Block-encoding structured matrices for data input in quantum computing](https://arxiv.org/abs/2302.10949) | `QuantumBlockEncoding/Circuit.lean` |
+
+The construction memory library is in
+`research-wiki/block-encoding-library/`.  It is organized as a route selector
+plus theorem cards, so an agent can recognize when a target should be solved by
+partial permutation, LCU, product/tensor arithmetic, sparse-access Gram
+construction, density/purification, dilation, QSVT consumer contracts, or
+approximate dense/structured synthesis.
 
 ## Citation
 
