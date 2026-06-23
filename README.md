@@ -1,5 +1,7 @@
-# Auto-Lean-in-Sleep: Block Encoding for Quantum Computing
 <div align=center>
+
+# Auto-Lean-in-Sleep: Block Encoding for Quantum Computing
+
 <h3 align="center">
 A Platform of Automatic Block-Encolding for Quantum Query Operator (Lean-validated Theorem + Software Tools).
 </h3>
