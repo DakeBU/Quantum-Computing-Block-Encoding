@@ -1,5 +1,31 @@
 # Auto-Lean-in-Sleep: Block Encoding for Quantum Computing
+<div align=center>
+<h3 align="center">
+A Platform of Automatic Block-Encolding for Quantum Query Operator (Lean-validated Theorem + Software Tools).
+</h3>
 
+[![Github][Github-image]][Github-url]
+[![License][License-image]][License-url]
+
+
+[Github-image]: https://img.shields.io/badge/github-12100E.svg?style=flat-square
+[License-image]: https://img.shields.io/badge/License-MIT-orange?style=flat-square
+
+
+
+
+[Github-url]: https://github.com/DakeBU/Quantum-Computing-Block-Encoding/EOH
+[License-url]: https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/LICENSE
+
+
+</div>
+
+## News 🔥
+
+* **June 2026.** We released the first public version of ABEIS as a Lean-certified block-encoding construction library. The API-user website is under construction at https://dakebu.github.io/Quantum-Computing-Block-Encoding/. Feedback, issue reports, and suggested operator/oracle benchmarks are welcome.
+
+
+---
 ABEIS is a Lean 4 project and multi-agent harness for turning a requested
 quantum query operator into concrete block-encoding candidates, gate-level
 circuit matrices, resource scores, and Lean-checked certificates.
@@ -17,10 +43,6 @@ operator/query-oracle contract A
 -> post-Lean executable exports such as Qiskit, QuantumKatas, and QASM
 ```
 
-
-## News
-
-* **June 2026.** We released the first public version of ABEIS as a Lean-certified block-encoding construction library. The API-user website is under construction at https://dakebu.github.io/Quantum-Computing-Block-Encoding/. Feedback, issue reports, and suggested operator/oracle benchmarks are welcome.
 
 
 
