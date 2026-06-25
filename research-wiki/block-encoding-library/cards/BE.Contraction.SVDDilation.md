@@ -31,6 +31,14 @@ x & \sqrt{1-x^2}\\
 \end{bmatrix}.
 $$
 
+## Intuition
+
+A contraction is missing some norm compared with a unitary.  Dilation stores
+that missing norm in an orthogonal branch.  This makes it an excellent
+existence seed and a useful small-dimensional exact construction, but it
+usually does not explain how to implement a scalable gate-level data-loading
+oracle.
+
 ## Lean Proof Shape
 
 ```lean
@@ -40,9 +48,11 @@ theorem scalarDilation_cleanEntry (x y : Rat) :
   scalarDilation x y fin2Zero fin2Zero = x
 ```
 
-The full unitary theorem needs a backend that can express
-`y * y = 1 - x * x` or a real square-root witness.  Until then, the clean-entry
-leaf is formalized and unitarity remains an explicit obligation.
+Compiled Lean leaves currently include all four scalar entries, row dot
+products, unit row norms under the explicit witness `x*x + y*y = 1`, and row
+orthogonality.  The full unitary package still needs a richer backend or a
+small matrix-orthogonality wrapper, and a real square-root version still needs
+an analytic witness.
 
 ## Proof-DAG Leaves
 

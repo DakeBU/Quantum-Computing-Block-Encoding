@@ -1,6 +1,6 @@
 # Card: BE.EntrywiseExact.CleanBlock
 
-## Detection
+## When To Try This Route
 
 Use this card whenever a candidate unitary has a concrete clean ancilla state
 and the target can be checked entry by entry.

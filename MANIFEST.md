@@ -7843,3 +7843,19 @@ block-encoding formalization lifecycle.
 | 2026-06-20 17:17:21 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-CLEAN-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-CLEAN-001 |
 | 2026-06-21 20:25:44 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-CLEAN-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-CLEAN-001 |
 | 2026-06-21 21:58:40 | qbe.py blueprint-refresh | `proof-blueprints/QBE-OP-CUBIC-DIAGONAL-CLEAN-001.md` | blueprint | Refreshed proof blueprint for QBE-OP-CUBIC-DIAGONAL-CLEAN-001 |
+| 2026-06-25 22:24:40 | qbe.py new-task | `tasks/QBE-MAIN-CASE-HIER-COLD-001.md` | task | Created task QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:24:40 | qbe.py new-task | `tasks/QBE-MAIN-CASE-HIER-PRO-001.md` | task | Created task QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:26:22 | qbe.py update-task | `tasks/QBE-MAIN-CASE-HIER-COLD-001.md` | task | Updated QBE-MAIN-CASE-HIER-COLD-001 to active |
+| 2026-06-25 22:26:22 | qbe.py update-task | `tasks/QBE-MAIN-CASE-HIER-PRO-001.md` | task | Updated QBE-MAIN-CASE-HIER-PRO-001 to active |
+| 2026-06-25 22:29:16 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:29:16 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:29:17 | qbe.py run-cycle | `runs/20260625-222916-QBE-MAIN-CASE-HIER-COLD-001-cycle01` | run | Created run cycle for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:29:17 | qbe.py run-cycle | `runs/20260625-222916-QBE-MAIN-CASE-HIER-PRO-001-cycle01` | run | Created run cycle for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:30:31 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:30:31 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:30:32 | qbe.py run-cycle | `runs/20260625-223031-QBE-MAIN-CASE-HIER-COLD-001-cycle01` | run | Created run cycle for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:30:32 | qbe.py run-cycle | `runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01` | run | Created run cycle for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:31:01 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:31:03 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:32:55 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-COLD-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 22:32:59 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-223259-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff |

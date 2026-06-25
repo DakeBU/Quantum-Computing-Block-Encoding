@@ -298,17 +298,17 @@ def draw_optctrl_hier_vs_pro():
 
     ax1.set_title("Attempt A: no-Pro Hierarchical Harness", fontsize=16, fontweight="bold", color=NAVY)
     ax1.set_ylabel("Lower is better", fontsize=13, fontweight="bold")
-    cold_steps = [0, 1, 2]
-    cold_gates = [None, 4, 4]
-    cold_depth = [None, 4, 4]
-    ax1.plot([1, 2], [4, 4], marker="o", ms=9, lw=3.0, color=BLUE, label="Gate count")
-    ax1.plot([1, 2], [4, 4], marker="s", ms=8, lw=3.0, color=ORANGE, label="Depth")
+    cold_steps = [0, 1, 2, 3]
+    ax1.plot([1, 2, 3], [4, 4, 4], marker="o", ms=9, lw=3.0, color=BLUE, label="Gate count")
+    ax1.plot([1, 2, 3], [4, 4, 4], marker="s", ms=8, lw=3.0, color=ORANGE, label="Depth")
+    ax1.axvspan(1.55, 2.45, facecolor=GREEN_L, edgecolor=GREEN, linewidth=1.4, alpha=0.7)
     ax1.scatter([0], [0], s=70, marker="x", color=RED, linewidth=2.4)
     ax1.annotate("target fixed", (0, 0), xytext=(10, 18), textcoords="offset points", fontsize=10, fontweight="bold", color=TEXT)
     ax1.annotate("COLD-CLEAN-PERM-001\nLean checkpoint", (1, 4), xytext=(0, 18), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=TEXT)
-    ax1.annotate("Qiskit/export\npassed", (2, 4), xytext=(0, -38), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=GREEN)
+    ax1.annotate("epsilon=0\napprox incumbent", (2, 4), xytext=(0, -38), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=GREEN)
+    ax1.annotate("Qiskit/export\npassed", (3, 4), xytext=(0, 18), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=GREEN)
     ax1.set_xticks(cold_steps)
-    ax1.set_xticklabels(["target", "Lean", "export"])
+    ax1.set_xticklabels(["target", "Lean", "Approx", "export"])
 
     ax2.set_title("Attempt B: Pro-assisted evolution", fontsize=16, fontweight="bold", color=NAVY)
     gens = [2, 6, 7, 8]
@@ -320,8 +320,9 @@ def draw_optctrl_hier_vs_pro():
     ax2.annotate("depth-5\ncertificate", (2, 5), xytext=(0, 18), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=TEXT)
     ax2.annotate("Pro idea\npromoted by Lean", (6, 4), xytext=(0, 18), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=TEXT)
     ax2.annotate("evolved\nchampion", (7, 2), xytext=(0, -38), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=GREEN)
+    ax2.annotate("epsilon=0 approx\nQiskit/export passed", (8, 2), xytext=(0, 18), textcoords="offset points", ha="center", fontsize=9.3, fontweight="bold", color=GREEN)
     ax2.set_xticks(gens)
-    ax2.set_xticklabels(["Gen 2", "Gen 6", "Gen 7", "Approx"])
+    ax2.set_xticklabels(["Gen 2", "Gen 6", "Gen 7", "Approx+export"])
 
     handles, labels_ = ax2.get_legend_handles_labels()
     fig.legend(handles, labels_, loc="lower center", ncol=2, frameon=True, fontsize=12)

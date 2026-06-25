@@ -1,4 +1,4 @@
-# Operator of optimal control paper
+# Main Case: Transfer-Operator Block Encoding
 
 Task id: `QBE-OP-OPTCTRL-001`
 Kind: `operatorBlockEncoding`
@@ -45,7 +45,7 @@ Hybrid strategy:
 
 ## Source
 
-- Paper/open problem: `operator from optimal-control paper: E_k := |0><k|_time ⊗ |0><1|_type ⊗ I_n`
+- Paper/open problem: `main-case transfer operator: E_k := |0><k|_time ⊗ |0><1|_type ⊗ I_n`
 - Lean target: `QuantumBlockEncoding/OptimalControl.lean`
 
 ## Operator Contract

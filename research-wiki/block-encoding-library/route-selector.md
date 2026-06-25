@@ -1,8 +1,46 @@
-# Block-Encoding Route Selector
+# Block-Encoding Route-Intuition Guide
 
-Given an operator target $A$, choose the first route whose detection rule fits.
-If several routes fit, instantiate the cheapest exact candidate first and keep
-the others as population diversity.
+Given an operator target $A$, use this file as a textbook memory, not a rigid
+classifier.  Upper agents should read the target, recall similar classic
+constructions, and propose several plausible routes.  Middle agents then turn
+those routes into small proof-DAG leaves, run them in parallel when useful, and
+store failed but insightful candidates in the insight pool.
+
+## Route-Intuition Matrix
+
+Upper and middle agents should record why a route is worth trying, what proof
+leaf it would reduce to, and which competing routes remain useful for
+population diversity.
+
+| Target/access model | Route worth trying | Normalizer intuition | Main proof leaf | Deprioritize when |
+| --- | --- | --- | --- | --- |
+| explicit matrix unit, projector, reset, partial injection | partial permutation | usually $\alpha=1$ | finite image theorem plus clean-block entry | target has nontrivial amplitudes or non-basis action |
+| one possible nonzero row per column | one-sparse permutation | value bound or one-sparse amplitude scale | Kronecker delta support collapse | support map is not functional or not reversible enough |
+| column slots and value oracle | sparse column oracle | usually slot count times value bound | finite slot-sum collapse | row access is required for reversibility/cleanup |
+| row and column location oracles | row-column sparse oracle | sparsity $s$ and value bound | double-delta uniqueness collapse | locations are not unique or value oracle lacks cleanup |
+| reversible formula/value oracle | value-to-amplitude | value bound or rotation scale | compute--rotate--uncompute cleanup | workspace is not uncomputed |
+| finite weighted sum of encoded blocks | LCU | $\sum_j |\alpha_j|$ or prepared norm | PREPARE--SELECT projection | coefficients/signs/phases are not represented |
+| product or tensor of encoded blocks | arithmetic product/tensor | product of normalizers or tensor scale | matrix multiplication/tensor entry bridge | component certificates are missing |
+| dense contraction with no better structure | dilation fallback | contraction scaling | 2-by-2 dilation orthogonality | efficient circuit is required but no implementation is supplied |
+| polynomial transform/inverse/sign/filter | QSVT/qubitization consumer | inherited from input BE and polynomial theorem | consume a proved BE | no input BE has been certified |
+
+After at least one route is made precise, certified candidates are ranked
+lexicographically at the same semantic tier:
+
+```text
+valid operator contract
+> exact before approximate unless Scenario 2 is active
+> most specific structure before generic fallback
+> better normalizer / fewer oracle calls
+> (gateCount, depth, auxiliaryQubits, oracleCalls)
+> lower proof burden and reusable leaves
+```
+
+Each route note should name the required access model, normalizer, clean
+ancilla, workspace cleanup, and whether the route is `formalized`,
+`contract-only`, or `obligation`.  A `contract-only` route may guide
+brainstorming, but it cannot become a parent in the certified population until
+the required Lean theorem is present.
 
 ## Route 1: Partial Permutation
 
@@ -48,13 +86,17 @@ Card: `BE.LCU.PrepareSelect`.
 Use when $A$ is built from already encoded parts:
 
 $$
-A = AB,\qquad A = A_1 \otimes A_2,\qquad A = A_1 \oplus A_2.
+A = AB,\qquad A = A_1 \otimes A_2.
 $$
 
 Cards:
 
 - `BE.Arithmetic.Product`
 - `BE.Arithmetic.Tensor`
+
+Direct-sum composition is a planned sibling route, not a compiled card in the
+current memory library.  Do not assign a direct-sum lower task unless a
+task-local theorem statement is added first.
 
 ## Route 5: Value-To-Amplitude Query Oracle
 
@@ -87,6 +129,8 @@ Card: `BE.Density.FromPurification`.
 
 Use when $A$ is a contraction and no better structure is found.  Prefer a
 diagonal or 2-by-2 scalar rotation special case before general SVD dilation.
+This is an existence fallback and a source of seeds; it is not automatically an
+efficient gate-level construction.
 
 Cards:
 
@@ -114,13 +158,15 @@ Cards:
 - `BE.FABLE.ApproxDense`
 - `BE.StructuredSparse.ExplicitCircuits`
 
-## Mandatory Rejection Note
+## Mandatory Route Note
 
-Every upper/middle route decision should write one sentence explaining rejected
-first routes.  Example:
+Every upper/middle route decision should write one sentence explaining why the
+chosen route is the main attempt and which alternatives are preserved or
+deprioritized.  Example:
 
 ```text
-Rejected LCU and QSVT for E_k because the target is a matrix unit tensor
-identity; partial permutation gives an exact clean-block proof with one block
-ancilla and no oracle calls.
+For E_k, partial permutation is the main route because the target is a matrix
+unit tensor identity.  LCU and QSVT are preserved only as background routes:
+they are more general, but would obscure the exact clean-block proof and
+resource score for this target.
 ```

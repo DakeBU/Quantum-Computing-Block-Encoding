@@ -66,13 +66,36 @@ These atoms compile in `QuantumBlockEncoding/BlockEncodingClassics.lean`:
 - `kroneckerRat`
 - `oneSparseMatrix_entry_if`
 - `oneSparse_from_support`
+- `OneSparseCertificate`
 - `sparseColumnCleanEntry`
+- `sparseColumnCleanEntry_no_hit`
+- `sparseColumnCleanEntry_unique_slot`
 - `SparseColumnCertificate`
+- `rowColumnSparseDeltaEntry`
+- `RowColumnSparseCertificate`
 - `ValueToAmplitudeContract`
 - `IsSymmetric`
 - `cleanBlockBy_symmetric_of_symmetric`
 - `scalarDilation_cleanEntry`
+- `scalarDilation_offdiag01`
+- `scalarDilation_offdiag10`
+- `scalarDilation_diag11`
+- `scalarDilationRowDot`
+- `scalarDilation_row0_normSq`
+- `scalarDilation_row1_normSq`
+- `scalarDilation_row0_unit_norm_of`
+- `scalarDilation_row1_unit_norm_of`
+- `scalarDilation_rows01_orthogonal`
+- `scalarDilation_rows10_orthogonal`
 - `chebyshevT`
+- `chebyshevT_succ_succ`
+- `chebyshevT_three_recurrence`
+- `chebyshevT_four_recurrence`
+- `weightedSum2_entry`
+- `twoTermLCUCertificate`
+- `twoTermLCUCertificate_cleanBlock_entry`
+- `ExactCleanBlock.toLCUCertificate`
+- `productExactCleanBlockCertificate`
 - `QubitizationChebyshevContract`
 
 ## Next Formalization Leaves
@@ -81,7 +104,7 @@ These atoms compile in `QuantumBlockEncoding/BlockEncodingClassics.lean`:
 | --- | --- | --- |
 | P0 | row-column sparse delta contraction | shared by general sparse matrix BE proofs |
 | P0 | full PREPARE-SELECT-PREPARE dagger clean block | shared by LCU and many paper constructions |
-| P1 | diagonal contraction dilation unitarity | fallback exact BE for contractions |
+| P1 | scalar/diagonal dilation column orthogonality and full unitarity package | fallback exact BE for contractions |
 | P1 | value-to-amplitude controlled-rotation semantic instance | needed for formula-defined diagonal oracles |
 | P2 | two-dimensional qubitization/Chebyshev invariant subspace | first real step toward QSVT theorem support |
 

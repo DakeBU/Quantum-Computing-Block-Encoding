@@ -6417,11 +6417,12 @@ def strategy_for_mode(mode: str) -> str:
   dependencies, reusable components, or negative evidence.  The active packet
   must instead name an approximate target, an epsilon tier, an error budget,
   and the Lean statement shape that would certify that tier.
-- There is no fixed public "easy" or "hard" mode.  The default harness starts
-  with differentiated upper and middle panels plus three complementary lower
-  roles.  After each cycle, the upper panel decides from the logs, proof-DAG
-  frontier, population diversity, and marginal improvement whether to increase
-  upper, middle, or lower parallelism.  Extra agents are a controlled
+- There is no fixed public "easy" or "hard" mode.  The default adaptive harness
+  starts with a small prompt queue: one upper director, one middle coordinator,
+  one lower worker, and a reviewer/build gate.  After each cycle, the upper and
+  reviewer layers decide from the logs, proof-DAG frontier, population
+  diversity, and marginal improvement whether to open upper/middle specialist
+  panels or increase lower parallelism.  Extra agents are a controlled
   intervention, not a permanent assumption that more agents are always better.
 - A candidate is accepted only after Lean proves the unitary and block-entry
   contracts for the stated target.  Resource scores rank candidates; they do
@@ -6881,6 +6882,11 @@ Produce:
 4. Non-goals and directions to stop pursuing, with reasons.
 5. Middle-agent instructions for conversion windows, paper notes, proof
    obligations, and memory.
+5a. Textbook-memory intuition.  Read the block-encoding memory library as an
+   exam-prep notebook, not as a rigid detector.  Name which Lin-note/classic
+   construction patterns seem analogous, which ones are merely preserved for
+   diversity, and which compiled Lean leaves should be reused before any new
+   proof is attempted.
 6. Layer-allocation decision for this cycle.  In the Hierarchical Harness
    profile, spend enough budget in upper/middle/reviewer planning before lower
    workers run: upper fixes target and search direction, middle translates and
@@ -6896,6 +6902,9 @@ Produce:
    for the increase.
 7. Lower-agent work packets with narrow file scopes and acceptance checks.
    Use lower 4 only as a refiner/reducer after a concrete Lean failure.
+   Every packet should say whether it is trying to certify a candidate, translate
+   a natural-language proof sketch into Lean, extract an insight-pool idea, or
+   simplify an already-correct proof.
 8. The verifier-feedback fields expected from lower agents for this cycle,
    including which finite-matrix, source-correspondence, or Lean-gate checks are
    meaningful and which ones are irrelevant.
@@ -7146,6 +7155,12 @@ Maintain:
 8. Verifier-feedback memory: for each lower attempt, record the leaf id, typed
    success/failure fields, error class, and next route in `runs/trials.jsonl`
    and, when useful, under `verifier-feedback/`.
+8a. Textbook-memory and insight-pool bridge: when upper names a classic
+    block-encoding route, translate it into (i) one or more Lean proof leaves,
+    (ii) one natural-language proof sketch packet, and (iii) an insight-pool
+    record for alternative routes or failed but reusable ideas.  Explicitly
+    record when a natural-language proof suggests a Lean lemma, and when a Lean
+    failure suggests a better human proof decomposition.
 9. Closeout export bridge: at 6h or convergence closeout, ensure the
    problem-specific LaTeX proof note reflects the Lean status, proof-DAG
    frontier, and safe manuscript edits.  The ABEIS technical-report packet is
@@ -7455,6 +7470,11 @@ Look for:
     requested, and a proof-DAG blueprint figure or Mermaid source.  If no
     candidate is certified, the figures must say so rather than plotting an
     unproved achieved point.
+20. Missing proof elegance and readability audit.  Reviewer should reject
+    needlessly duplicated local definitions, theorem statements whose
+    hypotheses hide the operator contract, proof scripts that obscure a reusable
+    textbook leaf, or exported Markdown/LaTeX proofs that a mathematically
+    trained user cannot follow step by step.
 
 Classify findings as blocking or advisory.  If the current task is a paper
 benchmark, reject unrecorded invention and any added assumption or

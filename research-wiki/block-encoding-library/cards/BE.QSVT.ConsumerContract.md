@@ -16,6 +16,13 @@ singular-value transformation.
 First prove a block encoding of $A$.  Then state the QSVT theorem as an
 external consumer contract unless the task explicitly asks to formalize QSVT.
 
+## Intuition
+
+QSVT is a downstream spectral or singular-value transformer.  It does not
+solve data loading, sparse access, value-to-amplitude conversion, or ancilla
+cleanup for the original operator.  In the ABEIS DAG, QSVT is opened only
+after a named exact or approximate block-encoding certificate exists.
+
 ## Lean Proof Shape
 
 ```lean

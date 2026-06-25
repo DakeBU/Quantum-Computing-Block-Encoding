@@ -38,6 +38,18 @@ $$
 A/\alpha.
 $$
 
+This displayed formula is the nonnegative real coefficient version.  For
+negative or complex coefficients, phases/signs must be represented explicitly,
+usually in the selected unitary or in the preparation convention, and
+`alpha` is normally an absolute-value sum or another stated coefficient norm.
+
+## Intuition
+
+PREPARE puts square-root coefficient amplitudes on the index register.
+SELECT applies the corresponding block or unitary.  Projecting the index
+register back onto the prepared state contributes the second square-root
+factor, so the clean branch contains the weighted sum.
+
 ## Lean Proof Shape
 
 ```lean
@@ -57,6 +69,12 @@ Compiled Lean declarations:
 - `BlockEncodingClassics.oneTermLCU_cleanBlock`
 - `BlockEncodingClassics.LCUCertificate`
 - `BlockEncodingClassics.LCUCertificate.correct`
+- `BlockEncodingClassics.weightedSum2_entry`
+- `BlockEncodingClassics.weightedSum2`
+- `BlockEncodingClassics.twoTermLCUCertificate`
+- `BlockEncodingClassics.twoTermLCUCertificate_cleanBlock_entry`
+- `BlockEncodingClassics.ExactCleanBlock.toLCUCertificate`
+- `BlockEncodingClassics.productExactCleanBlockCertificate`
 
 ## Proof-DAG Leaves
 

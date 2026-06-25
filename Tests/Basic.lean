@@ -748,15 +748,128 @@ example :
       BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2Zero = 0 := by
   native_decide
 
+def testSparseColumnLoc (_col : Fin 2) (_slot : Fin 1) : Fin 2 :=
+  BlockEncodingClassics.fin2One
+
+def testSparseColumnValue (_slot : Fin 1) (_col : Fin 2) : Rat :=
+  5
+
+example :
+    BlockEncodingClassics.sparseColumnCleanEntry
+      testSparseColumnLoc testSparseColumnValue
+      BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2Zero = 0 :=
+  BlockEncodingClassics.sparseColumnCleanEntry_no_hit
+    testSparseColumnLoc testSparseColumnValue
+    BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2Zero
+    (by
+      intro slot
+      intro h
+      simp [testSparseColumnLoc, BlockEncodingClassics.fin2Zero,
+        BlockEncodingClassics.fin2One] at h)
+
+example :
+    BlockEncodingClassics.sparseColumnCleanEntry
+      testSparseColumnLoc testSparseColumnValue
+      BlockEncodingClassics.fin2One BlockEncodingClassics.fin2Zero = 5 :=
+  BlockEncodingClassics.sparseColumnCleanEntry_unique_slot
+    testSparseColumnLoc testSparseColumnValue
+    BlockEncodingClassics.fin2One BlockEncodingClassics.fin2Zero
+    ⟨0, by native_decide⟩ rfl
+    (by
+      intro slot hne _hrow
+      exact hne (Subsingleton.elim slot ⟨0, by native_decide⟩))
+
 example (x : Rat) :
     BlockEncodingClassics.chebyshevT 2 x = 2 * x * x - 1 :=
   BlockEncodingClassics.chebyshevT_two x
+
+example (x : Rat) :
+    BlockEncodingClassics.chebyshevT 3 x =
+      2 * x * (2 * x * x - 1) - x :=
+  BlockEncodingClassics.chebyshevT_three_recurrence x
 
 example (x y : Rat) :
     BlockEncodingClassics.scalarDilation x y
       BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2One = y :=
   BlockEncodingClassics.scalarDilation_offdiag01 x y
 
+
+example (x y : Rat) :
+    BlockEncodingClassics.scalarDilation x y
+      BlockEncodingClassics.fin2One BlockEncodingClassics.fin2Zero = y :=
+  BlockEncodingClassics.scalarDilation_offdiag10 x y
+
+example (x y : Rat) :
+    BlockEncodingClassics.scalarDilation x y
+      BlockEncodingClassics.fin2One BlockEncodingClassics.fin2One = -x :=
+  BlockEncodingClassics.scalarDilation_diag11 x y
+
+example (x y : Rat) (hunit : x * x + y * y = 1) :
+    BlockEncodingClassics.scalarDilationRowDot x y
+      BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2Zero = 1 :=
+  BlockEncodingClassics.scalarDilation_row0_unit_norm_of x y hunit
+
+example (x y : Rat) :
+    BlockEncodingClassics.scalarDilationRowDot x y
+      BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2One = 0 :=
+  BlockEncodingClassics.scalarDilation_rows01_orthogonal x y
+
+example (n : Nat) (x : Rat) :
+    BlockEncodingClassics.chebyshevT (n + 2) x =
+      2 * x * BlockEncodingClassics.chebyshevT (n + 1) x -
+        BlockEncodingClassics.chebyshevT n x :=
+  BlockEncodingClassics.chebyshevT_succ_succ n x
+
+def testOneSparseCert : BlockEncodingClassics.OneSparseCertificate 2 where
+  supportMap := testSwap2
+  target := BlockEncodingClassics.oneSparseMatrix testSwap2 (fun _ => (3 : Rat))
+  supportProof := by
+    intro row col h
+    simp [BlockEncodingClassics.oneSparseMatrix, BlockEncodingClassics.kroneckerRat, h]
+
+example :
+    Matrix.PointwiseEq testOneSparseCert.cleanBlock testOneSparseCert.target :=
+  BlockEncodingClassics.OneSparseCertificate.correct testOneSparseCert
+
+def testLCUCertLeft : BlockEncodingClassics.LCUCertificate 2 where
+  cleanBlock := Matrix.identity 2 Rat
+  target := Matrix.identity 2 Rat
+  normalizer := 1
+  termCount := 1
+  blockProof := by intro row col; rfl
+
+def testLCUCertRight : BlockEncodingClassics.LCUCertificate 2 where
+  cleanBlock := BlockEncodingClassics.oneSparseMatrix testSwap2 (fun _ => (1 : Rat))
+  target := BlockEncodingClassics.oneSparseMatrix testSwap2 (fun _ => (1 : Rat))
+  normalizer := 1
+  termCount := 1
+  blockProof := by intro row col; rfl
+
+example :
+    (BlockEncodingClassics.twoTermLCUCertificate
+      testLCUCertLeft testLCUCertRight (2 : Rat) (3 : Rat)).termCount = 2 := rfl
+
+example :
+    (BlockEncodingClassics.twoTermLCUCertificate
+      testLCUCertLeft testLCUCertRight (2 : Rat) (3 : Rat)).cleanBlock
+        BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2One =
+      2 * testLCUCertLeft.target
+        BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2One +
+      3 * testLCUCertRight.target
+        BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2One :=
+  BlockEncodingClassics.twoTermLCUCertificate_cleanBlock_entry
+    testLCUCertLeft testLCUCertRight (2 : Rat) (3 : Rat)
+    BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2One
+
+example :
+    Matrix.PointwiseEq
+      (BlockEncodingClassics.twoTermLCUCertificate
+        testLCUCertLeft testLCUCertRight (2 : Rat) (3 : Rat)).cleanBlock
+      (BlockEncodingClassics.twoTermLCUCertificate
+        testLCUCertLeft testLCUCertRight (2 : Rat) (3 : Rat)).target :=
+  BlockEncodingClassics.LCUCertificate.correct
+    (BlockEncodingClassics.twoTermLCUCertificate
+      testLCUCertLeft testLCUCertRight (2 : Rat) (3 : Rat))
 
 /-!
 Optional Robin/GHL paper-benchmark tests are intentionally not part of the

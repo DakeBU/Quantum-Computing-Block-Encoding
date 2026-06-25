@@ -2,8 +2,10 @@
 
 This directory is the reusable construction library for ABEIS.  It is meant to
 act like a compact graduate textbook plus proof-template memory for coding
-agents: when a target operator appears, upper and middle agents route it to a
-known construction family before lower agents write Lean.
+agents: when a target operator appears, upper agents recall analogous classic
+constructions, middle agents turn the most plausible ideas into proof-DAG
+leaves and insight-pool alternatives, and lower agents test those leaves in
+Lean or natural language.
 
 ## How To Use
 
@@ -16,12 +18,29 @@ known construction family before lower agents write Lean.
 5. Record the cited theorem or external contract in `research-wiki/cited-results/`.
 6. Promote a construction to the certified population only after Lean proves it.
 
+For expert block-encoding work, read the files in this order:
+
+```text
+lin-2201-08309.md        textbook backbone and intuition
+route-selector.md        access-model and normalizer decision matrix
+proof-network.md         typed edges between reusable proof leaves
+lean-roadmap.md          formalized / contract-only / obligation status
+cards/<route>.md         task-specific construction template
+paper-notes/block-encoding-library/classic_leaves.tex
+                         human-facing LaTeX proof templates
+```
+
 ## Textbook Backbone
 
 `lin-2201-08309.md` is the current textbook backbone for entrywise
 block-encoding proofs.  It links Lin 2201.08309 to ABEIS cards and Lean leaves:
 entrywise clean blocks, value-to-amplitude contracts, one-sparse and sparse
 oracles, LCU, dilation, Hermitian/qubitization consumers, and QSVT contracts.
+This is an active memory library, not a claim that every textbook theorem has
+already been formalized.  `proof-network.md` marks the exact status of each
+leaf.  For readers who want proof-sketch exercises before looking at Lean,
+`paper-notes/block-encoding-library/classic_leaves.tex` gives compact
+paper-facing proofs for the main reusable leaves.
 
 ## Priority Library
 

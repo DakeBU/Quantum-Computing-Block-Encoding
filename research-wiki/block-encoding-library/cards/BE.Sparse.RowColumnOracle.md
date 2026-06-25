@@ -1,6 +1,6 @@
 # Card: BE.Sparse.RowColumnOracle
 
-## Detection
+## When To Try This Route
 
 Use when a general sparse matrix has both row-location and column-location
 oracles.
@@ -13,7 +13,12 @@ the target row, and the row slot must point back to the source column.
 
 ## Lean Status
 
-Status: `obligation`.
+Status: `contract-only` for the proof-carrying wrapper, `obligation` for the reusable uniqueness-collapse theorem.
+
+Compiled Lean declarations:
+
+- `BlockEncodingClassics.rowColumnSparseDeltaEntry`
+- `BlockEncodingClassics.RowColumnSparseCertificate`
 
 Planned reusable leaf:
 

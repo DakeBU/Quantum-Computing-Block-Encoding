@@ -1,6 +1,6 @@
 # Card: BE.Qubitization.Chebyshev
 
-## Detection
+## When To Try This Route
 
 Use after a Hermitian block encoding is proved and the target is a Chebyshev or
 polynomial function of the encoded operator.

@@ -111,6 +111,48 @@ ABEIS uses diagnostics as search signals, not as proofs.  A candidate enters
 the certified population only after Lean proves the advertised theorem at the
 task's semantic tier.
 
+## Block-Encoding Textbook Memory
+
+ABEIS uses Lin Lin's lecture notes
+([arXiv:2201.08309](https://arxiv.org/abs/2201.08309)) as the current
+block-encoding textbook backbone.  The memory library is meant to feel like an
+exam-prep notebook for agents and new users: each classic construction has a
+short intuition card, a Lean theorem anchor when formalized, and a
+paper-facing LaTeX proof sketch when exported.
+
+```text
+new oracle/operator target
+-> upper agents read textbook memories and brainstorm plausible routes
+-> middle agents split the chosen routes into proof-DAG leaves and insight-pool candidates
+-> lower Lean/natural-language workers try the leaves
+-> reviewer accepts only Lean-certified claims, then may request proof cleanup
+```
+
+Most exact block-encoding proofs reduce to the clean-entry habit
+`U(clean row, clean col) = A(row,col)/alpha`.  The library helps agents decide
+which familiar route is worth trying; it is not a rigid decision tree.
+
+| Classic route | Good first examples | Proof intuition | Where to read |
+| --- | --- | --- | --- |
+| Entrywise clean block | any explicit finite candidate | prove every clean matrix entry | [`BE.EntrywiseExact.CleanBlock`](research-wiki/block-encoding-library/cards/BE.EntrywiseExact.CleanBlock.md) |
+| Partial permutation | `|dst><src| ⊗ I`, reset maps, basis injections | complete a partial map to a permutation; non-target branches leave the clean block | [`BE.PartialPermutation.MatrixUnitTensorId`](research-wiki/block-encoding-library/cards/BE.PartialPermutation.MatrixUnitTensorId.md) |
+| One-sparse support | one nonzero row per column | value oracle gives the amplitude; support permutation gives the row; a delta leaf collapses the entry | [`BE.Sparse.OneSparsePermutation`](research-wiki/block-encoding-library/cards/BE.Sparse.OneSparsePermutation.md) |
+| Sparse access | column/row location oracles plus value oracle | prepare a uniform slot state, then collapse finite delta sums by uniqueness | [`BE.Sparse.ColumnOracle`](research-wiki/block-encoding-library/cards/BE.Sparse.ColumnOracle.md), [`BE.Sparse.RowColumnOracle`](research-wiki/block-encoding-library/cards/BE.Sparse.RowColumnOracle.md) |
+| LCU / PREPARE--SELECT | finite sums of known blocks | prepare weights, select a block, project back to get the weighted sum | [`BE.LCU.PrepareSelect`](research-wiki/block-encoding-library/cards/BE.LCU.PrepareSelect.md) |
+| Dilation fallback | dense contraction or small fallback seed | build a larger unitary from 2-by-2 contraction rotations | [`BE.Contraction.SVDDilation`](research-wiki/block-encoding-library/cards/BE.Contraction.SVDDilation.md) |
+| Qubitization / QSVT consumer | polynomial transforms after a BE already exists | consume a proved BE; do not hide the original oracle construction inside QSVT | [`BE.QSVT.ConsumerContract`](research-wiki/block-encoding-library/cards/BE.QSVT.ConsumerContract.md) |
+
+The detailed proof-DAG map is in
+[`proof-network.md`](research-wiki/block-encoding-library/proof-network.md);
+the route-intuition guide is in
+[`route-selector.md`](research-wiki/block-encoding-library/route-selector.md);
+compiled leaves are mainly in
+[`BlockEncodingClassics.lean`](QuantumBlockEncoding/BlockEncodingClassics.lean).
+The human-facing LaTeX proof templates are collected in
+[`classic_leaves.tex`](paper-notes/block-encoding-library/classic_leaves.tex).
+A card marked `contract-only` or `obligation` can guide brainstorming, but it
+does not become a theorem until its Lean declaration compiles.
+
 Human interaction is a first-class upper-layer input, not an out-of-band chat.
 ABEIS records three human-facing intervention moments: scheduled 6h closeout,
 direct user questions, and user status checks followed by new top-level
@@ -418,12 +460,10 @@ small, expands only on recorded stagnation, and writes the effective capacity
 policy into each run's `00_context.md`.
 
 Case-study hyperparameters are recorded under `run-presets/`.  In particular,
-`run-presets/main_hier_high_to_low.md` records the no-Pro transfer-operator
-run that starts with high-capacity exact search and then switches to a reduced
-export/Qiskit/report closeout; `run-presets/hard_hier_hinted_exact_to_approx.md`
-records the hinted cubic-diagonal run that switches from exact search to
-Scenario 2 approximate search; and `run-presets/pro_assisted_optctrl.md`
-records the Pro-assisted transfer-operator attempt.
+`run-presets/main_case_hierarchical_reproduction.md` is the current public
+entry point for replaying the transfer-operator main case with isolated no-Pro
+and Pro-insight Hierarchical Harness arms.  The cubic-diagonal hard case is
+recorded in `run-presets/hard_hier_hinted_exact_to_approx.md`.
 
 For a fair profile comparison, run both harnesses in isolated worktrees with
 the same task packet, model profile, report language, active-time budget, and

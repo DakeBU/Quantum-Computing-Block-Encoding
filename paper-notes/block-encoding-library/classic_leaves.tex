@@ -1,0 +1,118 @@
+\section{Classic Block-Encoding Leaves}
+\label{sec:classic-be-leaves}
+
+This note records the paper-facing versions of the reusable ABEIS textbook
+leaves.  The matching Lean declarations live mainly in
+\texttt{QuantumBlockEncoding/BlockEncodingClassics.lean}; the matching agent
+memory cards live under
+\texttt{research-wiki/block-encoding-library/cards/}.  These statements are
+intended as proof templates.  A concrete task must still instantiate the
+registers, normalizer, cleanup condition, and resource tuple.
+
+\subsection{Entrywise clean-block proof}
+
+Let \(U\) act on an ancilla register \(A_{\rm anc}\) and a system register
+\(S\).  Fix a clean ancilla basis state \(0_a\).  Define
+\[
+  \operatorname{Clean}_{0_a}(U)_{ij}
+  := U_{(0_a,i),(0_a,j)} .
+\]
+If
+\[
+  U_{(0_a,i),(0_a,j)} = A_{ij}/\alpha
+  \qquad\text{for all }i,j,
+\]
+then \(\operatorname{Clean}_{0_a}(U)=A/\alpha\).  Therefore, once unitarity of
+\(U\) is also proved, \(U\) is an exact \((\alpha,a,0)\)-block encoding of
+\(A\).
+
+The proof is just matrix extensionality: two finite matrices are equal when
+all entries agree.  In Lean this is the first reduction that should be reused
+instead of re-expanding a circuit at every theorem.
+
+\subsection{Partial permutation matrix unit}
+
+Suppose the desired operator is
+\[
+  E = \ket{x_{\rm dst}}\!\bra{x_{\rm src}}\otimes I_S .
+\]
+Choose a permutation \(p\) of the full ancilla--active--passive basis such that
+\[
+  p(0_a,x_{\rm src},s)=(0_a,x_{\rm dst},s)
+  \qquad\text{for every }s,
+\]
+and such that \(p(0_a,x,s)\) has non-clean ancilla whenever
+\(x\neq x_{\rm src}\).  Let \(U_p\) be the permutation matrix of \(p\).  Then
+\[
+  (U_p)_{(0_a,x',s'),(0_a,x,s)}
+  =
+  \begin{cases}
+  1, & x=x_{\rm src},\ x'=x_{\rm dst},\ s'=s,\\
+  0, & \text{otherwise}.
+  \end{cases}
+\]
+Thus the clean block is exactly \(E\).  This is the main proof pattern for the
+transfer-operator main case.
+
+\subsection{One-sparse support}
+
+Let each column \(j\) have at most one possible nonzero row \(c(j)\).  Assume
+\[
+  A_{ij}=0\quad\text{whenever }i\neq c(j).
+\]
+An amplitude oracle supplies \(A_{c(j),j}\) on the clean signal branch, and a
+support permutation maps \(j\) to \(c(j)\).  The clean entry becomes
+\[
+  A_{c(j),j}\,\delta_{i,c(j)} = A_{ij}.
+\]
+The reusable proof leaf is the Kronecker-delta support collapse.
+
+\subsection{Sparse column oracle}
+
+For an \(s\)-sparse column oracle, let \(c(j,\ell)\) list possible nonzero rows
+for column \(j\).  Uniformly preparing the slot register produces a clean entry
+of the form
+\[
+  \frac{1}{s}\sum_{\ell} A_{c(j,\ell),j}\,\delta_{i,c(j,\ell)}.
+\]
+If exactly one slot \(\ell\) satisfies \(c(j,\ell)=i\), this collapses to
+\(A_{ij}/s\).  If no slot hits \(i\), it collapses to \(0\).  A concrete task
+must prove the relevant support uniqueness condition.
+
+\subsection{LCU prepare--select}
+
+Let \(T=\sum_{\ell}\beta_\ell A_\ell\), and suppose each \(A_\ell\) already
+has a compatible block encoding.  PREPARE creates amplitudes proportional to
+\(\sqrt{\beta_\ell}\), SELECT applies the chosen block, and
+PREPARE\({}^\dagger\) projects back.  The clean component is
+\[
+  \frac{1}{\sum_\ell \beta_\ell}
+  \sum_\ell \beta_\ell A_\ell.
+\]
+The simplest compiled ABEIS leaf is the two-term weighted-sum entry identity.
+Full PREPARE--SELECT--PREPARE semantics for arbitrary coefficient encodings is
+kept as a larger theorem target.
+
+\subsection{Contraction dilation}
+
+If \(x^2+y^2=1\), the matrix
+\[
+  R(x,y)=
+  \begin{pmatrix}
+    x & y\\
+    y & -x
+  \end{pmatrix}
+\]
+has orthonormal rows, because each row has squared norm \(x^2+y^2=1\) and the
+row inner product is \(xy-yx=0\).  Its clean entry is \(x\).  This scalar leaf
+is the \(2\times2\) core of the SVD/contraction dilation fallback.  For a
+general matrix contraction, the same idea is applied in a singular-value
+basis; a task still needs the corresponding analytic or spectral backend.
+
+\subsection{QSVT as a consumer}
+
+QSVT is not a shortcut for constructing the original oracle.  It is a consumer
+of a proved block encoding.  A task may cite a QSVT contract only after it has
+named the input block encoding, the polynomial side conditions, and the
+normalizer/error propagation.  Until those side conditions are formalized, the
+QSVT node remains an external contract in the proof DAG.

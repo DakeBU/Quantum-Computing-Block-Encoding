@@ -130,6 +130,29 @@ theorem oneSparse_from_support {n : Nat}
     simp [oneSparseMatrix, kroneckerRat]
   · simp [oneSparseMatrix, kroneckerRat, h, hSupport row col h]
 
+
+/--
+Proof-carrying one-sparse certificate.  This is the exact finite leaf behind
+the textbook one-sparse block-encoding route after the amplitude and location
+oracles have been reduced to a support map.
+-/
+structure OneSparseCertificate (n : Nat) where
+  supportMap : Fin n -> Fin n
+  target : Matrix n n Rat
+  supportProof :
+    forall row col : Fin n, row ≠ supportMap col -> target row col = 0
+
+namespace OneSparseCertificate
+
+def cleanBlock {n : Nat} (cert : OneSparseCertificate n) : Matrix n n Rat :=
+  oneSparseMatrix cert.supportMap (fun col => cert.target (cert.supportMap col) col)
+
+theorem correct {n : Nat} (cert : OneSparseCertificate n) :
+    Matrix.PointwiseEq cert.cleanBlock cert.target :=
+  oneSparse_from_support cert.target cert.supportMap cert.supportProof
+
+end OneSparseCertificate
+
 /--
 Column sparse clean-entry expression: a finite sum over slot indices of value
 oracle entries times location deltas.  This is the entrywise target for
@@ -141,6 +164,158 @@ def sparseColumnCleanEntry {rows cols slots : Nat}
   fun row col =>
     (List.finRange slots).foldl
       (fun acc slot => acc + value slot col * kroneckerRat row (loc col slot))
+      0
+
+private theorem foldlRat_add_zero_of_all_zero {β : Type u}
+    (xs : List β) (f : β -> Rat) (acc : Rat)
+    (hzero : forall x, x ∈ xs -> f x = 0) :
+    xs.foldl (fun acc x => acc + f x) acc = acc := by
+  induction xs generalizing acc with
+  | nil => rfl
+  | cons x xs ih =>
+      have hxzero : f x = 0 := hzero x (by simp)
+      have htail : forall y, y ∈ xs -> f y = 0 := by
+        intro y hy
+        exact hzero y (by simp [hy])
+      calc
+        (x :: xs).foldl (fun acc x => acc + f x) acc =
+            xs.foldl (fun acc x => acc + f x) (acc + f x) := rfl
+        _ = xs.foldl (fun acc x => acc + f x) acc := by
+            rw [hxzero, Rat.add_zero]
+        _ = acc := ih acc htail
+
+private theorem foldlRat_add_unique_of_nodup {β : Type u} [DecidableEq β]
+    (xs : List β) (f : β -> Rat) (hit : β)
+    (hnodup : xs.Nodup)
+    (hmem : hit ∈ xs)
+    (hzero : forall x, x ∈ xs -> x ≠ hit -> f x = 0) :
+    xs.foldl (fun acc x => acc + f x) 0 = f hit := by
+  induction xs with
+  | nil => cases hmem
+  | cons x xs ih =>
+      rw [List.nodup_cons] at hnodup
+      rcases hnodup with ⟨hx_not_mem, hxs_nodup⟩
+      rw [List.mem_cons] at hmem
+      rcases hmem with hhead | htail
+      · subst hhead
+        have htail_zero : forall y, y ∈ xs -> f y = 0 := by
+          intro y hy
+          have hy_ne : y ≠ hit := by
+            intro hy_eq
+            apply hx_not_mem
+            simpa [hy_eq] using hy
+          exact hzero y (by simp [hy]) hy_ne
+        calc
+          (hit :: xs).foldl (fun acc x => acc + f x) 0 =
+              xs.foldl (fun acc x => acc + f x) (0 + f hit) := rfl
+          _ = xs.foldl (fun acc x => acc + f x) (f hit) := by
+              rw [Rat.zero_add]
+          _ = f hit := foldlRat_add_zero_of_all_zero xs f (f hit) htail_zero
+      · have hxzero : f x = 0 := by
+          have hx_ne : x ≠ hit := by
+            intro hx_eq
+            apply hx_not_mem
+            simpa [hx_eq] using htail
+          exact hzero x (by simp) hx_ne
+        have htail_zero : forall y, y ∈ xs -> y ≠ hit -> f y = 0 := by
+          intro y hy hy_ne
+          exact hzero y (by simp [hy]) hy_ne
+        calc
+          (x :: xs).foldl (fun acc x => acc + f x) 0 =
+              xs.foldl (fun acc x => acc + f x) (0 + f x) := rfl
+          _ = xs.foldl (fun acc x => acc + f x) 0 := by
+              rw [hxzero, Rat.zero_add]
+          _ = f hit := ih hxs_nodup htail htail_zero
+
+private theorem nodupMap_of_injective {α : Type u} {β : Type v}
+    [DecidableEq β] {f : α -> β} (hf : Function.Injective f)
+    {xs : List α} (hxs : xs.Nodup) :
+    (xs.map f).Nodup := by
+  induction xs with
+  | nil => simp
+  | cons x xs ih =>
+      rw [List.nodup_cons] at hxs
+      rcases hxs with ⟨hx_not_mem, hxs_nodup⟩
+      change (f x :: xs.map f).Nodup
+      rw [List.nodup_cons]
+      constructor
+      · intro hmem
+        rcases List.mem_map.mp hmem with ⟨y, hy_mem, hy_eq⟩
+        apply hx_not_mem
+        have hyx : y = x := hf hy_eq
+        simpa [hyx] using hy_mem
+      · exact ih hxs_nodup
+
+private theorem finRangeNodup (n : Nat) : (List.finRange n).Nodup := by
+  induction n with
+  | zero => simp [List.finRange_zero]
+  | succ n ih =>
+      rw [List.finRange_succ]
+      rw [List.nodup_cons]
+      constructor
+      · intro hmem
+        rcases List.mem_map.mp hmem with ⟨k, _hk_mem, hk_zero⟩
+        exact Fin.succ_ne_zero k hk_zero
+      · apply nodupMap_of_injective
+        · intro a b h
+          apply Fin.eq_of_val_eq
+          have hv := congrArg (fun x : Fin (n + 1) => x.val) h
+          simpa using Nat.succ.inj hv
+        · exact ih
+
+theorem sparseColumnCleanEntry_no_hit {rows cols slots : Nat}
+    (loc : Fin cols -> Fin slots -> Fin rows)
+    (value : Fin slots -> Fin cols -> Rat)
+    (row : Fin rows) (col : Fin cols)
+    (hmiss : forall slot : Fin slots, row ≠ loc col slot) :
+    sparseColumnCleanEntry loc value row col = 0 := by
+  exact foldlRat_add_zero_of_all_zero (List.finRange slots)
+    (fun slot => value slot col * kroneckerRat row (loc col slot))
+    0
+    (by
+      intro slot _hmem
+      simp [kroneckerRat, hmiss slot])
+
+theorem sparseColumnCleanEntry_unique_slot {rows cols slots : Nat}
+    (loc : Fin cols -> Fin slots -> Fin rows)
+    (value : Fin slots -> Fin cols -> Rat)
+    (row : Fin rows) (col : Fin cols) (hit : Fin slots)
+    (hhit : row = loc col hit)
+    (hmiss : forall slot : Fin slots, slot ≠ hit -> row ≠ loc col slot) :
+    sparseColumnCleanEntry loc value row col = value hit col := by
+  calc
+    sparseColumnCleanEntry loc value row col =
+        value hit col * kroneckerRat row (loc col hit) := by
+          exact foldlRat_add_unique_of_nodup (List.finRange slots)
+            (fun slot => value slot col * kroneckerRat row (loc col slot))
+            hit (finRangeNodup slots) (List.mem_finRange hit)
+            (by
+              intro slot _hmem hne
+              simp [kroneckerRat, hmiss slot hne])
+    _ = value hit col := by
+        simp [kroneckerRat, hhit]
+
+
+/--
+General row/column sparse delta expression.  A paper-specific route must prove
+that row-location and column-location uniqueness collapse this finite double
+sum to the target entry divided by the sparsity normalizer.
+-/
+def rowColumnSparseDeltaEntry {rows cols slots : Nat}
+    (colLoc : Fin cols -> Fin slots -> Fin rows)
+    (rowLoc : Fin rows -> Fin slots -> Fin cols)
+    (value : Fin rows -> Fin cols -> Rat) : Matrix rows cols Rat :=
+  fun row col =>
+    (List.finRange slots).foldl
+      (fun acc slot =>
+        acc +
+          (List.finRange slots).foldl
+            (fun inner rowSlot =>
+              inner +
+                value (colLoc col slot) col *
+                  kroneckerRat row (colLoc col slot) *
+                  kroneckerRat col (rowLoc row rowSlot))
+            0)
       0
 
 /--
@@ -164,6 +339,26 @@ theorem correct {rows cols slots : Nat}
   cert.blockProof
 
 end SparseColumnCertificate
+
+
+/-- Proof-carrying row/column sparse contract for the general sparse route. -/
+structure RowColumnSparseCertificate (rows cols slots : Nat) where
+  cleanBlock : Matrix rows cols Rat
+  target : Matrix rows cols Rat
+  normalizer : Rat
+  columnOracle : String
+  rowOracle : String
+  valueOracle : String
+  blockProof : Matrix.PointwiseEq cleanBlock target
+
+namespace RowColumnSparseCertificate
+
+theorem correct {rows cols slots : Nat}
+    (cert : RowColumnSparseCertificate rows cols slots) :
+    Matrix.PointwiseEq cert.cleanBlock cert.target :=
+  cert.blockProof
+
+end RowColumnSparseCertificate
 
 /--
 Value-to-amplitude oracle contract.  A task may use this only after it supplies
@@ -219,6 +414,56 @@ def scalarDilation (x y : Rat) : Matrix 2 2 Rat :=
     scalarDilation x y fin2Zero fin2One = y := by
   simp [scalarDilation, fin2Zero, fin2One]
 
+@[simp] theorem scalarDilation_offdiag10 (x y : Rat) :
+    scalarDilation x y fin2One fin2Zero = y := by
+  simp [scalarDilation, fin2Zero, fin2One]
+
+@[simp] theorem scalarDilation_diag11 (x y : Rat) :
+    scalarDilation x y fin2One fin2One = -x := by
+  simp [scalarDilation, fin2Zero, fin2One]
+
+/-- Two-entry row dot product for the scalar dilation block. -/
+def scalarDilationRowDot (x y : Rat) (rowA rowB : Fin 2) : Rat :=
+  scalarDilation x y rowA fin2Zero * scalarDilation x y rowB fin2Zero +
+    scalarDilation x y rowA fin2One * scalarDilation x y rowB fin2One
+
+theorem scalarDilation_row0_normSq (x y : Rat) :
+    scalarDilationRowDot x y fin2Zero fin2Zero = x * x + y * y := by
+  simp [scalarDilationRowDot]
+
+theorem scalarDilation_row1_normSq (x y : Rat) :
+    scalarDilationRowDot x y fin2One fin2One = x * x + y * y := by
+  simp [scalarDilationRowDot]
+  rw [show (-x) * (-x) = x * x by
+    rw [Rat.neg_mul]
+    rw [Rat.mul_neg]
+    rw [Rat.neg_neg]]
+  exact Rat.add_comm (y * y) (x * x)
+
+theorem scalarDilation_row0_unit_norm_of (x y : Rat)
+    (hunit : x * x + y * y = 1) :
+    scalarDilationRowDot x y fin2Zero fin2Zero = 1 := by
+  rw [scalarDilation_row0_normSq, hunit]
+
+theorem scalarDilation_row1_unit_norm_of (x y : Rat)
+    (hunit : x * x + y * y = 1) :
+    scalarDilationRowDot x y fin2One fin2One = 1 := by
+  rw [scalarDilation_row1_normSq, hunit]
+
+theorem scalarDilation_rows01_orthogonal (x y : Rat) :
+    scalarDilationRowDot x y fin2Zero fin2One = 0 := by
+  simp [scalarDilationRowDot]
+  rw [Rat.mul_neg]
+  rw [Rat.mul_comm y x]
+  exact Rat.add_neg_cancel (x * y)
+
+theorem scalarDilation_rows10_orthogonal (x y : Rat) :
+    scalarDilationRowDot x y fin2One fin2Zero = 0 := by
+  simp [scalarDilationRowDot]
+  rw [Rat.neg_mul]
+  rw [Rat.mul_comm x y]
+  exact Rat.add_neg_cancel (y * x)
+
 /-- Chebyshev polynomial values, kept as a small executable recurrence. -/
 def chebyshevT : Nat -> Rat -> Rat
   | 0, _ => 1
@@ -230,6 +475,16 @@ def chebyshevT : Nat -> Rat -> Rat
 @[simp] theorem chebyshevT_one (x : Rat) : chebyshevT 1 x = x := rfl
 
 theorem chebyshevT_two (x : Rat) : chebyshevT 2 x = 2 * x * x - 1 := rfl
+
+theorem chebyshevT_succ_succ (n : Nat) (x : Rat) :
+    chebyshevT (n + 2) x = 2 * x * chebyshevT (n + 1) x - chebyshevT n x := by
+  rfl
+
+theorem chebyshevT_three_recurrence (x : Rat) :
+    chebyshevT 3 x = 2 * x * (2 * x * x - 1) - x := rfl
+
+theorem chebyshevT_four_recurrence (x : Rat) :
+    chebyshevT 4 x = 2 * x * chebyshevT 3 x - chebyshevT 2 x := rfl
 
 /--
 Proof-carrying exact clean-block package.  This is smaller than the full
@@ -299,6 +554,36 @@ theorem oneTermLCU_cleanBlock (A : Matrix system system Rat) :
   intro row col
   rfl
 
+
+/-- Pointwise scalar multiplication for the project-local matrix backend. -/
+def matrixScale (c : Rat) (A : Matrix rows cols Rat) : Matrix rows cols Rat :=
+  fun row col => c * A row col
+
+/-- Pointwise addition for the project-local matrix backend. -/
+def matrixAdd (A B : Matrix rows cols Rat) : Matrix rows cols Rat :=
+  fun row col => A row col + B row col
+
+/-- Two-term weighted sum, the finite clean-block algebra behind a 2-term LCU. -/
+def weightedSum2 (leftWeight rightWeight : Rat)
+    (left right : Matrix rows cols Rat) : Matrix rows cols Rat :=
+  fun row col => leftWeight * left row col + rightWeight * right row col
+
+theorem weightedSum2_entry {rows cols : Nat}
+    (leftWeight rightWeight : Rat)
+    (left right : Matrix rows cols Rat) (row : Fin rows) (col : Fin cols) :
+    weightedSum2 leftWeight rightWeight left right row col =
+      leftWeight * left row col + rightWeight * right row col := rfl
+
+theorem weightedSum2_congr_pointwise {rows cols : Nat}
+    {A A' B B' : Matrix rows cols Rat}
+    (leftWeight rightWeight : Rat)
+    (hA : Matrix.PointwiseEq A A') (hB : Matrix.PointwiseEq B B') :
+    Matrix.PointwiseEq
+      (weightedSum2 leftWeight rightWeight A B)
+      (weightedSum2 leftWeight rightWeight A' B') := by
+  intro row col
+  simp [weightedSum2, hA row col, hB row col]
+
 /--
 Proof-carrying LCU contract.  Full PREPARE-SELECT algebra can later instantiate
 `cleanBlock`; downstream arithmetic should only depend on the exposed
@@ -318,6 +603,42 @@ theorem correct {system : Nat} (cert : LCUCertificate system) :
   cert.blockProof
 
 end LCUCertificate
+
+
+/--
+Two-term LCU arithmetic after both selected clean blocks have already been
+proved.  Full PREPARE-SELECT-PREPARE dagger semantics should instantiate this
+leaf after proving the selected clean block equals the weighted sum.
+-/
+def twoTermLCUCertificate {system : Nat}
+    (left right : LCUCertificate system)
+    (leftWeight rightWeight : Rat) : LCUCertificate system where
+  cleanBlock := weightedSum2 leftWeight rightWeight left.cleanBlock right.cleanBlock
+  target := weightedSum2 leftWeight rightWeight left.target right.target
+  normalizer := leftWeight * left.normalizer + rightWeight * right.normalizer
+  termCount := left.termCount + right.termCount
+  blockProof :=
+    weightedSum2_congr_pointwise leftWeight rightWeight
+      left.blockProof right.blockProof
+
+theorem twoTermLCUCertificate_cleanBlock_entry {system : Nat}
+    (left right : LCUCertificate system)
+    (leftWeight rightWeight : Rat)
+    (row col : Fin system) :
+    (twoTermLCUCertificate left right leftWeight rightWeight).cleanBlock row col =
+      leftWeight * left.target row col + rightWeight * right.target row col := by
+  simp [twoTermLCUCertificate, weightedSum2,
+    left.blockProof row col, right.blockProof row col]
+
+/-- Promote an exact clean-block certificate to the LCU-style arithmetic layer. -/
+def ExactCleanBlock.toLCUCertificate {system total : Nat}
+    (cert : ExactCleanBlock system total) (normalizer : Rat := 1) :
+    LCUCertificate system where
+  cleanBlock := cert.clean
+  target := cert.A
+  normalizer := normalizer
+  termCount := 1
+  blockProof := cert.blockProof
 
 /--
 Product arithmetic at the exact clean-block level.  This is the shared proof
@@ -355,6 +676,14 @@ def productCleanBlockCertificate {rows : Nat}
   normalizer := left.normalizer * right.normalizer
   termCount := left.termCount * right.termCount
   blockProof := matrix_mul_congr_pointwise left.blockProof right.blockProof
+
+/-- Product bridge for exact clean-block certificates via the arithmetic layer. -/
+def productExactCleanBlockCertificate {system totalLeft totalRight : Nat}
+    (left : ExactCleanBlock system totalLeft)
+    (right : ExactCleanBlock system totalRight) : LCUCertificate system :=
+  productCleanBlockCertificate
+    (ExactCleanBlock.toLCUCertificate left)
+    (ExactCleanBlock.toLCUCertificate right)
 
 /-- Tensor-style resource score: parallel depth is the maximum of two depths. -/
 def tensorResourceCost (x y : BlockEncodingCost) : BlockEncodingCost where
