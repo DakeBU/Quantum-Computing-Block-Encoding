@@ -190,8 +190,9 @@ a post-Lean Qiskit export check.
 
 The no-Pro attempt shows the base harness recovering a correct finite
 permutation block encoding from the operator contract.  The Pro-assisted
-attempt shows the same acceptance rule with an external idea placed into the
-insight pool and promoted only after Lean proves the advertised certificate.
+attempt injects an external Pro construction/proof packet after the run has
+already started, just like a human intervention; the packet affects planning
+only after the task-local Lean proof obligations are generated and discharged.
 
 ![Two parallel transfer-operator attempts](docs/assets/optctrl_hier_vs_pro.png)
 
@@ -336,7 +337,7 @@ enter the certified population or appear as achieved points in evolution
 curves.  Natural-language sketches, simulator checks, Qiskit tests, and Pro
 answers can guide search, but they are not final certificates.
 
-Both harnesses also have the same user-facing closeout and external-insight rule.  Users may inject their own strategy notes, ChatGPT Pro answers, external AI suggestions, candidate block encodings, or natural-language proofs.  These inputs enter the insight pool.  In the Game Harness, the Game Council decides whether to route them to the Natural-Language Team for proof review, to the Lean Team for formalization, to both in parallel, or to rejected-route memory.  They are never accepted, plotted, or exported as achieved solutions until Lean certifies them.
+Both harnesses also have the same user-facing closeout and external-input rule.  Users may inject their own strategy notes, ChatGPT Pro answers, external AI suggestions, candidate block encodings, or natural-language proofs.  These inputs enter the run as explicit intervention packets.  The harness may route them into the active plan, the insight population, or rejected-route memory; in the Game Harness, the Game Council decides whether to send them to the Natural-Language Team, the Lean Team, or both.  They are never accepted, plotted, or exported as achieved solutions until Lean certifies them.
 
 If the Lean Team closes a certificate, the Natural-Language Team translates it into a human-readable proof note.  If the Natural-Language Team finds a reviewer-plausible construction first, the Game Council sends it to the Lean Team for formalization.  After a Lean certificate closes, ABEIS should export:
 
@@ -462,7 +463,7 @@ policy into each run's `00_context.md`.
 Case-study hyperparameters are recorded under `run-presets/`.  In particular,
 `run-presets/main_case_hierarchical_reproduction.md` is the current public
 entry point for replaying the transfer-operator main case with isolated no-Pro
-and Pro-insight Hierarchical Harness arms.  The cubic-diagonal hard case is
+and mid-run Pro-assisted Hierarchical Harness arms.  The cubic-diagonal hard case is
 recorded in `run-presets/hard_hier_hinted_exact_to_approx.md`.
 
 For a fair profile comparison, run both harnesses in isolated worktrees with
@@ -567,7 +568,7 @@ approximate dense/structured synthesis.
 
 ```bibtex
 @misc{abeis2026,
-  author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Zhang, Qingfu and Wong, Hau-san and Nitanda, Atsushi},
+  author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
   title = {{Auto-Lean-in-Sleep: Block Encoding for Quantum Computing}},
   year = {2026},
   note = {Project page: \url{https://github.com/DakeBU/Quantum-Computing-Block-Encoding}}

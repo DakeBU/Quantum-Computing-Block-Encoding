@@ -7859,3 +7859,83 @@ block-encoding formalization lifecycle.
 | 2026-06-25 22:31:03 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
 | 2026-06-25 22:32:55 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-COLD-001-cycle01/dialogue.md` | dialogue | Appended upper note |
 | 2026-06-25 22:32:59 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-223259-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff |
+| 2026-06-25 22:33:55 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 22:34:01 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-223400-QBE-MAIN-CASE-HIER-PRO-001-upper-handoff |
+| 2026-06-25 22:36:02 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:42:44 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:42:59 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:42:59 | qbe.py memory-refresh | `runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-MAIN-CASE-HIER-PRO-001 cycle 1 |
+| 2026-06-25 22:42:59 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-MAIN-CASE-HIER-PRO-001.json` | memory | Wrote retrieval index for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:43:57 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-25 22:44:04 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-224403-QBE-MAIN-CASE-HIER-PRO-001-middle-attempt |
+| 2026-06-25 22:44:11 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-224411-QBE-MAIN-CASE-HIER-PRO-001-middle-handoff |
+| 2026-06-25 22:45:21 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-224521-QBE-MAIN-CASE-HIER-PRO-001-lower-attempt |
+| 2026-06-25 22:46:05 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:46:50 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-COLD-001-cycle01/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-25 22:47:03 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-224702-QBE-MAIN-CASE-HIER-COLD-001-middle-handoff |
+| 2026-06-25 22:49:14 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-25 22:49:23 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-224922-QBE-MAIN-CASE-HIER-PRO-001-lower-handoff |
+| 2026-06-25 22:49:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-224933-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt |
+| 2026-06-25 22:49:44 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-224944-QBE-MAIN-CASE-HIER-PRO-001-lower-handoff |
+| 2026-06-25 22:51:28 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-COLD-001-cycle01/dialogue.md` | dialogue | Appended lower note |
+| 2026-06-25 22:51:34 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225134-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff |
+| 2026-06-25 22:51:48 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225148-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt |
+| 2026-06-25 22:53:20 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:54:30 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/dialogue.md` | dialogue | Appended reviewer note |
+| 2026-06-25 22:54:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225433-QBE-MAIN-CASE-HIER-PRO-001-reviewer-handoff |
+| 2026-06-25 22:54:58 | qbe.py memory-refresh | `runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-MAIN-CASE-HIER-PRO-001 cycle 1 |
+| 2026-06-25 22:54:58 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-MAIN-CASE-HIER-PRO-001.json` | memory | Wrote retrieval index for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:54:58 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:55:00 | qbe.py run-cycle | `runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02` | run | Created run cycle for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:55:05 | qbe.py agent-note | `runs/20260625-223031-QBE-MAIN-CASE-HIER-COLD-001-cycle01/dialogue.md` | dialogue | Appended reviewer note |
+| 2026-06-25 22:55:09 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225509-QBE-MAIN-CASE-HIER-COLD-001-reviewer-handoff |
+| 2026-06-25 22:55:35 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:55:37 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:55:59 | qbe.py memory-refresh | `runs/20260625-223031-QBE-MAIN-CASE-HIER-COLD-001-cycle01/memory_digest.md` | memory | Wrote memory digest for QBE-MAIN-CASE-HIER-COLD-001 cycle 1 |
+| 2026-06-25 22:55:59 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-MAIN-CASE-HIER-COLD-001.json` | memory | Wrote retrieval index for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:55:59 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:56:01 | qbe.py run-cycle | `runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02` | run | Created run cycle for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:56:39 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:57:00 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:57:17 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:57:18 | qbe.py agent-note | `runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 22:57:22 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225721-QBE-MAIN-CASE-HIER-PRO-001-upper-handoff |
+| 2026-06-25 22:57:51 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 22:57:51 | qbe.py memory-refresh | `runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02/memory_digest.md` | memory | Wrote memory digest for QBE-MAIN-CASE-HIER-PRO-001 cycle 2 |
+| 2026-06-25 22:57:51 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-MAIN-CASE-HIER-PRO-001.json` | memory | Wrote retrieval index for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 22:58:14 | qbe.py agent-note | `runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 22:58:16 | qbe.py agent-note | `runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 22:58:16 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225816-QBE-MAIN-CASE-HIER-PRO-001-upper-handoff |
+| 2026-06-25 22:58:19 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225818-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff |
+| 2026-06-25 22:58:20 | qbe.py agent-note | `runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 22:58:25 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225825-QBE-MAIN-CASE-HIER-PRO-001-upper-handoff |
+| 2026-06-25 22:58:33 | qbe.py agent-note | `runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 22:58:33 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225833-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff |
+| 2026-06-25 22:58:39 | qbe.py agent-note | `runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 22:58:39 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-225839-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff |
+| 2026-06-25 23:00:39 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 23:02:46 | qbe.py agent-note | `runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 23:02:52 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-230252-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff |
+| 2026-06-25 23:03:34 | qbe.py agent-note | `runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 23:03:34 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 23:03:56 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-230356-QBE-MAIN-CASE-HIER-PRO-001-upper-proposal |
+| 2026-06-25 23:04:20 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 23:04:22 | qbe.py run-cycle | `runs/20260625-230420-QBE-MAIN-CASE-HIER-PRO-001-cycle01` | run | Created run cycle for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 23:05:30 | qbe.py agent-note | `runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-25 23:05:36 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 23:05:36 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-230535-QBE-MAIN-CASE-HIER-COLD-001-middle-handoff |
+| 2026-06-25 23:06:43 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 23:06:58 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 23:07:17 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 23:07:18 | qbe.py agent-note | `runs/20260625-230420-QBE-MAIN-CASE-HIER-PRO-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 23:07:24 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-230724-QBE-MAIN-CASE-HIER-PRO-001-upper-handoff |
+| 2026-06-25 23:07:35 | qbe.py memory-refresh | `runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/memory_digest.md` | memory | Wrote memory digest for QBE-MAIN-CASE-HIER-COLD-001 cycle 2 |
+| 2026-06-25 23:07:35 | qbe.py memory-refresh | `research-wiki/retrieval-index/QBE-MAIN-CASE-HIER-COLD-001.json` | memory | Wrote retrieval index for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-06-25 23:07:39 | qbe.py agent-note | `runs/20260625-230420-QBE-MAIN-CASE-HIER-PRO-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 23:07:58 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-230758-QBE-MAIN-CASE-HIER-PRO-001-upper-handoff |
+| 2026-06-25 23:08:28 | qbe.py agent-note | `runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/dialogue.md` | dialogue | Appended middle note |
+| 2026-06-25 23:08:35 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-230835-QBE-MAIN-CASE-HIER-COLD-001-middle-handoff |
+| 2026-06-25 23:09:10 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 23:09:27 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-PRO-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-PRO-001 |
+| 2026-06-25 23:10:00 | qbe.py agent-note | `runs/20260625-230420-QBE-MAIN-CASE-HIER-PRO-001-cycle01/dialogue.md` | dialogue | Appended upper note |
+| 2026-06-25 23:10:05 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260625-231005-QBE-MAIN-CASE-HIER-PRO-001-upper-handoff |

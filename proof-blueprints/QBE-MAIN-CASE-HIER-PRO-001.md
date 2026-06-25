@@ -1,10 +1,10 @@
 # Proof Blueprint: QBE-MAIN-CASE-HIER-PRO-001
 
 Task id: `QBE-MAIN-CASE-HIER-PRO-001`
-Title: Main case transfer-operator block encoding, Pro-insight isolated Hierarchical Harness
+Title: Main case transfer-operator block encoding, Pro-assisted isolated Hierarchical Harness
 Mode: `exploratoryConstruction`
-Updated: `2026-06-25 22:31:03`
-Blueprint stage: `Stage unknown; upper must classify before broad lower work`
+Updated: `2026-06-25 23:09:27`
+Blueprint stage: `Stage 1 target/transcript stabilization`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
 automation.  It follows a similar control pattern to LeanMarathon's evolving
@@ -16,7 +16,7 @@ oracle contracts to stay explicit.
 ## Current Directive
 
 ````text
-# Main case transfer-operator block encoding, Pro-insight isolated Hierarchical Harness
+# Main case transfer-operator block encoding, Pro-assisted isolated Hierarchical Harness
 
 Task id: `QBE-MAIN-CASE-HIER-PRO-001`
 Kind: `operatorBlockEncoding`
@@ -73,7 +73,7 @@ LexElim scheduler discipline:
 
 ## Source
 
-- Paper/open problem: `main case transfer operator E_k := |0><k|_time ⊗ |0><1|_type ⊗ I with an external Pro insight packet kept outside certified population until Lean promotion`
+- Paper/open problem: `main case transfer operator E_k := |0><k|_time ⊗ |0><1|_type ⊗ I with a mid-run external Pro construction/proof input`
 - Lean target: `QuantumBlockEncoding/MainCase.lean`
 
 ## Operator Contract
@@ -99,20 +99,47 @@ LexElim scheduler discipline:
 
 ## Isolation Rule
 
-This is the Pro-insight isolated Hierarchical Harness arm.  The Pro packet is
-allowed only as an upper-level insight-pool item.  It is not a certified
-candidate, cannot be plotted as achieved, and cannot be exported until this
-task's Lean workers prove the corresponding block-entry, unitarity, and
-resource claims under this task's own declarations.
+This is the Pro-assisted isolated Hierarchical Harness arm.  It is a staged
+comparison experiment:
 
-## Pro Insight Packet
+1. run the same initial Hierarchical Harness setup as the no-Pro arm;
+2. inject an external Pro construction/proof packet as an official upper-level
+   input event, analogous to a human expert intervention;
+3. let upper and middle agents decide how to translate that packet into proof
+   leaves, candidate mutations, and executable-export tasks;
+4. accept or plot the construction only after this task's own Lean declarations
+   prove the corresponding block-entry, unitarity, and resource claims.
 
-The external hint to consider is: use an equality flag for the source subspace
-`T = k` and `tau = 1`, apply a controlled transfer that maps the selected
-source basis state to `T = 0`, `tau = 0`, and use a final ancilla flip so that
-only the selected branch returns to the clean block.  Upper and middle agents
-must still decide whether this is the best route, preserve alternatives in the
-insight pool, and require Lean proof before promotion.
+The Pro packet is not part of the initial task assumptions.  It is a mid-run
+input artifact located at:
+
+```text
+task-inbox/QBE-MAIN-CASE-HIER-PRO-001/pro_construction_packet.md
+```
+
+To reproduce the intervention point, append it to the current run dialogue
+after the first ordinary cycle:
+
+```bash
+python3 tools/qbe.py agent-note latest \
+  --role upper \
+  --file task-inbox/QBE-MAIN-CASE-HIER-PRO-001/pro_construction_packet.md
+```
+
+## External Pro Construction Packet
+
+The packet proposes an equality flag for the source subspace `T = k` and
+`tau = 1`, a controlled transfer to `T = 0`, `tau = 0`, and a final ancilla
+flip.  For the concrete bit order `bit 0 = tau`, `bit 1 = T`, `bit 2 = a`,
+the proposed four-gate transcript is:
+
+```text
+CCX012; CX21; CX20; X2
+```
+
+The packet also records the previously observed mutation target
+`CCX012; {X0, X1, X2}` as a historical endpoint to reproduce or improve, not
+as a theorem available to this isolated task.
 
 ## Textbook-Memory Guidance
 
@@ -199,12 +226,19 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| none detected | upper must refresh the task directive |
+| MAINCASE-PRO-CIRCUIT-IMAGE-001: Prove the Pro transcript realizes the current task-local image, or split the finite-permutation candidate from a corrected gate-derived candidate.; status: active leaf; Lean: none yet | candidate |
+| MAINCASE-PRO-EXPORT-001: Prepare Qiskit and QASM3 packets only after the accepted Lean semantic tier is named.; status: blocked on export policy; Lean: none yet | candidate |
 
 ## Open Obligation Signals
 
 ```text
-no compact obligation signals found
+# Proof Obligations: QBE-MAIN-CASE-HIER-PRO-001
+| Obligation | Lean declaration or artifact | Status |
+| Pro four-gate transcript realizes the advertised image/resource layer | no task-local theorem yet; proposed leaf `MAINCASE-PRO-CIRCUIT-IMAGE-001` | active contract-alignment obligation |
+| full matrix rational-orthogonality bridge | `mainCaseProRationalOrthogonalBridgeObligation` | active obligation |
+| `MAINCASE-PRO-ORTHO-BRIDGE-001` | Shared rational-orthogonality theorem for permutation matrices. | `MAINCASE-PRO-PERM-UNITARY-001` | lower 2/refiner | `mainCaseProRationalOrthogonalBridgeObligation` | verifier feedback | `python3 tools/qbe.py check` | queued after circuit-image alignment |
+## Next Lean Leaf
+The next useful implementation leaf is `MAINCASE-PRO-CIRCUIT-IMAGE-001`.
 ```
 
 ## Lean Declaration Index
@@ -279,21 +313,130 @@ Recent task-relevant declarations:
 | Artifact | Role |
 |---|---|
 | `tasks/QBE-MAIN-CASE-HIER-PRO-001.md` | task/proof map |
+| `conversion-windows/QBE-MAIN-CASE-HIER-PRO-001.md` | Lean/natural-language conversion |
+| `proof-obligations/QBE-MAIN-CASE-HIER-PRO-001.md` | open obligations |
 
 ## Latest Dialogue Signal
 
 ````text
-## 20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01
+rt
+intervention or a ChatGPT Pro answer pasted into the ABEIS loop after the
+ordinary harness has already started.  It is not a theorem and not a certified
+candidate.  ABEIS may use it only by translating it into Lean declarations and
+then proving the advertised block-entry, unitarity, and resource claims.
 
-# Dialogue: QBE-MAIN-CASE-HIER-PRO-001 cycle 1
+## Target
 
-Append short role-tagged handoffs here.
+For `r = 1`, `k = 1`, and one passive state qubit, the target is
 
-## 20260625-222916-QBE-MAIN-CASE-HIER-PRO-001-cycle01
+$$
+E_1
+=
+|0\rangle\langle 1|_T
+\otimes
+|0\rangle\langle 1|_\tau
+\otimes I_S .
+$$
 
-# Dialogue: QBE-MAIN-CASE-HIER-PRO-001 cycle 1
+The required clean block is
 
-Append short role-tagged handoffs here.
+$$
+(\langle 0|_a \otimes I)\,U\,(|0\rangle_a\otimes I)=E_1 .
+$$
+
+## Pro Construction Idea
+
+Use a single block-encoding ancilla `a`.
+
+1. Compute an equality flag for the source subspace `T = k` and `tau = 1`.
+   For the concrete benchmark `k = 1`, this is a Toffoli-style operation
+   controlled by `T = 1` and `tau = 1`, targeting `a`.
+2. When `a = 1`, transfer the selected active source basis state
+   `|T=1, tau=1>` to the target basis state `|T=0, tau=0>`.
+3. Flip the ancilla at the end so that the selected branch returns to the
+   clean `a = 0` block and all unselected clean inputs are sent outside that
+   block.
+
+In the previously used reduced bit order
+
+```text
+bit 0 = type tau
+bit 1 = time T
+bit 2 = block ancilla a
+```
+
+the Pro construction is the four-gate transcript
+
+```text
+CCX(type,time;aux); CX(aux,time); CX(aux,type); X(aux)
+```
+
+or, in compact gate names,
+
+```text
+CCX012; CX21; CX20; X2
+```
+
+## Expected Proof Shape
+
+The proof should be entrywise, not by informal circuit drawing.
+
+For every passive state `s`:
+
+- source branch:
+
+  ```text
+  |a=0, T=1, tau=1, s>
+    -> |a=0, T=0, tau=0, s>
+  ```
+
+- non-source clean branches:
+
+  ```text
+  |a=0, T,tau,s> with (T,tau) != (1,1)
+    -> a = 1 branch
+  ```
+
+Therefore the clean block has entry `1` exactly from active source
+`(T,tau)=(1,1)` to active target `(T,tau)=(0,0)`, and entry `0` elsewhere.
+The passive `S` register is unchanged, giving the tensor factor `I_S`.
+
+## Expected Resource Claim
+
+At the logical `{X, CNOT, Toffoli}` tier, before any later mutation, the Pro
+construction has
+
+```text
+(gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 4, 1, 0)
+```
+
+ABEIS may try to mutate or simplify it.  In the previous successful run, a
+mutation/collaboration step found the depth-2 variant
+
+```text
+CCX012; {X0, X1, X2}
+```
+
+with score
+
+```text
+(gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 0)
+```
+
+This previous endpoint is included only so the new isolated run can be checked
+against the old result.  The current task must reproduce or improve it under
+its own declarations and build gate.
+
+## Acceptance Rule
+
+The packet may guide the upper/middle plan immediately after injection.  It is
+not accepted until Lean proves:
+
+1. the candidate image/function is a permutation or the candidate matrix is
+   unitary at the chosen semantic tier;
+2. the clean block equals the target `E_1`;
+3. the resource tuple is stated and checked;
+4. any Qiskit/QASM export is generated only after the named Lean certificate.
 ````
 
 ## Gate Policy

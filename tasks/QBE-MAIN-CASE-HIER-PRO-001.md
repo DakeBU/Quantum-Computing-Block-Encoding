@@ -1,4 +1,4 @@
-# Main case transfer-operator block encoding, Pro-insight isolated Hierarchical Harness
+# Main case transfer-operator block encoding, Pro-assisted isolated Hierarchical Harness
 
 Task id: `QBE-MAIN-CASE-HIER-PRO-001`
 Kind: `operatorBlockEncoding`
@@ -55,7 +55,7 @@ LexElim scheduler discipline:
 
 ## Source
 
-- Paper/open problem: `main case transfer operator E_k := |0><k|_time ⊗ |0><1|_type ⊗ I with an external Pro insight packet kept outside certified population until Lean promotion`
+- Paper/open problem: `main case transfer operator E_k := |0><k|_time ⊗ |0><1|_type ⊗ I with a mid-run external Pro construction/proof input`
 - Lean target: `QuantumBlockEncoding/MainCase.lean`
 
 ## Operator Contract
@@ -81,20 +81,47 @@ LexElim scheduler discipline:
 
 ## Isolation Rule
 
-This is the Pro-insight isolated Hierarchical Harness arm.  The Pro packet is
-allowed only as an upper-level insight-pool item.  It is not a certified
-candidate, cannot be plotted as achieved, and cannot be exported until this
-task's Lean workers prove the corresponding block-entry, unitarity, and
-resource claims under this task's own declarations.
+This is the Pro-assisted isolated Hierarchical Harness arm.  It is a staged
+comparison experiment:
 
-## Pro Insight Packet
+1. run the same initial Hierarchical Harness setup as the no-Pro arm;
+2. inject an external Pro construction/proof packet as an official upper-level
+   input event, analogous to a human expert intervention;
+3. let upper and middle agents decide how to translate that packet into proof
+   leaves, candidate mutations, and executable-export tasks;
+4. accept or plot the construction only after this task's own Lean declarations
+   prove the corresponding block-entry, unitarity, and resource claims.
 
-The external hint to consider is: use an equality flag for the source subspace
-`T = k` and `tau = 1`, apply a controlled transfer that maps the selected
-source basis state to `T = 0`, `tau = 0`, and use a final ancilla flip so that
-only the selected branch returns to the clean block.  Upper and middle agents
-must still decide whether this is the best route, preserve alternatives in the
-insight pool, and require Lean proof before promotion.
+The Pro packet is not part of the initial task assumptions.  It is a mid-run
+input artifact located at:
+
+```text
+task-inbox/QBE-MAIN-CASE-HIER-PRO-001/pro_construction_packet.md
+```
+
+To reproduce the intervention point, append it to the current run dialogue
+after the first ordinary cycle:
+
+```bash
+python3 tools/qbe.py agent-note latest \
+  --role upper \
+  --file task-inbox/QBE-MAIN-CASE-HIER-PRO-001/pro_construction_packet.md
+```
+
+## External Pro Construction Packet
+
+The packet proposes an equality flag for the source subspace `T = k` and
+`tau = 1`, a controlled transfer to `T = 0`, `tau = 0`, and a final ancilla
+flip.  For the concrete bit order `bit 0 = tau`, `bit 1 = T`, `bit 2 = a`,
+the proposed four-gate transcript is:
+
+```text
+CCX012; CX21; CX20; X2
+```
+
+The packet also records the previously observed mutation target
+`CCX012; {X0, X1, X2}` as a historical endpoint to reproduce or improve, not
+as a theorem available to this isolated task.
 
 ## Textbook-Memory Guidance
 

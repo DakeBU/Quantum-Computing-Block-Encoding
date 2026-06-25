@@ -1,0 +1,24 @@
+{
+  "ancilla_cleanup_ok": true,
+  "auxiliary_qubits": 1,
+  "block_entry_ok": true,
+  "closed_theorem_ok": false,
+  "depth": null,
+  "error_class": "none",
+  "finite_matrix_ok": true,
+  "gate_count": null,
+  "leaf": "MAIN-FINITE-DIAG-001",
+  "lean_build_ok": null,
+  "lean_parse_ok": null,
+  "next_route": "Lower 2 should implement MAIN-CLEAN-ENTRY-001 in QuantumBlockEncoding/MainCase.lean; lower 3 may mirror this exact check into a durable diagnostic script if needed.",
+  "normalizer_ok": true,
+  "oracle_calls": 0,
+  "resource_score": {
+    "auxiliary_qubits": 1,
+    "depth": null,
+    "gate_count": null,
+    "oracle_calls": 0
+  },
+  "source_correspondence_ok": true,
+  "unitarity_ok": true
+}

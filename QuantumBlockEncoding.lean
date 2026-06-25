@@ -9,6 +9,7 @@ import QuantumBlockEncoding.CubicStatePreparation
 import QuantumBlockEncoding.Examples.RobinHeat
 import QuantumBlockEncoding.GHL2025
 import QuantumBlockEncoding.Literature
+import QuantumBlockEncoding.MainCase
 import QuantumBlockEncoding.OpenProblems
 import QuantumBlockEncoding.OptimalControl
 import QuantumBlockEncoding.Resources

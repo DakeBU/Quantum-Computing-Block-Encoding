@@ -28,9 +28,26 @@ python3 tools/qbe.py sleep-run QBE-MAIN-CASE-HIER-COLD-001 \
   --blueprint-refresh
 ```
 
-## Arm B: Pro-insight isolated run
+## Arm B: Pro-assisted isolated run
 
 ```bash
+python3 tools/qbe.py sleep-run QBE-MAIN-CASE-HIER-PRO-001 \
+  --cycles 1 \
+  --active-budget-minutes 45 \
+  --hierarchical-harness \
+  --lower-count 4 \
+  --adaptive-capacity \
+  --agent-cmd 'tools/codex_prompt_agent.sh {root} {prompt}' \
+  --execute \
+  --check-each-cycle \
+  --report-language zh \
+  --context-mode focused \
+  --blueprint-refresh
+
+python3 tools/qbe.py agent-note latest \
+  --role upper \
+  --file task-inbox/QBE-MAIN-CASE-HIER-PRO-001/pro_construction_packet.md
+
 python3 tools/qbe.py sleep-run QBE-MAIN-CASE-HIER-PRO-001 \
   --cycles 999 \
   --active-budget-minutes 90 \
@@ -57,5 +74,5 @@ Each arm should write:
 - `cycle-pro-prompt` if the arm stops before meeting its target
 
 Only Lean-certified candidates may be plotted as achieved candidates.  Pro,
-human, simulator, or Python ideas remain in the insight pool until promoted by
-a Lean theorem.
+human, simulator, or Python ideas may enter the harness as external input
+events, but they remain unaccepted until promoted by a Lean theorem.

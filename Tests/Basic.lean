@@ -310,6 +310,41 @@ example :
   coldE1HighLevelSeedCost_oracleCalls
 
 example :
+    mainCaseProTarget
+      (mainCaseProSystemIndex 0 0 0)
+      (mainCaseProSystemIndex 1 1 0) = 1 :=
+  mainCaseProTarget_support_state0
+
+example :
+    mainCaseProTarget
+      (mainCaseProSystemIndex 0 0 1)
+      (mainCaseProSystemIndex 1 1 1) = 1 :=
+  mainCaseProTarget_support_state1
+
+example :
+    mainCaseProCandidateImageIsPermutation :=
+  mainCaseProCandidateImage_permutation_certificate
+
+example :
+    mainCaseProBlockProjection mainCaseProCandidateMatrix :=
+  mainCaseProCandidate_blockProjection
+
+example :
+    Matrix.PointwiseEq
+      (BlockEncodingClassics.ExactCleanBlock.clean
+        mainCaseProExactCleanBlockCertificate)
+      mainCaseProTarget :=
+  mainCaseProExactCleanBlock_correct
+
+example :
+    mainCaseProCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 4, depth := 4, oracleCalls := 0 } :=
+  mainCaseProCandidate_cost
+
+example :
+    mainCaseProVerified.candidate = mainCaseProCandidate := rfl
+
+example :
     OptimalControl.directRouteAblationTarget
         ⟨0, by native_decide⟩ ⟨6, by native_decide⟩ = 1 := by
   native_decide

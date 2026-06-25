@@ -1,0 +1,168 @@
+{
+  "cycle": 2,
+  "dynamic_leaf_queue": [
+    "MAINCASE-PRO-ORTHO-BRIDGE-001: Promote the finite bijection certificate to a shared rational-orthogonality theorem for `permMatrix`.; status: active leaf; Lean: `mainCaseProRationalOrthogonalBridgeObligation`",
+    "MAINCASE-PRO-EXPORT-001: Prepare Qiskit and QASM3 packets only after the accepted Lean semantic tier is named.; status: blocked on export policy; Lean: none yet"
+  ],
+  "generated": "2026-06-25 22:57:50",
+  "ghl_contributions": [],
+  "lean_sorries": [],
+  "mode": "exploratoryConstruction",
+  "next_lower_tasks": [
+    {
+      "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+      "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
+      "role": "lower-1-natural-language-proof-architect"
+    },
+    {
+      "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+      "must_write": "Lean declaration plus trial-log verifier-feedback fields",
+      "role": "lower-2-lean-implementation-worker"
+    },
+    {
+      "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+      "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
+      "role": "lower-3-necessary-condition-verifier"
+    }
+  ],
+  "open_external_technical_lemma_obligations": [],
+  "open_ghl_contribution_obligations": [],
+  "open_obligation_signals": [
+    "# Proof Obligations: QBE-MAIN-CASE-HIER-PRO-001",
+    "| Obligation | Lean declaration or artifact | Status |",
+    "| auxiliary qubit count `a = 1` is explicit | `mainCaseProSourceLayout`, `mainCaseProSourceLayout_auxiliaryQubits` | proved |",
+    "| resource score is explicit | `mainCaseProHighLevelSeedCost_*`, `mainCaseProCandidate_cost` | proved at logical-library tier |",
+    "| full matrix rational-orthogonality bridge | `mainCaseProRationalOrthogonalBridgeObligation` | active obligation |",
+    "| `MAINCASE-PRO-SOURCE-001` | Fixed operator, layout, projector, alpha, and epsilon. | task packet | middle | `mainCaseProTarget`, `mainCaseProBlockProjection` | conversion window | `python3 tools/qbe.py check` | proved |",
+    "| `MAINCASE-PRO-PERM-IMAGE-001` | Task-local finite image and permutation matrix. | `MAINCASE-PRO-SOURCE-001` | middle/lower 2 | `mainCaseProCandidateImage`, `mainCaseProCandidateMatrix` | conversion window | `python3 tools/qbe.py check` | proved |",
+    "| `MAINCASE-PRO-RESOURCE-001` | Score tuple `(4,4,1,0)`. | `MAINCASE-PRO-BLOCK-001` | middle | `mainCaseProHighLevelSeedCost_*`, `mainCaseProCandidate_cost` | candidate population | `python3 tools/qbe.py check` | proved |",
+    "| `MAINCASE-PRO-ORTHO-BRIDGE-001` | Shared rational-orthogonality theorem for permutation matrices. | `MAINCASE-PRO-PERM-UNITARY-001` | lower 2/refiner | `mainCaseProRationalOrthogonalBridgeObligation` | verifier feedback | `python3 tools/qbe.py check` | active leaf |",
+    "## Next Lean Leaf",
+    "The next useful implementation leaf is `MAINCASE-PRO-ORTHO-BRIDGE-001`."
+  ],
+  "recent_proof_attempts": [],
+  "recent_trials": [
+    {
+      "artifact": "runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "queued",
+      "timestamp": "2026-06-25 22:57:21",
+      "trial_id": "20260625-225721-QBE-MAIN-CASE-HIER-PRO-001-upper-handoff"
+    },
+    {
+      "artifact": "runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02",
+      "kind": "plan",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "queued",
+      "timestamp": "2026-06-25 22:55:00",
+      "trial_id": "20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02-prompt-deck"
+    },
+    {
+      "artifact": "runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-25 22:54:58",
+      "trial_id": "20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01-build-gate"
+    },
+    {
+      "artifact": "runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/40_reviewer.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "reviewer",
+      "status": "accepted",
+      "timestamp": "2026-06-25 22:54:56",
+      "trial_id": "20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01-40_reviewer"
+    },
+    {
+      "artifact": "runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "reviewer",
+      "status": "queued",
+      "timestamp": "2026-06-25 22:54:33",
+      "trial_id": "20260625-225433-QBE-MAIN-CASE-HIER-PRO-001-reviewer-handoff"
+    },
+    {
+      "artifact": "runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/30_lower_searcher_1.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-25 22:50:05",
+      "trial_id": "20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01-30_lower_searcher_1"
+    },
+    {
+      "artifact": "runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-25 22:49:44",
+      "trial_id": "20260625-224944-QBE-MAIN-CASE-HIER-PRO-001-lower-handoff"
+    },
+    {
+      "artifact": "proof-attempts/QBE-MAIN-CASE-HIER-PRO-001-lower-architect-20260625-2245.md",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-25 22:49:22",
+      "trial_id": "20260625-224922-QBE-MAIN-CASE-HIER-PRO-001-lower-handoff"
+    },
+    {
+      "artifact": "",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "running",
+      "timestamp": "2026-06-25 22:45:21",
+      "trial_id": "20260625-224521-QBE-MAIN-CASE-HIER-PRO-001-lower-attempt"
+    },
+    {
+      "artifact": "runs/20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01/20_middle_formalizer.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-25 22:44:40",
+      "trial_id": "20260625-223031-QBE-MAIN-CASE-HIER-PRO-001-cycle01-20_middle_formalizer"
+    }
+  ],
+  "recent_verifier_feedback": [
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "MAINCASE-PRO-ORTHO-BRIDGE-001",
+      "next_route": "Prove public column Gram theorem for injective permMatrix in BlockEncodingClassics.lean, then row Gram theorem using surjectivity.",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-25 22:49:22",
+      "trial_id": "20260625-224922-QBE-MAIN-CASE-HIER-PRO-001-lower-handoff"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "MAINCASE-PRO-BLOCK-001",
+      "next_route": "Prove MAINCASE-PRO-ORTHO-BRIDGE-001 by promoting a shared rational-orthogonality theorem for bijective permMatrix maps or by first proving the task-local instance.",
+      "role": "middle",
+      "status": "compiled",
+      "timestamp": "2026-06-25 22:44:03",
+      "trial_id": "20260625-224403-QBE-MAIN-CASE-HIER-PRO-001-middle-attempt"
+    }
+  ],
+  "run_dir": "runs/20260625-225458-QBE-MAIN-CASE-HIER-PRO-001-cycle02",
+  "source_main_tex": "",
+  "stage": "Stage unknown; upper must classify before broad lower work",
+  "task_id": "QBE-MAIN-CASE-HIER-PRO-001",
+  "technical_lemmas": [],
+  "title": "Main case transfer-operator block encoding, Pro-insight isolated Hierarchical Harness"
+}

@@ -3,8 +3,8 @@
 Task id: `QBE-MAIN-CASE-HIER-COLD-001`
 Title: Main case transfer-operator block encoding, no-Pro isolated Hierarchical Harness
 Mode: `exploratoryConstruction`
-Updated: `2026-06-25 22:31:01`
-Blueprint stage: `Stage unknown; upper must classify before broad lower work`
+Updated: `2026-06-25 23:07:17`
+Blueprint stage: `Stage 1 target/contract stabilization; exploratory exact-phase COLD Lean-surface repair`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
 automation.  It follows a similar control pattern to LeanMarathon's evolving
@@ -193,12 +193,26 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| none detected | upper must refresh the task directive |
+| MAIN-SOURCE-001: Translate `E_1`, `(T,tau,S)`, clean signal, `alpha = 1`, and `epsilon = 0` into Lean declarations.; status: active leaf prerequisite; Lean: `mainCaseColdSystemIndex`, `mainCaseColdTarget`, `mainCaseColdExactNormalizer`, `mainCaseColdExactError`, `mainCaseColdCleanEmbed` | candidate |
+| MAIN-CAND-IMAGE-001: Define the `Fin 16` finite image for `MAIN-PARTIAL-PERM-001`.; status: active leaf prerequisite; Lean: `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix` | candidate |
+| MAIN-CLEAN-ENTRY-001: Prove the clean block of the permutation matrix equals `mainCaseColdTarget` via `partialPermutationCertificate`.; status: active Lean leaf; Lean: `mainCaseColdPartialPerm_entry`, `mainCaseColdPartialPermExactCleanBlock`, `mainCaseColdPartialPerm_clean_eq_target` | candidate |
+| MAIN-EXPORT-001: Create Qiskit and QASM3 exports for `r=1,k=1,passiveQubits=1`.; status: blocked until Lean certificate; Lean: export manifest and checks | candidate |
 
 ## Open Obligation Signals
 
 ```text
-no compact obligation signals found
+add COLD task-local Lean target surface: Lean `mainCaseCold*` declarations in `QuantumBlockEncoding/MainCase.lean` or child import; class internal construction leaf; status active
+keep task file imported into the library: Lean `import QuantumBlockEncoding.MainCase` in `QuantumBlockEncoding.lean`; class build integration; status present
+define matrix/operator target `A`: Lean `mainCaseColdTarget`; class source translation; status active
+define clean projector/embedding: Lean `mainCaseColdCleanEmbed`; class shape/register; status active
+define candidate unitary matrix: Lean `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix`; class candidate construction; status active
+prove clean-block equality: Lean `mainCaseColdPartialPerm_clean_eq_target`; class symbolic bridge; status active
+prove permutation/unitarity: Lean `mainCaseColdPartialPermImage_bijective`; later unitary theorem if needed; class unitarity layer; status open
+make normalizer explicit: Lean `mainCaseColdExactNormalizer = 1`; class source translation; status active
+make auxiliary qubit count explicit: Lean `mainCaseColdPartialPermCost.auxiliaryQubits = 1` or layout theorem; class resource layer; status open
+make resource tuple explicit: Lean field theorems for `(gateCount, depth, auxiliaryQubits, oracleCalls)`; class resource layer; status open; gate/depth need circuit schema
+compare against baseline: Lean candidate-population row for `MAIN-PARTIAL-PERM-001`; class exploratory memory; status queued
+run gate: Lean `python3 tools/qbe.py check`; class project gate; status required after edits
 ```
 
 ## Lean Declaration Index
@@ -273,21 +287,35 @@ Recent task-relevant declarations:
 | Artifact | Role |
 |---|---|
 | `tasks/QBE-MAIN-CASE-HIER-COLD-001.md` | task/proof map |
+| `conversion-windows/QBE-MAIN-CASE-HIER-COLD-001.md` | Lean/natural-language conversion |
+| `proof-obligations/QBE-MAIN-CASE-HIER-COLD-001.md` | open obligations |
 
 ## Latest Dialogue Signal
 
 ````text
+python3 tools/qbe.py check.
+
 ## 20260625-223031-QBE-MAIN-CASE-HIER-COLD-001-cycle01
 
 # Dialogue: QBE-MAIN-CASE-HIER-COLD-001 cycle 1
 
 Append short role-tagged handoffs here.
 
-## 20260625-222916-QBE-MAIN-CASE-HIER-COLD-001-cycle01
+## 2026-06-25 22:32:55 - upper
 
-# Dialogue: QBE-MAIN-CASE-HIER-COLD-001 cycle 1
+Mode exploratory construction. Objective for cycle 1: instantiate the exact r=1,k=1,one-passive-qubit target in QuantumBlockEncoding/MainCase.lean and certify the first partial-permutation clean-block candidate under task-local names, reusing BlockEncodingClassics clean-block leaves but not copying prior main-case/Pro/circuit exports. Proof DAG root: MainCase exact block encoding for E_1 with alpha=1 and a=1. Dependencies: target matrix/register layout, clean embedding, finite permutation image, clean-entry equality, permutation/unitarity, resource tuple. Active leaves: middle creates conversion window and DAG table; lower 1 writes the natural-language partial-permutation proof sketch; lower 2 implements only the target plus one clean-entry/ExactCleanBlock certificate leaf; lower 3 checks finite 16x16 support, block entry, normalizer, ancilla, and resource fields. Retire LCU/QSVT/sparse routes for this cycle unless partial permutation is falsified. Reviewer blocks any use of ColdStartTransferE1/OptimalControl candidate names as a shortcut and requires qbe.py check.
 
-Append short role-tagged handoffs here.
+## 2026-06-25 22:46:50 - middle
+
+Created COLD conversion window, proof-obligation ledger, candidate population, lower split packet, verifier-feedback target, memory digest/todo, and retrieval index. Primary route is MAIN-PARTIAL-PERM-001 via partial permutation; middle finite table sanity check passed for permutation/passive-S/clean support [(0,6),(1,7)]. Existing mainCasePro* Lean declarations are from the separate Pro arm and are out of scope for this no-Pro COLD task. Next lower leaf: add independent mainCaseCold* declarations and prove mainCaseColdPartialPerm_clean_eq_target through BlockEncodingClassics.partialPermutationCertificate. Gate passed: python3 tools/qbe.py check.
+
+## 2026-06-25 22:51:28 - lower
+
+Lower architect packet written for MAIN-CLEAN-ENTRY-001: source fragment is the task operator E_1, route is partial permutation via BlockEncodingClassics.partialPermutationCertificate, clean block has ones only at (0,6) and (1,7), and next Lean route is to implement mainCaseColdPartialPerm_entry plus mainCaseColdPartialPermExactCleanBlock. Gate passed: python3 tools/qbe.py check.
+
+## 2026-06-25 22:55:05 - reviewer
+
+Reviewer gate: python3 tools/qbe.py check passed (lake build and lake build Tests). Blocking for QBE-MAIN-CASE-HIER-COLD-001 acceptance: the current Lean surface has only mainCasePro* declarations and tests; no independent mainCaseCold* target, candidate image, clean-entry theorem, permutation/unitarity certificate, or resource tuple exists yet. Treat finite diagnostics as guidance only; closed_theorem_ok remains false. Next smallest repair: implement MAIN-SOURCE-001, MAIN-CAND-IMAGE-001, and MAIN-CLEAN-ENTRY-001 under mainCaseCold* names, then rerun qbe.py check.
 ````
 
 ## Gate Policy
