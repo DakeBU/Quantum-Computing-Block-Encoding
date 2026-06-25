@@ -1,0 +1,38 @@
+{
+  "ancilla_cleanup_ok": true,
+  "auxiliary_qubits": 1,
+  "block_entry_ok": true,
+  "candidate_package_present": false,
+  "closed_lean_declaration": null,
+  "closed_theorem_ok": false,
+  "cost_declarations_present": false,
+  "depth": null,
+  "error_class": "symbolic_bridge_gap",
+  "finite_bijection_ok": true,
+  "finite_matrix_ok": true,
+  "gate_count": null,
+  "leaf": "MAIN-RESOURCE-001",
+  "lean_build_ok": null,
+  "lean_parse_ok": null,
+  "missing_cost_declarations": [
+    "mainCaseColdPartialPermCost",
+    "mainCaseColdPartialPermCost_auxiliaryQubits",
+    "mainCaseColdPartialPermCost_gateCount",
+    "mainCaseColdPartialPermCost_depth",
+    "mainCaseColdPartialPermCost_oracleCalls"
+  ],
+  "next_route": "MAIN-RESOURCE-001: derive a COLD-local circuit/schedule or named resource model, then prove mainCaseColdPartialPermCost_* field theorems before candidate packaging or export.",
+  "normalizer_ok": true,
+  "oracle_calls": null,
+  "rejection": "No finite/block target contradiction. Reject any route that adds mainCaseColdPartialPermCandidate, mainCaseColdPartialPermVerified, or executable exports before a COLD-local resource schema and cost field theorems compile.",
+  "resource_obligation_open": true,
+  "resource_schema_present": false,
+  "resource_score": {
+    "auxiliary_qubits": 1,
+    "depth": null,
+    "gate_count": null,
+    "oracle_calls": null
+  },
+  "source_correspondence_ok": true,
+  "unitarity_ok": "finite_permutation_tier_true"
+}

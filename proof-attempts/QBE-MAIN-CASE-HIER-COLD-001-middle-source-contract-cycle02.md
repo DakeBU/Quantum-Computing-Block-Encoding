@@ -18,7 +18,13 @@ normalizer `alpha = 1`, and exact error `0`.
 
 ## Lean Contract
 
-Lower 2 owns only this Lean repair:
+Cycle 2 implementation result: `QuantumBlockEncoding/MainCase.lean` now
+contains the required COLD declarations and the theorem
+`mainCaseColdPartialPerm_clean_eq_target`.  The theorem closes the exact
+clean-block equality layer.  It does not close the permutation/unitarity,
+resource, or executable-export layers.
+
+The consumed lower-2 repair scope was:
 
 - target file: `QuantumBlockEncoding/MainCase.lean`;
 - optional import file: `QuantumBlockEncoding.lean` only if `MainCase` is not imported;
@@ -92,19 +98,22 @@ def mainCaseColdPartialPermExactCleanBlock :
 
 | Node | Interface | Dependencies | Owner | Lean declaration | Human proof map | Local gate | Status |
 |---|---|---|---|---|---|---|---|
-| `MAIN-SOURCE-001` | Source matrix, register order, clean signal, normalizer, exact error. | task packet | lower 2 | `mainCaseColdSystemIndex`, `mainCaseColdTarget`, `mainCaseColdExactNormalizer`, `mainCaseColdExactError`, `mainCaseColdCleanEmbed` | conversion window | `python3 tools/qbe.py check` | active prerequisite |
-| `MAIN-CAND-IMAGE-001` | Task-local `Fin 16` partial-permutation table and matrix. | `MAIN-SOURCE-001` | lower 2 | `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix` | conversion window | `python3 tools/qbe.py check` | active prerequisite |
-| `MAIN-CLEAN-ENTRY-001` | Clean block of the permutation matrix equals `mainCaseColdTarget`. | `MAIN-SOURCE-001`, `MAIN-CAND-IMAGE-001` | lower 2 | `mainCaseColdPartialPerm_entry`, `mainCaseColdPartialPermExactCleanBlock`, `mainCaseColdPartialPerm_clean_eq_target` | this packet | `python3 tools/qbe.py check` | active Lean leaf |
-| `MAIN-PERM-UNITARY-001` | Finite bijection and semantic unitarity bridge. | `MAIN-CAND-IMAGE-001` | later lower/refiner | `mainCaseColdPartialPermImage_bijective` | proof obligations | `python3 tools/qbe.py check` | open |
+| `MAIN-SOURCE-001` | Source matrix, register order, clean signal, normalizer, exact error. | task packet | lower 2 | `mainCaseColdSystemIndex`, `mainCaseColdTarget`, `mainCaseColdExactNormalizer`, `mainCaseColdExactError`, `mainCaseColdCleanEmbed` | conversion window | `python3 tools/qbe.py check` | proved |
+| `MAIN-CAND-IMAGE-001` | Task-local `Fin 16` partial-permutation table and matrix. | `MAIN-SOURCE-001` | lower 2 | `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix` | conversion window | `python3 tools/qbe.py check` | proved |
+| `MAIN-CLEAN-ENTRY-001` | Clean block of the permutation matrix equals `mainCaseColdTarget`. | `MAIN-SOURCE-001`, `MAIN-CAND-IMAGE-001` | lower 2 | `mainCaseColdPartialPerm_entry`, `mainCaseColdPartialPermExactCleanBlock`, `mainCaseColdPartialPerm_clean_eq_target` | this packet | `python3 tools/qbe.py check` | proved |
+| `MAIN-PERM-UNITARY-001` | Finite bijection and semantic unitarity bridge. | `MAIN-CAND-IMAGE-001` | later lower/refiner | `mainCaseColdPartialPermImage_bijective` | proof obligations | `python3 tools/qbe.py check` | active next leaf |
 | `MAIN-RESOURCE-001` | Resource tuple in `(gateCount, depth, auxiliaryQubits, oracleCalls)` order. | circuit schema | later lower/refiner | `mainCaseColdPartialPermCost_*` | candidate population | `python3 tools/qbe.py check` | open |
 
 ## Verifier Feedback Expected
 
-Lower 2 should log `leaf=MAIN-CLEAN-ENTRY-001`,
-`source_correspondence_ok=true`, `lean_parse_ok`, `lean_build_ok`,
-`block_entry_ok`, `normalizer_ok=true`, `closed_theorem_ok`, `error_class`,
-and `next_route`.  If the statement compiles and the theorem closes, the next
-route is `MAIN-PERM-UNITARY-001`; otherwise the next route should name the
-first malformed declaration or proof gap.
+Cycle 2 feedback is recorded in
+`verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-clean-entry-cycle02.feedback.json`.
+It records `leaf=MAIN-CLEAN-ENTRY-001`, `lean_build_ok=true`,
+`block_entry_ok=true`, and `closed_theorem_ok=true` for
+`mainCaseColdPartialPerm_clean_eq_target`.
+
+The next route is `MAIN-PERM-UNITARY-001`.  The next lower attempt should log
+whether `mainCaseColdPartialPermImage_bijective` compiles and should not set
+`unitarity_ok=true` unless the COLD permutation or unitarity theorem is named.
 
 No LaTeX or executable export is due in this inner cycle.

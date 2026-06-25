@@ -1,0 +1,26 @@
+{
+  "ancilla_cleanup_ok": true,
+  "auxiliary_qubits": 1,
+  "block_entry_ok": true,
+  "closed_theorem_ok": false,
+  "diagnostic_command": "python3 verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-perm-unitary-cycle02.py",
+  "error_class": "symbolic_bridge_gap",
+  "finite_bijection_ok": true,
+  "finite_matrix_ok": true,
+  "gate_count": null,
+  "leaf": "MAIN-PERM-UNITARY-001",
+  "lean_build_ok": true,
+  "lean_gate": "python3 tools/qbe.py check",
+  "lean_parse_ok": true,
+  "next_route": "Prove mainCaseColdPartialPermImage_bijective by finite native_decide/case split over Fin 16, then connect that task-local permutation certificate to the project unitary/verified-candidate layer before resource or export work.",
+  "normalizer_ok": true,
+  "oracle_calls": 0,
+  "resource_score": {
+    "auxiliary_qubits": 1,
+    "depth": null,
+    "gate_count": null,
+    "oracle_calls": 0
+  },
+  "source_correspondence_ok": true,
+  "unitarity_ok": null
+}

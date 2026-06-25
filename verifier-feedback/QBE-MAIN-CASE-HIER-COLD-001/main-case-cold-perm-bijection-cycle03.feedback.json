@@ -1,0 +1,27 @@
+{
+  "leaf": "MAIN-PERM-UNITARY-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_bijection_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "semantic_tier": "finite-permutation image is bijective; a rational-orthogonal matrix bridge remains deferred if a later semantic tier requires it",
+  "resource_score": {
+    "gate_count": null,
+    "depth": null,
+    "auxiliary_qubits": 1,
+    "oracle_calls": 0
+  },
+  "auxiliary_qubits": 1,
+  "gate_count": null,
+  "depth": null,
+  "oracle_calls": 0,
+  "closed_theorem_ok": true,
+  "closed_lean_declaration": "mainCaseColdPartialPermImage_bijective",
+  "error_class": null,
+  "next_route": "MAIN-BLOCK-PROJECTION-001: define mainCaseColdQueryTarget, mainCaseColdBlockProjection, and prove mainCaseColdPartialPerm_blockProjection before resource or export work."
+}

@@ -1,0 +1,19 @@
+{
+  "leaf": "MAINCASE-PRO-SEMANTIC-TIER-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "resource_score": "(4,4,1,0)",
+  "auxiliary_qubits": 1,
+  "gate_count": 4,
+  "depth": 4,
+  "oracle_calls": 0,
+  "closed_theorem_ok": true,
+  "error_class": "stale_leaf",
+  "next_route": "Create qiskit/qasm3 export packet only after reviewer accepts mainCaseProCircuitVerified/mainCaseProCircuitCandidate as the export-facing Pro transcript certificate."
+}

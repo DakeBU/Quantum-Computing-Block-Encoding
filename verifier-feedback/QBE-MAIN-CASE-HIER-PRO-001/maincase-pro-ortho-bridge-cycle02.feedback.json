@@ -1,0 +1,52 @@
+{
+  "leaf": "MAINCASE-PRO-ORTHO-BRIDGE-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "resource_score": "(4,4,1,0)",
+  "auxiliary_qubits": 1,
+  "gate_count": 4,
+  "depth": 4,
+  "oracle_calls": 0,
+  "closed_theorem_ok": true,
+  "error_class": "none",
+  "next_route": "Retire MAINCASE-PRO-ORTHO-BRIDGE-001 and use mainCaseProCircuitVerified for semantic-tier/export alignment.",
+  "lean_closure_declarations": [
+    "BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective",
+    "mainCaseProCandidateMatrix_isRationalOrthogonal",
+    "mainCaseProCircuitMatrix_isRationalOrthogonal"
+  ],
+  "diagnostic_command": "python3 verifier-feedback/QBE-MAIN-CASE-HIER-PRO-001/maincase_pro_ortho_bridge_diag.py",
+  "diagnostic_artifact": "verifier-feedback/QBE-MAIN-CASE-HIER-PRO-001/maincase_pro_ortho_bridge_diag.py",
+  "finite_results": {
+    "mainCaseProCandidateMatrix": {
+      "is_bijection": true,
+      "column_and_row_gram_identity": true,
+      "block_matches_target": true,
+      "clean_source_images": {
+        "6": 0,
+        "7": 1
+      },
+      "gram_failures": [],
+      "block_failures": []
+    },
+    "mainCaseProCircuitMatrix": {
+      "is_bijection": true,
+      "column_and_row_gram_identity": true,
+      "block_matches_target": true,
+      "clean_source_images": {
+        "6": 0,
+        "7": 1
+      },
+      "gram_failures": [],
+      "block_failures": []
+    },
+    "stale_equality_mismatch_set": [8, 9, 12, 13]
+  },
+  "rejection": "No finite/path/support contradiction rejects MAINCASE-PRO-ORTHO-BRIDGE-001. The bridge is now closed by named Lean declarations. The stale route mainCaseProCircuitImage_eq_candidate remains rejected on dirty inputs 8, 9, 12, and 13."
+}

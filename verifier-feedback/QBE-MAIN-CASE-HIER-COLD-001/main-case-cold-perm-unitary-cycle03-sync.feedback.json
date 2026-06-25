@@ -1,0 +1,30 @@
+{
+  "ancilla_cleanup_ok": true,
+  "auxiliary_qubits": 1,
+  "block_entry_ok": true,
+  "closed_theorem": "mainCaseColdPartialPermImage_bijective",
+  "closed_theorem_ok": true,
+  "depth": null,
+  "error_class": null,
+  "finite_matrix_ok": true,
+  "gate_count": null,
+  "lean_build_ok": true,
+  "lean_parse_ok": true,
+  "leaf": "MAIN-PERM-UNITARY-001",
+  "next_route": "MAIN-BLOCK-PROJECTION-001: define the COLD QueryOperatorTarget and block-projection predicate; keep resource/candidate packaging and the matrix-unitary bridge conditional unless the reviewer requires a stronger semantic tier.",
+  "normalizer_ok": true,
+  "oracle_calls": 0,
+  "resource_score": {
+    "auxiliary_qubits": 1,
+    "depth": null,
+    "gate_count": null,
+    "oracle_calls": 0
+  },
+  "source_correspondence_ok": true,
+  "stale_targets_to_retire": [
+    "MAIN-CLEAN-ENTRY-001",
+    "MAIN-PERM-UNITARY-001 finite-bijection subleaf",
+    "MAIN-EXPORT-001 active queue"
+  ],
+  "unitarity_ok": "finite_permutation_tier_true"
+}

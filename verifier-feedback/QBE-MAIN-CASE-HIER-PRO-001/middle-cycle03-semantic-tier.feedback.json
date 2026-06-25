@@ -1,0 +1,29 @@
+{
+  "leaf": "MAINCASE-PRO-SEMANTIC-TIER-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "resource_score": "(4,4,1,0)",
+  "auxiliary_qubits": 1,
+  "gate_count": 4,
+  "depth": 4,
+  "oracle_calls": 0,
+  "closed_theorem_ok": true,
+  "error_class": "none",
+  "accepted_certificate": "mainCaseProCircuitVerified",
+  "accepted_cost_theorem": "mainCaseProCircuitCandidate_cost",
+  "retired_leaves": [
+    "mainCaseProCircuitImage_eq_candidate",
+    "MAINCASE-PRO-ORTHO-BRIDGE-001"
+  ],
+  "rejected_export_certificates": [
+    "mainCaseProVerified",
+    "mainCaseProCandidate_cost"
+  ],
+  "next_route": "Generate qiskit and qasm3 export artifacts from mainCaseProCircuitVerified only; verify the generated basis action against mainCaseProCircuitImage and keep the dirty-column mismatch set {8,9,12,13} as a stale-route rejection check."
+}

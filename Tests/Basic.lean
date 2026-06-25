@@ -55,6 +55,20 @@ example :
   native_decide
 
 example :
+    mainCaseColdQueryTarget.normalizer = mainCaseColdExactNormalizer :=
+  mainCaseColdQueryTarget_normalizer
+
+example :
+    mainCaseColdBlockProjection mainCaseColdPartialPermMatrix :=
+  mainCaseColdPartialPerm_blockProjection
+
+example :
+    mainCaseColdSourceLayout.auxiliaryQubits = 1 :=
+  mainCaseColdSourceLayout_auxiliaryQubits
+
+example : mainCaseColdResourceSchemaObligation.proved = false := rfl
+
+example :
     OptimalControl.exampleUnitary
       (OptimalControl.cleanIndex OptimalControl.targetState0)
       (OptimalControl.cleanIndex OptimalControl.sourceState0) = 1 := by
@@ -326,6 +340,42 @@ example :
   mainCaseProCandidateImage_permutation_certificate
 
 example :
+    mainCaseProCircuitImage ⟨6, by native_decide⟩ =
+      ⟨0, by native_decide⟩ :=
+  mainCaseProCircuitImage_clean_source_state0
+
+example :
+    mainCaseProCircuitImage ⟨7, by native_decide⟩ =
+      ⟨1, by native_decide⟩ :=
+  mainCaseProCircuitImage_clean_source_state1
+
+example :
+    ∀ x : Fin 16,
+      (mainCaseProCircuitImage x ≠ mainCaseProCandidateImage x) ↔
+        x.val ∈ [8, 9, 12, 13] :=
+  mainCaseProCircuitImage_candidate_mismatch_set
+
+example :
+    ¬ ∀ x : Fin 16, mainCaseProCircuitImage x = mainCaseProCandidateImage x :=
+  mainCaseProCircuitImage_not_pointwise_candidate
+
+example :
+    mainCaseProCircuitImageIsPermutation :=
+  mainCaseProCircuitImage_permutation_certificate
+
+example :
+    BlockEncodingClassics.IsRationalOrthogonal mainCaseProCandidateMatrix :=
+  mainCaseProCandidateMatrix_isRationalOrthogonal
+
+example :
+    BlockEncodingClassics.IsRationalOrthogonal mainCaseProCircuitMatrix :=
+  mainCaseProCircuitMatrix_isRationalOrthogonal
+
+example :
+    mainCaseProBlockProjection mainCaseProCircuitMatrix :=
+  mainCaseProCircuit_blockProjection
+
+example :
     mainCaseProBlockProjection mainCaseProCandidateMatrix :=
   mainCaseProCandidate_blockProjection
 
@@ -338,11 +388,25 @@ example :
 
 example :
     mainCaseProCandidate.cost =
-      { auxiliaryQubits := 1, gateCount := 4, depth := 4, oracleCalls := 0 } :=
+      { auxiliaryQubits := 1, gateCount := 1, depth := 1, oracleCalls := 1 } :=
   mainCaseProCandidate_cost
 
 example :
+    mainCaseProCandidate.circuit = mainCaseProMatrixTableCircuit ∧
+      mainCaseProCandidate.schedule = mainCaseProMatrixTableSchedule ∧
+      mainCaseProCandidate.resource = mainCaseProMatrixTableResource :=
+  mainCaseProCandidate_uses_matrix_table_metadata
+
+example :
+    mainCaseProCircuitCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 4, depth := 4, oracleCalls := 0 } :=
+  mainCaseProCircuitCandidate_cost
+
+example :
     mainCaseProVerified.candidate = mainCaseProCandidate := rfl
+
+example :
+    mainCaseProCircuitVerified.candidate = mainCaseProCircuitCandidate := rfl
 
 example :
     OptimalControl.directRouteAblationTarget

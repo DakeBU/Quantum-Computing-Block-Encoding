@@ -26,10 +26,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
+        with:
+          # Normal runs use GITHUB_TOKEN after the Pages site exists.
+          # First-time enablement needs a repo secret PAT named PAGES_TOKEN
+          # with Pages:write and Administration:write permission, or a classic
+          # PAT with repo scope. If the secret is absent, this falls back to
+          # the standard GitHub-token configuration.
+          token: ${{ secrets.PAGES_TOKEN || github.token }}
+          enablement: ${{ secrets.PAGES_TOKEN != '' }}
 
       - name: Upload web directory
         uses: actions/upload-pages-artifact@v3

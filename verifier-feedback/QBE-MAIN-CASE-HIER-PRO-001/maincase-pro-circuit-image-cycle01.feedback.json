@@ -1,0 +1,41 @@
+{
+  "task": "QBE-MAIN-CASE-HIER-PRO-001",
+  "role": "lower",
+  "leaf": "MAINCASE-PRO-CIRCUIT-IMAGE-001",
+  "source_correspondence_ok": false,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "candidate_equality_ok": false,
+  "candidate_split_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "unitarity_tier": "the transcript and current candidate are both finite permutations; matrix-orthogonality theorem closure remains separate",
+  "resource_score": "(4,4,1,0)",
+  "auxiliary_qubits": 1,
+  "gate_count": 4,
+  "depth": 4,
+  "oracle_calls": 0,
+  "closed_theorem_ok": true,
+  "closed_theorem_tier": "candidate split and clean-block certificate closed; equality theorem rejected",
+  "lean_declarations": [
+    "mainCaseProCircuitImage_candidate_mismatch_set",
+    "mainCaseProCircuitImage_not_pointwise_candidate",
+    "mainCaseProCircuitImage_permutation_certificate",
+    "mainCaseProCircuit_blockProjection",
+    "mainCaseProCircuitCandidate_cost",
+    "mainCaseProCircuitVerified"
+  ],
+  "mismatch_inputs": [8, 9, 12, 13],
+  "mismatches": [
+    { "input": 8, "transcript": 6, "candidate": 2 },
+    { "input": 9, "transcript": 7, "candidate": 3 },
+    { "input": 12, "transcript": 2, "candidate": 6 },
+    { "input": 13, "transcript": 3, "candidate": 7 }
+  ],
+  "clean_block_bad_entries": [],
+  "error_class": "finite_matrix_counterexample",
+  "next_route": "Do not retry mainCaseProCircuitImage_eq_candidate. Next Lean leaf is MAINCASE-PRO-ORTHO-BRIDGE-001 unless reviewer asks for export-policy alignment first."
+}

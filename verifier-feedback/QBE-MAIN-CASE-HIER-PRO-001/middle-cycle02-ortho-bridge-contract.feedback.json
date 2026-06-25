@@ -1,0 +1,27 @@
+{
+  "task": "QBE-MAIN-CASE-HIER-PRO-001",
+  "role": "middle",
+  "leaf": "MAINCASE-PRO-ORTHO-BRIDGE-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": null,
+  "finite_matrix_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": false,
+  "resource_score": "(4,4,1,0)",
+  "auxiliary_qubits": 1,
+  "gate_count": 4,
+  "depth": 4,
+  "oracle_calls": 0,
+  "closed_theorem_ok": false,
+  "error_class": "symbolic_bridge_gap",
+  "next_route": "Prove a shared BlockEncodingClassics.permMatrix rational-orthogonality bridge, or a finite task-local fallback for mainCaseProCircuitMatrix. Do not retry mainCaseProCircuitImage_eq_candidate.",
+  "artifacts": [
+    "conversion-windows/QBE-MAIN-CASE-HIER-PRO-001.md",
+    "proof-obligations/QBE-MAIN-CASE-HIER-PRO-001.md",
+    "proof-attempts/QBE-MAIN-CASE-HIER-PRO-001-middle-source-contract-cycle02.md",
+    "verifier-feedback/QBE-MAIN-CASE-HIER-PRO-001/middle-cycle02-ortho-bridge-contract.md"
+  ]
+}

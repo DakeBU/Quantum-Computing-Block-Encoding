@@ -1,0 +1,30 @@
+{
+  "leaf": "MAINCASE-PRO-EXPORT-001",
+  "guards_semantic_leaf": "MAINCASE-PRO-SEMANTIC-TIER-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": null,
+  "lean_build_ok": null,
+  "finite_matrix_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "resource_score": "(4,4,1,0)",
+  "auxiliary_qubits": 1,
+  "gate_count": 4,
+  "depth": 4,
+  "oracle_calls": 0,
+  "circuit_image": [8, 9, 10, 11, 12, 13, 0, 1, 6, 7, 4, 5, 2, 3, 14, 15],
+  "closed_theorem_ok": null,
+  "error_class": "none",
+  "diagnostic": "verifier-feedback/QBE-MAIN-CASE-HIER-PRO-001/maincase_pro_export_guard_cycle03.py",
+  "stale_candidate_mismatch_set": [8, 9, 12, 13],
+  "stale_candidate_mismatch_ok": true,
+  "accepted_certificate": "mainCaseProCircuitVerified",
+  "accepted_cost_theorem": "mainCaseProCircuitCandidate_cost",
+  "rejected_export_certificates": [
+    "mainCaseProVerified",
+    "mainCaseProCandidate_cost"
+  ],
+  "next_route": "Generate Qiskit/QASM3 artifacts from mainCaseProCircuitVerified only, then compare their 16-state basis action against the diagnostic circuit_image list."
+}

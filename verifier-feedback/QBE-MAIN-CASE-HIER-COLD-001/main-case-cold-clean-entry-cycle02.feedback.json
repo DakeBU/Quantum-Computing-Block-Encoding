@@ -1,0 +1,26 @@
+{
+  "ancilla_cleanup_ok": true,
+  "auxiliary_qubits": 1,
+  "block_entry_ok": true,
+  "closed_theorem": "mainCaseColdPartialPerm_clean_eq_target",
+  "closed_theorem_ok": true,
+  "depth": null,
+  "error_class": "none",
+  "finite_matrix_ok": true,
+  "gate_count": null,
+  "leaf": "MAIN-CLEAN-ENTRY-001",
+  "lean_build_ok": true,
+  "lean_gate": "python3 tools/qbe.py check",
+  "lean_parse_ok": true,
+  "next_route": "Prove MAIN-PERM-UNITARY-001 via a task-local mainCaseColdPartialPermImage_bijective theorem, then attach the resource tuple before any Qiskit/QASM3 export.",
+  "normalizer_ok": true,
+  "oracle_calls": 0,
+  "resource_score": {
+    "auxiliary_qubits": 1,
+    "depth": null,
+    "gate_count": null,
+    "oracle_calls": 0
+  },
+  "source_correspondence_ok": true,
+  "unitarity_ok": null
+}

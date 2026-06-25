@@ -1,159 +1,267 @@
 {
-  "cycle": 2,
+  "cycle": 3,
   "dynamic_leaf_queue": [
-    "MAIN-SOURCE-001: Translate `E_1`, `(T,tau,S)`, clean signal, `alpha = 1`, and `epsilon = 0` into Lean declarations.; status: active leaf prerequisite; Lean: `mainCaseColdSystemIndex`, `mainCaseColdTarget`, `mainCaseColdExactNormalizer`, `mainCaseColdExactError`, `mainCaseColdCleanEmbed`",
-    "MAIN-CAND-IMAGE-001: Define the `Fin 16` finite image for `MAIN-PARTIAL-PERM-001`.; status: active leaf prerequisite; Lean: `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix`",
-    "MAIN-CLEAN-ENTRY-001: Prove the clean block of the permutation matrix equals `mainCaseColdTarget` via `partialPermutationCertificate`.; status: active Lean leaf; Lean: `mainCaseColdPartialPerm_entry`, `mainCaseColdPartialPermExactCleanBlock`, `mainCaseColdPartialPerm_clean_eq_target`"
+    "MAIN-CANDIDATE-PACKAGE-001: Package the COLD candidate and verified certificate without changing the target or hiding resource assumptions.; status: active leaf; Lean: `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified`",
+    "MAIN-EXPORT-001: Create Qiskit and QASM3 exports for `r=1,k=1,passiveQubits=1`.; status: blocked until Lean certificate; Lean: export manifest and checks"
   ],
-  "generated": "2026-06-25 23:07:35",
+  "generated": "2026-06-26 00:25:42",
   "ghl_contributions": [],
   "lean_sorries": [],
   "mode": "exploratoryConstruction",
   "next_lower_tasks": [
     {
-      "goal": "Reuse the existing proof packet unless the COLD target, register layout, or candidate table changes.",
-      "must_write": "dialogue note only if a mismatch is found",
+      "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+      "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
       "role": "lower-1-natural-language-proof-architect"
     },
     {
-      "goal": "Implement MAIN-SOURCE-001, MAIN-CAND-IMAGE-001, and MAIN-CLEAN-ENTRY-001 under independent `mainCaseCold*` names.",
-      "must_write": "`QuantumBlockEncoding/MainCase.lean` plus trial-log verifier-feedback fields",
+      "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+      "must_write": "Lean declaration plus trial-log verifier-feedback fields",
       "role": "lower-2-lean-implementation-worker"
     },
     {
-      "goal": "Rerun finite table diagnostics only if lower 2 changes the candidate image table.",
-      "must_write": "verifier-feedback/<task>/... only on table change",
+      "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+      "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
       "role": "lower-3-necessary-condition-verifier"
     }
   ],
   "open_external_technical_lemma_obligations": [],
   "open_ghl_contribution_obligations": [],
   "open_obligation_signals": [
-    "add COLD task-local Lean target surface: Lean `mainCaseCold*` declarations in `QuantumBlockEncoding/MainCase.lean` or child import; class internal construction leaf; status active",
+    "add COLD task-local Lean target surface: Lean `mainCaseCold*` declarations in `QuantumBlockEncoding/MainCase.lean`; class internal construction leaf; status proved",
     "keep task file imported into the library: Lean `import QuantumBlockEncoding.MainCase` in `QuantumBlockEncoding.lean`; class build integration; status present",
-    "define matrix/operator target `A`: Lean `mainCaseColdTarget`; class source translation; status active",
-    "define clean projector/embedding: Lean `mainCaseColdCleanEmbed`; class shape/register; status active",
-    "define candidate unitary matrix: Lean `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix`; class candidate construction; status active",
-    "prove clean-block equality: Lean `mainCaseColdPartialPerm_clean_eq_target`; class symbolic bridge; status active",
-    "prove permutation/unitarity: Lean `mainCaseColdPartialPermImage_bijective`; later unitary theorem if needed; class unitarity layer; status open",
-    "make normalizer explicit: Lean `mainCaseColdExactNormalizer = 1`; class source translation; status active",
-    "make auxiliary qubit count explicit: Lean `mainCaseColdPartialPermCost.auxiliaryQubits = 1` or layout theorem; class resource layer; status open",
-    "make resource tuple explicit: Lean field theorems for `(gateCount, depth, auxiliaryQubits, oracleCalls)`; class resource layer; status open; gate/depth need circuit schema",
-    "compare against baseline: Lean candidate-population row for `MAIN-PARTIAL-PERM-001`; class exploratory memory; status queued",
+    "define matrix/operator target `A`: Lean `mainCaseColdTarget`; class source translation; status proved",
+    "define clean projector/embedding: Lean `mainCaseColdCleanEmbed`; class shape/register; status proved",
+    "define candidate unitary matrix: Lean `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix`; class candidate construction; status proved",
+    "prove clean-block equality: Lean `mainCaseColdPartialPerm_clean_eq_target`; class symbolic bridge; status proved",
+    "prove permutation/unitarity: Lean `mainCaseColdPartialPermImage_bijective`; later unitary theorem if needed; class unitarity layer; status finite bijection proved; retired from active queue",
+    "state operator-first target metadata: Lean `mainCaseColdQueryTarget`; class source translation; status proved",
+    "state project-local block projection and prove candidate matrix satisfies it: Lean `mainCaseColdBlockProjection`, `mainCaseColdPartialPerm_blockProjection`; class semantic bridge; status proved",
+    "make normalizer explicit: Lean `mainCaseColdExactNormalizer = 1`; class source translation; status compiled",
+    "make auxiliary qubit count explicit: Lean `mainCaseColdSourceLayout_auxiliaryQubits`, `mainCaseColdPartialPermCost_auxiliaryQubits`; class resource layer; status proved",
+    "make resource tuple explicit: Lean field theorems for `(gateCount, depth, auxiliaryQubits, oracleCalls)`; class resource layer; status proved as `(5,5,1,0)` after COLD-local circuit schema",
+    "package COLD candidate and verified certificate: Lean `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified`; class candidate packaging; status active next leaf; resource tuple now ready",
+    "compare against baseline: Lean candidate-population row for `MAIN-PARTIAL-PERM-001`; class exploratory memory; status updated with compiled resource tuple; full candidate ranking still awaits verified package",
     "run gate: Lean `python3 tools/qbe.py check`; class project gate; status required after edits"
   ],
-  "recent_proof_attempts": [
-    "proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-architect-20260625-2249.md"
-  ],
+  "recent_proof_attempts": [],
   "recent_trials": [
     {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
-      "kind": "handoff",
-      "lean_gate": "",
-      "role": "middle",
-      "status": "queued",
-      "timestamp": "2026-06-25 23:05:35",
-      "trial_id": "20260625-230535-QBE-MAIN-CASE-HIER-COLD-001-middle-handoff"
+      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
+      "kind": "build",
+      "lean_gate": "pass",
+      "role": "reviewer",
+      "status": "compiled",
+      "timestamp": "2026-06-26 00:25:41",
+      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-build-gate"
     },
     {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/10_upper_director.md",
+      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03/40_reviewer.md",
       "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
+      "role": "reviewer",
       "status": "accepted",
-      "timestamp": "2026-06-25 23:03:30",
-      "trial_id": "20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02-10_upper_director"
+      "timestamp": "2026-06-26 00:25:40",
+      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-40_reviewer"
     },
     {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
+      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
       "kind": "handoff",
       "lean_gate": "",
-      "role": "upper",
+      "role": "reviewer",
       "status": "queued",
-      "timestamp": "2026-06-25 23:02:52",
-      "trial_id": "20260625-230252-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff"
+      "timestamp": "2026-06-26 00:25:04",
+      "trial_id": "20260626-002504-QBE-MAIN-CASE-HIER-COLD-001-reviewer-handoff"
     },
     {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/13_upper_process_memory.md",
+      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03/30_lower_searcher_3.md",
       "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
+      "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-25 22:59:44",
-      "trial_id": "20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02-13_upper_process_memory"
+      "timestamp": "2026-06-26 00:20:57",
+      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-30_lower_searcher_3"
     },
     {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/12_upper_proof_dag.md",
+      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03/30_lower_searcher_2.md",
       "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
+      "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-25 22:59:44",
-      "trial_id": "20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02-12_upper_proof_dag"
+      "timestamp": "2026-06-26 00:20:57",
+      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-30_lower_searcher_2"
     },
     {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02/11_upper_source_visual.md",
+      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
+      "kind": "handoff",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-26 00:20:23",
+      "trial_id": "20260626-002023-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff"
+    },
+    {
+      "artifact": "verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-resource-schema-cycle03.md",
+      "kind": "attempt",
+      "lean_gate": "pass",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-26 00:18:50",
+      "trial_id": "20260626-001850-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03/30_lower_searcher_1.md",
       "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
+      "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-25 22:59:44",
-      "trial_id": "20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02-11_upper_source_visual"
+      "timestamp": "2026-06-26 00:17:05",
+      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-30_lower_searcher_1"
     },
     {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
+      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
       "kind": "handoff",
       "lean_gate": "",
-      "role": "upper",
+      "role": "lower",
       "status": "queued",
-      "timestamp": "2026-06-25 22:58:39",
-      "trial_id": "20260625-225839-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff"
+      "timestamp": "2026-06-26 00:16:31",
+      "trial_id": "20260626-001631-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff"
     },
     {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
-      "kind": "handoff",
+      "artifact": "proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-architect-cycle03-main-resource.md",
+      "kind": "attempt",
       "lean_gate": "",
-      "role": "upper",
-      "status": "queued",
-      "timestamp": "2026-06-25 22:58:33",
-      "trial_id": "20260625-225833-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff"
-    },
-    {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
-      "kind": "handoff",
-      "lean_gate": "",
-      "role": "upper",
-      "status": "queued",
-      "timestamp": "2026-06-25 22:58:18",
-      "trial_id": "20260625-225818-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff"
-    },
-    {
-      "artifact": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
-      "kind": "plan",
-      "lean_gate": "",
-      "role": "upper",
-      "status": "queued",
-      "timestamp": "2026-06-25 22:56:01",
-      "trial_id": "20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02-prompt-deck"
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-26 00:16:20",
+      "trial_id": "20260626-001620-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
     }
   ],
   "recent_verifier_feedback": [
     {
       "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-RESOURCE-001",
+      "next_route": "MAIN-CANDIDATE-PACKAGE-001: package mainCaseColdPartialPermCandidate and mainCaseColdPartialPermVerified from the compiled finite-permutation, block-projection, and resource declarations.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-26 00:18:50",
+      "trial_id": "20260626-001850-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-RESOURCE-001",
+      "next_route": "Implement MAIN-RESOURCE-SCHEMA-001: mainCaseColdCircuit, mainCaseColdSchedule, mainCaseColdLogicalResource, mainCaseColdPartialPermCost, and cost field theorems; then gate.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-26 00:16:20",
+      "trial_id": "20260626-001620-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-RESOURCE-001",
+      "next_route": "MAIN-RESOURCE-001: derive a COLD-local circuit/schedule or named resource model, then prove mainCaseColdPartialPermCost_* field theorems before candidate packaging or export.",
+      "role": "lower",
+      "status": "blocked",
+      "timestamp": "2026-06-26 00:13:27",
+      "trial_id": "20260626-001327-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-BLOCK-PROJECTION-001",
+      "next_route": "MAIN-RESOURCE-001: derive a COLD-local circuit/schedule and honest resource tuple, prove cost field theorems, and keep candidate packaging/export blocked until those compile.",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-26 00:08:16",
+      "trial_id": "20260626-000816-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-PERM-UNITARY-001",
+      "next_route": "MAIN-BLOCK-PROJECTION-001: define the COLD QueryOperatorTarget and block-projection predicate; keep resource/candidate packaging and the matrix-unitary bridge conditional unless the reviewer requires a stronger semantic tier.",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-25 23:58:18",
+      "trial_id": "20260625-235818-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-PERM-UNITARY-001",
+      "next_route": "MAIN-BLOCK-PROJECTION-001: define mainCaseColdQueryTarget, mainCaseColdBlockProjection, and prove mainCaseColdPartialPerm_blockProjection before resource or export work.",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-25 23:56:36",
+      "trial_id": "20260625-235636-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-PERM-UNITARY-001",
+      "next_route": "MAIN-RESOURCE-001 or a narrow matrix-unitary bridge if the next semantic tier requires it",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-25 23:30:46",
+      "trial_id": "20260625-233046-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": false,
+      "error_class": "symbolic_bridge_gap",
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-PERM-UNITARY-001",
+      "next_route": "Prove mainCaseColdPartialPermImage_bijective by finite native_decide/case split over Fin 16, then connect that task-local permutation certificate to the project unitary/verified-candidate layer before resource or export work.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-25 23:30:44",
+      "trial_id": "20260625-233044-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "none",
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-CLEAN-ENTRY-001",
+      "next_route": "Prove MAIN-PERM-UNITARY-001 via a task-local mainCaseColdPartialPermImage_bijective theorem, then attach the resource tuple before any Qiskit/QASM3 export.",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-25 23:22:16",
+      "trial_id": "20260625-232216-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
+    },
+    {
+      "block_entry_ok": false,
       "closed_theorem_ok": false,
       "error_class": "symbolic_bridge_gap",
       "finite_matrix_ok": true,
       "leaf": "MAIN-CLEAN-ENTRY-001",
-      "next_route": "implement mainCaseColdPartialPerm_entry and package mainCaseColdPartialPermExactCleanBlock using BlockEncodingClassics.partialPermutationCertificate",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-25 22:51:48",
-      "trial_id": "20260625-225148-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+      "next_route": "lower 2 implements independent mainCaseCold* source/candidate/clean-entry declarations",
+      "role": "middle",
+      "status": "queued",
+      "timestamp": "2026-06-25 23:08:35",
+      "trial_id": "20260625-230835-QBE-MAIN-CASE-HIER-COLD-001-middle-handoff"
     }
   ],
-  "run_dir": "runs/20260625-225559-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
+  "run_dir": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
   "source_main_tex": "",
-  "stage": "exact contract-repair: COLD Lean surface missing; implement MAIN-SOURCE-001 -> MAIN-CAND-IMAGE-001 -> MAIN-CLEAN-ENTRY-001 before resource/export work",
+  "stage": "Stage 1 target/transcript stabilization",
   "task_id": "QBE-MAIN-CASE-HIER-COLD-001",
   "technical_lemmas": [],
   "title": "Main case transfer-operator block encoding, no-Pro isolated Hierarchical Harness"

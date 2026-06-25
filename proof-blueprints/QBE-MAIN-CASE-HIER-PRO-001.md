@@ -3,7 +3,7 @@
 Task id: `QBE-MAIN-CASE-HIER-PRO-001`
 Title: Main case transfer-operator block encoding, Pro-assisted isolated Hierarchical Harness
 Mode: `exploratoryConstruction`
-Updated: `2026-06-25 23:09:27`
+Updated: `2026-06-26 00:40:04`
 Blueprint stage: `Stage 1 target/transcript stabilization`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -226,19 +226,17 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| MAINCASE-PRO-CIRCUIT-IMAGE-001: Prove the Pro transcript realizes the current task-local image, or split the finite-permutation candidate from a corrected gate-derived candidate.; status: active leaf; Lean: none yet | candidate |
-| MAINCASE-PRO-EXPORT-001: Prepare Qiskit and QASM3 packets only after the accepted Lean semantic tier is named.; status: blocked on export policy; Lean: none yet | candidate |
+| MAINCASE-PRO-EXPORT-001: Prepare Qiskit and QASM3 packets using only `mainCaseProCircuitVerified` as the Lean source declaration.; status: active export implementation pending; Lean: none yet | candidate |
 
 ## Open Obligation Signals
 
 ```text
 # Proof Obligations: QBE-MAIN-CASE-HIER-PRO-001
 | Obligation | Lean declaration or artifact | Status |
-| Pro four-gate transcript realizes the advertised image/resource layer | no task-local theorem yet; proposed leaf `MAINCASE-PRO-CIRCUIT-IMAGE-001` | active contract-alignment obligation |
-| full matrix rational-orthogonality bridge | `mainCaseProRationalOrthogonalBridgeObligation` | active obligation |
-| `MAINCASE-PRO-ORTHO-BRIDGE-001` | Shared rational-orthogonality theorem for permutation matrices. | `MAINCASE-PRO-PERM-UNITARY-001` | lower 2/refiner | `mainCaseProRationalOrthogonalBridgeObligation` | verifier feedback | `python3 tools/qbe.py check` | queued after circuit-image alignment |
-## Next Lean Leaf
-The next useful implementation leaf is `MAINCASE-PRO-CIRCUIT-IMAGE-001`.
+| full matrix rational-orthogonality bridge | `BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective`, `mainCaseProCandidateMatrix_isRationalOrthogonal`, `mainCaseProCircuitMatrix_isRationalOrthogonal`, `mainCaseProRationalOrthogonalBridgeObligation` | proved |
+| `MAINCASE-PRO-SEMANTIC-TIER-001` | Select the export-facing Lean certificate whose circuit, schedule, unitary image, block theorem, and resource score refer to the same Pro transcript. | `MAINCASE-PRO-CIRCUIT-IMAGE-001`, `MAINCASE-PRO-ORTHO-BRIDGE-001`, `MAINCASE-PRO-RESOURCE-001` | middle/reviewer/lower 3 | `mainCaseProCircuitVerified`, `mainCaseProCircuitCandidate_cost` | `proof-attempts/QBE-MAIN-CASE-HIER-PRO-001-middle-source-contract-cycle03.md` | `python3 tools/qbe.py check`; `lake build && lake build Tests` | accepted semantic-tier gate; no new Lean theorem required |
+## Active Source Contract
+closed and `mainCaseProRationalOrthogonalBridgeObligation.proved = true` is
 ```
 
 ## Lean Declaration Index
@@ -319,124 +317,19 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-rt
-intervention or a ChatGPT Pro answer pasted into the ABEIS loop after the
-ordinary harness has already started.  It is not a theorem and not a certified
-candidate.  ABEIS may use it only by translating it into Lean declarations and
-then proving the advertised block-entry, unitarity, and resource claims.
+ned after audit: MAINCASE-PRO-SEMANTIC-TIER-001 is accepted on mainCaseProCircuitVerified/mainCaseProCircuitCandidate_cost; MAINCASE-PRO-EXPORT-001 is now the active leaf. Updated conversion/proof-obligation/proof-attempt, blueprint, memory_digest, todo, and retrieval index so lower-2 generates qiskit/qasm3 artifacts only from mainCaseProCircuitVerified, while lower-3 checks basis action against mainCaseProCircuitImage, clean block mainCaseProTarget, normalizer 1, score (4,4,1,0), and dirty mismatch set {8,9,12,13}. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests.
 
-## Target
+## 2026-06-26 00:37:23 - lower
 
-For `r = 1`, `k = 1`, and one passive state qubit, the target is
+Lower proof-architect packet added for MAINCASE-PRO-EXPORT-001: export must use mainCaseProCircuitVerified and mainCaseProCircuitCandidate_cost, check Qiskit/QASM3 basis action against mainCaseProCircuitImage on all 16 states, preserve clean block mainCaseProTarget, normalizer 1, score (4,4,1,0), and reject exports rooted at mainCaseProVerified/mainCaseProCandidate_cost. Artifact: proof-attempts/QBE-MAIN-CASE-HIER-PRO-001-export-proof-map-lower-architect-cycle03.md. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
 
-$$
-E_1
-=
-|0\rangle\langle 1|_T
-\otimes
-|0\rangle\langle 1|_\tau
-\otimes I_S .
-$$
+## 2026-06-26 00:38:24 - lower
 
-The required clean block is
+Closed MAINCASE-PRO-SEMANTIC-TIER-001 Lean repair. mainCaseProCandidate no longer reuses the Pro transcript circuit/schedule/resource: it now has mainCaseProMatrixTableCircuit, mainCaseProMatrixTableSchedule, mainCaseProMatrixTableResource and mainCaseProCandidate_cost = (1,1,1,1) as an unresolved matrix-table placeholder. mainCaseProCircuitCandidate/mainCaseProCircuitVerified/mainCaseProCircuitCandidate_cost remain the export-facing Pro transcript certificate with score (4,4,1,0). Updated Tests/Basic plus candidate-population, conversion-window, and proof-obligation ledgers. Gates passed: lake build; lake build Tests; python3 tools/qbe.py check. Typed feedback: leaf=MAINCASE-PRO-SEMANTIC-TIER-001, lean_parse_ok=true, lean_build_ok=true, finite_matrix_ok=true, block_entry_ok=true, ancilla_cleanup_ok=true, normalizer_ok=true, unitarity_ok=true, resource_score=matrix-table:(1,1,1,1)/pro-transcript:(4,4,1,0), closed_theorem_ok=true, error_class=none, next_route=generate qiskit/qasm3 exports from mainCaseProCircuitVerified only.
 
-$$
-(\langle 0|_a \otimes I)\,U\,(|0\rangle_a\otimes I)=E_1 .
-$$
+## 2026-06-26 00:38:28 - lower
 
-## Pro Construction Idea
-
-Use a single block-encoding ancilla `a`.
-
-1. Compute an equality flag for the source subspace `T = k` and `tau = 1`.
-   For the concrete benchmark `k = 1`, this is a Toffoli-style operation
-   controlled by `T = 1` and `tau = 1`, targeting `a`.
-2. When `a = 1`, transfer the selected active source basis state
-   `|T=1, tau=1>` to the target basis state `|T=0, tau=0>`.
-3. Flip the ancilla at the end so that the selected branch returns to the
-   clean `a = 0` block and all unselected clean inputs are sent outside that
-   block.
-
-In the previously used reduced bit order
-
-```text
-bit 0 = type tau
-bit 1 = time T
-bit 2 = block ancilla a
-```
-
-the Pro construction is the four-gate transcript
-
-```text
-CCX(type,time;aux); CX(aux,time); CX(aux,type); X(aux)
-```
-
-or, in compact gate names,
-
-```text
-CCX012; CX21; CX20; X2
-```
-
-## Expected Proof Shape
-
-The proof should be entrywise, not by informal circuit drawing.
-
-For every passive state `s`:
-
-- source branch:
-
-  ```text
-  |a=0, T=1, tau=1, s>
-    -> |a=0, T=0, tau=0, s>
-  ```
-
-- non-source clean branches:
-
-  ```text
-  |a=0, T,tau,s> with (T,tau) != (1,1)
-    -> a = 1 branch
-  ```
-
-Therefore the clean block has entry `1` exactly from active source
-`(T,tau)=(1,1)` to active target `(T,tau)=(0,0)`, and entry `0` elsewhere.
-The passive `S` register is unchanged, giving the tensor factor `I_S`.
-
-## Expected Resource Claim
-
-At the logical `{X, CNOT, Toffoli}` tier, before any later mutation, the Pro
-construction has
-
-```text
-(gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 4, 1, 0)
-```
-
-ABEIS may try to mutate or simplify it.  In the previous successful run, a
-mutation/collaboration step found the depth-2 variant
-
-```text
-CCX012; {X0, X1, X2}
-```
-
-with score
-
-```text
-(gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 0)
-```
-
-This previous endpoint is included only so the new isolated run can be checked
-against the old result.  The current task must reproduce or improve it under
-its own declarations and build gate.
-
-## Acceptance Rule
-
-The packet may guide the upper/middle plan immediately after injection.  It is
-not accepted until Lean proves:
-
-1. the candidate image/function is a permutation or the candidate matrix is
-   unitary at the chosen semantic tier;
-2. the clean block equals the target `E_1`;
-3. the resource tuple is stated and checked;
-4. any Qiskit/QASM export is generated only after the named Lean certificate.
+MAINCASE-PRO-EXPORT-001 verifier guard complete. Added verifier-feedback/QBE-MAIN-CASE-HIER-PRO-001/maincase_pro_export_guard_cycle03.py plus Markdown/JSON feedback. Diagnostic recomputes lifted Pro transcript action [8,9,10,11,12,13,0,1,6,7,4,5,2,3,14,15], clean block equals mainCaseProTarget, normalizer 1 and score (4,4,1,0) are named, and stale mismatch against mainCaseProCandidateImage remains exactly {8,9,12,13}. Reject exports rooted at mainCaseProVerified or mainCaseProCandidate_cost; next route is to generate qiskit/qasm3 artifacts from mainCaseProCircuitVerified only and compare their 16-state basis action against this diagnostic. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
 ````
 
 ## Gate Policy

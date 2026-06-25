@@ -1,0 +1,34 @@
+{
+  "ancilla_cleanup_ok": true,
+  "auxiliary_qubits": 1,
+  "block_entry_ok": true,
+  "closed_lean_declarations": [
+    "mainCaseColdReducedGateImages_eval",
+    "mainCaseColdCircuitImage_eq_partialPermImage",
+    "mainCaseColdPartialPermCost_gateCount",
+    "mainCaseColdPartialPermCost_depth",
+    "mainCaseColdPartialPermCost_auxiliaryQubits",
+    "mainCaseColdPartialPermCost_oracleCalls"
+  ],
+  "closed_theorem_ok": true,
+  "cost_declarations_present": true,
+  "depth": 5,
+  "error_class": null,
+  "finite_matrix_ok": true,
+  "gate_count": 5,
+  "leaf": "MAIN-RESOURCE-001",
+  "lean_build_ok": true,
+  "lean_parse_ok": true,
+  "next_route": "MAIN-CANDIDATE-PACKAGE-001: package mainCaseColdPartialPermCandidate and mainCaseColdPartialPermVerified from the compiled finite-permutation, block-projection, and resource declarations.",
+  "normalizer_ok": true,
+  "oracle_calls": 0,
+  "resource_score": {
+    "auxiliary_qubits": 1,
+    "depth": 5,
+    "gate_count": 5,
+    "oracle_calls": 0
+  },
+  "resource_schema_present": true,
+  "source_correspondence_ok": true,
+  "unitarity_ok": "finite_permutation_tier_true"
+}

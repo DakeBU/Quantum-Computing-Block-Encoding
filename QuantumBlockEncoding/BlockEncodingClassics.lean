@@ -19,6 +19,22 @@ namespace BlockEncodingClassics
 def permMatrix {n : Nat} (p : Fin n -> Fin n) : Matrix n n Rat :=
   fun row col => if row = p col then 1 else 0
 
+/-- Column inner products for rational matrix-level orthogonality checks. -/
+def columnInner {n : Nat} (U : Matrix n n Rat) (i j : Fin n) : Rat :=
+  (List.finRange n).foldl (fun acc k => acc + U k i * U k j) 0
+
+/-- Row inner products for rational matrix-level orthogonality checks. -/
+def rowInner {n : Nat} (U : Matrix n n Rat) (i j : Fin n) : Rat :=
+  (List.finRange n).foldl (fun acc k => acc + U i k * U j k) 0
+
+/--
+Rational orthogonality predicate for real-valued finite matrix backends:
+`U^T U = I` and `U U^T = I`, expressed entrywise.
+-/
+def IsRationalOrthogonal {n : Nat} (U : Matrix n n Rat) : Prop :=
+  (∀ i j : Fin n, columnInner U i j = Matrix.identity n Rat i j) ∧
+    (∀ i j : Fin n, rowInner U i j = Matrix.identity n Rat i j)
+
 /-- Clean block induced by an embedding of the system basis into a larger basis. -/
 def cleanBlockBy {system total : Nat} (embed : Fin system -> Fin total)
     (U : Matrix total total Rat) : Matrix system system Rat :=
@@ -262,6 +278,120 @@ private theorem finRangeNodup (n : Nat) : (List.finRange n).Nodup := by
           have hv := congrArg (fun x : Fin (n + 1) => x.val) h
           simpa using Nat.succ.inj hv
         · exact ih
+
+/-- Column Gram entries of a permutation matrix collapse by injectivity. -/
+theorem permMatrix_columnInner_of_injective {n : Nat}
+    (p : Fin n -> Fin n) (hp : Function.Injective p) :
+    ∀ i j : Fin n,
+      columnInner (permMatrix p) i j = Matrix.identity n Rat i j := by
+  intro i j
+  by_cases hij : i = j
+  · subst j
+    unfold columnInner
+    calc
+      (List.finRange n).foldl
+          (fun acc k => acc + permMatrix p k i * permMatrix p k i) 0 =
+          permMatrix p (p i) i * permMatrix p (p i) i := by
+            exact foldlRat_add_unique_of_nodup (List.finRange n)
+              (fun k => permMatrix p k i * permMatrix p k i)
+              (p i) (finRangeNodup n) (List.mem_finRange (p i))
+              (by
+                intro k _hmem hne
+                simp [permMatrix, hne])
+      _ = Matrix.identity n Rat i i := by
+          simp [permMatrix, Matrix.identity]
+  · have hp_ne : p i ≠ p j := by
+      intro hp_eq
+      exact hij (hp hp_eq)
+    unfold columnInner
+    calc
+      (List.finRange n).foldl
+          (fun acc k => acc + permMatrix p k i * permMatrix p k j) 0 = 0 := by
+            exact foldlRat_add_zero_of_all_zero (List.finRange n)
+              (fun k => permMatrix p k i * permMatrix p k j)
+              0
+              (by
+                intro k _hmem
+                by_cases hki : k = p i
+                · have hkj : k ≠ p j := by
+                    intro h
+                    exact hp_ne (hki.symm.trans h)
+                  change (if k = p i then (1 : Rat) else 0) *
+                      (if k = p j then (1 : Rat) else 0) = 0
+                  simp [hki, hp_ne]
+                · unfold permMatrix
+                  change (if k = p i then (1 : Rat) else 0) *
+                      (if k = p j then (1 : Rat) else 0) = 0
+                  simp [hki])
+      _ = Matrix.identity n Rat i j := by
+          simp [Matrix.identity, hij]
+
+/-- Row Gram entries of a permutation matrix collapse by bijectivity. -/
+theorem permMatrix_rowInner_of_bijective {n : Nat}
+    (p : Fin n -> Fin n)
+    (hp : Function.Injective p ∧ Function.Surjective p) :
+    ∀ i j : Fin n,
+      rowInner (permMatrix p) i j = Matrix.identity n Rat i j := by
+  intro i j
+  by_cases hij : i = j
+  · subst j
+    obtain ⟨hit, hhit⟩ := hp.2 i
+    unfold rowInner
+    calc
+      (List.finRange n).foldl
+          (fun acc k => acc + permMatrix p i k * permMatrix p i k) 0 =
+          permMatrix p i hit * permMatrix p i hit := by
+            exact foldlRat_add_unique_of_nodup (List.finRange n)
+              (fun k => permMatrix p i k * permMatrix p i k)
+              hit (finRangeNodup n) (List.mem_finRange hit)
+              (by
+                intro k _hmem hne
+                have hpk_ne : p k ≠ i := by
+                  intro hpk
+                  apply hne
+                  apply hp.1
+                  calc
+                    p k = i := hpk
+                    _ = p hit := hhit.symm
+                have hik : i ≠ p k := by
+                  intro hik
+                  exact hpk_ne hik.symm
+                simp [permMatrix, hik])
+      _ = Matrix.identity n Rat i i := by
+          simp [permMatrix, Matrix.identity, hhit]
+  · unfold rowInner
+    calc
+      (List.finRange n).foldl
+          (fun acc k => acc + permMatrix p i k * permMatrix p j k) 0 = 0 := by
+            exact foldlRat_add_zero_of_all_zero (List.finRange n)
+              (fun k => permMatrix p i k * permMatrix p j k)
+              0
+              (by
+                intro k _hmem
+                by_cases hik : i = p k
+                · have hjk : j ≠ p k := by
+                    intro hjk
+                    exact hij (hik.trans hjk.symm)
+                  change (if i = p k then (1 : Rat) else 0) *
+                      (if j = p k then (1 : Rat) else 0) = 0
+                  simp [hik, hjk]
+                · change (if i = p k then (1 : Rat) else 0) *
+                      (if j = p k then (1 : Rat) else 0) = 0
+                  simp [hik])
+      _ = Matrix.identity n Rat i j := by
+          simp [Matrix.identity, hij]
+
+/--
+A bijective finite image induces a rational orthogonal permutation matrix.
+This is the reusable bridge from finite permutation certificates to the
+matrix-level unitarity proxy used by the exploratory block-encoding tasks.
+-/
+theorem permMatrix_isRationalOrthogonal_of_bijective {n : Nat}
+    (p : Fin n -> Fin n)
+    (hp : Function.Injective p ∧ Function.Surjective p) :
+    IsRationalOrthogonal (permMatrix p) :=
+  ⟨permMatrix_columnInner_of_injective p hp.1,
+    permMatrix_rowInner_of_bijective p hp⟩
 
 theorem sparseColumnCleanEntry_no_hit {rows cols slots : Nat}
     (loc : Fin cols -> Fin slots -> Fin rows)

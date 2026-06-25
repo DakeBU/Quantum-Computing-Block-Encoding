@@ -1,0 +1,33 @@
+{
+  "leaf": "MAIN-BLOCK-PROJECTION-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "finite_bijection_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "semantic_tier": "operator metadata plus project-local signal-system block projection; finite-permutation image is already bijective",
+  "resource_score": {
+    "gate_count": null,
+    "depth": null,
+    "auxiliary_qubits": 1,
+    "oracle_calls": null
+  },
+  "auxiliary_qubits": 1,
+  "gate_count": null,
+  "depth": null,
+  "oracle_calls": null,
+  "closed_theorem_ok": true,
+  "closed_lean_declaration": "mainCaseColdPartialPerm_blockProjection",
+  "closed_supporting_declarations": [
+    "mainCaseColdQueryTarget",
+    "mainCaseColdBlockProjection",
+    "mainCaseColdSourceLayout_auxiliaryQubits",
+    "mainCaseColdResourceSchemaObligation"
+  ],
+  "error_class": null,
+  "next_route": "MAIN-RESOURCE-001: derive a COLD-local circuit/schedule and honest resource tuple, prove cost field theorems, and keep candidate packaging/export blocked until those compile."
+}

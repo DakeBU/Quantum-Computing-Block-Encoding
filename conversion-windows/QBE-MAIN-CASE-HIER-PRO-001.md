@@ -31,6 +31,14 @@ The external Pro hint is translated into the task-local finite permutation
 `mainCaseProCandidateImage`.  It is not allowed to inherit certification from
 `OptimalControl.proEqTransfer...` or from the cold-start task names.
 
+Current middle source-correspondence object: the Pro transcript
+`CCX012; CX21; CX20; X2` under the full wire map
+`S=0`, `tau=1`, `T=2`, `signal=3`.  The finite-permutation clean-block tier is
+compiled.  Lower cycle 1 proved that this transcript does not realize
+`mainCaseProCandidateImage`: the images differ exactly on dirty columns
+`8`, `9`, `12`, and `13`.  The transcript is therefore split into its own
+gate-derived candidate, `mainCaseProCircuitCandidate`.
+
 ## Symbol Map
 
 | Source/user symbol | Lean name | Status |
@@ -45,14 +53,16 @@ The external Pro hint is translated into the task-local finite permutation
 | exact error `epsilon = 0` | `mainCaseProExactError` | compiled |
 | layout, one signal and no pure ancilla | `mainCaseProSourceLayout` | compiled |
 | Pro logical transcript | `mainCaseProCircuit`, `mainCaseProSchedule` | compiled metadata |
-| high-level resource and score | `mainCaseProHighLevelResource`, `mainCaseProHighLevelSeedCost` | compiled with field certificates |
+| high-level Pro transcript resource and score | `mainCaseProHighLevelResource`, `mainCaseProHighLevelSeedCost` | compiled with field certificates |
 | candidate permutation | `mainCaseProCandidateImage`, `mainCaseProCandidatePreimage` | compiled |
 | permutation certificate | `mainCaseProCandidateImage_permutation_certificate` | compiled finite-permutation tier |
 | clean-entry bridge | `mainCaseProCandidate_cleanEntry` | compiled |
 | exact clean-block package | `mainCaseProExactCleanBlockCertificate`, `mainCaseProExactCleanBlock_correct` | compiled |
 | signal block theorem | `mainCaseProCandidate_blockProjection` | compiled |
-| finite-permutation candidate package | `mainCaseProCandidate`, `mainCaseProVerified` | compiled |
-| matrix-orthogonality bridge | `mainCaseProRationalOrthogonalBridgeObligation` | explicit open obligation |
+| finite-permutation candidate package | `mainCaseProCandidate`, `mainCaseProVerified`, `mainCaseProCandidate_uses_matrix_table_metadata` | compiled as matrix-table incumbent with unresolved executable metadata; not export-facing for the Pro transcript |
+| Pro transcript image and mismatch set | `mainCaseProCircuitImage`, `mainCaseProCircuitImage_candidate_mismatch_set`, `mainCaseProCircuitImage_not_pointwise_candidate` | compiled; equality with `mainCaseProCandidateImage` is false |
+| Pro transcript candidate package | `mainCaseProCircuitMatrix`, `mainCaseProCircuitImage_permutation_certificate`, `mainCaseProCircuitMatrix_isRationalOrthogonal`, `mainCaseProCircuit_blockProjection`, `mainCaseProCircuitCandidate`, `mainCaseProCircuitVerified`, `mainCaseProCircuitCandidate_cost` | accepted export-facing semantic-tier object |
+| matrix-orthogonality bridge | `BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective`, `mainCaseProCandidateMatrix_isRationalOrthogonal`, `mainCaseProCircuitMatrix_isRationalOrthogonal`, `mainCaseProRationalOrthogonalBridgeObligation` | compiled; obligation metadata marked proved |
 
 ## Lean Correspondence
 
@@ -95,6 +105,25 @@ theorem mainCaseProCandidate_blockProjection :
     mainCaseProBlockProjection mainCaseProCandidateMatrix
 ```
 
+The advertised Pro transcript has a separate compiled image:
+
+```text
+mainCaseProCircuitImage_candidate_mismatch_set:
+  mismatch exactly on full inputs 8, 9, 12, and 13
+
+mainCaseProCircuit_blockProjection:
+  mainCaseProBlockProjection mainCaseProCircuitMatrix
+```
+
+Cycle 3 semantic-tier selection: Qiskit and QASM3 planning must use
+`mainCaseProCircuitVerified` and `mainCaseProCircuitCandidate_cost`.  The
+finite table candidate `mainCaseProVerified` remains a compiled clean-block
+incumbent with `mainCaseProMatrixTableCircuit`,
+`mainCaseProMatrixTableSchedule`, and `mainCaseProMatrixTableResource`, but it
+is not the Pro transcript certificate because
+`mainCaseProCircuitImage_candidate_mismatch_set` refutes equality with
+`mainCaseProCandidateImage` on dirty inputs `8`, `9`, `12`, and `13`.
+
 ## Candidate Contract
 
 Candidate `MAINCASE-PRO-PERM-001` is a 16-state permutation over
@@ -125,14 +154,27 @@ The current score is `(gateCount=4, depth=4, auxiliaryQubits=1, oracleCalls=0)`
 at this logical-library tier.  This does not claim hardware optimality,
 primitive Toffoli decomposition, or export readiness.
 
-Cycle-1 upper process audit: the finite permutation table and clean-block
-proof are compiled, but the advertised four-gate transcript has not yet been
-proved task-locally to realize `mainCaseProCandidateImage`.  The old
-`OptimalControl` Pro transcript gives useful route memory, but it is not a
-certificate for this isolated task and indicates a dirty-column mismatch against
-the current task-local image on columns `8`, `9`, `12`, and `13`.  This is a
-contract-alignment illness area at the circuit/resource layer, not a failure of
-the already compiled clean-block entry theorem.
+## Source-Contract Audit
+
+| Gate/source step | Full wires | Clean input/output requirement | Lean declaration | Status |
+|---|---|---|---|---|
+| source predicate `T=1` and `tau=1` | controls `2` and `1`, target `3` | set signal flag on the source subspace | `mainCaseProCircuit` first gate | metadata only |
+| transfer `T=1` to `T=0` when signal is set | control `3`, target `2` | selected source reaches target time bit | `mainCaseProCircuit` second gate | metadata only |
+| transfer `tau=1` to `tau=0` when signal is set | control `3`, target `1` | selected source reaches target type bit | `mainCaseProCircuit` third gate | metadata only |
+| final signal flip | target `3` | selected source returns to clean signal and non-source clean inputs leave the clean block | `mainCaseProCircuit` fourth gate | metadata only |
+| full transcript image | all 16 basis states | differs from `mainCaseProCandidateImage` exactly on dirty columns `8`, `9`, `12`, `13`; separate gate-derived candidate preserves the clean block | `mainCaseProCircuitImage_candidate_mismatch_set`, `mainCaseProCircuitVerified` | proved split |
+| semantic-tier export selection | Qiskit/QASM3 planning | export must cite the aligned Pro transcript candidate, not the matrix-table incumbent | `mainCaseProCircuitVerified`, `mainCaseProCircuitCandidate_cost` | accepted; export implementation follows |
+
+No external cited theorem is needed for this active leaf.  The relevant
+textbook-memory cards are `BE.PartialPermutation.MatrixUnitTensorId`,
+`BE.PermMatrix.CleanBlock`, and `BE.Tensor.PassiveRegister`; they justify the
+route shape but do not certify the task-local transcript.
+
+Cycle-1 lower implementation audit: the finite permutation table and the
+advertised four-gate transcript are both compiled as clean-block candidates,
+but they are different full permutations.  The mismatch is only on dirty
+columns `8`, `9`, `12`, and `13`, so it does not refute either clean-block
+certificate.
 
 ## Proof-DAG Frontier
 
@@ -144,47 +186,142 @@ the already compiled clean-block entry theorem.
 | `MAINCASE-PRO-PERM-UNITARY-001` | Prove the candidate image is a finite bijection. | `MAINCASE-PRO-PERM-IMAGE-001` | middle/lower 2 | `mainCaseProCandidateImage_permutation_certificate` | this conversion window | `python3 tools/qbe.py check` | proved finite-permutation tier |
 | `MAINCASE-PRO-CLEANENTRY-001` | Prove the clean-entry predicate used by `partialPermutationCertificate`. | `MAINCASE-PRO-PERM-IMAGE-001` | middle/lower 2 | `mainCaseProCandidate_cleanEntry` | this conversion window | `python3 tools/qbe.py check` | proved |
 | `MAINCASE-PRO-BLOCK-001` | Prove the clean signal block of the candidate matrix equals `mainCaseProTarget`. | `MAINCASE-PRO-CLEANENTRY-001`, `MAINCASE-PRO-PERM-UNITARY-001` | middle/lower 2 | `mainCaseProExactCleanBlock_correct`, `mainCaseProCandidate_blockProjection` | this conversion window | `python3 tools/qbe.py check` | proved |
-| `MAINCASE-PRO-RESOURCE-001` | Attach `(gateCount=4, depth=4, auxiliaryQubits=1, oracleCalls=0)` without claiming hardware optimality. | `MAINCASE-PRO-BLOCK-001` | middle | `mainCaseProHighLevelSeedCost_*`, `mainCaseProCandidate_cost` | candidate population ledger | `python3 tools/qbe.py check` | proved |
-| `MAINCASE-PRO-CIRCUIT-IMAGE-001` | Prove the Pro transcript realizes the current task-local image, or split the finite-permutation candidate from a corrected gate-derived candidate. | `MAINCASE-PRO-PERM-IMAGE-001`, `MAINCASE-PRO-RESOURCE-001`, Pro packet | lower 2/lower 3 | none yet | verifier-feedback packet | `python3 tools/qbe.py check` | active leaf |
-| `MAINCASE-PRO-ORTHO-BRIDGE-001` | Promote the finite bijection certificate to a shared rational-orthogonality theorem for `permMatrix`. | `MAINCASE-PRO-PERM-UNITARY-001` | lower 2/refiner | `mainCaseProRationalOrthogonalBridgeObligation` | verifier-feedback packet | `python3 tools/qbe.py check` | queued after circuit-image alignment |
-| `MAINCASE-PRO-EXPORT-001` | Prepare Qiskit and QASM3 packets only after the accepted Lean semantic tier is named. | `MAINCASE-PRO-BLOCK-001`, `MAINCASE-PRO-ORTHO-BRIDGE-001`, `MAINCASE-PRO-RESOURCE-001` | export worker | none yet | export ledger later | export checker plus project gates | blocked on export policy |
+| `MAINCASE-PRO-RESOURCE-001` | Attach `(gateCount=4, depth=4, auxiliaryQubits=1, oracleCalls=0)` to the Pro transcript without claiming hardware optimality; mark the matrix-table incumbent with one unresolved oracle call. | `MAINCASE-PRO-BLOCK-001` | middle | `mainCaseProHighLevelSeedCost_*`, `mainCaseProCandidate_cost`, `mainCaseProCandidate_uses_matrix_table_metadata`, `mainCaseProCircuitCandidate_cost` | candidate population ledger | `python3 tools/qbe.py check` | proved |
+| `MAINCASE-PRO-CIRCUIT-IMAGE-001` | Prove the Pro transcript realizes the current task-local image, or split the finite-permutation candidate from a corrected gate-derived candidate. | `MAINCASE-PRO-PERM-IMAGE-001`, `MAINCASE-PRO-RESOURCE-001`, Pro packet | lower 2/lower 3 | `mainCaseProCircuitImage_candidate_mismatch_set`, `mainCaseProCircuitVerified` | verifier-feedback packet | `python3 tools/qbe.py check` | proved split; equality theorem rejected |
+| `MAINCASE-PRO-ORTHO-BRIDGE-001` | Promote the finite bijection certificate to a shared rational-orthogonality theorem for `permMatrix`. | `MAINCASE-PRO-PERM-UNITARY-001`, `MAINCASE-PRO-CIRCUIT-IMAGE-001` | lower 2/refiner | `BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective`, `mainCaseProCandidateMatrix_isRationalOrthogonal`, `mainCaseProCircuitMatrix_isRationalOrthogonal` | verifier-feedback packet | `python3 tools/qbe.py check`; `lake build && lake build Tests` | proved |
+| `MAINCASE-PRO-SEMANTIC-TIER-001` | Select the export-facing certificate whose circuit, schedule, image, block theorem, orthogonality theorem, and cost are aligned. | `MAINCASE-PRO-CIRCUIT-IMAGE-001`, `MAINCASE-PRO-ORTHO-BRIDGE-001`, `MAINCASE-PRO-RESOURCE-001` | middle/reviewer/lower 3 | `mainCaseProCircuitVerified`, `mainCaseProCircuitCandidate_cost` | cycle-3 source contract | `python3 tools/qbe.py check`; `lake build && lake build Tests` | accepted semantic-tier gate |
+| `MAINCASE-PRO-EXPORT-001` | Prepare Qiskit and QASM3 packets using only `mainCaseProCircuitVerified` as the Lean source declaration. | `MAINCASE-PRO-SEMANTIC-TIER-001` | export worker | none yet | `executable-exports/QBE-MAIN-CASE-HIER-PRO-001/export-plan.md` | export checker plus project gates | active export implementation pending |
 
-## Upper Cycle-1 Override
+## Upper Cycle-3 Override
 
-The next lower cycle should not rediscover `MAINCASE-PRO-BLOCK-001`; it is
-compiled.  The active repair is `MAINCASE-PRO-CIRCUIT-IMAGE-001`, because the
-candidate record currently ties the finite permutation matrix to
-`mainCaseProCircuit` and the `(4,4,1,0)` resource tuple without a task-local
-circuit-to-image theorem.  `MAINCASE-PRO-ORTHO-BRIDGE-001` remains valuable
-shared proof memory, but it is secondary until the advertised circuit/resource
-layer is aligned or explicitly demoted to a finite-permutation-only semantic
-tier.
+The next lower cycle should not rediscover `MAINCASE-PRO-BLOCK-001`, retry
+`mainCaseProCircuitImage_eq_candidate`, or reprove the rational-orthogonality
+bridge; all three are settled.  The remaining work is export implementation and
+checking from the accepted certificate `mainCaseProCircuitVerified`.
 
 ## Lower-Agent Packets
 
-Lower 1, natural-language proof architect:
+Cycle-3 packet object:
+`MAINCASE-PRO-SEMANTIC-TIER-001 -> MAINCASE-PRO-EXPORT-001`.
 
-- Target leaf: `MAINCASE-PRO-CIRCUIT-IMAGE-001`.
-- Read-only scope: `QuantumBlockEncoding/MainCase.lean`, `QuantumBlockEncoding/OptimalControl.lean` around `proEqTransferImage`, `proEqTransferGateImages_eval`, `liftReducedImage`, and the reduced gate images.
-- Deliverable: a proof-translation packet that states the Pro transcript image on the task-local `(signal,T,tau,S)` convention, compares it with `mainCaseProCandidateImage`, and recommends either a theorem goal or an explicit candidate split.
-- Do not change `mainCaseProTarget`, `mainCaseProSignalIndex`, `mainCaseProCandidateImage`, or the resource tuple.
+The source-owned target is still the user task operator
+`E_1 = |0><1|_T \otimes |0><1|_{\tau} \otimes I_S`, normalizer `1`,
+clean signal `0`, exact error `0`, and resource tuple `(4,4,1,0)`.  The
+external Pro input owns the transcript `CCX012; CX21; CX20; X2`.  QBE-local
+semantic glue owns the finite transcript image `mainCaseProCircuitImage`, the
+permutation matrix `mainCaseProCircuitMatrix`, the clean-block theorem
+`mainCaseProCircuit_blockProjection`, the verified package
+`mainCaseProCircuitVerified`, and the cost theorem
+`mainCaseProCircuitCandidate_cost`.
 
-Lower 2, Lean implementation:
+Lower 1, source/export proof-map writer:
 
-- Target file: `QuantumBlockEncoding/MainCase.lean`, with read-only comparison to `QuantumBlockEncoding/OptimalControl.lean`.
-- Exact target: define a task-local gate-transcript image for `mainCaseProCircuit` or reuse a small local image evaluator, then prove or disprove equality with `mainCaseProCandidateImage`.
-- Allowed write scope: one Lean file plus focused tests in `Tests/Basic.lean`.
-- Gate: `python3 tools/qbe.py check`, then `lake build && lake build Tests`.
+- Target leaf: `MAINCASE-PRO-SEMANTIC-TIER-001`.
+- Read-only scope: `QuantumBlockEncoding/MainCase.lean`,
+  `conversion-windows/QBE-MAIN-CASE-HIER-PRO-001.md`,
+  `candidate-populations/QBE-MAIN-CASE-HIER-PRO-001.md`, and
+  `executable-exports/QBE-MAIN-CASE-HIER-PRO-001/export-plan.md`.
+- Deliverable: a short export-facing proof map that cites
+  `mainCaseProCircuitVerified`, not `mainCaseProVerified`.
+- Do not change `mainCaseProTarget`, `mainCaseProCandidateImage`,
+  `mainCaseProCircuitImage`, or the Pro transcript score tuple.
+- `mainCaseProCandidate_cost = (1,1,1,1)` records only the unresolved
+  matrix-table placeholder metadata.
+
+Lower 2, export implementation worker:
+
+- Target leaf: `MAINCASE-PRO-EXPORT-001`; reviewer audits generated artifacts
+  before export acceptance.
+- Allowed write scope: `executable-exports/QBE-MAIN-CASE-HIER-PRO-001/` and
+  focused export tests or check scripts under that root.
+- Lean source declaration: `mainCaseProCircuitVerified`.
+- Build expectation after generated files: run the export checker, then
+  `python3 tools/qbe.py check` and `lake build && lake build Tests`.
 
 Lower 3, necessary-condition verifier:
 
-- Target leaf: finite diagnostic for `MAINCASE-PRO-CIRCUIT-IMAGE-001`.
-- Check fields: all-16-state image equality between the current candidate and the Pro transcript, dirty-column mismatch set, clean-block entries, normalizer, ancilla count, resource tuple, and whether exported Qiskit/QASM work is still blocked by policy.
-- Write feedback under `verifier-feedback/QBE-MAIN-CASE-HIER-PRO-001/` and log with `trial-log --feedback-field`.
+- Check that any generated Qiskit/QASM3 basis action matches the transcript
+  image `mainCaseProCircuitImage` and the mismatch set against
+  `mainCaseProCandidateImage` remains exactly `{8,9,12,13}`.
+- Check the clean block against `mainCaseProTarget`, normalizer `1`, one clean
+  signal qubit, and resource tuple `(4,4,1,0)`.
+- Reject any export packet whose Lean source declaration is
+  `mainCaseProVerified` or whose resource proof cites only
+  `mainCaseProCandidate_cost`.
+
+### Closed Cycle-2 Packet
+
+The source-owned target is still the user task operator
+`E_1 = |0><1|_T \otimes |0><1|_{\tau} \otimes I_S`, normalizer `1`,
+clean signal `0`, and resource tuple `(4,4,1,0)`.  The external Pro input owns
+only the gate transcript `CCX012; CX21; CX20; X2`.  QBE-local semantic glue
+owns the finite permutation matrix, the clean-block projection, and the
+optional rational-orthogonality matrix predicate.
+
+No external cited theorem is needed for this packet.  The relevant local
+precedent is the `OptimalControl.lean` shape of `columnInner`, `rowInner`, and
+`IsRationalOrthogonal`; lower agents may reuse the idea, but must not import an
+`OptimalControl` theorem as a certificate for this isolated task.
+
+Lower 1, natural-language proof architect:
+
+- Target leaf: `MAINCASE-PRO-ORTHO-BRIDGE-001`.
+- Read-only scope: `QuantumBlockEncoding/BlockEncodingClassics.lean`,
+  `QuantumBlockEncoding/MainCase.lean`, and the local-definition precedent in
+  `QuantumBlockEncoding/OptimalControl.lean` around `columnInner`, `rowInner`,
+  and `IsRationalOrthogonal`.
+- Deliverable:
+  `proof-attempts/QBE-MAIN-CASE-HIER-PRO-001-ortho-bridge-lower-architect-cycle02.md`.
+- Proof map: for a permutation matrix `U row col = if row = p col then 1 else 0`,
+  column Gram entries collapse by injectivity of `p`, and row Gram entries
+  collapse by surjectivity of `p`.  For the first Lean attempt, a task-local
+  finite theorem by `native_decide` is acceptable if the shared theorem is too
+  broad.
+- Do not change `mainCaseProTarget`, `mainCaseProSignalIndex`,
+  `mainCaseProCandidateImage`, `mainCaseProCircuitImage`, or any resource tuple.
+
+Lower 2, Lean implementation:
+
+- Closed shared interface:
+  `BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective`, after
+  promoting `BlockEncodingClassics.columnInner`,
+  `BlockEncodingClassics.rowInner`, and
+  `BlockEncodingClassics.IsRationalOrthogonal`.
+- Closed task-local interfaces:
+  `mainCaseProCircuitMatrix_isRationalOrthogonal` for
+  `mainCaseProCircuitMatrix`, plus
+  `mainCaseProCandidateMatrix_isRationalOrthogonal` for the finite-permutation
+  incumbent.
+- Allowed write scope:
+  `QuantumBlockEncoding/BlockEncodingClassics.lean`,
+  `QuantumBlockEncoding/MainCase.lean`, and focused tests in
+  `Tests/Basic.lean`.
+- Build expectation: `python3 tools/qbe.py check`, then
+  `lake build && lake build Tests`.
+- Cycle-2 lower closed this proof route and set
+  `mainCaseProRationalOrthogonalBridgeObligation.proved = true`; if a future
+  reviewer rejects the bridge API, reopen it as `symbolic_bridge_gap` rather
+  than changing the target operator.
+
+Lower 3, necessary-condition verifier:
+
+- Target diagnostics for `MAINCASE-PRO-ORTHO-BRIDGE-001`.
+- Check finite column and row Gram values for `mainCaseProCircuitMatrix` and,
+  if cheap, `mainCaseProCandidateMatrix`.
+- Confirm the stale route remains retired:
+  `mainCaseProCircuitImage_eq_candidate` is false on dirty columns `8`, `9`,
+  `12`, and `13`.
+- Record typed fields under
+  `verifier-feedback/QBE-MAIN-CASE-HIER-PRO-001/`: `leaf`,
+  `finite_matrix_ok`, `unitarity_ok`, `block_entry_ok`,
+  `source_correspondence_ok`, `normalizer_ok`, `resource_score`,
+  `error_class`, and `next_route`.
 
 ## Export Status
 
-Post-Lean executable targets `qiskit` and `qasm3` remain deferred.  The current
-named Lean artifacts are enough for the finite-permutation clean-block core,
-but the export packet should wait until reviewer accepts the semantic tier or
-`MAINCASE-PRO-ORTHO-BRIDGE-001` closes.
+Post-Lean executable targets `qiskit` and `qasm3` have an export plan at
+`executable-exports/QBE-MAIN-CASE-HIER-PRO-001/export-plan.md`.  The active
+export worker must generate artifacts from `mainCaseProCircuitVerified` only,
+then check the generated basis action against `mainCaseProCircuitImage`, the
+clean block against `mainCaseProTarget`, and the stale dirty-column mismatch
+against `mainCaseProCandidateImage`.
