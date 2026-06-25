@@ -25,6 +25,28 @@ def cleanBlockBy {system total : Nat} (embed : Fin system -> Fin total)
   fun row col => U (embed row) (embed col)
 
 /--
+Canonical product-register embedding.  If the full Hilbert basis is represented
+as `ancilla × system`, this maps `(a, s)` to the flattened index
+`a * system + s`.
+-/
+def productIndex {ancilla system : Nat} (a : Fin ancilla) (s : Fin system) :
+    Fin (ancilla * system) :=
+  ⟨a.val * system + s.val, by
+    have hspos : 0 < system := Nat.lt_of_le_of_lt (Nat.zero_le s.val) s.isLt
+    have hlt : a.val * system + s.val < (a.val + 1) * system := by
+      rw [Nat.succ_mul]
+      omega
+    have hle : (a.val + 1) * system ≤ ancilla * system :=
+      Nat.mul_le_mul_right system (Nat.succ_le_of_lt a.isLt)
+    exact Nat.lt_of_lt_of_le hlt hle⟩
+
+/-- Clean block for a flattened `ancilla × system` matrix. -/
+def cleanBlockProduct {ancilla system : Nat} (zero : Fin ancilla)
+    (U : Matrix (ancilla * system) (ancilla * system) Rat) :
+    Matrix system system Rat :=
+  cleanBlockBy (productIndex zero) U
+
+/--
 Core `BE.PermMatrix.CleanBlock` leaf: the clean block of a permutation matrix is
 just the finite image predicate restricted to clean embedded rows and columns.
 -/
@@ -33,6 +55,18 @@ theorem cleanBlockBy_permMatrix_entry {system total : Nat}
     (row col : Fin system) :
     cleanBlockBy embed (permMatrix p) row col =
       if embed row = p (embed col) then 1 else 0 := by
+  rfl
+
+/--
+Product-register version of `cleanBlockBy_permMatrix_entry`.  This is the
+standard entrywise bridge for block encodings whose clean ancilla is explicitly
+one register of a flattened product basis.
+-/
+theorem cleanBlockProduct_permMatrix_entry {ancilla system : Nat}
+    (zero : Fin ancilla) (p : Fin (ancilla * system) -> Fin (ancilla * system))
+    (row col : Fin system) :
+    cleanBlockProduct zero (permMatrix p) row col =
+      if productIndex zero row = p (productIndex zero col) then 1 else 0 := by
   rfl
 
 /--
@@ -49,6 +83,153 @@ theorem cleanBlockBy_permMatrix_eq_target_of_entry {system total : Nat}
     Matrix.PointwiseEq (cleanBlockBy embed (permMatrix p)) A := by
   intro row col
   exact h row col
+
+/-- Pointwise extension principle for product-register clean blocks. -/
+theorem cleanBlockProduct_eq_target_of_entry {ancilla system : Nat}
+    (zero : Fin ancilla) (p : Fin (ancilla * system) -> Fin (ancilla * system))
+    (A : Matrix system system Rat)
+    (h :
+      forall row col : Fin system,
+        (if productIndex zero row = p (productIndex zero col) then 1 else 0) =
+          A row col) :
+    Matrix.PointwiseEq (cleanBlockProduct zero (permMatrix p)) A := by
+  intro row col
+  exact h row col
+
+/-- Kronecker delta over the project-local rational matrix backend. -/
+def kroneckerRat {n : Nat} (i j : Fin n) : Rat :=
+  if i = j then 1 else 0
+
+/--
+Column one-sparse matrix with support map `c`: column `j` has its possible
+nonzero entry at row `c j`, with amplitude `amp j`.
+-/
+def oneSparseMatrix {n : Nat} (c : Fin n -> Fin n) (amp : Fin n -> Rat) :
+    Matrix n n Rat :=
+  fun row col => amp col * kroneckerRat row (c col)
+
+theorem oneSparseMatrix_entry_if {n : Nat}
+    (c : Fin n -> Fin n) (amp : Fin n -> Rat) (row col : Fin n) :
+    oneSparseMatrix c amp row col = if row = c col then amp col else 0 := by
+  by_cases h : row = c col
+  · simp [oneSparseMatrix, kroneckerRat, h]
+  · simp [oneSparseMatrix, kroneckerRat, h]
+
+/--
+One-sparse reconstruction leaf.  If a target matrix is supported only at
+`row = c col`, then its support map and column amplitudes reconstruct it
+entrywise.
+-/
+theorem oneSparse_from_support {n : Nat}
+    (A : Matrix n n Rat) (c : Fin n -> Fin n)
+    (hSupport : forall row col : Fin n, row ≠ c col -> A row col = 0) :
+    Matrix.PointwiseEq (oneSparseMatrix c (fun col => A (c col) col)) A := by
+  intro row col
+  by_cases h : row = c col
+  · subst row
+    simp [oneSparseMatrix, kroneckerRat]
+  · simp [oneSparseMatrix, kroneckerRat, h, hSupport row col h]
+
+/--
+Column sparse clean-entry expression: a finite sum over slot indices of value
+oracle entries times location deltas.  This is the entrywise target for
+Lin-style sparse column proofs before a task attaches its uniqueness lemmas.
+-/
+def sparseColumnCleanEntry {rows cols slots : Nat}
+    (loc : Fin cols -> Fin slots -> Fin rows)
+    (value : Fin slots -> Fin cols -> Rat) : Matrix rows cols Rat :=
+  fun row col =>
+    (List.finRange slots).foldl
+      (fun acc slot => acc + value slot col * kroneckerRat row (loc col slot))
+      0
+
+/--
+Proof-carrying sparse-column contract.  The contract is not a theorem by
+itself; it records the exact clean-entry theorem a paper-specific lower agent
+must supply.
+-/
+structure SparseColumnCertificate (rows cols slots : Nat) where
+  cleanBlock : Matrix rows cols Rat
+  target : Matrix rows cols Rat
+  normalizer : Rat
+  locationOracle : String
+  valueOracle : String
+  blockProof : Matrix.PointwiseEq cleanBlock target
+
+namespace SparseColumnCertificate
+
+theorem correct {rows cols slots : Nat}
+    (cert : SparseColumnCertificate rows cols slots) :
+    Matrix.PointwiseEq cert.cleanBlock cert.target :=
+  cert.blockProof
+
+end SparseColumnCertificate
+
+/--
+Value-to-amplitude oracle contract.  A task may use this only after it supplies
+both cleanup and amplitude-entry proofs; the record cannot close a proof by
+itself.
+-/
+structure ValueToAmplitudeContract (rows cols : Nat) where
+  cleanAmplitude : Matrix rows cols Rat
+  targetAmplitude : Matrix rows cols Rat
+  valueOracleDescription : String
+  rotationDescription : String
+  cleanupStatement : Prop
+  cleanupProof : cleanupStatement
+  amplitudeProof : Matrix.PointwiseEq cleanAmplitude targetAmplitude
+
+namespace ValueToAmplitudeContract
+
+theorem correct {rows cols : Nat} (cert : ValueToAmplitudeContract rows cols) :
+    Matrix.PointwiseEq cert.cleanAmplitude cert.targetAmplitude :=
+  cert.amplitudeProof
+
+end ValueToAmplitudeContract
+
+/-- Symmetric matrix predicate for the rational backend. -/
+def IsSymmetric {n : Nat} (A : Matrix n n Rat) : Prop :=
+  forall i j : Fin n, A i j = A j i
+
+/-- A symmetric full matrix has a symmetric clean block under any embedding. -/
+theorem cleanBlockBy_symmetric_of_symmetric {system total : Nat}
+    (embed : Fin system -> Fin total) (U : Matrix total total Rat)
+    (hU : IsSymmetric U) :
+    IsSymmetric (cleanBlockBy embed U) := by
+  intro row col
+  exact hU (embed row) (embed col)
+
+/-- Two-by-two scalar dilation block.  Unitarity requires a separate norm proof. -/
+def fin2Zero : Fin 2 := ⟨0, by decide⟩
+
+def fin2One : Fin 2 := ⟨1, by decide⟩
+
+def scalarDilation (x y : Rat) : Matrix 2 2 Rat :=
+  fun row col =>
+    if row = fin2Zero ∧ col = fin2Zero then x
+    else if row = fin2Zero ∧ col = fin2One then y
+    else if row = fin2One ∧ col = fin2Zero then y
+    else -x
+
+@[simp] theorem scalarDilation_cleanEntry (x y : Rat) :
+    scalarDilation x y fin2Zero fin2Zero = x := by
+  simp [scalarDilation, fin2Zero]
+
+@[simp] theorem scalarDilation_offdiag01 (x y : Rat) :
+    scalarDilation x y fin2Zero fin2One = y := by
+  simp [scalarDilation, fin2Zero, fin2One]
+
+/-- Chebyshev polynomial values, kept as a small executable recurrence. -/
+def chebyshevT : Nat -> Rat -> Rat
+  | 0, _ => 1
+  | 1, x => x
+  | n + 2, x => 2 * x * chebyshevT (n + 1) x - chebyshevT n x
+
+@[simp] theorem chebyshevT_zero (x : Rat) : chebyshevT 0 x = 1 := rfl
+
+@[simp] theorem chebyshevT_one (x : Rat) : chebyshevT 1 x = x := rfl
+
+theorem chebyshevT_two (x : Rat) : chebyshevT 2 x = 2 * x * x - 1 := rfl
 
 /--
 Proof-carrying exact clean-block package.  This is smaller than the full
@@ -73,6 +254,20 @@ theorem clean_eq_target {system total : Nat}
   cert.blockProof
 
 end ExactCleanBlock
+
+/--
+Qubitization/Chebyshev proof-carrying contract.  The full qubitization theorem
+will instantiate this after the two-dimensional invariant-subspace calculation
+is formalized.
+-/
+structure QubitizationChebyshevContract (system total : Nat) where
+  input : ExactCleanBlock system total
+  degree : Nat
+  output : Matrix system system Rat
+  sideConditions : Prop
+  chebyshevStatement : Prop
+  sideConditionProof : sideConditions
+  chebyshevProof : chebyshevStatement
 
 /--
 Abstract partial-permutation certificate.  A concrete task supplies the

@@ -34,12 +34,15 @@ $$
 ## Lean Proof Shape
 
 ```lean
-theorem scalarDilation_unitary (hx : 0 <= x) (hx1 : x <= 1) :
-  IsUnitary (scalarDilation x)
+def scalarDilation (x y : Rat) : Matrix 2 2 Rat
 
-theorem scalarDilation_cleanEntry :
-  scalarDilation x 0 0 = x
+theorem scalarDilation_cleanEntry (x y : Rat) :
+  scalarDilation x y fin2Zero fin2Zero = x
 ```
+
+The full unitary theorem needs a backend that can express
+`y * y = 1 - x * x` or a real square-root witness.  Until then, the clean-entry
+leaf is formalized and unitarity remains an explicit obligation.
 
 ## Proof-DAG Leaves
 

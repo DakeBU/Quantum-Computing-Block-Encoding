@@ -6,6 +6,7 @@ follow the technical-lemma vocabulary: `paper-cited`, `classic-unformalized`,
 
 | id | source | reusable asset | status | ABEIS use |
 | --- | --- | --- | --- | --- |
+| be-lin-lecture-2022 | Lin Lin, "Lecture Notes on Quantum Algorithms for Scientific Computation", arXiv:2201.08309 | textbook proof routes for clean-block entries, value-to-amplitude, sparse oracles, dilation, LCU, Hermitian BE, qubitization, QSVT | paper-cited | backbone memory pack for route selection and entrywise proof style |
 | be-gslw-qsvt-2018 | Gilyen, Su, Low, Wiebe, "Quantum singular value transformation and beyond", arXiv:1806.01838 | modern block-encoding definition, LCU, product, sparse-access, density block encoding, QSVT consumer theorem | classic-unformalized | canonical source for block-encoding arithmetic and downstream QSVT contracts |
 | be-low-chuang-qubitization-2019 | Low and Chuang, "Hamiltonian Simulation by Qubitization", Quantum 2019 / arXiv:1610.06546 | projected-unitary/standard-form Hamiltonian simulation | classic-unformalized | useful when a paper states Hamiltonian as projected unitary |
 | be-childs-wiebe-lcu-2012 | Childs and Wiebe, "Hamiltonian Simulation Using Linear Combinations of Unitary Operations", arXiv:1202.5822 | LCU idea and near-deterministic implementation of linear combinations | classic-unformalized | source memory for PREPARE-SELECT-PREPARE routes |
@@ -27,6 +28,7 @@ formalized until the corresponding Lean declaration compiles in
 
 | source id | translated Lean leaves | current status |
 | --- | --- | --- |
+| `be-lin-lecture-2022` | `productIndex`, `cleanBlockProduct_permMatrix_entry`, `cleanBlockProduct_eq_target_of_entry`, `kroneckerRat`, `oneSparseMatrix_entry_if`, `oneSparse_from_support`, `sparseColumnCleanEntry`, `SparseColumnCertificate`, `ValueToAmplitudeContract`, `IsSymmetric`, `scalarDilation_cleanEntry`, `chebyshevT`, `QubitizationChebyshevContract` | textbook proof skeleton and several reusable leaves formalized; full row-column sparse, full PREPARE-SELECT, SVD unitarity, and full QSVT remain obligations |
 | `be-gslw-qsvt-2018` | `LCUCertificate`, `matrix_mul_congr_pointwise`, `productCleanBlockCertificate`, `QSVTConsumerContract` | partial reusable leaves formalized; full QSVT theorem remains contract-only |
 | `be-childs-wiebe-lcu-2012` | `oneTermLCU_cleanBlock`, `LCUCertificate` | LCU base/proof-carrying interface formalized; full PREPARE-SELECT pair algebra remains next leaf |
 | `be-berry-childs-cleve-kothari-somma-2014` | `LCUCertificate`, `productResourceCost` | resource/proof-carrying leaves formalized; algorithmic Taylor-series theorem not formalized |

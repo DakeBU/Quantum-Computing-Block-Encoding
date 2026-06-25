@@ -16,7 +16,7 @@ A Platform of Automatic Block-Encolding for Quantum Query Operator (Lean-validat
 
 
 
-[Github-url]: https://github.com/DakeBU/Quantum-Computing-Block-Encoding/EOH
+[Github-url]: https://github.com/DakeBU/Quantum-Computing-Block-Encoding
 [License-url]: https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/LICENSE
 
 
@@ -137,59 +137,27 @@ The current technical-report case study is the transfer-operator task:
 E_k = |0><k|_time ⊗ |0><1|_type ⊗ I
 ```
 
-ABEIS now records two parallel attempts for the concrete `r = 1, k = 1`
-instance.  They are reported as separate attempts, not as a time-ordered
-history.
+ABEIS records two parallel attempts for the concrete `r = 1, k = 1` instance.
+Both report only Lean-certified candidates as achieved points, and both include
+a post-Lean Qiskit export check.
 
 | Run | Harness and inputs | Certified result | Score |
 | --- | --- | --- | --- |
-| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | no-Pro Hierarchical Harness attempt; no Pro answer or old optctrl memory | `coldE1Candidate_blockProjection` and `coldE1CandidateImage_permutation_certificate` | `(4,4,1,0)` Lean-certified exact checkpoint; Qiskit export passed |
-| `QBE-OP-OPTCTRL-001` | Pro-assisted evolution attempt; Pro idea entered only as insight-pool input before Lean promotion | `OptimalControl.evolvedEqFlipVerified` | `(4,2,1,0)` |
+| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | no-Pro Hierarchical Harness attempt | `coldE1Candidate_blockProjection`, `coldE1CandidateImage_permutation_certificate` | `(4,4,1,0)`; Qiskit export passed |
+| `QBE-OP-OPTCTRL-001` | Pro-assisted evolution attempt | `OptimalControl.evolvedEqFlipVerified`, `OptimalControl.evolvedEqFlipZeroErrorApprox` | `(4,2,1,0)`; Qiskit export passed |
 
-The no-Pro Hierarchical attempt proves the system can recover and improve a
-correct finite permutation block encoding from the operator contract alone.  It
-is currently in post-Lean export/report synchronization, not broad proof
-search.  The Pro-assisted attempt shows why the human/Pro intervention channel is useful:
-external structure can improve the certified population after Lean promotes it
-from an untrusted idea to a theorem-backed candidate.
+The no-Pro attempt shows the base harness recovering a correct finite
+permutation block encoding from the operator contract.  The Pro-assisted
+attempt shows the same acceptance rule with an external idea placed into the
+insight pool and promoted only after Lean proves the advertised certificate.
 
 ![Two parallel transfer-operator attempts](docs/assets/optctrl_hier_vs_pro.png)
 
-No-Pro Hierarchical Harness checkpoint storyboard:
+Circuit storyboards and Qiskit export checks:
 
 ![No-Pro Hierarchical checkpoint storyboard](docs/assets/optctrl_cold_clean_storyboard.png)
 
-The intended loop is:
-
-1. fix the operator target;
-2. start from a correct one-ancilla block-encoding seed;
-3. maintain a population of candidate completions;
-4. keep Pro/simulator/Python ideas in the insight pool until Lean promotes
-   them;
-5. after exact convergence, enter the approximate phase with the exact
-   champion as an `epsilon = 0` incumbent;
-6. plot only Lean-certified candidates.
-
-Current certified logical champion from the Pro-assisted/evolved route:
-
-```text
-evolved-eq-flip-r1-k1
-Lean certificate = OptimalControl.evolvedEqFlipVerified
-zero-error approximate certificate = OptimalControl.evolvedEqFlipZeroErrorApprox
-comparison tuple = (gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 2, 1, 0)
-```
-
-Certified metric curve, in the EoH-style sense that each plotted point is a
-generation champion and lower values are better.  Blue is exact search; green
-is the post-convergence approximate phase:
-
-![Certified evolution for E_k](docs/assets/optctrl_evolution.png)
-
-Lean-certified storyboard:
-
 ![Lean-certified transfer-operator candidates](docs/assets/optctrl_storyboard.png)
-
-Post-Lean Qiskit export results for human readers:
 
 ![Post-Lean Qiskit export checks](docs/assets/qiskit_export_results.png)
 
@@ -197,23 +165,16 @@ This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general
 arbitrary-register theorem, or a Lean-proved global optimality theorem.
 
-No-Pro Hierarchical Harness checkpoint gate:
-
-```text
-candidate = COLD-CLEAN-PERM-001
-Lean block theorem = coldE1Candidate_blockProjection
-permutation theorem = coldE1CandidateImage_permutation_certificate
-comparison tuple = (gateCount, depth, auxiliaryQubits, oracleCalls) = (4, 4, 1, 0)
-Qiskit/export diagnostic = passed
-Qiskit artifact = executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py
-```
-
 Detailed human-readable status:
 
 ```text
 reports/QBE-OP-OPTCTRL-COLD-CLEAN-001/latest.md
 reports/QBE-OP-OPTCTRL-COLD-CLEAN-001/zh_summary.md
 paper-notes/problem-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/latest.tex
+reports/QBE-OP-OPTCTRL-001/latest.md
+paper-notes/problem-exports/QBE-OP-OPTCTRL-001/latest.tex
+executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py
+executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py
 ```
 
 ## Active Hard Benchmark

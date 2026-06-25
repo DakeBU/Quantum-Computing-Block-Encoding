@@ -3,7 +3,7 @@
 Priority: P2
 
 Sources: Gilyen--Su--Low--Wiebe; Low--Chuang qubitization; QSVT expository and
-application papers.
+application papers; Lin 2201.08309.
 
 ## Detect When
 
@@ -37,6 +37,8 @@ structure QSVTContract where
 Compiled Lean declaration:
 
 - `BlockEncodingClassics.QSVTConsumerContract`
+- `BlockEncodingClassics.QubitizationChebyshevContract`
+- `BlockEncodingClassics.chebyshevT`
 
 ## Reviewer Warning
 

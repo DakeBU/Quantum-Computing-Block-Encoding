@@ -13,7 +13,10 @@ construction card, instantiate it, and emit Lean-checkable proof-DAG leaves.
 ## Required Routing Step
 
 Read `research-wiki/block-encoding-library/route-selector.md`, then choose at
-least one card from `research-wiki/block-encoding-library/cards/`.
+least one card from `research-wiki/block-encoding-library/cards/`.  If the
+task is a textbook block-encoding construction, also read
+`research-wiki/block-encoding-library/lin-2201-08309.md` for the compact
+entrywise proof route map.
 
 Prefer exact, entrywise clean-block proofs before approximate norm proofs:
 
@@ -29,17 +32,23 @@ block-encoding objective with an explicit epsilon tier.
 1. Matrix unit, projector, partial injection, or controlled reset with identity
    factor: use `BE.PartialPermutation.MatrixUnitTensorId` and
    `BE.PermMatrix.CleanBlock`.
-2. Operator acts on an active register and leaves another register unchanged:
+2. Any exact candidate with explicit clean ancilla entries: use
+   `BE.EntrywiseExact.CleanBlock`.
+3. Operator acts on an active register and leaves another register unchanged:
    add `BE.Tensor.PassiveRegister`.
-3. Finite sum of already encodable terms: use `BE.LCU.PrepareSelect`.
-4. Product, tensor, or direct composition of known block encodings: use the
+4. One-sparse target: use `BE.Sparse.OneSparsePermutation`.
+5. Finite sum of already encodable terms: use `BE.LCU.PrepareSelect`.
+6. Product, tensor, or direct composition of known block encodings: use the
    arithmetic cards.
-5. Sparse matrix with row/column/value access: use
+7. Value oracle to signal amplitude: use
+   `BE.QueryModel.ValueToAmplitude`.
+8. Sparse matrix with row/column/value access: use
+   `BE.Sparse.ColumnOracle`, `BE.Sparse.RowColumnOracle`, or
    `BE.SparseAccess.GramConstruction`.
-6. Density or Gram matrix from a purification/state preparation: use
+9. Density or Gram matrix from a purification/state preparation: use
    `BE.Density.FromPurification`.
-7. Arbitrary contraction or small dense fallback: use dilation cards.
-8. QSVT, inverse, sign, filter, or polynomial transformation: treat QSVT as a
+10. Arbitrary contraction or small dense fallback: use dilation cards.
+11. QSVT, inverse, sign, filter, or polynomial transformation: treat QSVT as a
    downstream consumer contract unless the task explicitly asks to formalize
    QSVT itself.
 

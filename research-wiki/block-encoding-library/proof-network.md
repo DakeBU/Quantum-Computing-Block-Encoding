@@ -10,6 +10,19 @@ should reuse these nodes instead of re-deriving the same proof shape.
 | --- | --- | --- | --- |
 | `BlockEncodingClassics.cleanBlockBy_permMatrix_entry` | `BE.PermMatrix.CleanBlock`, `BE.PartialPermutation.MatrixUnitTensorId` | finite permutation completions; matrix-unit block encodings | Converts a finite reversible image predicate into a clean-block entry. |
 | `BlockEncodingClassics.cleanBlockBy_permMatrix_eq_target_of_entry` | `BE.PermMatrix.CleanBlock`, `BE.PartialPermutation.MatrixUnitTensorId` | same as above | Turns entrywise finite-image verification into exact matrix equality. |
+| `BlockEncodingClassics.productIndex` | `BE.EntrywiseExact.CleanBlock`, `BE.Tensor.PassiveRegister` | Lin 2201.08309 entrywise clean-block convention | Flattens explicit `ancilla × system` indices. |
+| `BlockEncodingClassics.cleanBlockProduct_permMatrix_entry` | `BE.EntrywiseExact.CleanBlock`, `BE.PermMatrix.CleanBlock` | Lin 2201.08309 entrywise proof style | Product-register clean-block entry theorem. |
+| `BlockEncodingClassics.cleanBlockProduct_eq_target_of_entry` | `BE.EntrywiseExact.CleanBlock` | Lin 2201.08309 | Product-register extensionality bridge. |
+| `BlockEncodingClassics.kroneckerRat` | `BE.Sparse.OneSparsePermutation`, sparse finite-sum cards | Lin 2201.08309 one-sparse and sparse proofs | Rational delta used in finite clean-entry sums. |
+| `BlockEncodingClassics.oneSparseMatrix_entry_if` | `BE.Sparse.OneSparsePermutation` | Lin 2201.08309 one-sparse route | Reduces one-sparse entries to a delta support predicate. |
+| `BlockEncodingClassics.oneSparse_from_support` | `BE.Sparse.OneSparsePermutation` | Lin 2201.08309 | Reconstructs a one-sparse target from its support map. |
+| `BlockEncodingClassics.sparseColumnCleanEntry` | `BE.Sparse.ColumnOracle` | Lin 2201.08309 sparse column route | Defines the finite slot-sum clean entry. |
+| `BlockEncodingClassics.SparseColumnCertificate` | `BE.Sparse.ColumnOracle` | Lin 2201.08309 | Proof-carrying sparse column interface. |
+| `BlockEncodingClassics.ValueToAmplitudeContract` | `BE.QueryModel.ValueToAmplitude` | Lin 2201.08309 value/amplitude oracle route | Requires cleanup and amplitude-entry proofs before use. |
+| `BlockEncodingClassics.IsSymmetric` | `BE.HermitianBlockEncoding` | Lin 2201.08309 Hermitian BE route | Local rational Hermitian surrogate. |
+| `BlockEncodingClassics.cleanBlockBy_symmetric_of_symmetric` | `BE.HermitianBlockEncoding` | Hermitian BE route | Transfers symmetry from full matrix to clean block. |
+| `BlockEncodingClassics.scalarDilation_cleanEntry` | `BE.Contraction.SVDDilation` | Lin 2201.08309 SVD/scalar dilation fallback | Verifies the clean entry of a 2-by-2 dilation block. |
+| `BlockEncodingClassics.chebyshevT`, `BlockEncodingClassics.QubitizationChebyshevContract` | `BE.Qubitization.Chebyshev` | Low-Chuang; Lin 2201.08309 | Stores Chebyshev recurrence and proof-carrying downstream contract. |
 | `BlockEncodingClassics.partialPermutationCertificate` | `BE.PartialPermutation.MatrixUnitTensorId` | current transfer-operator case; partial-isometry completions | Packages a partial permutation target as an exact clean-block certificate. |
 | `BlockEncodingClassics.oneTermLCU_cleanBlock` | `BE.LCU.PrepareSelect` | Childs--Wiebe LCU; Berry--Childs--Cleve--Kothari--Somma; GSLW | Degenerate LCU base case used to normalize proof DAGs. |
 | `BlockEncodingClassics.LCUCertificate` | `BE.LCU.PrepareSelect`, `BE.Arithmetic.Product`, `BE.QSVT.ConsumerContract` | Childs--Wiebe; GSLW | Proof-carrying clean-block abstraction for finite sums. |
@@ -26,9 +39,11 @@ should reuse these nodes instead of re-deriving the same proof shape.
 ```text
 finite image theorem
   -> permutation clean-block entry
+  -> product-register entry bridge when the ancilla is explicit
   -> exact clean-block certificate
+  -> one-sparse / sparse-column finite-sum leaves
   -> product / tensor / LCU composition
-  -> downstream QSVT consumer contract
+  -> Hermitian / Chebyshev / QSVT consumer contract
   -> exact-as-zero-error approximate incumbent
 ```
 

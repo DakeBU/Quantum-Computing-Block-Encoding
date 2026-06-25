@@ -719,6 +719,44 @@ example :
           BlockEncodingClassics.permMatrix]
           using OptimalControl.example_cleanBlock row col))
 
+example :
+    (BlockEncodingClassics.productIndex
+      (⟨1, by native_decide⟩ : Fin 2)
+      (⟨2, by native_decide⟩ : Fin 3)).val = 5 := rfl
+
+example :
+    BlockEncodingClassics.cleanBlockProduct
+      (⟨0, by native_decide⟩ : Fin 2)
+      (BlockEncodingClassics.permMatrix (fun x : Fin (2 * 3) => x))
+      (⟨1, by native_decide⟩ : Fin 3)
+      (⟨1, by native_decide⟩ : Fin 3) = 1 := by
+  native_decide
+
+def testSwap2 (x : Fin 2) : Fin 2 :=
+  if x = BlockEncodingClassics.fin2Zero then
+    BlockEncodingClassics.fin2One
+  else
+    BlockEncodingClassics.fin2Zero
+
+example :
+    BlockEncodingClassics.oneSparseMatrix testSwap2 (fun _ => (3 : Rat))
+      BlockEncodingClassics.fin2One BlockEncodingClassics.fin2Zero = 3 := by
+  native_decide
+
+example :
+    BlockEncodingClassics.oneSparseMatrix testSwap2 (fun _ => (3 : Rat))
+      BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2Zero = 0 := by
+  native_decide
+
+example (x : Rat) :
+    BlockEncodingClassics.chebyshevT 2 x = 2 * x * x - 1 :=
+  BlockEncodingClassics.chebyshevT_two x
+
+example (x y : Rat) :
+    BlockEncodingClassics.scalarDilation x y
+      BlockEncodingClassics.fin2Zero BlockEncodingClassics.fin2One = y :=
+  BlockEncodingClassics.scalarDilation_offdiag01 x y
+
 
 /-!
 Optional Robin/GHL paper-benchmark tests are intentionally not part of the
