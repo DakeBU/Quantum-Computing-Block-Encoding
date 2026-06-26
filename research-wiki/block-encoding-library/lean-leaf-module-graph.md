@@ -5,6 +5,10 @@ This file is the textual ledger behind the public module graph
 form the current block-encoding proof-weapon library and records which compiled
 leaf families they provide.
 
+For the complete generated declaration list, see
+[`compiled-lean-leaf-index.md`](compiled-lean-leaf-index.md) and the
+machine-readable [`compiled-lean-leaf-index.json`](compiled-lean-leaf-index.json).
+
 The graph is intentionally organized like a library map, not like a run log.
 It should help a quantum-computing reader answer:
 
@@ -104,3 +108,15 @@ Mathlib before assigning generic infrastructure.  Lower Lean workers prove one
 stable leaf at a time.  If the same leaf repeatedly fails, the reviewer should
 treat it as a mathematical signal and ask whether the statement needs a hidden
 regularity contract, a missing support hypothesis, or a counterexample audit.
+
+For Mathlib-quality local leaves:
+
+- decompose aggressively into lemmas that fit one agent context window;
+- specify more than the theorem: local APIs, intended proof route, and the
+  exact parent theorem served by the leaf;
+- treat persistent failure as mathematical signal, not just a tactic problem;
+- promote hidden regularity conditions such as cleanup, boundedness,
+  nonemptiness, injectivity, and support uniqueness into reusable contracts;
+- do not frequently change the proof route once reviewer has accepted a
+  well-typed local statement.  If the route changes, write a failure-memory
+  packet explaining why.

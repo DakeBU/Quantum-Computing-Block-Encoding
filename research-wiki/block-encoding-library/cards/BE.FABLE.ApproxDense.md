@@ -14,9 +14,9 @@ not required, and the task accepts an epsilon budget.
 Generate rotation angles for a dense-matrix block-encoding circuit and apply
 compression/sparsification when the allowed epsilon permits it.
 
-## Lean Use
+## Lean Integration Role
 
-Initial ABEIS use should treat FABLE-like synthesis as a candidate generator
+Initial ABEIS integration should treat FABLE-like synthesis as a candidate generator
 and Qiskit/numerical diagnostic source.  A candidate is not certified until ABEIS
 proves the corresponding exact or approximate block-encoding theorem in Lean.
 

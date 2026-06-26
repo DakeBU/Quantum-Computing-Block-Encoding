@@ -116,6 +116,7 @@ WORK_DIRS = [
     "proof-attempts",
     "proof-blueprints",
     "verifier-feedback",
+    "failure-memory",
     "candidate-populations",
     "open-problem-proposals",
     "proof-obligations",
@@ -703,6 +704,36 @@ Suggested classes:
 
 Scores and booleans are diagnostics.  They must not be promoted into
 paper-theorem status unless a named Lean declaration closes the exact target.
+""",
+        ROOT / "failure-memory" / "README.md": """# Failure Memory
+
+This directory stores reusable failure packets, not raw logs.  A packet should
+be small enough for the next upper/middle/reviewer pass to retrieve without
+replaying an entire run.
+
+Use it when a failure repeats or when a reviewer identifies a route-level
+mistake.  Recommended fields:
+
+```json
+{
+  "task": "QBE-...",
+  "leaf": "clean-entry-bridge",
+  "trace_scope": "fine",
+  "failure_class": "symbolic_bridge_gap",
+  "local_symptom": "raw constructor equality fails",
+  "root_cause": "semantic evalWith equality is the correct statement",
+  "rejected_route": "prove raw Coeff matrix equality",
+  "repair_route": "prove evalWith-level entry equality",
+  "reusable_lesson": "separate symbolic syntax from evaluated semantics",
+  "mathlib_queries": ["Matrix.mul_apply"],
+  "promote_to_card": false
+}
+```
+
+Fine-grained packets repair one proof leaf.  Coarse-grained packets repair the
+route, theorem statement, access model, or harness allocation.  The reviewer
+should reject lower work that repeats a known rejected route without explaining
+why the previous failure no longer applies.
 """,
         ROOT / "reviews" / "README.md": """# Reviews
 
@@ -6648,6 +6679,35 @@ def mathlib_retrieval_context() -> str:
 """
 
 
+def failure_trace_and_judge_context() -> str:
+    return """Failure-memory and decomposed-judge discipline:
+
+- Do not keep failures only as long prose.  When a proof or construction route
+  fails in a reusable way, write a compact packet under `failure-memory/` or
+  `verifier-feedback/<task-id>/` with: `leaf`, `trace_scope`, `failure_class`,
+  `local_symptom`, `root_cause`, `rejected_route`, `repair_route`,
+  `reusable_lesson`, and relevant `mathlib_queries`.
+- Fine-grained failures repair one active proof leaf.  Coarse-grained failures
+  repair the route, theorem statement, source contract, external lemma, or
+  harness allocation.  Upper/middle/reviewer must decide which scope applies
+  before assigning more lower attempts.
+- Treat the reviewer as a decomposed judge, not a vague preference oracle.
+  This is the decomposed reviewer judge vector for ABEIS proof search.
+  For every candidate or route, score separate requirements:
+  `target_contract`, `unitarity`, `clean_block`, `normalizer_error`,
+  `resource_tuple`, `proof_reuse`, `source_faithfulness`, and `exportability`.
+  Lean-closed requirements are hard gates; natural-language plausibility and
+  simulator checks are soft search signals.
+- A candidate can be mutated or recombined from an insight only after the
+  middle layer renders it into concrete artifacts: Lean theorem target,
+  proof-DAG leaves, resource tuple, verifier packet, and human proof sketch.
+- Persistent failure is mathematical signal.  Before retrying the same proof,
+  ask whether the statement is false, missing a regularity/support/cleanup
+  hypothesis, already solved in Mathlib, or trying to prove syntax equality
+  where semantic equality is the right target.
+"""
+
+
 def role_prompt(
     role: str,
     task_id: str,
@@ -6665,6 +6725,7 @@ def role_prompt(
     verifier_feedback = verifier_feedback_contract(task_id, task_text)
     blueprint = blueprint_context(task_id)
     mathlib_context = mathlib_retrieval_context()
+    failure_judge_context = failure_trace_and_judge_context()
     displayed_task_text = task_text.strip() if context_mode == "full" else focused_task_contract(task_text)
     context_note = (
         "Full task context."
@@ -6743,6 +6804,8 @@ Local paper-source archive for agent work:
 {operator_scoped_retrieval}
 
 {mathlib_context}
+
+{failure_judge_context}
 
 	Operating model:
 
@@ -7020,7 +7083,12 @@ Produce:
    exam-prep notebook, not as a rigid detector.  Name which Lin-note/classic
    construction patterns seem analogous, which ones are merely preserved for
    diversity, and which compiled Lean leaves should be reused before any new
-   proof is attempted.
+   proof is attempted.  Fast retrieval entry points:
+   `research-wiki/block-encoding-library/route-selector.md`,
+   `research-wiki/block-encoding-library/compiled-lean-leaf-index.md`,
+   `research-wiki/block-encoding-library/compiled-lean-leaf-index.json`, and,
+   for diagonal-grid polynomial hints such as `x_j -> x_j^3`,
+   `research-wiki/block-encoding-library/qsvt-hard-hint-route.md`.
 6. Layer-allocation decision for this cycle.  In the Hierarchical Harness
    profile, spend enough budget in upper/middle/reviewer planning before lower
    workers run: upper fixes target and search direction, middle translates and
@@ -7294,7 +7362,12 @@ Maintain:
     (ii) one natural-language proof sketch packet, and (iii) an insight-pool
     record for alternative routes or failed but reusable ideas.  Explicitly
     record when a natural-language proof suggests a Lean lemma, and when a Lean
-    failure suggests a better human proof decomposition.
+    failure suggests a better human proof decomposition.  Start from
+    `research-wiki/block-encoding-library/route-selector.md`; when the route
+    mentions QSVT or diagonal polynomial transformations, also read
+    `research-wiki/block-encoding-library/qsvt-hard-hint-route.md`.  Check
+    `research-wiki/block-encoding-library/compiled-lean-leaf-index.md` before
+    asking lower agents to reprove an existing declaration.
 9. Closeout export bridge: at 6h or convergence closeout, ensure the
    problem-specific LaTeX proof note reflects the Lean status, proof-DAG
    frontier, and safe manuscript edits.  The ABEIS technical-report packet is

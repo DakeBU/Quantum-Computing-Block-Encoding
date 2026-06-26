@@ -4,7 +4,7 @@ This file records classic or reusable sources as memory entries.  Status values
 follow the technical-lemma vocabulary: `paper-cited`, `classic-unformalized`,
 `contract-only`, `obligation`, `formalized`.
 
-| id | source | reusable asset | status | ABEIS use |
+| id | source | reusable asset | status | ABEIS retrieval role |
 | --- | --- | --- | --- | --- |
 | be-lin-lecture-2022 | Lin Lin, "Lecture Notes on Quantum Algorithms for Scientific Computation", arXiv:2201.08309 | textbook proof routes for clean-block entries, value-to-amplitude, sparse oracles, dilation, LCU, Hermitian BE, qubitization, QSVT | paper-cited | backbone memory pack for route selection and entrywise proof style |
 | be-gslw-qsvt-2018 | Gilyen, Su, Low, Wiebe, "Quantum singular value transformation and beyond", arXiv:1806.01838 | modern block-encoding definition, LCU, product, sparse-access, density block encoding, QSVT consumer theorem | classic-unformalized | canonical source for block-encoding arithmetic and downstream QSVT contracts |

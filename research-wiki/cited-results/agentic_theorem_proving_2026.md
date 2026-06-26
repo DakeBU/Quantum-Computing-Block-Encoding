@@ -5,7 +5,7 @@ Source directory:
 
 ## References
 
-| Key | Source | ABEIS use |
+| Key | Source | ABEIS counterpart design |
 | --- | --- | --- |
 | `hierarchical-provers-2602.10512` | [arXiv:2602.10512](https://arxiv.org/abs/2602.10512), also cited under the "Don't Eliminate Cut" framing | Keep reusable circuit-entry, register-map, normalizer, and cleanup lemmas as proof-DAG cuts; do not repeatedly inline them into every block-encoding theorem. |
 | `statistical-provability-2602.10538` | [arXiv:2602.10538](https://arxiv.org/abs/2602.10538) | Track finite-budget proof progress: active time, verifier calls, average truncated proof length, stale repeated leaves, and high-reuse proof states. |

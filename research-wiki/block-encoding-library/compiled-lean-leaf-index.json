@@ -1,0 +1,4918 @@
+{
+  "total": 965,
+  "files": [
+    {
+      "file": "QuantumBlockEncoding/Core.lean",
+      "count": 36,
+      "declarations": [
+        {
+          "kind": "abbrev",
+          "name": "Matrix",
+          "line": 15
+        },
+        {
+          "kind": "def",
+          "name": "PointwiseEq",
+          "line": 20
+        },
+        {
+          "kind": "def",
+          "name": "zero",
+          "line": 25
+        },
+        {
+          "kind": "def",
+          "name": "identity",
+          "line": 29
+        },
+        {
+          "kind": "def",
+          "name": "mul",
+          "line": 34
+        },
+        {
+          "kind": "def",
+          "name": "gridSize",
+          "line": 44
+        },
+        {
+          "kind": "def",
+          "name": "clog2",
+          "line": 52
+        },
+        {
+          "kind": "theorem",
+          "name": "gridSize_zero",
+          "line": 55
+        },
+        {
+          "kind": "theorem",
+          "name": "clog2_zero",
+          "line": 57
+        },
+        {
+          "kind": "theorem",
+          "name": "clog2_one",
+          "line": 60
+        },
+        {
+          "kind": "theorem",
+          "name": "log2_pred_two_pow_succ",
+          "line": 64
+        },
+        {
+          "kind": "theorem",
+          "name": "clog2_gridSize",
+          "line": 94
+        },
+        {
+          "kind": "inductive",
+          "name": "BoundaryKind",
+          "line": 103
+        },
+        {
+          "kind": "structure",
+          "name": "Stencil",
+          "line": 111
+        },
+        {
+          "kind": "def",
+          "name": "width",
+          "line": 121
+        },
+        {
+          "kind": "theorem",
+          "name": "width_eq",
+          "line": 124
+        },
+        {
+          "kind": "structure",
+          "name": "BulkWindow",
+          "line": 134
+        },
+        {
+          "kind": "def",
+          "name": "paperBoundaryLines",
+          "line": 142
+        },
+        {
+          "kind": "inductive",
+          "name": "Coeff",
+          "line": 148
+        },
+        {
+          "kind": "def",
+          "name": "sub",
+          "line": 170
+        },
+        {
+          "kind": "def",
+          "name": "evalWith",
+          "line": 176
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_rat",
+          "line": 183
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_symbol",
+          "line": 186
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_add",
+          "line": 189
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_mul",
+          "line": 192
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_neg",
+          "line": 195
+        },
+        {
+          "kind": "theorem",
+          "name": "rat_zero",
+          "line": 199
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_rat_zero",
+          "line": 202
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_rat_one",
+          "line": 206
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_rat_add",
+          "line": 210
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_rat_mul",
+          "line": 215
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_rat_neg",
+          "line": 220
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_eq_zero_of_rat_zero",
+          "line": 225
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_eq_one_of_rat_one",
+          "line": 229
+        },
+        {
+          "kind": "def",
+          "name": "divNat",
+          "line": 232
+        },
+        {
+          "kind": "structure",
+          "name": "StencilEntry",
+          "line": 238
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/Resources.lean",
+      "count": 25,
+      "declarations": [
+        {
+          "kind": "structure",
+          "name": "Resource",
+          "line": 21
+        },
+        {
+          "kind": "def",
+          "name": "gates",
+          "line": 32
+        },
+        {
+          "kind": "def",
+          "name": "add",
+          "line": 34
+        },
+        {
+          "kind": "def",
+          "name": "parallel",
+          "line": 45
+        },
+        {
+          "kind": "def",
+          "name": "scale",
+          "line": 55
+        },
+        {
+          "kind": "def",
+          "name": "ofCounts",
+          "line": 62
+        },
+        {
+          "kind": "def",
+          "name": "ofCountsWithDepth",
+          "line": 68
+        },
+        {
+          "kind": "theorem",
+          "name": "gates_eq",
+          "line": 75
+        },
+        {
+          "kind": "theorem",
+          "name": "zero_oneQubit",
+          "line": 77
+        },
+        {
+          "kind": "theorem",
+          "name": "zero_cnot",
+          "line": 78
+        },
+        {
+          "kind": "theorem",
+          "name": "zero_oracleCalls",
+          "line": 79
+        },
+        {
+          "kind": "theorem",
+          "name": "zero_pureAncilla",
+          "line": 80
+        },
+        {
+          "kind": "theorem",
+          "name": "zero_depth",
+          "line": 81
+        },
+        {
+          "kind": "theorem",
+          "name": "add_oneQubit",
+          "line": 82
+        },
+        {
+          "kind": "theorem",
+          "name": "add_cnot",
+          "line": 84
+        },
+        {
+          "kind": "theorem",
+          "name": "add_oracleCalls",
+          "line": 86
+        },
+        {
+          "kind": "theorem",
+          "name": "add_pureAncilla",
+          "line": 88
+        },
+        {
+          "kind": "theorem",
+          "name": "add_depth",
+          "line": 90
+        },
+        {
+          "kind": "inductive",
+          "name": "CostExpr",
+          "line": 96
+        },
+        {
+          "kind": "def",
+          "name": "atoms",
+          "line": 116
+        },
+        {
+          "kind": "structure",
+          "name": "AsymptoticResource",
+          "line": 122
+        },
+        {
+          "kind": "def",
+          "name": "add",
+          "line": 129
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessResource",
+          "line": 138
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleResource",
+          "line": 145
+        },
+        {
+          "kind": "def",
+          "name": "indicatorResource",
+          "line": 149
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/Circuit.lean",
+      "count": 12,
+      "declarations": [
+        {
+          "kind": "inductive",
+          "name": "Gate",
+          "line": 13
+        },
+        {
+          "kind": "abbrev",
+          "name": "Circuit",
+          "line": 23
+        },
+        {
+          "kind": "def",
+          "name": "resource",
+          "line": 32
+        },
+        {
+          "kind": "abbrev",
+          "name": "CircuitLayer",
+          "line": 50
+        },
+        {
+          "kind": "def",
+          "name": "resource",
+          "line": 54
+        },
+        {
+          "kind": "abbrev",
+          "name": "LayeredCircuit",
+          "line": 60
+        },
+        {
+          "kind": "def",
+          "name": "resource",
+          "line": 64
+        },
+        {
+          "kind": "def",
+          "name": "depth",
+          "line": 68
+        },
+        {
+          "kind": "def",
+          "name": "resource",
+          "line": 75
+        },
+        {
+          "kind": "theorem",
+          "name": "resource_nil",
+          "line": 79
+        },
+        {
+          "kind": "theorem",
+          "name": "resource_cons",
+          "line": 81
+        },
+        {
+          "kind": "def",
+          "name": "depth",
+          "line": 84
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/BlockEncoding.lean",
+      "count": 22,
+      "declarations": [
+        {
+          "kind": "structure",
+          "name": "RegisterLayout",
+          "line": 14
+        },
+        {
+          "kind": "def",
+          "name": "auxiliaryQubits",
+          "line": 27
+        },
+        {
+          "kind": "structure",
+          "name": "BlockEncodingSpec",
+          "line": 33
+        },
+        {
+          "kind": "structure",
+          "name": "BlockEncodingCost",
+          "line": 50
+        },
+        {
+          "kind": "def",
+          "name": "fromLayoutAndResource",
+          "line": 59
+        },
+        {
+          "kind": "def",
+          "name": "fromSpec",
+          "line": 66
+        },
+        {
+          "kind": "def",
+          "name": "betterThan",
+          "line": 70
+        },
+        {
+          "kind": "def",
+          "name": "noWorseThan",
+          "line": 80
+        },
+        {
+          "kind": "structure",
+          "name": "QueryOperatorTarget",
+          "line": 90
+        },
+        {
+          "kind": "structure",
+          "name": "OperatorBlockEncodingCandidate",
+          "line": 103
+        },
+        {
+          "kind": "def",
+          "name": "cost",
+          "line": 119
+        },
+        {
+          "kind": "structure",
+          "name": "VerifiedOperatorBlockEncoding",
+          "line": 131
+        },
+        {
+          "kind": "structure",
+          "name": "ApproximateOperatorBlockEncodingCandidate",
+          "line": 148
+        },
+        {
+          "kind": "structure",
+          "name": "VerifiedApproximateOperatorBlockEncoding",
+          "line": 159
+        },
+        {
+          "kind": "def",
+          "name": "asZeroErrorApprox",
+          "line": 173
+        },
+        {
+          "kind": "structure",
+          "name": "AdaptiveBlockEncodingPolicy",
+          "line": 195
+        },
+        {
+          "kind": "inductive",
+          "name": "BlockEncodingSearchPhase",
+          "line": 207
+        },
+        {
+          "kind": "structure",
+          "name": "VerifiedBlockEncoding",
+          "line": 220
+        },
+        {
+          "kind": "theorem",
+          "name": "unitary",
+          "line": 231
+        },
+        {
+          "kind": "theorem",
+          "name": "correct",
+          "line": 235
+        },
+        {
+          "kind": "theorem",
+          "name": "resource_ok",
+          "line": 239
+        },
+        {
+          "kind": "structure",
+          "name": "ConstructionClaim",
+          "line": 246
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/CircuitSemantics.lean",
+      "count": 42,
+      "declarations": [
+        {
+          "kind": "def",
+          "name": "qubitDim",
+          "line": 16
+        },
+        {
+          "kind": "structure",
+          "name": "SemanticObligation",
+          "line": 25
+        },
+        {
+          "kind": "structure",
+          "name": "GateMatrix",
+          "line": 35
+        },
+        {
+          "kind": "def",
+          "name": "gateMatricesMatchCircuit",
+          "line": 41
+        },
+        {
+          "kind": "def",
+          "name": "evalGateMatrices",
+          "line": 54
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_foldl_add_mul",
+          "line": 71
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_mul_apply",
+          "line": 92
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_mul_eq_zero_of_all_paths_zero",
+          "line": 131
+        },
+        {
+          "kind": "theorem",
+          "name": "about",
+          "line": 300
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_mul_unique_path",
+          "line": 304
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_mul_two_path",
+          "line": 328
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_mul_identity_right_apply",
+          "line": 355
+        },
+        {
+          "kind": "theorem",
+          "name": "cast_square_apply",
+          "line": 371
+        },
+        {
+          "kind": "theorem",
+          "name": "evalWith_evalGateMatrices_single",
+          "line": 389
+        },
+        {
+          "kind": "structure",
+          "name": "CircuitMatrixSemantics",
+          "line": 404
+        },
+        {
+          "kind": "def",
+          "name": "ofGateMatrices",
+          "line": 415
+        },
+        {
+          "kind": "structure",
+          "name": "PreparedCircuitEntryTarget",
+          "line": 436
+        },
+        {
+          "kind": "def",
+          "name": "entryEqualityStatement",
+          "line": 454
+        },
+        {
+          "kind": "def",
+          "name": "matrixEntryEqualityStatement",
+          "line": 459
+        },
+        {
+          "kind": "theorem",
+          "name": "entryEqualityStatement_iff_matrixEntryEqualityStatement",
+          "line": 470
+        },
+        {
+          "kind": "structure",
+          "name": "BlockExtractionTarget",
+          "line": 502
+        },
+        {
+          "kind": "def",
+          "name": "blockExtractionBranchContributionSum",
+          "line": 520
+        },
+        {
+          "kind": "structure",
+          "name": "BlockExtractionBranchContributionTarget",
+          "line": 535
+        },
+        {
+          "kind": "def",
+          "name": "selectedBranchStatement",
+          "line": 559
+        },
+        {
+          "kind": "def",
+          "name": "projectionSummationStatement",
+          "line": 569
+        },
+        {
+          "kind": "def",
+          "name": "backendExpansionStatement",
+          "line": 586
+        },
+        {
+          "kind": "theorem",
+          "name": "selectedBranchStatement_of_eq",
+          "line": 595
+        },
+        {
+          "kind": "theorem",
+          "name": "projectionSummationStatement_iff_backendExpansionStatement",
+          "line": 603
+        },
+        {
+          "kind": "theorem",
+          "name": "projectionSummationStatement_of_backendExpansionStatement",
+          "line": 629
+        },
+        {
+          "kind": "theorem",
+          "name": "backendExpansionStatement_of_projectionSummationStatement",
+          "line": 640
+        },
+        {
+          "kind": "structure",
+          "name": "CircuitBlockEncodingClaim",
+          "line": 661
+        },
+        {
+          "kind": "structure",
+          "name": "FiniteBlockCompositionContract",
+          "line": 676
+        },
+        {
+          "kind": "def",
+          "name": "signalSystemBlockRowIndex",
+          "line": 696
+        },
+        {
+          "kind": "def",
+          "name": "signalSystemBlockColIndex",
+          "line": 700
+        },
+        {
+          "kind": "theorem",
+          "name": "signalSystemBlockRowIndex_zero",
+          "line": 703
+        },
+        {
+          "kind": "theorem",
+          "name": "signalSystemBlockColIndex_zero",
+          "line": 707
+        },
+        {
+          "kind": "theorem",
+          "name": "signalSystemBlockRowIndex_lt",
+          "line": 712
+        },
+        {
+          "kind": "theorem",
+          "name": "signalSystemBlockColIndex_lt",
+          "line": 727
+        },
+        {
+          "kind": "def",
+          "name": "signalSystemBlockProjection",
+          "line": 753
+        },
+        {
+          "kind": "theorem",
+          "name": "signalSystemBlockProjection_apply",
+          "line": 764
+        },
+        {
+          "kind": "def",
+          "name": "totalCircuitQubits",
+          "line": 778
+        },
+        {
+          "kind": "def",
+          "name": "CircuitMatrixSemantics.blockExtractionTarget",
+          "line": 786
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "count": 84,
+      "declarations": [
+        {
+          "kind": "def",
+          "name": "permMatrix",
+          "line": 19
+        },
+        {
+          "kind": "def",
+          "name": "columnInner",
+          "line": 23
+        },
+        {
+          "kind": "def",
+          "name": "rowInner",
+          "line": 27
+        },
+        {
+          "kind": "def",
+          "name": "IsRationalOrthogonal",
+          "line": 34
+        },
+        {
+          "kind": "def",
+          "name": "cleanBlockBy",
+          "line": 39
+        },
+        {
+          "kind": "def",
+          "name": "productIndex",
+          "line": 48
+        },
+        {
+          "kind": "def",
+          "name": "cleanBlockProduct",
+          "line": 60
+        },
+        {
+          "kind": "theorem",
+          "name": "cleanBlockBy_permMatrix_entry",
+          "line": 69
+        },
+        {
+          "kind": "theorem",
+          "name": "cleanBlockProduct_permMatrix_entry",
+          "line": 81
+        },
+        {
+          "kind": "theorem",
+          "name": "cleanBlockBy_permMatrix_eq_target_of_entry",
+          "line": 93
+        },
+        {
+          "kind": "theorem",
+          "name": "cleanBlockProduct_eq_target_of_entry",
+          "line": 104
+        },
+        {
+          "kind": "def",
+          "name": "kroneckerRat",
+          "line": 116
+        },
+        {
+          "kind": "def",
+          "name": "oneSparseMatrix",
+          "line": 123
+        },
+        {
+          "kind": "theorem",
+          "name": "oneSparseMatrix_entry_if",
+          "line": 127
+        },
+        {
+          "kind": "theorem",
+          "name": "oneSparse_from_support",
+          "line": 139
+        },
+        {
+          "kind": "structure",
+          "name": "OneSparseCertificate",
+          "line": 155
+        },
+        {
+          "kind": "def",
+          "name": "cleanBlock",
+          "line": 163
+        },
+        {
+          "kind": "theorem",
+          "name": "correct",
+          "line": 166
+        },
+        {
+          "kind": "def",
+          "name": "sparseColumnCleanEntry",
+          "line": 177
+        },
+        {
+          "kind": "theorem",
+          "name": "permMatrix_columnInner_of_injective",
+          "line": 283
+        },
+        {
+          "kind": "theorem",
+          "name": "permMatrix_rowInner_of_bijective",
+          "line": 330
+        },
+        {
+          "kind": "theorem",
+          "name": "permMatrix_isRationalOrthogonal_of_bijective",
+          "line": 389
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseColumnCleanEntry_no_hit",
+          "line": 396
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseColumnCleanEntry_unique_slot",
+          "line": 409
+        },
+        {
+          "kind": "def",
+          "name": "rowColumnSparseDeltaEntry",
+          "line": 434
+        },
+        {
+          "kind": "structure",
+          "name": "SparseColumnCertificate",
+          "line": 456
+        },
+        {
+          "kind": "theorem",
+          "name": "correct",
+          "line": 466
+        },
+        {
+          "kind": "structure",
+          "name": "RowColumnSparseCertificate",
+          "line": 475
+        },
+        {
+          "kind": "theorem",
+          "name": "correct",
+          "line": 486
+        },
+        {
+          "kind": "structure",
+          "name": "ValueToAmplitudeContract",
+          "line": 498
+        },
+        {
+          "kind": "theorem",
+          "name": "correct",
+          "line": 509
+        },
+        {
+          "kind": "def",
+          "name": "IsSymmetric",
+          "line": 516
+        },
+        {
+          "kind": "theorem",
+          "name": "cleanBlockBy_symmetric_of_symmetric",
+          "line": 520
+        },
+        {
+          "kind": "def",
+          "name": "fin2Zero",
+          "line": 528
+        },
+        {
+          "kind": "def",
+          "name": "fin2One",
+          "line": 530
+        },
+        {
+          "kind": "def",
+          "name": "scalarDilation",
+          "line": 532
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_cleanEntry",
+          "line": 539
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_offdiag01",
+          "line": 543
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_offdiag10",
+          "line": 547
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_diag11",
+          "line": 551
+        },
+        {
+          "kind": "def",
+          "name": "scalarDilationRowDot",
+          "line": 556
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_row0_normSq",
+          "line": 560
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_row1_normSq",
+          "line": 564
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_row0_unit_norm_of",
+          "line": 573
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_row1_unit_norm_of",
+          "line": 578
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_rows01_orthogonal",
+          "line": 583
+        },
+        {
+          "kind": "theorem",
+          "name": "scalarDilation_rows10_orthogonal",
+          "line": 590
+        },
+        {
+          "kind": "def",
+          "name": "chebyshevT",
+          "line": 598
+        },
+        {
+          "kind": "theorem",
+          "name": "chebyshevT_zero",
+          "line": 603
+        },
+        {
+          "kind": "theorem",
+          "name": "chebyshevT_one",
+          "line": 605
+        },
+        {
+          "kind": "theorem",
+          "name": "chebyshevT_two",
+          "line": 607
+        },
+        {
+          "kind": "theorem",
+          "name": "chebyshevT_succ_succ",
+          "line": 609
+        },
+        {
+          "kind": "theorem",
+          "name": "chebyshevT_three_recurrence",
+          "line": 613
+        },
+        {
+          "kind": "theorem",
+          "name": "chebyshevT_four_recurrence",
+          "line": 616
+        },
+        {
+          "kind": "structure",
+          "name": "ExactCleanBlock",
+          "line": 623
+        },
+        {
+          "kind": "def",
+          "name": "clean",
+          "line": 632
+        },
+        {
+          "kind": "theorem",
+          "name": "clean_eq_target",
+          "line": 636
+        },
+        {
+          "kind": "structure",
+          "name": "QubitizationChebyshevContract",
+          "line": 648
+        },
+        {
+          "kind": "def",
+          "name": "partialPermutationCertificate",
+          "line": 662
+        },
+        {
+          "kind": "def",
+          "name": "oneTermLCU",
+          "line": 679
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermLCU_cleanBlock",
+          "line": 682
+        },
+        {
+          "kind": "def",
+          "name": "matrixScale",
+          "line": 689
+        },
+        {
+          "kind": "def",
+          "name": "matrixAdd",
+          "line": 693
+        },
+        {
+          "kind": "def",
+          "name": "weightedSum2",
+          "line": 697
+        },
+        {
+          "kind": "theorem",
+          "name": "weightedSum2_entry",
+          "line": 701
+        },
+        {
+          "kind": "theorem",
+          "name": "weightedSum2_congr_pointwise",
+          "line": 707
+        },
+        {
+          "kind": "structure",
+          "name": "LCUCertificate",
+          "line": 722
+        },
+        {
+          "kind": "theorem",
+          "name": "correct",
+          "line": 731
+        },
+        {
+          "kind": "def",
+          "name": "twoTermLCUCertificate",
+          "line": 743
+        },
+        {
+          "kind": "theorem",
+          "name": "twoTermLCUCertificate_cleanBlock_entry",
+          "line": 754
+        },
+        {
+          "kind": "def",
+          "name": "ExactCleanBlock.toLCUCertificate",
+          "line": 764
+        },
+        {
+          "kind": "theorem",
+          "name": "matrix_mul_congr_pointwise",
+          "line": 792
+        },
+        {
+          "kind": "def",
+          "name": "productCleanBlockCertificate",
+          "line": 800
+        },
+        {
+          "kind": "def",
+          "name": "productExactCleanBlockCertificate",
+          "line": 811
+        },
+        {
+          "kind": "def",
+          "name": "tensorResourceCost",
+          "line": 819
+        },
+        {
+          "kind": "theorem",
+          "name": "tensorResourceCost_gateCount",
+          "line": 825
+        },
+        {
+          "kind": "theorem",
+          "name": "tensorResourceCost_depth",
+          "line": 828
+        },
+        {
+          "kind": "def",
+          "name": "productResourceCost",
+          "line": 832
+        },
+        {
+          "kind": "theorem",
+          "name": "productResourceCost_depth",
+          "line": 838
+        },
+        {
+          "kind": "structure",
+          "name": "HermitianDilationContract",
+          "line": 847
+        },
+        {
+          "kind": "structure",
+          "name": "QSVTConsumerContract",
+          "line": 857
+        },
+        {
+          "kind": "structure",
+          "name": "ZeroErrorApproxCleanBlock",
+          "line": 866
+        },
+        {
+          "kind": "def",
+          "name": "exactAsZeroErrorApproxCleanBlock",
+          "line": 877
+        },
+        {
+          "kind": "theorem",
+          "name": "exactAsZeroErrorApproxCleanBlock_bound",
+          "line": 885
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/MainCase.lean",
+      "count": 124,
+      "declarations": [
+        {
+          "kind": "def",
+          "name": "mainCaseProSystemIndex",
+          "line": 20
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProTarget",
+          "line": 33
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProQueryTarget",
+          "line": 44
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProSignalIndex",
+          "line": 60
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCleanEmbed",
+          "line": 63
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProBlockProjection",
+          "line": 72
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProExactNormalizer",
+          "line": 79
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProExactError",
+          "line": 82
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProSourceLayout",
+          "line": 85
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCircuit",
+          "line": 91
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProSchedule",
+          "line": 99
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProHighLevelResource",
+          "line": 111
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProHighLevelSeedCost",
+          "line": 115
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProHighLevelSeedCost_gateCount",
+          "line": 119
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProHighLevelSeedCost_depth",
+          "line": 122
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProHighLevelSeedCost_auxiliaryQubits",
+          "line": 125
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProHighLevelSeedCost_oracleCalls",
+          "line": 128
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProMatrixTableResource",
+          "line": 138
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProMatrixTableCircuit",
+          "line": 141
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProMatrixTableSchedule",
+          "line": 143
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCandidateImage",
+          "line": 151
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCandidateMatrix",
+          "line": 171
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidateImage_clean_source_state0",
+          "line": 174
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidateImage_clean_source_state1",
+          "line": 178
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidateImage_injective_pointwise",
+          "line": 182
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidateImage_injective",
+          "line": 187
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCandidatePreimage",
+          "line": 193
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidateImage_preimage",
+          "line": 212
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidateImage_surjective",
+          "line": 217
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCandidateImageIsPermutation",
+          "line": 224
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidateImage_permutation_certificate",
+          "line": 228
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidateMatrix_isRationalOrthogonal",
+          "line": 232
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProReducedOfFull",
+          "line": 240
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProStateOfFull",
+          "line": 244
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProLiftReducedImage",
+          "line": 248
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProRedCCX012",
+          "line": 257
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProRedCX21",
+          "line": 263
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProRedCX20",
+          "line": 271
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProRedX2",
+          "line": 279
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCircuitReducedImage",
+          "line": 290
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCircuitImage",
+          "line": 300
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_clean_source_state0",
+          "line": 303
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_clean_source_state1",
+          "line": 307
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_candidate_mismatch_set",
+          "line": 315
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_not_pointwise_candidate",
+          "line": 321
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCircuitMatrix",
+          "line": 331
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_injective_pointwise",
+          "line": 334
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_injective",
+          "line": 339
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_surjective_pointwise",
+          "line": 344
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_surjective",
+          "line": 348
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCircuitImageIsPermutation",
+          "line": 353
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitImage_permutation_certificate",
+          "line": 357
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitMatrix_isRationalOrthogonal",
+          "line": 361
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuit_cleanEntry",
+          "line": 369
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuit_blockProjection",
+          "line": 379
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProTarget_support_state0",
+          "line": 392
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProTarget_support_state1",
+          "line": 398
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidate_cleanEntry",
+          "line": 405
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProExactCleanBlockCertificate",
+          "line": 419
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProExactCleanBlock_correct",
+          "line": 427
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidate_blockProjection",
+          "line": 435
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProQueryTarget_normalizer",
+          "line": 444
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProSourceLayout_auxiliaryQubits",
+          "line": 447
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProRationalOrthogonalBridgeObligation",
+          "line": 454
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCandidate",
+          "line": 461
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCircuitCandidate",
+          "line": 474
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProVerified",
+          "line": 493
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseProCircuitVerified",
+          "line": 503
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidate_cost",
+          "line": 512
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCandidate_uses_matrix_table_metadata",
+          "line": 517
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseProCircuitCandidate_cost",
+          "line": 523
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdSystemIndex",
+          "line": 538
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdTarget",
+          "line": 551
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdExactNormalizer",
+          "line": 562
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdExactError",
+          "line": 565
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdQueryTarget",
+          "line": 568
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdCleanSignal",
+          "line": 584
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdCleanEmbed",
+          "line": 587
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdBlockProjection",
+          "line": 596
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdSourceLayout",
+          "line": 603
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermImage",
+          "line": 614
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermMatrix",
+          "line": 634
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdReducedOfFull",
+          "line": 638
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdStateOfFull",
+          "line": 642
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdLiftReducedImage",
+          "line": 646
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdRedXT",
+          "line": 656
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdRedCCXTauTSignal",
+          "line": 667
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdRedXTau",
+          "line": 673
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdRedCXSignalT",
+          "line": 684
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdRedCXTauSignal",
+          "line": 692
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdEvalReducedGateImages",
+          "line": 700
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermReducedImage",
+          "line": 705
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdReducedGateImages",
+          "line": 716
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdCircuitReducedImage",
+          "line": 725
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdReducedGateImages_eval",
+          "line": 729
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdCircuitImage",
+          "line": 736
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdCircuitImage_eq_partialPermImage",
+          "line": 740
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdGateXT",
+          "line": 746
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdGateCCXTauTSignal",
+          "line": 750
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdGateXTau",
+          "line": 754
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdGateCXSignalT",
+          "line": 758
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdGateCXTauSignal",
+          "line": 762
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdCircuit",
+          "line": 766
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdSchedule",
+          "line": 775
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdHighLevelResource",
+          "line": 788
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermCost",
+          "line": 792
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermCost_gateCount",
+          "line": 796
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermCost_depth",
+          "line": 799
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermCost_auxiliaryQubits",
+          "line": 802
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermCost_oracleCalls",
+          "line": 805
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermImage_injective_pointwise",
+          "line": 808
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermImage_injective",
+          "line": 813
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermPreimage",
+          "line": 819
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermImage_preimage",
+          "line": 838
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermImage_surjective",
+          "line": 843
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermImageIsPermutation",
+          "line": 850
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermImage_bijective",
+          "line": 854
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPerm_entry",
+          "line": 860
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermExactCleanBlock",
+          "line": 875
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPerm_clean_eq_target",
+          "line": 883
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPerm_blockProjection",
+          "line": 891
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdQueryTarget_normalizer",
+          "line": 900
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdSourceLayout_auxiliaryQubits",
+          "line": 903
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdResourceSchemaObligation",
+          "line": 913
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "count": 158,
+      "declarations": [
+        {
+          "kind": "def",
+          "name": "taskId",
+          "line": 24
+        },
+        {
+          "kind": "def",
+          "name": "requestedEpsilon",
+          "line": 27
+        },
+        {
+          "kind": "def",
+          "name": "gridPoint",
+          "line": 30
+        },
+        {
+          "kind": "def",
+          "name": "cubicAmplitude",
+          "line": 34
+        },
+        {
+          "kind": "def",
+          "name": "cubicOperator",
+          "line": 42
+        },
+        {
+          "kind": "def",
+          "name": "cubicNormSq",
+          "line": 50
+        },
+        {
+          "kind": "def",
+          "name": "conservativeNormalizer",
+          "line": 59
+        },
+        {
+          "kind": "def",
+          "name": "cubicTarget",
+          "line": 63
+        },
+        {
+          "kind": "def",
+          "name": "defaultRequiredCost",
+          "line": 76
+        },
+        {
+          "kind": "def",
+          "name": "defaultPolicy",
+          "line": 88
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticCubicDefaultPrecision",
+          "line": 99
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticCubicLayout",
+          "line": 109
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticCubicCircuit",
+          "line": 121
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticCubicResource",
+          "line": 132
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticCubicNormalizer",
+          "line": 136
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticCubicCost",
+          "line": 140
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticCubicResourceTuple",
+          "line": 146
+        },
+        {
+          "kind": "theorem",
+          "name": "arithmeticCubicResource_eq",
+          "line": 154
+        },
+        {
+          "kind": "theorem",
+          "name": "arithmeticCubicLayout_auxiliaryQubits",
+          "line": 160
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticCubicClaim",
+          "line": 169
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticRankOneCubicLayout",
+          "line": 191
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticRankOneCubicCircuit",
+          "line": 205
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticRankOneCubicResource",
+          "line": 213
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticRankOneCubicNormalizer",
+          "line": 217
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticRankOneCubicCost",
+          "line": 221
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticRankOneCubicResourceTuple",
+          "line": 227
+        },
+        {
+          "kind": "theorem",
+          "name": "arithmeticRankOneCubicResource_eq",
+          "line": 236
+        },
+        {
+          "kind": "theorem",
+          "name": "arithmeticRankOneCubicLayout_auxiliaryQubits",
+          "line": 242
+        },
+        {
+          "kind": "theorem",
+          "name": "arithmeticRankOneCubicResourceTuple_n2_default",
+          "line": 248
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticRankOneCubicClaim",
+          "line": 257
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicWorkspace",
+          "line": 279
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicLayout",
+          "line": 290
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicCircuit",
+          "line": 304
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubicCircuit_rejectSignalRepair",
+          "line": 321
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicResource",
+          "line": 335
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicNormalizer",
+          "line": 339
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicCost",
+          "line": 343
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicResourceTuple",
+          "line": 349
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubicResource_eq",
+          "line": 357
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubicLayout_auxiliaryQubits",
+          "line": 363
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubicResourceTuple_n2",
+          "line": 369
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicClaim",
+          "line": 377
+        },
+        {
+          "kind": "def",
+          "name": "hardModeUpperAgentSchedule",
+          "line": 400
+        },
+        {
+          "kind": "def",
+          "name": "hardModeMiddleAgentSchedule",
+          "line": 402
+        },
+        {
+          "kind": "def",
+          "name": "hardModeLowerAgentSchedule",
+          "line": 404
+        },
+        {
+          "kind": "def",
+          "name": "hardModeExactStallWindow",
+          "line": 407
+        },
+        {
+          "kind": "def",
+          "name": "hardModeConstructionStallWindow",
+          "line": 413
+        },
+        {
+          "kind": "def",
+          "name": "hardModeLevelCycleBudget",
+          "line": 416
+        },
+        {
+          "kind": "def",
+          "name": "relaxedEpsilonLadder",
+          "line": 424
+        },
+        {
+          "kind": "theorem",
+          "name": "relaxedEpsilonLadder_startsWithRequested",
+          "line": 427
+        },
+        {
+          "kind": "theorem",
+          "name": "hardModeSchedules_have_three_levels",
+          "line": 431
+        },
+        {
+          "kind": "theorem",
+          "name": "hardModeLowerAgentSchedule_final",
+          "line": 438
+        },
+        {
+          "kind": "def",
+          "name": "initialExpectedPhase",
+          "line": 447
+        },
+        {
+          "kind": "theorem",
+          "name": "gridSize_pos",
+          "line": 450
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicOperator_first_column",
+          "line": 453
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicOperator_only_first_column",
+          "line": 457
+        },
+        {
+          "kind": "def",
+          "name": "rankOneCleanBlockContract",
+          "line": 470
+        },
+        {
+          "kind": "def",
+          "name": "arithmeticRankOneCubicCleanBlockContract",
+          "line": 477
+        },
+        {
+          "kind": "theorem",
+          "name": "rankOneCleanBlockContract_pointwise_eq",
+          "line": 485
+        },
+        {
+          "kind": "theorem",
+          "name": "arithmeticRankOneCubicCleanBlockContract_pointwise_eq",
+          "line": 505
+        },
+        {
+          "kind": "def",
+          "name": "hadamardCountingCubicCleanBlockContract",
+          "line": 514
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubicCleanBlockContract_pointwise_eq",
+          "line": 522
+        },
+        {
+          "kind": "theorem",
+          "name": "rat_cube_sq_eq_sixth",
+          "line": 530
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicAmplitude_sq_eq_gridPoint_sixth",
+          "line": 537
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicNormSq_sixthPowerFold",
+          "line": 542
+        },
+        {
+          "kind": "theorem",
+          "name": "gridSize_rat_ne_zero",
+          "line": 549
+        },
+        {
+          "kind": "theorem",
+          "name": "gridSize_rat_pos",
+          "line": 554
+        },
+        {
+          "kind": "theorem",
+          "name": "rat_div_cube_div_eq",
+          "line": 559
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicAmplitude_div_conservativeNormalizer_eq",
+          "line": 570
+        },
+        {
+          "kind": "theorem",
+          "name": "gridSize_three_mul_eq_cube",
+          "line": 578
+        },
+        {
+          "kind": "theorem",
+          "name": "gridSize_four_mul_eq_fourth",
+          "line": 584
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubic_thresholdCountP_finRange",
+          "line": 595
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubic_thresholdFilterLength",
+          "line": 624
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubic_threshold_le_pathCapacity",
+          "line": 631
+        },
+        {
+          "kind": "theorem",
+          "name": "hadamardCountingCubic_thresholdPathCount",
+          "line": 644
+        },
+        {
+          "kind": "theorem",
+          "name": "gridPoint_nonneg",
+          "line": 652
+        },
+        {
+          "kind": "theorem",
+          "name": "gridPoint_lt_one",
+          "line": 661
+        },
+        {
+          "kind": "theorem",
+          "name": "gridPoint_le_one",
+          "line": 668
+        },
+        {
+          "kind": "theorem",
+          "name": "rat_pow_le_one_of_nonneg_le_one",
+          "line": 672
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicAmplitude_sq_le_one",
+          "line": 686
+        },
+        {
+          "kind": "theorem",
+          "name": "foldl_add_le_add_length",
+          "line": 692
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicNormSq_le_gridSize",
+          "line": 718
+        },
+        {
+          "kind": "theorem",
+          "name": "gridSize_rat_le_sq",
+          "line": 730
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicNormSq_le_conservativeNormalizer_sq",
+          "line": 742
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicNormSq_le_arithmeticCubicNormalizer_sq",
+          "line": 753
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicNormSq_le_hadamardCountingCubicNormalizer_sq",
+          "line": 763
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicNormSq_n1",
+          "line": 768
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicNormSq_n2",
+          "line": 772
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicNormSq_n3",
+          "line": 776
+        },
+        {
+          "kind": "def",
+          "name": "taskId",
+          "line": 785
+        },
+        {
+          "kind": "def",
+          "name": "cubicDiagonalOperator",
+          "line": 788
+        },
+        {
+          "kind": "def",
+          "name": "exactNormalizer",
+          "line": 794
+        },
+        {
+          "kind": "def",
+          "name": "cubicDiagonalTarget",
+          "line": 797
+        },
+        {
+          "kind": "def",
+          "name": "amplitudeOracleLayout",
+          "line": 812
+        },
+        {
+          "kind": "def",
+          "name": "amplitudeOracleCircuit",
+          "line": 818
+        },
+        {
+          "kind": "def",
+          "name": "amplitudeOracleResource",
+          "line": 822
+        },
+        {
+          "kind": "def",
+          "name": "amplitudeOracleCost",
+          "line": 826
+        },
+        {
+          "kind": "def",
+          "name": "amplitudeOracleResourceTuple",
+          "line": 831
+        },
+        {
+          "kind": "theorem",
+          "name": "amplitudeOracleResource_eq",
+          "line": 838
+        },
+        {
+          "kind": "theorem",
+          "name": "amplitudeOracleResourceTuple_eq",
+          "line": 842
+        },
+        {
+          "kind": "def",
+          "name": "diagonalCleanBlockContract",
+          "line": 849
+        },
+        {
+          "kind": "theorem",
+          "name": "diagonalCleanBlockContract_pointwise_eq",
+          "line": 855
+        },
+        {
+          "kind": "theorem",
+          "name": "primitiveOracleCleanBlock_eq_target",
+          "line": 862
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicAmplitude_le_one",
+          "line": 870
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicAmplitude_nonneg",
+          "line": 877
+        },
+        {
+          "kind": "def",
+          "name": "primitiveAmplitudeOracleDimension",
+          "line": 884
+        },
+        {
+          "kind": "def",
+          "name": "primitiveAmplitudeOracleSemanticContract",
+          "line": 915
+        },
+        {
+          "kind": "theorem",
+          "name": "primitiveAmplitudeOracleSemanticContract_unitary",
+          "line": 922
+        },
+        {
+          "kind": "theorem",
+          "name": "primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target",
+          "line": 927
+        },
+        {
+          "kind": "def",
+          "name": "expandedAmplitudeOracleLayout",
+          "line": 942
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedAmplitudeOracleLayout_auxiliaryQubits",
+          "line": 947
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedAmplitudeOracleNormalizer_eq",
+          "line": 954
+        },
+        {
+          "kind": "structure",
+          "name": "StandardRyCleanEntryScalarTier",
+          "line": 967
+        },
+        {
+          "kind": "def",
+          "name": "expandedRyCleanEntryForCubicAmplitudes",
+          "line": 982
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedRyCleanEntryForCubicAmplitudes_of_standardTier",
+          "line": 995
+        },
+        {
+          "kind": "structure",
+          "name": "ExpandedCubicArithmeticBackend",
+          "line": 1020
+        },
+        {
+          "kind": "def",
+          "name": "symbolicExpandedCubicArithmeticBackend",
+          "line": 1035
+        },
+        {
+          "kind": "def",
+          "name": "expandedArithmeticBackendComputesCubicAmplitude",
+          "line": 1051
+        },
+        {
+          "kind": "theorem",
+          "name": "symbolicExpandedCubicArithmeticBackend_computes",
+          "line": 1065
+        },
+        {
+          "kind": "def",
+          "name": "expandedArithmeticBackendBridge",
+          "line": 1080
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedArithmeticComputesCubicAmplitude_of_backendBridge",
+          "line": 1086
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedArithmeticBackendBridge_iff_of_computes",
+          "line": 1101
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge",
+          "line": 1122
+        },
+        {
+          "kind": "theorem",
+          "name": "symbolicExpandedCubicArithmeticBackend_bridge_iff",
+          "line": 1142
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomCubicPayload_lt_capacity",
+          "line": 1155
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomCubicAmplitude_eq",
+          "line": 1167
+        },
+        {
+          "kind": "def",
+          "name": "fixedDenomCubicArithmeticBackend",
+          "line": 1183
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomCubicArithmeticBackend_computes",
+          "line": 1201
+        },
+        {
+          "kind": "def",
+          "name": "expandedArithmeticComputesCubicAmplitudeTransparent",
+          "line": 1220
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomCubicArithmeticRouteTransparent",
+          "line": 1232
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomCubicArithmeticBackend_bridge_iff",
+          "line": 1246
+        },
+        {
+          "kind": "def",
+          "name": "expandedControlledRyUsesCubicAngleTransparent",
+          "line": 1271
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomControlledRyRouteTransparent",
+          "line": 1282
+        },
+        {
+          "kind": "def",
+          "name": "expandedControlledRyBackendBridge",
+          "line": 1296
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedControlledRyUsesCubicAngle_of_backendBridge",
+          "line": 1302
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedControlledRyBackendBridge_iff_of_standardTier",
+          "line": 1318
+        },
+        {
+          "kind": "structure",
+          "name": "ExpandedControlledRyWorkspaceReadonlyWitness",
+          "line": 1340
+        },
+        {
+          "kind": "def",
+          "name": "expandedControlledRyWorkspaceReadonlyTransparent",
+          "line": 1360
+        },
+        {
+          "kind": "structure",
+          "name": "ExpandedArithmeticCleanUncomputeWitness",
+          "line": 1377
+        },
+        {
+          "kind": "def",
+          "name": "expandedWorkspaceCleanUncomputedTransparent",
+          "line": 1405
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedWorkspaceCleanUncomputedTransparent_of_witness",
+          "line": 1409
+        },
+        {
+          "kind": "def",
+          "name": "fixedDenomCubicComputeStep",
+          "line": 1457
+        },
+        {
+          "kind": "def",
+          "name": "fixedDenomCubicUncomputeStep",
+          "line": 1465
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomCubicComputeStep_matches_backend_on_clean",
+          "line": 1472
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomCubicUncomputeStep_after_compute",
+          "line": 1481
+        },
+        {
+          "kind": "def",
+          "name": "fixedDenomExpandedArithmeticCleanUncomputeWitness",
+          "line": 1501
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomWorkspaceCleanUncomputedTransparent",
+          "line": 1520
+        },
+        {
+          "kind": "def",
+          "name": "expandedAmplitudeOracleCleanBlockContract",
+          "line": 1539
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedAmplitudeOracleCleanBlockContract_diagonal",
+          "line": 1548
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedAmplitudeOracleCleanBlockContract_eq_target",
+          "line": 1555
+        },
+        {
+          "kind": "def",
+          "name": "expandedAmplitudeOracleSemanticContract",
+          "line": 1567
+        },
+        {
+          "kind": "theorem",
+          "name": "expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target",
+          "line": 1572
+        },
+        {
+          "kind": "def",
+          "name": "primitiveAmplitudeOracleCandidate",
+          "line": 1584
+        },
+        {
+          "kind": "theorem",
+          "name": "primitiveAmplitudeOracleCandidate_costTuple_eq",
+          "line": 1601
+        },
+        {
+          "kind": "theorem",
+          "name": "primitiveAmplitudeOracleCandidate_unitary_from_contract",
+          "line": 1612
+        },
+        {
+          "kind": "theorem",
+          "name": "primitiveAmplitudeOracleCandidate_block_from_contract",
+          "line": 1618
+        },
+        {
+          "kind": "def",
+          "name": "primitiveAmplitudeOracleVerified",
+          "line": 1632
+        },
+        {
+          "kind": "def",
+          "name": "amplitudeOracleClaim",
+          "line": 1640
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/GHL2025.lean",
+      "count": 401,
+      "declarations": [
+        {
+          "kind": "structure",
+          "name": "OneTermRobinParameters",
+          "line": 18
+        },
+        {
+          "kind": "def",
+          "name": "isBulkRow",
+          "line": 32
+        },
+        {
+          "kind": "def",
+          "name": "isBoundaryRow",
+          "line": 39
+        },
+        {
+          "kind": "structure",
+          "name": "RobinRegisterPartition",
+          "line": 49
+        },
+        {
+          "kind": "def",
+          "name": "RobinRegisterPartition.totalQubits",
+          "line": 69
+        },
+        {
+          "kind": "def",
+          "name": "defaultRobinRegisterPartition",
+          "line": 76
+        },
+        {
+          "kind": "def",
+          "name": "RobinRegisterPartition.totalPureAncillas",
+          "line": 96
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinResourceExpr",
+          "line": 103
+        },
+        {
+          "kind": "def",
+          "name": "deviatingIndices",
+          "line": 112
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinPreciseResourceExpr",
+          "line": 121
+        },
+        {
+          "kind": "theorem",
+          "name": "deviatingIndices_example",
+          "line": 130
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinResource",
+          "line": 134
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobin_pureAncilla",
+          "line": 140
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinLayout",
+          "line": 149
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinCircuit",
+          "line": 166
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinTheoremFacingFig4Circuit",
+          "line": 185
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinTheoremFacingFig4Circuit_gateList",
+          "line": 205
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinActiveBackendCircuit_gateList",
+          "line": 227
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinNormalizer",
+          "line": 239
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinSpec",
+          "line": 249
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinSpec_ancilla",
+          "line": 260
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinSpec_circuitCost",
+          "line": 269
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinNormalizer_eval",
+          "line": 274
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinClaim",
+          "line": 279
+        },
+        {
+          "kind": "def",
+          "name": "oneDimHamiltonianResourceExpr",
+          "line": 288
+        },
+        {
+          "kind": "def",
+          "name": "oneDimHamiltonianClaim",
+          "line": 296
+        },
+        {
+          "kind": "def",
+          "name": "multiDimHamiltonianResourceExpr",
+          "line": 305
+        },
+        {
+          "kind": "def",
+          "name": "multiDimHamiltonianClaim",
+          "line": 313
+        },
+        {
+          "kind": "structure",
+          "name": "ObligationRecord",
+          "line": 324
+        },
+        {
+          "kind": "structure",
+          "name": "RobinCircuitSkeleton",
+          "line": 334
+        },
+        {
+          "kind": "structure",
+          "name": "RobinGamma1",
+          "line": 373
+        },
+        {
+          "kind": "structure",
+          "name": "RobinGamma2",
+          "line": 396
+        },
+        {
+          "kind": "structure",
+          "name": "RobinGamma3",
+          "line": 413
+        },
+        {
+          "kind": "structure",
+          "name": "RobinWavefunctionDecomposition",
+          "line": 433
+        },
+        {
+          "kind": "def",
+          "name": "defaultRobinWavefunctionDecomposition",
+          "line": 452
+        },
+        {
+          "kind": "structure",
+          "name": "RobinProofObligations",
+          "line": 488
+        },
+        {
+          "kind": "def",
+          "name": "defaultRobinCircuitSkeleton",
+          "line": 553
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessPaperContract",
+          "line": 577
+        },
+        {
+          "kind": "def",
+          "name": "defaultBandedSparseAccessPaperContract",
+          "line": 602
+        },
+        {
+          "kind": "structure",
+          "name": "DerivativeOracleContract",
+          "line": 650
+        },
+        {
+          "kind": "structure",
+          "name": "FunctionOracleContract",
+          "line": 661
+        },
+        {
+          "kind": "def",
+          "name": "derivativeOracleResource",
+          "line": 671
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeOracleResource_pureAncilla",
+          "line": 675
+        },
+        {
+          "kind": "structure",
+          "name": "OneTermRobinTheoremData",
+          "line": 684
+        },
+        {
+          "kind": "def",
+          "name": "defaultOneTermRobinTheoremData",
+          "line": 700
+        },
+        {
+          "kind": "structure",
+          "name": "RobinBoundaryRotationAngle",
+          "line": 714
+        },
+        {
+          "kind": "structure",
+          "name": "RobinBoundaryRotationSet",
+          "line": 732
+        },
+        {
+          "kind": "def",
+          "name": "RobinBoundaryRotationSet.expectedCount",
+          "line": 752
+        },
+        {
+          "kind": "def",
+          "name": "importedClaims",
+          "line": 755
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinTotalQubits",
+          "line": 770
+        },
+        {
+          "kind": "def",
+          "name": "effectiveRobinSignalQubits",
+          "line": 777
+        },
+        {
+          "kind": "theorem",
+          "name": "defaultOneTermRobinTheoremData_signalQubits_eq_layout",
+          "line": 789
+        },
+        {
+          "kind": "theorem",
+          "name": "defaultOneTermRobinTheoremData_pureAncillas_eq_layout",
+          "line": 798
+        },
+        {
+          "kind": "theorem",
+          "name": "defaultOneTermRobinTheoremData_pureAncillas_eq_resource",
+          "line": 807
+        },
+        {
+          "kind": "theorem",
+          "name": "effectiveRobinSignalQubits_eq_layout_signal_plus_visibleWorkspace",
+          "line": 821
+        },
+        {
+          "kind": "theorem",
+          "name": "effectiveRobinSignalQubits_eq_theoremData_signal_plus_visibleWorkspace",
+          "line": 839
+        },
+        {
+          "kind": "def",
+          "name": "robinIndicatorBitPosition",
+          "line": 852
+        },
+        {
+          "kind": "def",
+          "name": "robinSparseColumnMap",
+          "line": 869
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGlobalSparseOffset",
+          "line": 897
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGlobalSparseAddress",
+          "line": 915
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseAddress_lt_gridSize",
+          "line": 919
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGlobalSparseInverseSlot",
+          "line": 934
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseInverseSlot_lt_eight",
+          "line": 946
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseInverseSlot_lt_seven",
+          "line": 952
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseInverseSlot_involutive_of_lt_seven",
+          "line": 967
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseInverseSlot_injective_of_lt_seven",
+          "line": 985
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseAddress_inverseSlot_address_eq",
+          "line": 1009
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseOffset_lt_gridSize_of_lt_seven",
+          "line": 1131
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseAddress_comp_eq_mod_offset_sum",
+          "line": 1149
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseOffset_sum_mod_eq_zero_unique_of_lt_seven",
+          "line": 1183
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseAddress_inverseSlot_unique_of_lt_seven",
+          "line": 1228
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGlobalSparseAddress_same_row_injective_of_lt_seven",
+          "line": 1261
+        },
+        {
+          "kind": "def",
+          "name": "robinSparseColumnBranchValid",
+          "line": 1295
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseColumnBranchValid_boundaryUnused_n3",
+          "line": 1314
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseColumnMap_lt_gridSize_of_row_lt",
+          "line": 1329
+        },
+        {
+          "kind": "def",
+          "name": "robinSparseReverseColumnIndex",
+          "line": 1386
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseColumnMap_zero",
+          "line": 1396
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseColumnMap_one",
+          "line": 1401
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseColumnMap_bulk",
+          "line": 1406
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseColumnMap_rightBoundaryPrev",
+          "line": 1412
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseColumnMap_rightBoundaryLast",
+          "line": 1427
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseReverseColumnIndex_zero",
+          "line": 1443
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseReverseColumnIndex_one",
+          "line": 1448
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseReverseColumnIndex_bulk",
+          "line": 1453
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseReverseColumnIndex_rightBoundaryPrev",
+          "line": 1461
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseReverseColumnIndex_rightBoundaryLast",
+          "line": 1477
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseReverseColumnRoundtrip_of_lt_eight",
+          "line": 1502
+        },
+        {
+          "kind": "theorem",
+          "name": "robinSparseReverseColumnIndex_lt_eight_of_columnMap",
+          "line": 1715
+        },
+        {
+          "kind": "def",
+          "name": "robinSparseReverseColumnRoundtripCheck",
+          "line": 1875
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessPaperRegisters",
+          "line": 1890
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperRegisters",
+          "line": 1902
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperRegisters_row_lt_gridSize",
+          "line": 1919
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperRegisters_sparseIndexValue_eq",
+          "line": 1928
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperRegisters_paddedZeroValue_eq",
+          "line": 1936
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperRegisters_sparseIndex_lt",
+          "line": 1944
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperRegisters_odRegisterValue_lt",
+          "line": 1955
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessRowDependentPaperAddress",
+          "line": 1971
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperAddress",
+          "line": 1983
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperAddressInRange",
+          "line": 1988
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperAddressInRange_iff",
+          "line": 1992
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperAddress_lt_gridSize_of_two_le",
+          "line": 2004
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperAddressInRange_eq_true_of_two_le",
+          "line": 2017
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperImage",
+          "line": 2031
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessRowDependentPaperImage",
+          "line": 2047
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperRegisterValue_eq_mod",
+          "line": 2062
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperHighWidth_le_totalQubits",
+          "line": 2076
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_lowBlock_lt_highBase_of_address_lt",
+          "line": 2087
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_mod_lowBase",
+          "line": 2133
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_div_lowBase_mod_eq",
+          "line": 2172
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt",
+          "line": 2219
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperImageFin",
+          "line": 2268
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImageFin_val",
+          "line": 2276
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_rowValue_eq",
+          "line": 2284
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_odRegisterValue_eq",
+          "line": 2303
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperHighTail",
+          "line": 2315
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_highTail_eq_of_address_lt",
+          "line": 2326
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperImageNoSpill",
+          "line": 2361
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImageNoSpill_iff",
+          "line": 2371
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt",
+          "line": 2380
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le",
+          "line": 2391
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperCleanInput",
+          "line": 2406
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperSparseIndexInKappa",
+          "line": 2416
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperGlobalSlotSource",
+          "line": 2427
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperGlobalSlotSource_cleanInput_eq_true",
+          "line": 2433
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperGlobalSlotSource_sparseIndex_lt_kappa",
+          "line": 2442
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperGlobalSlotSource_inverseSlot_injective",
+          "line": 2461
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperAddress_same_row_injective_of_globalSlotSource",
+          "line": 2493
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperValidSparseBranch",
+          "line": 2541
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperValidCleanSource",
+          "line": 2552
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true",
+          "line": 2558
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperValidCleanSource_validSparseBranch_eq_true",
+          "line": 2567
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3",
+          "line": 2580
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperUnusedSparseBranch",
+          "line": 2601
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true",
+          "line": 2607
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false",
+          "line": 2616
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperCleanDomainSplit_iff",
+          "line": 2632
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperCleanDomainSplit_disjoint",
+          "line": 2657
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessUnusedBranchImageRuleContract",
+          "line": 2680
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessUnusedBranchImageRuleContract",
+          "line": 2702
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedBranchImageRuleContract_flags_false",
+          "line": 2735
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedBranchImageRuleContract_of_unusedBranch",
+          "line": 2750
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessUnusedBranchExtensionContract",
+          "line": 2775
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessUnusedBranchExtensionContract",
+          "line": 2797
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedBranchExtensionContract_flags_false",
+          "line": 2837
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3",
+          "line": 2856
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedBranchExtensionContract_of_unusedBranch",
+          "line": 2875
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessFullCleanDomainExtensionContract",
+          "line": 2906
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessFullCleanDomainExtensionContract",
+          "line": 2932
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessFullCleanDomainExtensionContract_flags_false",
+          "line": 2986
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch",
+          "line": 3006
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit",
+          "line": 3032
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessUnusedZeroBranchSourceDecision",
+          "line": 3049
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessUnusedZeroBranchSourceDecision",
+          "line": 3064
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedZeroBranchSourceDecision_flags_false",
+          "line": 3078
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedZeroBranchSourceDecision_keepsFullDomainFlagsFalse",
+          "line": 3091
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedZeroBranchSourceDecision_keepsImageRuleUnspecified",
+          "line": 3112
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessUnusedZeroBranchSourceDecision_keepsPaperContractFlagsFalse",
+          "line": 3134
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessRobinZeroInclusionSourceContract",
+          "line": 3152
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessRobinZeroInclusionSourceContract",
+          "line": 3176
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessRobinZeroInclusionSourceContract_blocks_unusedZeroBranch",
+          "line": 3211
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessRobinZeroInclusionSourceContract_keepsImageRuleUnspecified",
+          "line": 3239
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessPriorPDESourceContract",
+          "line": 3264
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPriorPDESourceContract",
+          "line": 3285
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPriorPDESourceContract_blocks_unusedZeroBranch",
+          "line": 3310
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPriorPDESourceContract_oracleEquation",
+          "line": 3319
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPriorPDESourceContract_resource_unproved",
+          "line": 3324
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperCleanInput_iff",
+          "line": 3334
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessPaperColumnContract",
+          "line": 3350
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperColumnContract",
+          "line": 3369
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_inputRegisters_eq",
+          "line": 3393
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_cleanInput_eq",
+          "line": 3399
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_cleanInput_iff",
+          "line": 3410
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_unitaryExtension_proved_eq_false",
+          "line": 3421
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_imageIndex_eq",
+          "line": 3426
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_addressInRange_eq",
+          "line": 3432
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_imageNoSpill_eq",
+          "line": 3438
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_rowPreserved_eq_true",
+          "line": 3449
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt",
+          "line": 3459
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt",
+          "line": 3467
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt",
+          "line": 3475
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt",
+          "line": 3487
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperMatrix",
+          "line": 3509
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperMatrix_eq_image",
+          "line": 3515
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperMatrix_imageFin_eq_one",
+          "line": 3528
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperDaggerMatrix",
+          "line": 3545
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperDaggerMatrix_eq_image",
+          "line": 3551
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one",
+          "line": 3563
+        },
+        {
+          "kind": "def",
+          "name": "robinSparseAmplitudeValue",
+          "line": 3588
+        },
+        {
+          "kind": "def",
+          "name": "robinGlobalSparseAmplitudeValue",
+          "line": 3645
+        },
+        {
+          "kind": "theorem",
+          "name": "robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3",
+          "line": 3691
+        },
+        {
+          "kind": "theorem",
+          "name": "robinGlobalSparseAmplitudeValue_boundarySlot2_differs_rowLocal_n3",
+          "line": 3703
+        },
+        {
+          "kind": "structure",
+          "name": "DerivativeNormalizerNDContract",
+          "line": 3721
+        },
+        {
+          "kind": "def",
+          "name": "derivativeNormalizerNDContract",
+          "line": 3745
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDContract_coefficient",
+          "line": 3792
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDContract_normalizerND",
+          "line": 3797
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDContract_normalizedCoefficient",
+          "line": 3802
+        },
+        {
+          "kind": "structure",
+          "name": "DerivativeNormalizerNDSourceBound",
+          "line": 3815
+        },
+        {
+          "kind": "def",
+          "name": "derivativeNormalizerNDSourceBound",
+          "line": 3833
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDSourceBound_sourceCoefficient",
+          "line": 3847
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDSourceBound_normalizerND",
+          "line": 3852
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDSourceBound_boundFormula",
+          "line": 3857
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDSourceBound_coefficientBound",
+          "line": 3862
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDSourceBound_coefficientBound_false",
+          "line": 3867
+        },
+        {
+          "kind": "def",
+          "name": "indicatorOracleMatrix",
+          "line": 3880
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGate_U_indic",
+          "line": 3898
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGate_U_indic_dagger",
+          "line": 3915
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_U_indic_dagger_matrix_eq",
+          "line": 3931
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTMatrix",
+          "line": 3949
+        },
+        {
+          "kind": "structure",
+          "name": "SparseAmplitudeOracleDTPaperRegisters",
+          "line": 3978
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTPaperRegisters",
+          "line": 3991
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTCosHalf",
+          "line": 4009
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTSinHalf",
+          "line": 4013
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerObligation",
+          "line": 4028
+        },
+        {
+          "kind": "structure",
+          "name": "SparseAmplitudeOracleDTCoefficientNormalizerContract",
+          "line": 4043
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerContract",
+          "line": 4063
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTNormalizedCoefficient",
+          "line": 4098
+        },
+        {
+          "kind": "structure",
+          "name": "SparseAmplitudeOracleDTCoefficientNormalizerProofRoute",
+          "line": 4110
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute",
+          "line": 4134
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_coefficient",
+          "line": 4158
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizerND",
+          "line": 4163
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizedCoefficient",
+          "line": 4168
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sharedND",
+          "line": 4173
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sourceBound",
+          "line": 4185
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketZeroEntry",
+          "line": 4195
+        },
+        {
+          "kind": "theorem",
+          "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketOneEntry",
+          "line": 4200
+        },
+        {
+          "kind": "def",
+          "name": "sparseAmplitudeOracleDTRotationMatrix",
+          "line": 4215
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGate_O_DT_S",
+          "line": 4240
+        },
+        {
+          "kind": "structure",
+          "name": "BoundaryRotationPaperRegisters",
+          "line": 4259
+        },
+        {
+          "kind": "def",
+          "name": "boundaryRotationPaperRegisters",
+          "line": 4272
+        },
+        {
+          "kind": "def",
+          "name": "boundaryRotationCosHalf",
+          "line": 4290
+        },
+        {
+          "kind": "def",
+          "name": "boundaryRotationSinHalf",
+          "line": 4294
+        },
+        {
+          "kind": "def",
+          "name": "boundaryRotationAngleNormalizerObligation",
+          "line": 4306
+        },
+        {
+          "kind": "structure",
+          "name": "BoundaryRotationAngleNormalizerContract",
+          "line": 4320
+        },
+        {
+          "kind": "def",
+          "name": "boundaryRotationAngleNormalizerContract",
+          "line": 4343
+        },
+        {
+          "kind": "theorem",
+          "name": "boundaryRotationAngleNormalizerContract_coefficient",
+          "line": 4386
+        },
+        {
+          "kind": "def",
+          "name": "boundaryRotationNormalizedCoefficient",
+          "line": 4398
+        },
+        {
+          "kind": "structure",
+          "name": "BoundaryRotationAngleNormalizerProofRoute",
+          "line": 4411
+        },
+        {
+          "kind": "def",
+          "name": "boundaryRotationAngleNormalizerProofRoute",
+          "line": 4438
+        },
+        {
+          "kind": "theorem",
+          "name": "boundaryRotationAngleNormalizerProofRoute_coefficient",
+          "line": 4467
+        },
+        {
+          "kind": "theorem",
+          "name": "boundaryRotationAngleNormalizerProofRoute_arccosArgument",
+          "line": 4472
+        },
+        {
+          "kind": "theorem",
+          "name": "boundaryRotationAngleNormalizerProofRoute_sharedND",
+          "line": 4477
+        },
+        {
+          "kind": "theorem",
+          "name": "boundaryRotationAngleNormalizerProofRoute_sourceBound",
+          "line": 4487
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDSourceBound_sharedRoutes",
+          "line": 4497
+        },
+        {
+          "kind": "theorem",
+          "name": "robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes",
+          "line": 4514
+        },
+        {
+          "kind": "def",
+          "name": "boundaryRotationMatrix",
+          "line": 4541
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGate_Ry_boundary",
+          "line": 4576
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDSharedRoute_flags_false",
+          "line": 4594
+        },
+        {
+          "kind": "theorem",
+          "name": "derivativeNormalizerNDSharedRoute_sourceBoundAndFlags",
+          "line": 4626
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessMatrix",
+          "line": 4679
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGate_O_D_BS",
+          "line": 4702
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_O_D_BS_imageFin_eq_one",
+          "line": 4712
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_O_D_BS_contractDrift_column8_n3",
+          "line": 4732
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3",
+          "line": 4754
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_O_D_BS_globalSparseBoundaryNoCollision_n3",
+          "line": 4780
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperGlobalSlotSource_boundaryColumns_n3",
+          "line": 4805
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperGlobalSlotSource_encodedOutOfRange_n3",
+          "line": 4820
+        },
+        {
+          "kind": "def",
+          "name": "robinFunctionValue",
+          "line": 4837
+        },
+        {
+          "kind": "structure",
+          "name": "FunctionOraclePaperRegisters",
+          "line": 4849
+        },
+        {
+          "kind": "def",
+          "name": "functionOraclePaperRegisters",
+          "line": 4864
+        },
+        {
+          "kind": "def",
+          "name": "functionOracleNormalizedValue",
+          "line": 4885
+        },
+        {
+          "kind": "structure",
+          "name": "FunctionOraclePaperImage",
+          "line": 4896
+        },
+        {
+          "kind": "def",
+          "name": "functionOraclePaperImage",
+          "line": 4920
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperImage_inputRegisters_eq",
+          "line": 4961
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperImage_cleanBranchBasisIndex_eq",
+          "line": 4967
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperImage_cleanBranchSystemValue_eq",
+          "line": 4973
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperImage_cleanBranchWorkspaceValue_eq",
+          "line": 4979
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperImage_cleanBranchAmplitude_eq",
+          "line": 4987
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperImage_cleanWorkspaceBranch_eq",
+          "line": 4993
+        },
+        {
+          "kind": "structure",
+          "name": "FunctionOracleExternalAmplitudeSourceContract",
+          "line": 5006
+        },
+        {
+          "kind": "def",
+          "name": "functionOracleExternalAmplitudeSourceContract",
+          "line": 5031
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleExternalAmplitudeSourceContract_sourceAnchor",
+          "line": 5072
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleExternalAmplitudeSourceContract_flags_false",
+          "line": 5076
+        },
+        {
+          "kind": "structure",
+          "name": "FunctionOracleAmplitudeProofRoute",
+          "line": 5098
+        },
+        {
+          "kind": "def",
+          "name": "functionOracleAmplitudeProofRoute",
+          "line": 5125
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_sourceAnchor",
+          "line": 5150
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_sourceFunctionValue",
+          "line": 5155
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_normalizerNf",
+          "line": 5160
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_normalizedAmplitude",
+          "line": 5165
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_paperImage",
+          "line": 5170
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_obligations_reuse_paperImage",
+          "line": 5180
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_externalSourceContract",
+          "line": 5192
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_flags_false",
+          "line": 5208
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_externalSourceAndFlags",
+          "line": 5226
+        },
+        {
+          "kind": "def",
+          "name": "functionOracleOrthogonalEntry",
+          "line": 5269
+        },
+        {
+          "kind": "def",
+          "name": "functionOraclePaperMatrix",
+          "line": 5289
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperMatrix_cleanBranch_entry",
+          "line": 5304
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperMatrix_cleanWorkspace_offBranch_zero",
+          "line": 5314
+        },
+        {
+          "kind": "theorem",
+          "name": "functionOraclePaperMatrix_nonCleanInput_entry",
+          "line": 5324
+        },
+        {
+          "kind": "def",
+          "name": "functionOracleMatrix",
+          "line": 5349
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGate_O_f",
+          "line": 5368
+        },
+        {
+          "kind": "def",
+          "name": "swapOracleMatrix",
+          "line": 5394
+        },
+        {
+          "kind": "def",
+          "name": "swapOracleImage",
+          "line": 5410
+        },
+        {
+          "kind": "def",
+          "name": "swapOracleDiff",
+          "line": 5425
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleImage_eq_xor_diff",
+          "line": 5433
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleMatrix_eq_image",
+          "line": 5440
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGate_SWAP",
+          "line": 5452
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessDaggerMatrix",
+          "line": 5467
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGate_O_D_BS_dagger",
+          "line": 5489
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one",
+          "line": 5499
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage",
+          "line": 5518
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessPostSwapCleanup",
+          "line": 5539
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPostSwapCleanup_of_preimage",
+          "line": 5569
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_O_D_BS_imageFin_entrySafety",
+          "line": 5610
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_O_D_BS_globalSlotSource_entrySafety",
+          "line": 5644
+        },
+        {
+          "kind": "def",
+          "name": "oneTermRobinGateMatrixPlaceholders",
+          "line": 5690
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinPlaceholdersMatch",
+          "line": 5706
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGateMatrixPlaceholders_gateList",
+          "line": 5722
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGateMatrixPlaceholders_unitaryFlags",
+          "line": 5741
+        },
+        {
+          "kind": "def",
+          "name": "indicatorOracleImage",
+          "line": 5757
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleMatrix_eq_image",
+          "line": 5769
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_self_inverse_n1",
+          "line": 5780
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_self_inverse_n3",
+          "line": 5794
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_injective_n1",
+          "line": 5806
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_injective_n3",
+          "line": 5822
+        },
+        {
+          "kind": "theorem",
+          "name": "shiftLeft_land_mask_eq_zero",
+          "line": 5839
+        },
+        {
+          "kind": "theorem",
+          "name": "xor_shift_preserve_low",
+          "line": 5856
+        },
+        {
+          "kind": "theorem",
+          "name": "xor_shift_preserve_shift_low",
+          "line": 5867
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleDiff_lt_two_pow",
+          "line": 5892
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleDiff_shiftRight_eq_zero",
+          "line": 5910
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleDiff_shiftLeft_mask_eq_zero",
+          "line": 5925
+        },
+        {
+          "kind": "theorem",
+          "name": "shiftLeft_lt_two_pow_of_lt",
+          "line": 5938
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleImage_lt_qubitDim",
+          "line": 5956
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleImage_block1_eq_block2",
+          "line": 5987
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleImage_block2_eq_block1",
+          "line": 6015
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleDiff_preserved",
+          "line": 6049
+        },
+        {
+          "kind": "theorem",
+          "name": "xor_two_shifted_masks_cancel",
+          "line": 6058
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleImage_self_inverse",
+          "line": 6075
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleImage_injective",
+          "line": 6086
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleImage_bijective",
+          "line": 6100
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleMatrix_col_has_one",
+          "line": 6123
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleMatrix_col_unique",
+          "line": 6135
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleMatrix_row_has_one",
+          "line": 6145
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleMatrix_row_unique",
+          "line": 6160
+        },
+        {
+          "kind": "theorem",
+          "name": "swapOracleMatrix_is_permutation",
+          "line": 6178
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwap_rowValue_eq_address",
+          "line": 6205
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue",
+          "line": 6222
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt",
+          "line": 6238
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperSpliceODRegister",
+          "line": 6258
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_eq_splice",
+          "line": 6267
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_lowBlock_lt_highBase_of_odValue_lt",
+          "line": 6275
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_mod_lowBase",
+          "line": 6313
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_div_lowBase_mod_eq",
+          "line": 6348
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_rowValue_eq",
+          "line": 6391
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_odRegisterValue_eq",
+          "line": 6411
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_div_highBase_eq_of_odValue_lt",
+          "line": 6423
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt",
+          "line": 6455
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_splice_of_odValue_lt",
+          "line": 6499
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperSpliceODRegister_self",
+          "line": 6514
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperCleanODValue",
+          "line": 6556
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperCleanODValue_paddedZero_eq_zero",
+          "line": 6561
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt",
+          "line": 6570
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperCleanODValue_sparseIndex_eq",
+          "line": 6585
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperCleanInput_odRegisterValue_eq_cleanODValue",
+          "line": 6605
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperImage_injective_on_globalSlotSource",
+          "line": 6679
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow",
+          "line": 6806
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow",
+          "line": 6821
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidate",
+          "line": 6849
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidateChecks",
+          "line": 6866
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource",
+          "line": 6883
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource",
+          "line": 6990
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate",
+          "line": 7039
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange",
+          "line": 7080
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange",
+          "line": 7128
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPostSwapCleanup_of_globalSlotSourceCandidate_noRange",
+          "line": 7170
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_globalSlotSource",
+          "line": 7210
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_globalSlotSource",
+          "line": 7229
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_sparseIndex_eq",
+          "line": 7251
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_globalSlotSource_of_globalSlotSource",
+          "line": 7296
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_unique_on_globalSlotSource",
+          "line": 7344
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessGlobalSlotInverseOnRangeContract",
+          "line": 7403
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract",
+          "line": 7427
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_flags_false",
+          "line": 7469
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_of_globalSlotSource",
+          "line": 7490
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_uniquePreimageBridge",
+          "line": 7525
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerCleanupBridge",
+          "line": 7592
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_cleanupContractMap",
+          "line": 7665
+        },
+        {
+          "kind": "theorem",
+          "name": "defaultBandedSparseAccessPaperContract_cleanupRouteBridge",
+          "line": 7759
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerOffCandidate_zero",
+          "line": 7804
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnCleanup",
+          "line": 7867
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator",
+          "line": 7956
+        },
+        {
+          "kind": "inductive",
+          "name": "BandedSparseAccessCleanupScope",
+          "line": 8043
+        },
+        {
+          "kind": "structure",
+          "name": "BandedSparseAccessCleanupScopeDecision",
+          "line": 8059
+        },
+        {
+          "kind": "def",
+          "name": "bandedSparseAccessCleanupScopeDecision",
+          "line": 8079
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessCleanupScopeDecision_activeGlobalSource",
+          "line": 8100
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessCleanupScopeDecision_priorPDESourceTranscriptGuard",
+          "line": 8131
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessCleanupScopeDecision_fullCleanDomainImageRuleBlocked",
+          "line": 8161
+        },
+        {
+          "kind": "theorem",
+          "name": "defaultBandedSparseAccessPaperContract_cleanupRouteBridge_boundaryColumn_n3",
+          "line": 8200
+        },
+        {
+          "kind": "theorem",
+          "name": "robinIndicatorBitPosition_ge",
+          "line": 8249
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_systemVal_preserved",
+          "line": 8259
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_isBulk_preserved",
+          "line": 8273
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_self_inverse",
+          "line": 8288
+        },
+        {
+          "kind": "theorem",
+          "name": "oneTermRobinGate_U_indic_dagger_selfInverseBridge",
+          "line": 8303
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_injective",
+          "line": 8314
+        },
+        {
+          "kind": "theorem",
+          "name": "robinIndicatorBitPosition_lt_totalQubits",
+          "line": 8325
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_lt",
+          "line": 8336
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleImage_bijective",
+          "line": 8354
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleMatrix_col_has_one",
+          "line": 8377
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleMatrix_col_unique",
+          "line": 8389
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleMatrix_row_has_one",
+          "line": 8402
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleMatrix_row_unique",
+          "line": 8420
+        },
+        {
+          "kind": "theorem",
+          "name": "indicatorOracleMatrix_is_permutation",
+          "line": 8436
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/Examples/RobinHeat.lean",
+      "count": 12,
+      "declarations": [
+        {
+          "kind": "def",
+          "name": "fourthOrderSecondDerivative",
+          "line": 18
+        },
+        {
+          "kind": "def",
+          "name": "centralBulkEntries",
+          "line": 24
+        },
+        {
+          "kind": "def",
+          "name": "A1dx",
+          "line": 33
+        },
+        {
+          "kind": "def",
+          "name": "B1dx",
+          "line": 34
+        },
+        {
+          "kind": "def",
+          "name": "leftBoundaryRow0",
+          "line": 37
+        },
+        {
+          "kind": "def",
+          "name": "leftBoundaryRow1",
+          "line": 45
+        },
+        {
+          "kind": "def",
+          "name": "rightBoundaryRowNm2",
+          "line": 54
+        },
+        {
+          "kind": "def",
+          "name": "rightBoundaryRowNm1",
+          "line": 63
+        },
+        {
+          "kind": "def",
+          "name": "robinWindow",
+          "line": 70
+        },
+        {
+          "kind": "def",
+          "name": "oneTermParameters",
+          "line": 74
+        },
+        {
+          "kind": "theorem",
+          "name": "fourthOrderStencilWidth",
+          "line": 80
+        },
+        {
+          "kind": "theorem",
+          "name": "robinHeatAncillas",
+          "line": 83
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/Papers/GHL2025.lean",
+      "count": 0,
+      "declarations": []
+    },
+    {
+      "file": "QuantumBlockEncoding/TechnicalLemmas.lean",
+      "count": 0,
+      "declarations": []
+    },
+    {
+      "file": "QuantumBlockEncoding/Literature.lean",
+      "count": 6,
+      "declarations": [
+        {
+          "kind": "inductive",
+          "name": "ImplementationStatus",
+          "line": 11
+        },
+        {
+          "kind": "inductive",
+          "name": "PaperRole",
+          "line": 17
+        },
+        {
+          "kind": "structure",
+          "name": "PaperEntry",
+          "line": 27
+        },
+        {
+          "kind": "def",
+          "name": "literature",
+          "line": 39
+        },
+        {
+          "kind": "def",
+          "name": "literatureCount",
+          "line": 219
+        },
+        {
+          "kind": "def",
+          "name": "primaryPapers",
+          "line": 221
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/OpenProblems.lean",
+      "count": 4,
+      "declarations": [
+        {
+          "kind": "inductive",
+          "name": "ProblemStatus",
+          "line": 13
+        },
+        {
+          "kind": "structure",
+          "name": "OpenProblem",
+          "line": 19
+        },
+        {
+          "kind": "def",
+          "name": "openProblems",
+          "line": 28
+        },
+        {
+          "kind": "def",
+          "name": "problemCount",
+          "line": 88
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/Automation.lean",
+      "count": 39,
+      "declarations": [
+        {
+          "kind": "inductive",
+          "name": "AutomationStage",
+          "line": 12
+        },
+        {
+          "kind": "inductive",
+          "name": "TaskKind",
+          "line": 22
+        },
+        {
+          "kind": "inductive",
+          "name": "TaskStatus",
+          "line": 33
+        },
+        {
+          "kind": "inductive",
+          "name": "ArtifactLanguage",
+          "line": 41
+        },
+        {
+          "kind": "inductive",
+          "name": "AgentRole",
+          "line": 49
+        },
+        {
+          "kind": "inductive",
+          "name": "AgentBackendKind",
+          "line": 56
+        },
+        {
+          "kind": "inductive",
+          "name": "TrialKind",
+          "line": 67
+        },
+        {
+          "kind": "inductive",
+          "name": "TrialStatus",
+          "line": 77
+        },
+        {
+          "kind": "structure",
+          "name": "ArtifactSpec",
+          "line": 87
+        },
+        {
+          "kind": "structure",
+          "name": "AcceptanceGate",
+          "line": 94
+        },
+        {
+          "kind": "structure",
+          "name": "AutomationTask",
+          "line": 101
+        },
+        {
+          "kind": "structure",
+          "name": "AgentContract",
+          "line": 113
+        },
+        {
+          "kind": "structure",
+          "name": "TrialRecordSpec",
+          "line": 120
+        },
+        {
+          "kind": "inductive",
+          "name": "PostCycleArtifactKind",
+          "line": 127
+        },
+        {
+          "kind": "structure",
+          "name": "PostCycleArtifactSpec",
+          "line": 135
+        },
+        {
+          "kind": "structure",
+          "name": "WorkflowCheckSpec",
+          "line": 142
+        },
+        {
+          "kind": "inductive",
+          "name": "CandidatePool",
+          "line": 149
+        },
+        {
+          "kind": "inductive",
+          "name": "LexElimSchedulerMode",
+          "line": 154
+        },
+        {
+          "kind": "inductive",
+          "name": "LexObjectiveClass",
+          "line": 159
+        },
+        {
+          "kind": "structure",
+          "name": "LexObjectiveSpec",
+          "line": 168
+        },
+        {
+          "kind": "structure",
+          "name": "LexElimSchedulerSpec",
+          "line": 176
+        },
+        {
+          "kind": "structure",
+          "name": "AgentPanelSizeSpec",
+          "line": 185
+        },
+        {
+          "kind": "structure",
+          "name": "AgentBackendProfileSpec",
+          "line": 195
+        },
+        {
+          "kind": "structure",
+          "name": "WorkflowInvariantSpec",
+          "line": 203
+        },
+        {
+          "kind": "def",
+          "name": "leanBuildGate",
+          "line": 211
+        },
+        {
+          "kind": "def",
+          "name": "noSorryGate",
+          "line": 217
+        },
+        {
+          "kind": "def",
+          "name": "defaultGates",
+          "line": 223
+        },
+        {
+          "kind": "def",
+          "name": "trialRecordSpec",
+          "line": 226
+        },
+        {
+          "kind": "def",
+          "name": "postCycleArtifactSpecs",
+          "line": 243
+        },
+        {
+          "kind": "def",
+          "name": "workflowCheckSpecs",
+          "line": 271
+        },
+        {
+          "kind": "def",
+          "name": "blockEncodingLexObjectiveSpecs",
+          "line": 287
+        },
+        {
+          "kind": "def",
+          "name": "lexElimSchedulerSpecs",
+          "line": 333
+        },
+        {
+          "kind": "def",
+          "name": "agentPanelSizeSpecs",
+          "line": 353
+        },
+        {
+          "kind": "def",
+          "name": "agentBackendProfileSpecs",
+          "line": 393
+        },
+        {
+          "kind": "def",
+          "name": "workflowInvariantSpecs",
+          "line": 493
+        },
+        {
+          "kind": "def",
+          "name": "threeLayerAgentContracts",
+          "line": 518
+        },
+        {
+          "kind": "def",
+          "name": "conversionArtifacts",
+          "line": 546
+        },
+        {
+          "kind": "def",
+          "name": "seedAutomationTasks",
+          "line": 568
+        },
+        {
+          "kind": "def",
+          "name": "automationTaskCount",
+          "line": 605
+        }
+      ]
+    }
+  ]
+}

@@ -54,7 +54,7 @@ targets.
 
 ## Layered Architecture
 
-| Layer | Similar pattern | QBE use |
+| Layer | Similar pattern | QBE counterpart design |
 |---|---|---|
 | Plain-file substrate | ARIS | Skills, manifests, task files, conversion windows, wiki, reviews, and run logs. |
 | Iterative controller | Learning Beyond Gradients | Upper/middle/lower/reviewer cycles, trial memory, failure compression, and proof-system maintenance. |
@@ -62,6 +62,8 @@ targets.
 | Lexicographic scheduler | Xue--Wan--Lu--Zhang 2026 | Active-set filtering with hard Lean gates, necessary diagnostics, asymptotic tiers, and `(gateCount, depth, auxiliaryQubits, oracleCalls)` in priority order. |
 | Lean harness control | LeanMarathon | Proof-blueprint snapshots, target review, dynamic leaves, refiner-style repair, and deterministic gates. |
 | Proof diagnostics | MathCode | Hidden-assumption scans, theorem-reuse memory, and proof-attempt diagnostics. |
+| Failure-trace memory | EAGER | Compact failure packets with scope, root cause, rejected route, and repair route. |
+| Decomposed judge | MADE | Requirement-vector reviewer feedback for candidate mutation and route scheduling. |
 
 QBE's advantage is the domain boundary: each layer is specialized to
 gate-level quantum block-encoding work rather than generic empirical research,

@@ -507,75 +507,91 @@ def module_node(ax, x, y, w, h, title, subtitle="", fc="#FFFFFF", ec="#94A3B8", 
 
 
 def draw_abeis_lean_leaf_module_graph():
-    fig, ax = setup(18.0, 11.0)
-    label(ax, 4, 96, "ABEIS Lean leaf module graph", fs=23, weight="bold", color=NAVY, ha="left")
+    fig, ax = setup(24.0, 16.0)
+    label(ax, 3.5, 97.2, "ABEIS Lean leaf module graph", fs=24, weight="bold", color=NAVY, ha="left")
     label(
         ax,
-        4,
-        92.3,
-        "Compiled proof leaves are organized by file and proof role.  Generic leaves are written in a Mathlib-quality style; external quantum Lean projects are references.",
-        fs=11.4,
+        3.5,
+        94.3,
+        "Quantum circuit construction is centered in blue/green.  Gray nodes are reference surfaces kept in memory; they are not hidden dependencies.",
+        fs=10.8,
         color=MUTED,
         ha="left",
     )
 
-    # Foundation layer.
-    module_node(ax, 5, 82, 16, 6, "Core.lean", "Matrix, Resource,\ncore data")
-    module_node(ax, 25, 82, 17, 6, "Resources.lean", "gate count, depth,\nschedules")
-    module_node(ax, 46, 82, 17, 6, "Circuit.lean", "gate / circuit\nsyntax")
-    module_node(ax, 67, 82, 20, 6, "BlockEncoding.lean", "target, candidate,\nverified records")
-    arrow(ax, 21.2, 85, 24.5, 85, color="#64748B")
-    arrow(ax, 42.2, 85, 45.5, 85, color="#64748B")
-    arrow(ax, 63.2, 85, 66.5, 85, color="#64748B")
+    # External/reference surface.  These are intentionally gray: ABEIS records
+    # them as searchable memories and style references, not as hidden imports.
+    group_box(ax, 3.0, 79.0, 94.0, 12.0, "", "#CBD5E1", "#FFFFFF", title_fc="#475569")
+    label(ax, 5.2, 89.0, "Reference surfaces kept in memory", fs=11.0, weight="bold", color="#475569", ha="left")
+    ref_fc, ref_ec = "#F8FAFC", "#94A3B8"
+    module_node(ax, 5.0, 82.0, 12.5, 5.5, "Mathlib", "Matrix, Finset,\nFintype, BigOperators", fc=ref_fc, ec=ref_ec, fs=8.8, subfs=6.3)
+    module_node(ax, 20.0, 82.0, 17.0, 5.5, "quantum-computing-lean", "Matrix / States\nGates.Basic / Actions\nProjectors / Measurement", fc=ref_fc, ec=ref_ec, fs=8.4, subfs=5.8)
+    module_node(ax, 40.0, 82.0, 18.0, 5.5, "Lean-QuantumInfo", "Braket / Unitary / CPTP\nPOVM / Entropy / Distance\nForMathlib.Matrix", fc=ref_fc, ec=ref_ec, fs=8.4, subfs=5.8)
+    module_node(ax, 61.0, 82.0, 17.0, 5.5, "lean-quantum", "QuantumState / Channel\nNaimark extension\nTrace inequalities", fc=ref_fc, ec=ref_ec, fs=8.4, subfs=5.8)
+    module_node(ax, 81.0, 82.0, 12.5, 5.5, "Block-encoding texts", "Lin notes, GSLW,\nLCU, QSVT", fc=ref_fc, ec=ref_ec, fs=8.4, subfs=6.0)
 
-    # Semantic bridge.
-    module_node(ax, 33, 70, 29, 7.0, "CircuitSemantics.lean", "evalWith path lemmas, block extraction,\nprojection/backend statements", fc=BLUE_L, ec=BLUE, fs=11.0, subfs=7.4)
-    arrow(ax, 54.5, 82, 47.5, 77.2, color=BLUE)
-    arrow(ax, 77, 82, 58, 77.2, color=BLUE)
+    # ABEIS public file tree and semantic bridge.
+    group_box(ax, 3.0, 62.5, 94.0, 13.0, "", BLUE, "#F8FBFF")
+    label(ax, 5.2, 73.4, "ABEIS file tree: quantum-circuit and block-encoding core", fs=11.0, weight="bold", color=BLUE, ha="left")
+    module_node(ax, 5.0, 65.5, 12.0, 4.8, "Core.lean", "Coeff trees, matrices,\nstencil data", fc=BLUE_L, ec=BLUE, fs=8.8, subfs=6.0)
+    module_node(ax, 19.0, 65.5, 12.0, 4.8, "Resources.lean", "gates, depth,\nasymptotic resources", fc=BLUE_L, ec=BLUE, fs=8.8, subfs=6.0)
+    module_node(ax, 33.0, 65.5, 12.0, 4.8, "Circuit.lean", "gate syntax,\ncircuit syntax", fc=BLUE_L, ec=BLUE, fs=8.8, subfs=6.0)
+    module_node(ax, 47.0, 65.5, 16.0, 4.8, "BlockEncoding.lean", "targets, candidates,\nverified / approximate records", fc=BLUE_L, ec=BLUE, fs=8.8, subfs=6.0)
+    module_node(ax, 66.0, 65.5, 27.0, 4.8, "CircuitSemantics.lean", "evalWith path lemmas; block extraction; projection/backend contracts;\nsignal-system indices", fc=BLUE_L, ec=BLUE, fs=8.7, subfs=5.8)
+    for x1, x2 in [(17.2, 18.7), (31.2, 32.7), (45.2, 46.7), (63.2, 65.7)]:
+        arrow(ax, x1, 67.9, x2, 67.9, color=BLUE, lw=1.8)
+    for x in [11.0, 25.0, 39.0, 55.0, 79.5]:
+        arrow(ax, x, 79.0, x, 73.0, color="#64748B", lw=1.3, dashed=True)
 
-    # Classics big group.
-    group_box(ax, 5, 35, 90, 27, "", BLUE, "#F8FBFF")
-    label(ax, 7, 59.2, "BlockEncodingClassics.lean: reusable proof weapons", fs=14, weight="bold", color=BLUE, ha="left")
-    module_node(ax, 9, 51, 18, 5.8, "Clean block", "cleanBlockBy_*,\nproductIndex", fc=BLUE_L, ec=BLUE)
-    module_node(ax, 30, 51, 18, 5.8, "Permutation", "permMatrix,\northogonality", fc=BLUE_L, ec=BLUE)
-    module_node(ax, 51, 51, 18, 5.8, "Sparse access", "one-sparse,\nrow/column delta", fc=BLUE_L, ec=BLUE)
-    module_node(ax, 72, 51, 18, 5.8, "LCU/Product", "weighted sums,\nproduct bridges", fc=BLUE_L, ec=BLUE)
-    module_node(ax, 15, 41, 19, 5.8, "Dilation/Hermitian", "scalar dilation,\nsymmetry")
-    module_node(ax, 40.5, 41, 19, 5.8, "Qubitization/QSVT", "Chebyshev,\nconsumer contracts")
-    module_node(ax, 66, 41, 19, 5.8, "Approximate BE", "epsilon-zero\nincumbents")
-    arrow(ax, 47.5, 70, 47.5, 62.4, color=BLUE)
-    for x1, x2 in [(27.2, 29.6), (48.2, 50.6), (69.2, 71.6)]:
-        arrow(ax, x1, 53.9, x2, 53.9, color=BLUE, lw=2.0)
-    arrow(ax, 39, 51, 24, 47.0, color=GREEN, rad=0.15)
-    arrow(ax, 60, 51, 50, 47.0, color=GREEN, rad=0.10)
-    arrow(ax, 81, 51, 75, 47.0, color=GREEN, rad=0.08)
+    # Detailed proof-weapon layer.
+    group_box(ax, 3.0, 26.5, 94.0, 32.5, "", BLUE, "#F8FBFF")
+    label(ax, 5.2, 56.8, "BlockEncodingClassics.lean: compiled reusable proof weapons", fs=11.0, weight="bold", color=BLUE, ha="left")
+    bx, by, bw, bh = 5.0, 49.3, 14.6, 5.2
+    leaves = [
+        (bx, by, "Clean blocks", "cleanBlockBy_permMatrix_entry\ncleanBlockProduct_eq_target"),
+        (bx + 16.0, by, "Permutation", "permMatrix_columnInner_of_injective\npermMatrix_isRationalOrthogonal_of_bijective"),
+        (bx + 32.0, by, "One-sparse", "oneSparseMatrix_entry_if\noneSparse_from_support"),
+        (bx + 48.0, by, "Sparse access", "sparseColumnCleanEntry_unique_slot\nrowColumnSparseDeltaEntry"),
+        (bx + 64.0, by, "Value oracle", "ValueToAmplitudeContract.correct\ncompute-rotate-uncompute contract"),
+        (bx, by - 8.0, "LCU", "oneTermLCU_cleanBlock\nLCUCertificate.correct"),
+        (bx + 16.0, by - 8.0, "Weighted sums", "weightedSum2_entry\ntwoTermLCUCertificate_cleanBlock_entry"),
+        (bx + 32.0, by - 8.0, "Product / tensor", "matrix_mul_congr_pointwise\nproductExactCleanBlockCertificate"),
+        (bx + 48.0, by - 8.0, "Resources", "tensorResourceCost_*\nproductResourceCost_*"),
+        (bx + 64.0, by - 8.0, "Approximate BE", "ZeroErrorApproxCleanBlock\nexactAsZeroErrorApproxCleanBlock_bound"),
+        (bx, by - 16.0, "Dilation", "scalarDilation_cleanEntry\nscalarDilation_rows*_orthogonal"),
+        (bx + 16.0, by - 16.0, "Hermitian", "IsSymmetric\ncleanBlockBy_symmetric_of_symmetric"),
+        (bx + 32.0, by - 16.0, "Chebyshev", "chebyshevT_succ_succ\nchebyshevT_three/four_recurrence"),
+        (bx + 48.0, by - 16.0, "QSVT consumer", "QubitizationChebyshevContract\nQSVTConsumerContract"),
+        (bx + 64.0, by - 16.0, "Exact package", "ExactCleanBlock\npartialPermutationCertificate"),
+    ]
+    for x, y, title, sub in leaves:
+        module_node(ax, x, y, bw, bh, title, sub, fc=BLUE_L, ec=BLUE, fs=7.7, subfs=4.9)
+    # Readability arrows: entries -> support -> arithmetic -> consumers.
+    for y in [53.3, 45.3, 37.3]:
+        for x1 in [19.8, 35.8, 51.8, 67.8]:
+            arrow(ax, x1, y, x1 + 1.0, y, color=BLUE, lw=1.2, alpha=0.8)
+    arrow(ax, 79.5, 62.5, 79.5, 59.2, color=BLUE, lw=1.8)
 
-    # Applications and wrappers.
-    module_node(ax, 6, 23, 17, 6.2, "MainCase.lean", "transfer operator\ncertificates", fc=GREEN_L, ec=GREEN)
-    module_node(ax, 26, 23, 17, 6.2, "CubicStatePreparation.lean", "formula-oracle\nroutes", fc=GREEN_L, ec=GREEN)
-    module_node(ax, 46, 23, 17, 6.2, "GHL2025.lean /\nRobinHeat.lean", "paper baselines\nand wrappers", fc=GREEN_L, ec=GREEN, fs=9.5)
-    module_node(ax, 66, 23, 17, 6.2, "TechnicalLemmas.lean /\nPapers/*.lean", "re-export and\npaper interfaces", fc=GREEN_L, ec=GREEN, fs=9.5)
-    module_node(ax, 29, 12, 18, 6.2, "Executable exports", "Qiskit / QASM\npost-Lean checks", fc=AMBER_L, ec=AMBER)
-    module_node(ax, 53, 12, 18, 6.2, "Research wiki", "cards, proof network,\nMathlib hits", fc=AMBER_L, ec=AMBER)
+    # Case-study and export consumers.
+    group_box(ax, 3.0, 8.0, 94.0, 15.0, "", GREEN, "#F8FFF9")
+    label(ax, 5.2, 21.0, "Consumers: certified examples, paper wrappers, exports, and memory", fs=11.0, weight="bold", color=GREEN, ha="left")
+    module_node(ax, 5.0, 14.0, 15.0, 5.2, "MainCase.lean", "Pro/cold candidates\npermutation proofs\nresource tuples", fc=GREEN_L, ec=GREEN, fs=8.2, subfs=5.4)
+    module_node(ax, 22.5, 14.0, 17.0, 5.2, "CubicStatePreparation.lean", "diagonal cubic operator\namplitude oracle contracts\nexpanded arithmetic backend", fc=GREEN_L, ec=GREEN, fs=7.7, subfs=5.0)
+    module_node(ax, 42.0, 14.0, 14.5, 5.2, "GHL2025 / RobinHeat", "paper benchmark wrappers\nRobin boundary ledgers", fc=GREEN_L, ec=GREEN, fs=7.9, subfs=5.2)
+    module_node(ax, 59.0, 14.0, 14.5, 5.2, "TechnicalLemmas /\nPapers/*.lean", "re-export surfaces\npaper interfaces", fc=GREEN_L, ec=GREEN, fs=7.7, subfs=5.0)
+    module_node(ax, 76.0, 14.0, 9.5, 5.2, "Exports", "Qiskit\nQASM", fc=AMBER_L, ec=AMBER, fs=8.0, subfs=5.3)
+    module_node(ax, 87.0, 14.0, 8.0, 5.2, "Memory", "cards\nMathlib hits", fc=AMBER_L, ec=AMBER, fs=8.0, subfs=5.2)
 
-    for x in [14.5, 34.5, 54.5, 74.5]:
-        arrow(ax, x, 35, x, 29.6, color=GREEN)
-    arrow(ax, 14.5, 23, 38, 18.5, color=AMBER, rad=-0.10)
-    arrow(ax, 34.5, 23, 38, 18.5, color=AMBER)
-    arrow(ax, 54.5, 23, 62, 18.5, color=AMBER)
-    arrow(ax, 74.5, 23, 62, 18.5, color=AMBER, rad=0.10)
+    for x in [12.5, 31.0, 49.3, 66.3, 80.8, 91.0]:
+        arrow(ax, x, 26.5, x, 19.5, color=GREEN, lw=1.6)
+    arrow(ax, 84.5, 16.6, 87.0, 16.6, color=AMBER, lw=1.4)
 
-    # Reference surface strip.
-    group_box(ax, 5, 3.2, 90, 5.8, "", "#CBD5E1", "#FFFFFF")
-    label(ax, 7, 7.1, "Reference surfaces, not hidden dependencies:", fs=10.4, weight="bold", color="#475569", ha="left")
-    label(
-        ax,
-        48,
-        5.0,
-        "Mathlib search cards  |  quantum-computing-lean gate/action style  |  Lean-QuantumInfo finite quantum style  |  lean-quantum operator/channel style",
-        fs=9.0,
-        color=MUTED,
-    )
+    # Failure/judge memory is not a Lean theorem layer, but it tells the agents
+    # how to avoid repeating bad proof routes.
+    module_node(ax, 5.0, 2.0, 26.0, 4.0, "Failure-memory / reviewer judge", "fine/coarse failure packets; decomposed requirement vectors", fc=RED_L, ec=RED, fs=8.1, subfs=5.3)
+    module_node(ax, 34.0, 2.0, 28.0, 4.0, "Complete declaration index", "research-wiki/block-encoding-library/compiled-lean-leaf-index.md", fc=AMBER_L, ec=AMBER, fs=8.1, subfs=5.3)
+    module_node(ax, 65.0, 2.0, 30.0, 4.0, "QSVT hard-hint route", "O0 diagonal/value BE -> QSVT side conditions -> x^3 BE contract", fc=PURPLE_L, ec=PURPLE, fs=8.1, subfs=5.3)
+    arrow(ax, 89.0, 8.0, 80.5, 6.2, color=PURPLE, lw=1.3, dashed=True, rad=-0.1)
 
     for path in [
         ARTICLE_FIG / "abeis_lean_leaf_module_graph.png",

@@ -23,6 +23,7 @@ population diversity.
 | product or tensor of encoded blocks | arithmetic product/tensor | product of normalizers or tensor scale | matrix multiplication/tensor entry bridge | component certificates are missing |
 | dense contraction with no better structure | dilation fallback | contraction scaling | 2-by-2 dilation orthogonality | efficient circuit is required but no implementation is supplied |
 | polynomial transform/inverse/sign/filter | QSVT/qubitization consumer | inherited from input BE and polynomial theorem | consume a proved BE | no input BE has been certified |
+| diagonal grid value then polynomial, e.g. $x_j \mapsto x_j^3$ | first prove diagonal/value BE, then QSVT consumer | input normalizer plus polynomial contract | `O_0 BE -> QSVT side conditions -> polynomial BE` | the input BE is unproved or QSVT is being used to hide the original oracle |
 
 After at least one route is made precise, certified candidates are ranked
 lexicographically at the same semantic tier:
@@ -147,6 +148,22 @@ Cards:
 - `BE.HermitianBlockEncoding`
 - `BE.Qubitization.Chebyshev`
 - `BE.QSVT.ConsumerContract`
+
+For tasks where the useful hint is "construct the block encoding of
+$O_0=\sum_j x_j |j\rangle\langle j|$ and then use QSVT for $x^3$", read
+[`qsvt-hard-hint-route.md`](qsvt-hard-hint-route.md).  That card prevents the
+harness from wasting a cycle rediscovering the proof-DAG shape:
+
+```text
+diagonal/value BE for O_0
+-> QSVT admissibility of P(x)=x^3
+-> QSVT consumer contract
+-> BE of O_0^3
+```
+
+If QSVT is only a contract, the report must say so.  Do not plot the final
+polynomial candidate as Lean-certified unless the QSVT node has a compiled
+Lean certificate or the task explicitly accepts a contract skeleton.
 
 ## Route 10: Approximate Dense / Structured Circuits
 

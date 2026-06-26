@@ -62,6 +62,23 @@ This project also references:
     object between natural-language insights, Lean proof leaves, and human
     proof exports.  QBE does not use Visored as an acceptance gate and does not
     reuse Visored source code.
+- Lingzhe Zhang, Tong Jia, Mingyu Wang, Weijie Hong, Chiming Duan, Minghua He,
+  Rongqian Wang, Xi Peng, Meiling Wang, Gong Zhang, Renhai Chen, Ying Li,
+  EAGER: Efficient Failure Management for Multi-Agent Systems with Reasoning
+  Trace Representation
+  - Paper: https://arxiv.org/abs/2603.21522
+  - Role: similar pattern for representing, retrieving, and reusing failure
+    traces in multi-agent systems.
+  - QBE adaptation: `failure-memory/` packets that separate fine proof-leaf
+    failures from coarse route/source failures.  QBE does not use EAGER as a
+    verifier and does not reuse source code.
+- Zhe Zhao, Yuheng Yang, Haibin Wen, Xiaojie Qiu, Zaixi Zhang, Qingfu Zhang,
+  Evolution without an Oracle: Driving Effective Evolution with LLM Judges
+  - Paper: https://arxiv.org/abs/2511.19489
+  - Role: similar pattern for decomposed LLM judging during evolutionary
+    search without a single objective oracle.
+  - QBE adaptation: reviewer requirement vectors for scheduling and mutation.
+    Lean remains the only hard acceptance gate for theorem claims.
 - Yuanhe Zhang, Yuekai Sun, Taiji Suzuki, Jason D. Lee, Fanghui Liu,
   LeanMarathon: Toward Reliable AI Co-Mathematicians through Long-Horizon Lean
   Autoformalization

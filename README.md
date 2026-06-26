@@ -153,6 +153,12 @@ The detailed proof-DAG map is in
 [`proof-network.md`](research-wiki/block-encoding-library/proof-network.md);
 the module/leaf graph ledger is in
 [`lean-leaf-module-graph.md`](research-wiki/block-encoding-library/lean-leaf-module-graph.md);
+the complete generated Lean declaration index is in
+[`compiled-lean-leaf-index.md`](research-wiki/block-encoding-library/compiled-lean-leaf-index.md)
+and
+[`compiled-lean-leaf-index.json`](research-wiki/block-encoding-library/compiled-lean-leaf-index.json);
+the QSVT hint route is in
+[`qsvt-hard-hint-route.md`](research-wiki/block-encoding-library/qsvt-hard-hint-route.md);
 the quantum Lean reference atlas is in
 [`quantum-lean-leaf-atlas.md`](research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md);
 Mathlib hits that should be reused or adapted are recorded under
@@ -527,6 +533,7 @@ Project layout:
   certificates.
 - `tasks/`: operator or paper-benchmark contracts.
 - `candidate-populations/`: Lean-certified candidates and rejected routes.
+- `failure-memory/`: compact typed failure packets and rejected-route lessons.
 - `research-wiki/block-encoding-library/`: reusable construction memory cards
   and route selector for partial permutations, LCU, product/tensor arithmetic,
   sparse-access, dilation, QSVT consumers, and approximate dense/structured
@@ -552,6 +559,8 @@ gate-level quantum block-encoding certificates.
 | [MathCode][mathcode] | Proof diagnostics and theorem reuse. | Hidden-assumption scans and reusable proof-attempt memory. |
 | [Visored][visored-paper], [repo][visored-repo] | Controlled-natural-language proof surface with localized diagnostics and optional Lean emission. | Structured proof packets as a two-way exchange format between natural-language construction, Lean proof work, and human proof exports. |
 | [Lean4Agent][lean4agent-paper] | Workflow/trajectory verification. | Lean-side process contracts in `Automation.lean`. |
+| [EAGER-style failure traces][eager-paper] | Reasoning-trace failure representation and failure-scope retrieval. | `failure-memory/` packets that distinguish fine proof-leaf failures from coarse route/source failures. |
+| [MADE-style judge evolution][made-paper] | Decomposed requirement judging for evolutionary search. | Reviewer vectors over target, unitarity, clean block, normalizer/error, resources, proof reuse, source faithfulness, and exportability. |
 | [quantum-computing-lean][quantum-computing-lean], [Lean-QuantumInfo][lean-quantuminfo], [lean-quantum][lean-quantum] | Quantum formalization references: finite matrices, states, gates, projectors, quantum-information semantics. | Leaf-atlas references for small gate/action lemmas, clean-projector APIs, and future semantic alignment. |
 | [QASM-Eval][qasm-eval], [Qiskit QuantumKatas][qiskit-quantumkatas] | Typed circuit/test feedback and executable Qiskit/QASM checks. | ABEIS distinguishes inspired feedback, optional exact finite Qiskit checks, and Lean-certified theorem closure. |
 | [QUASAR][quasar-paper], [AI-Mandel][ai-mandel-paper] | Tool-feedback loops for quantum artifacts. | Search signals only; not proof certificates. |
@@ -607,6 +616,8 @@ approximate dense/structured synthesis.
 [llm4ad-next]: https://github.com/Optima-CityU/LLM4AD_Next
 [lexelim-bandits]: https://xueb1996.github.io/pdf/AAAI-2026-Xue.pdf
 [lean4agent-paper]: https://arxiv.org/abs/2606.06523
+[eager-paper]: https://arxiv.org/abs/2603.21522
+[made-paper]: https://arxiv.org/abs/2511.19489
 [quasar-paper]: https://arxiv.org/abs/2510.00967
 [qasm-eval]: https://github.com/fuzhenxiao/QASM-Eval
 [qiskit-quantumkatas]: https://github.com/qiskit-community/Qiskit-QuantumKatas

@@ -73,6 +73,20 @@ paper or repository.
   QBE adapts this only to process contracts and future log-invariant checks;
   it does not treat workflow verification as a substitute for the quantum
   theorem.
+- Lingzhe Zhang, Tong Jia, Mingyu Wang, Weijie Hong, Chiming Duan, Minghua He,
+  Rongqian Wang, Xi Peng, Meiling Wang, Gong Zhang, Renhai Chen, Ying Li,
+  [EAGER: Efficient Failure Management for Multi-Agent Systems with Reasoning Trace Representation](https://arxiv.org/abs/2603.21522).
+  Similar pattern studied for representing and retrieving failures from
+  reasoning traces.  QBE's counterpart design is `failure-memory/`: small
+  reusable packets with failure scope, root cause, rejected route, repair
+  route, and reusable lesson.  QBE does not use EAGER as a correctness gate.
+- Zhe Zhao, Yuheng Yang, Haibin Wen, Xiaojie Qiu, Zaixi Zhang, Qingfu Zhang,
+  [Evolution without an Oracle: Driving Effective Evolution with LLM Judges](https://arxiv.org/abs/2511.19489).
+  Similar pattern studied for decomposed LLM judging during evolutionary
+  search.  QBE's counterpart design is reviewer requirement vectors over
+  target contract, unitarity, clean block, normalizer/error, resources, proof
+  reuse, source faithfulness, and exportability.  Lean remains the hard
+  acceptance gate.
 
 ## Layered Design Summary
 
@@ -92,6 +106,9 @@ QBE combines these references as a layered system:
   search, Lean proof search, and human proof exports.
 - LeanMarathon-like harness control: proof-blueprint snapshots, target review,
   dynamic proof leaves, refiner-style repair, and deterministic gates.
+- EAGER/MADE-like diagnostics: typed failure packets and decomposed reviewer
+  requirement vectors, used only for scheduling and mutation before Lean
+  promotion.
 
 QBE's domain-specific advantage is that all of those automation patterns are
 specialized to gate-level quantum oracle and block-encoding proofs, where

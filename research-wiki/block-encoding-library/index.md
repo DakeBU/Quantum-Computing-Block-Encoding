@@ -13,8 +13,8 @@ Lean or natural language.
 2. Pick one or more cards in `cards/`.
 3. Instantiate the card as a proof blueprint: target, unitary, clean block,
    unitarity, resource tuple, and proof-DAG leaves.
-4. Check `proof-network.md` for already compiled Lean leaves shared by other
-   cards.
+4. Check `compiled-lean-leaf-index.md` and `proof-network.md` for already
+   compiled Lean leaves shared by other cards.
 5. Record the cited theorem or external contract in `research-wiki/cited-results/`.
 6. Promote a construction to the certified population only after Lean proves it.
 
@@ -24,7 +24,10 @@ For expert block-encoding work, read the files in this order:
 lin-2201-08309.md        textbook backbone and intuition
 route-selector.md        access-model and normalizer decision matrix
 proof-network.md         typed edges between reusable proof leaves
+compiled-lean-leaf-index.md/json
+                         complete generated declaration ledger
 lean-roadmap.md          formalized / contract-only / obligation status
+qsvt-hard-hint-route.md  fast path for diagonal-grid polynomial hints
 cards/<route>.md         task-specific construction template
 paper-notes/block-encoding-library/classic_leaves.tex
                          human-facing LaTeX proof templates
@@ -85,3 +88,9 @@ until it has either a Lean declaration or an explicit external-contract status.
 
 `proof-network.md` records which card nodes now share compiled Lean declarations
 in `QuantumBlockEncoding/BlockEncodingClassics.lean`.
+`compiled-lean-leaf-index.md` and `compiled-lean-leaf-index.json` list all
+indexed ABEIS declarations by file for fast agent retrieval.
+
+For hints of the form "first encode \(O_0=\sum_j x_j |j\rangle\langle j|\),
+then use QSVT for \(x^3\)", read `qsvt-hard-hint-route.md` before assigning
+lower work.
