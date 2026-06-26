@@ -55,8 +55,16 @@ LBG_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "learning-beyond-gradients"
 LEANMARATHON_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "LeanMarathon"
 LEAN_QUANTUM_INFO_LOCAL_REFERENCE = OUTER_REPOS_QUANTUM_ROOT / "Lean-QuantumInfo"
 LEAN_QUANTUM_LOCAL_REFERENCE = OUTER_REPOS_QUANTUM_ROOT / "lean-quantum"
+QUANTUM_COMPUTING_LEAN_LOCAL_REFERENCE = OUTER_REPOS_QUANTUM_ROOT / "quantum-computing-lean"
 MATHCODE_LOCAL_REFERENCE = OUTER_REPOS_AUTOMATION_ROOT / "mathcode"
 OPTIMIZATION_PROBLEMS_LOCAL_REFERENCE = OUTER_REPOS_MATH_ROOT / "optimizationproblems"
+MATHLIB_LOCAL_REFERENCE_CANDIDATES = [
+    ROOT / ".lake" / "packages" / "mathlib" / "Mathlib",
+    REPOS_ROOT / "mathlib4" / "Mathlib",
+    REPOS_ROOT / "outer_repos" / "graph_theory" / "mathlib4" / "Mathlib",
+    REPOS_ROOT / "outer_repos" / "graph_np_theory" / "mathlib4" / "Mathlib",
+    REPOS_ROOT / "DeepSeek-Prover-V1.5" / "mathlib4" / "Mathlib",
+]
 LEANMARATHON_PDF = OUTER_PAPERS_AUTOMATION_ROOT / "LeanMarathon-2606.05400.pdf"
 STATE_DIR = ROOT / ".qbe"
 STATE_FILE = STATE_DIR / "state.json"
@@ -128,6 +136,7 @@ WORK_DIRS = [
     "research-wiki/experiments",
     "research-wiki/graph",
     "research-wiki/cited-results",
+    "research-wiki/mathlib-lemmas",
     "research-wiki/technical-lemmas",
     "research-wiki/paper-contributions",
     "research-wiki/paper-contributions/GHL2025",
@@ -727,6 +736,13 @@ Draft open problems before they are promoted into
 
 Generated context packets for AI agents.
 """,
+        ROOT / "research-wiki" / "mathlib-lemmas" / "README.md": """# Mathlib Lemma Retrieval Cards
+
+Use this directory for reusable Mathlib findings that ABEIS agents should
+remember.  A card should record the query, Mathlib module/theorem, local QBE
+use site, whether it is imported directly or adapted locally, and any version
+or dependency issue.
+""",
     }
 
 
@@ -761,6 +777,74 @@ def cmd_check(_: argparse.Namespace) -> int:
     state["last_check"] = {"timestamp": now_stamp(), "exit_code": code}
     save_state(state)
     return code
+
+
+def cmd_mathlib_search(args: argparse.Namespace) -> int:
+    roots = mathlib_roots()
+    if not roots:
+        print("No local Mathlib checkout detected.")
+        print("Set QBE_MATHLIB_ROOT or install Mathlib under .lake/packages/mathlib/Mathlib.")
+        return 1
+    query = args.query.strip()
+    if not query:
+        raise SystemExit("mathlib-search requires a nonempty query")
+
+    rg = shutil.which("rg")
+    flags = ["-n", "--glob", "*.lean"]
+    if args.ignore_case:
+        flags.append("-i")
+    if args.word:
+        flags.append("-w")
+
+    matches: list[tuple[Path, str]] = []
+    for root in roots:
+        if rg:
+            completed = subprocess.run(
+                [rg, *flags, query, str(root)],
+                cwd=ROOT,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            if completed.returncode not in (0, 1):
+                print(completed.stderr.strip(), file=sys.stderr)
+                continue
+            for line in completed.stdout.splitlines():
+                matches.append((root, line))
+                if len(matches) >= args.limit:
+                    break
+        else:
+            needle = query.lower() if args.ignore_case else query
+            for path in root.rglob("*.lean"):
+                try:
+                    for number, line in enumerate(path.read_text(encoding="utf-8", errors="ignore").splitlines(), 1):
+                        hay = line.lower() if args.ignore_case else line
+                        if needle in hay:
+                            matches.append((root, f"{path}:{number}:{line}"))
+                            if len(matches) >= args.limit:
+                                break
+                except OSError:
+                    continue
+                if len(matches) >= args.limit:
+                    break
+        if len(matches) >= args.limit:
+            break
+
+    print("Mathlib roots:")
+    for root in roots:
+        print(f"- {display_path(root)}")
+    print()
+    if not matches:
+        print(f"No matches for {query!r}.")
+        return 1
+    print(f"Matches for {query!r} (limit {args.limit}):")
+    for root, line in matches:
+        printable = line
+        root_str = str(root)
+        if printable.startswith(root_str):
+            printable = printable.replace(root_str, display_path(root), 1)
+        print(printable)
+    return 0
 
 
 def cmd_status(_: argparse.Namespace) -> int:
@@ -6517,6 +6601,53 @@ def focused_task_contract(task_text: str) -> str:
     )
 
 
+def mathlib_roots() -> list[Path]:
+    """Return available local Mathlib roots, including optional env override."""
+    roots: list[Path] = []
+    env_root = os.environ.get("QBE_MATHLIB_ROOT", "").strip()
+    if env_root:
+        roots.append(Path(env_root).expanduser())
+    roots.extend(MATHLIB_LOCAL_REFERENCE_CANDIDATES)
+    seen: set[Path] = set()
+    available: list[Path] = []
+    for root in roots:
+        resolved = root.resolve() if root.exists() else root
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        if root.exists() and root.is_dir():
+            available.append(root)
+    return available
+
+
+def mathlib_retrieval_context() -> str:
+    roots = mathlib_roots()
+    root_text = "\n".join(f"- {rel(root) if root.is_relative_to(ROOT) else root}" for root in roots)
+    if not root_text:
+        root_text = "- No local Mathlib checkout detected. Set `QBE_MATHLIB_ROOT` or install Mathlib before relying on local lemma search."
+    return f"""Mathlib retrieval discipline:
+
+- Before adding a generic matrix, finite-sum, algebra, order, topology,
+  norm, continuity, boundedness, or extensionality lemma, search Mathlib first.
+- Preferred command:
+
+  ```bash
+  python3 tools/qbe.py mathlib-search "<keyword-or-theorem-name>"
+  ```
+
+- Available local Mathlib roots:
+{root_text}
+- If Mathlib already has the lemma, import/reuse it when compatible with this
+  project's Lean version and dependency policy.  If direct import is not yet
+  enabled, record the exact Mathlib theorem/module in the proof packet and
+  prove only the QBE-specific adapter locally.
+- If no usable lemma is found, write the failed search query and why a local
+  lemma is needed.  Reusable local lemmas should be stated in a Mathlib-quality
+  form: small API, explicit hypotheses, stable proof route, and no task-local
+  names unless the statement is genuinely block-encoding-specific.
+"""
+
+
 def role_prompt(
     role: str,
     task_id: str,
@@ -6533,6 +6664,7 @@ def role_prompt(
     paper_sources = local_paper_source_context(task_text)
     verifier_feedback = verifier_feedback_contract(task_id, task_text)
     blueprint = blueprint_context(task_id)
+    mathlib_context = mathlib_retrieval_context()
     displayed_task_text = task_text.strip() if context_mode == "full" else focused_task_contract(task_text)
     context_note = (
         "Full task context."
@@ -6609,6 +6741,8 @@ Local paper-source archive for agent work:
 ```
 
 {operator_scoped_retrieval}
+
+{mathlib_context}
 
 	Operating model:
 
@@ -8509,6 +8643,12 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("init", help="initialize QBE workflow files").set_defaults(func=cmd_init)
     sub.add_parser("check", help="run Lean build gates").set_defaults(func=cmd_check)
     sub.add_parser("status", help="show git status and run build gates").set_defaults(func=cmd_status)
+    p_mathlib = sub.add_parser("mathlib-search", help="search available local Mathlib checkouts for reusable lemmas")
+    p_mathlib.add_argument("query")
+    p_mathlib.add_argument("--limit", type=int, default=40)
+    p_mathlib.add_argument("--ignore-case", action="store_true")
+    p_mathlib.add_argument("--word", action="store_true", help="pass word-boundary search to ripgrep when available")
+    p_mathlib.set_defaults(func=cmd_mathlib_search)
     sub.add_parser("list-literature", help="list literature registry entries").set_defaults(
         func=cmd_list_literature
     )

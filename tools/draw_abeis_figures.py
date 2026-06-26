@@ -435,6 +435,73 @@ def draw_qiskit_export_results():
     plt.close(fig)
 
 
+def draw_quantum_lean_leaf_atlas():
+    fig, ax = setup(16.5, 9.2)
+    label(ax, 5, 94.5, "ABEIS Lean leaf atlas: from quantum libraries to block-encoding certificates", fs=21, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        5,
+        90.5,
+        "Small Mathlib-quality leaves are the reusable proof weapons. External quantum Lean projects are reference surfaces, not hidden dependencies.",
+        fs=11.3,
+        color=MUTED,
+        ha="left",
+    )
+
+    group_box(ax, 4, 72.0, 92, 14.0, "", "#94A3B8", "#FFFFFF")
+    label(ax, 6.2, 84.0, "Reference foundations", fs=13.5, weight="bold", color="#64748B", ha="left")
+    box(ax, 7, 75.1, 19, 6.3, "Mathlib", "finite sums, matrices,\nextensionality", fc=GRAY, ec="#64748B", fs=12.3, subfs=8.5)
+    box(ax, 29, 75.1, 25, 6.3, "quantum-computing-lean", "states, gates,\nprojectors, actions", fc=BLUE_L, ec=BLUE, fs=11.9, subfs=8.2)
+    box(ax, 57, 75.1, 16, 6.3, "Lean-QuantumInfo", "quantum-info\nstyle reference", fc=PURPLE_L, ec=PURPLE, fs=11.4, subfs=8.0)
+    box(ax, 76, 75.1, 17, 6.3, "lean-quantum", "states, channels,\noperator style", fc=PURPLE_L, ec=PURPLE, fs=11.5, subfs=8.0)
+
+    group_box(ax, 4, 43.5, 92, 24.0, "", BLUE, "#F8FBFF")
+    label(ax, 6.2, 65.5, "ABEIS compiled leaf layer", fs=13.5, weight="bold", color=BLUE, ha="left")
+    box(ax, 7, 57.0, 18, 6.0, "clean block", "entrywise extensionality", fc=BLUE_L, ec=BLUE, fs=12.1, subfs=8.0)
+    box(ax, 28, 57.0, 18, 6.0, "permutation", "image table,\ninverse, unitarity", fc=BLUE_L, ec=BLUE, fs=12.1, subfs=8.0)
+    box(ax, 49, 57.0, 18, 6.0, "sparse access", "delta sums,\nunique slots", fc=BLUE_L, ec=BLUE, fs=12.1, subfs=8.0)
+    box(ax, 70, 57.0, 21, 6.0, "arithmetic", "LCU, product,\ntensor resources", fc=BLUE_L, ec=BLUE, fs=12.1, subfs=8.0)
+    box(ax, 15, 46.9, 21, 6.0, "dilation / Hermitian", "contraction fallback,\nsymmetry contracts", fc=GREEN_L, ec=GREEN, fs=11.8, subfs=7.9)
+    box(ax, 40, 46.9, 21, 6.0, "QSVT consumer", "uses a proved BE;\nno hidden oracle", fc=GREEN_L, ec=GREEN, fs=11.8, subfs=7.9)
+    box(ax, 65, 46.9, 21, 6.0, "approximate BE", "epsilon-zero incumbent,\nrelaxed search", fc=GREEN_L, ec=GREEN, fs=11.8, subfs=7.9)
+
+    group_box(ax, 4, 17.0, 92, 20.0, "", GREEN, "#F7FFF9")
+    label(ax, 6.2, 35.0, "Task certificates and exports", fs=13.5, weight="bold", color=GREEN, ha="left")
+    box(ax, 7, 27.5, 19, 6.0, "main case", "matrix-unit tensor I", fc=AMBER_L, ec=AMBER, fs=12.0, subfs=8.1)
+    box(ax, 30, 27.5, 19, 6.0, "formula oracles", "diagonal/value-to-\namplitude routes", fc=AMBER_L, ec=AMBER, fs=11.6, subfs=7.9)
+    box(ax, 53, 27.5, 19, 6.0, "paper cases", "GHL, sparse PDE,\nstructured matrices", fc=AMBER_L, ec=AMBER, fs=11.6, subfs=7.9)
+    box(ax, 76, 27.5, 17, 6.0, "exports", "LaTeX proof,\nQiskit/QASM", fc=AMBER_L, ec=AMBER, fs=11.6, subfs=7.9)
+    box(ax, 27, 18.9, 46, 4.8, "Mathlib-quality policy", "small statements, explicit APIs, stable proof routes, reusable hidden regularity", fc="#FFFFFF", ec="#64748B", fs=11.2, subfs=8.0)
+
+    # Arrows from foundations to leaves.
+    for x in [16.5, 41.5, 65, 84.5]:
+        arrow(ax, x, 74.8, x, 68.0, color="#64748B", lw=2.0)
+    for x1, x2 in [(16, 16), (42, 37), (65, 58), (85, 80)]:
+        arrow(ax, x1, 71.8, x2, 63.8, color="#64748B", lw=1.8, dashed=True)
+
+    # Leaf dependencies.
+    arrow(ax, 25, 60.4, 28, 60.4, color=BLUE, lw=2.5)
+    arrow(ax, 46, 60.4, 49, 60.4, color=BLUE, lw=2.5)
+    arrow(ax, 67, 60.4, 70, 60.4, color=BLUE, lw=2.5)
+    arrow(ax, 37, 56.9, 25.5, 53.4, color=GREEN, lw=2.1, rad=0.15)
+    arrow(ax, 58, 56.9, 50.5, 53.4, color=GREEN, lw=2.1, rad=0.12)
+    arrow(ax, 80, 56.9, 75.5, 53.4, color=GREEN, lw=2.1, rad=0.10)
+
+    # Leaves to task layer.
+    for x1, x2 in [(16, 16.5), (37, 39.5), (58, 62.5), (80, 84.5)]:
+        arrow(ax, x1, 43.2, x2, 34.1, color=AMBER, lw=2.0)
+    arrow(ax, 50, 43.2, 50, 34.1, color=AMBER, lw=2.0)
+
+    # Policy feedback.
+    box(ax, 7, 6.4, 34, 5.1, "failure signal", "recheck statement, assumptions, or counterexample", fc=RED_L, ec=RED, fs=10.8, subfs=7.6)
+    arrow(ax, 24, 11.7, 8.8, 43.8, color=RED, lw=1.8, dashed=True, rad=0.22)
+
+    for path in [ARTICLE_FIG / "quantum_lean_leaf_atlas.png", README_FIG / "quantum_lean_leaf_atlas.png"]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
 def main():
     ARTICLE_FIG.mkdir(parents=True, exist_ok=True)
     README_FIG.mkdir(parents=True, exist_ok=True)
@@ -444,6 +511,7 @@ def main():
     draw_optctrl_hier_vs_pro()
     draw_optctrl_cold_clean_storyboard()
     draw_qiskit_export_results()
+    draw_quantum_lean_leaf_atlas()
 
 
 if __name__ == "__main__":

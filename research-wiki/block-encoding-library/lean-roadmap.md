@@ -22,6 +22,39 @@ theorem blockEncoding_ext_entrywise :
 Exact finite examples should first use entrywise clean-block theorems.  Norm
 lemmas are reserved for approximate certificates.
 
+## Mathlib-Quality Working Rules
+
+ABEIS leaves should be written as if they might eventually become upstream
+library lemmas.  The immediate goal is local compilation; the design goal is
+reuse.
+
+- Decompose aggressively.  Prefer one small theorem that closes one proof-DAG
+  edge over a large theorem that asks an agent to remember an entire circuit.
+- Search Mathlib before inventing generic infrastructure.  Use
+  `python3 tools/qbe.py mathlib-search "<keyword-or-theorem-name>"`, then
+  record reusable hits under `research-wiki/mathlib-lemmas/`.
+- Specify the local API.  A task packet should name the definitions to unfold,
+  the helper lemma to prove first, and the intended proof route.
+- Treat persistent failure as mathematical signal.  If the same leaf fails
+  repeatedly, the upper/reviewer layer should recheck the statement for missing
+  assumptions, false equalities, stale definitions, or counterexamples.
+- Make hidden regularity reusable.  Cleanup, bijectivity, support uniqueness,
+  boundedness, norm bounds, nonemptiness, continuity, and integrability should
+  be named contracts instead of implicit prose.
+- Do not frequently change the proof.  Stabilize the statement and route before
+  spending lower-agent budget; change them only after a reviewer records why.
+- Separate semantic layers: clean-block equality, unitarity, circuit/gate
+  realization, resource metrics, and Qiskit/QASM export should be different
+  leaves unless a small theorem naturally packages them.
+
+If direct Mathlib import is temporarily blocked by dependency policy, do not
+hide that fact.  The middle packet should name the Mathlib theorem/module and
+assign lower work only to the smallest local adapter or bridge.
+
+The leaf atlas
+[`quantum-lean-leaf-atlas.md`](quantum-lean-leaf-atlas.md) records how these
+rules connect ABEIS leaves to nearby quantum Lean libraries.
+
 ## Suggested File Structure
 
 ```text

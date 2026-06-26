@@ -100,6 +100,12 @@ Lean/Markdown/LaTeX correspondence must be tracked explicitly.
 
 ## Lean And Problem-Registry References
 
+- [duckki/quantum-computing-lean](https://github.com/duckki/quantum-computing-lean).
+  Used as a reference for finite-dimensional quantum Lean organization:
+  matrices, named states, basic gates, projectors, gate actions,
+  decompositions, and small theorem examples.  The inspected local checkout did
+  not include a top-level license file, so QBE records source links and uses it
+  as a style/reference atlas rather than copying code into this repository.
 - [Timeroot/Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo),
   MIT License. Used as a style reference for finite-dimensional quantum
   formalization over matrices.

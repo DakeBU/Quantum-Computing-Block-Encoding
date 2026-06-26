@@ -31,6 +31,13 @@ This project also references:
   - Repository: https://github.com/Timeroot/Lean-QuantumInfo
   - License: MIT
   - Role: style reference for finite-dimensional quantum formalization.
+- `duckki/quantum-computing-lean`
+  - Repository: https://github.com/duckki/quantum-computing-lean
+  - Role: style reference for finite-dimensional quantum matrices, states,
+    gates, projectors, gate actions, decompositions, and public module-graph
+    organization.
+  - Note: the inspected local checkout did not include a top-level license file,
+    so QBE records source links and does not reuse source code.
 - `teorth/optimizationproblems`
   - Repository: https://github.com/teorth/optimizationproblems
   - Role: style reference for open-problem registries.

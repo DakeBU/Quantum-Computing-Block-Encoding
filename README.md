@@ -142,8 +142,19 @@ which familiar route is worth trying; it is not a rigid decision tree.
 | Dilation fallback | dense contraction or small fallback seed | build a larger unitary from 2-by-2 contraction rotations | [`BE.Contraction.SVDDilation`](research-wiki/block-encoding-library/cards/BE.Contraction.SVDDilation.md) |
 | Qubitization / QSVT consumer | polynomial transforms after a BE already exists | consume a proved BE; do not hide the original oracle construction inside QSVT | [`BE.QSVT.ConsumerContract`](research-wiki/block-encoding-library/cards/BE.QSVT.ConsumerContract.md) |
 
+The Lean leaf atlas below shows how these textbook cards connect to compiled
+ABEIS leaves and nearby Lean quantum libraries.  It is the map agents use when
+they decide whether a new target looks like a clean-block, permutation,
+sparse-access, LCU, dilation, or QSVT-consumer problem.
+
+![ABEIS Lean leaf atlas](docs/assets/quantum_lean_leaf_atlas.png)
+
 The detailed proof-DAG map is in
 [`proof-network.md`](research-wiki/block-encoding-library/proof-network.md);
+the quantum Lean reference atlas is in
+[`quantum-lean-leaf-atlas.md`](research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md);
+Mathlib hits that should be reused or adapted are recorded under
+[`research-wiki/mathlib-lemmas/`](research-wiki/mathlib-lemmas/);
 the route-intuition guide is in
 [`route-selector.md`](research-wiki/block-encoding-library/route-selector.md);
 compiled leaves are mainly in
@@ -152,6 +163,15 @@ The human-facing LaTeX proof templates are collected in
 [`classic_leaves.tex`](paper-notes/block-encoding-library/classic_leaves.tex).
 A card marked `contract-only` or `obligation` can guide brainstorming, but it
 does not become a theorem until its Lean declaration compiles.
+Before adding generic Lean infrastructure, agents should search Mathlib:
+
+```bash
+python3 tools/qbe.py mathlib-search "Matrix.mul_apply"
+```
+
+If the theorem exists but cannot be imported directly yet, the proof packet
+should still name the Mathlib module and assign only the smallest ABEIS adapter
+as local work.
 
 Human interaction is a first-class upper-layer input, not an out-of-band chat.
 ABEIS records three human-facing intervention moments: scheduled 6h closeout,
@@ -530,7 +550,7 @@ gate-level quantum block-encoding certificates.
 | [MathCode][mathcode] | Proof diagnostics and theorem reuse. | Hidden-assumption scans and reusable proof-attempt memory. |
 | [Visored][visored-paper], [repo][visored-repo] | Controlled-natural-language proof surface with localized diagnostics and optional Lean emission. | Structured proof packets as a two-way exchange format between natural-language construction, Lean proof work, and human proof exports. |
 | [Lean4Agent][lean4agent-paper] | Workflow/trajectory verification. | Lean-side process contracts in `Automation.lean`. |
-| [Lean-QuantumInfo][lean-quantuminfo], [lean-quantum][lean-quantum] | Quantum formalization references. | Style and semantic references for finite-dimensional quantum objects. |
+| [quantum-computing-lean][quantum-computing-lean], [Lean-QuantumInfo][lean-quantuminfo], [lean-quantum][lean-quantum] | Quantum formalization references: finite matrices, states, gates, projectors, quantum-information semantics. | Leaf-atlas references for small gate/action lemmas, clean-projector APIs, and future semantic alignment. |
 | [QASM-Eval][qasm-eval], [Qiskit QuantumKatas][qiskit-quantumkatas] | Typed circuit/test feedback and executable Qiskit/QASM checks. | ABEIS distinguishes inspired feedback, optional exact finite Qiskit checks, and Lean-certified theorem closure. |
 | [QUASAR][quasar-paper], [AI-Mandel][ai-mandel-paper] | Tool-feedback loops for quantum artifacts. | Search signals only; not proof certificates. |
 | [LLM4AD_Next][llm4ad-next] | Low-entry-barrier web interface. | Static oracle-to-task-packet builder. |
@@ -591,5 +611,6 @@ approximate dense/structured synthesis.
 [ai-mandel-paper]: https://arxiv.org/abs/2511.11752
 [hierarchical-provers]: https://arxiv.org/abs/2602.10512
 [statistical-provability]: https://arxiv.org/abs/2602.10538
+[quantum-computing-lean]: https://github.com/duckki/quantum-computing-lean
 [lean-quantuminfo]: https://github.com/Timeroot/Lean-QuantumInfo
 [lean-quantum]: https://github.com/Hayata-Yamasaki-Group/lean-quantum

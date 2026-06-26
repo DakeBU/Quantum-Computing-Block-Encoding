@@ -4,6 +4,13 @@ This file links the literature memory cards to compiled Lean leaves.  It is the
 first ABEIS "intuition memory" graph for block-encoding construction: agents
 should reuse these nodes instead of re-deriving the same proof shape.
 
+The companion atlas
+[`quantum-lean-leaf-atlas.md`](quantum-lean-leaf-atlas.md) maps these leaves to
+nearby Lean quantum libraries, including
+[duckki/quantum-computing-lean](https://github.com/duckki/quantum-computing-lean),
+[Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo), and
+[lean-quantum](https://github.com/Hayata-Yamasaki-Group/lean-quantum).
+
 ## Compiled Lean Leaf Nodes
 
 | Lean declaration | Memory cards | Literature sources | Role |
@@ -99,3 +106,21 @@ resource leaves for its semantic tier.
   attach after an exact or approximate block encoding has become a certificate.
 - Approximate search should inherit exact champions through
   `exactAsZeroErrorApproxCleanBlock` before trying epsilon-relaxed candidates.
+
+## External Lean Reference Edges
+
+These edges are reference edges, not dependency edges.  They tell agents where
+to look for proof style and possible future API alignment.
+
+| External surface | ABEIS leaves it can inform | Practical use |
+| --- | --- | --- |
+| `QuantumComputing.Matrix`, `States`, `State` in duckki/quantum-computing-lean | clean-block entries, basis-state action packets, state-preparation examples | use small finite matrix/state APIs as a model for readable theorem names |
+| duckki gate properties and actions (`X`, `H`, `CNOT`, `TOFFOLI`, `SWAP`) | permutation unitarity, gate-action examples, future executable gate decomposition leaves | keep action lemmas separate from unitarity and resource lemmas |
+| duckki projectors and decompositions | clean projector proofs and simple decomposition examples | avoid hiding projector algebra inside large block-encoding proofs |
+| Lean-QuantumInfo finite-dimensional quantum objects | future density/state/measurement semantic leaves | compare conventions before importing or upstreaming a theorem |
+| lean-quantum operator/channel style | future trace, channel, entropy, and norm side conditions | make hidden regularity reusable instead of task-local |
+
+When a leaf looks broadly useful, the desired destination is a Mathlib-quality
+statement: small theorem, explicit hypotheses, stable API, and no
+block-encoding-specific names unless the theorem is genuinely quantum-domain
+specific.

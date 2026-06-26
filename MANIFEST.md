@@ -8170,3 +8170,4 @@ block-encoding formalization lifecycle.
 | 2026-06-26 00:43:50 | qbe.py cycle-pro-prompt | `runs/pro-prompts/QBE-MAIN-CASE-HIER-PRO-001-cycle003.md` | pro-prompt | Archived ChatGPT Pro prompt for QBE-MAIN-CASE-HIER-PRO-001 cycle 3 |
 | 2026-06-26 00:43:50 | qbe.py problem-latex-export | `runs/20260626-001055-QBE-MAIN-CASE-HIER-PRO-001-cycle03/problem_export.tex` | article | Wrote problem-specific LaTeX export for QBE-MAIN-CASE-HIER-PRO-001 cycle 3 |
 | 2026-06-26 00:43:50 | qbe.py problem-latex-export | `paper-notes/problem-exports/QBE-MAIN-CASE-HIER-PRO-001/20260626-001055-QBE-MAIN-CASE-HIER-PRO-001-cycle03.tex` | article | Archived problem-specific LaTeX export for QBE-MAIN-CASE-HIER-PRO-001 cycle 3 |
+| 2026-06-27 01:12:35 | qbe.py run-cycle | `runs/mathlib-search-smoke` | run | Created run cycle for QBE-OP-OPTCTRL-001 |
