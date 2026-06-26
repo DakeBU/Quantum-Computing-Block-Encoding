@@ -30,7 +30,7 @@ The upstream rendered graph is in the upstream repository at
 
 ## ABEIS-Relevant Surfaces
 
-| Upstream surface | Representative declarations | ABEIS use |
+| Upstream surface | Representative declarations | ABEIS counterpart design |
 | --- | --- | --- |
 | Matrix API | `Matrix.adjoint`, `Matrix.mul`, `Matrix.trace`, `Matrix.proj`, `Matrix.kron` | style reference for finite matrix extensionality and tensor notation |
 | States | `ket0`, `ket1`, `ketPlus`, `ketMinus`, normalization lemmas | basis-state and state-preparation examples |

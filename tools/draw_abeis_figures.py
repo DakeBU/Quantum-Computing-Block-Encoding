@@ -502,6 +502,90 @@ def draw_quantum_lean_leaf_atlas():
     plt.close(fig)
 
 
+def module_node(ax, x, y, w, h, title, subtitle="", fc="#FFFFFF", ec="#94A3B8", fs=10.6, subfs=7.2):
+    return box(ax, x, y, w, h, title, subtitle, fc=fc, ec=ec, lw=1.8, fs=fs, subfs=subfs, radius=0.14)
+
+
+def draw_abeis_lean_leaf_module_graph():
+    fig, ax = setup(18.0, 11.0)
+    label(ax, 4, 96, "ABEIS Lean leaf module graph", fs=23, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        4,
+        92.3,
+        "Compiled proof leaves are organized by file and proof role.  Generic leaves are written in a Mathlib-quality style; external quantum Lean projects are references.",
+        fs=11.4,
+        color=MUTED,
+        ha="left",
+    )
+
+    # Foundation layer.
+    module_node(ax, 5, 82, 16, 6, "Core.lean", "Matrix, Resource,\ncore data")
+    module_node(ax, 25, 82, 17, 6, "Resources.lean", "gate count, depth,\nschedules")
+    module_node(ax, 46, 82, 17, 6, "Circuit.lean", "gate / circuit\nsyntax")
+    module_node(ax, 67, 82, 20, 6, "BlockEncoding.lean", "target, candidate,\nverified records")
+    arrow(ax, 21.2, 85, 24.5, 85, color="#64748B")
+    arrow(ax, 42.2, 85, 45.5, 85, color="#64748B")
+    arrow(ax, 63.2, 85, 66.5, 85, color="#64748B")
+
+    # Semantic bridge.
+    module_node(ax, 33, 70, 29, 7.0, "CircuitSemantics.lean", "evalWith path lemmas, block extraction,\nprojection/backend statements", fc=BLUE_L, ec=BLUE, fs=11.0, subfs=7.4)
+    arrow(ax, 54.5, 82, 47.5, 77.2, color=BLUE)
+    arrow(ax, 77, 82, 58, 77.2, color=BLUE)
+
+    # Classics big group.
+    group_box(ax, 5, 35, 90, 27, "", BLUE, "#F8FBFF")
+    label(ax, 7, 59.2, "BlockEncodingClassics.lean: reusable proof weapons", fs=14, weight="bold", color=BLUE, ha="left")
+    module_node(ax, 9, 51, 18, 5.8, "Clean block", "cleanBlockBy_*,\nproductIndex", fc=BLUE_L, ec=BLUE)
+    module_node(ax, 30, 51, 18, 5.8, "Permutation", "permMatrix,\northogonality", fc=BLUE_L, ec=BLUE)
+    module_node(ax, 51, 51, 18, 5.8, "Sparse access", "one-sparse,\nrow/column delta", fc=BLUE_L, ec=BLUE)
+    module_node(ax, 72, 51, 18, 5.8, "LCU/Product", "weighted sums,\nproduct bridges", fc=BLUE_L, ec=BLUE)
+    module_node(ax, 15, 41, 19, 5.8, "Dilation/Hermitian", "scalar dilation,\nsymmetry")
+    module_node(ax, 40.5, 41, 19, 5.8, "Qubitization/QSVT", "Chebyshev,\nconsumer contracts")
+    module_node(ax, 66, 41, 19, 5.8, "Approximate BE", "epsilon-zero\nincumbents")
+    arrow(ax, 47.5, 70, 47.5, 62.4, color=BLUE)
+    for x1, x2 in [(27.2, 29.6), (48.2, 50.6), (69.2, 71.6)]:
+        arrow(ax, x1, 53.9, x2, 53.9, color=BLUE, lw=2.0)
+    arrow(ax, 39, 51, 24, 47.0, color=GREEN, rad=0.15)
+    arrow(ax, 60, 51, 50, 47.0, color=GREEN, rad=0.10)
+    arrow(ax, 81, 51, 75, 47.0, color=GREEN, rad=0.08)
+
+    # Applications and wrappers.
+    module_node(ax, 6, 23, 17, 6.2, "MainCase.lean", "transfer operator\ncertificates", fc=GREEN_L, ec=GREEN)
+    module_node(ax, 26, 23, 17, 6.2, "CubicStatePreparation.lean", "formula-oracle\nroutes", fc=GREEN_L, ec=GREEN)
+    module_node(ax, 46, 23, 17, 6.2, "GHL2025.lean /\nRobinHeat.lean", "paper baselines\nand wrappers", fc=GREEN_L, ec=GREEN, fs=9.5)
+    module_node(ax, 66, 23, 17, 6.2, "TechnicalLemmas.lean /\nPapers/*.lean", "re-export and\npaper interfaces", fc=GREEN_L, ec=GREEN, fs=9.5)
+    module_node(ax, 29, 12, 18, 6.2, "Executable exports", "Qiskit / QASM\npost-Lean checks", fc=AMBER_L, ec=AMBER)
+    module_node(ax, 53, 12, 18, 6.2, "Research wiki", "cards, proof network,\nMathlib hits", fc=AMBER_L, ec=AMBER)
+
+    for x in [14.5, 34.5, 54.5, 74.5]:
+        arrow(ax, x, 35, x, 29.6, color=GREEN)
+    arrow(ax, 14.5, 23, 38, 18.5, color=AMBER, rad=-0.10)
+    arrow(ax, 34.5, 23, 38, 18.5, color=AMBER)
+    arrow(ax, 54.5, 23, 62, 18.5, color=AMBER)
+    arrow(ax, 74.5, 23, 62, 18.5, color=AMBER, rad=0.10)
+
+    # Reference surface strip.
+    group_box(ax, 5, 3.2, 90, 5.8, "", "#CBD5E1", "#FFFFFF")
+    label(ax, 7, 7.1, "Reference surfaces, not hidden dependencies:", fs=10.4, weight="bold", color="#475569", ha="left")
+    label(
+        ax,
+        48,
+        5.0,
+        "Mathlib search cards  |  quantum-computing-lean gate/action style  |  Lean-QuantumInfo finite quantum style  |  lean-quantum operator/channel style",
+        fs=9.0,
+        color=MUTED,
+    )
+
+    for path in [
+        ARTICLE_FIG / "abeis_lean_leaf_module_graph.png",
+        README_FIG / "abeis_lean_leaf_module_graph.png",
+    ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
 def main():
     ARTICLE_FIG.mkdir(parents=True, exist_ok=True)
     README_FIG.mkdir(parents=True, exist_ok=True)
@@ -512,6 +596,7 @@ def main():
     draw_optctrl_cold_clean_storyboard()
     draw_qiskit_export_results()
     draw_quantum_lean_leaf_atlas()
+    draw_abeis_lean_leaf_module_graph()
 
 
 if __name__ == "__main__":

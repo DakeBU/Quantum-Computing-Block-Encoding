@@ -1,9 +1,14 @@
 # Quantum Lean Leaf Atlas
 
 This atlas connects ABEIS block-encoding leaves with nearby Lean quantum
-libraries.  It is an agent memory file, not a dependency manifest: agents may
-read these projects for API and proof-style inspiration, but a theorem counts
-for ABEIS only when the corresponding local Lean declaration compiles.
+libraries.  It is an agent memory file, not the public module graph and not a
+dependency manifest: agents may read these projects for API and proof-style
+inspiration, but a theorem counts for ABEIS only when the corresponding local
+Lean declaration compiles.
+
+The public ABEIS module/leaf graph is
+[`lean-leaf-module-graph.md`](lean-leaf-module-graph.md), with the rendered PNG
+at `docs/assets/abeis_lean_leaf_module_graph.png`.
 
 ## Reference Libraries
 

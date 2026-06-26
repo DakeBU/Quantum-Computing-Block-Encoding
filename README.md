@@ -142,15 +142,17 @@ which familiar route is worth trying; it is not a rigid decision tree.
 | Dilation fallback | dense contraction or small fallback seed | build a larger unitary from 2-by-2 contraction rotations | [`BE.Contraction.SVDDilation`](research-wiki/block-encoding-library/cards/BE.Contraction.SVDDilation.md) |
 | Qubitization / QSVT consumer | polynomial transforms after a BE already exists | consume a proved BE; do not hide the original oracle construction inside QSVT | [`BE.QSVT.ConsumerContract`](research-wiki/block-encoding-library/cards/BE.QSVT.ConsumerContract.md) |
 
-The Lean leaf atlas below shows how these textbook cards connect to compiled
-ABEIS leaves and nearby Lean quantum libraries.  It is the map agents use when
-they decide whether a new target looks like a clean-block, permutation,
-sparse-access, LCU, dilation, or QSVT-consumer problem.
+The Lean module graph below shows the organized ABEIS proof-weapon library:
+foundation files, reusable block-encoding leaf families, task certificates,
+exports, and memory indices.  It is modeled after the module-graph style used
+by quantum Lean projects, but it shows ABEIS's own compiled leaf organization.
 
-![ABEIS Lean leaf atlas](docs/assets/quantum_lean_leaf_atlas.png)
+![ABEIS Lean leaf module graph](docs/assets/abeis_lean_leaf_module_graph.png)
 
 The detailed proof-DAG map is in
 [`proof-network.md`](research-wiki/block-encoding-library/proof-network.md);
+the module/leaf graph ledger is in
+[`lean-leaf-module-graph.md`](research-wiki/block-encoding-library/lean-leaf-module-graph.md);
 the quantum Lean reference atlas is in
 [`quantum-lean-leaf-atlas.md`](research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md);
 Mathlib hits that should be reused or adapted are recorded under
@@ -541,7 +543,7 @@ Project layout:
 ABEIS adapts patterns from adjacent systems, but specializes them to
 gate-level quantum block-encoding certificates.
 
-| Work | Similar pattern | ABEIS use |
+| Work | Similar pattern | ABEIS counterpart design |
 | --- | --- | --- |
 | [ARIS][aris] | Plain-file autonomous research workflow and review. | Task files, skills, manifests, reviews, run logs. |
 | [Learning Beyond Gradients][lbg] | Layered feedback and trial memory. | Upper/middle/lower/reviewer loops and compact summaries. |
