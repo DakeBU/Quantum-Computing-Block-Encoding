@@ -3,7 +3,7 @@
 Task id: `QBE-MAIN-CASE-HIER-PRO-001`
 Title: Main case transfer-operator block encoding, Pro-assisted isolated Hierarchical Harness
 Mode: `exploratoryConstruction`
-Updated: `2026-06-26 00:40:04`
+Updated: `2026-06-27 12:21:51`
 Blueprint stage: `Stage 1 target/transcript stabilization`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -317,11 +317,7 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-ned after audit: MAINCASE-PRO-SEMANTIC-TIER-001 is accepted on mainCaseProCircuitVerified/mainCaseProCircuitCandidate_cost; MAINCASE-PRO-EXPORT-001 is now the active leaf. Updated conversion/proof-obligation/proof-attempt, blueprint, memory_digest, todo, and retrieval index so lower-2 generates qiskit/qasm3 artifacts only from mainCaseProCircuitVerified, while lower-3 checks basis action against mainCaseProCircuitImage, clean block mainCaseProTarget, normalizer 1, score (4,4,1,0), and dirty mismatch set {8,9,12,13}. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests.
-
-## 2026-06-26 00:37:23 - lower
-
-Lower proof-architect packet added for MAINCASE-PRO-EXPORT-001: export must use mainCaseProCircuitVerified and mainCaseProCircuitCandidate_cost, check Qiskit/QASM3 basis action against mainCaseProCircuitImage on all 16 states, preserve clean block mainCaseProTarget, normalizer 1, score (4,4,1,0), and reject exports rooted at mainCaseProVerified/mainCaseProCandidate_cost. Artifact: proof-attempts/QBE-MAIN-CASE-HIER-PRO-001-export-proof-map-lower-architect-cycle03.md. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
+acket added for MAINCASE-PRO-EXPORT-001: export must use mainCaseProCircuitVerified and mainCaseProCircuitCandidate_cost, check Qiskit/QASM3 basis action against mainCaseProCircuitImage on all 16 states, preserve clean block mainCaseProTarget, normalizer 1, score (4,4,1,0), and reject exports rooted at mainCaseProVerified/mainCaseProCandidate_cost. Artifact: proof-attempts/QBE-MAIN-CASE-HIER-PRO-001-export-proof-map-lower-architect-cycle03.md. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
 
 ## 2026-06-26 00:38:24 - lower
 
@@ -330,6 +326,10 @@ Closed MAINCASE-PRO-SEMANTIC-TIER-001 Lean repair. mainCaseProCandidate no longe
 ## 2026-06-26 00:38:28 - lower
 
 MAINCASE-PRO-EXPORT-001 verifier guard complete. Added verifier-feedback/QBE-MAIN-CASE-HIER-PRO-001/maincase_pro_export_guard_cycle03.py plus Markdown/JSON feedback. Diagnostic recomputes lifted Pro transcript action [8,9,10,11,12,13,0,1,6,7,4,5,2,3,14,15], clean block equals mainCaseProTarget, normalizer 1 and score (4,4,1,0) are named, and stale mismatch against mainCaseProCandidateImage remains exactly {8,9,12,13}. Reject exports rooted at mainCaseProVerified or mainCaseProCandidate_cost; next route is to generate qiskit/qasm3 artifacts from mainCaseProCircuitVerified only and compare their 16-state basis action against this diagnostic. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
+
+## 2026-06-26 00:42:51 - reviewer
+
+Reviewer cycle 3 gate: python3 tools/qbe.py check passed; lake build && lake build Tests passed; export guard script passed. No blocking finding for semantic-tier acceptance: use mainCaseProCircuitVerified/mainCaseProCircuitCandidate_cost for the Pro transcript, keep mainCaseProVerified/mainCaseProCandidate_cost matrix-table only. Blocking for full export completion remains: executable Qiskit/QASM3 artifacts are not generated yet, only export-plan.md exists. Advisory: retrieval-index keeps historical closed_theorem_ok=false symbolic_bridge_gap rows; active queue correctly points to MAINCASE-PRO-EXPORT-001.
 ````
 
 ## Gate Policy

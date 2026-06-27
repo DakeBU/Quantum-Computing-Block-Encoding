@@ -81,7 +81,7 @@ def main() -> None:
     lines: list[str] = []
     lines.append("# Compiled Lean Leaf Index")
     lines.append("")
-    lines.append("This generated index backs `abeis_lean_leaf_module_graph.png`.")
+    lines.append("This generated index backs `abeis_lean_leaf_module_graph.svg` and its PNG copy.")
     lines.append("It lists ABEIS declarations by file so upper/middle agents can")
     lines.append("retrieve existing leaves before asking lower workers to reprove them.")
     lines.append("")

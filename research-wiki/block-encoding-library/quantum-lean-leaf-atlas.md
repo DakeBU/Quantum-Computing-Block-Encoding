@@ -8,7 +8,8 @@ Lean declaration compiles.
 
 The public ABEIS module/leaf graph is
 [`lean-leaf-module-graph.md`](lean-leaf-module-graph.md), with the rendered PNG
-at `docs/assets/abeis_lean_leaf_module_graph.png`.
+at `docs/assets/abeis_lean_leaf_module_graph.png` and the GitHub-friendly SVG
+at `docs/assets/abeis_lean_leaf_module_graph.svg`.
 
 ## Reference Libraries
 
@@ -95,3 +96,20 @@ This atlas is intentionally not a rigid detector.  Block-encoding construction
 often needs the same kind of brainstorming, mutation, recombination, and
 selection used in evolutionary search.  The atlas supplies reusable moves; the
 harness decides which move is worth trying for the current oracle.
+
+The atlas has two roles, and agents must not confuse them:
+
+- As an intuition library, it helps upper/middle agents generate several
+  candidate routes and preserve population diversity.  These route memories
+  can be mutated or recombined, and they can be rejected when the target
+  suggests a better construction.
+- As a compiled-leaf library, it provides theorem nodes that lower Lean
+  workers should reuse directly.  If a compiled leaf already proves the needed
+  clean-block, sparse-delta, LCU, dilation, Chebyshev, QSVT-consumer, or
+  resource bridge, the lower worker should instantiate it or add the smallest
+  adapter instead of reproving the theorem.
+
+Example: a hard diagonal-polynomial target may use the QSVT memory as a
+consumer route after an input block encoding is available.  In that case, the
+QSVT node is a reusable proof-DAG dependency or an explicit contract; it is not
+a prompt for a lower worker to rediscover QSVT from scratch.

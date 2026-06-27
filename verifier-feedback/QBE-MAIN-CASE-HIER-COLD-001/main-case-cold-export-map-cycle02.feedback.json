@@ -1,0 +1,33 @@
+{
+  "task": "QBE-MAIN-CASE-HIER-COLD-001",
+  "run": "20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
+  "leaf": "MAIN-EXPORT-MAP-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": null,
+  "block_entry_ok": null,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "resource_score": "(5,5,1,0)",
+  "auxiliary_qubits": 1,
+  "gate_count": 5,
+  "depth": 5,
+  "oracle_calls": 0,
+  "closed_theorem_ok": false,
+  "error_class": null,
+  "next_route": "MAIN-EXPORT-IMPLEMENT-001: generate Qiskit/QASM3/manifest artifacts using q[0]=S, q[1]=tau, q[2]=T, q[3]=signal, then rerun the export verifier.",
+  "corrected_map": {
+    "S": 0,
+    "tau": 1,
+    "T": 2,
+    "signal": 3
+  },
+  "stale_map_retired": {
+    "T": 0,
+    "tau": 1,
+    "S": 2,
+    "signal": 3
+  }
+}

@@ -20,7 +20,7 @@ Inside the same asymptotic tier, candidates are ranked by
 
 | Candidate | Family | Lean objects | Score | Diagnostics | Status |
 |---|---|---|---|---|---|
-| `MAIN-PARTIAL-PERM-001` | one-signal finite partial permutation preserving `S` | `mainCaseColdQueryTarget`, `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix`, `mainCaseColdPartialPermExactCleanBlock`, `mainCaseColdPartialPerm_clean_eq_target`, `mainCaseColdPartialPermImage_bijective`, `mainCaseColdPartialPerm_blockProjection`, `mainCaseColdCircuitImage_eq_partialPermImage`, `mainCaseColdPartialPermCost_*` | score `(5, 5, 1, 0)` at the high-level logical `{X,CNOT,Toffoli}` tier | COLD clean-block, finite-bijection, operator metadata, block-projection, circuit-image, and cost field theorems compile | resource certified; full candidate pending `VerifiedOperatorBlockEncoding` package |
+| `MAIN-PARTIAL-PERM-001` | one-signal finite partial permutation preserving `S` | `mainCaseColdQueryTarget`, `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix`, `mainCaseColdPartialPermExactCleanBlock`, `mainCaseColdPartialPerm_clean_eq_target`, `mainCaseColdPartialPermImage_bijective`, `mainCaseColdPartialPerm_blockProjection`, `mainCaseColdCircuitImage_eq_partialPermImage`, `mainCaseColdPartialPermCost_*`, `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified` | score `(5, 5, 1, 0)` at the high-level logical `{X,CNOT,Toffoli}` tier | COLD clean-block, finite-bijection, operator metadata, block-projection, circuit-image, cost field, and verified-candidate package compile | certified exact COLD candidate; executable export pending |
 
 ## Candidate MAIN-PARTIAL-PERM-001
 
@@ -52,12 +52,12 @@ subleaf of `MAIN-PERM-UNITARY-001` also compiles as
 `mainCaseColdCircuitImage_eq_partialPermImage` plus the
 `mainCaseColdPartialPermCost_*` field theorems.
 
-Cycle 3 selection status: keep `MAIN-PARTIAL-PERM-001` as the only active exact
-candidate family.  It is certified at the exact clean-block,
-finite-permutation, block-projection, and resource-tuple layers, but it is not
-a complete block-encoding candidate for export until the
-`mainCaseColdPartialPermCandidate` and `mainCaseColdPartialPermVerified`
-package compiles.
+Cycle 20260627 selection status: keep `MAIN-PARTIAL-PERM-001` as the certified
+exact candidate family.  It is certified at the exact clean-block,
+finite-permutation, block-projection, resource-tuple, and verified-candidate
+layers by `mainCaseColdPartialPermCandidate`,
+`mainCaseColdPartialPermVerified`, and `mainCaseColdPartialPermCandidate_cost`.
+It is now eligible as the Lean source for post-Lean Qiskit/QASM3 export.
 
 ## Insight Pool
 
@@ -70,15 +70,15 @@ package compiles.
 
 ## Next Mutation Or Repair Route
 
-Do not mutate the target.  If a later candidate-package attempt fails, consume
-the compiled resource declarations rather than reopening circuit search unless
-the finite image or resource theorem is contradicted.  The next repair route is
-`MAIN-CANDIDATE-PACKAGE-001`: package a COLD-local
-`OperatorBlockEncodingCandidate` and `VerifiedOperatorBlockEncoding`, then
-attempt executable export only after that named verified candidate compiles.
-Do not reopen the clean-entry, finite-bijection, block-projection, or resource
-proofs unless the target operator, finite image table, or circuit schema
-changes.
+Do not mutate the target.  The next route is `MAIN-EXPORT-001`: generate
+Qiskit/QASM3 artifacts from `mainCaseColdPartialPermVerified`, then check the
+exported basis action, clean block, normalizer, and resource tuple against the
+COLD Lean declarations.  The export map is fixed by the Lean full index
+`8*signal + 4*T + 2*tau + S`, so generated artifacts must use executable bit
+weights `S=0`, `tau=1`, `T=2`, and `signal=3`.  Do not reopen the
+clean-entry, finite-bijection, block-projection, resource, or candidate-package
+proofs unless the target operator, finite image table, circuit schema, or
+record interface changes.
 
 Existing `mainCasePro*` declarations belong to the separate Pro-isolated arm
 and are not certified population members for this no-Pro COLD task.

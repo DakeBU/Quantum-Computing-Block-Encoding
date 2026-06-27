@@ -66,7 +66,12 @@ example :
     mainCaseColdSourceLayout.auxiliaryQubits = 1 :=
   mainCaseColdSourceLayout_auxiliaryQubits
 
-example : mainCaseColdResourceSchemaObligation.proved = false := rfl
+example : mainCaseColdResourceSchemaObligation.proved = true := rfl
+
+example :
+    mainCaseColdPartialPermCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 5, depth := 5, oracleCalls := 0 } :=
+  mainCaseColdPartialPermCandidate_cost
 
 example :
     OptimalControl.exampleUnitary

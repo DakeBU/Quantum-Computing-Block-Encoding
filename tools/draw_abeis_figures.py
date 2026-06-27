@@ -595,12 +595,137 @@ def draw_abeis_lean_leaf_module_graph():
 
     for path in [
         ARTICLE_FIG / "abeis_lean_leaf_module_graph.png",
+        ARTICLE_FIG / "abeis_lean_leaf_module_graph.svg",
         README_FIG / "abeis_lean_leaf_module_graph.png",
+        README_FIG / "abeis_lean_leaf_module_graph.svg",
     ]:
         path.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(path, bbox_inches="tight", facecolor=BG)
     plt.close(fig)
 
+
+
+def draw_abeis_detailed_lean_leaf_module_graph():
+    """Draw the public detailed Lean leaf graph.
+
+    This graph is intentionally closer to a module/dependency atlas than to a
+    simple file tree.  It makes the compiled ABEIS leaves visible at the level
+    where upper and middle agents actually retrieve them, while still showing
+    nearby Mathlib and quantum Lean reference surfaces.
+    """
+    fig, ax = setup(32.0, 23.0)
+    label(ax, 2.5, 98.0, "ABEIS Lean leaf module graph", fs=25, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        2.5,
+        95.8,
+        "Blue/green/amber nodes are compiled ABEIS Lean leaves; gray/purple nodes are searchable external reference memories.  The map is centered on quantum-circuit block-encoding construction.",
+        fs=10.6,
+        color=MUTED,
+        ha="left",
+    )
+
+    group_box(ax, 2.0, 83.0, 96.0, 10.8, "Reference memories: inspect before inventing local infrastructure", "#CBD5E1", "#FFFFFF")
+    ref_nodes = [
+        (3.8, 87.1, 13.0, "Mathlib", "Fin/Fintype\nMatrix/ext\nFinset sums\nPolynomial/norm"),
+        (18.5, 87.1, 16.5, "quantum-computing-lean", "Matrix/State\nStates\nGates.Basic\nProjectors"),
+        (36.8, 87.1, 15.5, "gate-action reference", "X/H/CNOT/TOFFOLI\nSWAP actions\nunitarity leaves\ndecompositions"),
+        (54.0, 87.1, 13.2, "Lean-QuantumInfo", "ForMathlib.Matrix\nchannels/probability\nPOVM/braket\nentropy"),
+        (69.0, 87.1, 12.2, "lean-quantum", "states/qudits\nchannels\ntrace/norm\noperator style"),
+        (83.0, 87.1, 13.0, "textbook BE", "Lin 2201.08309\nGSLW/QSVT\nLow-Chuang\nLCU/sparse"),
+    ]
+    for x, y, w, title, sub in ref_nodes:
+        module_node(ax, x, y, w, 4.8, title, sub, fc="#F8FAFC", ec="#94A3B8", fs=6.9, subfs=4.45)
+
+    group_box(ax, 2.0, 70.0, 96.0, 9.4, "ABEIS local Lean files: public surfaces and declaration counts", BLUE, "#F8FBFF")
+    file_nodes = [
+        (3.5, "Core.lean", "36\nMatrix/Coeff\nstencil"),
+        (14.5, "Resources.lean", "25\ngates/depth\nparallel"),
+        (26.0, "Circuit.lean", "12\ngate syntax\nlayers"),
+        (37.0, "BlockEncoding.lean", "22\ntarget/candidate\nverified records"),
+        (52.0, "CircuitSemantics.lean", "42\nevalWith\nprojection"),
+        (69.0, "BlockEncodingClassics.lean", "84\ntextbook\nBE leaves"),
+        (88.0, "Automation.lean", "39\nharness\ncontracts"),
+    ]
+    widths = [9.0, 9.0, 8.8, 12.0, 13.5, 15.5, 8.6]
+    for (x, title, sub), w in zip(file_nodes, widths):
+        module_node(ax, x, 73.0, w, 4.4, title, sub, fc=BLUE_L, ec=BLUE, fs=6.3, subfs=4.2)
+    for i in range(len(file_nodes) - 1):
+        x1 = file_nodes[i][0] + widths[i]
+        x2 = file_nodes[i + 1][0] - 0.3
+        arrow(ax, x1, 75.2, x2, 75.2, color=BLUE, lw=1.1, alpha=0.75)
+    for x, _, _, _, _ in ref_nodes:
+        arrow(ax, x + 5.5, 86.9, x + 5.5, 79.5, color="#94A3B8", lw=0.9, dashed=True, alpha=0.7)
+
+    group_box(ax, 2.0, 28.0, 96.0, 38.5, "Compiled ABEIS proof leaves: reusable theorem moves", BLUE, "#F9FCFF")
+    leaf_groups = [
+        (3.5, 58.0, "finite matrix core", [("Matrix/Coeff", "Matrix, PointwiseEq\nevalWith_*"), ("finite indices", "gridSize, clog2\nFin bounds"), ("matrix product", "mul, identity\ncongruence")], BLUE_L, BLUE),
+        (20.0, 58.0, "circuit semantics", [("eval paths", "evalWith_mul_apply\nunique/two-path"), ("branch sums", "selectedBranch\nprojection/backend"), ("signal block", "row/col index\nprojection_apply")], BLUE_L, BLUE),
+        (36.5, 58.0, "projector / clean block", [("clean entry", "cleanBlockBy_*\ncleanBlockProduct_*"), ("entry ext", "eq_target_of_entry\nproduct ext"), ("exact record", "ExactCleanBlock\nclean_eq_target")], GREEN_L, GREEN),
+        (53.0, 58.0, "permutation / unitarity", [("perm matrix", "permMatrix\nrow/columnInner"), ("orthogonal", "injective/bijective\nrational orthogonal"), ("partial perm", "partialPermutation\ncertificate")], GREEN_L, GREEN),
+        (69.5, 58.0, "sparse oracles", [("one-sparse", "oneSparseMatrix\nfrom_support"), ("column sparse", "no_hit\nunique_slot"), ("row-column", "delta entry\ncertificate")], GREEN_L, GREEN),
+        (86.0, 58.0, "value oracles", [("value->amp", "ValueToAmplitude\ncompute-rotate"), ("Ry scalar", "clean-entry\nangle tier"), ("uncompute", "workspace clean\nreadonly witness")], GREEN_L, GREEN),
+        (3.5, 43.8, "composition", [("LCU", "oneTermLCU\ntwoTerm LCU"), ("weighted sum", "weightedSum2\ncongr pointwise"), ("product/tensor", "product BE\ntensorResource")], AMBER_L, AMBER),
+        (20.0, 43.8, "dilation / Hermitian", [("scalar dilation", "cleanEntry\nrow norms"), ("orthogonality", "rows01/10\nunit norm"), ("Hermitian", "IsSymmetric\nHBE contract")], AMBER_L, AMBER),
+        (36.5, 43.8, "QSVT / polynomial", [("Chebyshev", "T0,T1,T2\nT3/T4 recurrence"), ("QSVT contract", "consumer only\nno hidden oracle"), ("hard hint", "O0 diagonal\nthen QSVT")], PURPLE_L, PURPLE),
+        (53.0, 43.8, "approximate BE", [("epsilon record", "ApproxCandidate\nVerifiedApprox"), ("zero incumbent", "exactAsZero\nbound"), ("epsilon ladder", "relaxedEpsilon\npolicy leaves")], PURPLE_L, PURPLE),
+        (69.5, 43.8, "resource ordering", [("cost API", "gateCount\ndepth/aux/oracle"), ("parallel", "LayeredCircuit\ndepth"), ("candidate score", "cost theorem\ncomparison tuple")], AMBER_L, AMBER),
+        (86.0, 43.8, "failure/reviewer leaves", [("typed feedback", "fine/coarse\nerror_class"), ("judge vector", "hard gates\nsoft scores"), ("stable proof", "small leaf\nroute lock")], RED_L, RED),
+    ]
+    small_w = 13.0
+    for x, y, group, leaves, fc, ec in leaf_groups:
+        label(ax, x, y + 5.8, group, fs=7.3, weight="bold", color=ec, ha="left")
+        for i, (title, sub) in enumerate(leaves):
+            module_node(ax, x, y - i * 3.7, small_w, 3.0, title, sub, fc=fc, ec=ec, fs=5.5, subfs=3.6)
+        arrow(ax, x + 6.5, 72.8, x + 6.5, y + 5.2, color=ec, lw=0.9, dashed=True, alpha=0.65)
+
+    for y in [62.0, 47.8, 32.2]:
+        for x1, x2 in [(16.8, 19.5), (33.3, 36.0), (49.8, 52.5), (66.3, 69.0), (82.8, 85.5)]:
+            arrow(ax, x1, y, x2, y, color="#64748B", lw=1.0, alpha=0.5)
+
+    group_box(ax, 2.0, 13.0, 96.0, 11.0, "Consumers: tasks that instantiate the leaves", GREEN, "#F8FFF9")
+    consumers = [
+        (3.5, "MainCase.lean", "124 decls\ntransfer operator\nPro/cold arms"),
+        (18.5, "CubicStatePreparation.lean", "158 decls\ndiagonal/rank-one\ncubic arithmetic"),
+        (36.0, "GHL2025.lean", "401 decls\nRobin/PDE\nsparse + function"),
+        (52.5, "RobinHeat.lean", "12 decls\nexample wrapper"),
+        (66.5, "TechnicalLemmas.lean", "re-export surface\nexternal facts"),
+        (82.0, "Exports", "LaTeX proof\nQiskit / QASM\nfigures"),
+    ]
+    for x, title, sub in consumers:
+        ec = AMBER if title == "Exports" else GREEN
+        fc = AMBER_L if title == "Exports" else GREEN_L
+        module_node(ax, x, 16.0, 13.0, 4.8, title, sub, fc=fc, ec=ec, fs=6.5, subfs=4.25)
+        arrow(ax, x + 6.5, 28.0, x + 6.5, 21.0, color=ec, lw=1.1)
+
+    group_box(ax, 2.0, 2.8, 96.0, 7.0, "Retrieval and proof-engineering discipline", "#94A3B8", "#FFFFFF")
+    policy = [
+        (3.5, "compiled index", "965 declarations\nmd/json"),
+        (18.5, "route selector", "textbook intuition\nnot rigid detection"),
+        (34.0, "QSVT route", "O0 diagonal ->\nQSVT side conditions"),
+        (51.0, "Mathlib search", "reuse generic\nfinite algebra"),
+        (67.0, "failure memory", "persistent failure\n= signal"),
+        (83.0, "reviewer judge", "decomposed vector\nhard Lean gate"),
+    ]
+    for x, title, sub in policy:
+        color = RED if title in {"failure memory", "reviewer judge"} else "#64748B"
+        fill = RED_L if title in {"failure memory", "reviewer judge"} else "#F8FAFC"
+        module_node(ax, x, 5.0, 12.0, 3.0, title, sub, fc=fill, ec=color, fs=5.8, subfs=3.7)
+
+    badge(ax, 75.0, 95.8, 5.0, 1.8, "ABEIS", fc=BLUE_L, ec=BLUE, fs=5.8)
+    badge(ax, 80.8, 95.8, 5.0, 1.8, "task", fc=GREEN_L, ec=GREEN, fs=5.8)
+    badge(ax, 86.6, 95.8, 5.0, 1.8, "memory", fc="#F8FAFC", ec="#94A3B8", fs=5.8)
+    badge(ax, 92.4, 95.8, 5.0, 1.8, "judge", fc=RED_L, ec=RED, fs=5.8)
+
+    for path in [
+        ARTICLE_FIG / "abeis_lean_leaf_module_graph.png",
+        ARTICLE_FIG / "abeis_lean_leaf_module_graph.svg",
+        README_FIG / "abeis_lean_leaf_module_graph.png",
+        README_FIG / "abeis_lean_leaf_module_graph.svg",
+    ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
 
 def main():
     ARTICLE_FIG.mkdir(parents=True, exist_ok=True)
@@ -613,6 +738,7 @@ def main():
     draw_qiskit_export_results()
     draw_quantum_lean_leaf_atlas()
     draw_abeis_lean_leaf_module_graph()
+    draw_abeis_detailed_lean_leaf_module_graph()
 
 
 if __name__ == "__main__":

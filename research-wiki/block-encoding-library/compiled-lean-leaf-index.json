@@ -1,5 +1,5 @@
 {
-  "total": 965,
+  "total": 968,
   "files": [
     {
       "file": "QuantumBlockEncoding/Core.lean",
@@ -1144,7 +1144,7 @@
     },
     {
       "file": "QuantumBlockEncoding/MainCase.lean",
-      "count": 124,
+      "count": 127,
       "declarations": [
         {
           "kind": "def",
@@ -1764,7 +1764,22 @@
         {
           "kind": "def",
           "name": "mainCaseColdResourceSchemaObligation",
-          "line": 913
+          "line": 912
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermCandidate",
+          "line": 925
+        },
+        {
+          "kind": "def",
+          "name": "mainCaseColdPartialPermVerified",
+          "line": 942
+        },
+        {
+          "kind": "theorem",
+          "name": "mainCaseColdPartialPermCandidate_cost",
+          "line": 952
         }
       ]
     },

@@ -10,13 +10,18 @@ Lean or natural language.
 ## How To Use
 
 1. Read `route-selector.md`.
-2. Pick one or more cards in `cards/`.
-3. Instantiate the card as a proof blueprint: target, unitary, clean block,
-   unitarity, resource tuple, and proof-DAG leaves.
-4. Check `compiled-lean-leaf-index.md` and `proof-network.md` for already
-   compiled Lean leaves shared by other cards.
-5. Record the cited theorem or external contract in `research-wiki/cited-results/`.
-6. Promote a construction to the certified population only after Lean proves it.
+2. Pick several plausible cards in `cards/` as route hypotheses.  Do not treat
+   the first matching card as a mandatory construction.
+3. Separate the selected memories into idea cards, compiled Lean leaves, and
+   contract-only dependencies.
+4. For idea cards, brainstorm variants, mutations, recombinations, and
+   alternative normalizers/resources.
+5. For compiled Lean leaves, instantiate them or write the smallest adapter;
+   do not ask a lower worker to reprove an available theorem.
+6. For contract-only dependencies, record the boundary explicitly in the proof
+   DAG and cited-results memory.
+7. Promote a construction to the certified population only after Lean proves
+   the claimed local theorem.
 
 For expert block-encoding work, read the files in this order:
 

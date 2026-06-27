@@ -1,0 +1,27 @@
+{
+  "task": "QBE-MAIN-CASE-HIER-COLD-001",
+  "run": "20260627-122318-QBE-MAIN-CASE-HIER-COLD-001-cycle01",
+  "leaf": "MAIN-CANDIDATE-PACKAGE-001",
+  "source_correspondence_ok": true,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": true,
+  "block_entry_ok": true,
+  "ancilla_cleanup_ok": true,
+  "normalizer_ok": true,
+  "unitarity_ok": true,
+  "unitarity_tier": "finite_permutation",
+  "resource_score": "(5,5,1,0)",
+  "auxiliary_qubits": 1,
+  "gate_count": 5,
+  "depth": 5,
+  "oracle_calls": 0,
+  "closed_theorem_ok": true,
+  "closed_declarations": [
+    "mainCaseColdPartialPermCandidate",
+    "mainCaseColdPartialPermVerified",
+    "mainCaseColdPartialPermCandidate_cost"
+  ],
+  "error_class": null,
+  "next_route": "MAIN-EXPORT-001: generate Qiskit/QASM3 artifacts from mainCaseColdPartialPermVerified and check them against the COLD finite image, clean block, normalizer, and resource tuple."
+}

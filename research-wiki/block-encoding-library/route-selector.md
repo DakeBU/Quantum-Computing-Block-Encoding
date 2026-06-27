@@ -1,10 +1,26 @@
 # Block-Encoding Route-Intuition Guide
 
 Given an operator target $A$, use this file as a textbook memory, not a rigid
-classifier.  Upper agents should read the target, recall similar classic
-constructions, and propose several plausible routes.  Middle agents then turn
-those routes into small proof-DAG leaves, run them in parallel when useful, and
-store failed but insightful candidates in the insight pool.
+classifier.  Block-encoding construction is a design-search problem: upper
+agents should read the target, recall similar classic constructions, and
+propose several plausible routes rather than follow the first matching row.
+Middle agents then turn selected routes into small proof-DAG leaves, run them
+in parallel when useful, and store failed but insightful candidates in the
+insight pool.
+
+Separate three kinds of memory before assigning lower work:
+
+| Memory type | Status | How to use it |
+| --- | --- | --- |
+| Idea card | mathematical inspiration | mutate, recombine, compare, or reject during upper/middle brainstorming |
+| Compiled Lean leaf | theorem already available in ABEIS | instantiate it or write a small adapter; do not reprove it |
+| Contract-only card | known external theorem or planned formalization | keep it explicit in the proof DAG; do not present it as Lean-closed |
+
+For QSVT-style tasks, this distinction is crucial.  If the current task only
+needs to consume an already proved input block encoding, retrieve the QSVT
+consumer route and reuse/adapt the existing `QSVTConsumerContract` or
+Chebyshev leaves.  Reprove the full QSVT theorem only when the task is
+explicitly about foundational QSVT formalization.
 
 ## Route-Intuition Matrix
 

@@ -136,10 +136,10 @@ auxiliaryQubits, oracleCalls) = (5, 5, 1, 0)`, certified by
 | project-local block projection predicate | `mainCaseColdBlockProjection`, `mainCaseColdPartialPerm_blockProjection` | proved |
 | COLD source layout | `mainCaseColdSourceLayout`, `mainCaseColdSourceLayout_auxiliaryQubits` | compiled; proves `a = 1` at layout layer |
 | COLD logical circuit/schema | `mainCaseColdCircuit`, `mainCaseColdSchedule`, `mainCaseColdReducedGateImages_eval`, `mainCaseColdCircuitImage_eq_partialPermImage` | compiled; implements the finite table |
-| resource-schema obligation marker | `mainCaseColdResourceSchemaObligation` | historical open marker; not promoted by this lower worker |
-| COLD candidate and verified package | `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified` | next active leaf after resource closure |
+| resource-schema obligation marker | `mainCaseColdResourceSchemaObligation` | promoted with compiled circuit-image and cost evidence |
+| COLD candidate and verified package | `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified` | proved at finite-permutation semantic tier |
 | resource tuple | `mainCaseColdPartialPermCost` and field theorems | proved as `(5, 5, 1, 0)` at the high-level logical tier |
-| post-Lean Qiskit/QASM export packet | `executable-exports/QBE-MAIN-CASE-HIER-COLD-001/` | blocked until Lean certificate |
+| post-Lean Qiskit/QASM export packet | `executable-exports/QBE-MAIN-CASE-HIER-COLD-001/` | generated Qiskit, QASM3, manifest, and deterministic export checker passed against `mainCaseColdPartialPermVerified` |
 
 ## Candidate Contract
 
@@ -258,10 +258,72 @@ theorem mainCaseColdPartialPermCost_oracleCalls :
     mainCaseColdPartialPermCost.oracleCalls = 0
 ```
 
-The next lower worker may attempt COLD `OperatorBlockEncodingCandidate`
-packaging, but must still prove the candidate record under `mainCaseCold*`
-names and must not start Qiskit/QASM3 export before a named verified COLD
-candidate compiles.
+Cycle 20260627 package update: the COLD `OperatorBlockEncodingCandidate`
+and `VerifiedOperatorBlockEncoding` package now compiles under task-local
+`mainCaseCold*` names as `mainCaseColdPartialPermCandidate` and
+`mainCaseColdPartialPermVerified`.  The export packet now contains Qiskit, QASM3, a manifest, and a deterministic checker using this named Lean certificate.
+
+Cycle 2 export-map repair: executable exports must preserve the Lean full
+index convention `8*signal + 4*T + 2*tau + S`.  Thus the executable integer
+bit weights are `S=0`, `tau=1`, `T=2`, and `signal=3`.  The earlier packet
+wording with `T=0`, `tau=1`, `S=2`, `signal=3` is retired as register-map
+drift.  A Qiskit implementation should use `q[0]=S`, `q[1]=tau`, `q[2]=T`,
+and `q[3]=signal`, then compare its deterministic basis action with
+`mainCaseColdPartialPermImage`.
+
+## Cycle 20260627 Source-Correspondence Update
+
+The current run remains an exact exploratory operator-construction cycle.  The
+source anchor is still the task packet operator contract, not a paper TeX
+archive.  The paper object being translated is the concrete matrix-unit tensor
+identity
+
+$$
+E_1 = |0><1|_T \otimes |0><1|_\tau \otimes I_S
+$$
+
+at `r = 1`, `k = 1`, and one passive `S` qubit.  No source branch, boundary
+case, QSVT consumer, LCU expansion, or sparse-access oracle is active.  The
+only post-Lean executable work now active is export planning and later
+Qiskit/QASM3 generation from the named COLD certificate.
+
+The route-selection memory for this cycle is:
+
+| Route | Decision | Reason |
+|---|---|---|
+| `BE.PartialPermutation.MatrixUnitTensorId` | active | the target is a matrix unit tensor identity |
+| `BE.PermMatrix.CleanBlock` | active semantic bridge | the candidate is a finite permutation matrix with a clean signal block |
+| `BE.Tensor.PassiveRegister` | active register rationale | the `S` register is preserved by the candidate table and circuit image |
+| `BE.Sparse.OneSparsePermutation` | insight-pool alternative | more general than needed for this matrix-unit proof |
+| `BE.LCU.PrepareSelect` | archived | one-term LCU would add preparation/select machinery without improving the exact proof |
+| `BE.QSVT.ConsumerContract` | blocked/downstream | QSVT consumes a proved block encoding and cannot replace the current certificate |
+
+The packaging leaf closed with:
+
+```lean
+def mainCaseColdPartialPermCandidate :
+    OperatorBlockEncodingCandidate Rat 3
+
+def mainCaseColdPartialPermVerified :
+    VerifiedOperatorBlockEncoding Rat 3
+
+theorem mainCaseColdPartialPermCandidate_cost :
+    mainCaseColdPartialPermCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 5, depth := 5, oracleCalls := 0 }
+```
+
+This leaf is QBE-local semantic glue.  It consumes the compiled COLD
+declarations `mainCaseColdQueryTarget`, `mainCaseColdPartialPermMatrix`,
+`mainCaseColdSourceLayout`, `mainCaseColdCircuit`, `mainCaseColdSchedule`,
+`mainCaseColdHighLevelResource`, `mainCaseColdSourceLayout_auxiliaryQubits`,
+`mainCaseColdPartialPermImage_bijective`, and
+`mainCaseColdPartialPerm_blockProjection`.  It does not change the target
+matrix, clean signal, normalizer, passive register convention, circuit
+transcript, or resource tuple.
+
+No external cited-result row is needed for this packet.  The only reusable
+technical inputs are compiled QBE-local declarations from
+`BlockEncodingClassics` and `QuantumBlockEncoding/MainCase.lean`.
 
 ## Proof-DAG Frontier
 
@@ -274,8 +336,10 @@ candidate compiles.
 | `MAIN-PERM-UNITARY-001` | Prove the image is a bijection/permutation for the finite-permutation semantic tier. | `MAIN-CAND-IMAGE-001`, `MAIN-FINITE-DIAG-001` | lower 2 | `mainCaseColdPartialPermImage_bijective` | verifier-feedback packet | `python3 tools/qbe.py check` | proved at finite-permutation tier; stronger matrix predicate deferred if later required |
 | `MAIN-BLOCK-PROJECTION-001` | Define COLD `QueryOperatorTarget` and `signalSystemBlockProjection` predicate, then prove the COLD permutation matrix satisfies that predicate. | `MAIN-CLEAN-ENTRY-001`, `MAIN-PERM-UNITARY-001` | lower 2 | `mainCaseColdQueryTarget`, `mainCaseColdBlockProjection`, `mainCaseColdPartialPerm_blockProjection` | this conversion window and cycle-3 source contract | `python3 tools/qbe.py check` | proved |
 | `MAIN-RESOURCE-001` | Attach an honest resource tuple with certified field theorems. | `MAIN-BLOCK-PROJECTION-001` | lower 2 | `mainCaseColdCircuit`, `mainCaseColdCircuitImage_eq_partialPermImage`, `mainCaseColdPartialPermCost_*` | candidate-population ledger | `python3 tools/qbe.py check` | proved at high-level logical resource tier |
-| `MAIN-CANDIDATE-PACKAGE-001` | Package the COLD candidate and verified certificate without changing the target or hiding resource assumptions. | `MAIN-BLOCK-PROJECTION-001`, `MAIN-RESOURCE-001` | lower 2/refiner | `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified` | proof-obligation ledger | `python3 tools/qbe.py check` | active leaf |
-| `MAIN-EXPORT-001` | Create Qiskit and QASM3 exports for `r=1,k=1,passiveQubits=1`. | named Lean block, unitarity, and resource certificates | later export worker | export manifest and checks | export ledger | export check plus project gate | blocked until Lean certificate |
+| `MAIN-CANDIDATE-PACKAGE-001` | Package the COLD candidate and verified certificate without changing the target or hiding resource assumptions. | `MAIN-BLOCK-PROJECTION-001`, `MAIN-RESOURCE-001` | middle/lower 2 | `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified`, `mainCaseColdPartialPermCandidate_cost` | proof-obligation ledger | `python3 tools/qbe.py check` | proved |
+| `MAIN-EXPORT-MAP-001` | Keep export metadata aligned with Lean bit weights and the named certificate. | `mainCaseColdPartialPermVerified`, `mainCaseColdPartialPermCandidate_cost` | middle | `export-plan.md`, lower packet, verifier-feedback repair packet | this conversion window | `python3 tools/qbe.py check` | repaired; consume this map for generated artifacts |
+| `MAIN-EXPORT-IMPLEMENT-001` | Create Qiskit and QASM3 exports for `r=1,k=1,passiveQubits=1`. | `MAIN-EXPORT-MAP-001` | export worker | `qiskit/export.py`, `qasm3/main_case_cold_partial_perm.qasm3`, manifest | export plan | export check plus project gate | completed; generated artifacts pass deterministic checks |
+| `MAIN-EXPORT-VERIFY-001` | Check exported basis action, clean support, passive `S`, normalizer, exact error, resource tuple, and forbidden references. | `MAIN-EXPORT-IMPLEMENT-001` | verifier | `main-case-cold-export-implement-cycle02.md` | verifier-feedback packet | export check plus project gate | completed; finite checks pass and no `mainCasePro*` evidence is used |
 
 ## Stale And Rejected Route Memory
 
@@ -312,6 +376,22 @@ Cycle 3 lower packet for the active resource/schema leaf:
 
 Cycle 3 lower architect packet for the active resource/schema leaf:
 `proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-architect-cycle03-main-resource.md`.
+
+Cycle 20260627 middle source-contract packet for the active candidate-package
+leaf:
+`proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-middle-source-contract-cycle01-main-candidate-package.md`.
+
+Cycle 20260627 typed feedback for the closed candidate-package leaf:
+`verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-candidate-package-cycle01.md`.
+
+Cycle 20260627 post-Lean export plan:
+`executable-exports/QBE-MAIN-CASE-HIER-COLD-001/export-plan.md`.
+
+Cycle 20260627 lower packet for the active export leaf:
+`proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-middle-lower-packets-cycle01-main-export.md`.
+
+Cycle 2 source contract for the corrected export map:
+`proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-middle-source-contract-cycle02-main-export-map.md`.
 
 Cycle 1 split packet remains valid as background:
 `proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-packets-cycle01.md`.

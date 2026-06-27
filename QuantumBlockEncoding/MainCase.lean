@@ -906,14 +906,52 @@ theorem mainCaseColdSourceLayout_auxiliaryQubits :
 /--
 Resource-schema obligation for `MAIN-RESOURCE-001`.
 
-The finite permutation and clean block are proved, but a complete COLD
-candidate package still needs a task-local circuit or schedule whose gate count
-and depth justify the advertised resource tuple.
+The COLD-local circuit image and resource field theorems below justify the
+advertised high-level logical resource tuple for the candidate package.
 -/
 def mainCaseColdResourceSchemaObligation : SemanticObligation where
   description :=
-    "derive a COLD-local circuit/schedule and honest resource tuple before packaging a verified candidate"
+    "COLD-local circuit/schedule and honest resource tuple are compiled as mainCaseColdCircuitImage_eq_partialPermImage and mainCaseColdPartialPermCost_*"
   source := "QBE-MAIN-CASE-HIER-COLD-001, MAIN-RESOURCE-001"
-  proved := false
+  proved := true
+
+/--
+COLD task-local candidate package at the finite-permutation semantic tier.
+
+The target, candidate matrix, block projection, and logical resource tuple are
+all COLD-local declarations; this package does not use the separate `mainCasePro*`
+arm as evidence.
+-/
+def mainCaseColdPartialPermCandidate :
+    OperatorBlockEncodingCandidate Rat 3 where
+  auxiliaryQubits := 1
+  target := mainCaseColdQueryTarget
+  unitary := mainCaseColdPartialPermMatrix
+  layout := mainCaseColdSourceLayout
+  circuit := mainCaseColdCircuit
+  schedule := mainCaseColdSchedule
+  resource := mainCaseColdHighLevelResource
+  layoutMatches := mainCaseColdSourceLayout_auxiliaryQubits
+  isUnitary := mainCaseColdPartialPermImageIsPermutation
+  blockContainsTarget := mainCaseColdBlockProjection mainCaseColdPartialPermMatrix
+
+/--
+Verified COLD block-encoding package for the transfer operator at the current
+finite-permutation semantic tier.
+-/
+def mainCaseColdPartialPermVerified :
+    VerifiedOperatorBlockEncoding Rat 3 where
+  candidate := mainCaseColdPartialPermCandidate
+  unitaryProof := by
+    unfold mainCaseColdPartialPermCandidate
+    exact mainCaseColdPartialPermImage_bijective
+  blockProof := by
+    unfold mainCaseColdPartialPermCandidate
+    exact mainCaseColdPartialPerm_blockProjection
+
+theorem mainCaseColdPartialPermCandidate_cost :
+    mainCaseColdPartialPermCandidate.cost =
+      { auxiliaryQubits := 1, gateCount := 5, depth := 5, oracleCalls := 0 } := by
+  native_decide
 
 end QuantumBlockEncoding

@@ -1,0 +1,46 @@
+{
+  "task": "QBE-MAIN-CASE-HIER-COLD-001",
+  "leaf": "MAIN-EXPORT-IMPLEMENT-001",
+  "candidate": "MAIN-PARTIAL-PERM-001",
+  "lean_module": "QuantumBlockEncoding.MainCase",
+  "lean_certificate": "mainCaseColdPartialPermVerified",
+  "lean_cost_theorem": "mainCaseColdPartialPermCandidate_cost",
+  "target_operator": "|0><1|_T tensor |0><1|_tau tensor I_S",
+  "parameters": {
+    "r": 1,
+    "k": 1,
+    "passiveQubits": 1
+  },
+  "system_registers": ["T", "tau", "S"],
+  "qiskit_qubit_order": ["S", "tau", "T", "signal"],
+  "lean_integer_bit_weights": {
+    "S": 0,
+    "tau": 1,
+    "T": 2,
+    "signal": 3
+  },
+  "system_index": "4*T + 2*tau + S",
+  "full_index": "8*signal + 4*T + 2*tau + S",
+  "clean_signal": 0,
+  "projector": "mainCaseColdBlockProjection",
+  "normalizer": 1,
+  "epsilon": 0,
+  "basis_action": [14, 15, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 6, 7, 12, 13],
+  "clean_block_support": [[0, 6], [1, 7]],
+  "resource_score": {
+    "gateCount": 5,
+    "depth": 5,
+    "auxiliaryQubits": 1,
+    "oracleCalls": 0
+  },
+  "exports": {
+    "qiskit": "qiskit/export.py",
+    "qasm3": "qasm3/main_case_cold_partial_perm.qasm3"
+  },
+  "check_commands": [
+    "python3 executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py --json",
+    "python3 executable-exports/QBE-MAIN-CASE-HIER-COLD-001/main_case_cold_export_check.py",
+    "python3 verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-export-cycle01.py"
+  ],
+  "scope_note": "Post-Lean executable export for the exact finite COLD instance; Lean remains the theorem authority."
+}

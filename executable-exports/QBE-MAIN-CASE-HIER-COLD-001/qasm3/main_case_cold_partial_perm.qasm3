@@ -1,0 +1,14 @@
+OPENQASM 3.0;
+include "stdgates.inc";
+
+// Lean certificate:
+// QuantumBlockEncoding.MainCase.mainCaseColdPartialPermVerified
+// Integer-basis convention: 8*signal + 4*T + 2*tau + S.
+// Qubit map: q[0]=S, q[1]=tau, q[2]=T, q[3]=signal.
+qubit[4] q;
+
+x q[2];
+ccx q[1], q[2], q[3];
+x q[1];
+cx q[3], q[2];
+cx q[1], q[3];

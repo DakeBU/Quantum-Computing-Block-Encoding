@@ -3,7 +3,7 @@
 Task id: `QBE-MAIN-CASE-HIER-COLD-001`
 Title: Main case transfer-operator block encoding, no-Pro isolated Hierarchical Harness
 Mode: `exploratoryConstruction`
-Updated: `2026-06-26 00:23:03`
+Updated: `2026-06-27 13:30:52`
 Blueprint stage: `Stage 1 target/transcript stabilization`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -163,15 +163,15 @@ Expected file and declarations:
 
 ## Proof Obligations
 
-- [ ] Matrix/operator target `A` is defined.
-- [ ] Candidate unitary `U_A` or circuit schema is defined.
-- [ ] Block-entry contract is stated with the exact ancilla projector.
-- [ ] Unitarity of `U_A` is proved or recorded as a named obligation.
-- [ ] Normalization `alpha` is explicit.
-- [ ] Auxiliary qubit count `a` is explicit.
-- [ ] Asymptotic tier and concrete resource score `(gateCount, depth, a, oracleCalls)` are explicit.
-- [ ] Candidate comparison against the current baseline is recorded when relevant.
-- [ ] `lake build && lake build Tests` succeeds.
+- [x] Matrix/operator target `A` is defined.
+- [x] Candidate unitary `U_A` or circuit schema is defined.
+- [x] Block-entry contract is stated with the exact ancilla projector.
+- [x] Unitarity of `U_A` is proved or recorded as a named obligation.
+- [x] Normalization `alpha` is explicit.
+- [x] Auxiliary qubit count `a` is explicit.
+- [x] Asymptotic tier and concrete resource score `(gateCount, depth, a, oracleCalls)` are explicit.
+- [x] Candidate comparison against the current baseline is recorded when relevant.
+- [x] `lake build && lake build Tests` succeeds.
 
 ## Agent Notes
 
@@ -193,8 +193,7 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| MAIN-CANDIDATE-PACKAGE-001: Package the COLD candidate and verified certificate without changing the target or hiding resource assumptions.; status: active leaf; Lean: `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified` | candidate |
-| MAIN-EXPORT-001: Create Qiskit and QASM3 exports for `r=1,k=1,passiveQubits=1`.; status: blocked until Lean certificate; Lean: export manifest and checks | candidate |
+| MAIN-EXPORT-IMPLEMENT-001: Create Qiskit and QASM3 exports for `r=1,k=1,passiveQubits=1`.; status: active post-Lean leaf; code/checks pending; Lean: `qiskit/`, `qasm3/`, manifest | candidate |
 
 ## Open Obligation Signals
 
@@ -211,9 +210,9 @@ state project-local block projection and prove candidate matrix satisfies it: Le
 make normalizer explicit: Lean `mainCaseColdExactNormalizer = 1`; class source translation; status compiled
 make auxiliary qubit count explicit: Lean `mainCaseColdSourceLayout_auxiliaryQubits`, `mainCaseColdPartialPermCost_auxiliaryQubits`; class resource layer; status proved
 make resource tuple explicit: Lean field theorems for `(gateCount, depth, auxiliaryQubits, oracleCalls)`; class resource layer; status proved as `(5,5,1,0)` after COLD-local circuit schema
-package COLD candidate and verified certificate: Lean `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified`; class candidate packaging; status active next leaf; resource tuple now ready
-compare against baseline: Lean candidate-population row for `MAIN-PARTIAL-PERM-001`; class exploratory memory; status updated with compiled resource tuple; full candidate ranking still awaits verified package
-run gate: Lean `python3 tools/qbe.py check`; class project gate; status required after edits
+package COLD candidate and verified certificate: Lean `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified`, `mainCaseColdPartialPermCandidate_cost`; class candidate packaging; status proved
+compare against baseline: Lean candidate-population row for `MAIN-PARTIAL-PERM-001`; class exploratory memory; status updated with compiled verified package and resource tuple
+run gate: Lean `python3 tools/qbe.py check`; class project gate; status passed after candidate-package and test updates
 ```
 
 ## Lean Declaration Index
@@ -294,23 +293,23 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-e memory, retrieval index, proof blueprint, run todo, and verifier-feedback sync. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
+Y-001, depending on mainCaseColdPartialPermVerified, mainCaseColdPartialPermCandidate_cost, mainCaseColdCircuitImage_eq_partialPermImage, mainCaseColdPartialPermImage, mainCaseColdTarget, and mainCaseColdPartialPermCost_*. Export map must use q[0]=S,q[1]=tau,q[2]=T,q[3]=signal for Lean index 8*signal+4*T+2*tau+S. Next verifier should log gate_count=5, depth=5, auxiliary_qubits=1, oracle_calls=0, qasm3_ok, forbidden_reference_ok, artifact presence, and actual wire map. Retrieval packet: read corrected export-plan, lower architect packet, verifier script, and MainCase declarations; generate qiskit/qasm3/manifest under executable-exports/QBE-MAIN-CASE-HIER-COLD-001/, then run verifier and gates.
 
-## 2026-06-26 00:09:53 - middle
+## 2026-06-27 13:22:04 - middle
 
-Closed MAIN-BLOCK-PROJECTION-001 under task-local COLD declarations: mainCaseColdQueryTarget, mainCaseColdBlockProjection, mainCaseColdPartialPerm_blockProjection, mainCaseColdSourceLayout_auxiliaryQubits, and mainCaseColdResourceSchemaObligation compile. Refreshed conversion window, obligations, candidate population, proof blueprint, retrieval index, run todo, lower resource packet, and verifier feedback. Active leaf is MAIN-RESOURCE-001; candidate packaging and Qiskit/QASM3 export remain blocked until an honest COLD circuit/resource tuple and cost theorems compile. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
+Middle coordinator synthesis added proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-middle-lower-packets-cycle02-main-export.md and pointed run todo/memory digest to it. Active frontier remains MAIN-EXPORT-MAP-001 -> MAIN-EXPORT-IMPLEMENT-001 -> MAIN-EXPORT-VERIFY-001 from mainCaseColdPartialPermVerified and mainCaseColdPartialPermCandidate_cost=(5,5,1,0). Correct export bit weights are S=0,tau=1,T=2,signal=3 with q[0]=S,q[1]=tau,q[2]=T,q[3]=signal. No Lean edits by this coordinator pass. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
 
-## 2026-06-26 00:13:36 - lower
+## 2026-06-27 13:26:30 - lower
 
-Necessary-condition verifier checked MAIN-RESOURCE-001. Added verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-resource-cycle03.{py,md,feedback.json}; the executable rechecks the COLD Fin16 table, clean support {(0,6),(1,7)}, alpha=1, and open resource state. finite_matrix_ok=true, block_entry_ok=true, source_correspondence_ok=true, closed_theorem_ok=false for the resource leaf, error_class=symbolic_bridge_gap. Rejection: do not add mainCaseColdPartialPermCandidate, mainCaseColdPartialPermVerified, or Qiskit/QASM3 export before a COLD-local circuit/resource schema and mainCaseColdPartialPermCost_* field theorems compile. Gate passed: python3 tools/qbe.py check.
+Necessary-condition verifier checked MAIN-EXPORT-VERIFY-001. Added verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-export-verify-cycle02.{py,md,feedback.json}. The reference COLD table sanity check remains true, but export verification is rejected with source_translation_gap because no qiskit/*.py basis-action export, no qasm3 file, and no manifest exist yet. Required map remains q[0]=S, q[1]=tau, q[2]=T, q[3]=signal for 8*signal + 4*T + 2*tau + S. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests.
 
-## 2026-06-26 00:16:27 - lower
+## 2026-06-27 13:26:31 - lower
 
-Lower architect packet written for MAIN-RESOURCE-001 at proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-architect-cycle03-main-resource.md. It derives an independent COLD-local five-gate logical reversible schema on wires signal,T,tau,S: X_signal; CCX_T_tau_signal; CX_tau_T; CX_signal_T; X_tau. Finite table check matches mainCaseColdPartialPermImage, proposed logical tuple is (gateCount,depth,auxiliaryQubits,oracleCalls)=(5,4,1,0), but closed_theorem_ok=false until mainCaseColdCircuit/mainCaseColdSchedule/mainCaseColdLogicalResource/mainCaseColdPartialPermCost_* compile. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
+Lower architect cycle 2 wrote proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-architect-cycle02-main-export-implement.md and updated the proof-obligation DAG rows: MAIN-EXPORT-MAP-001 is repaired/retired; active leaf is MAIN-EXPORT-IMPLEMENT-001. No Lean edits. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
 
-## 2026-06-26 00:20:17 - lower
+## 2026-06-27 13:27:25 - lower
 
-Closed MAIN-RESOURCE-001 at the high-level logical resource tier. Added COLD-local circuit/schema declarations in QuantumBlockEncoding/MainCase.lean: mainCaseColdCircuit, mainCaseColdSchedule, mainCaseColdCircuitImage_eq_partialPermImage, mainCaseColdHighLevelResource, mainCaseColdPartialPermCost, and cost field theorems for score (gateCount,depth,auxiliaryQubits,oracleCalls)=(5,5,1,0). Did not promote mainCaseColdResourceSchemaObligation.proved and did not package a candidate. Next exact Lean leaf: MAIN-CANDIDATE-PACKAGE-001, define mainCaseColdPartialPermCandidate and mainCaseColdPartialPermVerified from existing finite-permutation, block-projection, and resource declarations. Gate passed: python3 tools/qbe.py check.
+MAIN-EXPORT-VERIFY-001 implemented post-Lean executable exports for QBE-MAIN-CASE-HIER-COLD-001 from mainCaseColdPartialPermVerified: qiskit/export.py, qasm3/main_case_cold_partial_perm.qasm3, export-manifest.json, and main_case_cold_export_check.py. Deterministic checks pass: exported basis action [14,15,8,9,10,11,0,1,2,3,4,5,6,7,12,13] equals mainCaseColdPartialPermImage, clean support is {(0,6),(1,7)}, passive S is preserved, normalizer=1, epsilon=0, and resource tuple=(5,5,1,0). Compatibility verifier main-case-cold-export-cycle01.py now exits 0. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests. Next route: reviewer audit of generated export artifacts against mainCaseColdPartialPermVerified.
 ````
 
 ## Gate Policy

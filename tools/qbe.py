@@ -1663,6 +1663,12 @@ def infer_blueprint_stage(task_text: str, proof_obligation_text: str) -> str:
 
 def dynamic_leaf_candidates(task_text: str, obligation_text: str, dialogue_text: str, limit: int = 12) -> list[str]:
     candidates: list[str] = []
+    obligation_lower = obligation_text.lower()
+    if (
+        "there is no active proof leaf" in obligation_lower
+        and "deterministic checker pass" in obligation_lower
+    ):
+        return []
     directive = extract_preferred_section(task_text, [r"^## Current Run Directive.*?$", r"^## Immediate .*?$"])
     if directive:
         current: list[str] = []
@@ -3665,6 +3671,11 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
         "source_main_tex": display_path(source) if source else "",
         "mode": blueprint.get("mode", ""),
         "stage": blueprint.get("stage", ""),
+        "card_memory_protocol": {
+            "idea_cards": "route inspiration only; mutate/recombine and reject when hypotheses do not fit",
+            "compiled_lean_leaves": "reusable proof tools; instantiate or adapt instead of reproving",
+            "contract_only_cards": "explicit proof-DAG boundaries; not Lean-closed evidence",
+        },
         "dynamic_leaf_queue": blueprint.get("dynamic_leaf_queue", []),
         "open_obligation_signals": blueprint.get("open_obligation_signals", []),
         "lean_sorries": lean_sorry_lines(limit=40),
@@ -3796,15 +3807,27 @@ def is_ghl_case_task(task_id: str) -> bool:
     return "GHL" in haystack or "Guseynov" in haystack or task_id in {"QBE-AUTO-001", "QBE-AUTO-002"}
 
 
+def is_main_case_task(task_id: str) -> bool:
+    title, task_text = task_context(task_id)
+    haystack = f"{task_id}\n{title}\n{task_text}".lower()
+    return (
+        task_id == "QBE-OP-OPTCTRL-001"
+        or "main-case" in haystack
+        or "main case" in haystack
+        or "transfer-operator" in haystack
+        or "transfer operator" in haystack
+    )
+
+
 def task_plain_language_status_en(task_id: str) -> str:
-    if task_id == "QBE-OP-OPTCTRL-001":
+    if is_main_case_task(task_id):
         return (
             "This cycle is an exploratory block-encoding construction task.  "
-            "The target is the concrete optimal-control transfer operator "
-            "E_1.  The current report should state the best Lean-certified "
-            "concrete logical reversible permutation-matrix block encoding, "
-            "its resource score, and the remaining generalization, lower-bound, "
-            "and hardware-decomposition obligations."
+            "The target is the concrete transfer operator "
+            "E_1 = |0><1|_T tensor |0><1|_tau tensor I_S.  The current report "
+            "should state only the Lean-certified candidate package, its clean "
+            "signal, alpha, epsilon, passive-register claim, resource score, "
+            "and any blocked export or optimality obligations."
         )
     if is_ghl_case_task(task_id):
         return plain_language_status_en()
@@ -3817,7 +3840,7 @@ def task_plain_language_status_en(task_id: str) -> str:
 
 
 def manuscript_rule_latex(task_id: str) -> str:
-    if task_id == "QBE-OP-OPTCTRL-001":
+    if is_main_case_task(task_id):
         return (
             "The project report may discuss this cycle as process evidence and "
             "as a concrete logical reversible permutation-matrix block "
@@ -3844,12 +3867,12 @@ def article_delta_markdown(task_id: str) -> str:
     common = [
         "- Keep the main system claim: ABEIS is an auto-proof harness for turning quantum oracle assumptions into Lean-checked block-encoding/circuit certificates.",
     ]
-    if task_id == "QBE-OP-OPTCTRL-001":
+    if is_main_case_task(task_id):
         common.extend(
             [
-                "- Update the generated appendix with the current optimal-control construction status: concrete logical reversible permutation-matrix certificate `evolvedEqFlipVerified`, comparison tuple `(4,2,1,0)`, and the remaining generalization/hardware/lower-bound obligations.",
+                "- Update the generated appendix with the current main-case construction status: concrete logical reversible permutation-matrix certificate, its comparison tuple, and the remaining export, generalization, hardware-decomposition, or lower-bound obligations.",
                 "- Do not replay the full population history in Overleaf; keep history in `candidate-populations/` and verifier-feedback packets.",
-                "- State the semantic tier precisely: concrete `r=1,k=1` logical `{X,CNOT,Toffoli}` permutation-matrix BE, not a hardware-decomposed or general-family theorem.",
+                "- State the semantic tier precisely: concrete `r=1,k=1` logical permutation-matrix block encoding, not a hardware-decomposed or general-family theorem unless the named Lean declarations close those tiers.",
                 "- State the certified-population rule: only candidates with named Lean certificates can be evolutionary parents or plotted solution points; Pro/Python/simulator ideas stay in the insight pool until Lean promotes them.",
             ]
         )
@@ -3872,7 +3895,7 @@ def article_delta_markdown(task_id: str) -> str:
 
 
 def suggested_project_paper_edits_markdown(task_id: str) -> str:
-    if task_id == "QBE-OP-OPTCTRL-001":
+    if is_main_case_task(task_id):
         return """| Report location | Safe update |
 |---|---|
 | `main/evidence.tex` | Mention the concrete explore-mode improvement only as process evidence and name the Lean declarations supporting it. |
@@ -3893,7 +3916,7 @@ def suggested_project_paper_edits_markdown(task_id: str) -> str:
 
 
 def do_not_claim_markdown(task_id: str) -> str:
-    if task_id == "QBE-OP-OPTCTRL-001":
+    if is_main_case_task(task_id):
         return """- Do not claim a generalized optimal-control theorem while the construction is only proved for the concrete `r=1,k=1` finite instance.
 - Do not claim hardware-gate optimality before choosing and proving a hardware decomposition/resource model.
 - Do not treat finite verifier scores or population-search convergence as mathematical optimality theorems.
@@ -3951,25 +3974,37 @@ def prelean_verifier_rows_en(task_id: str | None = None) -> list[dict[str, objec
                 "lean_still_needed": "Lean must connect the budget to the operator-norm block-encoding definition",
             },
         ]
-    if task_id == "QBE-OP-OPTCTRL-001":
+    if task_id is not None and is_main_case_task(task_id):
         return [
             {
-                "part": "finite clean-block equality",
-                "quick_check": "exact matrix or Qiskit Operator check for the concrete E_1 instance",
-                "why_necessary": "a wrong finite clean block cannot become a Lean certificate for the same concrete task",
-                "lean_still_needed": "Lean proves the matrix equality and resource record without relying on the executable checker",
+                "part": "target support and passive register",
+                "quick_check": "exact table check: clean block has support only at (0,6),(1,7) and preserves S",
+                "why_necessary": "if any other clean-block entry survives, the candidate encodes a different operator",
+                "lean_still_needed": "Lean proves the clean-block equality against E_1, not just a finite printout",
             },
             {
                 "part": "unitarity/permutation",
-                "quick_check": "basis-action permutation check",
+                "quick_check": "basis-action bijection/permutation check for the full signal-system map",
                 "why_necessary": "the candidate U_A must be a unitary completion, not just a linear map with the right block",
                 "lean_still_needed": "Lean proves rational orthogonality of the candidate matrix",
             },
             {
                 "part": "resource tuple",
-                "quick_check": "gate/depth/auxiliary/oracle count under the fixed lexicographic metric",
+                "quick_check": "gate/depth/auxiliary/oracle count under the fixed project metric",
                 "why_necessary": "population ranking is invalid if candidate costs are not computed under the same metric",
                 "lean_still_needed": "Lean names the candidate cost theorem; finite search is only a convergence diagnostic",
+            },
+            {
+                "part": "candidate package fields",
+                "quick_check": "Lean parser/build check that the candidate record fields point to the compiled target, circuit, layout, resource, unitarity proposition, and block proposition",
+                "why_necessary": "a field mismatch can make a true low-level block theorem unusable as a verified operator certificate",
+                "lean_still_needed": "Lean must compile `mainCaseColdPartialPermCandidate` and `mainCaseColdPartialPermVerified`",
+            },
+            {
+                "part": "post-Lean executable export",
+                "quick_check": "Qiskit/OpenQASM finite check after the Lean candidate package compiles",
+                "why_necessary": "users need runnable code to reproduce the concrete circuit, but only after the theorem target is fixed",
+                "lean_still_needed": "nothing from Qiskit replaces the Lean theorem; it is an export check and figure source",
             },
         ]
     return [
@@ -4053,6 +4088,8 @@ separate from the next lower-agent task package.
 
 {task_plain_language_status_en(task_id)}
 
+{card_memory_protocol_markdown(task_id)}
+
 ## Pre-Lean verifier candidates
 
 These checks are necessary-condition filters, not proofs.  A failure is useful
@@ -4105,8 +4142,58 @@ contract.
 """
 
 
+def card_memory_protocol_markdown(task_id: str) -> str:
+    export_note = ""
+    if task_id == "QBE-MAIN-CASE-HIER-COLD-001":
+        export_note = (
+            "\n- Current COLD main-case note: the block-encoding construction is "
+            "already Lean-certified by `mainCaseColdPartialPermVerified`.  "
+            "Executable-export cycles should reuse that compiled leaf and must "
+            "not reopen sparse, LCU, QSVT, dilation, approximate, or Pro-assisted "
+            "construction routes unless upper/reviewer explicitly changes the task."
+        )
+    return f"""## Card-memory protocol
+
+- Textbook block-encoding cards are route inspiration, not fixed recipes.  Upper
+  and middle agents should use them to propose, mutate, or recombine several
+  plausible proof routes, then reject cards whose hypotheses do not fit the
+  target.
+- Compiled Lean leaves are reusable proof tools.  If a named theorem already
+  closes the needed leaf, instantiate or adapt it locally instead of reproving
+  the same proof.
+- Contract-only cards are explicit proof-DAG boundaries.  They can guide the
+  plan, but they are not Lean-closed evidence and must stay visible in the
+  dependency graph.
+{export_note}
+"""
+
+
 def todo_markdown(snapshot: dict[str, object]) -> str:
     task_id = str(snapshot.get("task_id", ""))
+    dynamic = snapshot.get("dynamic_leaf_queue", [])
+    open_contrib = snapshot.get("open_ghl_contribution_obligations", [])
+    open_external = snapshot.get("open_external_technical_lemma_obligations", [])
+    sorries = snapshot.get("lean_sorries", [])
+    if not dynamic and not open_contrib and not open_external and not sorries:
+        return f"""# Next Todo Packet: {snapshot.get('task_id')} cycle {snapshot.get('cycle')}
+
+Generated: `{snapshot.get('generated')}`
+
+{card_memory_protocol_markdown(task_id)}
+
+## Closeout State
+
+No active proof-DAG leaf, open contribution obligation, open cited-contract
+obligation, or Lean `sorry` was detected for this task snapshot.
+
+## Next Action
+
+1. Do not dispatch lower proof search for this exact snapshot.
+2. If the task continues, upper/reviewer must first declare a new semantic tier,
+   export target, optimization target, or approximate-search target.
+3. Reuse compiled Lean leaves from the card-memory protocol; do not reopen a
+   construction route merely because a textbook card exists.
+"""
     if task_id == "QBE-OP-OPTCTRL-001":
         lower1_first_step = "Read the current construction status and candidate population row for the active optimal-control block-encoding witness."
     elif is_ghl_case_task(task_id):
@@ -4116,6 +4203,8 @@ def todo_markdown(snapshot: dict[str, object]) -> str:
     return f"""# Next Todo Packet: {snapshot.get('task_id')} cycle {snapshot.get('cycle')}
 
 Generated: `{snapshot.get('generated')}`
+
+{card_memory_protocol_markdown(task_id)}
 
 ## Lower 1: Natural-language proof architect
 
@@ -6705,6 +6794,12 @@ def failure_trace_and_judge_context() -> str:
   ask whether the statement is false, missing a regularity/support/cleanup
   hypothesis, already solved in Mathlib, or trying to prove syntax equality
   where semantic equality is the right target.
+- Proof-engineering checklist for every active leaf:
+  1. Decompose aggressively: target a lemma that fits one agent context window.
+  2. Specify more than the theorem: record local APIs, intended route, parent theorem, and Mathlib search terms.
+  3. Treat repeated failure as mathematical signal: recheck assumptions or counterexamples before retrying tactics.
+  4. Make hidden regularity reusable: cleanup, boundedness, nonemptiness, injectivity, support uniqueness, and norm bounds become named contracts.
+  5. Do not frequently change the proof route once reviewer accepted a well-typed leaf; if the route changes, write a failure-memory packet.
 """
 
 
@@ -7080,11 +7175,19 @@ Produce:
 5. Middle-agent instructions for conversion windows, paper notes, proof
    obligations, and memory.
 5a. Textbook-memory intuition.  Read the block-encoding memory library as an
-   exam-prep notebook, not as a rigid detector.  Name which Lin-note/classic
-   construction patterns seem analogous, which ones are merely preserved for
-   diversity, and which compiled Lean leaves should be reused before any new
-   proof is attempted.  Fast retrieval entry points:
+   exam-prep notebook and inspiration source, not as a rigid detector or a
+   memorized recipe table.  For nontrivial block-encoding targets, propose
+   multiple route hypotheses before selecting one active route.  Name which
+   Lin-note/classic construction patterns seem analogous, which ones are kept
+   only for population diversity, and which compiled Lean leaves should be
+   reused before any new proof is attempted.  Distinguish idea cards,
+   compiled Lean leaves, and contract-only nodes.  A compiled leaf may be
+   instantiated or adapted; an idea card may be mutated or rejected; a
+   contract-only node must remain explicit and cannot be claimed as Lean
+   closed.  Fast retrieval entry points:
    `research-wiki/block-encoding-library/route-selector.md`,
+   `research-wiki/block-encoding-library/lean-leaf-module-graph.md`,
+   `research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md`,
    `research-wiki/block-encoding-library/compiled-lean-leaf-index.md`,
    `research-wiki/block-encoding-library/compiled-lean-leaf-index.json`, and,
    for diagonal-grid polynomial hints such as `x_j -> x_j^3`,
@@ -7358,14 +7461,19 @@ Maintain:
    success/failure fields, error class, and next route in `runs/trials.jsonl`
    and, when useful, under `verifier-feedback/`.
 8a. Textbook-memory and insight-pool bridge: when upper names a classic
-    block-encoding route, translate it into (i) one or more Lean proof leaves,
-    (ii) one natural-language proof sketch packet, and (iii) an insight-pool
-    record for alternative routes or failed but reusable ideas.  Explicitly
+    block-encoding route, do not treat it as a fixed recipe.  Translate it into
+    (i) one or more Lean proof leaves, (ii) one natural-language proof sketch
+    packet, and (iii) an insight-pool record for alternative routes, mutations,
+    recombinations, or failed but reusable ideas.  For each proposed route,
+    mark whether it is an inspiration-only idea card, a compiled Lean leaf that
+    should be reused directly, or a contract-only dependency.  Explicitly
     record when a natural-language proof suggests a Lean lemma, and when a Lean
     failure suggests a better human proof decomposition.  Start from
     `research-wiki/block-encoding-library/route-selector.md`; when the route
     mentions QSVT or diagonal polynomial transformations, also read
     `research-wiki/block-encoding-library/qsvt-hard-hint-route.md`.  Check
+    `research-wiki/block-encoding-library/lean-leaf-module-graph.md`,
+    `research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md`, and
     `research-wiki/block-encoding-library/compiled-lean-leaf-index.md` before
     asking lower agents to reprove an existing declaration.
 9. Closeout export bridge: at 6h or convergence closeout, ensure the
@@ -7639,6 +7747,16 @@ Look for:
 11. Missing two-way translation: after Lean changes, the Markdown/natural-language
 	   proof map must say what was actually proved, what failed, and how that
 	   corresponds to the source or user problem statement.  At closeout, the
+12. Missing retrieval discipline: for block-encoding construction, check that
+    upper/middle/lower consulted `route-selector.md`, `lean-leaf-module-graph.md`,
+    `quantum-lean-leaf-atlas.md`, `compiled-lean-leaf-index.md`, and, when
+    applicable, `qsvt-hard-hint-route.md` instead of rediscovering existing
+    textbook leaves or changing a stable proof route.  Also check the opposite
+    failure mode: agents must not follow a textbook card dogmatically when the
+    target calls for brainstorming, candidate-population diversity, or a new
+    construction.  Compiled leaves are proof tools; idea cards are search
+    inspiration; contract-only cards are explicit dependencies, not closed
+    Lean proofs.
 	   problem-specific LaTeX export must match that map.  The ABEIS
 	   technical-report update is required only in maintainer mode.
 12. Missing cited-results memory for prior work or "standard" facts used by the
@@ -7723,7 +7841,21 @@ the paper's register-level transformation, stop and record the mismatch as a
 proof obligation instead of continuing implementation.
 
 Before defining anything, search for an existing definition to reference.
-Prefer small reusable lemmas over duplicated local encodings.
+Prefer small reusable lemmas over duplicated local encodings.  For block-encoding
+construction leaves, first inspect the local memory entry points:
+`research-wiki/block-encoding-library/route-selector.md`,
+`research-wiki/block-encoding-library/lean-leaf-module-graph.md`,
+`research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md`, and
+`research-wiki/block-encoding-library/compiled-lean-leaf-index.md`.  If the
+assignment mentions a diagonal-grid polynomial, cubic map, qubitization, or
+QSVT hint, also inspect `research-wiki/block-encoding-library/qsvt-hard-hint-route.md`
+before proposing a new route.
+If a compiled Lean leaf already proves the needed bridge, instantiate it or
+write the smallest adapter.  If the memory entry is only an idea card, use it
+as construction inspiration and record the proof obligations.  If the memory
+entry is contract-only, do not reprove the whole external theorem unless that
+is the assigned task; make the contract explicit and prove the local consumer
+leaf around it.
 
 If the assigned proof repeats a known argument, create or reuse a
 `qbe-hierarchical-proof-dag` block rather than copying the proof script.

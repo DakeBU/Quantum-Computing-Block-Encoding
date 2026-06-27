@@ -107,70 +107,104 @@ flowchart LR
   M --> N["dynamic agent-count audit"]
 ```
 
-ABEIS uses diagnostics as search signals, not as proofs.  A candidate enters
+ABEIS treats diagnostics as search signals, not as proofs.  A candidate enters
 the certified population only after Lean proves the advertised theorem at the
 task's semantic tier.
 
 ## Block-Encoding Textbook Memory
 
-ABEIS uses Lin Lin's lecture notes
-([arXiv:2201.08309](https://arxiv.org/abs/2201.08309)) as the current
-block-encoding textbook backbone.  The memory library is meant to feel like an
-exam-prep notebook for agents and new users: each classic construction has a
-short intuition card, a Lean theorem anchor when formalized, and a
-paper-facing LaTeX proof sketch when exported.
+ABEIS keeps a small textbook-style memory library for block-encoding
+construction.  Its backbone is Lin Lin's lecture notes
+([arXiv:2201.08309](https://arxiv.org/abs/2201.08309)), together with the
+standard LCU, sparse-access, dilation, qubitization, and QSVT proof patterns.
+The library is not a rigid detector and it is not meant to make agents
+memorize recipes.  Block-encoding construction is often closer to technical
+design search than to routine theorem replay.  Upper agents use these memories
+as inspiration: recall several plausible constructions, keep a diverse
+candidate population, and let middle agents split promising routes into small
+Lean leaves.  Only compiled Lean leaves are reusable proof tools; route cards
+that are not compiled remain ideas, contracts, or obligations.
+
+A useful mental model is:
 
 ```text
-new oracle/operator target
--> upper agents read textbook memories and brainstorm plausible routes
--> middle agents split the chosen routes into proof-DAG leaves and insight-pool candidates
--> lower Lean/natural-language workers try the leaves
--> reviewer accepts only Lean-certified claims, then may request proof cleanup
+operator/oracle target
+-> textbook memories suggest route hypotheses, not mandatory recipes
+-> middle layer maintains an insight pool and proof DAG
+-> lower Lean/natural-language workers attack one leaf at a time
+-> reviewer promotes only Lean-certified claims
 ```
 
-Most exact block-encoding proofs reduce to the clean-entry habit
-`U(clean row, clean col) = A(row,col)/alpha`.  The library helps agents decide
-which familiar route is worth trying; it is not a rigid decision tree.
+Use the memory library in two different ways:
 
-| Classic route | Good first examples | Proof intuition | Where to read |
+| Layer | Role in search | What agents may do |
+| --- | --- | --- |
+| Idea cards | brainstorming and population diversity | mutate, recombine, compare, or reject a route after upper/middle discussion |
+| Compiled Lean leaves | reusable proof infrastructure | import, instantiate, or write a narrow adapter instead of reproving the theorem |
+| Contract-only cards | safe high-level dependency markers | use as a proof-DAG node only when the task accepts that external contract status |
+
+For example, if a task calls for a polynomial transform and a proved input
+block encoding is already available, agents should first retrieve the QSVT
+consumer memory and any compiled `QSVTConsumerContract`/Chebyshev leaves.  They
+should not spend a lower-worker cycle trying to reprove the whole QSVT theorem
+unless the active task explicitly asks for that foundational formalization.
+
+Classic routes exposed to users and agents:
+
+| Route | Natural case | Core proof move | Where to read |
 | --- | --- | --- | --- |
-| Entrywise clean block | any explicit finite candidate | prove every clean matrix entry | [`BE.EntrywiseExact.CleanBlock`](research-wiki/block-encoding-library/cards/BE.EntrywiseExact.CleanBlock.md) |
-| Partial permutation | `|dst><src| ⊗ I`, reset maps, basis injections | complete a partial map to a permutation; non-target branches leave the clean block | [`BE.PartialPermutation.MatrixUnitTensorId`](research-wiki/block-encoding-library/cards/BE.PartialPermutation.MatrixUnitTensorId.md) |
-| One-sparse support | one nonzero row per column | value oracle gives the amplitude; support permutation gives the row; a delta leaf collapses the entry | [`BE.Sparse.OneSparsePermutation`](research-wiki/block-encoding-library/cards/BE.Sparse.OneSparsePermutation.md) |
-| Sparse access | column/row location oracles plus value oracle | prepare a uniform slot state, then collapse finite delta sums by uniqueness | [`BE.Sparse.ColumnOracle`](research-wiki/block-encoding-library/cards/BE.Sparse.ColumnOracle.md), [`BE.Sparse.RowColumnOracle`](research-wiki/block-encoding-library/cards/BE.Sparse.RowColumnOracle.md) |
-| LCU / PREPARE--SELECT | finite sums of known blocks | prepare weights, select a block, project back to get the weighted sum | [`BE.LCU.PrepareSelect`](research-wiki/block-encoding-library/cards/BE.LCU.PrepareSelect.md) |
-| Dilation fallback | dense contraction or small fallback seed | build a larger unitary from 2-by-2 contraction rotations | [`BE.Contraction.SVDDilation`](research-wiki/block-encoding-library/cards/BE.Contraction.SVDDilation.md) |
-| Qubitization / QSVT consumer | polynomial transforms after a BE already exists | consume a proved BE; do not hide the original oracle construction inside QSVT | [`BE.QSVT.ConsumerContract`](research-wiki/block-encoding-library/cards/BE.QSVT.ConsumerContract.md) |
+| Entrywise clean block | explicit finite candidate | prove `U(clean,row)(clean,col)=A(row,col)/alpha` | [`BE.EntrywiseExact.CleanBlock`](research-wiki/block-encoding-library/cards/BE.EntrywiseExact.CleanBlock.md) |
+| Partial permutation | `|dst><src| \otimes I`, reset maps, basis injections | complete a partial map to a permutation; non-target branches leave the clean block | [`BE.PartialPermutation.MatrixUnitTensorId`](research-wiki/block-encoding-library/cards/BE.PartialPermutation.MatrixUnitTensorId.md) |
+| One-sparse support | one possible nonzero row per column | support permutation plus a Kronecker-delta entry proof | [`BE.Sparse.OneSparsePermutation`](research-wiki/block-encoding-library/cards/BE.Sparse.OneSparsePermutation.md) |
+| Sparse access | row/column location and value oracles | uniform slot preparation and finite delta-sum collapse | [`BE.Sparse.ColumnOracle`](research-wiki/block-encoding-library/cards/BE.Sparse.ColumnOracle.md), [`BE.Sparse.RowColumnOracle`](research-wiki/block-encoding-library/cards/BE.Sparse.RowColumnOracle.md) |
+| LCU / PREPARE--SELECT | finite sums of known blocks | prepare weights, select a block, project back | [`BE.LCU.PrepareSelect`](research-wiki/block-encoding-library/cards/BE.LCU.PrepareSelect.md) |
+| Dilation fallback | dense contraction or small seed | 2-by-2 contraction rotations give an exact fallback unitary | [`BE.Contraction.SVDDilation`](research-wiki/block-encoding-library/cards/BE.Contraction.SVDDilation.md) |
+| Qubitization / QSVT consumer | polynomial transform after a BE exists | consume a proved BE; do not hide the original oracle construction inside QSVT | [`BE.QSVT.ConsumerContract`](research-wiki/block-encoding-library/cards/BE.QSVT.ConsumerContract.md), [`qsvt-hard-hint-route.md`](research-wiki/block-encoding-library/qsvt-hard-hint-route.md) |
 
-The Lean module graph below shows the organized ABEIS proof-weapon library:
-foundation files, reusable block-encoding leaf families, task certificates,
-exports, and memory indices.  It is modeled after the module-graph style used
-by quantum Lean projects, but it shows ABEIS's own compiled leaf organization.
+The graph below is the public Lean leaf module graph.  It is closer to the
+`quantum-computing-lean` module graph than to an agent-flow diagram: files are
+the main spine, compiled theorem leaves are shown as reusable nodes, and
+external Lean libraries are shown only as searchable reference memories.
 
-![ABEIS Lean leaf module graph](docs/assets/abeis_lean_leaf_module_graph.png)
+![ABEIS Lean leaf module graph](docs/assets/abeis_lean_leaf_module_graph.svg)
 
-The detailed proof-DAG map is in
-[`proof-network.md`](research-wiki/block-encoding-library/proof-network.md);
-the module/leaf graph ledger is in
-[`lean-leaf-module-graph.md`](research-wiki/block-encoding-library/lean-leaf-module-graph.md);
-the complete generated Lean declaration index is in
-[`compiled-lean-leaf-index.md`](research-wiki/block-encoding-library/compiled-lean-leaf-index.md)
-and
-[`compiled-lean-leaf-index.json`](research-wiki/block-encoding-library/compiled-lean-leaf-index.json);
-the QSVT hint route is in
-[`qsvt-hard-hint-route.md`](research-wiki/block-encoding-library/qsvt-hard-hint-route.md);
-the quantum Lean reference atlas is in
-[`quantum-lean-leaf-atlas.md`](research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md);
-Mathlib hits that should be reused or adapted are recorded under
-[`research-wiki/mathlib-lemmas/`](research-wiki/mathlib-lemmas/);
-the route-intuition guide is in
-[`route-selector.md`](research-wiki/block-encoding-library/route-selector.md);
-compiled leaves are mainly in
-[`BlockEncodingClassics.lean`](QuantumBlockEncoding/BlockEncodingClassics.lean).
-The human-facing LaTeX proof templates are collected in
-[`classic_leaves.tex`](paper-notes/block-encoding-library/classic_leaves.tex).
-A card marked `contract-only` or `obligation` can guide brainstorming, but it
-does not become a theorem until its Lean declaration compiles.
+Compiled proof-weapon families:
+
+| Family | Main Lean surface | Representative compiled leaves | Why it matters |
+| --- | --- | --- | --- |
+| Finite matrix core | `Core.lean`, `CircuitSemantics.lean` | `Matrix`, `PointwiseEq`, `evalWith_mul_apply`, `evalWith_mul_unique_path`, `evalWith_mul_two_path` | keeps circuit products and branch sums small enough for one-agent leaves |
+| Clean-block/projector extraction | `BlockEncodingClassics.lean` | `cleanBlockBy_permMatrix_entry`, `cleanBlockProduct_permMatrix_entry`, `cleanBlockBy_permMatrix_eq_target_of_entry`, `ExactCleanBlock.clean_eq_target` | turns a block-encoding theorem into entrywise matrix equalities |
+| Permutation and unitarity | `BlockEncodingClassics.lean`, `MainCase.lean` | `permMatrix`, `columnInner`, `rowInner`, `permMatrix_isRationalOrthogonal_of_bijective`, `partialPermutationCertificate` | proves exact reversible completions and main-case transfer operators |
+| Sparse and value-oracle routes | `BlockEncodingClassics.lean` | `oneSparseMatrix_entry_if`, `oneSparse_from_support`, `sparseColumnCleanEntry_unique_slot`, `rowColumnSparseDeltaEntry`, `ValueToAmplitudeContract.correct` | formalizes the textbook sparse-access and compute-rotate-uncompute patterns |
+| LCU/product/dilation/QSVT | `BlockEncodingClassics.lean` | `oneTermLCU_cleanBlock`, `weightedSum2_entry`, `productExactCleanBlockCertificate`, `scalarDilation_cleanEntry`, `chebyshevT_*`, `QSVTConsumerContract` | gives route skeletons for composition, fallback seeds, and polynomial consumers |
+| Approximate/resource layer | `BlockEncoding.lean`, `Resources.lean`, `Circuit.lean`, `BlockEncodingClassics.lean` | approximate-BE records, `exactAsZeroErrorApproxCleanBlock_bound`, resource tuple/depth/gate leaves | separates correctness from the optimization objective |
+| Task consumers | `MainCase.lean`, `CubicStatePreparation.lean`, `GHL2025.lean` | task-local verified candidates and paper/source wrappers | examples should consume generic leaves rather than redefine them |
+
+External Lean code is kept as memory/reference material, not silently copied
+into ABEIS proofs.  The relevant cards are:
+
+- [`quantum-computing-lean`](research-wiki/external-lean-libraries/quantum-computing-lean.md): finite matrices, states, gates, projectors, gate actions, and unitarity proof organization.
+- [`Lean-QuantumInfo`](research-wiki/external-lean-libraries/lean-quantuminfo.md): finite-dimensional quantum-information proof style.
+- [`lean-quantum`](research-wiki/external-lean-libraries/lean-quantum.md): channels, qudits, trace/norm, and operator-oriented conventions.
+- [`research-wiki/mathlib-lemmas/`](research-wiki/mathlib-lemmas/): Mathlib hits that should be reused or adapted before inventing local infrastructure.
+
+Machine-readable and human-readable retrieval files:
+
+- [`compiled-lean-leaf-index.md`](research-wiki/block-encoding-library/compiled-lean-leaf-index.md) and [`compiled-lean-leaf-index.json`](research-wiki/block-encoding-library/compiled-lean-leaf-index.json): generated declaration ledger.
+- [`lean-leaf-module-graph.md`](research-wiki/block-encoding-library/lean-leaf-module-graph.md): textual ledger behind the graph.
+- [`quantum-lean-leaf-atlas.md`](research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md): relationship between ABEIS leaves, Mathlib, and nearby quantum Lean projects.
+- [`route-selector.md`](research-wiki/block-encoding-library/route-selector.md): route-intuition guide for upper/middle agents.
+- [`proof-network.md`](research-wiki/block-encoding-library/proof-network.md): proof-DAG view of reusable textbook leaves.
+- [`classic_leaves.tex`](paper-notes/block-encoding-library/classic_leaves.tex): human-facing LaTeX proof templates.
+
+Harness proof-engineering rules:
+
+1. Decompose aggressively: each active theorem should fit one agent context and one stable local API.
+2. Specify more than the theorem: include intended definitions, proof route, parent theorem, and Mathlib search terms.
+3. Treat persistent failure as mathematical signal: recheck the statement, missing assumptions, or counterexamples before retrying tactics.
+4. Make hidden regularity reusable: cleanup, boundedness, nonemptiness, injectivity, support uniqueness, and norm bounds become named contracts.
+5. Do not frequently change the proof route once reviewer accepts a well-typed leaf; if the route changes, write a failure-memory packet.
+
 Before adding generic Lean infrastructure, agents should search Mathlib:
 
 ```bash

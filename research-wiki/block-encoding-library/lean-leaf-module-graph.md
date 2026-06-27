@@ -1,7 +1,7 @@
 # ABEIS Lean Leaf Module Graph
 
-This file is the textual ledger behind the public module graph
-`docs/assets/abeis_lean_leaf_module_graph.png`.  It lists the Lean files that
+This file is the textual ledger behind the public Lean leaf module graph
+`docs/assets/abeis_lean_leaf_module_graph.svg`.  It lists the Lean files that
 form the current block-encoding proof-weapon library and records which compiled
 leaf families they provide.
 
@@ -16,6 +16,24 @@ It should help a quantum-computing reader answer:
 2. which leaves are generic enough to become Mathlib-quality infrastructure;
 3. which leaves are ABEIS-specific block-encoding/circuit contracts;
 4. which examples and paper baselines consume the leaves.
+
+## Rendered Graph Layers
+
+The rendered graph has six layers.
+
+| Layer | Meaning | Examples shown in the graph |
+| --- | --- | --- |
+| Reference surfaces | searchable memories, not hidden dependencies | Mathlib finite matrix/sum APIs; `quantum-computing-lean` states, gates, projectors, actions; `Lean-QuantumInfo`; `lean-quantum`; Lin/GSLW/LCU/QSVT texts |
+| ABEIS file tree | local Lean files that compile in this project | `Core.lean`, `Resources.lean`, `Circuit.lean`, `BlockEncoding.lean`, `CircuitSemantics.lean`, `BlockEncodingClassics.lean`, `Automation.lean` |
+| Reusable compiled leaves | textbook proof moves that agents should retrieve before reproving | clean-entry extraction, permutation matrices, sparse delta contractions, value-oracle contracts, LCU/product/tensor arithmetic, dilation, Hermitian, Chebyshev/QSVT, approximate BE, `evalWith` path lemmas |
+| Consumers | examples and paper wrappers that instantiate the leaves | `MainCase.lean`, `CubicStatePreparation.lean`, `GHL2025.lean`, `RobinHeat.lean`, exports |
+| Export/user surfaces | post-Lean artifacts and human proof products | LaTeX proof exports, Qiskit/QASM files, circuit storyboards, proof-DAG figures |
+| Retrieval and proof-engineering discipline | memory used by upper/middle/reviewer agents | `compiled-lean-leaf-index.md/json`, `route-selector.md`, `qsvt-hard-hint-route.md`, `failure-memory/`, `mathlib-lemmas/`, reviewer judge packets |
+
+The detailed declaration ledger is generated, not handwritten.  It currently
+records 965 declarations across the local Lean tree; the important point for
+agents is not to memorize that number, but to consult the index before creating
+another local lemma.
 
 ## Public Module Tree
 

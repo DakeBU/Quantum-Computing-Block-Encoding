@@ -145,15 +145,15 @@ Expected file and declarations:
 
 ## Proof Obligations
 
-- [ ] Matrix/operator target `A` is defined.
-- [ ] Candidate unitary `U_A` or circuit schema is defined.
-- [ ] Block-entry contract is stated with the exact ancilla projector.
-- [ ] Unitarity of `U_A` is proved or recorded as a named obligation.
-- [ ] Normalization `alpha` is explicit.
-- [ ] Auxiliary qubit count `a` is explicit.
-- [ ] Asymptotic tier and concrete resource score `(gateCount, depth, a, oracleCalls)` are explicit.
-- [ ] Candidate comparison against the current baseline is recorded when relevant.
-- [ ] `lake build && lake build Tests` succeeds.
+- [x] Matrix/operator target `A` is defined.
+- [x] Candidate unitary `U_A` or circuit schema is defined.
+- [x] Block-entry contract is stated with the exact ancilla projector.
+- [x] Unitarity of `U_A` is proved or recorded as a named obligation.
+- [x] Normalization `alpha` is explicit.
+- [x] Auxiliary qubit count `a` is explicit.
+- [x] Asymptotic tier and concrete resource score `(gateCount, depth, a, oracleCalls)` are explicit.
+- [x] Candidate comparison against the current baseline is recorded when relevant.
+- [x] `lake build && lake build Tests` succeeds.
 
 ## Agent Notes
 

@@ -29,5 +29,6 @@ Current Qiskit exports:
 
 | Task | Path | Status |
 |---|---|---|
+| `QBE-MAIN-CASE-HIER-COLD-001` | `QBE-MAIN-CASE-HIER-COLD-001/` | Lean certificate named; Qiskit/QASM3 artifacts generated with deterministic finite checks |
 | `QBE-OP-OPTCTRL-001` | `QBE-OP-OPTCTRL-001/qiskit/export.py` | Lean-certified concrete champion exported to Qiskit |
 | `QBE-OP-CUBIC-STATEPREP-001` | `QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py` | fixed-instance dense baseline only; not a symbolic certificate |

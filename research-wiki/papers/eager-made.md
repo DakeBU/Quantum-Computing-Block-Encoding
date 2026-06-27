@@ -8,7 +8,8 @@ failure handling and reviewer scoring.
 - arXiv: `2603.21522`
 - Local PDF:
   `outer_papers/automation_systems/failure_judge_systems/2603.21522/EAGER_reasoning_trace_failure_management.pdf`
-- Code status: no public repository found during inspection.
+- Code status: no public repository found during inspection; rechecked
+  2026-06-27 against arXiv pages and web search.
   Repository-status note:
   `outer_repos/automation_systems/failure_judge_systems/README.md`.
 
@@ -25,7 +26,8 @@ ABEIS counterpart design:
 - arXiv: `2511.19489v1`
 - Local PDF:
   `outer_papers/automation_systems/failure_judge_systems/2511.19489/MADE_evolution_without_oracle.pdf`
-- Code status: no public repository found during inspection.
+- Code status: no public repository found during inspection; rechecked
+  2026-06-27 against arXiv pages and web search.
   Repository-status note:
   `outer_repos/automation_systems/failure_judge_systems/README.md`.
 

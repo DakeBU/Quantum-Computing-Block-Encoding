@@ -1,0 +1,46 @@
+{
+  "task": "QBE-MAIN-CASE-HIER-COLD-001",
+  "run": "20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
+  "leaf": "MAIN-EXPORT-VERIFY-001",
+  "source_correspondence_ok": false,
+  "lean_parse_ok": true,
+  "lean_build_ok": true,
+  "finite_matrix_ok": false,
+  "block_entry_ok": false,
+  "ancilla_cleanup_ok": false,
+  "normalizer_ok": false,
+  "unitarity_ok": false,
+  "resource_score": "(5,5,1,0)",
+  "resource_ok": false,
+  "qasm3_ok": false,
+  "forbidden_reference_ok": true,
+  "reference_finite_matrix_ok": true,
+  "observed_clean_support": null,
+  "expected_clean_support": [
+    [0, 6],
+    [1, 7]
+  ],
+  "closed_theorem_ok": false,
+  "error_class": "source_translation_gap",
+  "next_route": "Generate qiskit/qasm3/manifest artifacts for mainCaseColdPartialPermVerified using q[0]=S,q[1]=tau,q[2]=T,q[3]=signal, then rerun this verifier.",
+  "required_wire_map": {
+    "S": 0,
+    "tau": 1,
+    "T": 2,
+    "signal": 3
+  },
+  "full_index": "8*signal + 4*T + 2*tau + S",
+  "artifact_presence": {
+    "qiskit_dir": true,
+    "qiskit_python_action": false,
+    "qasm3_dir": true,
+    "qasm3_files": [],
+    "manifest_files": []
+  },
+  "messages": [
+    "missing qiskit/*.py export file",
+    "missing qasm3/*.qasm or qasm3/*.qasm3 export file",
+    "missing export manifest",
+    "required Lean bit positions are S=0,tau=1,T=2,signal=3"
+  ]
+}

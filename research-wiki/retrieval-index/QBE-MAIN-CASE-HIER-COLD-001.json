@@ -1,10 +1,12 @@
 {
-  "cycle": 3,
-  "dynamic_leaf_queue": [
-    "MAIN-CANDIDATE-PACKAGE-001: Package the COLD candidate and verified certificate without changing the target or hiding resource assumptions.; status: active leaf; Lean: `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified`",
-    "MAIN-EXPORT-001: Create Qiskit and QASM3 exports for `r=1,k=1,passiveQubits=1`.; status: blocked until Lean certificate; Lean: export manifest and checks"
-  ],
-  "generated": "2026-06-26 00:25:42",
+  "card_memory_protocol": {
+    "compiled_lean_leaves": "reusable proof tools; instantiate or adapt instead of reproving",
+    "contract_only_cards": "explicit proof-DAG boundaries; not Lean-closed evidence",
+    "idea_cards": "route inspiration only; mutate/recombine and reject when hypotheses do not fit"
+  },
+  "cycle": 2,
+  "dynamic_leaf_queue": [],
+  "generated": "2026-06-27 13:47:01",
   "ghl_contributions": [],
   "lean_sorries": [],
   "mode": "exploratoryConstruction",
@@ -40,104 +42,200 @@
     "make normalizer explicit: Lean `mainCaseColdExactNormalizer = 1`; class source translation; status compiled",
     "make auxiliary qubit count explicit: Lean `mainCaseColdSourceLayout_auxiliaryQubits`, `mainCaseColdPartialPermCost_auxiliaryQubits`; class resource layer; status proved",
     "make resource tuple explicit: Lean field theorems for `(gateCount, depth, auxiliaryQubits, oracleCalls)`; class resource layer; status proved as `(5,5,1,0)` after COLD-local circuit schema",
-    "package COLD candidate and verified certificate: Lean `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified`; class candidate packaging; status active next leaf; resource tuple now ready",
-    "compare against baseline: Lean candidate-population row for `MAIN-PARTIAL-PERM-001`; class exploratory memory; status updated with compiled resource tuple; full candidate ranking still awaits verified package",
-    "run gate: Lean `python3 tools/qbe.py check`; class project gate; status required after edits"
+    "package COLD candidate and verified certificate: Lean `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified`, `mainCaseColdPartialPermCandidate_cost`; class candidate packaging; status proved",
+    "compare against baseline: Lean candidate-population row for `MAIN-PARTIAL-PERM-001`; class exploratory memory; status updated with compiled verified package and resource tuple",
+    "run gate: Lean `python3 tools/qbe.py check`; class project gate; status passed after candidate-package and test updates"
   ],
   "recent_proof_attempts": [],
   "recent_trials": [
     {
-      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
+      "kind": "review",
+      "lean_gate": "",
+      "role": "upper",
+      "status": "accepted",
+      "timestamp": "2026-06-27 13:32:27",
+      "trial_id": "20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02-active-budget-closeout"
+    },
+    {
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
       "kind": "build",
       "lean_gate": "pass",
       "role": "reviewer",
       "status": "compiled",
-      "timestamp": "2026-06-26 00:25:41",
-      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-build-gate"
+      "timestamp": "2026-06-27 13:32:25",
+      "trial_id": "20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02-build-gate"
     },
     {
-      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03/40_reviewer.md",
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02/40_reviewer.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "reviewer",
       "status": "accepted",
-      "timestamp": "2026-06-26 00:25:40",
-      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-40_reviewer"
+      "timestamp": "2026-06-27 13:32:23",
+      "trial_id": "20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02-40_reviewer"
     },
     {
-      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
       "kind": "handoff",
       "lean_gate": "",
       "role": "reviewer",
       "status": "queued",
-      "timestamp": "2026-06-26 00:25:04",
-      "trial_id": "20260626-002504-QBE-MAIN-CASE-HIER-COLD-001-reviewer-handoff"
+      "timestamp": "2026-06-27 13:31:47",
+      "trial_id": "20260627-133147-QBE-MAIN-CASE-HIER-COLD-001-reviewer-handoff"
     },
     {
-      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03/30_lower_searcher_3.md",
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02/30_lower_searcher_3.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-26 00:20:57",
-      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-30_lower_searcher_3"
+      "timestamp": "2026-06-27 13:28:24",
+      "trial_id": "20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02-30_lower_searcher_3"
     },
     {
-      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03/30_lower_searcher_2.md",
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02/30_lower_searcher_2.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-26 00:20:57",
-      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-30_lower_searcher_2"
+      "timestamp": "2026-06-27 13:28:24",
+      "trial_id": "20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02-30_lower_searcher_2"
     },
     {
-      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
       "kind": "handoff",
       "lean_gate": "",
       "role": "lower",
       "status": "queued",
-      "timestamp": "2026-06-26 00:20:23",
-      "trial_id": "20260626-002023-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff"
+      "timestamp": "2026-06-27 13:27:29",
+      "trial_id": "20260627-132729-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff"
     },
     {
-      "artifact": "verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-resource-schema-cycle03.md",
-      "kind": "attempt",
-      "lean_gate": "pass",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-26 00:18:50",
-      "trial_id": "20260626-001850-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
-    },
-    {
-      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03/30_lower_searcher_1.md",
+      "artifact": "verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-export-implement-cycle02.md",
       "kind": "attempt",
       "lean_gate": "",
       "role": "lower",
       "status": "accepted",
-      "timestamp": "2026-06-26 00:17:05",
-      "trial_id": "20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03-30_lower_searcher_1"
+      "timestamp": "2026-06-27 13:27:17",
+      "trial_id": "20260627-132717-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
     },
     {
-      "artifact": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02/30_lower_searcher_1.md",
+      "kind": "attempt",
+      "lean_gate": "",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-27 13:27:05",
+      "trial_id": "20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02-30_lower_searcher_1"
+    },
+    {
+      "artifact": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
       "kind": "handoff",
       "lean_gate": "",
       "role": "lower",
       "status": "queued",
-      "timestamp": "2026-06-26 00:16:31",
-      "trial_id": "20260626-001631-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff"
-    },
-    {
-      "artifact": "proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-architect-cycle03-main-resource.md",
-      "kind": "attempt",
-      "lean_gate": "",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-26 00:16:20",
-      "trial_id": "20260626-001620-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+      "timestamp": "2026-06-27 13:26:35",
+      "trial_id": "20260627-132635-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff"
     }
   ],
   "recent_verifier_feedback": [
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": false,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-EXPORT-VERIFY-001",
+      "next_route": "Reviewer should audit the post-Lean executable artifacts against the named Lean certificate.",
+      "role": "lower",
+      "status": "accepted",
+      "timestamp": "2026-06-27 13:27:17",
+      "trial_id": "20260627-132717-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "source_translation_gap",
+      "finite_matrix_ok": false,
+      "leaf": "MAIN-EXPORT-VERIFY-001",
+      "next_route": "Generate qiskit/qasm3/manifest artifacts for mainCaseColdPartialPermVerified using q[0]=S,q[1]=tau,q[2]=T,q[3]=signal, then rerun this verifier.",
+      "role": "lower",
+      "status": "failed",
+      "timestamp": "2026-06-27 13:26:22",
+      "trial_id": "20260627-132622-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": "shape_or_register_gap",
+      "finite_matrix_ok": null,
+      "leaf": "MAIN-EXPORT-MAP-001",
+      "next_route": "Generate Qiskit/QASM3/manifest artifacts from mainCaseColdPartialPermVerified using q[0]=S, q[1]=tau, q[2]=T, q[3]=signal, then rerun the export verifier.",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-27 13:15:11",
+      "trial_id": "20260627-131511-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
+    },
+    {
+      "block_entry_ok": null,
+      "closed_theorem_ok": false,
+      "error_class": null,
+      "finite_matrix_ok": null,
+      "leaf": "MAIN-EXPORT-MAP-001",
+      "next_route": "MAIN-EXPORT-IMPLEMENT-001: generate Qiskit/QASM3/manifest artifacts using q[0]=S, q[1]=tau, q[2]=T, q[3]=signal, then rerun the export verifier.",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-27 13:14:46",
+      "trial_id": "20260627-131446-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
+    },
+    {
+      "block_entry_ok": "",
+      "closed_theorem_ok": "",
+      "error_class": "stale_leaf",
+      "finite_matrix_ok": "",
+      "leaf": "MAIN-EXPORT-001",
+      "next_route": "Generate Qiskit/QASM3 artifacts from mainCaseColdPartialPermVerified and run deterministic export verifier against mainCaseColdPartialPermImage",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-27 12:54:13",
+      "trial_id": "20260627-125413-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff"
+    },
+    {
+      "block_entry_ok": false,
+      "closed_theorem_ok": false,
+      "error_class": "source_translation_gap",
+      "finite_matrix_ok": false,
+      "leaf": "MAIN-EXPORT-001",
+      "next_route": "Generate qiskit/qasm3/manifest artifacts for mainCaseColdPartialPermVerified, then rerun this verifier.",
+      "role": "lower",
+      "status": "failed",
+      "timestamp": "2026-06-27 12:53:36",
+      "trial_id": "20260627-125336-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": "stale_leaf",
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-CANDIDATE-PACKAGE-001",
+      "next_route": "MAIN-EXPORT-001: generate Qiskit/QASM3 artifacts from mainCaseColdPartialPermVerified and verify finite image, clean block, alpha=1, epsilon=0, and resource tuple.",
+      "role": "lower",
+      "status": "queued",
+      "timestamp": "2026-06-27 12:51:39",
+      "trial_id": "20260627-125139-QBE-MAIN-CASE-HIER-COLD-001-lower-handoff"
+    },
+    {
+      "block_entry_ok": true,
+      "closed_theorem_ok": true,
+      "error_class": null,
+      "finite_matrix_ok": true,
+      "leaf": "MAIN-CANDIDATE-PACKAGE-001",
+      "next_route": "MAIN-EXPORT-001: generate Qiskit/QASM3 artifacts from mainCaseColdPartialPermVerified and check them against the COLD finite image, clean block, normalizer, and resource tuple.",
+      "role": "middle",
+      "status": "accepted",
+      "timestamp": "2026-06-27 12:45:24",
+      "trial_id": "20260627-124524-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
+    },
     {
       "block_entry_ok": true,
       "closed_theorem_ok": true,
@@ -161,105 +259,9 @@
       "status": "accepted",
       "timestamp": "2026-06-26 00:16:20",
       "trial_id": "20260626-001620-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": true,
-      "leaf": "MAIN-RESOURCE-001",
-      "next_route": "MAIN-RESOURCE-001: derive a COLD-local circuit/schedule or named resource model, then prove mainCaseColdPartialPermCost_* field theorems before candidate packaging or export.",
-      "role": "lower",
-      "status": "blocked",
-      "timestamp": "2026-06-26 00:13:27",
-      "trial_id": "20260626-001327-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": true,
-      "error_class": null,
-      "finite_matrix_ok": true,
-      "leaf": "MAIN-BLOCK-PROJECTION-001",
-      "next_route": "MAIN-RESOURCE-001: derive a COLD-local circuit/schedule and honest resource tuple, prove cost field theorems, and keep candidate packaging/export blocked until those compile.",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-26 00:08:16",
-      "trial_id": "20260626-000816-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": true,
-      "error_class": null,
-      "finite_matrix_ok": true,
-      "leaf": "MAIN-PERM-UNITARY-001",
-      "next_route": "MAIN-BLOCK-PROJECTION-001: define the COLD QueryOperatorTarget and block-projection predicate; keep resource/candidate packaging and the matrix-unitary bridge conditional unless the reviewer requires a stronger semantic tier.",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-25 23:58:18",
-      "trial_id": "20260625-235818-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": true,
-      "error_class": null,
-      "finite_matrix_ok": true,
-      "leaf": "MAIN-PERM-UNITARY-001",
-      "next_route": "MAIN-BLOCK-PROJECTION-001: define mainCaseColdQueryTarget, mainCaseColdBlockProjection, and prove mainCaseColdPartialPerm_blockProjection before resource or export work.",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-25 23:56:36",
-      "trial_id": "20260625-235636-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": true,
-      "error_class": null,
-      "finite_matrix_ok": true,
-      "leaf": "MAIN-PERM-UNITARY-001",
-      "next_route": "MAIN-RESOURCE-001 or a narrow matrix-unitary bridge if the next semantic tier requires it",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-25 23:30:46",
-      "trial_id": "20260625-233046-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": true,
-      "leaf": "MAIN-PERM-UNITARY-001",
-      "next_route": "Prove mainCaseColdPartialPermImage_bijective by finite native_decide/case split over Fin 16, then connect that task-local permutation certificate to the project unitary/verified-candidate layer before resource or export work.",
-      "role": "lower",
-      "status": "accepted",
-      "timestamp": "2026-06-25 23:30:44",
-      "trial_id": "20260625-233044-QBE-MAIN-CASE-HIER-COLD-001-lower-attempt"
-    },
-    {
-      "block_entry_ok": true,
-      "closed_theorem_ok": true,
-      "error_class": "none",
-      "finite_matrix_ok": true,
-      "leaf": "MAIN-CLEAN-ENTRY-001",
-      "next_route": "Prove MAIN-PERM-UNITARY-001 via a task-local mainCaseColdPartialPermImage_bijective theorem, then attach the resource tuple before any Qiskit/QASM3 export.",
-      "role": "middle",
-      "status": "accepted",
-      "timestamp": "2026-06-25 23:22:16",
-      "trial_id": "20260625-232216-QBE-MAIN-CASE-HIER-COLD-001-middle-attempt"
-    },
-    {
-      "block_entry_ok": false,
-      "closed_theorem_ok": false,
-      "error_class": "symbolic_bridge_gap",
-      "finite_matrix_ok": true,
-      "leaf": "MAIN-CLEAN-ENTRY-001",
-      "next_route": "lower 2 implements independent mainCaseCold* source/candidate/clean-entry declarations",
-      "role": "middle",
-      "status": "queued",
-      "timestamp": "2026-06-25 23:08:35",
-      "trial_id": "20260625-230835-QBE-MAIN-CASE-HIER-COLD-001-middle-handoff"
     }
   ],
-  "run_dir": "runs/20260625-233740-QBE-MAIN-CASE-HIER-COLD-001-cycle03",
+  "run_dir": "runs/20260627-125940-QBE-MAIN-CASE-HIER-COLD-001-cycle02",
   "source_main_tex": "",
   "stage": "Stage 1 target/transcript stabilization",
   "task_id": "QBE-MAIN-CASE-HIER-COLD-001",

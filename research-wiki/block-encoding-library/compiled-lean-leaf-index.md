@@ -1,10 +1,10 @@
 # Compiled Lean Leaf Index
 
-This generated index backs `abeis_lean_leaf_module_graph.png`.
+This generated index backs `abeis_lean_leaf_module_graph.svg` and its PNG copy.
 It lists ABEIS declarations by file so upper/middle agents can
 retrieve existing leaves before asking lower workers to reprove them.
 
-Total declarations indexed: **965**.
+Total declarations indexed: **968**.
 
 | File | Count | Role |
 | --- | ---: | --- |
@@ -14,7 +14,7 @@ Total declarations indexed: **965**.
 | `QuantumBlockEncoding/BlockEncoding.lean` | 22 | target, candidate, verified records |
 | `QuantumBlockEncoding/CircuitSemantics.lean` | 42 | evaluated matrix/path and extraction lemmas |
 | `QuantumBlockEncoding/BlockEncodingClassics.lean` | 84 | classic reusable block-encoding leaves |
-| `QuantumBlockEncoding/MainCase.lean` | 124 | main transfer-operator certificates |
+| `QuantumBlockEncoding/MainCase.lean` | 127 | main transfer-operator certificates |
 | `QuantumBlockEncoding/CubicStatePreparation.lean` | 158 | diagonal/rank-one cubic oracle candidates |
 | `QuantumBlockEncoding/GHL2025.lean` | 401 | GHL paper-baseline declarations |
 | `QuantumBlockEncoding/Examples/RobinHeat.lean` | 12 | Robin heat example wrappers |
@@ -402,7 +402,10 @@ Total declarations indexed: **965**.
 | 891 | `theorem` | `mainCaseColdPartialPerm_blockProjection` |
 | 900 | `theorem` | `mainCaseColdQueryTarget_normalizer` |
 | 903 | `theorem` | `mainCaseColdSourceLayout_auxiliaryQubits` |
-| 913 | `def` | `mainCaseColdResourceSchemaObligation` |
+| 912 | `def` | `mainCaseColdResourceSchemaObligation` |
+| 925 | `def` | `mainCaseColdPartialPermCandidate` |
+| 942 | `def` | `mainCaseColdPartialPermVerified` |
+| 952 | `theorem` | `mainCaseColdPartialPermCandidate_cost` |
 
 ## `QuantumBlockEncoding/CubicStatePreparation.lean`
 
