@@ -590,6 +590,12 @@ gate-level quantum block-encoding certificates.
 | [Learning Beyond Gradients][lbg] | Layered feedback and trial memory. | Upper/middle/lower/reviewer loops and compact summaries. |
 | [EoH][eoh] | Evolutionary candidate populations. | Mutate/recombine candidate block-encoding circuits under a fixed target. |
 | [LeanMarathon][leanmarathon] | Proof blueprint, dynamic leaves, CI gates. | Proof-blueprint snapshots and focused theorem-closure work. |
+| [LeanSearch v2][leansearch-v2], [REAL-Prover][real-prover] | Global premise retrieval and retrieval-augmented Lean proof search. | Before inventing a block-encoding proof leaf, retrieve Mathlib/external premises and pass them to lower Lean workers with the intended route. |
+| [Matlas][matlas-paper] | Semantic mathematical statement retrieval with dependency context. | Upper/middle agents use it as source-discovery inspiration for analogous block-encoding constructions, never as a proof certificate. |
+| [Rethlas][rethlas-repo], [Archon][archon-repo], [Automated Conjecture Resolution][acr-paper] | Natural-language exploration paired with Lean formalization. | Game/Hierarchical harnesses keep NL construction and Lean construction cooperating, but Lean clean-block/unitarity certificates remain final. |
+| [Chain-of-States][chain-of-states-paper], [Herald][herald-paper] | Intermediate proof-state chains and NL annotations of Lean declarations. | Middle agents translate candidate circuit proofs into explicit state chains and human-readable proof packets before assigning leaves. |
+| [Iteris][iteris-paper] | Explore--plan--execute loops with durable project-local state. | ABEIS keeps operator targets, candidate populations, cost curves, verifier feedback, and exports as inspectable state. |
+| [AlphaProof Nexus][alphaproof-paper], [repo][alphaproof-repo] | Independent Lean subagents plus evolutionary coordination for hard proof search. | Evidence for ABEIS's evolve/recombine candidate population, but ABEIS adds block-encoding cost metrics and Qiskit export. |
 | [MathCode][mathcode] | Proof diagnostics and theorem reuse. | Hidden-assumption scans and reusable proof-attempt memory. |
 | [Visored][visored-paper], [repo][visored-repo] | Controlled-natural-language proof surface with localized diagnostics and optional Lean emission. | Structured proof packets as a two-way exchange format between natural-language construction, Lean proof work, and human proof exports. |
 | [Lean4Agent][lean4agent-paper] | Workflow/trajectory verification. | Lean-side process contracts in `Automation.lean`. |
@@ -661,3 +667,14 @@ approximate dense/structured synthesis.
 [quantum-computing-lean]: https://github.com/duckki/quantum-computing-lean
 [lean-quantuminfo]: https://github.com/Timeroot/Lean-QuantumInfo
 [lean-quantum]: https://github.com/Hayata-Yamasaki-Group/lean-quantum
+[leansearch-v2]: https://github.com/frenzymath/LeanSearch-v2
+[real-prover]: https://github.com/frenzymath/REAL-Prover
+[matlas-paper]: https://arxiv.org/abs/2604.17484
+[rethlas-repo]: https://github.com/frenzymath/Rethlas
+[archon-repo]: https://github.com/frenzymath/Archon
+[acr-paper]: https://arxiv.org/abs/2604.03789
+[chain-of-states-paper]: https://arxiv.org/abs/2512.10317
+[herald-paper]: https://arxiv.org/abs/2410.10878
+[iteris-paper]: https://arxiv.org/abs/2606.02484
+[alphaproof-paper]: https://arxiv.org/abs/2605.22763
+[alphaproof-repo]: https://github.com/google-deepmind/alphaproof-nexus-results

@@ -85,26 +85,25 @@ candidate table.  Cycle 2 repaired that drift for the clean-block layer by
 adding independent `mainCaseCold*` names.
 
 Cycle 2 Lean update: the COLD source surface, candidate table, and exact
-clean-block theorem now compile under independent `mainCaseCold*` names in
-`QuantumBlockEncoding/MainCase.lean`.  This closes the clean-block equality
-layer for `MAIN-PARTIAL-PERM-001`.  It does not close the finite
-permutation/unitarity bridge, circuit realization, resource tuple, or
-Qiskit/QASM3 export obligations.
+clean-block theorem compiled under independent `mainCaseCold*` names in
+`QuantumBlockEncoding/MainCase.lean`.  That closed the clean-block equality
+layer for `MAIN-PARTIAL-PERM-001`.  Later rows in this window record the
+subsequent closure of the finite permutation, circuit/resource, candidate
+package, and Qiskit/QASM3 export layers.
 
 Cycle 2 lower Lean update: the finite bijection part of the
-permutation/unitarity layer now compiles as
+permutation/unitarity layer compiled as
 `mainCaseColdPartialPermImage_bijective`, with a task-local inverse table
 `mainCaseColdPartialPermPreimage`.  This proves the candidate image is a
-permutation at the finite-table tier; matrix-orthogonality bridge work,
-resource scoring, and executable export remain later leaves.
+permutation at the finite-table tier; matrix-orthogonality bridge work remains
+a deferred stronger semantic-tier option.
 
 Cycle 3 memory update: `MAIN-CLEAN-ENTRY-001` and the finite-bijection subleaf
-of `MAIN-PERM-UNITARY-001` are stale lower targets and should be retired.  The
-cycle-3 Lean update also closes `MAIN-BLOCK-PROJECTION-001` under task-local
-COLD declarations.  The active proof-DAG leaf is now `MAIN-RESOURCE-001`:
-derive or name an honest COLD-local circuit/resource schema before candidate
-packaging.  Do not start Qiskit/QASM3 export until a named COLD verified
-candidate and resource tuple compile.
+of `MAIN-PERM-UNITARY-001` became stale lower targets.  The cycle-3 Lean update
+also closed `MAIN-BLOCK-PROJECTION-001` under task-local COLD declarations.
+At that point the active proof-DAG leaf was `MAIN-RESOURCE-001`; later updates
+closed the COLD-local circuit/resource schema, candidate package, and export
+leaves.
 
 Cycle 3 lower resource update: `MAIN-RESOURCE-001` now has a task-local logical
 reversible circuit schema and compiled cost field theorems.  The reduced gate
@@ -114,7 +113,8 @@ CX_{tau -> signal}`.  Lean proves
 same finite table as `mainCaseColdPartialPermImage` while preserving passive
 `S`.  The high-level logical resource tuple is `(gateCount, depth,
 auxiliaryQubits, oracleCalls) = (5, 5, 1, 0)`, certified by
-`mainCaseColdPartialPermCost_*`.  Candidate packaging remains a later leaf.
+`mainCaseColdPartialPermCost_*`.  The later package leaf closed as
+`mainCaseColdPartialPermCandidate` and `mainCaseColdPartialPermVerified`.
 
 ## Symbol Map
 
@@ -261,7 +261,9 @@ theorem mainCaseColdPartialPermCost_oracleCalls :
 Cycle 20260627 package update: the COLD `OperatorBlockEncodingCandidate`
 and `VerifiedOperatorBlockEncoding` package now compiles under task-local
 `mainCaseCold*` names as `mainCaseColdPartialPermCandidate` and
-`mainCaseColdPartialPermVerified`.  The export packet now contains Qiskit, QASM3, a manifest, and a deterministic checker using this named Lean certificate.
+`mainCaseColdPartialPermVerified`.  The export packet now contains Qiskit,
+QASM3, a manifest, and a deterministic checker using this named Lean
+certificate.
 
 Cycle 2 export-map repair: executable exports must preserve the Lean full
 index convention `8*signal + 4*T + 2*tau + S`.  Thus the executable integer
@@ -283,9 +285,10 @@ E_1 = |0><1|_T \otimes |0><1|_\tau \otimes I_S
 $$
 
 at `r = 1`, `k = 1`, and one passive `S` qubit.  No source branch, boundary
-case, QSVT consumer, LCU expansion, or sparse-access oracle is active.  The
-only post-Lean executable work now active is export planning and later
-Qiskit/QASM3 generation from the named COLD certificate.
+case, QSVT consumer, LCU expansion, or sparse-access oracle is active.  No
+post-Lean executable work remains active for the current concrete target:
+Qiskit, QASM3, manifest, and checker artifacts have been generated and
+verified from the named COLD certificate.
 
 The route-selection memory for this cycle is:
 
@@ -347,9 +350,9 @@ technical inputs are compiled QBE-local declarations from
   files or prior Pro/Qiskit outputs.
 - Do not route the first cycle through LCU, sparse-access, QSVT, or dilation
   unless `MAIN-PARTIAL-PERM-001` fails a necessary condition.
-- Do not claim unitarity, a primitive circuit decomposition, hardware
-  optimality, or a complete executable export until the corresponding named
-  Lean or post-Lean artifact exists.
+- Do not claim hardware optimality, a hardware-gate decomposition, parameter
+  ranges beyond `r=1,k=1,passiveQubits=1`, or a stronger matrix-unitary
+  semantic tier unless the corresponding named artifact exists.
 - Retire lower packets whose only goal is
   `mainCaseColdPartialPermImage_bijective`; that finite-bijection target now
   compiles.
@@ -392,6 +395,10 @@ Cycle 20260627 lower packet for the active export leaf:
 
 Cycle 2 source contract for the corrected export map:
 `proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-middle-source-contract-cycle02-main-export-map.md`.
+
+Cycle 20260628 middle source-correspondence packet for closeout memory
+synchronization:
+`proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-middle-source-contract-cycle01-memory-sync.md`.
 
 Cycle 1 split packet remains valid as background:
 `proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-packets-cycle01.md`.

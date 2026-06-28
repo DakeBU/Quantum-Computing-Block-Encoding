@@ -3,7 +3,7 @@
 Task id: `QBE-MAIN-CASE-HIER-COLD-001`
 Title: Main case transfer-operator block encoding, no-Pro isolated Hierarchical Harness
 Mode: `exploratoryConstruction`
-Updated: `2026-06-27 13:30:52`
+Updated: `2026-06-28 15:02:00`
 Blueprint stage: `Stage 1 target/transcript stabilization`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof
@@ -193,7 +193,7 @@ before spending more proof-search tokens.
 
 | Leaf | Status |
 |---|---|
-| MAIN-EXPORT-IMPLEMENT-001: Create Qiskit and QASM3 exports for `r=1,k=1,passiveQubits=1`.; status: active post-Lean leaf; code/checks pending; Lean: `qiskit/`, `qasm3/`, manifest | candidate |
+| none detected | upper must refresh the task directive |
 
 ## Open Obligation Signals
 
@@ -293,15 +293,7 @@ Recent task-relevant declarations:
 ## Latest Dialogue Signal
 
 ````text
-Y-001, depending on mainCaseColdPartialPermVerified, mainCaseColdPartialPermCandidate_cost, mainCaseColdCircuitImage_eq_partialPermImage, mainCaseColdPartialPermImage, mainCaseColdTarget, and mainCaseColdPartialPermCost_*. Export map must use q[0]=S,q[1]=tau,q[2]=T,q[3]=signal for Lean index 8*signal+4*T+2*tau+S. Next verifier should log gate_count=5, depth=5, auxiliary_qubits=1, oracle_calls=0, qasm3_ok, forbidden_reference_ok, artifact presence, and actual wire map. Retrieval packet: read corrected export-plan, lower architect packet, verifier script, and MainCase declarations; generate qiskit/qasm3/manifest under executable-exports/QBE-MAIN-CASE-HIER-COLD-001/, then run verifier and gates.
-
-## 2026-06-27 13:22:04 - middle
-
-Middle coordinator synthesis added proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-middle-lower-packets-cycle02-main-export.md and pointed run todo/memory digest to it. Active frontier remains MAIN-EXPORT-MAP-001 -> MAIN-EXPORT-IMPLEMENT-001 -> MAIN-EXPORT-VERIFY-001 from mainCaseColdPartialPermVerified and mainCaseColdPartialPermCandidate_cost=(5,5,1,0). Correct export bit weights are S=0,tau=1,T=2,signal=3 with q[0]=S,q[1]=tau,q[2]=T,q[3]=signal. No Lean edits by this coordinator pass. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests.
-
-## 2026-06-27 13:26:30 - lower
-
-Necessary-condition verifier checked MAIN-EXPORT-VERIFY-001. Added verifier-feedback/QBE-MAIN-CASE-HIER-COLD-001/main-case-cold-export-verify-cycle02.{py,md,feedback.json}. The reference COLD table sanity check remains true, but export verification is rejected with source_translation_gap because no qiskit/*.py basis-action export, no qasm3 file, and no manifest exist yet. Required map remains q[0]=S, q[1]=tau, q[2]=T, q[3]=signal for 8*signal + 4*T + 2*tau + S. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests.
+in-case-cold-export-verify-cycle02.{py,md,feedback.json}. The reference COLD table sanity check remains true, but export verification is rejected with source_translation_gap because no qiskit/*.py basis-action export, no qasm3 file, and no manifest exist yet. Required map remains q[0]=S, q[1]=tau, q[2]=T, q[3]=signal for 8*signal + 4*T + 2*tau + S. Gates passed: python3 tools/qbe.py check; lake build; lake build Tests.
 
 ## 2026-06-27 13:26:31 - lower
 
@@ -310,6 +302,10 @@ Lower architect cycle 2 wrote proof-attempts/QBE-MAIN-CASE-HIER-COLD-001-lower-a
 ## 2026-06-27 13:27:25 - lower
 
 MAIN-EXPORT-VERIFY-001 implemented post-Lean executable exports for QBE-MAIN-CASE-HIER-COLD-001 from mainCaseColdPartialPermVerified: qiskit/export.py, qasm3/main_case_cold_partial_perm.qasm3, export-manifest.json, and main_case_cold_export_check.py. Deterministic checks pass: exported basis action [14,15,8,9,10,11,0,1,2,3,4,5,6,7,12,13] equals mainCaseColdPartialPermImage, clean support is {(0,6),(1,7)}, passive S is preserved, normalizer=1, epsilon=0, and resource tuple=(5,5,1,0). Compatibility verifier main-case-cold-export-cycle01.py now exits 0. Gates passed: python3 tools/qbe.py check; lake build && lake build Tests. Next route: reviewer audit of generated export artifacts against mainCaseColdPartialPermVerified.
+
+## 2026-06-27 13:31:40 - reviewer
+
+Reviewer audit: accept Lean COLD candidate package and post-Lean export artifacts at the current finite-permutation/logical-export tier. Checked current diff, task/conversion/proof ledgers, trial memory, export manifest/code/QASM3/checkers, hidden shortcut scans, semantic-flag scan, markdown math delimiters, blueprint refresh, and gates. python3 tools/qbe.py check passed; lake build && lake build Tests passed. Export artifacts pass deterministic checks against mainCaseColdPartialPermVerified/mainCaseColdPartialPermCandidate_cost with basis action [14,15,8,9,10,11,0,1,2,3,4,5,6,7,12,13], clean support {(0,6),(1,7)}, passive S preserved, alpha=1, epsilon=0, resource tuple=(5,5,1,0), and q[0]=S,q[1]=tau,q[2]=T,q[3]=signal. Blocking for export closeout/status only: conversion window, proof obligations, reports/latest, memory_digest/todo, retrieval index, and stale main-case-cold-export-verify-cycle02.md/json still say qiskit/qasm3/manifest are pending or rejected even though current artifacts and verifier script now pass; update those maps before marking MAIN-EXPORT-VERIFY-001 complete in human-facing memory. Hidden-shortcut scan found only pre-existing RobinMatrix sorries/CubicStatePreparation prose outside this COLD diff; semantic flag promotion mainCaseColdResourceSchemaObligation.proved=true is backed by compiled circuit-image and cost declarations at the stated high-level logical tier.
 ````
 
 ## Gate Policy

@@ -3,7 +3,7 @@
 Task id: `QBE-MAIN-CASE-HIER-PRO-001`
 Title: Main case transfer-operator block encoding, Pro-assisted isolated Hierarchical Harness
 Mode: `exploratoryConstruction`
-Updated: `2026-06-27 12:21:51`
+Updated: `2026-06-28 14:49:10`
 Blueprint stage: `Stage 1 target/transcript stabilization`
 
 This is QBE's compact system-of-record snapshot for long-horizon Lean proof

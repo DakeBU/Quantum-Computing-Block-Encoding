@@ -20,7 +20,7 @@ Inside the same asymptotic tier, candidates are ranked by
 
 | Candidate | Family | Lean objects | Score | Diagnostics | Status |
 |---|---|---|---|---|---|
-| `MAIN-PARTIAL-PERM-001` | one-signal finite partial permutation preserving `S` | `mainCaseColdQueryTarget`, `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix`, `mainCaseColdPartialPermExactCleanBlock`, `mainCaseColdPartialPerm_clean_eq_target`, `mainCaseColdPartialPermImage_bijective`, `mainCaseColdPartialPerm_blockProjection`, `mainCaseColdCircuitImage_eq_partialPermImage`, `mainCaseColdPartialPermCost_*`, `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified` | score `(5, 5, 1, 0)` at the high-level logical `{X,CNOT,Toffoli}` tier | COLD clean-block, finite-bijection, operator metadata, block-projection, circuit-image, cost field, and verified-candidate package compile | certified exact COLD candidate; executable export pending |
+| `MAIN-PARTIAL-PERM-001` | one-signal finite partial permutation preserving `S` | `mainCaseColdQueryTarget`, `mainCaseColdPartialPermImage`, `mainCaseColdPartialPermMatrix`, `mainCaseColdPartialPermExactCleanBlock`, `mainCaseColdPartialPerm_clean_eq_target`, `mainCaseColdPartialPermImage_bijective`, `mainCaseColdPartialPerm_blockProjection`, `mainCaseColdCircuitImage_eq_partialPermImage`, `mainCaseColdPartialPermCost_*`, `mainCaseColdPartialPermCandidate`, `mainCaseColdPartialPermVerified` | score `(5, 5, 1, 0)` at the high-level logical `{X,CNOT,Toffoli}` tier | COLD clean-block, finite-bijection, operator metadata, block-projection, circuit-image, cost field, verified-candidate package, Qiskit export, QASM3 export, manifest, and deterministic export checker pass | certified exact COLD candidate; executable export completed for `r=1,k=1,passiveQubits=1` |
 
 ## Candidate MAIN-PARTIAL-PERM-001
 
@@ -58,6 +58,13 @@ finite-permutation, block-projection, resource-tuple, and verified-candidate
 layers by `mainCaseColdPartialPermCandidate`,
 `mainCaseColdPartialPermVerified`, and `mainCaseColdPartialPermCandidate_cost`.
 It is now eligible as the Lean source for post-Lean Qiskit/QASM3 export.
+Cycle 20260628 status update: the post-Lean export leaf also completed.  The
+accepted artifacts are `qiskit/export.py`,
+`qasm3/main_case_cold_partial_perm.qasm3`, `export-manifest.json`, and
+`main_case_cold_export_check.py`; they consume
+`mainCaseColdPartialPermVerified` and `mainCaseColdPartialPermCandidate_cost`
+with the repaired wire map `q[0]=S`, `q[1]=tau`, `q[2]=T`,
+`q[3]=signal`.
 
 ## Insight Pool
 
@@ -70,15 +77,14 @@ It is now eligible as the Lean source for post-Lean Qiskit/QASM3 export.
 
 ## Next Mutation Or Repair Route
 
-Do not mutate the target.  The next route is `MAIN-EXPORT-001`: generate
-Qiskit/QASM3 artifacts from `mainCaseColdPartialPermVerified`, then check the
-exported basis action, clean block, normalizer, and resource tuple against the
-COLD Lean declarations.  The export map is fixed by the Lean full index
-`8*signal + 4*T + 2*tau + S`, so generated artifacts must use executable bit
-weights `S=0`, `tau=1`, `T=2`, and `signal=3`.  Do not reopen the
-clean-entry, finite-bijection, block-projection, resource, or candidate-package
-proofs unless the target operator, finite image table, circuit schema, or
-record interface changes.
+Do not mutate the target.  There is no active mutation or repair route for the
+current exact finite-permutation/logical-export tier.  Reuse
+`mainCaseColdPartialPermVerified` as the exact champion and rerun the export
+checker only if the export language, wire map, target operator, finite image
+table, circuit schema, metric definition, or record interface changes.  Do not
+reopen the clean-entry, finite-bijection, block-projection, resource,
+candidate-package, export-map, export-implementation, or export-verification
+leaves without such a change.
 
 Existing `mainCasePro*` declarations belong to the separate Pro-isolated arm
 and are not certified population members for this no-Pro COLD task.
