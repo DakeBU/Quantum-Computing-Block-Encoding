@@ -3,34 +3,35 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ABEIS Oracle-to-Block-Encoding Task Builder</title>
+    <title>ABEIS State-Preparation and Block-Encoding Task Builder</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">Auto-Block-Encoding-in-Sleep</p>
-        <h1>Oracle-to-Block-Encoding Task Builder</h1>
+        <p class="eyebrow">Auto-Quantum-Construction-in-Sleep</p>
+        <h1>State-Preparation and Block-Encoding Task Builder</h1>
       </div>
       <div class="status-pill">Testing preview</div>
     </header>
 
     <main class="layout">
       <section class="panel input-panel" aria-labelledby="input-title">
-        <h2 id="input-title">Target Oracle</h2>
+        <h2 id="input-title">Target State or Operator</h2>
         <p class="hint">
-          Paste a LaTeX operator, matrix formula, or natural-language oracle requirement.
+          Paste a target state, LaTeX operator, matrix formula, or natural-language oracle requirement.
           This testing preview creates a task packet for ABEIS agents; Lean is still the final verifier.
         </p>
 
         <label>
           Task name
-          <input id="taskName" value="operator-block-encoding-task" autocomplete="off">
+          <input id="taskName" value="state-preparation-task" autocomplete="off">
         </label>
 
         <label>
           Mode
           <select id="mode">
+            <option value="statePreparation">Prepare a target quantum state</option>
             <option value="operatorBlockEncoding">Construct a block encoding for my operator</option>
             <option value="paperBenchmark">Reproduce a paper's construction</option>
             <option value="exploratoryConstruction">Improve a known construction</option>
@@ -108,18 +109,18 @@
         </label>
 
         <label>
-          Operator or oracle description
-          <textarea id="oracleDescription" spellcheck="false">E_k = |0><k|_time \otimes |0><1|_type \otimes I_n</textarea>
+          Target state, operator, or oracle description
+          <textarea id="oracleDescription" spellcheck="false">Prepare (|0> + |1>) / sqrt(2) from |0></textarea>
         </label>
 
         <div class="grid two">
           <label>
-            Normalizer alpha
+            Normalizer alpha / state norm
             <input id="normalizer" value="1">
           </label>
           <label>
-            Block projector / clean state
-            <input id="projector" value="|0^a><0^a| on auxiliary register">
+            Initial or clean state
+            <input id="projector" value="|0^n>">
           </label>
         </div>
 
@@ -146,8 +147,8 @@
             <textarea id="proAdvice" spellcheck="false" placeholder="Paste Pro's diagnosis, proposed proof plan, or criticism. Include model/date if useful."></textarea>
           </label>
           <label>
-            Proposed candidate block encoding
-            <textarea id="proposedBE" spellcheck="false" placeholder="Optional: candidate U_A, circuit sketch, matrix formula, pseudocode, Qiskit/QASM, or gate schedule."></textarea>
+            Proposed candidate unitary or block encoding
+            <textarea id="proposedBE" spellcheck="false" placeholder="Optional: candidate U, U_A, circuit sketch, matrix formula, pseudocode, Qiskit/QASM, or gate schedule."></textarea>
           </label>
           <label>
             Proposed proof or correctness argument
@@ -293,7 +294,7 @@
         <div class="score-card">
           <h3>ABEIS acceptance and ranking</h3>
           <ol>
-            <li>Correctness is accepted only after Lean proves unitarity and the requested block-entry theorem.</li>
+            <li>Correctness is accepted only after Lean proves unitarity and the requested state-action or block-entry theorem.</li>
             <li>Compare asymptotic tiers first: polylogarithmic growth beats polynomial growth.</li>
             <li>Inside one tier, rank by gate count, then depth, then auxiliary qubits, then unresolved oracle calls.</li>
             <li>After Lean certification, generate the selected Qiskit, QuantumKatas, or QASM artifacts for users.</li>
@@ -305,7 +306,7 @@
           <h3>Run dashboard contract</h3>
           <ul>
             <li>Per-harness status: active phase, current champion, blocked leaf, and next action.</li>
-            <li>Exact and approximate BE curves: only Lean-certified candidates are plotted as achieved points.</li>
+            <li>Exact and approximate construction curves: only Lean-certified candidates are plotted as achieved points.</li>
             <li>Circuit storyboard: one diagram per certified exact/approximate candidate.</li>
             <li>Reports: selected-language summary, ChatGPT Pro prompt when unresolved, and user-copyable LaTeX proof after Lean closure.</li>
           </ul>
@@ -336,7 +337,7 @@
     <footer>
       Static website for preparing ABEIS task packets.  Inspired by user-friendly
       automated algorithm design front ends such as LLM4AD_Next, but specialized
-      to Lean-checked quantum block-encoding certificates.
+      to Lean-checked quantum construction certificates.
     </footer>
 
     <script src="app.js"></script>

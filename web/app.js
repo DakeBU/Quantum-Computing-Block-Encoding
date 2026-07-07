@@ -72,6 +72,8 @@ function selectedLanguage() {
 
 function modeDescription(value) {
   const descriptions = {
+    statePreparation:
+      "Prepare a target quantum state from the zero state; the first column of the candidate unitary is the target state.",
     operatorBlockEncoding:
       "Construct and evolve a block encoding for a user-specified operator.",
     paperBenchmark:
@@ -315,9 +317,9 @@ installed CLIs, API wrappers, or provider-specific endpoints.
 ${backendProfileJson()}
 \`\`\`
 
-## Operator Contract
+## State-Preparation Or Operator Contract
 
-Target operator or oracle requirement:
+Target state, operator, or oracle requirement:
 
 \`\`\`latex
 ${oracleDescription.value.trim() || "TBD"}
@@ -329,7 +331,7 @@ Normalizer:
 alpha = ${normalizer.value.trim() || "TBD"}
 \`\`\`
 
-Block projector / clean state:
+Initial state / block projector / clean state:
 
 \`\`\`text
 ${projector.value.trim() || "TBD"}
@@ -364,7 +366,7 @@ ChatGPT Pro / external AI advice:
 ${proAdvice.value.trim() || "None supplied."}
 \`\`\`
 
-Proposed candidate block encoding:
+Proposed candidate unitary or block encoding:
 
 \`\`\`text
 ${proposedBE.value.trim() || "None supplied."}
@@ -385,7 +387,7 @@ ${constraints.value.trim() || "TBD"}
 ## Post-Lean Executable Exports
 
 - Export policy: Lean-first.  Generate runnable artifacts only after a named
-  Lean declaration proves the advertised block-encoding theorem at the stated
+  Lean declaration proves the advertised state-preparation or block-encoding theorem at the stated
   semantic tier.
 - Requested targets: ${exportTargets.length ? exportTargets.map((target) => `\`${target}\``).join(", ") : "none"}
 - Concrete export instantiation:
@@ -413,7 +415,8 @@ Export requirements:
 2. Keep natural-language proof plans separate from Lean-certified claims.
 3. A candidate enters the certified population only after Lean proves:
    - the candidate matrix/unitary is unitary in the chosen semantics;
-   - the requested block-entry equation equals the target operator divided by \`alpha\`;
+   - for state preparation, \`U |0^n> = |psi>\` or first-column equality;
+   - for block encoding, the requested block-entry equation equals the target operator divided by \`alpha\`;
    - the resource record matches the circuit schedule.
 4. Necessary-condition checks may reject candidates early, but may not certify them.
 5. Post-Lean executable exports may be delivered to users after certification,
@@ -428,16 +431,16 @@ Export requirements:
 
 - Hierarchical Harness: upper and middle agents maintain the target, proof DAG, insight population, and lower work packets for one natural-language architect, one Lean worker, and one verifier.
 - Game Harness: run two semi-independent hierarchical teams.  The Natural-Language Team competes by writing reviewer-plausible mathematical constructions and proofs.  The Lean Team competes by writing compiled Lean constructions and certificates.  The Game Council coordinates insight transfer, user/ChatGPT-Pro input routing, capacity increases, exact-to-approximate phase switches, and team-to-team translation.
-- Translation rule: Lean-certified BE candidates go to the Natural-Language Team for human-readable LaTeX proof export.  Reviewer-plausible natural-language constructions go through the Game Council/reviewer and then to the Lean Team for formalization.
+- Translation rule: Lean-certified state-preparation or BE candidates go to the Natural-Language Team for human-readable LaTeX proof export.  Reviewer-plausible natural-language constructions go through the Game Council/reviewer and then to the Lean Team for formalization.
 - Reviewer: reject hidden assumptions, wrong metric ordering, simulator-only claims, and unverified candidates in plots.
-- Closeout: after Lean certification, export a step-by-step LaTeX BE proof, circuit diagrams, exact/approximate evolution curves, and checked executable artifacts such as Qiskit, QuantumKatas-style tests, or QASM.
+- Closeout: after Lean certification, export a step-by-step LaTeX proof, circuit diagrams, exact/approximate evolution curves, and checked executable artifacts such as Qiskit, QuantumKatas-style tests, or QASM.
 
 ## Web Dashboard And Report Outputs
 
 The runner should write machine-readable status files that the web page can render:
 
 - \`reports/<task-id>/dashboard.json\`: active phase, current champion, blocked leaf, and next action per harness.
-- \`reports/<task-id>/evolution.json\`: exact and approximate BE curves; only Lean-certified candidates count as achieved points.
+- \`reports/<task-id>/evolution.json\`: exact and approximate construction curves; only Lean-certified candidates count as achieved points.
 - \`reports/<task-id>/circuit_storyboard.json\`: diagram metadata for every certified candidate shown in the report.
 - \`runs/<run-id>/<language>_summary.md\`: selected-language human summary.
 - \`runs/<run-id>/chatgpt_pro_prompt.md\`: self-contained external-reasoning prompt if unresolved.
@@ -448,6 +451,7 @@ The runner should write machine-readable status files that the web page can rend
 \`\`\`bash
 export QBE_REPORT_LANGUAGE="${lang}"
 python3 tools/qbe.py new-task "${title}" \\
+  --kind "${mode.value}" \\
   --mode "${mode.value}" \\
   --source "web task packet" \\
   --target-lean "TBD" \\

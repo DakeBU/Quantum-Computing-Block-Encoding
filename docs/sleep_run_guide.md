@@ -255,14 +255,33 @@ python3 tools/qbe.py sleep-run QBE-AUTO-002 \
 This is appropriate for final audits or repeated drift.  It is usually too
 expensive for every inner proof-search cycle.
 
-## Operator Construction Run
+## State-Preparation And Operator Construction Run
 
-For a new target, create an operator-first task.  The task file should name
-the matrix/operator \(A\), the normalizer \(\alpha\), the clean ancilla state,
-the desired exact block-entry equation, the tolerated
-\(\varepsilon\)-approximate equation, and the exact-search resource budget.
+For a new target, first decide whether it is state preparation or block
+encoding.  A state-preparation task should name the target state, normalization
+status, initial state, desired exact equation `U |0^n> = |psi>`, tolerated
+epsilon, and resource budget.  A block-encoding task should name the
+matrix/operator \(A\), the normalizer \(\alpha\), the clean ancilla state, the
+desired exact block-entry equation, the tolerated \(\varepsilon\)-approximate
+equation, and the exact-search resource budget.
 
 Run one small dry-run first:
+
+```bash
+python3 tools/qbe.py new-task QBE-SP-001 \
+  --kind statePreparation \
+  --mode statePreparation \
+  --title "Prepare the target state"
+python3 tools/qbe.py blueprint-refresh QBE-SP-001
+python3 tools/qbe.py sleep-run QBE-SP-001 \
+  --cycles 1 \
+  --lower-count 3 \
+  --context-mode focused \
+  --blueprint-refresh \
+  --dry-run
+```
+
+For a block-encoding target:
 
 ```bash
 python3 tools/qbe.py new-task QBE-OP-001 \

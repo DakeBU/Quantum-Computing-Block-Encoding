@@ -624,11 +624,13 @@ Each record should identify:
 QBE proof blueprints are compact system-of-record snapshots for one task.
 
 They are inspired by similar blueprint/DAG-control patterns in LeanMarathon,
-but adapted to QBE's block-encoding target:
+but adapted to ABEIS quantum-construction targets:
 
 - Lean declarations are the correctness core;
 - Markdown/natural-language artifacts are the inner-cycle human proof map;
 - closeout LaTeX artifacts state accepted proof blocks for reports and user papers;
+- state-preparation blueprints expose the first-column invariant;
+- block-encoding blueprints expose the clean-block invariant;
 - proof obligations and cited-results ledgers keep unproved contracts explicit;
 - dynamic leaf candidates tell lower agents which local proof node to attempt.
 
@@ -640,19 +642,23 @@ python3 tools/qbe.py blueprint-refresh <task-id>
 """,
         ROOT / "candidate-populations" / "README.md": """# Candidate Populations
 
-Operator-block-encoding and exploratory-improvement modes maintain EoH-like
-populations of candidate unitaries/circuits for the same fixed operator target.
+State-preparation, operator-block-encoding, and exploratory-improvement modes
+maintain EoH-like populations of candidate unitaries/circuits for the same
+fixed target.
 
 Each candidate family should identify:
 
-- target operator `A`, normalizer `alpha`, and block projector,
+- target acceptance predicate, such as `U |0^n> = |psi>` for state
+  preparation or a clean-block equation for block encoding,
+- normalization, normalizer, clean projector, or initial-state convention,
 - construction idea,
 - auxiliary qubit count,
 - gate count, depth, and unresolved oracle calls,
 - Lean declarations and file scope,
-- partial diagnostics such as typechecks, dimension checks, small-case block
-  tests, unitarity tests, block-entry checks, normalizer progress, schedule
-  checks, resource progress, and remaining obligations,
+- partial diagnostics such as typechecks, dimension checks, small-case
+  state-action tests, block tests, unitarity tests, block-entry checks,
+  normalizer progress, schedule checks, resource progress, and remaining
+  obligations,
 - status: rejected, active, promising, merged, or proved.
 
 A `BlockEncodingCost` score is only a search guide.  A construction is accepted
@@ -672,12 +678,13 @@ machine-readable fields instead of only prose:
 {
   "task": "QBE-AUTO-002",
   "leaf": "slot-three-branch-vanish",
-  "mode": "operatorBlockEncoding",
+  "mode": "statePreparation",
   "source_correspondence_ok": true,
   "lean_parse_ok": true,
   "lean_build_ok": false,
   "finite_matrix_ok": true,
-  "block_entry_ok": false,
+  "state_action_ok": false,
+  "block_entry_ok": null,
   "ancilla_cleanup_ok": null,
   "normalizer_ok": true,
   "unitarity_ok": null,
@@ -687,7 +694,7 @@ machine-readable fields instead of only prose:
   "oracle_calls": 6,
   "closed_theorem_ok": false,
   "error_class": "symbolic_bridge_gap",
-  "next_route": "prove evalWith-level entry bridge for full index 48"
+  "next_route": "repair candidate U before proving U |0^n> = |psi>"
 }
 ```
 
@@ -1005,16 +1012,23 @@ Created: `{now}`
 
 ## Goal
 
-State the query-operator target precisely.  The preferred input is a finite
-matrix/operator `A`, a normalizer `alpha`, and the requested block-entry
-contract:
+State the quantum-construction target precisely.  For state preparation, the
+preferred input is a normalized target state `|psi>` and the requested action:
+
+```text
+U |0^n> = |psi>
+```
+
+Equivalently, the first computational-basis column of `U` is `|psi>`.
+For block encoding, the preferred input is a finite matrix/operator `A`, a
+normalizer `alpha`, and the requested block-entry contract:
 
 ```text
 (<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha
 ```
 
-The system should construct a unitary candidate `U_A`, prove in Lean that it
-contains the requested operator block, and score the candidate by:
+The system should construct a unitary candidate `U`, prove in Lean that it
+has the requested state action or operator block, and score the candidate by:
 
 1. asymptotic tier first, especially polylogarithmic versus polynomial growth,
 2. gate count inside one tier,
@@ -1022,13 +1036,18 @@ contains the requested operator block, and score the candidate by:
 4. auxiliary qubits `a`,
 5. unresolved oracle calls.
 
-State whether this is a direct operator-to-block-encoding construction task, a
-paper benchmark task, or an exploratory improvement task.  Paper benchmark
-tasks reproduce a cited construction as a baseline; improvement tasks may
-search for a better construction only after the original target is fixed.
+State whether this is a state-preparation task, a direct
+operator-to-block-encoding construction task, a paper benchmark task, or an
+exploratory improvement task.  Paper benchmark tasks reproduce a cited
+construction as a baseline; improvement tasks may search for a better
+construction only after the original target is fixed.
 
 Hybrid strategy:
 
+- `statePreparation`: given `|psi>`, search for a unitary `U` whose first
+  column is `|psi>`, prove unitarity and `U |0^n> = |psi>`, and reject
+  unnormalized unitary-output claims unless the vector is normalized or
+  restated as a rank-one operator.
 - `operatorBlockEncoding`: given `A`, search for candidate `U_A`
   constructions, prove the block-entry and unitarity contracts, and rank
   candidates by asymptotic tier, then gate count, depth, auxiliary qubits, and
@@ -1055,7 +1074,16 @@ LexElim scheduler discipline:
 - Paper/open problem: `{args.source or "TBD"}`
 - Lean target: `{args.target_lean}`
 
-## Operator Contract
+## State-Preparation Contract
+
+- Target state `|psi>`: `TBD`
+- Initial state: `|0^n>`
+- Normalization status: `TBD`
+- Required state action: `U |0^n> = |psi>`
+- First-column invariant: `column_0(U) = |psi>`
+- If unnormalized: normalize, or restate as rank-one operator `|v><0^n|`.
+
+## Block-Encoding Contract
 
 - Operator/matrix `A`: `TBD`
 - System qubits `n`: `TBD`
@@ -1068,8 +1096,8 @@ LexElim scheduler discipline:
 
 - Requested targets: `{export_targets}`
 - Export policy: Lean-first.  Generate executable code only after a named Lean
-  declaration proves the advertised block-encoding theorem at the task's
-  semantic tier.
+  declaration proves the advertised state-preparation or block-encoding
+  theorem at the task's semantic tier.
 - Concrete export instantiation: `{export_instantiation}`
 - Expected artifact root: `executable-exports/{slugify(args.id)}/`
 
@@ -1112,12 +1140,13 @@ Expected file and declarations:
 
 ## Proof Obligations
 
-- [ ] Matrix/operator target `A` is defined.
-- [ ] Candidate unitary `U_A` or circuit schema is defined.
-- [ ] Block-entry contract is stated with the exact ancilla projector.
-- [ ] Unitarity of `U_A` is proved or recorded as a named obligation.
-- [ ] Normalization `alpha` is explicit.
-- [ ] Auxiliary qubit count `a` is explicit.
+- [ ] State target `|psi>` or matrix/operator target `A` is defined.
+- [ ] Candidate unitary `U` or circuit schema is defined.
+- [ ] For state preparation, `U |0^n> = |psi>` or first-column equality is stated.
+- [ ] For block encoding, the block-entry contract is stated with the exact ancilla projector.
+- [ ] Unitarity of `U` is proved or recorded as a named obligation.
+- [ ] State normalization or block-encoding normalizer `alpha` is explicit.
+- [ ] Auxiliary qubit count `a` is explicit when the construction uses ancillas.
 - [ ] Asymptotic tier and concrete resource score `(gateCount, depth, a, oracleCalls)` are explicit.
 - [ ] Candidate comparison against the current baseline is recorded when relevant.
 - [ ] `lake build && lake build Tests` succeeds.
@@ -6398,6 +6427,7 @@ def infer_task_mode(task_text: str) -> str:
     if mode_match:
         mode = mode_match.group(1)
         if mode in {
+            "statePreparation",
             "operatorBlockEncoding",
             "paperBenchmark",
             "faithfulPaper",
@@ -6439,6 +6469,18 @@ def infer_task_mode(task_text: str) -> str:
         "auxiliary qubits",
         "blockencodingcost",
     ]
+    state_prep_markers = [
+        "statepreparation",
+        "state preparation",
+        "state-preparation",
+        "prepare |psi>",
+        "target state",
+        "first column",
+        "u |0",
+        "u|0",
+    ]
+    if any(marker in text for marker in state_prep_markers):
+        return "statePreparation"
     if any(marker in text for marker in operator_markers):
         return "operatorBlockEncoding"
     if any(marker in text for marker in paper_benchmark_markers):
@@ -6554,19 +6596,20 @@ hardware scheduling checks are not relevant to the current proof blocker.
   non-Lean quantum-circuit systems, but Lean remains the final acceptance gate.
 - Every lower attempt should classify progress with small fields when possible:
   `leaf`, `source_correspondence_ok`, `lean_parse_ok`, `lean_build_ok`,
-  `finite_matrix_ok`, `block_entry_ok`, `ancilla_cleanup_ok`, `normalizer_ok`,
-  `unitarity_ok`, `resource_score`, `auxiliary_qubits`, `gate_count`,
-  `depth`, `oracle_calls`, `closed_theorem_ok`, `error_class`, and
-  `next_route`.
+  `finite_matrix_ok`, `state_action_ok`, `block_entry_ok`,
+  `ancilla_cleanup_ok`, `normalizer_ok`, `unitarity_ok`, `resource_score`,
+  `auxiliary_qubits`, `gate_count`, `depth`, `oracle_calls`,
+  `closed_theorem_ok`, `error_class`, and `next_route`.
 - Suggested `error_class` values: `source_translation_gap`,
   `shape_or_register_gap`, `finite_matrix_counterexample`,
   `symbolic_bridge_gap`, `lean_tactic_gap`, `external_contract_gap`,
   `stale_leaf`, and `invalid_route`.
-- In paper-benchmark mode, feedback may rank proof routes for the same fixed
-  statement, but it must not mutate the paper circuit, oracle contract, theorem,
-  or assumptions.  In operator-block-encoding and exploratory modes, feedback
-  may score candidate families by `BlockEncodingCost`, but a score is not
-  proof.
+- In state-preparation mode, feedback should check normalization, unitarity,
+  and `U |0^n> = |psi>` or first-column equality.  In paper-benchmark mode,
+  feedback may rank proof routes for the same fixed statement, but it must not
+  mutate the paper circuit, oracle contract, theorem, or assumptions.  In
+  operator-block-encoding and exploratory modes, feedback may score candidate
+  families by `BlockEncodingCost`, but a score is not proof.
 - Log structured feedback with:
 
 ```bash
@@ -6580,6 +6623,30 @@ python3 tools/qbe.py trial-log --task <task> --role lower --kind attempt \\
 
 
 def strategy_for_mode(mode: str) -> str:
+    if mode == "statePreparation":
+        return """Hybrid strategy for this mode:
+
+- Treat the target state `|psi>` and initial state `|0^n>` as the fixed
+  scientific target.  Do not silently replace an unnormalized vector with a
+  unitary-output state; either normalize it or restate the target as a
+  rank-one operator for block encoding.
+- Maintain the first-column invariant: in the computational basis, the first
+  column of candidate unitary `U` must equal `|psi>`.
+- Keep two pools distinct: the certified population contains only candidates
+  with named Lean certificates for unitarity, `U |0^n> = |psi>` or
+  first-column equality, and resource score; the insight pool contains Pro
+  suggestions, Python searches, simulator traces, and reviewer ideas.
+- Use simple anchors first when teaching or debugging: `H |0> = (|0> + |1>) /
+  sqrt(2)` and `X |0> = |1>`, `X |1> = |0>`.
+- For formula-defined amplitudes, split the work into normalization/error
+  bounds, reversible arithmetic, rotation or amplitude loading, uncompute, and
+  final state-action proof.
+- If the prepared state is a PREPARE primitive for an LCU, sparse/Gram, or
+  density/purification route, record that dependency explicitly before sending
+  the downstream block-encoding task to lower agents.
+- A candidate is accepted only after Lean proves the stated state-preparation
+  theorem.  Resource scores rank candidates; they do not replace the theorem.
+"""
     if mode == "operatorBlockEncoding":
         return """Hybrid strategy for this mode:
 
@@ -6906,10 +6973,10 @@ Local paper-source archive for agent work:
 
 - QBE uses ARIS-style plain-file coordination and Learning-Beyond-Gradients-style
   trial memory, but the scientific target is Lean-checked quantum circuit
-  matrix construction: given an operator/query-oracle target `A`, synthesize a
-  candidate unitary `U_A`, prove the requested block-entry relation in Lean,
-  and compare candidates by asymptotic tier first and then by gate count,
-  depth, auxiliary qubits, and unresolved oracle calls.
+  matrix construction: given a target state or operator/query-oracle target,
+  synthesize a candidate unitary, prove the requested state-action or
+  block-entry relation in Lean, and compare candidates by asymptotic tier first
+  and then by gate count, depth, auxiliary qubits, and unresolved oracle calls.
 - Upper is the human-facing project director: choose the cycle objective,
   decide whether the task is operator construction, paper baseline
   reproduction, or exploratory improvement, and compress memory for the next
@@ -6956,6 +7023,12 @@ Local paper-source archive for agent work:
   retires a candidate.  Soft proof-progress and token-cost signals never
   override Lean correctness or necessary-condition diagnostics.
 
+- In `statePreparation` mode, the fixed target is the user-provided target
+  state `|psi>` and initial state, usually `|0^n>`.  Agents may search over
+  unitary/circuit families, but every candidate must record normalization,
+  first-column or state-action theorem shape, resource score, and Lean
+  obligations.  An unnormalized vector is not a unitary-output state unless it
+  is normalized; otherwise route it as a rank-one operator target.
 - In `operatorBlockEncoding` mode, the fixed target is the user-provided
   operator/matrix `A`, normalizer `alpha`, and block projector.  Agents may
   search over candidate unitary/circuit families, but every candidate must
@@ -8842,7 +8915,7 @@ def cmd_agent_note(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Quantum block encoding project helper")
+    parser = argparse.ArgumentParser(description="ABEIS quantum construction project helper")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("init", help="initialize QBE workflow files").set_defaults(func=cmd_init)
@@ -8867,6 +8940,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_task.add_argument(
         "--mode",
         choices=[
+            "statePreparation",
             "operatorBlockEncoding",
             "paperBenchmark",
             "faithfulPaper",

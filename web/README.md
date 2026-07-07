@@ -4,8 +4,8 @@ This is a browser interface for researchers who do not want to start from raw
 GitHub commands.  It can be deployed by GitHub Pages, Cloudflare Pages,
 Netlify, or any static-file host.  The page has two roles:
 
-1. build an ABEIS task packet and agent profile from an oracle/operator
-   description;
+1. build an ABEIS task packet and agent profile from a target-state,
+   oracle/operator, or matrix description;
 2. render runner outputs such as `dashboard.json`, `evolution.json`,
    certified circuit storyboards, and post-Lean Qiskit/QuantumKatas/QASM
    status.
@@ -39,7 +39,7 @@ browser.  This local-web mode is a supported user entrypoint: the page prepares
 the task packet, the downloaded checkout runs the generated command, and the
 page renders the resulting JSON reports.
 
-The page turns a pasted operator/oracle description, baseline construction, constraints, preferred report language, and agent backend preferences into a Markdown task packet that can be given to ABEIS agents.  It is the web equivalent of `python3 tools/qbe.py ingest-user-problem ...`: the raw user language must remain visible as a source artifact, and the generated packet should be runnable by the same local `sleep-run` harness.
+The page turns a pasted target-state/operator/oracle description, baseline construction, constraints, preferred report language, and agent backend preferences into a Markdown task packet that can be given to ABEIS agents.  It is the web equivalent of `python3 tools/qbe.py ingest-user-problem ...`: the raw user language must remain visible as a source artifact, and the generated packet should be runnable by the same local `sleep-run` harness.
 
 The deployed website should follow the same practical model as low-entry automated-design web front ends: users can prepare a task without installing the repository, but model execution must use a configured backend owned by the user or by the deployment operator.  ABEIS should not silently change models between web, CLI, and chat-window modes.  To make runs comparable, use the same agent profile, report language, active-time budget, adaptive scaling policy, and Lean gate across all entrypoints.
 
@@ -54,8 +54,8 @@ The scoring policy shown on the page is the repository policy:
 
 1. compare asymptotic tiers first;
 2. inside one tier, rank by `(gateCount, depth, auxiliaryQubits, oracleCalls)`;
-3. accept correctness only after Lean proves the unitarity and block-entry
-   certificates.
+3. accept correctness only after Lean proves unitarity and the requested
+   state-action or block-entry certificates.
 
 Agent backend preferences are vendor-neutral.  The generated profile can map
 upper, middle, lower, and reviewer roles to Codex, Claude, GPT/OpenAI wrappers,

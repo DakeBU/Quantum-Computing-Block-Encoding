@@ -31,12 +31,13 @@ machine-readable fields instead of only prose:
 {
   "task": "QBE-OP-001",
   "leaf": "candidate-unitarity-check",
-  "mode": "operatorBlockEncoding",
+  "mode": "statePreparation",
   "source_correspondence_ok": true,
   "lean_parse_ok": true,
   "lean_build_ok": false,
   "finite_matrix_ok": true,
-  "block_entry_ok": false,
+  "state_action_ok": false,
+  "block_entry_ok": null,
   "ancilla_cleanup_ok": null,
   "normalizer_ok": true,
   "unitarity_ok": false,
@@ -46,7 +47,7 @@ machine-readable fields instead of only prose:
   "oracle_calls": 3,
   "closed_theorem_ok": false,
   "error_class": "finite_matrix_counterexample",
-  "next_route": "repair candidate U_A before asking Lean to prove the final block-entry theorem"
+  "next_route": "repair candidate U before asking Lean to prove U |0^n> = |psi>"
 }
 ```
 
@@ -61,11 +62,12 @@ Suggested classes:
 - `stale_leaf`
 - `invalid_route`
 
-Scores and booleans are diagnostics.  They must not be promoted into
-theorem status unless a named Lean declaration closes the exact target.  In
-paper-benchmark mode, diagnostics must not mutate the paper construction; in
-operator-construction mode, they may guide the next candidate in
-`candidate-populations/`.
+Scores and booleans are diagnostics.  They must not be promoted into theorem
+status unless a named Lean declaration closes the exact target.  In
+state-preparation mode, diagnostics should check normalization, unitarity, and
+the action on `|0^n>` or first-column equality.  In paper-benchmark mode,
+diagnostics must not mutate the paper construction; in operator-construction
+mode, they may guide the next candidate in `candidate-populations/`.
 
 ## Verifier policy
 
@@ -80,7 +82,9 @@ Allowed exact filters include:
 - register dimensions and index ranges;
 - exact finite permutation/injectivity/surjectivity checks for permutation
   completions;
-- exact clean-block entries for a finite candidate;
+- exact state-action or first-column checks for a finite state-preparation
+  candidate;
+- exact clean-block entries for a finite block-encoding candidate;
 - exact support/path checks showing whether unwanted clean branches survive;
 - exact schedule/resource consistency checks;
 - parser/type-shape checks that the intended object cannot even be stated.

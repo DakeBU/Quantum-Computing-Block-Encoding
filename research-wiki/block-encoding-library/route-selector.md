@@ -8,6 +8,13 @@ Middle agents then turn selected routes into small proof-DAG leaves, run them
 in parallel when useful, and store failed but insightful candidates in the
 insight pool.
 
+If the user-level task is only "prepare this target state from $|0^n\rangle$",
+route it first through
+[`research-wiki/state-preparation-library/route-selector.md`](../state-preparation-library/route-selector.md).
+State preparation is the smaller target: prove `U |0^n> = |psi>` or first-column
+equality before using the prepared state as a PREPARE primitive in a later
+block-encoding proof.
+
 Separate three kinds of memory before assigning lower work:
 
 | Memory type | Status | How to use it |

@@ -119,6 +119,177 @@ def group_box(ax, x, y, w, h, title, ec, fc, title_fc=None, dashed=False):
     return patch
 
 
+def draw_application_overview():
+    fig, ax = setup(16.8, 6.2)
+    label(
+        ax,
+        4.5,
+        94.0,
+        "ABEIS target ladder: state preparation before block encoding",
+        fs=22,
+        weight="bold",
+        color=NAVY,
+        ha="left",
+    )
+    label(
+        ax,
+        4.5,
+        89.3,
+        "The simpler task fixes the first column of a unitary; the harder task fixes a clean block of a larger unitary.",
+        fs=12.2,
+        color=MUTED,
+        ha="left",
+    )
+
+    group_box(ax, 4.5, 49.0, 28.0, 33.0, "", GREEN, "#F7FFF9")
+    badge(ax, 7.0, 77.0, 12.0, 4.5, "STEP 1", fc=GREEN, ec=GREEN, fs=10.5)
+    label(ax, 7.0, 70.8, "State Preparation", fs=16.2, weight="bold", color=NAVY, ha="left")
+    label(ax, 7.0, 65.4, "Find a unitary U with", fs=10.4, color=MUTED, ha="left")
+    ax.text(18.5, 59.0, r"$U|0^n\rangle=|\psi\rangle$", ha="center", va="center", fontsize=17.2, color=TEXT)
+    label(ax, 7.0, 52.8, "First column of U is the target state.", fs=9.8, color=TEXT, ha="left")
+
+    group_box(ax, 36.0, 49.0, 25.5, 33.0, "", BLUE, "#F6F9FF")
+    badge(ax, 38.5, 77.0, 12.0, 4.5, "GATES", fc=BLUE, ec=BLUE, fs=10.5)
+    label(ax, 38.5, 70.8, "Concrete anchors", fs=16.2, weight="bold", color=NAVY, ha="left")
+    ax.text(48.8, 63.0, r"$H|0\rangle=(|0\rangle+|1\rangle)/\sqrt{2}$", ha="center", va="center", fontsize=14.2, color=TEXT)
+    ax.text(48.8, 57.2, r"$X|0\rangle=|1\rangle,\quad X|1\rangle=|0\rangle$", ha="center", va="center", fontsize=14.2, color=TEXT)
+    label(ax, 38.5, 52.3, "X swaps basis states.", fs=9.8, color=TEXT, ha="left")
+
+    group_box(ax, 65.0, 49.0, 30.5, 33.0, "", PURPLE, "#FAF7FF")
+    badge(ax, 67.5, 77.0, 12.0, 4.5, "STEP 2", fc=PURPLE, ec=PURPLE, fs=10.5)
+    label(ax, 67.5, 70.8, "Block Encoding", fs=16.2, weight="bold", color=NAVY, ha="left")
+    label(ax, 67.5, 65.4, "Embed a non-unitary operator A as a block:", fs=10.0, color=MUTED, ha="left")
+    ax.text(
+        80.2,
+        58.8,
+        r"$(\langle0^a|\otimes I)W(|0^a\rangle\otimes I)=A/\alpha$",
+        ha="center",
+        va="center",
+        fontsize=12.4,
+        color=TEXT,
+    )
+    label(ax, 67.5, 52.8, "Harder: completions, cleanup choices, costs.", fs=9.8, color=TEXT, ha="left")
+
+    arrow(ax, 32.7, 66.5, 35.5, 66.5, color=GREEN, lw=2.7)
+    arrow(ax, 61.8, 66.5, 64.5, 66.5, color=PURPLE, lw=2.7)
+
+    group_box(ax, 7.0, 12.0, 86.0, 24.0, "Shared ABEIS loop", "#CBD5E1", "#FFFFFF", title_fc="#475569")
+    box(ax, 10.5, 18.0, 17.0, 9.0, "Task", "state or operator", fc="#FFFFFF", ec="#64748B", fs=11.2, subfs=7.8)
+    box(ax, 31.0, 18.0, 17.0, 9.0, "Candidates", "unitary + score", fc=AMBER_L, ec=AMBER, fs=11.2, subfs=7.8)
+    box(ax, 51.5, 18.0, 17.0, 9.0, "Lean gate", "semantic proof", fc=GREEN_L, ec=GREEN, fs=11.2, subfs=7.8)
+    box(ax, 72.0, 18.0, 17.0, 9.0, "Exports", "proof + QASM", fc=BLUE_L, ec=BLUE, fs=11.2, subfs=7.8)
+    for x1, x2 in [(27.8, 30.6), (48.3, 51.1), (68.8, 71.6)]:
+        arrow(ax, x1, 22.5, x2, 22.5, color="#475569", lw=2.1)
+    label(ax, 50.0, 8.1, "State-preparation circuits can later become PREPARE primitives inside block-encoding routes.", fs=11.2, weight="bold", color=NAVY)
+
+    for path in [
+        ARTICLE_FIG / "application_overview.png",
+        README_FIG / "abeis_application_overview.png",
+        README_FIG / "abeis_contract_pipeline_2x.png",
+    ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
+def draw_hierarchical_harness():
+    fig, ax = setup(15.0, 7.8)
+    label(ax, 5.0, 94.0, "Hierarchical Harness", fs=22, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        5.0,
+        89.8,
+        "One coordinated stack keeps the target, proof DAG, candidate population, and export boundary synchronized.",
+        fs=11.6,
+        color=MUTED,
+        ha="left",
+    )
+
+    group_box(ax, 5.0, 68.0, 90.0, 14.0, "Target contract", GREEN, "#F7FFF9")
+    box(ax, 9.0, 72.0, 22.0, 5.6, "State prep", "U|0^n> = |psi>", fc="#FFFFFF", ec=GREEN, fs=11.5, subfs=8.0)
+    box(ax, 39.0, 72.0, 22.0, 5.6, "Block encoding", "clean block = A / alpha", fc="#FFFFFF", ec=GREEN, fs=11.5, subfs=8.0)
+    box(ax, 69.0, 72.0, 17.0, 5.6, "Score", "tier, gates,\ndepth, aux", fc="#FFFFFF", ec=GREEN, fs=11.0, subfs=7.8)
+    arrow(ax, 31.4, 74.8, 38.6, 74.8, color=GREEN)
+    arrow(ax, 61.4, 74.8, 68.6, 74.8, color=GREEN)
+
+    group_box(ax, 5.0, 31.0, 90.0, 29.0, "Planning and execution", BLUE, "#F6F9FF")
+    box(ax, 9.0, 47.5, 16.0, 6.7, "Upper", "strategy and\ncapacity", fc=BLUE_L, ec=BLUE, fs=12.0, subfs=8.2)
+    box(ax, 31.0, 47.5, 16.0, 6.7, "Middle", "Lean/prose map\nand memory", fc=PURPLE_L, ec=PURPLE, fs=12.0, subfs=8.2)
+    box(ax, 53.0, 47.5, 16.0, 6.7, "Reviewer", "target, source,\nLean gate", fc=RED_L, ec=RED, fs=12.0, subfs=8.2)
+    box(ax, 75.0, 47.5, 14.5, 6.7, "Record", "files, logs,\npopulations", fc="#FFFFFF", ec="#64748B", fs=11.5, subfs=8.0)
+    arrow(ax, 25.4, 50.8, 30.6, 50.8)
+    arrow(ax, 47.4, 50.8, 52.6, 50.8)
+    arrow(ax, 69.4, 50.8, 74.6, 50.8)
+
+    box(ax, 13.0, 35.0, 18.0, 6.6, "NL architect", "construction and\nproof packet", fc=AMBER_L, ec=AMBER, fs=11.0, subfs=7.7)
+    box(ax, 41.0, 35.0, 18.0, 6.6, "Lean worker", "one active\nproof leaf", fc=AMBER_L, ec=AMBER, fs=11.0, subfs=7.7)
+    box(ax, 69.0, 35.0, 18.0, 6.6, "Verifier", "finite diagnostics\nand exports", fc=AMBER_L, ec=AMBER, fs=11.0, subfs=7.7)
+    arrow(ax, 39.0, 47.4, 22.0, 41.8, color=PURPLE, rad=0.10)
+    arrow(ax, 39.0, 47.4, 50.0, 41.8, color=PURPLE)
+    arrow(ax, 39.0, 47.4, 78.0, 41.8, color=PURPLE, rad=-0.08)
+    arrow(ax, 78.0, 41.7, 58.0, 47.3, color=RED, dashed=True, rad=-0.15)
+
+    group_box(ax, 11.0, 10.0, 78.0, 12.0, "Promotion boundary", GREEN, "#F7FFF9")
+    box(ax, 17.0, 13.7, 19.0, 4.8, "Insight pool", "unproved ideas", fc="#FFFFFF", ec="#94A3B8", fs=10.5, subfs=7.5)
+    box(ax, 42.0, 13.7, 16.0, 4.8, "Lean proof", "acceptance gate", fc=GREEN_L, ec=GREEN, fs=10.5, subfs=7.5)
+    box(ax, 64.0, 13.7, 19.0, 4.8, "Certified archive", "parents and reports", fc=BLUE_L, ec=BLUE, fs=10.5, subfs=7.5)
+    arrow(ax, 36.4, 16.1, 41.6, 16.1, dashed=True, color="#64748B")
+    arrow(ax, 58.4, 16.1, 63.6, 16.1, color=GREEN)
+
+    for path in [ARTICLE_FIG / "hierarchical_harness.png", README_FIG / "hierarchical_harness.png"]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
+def draw_game_harness():
+    fig, ax = setup(15.0, 7.8)
+    label(ax, 5.0, 94.0, "Game Harness", fs=22, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        5.0,
+        89.8,
+        "Two semi-independent teams explore in parallel; a council transfers only reviewer-useful insights.",
+        fs=11.6,
+        color=MUTED,
+        ha="left",
+    )
+
+    group_box(ax, 5.0, 57.0, 38.0, 26.0, "Natural-Language Team", BLUE, "#F6F9FF")
+    box(ax, 9.0, 72.5, 13.0, 5.2, "Upper", "route strategy", fc=BLUE_L, ec=BLUE, fs=10.7, subfs=7.5)
+    box(ax, 26.0, 72.5, 13.0, 5.2, "Middle", "proof packet", fc=BLUE_L, ec=BLUE, fs=10.7, subfs=7.5)
+    box(ax, 9.0, 62.5, 30.0, 6.0, "Lower workers", "human-readable construction, proof sketch, diagnostics", fc="#FFFFFF", ec=BLUE, fs=11.0, subfs=7.7)
+    arrow(ax, 22.4, 75.1, 25.6, 75.1, color=BLUE)
+    arrow(ax, 24.0, 72.3, 24.0, 68.8, color=BLUE)
+
+    group_box(ax, 57.0, 57.0, 38.0, 26.0, "Lean Team", PURPLE, "#FAF7FF")
+    box(ax, 61.0, 72.5, 13.0, 5.2, "Upper", "formal route", fc=PURPLE_L, ec=PURPLE, fs=10.7, subfs=7.5)
+    box(ax, 78.0, 72.5, 13.0, 5.2, "Middle", "Lean leaves", fc=PURPLE_L, ec=PURPLE, fs=10.7, subfs=7.5)
+    box(ax, 61.0, 62.5, 30.0, 6.0, "Lower workers", "definitions, theorem closure, build repair", fc="#FFFFFF", ec=PURPLE, fs=11.0, subfs=7.7)
+    arrow(ax, 74.4, 75.1, 77.6, 75.1, color=PURPLE)
+    arrow(ax, 76.0, 72.3, 76.0, 68.8, color=PURPLE)
+
+    group_box(ax, 30.0, 34.0, 40.0, 15.0, "Game Council", ORANGE, "#FFF8F0")
+    box(ax, 35.0, 38.5, 30.0, 5.8, "Transfer and scheduling", "route useful sketches to Lean; export certified Lean proofs to prose", fc=ORANGE_L, ec=ORANGE, fs=11.4, subfs=7.8)
+    arrow(ax, 28.0, 57.0, 38.0, 49.2, color=BLUE, rad=-0.12)
+    arrow(ax, 72.0, 57.0, 62.0, 49.2, color=PURPLE, rad=0.12)
+    arrow(ax, 38.0, 34.0, 24.0, 57.0, color=ORANGE, dashed=True, rad=-0.18)
+    arrow(ax, 62.0, 34.0, 76.0, 57.0, color=ORANGE, dashed=True, rad=0.18)
+
+    group_box(ax, 8.0, 12.0, 84.0, 13.0, "Shared acceptance rule", GREEN, "#F7FFF9")
+    box(ax, 13.0, 15.7, 20.0, 5.0, "Insight pool", "team ideas and Pro input", fc="#FFFFFF", ec="#94A3B8", fs=10.5, subfs=7.4)
+    box(ax, 40.0, 15.7, 20.0, 5.0, "Reviewer + Lean", "semantic certificate", fc=GREEN_L, ec=GREEN, fs=10.5, subfs=7.4)
+    box(ax, 67.0, 15.7, 20.0, 5.0, "Certified output", "proof note and exports", fc=BLUE_L, ec=BLUE, fs=10.5, subfs=7.4)
+    arrow(ax, 33.4, 18.2, 39.6, 18.2, dashed=True, color="#64748B")
+    arrow(ax, 60.4, 18.2, 66.6, 18.2, color=GREEN)
+    label(ax, 50.0, 8.2, "More agents are opened only after recorded stagnation and with a fixed generation budget.", fs=10.8, weight="bold", color=NAVY)
+
+    for path in [ARTICLE_FIG / "game_harness.png", README_FIG / "game_harness.png"]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
 def draw_abeis_loop():
     fig, ax = setup(15.5, 8.6)
     label(ax, 5, 95, "ABEIS loop: evolve block encodings, certify with Lean, export runnable code", fs=21, weight="bold", color=NAVY, ha="left")
@@ -730,6 +901,9 @@ def draw_abeis_detailed_lean_leaf_module_graph():
 def main():
     ARTICLE_FIG.mkdir(parents=True, exist_ok=True)
     README_FIG.mkdir(parents=True, exist_ok=True)
+    draw_application_overview()
+    draw_hierarchical_harness()
+    draw_game_harness()
     draw_abeis_loop()
     draw_optctrl_storyboard()
     draw_optctrl_evolution()

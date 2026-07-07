@@ -1,9 +1,9 @@
 <div align=center>
 
-# Auto-Lean-in-Sleep: Block Encoding for Quantum Computing
+# ABEIS: State Preparation and Block Encoding for Quantum Computing
 
 <h3 align="center">
-A Platform of Automatic Block-Encolding for Quantum Query Operator (Lean-validated Theorem + Software Tools).
+A Platform for Lean-validated quantum state-preparation and block-encoding construction.
 </h3>
 
 [![Github][Github-image]][Github-url]
@@ -24,18 +24,60 @@ A Platform of Automatic Block-Encolding for Quantum Query Operator (Lean-validat
 
 ## News 🔥
 
-* **June 2026.** ABEIS is now public as a testing preview for Lean-certified block-encoding construction.  The API-user website placeholder is available at https://dakebu.github.io/Quantum-Computing-Block-Encoding/ while the hosted workflow is still being tested.  Feedback, issue reports, and suggested operator/oracle benchmarks are welcome.
+* **June 2026.** ABEIS is now public as a testing preview for Lean-certified
+  quantum construction.  The library now presents two application directions:
+  state preparation first, then block encoding.  The API-user website
+  placeholder is available at https://dakebu.github.io/Quantum-Computing-Block-Encoding/
+  while the hosted workflow is still being tested.  Feedback, issue reports,
+  and suggested state/operator/oracle benchmarks are welcome.
 
 
 ---
 ABEIS is a Lean 4 project and multi-agent harness for turning a requested
-quantum query operator into concrete block-encoding candidates, gate-level
-circuit matrices, resource scores, and Lean-checked certificates.
+quantum construction into concrete unitary candidates, gate-level circuit
+matrices, resource scores, and Lean-checked certificates.  It now exposes two
+application directions, ordered by difficulty:
 
-![Hierarchical Harness](docs/assets/abeis_contract_pipeline_2x.png)
+1. **State Preparation.**  Given a normalized target state `|psi>`, synthesize
+   a unitary `U` such that `U |0^n> = |psi>`.  Equivalently, in the standard
+   computational basis, the first column of `U` is the target state.  This is
+   the minimal concrete quantum-construction task and a useful PREPARE
+   primitive for later algorithms.
+2. **Block Encoding.**  Given a non-unitary operator `A`, synthesize a larger
+   unitary whose clean ancilla block equals `A / alpha`.  This is the original
+   ABEIS target and is more general, but also more abstract.
+
+![ABEIS application overview](docs/assets/abeis_contract_pipeline_2x.png)
 
 
-The project is built around one contract:
+Basic gates make the state-preparation target concrete:
+
+```text
+H |0> = (|0> + |1>) / sqrt(2)
+X |0> = |1>,   X |1> = |0>
+```
+
+So the user's intuition is right: Hadamard maps the zero state to an equal
+superposition, and the Pauli-X gate swaps the computational-basis states.
+
+The project is built around two related contracts.  The state-preparation
+contract is:
+
+```text
+U |0^n> = |psi>
+```
+
+or, equivalently:
+
+```text
+column_0(U) = |psi>
+```
+
+For unnormalized vectors, ABEIS requires the task to say whether the target is
+the normalized state `|psi / ||psi||>` or the rank-one operator `|v><0^n|`.
+The latter becomes a block-encoding-style operator target.
+
+The block-encoding contract is:
 
 ```text
 operator/query-oracle contract A
@@ -86,7 +128,10 @@ run both in isolated workspaces and compare the certified population curves.
 
 ```mermaid
 flowchart LR
-  A["user gives A, alpha, projector"] --> B["upper fixes target"]
+  A["user chooses state prep or block encoding"] --> A1["state prep: target |psi> and U|0^n>=|psi>"]
+  A --> A0["block encoding: A, alpha, projector"]
+  A1 --> B["upper fixes target"]
+  A0 --> B
   A --> A2["user gives resource floor, epsilon, iteration limits"]
   B --> B1["Natural-Language Team explores ideas"]
   B --> B2["Lean Team plans formalizable routes"]
@@ -110,6 +155,33 @@ flowchart LR
 ABEIS treats diagnostics as search signals, not as proofs.  A candidate enters
 the certified population only after Lean proves the advertised theorem at the
 task's semantic tier.
+
+## State-Preparation Memory
+
+State preparation is the first ABEIS application direction because it asks for
+one concrete action:
+
+```text
+prepare |psi> from |0^n>
+```
+
+The main invariant is simple and useful for agents: the candidate unitary's
+first column must be the target state.  Upper agents should first normalize or
+classify the target vector, middle agents should expose a small proof DAG for
+`U |0^n> = |psi>`, and lower agents should avoid turning an unnormalized
+vector into a unitary-output claim.  If the target vector is unnormalized, the
+task must either normalize it or switch to the rank-one operator
+`|v><0^n|`, which is then a block-encoding target.
+
+Classic routes exposed to users and agents:
+
+| Route | Natural case | Core proof move | Where to read |
+| --- | --- | --- | --- |
+| Single-qubit gate anchor | teaching examples such as `H` and `X` | prove the first column/action on `|0>` directly | [`SP.SingleQubitGates`](research-wiki/state-preparation-library/route-selector.md) |
+| Recursive amplitude split | explicit normalized vector | split mass into a rotation plus conditional sub-preparations | [`SP.RecursiveAmplitudeSplit`](research-wiki/state-preparation-library/route-selector.md) |
+| Reversible arithmetic amplitude | formula-defined amplitudes such as grid polynomials | compute value, rotate/load amplitude, then uncompute workspace | [`SP.ArithmeticAmplitude`](research-wiki/state-preparation-library/route-selector.md) |
+| Dense fallback | small fixed dimension | synthesize a full unitary whose first column is the target | [`SP.DenseCompletion`](research-wiki/state-preparation-library/route-selector.md) |
+| PREPARE primitive for BE | LCU weights, sparse/Gram routes, or density/purification | certify state preparation first, then consume it inside a clean-block proof | [`SP.ToBlockEncoding`](research-wiki/state-preparation-library/route-selector.md) |
 
 ## Block-Encoding Textbook Memory
 
@@ -284,16 +356,19 @@ executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py
 
 ## Active Hard Benchmark
 
-`QBE-OP-CUBIC-STATEPREP-001` is the first Scenario 2 benchmark:
+`QBE-OP-CUBIC-STATEPREP-001` is the first hard state-preparation-style
+benchmark:
 
 ```text
 O_n |0^n> = sum_j (j / 2^n)^3 |j>
 ```
 
-The vector on the right is not normalized, so the Lean target is the rank-one
-operator `O_n = |v_n><0^n|`.  ABEIS should try exact candidates briefly, then
-switch to approximate block-encoding search with the requested tolerance
-`epsilon = 1e-10`.
+The vector on the right is not normalized.  The task therefore records the
+user-level state-preparation intention and the Lean-checkable fallback
+operator `O_n = |v_n><0^n|`.  A normalized state-preparation target would be
+`|v_n / ||v_n||>`, while the rank-one fallback can feed the block-encoding
+pipeline.  ABEIS should try exact candidates briefly, then switch to
+approximate search with the requested tolerance `epsilon = 1e-10`.
 
 Current status:
 
@@ -302,7 +377,8 @@ Current status:
   verifier feedback are initialized;
 - dense executable checks are treated as small-instance diagnostics, while the
   intended scalable route is symbolic arithmetic plus Lean family proof;
-- no final approximate block-encoding candidate has been promoted yet.
+- no final approximate state-preparation or block-encoding candidate has been
+  promoted yet.
 
 Human-readable diagnostics:
 
@@ -311,14 +387,14 @@ reports/cubic-stateprep/latest.md
 reports/cubic-stateprep/zh_summary.md
 ```
 
-## Why Lean For Block Encodings
+## Why Lean For State Preparation And Block Encodings
 
 Executable quantum tooling such as Qiskit, QuantumKatas, and QASM evaluators is
 very useful for small concrete circuits: it can run a statevector, materialize
 a unitary, or check a sample OpenQASM program.  That is not enough for many
-block-encoding papers, where the real claim is a symbolic family of circuits
-indexed by register sizes, sparse-access promises, normalizers, and ancilla
-cleanup conditions.
+state-preparation and block-encoding tasks, where the real claim is a symbolic
+family of circuits indexed by register sizes, amplitude formulas,
+sparse-access promises, normalizers, and ancilla cleanup conditions.
 
 For an `r`-qubit time register, dense statevector/unitary validation pays the
 Hilbert-space dimension directly.  Even a structurally simple family like
@@ -375,13 +451,14 @@ Current executable-export self-tests:
 Qiskit QuantumKatas and QASM-Eval are good at testing submitted executable
 artifacts.  QUASAR and AI-Mandel are useful examples of tool-feedback loops
 for quantum artifacts.  Local public artifacts checked so far do not expose a
-direct generic BE constructor for "given operator `A`, synthesize and prove a
-symbolic block-encoding family."  ABEIS targets that stricter task:
+direct generic constructor for "given a target state or operator `A`,
+synthesize and prove a symbolic unitary family."  ABEIS targets that stricter
+task:
 
 ```text
-given an oracle/operator requirement A,
-construct a candidate block-encoding unitary U_A,
-prove the block-entry theorem in Lean,
+given a state-preparation or oracle/operator requirement,
+construct a candidate unitary U,
+prove the state-action or block-entry theorem in Lean,
 rank certified candidates by resources,
 and then export runnable circuits for users.
 ```
@@ -458,8 +535,8 @@ lake build && lake build Tests
 
 ABEIS has three equivalent user entrypoints.  All three must produce the same kind of task packet, agent profile, run logs, Lean gate, human-language summary, Pro-prompt, and optional post-Lean executable exports.  The intended rule is: if the same model backend and prompt profile are used, the CLI template, an AI chat window, and the website should differ only in convenience, not in scientific target or acceptance criteria.
 
-1. **Local CLI template.**  Download the repository, replace the operator text in a template command, and run `tools/qbe.py`.
-2. **AI chat window.**  Download the repository and tell Codex, Claude, GLM, Gemini, Minimax, or another coding agent: “Use the ABEIS system in this repository to solve the following operator block-encoding problem.”  The agent should call the same `ingest-user-problem`, `sleep-run`, and `check` commands as the CLI template.
+1. **Local CLI template.**  Download the repository, replace the state or operator text in a template command, and run `tools/qbe.py`.
+2. **AI chat window.**  Download the repository and tell Codex, Claude, GLM, Gemini, Minimax, or another coding agent: “Use the ABEIS system in this repository to solve the following state-preparation or block-encoding problem.”  The agent should call the same `ingest-user-problem`, `sleep-run`, and `check` commands as the CLI template.
 3. **Website task builder and dashboard.**  Use the website in `web/` in either
    local mode or hosted mode.  Local mode means: download the repository, serve
    `web/` in a browser, paste the oracle description, then run the generated
@@ -471,11 +548,28 @@ ABEIS has three equivalent user entrypoints.  All three must produce the same ki
    certified circuit storyboards, selected-language summaries, Pro prompts, and
    post-Lean Qiskit/QuantumKatas/QASM export status.
 
-Main local CLI workflow:
+Main local CLI workflow for the simpler state-preparation direction:
+
+```bash
+python3 tools/qbe.py new-task QBE-SP-001 \
+  --kind statePreparation \
+  --mode statePreparation \
+  --title "Prepare my target quantum state" \
+  --target-lean "QuantumBlockEncoding/MyStatePreparation.lean"
+
+python3 tools/qbe.py sleep-run QBE-SP-001 \
+  --cycles 2 \
+  --agent-profile codex-parallel.example.json \
+  --execute \
+  --check-each-cycle
+```
+
+Main local CLI workflow for block encoding:
 
 ```bash
 python3 tools/qbe.py new-task QBE-OP-001 \
   --kind operatorBlockEncoding \
+  --mode operatorBlockEncoding \
   --title "Construct a block encoding for my query operator" \
   --target-lean "QuantumBlockEncoding/MyOperator.lean"
 
@@ -489,7 +583,7 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
 `sleep-run` uses adaptive capacity by default: it starts with a small queue
 (upper director, middle coordinator, one lower worker, reviewer/build gate) and
 expands upper, middle, or lower capacity only after upper/reviewer memory
-records stagnation.  For operator construction, the default
+records stagnation.  For state-preparation and operator-construction tasks, the default
 `--exact-stall-cycles 2` allows the controller to open Scenario 2 approximate
 search after a short exact-search patience budget when no Lean-certified exact
 candidate exists.  Add `--fixed-capacity` only for ablation runs where every
@@ -572,6 +666,9 @@ Project layout:
   and route selector for partial permutations, LCU, product/tensor arithmetic,
   sparse-access, dilation, QSVT consumers, and approximate dense/structured
   block encodings.
+- `research-wiki/state-preparation-library/`: state-preparation route memory,
+  including first-column checks, gate anchors, arithmetic amplitude loading,
+  dense completion, and PREPARE-to-block-encoding handoffs.
 - `conversion-windows/`, `proof-blueprints/`, `proof-obligations/`: compact
   proof state and Lean/natural-language correspondence.
 - `executable-exports/`: post-Lean Qiskit, QuantumKatas, QASM, and related
@@ -629,8 +726,11 @@ Selected block-encoding and oracle-construction targets:
 | `planned` | Sunderhauf--Campbell--Camps, [Block-encoding structured matrices for data input in quantum computing](https://arxiv.org/abs/2302.10949) | `QuantumBlockEncoding/Circuit.lean` |
 
 The construction memory library is in
-`research-wiki/block-encoding-library/`.  It is organized as a route selector
-plus theorem cards, so an agent can recognize when a target should be solved by
+`research-wiki/state-preparation-library/` and
+`research-wiki/block-encoding-library/`.  The state-preparation memory records
+first-column checks, gate anchors, dense completion, and arithmetic amplitude
+loading.  The block-encoding memory is organized as a route selector plus
+theorem cards, so an agent can recognize when a target should be solved by
 partial permutation, LCU, product/tensor arithmetic, sparse-access Gram
 construction, density/purification, dilation, QSVT consumer contracts, or
 approximate dense/structured synthesis.
@@ -640,7 +740,7 @@ approximate dense/structured synthesis.
 ```bibtex
 @misc{abeis2026,
   author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
-  title = {{Auto-Lean-in-Sleep: Block Encoding for Quantum Computing}},
+  title = {{ABEIS: State Preparation and Block Encoding for Quantum Computing}},
   year = {2026},
   note = {Project page: \url{https://github.com/DakeBU/Quantum-Computing-Block-Encoding}}
 }

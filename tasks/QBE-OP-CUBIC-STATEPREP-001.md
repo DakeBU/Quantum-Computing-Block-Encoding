@@ -1,8 +1,8 @@
 # Cubic grid state-preparation operator
 
 Task id: `QBE-OP-CUBIC-STATEPREP-001`
-Kind: `operatorBlockEncoding`
-Mode: `exploratoryConstruction`
+Kind: `statePreparation`
+Mode: `statePreparation`
 Status: `active`
 
 ## User Target
@@ -14,8 +14,12 @@ For a positive integer `n`, let `N = 2^n`, `x_j = j / N`, and
 O |0^n> = sum_{j=0}^{N-1} f(x_j) |j>
 ```
 
-The right hand side is generally not normalized, so ABEIS fixes the
-Lean-checkable operator as the rank-one map
+The right hand side is generally not normalized.  ABEIS therefore records two
+semantic layers:
+
+- the user-level state-preparation intention, which would require the
+  normalized target `|v_n / ||v_n||>`;
+- the current Lean-checkable fallback operator, the rank-one map
 
 ```text
 O_n = |v_n><0^n|,      v_n[j] = (j / 2^n)^3.
@@ -25,6 +29,11 @@ This means `O_n` maps `|0^n>` to the requested unnormalized vector and maps
 all other computational basis inputs to zero.  If a user wants a normalized
 state-preparation unitary instead, that is a different target
 `|v_n / ||v_n||><0^n|` and must be stated separately.
+
+For a true normalized state-preparation candidate, the proof obligation is
+`U |0^n> = |v_n / ||v_n||>`, equivalently the first column of `U` is the
+normalized target state.  For the current fallback operator, the proof
+obligation becomes a block-encoding-style clean-block theorem for `O_n`.
 
 ## Error And Search Policy
 
@@ -36,15 +45,19 @@ epsilon = 1e-10
 
 ABEIS should run the usual adaptive policy:
 
-1. try exact block encodings first;
-2. if exact search stalls or cannot meet the resource floor, enter Scenario 2;
-3. in Scenario 2, search for an approximate block encoding satisfying
+1. try exact normalized state-preparation candidates when the normalized target
+   is in scope;
+2. keep the rank-one operator fallback explicit when the vector is not
+   normalized;
+3. if exact search stalls or cannot meet the resource floor, enter Scenario 2;
+4. in Scenario 2, search for an approximate state-preparation candidate or
+   approximate block encoding satisfying the declared semantic target:
 
    ```text
    || O_n - alpha * ((<0^a| tensor I) U (|0^a> tensor I)) || <= epsilon;
    ```
 
-4. if no improvement appears after the configured stall window, increase
+5. if no improvement appears after the configured stall window, increase
    parallel upper/middle/lower agents up to the configured maximum and record
    whether the extra agents improved the certified population.
 
@@ -79,7 +92,8 @@ ABEIS keeps three separate populations:
 
 When adaptive scaling is active, lower agents should spend each generation on a mixture of:
 
-- mutation: alter one candidate route while preserving the target operator;
+- mutation: alter one candidate route while preserving the declared target
+  semantics;
 - crossover: combine two useful ingredients, for example a normalizer bound
   from one route and an arithmetic state-preparation skeleton from another;
 - repair: close exactly one Lean proof leaf or turn a failed finite check into
