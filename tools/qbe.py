@@ -23,14 +23,46 @@ import datetime as _dt
 import json
 import os
 import re
+import signal
 import shutil
 import subprocess
 import sys
 import time
 from pathlib import Path
 
+try:
+    from qbe_control import (
+        CONTROL_STOP_EXIT_CODE,
+        CycleDecision,
+        content_digest,
+        decide_cycle,
+        infer_epsilon_ladder,
+        latest_frontier_rows,
+        latest_obligation_rows,
+        load_control_state,
+        prompt_budget_violation,
+        reduce_latest_feedback,
+        write_control_state,
+    )
+except ModuleNotFoundError:
+    from tools.qbe_control import (
+        CONTROL_STOP_EXIT_CODE,
+        CycleDecision,
+        content_digest,
+        decide_cycle,
+        infer_epsilon_ladder,
+        latest_frontier_rows,
+        latest_obligation_rows,
+        load_control_state,
+        prompt_budget_violation,
+        reduce_latest_feedback,
+        write_control_state,
+    )
 
-ROOT = Path(__file__).resolve().parents[1]
+
+ROOT = Path(
+    os.environ.get("QBE_ROOT", str(Path(__file__).resolve().parents[1]))
+).expanduser().resolve()
 REPOS_ROOT = ROOT.parent
 OUTER_REPOS_ROOT = REPOS_ROOT / "outer_repos"
 OUTER_PAPERS_ROOT = REPOS_ROOT / "outer_papers"
@@ -85,6 +117,7 @@ GHL_CONTRIBUTION_DIR = PAPER_CONTRIBUTION_DIR / "GHL2025"
 RETRIEVAL_INDEX_DIR = ROOT / "research-wiki" / "retrieval-index"
 EFFICIENCY_DIR = ROOT / "runs" / "efficiency"
 CONTEXT_PACK_DIR = ROOT / "runs" / "context-packs"
+CONTROL_DIR = ROOT / "runs" / "control"
 PROJECT_ARTICLE_UPDATE_DIR = ROOT / "paper-notes" / "project-paper" / "cycle-updates"
 PROBLEM_EXPORT_DIR = ROOT / "paper-notes" / "problem-exports"
 EXECUTABLE_EXPORT_DIR = ROOT / "executable-exports"
@@ -106,6 +139,14 @@ DEFAULT_PARALLEL_PANELS = True
 DEFAULT_GAME_HARNESS = False
 DEFAULT_NATURAL_LOWER_COUNT = 2
 DEFAULT_LEAN_LOWER_COUNT = 2
+DEFAULT_MAX_NO_PROGRESS_CYCLES = 2
+DEFAULT_MAX_EXTERNAL_GAP_CYCLES = 1
+DEFAULT_MAX_PROMPT_TOKENS = 16000
+DEFAULT_MAX_CYCLE_INPUT_TOKENS = 48000
+DEFAULT_MAX_RUN_INPUT_TOKENS = 240000
+DEFAULT_RETAIN_RUN_DIRS = 48
+
+ACTIVE_AGENT_PROCESSES: set[subprocess.Popen] = set()
 
 WORK_DIRS = [
     "tasks",
@@ -216,6 +257,41 @@ def load_jsonl(path: Path) -> list[dict]:
     return records
 
 
+def load_recent_jsonl(
+    path: Path,
+    *,
+    max_bytes: int = 16 * 1024 * 1024,
+    max_records: int = 5000,
+) -> list[dict]:
+    """Read a bounded tail of an append-only JSONL log.
+
+    Prompt construction needs current state, not a replay of hundreds of
+    megabytes of historical attempts.  Full scans remain available through
+    explicit reporting commands.
+    """
+
+    if not path.exists():
+        return []
+    size = path.stat().st_size
+    with path.open("rb") as handle:
+        start = max(0, size - max_bytes)
+        handle.seek(start)
+        if start:
+            handle.readline()
+        data = handle.read()
+    records: list[dict] = []
+    for raw in data.splitlines():
+        if not raw.strip():
+            continue
+        try:
+            value = json.loads(raw.decode("utf-8", errors="replace"))
+        except json.JSONDecodeError:
+            continue
+        if isinstance(value, dict):
+            records.append(value)
+    return records[-max_records:]
+
+
 def load_feedback_payload(args: argparse.Namespace) -> dict:
     """Load structured verifier feedback from CLI args."""
     feedback: dict = {}
@@ -306,7 +382,7 @@ def write_text(path: Path, text: str) -> None:
     print(f"wrote {display_path(path)}")
 
 
-def git_changed_files() -> list[str]:
+def git_changed_files(limit: int = 80) -> list[str]:
     code, output = run_capture(["git", "status", "--short"])
     if code != 0:
         return []
@@ -318,7 +394,56 @@ def git_changed_files() -> list[str]:
         if " -> " in item:
             item = item.split(" -> ", 1)[1]
         files.append(item.strip())
-    return sorted(set(files))
+    files = sorted(set(files))
+    if limit > 0 and len(files) > limit:
+        omitted = len(files) - limit
+        return files[:limit] + [f"... {omitted} additional changed files omitted"]
+    return files
+
+
+def git_worktree_snapshot() -> dict[str, tuple[str, int | None, int | None]]:
+    """Capture lightweight state for dirty paths without hashing the whole tree."""
+
+    code, output = run_capture(["git", "status", "--short", "--untracked-files=all"])
+    if code != 0:
+        return {}
+    snapshot: dict[str, tuple[str, int | None, int | None]] = {}
+    for line in output.splitlines():
+        if not line.strip():
+            continue
+        status = line[:2] if len(line) >= 2 else "??"
+        item = line[3:] if len(line) > 3 else line
+        if " -> " in item:
+            item = item.split(" -> ", 1)[1]
+        path = item.strip()
+        candidate = ROOT / path
+        try:
+            stat = candidate.stat()
+            snapshot[path] = (status, stat.st_size, stat.st_mtime_ns)
+        except OSError:
+            snapshot[path] = (status, None, None)
+    return snapshot
+
+
+def changed_snapshot_delta(
+    before: dict[str, tuple[str, int | None, int | None]],
+    after: dict[str, tuple[str, int | None, int | None]],
+    limit: int = 80,
+) -> list[str]:
+    """Return only paths whose worktree state changed during one agent call."""
+
+    files = sorted(path for path in before.keys() | after.keys() if before.get(path) != after.get(path))
+    if limit > 0 and len(files) > limit:
+        omitted = len(files) - limit
+        return files[:limit] + [f"... {omitted} additional changed files omitted"]
+    return files
+
+
+def git_changed_files_since(
+    before: dict[str, tuple[str, int | None, int | None]],
+    limit: int = 80,
+) -> list[str]:
+    return changed_snapshot_delta(before, git_worktree_snapshot(), limit)
 
 
 def latest_run_dir() -> Path | None:
@@ -397,7 +522,7 @@ def infer_active_task_id(default: str = "QBE-AUTO-002") -> str:
     state = load_state()
     if state.get("active_task"):
         return str(state["active_task"])
-    records = load_jsonl(TRIAL_LOG)
+    records = load_recent_jsonl(TRIAL_LOG)
     for record in reversed(records):
         task_id = record.get("task_id")
         if task_id:
@@ -1466,7 +1591,7 @@ Agents coordinate through `runs/<run-id>/dialogue.md` and append trial records t
 
 
 def recent_trial_text(task_id: str | None = None, limit: int = 10) -> str:
-    records = load_jsonl(TRIAL_LOG)
+    records = load_recent_jsonl(TRIAL_LOG)
     if task_id:
         records = [record for record in records if record.get("task_id") == task_id]
     if not records:
@@ -1558,45 +1683,8 @@ def compact_markdown_lines(path: Path, patterns: list[str], limit: int = 30) -> 
 
 
 def current_obligation_table_rows(text: str, limit: int = 20) -> list[str]:
-    """Extract the current obligation table as compact prose rows."""
-    if not text:
-        return []
-    latest_table = re.search(
-        r"(?ms)^\| Obligation \| Lean declaration or target \| Dependency class \| Status \|\n"
-        r"^\|---\|---\|---\|---\|\n"
-        r"(?P<body>(?:^\|.*\|\n)+)",
-        text,
-    )
-    if latest_table:
-        table_lines = latest_table.group("body").splitlines()
-    else:
-        start = text.find("Current obligation state:")
-        if start < 0:
-            return []
-        table_lines = text[start:].splitlines()[1:]
-    rows: list[str] = []
-    in_table = False
-    for raw in table_lines:
-        line = raw.strip()
-        if not line:
-            if in_table:
-                break
-            continue
-        if not line.startswith("|"):
-            if in_table:
-                break
-            continue
-        in_table = True
-        cells = [cell.strip() for cell in line.strip("|").split("|")]
-        if len(cells) < 4 or cells[0] in {"Obligation", "---"}:
-            continue
-        obligation, lean_decl, dependency_class, status = cells[:4]
-        rows.append(
-            f"{obligation}: Lean {lean_decl}; class {dependency_class}; status {status}"
-        )
-        if len(rows) >= limit:
-            break
-    return rows
+    """Extract only the latest append-only obligation state."""
+    return latest_obligation_rows(text, limit=limit)
 
 
 def lean_index_files_for_task(task_text: str) -> list[Path]:
@@ -1753,227 +1841,7 @@ def dynamic_leaf_candidates(task_text: str, obligation_text: str, dialogue_text:
 
 
 def current_proof_dag_frontier(conversion_text: str, limit: int = 8) -> list[str]:
-    if not conversion_text:
-        return []
-    sections = re.split(r"\n(?=## )", conversion_text)
-    priority_sections = [
-        section
-        for section in sections
-        if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
-        and "prepared_projection_restatement_leaf" in section
-    ]
-    if not priority_sections:
-        priority_sections = [
-        section
-        for section in sections
-        if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
-        and "source_prepared_active_field_contract" in section
-    ]
-    if not priority_sections:
-        priority_sections = [
-        section
-        for section in sections
-        if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
-        and "branch_correct_evaluated_backend_fold_obstruction" in section
-    ]
-    if not priority_sections:
-        priority_sections = [
-        section
-        for section in sections
-        if ("Proof-DAG frontier" in section or "Updated proof-DAG frontier" in section)
-        and "source_prepared_projection_summation_correction" in section
-    ]
-    if not priority_sections:
-        priority_sections = [
-        section
-        for section in sections
-        if "Updated proof-DAG frontier" in section
-        and "finite_projection_feeder" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-        section
-        for section in sections
-        if "Updated proof-DAG frontier" in section
-        and "Post-Feeder Active/Prepared" in section
-        and "active_prepared_composition_leaf" in section
-    ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section
-        and "Prepared-Sandwich Semantics" in section
-        and "prepared_sandwich_gap_leaf" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section
-            and "Post-Active-Selected-Slot Bridge" in section
-            and "active_selected_slot_eval_comparison_leaf" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section
-            and "Post-Selected-Slot Active-Uncast" in section
-            and "active_selected_slot_eval_comparison_leaf" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section
-            and "Active-Uncast" in section
-            and "active_uncast_to_prepared_entry_leaf" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section
-            and "Remaining-Slots Evaluated" in section
-            and "unitary_fold_leaf" in section
-            and "FullUnitaryFold" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section
-            and "Remaining-Slots" in section
-            and "unitary_fold_leaf" in section
-            and "FullUnitaryFold" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section
-            and "Post-Slot-One Support" in section
-            and "unitary_fold_leaf" in section
-            and "FullUnitaryFold" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section
-            and "unitary_fold_leaf" in section
-            and "FullUnitaryFold" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Updated proof-DAG frontier" in section and "unitary_fold_leaf" in section
-        ]
-    if not priority_sections:
-        priority_sections = [
-            section
-            for section in sections
-            if "Proof-DAG Frontier" in section or "Updated proof-DAG frontier" in section
-        ]
-    if not priority_sections:
-        return []
-    section = priority_sections[0]
-    rows: list[tuple[int, str]] = []
-    priority = {
-        "CUBIC-HCOUNT-COUNT-001": 0,
-        "CUBIC-HCOUNT-UNITARY-001": 1,
-        "CUBIC-HCOUNT-BLOCK-001": 2,
-        "CUBIC-HCOUNT-APPROX-001": 3,
-        "CUBIC-NORM-001": 10,
-        "source_prepared_active_field_contract": 0,
-        "source_prepared_active_field_forces_selected_zero_guard": 1,
-        "source_prepared_projection_summation_correction": 0,
-        "selected_slot_nonzero_counterexample": 0,
-        "fold_forces_selected_zero_guard": 1,
-        "hfree_evaluated_backend_fold": 10,
-        "source_prepared_retarget": 12,
-        "source_prepared_sparse_clean_feeder": 1,
-        "evaluated_backend_fold_recovery": 2,
-        "active_col0_diagnostic_bridge": 8,
-        "strict_hfree_feeder_retirement": 10,
-        "active_selected_slot_eval_comparison_leaf": 0,
-        "finite_projection_feeder": 0,
-        "source_contract_target_correction": 1,
-        "active_prepared_composition_leaf": 0,
-        "prepared_sandwich_gap_leaf": 1,
-        "arbitrary_H_source_prepared_field": 9,
-        "direct_hfree_evaluated_fold_route": 10,
-        "active_selected_to_fold_bridge": 8,
-        "active_prepared_entry_feeder": 0,
-        "active_uncast_to_prepared_entry_leaf": 2,
-        "active_uncast_entry_leaf": 0,
-        "source_prepared_entry_leaf": 3,
-        "unitary_fold_leaf": 4,
-        "backend_expansion_leaf": 5,
-        "expanded_uncast_entry_leaf": 4,
-        "expanded_uncast_recovery_leaf": 4,
-        "expanded_all_slots_feeder": 4,
-        "slot0_vanish_support": 4,
-        "slot1_support_mismatch": 4,
-        "remaining_slots_support_mismatch": 4,
-        "slot1_full_vanish_leaf": 1,
-        "slot1_branch_vanish_leaf": 1,
-        "remaining_slots_evaluated_vanish_leaf": 1,
-        "slot3_full_vanish_leaf": 1,
-        "slot_support_vanish_lemmas": 5,
-        "remaining_slot_support_leaf": 5,
-        "branch_sum_to_unitary_fold_bridge": 6,
-        "prepared_clean_equivalent_bridge": 7,
-        "prepared_sparse_clean_entry_bridge": 8,
-        "prepared_projection_restatement_leaf": 0,
-        "active_prepared_entry_field": 1,
-        "prepared_projection_entry_backend_bridge": 6,
-        "source_prepared_active_field_unwrapped": 8,
-    }
-    for line in section.splitlines():
-        stripped = line.strip()
-        if not stripped.startswith("|"):
-            continue
-        cells = [cell.strip() for cell in stripped.strip("|").split("|")]
-        if len(cells) < 8 or cells[0] in {"Node", "---"}:
-            continue
-        node = cells[0].strip("`")
-        if node == "retired_routes":
-            continue
-        status = cells[7]
-        status_lower = status.lower()
-        if not any(
-            marker in status_lower
-            for marker in [
-                "active",
-                "open",
-                "blocked",
-                "allowed",
-                "compiled feeder",
-                "compiled support",
-                "compiled bridge",
-                "compiled conditional",
-                "next",
-            ]
-        ):
-            continue
-        interface = re.sub(r"\s+", " ", cells[1])
-        lean_decl = re.sub(r"\s+", " ", cells[4])
-        if node == "unitary_fold_leaf" and "; diagnostic" in lean_decl:
-            lean_decl = lean_decl.split("; diagnostic", 1)[0]
-        max_lean_len = 260 if node == "unitary_fold_leaf" else 180
-        if len(lean_decl) > max_lean_len:
-            lean_decl = lean_decl[: max_lean_len - 3] + "..."
-        if node == "unitary_fold_leaf" and "active" in status_lower:
-            status = "open active mathematical leaf"
-        item = f"{node}: {interface}; status: {status}; Lean: {lean_decl}"
-        rows.append((priority.get(node, 50), item))
-        if len(rows) >= limit:
-            break
-    rows.sort(key=lambda row: row[0])
-    return [item for _, item in rows[:limit]]
+    return latest_frontier_rows(conversion_text, limit=limit)
 
 
 def blueprint_path(task_id: str) -> Path:
@@ -2126,7 +1994,7 @@ Recent task-relevant declarations:
     return path
 
 
-def blueprint_context(task_id: str, max_chars: int = 12000) -> str:
+def blueprint_context(task_id: str, max_chars: int = 8000) -> str:
     path = blueprint_path(task_id)
     if not path.exists():
         return "No proof blueprint yet. Run `python3 tools/qbe.py blueprint-refresh <task-id>`."
@@ -2172,7 +2040,7 @@ def blueprint_status_state(task_id: str) -> dict:
         ],
         limit=20,
     )
-    records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
+    records = [record for record in load_recent_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
     role_counts: dict[str, int] = {}
     status_counts: dict[str, int] = {}
     for record in records:
@@ -3602,7 +3470,7 @@ def technical_lemma_rows() -> list[dict[str, object]]:
 
 
 def recent_verifier_feedback(task_id: str, limit: int = 8) -> list[dict[str, object]]:
-    records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
+    records = [record for record in load_recent_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
     feedback_rows: list[dict[str, object]] = []
     stale_leaf_prefixes = ("slot3_", "slot4_", "slot5_", "slot6_")
     for record in reversed(records):
@@ -3625,14 +3493,23 @@ def recent_verifier_feedback(task_id: str, limit: int = 8) -> list[dict[str, obj
                 "error_class": feedback.get("error_class", ""),
                 "finite_matrix_ok": feedback.get("finite_matrix_ok", ""),
                 "block_entry_ok": feedback.get("block_entry_ok", ""),
+                "lean_parse_ok": feedback.get("lean_parse_ok", ""),
+                "lean_build_ok": feedback.get("lean_build_ok", ""),
                 "closed_theorem_ok": feedback.get("closed_theorem_ok", ""),
                 "next_route": next_route,
+                "leaf_signature": feedback.get("leaf_signature", ""),
+                "evidence_digest": feedback.get("evidence_digest", ""),
+                "capacity_decision": feedback.get("capacity_decision", ""),
+                "tolerance_decision": feedback.get("tolerance_decision", ""),
+                "search_decision": feedback.get("search_decision", ""),
+                "epsilon_next": feedback.get("epsilon_next", ""),
+                "requested_epsilon": feedback.get("requested_epsilon", ""),
             }
         )
-        if len(feedback_rows) >= limit:
+        if len(feedback_rows) >= limit * 5:
             break
     if feedback_rows:
-        return feedback_rows
+        return reduce_latest_feedback(feedback_rows)[:limit]
     task_feedback_dir = VERIFIER_FEEDBACK_DIR / task_id
     if task_feedback_dir.exists():
         feedback_files = sorted(task_feedback_dir.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
@@ -3659,7 +3536,7 @@ def recent_verifier_feedback(task_id: str, limit: int = 8) -> list[dict[str, obj
 
 
 def recent_trial_rows(task_id: str, limit: int = 8) -> list[dict[str, object]]:
-    records = [record for record in load_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
+    records = [record for record in load_recent_jsonl(TRIAL_LOG) if record.get("task_id") == task_id]
     rows = []
     for record in reversed(records[-limit:]):
         rows.append(
@@ -3715,6 +3592,7 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
         "recent_verifier_feedback": recent_verifier_feedback(task_id, limit=10),
         "recent_trials": recent_trial_rows(task_id, limit=10),
         "recent_proof_attempts": latest_proof_attempts(task_id, limit=10),
+        "controller_state": load_control_state(control_state_path(task_id)),
         "next_lower_tasks": [
             {
                 "role": "lower-1-natural-language-proof-architect",
@@ -5935,13 +5813,13 @@ The current Lean development names the target components as
 \\texttt{{CubicStatePreparation.cubicOperator}} & O_n=|v_n\\rangle\\langle 0^n|,\\\\
 \\texttt{{CubicStatePreparation.requestedEpsilon}} & 10^{{-10}},\\\\
 \\texttt{{CubicStatePreparation.defaultPolicy}} & \\,\\text{{adaptive exact-then-approximate search}},\\\\
-\\texttt{{CubicStatePreparation.hardModeUpperAgentSchedule}} & [1,3,4],\\\\
-\\texttt{{CubicStatePreparation.hardModeMiddleAgentSchedule}} & [1,2,3],\\\\
-\\texttt{{CubicStatePreparation.hardModeLowerAgentSchedule}} & [3,5,8],\\\\
+\\texttt{{CubicStatePreparation.hardModeUpperAgentSchedule}} & [1,2,3,4],\\\\
+\\texttt{{CubicStatePreparation.hardModeMiddleAgentSchedule}} & [1,2,3,4],\\\\
+\\texttt{{CubicStatePreparation.hardModeLowerAgentSchedule}} & [3,4,5,6],\\\\
 \\texttt{{CubicStatePreparation.hardModeExactStallWindow}} & 1,\\\\
 \\texttt{{CubicStatePreparation.hardModeConstructionStallWindow}} & 1,\\\\
-\\texttt{{CubicStatePreparation.hardModeLevelCycleBudget}} & [1,1,1],\\\\
-\\texttt{{CubicStatePreparation.relaxedEpsilonLadder}} & [10^{{-10}},10^{{-8}},10^{{-6}}].
+\\texttt{{CubicStatePreparation.hardModeLevelCycleBudget}} & [1,1,1,1],\\\\
+\\texttt{{CubicStatePreparation.relaxedEpsilonLadder}} & [10^{{-10}},10^{{-9}},10^{{-8}},10^{{-7}},10^{{-6}}].
 \\end{{array}}
 \\]
 Small exact norm diagnostics for \\(n=1,2,3\\) also compile:
@@ -6347,6 +6225,18 @@ def write_trial_summary(records: list[dict]) -> list[dict]:
     return rows
 
 
+def refresh_trial_summary_if_bounded(max_log_bytes: int = 16 * 1024 * 1024) -> list[dict] | None:
+    """Avoid replaying a large historical log during every inner-cycle write."""
+
+    if TRIAL_LOG.exists() and TRIAL_LOG.stat().st_size > max_log_bytes:
+        print(
+            f"deferred full trial-summary rewrite: {TRIAL_LOG.stat().st_size} bytes; "
+            "run `python3 tools/qbe.py trial-summary` explicitly at closeout"
+        )
+        return None
+    return write_trial_summary(load_jsonl(TRIAL_LOG))
+
+
 def cmd_trial_log(args: argparse.Namespace) -> int:
     cmd_init(argparse.Namespace())
     changed = list(args.changed_file or [])
@@ -6371,10 +6261,13 @@ def cmd_trial_log(args: argparse.Namespace) -> int:
     if verifier_feedback:
         record["verifier_feedback"] = verifier_feedback
     append_jsonl(TRIAL_LOG, record)
-    rows = write_trial_summary(load_jsonl(TRIAL_LOG))
+    rows = refresh_trial_summary_if_bounded()
     add_manifest("qbe.py trial-log", TRIAL_LOG, "trial", f"Logged {trial_id}")
     print(f"logged {trial_id}")
-    print(f"summary rows: {len(rows)} -> {rel(TRIAL_SUMMARY)}")
+    if rows is not None:
+        print(f"summary rows: {len(rows)} -> {rel(TRIAL_SUMMARY)}")
+    else:
+        print("summary rewrite deferred to explicit closeout")
     return 0
 
 
@@ -6492,6 +6385,14 @@ def infer_task_mode(task_text: str) -> str:
     return "unspecified"
 
 
+def infer_task_kind(task_text: str) -> str:
+    kind_match = re.search(r"^Kind:\s*`?([A-Za-z0-9_-]+)`?", task_text, flags=re.M)
+    if kind_match and kind_match.group(1) in {"statePreparation", "operatorBlockEncoding"}:
+        return kind_match.group(1)
+    mode = infer_task_mode(task_text)
+    return mode if mode in {"statePreparation", "operatorBlockEncoding"} else ""
+
+
 def local_paper_source_candidates(task_text: str) -> list[tuple[str, Path]]:
     candidates: list[tuple[str, Path]] = []
     if LOCAL_PAPER_SOURCE_ROOT == OUTER_PAPERS_ROOT:
@@ -6595,11 +6496,23 @@ hardware scheduling checks are not relevant to the current proof blocker.
 - QBE borrows the useful shape of parser/unit-test/simulator feedback from
   non-Lean quantum-circuit systems, but Lean remains the final acceptance gate.
 - Every lower attempt should classify progress with small fields when possible:
-  `leaf`, `source_correspondence_ok`, `lean_parse_ok`, `lean_build_ok`,
+  `leaf`, `leaf_signature`, `evidence_digest`, `source_correspondence_ok`,
+  `lean_parse_ok`, `lean_build_ok`,
   `finite_matrix_ok`, `state_action_ok`, `block_entry_ok`,
   `ancilla_cleanup_ok`, `normalizer_ok`, `unitarity_ok`, `resource_score`,
   `auxiliary_qubits`, `gate_count`, `depth`, `oracle_calls`,
   `closed_theorem_ok`, `error_class`, and `next_route`.
+- Copy `leaf_signature` and `evidence_digest` from the current controller note.
+  Feedback signed for an older state is retained for audit but cannot schedule
+  new work.  When a privileged upper/reviewer role wants more capacity, it may
+  additionally set `capacity_decision` to one or more of `increase_upper`,
+  `increase_middle`, or `increase_lower`.  Each accepted decision increases
+  that layer by one level only.  To leave exact search, set
+  `tolerance_decision=open_approximate` and `epsilon_next` to the first rung;
+  after an unchanged approximate cycle, use `tolerance_decision=relax_epsilon`
+  with exactly the adjacent next rung.  The legacy `increase_exploration`
+  value means the same one-rung transition.  The controller ignores unsigned,
+  stale, repeated, premature, or rung-skipping requests.
 - Suggested `error_class` values: `source_translation_gap`,
   `shape_or_register_gap`, `finite_matrix_counterexample`,
   `symbolic_bridge_gap`, `lean_tactic_gap`, `external_contract_gap`,
@@ -6610,6 +6523,10 @@ hardware scheduling checks are not relevant to the current proof blocker.
   mutate the paper circuit, oracle contract, theorem, or assumptions.  In
   operator-block-encoding and exploratory modes, feedback may score candidate
   families by `BlockEncodingCost`, but a score is not proof.
+- State preparation and block encoding share the same gradual controller.  For
+  state preparation, epsilon bounds state-vector/first-column error; for block
+  encoding, epsilon bounds the declared clean-block operator norm.  A phase
+  change never changes the target state, target operator, normalizer, or norm.
 - Log structured feedback with:
 
 ```bash
@@ -6641,6 +6558,10 @@ def strategy_for_mode(mode: str) -> str:
 - For formula-defined amplitudes, split the work into normalization/error
   bounds, reversible arithmetic, rotation or amplitude loading, uncompute, and
   final state-action proof.
+- Start at exact first-column equality.  Only an upper/reviewer decision after
+  the exact stall budget may open the task's requested epsilon; later
+  relaxations move one adjacent rung at a time and keep the same normalized
+  target and error norm.
 - If the prepared state is a PREPARE primitive for an LCU, sparse/Gram, or
   density/purification route, record that dependency explicitly before sending
   the downstream block-encoding task to lower agents.
@@ -6778,7 +6699,24 @@ def focused_task_contract(task_text: str) -> str:
         [r"^## Current Run Directive.*?$", r"^## Immediate .*?$"],
     )
     if not directive:
-        return task_text.strip()
+        sections = re.split(r"\n(?=## )", task_text.strip())
+        selected = [
+            section
+            for section in sections
+            if re.search(
+                r"(?im)^## .*?(current|target|acceptance|constraint|next|status|proof-dag|obligation)",
+                section,
+            )
+        ]
+        compact = "\n\n".join((["\n".join(header).strip()] if header else []) + selected[-4:])
+        if not compact.strip():
+            compact = task_text[:4000] + "\n\n...[task context compacted]...\n\n" + task_text[-4000:]
+        if len(compact) > 9000:
+            compact = compact[:4500] + "\n\n...[focused task context compacted]...\n\n" + compact[-4500:]
+        return compact.strip() + (
+            "\n\n[Focused context mode: read the task file only when a named current "
+            "leaf cannot be resolved from this packet.]"
+        )
     prefix = "\n".join(header).strip()
     return (
         (prefix + "\n\n" if prefix else "")
@@ -6927,6 +6865,7 @@ def role_prompt(
   process bug for this cycle because it can import stale paper-benchmark
   context into an operator-construction task.
 """
+    controller_cmd = f'QBE_ROOT="{ROOT}" python3 "{Path(__file__).resolve()}"'
     shared = f"""Task: {task_id} - {title}
 Mode: {mode}
 Cycle: {cycle}
@@ -6936,8 +6875,13 @@ Context mode: {context_mode} ({context_note})
 Mandatory project gate:
 
 ```bash
-python3 tools/qbe.py check
+{controller_cmd} check
 ```
+
+Runtime-controller invariant: use `{controller_cmd}` for orchestration,
+agent notes, trial logging, and checks.  In an isolated experiment root,
+`tools/qbe.py` may be a historical snapshot; do not inspect or invoke it to
+infer the current policy.
 
 Shared task contract:
 
@@ -7226,8 +7170,8 @@ Shared dialogue board:
 When you finish, append a concise handoff with:
 
 ```bash
-python3 tools/qbe.py agent-note {run_dir.name} --role {role} --message "..."
-python3 tools/qbe.py trial-log --task {task_id} --role {role} --kind handoff --status queued --from-git --artifact {rel(run_dir)}
+{controller_cmd} agent-note {run_dir.name} --role {role} --message "..."
+{controller_cmd} trial-log --task {task_id} --role {role} --kind handoff --status queued --artifact {rel(run_dir)}
 ```
 """
     if role == "upper":
@@ -7278,6 +7222,14 @@ Produce:
    several ready independent leaves or candidate families increase lower
    capacity.  Record the expected marginal gain and the fixed generation budget
    for the increase.
+   Before handoff, write one typed policy decision against the controller's
+   current `leaf_signature` and `evidence_digest`.  Use `capacity_decision`
+   only for the layer whose bottleneck is evidenced; each decision advances
+   one level.  If exact search has consumed its stall budget, either keep exact
+   with a named remaining leaf or set `tolerance_decision=open_approximate`
+   and `epsilon_next` to the first displayed rung.  In approximate search,
+   either keep the current rung or request only the adjacent next rung.  Never
+   combine a target change with an epsilon relaxation.
 7. Lower-agent work packets with narrow file scopes and acceptance checks.
    Use lower 4 only as a refiner/reducer after a concrete Lean failure.
    Every packet should say whether it is trying to certify a candidate, translate
@@ -7530,6 +7482,13 @@ Maintain:
    source anchors, Lean status, and dependent proof blocks.
 7. Proof-DAG frontier: root theorem, dependency edges, active leaves, stale
    leaves, owner lower-agent profile, human proof-map location, and Lean gate.
+   Keep exactly one machine-readable section headed
+   `## Current Obligation State [ACTIVE]` in the task's proof-obligation file;
+   replace its contents instead of prepending or appending another active
+   section.  Its table must expose `Node`, `Interface`, `Lean declaration`,
+   optional `Dependency class`, and `Status`.  Every open row must say `exact`
+   or `approximate`, and an executable row must say `active next Lean leaf`;
+   otherwise the deterministic controller will not schedule lower work.
 8. Verifier-feedback memory: for each lower attempt, record the leaf id, typed
    success/failure fields, error class, and next route in `runs/trials.jsonl`
    and, when useful, under `verifier-feedback/`.
@@ -7890,6 +7849,15 @@ oracle contracts, and proof-obligation map.
 In paper-benchmark mode, check that proof-attempt populations did not alter the paper
 construction.  In exploratory mode, check that candidate scores are treated as
 search guidance rather than proof of correctness.
+
+For unattended construction runs, the review is incomplete without a typed
+controller decision.  Copy the current `leaf_signature` and `evidence_digest`
+from the run context.  Approve at most one-level increases for upper, middle,
+or lower capacity, and only when the named bottleneck justifies them.  Approve
+`open_approximate` or `relax_epsilon` only after the displayed stall condition
+and only for the adjacent `epsilon_next` rung.  If no change is justified,
+record that explicitly in the reviewer handoff rather than emitting a vague
+request for more exploration.
 """
     else:
         body = """You are a lower implementation worker.
@@ -7989,7 +7957,7 @@ Expected output:
 
 1. One small Lean theorem, lemma, or repair that compiles.
 2. No new `sorry`, `admit`, hidden axiom, or theorem-flag promotion.
-3. `python3 tools/qbe.py check` after Lean edits.
+3. Run the mandatory controller check shown above after Lean edits.
 4. A handoff naming the exact theorem closed or the exact remaining Lean goal.
 5. If the proof blocks, store the useful failed route under `proof-attempts/`.
 
@@ -8036,7 +8004,7 @@ Expected output:
 1. The exact failed theorem, error message, and rejected route.
 2. One smaller lemma, simplification normal form, or proof-reduction patch.
 3. No theorem statement drift and no new assumptions.
-4. `python3 tools/qbe.py check` after Lean edits.
+4. Run the mandatory controller check shown above after Lean edits.
 5. A proof-attempt record explaining whether the refiner repair should be kept,
    retried, or rejected.
 
@@ -8063,7 +8031,7 @@ Work only on Lean-facing construction and proof tasks. Read your Lean Team middl
 and either add or repair compiling Lean declarations or write a typed failure
 that explains why the natural-language idea cannot yet be formalized. Do not
 accept a construction until the named Lean theorem and resource-score
-declarations compile. If you edit Lean, run `python3 tools/qbe.py check` when
+declarations compile. If you edit Lean, run the mandatory controller check when
 practical.
 """
         elif lower_index > 4:
@@ -8091,6 +8059,8 @@ def create_run_cycle(
     natural_lower_count: int = DEFAULT_NATURAL_LOWER_COUNT,
     lean_lower_count: int = DEFAULT_LEAN_LOWER_COUNT,
     harness_policy_note: str = "",
+    upper_specialist_count: int | None = None,
+    middle_specialist_count: int | None = None,
 ) -> Path:
     cmd_init(argparse.Namespace())
     if blueprint_refresh:
@@ -8137,15 +8107,24 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
         f"# Dialogue: {task_id} cycle {cycle}\n\nAppend short role-tagged handoffs here.\n",
         encoding="utf-8",
     )
+    upper_specialists = [
+        ("upper", run_dir / "11_upper_source_visual.md", -1),
+        ("upper", run_dir / "12_upper_proof_dag.md", -2),
+        ("upper", run_dir / "13_upper_process_memory.md", -3),
+    ]
+    middle_specialists = [
+        ("middle", run_dir / "21_middle_source_correspondence.md", -1),
+        ("middle", run_dir / "22_middle_memory_retrieval.md", -2),
+        ("middle", run_dir / "23_middle_report_export.md", -3),
+    ]
+    effective_upper_specialists = (
+        3 if upper_panel and upper_specialist_count is None else max(0, min(3, upper_specialist_count or 0))
+    )
+    effective_middle_specialists = (
+        3 if middle_panel and middle_specialist_count is None else max(0, min(3, middle_specialist_count or 0))
+    )
     prompt_files = [("upper", run_dir / "10_upper_director.md", 0)]
-    if upper_panel:
-        prompt_files.extend(
-            [
-                ("upper", run_dir / "11_upper_source_visual.md", -1),
-                ("upper", run_dir / "12_upper_proof_dag.md", -2),
-                ("upper", run_dir / "13_upper_process_memory.md", -3),
-            ]
-        )
+    prompt_files.extend(upper_specialists[:effective_upper_specialists])
     if game_harness:
         prompt_files.extend(
             [
@@ -8155,14 +8134,7 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
             ]
         )
     prompt_files.append(("middle", run_dir / "20_middle_formalizer.md", 0))
-    if middle_panel:
-        prompt_files.extend(
-            [
-                ("middle", run_dir / "21_middle_source_correspondence.md", -1),
-                ("middle", run_dir / "22_middle_memory_retrieval.md", -2),
-                ("middle", run_dir / "23_middle_report_export.md", -3),
-            ]
-        )
+    prompt_files.extend(middle_specialists[:effective_middle_specialists])
     if game_harness:
         prompt_files.extend(
             [
@@ -8218,11 +8190,13 @@ Cycle: `{cycle}`
                 f"Created prompt deck with {lower_count} hierarchical lower agent(s); "
                 f"game_harness={game_harness}; natural_lower_count={natural_lower_count}; "
                 f"lean_lower_count={lean_lower_count}; upper_panel={upper_panel}; middle_panel={middle_panel}. "
+                f"upper_specialists={effective_upper_specialists}; "
+                f"middle_specialists={effective_middle_specialists}. "
                 f"Harness policy: {(harness_policy_note or 'fixed-capacity')[:240]}"
             ),
         },
     )
-    write_trial_summary(load_jsonl(TRIAL_LOG))
+    refresh_trial_summary_if_bounded()
     add_manifest("qbe.py run-cycle", run_dir, "run", f"Created run cycle for {task_id}")
     return run_dir
 
@@ -8491,12 +8465,52 @@ def format_agent_command(template: str, prompt: Path, run_dir: Path, task_id: st
     )
 
 
+def start_agent_process(command: str) -> subprocess.Popen:
+    process = subprocess.Popen(command, cwd=ROOT, shell=True, start_new_session=True)
+    ACTIVE_AGENT_PROCESSES.add(process)
+    return process
+
+
+def wait_agent_process(process: subprocess.Popen) -> int:
+    try:
+        return process.wait()
+    finally:
+        ACTIVE_AGENT_PROCESSES.discard(process)
+
+
+def terminate_active_agent_processes() -> None:
+    """Terminate each external agent and every child in its process group."""
+
+    processes = list(ACTIVE_AGENT_PROCESSES)
+    for process in processes:
+        if process.poll() is not None:
+            ACTIVE_AGENT_PROCESSES.discard(process)
+            continue
+        try:
+            os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+        except (ProcessLookupError, PermissionError):
+            process.terminate()
+    deadline = time.monotonic() + 5.0
+    for process in processes:
+        remaining = max(0.0, deadline - time.monotonic())
+        try:
+            process.wait(timeout=remaining)
+        except subprocess.TimeoutExpired:
+            try:
+                os.killpg(os.getpgid(process.pid), signal.SIGKILL)
+            except (ProcessLookupError, PermissionError):
+                process.kill()
+            process.wait()
+        finally:
+            ACTIVE_AGENT_PROCESSES.discard(process)
+
+
 def run_agent_command(template: str, prompt: Path, run_dir: Path, task_id: str, cycle: int) -> tuple[int, float]:
     command = format_agent_command(template, prompt, run_dir, task_id, cycle)
     print("$ " + command)
     start = time.perf_counter()
-    completed = subprocess.run(command, cwd=ROOT, shell=True)
-    return completed.returncode, time.perf_counter() - start
+    process = start_agent_process(command)
+    return wait_agent_process(process), time.perf_counter() - start
 
 
 
@@ -8513,17 +8527,26 @@ def execute_prompt_stage(
         return 0
     if parallel and len(prompts) > 1:
         running = []
+        stage_snapshot = git_worktree_snapshot()
         for prompt in prompts:
             template = agent_command_for_prompt(profile_commands, fallback_template, prompt)
             command = format_agent_command(template, prompt, run_dir, task_id, cycle)
             print("$ " + command)
             start = time.perf_counter()
-            process = subprocess.Popen(command, cwd=ROOT, shell=True)
-            running.append((prompt, command, process, start))
+            process = start_agent_process(command)
+            running.append((prompt, command, process, start, stage_snapshot))
         first_error = 0
-        for prompt, command, process, start in running:
-            code = process.wait()
-            log_agent_attempt(task_id, run_dir, prompt, command, code, time.perf_counter() - start)
+        for prompt, command, process, start, before_snapshot in running:
+            code = wait_agent_process(process)
+            log_agent_attempt(
+                task_id,
+                run_dir,
+                prompt,
+                command,
+                code,
+                time.perf_counter() - start,
+                before_snapshot,
+            )
             if code != 0 and first_error == 0:
                 first_error = code
         return first_error
@@ -8531,9 +8554,19 @@ def execute_prompt_stage(
         template = agent_command_for_prompt(profile_commands, fallback_template, prompt)
         command = format_agent_command(template, prompt, run_dir, task_id, cycle)
         print("$ " + command)
+        before_snapshot = git_worktree_snapshot()
         start = time.perf_counter()
-        code = subprocess.run(command, cwd=ROOT, shell=True).returncode
-        log_agent_attempt(task_id, run_dir, prompt, command, code, time.perf_counter() - start)
+        process = start_agent_process(command)
+        code = wait_agent_process(process)
+        log_agent_attempt(
+            task_id,
+            run_dir,
+            prompt,
+            command,
+            code,
+            time.perf_counter() - start,
+            before_snapshot,
+        )
         if code != 0:
             return code
     return 0
@@ -8546,9 +8579,15 @@ def log_agent_attempt(
     command: str,
     code: int,
     wall_time_s: float | None = None,
+    before_snapshot: dict[str, tuple[str, int | None, int | None]] | None = None,
 ) -> None:
     status = "accepted" if code == 0 else "failed"
     prompt_text = prompt.read_text(encoding="utf-8") if prompt.exists() else ""
+    changed_files = (
+        git_changed_files_since(before_snapshot)
+        if before_snapshot is not None
+        else git_changed_files()
+    )
     harness_metrics = {
         "agent_wall_time_s": wall_time_s,
         "prompt_chars": len(prompt_text),
@@ -8568,19 +8607,253 @@ def log_agent_attempt(
             "score": "",
             "lean_gate": "",
             "artifact": rel(prompt),
-            "changed_files": git_changed_files(),
+            "changed_files": changed_files,
+            "changed_files_digest": content_digest(changed_files),
             "command": command,
             "notes": f"External agent command exit code {code}.",
             "harness_metrics": harness_metrics,
         },
     )
-    write_trial_summary(load_jsonl(TRIAL_LOG))
+    refresh_trial_summary_if_bounded()
 
 
 def latest_task_run_dir(task_id: str) -> Path | None:
     pattern = f"*-{slugify(task_id)}-cycle*"
     candidates = sorted((ROOT / "runs").glob(pattern))
     return candidates[-1] if candidates else None
+
+
+def control_state_path(task_id: str) -> Path:
+    return CONTROL_DIR / f"{slugify(task_id)}.json"
+
+
+def task_lean_evidence_digest(task_id: str) -> str:
+    """Hash task-relevant Lean source, excluding generated logs and prose churn."""
+
+    _, task_text = task_context(task_id)
+    parts: list[object] = []
+    for path in lean_index_files_for_task(task_text):
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        parts.append({"path": rel(path), "digest": content_digest([text])})
+    return content_digest(parts)
+
+
+def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecision:
+    state = blueprint_status_state(args.id)
+    feedback = recent_verifier_feedback(args.id, limit=20)
+    previous = load_control_state(control_state_path(args.id))
+    _, task_text = task_context(args.id)
+    decision = decide_cycle(
+        task_id=args.id,
+        cycle=cycle,
+        frontier_rows=state.get("dynamic_leaf_queue", []),
+        obligation_rows=state.get("open_obligation_signals", []),
+        feedback=feedback,
+        evidence_digest=task_lean_evidence_digest(args.id),
+        previous_state=previous,
+        max_no_progress_cycles=max(
+            1,
+            int(getattr(args, "max_no_progress_cycles", DEFAULT_MAX_NO_PROGRESS_CYCLES)),
+        ),
+        max_external_gap_cycles=max(
+            1,
+            int(getattr(args, "max_external_gap_cycles", DEFAULT_MAX_EXTERNAL_GAP_CYCLES)),
+        ),
+        task_kind=infer_task_kind(task_text),
+        epsilon_ladder=infer_epsilon_ladder(task_text),
+        exact_stall_cycles=max(
+            1,
+            int(getattr(args, "exact_stall_cycles", DEFAULT_EXACT_STALL_CYCLES)),
+        ),
+    )
+    write_control_state(control_state_path(args.id), decision)
+    intervention = CONTROL_DIR / f"{slugify(args.id)}-intervention.md"
+    if not decision.stop and intervention.exists():
+        intervention.unlink()
+    return decision
+
+
+def control_policy_note(decision: CycleDecision) -> str:
+    note = (
+        f"Controller mode: `{decision.mode}`. Status: `{decision.status}`. "
+        f"Leaf signature: `{decision.leaf_signature}`. Evidence digest: "
+        f"`{decision.evidence_digest}`. Ready leaves: "
+        f"{', '.join(decision.ready_leaf_ids) or 'none'}. Reason: {decision.reason} "
+        f"Capacity levels (upper, middle, lower)=({decision.upper_capacity_level}, "
+        f"{decision.middle_capacity_level}, {decision.lower_capacity_level}). "
+        f"Search phase: `{decision.search_phase}`; active epsilon: "
+        f"`{decision.active_epsilon}`; ladder: "
+        f"{', '.join(decision.epsilon_ladder) or 'not declared'}. "
+        "A privileged decision may increase each layer by at most one level and "
+        "may move tolerance by only one adjacent rung. It is valid only when "
+        "typed verifier feedback repeats this exact leaf signature and evidence digest."
+    )
+    if decision.policy_rejections:
+        note += " Rejected policy request: " + " ".join(decision.policy_rejections)
+    return note
+
+
+def write_control_intervention(task_id: str, decision: CycleDecision, detail: str = "") -> Path:
+    path = CONTROL_DIR / f"{slugify(task_id)}-intervention.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    choices = ""
+    if decision.external_leaf_ids:
+        choices = """
+## Required dependency decision
+
+Choose exactly one route before resuming:
+
+1. prove a named local replacement lemma;
+2. add and pin a dependency that provides the exact theorem;
+3. record an explicit theorem-facing contract and remove it from the local proof queue; or
+4. provide the missing mathematical/source decision as human input.
+"""
+    path.write_text(
+        f"""# ABEIS control intervention: {task_id}
+
+- mode: `{decision.mode}`
+- status: `{decision.status}`
+- cycle: `{decision.cycle}`
+- leaf signature: `{decision.leaf_signature}`
+- Lean evidence digest: `{decision.evidence_digest}`
+- unchanged cycles: `{decision.unchanged_cycles}`
+- external-gap cycles: `{decision.external_gap_cycles}`
+- capacity levels (upper/middle/lower): `{decision.upper_capacity_level}/{decision.middle_capacity_level}/{decision.lower_capacity_level}`
+- search phase: `{decision.search_phase}`
+- active epsilon: `{decision.active_epsilon}`
+- epsilon ladder: `{', '.join(decision.epsilon_ladder) or 'not declared'}`
+- ready leaves: `{', '.join(decision.ready_leaf_ids) or 'none'}`
+- external leaves: `{', '.join(decision.external_leaf_ids) or 'none'}`
+- unresolved leaves: `{', '.join(decision.unresolved_leaf_ids) or 'none'}`
+
+## Stop reason
+
+{decision.reason}
+
+{detail or 'No model call was started after this stop decision.'}
+{choices}
+## Resume condition
+
+Update the current proof-DAG/obligation state or task-relevant Lean evidence.
+The next `sleep-run` will recompute the signature and resume only when the
+blocking state has materially changed.
+""",
+        encoding="utf-8",
+    )
+    print(f"wrote {rel(path)}")
+    return path
+
+
+def runtime_stop_decision(decision: CycleDecision, reason: str) -> CycleDecision:
+    return CycleDecision(
+        task_id=decision.task_id,
+        cycle=decision.cycle,
+        mode="human_blocked",
+        status="blocked",
+        reason=reason,
+        leaf_signature=decision.leaf_signature,
+        evidence_digest=decision.evidence_digest,
+        ready_leaf_ids=decision.ready_leaf_ids,
+        external_leaf_ids=decision.external_leaf_ids,
+        unresolved_leaf_ids=decision.unresolved_leaf_ids,
+        prompt_plan=(),
+        capacity_authorizations=decision.capacity_authorizations,
+        unchanged_cycles=decision.unchanged_cycles,
+        external_gap_cycles=decision.external_gap_cycles,
+        stop=True,
+        task_kind=decision.task_kind,
+        upper_capacity_level=decision.upper_capacity_level,
+        middle_capacity_level=decision.middle_capacity_level,
+        lower_capacity_level=decision.lower_capacity_level,
+        search_phase=decision.search_phase,
+        epsilon_ladder=decision.epsilon_ladder,
+        epsilon_index=decision.epsilon_index,
+        active_epsilon=decision.active_epsilon,
+        policy_decision_digest=decision.policy_decision_digest,
+        policy_transition_applied=decision.policy_transition_applied,
+        policy_rejections=decision.policy_rejections,
+    )
+
+
+def controlled_prompt_stages(
+    run_dir: Path,
+    decision: CycleDecision,
+    *,
+    game_harness: bool,
+    upper_panel: bool,
+    middle_panel: bool,
+    parallel_panels: bool,
+    include_reviewer: bool,
+) -> list[tuple[list[Path], bool]]:
+    """Translate a controller plan into dependency-ordered prompt stages."""
+
+    stages: list[tuple[list[Path], bool]] = []
+    for item in decision.prompt_plan:
+        if item == "upper":
+            stages.extend(
+                (stage, parallel_panels)
+                for stage in upper_prompt_stages(run_dir, upper_panel, game_harness)
+            )
+        elif item == "middle":
+            stages.extend(
+                (stage, parallel_panels)
+                for stage in middle_prompt_stages(run_dir, middle_panel, game_harness)
+            )
+        elif item == "lower1":
+            path = run_dir / ("31_nl_lower_1.md" if game_harness else "30_lower_searcher_1.md")
+            if path.exists():
+                stages.append(([path], False))
+        elif item == "lower2":
+            path = run_dir / ("32_lean_lower_1.md" if game_harness else "30_lower_searcher_2.md")
+            if path.exists():
+                stages.append(([path], False))
+        elif item == "lower3" and not game_harness:
+            path = run_dir / "30_lower_searcher_3.md"
+            if path.exists():
+                stages.append(([path], False))
+        elif item == "lower4" and not game_harness:
+            path = run_dir / "30_lower_searcher_4.md"
+            if path.exists():
+                stages.append(([path], False))
+        elif item == "lower_aux" and not game_harness:
+            prompts = sorted(run_dir.glob("30_lower_searcher_*.md"))[4:]
+            if prompts:
+                stages.append((prompts, True))
+        elif item == "reviewer" and include_reviewer:
+            path = run_dir / "40_reviewer.md"
+            if path.exists():
+                stages.append(([path], False))
+    return stages
+
+
+def selected_prompt_token_counts(
+    stage_specs: list[tuple[list[Path], bool]],
+) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for prompts, _ in stage_specs:
+        for prompt in prompts:
+            if prompt.exists():
+                counts[rel(prompt)] = approx_token_count(prompt.read_text(encoding="utf-8"))
+    return counts
+
+
+def prune_task_run_dirs(task_id: str, keep: int) -> int:
+    if keep <= 0:
+        return 0
+    candidates = sorted(
+        path
+        for path in (ROOT / "runs").glob(f"*-{slugify(task_id)}-cycle*")
+        if path.is_dir()
+    )
+    removed = 0
+    for path in candidates[:-keep]:
+        shutil.rmtree(path)
+        removed += 1
+    if removed:
+        print(f"pruned {removed} old generated run directories for {task_id}; retained {keep}")
+    return removed
 
 
 def adaptive_state_text(task_id: str, *, include_task: bool = True) -> str:
@@ -8605,123 +8878,88 @@ def adaptive_state_text(task_id: str, *, include_task: bool = True) -> str:
     return "\n\n".join(parts)
 
 
-def adaptive_capacity_for_cycle(args: argparse.Namespace, cycle: int) -> dict[str, object]:
-    """Choose a quota-conscious prompt deck for a sleep-run cycle.
+def adaptive_capacity_for_cycle(
+    args: argparse.Namespace,
+    cycle: int,
+    decision: CycleDecision | None = None,
+) -> dict[str, object]:
+    """Choose capacity only from the current executable state.
 
-    The default is deliberately small.  Upper/reviewer/memory signals must
-    justify any larger panel, and approximate search is opened only after a
-    short exact-stall budget unless the task already has an exact certificate.
+    Stagnation text is evidence of a problem, not authorization to spend more
+    tokens.  Expansion and epsilon/exploration changes require typed feedback
+    signed with the controller's current leaf and Lean-evidence digests.
     """
-    full_text = adaptive_state_text(args.id, include_task=True)
-    memory_text = adaptive_state_text(args.id, include_task=False)
-    lowered = full_text.lower()
-    memory_lowered = memory_text.lower()
-    certified_exact = bool(
-        re.search(
-            r"(current best exact lean certificate|lean-certified exact|"
-            r"lean certificate.*epsilon\s*=\s*0|exact lean certificate)",
-            memory_lowered,
-        )
-    )
-    explicit_stagnation = bool(
-        re.search(
-            r"(stagnat|stalled|no improvement|blocked on|symbolic_bridge_gap|"
-            r"active leaf.*blocked|must open the approximate route|open approximate route|"
-            r"exact certification is blocked)",
-            memory_lowered,
-        )
-    )
-    maintenance_only = certified_exact and bool(
-        re.search(r"(export-sync|export/report|report/export|post-lean export|closeout)", memory_lowered)
-    )
-    operator_task = any(
-        marker in lowered
-        for marker in [
-            "operatorblockencoding",
-            "operator block-encoding",
-            "block-encoding",
-            "block encoding",
-        ]
-    )
-    exact_stall_cycles = max(0, int(getattr(args, "exact_stall_cycles", DEFAULT_EXACT_STALL_CYCLES)))
-    approximate_phase = (
-        operator_task
-        and not certified_exact
-        and exact_stall_cycles > 0
-        and (cycle > exact_stall_cycles or explicit_stagnation)
-        and (explicit_stagnation or "cubic-diagonal-clean" in args.id.lower())
-    )
-    expanded = (explicit_stagnation or approximate_phase) and not maintenance_only
 
+    authorizations = set(decision.capacity_authorizations if decision else ())
+    upper_level = decision.upper_capacity_level if decision else 0
+    middle_level = decision.middle_capacity_level if decision else 0
+    lower_level = decision.lower_capacity_level if decision else 0
+    expanded = bool(upper_level or middle_level or lower_level)
+    phase = decision.search_phase if decision else "exact"
     max_hier_lower = max(0, int(getattr(args, "lower_count", DEFAULT_LOWER_COUNT)))
-    if expanded:
-        effective_lower = min(max_hier_lower, DEFAULT_ADAPTIVE_EXPANDED_LOWER_COUNT)
-        if max_hier_lower > 0:
-            effective_lower = max(2, effective_lower)
-        upper_panel = bool(getattr(args, "upper_panel", DEFAULT_UPPER_PANEL))
-        middle_panel = bool(getattr(args, "middle_panel", DEFAULT_MIDDLE_PANEL))
-        parallel_panels = bool(getattr(args, "parallel_panels", DEFAULT_PARALLEL_PANELS))
-        capacity_label = "expanded-stagnation"
-    else:
-        effective_lower = min(max_hier_lower, DEFAULT_ADAPTIVE_BASE_LOWER_COUNT)
-        upper_panel = False
-        middle_panel = False
-        parallel_panels = False
-        capacity_label = "base-small"
-
     natural_max = max(0, int(getattr(args, "natural_lower_count", DEFAULT_NATURAL_LOWER_COUNT)))
     lean_max = max(0, int(getattr(args, "lean_lower_count", DEFAULT_LEAN_LOWER_COUNT)))
-    if expanded:
-        natural_lower_count = min(natural_max, 2)
-        lean_lower_count = min(lean_max, 2)
-    else:
-        natural_lower_count = min(natural_max, 1)
-        lean_lower_count = min(lean_max, 1)
 
-    phase = "approximate" if approximate_phase else "exact"
+    effective_lower = min(max_hier_lower, DEFAULT_ADAPTIVE_BASE_LOWER_COUNT)
+    natural_lower_count = min(natural_max, 1)
+    lean_lower_count = min(lean_max, 1)
+    upper_panel = False
+    middle_panel = False
+    upper_specialist_count = 0
+    middle_specialist_count = 0
+    parallel_panels = False
+    capacity_label = "state-gated-small"
+
+    if decision and decision.mode == "execute":
+        effective_lower = min(max_hier_lower, max(2, effective_lower)) if max_hier_lower > 0 else 0
+        if "lower3" in decision.prompt_plan and max_hier_lower > 0:
+            effective_lower = min(max_hier_lower, max(3, effective_lower))
+        if lower_level > 0:
+            effective_lower = min(max_hier_lower, max(effective_lower, 3 + lower_level))
+            natural_lower_count = min(natural_max, 1 + lower_level)
+            lean_lower_count = min(lean_max, 1 + lower_level)
+            capacity_label = "authorized-gradual-lower-expansion"
+    elif decision and decision.mode in {"dependency_decision", "decompose", "phase_decision"}:
+        effective_lower = 0
+        natural_lower_count = 0
+        lean_lower_count = 0
+        upper_specialist_count = min(3, upper_level)
+        middle_specialist_count = min(3, middle_level)
+        upper_panel = upper_specialist_count > 0
+        middle_panel = middle_specialist_count > 0
+        parallel_panels = bool(
+            (upper_panel or middle_panel)
+            and getattr(args, "parallel_panels", DEFAULT_PARALLEL_PANELS)
+        )
+        capacity_label = "bounded-decision"
+
     note = (
         f"Adaptive capacity `{capacity_label}`. Phase target: `{phase}`. "
         f"Effective lower_count={effective_lower}; natural_lower_count={natural_lower_count}; "
         f"lean_lower_count={lean_lower_count}; upper_panel={upper_panel}; "
-        f"middle_panel={middle_panel}. exact_stall_cycles={exact_stall_cycles}. "
-        "Default policy: start with a small queue, expand only after upper/reviewer "
-        "or retrieval memory records stagnation. "
+        f"middle_panel={middle_panel}; upper_specialists={upper_specialist_count}; "
+        f"middle_specialists={middle_specialist_count}. "
     )
-    if approximate_phase:
+    if decision:
+        note += control_policy_note(decision) + " "
+    if authorizations:
+        note += "Current signed capacity authorizations: " + ", ".join(sorted(authorizations)) + ". "
+    else:
+        note += "No signed capacity increase is active. "
+    if phase != "exact":
         note += (
-            "Exact search has exceeded the short stall budget without a certified exact "
-            "candidate; Phase 2 is now active. Upper/middle must prioritize Scenario 2 "
-            "approximate-BE search rather than spending another broad cycle on the old "
-            "exact bridge. Use the exact-route artifacts only as reusable components or "
-            "negative evidence. Start from the requested epsilon if present, propose a "
-            "Lean-checkable approximate target, and relax epsilon only with an explicit "
-            "recorded ladder decision in the memory digest, candidate population, "
-            "selected-language summary, and Pro prompt. This is a phase lock, not a "
-            "suggestion: reviewer should reject any upper or middle plan whose active "
-            "root is the stale exact bridge instead of an epsilon-ladder candidate."
-        )
-    elif maintenance_only:
-        note += (
-            "A Lean-certified exact candidate already exists and the active work is "
-            "export/report closeout, so broad proof-search panels are suppressed. "
-            "Use the small queue for synchronization, executable export, and reviewer audit."
-        )
-    elif expanded:
-        note += (
-            "Expansion is justified by recorded stagnation/blocked-route feedback. "
-            "Spend extra capacity on semantic-tier choice, candidate-family strategy, "
-            "Lean/natural-language translation, and one or two ready lower leaves."
+            f"Approximate search is active only at epsilon={decision.active_epsilon if decision else 'unknown'}; "
+            "the next relaxation requires a new signed decision after an unchanged cycle."
         )
     else:
-        note += (
-            "Do not run broad panels or many lower workers yet; use this cycle to make "
-            "one concrete improvement or produce a precise reviewer stagnation signal."
-        )
+        note += "Stagnation alone must never expand panels or relax epsilon."
 
     return {
         "lower_count": effective_lower,
         "upper_panel": upper_panel,
         "middle_panel": middle_panel,
+        "upper_specialist_count": upper_specialist_count,
+        "middle_specialist_count": middle_specialist_count,
         "parallel_panels": parallel_panels,
         "natural_lower_count": natural_lower_count,
         "lean_lower_count": lean_lower_count,
@@ -8731,8 +8969,16 @@ def adaptive_capacity_for_cycle(args: argparse.Namespace, cycle: int) -> dict[st
     }
 
 
-def cmd_sleep_run(args: argparse.Namespace) -> int:
+def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
     cmd_init(argparse.Namespace())
+    if getattr(args, "reset_control_state", False):
+        for path in [
+            control_state_path(args.id),
+            CONTROL_DIR / f"{slugify(args.id)}-intervention.md",
+        ]:
+            if path.exists():
+                path.unlink()
+        print(f"reset persistent controller state for {args.id}")
     profile_commands = load_agent_command_profile(args.agent_profile, args.agent_cmd_file)
     if args.execute and not args.agent_cmd and not profile_commands:
         raise SystemExit("--execute requires --agent-cmd or --agent-profile/--agent-cmd-file")
@@ -8748,11 +8994,22 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
         return active_budget_s > 0 and (time.perf_counter() - batch_started) >= active_budget_s
 
     for cycle in range(1, args.cycles + 1):
+        if args.blueprint_refresh:
+            refresh_blueprint(args.id)
+        decision = cycle_control_decision(args, cycle)
+        if decision.stop:
+            if decision.status == "complete":
+                print(f"controller closeout: {decision.reason}")
+                return 0
+            write_control_intervention(args.id, decision)
+            return CONTROL_STOP_EXIT_CODE
         if getattr(args, "adaptive_capacity", True):
-            effective = adaptive_capacity_for_cycle(args, cycle)
+            effective = adaptive_capacity_for_cycle(args, cycle, decision)
             cycle_lower_count = int(effective["lower_count"])
             cycle_upper_panel = bool(effective["upper_panel"])
             cycle_middle_panel = bool(effective["middle_panel"])
+            cycle_upper_specialist_count = int(effective["upper_specialist_count"])
+            cycle_middle_specialist_count = int(effective["middle_specialist_count"])
             cycle_parallel_panels = bool(effective["parallel_panels"])
             cycle_natural_lower_count = int(effective["natural_lower_count"])
             cycle_lean_lower_count = int(effective["lean_lower_count"])
@@ -8761,58 +9018,124 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
             cycle_lower_count = args.lower_count
             cycle_upper_panel = args.upper_panel
             cycle_middle_panel = args.middle_panel
+            cycle_upper_specialist_count = 3 if cycle_upper_panel else 0
+            cycle_middle_specialist_count = 3 if cycle_middle_panel else 0
             cycle_parallel_panels = args.parallel_panels
             cycle_natural_lower_count = getattr(args, "natural_lower_count", DEFAULT_NATURAL_LOWER_COUNT)
             cycle_lean_lower_count = getattr(args, "lean_lower_count", DEFAULT_LEAN_LOWER_COUNT)
             harness_policy_note = (
                 "Fixed-capacity sleep-run: adaptive capacity is disabled, so CLI "
-                "panel and lower-agent counts are used exactly."
+                "panel and lower-agent counts are used within the controller's "
+                "ready-leaf and signed-capacity gates."
             )
+        authorizations = set(decision.capacity_authorizations)
+        if decision.mode == "execute":
+            cycle_upper_panel = False
+            cycle_middle_panel = False
+            cycle_upper_specialist_count = 0
+            cycle_middle_specialist_count = 0
+            cycle_parallel_panels = False
+            if cycle_lower_count > 0:
+                cycle_lower_count = max(2, cycle_lower_count)
+                if "lower3" in decision.prompt_plan:
+                    cycle_lower_count = max(3, cycle_lower_count)
+        else:
+            cycle_lower_count = 0
+            cycle_natural_lower_count = 0
+            cycle_lean_lower_count = 0
+            cycle_upper_panel = cycle_upper_panel and decision.upper_capacity_level > 0
+            cycle_middle_panel = cycle_middle_panel and decision.middle_capacity_level > 0
+            cycle_parallel_panels = cycle_parallel_panels and bool(
+                cycle_upper_panel or cycle_middle_panel
+            )
+        harness_policy_note += " " + control_policy_note(decision)
         run_dir = create_run_cycle(
             args.id,
             cycle,
             cycle_lower_count,
             context_mode=args.context_mode,
-            blueprint_refresh=args.blueprint_refresh,
+            blueprint_refresh=False,
             upper_panel=cycle_upper_panel,
             middle_panel=cycle_middle_panel,
             game_harness=getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
             natural_lower_count=cycle_natural_lower_count,
             lean_lower_count=cycle_lean_lower_count,
             harness_policy_note=harness_policy_note,
+            upper_specialist_count=cycle_upper_specialist_count,
+            middle_specialist_count=cycle_middle_specialist_count,
         )
         print(f"cycle {cycle}: {rel(run_dir)}")
-        stage_specs: list[tuple[list[Path], bool]] = []
-        if args.upper_every > 0 and (cycle - 1) % args.upper_every == 0:
-            for stage in upper_prompt_stages(
-                run_dir,
-                cycle_upper_panel,
-                getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
-            ):
-                stage_specs.append((stage, cycle_parallel_panels))
-        if args.middle_every > 0 and (cycle - 1) % args.middle_every == 0:
-            for stage in middle_prompt_stages(
-                run_dir,
-                cycle_middle_panel,
-                getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
-            ):
-                stage_specs.append((stage, cycle_parallel_panels))
-        lower_prompts = lower_prompt_sequence(run_dir)
-        if lower_prompts:
-            stage_specs.append((lower_prompts, args.parallel_lower))
-        if (
+        include_reviewer = (
             not args.skip_reviewer
             and args.reviewer_every > 0
             and (cycle - 1) % args.reviewer_every == 0
-        ):
-            stage_specs.append(([run_dir / "40_reviewer.md"], False))
+        )
+        stage_specs = controlled_prompt_stages(
+            run_dir,
+            decision,
+            game_harness=getattr(args, "game_harness", DEFAULT_GAME_HARNESS),
+            upper_panel=cycle_upper_panel,
+            middle_panel=cycle_middle_panel,
+            parallel_panels=cycle_parallel_panels,
+            include_reviewer=include_reviewer,
+        )
+        upper_due = args.upper_every > 0 and (cycle - 1) % args.upper_every == 0
+        middle_due = args.middle_every > 0 and (cycle - 1) % args.middle_every == 0
+        stage_specs = [
+            (stage, parallel)
+            for stage, parallel in stage_specs
+            if not stage
+            or (prompt_role(stage[0]) != "upper" or upper_due)
+            and (prompt_role(stage[0]) != "middle" or middle_due)
+        ]
+        prompt_tokens = selected_prompt_token_counts(stage_specs)
+        run_state = load_control_state(control_state_path(args.id))
+        run_tokens_used = int(run_state.get("estimated_run_input_tokens", 0) or 0)
+        budget_issue = prompt_budget_violation(
+            prompt_tokens,
+            max_prompt_tokens=max(0, int(args.max_prompt_tokens)),
+            max_cycle_tokens=max(0, int(args.max_cycle_input_tokens)),
+            run_tokens_used=run_tokens_used,
+            max_run_tokens=max(0, int(args.max_run_input_tokens)),
+        )
+        (run_dir / "control_decision.json").write_text(
+            json.dumps(
+                {
+                    **decision.to_dict(),
+                    "selected_prompt_tokens": prompt_tokens,
+                    "estimated_cycle_input_tokens": sum(prompt_tokens.values()),
+                    "estimated_run_input_tokens_before_cycle": run_tokens_used,
+                    "budget_issue": budget_issue,
+                },
+                indent=2,
+                sort_keys=True,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        if budget_issue:
+            stopped = runtime_stop_decision(decision, budget_issue)
+            write_control_state(control_state_path(args.id), stopped)
+            write_control_intervention(
+                args.id,
+                stopped,
+                detail="The prompt deck was measured locally and rejected before any model call.",
+            )
+            return CONTROL_STOP_EXIT_CODE
         has_agent_template = bool(args.agent_cmd or profile_commands)
         if args.dry_run or not has_agent_template:
             print("dry run: prompt deck created, no external agent command executed")
+            prune_task_run_dirs(args.id, int(args.retain_run_dirs))
             continue
         if not args.execute:
             print("agent command configured but not executed; pass --execute to run it")
+            prune_task_run_dirs(args.id, int(args.retain_run_dirs))
             continue
+        write_control_state(
+            control_state_path(args.id),
+            decision,
+            estimated_input_tokens=sum(prompt_tokens.values()),
+        )
         cycle_code = 0
         for stage, parallel in stage_specs:
             cycle_code = execute_prompt_stage(
@@ -8847,13 +9170,14 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                     "notes": "Cycle build gate.",
                 },
             )
-            write_trial_summary(load_jsonl(TRIAL_LOG))
+            refresh_trial_summary_if_bounded()
             if code != 0:
                 write_cycle_summary(args.id, cycle, run_dir, args.report_language)
                 write_memory_refresh(args.id, cycle, run_dir)
                 write_cycle_pro_prompt(args.id, cycle, run_dir)
                 if not args.skip_article_update:
                     write_sleep_closeout_export(args, cycle, run_dir)
+                prune_task_run_dirs(args.id, int(args.retain_run_dirs))
                 return code
         closeout_this_cycle = cycle == args.cycles or active_budget_reached() or final_code != 0
         if args.summary_each_cycle or closeout_this_cycle:
@@ -8864,6 +9188,7 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
         write_article_this_cycle = args.article_update_each_cycle or closeout_this_cycle
         if not args.skip_article_update and write_article_this_cycle:
             write_sleep_closeout_export(args, cycle, run_dir)
+        prune_task_run_dirs(args.id, int(args.retain_run_dirs))
         if active_budget_reached():
             append_jsonl(
                 TRIAL_LOG,
@@ -8882,11 +9207,46 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                     "notes": "Active-time budget reached after completing the current cycle; closeout summary, memory refresh, Pro prompt, and export were written.",
                 },
             )
-            write_trial_summary(load_jsonl(TRIAL_LOG))
+            refresh_trial_summary_if_bounded()
             break
         if final_code != 0:
             return final_code
     return final_code
+
+
+def cmd_sleep_run(args: argparse.Namespace) -> int:
+    previous_handlers = {
+        signum: signal.getsignal(signum)
+        for signum in (signal.SIGINT, signal.SIGTERM)
+    }
+
+    def interrupt_handler(signum: int, _frame: object) -> None:
+        terminate_active_agent_processes()
+        raise InterruptedError(f"sleep-run interrupted by signal {signum}")
+
+    for signum in previous_handlers:
+        signal.signal(signum, interrupt_handler)
+    try:
+        return _cmd_sleep_run_impl(args)
+    except (KeyboardInterrupt, InterruptedError) as exc:
+        state_path = control_state_path(args.id)
+        state = load_control_state(state_path)
+        state.update(
+            {
+                "status": "interrupted",
+                "stop": True,
+                "reason": str(exc),
+                "interrupted_at": now_stamp(),
+            }
+        )
+        state_path.parent.mkdir(parents=True, exist_ok=True)
+        state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(str(exc), file=sys.stderr)
+        return 130
+    finally:
+        terminate_active_agent_processes()
+        for signum, handler in previous_handlers.items():
+            signal.signal(signum, handler)
 
 
 def cmd_agent_note(args: argparse.Namespace) -> int:
@@ -9197,25 +9557,66 @@ def build_parser() -> argparse.ArgumentParser:
         dest="adaptive_capacity",
         action="store_true",
         default=True,
-        help="start sleep-run with a small prompt queue and expand upper/middle/lower only after recorded stagnation; enabled by default",
+        help="gate prompts by ready leaves and allow expansion only from current signed verifier feedback; enabled by default",
     )
     p_sleep.add_argument(
         "--fixed-capacity",
         dest="adaptive_capacity",
         action="store_false",
-        help="disable adaptive capacity and use the requested panel/lower counts exactly",
+        help="use requested counts, still subject to ready-leaf, signed-expansion, stop, and token-budget safety gates",
     )
     p_sleep.add_argument(
         "--exact-stall-cycles",
         type=int,
         default=int(os.environ.get("QBE_EXACT_STALL_CYCLES", str(DEFAULT_EXACT_STALL_CYCLES))),
-        help="operator-construction cycles to spend on exact search before adaptive Scenario 2 approximate search may open when no exact certificate exists",
+        help="legacy planning hint; epsilon/exploration changes still require a signed current-state capacity decision",
     )
     p_sleep.add_argument(
         "--active-budget-minutes",
         type=float,
         default=float(os.environ.get("QBE_ACTIVE_BUDGET_MINUTES", "60")),
         help="active agent-time budget for the batch; after the current cycle finishes, write closeout summary/memory/Pro prompt and stop; set 0 to disable",
+    )
+    p_sleep.add_argument(
+        "--max-no-progress-cycles",
+        type=int,
+        default=int(os.environ.get("QBE_MAX_NO_PROGRESS_CYCLES", str(DEFAULT_MAX_NO_PROGRESS_CYCLES))),
+        help="stop before another model call after this many unchanged executable/decomposition cycles",
+    )
+    p_sleep.add_argument(
+        "--max-external-gap-cycles",
+        type=int,
+        default=int(os.environ.get("QBE_MAX_EXTERNAL_GAP_CYCLES", str(DEFAULT_MAX_EXTERNAL_GAP_CYCLES))),
+        help="bounded dependency-decision cycles allowed for an unchanged external contract gap",
+    )
+    p_sleep.add_argument(
+        "--max-prompt-tokens",
+        type=int,
+        default=int(os.environ.get("QBE_MAX_PROMPT_TOKENS", str(DEFAULT_MAX_PROMPT_TOKENS))),
+        help="local per-prompt token proxy limit; 0 disables",
+    )
+    p_sleep.add_argument(
+        "--max-cycle-input-tokens",
+        type=int,
+        default=int(os.environ.get("QBE_MAX_CYCLE_INPUT_TOKENS", str(DEFAULT_MAX_CYCLE_INPUT_TOKENS))),
+        help="local total input-token proxy limit for selected prompts in one cycle; 0 disables",
+    )
+    p_sleep.add_argument(
+        "--max-run-input-tokens",
+        type=int,
+        default=int(os.environ.get("QBE_MAX_RUN_INPUT_TOKENS", str(DEFAULT_MAX_RUN_INPUT_TOKENS))),
+        help="persistent per-task input-token proxy limit across resumed sleep-run calls; 0 disables",
+    )
+    p_sleep.add_argument(
+        "--retain-run-dirs",
+        type=int,
+        default=int(os.environ.get("QBE_RETAIN_RUN_DIRS", str(DEFAULT_RETAIN_RUN_DIRS))),
+        help="retain this many newest generated cycle directories per task; durable ledgers are not removed",
+    )
+    p_sleep.add_argument(
+        "--reset-control-state",
+        action="store_true",
+        help="explicit human override: clear this task's no-progress counters and persistent run-token budget before starting",
     )
     p_sleep.add_argument("--lower-count", type=int, default=DEFAULT_LOWER_COUNT)
     p_sleep.add_argument("--game-harness", dest="game_harness", action="store_true", default=DEFAULT_GAME_HARNESS, help="use the Game Harness: Natural-Language Hierarchical Team, Lean Hierarchical Team, and Game Council")
@@ -9249,7 +9650,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_sleep.add_argument(
         "--context-mode",
         choices=("full", "focused"),
-        default="full",
+        default="focused",
         help="use full task text or only the current directive plus stable header",
     )
     p_sleep.add_argument(

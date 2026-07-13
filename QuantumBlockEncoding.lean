@@ -13,4 +13,5 @@ import QuantumBlockEncoding.MainCase
 import QuantumBlockEncoding.OpenProblems
 import QuantumBlockEncoding.OptimalControl
 import QuantumBlockEncoding.Resources
+import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas

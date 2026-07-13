@@ -19,6 +19,32 @@ example : automationTaskCount = 3 := rfl
 
 example : threeLayerAgentContracts.length = 4 := rfl
 
+def testZeroStateTarget : StatePreparationTarget Rat 1 where
+  amplitudes := fun row => if row = zeroBasisIndex 1 then 1 else 0
+  normalization := True
+  source := "one-qubit zero state"
+
+def testIdentityStatePreparation : StatePreparationCandidate Rat 1 where
+  target := testZeroStateTarget
+  unitary := Matrix.identity (gridSize 1) Rat
+  circuit := []
+  resource := 0
+  isUnitary := True
+
+def testVerifiedIdentityStatePreparation : VerifiedStatePreparation Rat 1 where
+  candidate := testIdentityStatePreparation
+  normalizationProof := trivial
+  unitaryProof := trivial
+  preparationProof := by
+    intro row
+    rfl
+
+example : testIdentityStatePreparation.cost.gateCount = 0 := rfl
+
+example :
+    (testVerifiedIdentityStatePreparation.asZeroErrorApprox).approxCandidate.epsilon = 0 :=
+  rfl
+
 example :
     (Resource.parallel (Resource.ofCounts 1 0 0) (Resource.ofCounts 0 1 0)).depth = 1 := by
   native_decide
@@ -527,14 +553,14 @@ example :
   native_decide
 
 example :
-    CubicStatePreparation.hardModeUpperAgentSchedule.length = 3 ∧
-    CubicStatePreparation.hardModeMiddleAgentSchedule.length = 3 ∧
-    CubicStatePreparation.hardModeLowerAgentSchedule.length = 3 ∧
-    CubicStatePreparation.hardModeLevelCycleBudget.length = 3 :=
-  CubicStatePreparation.hardModeSchedules_have_three_levels
+    CubicStatePreparation.hardModeUpperAgentSchedule.length = 4 ∧
+    CubicStatePreparation.hardModeMiddleAgentSchedule.length = 4 ∧
+    CubicStatePreparation.hardModeLowerAgentSchedule.length = 4 ∧
+    CubicStatePreparation.hardModeLevelCycleBudget.length = 4 :=
+  CubicStatePreparation.hardModeSchedules_have_four_levels
 
 example :
-    CubicStatePreparation.hardModeLowerAgentSchedule.getLast? = some 8 :=
+    CubicStatePreparation.hardModeLowerAgentSchedule.getLast? = some 6 :=
   CubicStatePreparation.hardModeLowerAgentSchedule_final
 
 example :

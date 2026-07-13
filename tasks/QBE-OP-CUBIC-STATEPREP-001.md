@@ -75,7 +75,7 @@ improved the certified population, the finite verifier population, or only the
 insight pool.  The relaxed epsilon ladder remains:
 
 ```text
-CubicStatePreparation.relaxedEpsilonLadder = [1e-10, 1e-8, 1e-6]
+CubicStatePreparation.relaxedEpsilonLadder = [1e-10, 1e-9, 1e-8, 1e-7, 1e-6]
 ```
 
 ## Population And Mutation Policy

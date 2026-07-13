@@ -392,16 +392,16 @@ def hadamardCountingCubicClaim : ConstructionClaim where
   }
 
 /--
-Hard Mode panel escalation schedule.  The three entries are the planned
-parallel-agent counts for levels 0, 1, and 2.  Upper agents should only move to
+Hard-case panel escalation schedule.  The entries are adjacent planned
+parallel-agent counts.  Upper agents should only move to
 the next level after the active proof leaf has stalled and the reviewer has
 confirmed that the blocker is not just stale memory.
 -/
-def hardModeUpperAgentSchedule : List Nat := [1, 3, 4]
+def hardModeUpperAgentSchedule : List Nat := [1, 2, 3, 4]
 
-def hardModeMiddleAgentSchedule : List Nat := [1, 2, 3]
+def hardModeMiddleAgentSchedule : List Nat := [1, 2, 3, 4]
 
-def hardModeLowerAgentSchedule : List Nat := [3, 5, 8]
+def hardModeLowerAgentSchedule : List Nat := [3, 4, 5, 6]
 
 /-- Number of consecutive cycles without a closed leaf before the first escalation. -/
 def hardModeExactStallWindow : Nat := 1
@@ -413,7 +413,7 @@ candidate before the next Hard Mode level is considered.
 def hardModeConstructionStallWindow : Nat := 1
 
 /-- Per-level cycle budgets before the upper panel must explicitly review progress. -/
-def hardModeLevelCycleBudget : List Nat := [1, 1, 1]
+def hardModeLevelCycleBudget : List Nat := [1, 1, 1, 1]
 
 /--
 Scenario 2 epsilon ladder.  The first entry is the user-requested tolerance.
@@ -422,21 +422,25 @@ requested-epsilon search stalls; a relaxed waypoint is not a substitute for a
 certificate at `requestedEpsilon`.
 -/
 def relaxedEpsilonLadder : List Rat :=
-  [requestedEpsilon, (1 : Rat) / 100000000, (1 : Rat) / 1000000]
+  [ requestedEpsilon,
+    (1 : Rat) / 1000000000,
+    (1 : Rat) / 100000000,
+    (1 : Rat) / 10000000,
+    (1 : Rat) / 1000000 ]
 
 theorem relaxedEpsilonLadder_startsWithRequested :
     relaxedEpsilonLadder.head? = some requestedEpsilon := by
   rfl
 
-theorem hardModeSchedules_have_three_levels :
-    hardModeUpperAgentSchedule.length = 3 ∧
-    hardModeMiddleAgentSchedule.length = 3 ∧
-    hardModeLowerAgentSchedule.length = 3 ∧
-    hardModeLevelCycleBudget.length = 3 := by
+theorem hardModeSchedules_have_four_levels :
+    hardModeUpperAgentSchedule.length = 4 ∧
+    hardModeMiddleAgentSchedule.length = 4 ∧
+    hardModeLowerAgentSchedule.length = 4 ∧
+    hardModeLevelCycleBudget.length = 4 := by
   native_decide
 
 theorem hardModeLowerAgentSchedule_final :
-    hardModeLowerAgentSchedule.getLast? = some 8 := by
+    hardModeLowerAgentSchedule.getLast? = some 6 := by
   native_decide
 
 /--

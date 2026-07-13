@@ -13,9 +13,40 @@ MAX_ATTEMPTS="${QBE_CODEX_MAX_ATTEMPTS:-3}"
 BASE_SLEEP_SECONDS="${QBE_CODEX_BASE_SLEEP_SECONDS:-60}"
 MAX_SLEEP_SECONDS="${QBE_CODEX_MAX_SLEEP_SECONDS:-300}"
 CODEX_ARGS="${QBE_CODEX_ARGS:---dangerously-bypass-approvals-and-sandbox}"
+CODEX_BIN="${CODEX_BIN:-codex}"
+CODEX_MODEL="${CODEX_MODEL:-gpt-5.6-sol}"
 METRICS_FILE="${QBE_AGENT_METRICS:-}"
+NON_RETRYABLE_EXIT_CODE="${QBE_CODEX_NON_RETRYABLE_EXIT_CODE:-78}"
+child_pid=""
+attempt_log=""
 
 cd "$ROOT" || exit 2
+
+terminate_child() {
+  if [ -z "$child_pid" ]; then
+    return 0
+  fi
+  if kill -0 "$child_pid" 2>/dev/null; then
+    kill -TERM -- "-$child_pid" 2>/dev/null || kill -TERM "$child_pid" 2>/dev/null || true
+    wait "$child_pid" 2>/dev/null || true
+  fi
+  child_pid=""
+}
+
+on_signal() {
+  terminate_child
+  if [ -n "$attempt_log" ]; then
+    rm -f "$attempt_log"
+  fi
+  exit 130
+}
+
+trap on_signal INT TERM HUP
+
+if ! command -v "$CODEX_BIN" >/dev/null 2>&1; then
+  echo "Codex executable is not available: $CODEX_BIN" >&2
+  exit 127
+fi
 
 write_metrics() {
   if [ -z "$METRICS_FILE" ]; then
@@ -44,16 +75,37 @@ started_at=$(date +%s)
 while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
   echo "[$(date)] qbe codex attempt ${attempt}/${MAX_ATTEMPTS} prompt=${PROMPT}" >&2
   attempt_started_at=$(date +%s)
-  if codex exec $CODEX_ARGS - < "$PROMPT"; then
+  attempt_log="$(mktemp "${TMPDIR:-/tmp}/qbe-codex-attempt.XXXXXX")"
+  read -r -a codex_args <<< "$CODEX_ARGS"
+  QBE_ATTEMPT_LOG="$attempt_log" setsid bash -c \
+    'set -o pipefail; "$@" 2>&1 | tee "$QBE_ATTEMPT_LOG"' \
+    qbe-codex "$CODEX_BIN" exec --model "$CODEX_MODEL" "${codex_args[@]}" - \
+    < "$PROMPT" &
+  child_pid=$!
+  if wait "$child_pid"; then
+    child_pid=""
     attempt_finished_at=$(date +%s)
     active_seconds_total=$((active_seconds_total + attempt_finished_at - attempt_started_at))
     elapsed_seconds=$((attempt_finished_at - started_at))
     write_metrics "success" "$attempt" "$active_seconds_total" "$wait_seconds_total" "$elapsed_seconds"
+    rm -f "$attempt_log"
     echo "[$(date)] qbe codex success" >&2
     exit 0
   fi
+  child_pid=""
   attempt_finished_at=$(date +%s)
   active_seconds_total=$((active_seconds_total + attempt_finished_at - attempt_started_at))
+
+  if grep -Eqi \
+      'usage limit|upgrade to pro|purchase more credits|try again at|authentication failed|unauthorized|forbidden|does not have access|model[^[:cntrl:]]*not available' \
+      "$attempt_log"; then
+    elapsed_seconds=$((attempt_finished_at - started_at))
+    write_metrics "provider-blocked" "$attempt" "$active_seconds_total" "$wait_seconds_total" "$elapsed_seconds"
+    echo "[$(date)] qbe codex provider rejected the request; automatic retry disabled" >&2
+    rm -f "$attempt_log"
+    exit "$NON_RETRYABLE_EXIT_CODE"
+  fi
+  rm -f "$attempt_log"
 
   if [ "$attempt" -ge "$MAX_ATTEMPTS" ]; then
     break

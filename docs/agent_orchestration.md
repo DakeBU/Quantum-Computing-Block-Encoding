@@ -89,10 +89,14 @@ theorem.
 ## Adaptive Layer Panels
 
 Default `sleep-run` operator-construction cycles are adaptive and
-quota-conscious.  They start with a small queue: one upper director, one middle
-coordinator, one lower worker, and a reviewer/build gate.  The controller
-expands to differentiated planning panels only after upper/reviewer memory
-records stagnation or a blocked proof route.  The point is not ceremony;
+quota-conscious.  A deterministic ready-leaf controller first decides whether
+the current state permits Lean execution, needs one bounded decomposition or
+dependency decision, is complete, or must stop for human intervention.
+Stagnation text is not an expansion signal.  A privileged upper/reviewer role
+must emit typed feedback signed with the current leaf signature and
+Lean-evidence digest.  `capacity_decision` advances a named layer by one level;
+`tolerance_decision` advances exact/approximate search by one adjacent epsilon
+rung.  Replaying the same packet has no effect.  The point is not ceremony;
 block-encoding construction spends most of its intelligence on choosing the
 semantic tier, candidate family, resource target, and next proof leaf before
 Lean workers edit code.  Use `--fixed-capacity` only for ablation runs that
@@ -120,12 +124,31 @@ Middle panel:
 - coordinator: writes exactly one lower-1 natural-language proof task, one
   lower-2 Lean implementation task, and one lower-3 verifier task.
 
-There are no fixed public difficulty presets.  The upper panel decides from each
-cycle log whether to increase upper, middle, or lower parallelism.  Increase
+There are no fixed public difficulty presets.  Capacity levels persist in the
+controller state.  Each accepted request adds at most one upper or middle
+specialist or one lower expansion level; it never jumps directly to a full
+panel.  The upper panel may request an
+increase in upper, middle, or lower parallelism for the current signed state. Increase
 upper capacity when target selection, semantic-tier choice, or candidate-family
 strategy is weak; increase middle capacity when retrieval, Lean/natural-language
 translation, or stale-memory cleanup is the bottleneck; increase lower capacity
 only when there are several ready independent leaves or candidate families.
+
+State preparation and block encoding share the tolerance controller.  Exact
+search must consume its configured stall budget before
+`tolerance_decision=open_approximate` can select the task's first epsilon.
+The first rung may also open immediately when every remaining exact leaf is an
+explicit external contract gap and no executable exact leaf remains.
+Later `relax_epsilon` packets require one unchanged cycle at the current rung
+and must name exactly the adjacent `epsilon_next`.  State preparation keeps the
+target state and vector norm fixed; block encoding keeps the operator,
+normalizer, clean projector, and operator norm fixed.
+
+Policy packets commit atomically: a rejected epsilon request neither expands a
+layer nor consumes its replay digest.  A packet signed before middle refreshes
+the prose frontier may carry forward for one cycle only when the Lean-evidence
+digest is unchanged.  Later middle/lower status feedback cannot erase a
+privileged upper/reviewer policy packet for the same leaf.
 
 ## LexElim Scheduling
 
@@ -153,21 +176,32 @@ lower priority; they do not delete useful insight.
 
 This scheduler determines agent count:
 
-- If the next action is one precise Lean leaf, use one lower worker.
-- If the task is exploratory or has mixed hard/soft feedback, use three lower
-  roles in parallel: natural-language architect, Lean worker, and
-  necessary-condition verifier.
+- If the next action is one precise Lean leaf, run the proof architect first,
+  then an explicitly named necessary-condition diagnostic when available, and
+  then the Lean worker.  Do not run these dependency-linked roles in parallel.
+- If the task is exploratory or has several independent ready leaves, extra
+  workers require a current signed capacity decision.
 - If source correspondence or memory is stale, run upper/middle panels before
   any lower workers.
 - If a concrete Lean failure has a known class, add lower 4 as a reducer; do
   not use it as a fourth broad proof searcher.
-- If exact or approximate construction stalls, upper/reviewer may temporarily
-  increase the upper, middle, or lower panel sizes according to the bottleneck
+- If exact or approximate construction stalls, upper/reviewer may explicitly
+  sign a temporary increase in the upper, middle, or lower panel size according to the bottleneck
   observed in the logs.  Each increase gets a fixed generation budget and must
   report whether it improved certified candidates, finite diagnostics, or only
   the insight pool.  If the population still does not improve by the configured
   max panel size, the run records saturation for that task tier and stops
   expanding agent count.
+
+The persistent state is `runs/control/<task>.json`.  If the same leaf/evidence
+signature survives the configured no-progress budget, or an external contract
+gap survives its bounded dependency-decision budget, the run writes
+`runs/control/<task>-intervention.md` and exits with code 75.  Wrapper loops
+must treat 75 as a control stop, not a transient failure to retry.
+The Codex wrapper uses exit code 78 for explicit provider rejection such as a
+usage limit, authentication failure, permission failure, or unavailable
+model.  Wrapper loops also stop on 78; retry backoff is reserved for transient
+transport or service failures.
 
 ## Blueprint And DAG Control
 
@@ -175,6 +209,13 @@ LeanMarathon's useful control lesson for QBE is that long Lean runs need a
 durable blueprint, not only a long chat transcript.  QBE keeps the blueprint
 split across Lean source, conversion windows, proof obligations, paper notes,
 cited-results memory, and a compact generated snapshot:
+
+Each task proof-obligation file has exactly one machine-readable section named
+`## Current Obligation State [ACTIVE]`.  Middle replaces this section instead
+of accumulating competing current tables.  Its rows state the exact or
+approximate phase, a concrete Lean declaration, and either `active next Lean
+leaf` or an explicit blocked/retired state.  Historical prose may remain
+elsewhere but cannot override the active section.
 
 ```bash
 python3 tools/qbe.py blueprint-refresh QBE-AUTO-002
@@ -211,7 +252,8 @@ python3 tools/qbe.py run-cycle QBE-AUTO-002 \
 
 For ordinary operator construction, use the default adaptive harness instead:
 focused context is usually best, the first cycle is small, and later cycles
-increase upper, middle, or lower capacity only when the logs justify it.  Three
+increase upper, middle, or lower capacity only when current signed feedback
+authorizes it.  Three
 parallel lower roles are a common expanded state, not the default first move.
 Use `--fixed-capacity --lower-count 1 --no-upper-panel --no-middle-panel
 --sequential-lower` only for an intentionally focused local leaf check.

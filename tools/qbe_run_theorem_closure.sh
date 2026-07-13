@@ -24,6 +24,7 @@ mkdir -p "$(dirname "$METRICS_FILE")"
 export QBE_AGENT_METRICS="$METRICS_FILE"
 active_budget=$((HOURS * 3600))
 cycle=1
+batch_stop_code=0
 
 active_used_seconds() {
   if [ ! -s "$METRICS_FILE" ]; then
@@ -85,7 +86,15 @@ while [ "$(active_used_seconds)" -lt "$active_budget" ]; do
   code=$?
   active_used="$(active_used_seconds)"
   echo "[$(date)] inner cycle $cycle exit=$code active_used=${active_used}/${active_budget}"
-  if [ "$code" -ne 0 ]; then
+  if [ "$code" -eq 78 ]; then
+    echo "[$(date)] provider rejected Codex usage/auth/model access; no automatic retry"
+    batch_stop_code=78
+    break
+  elif [ "$code" -eq 75 ]; then
+    echo "[$(date)] controller stopped the batch; see runs/control/${TASK_ID}-intervention.md"
+    batch_stop_code=75
+    break
+  elif [ "$code" -ne 0 ]; then
     echo "[$(date)] inner cycle failed; sleeping before retry"
     sleep 60
   else
@@ -94,19 +103,23 @@ while [ "$(active_used_seconds)" -lt "$active_budget" ]; do
   cycle=$((cycle + 1))
 done
 
-echo "[$(date)] active-time budget reached; starting final upper/middle/reviewer audit"
-python3 tools/qbe.py sleep-run "$TASK_ID" \
-  --cycles 1 \
-  --lower-count 0 \
-  --context-mode "$CONTEXT_MODE" \
-  --blueprint-refresh \
-  --agent-cmd "$AGENT_CMD" \
-  --execute \
-  --check-each-cycle \
-  --skip-article-update \
-  "${final_upper_args[@]}" \
-  "${final_middle_args[@]}"
-final_code=$?
+if [ "$batch_stop_code" -eq 0 ]; then
+  echo "[$(date)] active-time budget reached; starting final upper/middle/reviewer audit"
+  python3 tools/qbe.py sleep-run "$TASK_ID" \
+    --cycles 1 \
+    --lower-count 0 \
+    --context-mode "$CONTEXT_MODE" \
+    --blueprint-refresh \
+    --agent-cmd "$AGENT_CMD" \
+    --execute \
+    --check-each-cycle \
+    --skip-article-update \
+    "${final_upper_args[@]}" \
+    "${final_middle_args[@]}"
+  final_code=$?
+else
+  final_code="$batch_stop_code"
+fi
 python3 tools/qbe.py cycle-summary "$TASK_ID" --cycle "$cycle" --run-id latest --language "${QBE_REPORT_LANGUAGE:-zh}"
 python3 tools/qbe.py memory-refresh "$TASK_ID" --cycle "$cycle" --run-id latest
 python3 tools/qbe.py cycle-pro-prompt "$TASK_ID" --cycle "$cycle" --run-id latest

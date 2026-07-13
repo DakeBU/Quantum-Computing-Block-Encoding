@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="680" viewBox="0 0 1800 680">
+  <defs>
+    <marker id="ctl-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#25313c"/>
+    </marker>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 34px; font-weight: 700; fill: #17232d; }
+      .head { font-family: Arial, sans-serif; font-size: 27px; font-weight: 700; fill: #17232d; }
+      .label { font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; fill: #25313c; }
+      .body { font-family: Arial, sans-serif; font-size: 18px; font-weight: 400; fill: #42515d; }
+      .small { font-family: Arial, sans-serif; font-size: 16px; font-weight: 400; fill: #586773; }
+      .formula { font-family: Georgia, 'Times New Roman', serif; font-size: 23px; fill: #17232d; }
+      .box { fill: #ffffff; stroke-width: 2.5; rx: 6; }
+      .arrow { fill: none; stroke: #25313c; stroke-width: 3; marker-end: url(#ctl-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1800" height="680" fill="#ffffff"/>
+  <text x="900" y="58" text-anchor="middle" class="title">Gradual control: spend and tolerance move one step at a time</text>
+  <line x1="70" y1="82" x2="1730" y2="82" stroke="#d7dee3" stroke-width="2"/>
+
+  <rect x="70" y="120" width="800" height="420" class="box" stroke="#2563eb"/>
+  <text x="110" y="169" class="head">Capacity ladder</text>
+  <text x="110" y="207" class="body">The upper/reviewer names the bottleneck; only that layer grows.</text>
+
+  <text x="125" y="279" class="label">Level 0</text>
+  <rect x="235" y="244" width="130" height="56" fill="#e9f1ff" stroke="#2563eb" stroke-width="2" rx="5"/>
+  <text x="300" y="279" text-anchor="middle" class="label">base</text>
+  <path d="M375 272 H425" class="arrow"/>
+  <text x="470" y="279" text-anchor="middle" class="label">Level 1</text>
+  <path d="M530 272 H580" class="arrow"/>
+  <text x="625" y="279" text-anchor="middle" class="label">Level 2</text>
+  <path d="M685 272 H735" class="arrow"/>
+  <text x="782" y="279" text-anchor="middle" class="label">Level 3</text>
+
+  <line x1="150" y1="340" x2="790" y2="340" stroke="#d7dee3" stroke-width="2"/>
+  <text x="125" y="386" class="label">Upper</text>
+  <text x="245" y="386" class="body">director</text>
+  <text x="430" y="386" class="body">+ source</text>
+  <text x="585" y="386" class="body">+ DAG</text>
+  <text x="735" y="386" class="body">+ memory</text>
+  <text x="125" y="430" class="label">Middle</text>
+  <text x="245" y="430" class="body">coordinator</text>
+  <text x="430" y="430" class="body">+ source</text>
+  <text x="585" y="430" class="body">+ retrieval</text>
+  <text x="735" y="430" class="body">+ report</text>
+  <text x="125" y="474" class="label">Lower</text>
+  <text x="245" y="474" class="body">ordered core</text>
+  <text x="430" y="474" class="body">+ refiner</text>
+  <text x="585" y="474" class="body">+ route 1</text>
+  <text x="735" y="474" class="body">+ route 2</text>
+  <text x="470" y="515" text-anchor="middle" class="small">No current signed packet, no level increase</text>
+
+  <rect x="930" y="120" width="800" height="420" class="box" stroke="#18865b"/>
+  <text x="970" y="169" class="head">Exact-to-approximate ladder</text>
+  <text x="970" y="207" class="body">The target and norm stay fixed; only the accepted error changes.</text>
+
+  <rect x="970" y="250" width="150" height="78" class="box" stroke="#7b8790"/>
+  <text x="1045" y="282" text-anchor="middle" class="label">Exact</text>
+  <text x="1045" y="309" text-anchor="middle" class="formula">epsilon = 0</text>
+  <path d="M1128 289 H1180" class="arrow"/>
+  <rect x="1188" y="250" width="150" height="78" class="box" stroke="#18865b"/>
+  <text x="1263" y="282" text-anchor="middle" class="label">Requested</text>
+  <text x="1263" y="309" text-anchor="middle" class="formula">1e-10</text>
+  <path d="M1346 289 H1398" class="arrow"/>
+  <rect x="1406" y="250" width="150" height="78" class="box" stroke="#b7791f"/>
+  <text x="1481" y="282" text-anchor="middle" class="label">Next rung</text>
+  <text x="1481" y="309" text-anchor="middle" class="formula">1e-9</text>
+  <path d="M1564 289 H1616" class="arrow"/>
+  <text x="1660" y="296" text-anchor="middle" class="formula">...</text>
+
+  <rect x="970" y="376" width="720" height="116" fill="#f6f8f9" stroke="#a8b3bc" stroke-width="2" rx="5"/>
+  <text x="1000" y="412" class="label">Transition gate</text>
+  <text x="1000" y="447" class="body">current leaf signature + current Lean digest + privileged role</text>
+  <text x="1000" y="478" class="body">stall budget satisfied + epsilon_next equals the adjacent rung</text>
+
+  <rect x="210" y="584" width="1380" height="54" fill="#fff4d6" stroke="#b7791f" stroke-width="2" rx="5"/>
+  <text x="900" y="618" text-anchor="middle" class="label">Repeated, stale, premature, or rung-skipping requests are rejected before another agent call</text>
+</svg>

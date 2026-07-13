@@ -47,7 +47,7 @@ application directions, ordered by difficulty:
    unitary whose clean ancilla block equals `A / alpha`.  This is the original
    ABEIS target and is more general, but also more abstract.
 
-![ABEIS application overview](docs/assets/abeis_contract_pipeline_2x.png)
+![ABEIS application overview](docs/assets/abeis_application_overview.svg)
 
 
 Basic gates make the state-preparation target concrete:
@@ -120,41 +120,30 @@ for the same fixed operator target.
 ABEIS currently exposes two harness profiles.  Users can run either profile, or
 run both in isolated workspaces and compare the certified population curves.
 
-![Hierarchical Harness](docs/assets/hierarchical_harness.png)
+![Hierarchical Harness](docs/assets/hierarchical_harness.svg)
 
-![Game Harness](docs/assets/game_harness.png)
+![Game Harness](docs/assets/game_harness.svg)
 
 ## Core Workflow
 
-```mermaid
-flowchart LR
-  A["user chooses state prep or block encoding"] --> A1["state prep: target |psi> and U|0^n>=|psi>"]
-  A --> A0["block encoding: A, alpha, projector"]
-  A1 --> B["upper fixes target"]
-  A0 --> B
-  A --> A2["user gives resource floor, epsilon, iteration limits"]
-  B --> B1["Natural-Language Team explores ideas"]
-  B --> B2["Lean Team plans formalizable routes"]
-  B1 --> P["Game Council exchanges insights and sets capacity"]
-  B2 --> P
-  P --> C["middle keeps Lean <-> natural-language map"]
-  C --> D["Game Harness lower population proposes exact U_A"]
-  D --> E["finite/unitarity/block-entry diagnostics"]
-  E --> F["Lean exact certificate attempt"]
-  F --> G{"meets resource floor before limit?"}
-  G -- yes --> H["Scenario 1: approximate-improvement phase"]
-  G -- no/stalled --> I["Scenario 2: relaxed approximate search"]
-  H --> J["Lean approximate certificate attempt"]
-  I --> J
-  J --> K["resource score and certified archive"]
-  K --> L["post-Lean executable exports"]
-  L --> M["Qiskit / QuantumKatas / QASM checks"]
-  M --> N["dynamic agent-count audit"]
-```
+1. Fix the state or operator contract, normalization, error metric, and
+   resource order.
+2. Retrieve reusable leaves, choose a candidate family, and expose a proof DAG.
+3. Run ordered lower work: proof design, relevant diagnostics, one Lean leaf,
+   then failure-specific refinement when needed.
+4. Promote only through the Lean build gate; rank only within the certified
+   population.
+5. Export Qiskit, QuantumKatas-style, or QASM artifacts for the certified
+   finite instantiation.
 
-ABEIS treats diagnostics as search signals, not as proofs.  A candidate enters
-the certified population only after Lean proves the advertised theorem at the
-task's semantic tier.
+![Gradual ABEIS controller](docs/assets/abeis_control_ladder.svg)
+
+The controller starts small.  An upper or reviewer packet may increase the
+upper, middle, or lower layer by one level when current signed evidence names
+that bottleneck.  Exact search moves to the task's requested epsilon only after
+its stall budget; later relaxations move one adjacent rung at a time.  Replayed,
+stale, premature, and rung-skipping decisions are rejected before another
+agent call.
 
 ## State-Preparation Memory
 
@@ -233,17 +222,12 @@ Classic routes exposed to users and agents:
 | Dilation fallback | dense contraction or small seed | 2-by-2 contraction rotations give an exact fallback unitary | [`BE.Contraction.SVDDilation`](research-wiki/block-encoding-library/cards/BE.Contraction.SVDDilation.md) |
 | Qubitization / QSVT consumer | polynomial transform after a BE exists | consume a proved BE; do not hide the original oracle construction inside QSVT | [`BE.QSVT.ConsumerContract`](research-wiki/block-encoding-library/cards/BE.QSVT.ConsumerContract.md), [`qsvt-hard-hint-route.md`](research-wiki/block-encoding-library/qsvt-hard-hint-route.md) |
 
-The graph below is the public Lean leaf module graph.  It is closer to the
-`quantum-computing-lean` module graph than to an agent-flow diagram: files are
-the main spine, compiled theorem leaves are shown as reusable nodes, and
-external Lean libraries are shown only as searchable reference memories.
-
-![ABEIS Lean leaf module graph](docs/assets/abeis_lean_leaf_module_graph.svg)
-
-Compiled proof-weapon families:
+The table below is the public Lean module map.  External Lean libraries remain
+searchable references unless they are added as audited dependencies.
 
 | Family | Main Lean surface | Representative compiled leaves | Why it matters |
 | --- | --- | --- | --- |
+| State-preparation core | `StatePreparation.lean` | `StatePreparationTarget`, `FirstColumnMatches`, exact/approximate verified records, zero-error promotion | makes the first-column application a generic library contract rather than a cubic-task convention |
 | Finite matrix core | `Core.lean`, `CircuitSemantics.lean` | `Matrix`, `PointwiseEq`, `evalWith_mul_apply`, `evalWith_mul_unique_path`, `evalWith_mul_two_path` | keeps circuit products and branch sums small enough for one-agent leaves |
 | Clean-block/projector extraction | `BlockEncodingClassics.lean` | `cleanBlockBy_permMatrix_entry`, `cleanBlockProduct_permMatrix_entry`, `cleanBlockBy_permMatrix_eq_target_of_entry`, `ExactCleanBlock.clean_eq_target` | turns a block-encoding theorem into entrywise matrix equalities |
 | Permutation and unitarity | `BlockEncodingClassics.lean`, `MainCase.lean` | `permMatrix`, `columnInner`, `rowInner`, `permMatrix_isRationalOrthogonal_of_bijective`, `partialPermutationCertificate` | proves exact reversible completions and main-case transfer operators |
@@ -295,11 +279,12 @@ strategy updates, then translate them into task packets, proof obligations, or
 candidate-population changes before lower agents continue.
 
 If exact search fails to meet the user-specified resource floor within the
-configured budget, the upper layer may switch to approximate BE search.  If a
-fixed number of generations does not improve the population, the upper layer
-may increase upper/middle/lower parallel agent counts up to the configured
-maximum.  More agents are not assumed to be better; the increase is itself a
-controlled experiment.
+configured budget, a privileged upper/reviewer role may request approximate BE
+search.  Capacity or exploration changes take effect only through typed
+feedback signed with the current proof-leaf and Lean-evidence digests.  Plain
+"stalled" log text never expands panels.  If the current state is unchanged
+for its bounded decision/proof budget, the controller stops and writes
+`runs/control/<task>-intervention.md` instead of continuing to spend tokens.
 Once Scenario 2 approximate search is opened, that is a phase lock: old exact
 leaves may remain as bounded dependencies or negative evidence, but the active
 objective must name an epsilon tier, an error budget, and a Lean-checkable
@@ -588,6 +573,13 @@ records stagnation.  For state-preparation and operator-construction tasks, the 
 search after a short exact-search patience budget when no Lean-certified exact
 candidate exists.  Add `--fixed-capacity` only for ablation runs where every
 cycle should consume the requested full panel and lower-agent counts.
+
+The scheduler reads one canonical `## Current Obligation State [ACTIVE]` table
+per task; middle agents replace that table instead of stacking contradictory
+"current" sections.  Exit code 75 means the deterministic controller needs
+human intervention.  Exit code 78 means the configured model provider rejected
+usage, authentication, permission, or model access, so launchers stop instead
+of spending time in an unattended retry loop.
 
 Choose a harness profile explicitly when you want controlled comparisons:
 

@@ -1,10 +1,11 @@
 # Sleep Run Guide
 
-Sleep run mode is for unattended block-encoding construction and proof search.
+Sleep run mode is for unattended state-preparation or block-encoding
+construction and proof search.
 It creates repeated upper/middle/lower/reviewer cycles, can run bounded upper
 and middle panels at checkpoints, and uses Lean as the acceptance gate.
 
-![ABEIS control loop](assets/abeis_loop.png)
+![ABEIS gradual controller](assets/abeis_control_ladder.svg)
 
 ## What It Does
 
@@ -22,6 +23,33 @@ and middle panels at checkpoints, and uses Lean as the acceptance gate.
 8. When a task requests executable outputs and the matching Lean certificate
    has closed, writes post-Lean Qiskit, QuantumKatas-style, or OpenQASM/QASM
    artifacts and records their export checks.
+
+Before step 2 can execute agents, the deterministic controller reduces the
+latest proof-DAG table, latest obligation table, latest feedback per leaf, and
+task-relevant Lean source digest.  It then chooses one mode:
+
+- `execute`: a named leaf has a concrete Lean declaration and explicit ready
+  status; lower 1 runs before lower 2, and lower 3 runs first only when a named
+  necessary-condition diagnostic exists;
+- `decompose`: open work exists but no Lean-ready leaf exists, so one bounded
+  upper/middle decomposition pass runs and no lower worker runs;
+- `dependency_decision`: only an external contract gap blocks progress, so one
+  bounded decision pass chooses a local lemma, pinned dependency, explicit
+  contract, or human escalation;
+- `human_blocked`: no model process is started and `sleep-run` exits with code
+  75 after writing a control packet; `closeout` also starts no model process
+  and exits successfully because no open work remains.
+
+The controller also rejects a prompt deck before execution when its local
+input-token proxy exceeds a per-prompt, per-cycle, or persistent per-task run
+budget.  Defaults are configurable with `--max-prompt-tokens`,
+`--max-cycle-input-tokens`, `--max-run-input-tokens`,
+`--max-no-progress-cycles`, and `--max-external-gap-cycles`.  Generated cycle
+directories are bounded by `--retain-run-dirs`; durable Lean, proof ledgers,
+trial memory, and control state are retained.  After a human reviews an
+intervention packet, `--reset-control-state` is the explicit override that
+clears counters and the persistent run-token budget; it should not be placed
+in an unattended retry loop.
 
 Technical-report updates for the ABEIS project paper are maintainer-only.  A
 normal user run does not update the repository authors' technical report; use
@@ -54,12 +82,23 @@ python3 tools/qbe.py trial-log --task QBE-AUTO-002 \
   --kind attempt \
   --status failed \
   --feedback-field leaf=slot-three-branch-vanish \
+  --feedback-field leaf_signature=<current-controller-signature> \
+  --feedback-field evidence_digest=<current-lean-evidence-digest> \
   --feedback-field source_correspondence_ok=true \
   --feedback-field lean_build_ok=false \
   --feedback-field finite_matrix_ok=true \
   --feedback-field error_class=symbolic_bridge_gap \
   --feedback-field next_route="prove evalWith-level entry bridge for full index 48"
 ```
+
+Only privileged upper/reviewer feedback may request `capacity_decision` values
+`increase_upper`, `increase_middle`, `increase_lower`, or
+`increase_exploration`.  The signature and evidence digest must match the
+current controller state; stale requests are ignored.
+The latest middle/lower status for a leaf does not erase a privileged policy
+packet.  Policy changes commit atomically, and a previous-cycle signature is
+accepted for one frontier refresh only when the Lean-evidence digest is
+unchanged.
 
 For an operator-construction task, the useful feedback layers are dimension
 checks, finite unitarity checks, block-entry checks, ancilla-cleanup checks,
@@ -130,10 +169,22 @@ python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 2 --dry-run
 python3 tools/qbe.py trial-summary
 ```
 
-`sleep-run` uses adaptive capacity by default.  It starts with a small prompt
-queue and expands upper, middle, or lower capacity only after recorded
-stagnation.  Add `--fixed-capacity --lower-count 3` only for an intentional
-ablation or stress test.
+`sleep-run` uses adaptive capacity by default.  It starts with a small ordered
+queue.  A current upper/reviewer packet may increase one named layer by one
+level; the same packet cannot be replayed to grow again.  Exact search opens
+the requested tolerance only after its stall budget, or when only explicit
+external exact gaps remain and no exact leaf is executable.  Every later
+epsilon change must use the adjacent task-declared rung.  Keep exactly one
+`## Current Obligation State [ACTIVE]` table with explicit phase, Lean target,
+and `active next Lean leaf` status.  Add
+`--fixed-capacity --lower-count 3` only for an intentional ablation or stress
+test.
+
+Provider rejection is not a repair cycle.  `qbe_codex_agent.sh` returns 78 on
+an explicit usage limit, authentication failure, permission failure, or model
+access failure; unattended launchers stop immediately.  Exit 75 remains the
+deterministic controller/human-intervention stop.  Only transient failures use
+bounded retry backoff.
 
 Open the generated files:
 
