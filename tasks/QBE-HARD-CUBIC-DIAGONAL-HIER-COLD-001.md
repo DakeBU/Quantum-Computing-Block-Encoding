@@ -3,8 +3,24 @@
 Task id: `QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001`
 Kind: `operatorBlockEncoding`
 Mode: `exploratoryConstruction`
-Status: `active`
+Status: `complete`
 Created: `2026-06-28`
+Completed: `2026-07-16`
+
+Route lock: `FD-`, `DIAG-`
+Lean acceptance anchors: `CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete`
+Population gate: `required`
+Executable acceptance command: `python3 tools/export_hard_cubic_householder.py --task QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001 --n 2`
+Executable acceptance artifacts: `executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001/qiskit/acceptance.json`, `executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001/qasm3/cubic_householder_n2.qasm3`
+
+The current compiled memory library may close this cold arm with the exact
+rational diagonal Householder certificate.  After this anchor compiles in the
+current source digest, older fixed-precision and induced-norm leaves are
+superseded and must not be scheduled again.
+
+The final isolated v5 run passed a fresh Lean build and the declared Qiskit/QASM3
+gate.  Its machine state is retained under
+`../abeis_isolated_runs/20260716-hard-acceptance-v5/HARD_COLD/runs/control/`.
 
 ## Clean-Start Rule
 
@@ -69,6 +85,7 @@ lexicographically by:
   candidate.
 - Epsilon-ladder decisions if approximate search opens.
 - Qiskit/QASM3 exports only after Lean certification.
+- Final completion requires the declared executable acceptance command to pass
+  against every declared artifact; Lean closure alone is `post_lean_export`.
 - Circuit storyboard and selected-language summary.
 - Self-contained ChatGPT Pro prompt if the target is not fully closed.
-

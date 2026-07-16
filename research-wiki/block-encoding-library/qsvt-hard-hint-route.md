@@ -26,13 +26,16 @@ construction run.
    O_0 = \sum_{j=0}^{2^n-1} x_j |j\rangle\langle j|,
    \qquad x_j = j/2^n.
    $$
-2. Build or cite a value-to-amplitude or diagonal controlled-rotation block
-   encoding of `O_0`.
-3. Treat QSVT as a consumer of this proved block encoding.  For
+2. Build or cite a value-to-amplitude, rational-Householder, or diagonal
+   controlled-rotation block encoding of `O_0`.
+3. Before opening an external QSVT dependency, check the compiled product
+   route. For a monomial such as `x^3`, three exact product certificates may
+   close the target-identification layer immediately.
+4. Treat QSVT as a resource-optimization consumer of this proved block encoding. For
    $P(x)=x^3$, the polynomial is bounded on `[-1,1]` and has odd parity.
-4. Produce a proof DAG:
+5. Produce a proof DAG:
    `O_0 BE -> QSVT admissibility of x^3 -> QSVT consumer contract -> BE of O_0^3`.
-5. If the full QSVT theorem is not formalized, mark that node
+6. If the full QSVT theorem is not formalized, mark that node
    `contract-only`; do not claim final Lean certification beyond the contract
    boundary.
 
@@ -57,7 +60,11 @@ Goal: block-encode O = sum_j x_j^3 |j><j|
 │  ├─ odd parity
 │  └─ degree metadata
 │
-├─ Node D: QSVT consumer
+├─ Node D1: compiled product consumer (first fallback for monomials)
+│  ├─ multiply the proved clean-block payload three times
+│  └─ identify O_0^3 with the cubic diagonal target
+│
+├─ Node D2: QSVT consumer (optional resource route)
 │  ├─ input: proved BE of O_0
 │  ├─ input: QSVT phase/admissibility certificate for P
 │  └─ output: BE of P(O_0) = O_0^3
@@ -67,11 +74,11 @@ Goal: block-encode O = sum_j x_j^3 |j><j|
 ```
 
 The current ABEIS policy is conservative: Node B can be made a normal Lean
-certificate; Node C has small polynomial leaves that can be partially
-formalized; Node D remains `contract-only` unless a full local QSVT theorem or
-accepted external theorem interface is explicitly provided.  A candidate must
-not be reported as fully Lean-certified past Node D while that boundary remains
-open.
+certificate; Node C has small polynomial leaves that can be formalized; Node
+D1 is the preferred compiled fallback for a monomial; Node D2 remains
+`contract-only` unless a full local QSVT theorem or accepted external theorem
+interface is explicitly provided. A candidate using D2 must not be reported
+as fully Lean-certified while that boundary remains open.
 
 ## Lean Anchors
 
@@ -80,8 +87,16 @@ open.
 | A | `gridPoint_nonneg`, `gridPoint_lt_one`, `gridPoint_le_one`, `cubicAmplitude_le_one`, `cubicAmplitude_nonneg` in `CubicStatePreparation.lean` | compiled local leaves |
 | B | `diagonalCleanBlockContract`, `primitiveOracleCleanBlock_eq_target`, `primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target`, `expandedAmplitudeOracleCleanBlockContract_eq_target` | compiled contract/semantic leaves |
 | C | `chebyshevT`, `chebyshevT_three_recurrence`, `chebyshevT_four_recurrence`; polynomial side-condition structures are still lightweight | partial compiled leaves, not full QSVT admissibility |
-| D | `QubitizationChebyshevContract`, `QSVTConsumerContract` in `BlockEncodingClassics.lean` | contract-only consumer boundary |
+| D1 | `productCleanBlockCertificate`, `productExactCleanBlockCertificate`; task adapter `linearDiagonalCubicProductCertificate` | compiled matrix-arithmetic consumer |
+| D2 | `QubitizationChebyshevContract`, `QSVTConsumerContract` in `BlockEncodingClassics.lean` | contract-only consumer boundary |
 | E | `diagonalCleanBlockContract_pointwise_eq`, `cubicDiagonalOperator`, `cubicDiagonalTarget` | compiled target-identification leaves |
+
+For the cubic benchmark, the reusable rational-Householder card also exposes
+`linearDiagonalHouseholderInputBEContract_complete` for the hinted input and
+`cubicDiagonalHouseholderExactBEContract_complete` as an unconditional exact
+root certificate.  Therefore an unavailable full QSVT semantics theorem may
+block only the QSVT resource-optimization candidate; it must not keep the
+operator-existence task open after the exact root certificate compiles.
 
 Fast retrieval files:
 

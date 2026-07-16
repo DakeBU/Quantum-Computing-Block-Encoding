@@ -1,0 +1,10 @@
+{
+  "active_candidate_ids": [],
+  "cycle": 1,
+  "digest": "",
+  "direction": "",
+  "gate_required": true,
+  "invalid_packets": [],
+  "selected_candidate_ids": [],
+  "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
+}

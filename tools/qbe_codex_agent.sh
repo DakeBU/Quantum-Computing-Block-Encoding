@@ -17,6 +17,7 @@ CODEX_BIN="${CODEX_BIN:-codex}"
 CODEX_MODEL="${CODEX_MODEL:-gpt-5.6-sol}"
 METRICS_FILE="${QBE_AGENT_METRICS:-}"
 NON_RETRYABLE_EXIT_CODE="${QBE_CODEX_NON_RETRYABLE_EXIT_CODE:-78}"
+STREAM_FULL_OUTPUT="${QBE_STREAM_FULL_OUTPUT:-0}"
 child_pid=""
 attempt_log=""
 
@@ -77,8 +78,13 @@ while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
   attempt_started_at=$(date +%s)
   attempt_log="$(mktemp "${TMPDIR:-/tmp}/qbe-codex-attempt.XXXXXX")"
   read -r -a codex_args <<< "$CODEX_ARGS"
-  QBE_ATTEMPT_LOG="$attempt_log" setsid bash -c \
-    'set -o pipefail; "$@" 2>&1 | tee "$QBE_ATTEMPT_LOG"' \
+  QBE_ATTEMPT_LOG="$attempt_log" QBE_STREAM_FULL_OUTPUT="$STREAM_FULL_OUTPUT" setsid bash -c \
+    'if [ "$QBE_STREAM_FULL_OUTPUT" = 1 ]; then
+       set -o pipefail
+       "$@" 2>&1 | tee "$QBE_ATTEMPT_LOG"
+     else
+       "$@" >"$QBE_ATTEMPT_LOG" 2>&1
+     fi' \
     qbe-codex "$CODEX_BIN" exec --model "$CODEX_MODEL" "${codex_args[@]}" - \
     < "$PROMPT" &
   child_pid=$!
@@ -105,6 +111,8 @@ while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
     rm -f "$attempt_log"
     exit "$NON_RETRYABLE_EXIT_CODE"
   fi
+  echo "[$(date)] qbe codex attempt failed; final output follows" >&2
+  tail -n 40 "$attempt_log" >&2
   rm -f "$attempt_log"
 
   if [ "$attempt" -ge "$MAX_ATTEMPTS" ]; then

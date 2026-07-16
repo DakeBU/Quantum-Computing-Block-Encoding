@@ -6,7 +6,7 @@ cd "$ROOT" || exit 1
 
 mkdir -p runs/logs
 
-AGENT_CMD='cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"'
+AGENT_CMD='cd {root} && bash tools/qbe_codex_agent.sh {root} {prompt}'
 PRO_PACKET="task-inbox/QBE-MAIN-CASE-HIER-PRO-001/pro_construction_packet.md"
 
 # One batch is intentionally long enough for qbe.py's internal cycle counter
@@ -15,8 +15,7 @@ PRO_PACKET="task-inbox/QBE-MAIN-CASE-HIER-PRO-001/pro_construction_packet.md"
 # another batch with the refreshed memory as context.
 BATCH_CYCLES="${ABEIS_BATCH_CYCLES:-999}"
 BATCH_ACTIVE_MINUTES="${ABEIS_BATCH_ACTIVE_MINUTES:-360}"
-MAX_BATCHES_PER_TASK="${ABEIS_MAX_BATCHES_PER_TASK:-0}" # 0 means keep going.
-MIN_BATCHES_PER_TASK="${ABEIS_MIN_BATCHES_PER_TASK:-1}"
+MAX_BATCHES_PER_TASK="${ABEIS_MAX_BATCHES_PER_TASK:-3}"
 
 log() {
   printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S %Z')" "$*"
@@ -34,6 +33,11 @@ import json, pathlib, sys
 
 task = sys.argv[1]
 root = pathlib.Path.cwd()
+control = root / "runs" / "control" / f"{task}.json"
+if control.exists():
+    controller = json.loads(control.read_text())
+    if controller.get("status") == "complete" and controller.get("certified_root_anchors"):
+        raise SystemExit(0)
 idx = root / "research-wiki" / "retrieval-index" / f"{task}.json"
 if not idx.exists():
     raise SystemExit(1)
@@ -131,7 +135,7 @@ run_until_converged() {
   shift 2
   local batch=0
   while true; do
-    if [[ "$batch" -ge "$MIN_BATCHES_PER_TASK" ]] && converged "$task"; then
+    if converged "$task"; then
       log "CONVERGED ${label}: task=${task}"
       return 0
     fi
@@ -140,8 +144,14 @@ run_until_converged() {
       log "PAUSE ${label}: reached MAX_BATCHES_PER_TASK=${MAX_BATCHES_PER_TASK}"
       return 0
     fi
-    if ! run_batch "${label}/batch${batch}" "$task" "$@"; then
-      log "BATCH ERROR ${label}: sleeping 60s before the next repair attempt"
+    run_batch "${label}/batch${batch}" "$task" "$@"
+    code=$?
+    if [[ "$code" == "75" ]]; then
+      log "CONTROLLED PAUSE ${label}: unchanged proof state, dependency gap, or token budget"
+      return 75
+    fi
+    if [[ "$code" != "0" ]]; then
+      log "BATCH ERROR ${label}: sleeping 60s before the next bounded repair attempt"
       sleep 60
     fi
   done
@@ -170,7 +180,7 @@ run_pro_mid_until_converged() {
 }
 
 log "ABEIS long repro suite start"
-log "Batch policy: cycles=${BATCH_CYCLES}, active_minutes=${BATCH_ACTIVE_MINUTES}, min_batches=${MIN_BATCHES_PER_TASK}, max_batches=${MAX_BATCHES_PER_TASK}"
+log "Batch policy: cycles=${BATCH_CYCLES}, active_minutes=${BATCH_ACTIVE_MINUTES}, max_batches=${MAX_BATCHES_PER_TASK}"
 
 run_until_converged "HIER_COLD" QBE-ISO-MAIN-HIER-COLD-001 \
   --hierarchical-harness \

@@ -1,0 +1,32 @@
+{
+  "N": 4,
+  "hint_polynomial_identity": "diag(x)^3 = diag(x^3)",
+  "hint_polynomial_identity_error": 0.0,
+  "n": 2,
+  "normalizer": 1,
+  "openqasm3_version": "1.0.1",
+  "passed": true,
+  "qiskit_version": "2.4.2",
+  "register_order": "system qubits are low-order; three Householder ancillas are high-order",
+  "routes": [
+    {
+      "auxiliary_qubits": 3,
+      "clean_block_error": 0.0,
+      "exact_four_square_witnesses": true,
+      "lean_anchor": "CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete",
+      "name": "cubic_householder",
+      "passed": true,
+      "power": 3,
+      "qasm_depth": 465,
+      "qasm_gate_count": 638,
+      "qasm_operator_error": 1.8572384374115355e-12,
+      "qasm_parse_ok": true,
+      "qasm_path": "executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001/qasm3/cubic_householder_n2.qasm3",
+      "qiskit_operator_error": 0.0,
+      "qiskit_qubits": 5,
+      "unitary_error": 2.2224038376351276e-16
+    }
+  ],
+  "semantic_tier": "finite post-Lean executable validation; symbolic family proof remains Lean",
+  "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
+}

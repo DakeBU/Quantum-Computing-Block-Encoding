@@ -12,12 +12,11 @@ fi
 ARM="$1"
 mkdir -p runs/logs
 
-AGENT_CMD='cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"'
+AGENT_CMD='cd {root} && bash tools/qbe_codex_agent.sh {root} {prompt}'
 PRO_PACKET="task-inbox/QBE-MAIN-CASE-HIER-PRO-001/pro_construction_packet.md"
 BATCH_CYCLES="${ABEIS_BATCH_CYCLES:-999}"
 BATCH_ACTIVE_MINUTES="${ABEIS_BATCH_ACTIVE_MINUTES:-360}"
-MAX_BATCHES_PER_TASK="${ABEIS_MAX_BATCHES_PER_TASK:-0}" # 0 means keep going.
-MIN_BATCHES_PER_TASK="${ABEIS_MIN_BATCHES_PER_TASK:-1}"
+MAX_BATCHES_PER_TASK="${ABEIS_MAX_BATCHES_PER_TASK:-3}"
 
 case "$ARM" in
   HIER_COLD)
@@ -62,6 +61,11 @@ import json, pathlib, sys
 
 task = sys.argv[1]
 root = pathlib.Path.cwd()
+control = root / "runs" / "control" / f"{task}.json"
+if control.exists():
+    controller = json.loads(control.read_text())
+    if controller.get("status") == "complete" and controller.get("certified_root_anchors"):
+        raise SystemExit(0)
 idx = root / "research-wiki" / "retrieval-index" / f"{task}.json"
 if not idx.exists():
     raise SystemExit(1)
@@ -167,14 +171,12 @@ if [[ "$PRO_MID" == "1" ]]; then
   inject_pro_packet || true
 fi
 
-log "START arm=${ARM}, task=${TASK}, cycles=${BATCH_CYCLES}, active_minutes=${BATCH_ACTIVE_MINUTES}, min_batches=${MIN_BATCHES_PER_TASK}, max_batches=${MAX_BATCHES_PER_TASK}"
+log "START arm=${ARM}, task=${TASK}, cycles=${BATCH_CYCLES}, active_minutes=${BATCH_ACTIVE_MINUTES}, max_batches=${MAX_BATCHES_PER_TASK}"
 
 batch=0
 while true; do
-  if [[ "$batch" -ge "$MIN_BATCHES_PER_TASK" ]] && converged "$TASK"; then
+  if converged "$TASK"; then
     log "CONVERGED task=${TASK}"
-    python3 tools/qbe.py check || true
-    python3 tools/qbe.py trial-summary || true
     exit 0
   fi
   batch=$((batch + 1))
@@ -184,8 +186,14 @@ while true; do
     python3 tools/qbe.py trial-summary || true
     exit 0
   fi
-  if ! run_sleep_batch "batch${batch}"; then
-    log "batch error; sleeping 60s before repair retry"
+  run_sleep_batch "batch${batch}"
+  code=$?
+  if [[ "$code" == "75" ]]; then
+    log "controlled pause: unchanged proof state, dependency gap, or token budget"
+    exit 0
+  fi
+  if [[ "$code" != "0" ]]; then
+    log "batch error; sleeping 60s before bounded repair retry"
     sleep 60
   fi
 done

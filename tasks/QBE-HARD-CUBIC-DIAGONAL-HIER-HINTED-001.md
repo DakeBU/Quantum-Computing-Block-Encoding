@@ -3,8 +3,25 @@
 Task id: `QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001`
 Kind: `operatorBlockEncoding`
 Mode: `exploratoryConstruction`
-Status: `active`
+Status: `complete`
 Created: `2026-06-28`
+Completed: `2026-07-16`
+
+Route lock: `HINT-`, `CD-O0-`, `QSVT-`
+Forbidden leaf prefixes: `APPROX-RAT-`, `RATIONAL-CIRCLE-`
+Lean acceptance anchors: `CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete`, `CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete`
+Population gate: `required`
+Executable acceptance command: `python3 tools/export_hard_cubic_householder.py --task QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001 --n 2`
+Executable acceptance artifacts: `executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001/qiskit/acceptance.json`, `executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001/qasm3/linear_householder_n2.qasm3`, `executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001/qasm3/cubic_householder_n2.qasm3`
+
+The first anchor closes the hinted `O_0` supplier.  The second is an
+unconditional exact root certificate for the requested cubic diagonal
+operator.  Once both anchors compile in the current source digest, QSVT is an
+optional resource-optimization route and must not keep the root task open.
+
+The final isolated v5 run passed a fresh Lean build and the declared linear and
+cubic Qiskit/QASM3 gates.  Its machine state is retained under
+`../abeis_isolated_runs/20260716-hard-acceptance-v5/HARD_HINTED/runs/control/`.
 
 ## Clean-Start Rule
 
@@ -79,6 +96,8 @@ lexicographically by:
   candidate.
 - Epsilon-ladder decisions if approximate search opens.
 - Qiskit/QASM3 exports only after Lean certification.
+- Final completion requires the declared executable acceptance command to pass
+  for both the hinted linear input and the cubic output; Lean closure alone is
+  `post_lean_export`.
 - Circuit storyboard and selected-language summary.
 - Self-contained ChatGPT Pro prompt if the target is not fully closed.
-

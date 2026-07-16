@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
 
-CONTROL_VERSION = 2
+CONTROL_VERSION = 5
 CONTROL_STOP_EXIT_CODE = 75
 MAX_CAPACITY_LEVEL = 3
 POLICY_TASK_KINDS = {"statePreparation", "operatorBlockEncoding"}
@@ -386,7 +386,8 @@ def reduce_latest_feedback(records: Sequence[Mapping[str, object]]) -> list[dict
                 "search_decision",
             )
         )
-        key = leaf
+        candidate_id = _normalized(record.get("candidate_id", ""))
+        key = f"__candidate_{candidate_id}_{_lower(record.get('role', ''))}" if candidate_id else leaf
         if privileged_policy:
             packet_id = _normalized(record.get("trial_id", record.get("timestamp", "")))
             key = f"__policy_{packet_id or leaf or anonymous}"
@@ -468,6 +469,188 @@ def infer_epsilon_ladder(task_text: str, max_rungs: int = 7) -> tuple[str, ...]:
     return tuple(_epsilon_text(value) for value in sorted(set(ladder)))
 
 
+def infer_route_lock(task_text: str) -> tuple[tuple[str, ...], tuple[str, ...]]:
+    """Read optional task-level route-prefix allow/deny directives.
+
+    The directives are intentionally explicit.  Natural-language hints remain
+    useful context, while a `Route lock:` line is an executable scheduling
+    constraint that lower agents cannot override through prose refreshes.
+    """
+
+    def values(label: str) -> tuple[str, ...]:
+        match = re.search(rf"(?im)^\s*{re.escape(label)}\s*:\s*(.+)$", task_text)
+        if not match:
+            return ()
+        return tuple(
+            value.strip().strip("`")
+            for value in re.split(r"[,;]", match.group(1))
+            if value.strip().strip("`")
+        )
+
+    return values("Route lock"), values("Forbidden leaf prefixes")
+
+
+def infer_acceptance_anchors(task_text: str) -> tuple[str, ...]:
+    """Read the explicit Lean theorems that certify the root task.
+
+    Root acceptance is deliberately separate from the append-only proof-DAG.
+    A stale open leaf must not keep scheduling agents after every declared root
+    theorem has compiled, and a prose claim such as "certificate exists" must
+    not count as acceptance.
+    """
+
+    match = re.search(
+        r"(?im)^\s*Lean acceptance anchors\s*:\s*(.+)$", task_text
+    )
+    if not match:
+        return ()
+    raw = match.group(1)
+    quoted = re.findall(r"`([^`]+)`", raw)
+    values = quoted or re.split(r"[,;]", raw)
+    return tuple(dict.fromkeys(value.strip() for value in values if value.strip()))
+
+
+@dataclass(frozen=True)
+class ExecutableAcceptance:
+    command: str
+    artifacts: tuple[str, ...]
+
+
+def infer_executable_acceptance(task_text: str) -> ExecutableAcceptance:
+    """Read the deterministic post-Lean acceptance command and its outputs."""
+
+    command_match = re.search(
+        r"(?im)^\s*Executable acceptance command\s*:\s*(.+)$", task_text
+    )
+    artifact_match = re.search(
+        r"(?im)^\s*Executable acceptance artifacts\s*:\s*(.+)$", task_text
+    )
+    command = command_match.group(1).strip().strip("`") if command_match else ""
+    artifacts: tuple[str, ...] = ()
+    if artifact_match:
+        raw = artifact_match.group(1)
+        quoted = re.findall(r"`([^`]+)`", raw)
+        values = quoted or re.split(r"[,;]", raw)
+        artifacts = tuple(
+            dict.fromkeys(value.strip().strip("`") for value in values if value.strip().strip("`"))
+        )
+    return ExecutableAcceptance(command=command, artifacts=artifacts)
+
+
+def infer_population_gate(task_text: str) -> bool:
+    """Return whether exploratory work requires a typed population decision."""
+
+    match = re.search(r"(?im)^\s*Population gate\s*:\s*(.+)$", task_text)
+    return bool(
+        match
+        and _lower(match.group(1)).strip("`") in {"required", "on", "true", "yes"}
+    )
+
+
+@dataclass(frozen=True)
+class PopulationState:
+    active_candidate_ids: tuple[str, ...]
+    selected_candidate_ids: tuple[str, ...]
+    direction: str
+    digest: str
+    invalid_packets: tuple[str, ...]
+
+
+def summarize_candidate_population(
+    feedback: Sequence[Mapping[str, object]],
+) -> PopulationState:
+    """Reduce typed middle/reviewer packets into an auditable population state.
+
+    Middle owns proposal, retention, mutation, crossover, and retirement.  An
+    upper or reviewer packet may select only a candidate that middle currently
+    keeps active.  This prevents free-form prose from silently authorizing more
+    lower-agent work.
+    """
+
+    middle_actions = {"propose", "retain", "mutate", "crossover", "retire", "reject"}
+    active_actions = {"propose", "retain", "mutate", "crossover"}
+    latest_middle: dict[str, dict[str, object]] = {}
+    selectors: list[dict[str, object]] = []
+    invalid: list[str] = []
+    for row in reversed(list(feedback)):
+        candidate_id = _normalized(row.get("candidate_id", ""))
+        action = _lower(row.get("population_action", ""))
+        role = _lower(row.get("role", ""))
+        if not candidate_id and not action:
+            continue
+        packet = _normalized(row.get("trial_id", row.get("timestamp", "packet"))) or "packet"
+        if not candidate_id or not action:
+            invalid.append(f"{packet}: candidate_id and population_action are both required")
+            continue
+        parents_raw = row.get("parent_ids", "")
+        parents = (
+            [_normalized(value) for value in parents_raw]
+            if isinstance(parents_raw, (list, tuple))
+            else [_normalized(value) for value in re.split(r"[,;\s]+", str(parents_raw))]
+        )
+        parents = [value for value in parents if value]
+        evidence = _normalized(row.get("fitness_evidence", row.get("fitness", "")))
+        if role == "middle":
+            if action not in middle_actions:
+                invalid.append(f"{packet}: middle cannot apply population action {action}")
+                continue
+            if action == "mutate" and len(parents) < 1:
+                invalid.append(f"{packet}: mutation requires one parent")
+                continue
+            if action == "crossover" and len(parents) < 2:
+                invalid.append(f"{packet}: crossover requires two parents")
+                continue
+            if action in active_actions and not evidence:
+                invalid.append(f"{packet}: active candidate requires fitness_evidence")
+                continue
+            latest_middle[candidate_id] = {
+                "candidate_id": candidate_id,
+                "candidate_family": _normalized(row.get("candidate_family", "")),
+                "action": action,
+                "parent_ids": parents,
+                "fitness_evidence": evidence,
+                "route": _normalized(row.get("next_route", row.get("route", ""))),
+            }
+        elif role in {"upper", "reviewer"} and action == "select":
+            selectors.append(
+                {
+                    "candidate_id": candidate_id,
+                    "role": role,
+                    "reason": evidence or _normalized(row.get("selection_reason", "")),
+                }
+            )
+        else:
+            invalid.append(f"{packet}: role {role or 'unknown'} cannot apply population action {action}")
+
+    active = tuple(
+        sorted(
+            candidate_id
+            for candidate_id, row in latest_middle.items()
+            if row["action"] in active_actions
+        )
+    )
+    selected = tuple(
+        dict.fromkeys(
+            row["candidate_id"]
+            for row in reversed(selectors)
+            if row["candidate_id"] in active
+        )
+    )
+    direction = selected[0] if selected else ""
+    payload = {
+        "active": [latest_middle[candidate_id] for candidate_id in active],
+        "selected": list(selected),
+        "direction": direction,
+    }
+    return PopulationState(
+        active_candidate_ids=active,
+        selected_candidate_ids=selected,
+        direction=direction,
+        digest=content_digest([payload]) if active or selected else "",
+        invalid_packets=tuple(invalid),
+    )
+
+
 @dataclass(frozen=True)
 class PolicyRequest:
     capacity_authorizations: tuple[str, ...]
@@ -541,6 +724,7 @@ class CycleDecision:
     ready_leaf_ids: tuple[str, ...]
     external_leaf_ids: tuple[str, ...]
     unresolved_leaf_ids: tuple[str, ...]
+    route_rejected_leaf_ids: tuple[str, ...]
     prompt_plan: tuple[str, ...]
     capacity_authorizations: tuple[str, ...]
     unchanged_cycles: int
@@ -554,9 +738,23 @@ class CycleDecision:
     epsilon_ladder: tuple[str, ...] = ()
     epsilon_index: int = -1
     active_epsilon: str = "0"
+    effective_epsilon: str = "0"
+    auto_retired_leaf_ids: tuple[str, ...] = ()
+    certified_root_anchors: tuple[str, ...] = ()
     policy_decision_digest: str = ""
     policy_transition_applied: bool = False
     policy_rejections: tuple[str, ...] = ()
+    lean_acceptance_complete: bool = False
+    executable_acceptance_required: bool = False
+    executable_acceptance_complete: bool = False
+    executable_acceptance_command: str = ""
+    executable_acceptance_artifacts: tuple[str, ...] = ()
+    population_gate_required: bool = False
+    population_digest: str = ""
+    population_active_candidate_ids: tuple[str, ...] = ()
+    population_selected_candidate_ids: tuple[str, ...] = ()
+    population_direction: str = ""
+    population_invalid_packets: tuple[str, ...] = ()
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -577,12 +775,46 @@ def decide_cycle(
     epsilon_ladder: Sequence[str] = (),
     exact_stall_cycles: int = 2,
     max_capacity_level: int = MAX_CAPACITY_LEVEL,
+    allowed_leaf_prefixes: Sequence[str] = (),
+    forbidden_leaf_prefixes: Sequence[str] = (),
+    verified_closed_leaf_ids: Sequence[str] = (),
+    verified_root_anchors: Sequence[str] = (),
+    executable_acceptance_required: bool = False,
+    executable_acceptance_complete: bool = False,
+    executable_acceptance_command: str = "",
+    executable_acceptance_artifacts: Sequence[str] = (),
+    population_gate_required: bool = False,
 ) -> CycleDecision:
     leaves = classify_leaves(frontier_rows, obligation_rows)
-    pending = [leaf for leaf in leaves if not leaf.closed]
-    ready = [leaf for leaf in pending if leaf.ready_for_lean]
-    external = [leaf for leaf in pending if leaf.external]
-    unresolved = [leaf for leaf in pending if not leaf.ready_for_lean and not leaf.external]
+    verified_closed = {_lower(value) for value in verified_closed_leaf_ids if _lower(value)}
+    auto_retired = [
+        leaf for leaf in leaves if not leaf.closed and _lower(leaf.leaf_id) in verified_closed
+    ]
+    pending = [
+        leaf
+        for leaf in leaves
+        if not leaf.closed and _lower(leaf.leaf_id) not in verified_closed
+    ]
+    allowed_prefixes = tuple(_lower(value) for value in allowed_leaf_prefixes if _lower(value))
+    forbidden_prefixes = tuple(
+        _lower(value) for value in forbidden_leaf_prefixes if _lower(value)
+    )
+
+    def route_allowed(leaf: LeafState) -> bool:
+        leaf_id = leaf.leaf_id.lower()
+        if any(leaf_id.startswith(prefix) for prefix in forbidden_prefixes):
+            return False
+        return not allowed_prefixes or any(
+            leaf_id.startswith(prefix) for prefix in allowed_prefixes
+        )
+
+    route_rejected = [leaf for leaf in pending if not route_allowed(leaf)]
+    eligible = [leaf for leaf in pending if route_allowed(leaf)]
+    ready = [leaf for leaf in eligible if leaf.ready_for_lean]
+    external = [leaf for leaf in eligible if leaf.external]
+    unresolved = [
+        leaf for leaf in eligible if not leaf.ready_for_lean and not leaf.external
+    ]
     leaf_payload = [
         {
             "id": leaf.leaf_id,
@@ -592,10 +824,14 @@ def decide_cycle(
             "ready": leaf.ready_for_lean,
             "external": leaf.external,
             "blocked": leaf.blocked,
+            "route_allowed": route_allowed(leaf),
         }
         for leaf in sorted(pending, key=lambda item: item.leaf_id)
     ]
-    leaf_signature = content_digest([leaf_payload, evidence_digest])
+    population = summarize_candidate_population(feedback)
+    leaf_signature = content_digest(
+        [leaf_payload, evidence_digest, population.digest if population_gate_required else ""]
+    )
     previous = dict(previous_state or {})
     same_signature = (
         previous.get("leaf_signature") == leaf_signature
@@ -693,6 +929,11 @@ def decide_cycle(
         if epsilon_index == 0
         else "approximate_relaxed"
     )
+    if verified_root_anchors and executable_acceptance_required and not executable_acceptance_complete:
+        search_phase = "post_lean_export"
+    elif external and not ready:
+        search_phase = "dependency"
+    effective_epsilon = "n/a" if search_phase == "dependency" else active_epsilon
     policy_digest = (
         request.digest
         if new_policy_request and not policy_rejections
@@ -720,6 +961,7 @@ def decide_cycle(
             ready_leaf_ids=ready_ids,
             external_leaf_ids=external_ids,
             unresolved_leaf_ids=unresolved_ids,
+            route_rejected_leaf_ids=tuple(leaf.leaf_id for leaf in route_rejected),
             prompt_plan=prompt_plan,
             capacity_authorizations=authorizations,
             unchanged_cycles=unchanged_cycles,
@@ -733,11 +975,62 @@ def decide_cycle(
             epsilon_ladder=ladder,
             epsilon_index=epsilon_index,
             active_epsilon=active_epsilon,
+            effective_epsilon=effective_epsilon,
+            auto_retired_leaf_ids=tuple(leaf.leaf_id for leaf in auto_retired),
+            certified_root_anchors=tuple(verified_root_anchors),
             policy_decision_digest=policy_digest,
             policy_transition_applied=policy_applied,
             policy_rejections=tuple(policy_rejections),
+            lean_acceptance_complete=bool(verified_root_anchors),
+            executable_acceptance_required=executable_acceptance_required,
+            executable_acceptance_complete=executable_acceptance_complete,
+            executable_acceptance_command=executable_acceptance_command,
+            executable_acceptance_artifacts=tuple(executable_acceptance_artifacts),
+            population_gate_required=population_gate_required,
+            population_digest=population.digest,
+            population_active_candidate_ids=population.active_candidate_ids,
+            population_selected_candidate_ids=population.selected_candidate_ids,
+            population_direction=population.direction,
+            population_invalid_packets=population.invalid_packets,
         )
 
+    if verified_root_anchors:
+        if executable_acceptance_required and not executable_acceptance_complete:
+            return make_decision(
+                "export",
+                "running",
+                "Lean root acceptance is complete; the declared deterministic executable acceptance gate is still open.",
+                ("POST-LEAN-EXPORT",),
+                (),
+                (),
+                ("middle", "exporter", "reviewer"),
+                False,
+            )
+        return make_decision(
+            "closeout",
+            "complete",
+            (
+                "All task-declared Lean root anchors compile and the deterministic executable acceptance gate passes."
+                if executable_acceptance_required
+                else "All task-declared Lean root acceptance anchors compile under the current source digest."
+            ),
+            (),
+            (),
+            (),
+            (),
+            True,
+        )
+    if population_gate_required and not population.direction:
+        return make_decision(
+            "population",
+            "running",
+            "Exploratory work requires a middle-maintained active population and a current upper/reviewer selection before lower execution.",
+            (),
+            tuple(leaf.leaf_id for leaf in external),
+            tuple(leaf.leaf_id for leaf in unresolved + ready),
+            ("upper", "middle", "reviewer"),
+            False,
+        )
     if not pending:
         return make_decision(
             "closeout",
@@ -748,6 +1041,28 @@ def decide_cycle(
             (),
             (),
             True,
+        )
+    if route_rejected and not eligible:
+        if unchanged_cycles >= max(1, max_no_progress_cycles):
+            return make_decision(
+                "human_blocked",
+                "blocked",
+                "Every open leaf violates the task route lock; the bounded DAG-repair budget is exhausted.",
+                (),
+                (),
+                tuple(leaf.leaf_id for leaf in route_rejected),
+                (),
+                True,
+            )
+        return make_decision(
+            "decompose",
+            "running",
+            "Every open leaf violates the task route lock; upper/middle must expose a dependency-ordered leaf on the locked route.",
+            (),
+            (),
+            tuple(leaf.leaf_id for leaf in route_rejected),
+            ("upper", "middle", "reviewer"),
+            False,
         )
     approximate_ready = [leaf for leaf in ready if _looks_approximate(leaf)]
     exact_ready = [leaf for leaf in ready if not _looks_approximate(leaf)]
@@ -799,6 +1114,22 @@ def decide_cycle(
                 False,
             )
     if ready:
+        if (
+            population_gate_required
+            and same_signature
+            and unchanged_cycles >= 1
+            and unchanged_cycles < max(1, max_no_progress_cycles)
+        ):
+            return make_decision(
+                "population",
+                "running",
+                "The selected route did not change Lean evidence; middle must retain, retire, mutate, or cross candidates before another lower attempt.",
+                (),
+                tuple(leaf.leaf_id for leaf in external),
+                tuple(leaf.leaf_id for leaf in unresolved + ready),
+                ("upper", "middle", "reviewer"),
+                False,
+            )
         if unchanged_cycles >= max(1, max_no_progress_cycles):
             return make_decision(
                 "human_blocked",

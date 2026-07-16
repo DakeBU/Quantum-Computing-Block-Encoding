@@ -606,6 +606,89 @@ def draw_qiskit_export_results():
     plt.close(fig)
 
 
+def draw_evolution_acceptance_pipeline():
+    """Reader-facing view of population evolution and the two final gates."""
+
+    fig, ax = setup(18.0, 7.0)
+    label(ax, 4, 94, "ABEIS evolves a route, then requires two different gates", fs=23, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        4,
+        88,
+        "Middle maintains candidates; upper/reviewer selects direction; Lean proves the family; Qiskit/QASM validates the declared finite export.",
+        fs=11.5,
+        color=MUTED,
+        ha="left",
+    )
+
+    xs = [3, 20, 37, 54, 71, 87]
+    widths = [12.5, 12.5, 12.5, 12.5, 12.5, 10.0]
+    nodes = [
+        ("Fixed contract", "state/target, alpha,\nprojector, epsilon", BLUE_L, BLUE),
+        ("Memory + population", "retrieve, propose,\nretain / retire", PURPLE_L, PURPLE),
+        ("Selected direction", "mutate / crossover,\none ready leaf", AMBER_L, AMBER),
+        ("Lean gate", "unitary + semantic\nroot certificate", GREEN_L, GREEN),
+        ("Executable gate", "Qiskit Operator +\nparsed QASM3", ORANGE_L, ORANGE),
+        ("Complete", "both gates\nand artifacts pass", GREEN_L, GREEN),
+    ]
+    for x, w, (title, subtitle, fc, ec) in zip(xs, widths, nodes):
+        box(ax, x, 55, w, 18, title, subtitle, fc=fc, ec=ec, fs=12.3, subfs=8.3)
+    for index in range(len(xs) - 1):
+        arrow(ax, xs[index] + widths[index], 64, xs[index + 1], 64, color="#475569", lw=2.2)
+
+    box(
+        ax,
+        19,
+        22,
+        29,
+        14,
+        "Typed evolution feedback",
+        "fitness evidence, parents, selection, failure class",
+        fc="#FFFFFF",
+        ec=PURPLE,
+        fs=11.8,
+        subfs=8.1,
+    )
+    box(
+        ax,
+        55,
+        22,
+        27,
+        14,
+        "Bounded control decision",
+        "one capacity level or one adjacent epsilon rung",
+        fc="#FFFFFF",
+        ec=BLUE,
+        fs=11.8,
+        subfs=8.1,
+    )
+    arrow(ax, 60, 55, 47, 36, color=RED, lw=2.0, dashed=True, rad=-0.08)
+    arrow(ax, 33, 36, 27, 55, color=PURPLE, lw=2.0, dashed=True, rad=0.08)
+    arrow(ax, 42, 55, 58, 36, color=AMBER, lw=1.8, dashed=True, rad=0.08)
+    arrow(ax, 69, 36, 76, 55, color=BLUE, lw=1.8, dashed=True, rad=-0.08)
+    label(ax, 49, 44, "no progress", fs=9.5, weight="bold", color=RED)
+    label(ax, 4, 9, "Stop invariant", fs=10.5, weight="bold", color=RED, ha="left")
+    label(
+        ax,
+        16,
+        9,
+        "unchanged evidence without a typed population/control update stops before another model call",
+        fs=10.2,
+        color=TEXT,
+        ha="left",
+    )
+
+    for path in [
+        ARTICLE_FIG / "abeis_evolution_acceptance.png",
+        ARTICLE_FIG / "abeis_evolution_acceptance.svg",
+        README_FIG / "abeis_evolution_acceptance.png",
+        README_FIG / "abeis_evolution_acceptance.svg",
+    ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
 def draw_quantum_lean_leaf_atlas():
     fig, ax = setup(16.5, 9.2)
     label(ax, 5, 94.5, "ABEIS Lean leaf atlas: from quantum libraries to block-encoding certificates", fs=21, weight="bold", color=NAVY, ha="left")
@@ -910,6 +993,7 @@ def main():
     draw_optctrl_hier_vs_pro()
     draw_optctrl_cold_clean_storyboard()
     draw_qiskit_export_results()
+    draw_evolution_acceptance_pipeline()
     draw_quantum_lean_leaf_atlas()
     draw_abeis_lean_leaf_module_graph()
     draw_abeis_detailed_lean_leaf_module_graph()

@@ -1,5 +1,5 @@
 {
-  "total": 968,
+  "total": 1084,
   "files": [
     {
       "file": "QuantumBlockEncoding/Core.lean",
@@ -497,6 +497,67 @@
           "kind": "structure",
           "name": "ConstructionClaim",
           "line": 246
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/StatePreparation.lean",
+      "count": 11,
+      "declarations": [
+        {
+          "kind": "def",
+          "name": "zeroBasisIndex",
+          "line": 15
+        },
+        {
+          "kind": "structure",
+          "name": "StatePreparationTarget",
+          "line": 19
+        },
+        {
+          "kind": "def",
+          "name": "FirstColumnMatches",
+          "line": 25
+        },
+        {
+          "kind": "structure",
+          "name": "StatePreparationCandidate",
+          "line": 31
+        },
+        {
+          "kind": "def",
+          "name": "preparesTarget",
+          "line": 43
+        },
+        {
+          "kind": "def",
+          "name": "cost",
+          "line": 47
+        },
+        {
+          "kind": "structure",
+          "name": "VerifiedStatePreparation",
+          "line": 58
+        },
+        {
+          "kind": "structure",
+          "name": "ApproximateStatePreparationCandidate",
+          "line": 65
+        },
+        {
+          "kind": "structure",
+          "name": "VerifiedApproximateStatePreparation",
+          "line": 72
+        },
+        {
+          "kind": "def",
+          "name": "asZeroErrorApprox",
+          "line": 86
+        },
+        {
+          "kind": "theorem",
+          "name": "firstColumn",
+          "line": 98
         }
       ]
     },
@@ -1785,797 +1846,1322 @@
     },
     {
       "file": "QuantumBlockEncoding/CubicStatePreparation.lean",
-      "count": 158,
+      "count": 263,
       "declarations": [
         {
           "kind": "def",
           "name": "taskId",
-          "line": 24
+          "line": 25
         },
         {
           "kind": "def",
           "name": "requestedEpsilon",
-          "line": 27
+          "line": 28
         },
         {
           "kind": "def",
           "name": "gridPoint",
-          "line": 30
+          "line": 31
         },
         {
           "kind": "def",
           "name": "cubicAmplitude",
-          "line": 34
+          "line": 35
         },
         {
           "kind": "def",
           "name": "cubicOperator",
-          "line": 42
+          "line": 43
         },
         {
           "kind": "def",
           "name": "cubicNormSq",
-          "line": 50
+          "line": 51
         },
         {
           "kind": "def",
           "name": "conservativeNormalizer",
-          "line": 59
+          "line": 60
         },
         {
           "kind": "def",
           "name": "cubicTarget",
-          "line": 63
+          "line": 64
         },
         {
           "kind": "def",
           "name": "defaultRequiredCost",
-          "line": 76
+          "line": 77
         },
         {
           "kind": "def",
           "name": "defaultPolicy",
-          "line": 88
+          "line": 89
         },
         {
           "kind": "def",
           "name": "arithmeticCubicDefaultPrecision",
-          "line": 99
+          "line": 100
         },
         {
           "kind": "def",
           "name": "arithmeticCubicLayout",
-          "line": 109
+          "line": 110
         },
         {
           "kind": "def",
           "name": "arithmeticCubicCircuit",
-          "line": 121
+          "line": 122
         },
         {
           "kind": "def",
           "name": "arithmeticCubicResource",
-          "line": 132
+          "line": 133
         },
         {
           "kind": "def",
           "name": "arithmeticCubicNormalizer",
-          "line": 136
+          "line": 137
         },
         {
           "kind": "def",
           "name": "arithmeticCubicCost",
-          "line": 140
+          "line": 141
         },
         {
           "kind": "def",
           "name": "arithmeticCubicResourceTuple",
-          "line": 146
+          "line": 147
         },
         {
           "kind": "theorem",
           "name": "arithmeticCubicResource_eq",
-          "line": 154
+          "line": 155
         },
         {
           "kind": "theorem",
           "name": "arithmeticCubicLayout_auxiliaryQubits",
-          "line": 160
+          "line": 161
         },
         {
           "kind": "def",
           "name": "arithmeticCubicClaim",
-          "line": 169
+          "line": 170
         },
         {
           "kind": "def",
           "name": "arithmeticRankOneCubicLayout",
-          "line": 191
+          "line": 192
         },
         {
           "kind": "def",
           "name": "arithmeticRankOneCubicCircuit",
-          "line": 205
+          "line": 206
         },
         {
           "kind": "def",
           "name": "arithmeticRankOneCubicResource",
-          "line": 213
+          "line": 214
         },
         {
           "kind": "def",
           "name": "arithmeticRankOneCubicNormalizer",
-          "line": 217
+          "line": 218
         },
         {
           "kind": "def",
           "name": "arithmeticRankOneCubicCost",
-          "line": 221
+          "line": 222
         },
         {
           "kind": "def",
           "name": "arithmeticRankOneCubicResourceTuple",
-          "line": 227
+          "line": 228
         },
         {
           "kind": "theorem",
           "name": "arithmeticRankOneCubicResource_eq",
-          "line": 236
+          "line": 237
         },
         {
           "kind": "theorem",
           "name": "arithmeticRankOneCubicLayout_auxiliaryQubits",
-          "line": 242
+          "line": 243
         },
         {
           "kind": "theorem",
           "name": "arithmeticRankOneCubicResourceTuple_n2_default",
-          "line": 248
+          "line": 249
         },
         {
           "kind": "def",
           "name": "arithmeticRankOneCubicClaim",
-          "line": 257
+          "line": 258
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicWorkspace",
-          "line": 279
+          "line": 280
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicLayout",
-          "line": 290
+          "line": 291
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicCircuit",
-          "line": 304
+          "line": 305
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubicCircuit_rejectSignalRepair",
-          "line": 321
+          "line": 322
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicResource",
-          "line": 335
+          "line": 336
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicNormalizer",
-          "line": 339
+          "line": 340
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicCost",
-          "line": 343
+          "line": 344
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicResourceTuple",
-          "line": 349
+          "line": 350
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubicResource_eq",
-          "line": 357
+          "line": 358
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubicLayout_auxiliaryQubits",
-          "line": 363
+          "line": 364
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubicResourceTuple_n2",
-          "line": 369
+          "line": 370
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicClaim",
-          "line": 377
+          "line": 378
         },
         {
           "kind": "def",
           "name": "hardModeUpperAgentSchedule",
-          "line": 400
+          "line": 401
         },
         {
           "kind": "def",
           "name": "hardModeMiddleAgentSchedule",
-          "line": 402
+          "line": 403
         },
         {
           "kind": "def",
           "name": "hardModeLowerAgentSchedule",
-          "line": 404
+          "line": 405
         },
         {
           "kind": "def",
           "name": "hardModeExactStallWindow",
-          "line": 407
+          "line": 408
         },
         {
           "kind": "def",
           "name": "hardModeConstructionStallWindow",
-          "line": 413
+          "line": 414
         },
         {
           "kind": "def",
           "name": "hardModeLevelCycleBudget",
-          "line": 416
+          "line": 417
         },
         {
           "kind": "def",
           "name": "relaxedEpsilonLadder",
-          "line": 424
+          "line": 425
         },
         {
           "kind": "theorem",
           "name": "relaxedEpsilonLadder_startsWithRequested",
-          "line": 427
+          "line": 428
         },
         {
           "kind": "theorem",
-          "name": "hardModeSchedules_have_three_levels",
-          "line": 431
+          "name": "hardModeSchedules_have_four_levels",
+          "line": 432
         },
         {
           "kind": "theorem",
           "name": "hardModeLowerAgentSchedule_final",
-          "line": 438
+          "line": 439
         },
         {
           "kind": "def",
           "name": "initialExpectedPhase",
-          "line": 447
+          "line": 448
         },
         {
           "kind": "theorem",
           "name": "gridSize_pos",
-          "line": 450
+          "line": 451
         },
         {
           "kind": "theorem",
           "name": "cubicOperator_first_column",
-          "line": 453
+          "line": 454
         },
         {
           "kind": "theorem",
           "name": "cubicOperator_only_first_column",
-          "line": 457
+          "line": 458
         },
         {
           "kind": "def",
           "name": "rankOneCleanBlockContract",
-          "line": 470
+          "line": 471
         },
         {
           "kind": "def",
           "name": "arithmeticRankOneCubicCleanBlockContract",
-          "line": 477
+          "line": 478
         },
         {
           "kind": "theorem",
           "name": "rankOneCleanBlockContract_pointwise_eq",
-          "line": 485
+          "line": 486
         },
         {
           "kind": "theorem",
           "name": "arithmeticRankOneCubicCleanBlockContract_pointwise_eq",
-          "line": 505
+          "line": 506
         },
         {
           "kind": "def",
           "name": "hadamardCountingCubicCleanBlockContract",
-          "line": 514
+          "line": 515
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubicCleanBlockContract_pointwise_eq",
-          "line": 522
+          "line": 523
         },
         {
           "kind": "theorem",
           "name": "rat_cube_sq_eq_sixth",
-          "line": 530
+          "line": 531
         },
         {
           "kind": "theorem",
           "name": "cubicAmplitude_sq_eq_gridPoint_sixth",
-          "line": 537
+          "line": 538
         },
         {
           "kind": "theorem",
           "name": "cubicNormSq_sixthPowerFold",
-          "line": 542
+          "line": 543
         },
         {
           "kind": "theorem",
           "name": "gridSize_rat_ne_zero",
-          "line": 549
+          "line": 550
         },
         {
           "kind": "theorem",
           "name": "gridSize_rat_pos",
-          "line": 554
+          "line": 555
         },
         {
           "kind": "theorem",
           "name": "rat_div_cube_div_eq",
-          "line": 559
+          "line": 560
         },
         {
           "kind": "theorem",
           "name": "cubicAmplitude_div_conservativeNormalizer_eq",
-          "line": 570
+          "line": 571
         },
         {
           "kind": "theorem",
           "name": "gridSize_three_mul_eq_cube",
-          "line": 578
+          "line": 579
         },
         {
           "kind": "theorem",
           "name": "gridSize_four_mul_eq_fourth",
-          "line": 584
+          "line": 585
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubic_thresholdCountP_finRange",
-          "line": 595
+          "line": 596
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubic_thresholdFilterLength",
-          "line": 624
+          "line": 625
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubic_threshold_le_pathCapacity",
-          "line": 631
+          "line": 632
         },
         {
           "kind": "theorem",
           "name": "hadamardCountingCubic_thresholdPathCount",
-          "line": 644
+          "line": 645
         },
         {
           "kind": "theorem",
           "name": "gridPoint_nonneg",
-          "line": 652
+          "line": 653
         },
         {
           "kind": "theorem",
           "name": "gridPoint_lt_one",
-          "line": 661
+          "line": 662
         },
         {
           "kind": "theorem",
           "name": "gridPoint_le_one",
-          "line": 668
+          "line": 669
         },
         {
           "kind": "theorem",
           "name": "rat_pow_le_one_of_nonneg_le_one",
-          "line": 672
+          "line": 673
         },
         {
           "kind": "theorem",
           "name": "cubicAmplitude_sq_le_one",
-          "line": 686
+          "line": 687
         },
         {
           "kind": "theorem",
           "name": "foldl_add_le_add_length",
-          "line": 692
+          "line": 693
         },
         {
           "kind": "theorem",
           "name": "cubicNormSq_le_gridSize",
-          "line": 718
+          "line": 719
         },
         {
           "kind": "theorem",
           "name": "gridSize_rat_le_sq",
-          "line": 730
+          "line": 731
         },
         {
           "kind": "theorem",
           "name": "cubicNormSq_le_conservativeNormalizer_sq",
-          "line": 742
+          "line": 743
         },
         {
           "kind": "theorem",
           "name": "cubicNormSq_le_arithmeticCubicNormalizer_sq",
-          "line": 753
+          "line": 754
         },
         {
           "kind": "theorem",
           "name": "cubicNormSq_le_hadamardCountingCubicNormalizer_sq",
-          "line": 763
+          "line": 764
         },
         {
           "kind": "theorem",
           "name": "cubicNormSq_n1",
-          "line": 768
+          "line": 769
         },
         {
           "kind": "theorem",
           "name": "cubicNormSq_n2",
-          "line": 772
+          "line": 773
         },
         {
           "kind": "theorem",
           "name": "cubicNormSq_n3",
-          "line": 776
+          "line": 777
         },
         {
           "kind": "def",
           "name": "taskId",
-          "line": 785
+          "line": 786
         },
         {
           "kind": "def",
           "name": "cubicDiagonalOperator",
-          "line": 788
+          "line": 789
         },
         {
           "kind": "def",
           "name": "exactNormalizer",
-          "line": 794
+          "line": 795
         },
         {
           "kind": "def",
           "name": "cubicDiagonalTarget",
-          "line": 797
+          "line": 798
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalOperator",
+          "line": 819
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalTarget",
+          "line": 825
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalCleanBlockContract",
+          "line": 840
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalCleanBlockContract_pointwise_eq",
+          "line": 846
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalCleanBlock_eq_target",
+          "line": 853
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalExactCleanBlockFromPointwise",
+          "line": 867
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalExactCleanBlockFromPointwise_clean_eq_target",
+          "line": 881
+        },
+        {
+          "kind": "structure",
+          "name": "LinearDiagonalInputBEContract",
+          "line": 904
+        },
+        {
+          "kind": "def",
+          "name": "exactPayload",
+          "line": 926
+        },
+        {
+          "kind": "theorem",
+          "name": "clean_eq_target",
+          "line": 932
+        },
+        {
+          "kind": "def",
+          "name": "householderZero",
+          "line": 944
+        },
+        {
+          "kind": "def",
+          "name": "dot8",
+          "line": 947
+        },
+        {
+          "kind": "def",
+          "name": "householder8E0Minus",
+          "line": 952
+        },
+        {
+          "kind": "def",
+          "name": "householder8",
+          "line": 961
+        },
+        {
+          "kind": "theorem",
+          "name": "householder8E0Minus_normSq",
+          "line": 968
+        },
+        {
+          "kind": "theorem",
+          "name": "householder8E0Minus_normSq_ne_zero",
+          "line": 977
+        },
+        {
+          "kind": "theorem",
+          "name": "householder8_clean_entry",
+          "line": 989
+        },
+        {
+          "kind": "theorem",
+          "name": "householder8_isRationalOrthogonal",
+          "line": 1132
+        },
+        {
+          "kind": "def",
+          "name": "controlledHouseholder8SystemIndex",
+          "line": 1146
+        },
+        {
+          "kind": "def",
+          "name": "controlledHouseholder8AncillaIndex",
+          "line": 1151
+        },
+        {
+          "kind": "def",
+          "name": "controlledHouseholder8Embed",
+          "line": 1160
+        },
+        {
+          "kind": "def",
+          "name": "controlledHouseholder8DirectSum",
+          "line": 1165
+        },
+        {
+          "kind": "theorem",
+          "name": "controlledHouseholder8_branchNontrivial_of_clean",
+          "line": 1268
+        },
+        {
+          "kind": "theorem",
+          "name": "controlledHouseholder8DirectSum_clean_entry",
+          "line": 1286
+        },
+        {
+          "kind": "theorem",
+          "name": "controlledHouseholder8DirectSum_columnInner_eq_identity_of_system_ne",
+          "line": 1360
+        },
+        {
+          "kind": "theorem",
+          "name": "controlledHouseholder8DirectSum_columnInner_eq_branch",
+          "line": 1799
+        },
+        {
+          "kind": "theorem",
+          "name": "controlledHouseholder8DirectSum_rowInner_eq_branch",
+          "line": 1918
+        },
+        {
+          "kind": "theorem",
+          "name": "controlledHouseholder8DirectSum_rowInner_eq_identity_of_system_ne",
+          "line": 1972
+        },
+        {
+          "kind": "theorem",
+          "name": "controlledHouseholder8DirectSum_isRationalOrthogonal",
+          "line": 2012
+        },
+        {
+          "kind": "def",
+          "name": "LinearDiagonalRationalCompletion",
+          "line": 2061
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalFourSquareBranchVector",
+          "line": 2074
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalFourSquareBranchVector_clean",
+          "line": 2084
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalFourSquareBranchVector_unit",
+          "line": 2091
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalRationalCompletion_of_fourSquareWitnesses",
+          "line": 2114
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalRationalCompletion_exists",
+          "line": 2134
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalRationalCompletion_branchData",
+          "line": 2156
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalRationalCompletion_backendSupport",
+          "line": 2176
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalHouseholderCircuit",
+          "line": 2198
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalHouseholderResource",
+          "line": 2201
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalHouseholderResource_eq",
+          "line": 2204
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalHouseholderInputBEContract",
+          "line": 2217
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalHouseholderInputBEContract_clean_eq_target",
+          "line": 2248
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalHouseholderInputBEContract_complete",
+          "line": 2261
+        },
+        {
+          "kind": "def",
+          "name": "approxDiagonalOperator",
+          "line": 2284
+        },
+        {
+          "kind": "def",
+          "name": "ratAbs",
+          "line": 2289
+        },
+        {
+          "kind": "def",
+          "name": "IsDiagonalRatMatrix",
+          "line": 2292
+        },
+        {
+          "kind": "structure",
+          "name": "DiagonalRatOperatorNormBridge",
+          "line": 2303
+        },
+        {
+          "kind": "def",
+          "name": "ratSquaredEuclideanNorm",
+          "line": 2314
+        },
+        {
+          "kind": "def",
+          "name": "ratMatrixErrorAction",
+          "line": 2318
+        },
+        {
+          "kind": "def",
+          "name": "ratEuclideanOperatorNormErrorAtMost",
+          "line": 2331
+        },
+        {
+          "kind": "theorem",
+          "name": "ratMatrixErrorAction_eq_diagonal",
+          "line": 2453
+        },
+        {
+          "kind": "theorem",
+          "name": "ratAbs_nonneg",
+          "line": 2468
+        },
+        {
+          "kind": "theorem",
+          "name": "rat_mul_self_eq_ratAbs_mul_self",
+          "line": 2472
+        },
+        {
+          "kind": "theorem",
+          "name": "rat_mul_self_nonneg",
+          "line": 2477
+        },
+        {
+          "kind": "theorem",
+          "name": "rat_mul_self_le_of_abs_le",
+          "line": 2481
+        },
+        {
+          "kind": "theorem",
+          "name": "rat_mul_self_vector_le_of_abs_le",
+          "line": 2499
+        },
+        {
+          "kind": "def",
+          "name": "ratEuclideanDiagonalOperatorNormBridge",
+          "line": 2509
+        },
+        {
+          "kind": "theorem",
+          "name": "ratEuclideanOperatorNormErrorAtMost_not_vacuous",
+          "line": 2525
+        },
+        {
+          "kind": "theorem",
+          "name": "approxDiagonalOperator_isDiagonal",
+          "line": 2539
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicDiagonalOperator_isDiagonal",
+          "line": 2546
+        },
+        {
+          "kind": "def",
+          "name": "approxDiagonalEntrywiseErrorAtMost",
+          "line": 2558
+        },
+        {
+          "kind": "theorem",
+          "name": "approxDiagonalOperator_entrywise_error",
+          "line": 2570
+        },
+        {
+          "kind": "theorem",
+          "name": "approxDiagonalOperator_operatorNorm_error_of_contract",
+          "line": 2597
+        },
+        {
+          "kind": "theorem",
+          "name": "approxDiagonalOperator_operatorNorm_error",
+          "line": 2619
+        },
+        {
+          "kind": "def",
+          "name": "rationalCircleBranchVector",
+          "line": 2635
+        },
+        {
+          "kind": "theorem",
+          "name": "rationalCircleBranchVector_clean",
+          "line": 2641
+        },
+        {
+          "kind": "theorem",
+          "name": "rationalCircleBranchVector_unit",
+          "line": 2645
+        },
+        {
+          "kind": "theorem",
+          "name": "controlledHouseholder8DirectSum_clean_entry_of_branchValue",
+          "line": 2661
+        },
+        {
+          "kind": "def",
+          "name": "cubicDiagonalFourSquareBranchVector",
+          "line": 2709
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicDiagonalFourSquareBranchVector_clean",
+          "line": 2719
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicDiagonalFourSquareBranchVector_unit",
+          "line": 2728
+        },
+        {
+          "kind": "def",
+          "name": "CubicDiagonalRationalCompletion",
+          "line": 2746
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicDiagonalRationalCompletion_of_fourSquareWitnesses",
+          "line": 2752
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicDiagonalRationalCompletion_exists",
+          "line": 2767
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicAmplitude_lt_one",
+          "line": 2784
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicDiagonalRationalCompletion_backendSupport",
+          "line": 2800
+        },
+        {
+          "kind": "structure",
+          "name": "CubicDiagonalExactBEContract",
+          "line": 2828
+        },
+        {
+          "kind": "def",
+          "name": "cubicDiagonalHouseholderExactBEContract",
+          "line": 2838
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicDiagonalHouseholderExactBEContract_clean_eq_target",
+          "line": 2867
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicDiagonalHouseholderExactBEContract_complete",
+          "line": 2879
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonal_cube_eq_cubicDiagonalOperator",
+          "line": 3001
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalCubicProductCertificate",
+          "line": 3022
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalCubicProductCertificate_target_eq",
+          "line": 3030
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalCubicProductCertificate_clean_eq_target",
+          "line": 3040
+        },
+        {
+          "kind": "def",
+          "name": "cubicQSVTPolynomial",
+          "line": 3050
+        },
+        {
+          "kind": "theorem",
+          "name": "cubicQSVTPolynomial_gridPoint_abs_le_one",
+          "line": 3053
+        },
+        {
+          "kind": "structure",
+          "name": "CubicQSVTLocalSideConditions",
+          "line": 3064
+        },
+        {
+          "kind": "def",
+          "name": "cubicQSVTLocalSideConditions",
+          "line": 3073
+        },
+        {
+          "kind": "theorem",
+          "name": "remain",
+          "line": 3089
+        },
+        {
+          "kind": "structure",
+          "name": "CubicQSVTExternalSemantics",
+          "line": 3091
+        },
+        {
+          "kind": "theorem",
+          "name": "output_eq_cubic_target",
+          "line": 3112
+        },
+        {
+          "kind": "def",
+          "name": "consumerContract",
+          "line": 3120
         },
         {
           "kind": "def",
           "name": "amplitudeOracleLayout",
-          "line": 812
+          "line": 3138
         },
         {
           "kind": "def",
           "name": "amplitudeOracleCircuit",
-          "line": 818
+          "line": 3144
         },
         {
           "kind": "def",
           "name": "amplitudeOracleResource",
-          "line": 822
+          "line": 3148
         },
         {
           "kind": "def",
           "name": "amplitudeOracleCost",
-          "line": 826
+          "line": 3152
         },
         {
           "kind": "def",
           "name": "amplitudeOracleResourceTuple",
-          "line": 831
+          "line": 3157
         },
         {
           "kind": "theorem",
           "name": "amplitudeOracleResource_eq",
-          "line": 838
+          "line": 3164
         },
         {
           "kind": "theorem",
           "name": "amplitudeOracleResourceTuple_eq",
-          "line": 842
+          "line": 3168
         },
         {
           "kind": "def",
           "name": "diagonalCleanBlockContract",
-          "line": 849
+          "line": 3175
         },
         {
           "kind": "theorem",
           "name": "diagonalCleanBlockContract_pointwise_eq",
-          "line": 855
+          "line": 3181
         },
         {
           "kind": "theorem",
           "name": "primitiveOracleCleanBlock_eq_target",
-          "line": 862
+          "line": 3188
         },
         {
           "kind": "theorem",
           "name": "cubicAmplitude_le_one",
-          "line": 870
+          "line": 3196
         },
         {
           "kind": "theorem",
           "name": "cubicAmplitude_nonneg",
-          "line": 877
+          "line": 3203
         },
         {
           "kind": "def",
           "name": "primitiveAmplitudeOracleDimension",
-          "line": 884
+          "line": 3210
         },
         {
           "kind": "def",
           "name": "primitiveAmplitudeOracleSemanticContract",
-          "line": 915
+          "line": 3241
         },
         {
           "kind": "theorem",
           "name": "primitiveAmplitudeOracleSemanticContract_unitary",
-          "line": 922
+          "line": 3248
         },
         {
           "kind": "theorem",
           "name": "primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target",
-          "line": 927
+          "line": 3253
         },
         {
           "kind": "def",
           "name": "expandedAmplitudeOracleLayout",
-          "line": 942
+          "line": 3268
         },
         {
           "kind": "theorem",
           "name": "expandedAmplitudeOracleLayout_auxiliaryQubits",
-          "line": 947
+          "line": 3273
         },
         {
           "kind": "theorem",
           "name": "expandedAmplitudeOracleNormalizer_eq",
-          "line": 954
+          "line": 3280
         },
         {
           "kind": "structure",
           "name": "StandardRyCleanEntryScalarTier",
-          "line": 967
+          "line": 3293
         },
         {
           "kind": "def",
           "name": "expandedRyCleanEntryForCubicAmplitudes",
-          "line": 982
+          "line": 3308
         },
         {
           "kind": "theorem",
           "name": "expandedRyCleanEntryForCubicAmplitudes_of_standardTier",
-          "line": 995
+          "line": 3321
         },
         {
           "kind": "structure",
           "name": "ExpandedCubicArithmeticBackend",
-          "line": 1020
+          "line": 3346
         },
         {
           "kind": "def",
           "name": "symbolicExpandedCubicArithmeticBackend",
-          "line": 1035
+          "line": 3361
         },
         {
           "kind": "def",
           "name": "expandedArithmeticBackendComputesCubicAmplitude",
-          "line": 1051
+          "line": 3377
         },
         {
           "kind": "theorem",
           "name": "symbolicExpandedCubicArithmeticBackend_computes",
-          "line": 1065
+          "line": 3391
         },
         {
           "kind": "def",
           "name": "expandedArithmeticBackendBridge",
-          "line": 1080
+          "line": 3406
         },
         {
           "kind": "theorem",
           "name": "expandedArithmeticComputesCubicAmplitude_of_backendBridge",
-          "line": 1086
+          "line": 3412
         },
         {
           "kind": "theorem",
           "name": "expandedArithmeticBackendBridge_iff_of_computes",
-          "line": 1101
+          "line": 3427
         },
         {
           "kind": "theorem",
           "name": "expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge",
-          "line": 1122
+          "line": 3448
         },
         {
           "kind": "theorem",
           "name": "symbolicExpandedCubicArithmeticBackend_bridge_iff",
-          "line": 1142
+          "line": 3468
         },
         {
           "kind": "theorem",
           "name": "fixedDenomCubicPayload_lt_capacity",
-          "line": 1155
+          "line": 3481
         },
         {
           "kind": "theorem",
           "name": "fixedDenomCubicAmplitude_eq",
-          "line": 1167
+          "line": 3493
         },
         {
           "kind": "def",
           "name": "fixedDenomCubicArithmeticBackend",
-          "line": 1183
+          "line": 3509
         },
         {
           "kind": "theorem",
           "name": "fixedDenomCubicArithmeticBackend_computes",
-          "line": 1201
+          "line": 3527
         },
         {
           "kind": "def",
           "name": "expandedArithmeticComputesCubicAmplitudeTransparent",
-          "line": 1220
+          "line": 3546
         },
         {
           "kind": "theorem",
           "name": "fixedDenomCubicArithmeticRouteTransparent",
-          "line": 1232
+          "line": 3558
         },
         {
           "kind": "theorem",
           "name": "fixedDenomCubicArithmeticBackend_bridge_iff",
-          "line": 1246
+          "line": 3572
         },
         {
           "kind": "def",
           "name": "expandedControlledRyUsesCubicAngleTransparent",
-          "line": 1271
+          "line": 3597
         },
         {
           "kind": "theorem",
           "name": "fixedDenomControlledRyRouteTransparent",
-          "line": 1282
+          "line": 3608
         },
         {
           "kind": "def",
           "name": "expandedControlledRyBackendBridge",
-          "line": 1296
+          "line": 3622
         },
         {
           "kind": "theorem",
           "name": "expandedControlledRyUsesCubicAngle_of_backendBridge",
-          "line": 1302
+          "line": 3628
         },
         {
           "kind": "theorem",
           "name": "expandedControlledRyBackendBridge_iff_of_standardTier",
-          "line": 1318
+          "line": 3644
         },
         {
           "kind": "structure",
           "name": "ExpandedControlledRyWorkspaceReadonlyWitness",
-          "line": 1340
+          "line": 3666
         },
         {
           "kind": "def",
           "name": "expandedControlledRyWorkspaceReadonlyTransparent",
-          "line": 1360
+          "line": 3686
         },
         {
           "kind": "structure",
           "name": "ExpandedArithmeticCleanUncomputeWitness",
-          "line": 1377
+          "line": 3703
         },
         {
           "kind": "def",
           "name": "expandedWorkspaceCleanUncomputedTransparent",
-          "line": 1405
+          "line": 3731
         },
         {
           "kind": "theorem",
           "name": "expandedWorkspaceCleanUncomputedTransparent_of_witness",
-          "line": 1409
+          "line": 3735
         },
         {
           "kind": "def",
           "name": "fixedDenomCubicComputeStep",
-          "line": 1457
+          "line": 3783
         },
         {
           "kind": "def",
           "name": "fixedDenomCubicUncomputeStep",
-          "line": 1465
+          "line": 3791
         },
         {
           "kind": "theorem",
           "name": "fixedDenomCubicComputeStep_matches_backend_on_clean",
-          "line": 1472
+          "line": 3798
         },
         {
           "kind": "theorem",
           "name": "fixedDenomCubicUncomputeStep_after_compute",
-          "line": 1481
+          "line": 3807
         },
         {
           "kind": "def",
           "name": "fixedDenomExpandedArithmeticCleanUncomputeWitness",
-          "line": 1501
+          "line": 3827
         },
         {
           "kind": "theorem",
           "name": "fixedDenomWorkspaceCleanUncomputedTransparent",
-          "line": 1520
+          "line": 3846
+        },
+        {
+          "kind": "structure",
+          "name": "LinearDiagonalValueBackend",
+          "line": 3860
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalValueBackendComputesGridPoint",
+          "line": 3874
+        },
+        {
+          "kind": "def",
+          "name": "fixedDenomLinearDiagonalValueBackend",
+          "line": 3889
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomLinearDiagonalValueBackend_computes",
+          "line": 3901
+        },
+        {
+          "kind": "structure",
+          "name": "LinearDiagonalValueCleanUncomputeWitness",
+          "line": 3919
+        },
+        {
+          "kind": "def",
+          "name": "linearDiagonalWorkspaceCleanUncomputedTransparent",
+          "line": 3941
+        },
+        {
+          "kind": "theorem",
+          "name": "linearDiagonalWorkspaceCleanUncomputedTransparent_of_witness",
+          "line": 3945
+        },
+        {
+          "kind": "def",
+          "name": "fixedDenomLinearDiagonalComputeStep",
+          "line": 3952
+        },
+        {
+          "kind": "def",
+          "name": "fixedDenomLinearDiagonalUncomputeStep",
+          "line": 3960
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomLinearDiagonalComputeStep_matches_backend_on_clean",
+          "line": 3967
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomLinearDiagonalUncomputeStep_after_compute",
+          "line": 3976
+        },
+        {
+          "kind": "def",
+          "name": "fixedDenomLinearDiagonalCleanUncomputeWitness",
+          "line": 3997
+        },
+        {
+          "kind": "theorem",
+          "name": "fixedDenomLinearDiagonalWorkspaceCleanUncomputedTransparent",
+          "line": 4016
         },
         {
           "kind": "def",
           "name": "expandedAmplitudeOracleCleanBlockContract",
-          "line": 1539
+          "line": 4035
         },
         {
           "kind": "theorem",
           "name": "expandedAmplitudeOracleCleanBlockContract_diagonal",
-          "line": 1548
+          "line": 4044
         },
         {
           "kind": "theorem",
           "name": "expandedAmplitudeOracleCleanBlockContract_eq_target",
-          "line": 1555
+          "line": 4051
         },
         {
           "kind": "def",
           "name": "expandedAmplitudeOracleSemanticContract",
-          "line": 1567
+          "line": 4063
         },
         {
           "kind": "theorem",
           "name": "expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target",
-          "line": 1572
+          "line": 4068
         },
         {
           "kind": "def",
           "name": "primitiveAmplitudeOracleCandidate",
-          "line": 1584
+          "line": 4080
         },
         {
           "kind": "theorem",
           "name": "primitiveAmplitudeOracleCandidate_costTuple_eq",
-          "line": 1601
+          "line": 4097
         },
         {
           "kind": "theorem",
           "name": "primitiveAmplitudeOracleCandidate_unitary_from_contract",
-          "line": 1612
+          "line": 4108
         },
         {
           "kind": "theorem",
           "name": "primitiveAmplitudeOracleCandidate_block_from_contract",
-          "line": 1618
+          "line": 4114
         },
         {
           "kind": "def",
           "name": "primitiveAmplitudeOracleVerified",
-          "line": 1632
+          "line": 4128
         },
         {
           "kind": "def",
           "name": "amplitudeOracleClaim",
-          "line": 1640
+          "line": 4136
         }
       ]
     },

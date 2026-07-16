@@ -633,6 +633,56 @@ example :
     CubicStatePreparation.cubicAmplitude 2 ⟨3, by native_decide⟩ ≤ 1 :=
   CubicDiagonalOracle.cubicAmplitude_le_one 2 ⟨3, by native_decide⟩
 
+example (n : Nat) : CubicDiagonalOracle.LinearDiagonalRationalCompletion n :=
+  CubicDiagonalOracle.linearDiagonalRationalCompletion_exists n
+
+example (n : Nat) :
+    Matrix.PointwiseEq
+      (CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract n).exactPayload.clean
+      (CubicDiagonalOracle.linearDiagonalTarget n).operator :=
+  CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_clean_eq_target n
+
+example (n : Nat) :
+    BlockEncodingClassics.IsRationalOrthogonal
+        (CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract n).U ∧
+      Matrix.PointwiseEq
+        (BlockEncodingClassics.cleanBlockBy
+          (CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract n).embed
+          (CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract n).U)
+        (CubicDiagonalOracle.linearDiagonalTarget n).operator ∧
+      (CubicDiagonalOracle.linearDiagonalTarget n).normalizer = 1 ∧
+      (CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract n).resource =
+        Resource.ofCountsWithDepth 0 0 1 0 1 :=
+  CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete n
+
+example (n : Nat) :
+    Matrix.PointwiseEq
+      (CubicDiagonalOracle.linearDiagonalCubicProductCertificate n).cleanBlock
+      (CubicDiagonalOracle.cubicDiagonalTarget n).operator :=
+  CubicDiagonalOracle.linearDiagonalCubicProductCertificate_clean_eq_target n
+
+example (n : Nat) :
+    BlockEncodingClassics.IsRationalOrthogonal
+      (CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract n).exactPayload.U :=
+  (CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract n).unitaryProof
+
+example (n : Nat) :
+    Matrix.PointwiseEq
+      (CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract n).exactPayload.clean
+      (CubicDiagonalOracle.cubicDiagonalTarget n).operator :=
+  CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_clean_eq_target n
+
+example (n : Nat) :
+    BlockEncodingClassics.IsRationalOrthogonal
+        (CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract n).exactPayload.U ∧
+      Matrix.PointwiseEq
+        (CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract n).exactPayload.clean
+        (CubicDiagonalOracle.cubicDiagonalTarget n).operator ∧
+      (CubicDiagonalOracle.cubicDiagonalTarget n).normalizer = 1 ∧
+      (CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract n).resource =
+        Resource.ofCountsWithDepth 0 0 1 0 1 :=
+  CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete n
+
 -- CircuitSemantics tests: first matrix-semantics backend layer
 
 example : qubitDim 3 = 8 := rfl

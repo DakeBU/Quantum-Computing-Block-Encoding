@@ -136,6 +136,23 @@ run both in isolated workspaces and compare the certified population curves.
 5. Export Qiskit, QuantumKatas-style, or QASM artifacts for the certified
    finite instantiation.
 
+![ABEIS evolution and acceptance pipeline](docs/assets/abeis_evolution_acceptance.svg)
+
+For exploratory tasks that declare `Population gate: required`, middle must
+write typed candidate actions (`propose`, `retain`, `retire`, `mutate`, or
+`crossover`) and upper/reviewer must select one active candidate before lower
+proof work runs.  A mutation names one parent; a crossover names two.  If the
+selected route leaves Lean evidence unchanged, the next cycle returns to
+population maintenance before another lower call.
+
+The deterministic cold-start audit replays this transition for both state
+preparation and operator block encoding. It checks that no lower worker runs
+before selection, stagnation returns to typed evolution, and a changed
+population reopens exactly one ordered lower attempt; see
+[`cold-start-population-audit.json`](reports/ABEIS-CONTROL-V5/cold-start-population-audit.json).
+This is a controller invariant test, not a claim that arbitrary synthesis
+problems are mathematically complete.
+
 ![Gradual ABEIS controller](docs/assets/abeis_control_ladder.svg)
 
 The controller starts small.  An upper or reviewer packet may increase the
@@ -365,12 +382,31 @@ Current status:
 - no final approximate state-preparation or block-encoding candidate has been
   promoted yet.
 
-Human-readable diagnostics:
+State-preparation diagnostics:
 
 ```text
 reports/cubic-stateprep/latest.md
 reports/cubic-stateprep/zh_summary.md
 ```
+
+### Cubic diagonal hard arms
+
+The separate operator target
+
+```text
+D_n = sum_j (j / 2^n)^3 |j><j|
+```
+
+is now closed symbolically by the rational Householder family.  The hinted arm
+also certifies the linear input `O_0 = diag(j / 2^n)` and proves the local
+identity `O_0^3 = D_n`; QSVT remains an optional resource-optimization backend,
+not an open correctness dependency.  Final task completion requires both the
+Lean roots and the declared finite executable gate.
+
+| Arm | Lean roots | Finite Qiskit/QASM3 acceptance (`n=2`) |
+| --- | --- | --- |
+| cold | exact cubic clean block, rational orthogonality, `alpha=1`, resource tuple | passed; clean-block error `0`, unitarity error `2.3e-16`, parsed QASM3 |
+| hinted | exact linear `O_0` root plus exact cubic root | passed; both clean-block errors `0`, maximum unitarity error `2.3e-16`, parsed QASM3 |
 
 ## Why Lean For State Preparation And Block Encodings
 
@@ -422,6 +458,8 @@ Current Qiskit exports:
   exported from the no-Pro Lean-certified cold-clean checkpoint.
 - `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py`: finite
   dense baseline for small `n`; useful evidence, not a symbolic certificate.
+- `tools/export_hard_cubic_householder.py`: deterministic post-Lean exporter
+  shared by the cold and hinted cubic diagonal hard arms.
 
 Current executable-export self-tests:
 
@@ -430,6 +468,8 @@ Current executable-export self-tests:
 | `QBE-OP-OPTCTRL-001` | `executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py` | passed: clean block error `0`, unitary error `0` | the exported four-qubit Qiskit circuit matches the Lean-certified concrete clean block and resources `(4,2,1,0)` |
 | `QBE-OP-OPTCTRL-COLD-CLEAN-001` | `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py` | passed: clean block error `0`, unitary error `0`, export error `0` | the no-Pro finite permutation export matches the Lean-certified clean block and resources `(4,4,1,0)` |
 | `QBE-OP-CUBIC-STATEPREP-001` | `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py` | passed for finite `n=3`; clean block error about `2.8e-17` | a dense fixed-instance baseline only; not a symbolic family certificate |
+| `QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001` | generated Qiskit acceptance JSON and parsed QASM3 | passed for finite `n=2`; clean block error `0` | post-Lean check of the direct rational Householder family |
+| `QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001` | generated linear/cubic Qiskit acceptance JSON and parsed QASM3 | passed for finite `n=2`; both clean block errors `0` | checks the hinted `O_0` supplier, the cubic output, and `diag(x)^3=diag(x^3)` |
 
 ## Why The ABEIS Harness
 
@@ -567,8 +607,9 @@ python3 tools/qbe.py sleep-run QBE-OP-001 \
 
 `sleep-run` uses adaptive capacity by default: it starts with a small queue
 (upper director, middle coordinator, one lower worker, reviewer/build gate) and
-expands upper, middle, or lower capacity only after upper/reviewer memory
-records stagnation.  For state-preparation and operator-construction tasks, the default
+expands upper, middle, or lower capacity only after a current signed
+upper/reviewer decision identifies that layer's bottleneck.  For
+state-preparation and operator-construction tasks, the default
 `--exact-stall-cycles 2` allows the controller to open Scenario 2 approximate
 search after a short exact-search patience budget when no Lean-certified exact
 candidate exists.  Add `--fixed-capacity` only for ablation runs where every
@@ -580,6 +621,12 @@ per task; middle agents replace that table instead of stacking contradictory
 human intervention.  Exit code 78 means the configured model provider rejected
 usage, authentication, permission, or model access, so launchers stop instead
 of spending time in an unattended retry loop.
+
+Tasks may additionally declare `Executable acceptance command` and
+`Executable acceptance artifacts`.  In that case a compiled Lean root enters
+`post_lean_export`; `complete` is unreachable until the command exits zero and
+all artifacts exist under the same command/artifact digest.  An unchanged
+failed exporter is not rerun.
 
 Choose a harness profile explicitly when you want controlled comparisons:
 

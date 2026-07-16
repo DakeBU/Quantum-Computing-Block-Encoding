@@ -1,0 +1,93 @@
+{
+  "invariant": "no lower call before selection; stagnation returns to typed evolution; changed population reopens one ordered lower attempt",
+  "passed": true,
+  "rows": [
+    {
+      "active_after_evolution": [
+        "stateprep-child"
+      ],
+      "actual": {
+        "evolved_direction": "stateprep-child",
+        "evolved_mode": "execute",
+        "initial_mode": "population",
+        "selected_mode": "execute",
+        "stalled_mode": "population"
+      },
+      "expected": {
+        "evolved_direction": "stateprep-child",
+        "evolved_mode": "execute",
+        "initial_mode": "population",
+        "selected_mode": "execute",
+        "stalled_mode": "population"
+      },
+      "lower_scheduling": {
+        "evolved": [
+          "lower1",
+          "lower2",
+          "reviewer"
+        ],
+        "initial": [
+          "upper",
+          "middle",
+          "reviewer"
+        ],
+        "selected": [
+          "lower1",
+          "lower2",
+          "reviewer"
+        ],
+        "stalled": [
+          "upper",
+          "middle",
+          "reviewer"
+        ]
+      },
+      "passed": true,
+      "task_kind": "statePreparation"
+    },
+    {
+      "active_after_evolution": [
+        "blockencoding-child"
+      ],
+      "actual": {
+        "evolved_direction": "blockencoding-child",
+        "evolved_mode": "execute",
+        "initial_mode": "population",
+        "selected_mode": "execute",
+        "stalled_mode": "population"
+      },
+      "expected": {
+        "evolved_direction": "blockencoding-child",
+        "evolved_mode": "execute",
+        "initial_mode": "population",
+        "selected_mode": "execute",
+        "stalled_mode": "population"
+      },
+      "lower_scheduling": {
+        "evolved": [
+          "lower1",
+          "lower2",
+          "reviewer"
+        ],
+        "initial": [
+          "upper",
+          "middle",
+          "reviewer"
+        ],
+        "selected": [
+          "lower1",
+          "lower2",
+          "reviewer"
+        ],
+        "stalled": [
+          "upper",
+          "middle",
+          "reviewer"
+        ]
+      },
+      "passed": true,
+      "task_kind": "operatorBlockEncoding"
+    }
+  ],
+  "scope": "deterministic controller replay; not a mathematical synthesis benchmark"
+}

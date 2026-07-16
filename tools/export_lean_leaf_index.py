@@ -23,6 +23,7 @@ LEAN_FILES = [
     "QuantumBlockEncoding/Resources.lean",
     "QuantumBlockEncoding/Circuit.lean",
     "QuantumBlockEncoding/BlockEncoding.lean",
+    "QuantumBlockEncoding/StatePreparation.lean",
     "QuantumBlockEncoding/CircuitSemantics.lean",
     "QuantumBlockEncoding/BlockEncodingClassics.lean",
     "QuantumBlockEncoding/MainCase.lean",
@@ -36,7 +37,10 @@ LEAN_FILES = [
     "QuantumBlockEncoding/Automation.lean",
 ]
 
-DECL_RE = re.compile(r"^(?:@[^\n]+\s+)?(def|theorem|lemma|structure|class|inductive|abbrev)\s+([A-Za-z0-9_'.]+)")
+DECL_RE = re.compile(
+    r"^(?:@[^\n]+\s+)?(?:noncomputable\s+)?"
+    r"(def|theorem|lemma|structure|class|inductive|abbrev)\s+([A-Za-z0-9_'.]+)"
+)
 
 
 @dataclass
@@ -94,6 +98,7 @@ def main() -> None:
         "QuantumBlockEncoding/Resources.lean": "resource and schedule accounting",
         "QuantumBlockEncoding/Circuit.lean": "gate/circuit syntax",
         "QuantumBlockEncoding/BlockEncoding.lean": "target, candidate, verified records",
+        "QuantumBlockEncoding/StatePreparation.lean": "first-column state-preparation certificates",
         "QuantumBlockEncoding/CircuitSemantics.lean": "evaluated matrix/path and extraction lemmas",
         "QuantumBlockEncoding/BlockEncodingClassics.lean": "classic reusable block-encoding leaves",
         "QuantumBlockEncoding/MainCase.lean": "main transfer-operator certificates",

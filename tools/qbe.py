@@ -20,9 +20,11 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as _dt
+import importlib.metadata as importlib_metadata
 import json
 import os
 import re
+import shlex
 import signal
 import shutil
 import subprocess
@@ -34,28 +36,40 @@ try:
     from qbe_control import (
         CONTROL_STOP_EXIT_CODE,
         CycleDecision,
+        classify_leaves,
         content_digest,
         decide_cycle,
+        infer_acceptance_anchors,
         infer_epsilon_ladder,
+        infer_executable_acceptance,
+        infer_population_gate,
+        infer_route_lock,
         latest_frontier_rows,
         latest_obligation_rows,
         load_control_state,
         prompt_budget_violation,
         reduce_latest_feedback,
+        summarize_candidate_population,
         write_control_state,
     )
 except ModuleNotFoundError:
     from tools.qbe_control import (
         CONTROL_STOP_EXIT_CODE,
         CycleDecision,
+        classify_leaves,
         content_digest,
         decide_cycle,
+        infer_acceptance_anchors,
         infer_epsilon_ladder,
+        infer_executable_acceptance,
+        infer_population_gate,
+        infer_route_lock,
         latest_frontier_rows,
         latest_obligation_rows,
         load_control_state,
         prompt_budget_violation,
         reduce_latest_feedback,
+        summarize_candidate_population,
         write_control_state,
     )
 
@@ -126,6 +140,10 @@ MANUAL_MULTIAGENT_DIR = ROOT / "runs" / "manual-multiagent"
 AGENT_PROFILE_DIR = ROOT / "agent-profiles"
 
 AGENT_ROLES = ("upper", "middle", "lower", "reviewer")
+INVALID_LEAN_TARGET_WORDS = {
+    "lean", "planned", "none", "theorem", "lemma", "definition", "definitions",
+    "target", "external", "contract", "no", "and", "or", "plus", "five",
+}
 TRIAL_KINDS = ("plan", "attempt", "build", "review", "proposal", "compression", "handoff")
 TRIAL_STATUSES = ("queued", "running", "blocked", "failed", "compiled", "accepted", "rejected")
 DEFAULT_LOWER_COUNT = 3
@@ -238,6 +256,20 @@ def append_line(path: Path, line: str) -> None:
 
 
 def append_jsonl(path: Path, record: dict) -> None:
+    changed_files = record.get("changed_files")
+    if isinstance(changed_files, list):
+        unique_files = sorted({str(item) for item in changed_files})
+        record = dict(record)
+        record["changed_files_count"] = len(unique_files)
+        record["changed_files_digest"] = record.get(
+            "changed_files_digest", content_digest(unique_files)
+        )
+        if len(unique_files) > 40:
+            record["changed_files"] = unique_files[:40] + [
+                f"... {len(unique_files) - 40} additional changed files omitted"
+            ]
+        else:
+            record["changed_files"] = unique_files
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(record, sort_keys=True, ensure_ascii=False) + "\n")
@@ -931,13 +963,32 @@ def cmd_init(_: argparse.Namespace) -> int:
     return 0
 
 
+def lean_workspace_digest() -> str:
+    """Digest every Lean/build-input file covered by the project check."""
+
+    paths = sorted((ROOT / "QuantumBlockEncoding").rglob("*.lean"))
+    paths += sorted((ROOT / "Tests").rglob("*.lean"))
+    paths += sorted(ROOT.glob("*.lean"))
+    paths += [ROOT / "lakefile.lean", ROOT / "lean-toolchain", ROOT / "lake-manifest.json"]
+    return content_digest(
+        [
+            {"path": rel(path), "text": read_text(path)}
+            for path in paths
+            if path.exists()
+        ]
+    )
+
+
 def cmd_check(_: argparse.Namespace) -> int:
     code = run(["lake", "build"])
-    if code != 0:
-        return code
-    code = run(["lake", "build", "Tests"])
+    if code == 0:
+        code = run(["lake", "build", "Tests"])
     state = load_state()
-    state["last_check"] = {"timestamp": now_stamp(), "exit_code": code}
+    state["last_check"] = {
+        "timestamp": now_stamp(),
+        "exit_code": code,
+        "lean_workspace_digest": lean_workspace_digest(),
+    }
     save_state(state)
     return code
 
@@ -1708,6 +1759,8 @@ def lean_index_files_for_task(task_text: str) -> list[Path]:
     if "QBE-OP-CUBIC-STATEPREP-001" in task_text or "cubic" in haystack or "state-preparation" in haystack:
         return [
             ROOT / "QuantumBlockEncoding" / "CubicStatePreparation.lean",
+            ROOT / "QuantumBlockEncoding" / "StatePreparation.lean",
+            ROOT / "QuantumBlockEncoding" / "BlockEncodingClassics.lean",
             ROOT / "QuantumBlockEncoding" / "BlockEncoding.lean",
             ROOT / "QuantumBlockEncoding" / "Core.lean",
             ROOT / "QuantumBlockEncoding" / "Circuit.lean",
@@ -1762,6 +1815,86 @@ def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, st
                 }
             )
     return rows[-limit:]
+
+
+def reusable_memory_card_rows(task_text: str, limit: int = 8) -> list[dict[str, object]]:
+    """Rank a compact set of reusable cards without replaying the full wiki."""
+
+    card_roots = [
+        ROOT / "research-wiki" / "block-encoding-library" / "cards",
+        ROOT / "research-wiki" / "state-preparation-library",
+    ]
+    paths = [
+        path
+        for root in card_roots
+        if root.exists()
+        for path in root.glob("*.md")
+        if path.is_file()
+    ]
+    query = set(re.findall(r"[a-z0-9]+", task_text.lower()))
+    stop = {
+        "the", "and", "for", "with", "from", "this", "that", "task", "lean",
+        "proof", "status", "active", "current", "exact", "operator", "target",
+    }
+    query -= stop
+    lowered = task_text.lower()
+    compiled_names: set[str] = set()
+    for lean_path in lean_index_files_for_task(task_text):
+        if not lean_path.exists():
+            continue
+        for match in re.finditer(
+            r"(?m)^\s*(?:noncomputable\s+)?(?:def|abbrev|structure|class|theorem|lemma)\s+"
+            r"([A-Za-z_][A-Za-z0-9_'.]*)",
+            read_text(lean_path),
+        ):
+            compiled_names.add(match.group(1).rsplit(".", 1)[-1])
+    rows: list[dict[str, object]] = []
+    for path in paths:
+        text = read_text(path)
+        searchable = (path.stem + "\n" + text[:5000]).lower()
+        tokens = set(re.findall(r"[a-z0-9]+", searchable)) - stop
+        score = len(query & tokens)
+        stem = path.stem.lower()
+        if any(marker in lowered for marker in ("cubic", "x^3", "polynomial", "qsvt")):
+            if "arithmetic.product" in stem:
+                score += 160
+            if "qsvt.consumer" in stem:
+                score += 100
+            if "rationalhouseholder" in stem:
+                score += 180
+        if "diagonal" in lowered and "entrywiseexact" in stem:
+            score += 80
+        if any(marker in lowered for marker in ("state preparation", "state-preparation", "first column")):
+            if "route-selector" in stem:
+                score += 200
+            if "core.firstcolumn" in stem:
+                score += 240
+        anchors = []
+        for token in re.findall(r"`([A-Za-z_][A-Za-z0-9_'.]+)`", text):
+            if token not in anchors:
+                anchors.append(token)
+            if len(anchors) >= 12:
+                break
+        compiled_anchors = [
+            anchor
+            for anchor in anchors
+            if anchor.rsplit(".", 1)[-1] in compiled_names
+        ]
+        if compiled_anchors:
+            score += 20 + 4 * len(compiled_anchors)
+        rows.append(
+            {
+                "path": rel(path),
+                "score": score,
+                "lean_anchors": anchors,
+                "compiled_lean_anchors": compiled_anchors,
+                "missing_lean_anchors": [
+                    anchor for anchor in anchors if anchor not in compiled_anchors
+                ],
+            }
+        )
+    ranked = sorted(rows, key=lambda row: (-int(row["score"]), str(row["path"])))
+    return [row for row in ranked if int(row["score"]) > 0][:limit]
 
 
 def infer_blueprint_stage(task_text: str, proof_obligation_text: str) -> str:
@@ -2060,6 +2193,7 @@ def blueprint_status_state(task_id: str) -> dict:
         )
     if any(row["exists"] for row in source_rows):
         source_rows = [row for row in source_rows if row["exists"]]
+    acceptance_anchors = infer_acceptance_anchors(task_text)
     return {
         "task_id": task_id,
         "title": title,
@@ -2073,6 +2207,11 @@ def blueprint_status_state(task_id: str) -> dict:
         "dynamic_leaf_queue": leaves,
         "open_obligation_signals": obligation_rows,
         "lean_declarations": declarations,
+        "reusable_memory_cards": reusable_memory_card_rows(task_text),
+        "acceptance_anchors": list(acceptance_anchors),
+        "verified_acceptance_anchors": list(
+            verified_task_acceptance_anchors(task_id, task_text=task_text)
+        ),
         "trial_counts_by_role": role_counts,
         "trial_counts_by_status": status_counts,
         "local_paper_sources": source_rows,
@@ -2114,6 +2253,8 @@ def blueprint_status_text(state: dict) -> str:
             f"- Stage: {state['stage']}",
             f"- Latest cycle: `{state['latest_cycle']}`",
             f"- Blueprint: `{state['blueprint_path']}`",
+            f"- Lean acceptance anchors: {', '.join(f'`{name}`' for name in state.get('acceptance_anchors', [])) or 'none declared'}",
+            f"- Verified root anchors: {', '.join(f'`{name}`' for name in state.get('verified_acceptance_anchors', [])) or 'none'}",
             "",
             "## Dynamic Leaf Queue",
             "",
@@ -3504,6 +3645,12 @@ def recent_verifier_feedback(task_id: str, limit: int = 8) -> list[dict[str, obj
                 "search_decision": feedback.get("search_decision", ""),
                 "epsilon_next": feedback.get("epsilon_next", ""),
                 "requested_epsilon": feedback.get("requested_epsilon", ""),
+                "candidate_id": feedback.get("candidate_id", ""),
+                "candidate_family": feedback.get("candidate_family", ""),
+                "population_action": feedback.get("population_action", ""),
+                "parent_ids": feedback.get("parent_ids", ""),
+                "fitness_evidence": feedback.get("fitness_evidence", ""),
+                "selection_reason": feedback.get("selection_reason", ""),
             }
         )
         if len(feedback_rows) >= limit * 5:
@@ -3568,6 +3715,26 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
     ]
     open_technical = [row for row in technical_rows if row.get("lean_status") != "formalized"]
     source = ghl2025_source_main_tex(task_text)
+    controller_state = load_control_state(control_state_path(task_id))
+    lower_tasks = [
+        {
+            "role": "lower-1-natural-language-proof-architect",
+            "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
+            "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
+        },
+        {
+            "role": "lower-2-lean-implementation-worker",
+            "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
+            "must_write": "Lean declaration plus trial-log verifier-feedback fields",
+        },
+        {
+            "role": "lower-3-necessary-condition-verifier",
+            "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
+            "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
+        },
+    ]
+    if not controller_state.get("ready_leaf_ids"):
+        lower_tasks = []
     return {
         "task_id": task_id,
         "title": title,
@@ -3588,28 +3755,13 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
         "ghl_contributions": ghl_rows,
         "open_ghl_contribution_obligations": open_ghl,
         "technical_lemmas": technical_rows,
+        "reusable_memory_cards": reusable_memory_card_rows(task_text),
         "open_external_technical_lemma_obligations": open_technical,
         "recent_verifier_feedback": recent_verifier_feedback(task_id, limit=10),
         "recent_trials": recent_trial_rows(task_id, limit=10),
         "recent_proof_attempts": latest_proof_attempts(task_id, limit=10),
-        "controller_state": load_control_state(control_state_path(task_id)),
-        "next_lower_tasks": [
-            {
-                "role": "lower-1-natural-language-proof-architect",
-                "goal": "Translate the active source-paper proof step into a dependency DAG with exact source anchors and external-lemma calls.",
-                "must_write": "proof-attempts/<task>/...-natural-language-dag.md",
-            },
-            {
-                "role": "lower-2-lean-implementation-worker",
-                "goal": "Close one active Lean leaf only, preferably the smallest entry/evalWith bridge selected by the blueprint.",
-                "must_write": "Lean declaration plus trial-log verifier-feedback fields",
-            },
-            {
-                "role": "lower-3-necessary-condition-verifier",
-                "goal": "Check exact finite matrix/path/support conditions that must hold before the active Lean leaf can be true.",
-                "must_write": "verifier-feedback/<task>/... plus trial-log feedback fields",
-            },
-        ],
+        "controller_state": controller_state,
+        "next_lower_tasks": lower_tasks,
     }
 
 
@@ -7174,6 +7326,72 @@ When you finish, append a concise handoff with:
 {controller_cmd} trial-log --task {task_id} --role {role} --kind handoff --status queued --artifact {rel(run_dir)}
 ```
 """
+    if context_mode != "full":
+        state = blueprint_status_state(task_id)
+        compact_trials = recent_trial_text(task_id, limit=4)
+        compact_queue = "\n".join(
+            f"- {row}" for row in state.get("dynamic_leaf_queue", [])
+        ) or "- none"
+        compact_obligations = "\n".join(
+            f"- {row}" for row in state.get("open_obligation_signals", [])
+        ) or "- none"
+        compact_declarations = "\n".join(
+            f"- {row.get('kind', '')} {row.get('name', '')}: {row.get('path', '')}"
+            for row in state.get("lean_declarations", [])[:20]
+        ) or "- none indexed"
+        compact_cards = "\n".join(
+            f"- {row.get('path', '')}: compiled anchors: "
+            f"{', '.join(row.get('compiled_lean_anchors', [])) or 'none'}"
+            for row in state.get("reusable_memory_cards", [])[:6]
+        ) or "- none matched"
+        shared = f"""Task: {task_id} - {title}
+Mode: {mode}; cycle: {cycle}; run: {rel(run_dir)}
+
+Mandatory gate: `{controller_cmd} check`
+Use `{controller_cmd}` for notes, logs, checks, and controller state.
+
+Current task contract:
+
+```text
+{displayed_task_text}
+```
+
+Dynamic proof-DAG queue:
+{compact_queue}
+
+Open dependency signals:
+{compact_obligations}
+
+Task-relevant Lean declarations:
+{compact_declarations}
+
+Ranked reusable BE/state-preparation memory cards:
+{compact_cards}
+
+Latest four trial records:
+
+```text
+{compact_trials}
+```
+
+Focused hard rules:
+
+- Work only on a controller-ready leaf and preserve the declared route lock.
+- Search existing declarations before adding a helper; edit the narrow named Lean module.
+- For polynomial transforms, try compiled product/LCU arithmetic before opening a QSVT external dependency. QSVT is an optimization route unless the task explicitly requires QSVT itself.
+- Lean build evidence is the correctness gate. Never add `sorry`, `admit`, an axiom, or a vacuous contract.
+- External/QSVT nodes stay explicit supplier contracts; do not reopen broad theorem search unless assigned.
+- Unrelated source or prose edits do not count as progress for the active leaf.
+- Capacity and epsilon may change only through current signed upper/reviewer feedback, one level/rung at a time.
+- When `Population gate: required`, lower proof work is forbidden until middle
+  records at least one active candidate and upper/reviewer records `select` for
+  an active id.  Use typed fields `candidate_id`, `candidate_family`,
+  `population_action`, `parent_ids`, and `fitness_evidence`; prose alone does not
+  advance the population.  Mutation needs one parent and crossover needs two.
+- Record one concise typed handoff: leaf, exact declaration changed, gate result, error class if blocked, and next dependency.
+
+Dialogue: `{rel(run_dir / 'dialogue.md')}`
+"""
     if role == "upper":
         body = """You are the upper research director and human-intervention window.
 
@@ -7562,6 +7780,22 @@ targets.  In exploratory mode, maintain candidate-population records that track
 candidate family, partial score, changed files, remaining obligations, and next
 mutation or recombination step.
 
+When the task enables the population gate, write the machine-readable update in
+the same cycle, for example:
+
+```text
+python3 tools/qbe.py trial-log --task <task-id> --role middle --kind proposal \
+  --status accepted --feedback-field candidate_id=<stable-id> \
+  --feedback-field candidate_family=<family> \
+  --feedback-field population_action=propose \
+  --feedback-field fitness_evidence=<named-lemma-or-diagnostic> \
+  --feedback-field next_route=<one-narrow-route>
+```
+
+Use `retain`, `retire`, `mutate`, or `crossover` on later cycles.  Mutation must
+name one `parent_ids` value and crossover must name two.  Do not keep every
+candidate alive merely to show activity.
+
 Before assigning lower work, search for existing Lean declarations and
 paper-note definitions to reuse.  Do not create a second definition for a
 matrix, normalizer, register layout, or theorem statement when a reference to
@@ -7850,6 +8084,13 @@ In paper-benchmark mode, check that proof-attempt populations did not alter the 
 construction.  In exploratory mode, check that candidate scores are treated as
 search guidance rather than proof of correctness.
 
+When a population gate is active, the reviewer must select one currently active
+middle candidate or reject the population and explain what evidence is missing.
+Selection is also typed, using `population_action=select`, the same
+`candidate_id`, and `fitness_evidence` or `selection_reason`.  Never select an id
+that middle has not proposed, retained, mutated, or crossed in the current
+ledger.
+
 For unattended construction runs, the review is incomplete without a typed
 controller decision.  Copy the current `leaf_signature` and `evidence_digest`
 from the run context.  Approve at most one-level increases for upper, middle,
@@ -7918,7 +8159,20 @@ In paper-benchmark mode, record failed proof scripts or lemma routes under
 changes under `candidate-populations/` when useful, especially when the attempt
 improves a partial Lean score but does not yet prove the target.
 """
-        if lower_index == 1:
+        if lower_index == -30:
+            body += """
+Lower profile for this prompt: post-Lean executable exporter.
+
+The declared Lean root anchors already compile.  Do not change theorem
+statements or reopen the proof DAG.  Implement or repair only the task's
+`Executable acceptance command` and declared artifacts.  The export must cite
+the named Lean certificate, preserve its system/ancilla ordering, normalizer,
+projector, and concrete parameter range, and run real Qiskit `Operator` plus
+QASM checks.  A fixed-instance result is executable evidence, not a symbolic
+proof.  Run the exact declared command before handoff and record every reported
+error rather than replacing it with a prose claim.
+"""
+        elif lower_index == 1:
             body += """
 Lower profile for this prompt: natural-language proof architect.
 
@@ -8150,6 +8404,7 @@ cycle.  Agents converse through `dialogue.md`; durable results go into
     else:
         for index in range(1, lower_count + 1):
             prompt_files.append(("lower", run_dir / f"30_lower_searcher_{index}.md", index))
+    prompt_files.append(("lower", run_dir / "30_lower_exporter.md", -30))
     prompt_files.append(("reviewer", run_dir / "40_reviewer.md", 0))
     for role, path, lower_index in prompt_files:
         path.write_text(
@@ -8627,31 +8882,312 @@ def control_state_path(task_id: str) -> Path:
     return CONTROL_DIR / f"{slugify(task_id)}.json"
 
 
-def task_lean_evidence_digest(task_id: str) -> str:
-    """Hash task-relevant Lean source, excluding generated logs and prose churn."""
+def executable_acceptance_state_path(task_id: str) -> Path:
+    return CONTROL_DIR / f"{slugify(task_id)}-executable.json"
+
+
+def _executable_contract_paths(command: str, artifacts: tuple[str, ...]) -> list[Path]:
+    paths: list[Path] = []
+    for value in [*shlex.split(command), *artifacts]:
+        candidate = (ROOT / value).resolve() if not Path(value).is_absolute() else Path(value).resolve()
+        try:
+            candidate.relative_to(ROOT)
+        except ValueError:
+            continue
+        if candidate.is_file() and candidate not in paths:
+            paths.append(candidate)
+    return sorted(paths)
+
+
+def _executable_contract_digest(command: str, artifacts: tuple[str, ...]) -> str:
+    package_versions: dict[str, str] = {}
+    for package in ("qiskit", "openqasm3"):
+        try:
+            package_versions[package] = importlib_metadata.version(package)
+        except importlib_metadata.PackageNotFoundError:
+            package_versions[package] = "missing"
+    return content_digest(
+        [
+            {"command": command, "artifacts": list(artifacts)},
+            {"python": sys.version, "packages": package_versions},
+            [
+                {
+                    "path": rel(path),
+                    "size": path.stat().st_size,
+                    "sha256": content_digest([path.read_bytes().hex()]),
+                }
+                for path in _executable_contract_paths(command, artifacts)
+            ],
+        ]
+    )
+
+
+def verified_task_executable_acceptance(
+    task_id: str,
+    *,
+    task_text: str | None = None,
+    run_check: bool = False,
+) -> bool:
+    """Verify or execute the task-declared post-Lean acceptance gate.
+
+    A successful result is cached against the command source and every declared
+    artifact.  Failed unchanged inputs are not rerun, so an agent must make a
+    material exporter change before another executable attempt spends time.
+    """
+
+    if task_text is None:
+        _, task_text = task_context(task_id)
+    contract = infer_executable_acceptance(task_text)
+    if not contract.command:
+        return False
+    state_path = executable_acceptance_state_path(task_id)
+    cached = load_control_state(state_path)
+    current_digest = _executable_contract_digest(contract.command, contract.artifacts)
+    artifact_paths = [(ROOT / value).resolve() for value in contract.artifacts]
+    artifacts_present = bool(artifact_paths) and all(path.is_file() for path in artifact_paths)
+    if (
+        int(cached.get("exit_code", 1)) == 0
+        and cached.get("input_digest") == current_digest
+        and artifacts_present
+    ):
+        return True
+    if not run_check:
+        return False
+    if cached.get("input_digest") == current_digest and int(cached.get("exit_code", 0)) != 0:
+        return False
+
+    argv = shlex.split(contract.command)
+    if not argv:
+        return False
+    try:
+        completed = subprocess.run(
+            argv,
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=900,
+        )
+        exit_code = completed.returncode
+        stdout = completed.stdout
+        stderr = completed.stderr
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        exit_code = 124 if isinstance(exc, subprocess.TimeoutExpired) else 127
+        stdout = ""
+        stderr = f"{type(exc).__name__}: {exc}"
+
+    artifacts_present = bool(artifact_paths) and all(path.is_file() for path in artifact_paths)
+    if exit_code == 0 and not artifacts_present:
+        exit_code = 2
+        stderr = (stderr + "\nDeclared executable acceptance artifacts are missing.").strip()
+    final_digest = _executable_contract_digest(contract.command, contract.artifacts)
+    payload = {
+        "task_id": task_id,
+        "timestamp": now_stamp(),
+        "command": contract.command,
+        "artifacts": list(contract.artifacts),
+        "artifacts_present": artifacts_present,
+        "exit_code": exit_code,
+        "input_digest": final_digest,
+        "stdout_tail": stdout[-8000:],
+        "stderr_tail": stderr[-8000:],
+    }
+    state_path.parent.mkdir(parents=True, exist_ok=True)
+    state_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    append_jsonl(
+        TRIAL_LOG,
+        {
+            "timestamp": now_stamp(),
+            "trial_id": f"{file_stamp()}-{slugify(task_id)}-executable-gate",
+            "task_id": task_id,
+            "role": "reviewer",
+            "kind": "build",
+            "status": "accepted" if exit_code == 0 else "failed",
+            "score": "",
+            "lean_gate": "pass",
+            "artifact": rel(state_path),
+            "changed_files": [value for value in contract.artifacts if (ROOT / value).is_file()],
+            "command": contract.command,
+            "notes": "Deterministic post-Lean executable acceptance gate.",
+            "verifier_feedback": {
+                "leaf": "POST-LEAN-EXPORT",
+                "lean_build_ok": True,
+                "qiskit_acceptance_ok": exit_code == 0,
+                "qasm_acceptance_ok": exit_code == 0,
+                "error_class": "" if exit_code == 0 else "executable_export_gap",
+                "next_route": "closeout" if exit_code == 0 else "repair the declared exporter before rerun",
+            },
+        },
+    )
+    refresh_trial_summary_if_bounded()
+    if stdout.strip():
+        print(stdout.strip())
+    if stderr.strip():
+        print(stderr.strip(), file=sys.stderr)
+    return exit_code == 0
+
+
+def _lean_declaration_fingerprint(text: str, name: str) -> str:
+    short_name = name.rsplit(".", 1)[-1]
+    start = re.search(
+        rf"(?m)^(?:private\s+)?(?:def|abbrev|structure|class|theorem|lemma|opaque)\s+"
+        rf"{re.escape(short_name)}\b",
+        text,
+    )
+    if not start:
+        return "missing"
+    end = re.search(
+        r"(?m)^(?:private\s+)?(?:def|abbrev|structure|class|theorem|lemma|opaque|namespace|end)\b",
+        text[start.end() :],
+    )
+    stop = start.end() + end.start() if end else len(text)
+    return content_digest([text[start.start() : stop]])
+
+
+def _lean_declaration_kind(text: str, name: str) -> str:
+    short_name = name.rsplit(".", 1)[-1]
+    match = re.search(
+        rf"(?m)^(?:private\s+)?(def|abbrev|structure|class|theorem|lemma|opaque)\s+"
+        rf"{re.escape(short_name)}\b",
+        text,
+    )
+    return match.group(1) if match else ""
+
+
+def _task_acceptance_declarations(
+    task_id: str, task_text: str | None = None
+) -> tuple[tuple[str, ...], list[str]]:
+    if task_text is None:
+        _, task_text = task_context(task_id)
+    declared = infer_acceptance_anchors(task_text)
+    files = [
+        path.read_text(encoding="utf-8", errors="replace")
+        for path in lean_index_files_for_task(task_text)
+        if path.exists()
+    ]
+    present = [
+        anchor
+        for anchor in declared
+        if any(_lean_declaration_kind(text, anchor) in {"theorem", "lemma"} for text in files)
+    ]
+    return declared, present
+
+
+def verified_task_acceptance_anchors(
+    task_id: str, *, task_text: str | None = None
+) -> tuple[str, ...]:
+    """Return all root anchors only after a successful current-source check."""
+
+    declared, present = _task_acceptance_declarations(task_id, task_text)
+    if not declared or len(present) != len(declared):
+        return ()
+    last_check = load_state().get("last_check") or {}
+    if int(last_check.get("exit_code", 1)) != 0:
+        return ()
+    if last_check.get("lean_workspace_digest") != lean_workspace_digest():
+        return ()
+    return declared
+
+
+def task_lean_evidence_digest(
+    task_id: str,
+    frontier_rows: Sequence[str] = (),
+    obligation_rows: Sequence[str] = (),
+) -> str:
+    """Hash only current Lean targets plus imports, not unrelated file churn."""
 
     _, task_text = task_context(task_id)
-    parts: list[object] = []
+    leaves = classify_leaves(frontier_rows, obligation_rows)
+    targets: set[str] = set()
+    for leaf in leaves:
+        targets.update(
+            token
+            for token in re.findall(r"[A-Za-z_][A-Za-z0-9_'.]*", leaf.lean_target)
+            if token.lower() not in INVALID_LEAN_TARGET_WORDS
+        )
+    files: list[tuple[Path, str]] = []
     for path in lean_index_files_for_task(task_text):
-        if not path.exists():
+        if path.exists():
+            files.append((path, path.read_text(encoding="utf-8", errors="replace")))
+    if not targets:
+        return content_digest(
+            [{"path": rel(path), "imports": re.findall(r"(?m)^import\s+.+$", text)}
+             for path, text in files]
+        )
+    return content_digest(
+        [
+            {
+                "target": target,
+                "files": [
+                    {
+                        "path": rel(path),
+                        "declaration": _lean_declaration_fingerprint(text, target),
+                        "imports": re.findall(r"(?m)^import\s+.+$", text),
+                    }
+                    for path, text in files
+                ],
+            }
+            for target in sorted(targets)
+        ]
+    )
+
+
+def verified_closed_lean_leaf_ids(
+    task_id: str,
+    frontier_rows: Sequence[str],
+    obligation_rows: Sequence[str],
+    feedback: Sequence[dict[str, object]],
+) -> tuple[str, ...]:
+    """Return ready leaves backed by both verifier closure and a real declaration."""
+
+    _, task_text = task_context(task_id)
+    files = [
+        path.read_text(encoding="utf-8", errors="replace")
+        for path in lean_index_files_for_task(task_text)
+        if path.exists()
+    ]
+    closed_feedback = {
+        str(row.get("leaf", "")).strip().lower()
+        for row in feedback
+        if row.get("lean_build_ok") is True
+        and row.get("closed_theorem_ok") is True
+    }
+    retired: list[str] = []
+    for leaf in classify_leaves(frontier_rows, obligation_rows):
+        if not leaf.ready_for_lean or leaf.leaf_id.lower() not in closed_feedback:
             continue
-        text = path.read_text(encoding="utf-8", errors="replace")
-        parts.append({"path": rel(path), "digest": content_digest([text])})
-    return content_digest(parts)
+        targets = [
+            token
+            for token in re.findall(r"[A-Za-z_][A-Za-z0-9_'.]*", leaf.lean_target)
+            if token.lower() not in INVALID_LEAN_TARGET_WORDS
+        ]
+        if targets and any(
+            _lean_declaration_kind(text, target) in {"theorem", "lemma"}
+            for target in targets
+            for text in files
+        ):
+            retired.append(leaf.leaf_id)
+    return tuple(retired)
 
 
 def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecision:
     state = blueprint_status_state(args.id)
-    feedback = recent_verifier_feedback(args.id, limit=20)
+    feedback = recent_verifier_feedback(args.id, limit=100)
     previous = load_control_state(control_state_path(args.id))
     _, task_text = task_context(args.id)
+    frontier_rows = state.get("dynamic_leaf_queue", [])
+    obligation_rows = state.get("open_obligation_signals", [])
+    allowed_routes, forbidden_routes = infer_route_lock(task_text)
+    executable = infer_executable_acceptance(task_text)
     decision = decide_cycle(
         task_id=args.id,
         cycle=cycle,
-        frontier_rows=state.get("dynamic_leaf_queue", []),
-        obligation_rows=state.get("open_obligation_signals", []),
+        frontier_rows=frontier_rows,
+        obligation_rows=obligation_rows,
         feedback=feedback,
-        evidence_digest=task_lean_evidence_digest(args.id),
+        evidence_digest=task_lean_evidence_digest(
+            args.id, frontier_rows, obligation_rows
+        ),
         previous_state=previous,
         max_no_progress_cycles=max(
             1,
@@ -8667,8 +9203,43 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
             1,
             int(getattr(args, "exact_stall_cycles", DEFAULT_EXACT_STALL_CYCLES)),
         ),
+        allowed_leaf_prefixes=allowed_routes,
+        forbidden_leaf_prefixes=forbidden_routes,
+        verified_closed_leaf_ids=verified_closed_lean_leaf_ids(
+            args.id, frontier_rows, obligation_rows, feedback
+        ),
+        verified_root_anchors=verified_task_acceptance_anchors(
+            args.id, task_text=task_text
+        ),
+        executable_acceptance_required=bool(executable.command),
+        executable_acceptance_complete=verified_task_executable_acceptance(
+            args.id, task_text=task_text
+        ),
+        executable_acceptance_command=executable.command,
+        executable_acceptance_artifacts=executable.artifacts,
+        population_gate_required=infer_population_gate(task_text),
     )
     write_control_state(control_state_path(args.id), decision)
+    population_path = ROOT / "candidate-populations" / args.id / "population-state.json"
+    population_path.parent.mkdir(parents=True, exist_ok=True)
+    population_path.write_text(
+        json.dumps(
+            {
+                "task_id": args.id,
+                "cycle": cycle,
+                "gate_required": decision.population_gate_required,
+                "digest": decision.population_digest,
+                "active_candidate_ids": list(decision.population_active_candidate_ids),
+                "selected_candidate_ids": list(decision.population_selected_candidate_ids),
+                "direction": decision.population_direction,
+                "invalid_packets": list(decision.population_invalid_packets),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     intervention = CONTROL_DIR / f"{slugify(args.id)}-intervention.md"
     if not decision.stop and intervention.exists():
         intervention.unlink()
@@ -8683,13 +9254,40 @@ def control_policy_note(decision: CycleDecision) -> str:
         f"{', '.join(decision.ready_leaf_ids) or 'none'}. Reason: {decision.reason} "
         f"Capacity levels (upper, middle, lower)=({decision.upper_capacity_level}, "
         f"{decision.middle_capacity_level}, {decision.lower_capacity_level}). "
-        f"Search phase: `{decision.search_phase}`; active epsilon: "
+        f"Search phase: `{decision.search_phase}`; effective epsilon: "
+        f"`{decision.effective_epsilon}`; historical ladder position: "
         f"`{decision.active_epsilon}`; ladder: "
         f"{', '.join(decision.epsilon_ladder) or 'not declared'}. "
         "A privileged decision may increase each layer by at most one level and "
         "may move tolerance by only one adjacent rung. It is valid only when "
         "typed verifier feedback repeats this exact leaf signature and evidence digest."
     )
+    if decision.route_rejected_leaf_ids:
+        note += (
+            " Route-lock rejected leaves: "
+            + ", ".join(decision.route_rejected_leaf_ids)
+            + ". These leaves cannot schedule lower agents."
+        )
+    if decision.certified_root_anchors:
+        note += (
+            " Certified root anchors: "
+            + ", ".join(decision.certified_root_anchors)
+            + "."
+        )
+    if decision.executable_acceptance_required:
+        note += (
+            f" Executable gate complete={decision.executable_acceptance_complete}; "
+            f"command=`{decision.executable_acceptance_command}`; artifacts="
+            f"{', '.join(decision.executable_acceptance_artifacts) or 'none'}."
+        )
+    if decision.population_gate_required:
+        note += (
+            " Population direction: "
+            + (decision.population_direction or "unselected")
+            + "; active candidates: "
+            + (", ".join(decision.population_active_candidate_ids) or "none")
+            + "."
+        )
     if decision.policy_rejections:
         note += " Rejected policy request: " + " ".join(decision.policy_rejections)
     return note
@@ -8722,7 +9320,8 @@ Choose exactly one route before resuming:
 - external-gap cycles: `{decision.external_gap_cycles}`
 - capacity levels (upper/middle/lower): `{decision.upper_capacity_level}/{decision.middle_capacity_level}/{decision.lower_capacity_level}`
 - search phase: `{decision.search_phase}`
-- active epsilon: `{decision.active_epsilon}`
+- effective epsilon: `{decision.effective_epsilon}`
+- historical ladder position: `{decision.active_epsilon}`
 - epsilon ladder: `{', '.join(decision.epsilon_ladder) or 'not declared'}`
 - ready leaves: `{', '.join(decision.ready_leaf_ids) or 'none'}`
 - external leaves: `{', '.join(decision.external_leaf_ids) or 'none'}`
@@ -8758,6 +9357,7 @@ def runtime_stop_decision(decision: CycleDecision, reason: str) -> CycleDecision
         ready_leaf_ids=decision.ready_leaf_ids,
         external_leaf_ids=decision.external_leaf_ids,
         unresolved_leaf_ids=decision.unresolved_leaf_ids,
+        route_rejected_leaf_ids=decision.route_rejected_leaf_ids,
         prompt_plan=(),
         capacity_authorizations=decision.capacity_authorizations,
         unchanged_cycles=decision.unchanged_cycles,
@@ -8771,9 +9371,23 @@ def runtime_stop_decision(decision: CycleDecision, reason: str) -> CycleDecision
         epsilon_ladder=decision.epsilon_ladder,
         epsilon_index=decision.epsilon_index,
         active_epsilon=decision.active_epsilon,
+        effective_epsilon=decision.effective_epsilon,
+        auto_retired_leaf_ids=decision.auto_retired_leaf_ids,
+        certified_root_anchors=decision.certified_root_anchors,
         policy_decision_digest=decision.policy_decision_digest,
         policy_transition_applied=decision.policy_transition_applied,
         policy_rejections=decision.policy_rejections,
+        lean_acceptance_complete=decision.lean_acceptance_complete,
+        executable_acceptance_required=decision.executable_acceptance_required,
+        executable_acceptance_complete=decision.executable_acceptance_complete,
+        executable_acceptance_command=decision.executable_acceptance_command,
+        executable_acceptance_artifacts=decision.executable_acceptance_artifacts,
+        population_gate_required=decision.population_gate_required,
+        population_digest=decision.population_digest,
+        population_active_candidate_ids=decision.population_active_candidate_ids,
+        population_selected_candidate_ids=decision.population_selected_candidate_ids,
+        population_direction=decision.population_direction,
+        population_invalid_packets=decision.population_invalid_packets,
     )
 
 
@@ -8821,6 +9435,10 @@ def controlled_prompt_stages(
             prompts = sorted(run_dir.glob("30_lower_searcher_*.md"))[4:]
             if prompts:
                 stages.append((prompts, True))
+        elif item == "exporter":
+            path = run_dir / "30_lower_exporter.md"
+            if path.exists():
+                stages.append(([path], False))
         elif item == "reviewer" and include_reviewer:
             path = run_dir / "40_reviewer.md"
             if path.exists():
@@ -8919,7 +9537,13 @@ def adaptive_capacity_for_cycle(
             natural_lower_count = min(natural_max, 1 + lower_level)
             lean_lower_count = min(lean_max, 1 + lower_level)
             capacity_label = "authorized-gradual-lower-expansion"
-    elif decision and decision.mode in {"dependency_decision", "decompose", "phase_decision"}:
+    elif decision and decision.mode in {
+        "dependency_decision",
+        "decompose",
+        "phase_decision",
+        "population",
+        "export",
+    }:
         effective_lower = 0
         natural_lower_count = 0
         lean_lower_count = 0
@@ -8946,11 +9570,18 @@ def adaptive_capacity_for_cycle(
         note += "Current signed capacity authorizations: " + ", ".join(sorted(authorizations)) + ". "
     else:
         note += "No signed capacity increase is active. "
-    if phase != "exact":
+    if phase.startswith("approximate"):
         note += (
-            f"Approximate search is active only at epsilon={decision.active_epsilon if decision else 'unknown'}; "
+            f"Approximate search is active only at epsilon={decision.effective_epsilon if decision else 'unknown'}; "
             "the next relaxation requires a new signed decision after an unchanged cycle."
         )
+    elif phase == "dependency":
+        note += (
+            "The tolerance ladder is inactive while the task is waiting on a dependency decision; "
+            "no lower agents or epsilon relaxation may be scheduled."
+        )
+    elif phase == "post_lean_export":
+        note += "Lean is closed; only the declared executable exporter and reviewer gate may run."
     else:
         note += "Stagnation alone must never expand panels or relax epsilon."
 
@@ -8974,6 +9605,7 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
     if getattr(args, "reset_control_state", False):
         for path in [
             control_state_path(args.id),
+            executable_acceptance_state_path(args.id),
             CONTROL_DIR / f"{slugify(args.id)}-intervention.md",
         ]:
             if path.exists():
@@ -8986,6 +9618,25 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
         raise SystemExit("--dry-run and --execute cannot be used together")
     if args.upper_every < 0 or args.middle_every < 0 or args.reviewer_every < 0:
         raise SystemExit("--upper-every, --middle-every, and --reviewer-every must be nonnegative")
+    _, task_text = task_context(args.id)
+    declared_anchors, present_anchors = _task_acceptance_declarations(
+        args.id, task_text
+    )
+    if (
+        declared_anchors
+        and len(present_anchors) == len(declared_anchors)
+        and not verified_task_acceptance_anchors(args.id, task_text=task_text)
+    ):
+        print("root acceptance anchors are present; running one deterministic preflight check")
+        code = cmd_check(argparse.Namespace())
+        if code != 0:
+            return code
+    if verified_task_acceptance_anchors(args.id, task_text=task_text):
+        executable = infer_executable_acceptance(task_text)
+        if executable.command:
+            verified_task_executable_acceptance(
+                args.id, task_text=task_text, run_check=True
+            )
     final_code = 0
     batch_started = time.perf_counter()
     active_budget_s = max(0.0, float(args.active_budget_minutes)) * 60.0
@@ -8996,6 +9647,12 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
     for cycle in range(1, args.cycles + 1):
         if args.blueprint_refresh:
             refresh_blueprint(args.id)
+        if verified_task_acceptance_anchors(args.id, task_text=task_text):
+            executable = infer_executable_acceptance(task_text)
+            if executable.command:
+                verified_task_executable_acceptance(
+                    args.id, task_text=task_text, run_check=True
+                )
         decision = cycle_control_decision(args, cycle)
         if decision.stop:
             if decision.status == "complete":
@@ -9152,6 +9809,7 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
         if cycle_code != 0:
             final_code = cycle_code
         if args.check_each_cycle:
+            before_build_snapshot = git_worktree_snapshot()
             code = cmd_check(argparse.Namespace())
             append_jsonl(
                 TRIAL_LOG,
@@ -9165,7 +9823,7 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
                     "score": "",
                     "lean_gate": "pass" if code == 0 else "fail",
                     "artifact": rel(run_dir),
-                    "changed_files": git_changed_files(),
+                    "changed_files": git_changed_files_since(before_build_snapshot),
                     "command": "lake build && lake build Tests",
                     "notes": "Cycle build gate.",
                 },
