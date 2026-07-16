@@ -396,7 +396,7 @@ def circuit_card(ax, x, y, w, h, title, subtitle, score, lean, kind):
 
 def draw_optctrl_storyboard():
     fig, ax = setup(15.5, 8.0)
-    label(ax, 5, 94, "Certified evolution of the transfer-operator block encoding", fs=23, weight="bold", color=NAVY, ha="left")
+    label(ax, 5, 94, "BE Case 1 | certified evolution of the transfer operator", fs=23, weight="bold", color=NAVY, ha="left")
     label(ax, 5, 89.8, "Only Lean-certified candidates are parents or plotted solutions; insight-pool ideas must be promoted by proof.", fs=12.5, color=MUTED, ha="left")
 
     circuit_card(ax, 5, 43, 28, 39, "Gen 0: seed", "oracle-level baseline", "(1,1,1,1)", "Lean: exampleVerified", "seed")
@@ -434,7 +434,7 @@ def draw_optctrl_evolution():
     ax.plot(gens, oracle, marker="^", ms=8, lw=2.8, color=PURPLE, label="Oracle calls")
     ax.axvspan(7.55, 9.25, facecolor=GREEN_L, edgecolor=GREEN, linewidth=1.6, alpha=0.78)
     ax.text(8.4, 5.42, "Approximate phase\nexact incumbent, epsilon = 0", ha="center", va="center", fontsize=10.5, color=GREEN, fontweight="bold")
-    ax.set_title("Lean-certified generation champions", fontsize=20, fontweight="bold", color=NAVY, pad=18)
+    ax.set_title("BE Case 1 | Lean-certified generation champions", fontsize=20, fontweight="bold", color=NAVY, pad=18)
     ax.set_xlabel("Generation", fontsize=15, fontweight="bold")
     ax.set_ylabel("Lower is better", fontsize=15, fontweight="bold")
     ax.set_xticks(gens)
@@ -497,7 +497,7 @@ def draw_optctrl_hier_vs_pro():
 
     handles, labels_ = ax2.get_legend_handles_labels()
     fig.legend(handles, labels_, loc="lower center", ncol=2, frameon=True, fontsize=12)
-    fig.suptitle("Transfer-operator case: two parallel certified attempts", fontsize=20, fontweight="bold", color=NAVY)
+    fig.suptitle("BE Case 1 | transfer operator: two certified search arms", fontsize=20, fontweight="bold", color=NAVY)
     fig.tight_layout(rect=(0, 0.08, 1, 0.93), pad=1.3)
     for path in [
         ARTICLE_FIG / "optctrl_hier_vs_pro.png",
@@ -510,7 +510,7 @@ def draw_optctrl_hier_vs_pro():
 
 def draw_optctrl_cold_clean_storyboard():
     fig, ax = setup(15.6, 7.8)
-    label(ax, 5, 94, "Attempt A storyboard: no-Pro Hierarchical Harness checkpoint", fs=22, weight="bold", color=NAVY, ha="left")
+    label(ax, 5, 94, "BE Case 1 | no-Pro isolated checkpoint", fs=22, weight="bold", color=NAVY, ha="left")
     label(
         ax,
         5,
@@ -567,7 +567,7 @@ def draw_optctrl_cold_clean_storyboard():
 
 def draw_qiskit_export_results():
     fig, ax = setup(14.8, 7.2)
-    label(ax, 5, 94, "Post-Lean executable exports: Qiskit checks for the transfer operator", fs=21, weight="bold", color=NAVY, ha="left")
+    label(ax, 5, 94, "BE Case 1 | post-Lean executable acceptance", fs=21, weight="bold", color=NAVY, ha="left")
     label(
         ax,
         5,
@@ -689,6 +689,257 @@ def draw_evolution_acceptance_pipeline():
     plt.close(fig)
 
 
+def draw_abeis_agent_cycle_detail():
+    """Show who is allowed to change each part of one controlled cycle."""
+
+    fig, ax = setup(18.0, 8.2)
+    label(ax, 4, 95, "One ABEIS cycle | authority, execution, and persistent state", fs=22, weight="bold", color=NAVY, ha="left")
+    label(
+        ax,
+        4,
+        90.5,
+        "The controller schedules narrow work only after the target, population direction, and current proof leaf are machine-readable.",
+        fs=11.2,
+        color=MUTED,
+        ha="left",
+    )
+
+    group_box(ax, 4, 66, 92, 17, "Control authority", BLUE, "#F7FAFF")
+    box(ax, 8, 70, 19, 8, "Upper", "fix contract; authorize\ncapacity / epsilon", fc=BLUE_L, ec=BLUE, fs=12.2, subfs=8.1)
+    box(ax, 31, 70, 22, 8, "Middle", "retrieve memory; maintain\npopulation + proof DAG", fc=PURPLE_L, ec=PURPLE, fs=12.2, subfs=8.1)
+    box(ax, 57, 70, 17, 8, "Selection", "one active route +\none ready leaf", fc=AMBER_L, ec=AMBER, fs=12.2, subfs=8.1)
+    box(ax, 78, 70, 14, 8, "Reviewer", "sign decision;\naudit fidelity", fc=RED_L, ec=RED, fs=12.2, subfs=8.1)
+    for x1, x2 in [(27.3, 30.7), (53.3, 56.7), (74.3, 77.7)]:
+        arrow(ax, x1, 74, x2, 74, color="#475569", lw=2.0)
+
+    group_box(ax, 4, 36, 92, 22, "Ordered lower execution", GREEN, "#F8FFF9")
+    lower_nodes = [
+        (8, "Proof architect", "state one local\nmathematical move"),
+        (29, "Diagnostic", "dimension / support /\nfinite counterexample"),
+        (50, "Lean worker", "close one named\ndeclaration"),
+        (71, "Build gate", "lake build +\nroot anchor"),
+    ]
+    for x, title, sub in lower_nodes:
+        color = GREEN if title in {"Lean worker", "Build gate"} else BLUE
+        fill = GREEN_L if color == GREEN else "#FFFFFF"
+        box(ax, x, 42, 17, 9, title, sub, fc=fill, ec=color, fs=11.3, subfs=7.8)
+    for x1, x2 in [(25.3, 28.7), (46.3, 49.7), (67.3, 70.7)]:
+        arrow(ax, x1, 46.5, x2, 46.5, color="#475569", lw=2.0)
+
+    group_box(ax, 4, 9, 92, 19, "Durable state and next transition", "#94A3B8", "#FFFFFF")
+    state_nodes = [
+        (7, "Task", "fixed target"),
+        (25, "Population", "typed actions"),
+        (43, "Proof DAG", "leaf status"),
+        (61, "Feedback", "failure class"),
+        (79, "Evidence", "digest + roots"),
+    ]
+    for x, title, sub in state_nodes:
+        box(ax, x, 14, 14, 7, title, sub, fc="#F8FAFC", ec="#64748B", fs=10.8, subfs=7.5)
+    for x1, x2 in [(21.3, 24.7), (39.3, 42.7), (57.3, 60.7), (75.3, 78.7)]:
+        arrow(ax, x1, 17.5, x2, 17.5, color="#64748B", lw=1.7)
+    arrow(ax, 79.5, 41.5, 86, 21.5, color=GREEN, lw=1.8, dashed=True, rad=0.10)
+    arrow(ax, 68, 21.5, 42, 69.5, color=RED, lw=1.6, dashed=True, rad=-0.20)
+    label(ax, 50, 4.5, "Unchanged evidence returns to population/control or stops; it never silently buys another lower call.", fs=10.5, weight="bold", color=NAVY)
+
+    for path in [
+        ARTICLE_FIG / "abeis_agent_cycle_detail.png",
+        ARTICLE_FIG / "abeis_agent_cycle_detail.svg",
+        README_FIG / "abeis_agent_cycle_detail.png",
+        README_FIG / "abeis_agent_cycle_detail.svg",
+    ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
+def draw_be_case2_summary():
+    """Reader-facing comparison of the isolated cold and hinted hard arms."""
+
+    fig, ax = setup(18.0, 9.0)
+    label(ax, 4, 95, "BE Case 2 | cubic diagonal operator", fs=23, weight="bold", color=NAVY, ha="left")
+    label(ax, 4, 90.7, "Two isolated arms close the same exact contract and then pass independent Qiskit / OpenQASM 3 acceptance.", fs=11.5, color=MUTED, ha="left")
+    group_box(ax, 12, 80.5, 76, 7.0, "", BLUE, "#F7FAFF")
+    ax.text(50, 84, r"$D_n=\sum_{j=0}^{2^n-1}(j/2^n)^3|j\rangle\langle j|,\qquad \alpha=1$", ha="center", va="center", fontsize=15.5, color=TEXT)
+
+    lanes = [
+        (4, "COLD ARM", "No prior cubic run memory", BLUE, BLUE_L),
+        (52, "HINTED ARM", r"Seed: $O_0=\mathrm{diag}(j/2^n)$ then $x^3$", PURPLE, PURPLE_L),
+    ]
+    for x, title, subtitle, ec, fc in lanes:
+        group_box(ax, x, 22, 44, 55, title, ec, "#FFFFFF")
+        label(ax, x + 4, 70.8, subtitle, fs=10.2, color=MUTED, ha="left")
+
+    # Cold lane.
+    box(ax, 8, 57, 36, 10, "Direct cubic completion", "four squares for $N^6-j^6$\nclean coordinate $(j/N)^3$", fc=BLUE_L, ec=BLUE, fs=12.2, subfs=8.3)
+    box(ax, 8, 43, 36, 10, "Exact Lean root", "cubicDiagonalHouseholder\nExactBEContract_complete", fc=GREEN_L, ec=GREEN, fs=12.2, subfs=8.1)
+    box(ax, 8, 29, 36, 10, "Finite executable gate | n=2", "clean block 0 | unitary 2.22e-16\nQASM error 1.86e-12 | parsed", fc=ORANGE_L, ec=ORANGE, fs=11.7, subfs=8.0)
+    arrow(ax, 26, 56.7, 26, 53.3, color=BLUE, lw=2.0)
+    arrow(ax, 26, 42.7, 26, 39.3, color=GREEN, lw=2.0)
+
+    # Hinted lane.
+    box(ax, 56, 57, 36, 10, "Hint translated into two roots", "linear $O_0$ supplier + $O_0^3=D_n$\nQSVT optional, not a blocker", fc=PURPLE_L, ec=PURPLE, fs=12.0, subfs=8.1)
+    box(ax, 56, 43, 36, 10, "Exact Lean roots", "linearDiagonalHouseholder...complete\ncubicDiagonalHouseholder...complete", fc=GREEN_L, ec=GREEN, fs=11.8, subfs=7.8)
+    box(ax, 56, 29, 36, 10, "Finite executable gate | n=2", "linear + cubic clean blocks 0\nmax QASM error 1.86e-12 | parsed", fc=ORANGE_L, ec=ORANGE, fs=11.7, subfs=8.0)
+    arrow(ax, 74, 56.7, 74, 53.3, color=PURPLE, lw=2.0)
+    arrow(ax, 74, 42.7, 74, 39.3, color=GREEN, lw=2.0)
+
+    group_box(ax, 7, 7, 86, 10, "", GREEN, "#F5FCF7")
+    label(ax, 9.5, 14.7, "Frozen acceptance boundary", fs=11.0, weight="bold", color=GREEN, ha="left")
+    badge(ax, 10, 8.6, 14, 3.7, "control v5", fc=GREEN_L, ec=GREEN, fs=9.0)
+    badge(ax, 27, 8.6, 19, 3.7, "fresh isolated copies", fc=GREEN_L, ec=GREEN, fs=9.0)
+    badge(ax, 49, 8.6, 18, 3.7, "Lean + Tests pass", fc=GREEN_L, ec=GREEN, fs=9.0)
+    badge(ax, 70, 8.6, 19, 3.7, "Qiskit 2.4.2 pass", fc=GREEN_L, ec=GREEN, fs=9.0)
+    label(ax, 50, 3.7, "Final closeout reused compiled roots and spent zero model input tokens; search is skipped when no open proof leaf remains.", fs=10.1, weight="bold", color=NAVY)
+
+    for path in [
+        ARTICLE_FIG / "be_case2_cold_hinted.png",
+        ARTICLE_FIG / "be_case2_cold_hinted.svg",
+        README_FIG / "be_case2_cold_hinted.png",
+        README_FIG / "be_case2_cold_hinted.svg",
+    ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
+def draw_be_case2_proof_dag():
+    """Expose the mathematical Lean dependencies for the cubic hard case."""
+
+    fig, ax = setup(19.0, 9.2)
+    label(ax, 3.5, 95, "BE Case 2 | exact rational Householder proof DAG", fs=22, weight="bold", color=NAVY, ha="left")
+    label(ax, 3.5, 90.8, "Dependencies run left to right. Boxes show the mathematical move first and the representative Lean declaration second.", fs=11.0, color=MUTED, ha="left")
+
+    headers = [(4, "NUMBER THEORY"), (22, "BRANCH VECTOR"), (40, "HOUSEHOLDER"), (57, "CONTROLLED SUM"), (74, "ROOT CERTIFICATE"), (89, "EXPORT")]
+    for x, text_ in headers:
+        label(ax, x, 84.5, text_, fs=8.7, weight="bold", color="#64748B", ha="left")
+
+    # Linear / hinted row.
+    label(ax, 2.5, 68, "linear", fs=9.5, weight="bold", color=PURPLE, ha="left")
+    box(ax, 4, 61, 15, 13, r"$N^2-j^2=\sum_1^4 s_k^2$", "Nat.sum_four_squares\n...Completion_exists", fc=PURPLE_L, ec=PURPLE, fs=10.8, subfs=6.9)
+    box(ax, 22, 61, 15, 13, r"$v_j[0]=j/N$", "...FourSquareBranchVector\nclean + unit", fc=PURPLE_L, ec=PURPLE, fs=10.8, subfs=6.9)
+    box(ax, 40, 61, 14, 13, r"$H(v_j)_{00}=v_j[0]$", "householder8_clean_entry\nhouseholder8_isRationalOrthogonal", fc=BLUE_L, ec=BLUE, fs=10.8, subfs=6.7)
+    box(ax, 57, 61, 14, 13, r"$\bigoplus_j H(v_j)$", "...clean_entry\n...isRationalOrthogonal", fc=BLUE_L, ec=BLUE, fs=10.8, subfs=6.7)
+    box(ax, 74, 61, 12, 13, r"BE of $O_0$", "linearDiagonalHouseholder\nInputBEContract_complete", fc=GREEN_L, ec=GREEN, fs=10.6, subfs=6.5)
+    box(ax, 89, 61, 8, 13, "QASM3", "linear\nparsed", fc=ORANGE_L, ec=ORANGE, fs=10.3, subfs=6.7)
+
+    # Cubic / cold row.
+    label(ax, 2.5, 40, "cubic", fs=9.5, weight="bold", color=BLUE, ha="left")
+    box(ax, 4, 33, 15, 13, r"$N^6-j^6=\sum_1^4 s_k^2$", "Nat.sum_four_squares\n...Completion_exists", fc=BLUE_L, ec=BLUE, fs=10.8, subfs=6.9)
+    box(ax, 22, 33, 15, 13, r"$v_j[0]=(j/N)^3$", "cubicDiagonalFourSquare\nBranchVector_clean + unit", fc=BLUE_L, ec=BLUE, fs=10.8, subfs=6.7)
+    box(ax, 40, 33, 14, 13, r"$H(v_j)_{00}=v_j[0]$", "shared Householder\nclean + orthogonal", fc=BLUE_L, ec=BLUE, fs=10.8, subfs=6.7)
+    box(ax, 57, 33, 14, 13, r"$\bigoplus_j H(v_j)$", "backendSupport\nclean block + orthogonal", fc=BLUE_L, ec=BLUE, fs=10.8, subfs=6.7)
+    box(ax, 74, 33, 12, 13, r"BE of $D_n$", "cubicDiagonalHouseholder\nExactBEContract_complete", fc=GREEN_L, ec=GREEN, fs=10.6, subfs=6.4)
+    box(ax, 89, 33, 8, 13, "QASM3", "cubic\nparsed", fc=ORANGE_L, ec=ORANGE, fs=10.3, subfs=6.7)
+
+    for y in (67.5, 39.5):
+        for x1, x2 in [(19.3, 21.7), (37.3, 39.7), (54.3, 56.7), (71.3, 73.7), (86.3, 88.7)]:
+            arrow(ax, x1, y, x2, y, color="#475569", lw=1.7)
+
+    group_box(ax, 18, 11, 68, 14, "Hint interpretation", PURPLE, "#FBF9FF")
+    box(ax, 22, 15, 19, 6, r"$O_0^3=D_n$", "cubicGridValue_eq_...pow_three", fc="#FFFFFF", ec=PURPLE, fs=10.7, subfs=6.8)
+    box(ax, 47, 15, 17, 6, "QSVT consumer", "optional resource route", fc="#FFFFFF", ec=PURPLE, fs=10.7, subfs=6.8)
+    box(ax, 70, 15, 12, 6, "Root closed", "direct exact BE", fc=GREEN_L, ec=GREEN, fs=10.7, subfs=6.8)
+    arrow(ax, 41.3, 18, 46.7, 18, color=PURPLE, lw=1.7, dashed=True)
+    arrow(ax, 64.3, 18, 69.7, 18, color=PURPLE, lw=1.7, dashed=True)
+    arrow(ax, 80, 60.7, 76, 25.3, color=PURPLE, lw=1.4, dashed=True, rad=-0.18)
+    label(ax, 50, 5.3, "The hint is useful direction evidence, but the exact cubic Householder root removes QSVT as a correctness dependency.", fs=10.2, weight="bold", color=NAVY)
+
+    for path in [
+        ARTICLE_FIG / "be_case2_proof_dag.png",
+        ARTICLE_FIG / "be_case2_proof_dag.svg",
+        README_FIG / "be_case2_proof_dag.png",
+        README_FIG / "be_case2_proof_dag.svg",
+    ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
+def draw_abeis_lean_lemma_tree():
+    """Domain-oriented Lean tree for researchers; this is not import order."""
+
+    fig, ax = setup(21.0, 11.8)
+    label(ax, 3.5, 96, "ABEIS Lean lemma tree | mathematical dependency view", fs=23, weight="bold", color=NAVY, ha="left")
+    label(ax, 3.5, 92.3, "Read top to bottom; arrows are representative dependencies, while the generated declaration index is exhaustive.", fs=10.8, color=MUTED, ha="left")
+
+    layers = [
+        (78.3, "1  FINITE ALGEBRA + CIRCUITS", BLUE),
+        (61, "2  SEMANTIC CERTIFICATES", GREEN),
+        (40, "3  REUSABLE CONSTRUCTION ROUTES", PURPLE),
+        (20, "4  CERTIFIED CONSUMERS", AMBER),
+    ]
+    for y, text_, color in layers:
+        label(ax, 3.5, y + 12.2, text_, fs=9.0, weight="bold", color=color, ha="left")
+
+    foundation = [
+        (4, "Core", "Matrix, PointwiseEq\nFin / grid arithmetic"),
+        (28, "CircuitSemantics", "eval paths, products\nclean-index extraction"),
+        (52, "Circuit", "gate syntax\nlayered schedules"),
+        (76, "Resources", "gates, depth\naux, oracle calls"),
+    ]
+    for x, title, sub in foundation:
+        box(ax, x, 80, 20, 9, title, sub, fc=BLUE_L, ec=BLUE, fs=11.5, subfs=7.6)
+
+    contracts = [
+        (4, "State preparation", "FirstColumnMatches\nVerifiedStatePreparation"),
+        (28, "Exact clean block", "ExactCleanBlock\nclean_eq_target"),
+        (52, "Approximate BE", "VerifiedApproximate...\nzero-error promotion"),
+        (76, "Candidate score", "target fidelity gate\nlexicographic Resource"),
+    ]
+    for x, title, sub in contracts:
+        box(ax, x, 61, 20, 9, title, sub, fc=GREEN_L, ec=GREEN, fs=11.3, subfs=7.4)
+
+    routes = [
+        (3, "Permutation", "permMatrix orthogonality\npartialPermutationCertificate"),
+        (22, "Householder", "clean entry + orthogonality\ncontrolled direct sum"),
+        (41, "Sparse / value", "oneSparse, row-column\ncompute-rotate-uncompute"),
+        (60, "LCU / product", "weightedSum2\nproductExactCleanBlock"),
+        (79, "QSVT / dilation", "consumer contract\nscalar fallback"),
+    ]
+    for x, title, sub in routes:
+        box(ax, x, 40, 17, 10, title, sub, fc=PURPLE_L, ec=PURPLE, fs=10.7, subfs=7.0)
+
+    consumers = [
+        (4, "State-prep cases", "single-qubit + first-column\nPREPARE memories"),
+        (28, "BE Case 1", "coldE1...permutation\nevolvedEqFlipVerified"),
+        (52, "BE Case 2", "linear + cubic\nHouseholder roots"),
+        (76, "Paper cases", "GHL2025 + RobinHeat\nsource correspondence"),
+    ]
+    for x, title, sub in consumers:
+        box(ax, x, 20, 20, 10, title, sub, fc=AMBER_L, ec=AMBER, fs=11.2, subfs=7.1)
+
+    # Foundation to contract.
+    for x in (14, 38, 62, 86):
+        arrow(ax, x, 79.7, x, 70.3, color=BLUE, lw=1.7)
+    # Contracts fan into reusable routes.
+    for x1, x2 in [(14, 11.5), (38, 30.5), (38, 49.5), (62, 68.5), (86, 87.5)]:
+        arrow(ax, x1, 60.7, x2, 50.3, color=GREEN, lw=1.6, rad=0.05)
+    # Routes to task consumers.
+    for x1, x2 in [(11.5, 38), (30.5, 62), (49.5, 86), (68.5, 86), (87.5, 62)]:
+        arrow(ax, x1, 39.7, x2, 30.3, color=PURPLE, lw=1.6, rad=-0.05)
+    arrow(ax, 30.5, 39.7, 14, 30.3, color=PURPLE, lw=1.4, dashed=True, rad=0.10)
+
+    label(ax, 8, 15.8, "5  ACCEPTANCE + RETRIEVAL", fs=9.0, weight="bold", color="#64748B", ha="left")
+    group_box(ax, 6, 4, 88, 9, "", "#64748B", "#FFFFFF")
+    badge(ax, 10, 6.5, 17, 4, "Lean root anchors", fc=GREEN_L, ec=GREEN, fs=9.2)
+    badge(ax, 31, 6.5, 18, 4, "compiled leaf index", fc=BLUE_L, ec=BLUE, fs=9.2)
+    badge(ax, 53, 6.5, 17, 4, "Qiskit Operator", fc=ORANGE_L, ec=ORANGE, fs=9.2)
+    badge(ax, 74, 6.5, 16, 4, "parsed QASM3", fc=ORANGE_L, ec=ORANGE, fs=9.2)
+    for x in (14, 38, 62, 86):
+        arrow(ax, x, 19.7, x, 13.3, color=AMBER, lw=1.6)
+
+    for path in [
+        ARTICLE_FIG / "abeis_lean_lemma_tree.png",
+        ARTICLE_FIG / "abeis_lean_lemma_tree.svg",
+        README_FIG / "abeis_lean_lemma_tree.png",
+        README_FIG / "abeis_lean_lemma_tree.svg",
+    ]:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    plt.close(fig)
+
+
 def draw_quantum_lean_leaf_atlas():
     fig, ax = setup(16.5, 9.2)
     label(ax, 5, 94.5, "ABEIS Lean leaf atlas: from quantum libraries to block-encoding certificates", fs=21, weight="bold", color=NAVY, ha="left")
@@ -721,7 +972,7 @@ def draw_quantum_lean_leaf_atlas():
 
     group_box(ax, 4, 17.0, 92, 20.0, "", GREEN, "#F7FFF9")
     label(ax, 6.2, 35.0, "Task certificates and exports", fs=13.5, weight="bold", color=GREEN, ha="left")
-    box(ax, 7, 27.5, 19, 6.0, "main case", "matrix-unit tensor I", fc=AMBER_L, ec=AMBER, fs=12.0, subfs=8.1)
+    box(ax, 7, 27.5, 19, 6.0, "BE Case 1", "matrix-unit tensor I", fc=AMBER_L, ec=AMBER, fs=12.0, subfs=8.1)
     box(ax, 30, 27.5, 19, 6.0, "formula oracles", "diagonal/value-to-\namplitude routes", fc=AMBER_L, ec=AMBER, fs=11.6, subfs=7.9)
     box(ax, 53, 27.5, 19, 6.0, "paper cases", "GHL, sparse PDE,\nstructured matrices", fc=AMBER_L, ec=AMBER, fs=11.6, subfs=7.9)
     box(ax, 76, 27.5, 17, 6.0, "exports", "LaTeX proof,\nQiskit/QASM", fc=AMBER_L, ec=AMBER, fs=11.6, subfs=7.9)
@@ -981,6 +1232,26 @@ def draw_abeis_detailed_lean_leaf_module_graph():
         fig.savefig(path, bbox_inches="tight", facecolor=BG)
     plt.close(fig)
 
+
+def normalize_svg_whitespace():
+    """Keep generated SVG diffs compatible with repository whitespace checks."""
+
+    names = (
+        "abeis_agent_cycle_detail.svg",
+        "abeis_lean_lemma_tree.svg",
+        "be_case2_cold_hinted.svg",
+        "be_case2_proof_dag.svg",
+    )
+    for directory in (ARTICLE_FIG, README_FIG):
+        for name in names:
+            path = directory / name
+            content = path.read_text(encoding="utf-8")
+            path.write_text(
+                "\n".join(line.rstrip() for line in content.splitlines()) + "\n",
+                encoding="utf-8",
+            )
+
+
 def main():
     ARTICLE_FIG.mkdir(parents=True, exist_ok=True)
     README_FIG.mkdir(parents=True, exist_ok=True)
@@ -994,9 +1265,14 @@ def main():
     draw_optctrl_cold_clean_storyboard()
     draw_qiskit_export_results()
     draw_evolution_acceptance_pipeline()
+    draw_abeis_agent_cycle_detail()
+    draw_be_case2_summary()
+    draw_be_case2_proof_dag()
+    draw_abeis_lean_lemma_tree()
     draw_quantum_lean_leaf_atlas()
     draw_abeis_lean_leaf_module_graph()
     draw_abeis_detailed_lean_leaf_module_graph()
+    normalize_svg_whitespace()
 
 
 if __name__ == "__main__":

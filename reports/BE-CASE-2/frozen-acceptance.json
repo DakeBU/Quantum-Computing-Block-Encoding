@@ -1,0 +1,75 @@
+{
+  "case": "BE Case 2: cubic diagonal operator",
+  "cold_start_scope": {
+    "allowed": [
+      "current compiled ABEIS Lean library",
+      "Mathlib",
+      "task-local source and executable contracts"
+    ],
+    "forbidden_for_cold_arm": [
+      "previous cubic run directories",
+      "previous candidate populations",
+      "previous hint packets",
+      "conversation memory"
+    ],
+    "interpretation": "isolated run-state cold start, not theorem discovery from an empty library"
+  },
+  "control_version": 5,
+  "date": "2026-07-16",
+  "environment": {
+    "codex_model_if_agent_work_is_needed": "gpt-5.6-sol",
+    "openqasm3": "1.0.1",
+    "qiskit": "2.4.2"
+  },
+  "frozen_sha256": {
+    "QuantumBlockEncoding/CubicStatePreparation.lean": "944c149a0d3e42c376382de469edf2bd2fd4cd5b61335f833975f99d0c3e1421",
+    "tasks/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001.md": "2bedc860e63a3c3ef23e5cd1163edae141509061ba9cfcb2c86e4317cfe4c2b6",
+    "tasks/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001.md": "85dafad694c3e7b0d64b47b0dace4f59ee55b80478ef4ac0f7a563a3f8c434f8",
+    "tools/export_hard_cubic_householder.py": "9445fa98420a65e7c6c655c3bdb1accee32246c43c95438471cb288180252a3a",
+    "tools/qbe.py": "f52fa665c7f3015965149b93ce07890bee25497c4af9297a7279c4ae9e07d4d6",
+    "tools/qbe_control.py": "1cc971b26d680d614dc4704a70c45fee528ab1f6cd5a2d9dce5273ef20ce9ac3"
+  },
+  "arms": {
+    "cold": {
+      "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001",
+      "lean_roots": [
+        "CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"
+      ],
+      "lean_build": "pass",
+      "tests_build": "pass",
+      "executable": {
+        "acceptance_sha256": "c98a73a6c35b2ffffbb48ee855be417b3597dee7a64c1d430833cff68b1854bf",
+        "artifacts_present": true,
+        "clean_block_error": 0.0,
+        "qasm_operator_error": 1.8572384374115355e-12,
+        "qasm_parse": "pass",
+        "unitarity_error": 2.2224038376351276e-16
+      },
+      "final_closeout_estimated_input_tokens": 0,
+      "status": "complete"
+    },
+    "hinted": {
+      "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001",
+      "lean_roots": [
+        "CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete",
+        "CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"
+      ],
+      "lean_build": "pass",
+      "tests_build": "pass",
+      "executable": {
+        "acceptance_sha256": "8091d5db00f0a675eb350d99739dc16e179cd4679b00eec79eac47094bf0d314",
+        "artifacts_present": true,
+        "cubic_clean_block_error": 0.0,
+        "cubic_qasm_operator_error": 1.8572384374115355e-12,
+        "linear_clean_block_error": 0.0,
+        "linear_qasm_operator_error": 3.7183907660243654e-13,
+        "qasm_parse": "pass",
+        "polynomial_identity_error": 0.0
+      },
+      "final_closeout_estimated_input_tokens": 0,
+      "status": "complete"
+    }
+  },
+  "acceptance_rule": "complete iff all declared Lean roots compile, the executable command exits zero, and every declared artifact exists",
+  "scope_note": "Finite Qiskit/OpenQASM checks validate n=2 exports; symbolic family validity comes from Lean."
+}

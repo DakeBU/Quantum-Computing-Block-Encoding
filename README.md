@@ -138,6 +138,10 @@ run both in isolated workspaces and compare the certified population curves.
 
 ![ABEIS evolution and acceptance pipeline](docs/assets/abeis_evolution_acceptance.svg)
 
+The detailed cycle view makes the authority boundary explicit:
+
+![One controlled ABEIS cycle](docs/assets/abeis_agent_cycle_detail.svg)
+
 For exploratory tasks that declare `Population gate: required`, middle must
 write typed candidate actions (`propose`, `retain`, `retire`, `mutate`, or
 `crossover`) and upper/reviewer must select one active candidate before lower
@@ -242,12 +246,18 @@ Classic routes exposed to users and agents:
 The table below is the public Lean module map.  External Lean libraries remain
 searchable references unless they are added as audited dependencies.
 
+The domain-oriented lemma tree is the fastest entry point for researchers. It
+shows mathematical dependency rather than file-import order; the generated
+declaration index below supplies exact theorem locations.
+
+![ABEIS Lean lemma tree](docs/assets/abeis_lean_lemma_tree.svg)
+
 | Family | Main Lean surface | Representative compiled leaves | Why it matters |
 | --- | --- | --- | --- |
 | State-preparation core | `StatePreparation.lean` | `StatePreparationTarget`, `FirstColumnMatches`, exact/approximate verified records, zero-error promotion | makes the first-column application a generic library contract rather than a cubic-task convention |
 | Finite matrix core | `Core.lean`, `CircuitSemantics.lean` | `Matrix`, `PointwiseEq`, `evalWith_mul_apply`, `evalWith_mul_unique_path`, `evalWith_mul_two_path` | keeps circuit products and branch sums small enough for one-agent leaves |
 | Clean-block/projector extraction | `BlockEncodingClassics.lean` | `cleanBlockBy_permMatrix_entry`, `cleanBlockProduct_permMatrix_entry`, `cleanBlockBy_permMatrix_eq_target_of_entry`, `ExactCleanBlock.clean_eq_target` | turns a block-encoding theorem into entrywise matrix equalities |
-| Permutation and unitarity | `BlockEncodingClassics.lean`, `MainCase.lean` | `permMatrix`, `columnInner`, `rowInner`, `permMatrix_isRationalOrthogonal_of_bijective`, `partialPermutationCertificate` | proves exact reversible completions and main-case transfer operators |
+| Permutation and unitarity | `BlockEncodingClassics.lean`, `MainCase.lean` | `permMatrix`, `columnInner`, `rowInner`, `permMatrix_isRationalOrthogonal_of_bijective`, `partialPermutationCertificate` | proves exact reversible completions and BE Case 1 transfer operators |
 | Sparse and value-oracle routes | `BlockEncodingClassics.lean` | `oneSparseMatrix_entry_if`, `oneSparse_from_support`, `sparseColumnCleanEntry_unique_slot`, `rowColumnSparseDeltaEntry`, `ValueToAmplitudeContract.correct` | formalizes the textbook sparse-access and compute-rotate-uncompute patterns |
 | LCU/product/dilation/QSVT | `BlockEncodingClassics.lean` | `oneTermLCU_cleanBlock`, `weightedSum2_entry`, `productExactCleanBlockCertificate`, `scalarDilation_cleanEntry`, `chebyshevT_*`, `QSVTConsumerContract` | gives route skeletons for composition, fallback seeds, and polynomial consumers |
 | Approximate/resource layer | `BlockEncoding.lean`, `Resources.lean`, `Circuit.lean`, `BlockEncodingClassics.lean` | approximate-BE records, `exactAsZeroErrorApproxCleanBlock_bound`, resource tuple/depth/gate leaves | separates correctness from the optimization objective |
@@ -265,6 +275,7 @@ Machine-readable and human-readable retrieval files:
 
 - [`compiled-lean-leaf-index.md`](research-wiki/block-encoding-library/compiled-lean-leaf-index.md) and [`compiled-lean-leaf-index.json`](research-wiki/block-encoding-library/compiled-lean-leaf-index.json): generated declaration ledger.
 - [`lean-leaf-module-graph.md`](research-wiki/block-encoding-library/lean-leaf-module-graph.md): textual ledger behind the graph.
+- [`lean-lemma-tree.md`](research-wiki/block-encoding-library/lean-lemma-tree.md): domain-oriented dependency paths for State Preparation, BE Case 1, and BE Case 2.
 - [`quantum-lean-leaf-atlas.md`](research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md): relationship between ABEIS leaves, Mathlib, and nearby quantum Lean projects.
 - [`route-selector.md`](research-wiki/block-encoding-library/route-selector.md): route-intuition guide for upper/middle agents.
 - [`proof-network.md`](research-wiki/block-encoding-library/proof-network.md): proof-DAG view of reusable textbook leaves.
@@ -307,9 +318,12 @@ leaves may remain as bounded dependencies or negative evidence, but the active
 objective must name an epsilon tier, an error budget, and a Lean-checkable
 approximate statement.
 
-## Main Case Study
+## BE Case 1: Transfer Operator
 
-The current technical-report case study is the transfer-operator task:
+The first block-encoding case is the transfer-operator task. The user-facing
+case name is now **BE Case 1**. The existing Lean module
+`MainCase.lean` is retained as a compatibility surface so downstream imports
+and theorem names do not break.
 
 ```text
 E_k = |0><k|_time ⊗ |0><1|_type ⊗ I
@@ -330,7 +344,7 @@ attempt injects an external Pro construction/proof packet after the run has
 already started, just like a human intervention; the packet affects planning
 only after the task-local Lean proof obligations are generated and discharged.
 
-![Two parallel transfer-operator attempts](docs/assets/optctrl_hier_vs_pro.png)
+![BE Case 1: two parallel transfer-operator attempts](docs/assets/optctrl_hier_vs_pro.png)
 
 Circuit storyboards and Qiskit export checks:
 
@@ -356,7 +370,7 @@ executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py
 executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py
 ```
 
-## Active Hard Benchmark
+## Active State-Preparation Benchmark
 
 `QBE-OP-CUBIC-STATEPREP-001` is the first hard state-preparation-style
 benchmark:
@@ -389,7 +403,7 @@ reports/cubic-stateprep/latest.md
 reports/cubic-stateprep/zh_summary.md
 ```
 
-### Cubic diagonal hard arms
+## BE Case 2: Cubic Diagonal Operator
 
 The separate operator target
 
@@ -407,6 +421,26 @@ Lean roots and the declared finite executable gate.
 | --- | --- | --- |
 | cold | exact cubic clean block, rational orthogonality, `alpha=1`, resource tuple | passed; clean-block error `0`, unitarity error `2.3e-16`, parsed QASM3 |
 | hinted | exact linear `O_0` root plus exact cubic root | passed; both clean-block errors `0`, maximum unitarity error `2.3e-16`, parsed QASM3 |
+
+![BE Case 2: isolated cold and hinted arms](docs/assets/be_case2_cold_hinted.svg)
+
+The mathematical path is not a monolithic tactic trace.  The proof DAG exposes
+the reusable number-theory, rational-vector, Householder, controlled-direct-sum,
+clean-block, and orthogonality leaves.  The hinted `O_0` path remains visible,
+while the direct cubic root makes QSVT optional for correctness.
+
+![BE Case 2 exact proof DAG](docs/assets/be_case2_proof_dag.svg)
+
+Reproducible closeout artifacts:
+
+```text
+tasks/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001.md
+tasks/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001.md
+executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001/
+executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001/
+reports/ABEIS-CONTROL-V5/cold-start-population-audit.json
+reports/BE-CASE-2/frozen-acceptance.json
+```
 
 ## Why Lean For State Preparation And Block Encodings
 
@@ -459,7 +493,7 @@ Current Qiskit exports:
 - `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py`: finite
   dense baseline for small `n`; useful evidence, not a symbolic certificate.
 - `tools/export_hard_cubic_householder.py`: deterministic post-Lean exporter
-  shared by the cold and hinted cubic diagonal hard arms.
+  shared by the cold and hinted BE Case 2 arms.
 
 Current executable-export self-tests:
 
@@ -508,7 +542,7 @@ If the Lean Team closes a certificate, the Natural-Language Team translates it i
 - a step-by-step LaTeX block-encoding statement and proof that a user can copy
   into a paper;
 - circuit diagrams and evolution curves for every Lean-certified exact or
-  approximate candidate used in the case study;
+  approximate candidate used in BE Case 1;
 - checked executable artifacts such as Qiskit, QuantumKatas-style tests, or
   QASM for the certified construction.
 - a proof-DAG figure showing the root target, dependencies, verified leaves,
@@ -657,7 +691,7 @@ policy into each run's `00_context.md`.
 
 Case-study hyperparameters are recorded under `run-presets/`.  In particular,
 `run-presets/main_case_hierarchical_reproduction.md` is the current public
-entry point for replaying the transfer-operator main case with isolated no-Pro
+entry point for replaying BE Case 1 with isolated no-Pro
 and mid-run Pro-assisted Hierarchical Harness arms.  The cubic-diagonal hard case is
 recorded in `run-presets/hard_hier_hinted_exact_to_approx.md`.
 
