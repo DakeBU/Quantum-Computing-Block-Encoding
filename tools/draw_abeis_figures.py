@@ -50,6 +50,23 @@ def setup(width: float, height: float):
     return fig, ax
 
 
+def save_figure(fig, stem: str, *, svg: bool = True):
+    """Write the same reader-facing figure to the paper and README trees."""
+
+    suffixes = ("png", "svg") if svg else ("png",)
+    for directory in (ARTICLE_FIG, README_FIG):
+        directory.mkdir(parents=True, exist_ok=True)
+        for suffix in suffixes:
+            path = directory / f"{stem}.{suffix}"
+            fig.savefig(path, bbox_inches="tight", facecolor=BG)
+            if suffix == "svg":
+                content = path.read_text(encoding="utf-8")
+                path.write_text(
+                    "\n".join(line.rstrip() for line in content.splitlines()) + "\n",
+                    encoding="utf-8",
+                )
+
+
 def box(ax, x, y, w, h, title, subtitle="", fc=BLUE_L, ec=BLUE, lw=2.4, fs=17, subfs=11, radius=0.08):
     patch = FancyBboxPatch(
         (x, y),
@@ -606,6 +623,274 @@ def draw_qiskit_export_results():
     plt.close(fig)
 
 
+def _candidate_card(ax, x, title, tier, tier_color, target, score, theorem):
+    """Shared shell for the two case-study candidate storyboards."""
+
+    group_box(ax, x, 16, 22, 64, "", "#CBD5E1", "#FFFFFF")
+    label(ax, x + 2, 75.5, title, fs=12.2, weight="bold", color=NAVY, ha="left")
+    badge(ax, x + 2, 68.3, 18, 4.8, tier, fc="#FFFFFF", ec=tier_color, fs=8.8)
+    label(ax, x + 2, 63.7, target, fs=8.7, color=MUTED, ha="left")
+    if score:
+        badge(ax, x + 2, 20.2, 18, 5.0, score, fc=GREEN_L, ec=GREEN, fs=9.2)
+    else:
+        badge(ax, x + 2, 20.2, 18, 5.0, "not rankable", fc=AMBER_L, ec=AMBER, fs=9.0)
+    label(ax, x + 2, 17.8, theorem, fs=6.8, color="#475569", ha="left")
+
+
+def draw_be_case1_candidates():
+    """Four Lean-certified BE Case 1 candidates in one readable visual grammar."""
+
+    fig, ax = setup(19.2, 9.0)
+    label(ax, 3, 96, "BE Case 1 | certified candidate sequence", fs=22, weight="bold", color=NAVY, ha="left")
+    label(ax, 3, 91.5, "Every card is a complete block encoding of the same transfer target; score comparisons stay inside a resource tier.", fs=10.8, color=MUTED, ha="left")
+    badge(ax, 70, 92.8, 12, 3.6, "FULL BE", fc=GREEN_L, ec=GREEN, fs=8.1)
+    badge(ax, 83.5, 92.8, 13.5, 3.6, "LEAN CERTIFIED", fc=BLUE_L, ec=BLUE, fs=8.1)
+
+    xs = [3, 27, 51, 75]
+    cards = [
+        ("1  Oracle seed", "oracle-label tier", BLUE, r"target: $E_1$", "(1,1,1,1)", "exampleVerified"),
+        ("2  Depth-5 circuit", "expanded logical tier", BLUE, r"target: $E_1$", "(6,5,1,0)", "reducedDepth5Verified"),
+        ("3  Transfer circuit", "expanded logical tier", BLUE, r"target: $E_1$", "(4,4,1,0)", "proEqTransferVerified"),
+        ("4  Parallel champion", "expanded logical tier", GREEN, r"target: $E_1$", "(4,2,1,0)", "evolvedEqFlipVerified"),
+    ]
+    for x, card in zip(xs, cards):
+        _candidate_card(ax, x, *card)
+
+    # Seed: a certified matrix-table completion behind one oracle label.
+    for yy, nm in zip((55.5, 49.5, 43.5), ("a", "T", "tau")):
+        wire(ax, xs[0] + 4.5, xs[0] + 18.8, yy, nm)
+    gate(ax, xs[0] + 8.2, 41.5, 8.8, 16, "U_pi", fc=BLUE_L, ec=BLUE, fs=12)
+    label(ax, xs[0] + 11, 36.7, "exact matrix table", fs=8.4, color=MUTED)
+
+    # Depth-5: a longer certified reversible decomposition.
+    for yy, nm in zip((55.5, 49.5, 43.5), ("a", "T", "tau")):
+        wire(ax, xs[1] + 4.5, xs[1] + 18.8, yy, nm)
+    for gx, txt in zip((xs[1] + 7.0, xs[1] + 10.2, xs[1] + 13.4, xs[1] + 16.6), ("=", "X", "CX", "X")):
+        gate(ax, gx - 1.4, 46.2, 2.8, 6.5, txt, fc="#FFFFFF", ec=BLUE, fs=7.8)
+    label(ax, xs[1] + 11, 36.7, "6 gates / 5 layers", fs=8.4, color=MUTED)
+
+    # Four-gate transfer construction.
+    for yy, nm in zip((55.5, 49.5, 43.5), ("a", "T", "tau")):
+        wire(ax, xs[2] + 4.5, xs[2] + 18.8, yy, nm)
+    control(ax, xs[2] + 8.5, 49.5)
+    control(ax, xs[2] + 8.5, 43.5)
+    ax.plot([xs[2] + 8.5, xs[2] + 8.5], [43.5, 55.5], color="#334155", lw=1.6)
+    gate(ax, xs[2] + 7.1, 52.3, 2.8, 6.4, "X", fc=BLUE_L, ec=BLUE, fs=8.2)
+    for gx, yy in ((xs[2] + 13, 49.5), (xs[2] + 16.2, 43.5)):
+        gate(ax, gx - 1.4, yy - 3.2, 2.8, 6.4, "X", fc="#FFFFFF", ec=BLUE, fs=8.2)
+    label(ax, xs[2] + 11, 36.7, "4 gates / 4 layers", fs=8.4, color=MUTED)
+
+    # Champion: equal gate count, but independent flips share one layer.
+    for yy, nm in zip((55.5, 49.5, 43.5), ("a", "T", "tau")):
+        wire(ax, xs[3] + 4.5, xs[3] + 18.8, yy, nm)
+    control(ax, xs[3] + 8.2, 49.5)
+    control(ax, xs[3] + 8.2, 43.5)
+    ax.plot([xs[3] + 8.2, xs[3] + 8.2], [43.5, 55.5], color="#334155", lw=1.6)
+    gate(ax, xs[3] + 6.8, 52.3, 2.8, 6.4, "X", fc=GREEN_L, ec=GREEN, fs=8.2)
+    for yy in (55.5, 49.5, 43.5):
+        gate(ax, xs[3] + 14.2, yy - 2.5, 3.0, 5.0, "X", fc=GREEN_L, ec=GREEN, fs=8.0)
+    ax.plot([xs[3] + 13.6, xs[3] + 17.8], [59.5, 59.5], color=GREEN, lw=2.0)
+    label(ax, xs[3] + 11, 36.7, "4 gates / 2 layers", fs=8.4, color=GREEN, weight="bold")
+
+    for left, right in zip(xs[:-1], xs[1:]):
+        arrow(ax, left + 22.3, 48, right - 0.3, 48, color=ORANGE, lw=1.8)
+    label(ax, 50, 7.5, "The oracle seed is a separate abstraction tier. Within the expanded logical tier, the certified frontier improves (6,5,1,0) -> (4,4,1,0) -> (4,2,1,0).", fs=9.7, weight="bold", color=NAVY)
+    save_figure(fig, "be_case1_candidates")
+    plt.close(fig)
+
+
+def draw_be_case2_candidates():
+    """Case 2 milestones without promoting partial certificates to full BEs."""
+
+    fig, ax = setup(19.2, 9.0)
+    label(ax, 3, 96, "BE Case 2 | certified construction milestones", fs=22, weight="bold", color=NAVY, ha="left")
+    label(ax, 3, 91.5, "Green cards are complete block encodings; amber is a legal reusable clean-block certificate, not a full candidate.", fs=10.8, color=MUTED, ha="left")
+    badge(ax, 70, 92.8, 12, 3.6, "FULL BE", fc=GREEN_L, ec=GREEN, fs=8.1)
+    badge(ax, 83.5, 92.8, 13.5, 3.6, "INTERMEDIATE", fc=AMBER_L, ec=AMBER, fs=8.1)
+
+    xs = [3, 27, 51, 75]
+    cards = [
+        ("1  Exact input BE", "complete supplier", GREEN, r"target: $O_0=\mathrm{diag}(j/N)$", "(1,1,3,1)", "linear...Contract_complete"),
+        ("2  Cubic clean block", "clean-block certificate", AMBER, r"target block: $O_0^3=D_n$", "", "linear...Product...clean_eq"),
+        ("3  Exact cubic BE", "complete target root", GREEN, r"target: $D_n=\mathrm{diag}((j/N)^3)$", "(1,1,3,1)", "cubic...Contract_complete"),
+        ("4  Executable gate", "finite n=2 acceptance", ORANGE, r"same exact $D_n$ export", "QASM PASS", "Operator + OpenQASM 3"),
+    ]
+    for x, card in zip(xs, cards):
+        _candidate_card(ax, x, *card)
+
+    # Linear input block encoding.
+    group_box(ax, xs[0] + 4, 38.5, 14, 20, "", GREEN, "#F8FFFA")
+    label(ax, xs[0] + 11, 55.0, r"$U_0$", fs=12.5, weight="bold", color=NAVY)
+    box(ax, xs[0] + 5.5, 42.2, 6.2, 7.2, r"$O_0$", "clean", fc=GREEN_L, ec=GREEN, fs=10, subfs=7)
+    label(ax, xs[0] + 14.6, 45.8, "*", fs=15, color=MUTED)
+    label(ax, xs[0] + 11, 34.0, r"$U_0^\mathsf{T}U_0=I$", fs=8.8, color=GREEN, weight="bold")
+
+    # Product card: exact target block arithmetic, but no packaged unitary root.
+    for gx in (xs[1] + 5.4, xs[1] + 10.4, xs[1] + 15.4):
+        box(ax, gx, 45, 3.6, 8, r"$O_0$", fc=PURPLE_L, ec=PURPLE, fs=8.2)
+    label(ax, xs[1] + 9.5, 49, "x", fs=9, color=MUTED)
+    label(ax, xs[1] + 14.5, 49, "x", fs=9, color=MUTED)
+    arrow(ax, xs[1] + 8.9, 40.8, xs[1] + 16.2, 40.8, color=AMBER, lw=1.7)
+    badge(ax, xs[1] + 7.3, 35.5, 9.5, 4.2, r"clean = $D_n$", fc=AMBER_L, ec=AMBER, fs=7.4)
+
+    # Complete direct cubic Householder block encoding.
+    group_box(ax, xs[2] + 4, 38.5, 14, 20, "", GREEN, "#F8FFFA")
+    label(ax, xs[2] + 11, 55.0, r"$U_D$", fs=12.5, weight="bold", color=NAVY)
+    box(ax, xs[2] + 5.5, 42.2, 6.2, 7.2, r"$D_n$", "clean", fc=GREEN_L, ec=GREEN, fs=10, subfs=7)
+    label(ax, xs[2] + 14.6, 45.8, "*", fs=15, color=MUTED)
+    label(ax, xs[2] + 11, 34.0, r"$U_D^\mathsf{T}U_D=I$", fs=8.8, color=GREEN, weight="bold")
+
+    # Finite exported circuit metrics are deliberately not mixed into the logical score.
+    for yy, nm in zip((54.5, 49, 43.5), ("q0", "q1", "anc")):
+        wire(ax, xs[3] + 4.2, xs[3] + 18.7, yy, nm)
+    gate(ax, xs[3] + 8.4, 41.0, 7.2, 16, "QASM3", fc=ORANGE_L, ec=ORANGE, fs=10.2)
+    label(ax, xs[3] + 11, 36.0, "638 gates | depth 465", fs=8.0, color=MUTED)
+    label(ax, xs[3] + 11, 33.0, "clean error 0", fs=8.4, color=GREEN, weight="bold")
+
+    for left, right in zip(xs[:-1], xs[1:]):
+        arrow(ax, left + 22.3, 48, right - 0.3, 48, color=ORANGE, lw=1.8)
+    label(ax, 50, 7.5, r"The hinted $O_0$ route contributes a complete supplier and a clean-block product card. The direct cubic Householder root is the first complete, rankable solution for $D_n$.", fs=9.7, weight="bold", color=NAVY)
+    save_figure(fig, "be_case2_candidates")
+    plt.close(fig)
+
+
+def draw_be_case1_convergence():
+    """Certified score frontier for Case 1, with resource tiers kept separate."""
+
+    fig, ax = plt.subplots(figsize=(15.8, 7.4), dpi=180)
+    fig.patch.set_facecolor(BG)
+    ax.set_facecolor("#FFFFFF")
+    steps = [1, 2, 3, 4]
+    gates = [6, 4, 4, 4]
+    depths = [5, 4, 2, 2]
+    oracles = [0, 0, 0, 0]
+    ax.axvspan(0.65, 4.35, color=BLUE_L, alpha=0.48)
+    ax.plot(steps, gates, marker="o", ms=9, lw=3.0, color=BLUE, label="gate count")
+    ax.plot(steps, depths, marker="s", ms=8, lw=3.0, color=ORANGE, label="depth")
+    ax.plot(steps, oracles, marker="^", ms=8, lw=2.6, color=PURPLE, label="oracle calls")
+    ax.scatter([0], [1], s=110, marker="D", color="#94A3B8", edgecolor="#475569", zorder=5)
+    ax.annotate("oracle tier\n(1,1,1,1)", (0, 1), xytext=(0, 18), textcoords="offset points", ha="center", fontsize=10, fontweight="bold", color="#475569")
+    ax.annotate("tier expansion", (0.45, 3.1), ha="center", fontsize=9.5, color=MUTED, rotation=90)
+    for x, y, text_ in ((1, 6, "depth-5"), (2, 4, "4-gate transfer"), (3, 2, "depth-2 champion"), (4, 2, "export passed")):
+        ax.annotate(text_, (x, y), xytext=(0, 15 if x != 3 else -34), textcoords="offset points", ha="center", fontsize=9.6, fontweight="bold", color=GREEN if x >= 3 else TEXT)
+    ax.set_title("BE Case 1 | certified frontier by proof step", fontsize=20, fontweight="bold", color=NAVY, pad=18)
+    ax.text(0.0, 1.025, "Only the expanded logical tier is connected and compared lexicographically.", transform=ax.transAxes, fontsize=11, color=MUTED)
+    ax.set_xticks([0, 1, 2, 3, 4], ["oracle seed", "step 1", "step 2", "step 3", "accept"])
+    ax.set_ylabel("logical resource count", fontsize=13, fontweight="bold")
+    ax.set_ylim(-0.4, 7.0)
+    ax.grid(True, axis="y", color="#E2E8F0", linewidth=1.1)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.spines[["left", "bottom"]].set_color("#64748B")
+    ax.tick_params(labelsize=11)
+    legend = ax.legend(loc="upper right", ncol=3, frameon=True, fontsize=10.5)
+    legend.get_frame().set_edgecolor("#CBD5E1")
+    legend.get_frame().set_facecolor("#FFFFFF")
+    fig.text(0.5, 0.015, "Expanded-tier frontier: (6,5,1,0) -> (4,4,1,0) -> (4,2,1,0). Every plotted point has a Lean certificate.", ha="center", fontsize=10.2, fontweight="bold", color=NAVY)
+    fig.tight_layout(rect=(0.03, 0.055, 0.98, 0.96))
+    save_figure(fig, "be_case1_convergence")
+    plt.close(fig)
+
+
+def draw_be_case2_convergence():
+    """Proof-closure milestones for the cold and hinted Case 2 arms."""
+
+    fig, ax = plt.subplots(figsize=(15.8, 7.4), dpi=180)
+    fig.patch.set_facecolor(BG)
+    ax.set_facecolor("#FFFFFF")
+    cold_x, cold_y = [0, 1, 3, 4], [0, 1, 3, 4]
+    hint_x, hint_y = [0, 1, 2, 3, 4], [0, 2, 2, 3, 4]
+    ax.plot(cold_x, cold_y, marker="o", ms=9, lw=3.0, color=BLUE, label="cold arm")
+    ax.plot(hint_x, hint_y, marker="s", ms=8, lw=3.0, color=PURPLE, label="hinted arm")
+    ax.axhspan(2.75, 4.25, color=GREEN_L, alpha=0.58)
+    annotations = [
+        (1, 1, "cubic branch\nproof leaves", BLUE, -42),
+        (1, 2, "exact $O_0$\nsupplier", PURPLE, 16),
+        (2, 2, "$O_0^3$ clean\nblock card", PURPLE, -42),
+        (3, 3, "full $D_n$ root", GREEN, 16),
+        (4, 4, "Qiskit + QASM\naccepted", GREEN, 16),
+    ]
+    for x, y, text_, color, offset in annotations:
+        ax.annotate(text_, (x, y), xytext=(0, offset), textcoords="offset points", ha="center", fontsize=9.5, fontweight="bold", color=color)
+    ax.set_title("BE Case 2 | certified closure by proof milestone", fontsize=20, fontweight="bold", color=NAVY, pad=18)
+    ax.text(0.0, 1.025, "Milestone order records proof closure, not wall-clock time or model-call count.", transform=ax.transAxes, fontsize=11, color=MUTED)
+    ax.set_xticks([0, 1, 2, 3, 4], ["target", "supplier/leaves", "consumer", "full root", "accept"])
+    ax.set_yticks([0, 1, 2, 3, 4], ["target fixed", "proof leaves", "supplier / clean block", "full target BE", "Lean + export"])
+    ax.set_xlim(-0.15, 4.2)
+    ax.set_ylim(-0.25, 4.35)
+    ax.grid(True, axis="y", color="#E2E8F0", linewidth=1.1)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.spines[["left", "bottom"]].set_color("#64748B")
+    ax.tick_params(labelsize=11)
+    legend = ax.legend(loc="lower right", frameon=True, fontsize=11)
+    legend.get_frame().set_edgecolor("#CBD5E1")
+    legend.get_frame().set_facecolor("#FFFFFF")
+    fig.text(0.5, 0.015, r"Both isolated arms reach the same complete cubic root; the hinted arm additionally closes the exact $O_0$ supplier and product clean block.", ha="center", fontsize=10.2, fontweight="bold", color=NAVY)
+    fig.tight_layout(rect=(0.03, 0.055, 0.98, 0.96))
+    save_figure(fig, "be_case2_convergence")
+    plt.close(fig)
+
+
+def _draw_lex_score_table(title, subtitle, rows, footer, stem):
+    """Render a compact table that keeps semantic eligibility next to scores."""
+
+    fig, ax = setup(18.4, 8.2)
+    label(ax, 3, 95, title, fs=22, weight="bold", color=NAVY, ha="left")
+    label(ax, 3, 90.5, subtitle, fs=10.7, color=MUTED, ha="left")
+    columns = ((3, 29, "Candidate / route"), (32, 18, "Certificate tier"), (50, 12, "Target"), (62, 15, "Score (g,d,a,o)"), (77, 20, "Selection status"))
+    for x, w, text_ in columns:
+        patch = FancyBboxPatch((x, 79), w, 7, boxstyle="round,pad=0.01,rounding_size=0.5", linewidth=1.4, edgecolor=NAVY, facecolor=NAVY)
+        ax.add_patch(patch)
+        label(ax, x + 1.4, 82.5, text_, fs=9.2, weight="bold", color="#FFFFFF", ha="left")
+    y_positions = (67, 55, 43, 31)
+    for y, row in zip(y_positions, rows):
+        candidate, tier, target, score, status, status_color = row
+        row_fc = GREEN_L if status_color == GREEN else AMBER_L if status_color == AMBER else "#F8FAFC"
+        for x, w, _ in columns:
+            patch = FancyBboxPatch((x, y), w, 9.5, boxstyle="round,pad=0.01,rounding_size=0.35", linewidth=1.0, edgecolor="#D7DEE8", facecolor=row_fc if x == 77 else "#FFFFFF")
+            ax.add_patch(patch)
+        label(ax, 4.4, y + 4.75, candidate, fs=9.0, weight="bold", color=TEXT, ha="left")
+        label(ax, 33.4, y + 4.75, tier, fs=8.7, color=TEXT, ha="left")
+        label(ax, 51.4, y + 4.75, target, fs=8.9, color=TEXT, ha="left")
+        ax.text(69.5, y + 4.75, score, ha="center", va="center", fontsize=9.2, fontweight="bold", family="monospace", color=TEXT)
+        label(ax, 78.4, y + 4.75, status, fs=8.6, weight="bold", color=status_color, ha="left")
+    group_box(ax, 3, 10, 94, 13.5, "Reading rule", BLUE, "#F7FAFF")
+    label(ax, 5.5, 15.0, footer, fs=9.2, color=TEXT, ha="left")
+    save_figure(fig, stem)
+    plt.close(fig)
+
+
+def draw_be_case1_score_table():
+    rows = [
+        ("Oracle matrix-table seed", "complete BE / oracle", r"$E_1$", "(1,1,1,1)", "separate resource tier", BLUE),
+        ("Reduced depth-5 circuit", "complete BE / expanded", r"$E_1$", "(6,5,1,0)", "eligible parent", BLUE),
+        ("Pro or no-Pro transfer", "complete BE / expanded", r"$E_1$", "(4,4,1,0)", "frontier improvement", BLUE),
+        ("Evolved parallel flip", "complete BE / expanded", r"$E_1$", "(4,2,1,0)", "selected champion", GREEN),
+    ]
+    _draw_lex_score_table(
+        "BE Case 1 | lexicographic selection table",
+        "Order inside one semantic/resource tier: gate count, depth, auxiliary qubits, then unresolved oracle calls.",
+        rows,
+        "Do not compare the one-call oracle abstraction directly with expanded logical circuits. In the expanded tier, four gates tie and depth 2 defeats depth 4.",
+        "be_case1_score_table",
+    )
+
+
+def draw_be_case2_score_table():
+    rows = [
+        ("Primitive amplitude oracle", "conditional candidate", r"$D_n$", "(1,1,1,1)", "blocked: contract open", RED),
+        ("Exact linear Householder", "complete supplier BE", r"$O_0$", "(1,1,3,1)", "different target", BLUE),
+        ("Three-input product card", "clean block only", r"$D_n$", "--", "not a full BE", AMBER),
+        ("Exact cubic Householder", "complete target BE", r"$D_n$", "(1,1,3,1)", "selected root", GREEN),
+    ]
+    _draw_lex_score_table(
+        "BE Case 2 | eligibility before lexicographic score",
+        "A lower tuple cannot win until the target, unitarity, clean block, normalizer, and resource obligations are all closed.",
+        rows,
+        "For Householder roots, a=3 follows from total dimension 8N; Lean certifies one oracle label at depth 1. The n=2 cubic QASM expansion (638 gates, depth 465) is an export metric, not this logical score.",
+        "be_case2_score_table",
+    )
+
+
 def draw_evolution_acceptance_pipeline():
     """Reader-facing view of population evolution and the two final gates."""
 
@@ -759,8 +1044,8 @@ def draw_be_case2_summary():
     fig, ax = setup(18.0, 9.0)
     label(ax, 4, 95, "BE Case 2 | cubic diagonal operator", fs=23, weight="bold", color=NAVY, ha="left")
     label(ax, 4, 90.7, "Two isolated arms close the same exact contract and then pass independent Qiskit / OpenQASM 3 acceptance.", fs=11.5, color=MUTED, ha="left")
-    group_box(ax, 12, 80.5, 76, 7.0, "", BLUE, "#F7FAFF")
-    ax.text(50, 84, r"$D_n=\sum_{j=0}^{2^n-1}(j/2^n)^3|j\rangle\langle j|,\qquad \alpha=1$", ha="center", va="center", fontsize=15.5, color=TEXT)
+    group_box(ax, 12, 79.0, 76, 8.5, "", BLUE, "#F7FAFF")
+    ax.text(50, 83.0, r"$D_n=\mathrm{diag}\!\left(0^3,(1/N)^3,\ldots,((N-1)/N)^3\right),\quad N=2^n,\ \alpha=1$", ha="center", va="center", fontsize=13.5, color=TEXT)
 
     lanes = [
         (4, "COLD ARM", "No prior cubic run memory", BLUE, BLUE_L),
@@ -1239,8 +1524,14 @@ def normalize_svg_whitespace():
     names = (
         "abeis_agent_cycle_detail.svg",
         "abeis_lean_lemma_tree.svg",
+        "be_case1_candidates.svg",
+        "be_case1_convergence.svg",
+        "be_case1_score_table.svg",
         "be_case2_cold_hinted.svg",
+        "be_case2_candidates.svg",
+        "be_case2_convergence.svg",
         "be_case2_proof_dag.svg",
+        "be_case2_score_table.svg",
     )
     for directory in (ARTICLE_FIG, README_FIG):
         for name in names:
@@ -1264,6 +1555,12 @@ def main():
     draw_optctrl_hier_vs_pro()
     draw_optctrl_cold_clean_storyboard()
     draw_qiskit_export_results()
+    draw_be_case1_candidates()
+    draw_be_case1_convergence()
+    draw_be_case1_score_table()
+    draw_be_case2_candidates()
+    draw_be_case2_convergence()
+    draw_be_case2_score_table()
     draw_evolution_acceptance_pipeline()
     draw_abeis_agent_cycle_detail()
     draw_be_case2_summary()

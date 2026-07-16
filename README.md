@@ -344,15 +344,19 @@ attempt injects an external Pro construction/proof packet after the run has
 already started, just like a human intervention; the packet affects planning
 only after the task-local Lean proof obligations are generated and discharged.
 
-![BE Case 1: two parallel transfer-operator attempts](docs/assets/optctrl_hier_vs_pro.png)
+The three figures below use the same visual grammar as BE Case 2: first the
+certified construction sequence, then convergence by certified proof step,
+then the lexicographic selection table.
 
-Circuit storyboards and Qiskit export checks:
+![BE Case 1 certified candidate sequence](docs/assets/be_case1_candidates.svg)
 
-![No-Pro Hierarchical checkpoint storyboard](docs/assets/optctrl_cold_clean_storyboard.png)
+The oracle-labelled seed is intentionally separated from the expanded logical
+gate tier.  Within the expanded tier, the certified frontier improves from
+`(6,5,1,0)` to `(4,4,1,0)` and then `(4,2,1,0)`.
 
-![Lean-certified transfer-operator candidates](docs/assets/optctrl_storyboard.png)
+![BE Case 1 certified frontier by proof step](docs/assets/be_case1_convergence.svg)
 
-![Post-Lean Qiskit export checks](docs/assets/qiskit_export_results.png)
+![BE Case 1 lexicographic selection table](docs/assets/be_case1_score_table.svg)
 
 This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
 certificate.  It is not claimed as a hardware-decomposed theorem, a general
@@ -423,6 +427,29 @@ Lean roots and the declared finite executable gate.
 | hinted | exact linear `O_0` root plus exact cubic root | passed; both clean-block errors `0`, maximum unitarity error `2.3e-16`, parsed QASM3 |
 
 ![BE Case 2: isolated cold and hinted arms](docs/assets/be_case2_cold_hinted.svg)
+
+BE Case 2 uses the same three reader views as BE Case 1.  Its middle product
+object is deliberately shown in amber: `LCUCertificate` proves the cubic clean
+block, but does not itself package a unitary completion.  The conditional
+primitive amplitude-oracle candidate is likewise excluded from the winning
+population until its semantic contract is closed.
+
+![BE Case 2 certified construction milestones](docs/assets/be_case2_candidates.svg)
+
+The next plot shows proof-closure order, not wall-clock time or a reconstructed
+token trace.  Both isolated arms reach the full cubic root and executable
+acceptance; the hinted arm additionally closes the linear supplier and cubic
+product clean-block card.
+
+![BE Case 2 certified closure by proof milestone](docs/assets/be_case2_convergence.svg)
+
+![BE Case 2 eligibility and lexicographic score table](docs/assets/be_case2_score_table.svg)
+
+For the complete Householder roots, the displayed logical tuple is
+`(1,1,3,1)`: the `8N` matrix dimension contributes three auxiliary qubits,
+while the compiled resource theorem records one oracle label at depth one.
+The finite `n=2` QASM counts (`638` gates, depth `465` for the cubic export)
+belong to a lower compilation tier and are not mixed into that logical score.
 
 The mathematical path is not a monolithic tactic trace.  The proof DAG exposes
 the reusable number-theory, rational-vector, Householder, controlled-direct-sum,
