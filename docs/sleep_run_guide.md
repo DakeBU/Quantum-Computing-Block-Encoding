@@ -162,7 +162,7 @@ task, or accepts a diagnostic score as if it were a Lean theorem.
 Start with a dry run:
 
 ```bash
-cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
+cd Quantum-Computing-Block-Encoding
 python3 tools/qbe.py blueprint-status QBE-AUTO-001 --refresh
 python3 tools/qbe.py write-context-pack QBE-AUTO-001 --cycle 1
 python3 tools/qbe.py sleep-run QBE-AUTO-001 --cycles 2 --dry-run

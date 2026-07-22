@@ -43,10 +43,10 @@ A Platform for Lean-validated quantum state-preparation and block-encoding const
 
 
 ---
-ABEIS is a Lean 4 project and multi-agent harness for turning a requested
-quantum construction into concrete unitary candidates, gate-level circuit
-matrices, resource scores, and Lean-checked certificates.  It now exposes two
-application directions, ordered by difficulty:
+ABEIS (Auto-Block-Encoding-In-Sleep) is a Lean 4 project and multi-agent
+harness for turning a requested quantum construction into concrete unitary
+candidates, gate-level circuit matrices, resource scores, and Lean-checked
+certificates.  It now exposes two application directions, ordered by difficulty:
 
 1. **State Preparation.**  Given a normalized target state `|psi>`, synthesize
    a unitary `U` such that `U |0^n> = |psi>`.  Equivalently, in the standard
@@ -663,7 +663,7 @@ the same target operator.
 ## Quick Start
 
 ```bash
-cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
+cd Quantum-Computing-Block-Encoding
 
 python3 tools/qbe.py init
 python3 tools/qbe.py list-literature

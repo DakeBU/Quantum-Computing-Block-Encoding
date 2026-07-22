@@ -261,7 +261,7 @@
     "lower_count": null,
     "agent_profile": null,
     "parallel_claim_valid": null,
-    "detail": "Traceback (most recent call last):\n  File \"/home/nitanda_sub/mark/repos/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep/reports/route-ablation/QBE-OP-OPTCTRL-001/reference_qiskit_check.py\", line 3, in <module>\n    from qiskit import QuantumCircuit\nModuleNotFoundError: No module named 'qiskit'"
+    "detail": "Traceback (most recent call last):\n  File \"reports/route-ablation/QBE-OP-OPTCTRL-001/reference_qiskit_check.py\", line 3, in <module>\n    from qiskit import QuantumCircuit\nModuleNotFoundError: No module named 'qiskit'"
   },
   {
     "run_id": "20260619-115325-reference_qiskit",
@@ -270,7 +270,7 @@
     "status": "passed",
     "prompt": null,
     "agent_command": null,
-    "checker_command": "/home/nitanda_sub/mark/.venv/bin/python reports/route-ablation/QBE-OP-OPTCTRL-001/reference_qiskit_check.py",
+    "checker_command": "python reports/route-ablation/QBE-OP-OPTCTRL-001/reference_qiskit_check.py",
     "agent_wall_time_s": null,
     "checker_wall_time_s": 0.2962585426867008,
     "input_tokens_proxy": null,

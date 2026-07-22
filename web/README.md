@@ -35,7 +35,7 @@ the same layout assembled by `.github/workflows/pages.yml`.
 ## Development Preview
 
 ```bash
-cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
+cd Quantum-Computing-Block-Encoding
 python3 -m http.server 8080 -d web
 ```
 

@@ -409,7 +409,7 @@ candidate score separately.
 ## Create A Prompt Deck
 
 ```bash
-cd /path/to/Auto-Quantum-Computing-Bloack-Encoding-In-Sleep
+cd Quantum-Computing-Block-Encoding
 python3 tools/qbe.py run-cycle QBE-AUTO-001 --cycle 1
 ```
 

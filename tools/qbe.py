@@ -4577,7 +4577,7 @@ Copy everything below this line into ChatGPT Pro.
 
 ---
 
-You are helping with ABEIS, an Auto-Block-Encoding-in-Sleep Lean 4 project for
+You are helping with ABEIS, an Auto-Block-Encoding-In-Sleep Lean 4 project for
 quantum oracle and block-encoding circuit formalization.  You cannot access my
 local files.  Please use only the public links below and the self-contained
 status copied into this prompt.  Local Lean names and file paths are labels to

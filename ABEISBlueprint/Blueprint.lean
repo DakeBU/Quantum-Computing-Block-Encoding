@@ -8,9 +8,9 @@ open Informal
 
 #doc (Manual) "ABEIS Lean Blueprint" =>
 
-This Blueprint is the readable map of the Lean library behind the Automatic Block-Encoding
-Intelligence System (ABEIS). It connects the user-facing quantum construction workflow to exact
-Lean definitions, theorem statements, proof dependencies, and source locations.
+This Blueprint is the readable map of the Lean library behind Auto-Block-Encoding-In-Sleep
+(ABEIS). It connects the user-facing quantum construction workflow to exact Lean definitions,
+theorem statements, proof dependencies, and source locations.
 
 The first four chapters explain the contracts, reusable construction routes, and completed case
 studies. The declaration catalog that follows is generated from every explicit public declaration
