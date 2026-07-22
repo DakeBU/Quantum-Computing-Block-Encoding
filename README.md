@@ -30,6 +30,16 @@ A Platform for Lean-validated quantum state-preparation and block-encoding const
   placeholder is available at https://dakebu.github.io/Quantum-Computing-Block-Encoding/
   while the hosted workflow is still being tested.  Feedback, issue reports,
   and suggested state/operator/oracle benchmarks are welcome.
+* **July 2026.** The public site now includes an ABEIS Lean Blueprint at
+  [`/blueprint/html-multi/`](https://dakebu.github.io/Quantum-Computing-Block-Encoding/blueprint/html-multi/).
+  Curated chapters explain ABEIS contracts, proof routes, and case studies;
+  generated catalog chapters cover every explicit public Lean declaration and
+  link each entry to its source.  Its organization was inspired by Sho
+  Sonoda's [Lean Ridgelet Blueprint](https://shosonoda.github.io/lean-ridgelet/),
+  while the multi-page renderer, Lean declaration panels, and `blueprint`,
+  `modern`, and `bold` reading styles are provided by
+  [Verso Blueprint](https://github.com/leanprover/verso-blueprint), built on
+  [Verso](https://github.com/leanprover/verso).
 
 
 ---
@@ -99,6 +109,56 @@ exact block-entry equation:
 ```text
 (<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha
 ```
+
+## Lean Blueprint documentation
+
+The GitHub Pages deployment combines two complementary interfaces:
+
+1. the landing page and task builder at the site root;
+2. the Lean library Blueprint under `blueprint/html-multi/`.
+
+The first four Blueprint chapters are written explanations of the certificate
+model, finite semantics, reusable block-encoding routes, and completed case
+studies.  The catalog chapters are generated from `QuantumBlockEncoding/**/*.lean`.
+The coverage report in `docs/blueprint-coverage.json` records exactly which
+public source declarations are included and which private helpers are excluded.
+The experimental `RobinMatrix.lean` development is catalogued separately and
+its open diagnostic proofs are not presented as certified results.
+
+### Acknowledgements
+
+The organization of this documentation was inspired by Sho Sonoda's
+[Lean Ridgelet project](https://github.com/shosonoda/lean-ridgelet) and its
+[public Blueprint](https://shosonoda.github.io/lean-ridgelet/).  We thank Sho
+Sonoda for making that clear, readable example available to the Lean community.
+The site itself is generated with
+[Verso Blueprint](https://github.com/leanprover/verso-blueprint), built on
+[Verso](https://github.com/leanprover/verso); those projects provide the
+multi-page documentation design, navigation, Lean declaration panels, preview
+runtime, and selectable reading styles used here.
+
+Regenerate and verify the catalog with:
+
+```bash
+python3 scripts/generate-blueprint-catalog.py
+python3 scripts/generate-blueprint-catalog.py --check
+```
+
+Build the documentation locally with either:
+
+```bash
+bash scripts/build-blueprint.sh
+```
+
+or on Windows PowerShell:
+
+```powershell
+./scripts/build-blueprint.ps1 -PythonCommand python
+```
+
+The generated site is written below `_out/blueprint/` and is intentionally not
+committed.  All committed configuration and generated catalog paths are
+repository-relative, so another checkout can build and publish the same site.
 
 It may also state an accepted approximation budget:
 

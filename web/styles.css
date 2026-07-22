@@ -73,6 +73,33 @@ h3 {
   background: #f7faff;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.blueprint-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.blueprint-link:hover,
+.blueprint-link:focus-visible {
+  background: var(--blue-dark);
+}
+
 .layout {
   display: grid;
   grid-template-columns: minmax(360px, 0.92fr) minmax(420px, 1.08fr);

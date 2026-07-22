@@ -1,0 +1,1284 @@
+{
+  "schemaVersion": 1,
+  "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
+  "publicDeclarationCount": 1646,
+  "privateDeclarationExclusionCount": 177,
+  "byKind": {
+    "abbrev": 10,
+    "def": 646,
+    "inductive": 21,
+    "opaque": 7,
+    "structure": 171,
+    "theorem": 791
+  },
+  "bySource": {
+    "QuantumBlockEncoding/Automation.lean": 39,
+    "QuantumBlockEncoding/BlockEncoding.lean": 22,
+    "QuantumBlockEncoding/BlockEncodingClassics.lean": 84,
+    "QuantumBlockEncoding/Circuit.lean": 12,
+    "QuantumBlockEncoding/CircuitSemantics.lean": 41,
+    "QuantumBlockEncoding/ColdStartTransferE1.lean": 28,
+    "QuantumBlockEncoding/Core.lean": 36,
+    "QuantumBlockEncoding/CubicStatePreparation.lean": 269,
+    "QuantumBlockEncoding/Examples/RobinHeat.lean": 12,
+    "QuantumBlockEncoding/GHL2025.lean": 401,
+    "QuantumBlockEncoding/Literature.lean": 6,
+    "QuantumBlockEncoding/MainCase.lean": 127,
+    "QuantumBlockEncoding/OpenProblems.lean": 4,
+    "QuantumBlockEncoding/OptimalControl.lean": 133,
+    "QuantumBlockEncoding/Resources.lean": 25,
+    "QuantumBlockEncoding/RobinMatrix.lean": 396,
+    "QuantumBlockEncoding/StatePreparation.lean": 11
+  },
+  "excluded": [
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.BlockEncodingClassics.foldlRat_add_zero_of_all_zero",
+      "source": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "line": 185,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.BlockEncodingClassics.foldlRat_add_unique_of_nodup",
+      "source": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "line": 203,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.BlockEncodingClassics.nodupMap_of_injective",
+      "source": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "line": 246,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.BlockEncodingClassics.finRangeNodup",
+      "source": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "line": 265,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.BlockEncodingClassics.matrix_mul_foldl_congr",
+      "source": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "line": 778,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Matrix.foldl_add_zero_of_all_zero",
+      "source": "QuantumBlockEncoding/CircuitSemantics.lean",
+      "line": 105,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Matrix.foldl_add_unique_of_nodup",
+      "source": "QuantumBlockEncoding/CircuitSemantics.lean",
+      "line": 145,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Matrix.nodup_map_of_injective",
+      "source": "QuantumBlockEncoding/CircuitSemantics.lean",
+      "line": 188,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Matrix.finRange_nodup",
+      "source": "QuantumBlockEncoding/CircuitSemantics.lean",
+      "line": 207,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Matrix.foldl_add_extract_init",
+      "source": "QuantumBlockEncoding/CircuitSemantics.lean",
+      "line": 224,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Matrix.foldl_add_two_of_nodup",
+      "source": "QuantumBlockEncoding/CircuitSemantics.lean",
+      "line": 235,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.delta8",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1001,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.fin8_exhaust",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1004,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.dot8_delta_delta",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1035,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.dot8_delta_left",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1042,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.dot8_delta_right",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1048,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.dot8_sub_sub",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1054,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.householder8_columnDot",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1061,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.householder8_symm",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1093,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.householder8_rowDot",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1098,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.columnInner_eq_dot8",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1115,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.rowInner_eq_dot8",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1121,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8Embed_val",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1176,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8SystemIndex_embed",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1182,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8AncillaIndex_embed",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1189,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8SystemIndex_productIndex",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1197,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8AncillaIndex_productIndex",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1205,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8_productIndex_eta",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1218,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8_identity_same_branch",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1233,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_foldl_add_zero_of_all_zero",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1333,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_column_off_branch_summand_zero",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1395,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_column_summand_productIndex",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1411,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_row_off_branch_summand_zero",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1427,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_row_summand_productIndex",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1443,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8BranchFiber",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1459,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8_productIndex_left_injective",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1465,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8BranchFiber_mem_iff",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1474,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_foldl_add_unique_of_nodup",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1489,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_nodup_map_of_injective",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1534,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_finRange_nodup",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1553,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8BranchFiber_nodup",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1571,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_perm_cons_erase_of_mem",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1578,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_perm_of_nodup_mem_iff",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1600,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_foldl_add_perm",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1641,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_foldl_add_filter_of_zero_acc",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1651,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_foldl_add_filter_of_zero",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1670,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_foldl_add_congr_acc",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1677,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_foldl_add_congr",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1693,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8BranchFiber_filter_perm",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1700,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_productIndex",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1726,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_productIndex",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 1845,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.diagonalFoldlAddZero",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2338,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.diagonalFoldlAddUnique",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2356,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.diagonalNodupMapOfInjective",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2398,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.diagonalFinRangeNodup",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2416,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.diagonalFoldlAddLe",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2433,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_product_self",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2491,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_foldl_add_unique_finRange",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2895,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_mul_entry",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2905,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_square_mul_entry",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 2941,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicModAddSub_eq_self",
+      "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "line": 3741,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.GHL2025.mod_add_eq_self_imp_offset_zero",
+      "source": "QuantumBlockEncoding/GHL2025.lean",
+      "line": 1100,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.GHL2025.eq_zero_or_eq_base_of_mod_eq_zero_of_lt_two_mul",
+      "source": "QuantumBlockEncoding/GHL2025.lean",
+      "line": 1115,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.effectiveSignal_add_n_eq_total",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 267,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow33_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 6600,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryIndicatorSource_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 6628,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODTSSource_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 6664,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRySource_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 6681,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol32_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 6702,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol33_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 6719,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySwapRow0_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 6834,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDaggerRow32_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 6865,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryIndicatorCol0_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7256,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODTSCol0_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7299,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSImage0_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7345,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol0_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7353,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSImage1_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7369,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol1_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7377,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCol0_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7393,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDaggerRow0_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7794,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySwapRow96_image_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7822,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySwapRow96_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7876,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow0Col96_eval_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7906,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow0Col97_eval_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 7999,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow16_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16094,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow17_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16098,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow112_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16102,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow113_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16106,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow14_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16110,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryIndicatorCol16_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16114,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODTSCol16_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16150,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol16Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16167,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCol16_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16182,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixCol16Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16205,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol16_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16221,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol17_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16235,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixCol16Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16249,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySwapRow112_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16268,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow112Col112_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16297,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow112Col113_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16319,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDaggerRow16_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16341,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow16Col112_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16363,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow16Col113_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16379,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateSlotOneEval_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16395,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow2_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16439,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow48_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16443,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow49_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16447,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryIndicatorCol48_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16451,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODTSCol48_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16487,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol48Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16504,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCol48_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16519,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixCol48Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16542,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol48_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16558,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol49_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16575,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixCol48Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16592,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySwapRow16_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16612,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow16Col16_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16641,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow16Col17_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16661,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDaggerRow48_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16681,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow48Col16_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16703,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow48Col17_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16717,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateSlotThreeEval_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16731,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow4_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16769,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow64_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16773,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow65_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16777,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryIndicatorCol64_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16781,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODTSCol64_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16817,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol64Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16834,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCol64_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16849,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixCol64Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16872,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol64_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16888,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol65_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16905,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixCol64Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16922,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySwapRow32_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16942,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow32Col32_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16971,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow32Col33_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 16991,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDaggerRow64_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17011,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow64Col32_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17033,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow64Col33_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17047,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateSlotFourEval_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17061,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow10_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17098,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow80_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17102,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow81_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17106,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryIndicatorCol80_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17110,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODTSCol80_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17146,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol80Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17163,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCol80_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17178,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixCol80Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17201,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol80_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17217,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol81_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17234,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixCol80Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17251,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySwapRow80_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17271,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow80Col80_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17300,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow80Col81_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17320,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDaggerRow80_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17340,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow80Col80_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17362,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow80Col81_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17376,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateSlotFiveEval_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17390,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow6_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17428,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow96_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17432,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "abbrev",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow97_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17436,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryIndicatorCol96_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17440,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODTSCol96_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17476,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol96Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17493,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCol96_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17508,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixCol96Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17531,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol96_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17547,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryODBSCol97_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17564,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixCol96Support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17581,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySwapRow48_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17601,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow48Col48_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17630,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow48Col49_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17650,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDaggerRow96_support_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17670,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow96Col48_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17692,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow96Col49_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17706,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateSlotSixEval_zero_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17720,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFinSevenFoldEval_eq_slotTwo_of_vanish_n3",
+      "source": "QuantumBlockEncoding/RobinMatrix.lean",
+      "line": 17758,
+      "reason": "private declaration"
+    }
+  ],
+  "generatedCatalogs": [
+    "ABEISBlueprint/Catalog/Foundations.lean",
+    "ABEISBlueprint/Catalog/Semantics.lean",
+    "ABEISBlueprint/Catalog/ClassicRoutes.lean",
+    "ABEISBlueprint/Catalog/CertifiedCases.lean",
+    "ABEISBlueprint/Catalog/Cubic.lean",
+    "ABEISBlueprint/Catalog/PaperAndExamples.lean",
+    "ABEISBlueprint/Catalog/AutomationAndMemory.lean",
+    "ABEISBlueprint/Catalog/ExperimentalRobinMatrix.lean"
+  ]
+}

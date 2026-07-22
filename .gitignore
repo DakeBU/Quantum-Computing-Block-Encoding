@@ -1,4 +1,6 @@
 /.lake/
+/_out/
+/_site/
 /.qbe/
 /.claude/
 /.env

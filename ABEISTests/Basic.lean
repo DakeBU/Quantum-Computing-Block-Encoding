@@ -700,7 +700,7 @@ def testIdentityGateMatrix : GateMatrix Rat 1 where
   matrix := Matrix.identity (qubitDim 1) Rat
   unitary := {
     description := "identity gate matrix is unitary"
-    source := "Tests/Basic.lean"
+    source := "ABEISTests/Basic.lean"
     proved := true
   }
 
@@ -723,7 +723,7 @@ def testDiagonalGateMatrix : GateMatrix Rat 1 where
     else 0
   unitary := {
     description := "non-unitary diagonal test matrix for product order only"
-    source := "Tests/Basic.lean"
+    source := "ABEISTests/Basic.lean"
     proved := false
   }
 
@@ -732,7 +732,7 @@ def testFlipGateMatrix : GateMatrix Rat 1 where
   matrix := fun i j => if i.val + j.val = 1 then (1 : Rat) else 0
   unitary := {
     description := "flip test matrix for product order only"
-    source := "Tests/Basic.lean"
+    source := "ABEISTests/Basic.lean"
     proved := false
   }
 
@@ -774,7 +774,7 @@ def testCoeffDiagonalGateMatrix : GateMatrix Coeff 1 where
   matrix := testCoeffDiagonalMatrix
   unitary := {
     description := "non-unitary symbolic diagonal test matrix"
-    source := "Tests/Basic.lean"
+    source := "ABEISTests/Basic.lean"
     proved := false
   }
 

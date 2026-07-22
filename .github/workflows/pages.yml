@@ -1,10 +1,22 @@
-name: Deploy ABEIS Web Task Builder
+name: Build and deploy ABEIS website and Lean Blueprint
 
 on:
   push:
     branches: [main]
     paths:
       - "web/**"
+      - "QuantumBlockEncoding/**"
+      - "ABEISBlueprint/**"
+      - "ABEISBlueprint.lean"
+      - "ABEISBlueprintMain.lean"
+      - "scripts/generate-blueprint-catalog.py"
+      - "scripts/build-blueprint.sh"
+      - "docs/blueprint-coverage.json"
+      - "research-wiki/**"
+      - "paper-notes/**"
+      - "lakefile.lean"
+      - "lake-manifest.json"
+      - "lean-toolchain"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -28,6 +40,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Set up Lean and fetch the Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: false
+          use-mathlib-cache: true
+
+      - name: Check generated declaration coverage
+        run: python3 scripts/generate-blueprint-catalog.py --check
+
+      - name: Build the library and tests
+        run: lake build && lake build Tests
+
+      - name: Build the Verso Blueprint
+        run: bash scripts/build-blueprint.sh
+
+      - name: Assemble the combined Pages site
+        run: |
+          mkdir -p _site/blueprint
+          rsync -a web/ _site/
+          rsync -a _out/blueprint/ _site/blueprint/
+          touch _site/.nojekyll
+
       - name: Configure Pages
         uses: actions/configure-pages@v6
         with:
@@ -39,10 +74,10 @@ jobs:
           token: ${{ secrets.PAGES_TOKEN || github.token }}
           enablement: ${{ secrets.PAGES_TOKEN != '' }}
 
-      - name: Upload web directory
+      - name: Upload combined site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: web
+          path: _site
 
       - name: Deploy
         id: deployment

@@ -1,8 +1,8 @@
 # ABEIS Web Task Builder
 
 This is a browser interface for researchers who do not want to start from raw
-GitHub commands.  It can be deployed by GitHub Pages, Cloudflare Pages,
-Netlify, or any static-file host.  The page has two roles:
+GitHub commands.  The GitHub Pages workflow publishes it together with the
+Verso Lean Blueprint.  The page has two roles:
 
 1. build an ABEIS task packet and agent profile from a target-state,
    oracle/operator, or matrix description;
@@ -10,7 +10,10 @@ Netlify, or any static-file host.  The page has two roles:
    certified circuit storyboards, and post-Lean Qiskit/QuantumKatas/QASM
    status.
 
-The static page itself does not certify proofs.  Lean remains the verifier.
+The header links to `blueprint/html-multi/`, where users can browse the Lean
+contracts, proof routes, case studies, and exhaustive declaration catalog in
+the Blueprint, Modern, or Bold style.  The static task builder itself does not
+certify proofs.  Lean remains the verifier.
 Model execution either happens in a downloaded local checkout through Codex,
 Claude, GLM, Gemini, Minimax, or custom wrappers, or through a user-owned
 self-hosted runner/API endpoint.
@@ -25,7 +28,9 @@ usually have this shape:
 https://<github-user>.github.io/<repo-name>/
 ```
 
-For other static hosts, publish the contents of this `web/` directory.
+For other static hosts, first build the Blueprint, copy `web/` to the site
+root, and copy `_out/blueprint/` to the site's `blueprint/` directory.  This is
+the same layout assembled by `.github/workflows/pages.yml`.
 
 ## Development Preview
 
