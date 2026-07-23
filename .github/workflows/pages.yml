@@ -11,6 +11,7 @@ on:
       - "ABEISBlueprintMain.lean"
       - "scripts/generate-blueprint-catalog.py"
       - "scripts/build-blueprint.sh"
+      - "scripts/sanitize-blueprint-paths.py"
       - "docs/blueprint-coverage.json"
       - "research-wiki/**"
       - "paper-notes/**"

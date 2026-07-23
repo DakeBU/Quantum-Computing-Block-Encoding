@@ -9,6 +9,8 @@ rm -rf _out/blueprint
 lake lean ABEISBlueprintMain.lean -- \
   --run ABEISBlueprintMain.lean --output _out/blueprint
 
+python3 scripts/sanitize-blueprint-paths.py _out/blueprint
+
 test -f _out/blueprint/html-multi/index.html
 test -f _out/blueprint/html-multi/xref.json
 
