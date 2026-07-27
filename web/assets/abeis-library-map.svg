@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">ABEIS Lean library and documentation map</title>
+  <desc id="desc">The Lean source inventory flows through one strict generator into the Blueprint and Library Explorer, followed by eight catalog groups with declaration counts.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#112630" flood-opacity=".13"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#7b929b"/>
+    </marker>
+    <style>
+      .kicker{font:800 14px Inter,Segoe UI,sans-serif;letter-spacing:2px;fill:#d85e49}
+      .title{font:500 36px Georgia,serif;fill:#172b35}
+      .subtitle{font:400 16px Inter,Segoe UI,sans-serif;fill:#61757e}
+      .step{font:800 11px Inter,Segoe UI,sans-serif;letter-spacing:1.2px;fill:#71848c}
+      .step-light{font:800 11px Inter,Segoe UI,sans-serif;letter-spacing:1.2px;fill:#8db1be}
+      .boxtitle{font:750 19px Inter,Segoe UI,sans-serif;fill:#172b35}
+      .boxtitle-light{font:750 19px Inter,Segoe UI,sans-serif;fill:#f8fbfc}
+      .boxbody{font:400 13px Inter,Segoe UI,sans-serif;fill:#5a6f78}
+      .boxbody-light{font:400 13px Inter,Segoe UI,sans-serif;fill:#b8cbd4}
+      .count{font:600 34px Georgia,serif;fill:#153b4d}
+      .catalog{font:750 14px Inter,Segoe UI,sans-serif;fill:#233a44}
+      .catalogbody{font:400 11px Inter,Segoe UI,sans-serif;fill:#677a82}
+      .tiny{font:700 10px Inter,Segoe UI,sans-serif;letter-spacing:.8px;fill:#768a92}
+    </style>
+  </defs>
+  <rect width="1440" height="760" rx="28" fill="#f7f4ed"/>
+  <circle cx="1320" cy="40" r="220" fill="#dff1ed"/>
+  <circle cx="66" cy="742" r="160" fill="#fde8e2"/>
+  <text x="72" y="61" class="kicker">FORMAL SOURCE → READER SURFACES</text>
+  <text x="72" y="105" class="title">One inventory keeps code, explanations, and navigation synchronized</text>
+  <text x="72" y="136" class="subtitle">The prose aids orientation; the elaborated Lean signature remains the authoritative claim.</text>
+
+  <g fill="none" stroke="#7b929b" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M350 263H408"/>
+    <path d="M682 263H740"/>
+    <path d="M994 238H1054"/>
+    <path d="M994 288H1054"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(72 184)">
+      <rect width="278" height="158" rx="18" fill="#fffdfa" stroke="#d8ddda"/>
+      <rect width="8" height="158" rx="4" fill="#3d79a4"/>
+      <text x="28" y="37" class="step">01 · SOURCE OF TRUTH</text>
+      <text x="28" y="74" class="boxtitle">Lean source tree</text>
+      <text x="28" y="101" class="boxbody">explicit public declarations</text>
+      <text x="28" y="134" class="count">1,646</text>
+      <text x="137" y="131" class="tiny">+ 177 PRIVATE EXCLUSIONS</text>
+    </g>
+    <g transform="translate(408 184)">
+      <rect width="274" height="158" rx="18" fill="#fffdfa" stroke="#d8ddda"/>
+      <rect width="8" height="158" rx="4" fill="#d7a744"/>
+      <text x="28" y="37" class="step">02 · DETERMINISTIC GATE</text>
+      <text x="28" y="74" class="boxtitle">Catalog generator</text>
+      <text x="28" y="101" class="boxbody">partitions every declaration</text>
+      <text x="28" y="124" class="boxbody">fails on stale or missing coverage</text>
+      <text x="28" y="147" class="boxbody">emits portable reader metadata</text>
+    </g>
+    <g transform="translate(740 184)">
+      <rect width="254" height="158" rx="18" fill="#fffdfa" stroke="#d8ddda"/>
+      <rect width="8" height="158" rx="4" fill="#1d8a82"/>
+      <text x="28" y="37" class="step">03 · ELABORATION</text>
+      <text x="28" y="74" class="boxtitle">Strict Lean resolve</text>
+      <text x="28" y="101" class="boxbody">every panel resolves by name</text>
+      <text x="28" y="124" class="boxbody">proof status comes from Lean</text>
+      <text x="28" y="147" class="boxbody">local paths are scrubbed</text>
+    </g>
+    <g transform="translate(1054 166)">
+      <rect width="314" height="95" rx="17" fill="#0f2a39"/>
+      <text x="24" y="32" class="step-light">04A · FORMAL READING</text>
+      <text x="24" y="62" class="boxtitle-light">Verso Blueprint</text>
+      <text x="24" y="82" class="boxbody-light">elaborated signatures · dependencies · themes</text>
+    </g>
+    <g transform="translate(1054 279)">
+      <rect width="314" height="95" rx="17" fill="#fffdfa" stroke="#d8ddda"/>
+      <text x="24" y="32" class="step">04B · DISCOVERY</text>
+      <text x="24" y="62" class="boxtitle">Library Explorer</text>
+      <text x="24" y="82" class="boxbody">search · filters · reader cues · source preview</text>
+    </g>
+  </g>
+
+  <text x="72" y="424" class="kicker">EIGHT AUDITED CATALOGS</text>
+  <text x="72" y="453" class="subtitle">Counts are explicit public source declarations, not compiler-generated projections.</text>
+
+  <g transform="translate(72 482)">
+    <g transform="translate(0 0)">
+      <rect width="306" height="96" rx="14" fill="#fffdfa" stroke="#cfd8d8"/>
+      <rect width="7" height="96" rx="3.5" fill="#3d79a4"/>
+      <text x="24" y="31" class="catalog">Foundations</text><text x="258" y="35" class="count" font-size="27">106</text>
+      <text x="24" y="57" class="catalogbody">matrices · resources · contracts</text><text x="24" y="76" class="catalogbody">circuit syntax · certificate records</text>
+    </g>
+    <g transform="translate(326 0)">
+      <rect width="306" height="96" rx="14" fill="#fffdfa" stroke="#cfd8d8"/>
+      <rect width="7" height="96" rx="3.5" fill="#1d8a82"/>
+      <text x="24" y="31" class="catalog">Semantics</text><text x="267" y="35" class="count" font-size="27">41</text>
+      <text x="24" y="57" class="catalogbody">gate and circuit meaning</text><text x="24" y="76" class="catalogbody">evaluated matrix bridges</text>
+    </g>
+    <g transform="translate(652 0)">
+      <rect width="306" height="96" rx="14" fill="#fffdfa" stroke="#cfd8d8"/>
+      <rect width="7" height="96" rx="3.5" fill="#d7a744"/>
+      <text x="24" y="31" class="catalog">Classic routes</text><text x="267" y="35" class="count" font-size="27">84</text>
+      <text x="24" y="57" class="catalogbody">permutation · sparse · LCU</text><text x="24" y="76" class="catalogbody">product · dilation · QSVT</text>
+    </g>
+    <g transform="translate(978 0)">
+      <rect width="318" height="96" rx="14" fill="#fffdfa" stroke="#cfd8d8"/>
+      <rect width="7" height="96" rx="3.5" fill="#ef806a"/>
+      <text x="24" y="31" class="catalog">Certified cases</text><text x="266" y="35" class="count" font-size="27">288</text>
+      <text x="24" y="57" class="catalogbody">cold start · main case</text><text x="24" y="76" class="catalogbody">optimal-control completions</text>
+    </g>
+    <g transform="translate(0 116)">
+      <rect width="306" height="96" rx="14" fill="#fffdfa" stroke="#cfd8d8"/>
+      <rect width="7" height="96" rx="3.5" fill="#8a68a8"/>
+      <text x="24" y="31" class="catalog">Cubic family</text><text x="254" y="35" class="count" font-size="27">269</text>
+      <text x="24" y="57" class="catalogbody">state preparation</text><text x="24" y="76" class="catalogbody">exact rational Householder</text>
+    </g>
+    <g transform="translate(326 116)">
+      <rect width="306" height="96" rx="14" fill="#fffdfa" stroke="#cfd8d8"/>
+      <rect width="7" height="96" rx="3.5" fill="#597d98"/>
+      <text x="24" y="31" class="catalog">Paper + examples</text><text x="255" y="35" class="count" font-size="27">413</text>
+      <text x="24" y="57" class="catalogbody">GHL backend models</text><text x="24" y="76" class="catalogbody">Robin-boundary examples</text>
+    </g>
+    <g transform="translate(652 116)">
+      <rect width="306" height="96" rx="14" fill="#fffdfa" stroke="#cfd8d8"/>
+      <rect width="7" height="96" rx="3.5" fill="#74a17a"/>
+      <text x="24" y="31" class="catalog">Automation + memory</text><text x="268" y="35" class="count" font-size="27">49</text>
+      <text x="24" y="57" class="catalogbody">controller and agent contracts</text><text x="24" y="76" class="catalogbody">literature and open problems</text>
+    </g>
+    <g transform="translate(978 116)">
+      <rect width="318" height="96" rx="14" fill="#fff8f5" stroke="#efb4a7"/>
+      <rect width="7" height="96" rx="3.5" fill="#d85e49"/>
+      <text x="24" y="31" class="catalog">Experimental Robin</text><text x="266" y="35" class="count" font-size="27">396</text>
+      <text x="24" y="57" class="catalogbody">outside default import surface</text><text x="24" y="76" class="catalogbody">open diagnostics stay visible</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Search and read every explicit public Lean declaration in Auto-Block-Encoding-In-Sleep."
+    >
+    <title>ABEIS Lean Library Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="brand" href="../">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          <span>
+            <strong>ABEIS</strong>
+            <small>Auto-Block-Encoding-In-Sleep</small>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="../">Task builder</a>
+          <a href="../blueprint/html-multi/">Lean Blueprint</a>
+          <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding">Source</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Formal library, readable evidence</p>
+          <h1>Find any Lean declaration.<br><span>Understand what it certifies.</span></h1>
+          <p class="hero-copy">
+            This explorer is generated from the same source inventory that gates the
+            Blueprint build. Every public declaration has a searchable reader cue,
+            formal-status note, bounded source preview, and link to its checked Lean panel.
+          </p>
+        </div>
+        <div class="coverage-card" aria-label="Coverage summary">
+          <p>Audited source inventory</p>
+          <strong id="publicCount">1,646</strong>
+          <span>explicit public declarations</span>
+          <div class="coverage-rule">
+            <div>
+              <b id="docCount">1,299</b>
+              <small>source docstrings</small>
+            </div>
+            <div>
+              <b id="cueCount">1,646</b>
+              <small>reader cues</small>
+            </div>
+          </div>
+          <p class="coverage-note">
+            Private helper declarations are audited separately and are not presented
+            as public API.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="orientation" aria-labelledby="orientation-title">
+        <div>
+          <p class="section-kicker">How to read a card</p>
+          <h2 id="orientation-title">Three layers keep the prose honest</h2>
+        </div>
+        <ol class="reading-steps">
+          <li>
+            <span>01</span>
+            <div><strong>Reader cue</strong><p>A plain-language orientation, not a replacement theorem.</p></div>
+          </li>
+          <li>
+            <span>02</span>
+            <div><strong>Formal status</strong><p>Distinguishes compiled results, data contracts, and experimental obligations.</p></div>
+          </li>
+          <li>
+            <span>03</span>
+            <div><strong>Lean evidence</strong><p>The displayed signature and repository source fix the exact claim.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="explorer" aria-labelledby="explorer-title">
+        <div class="explorer-head">
+          <div>
+            <p class="section-kicker">Complete declaration index</p>
+            <h2 id="explorer-title">Search the formal library</h2>
+          </div>
+          <p id="resultSummary" class="result-summary" aria-live="polite">Loading declaration inventory…</p>
+        </div>
+
+        <div class="controls">
+          <label class="search-control">
+            <span>Search name, explanation, source, or Lean preview</span>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Try “clean block”, “Householder”, or “permutation”"
+              autocomplete="off"
+            >
+          </label>
+          <label>
+            <span>Catalog</span>
+            <select id="catalogFilter"><option value="">All catalogs</option></select>
+          </label>
+          <label>
+            <span>Declaration kind</span>
+            <select id="kindFilter"><option value="">All kinds</option></select>
+          </label>
+          <label>
+            <span>Status</span>
+            <select id="statusFilter">
+              <option value="">Certified and experimental</option>
+              <option value="default">Default import surface</option>
+              <option value="experimental">Experimental module</option>
+            </select>
+          </label>
+          <button id="clearFilters" type="button">Reset filters</button>
+        </div>
+
+        <div id="activeFilters" class="active-filters" aria-live="polite"></div>
+        <div id="results" class="results" aria-live="polite"></div>
+        <button id="loadMore" class="load-more" type="button" hidden>Show more declarations</button>
+      </section>
+
+      <aside class="method-note">
+        <div>
+          <p class="section-kicker">Audit boundary</p>
+          <h2>What “complete” means here</h2>
+        </div>
+        <p>
+          The generator scans explicit public <code>def</code>, <code>abbrev</code>,
+          <code>opaque</code>, <code>inductive</code>, <code>structure</code>,
+          <code>class</code>, <code>theorem</code>, and <code>lemma</code>
+          declarations. Compiler-generated projections are reached through their parent
+          structure and are not double-counted. A renamed or unresolved Lean declaration
+          fails the documentation build.
+        </p>
+      </aside>
+    </main>
+
+    <footer>
+      <p>
+        ABEIS means <strong>Auto-Block-Encoding-In-Sleep</strong>. The documentation
+        organization was inspired by
+        <a href="https://github.com/shosonoda/lean-ridgelet">Sho Sonoda’s Lean Ridgelet project</a>;
+        declaration panels and selectable themes are provided by
+        <a href="https://github.com/leanprover/verso-blueprint">Verso Blueprint</a>.
+      </p>
+    </footer>
+
+    <template id="declarationTemplate">
+      <article class="declaration-card">
+        <header>
+          <div class="badges">
+            <span class="kind-badge"></span>
+            <span class="status-badge"></span>
+            <span class="catalog-badge"></span>
+          </div>
+          <h3></h3>
+          <p class="reader-label"></p>
+        </header>
+        <div class="card-grid">
+          <section>
+            <h4>Plain-English reading</h4>
+            <p class="plain-english"></p>
+          </section>
+          <section>
+            <h4>Formal status</h4>
+            <p class="formal-status"></p>
+          </section>
+        </div>
+        <details>
+          <summary>Inspect Lean source preview</summary>
+          <pre><code></code></pre>
+          <p class="preview-note">
+            This is a bounded source preview. The Blueprint panel displays the elaborated
+            signature; the source link opens the complete declaration and proof.
+          </p>
+        </details>
+        <footer class="card-actions">
+          <a class="primary-action blueprint-action">Open checked Lean panel</a>
+          <a class="source-action">Open repository source</a>
+          <button class="copy-action" type="button">Copy Lean name</button>
+        </footer>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

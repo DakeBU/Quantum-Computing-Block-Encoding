@@ -1,8 +1,10 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
   "publicDeclarationCount": 1646,
   "privateDeclarationExclusionCount": 177,
+  "sourceDocstringCount": 1299,
+  "generatedReaderCueCount": 1646,
   "byKind": {
     "abbrev": 10,
     "def": 646,
@@ -1280,5 +1282,6 @@
     "ABEISBlueprint/Catalog/PaperAndExamples.lean",
     "ABEISBlueprint/Catalog/AutomationAndMemory.lean",
     "ABEISBlueprint/Catalog/ExperimentalRobinMatrix.lean"
-  ]
+  ],
+  "libraryExplorer": "web/library/declarations.json"
 }

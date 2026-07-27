@@ -11,7 +11,9 @@ on:
       - "ABEISBlueprintMain.lean"
       - "scripts/generate-blueprint-catalog.py"
       - "scripts/build-blueprint.sh"
+      - "scripts/build-blueprint.ps1"
       - "scripts/sanitize-blueprint-paths.py"
+      - "scripts/test-sanitize-blueprint-paths.py"
       - "docs/blueprint-coverage.json"
       - "research-wiki/**"
       - "paper-notes/**"
@@ -49,7 +51,9 @@ jobs:
           use-mathlib-cache: true
 
       - name: Check generated declaration coverage
-        run: python3 scripts/generate-blueprint-catalog.py --check
+        run: |
+          python3 scripts/generate-blueprint-catalog.py --check
+          python3 scripts/test-sanitize-blueprint-paths.py
 
       - name: Build the library and tests
         run: lake build && lake build Tests
@@ -63,6 +67,9 @@ jobs:
           rsync -a web/ _site/
           rsync -a _out/blueprint/ _site/blueprint/
           touch _site/.nojekyll
+
+      - name: Scan the complete publication for local paths
+        run: python3 scripts/sanitize-blueprint-paths.py --scan-only _site
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

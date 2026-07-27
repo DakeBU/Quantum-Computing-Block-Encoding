@@ -17,6 +17,12 @@ studies. The declaration catalog that follows is generated from every explicit p
 in QuantumBlockEncoding. Generated Lean panels are resolved during the documentation build, so a
 renamed or missing declaration breaks CI instead of leaving a stale web page.
 
+Readers who already know a declaration name can use the
+[ABEIS Library Explorer](../../library/) to search all 1,646 explicit public declarations by
+name, catalog, kind, source note, or Lean preview. The Explorer and these Blueprint chapters are
+generated from the same inventory: the Explorer makes discovery fast, while the Blueprint shows
+the elaborated signature and proof status supplied by Lean.
+
 The words *proved*, *contract*, and *obligation* are used deliberately. A proposition stored
 inside a structure is a contract until a proof field is supplied. An exact clean-block certificate
 does not by itself claim a gate implementation or resource optimality. The experimental

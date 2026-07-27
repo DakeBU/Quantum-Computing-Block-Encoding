@@ -9,6 +9,21 @@ paper or repository.
 - Nikita Guseynov, Xiajie Huang, Nana Liu,
   [Quantum framework for simulating linear PDEs with Robin boundary conditions](https://arxiv.org/abs/2506.20478).
 
+## Documentation Design
+
+- Sho Sonoda,
+  [Lean Ridgelet](https://github.com/shosonoda/lean-ridgelet) and its
+  [public Blueprint](https://shosonoda.github.io/lean-ridgelet/).
+  ABEIS credits this project as the organizational inspiration for connecting
+  readable mathematical chapters to exact Lean declarations.
+- [Verso Blueprint](https://github.com/leanprover/verso-blueprint), built on
+  [Verso](https://github.com/leanprover/verso).
+  These upstream projects provide the multi-page renderer, declaration panels,
+  proof-status integration, navigation, preview runtime, and selectable
+  `blueprint`, `modern`, and `bold` styles.  ABEIS adds its own exhaustive
+  declaration inventory, quantum-domain explanations, visual maps, and
+  search-oriented Library Explorer.
+
 ## Automation References
 
 - [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep),

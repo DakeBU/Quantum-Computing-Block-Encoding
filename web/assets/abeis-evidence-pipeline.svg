@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 620" role="img" aria-labelledby="title desc">
+  <title id="title">ABEIS evidence pipeline</title>
+  <desc id="desc">Five stages connect a user contract to search, Lean verification, a certified library object, and public evidence.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1d2b"/>
+      <stop offset="1" stop-color="#153b4d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feDropShadow dx="0" dy="11" stdDeviation="12" flood-color="#00101b" flood-opacity=".28"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#8eabb7"/>
+    </marker>
+    <style>
+      .kicker{font:700 15px Inter,Segoe UI,sans-serif;letter-spacing:2.5px;fill:#ef806a}
+      .title{font:500 38px Georgia,serif;fill:#f8fbfc}
+      .subtitle{font:400 17px Inter,Segoe UI,sans-serif;fill:#b6cad3}
+      .step{font:800 13px Inter,Segoe UI,sans-serif;letter-spacing:1.5px;fill:#6c808a}
+      .cardtitle{font:750 20px Inter,Segoe UI,sans-serif;fill:#102531}
+      .body{font:400 14px Inter,Segoe UI,sans-serif;fill:#536873}
+      .bandlabel{font:800 12px Inter,Segoe UI,sans-serif;letter-spacing:1.2px;fill:#9bb0ba}
+      .bandtitle{font:700 15px Inter,Segoe UI,sans-serif;fill:#f4f8fa}
+      .bandbody{font:400 12px Inter,Segoe UI,sans-serif;fill:#a9bdc6}
+    </style>
+  </defs>
+  <rect width="1440" height="620" rx="28" fill="url(#bg)"/>
+  <g opacity=".08" stroke="#fff">
+    <path d="M0 74H1440M0 148H1440M0 222H1440M0 296H1440M0 370H1440M0 444H1440M0 518H1440"/>
+    <path d="M80 0V620M160 0V620M240 0V620M320 0V620M400 0V620M480 0V620M560 0V620M640 0V620M720 0V620M800 0V620M880 0V620M960 0V620M1040 0V620M1120 0V620M1200 0V620M1280 0V620M1360 0V620"/>
+  </g>
+
+  <text x="72" y="60" class="kicker">AUTO-BLOCK-ENCODING-IN-SLEEP</text>
+  <text x="72" y="105" class="title">From a requested quantum object to inspectable evidence</text>
+  <text x="72" y="136" class="subtitle">Search proposes. Lean decides. Documentation exposes the exact boundary of every claim.</text>
+
+  <g fill="none" stroke="#8eabb7" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M318 286H352"/>
+    <path d="M588 286H622"/>
+    <path d="M858 286H892"/>
+    <path d="M1128 286H1162"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(72 190)">
+      <rect width="246" height="192" rx="18" fill="#fffdfa"/>
+      <rect width="246" height="9" rx="4.5" fill="#ef806a"/>
+      <circle cx="38" cy="45" r="19" fill="#fde5df"/>
+      <path d="M29 45h18M38 36v18" stroke="#d95741" stroke-width="3" stroke-linecap="round"/>
+      <text x="68" y="41" class="step">01 · SPECIFY</text>
+      <text x="24" y="89" class="cardtitle">User contract</text>
+      <text x="24" y="118" class="body">Target state or operator</text>
+      <text x="24" y="141" class="body">normalizer · registers · norm</text>
+      <text x="24" y="164" class="body">acceptance and resource order</text>
+    </g>
+    <g transform="translate(342 190)">
+      <rect width="246" height="192" rx="18" fill="#fffdfa"/>
+      <rect width="246" height="9" rx="4.5" fill="#d7a744"/>
+      <circle cx="38" cy="45" r="19" fill="#f7edce"/>
+      <circle cx="31" cy="40" r="4" fill="#a87512"/><circle cx="45" cy="40" r="4" fill="#a87512"/><circle cx="38" cy="53" r="4" fill="#a87512"/>
+      <path d="M34 43l3 7m7-7l-4 7" stroke="#a87512" stroke-width="2"/>
+      <text x="68" y="41" class="step">02 · EXPLORE</text>
+      <text x="24" y="89" class="cardtitle">Candidate proof DAG</text>
+      <text x="24" y="118" class="body">Permutation · sparse · LCU</text>
+      <text x="24" y="141" class="body">Householder · product · QSVT</text>
+      <text x="24" y="164" class="body">typed failures remain visible</text>
+    </g>
+    <g transform="translate(612 190)">
+      <rect width="246" height="192" rx="18" fill="#fffdfa"/>
+      <rect width="246" height="9" rx="4.5" fill="#1d8a82"/>
+      <circle cx="38" cy="45" r="19" fill="#dff1ed"/>
+      <path d="M28 45l7 7 14-16" fill="none" stroke="#16736c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="68" y="41" class="step">03 · VERIFY</text>
+      <text x="24" y="89" class="cardtitle">Lean acceptance gate</text>
+      <text x="24" y="118" class="body">exact hypotheses and conclusion</text>
+      <text x="24" y="141" class="body">unitarity · clean projection</text>
+      <text x="24" y="164" class="body">no promotion by prose alone</text>
+    </g>
+    <g transform="translate(882 190)">
+      <rect width="246" height="192" rx="18" fill="#fffdfa"/>
+      <rect width="246" height="9" rx="4.5" fill="#3d79a4"/>
+      <circle cx="38" cy="45" r="19" fill="#e2edf4"/>
+      <path d="M29 36h18v18H29zM34 32h18v18" fill="none" stroke="#2c638a" stroke-width="2.4"/>
+      <text x="68" y="41" class="step">04 · PROMOTE</text>
+      <text x="24" y="89" class="cardtitle">Certified library object</text>
+      <text x="24" y="118" class="body">named theorem or certificate</text>
+      <text x="24" y="141" class="body">source-linked dependencies</text>
+      <text x="24" y="164" class="body">resource tier kept explicit</text>
+    </g>
+    <g transform="translate(1152 190)">
+      <rect width="216" height="192" rx="18" fill="#fffdfa"/>
+      <rect width="216" height="9" rx="4.5" fill="#8a68a8"/>
+      <circle cx="38" cy="45" r="19" fill="#eee7f4"/>
+      <path d="M28 52h20M31 37h14M31 44h14" stroke="#6c4a8a" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="68" y="41" class="step">05 · EXPOSE</text>
+      <text x="24" y="89" class="cardtitle">Public evidence</text>
+      <text x="24" y="118" class="body">Blueprint panels</text>
+      <text x="24" y="141" class="body">library explorer</text>
+      <text x="24" y="164" class="body">audited executable exports</text>
+    </g>
+  </g>
+
+  <g transform="translate(72 438)">
+    <rect width="1296" height="124" rx="16" fill="#0a1925" stroke="#385362"/>
+    <text x="24" y="31" class="bandlabel">EVIDENCE BOUNDARY</text>
+    <g transform="translate(24 50)">
+      <circle cx="9" cy="9" r="9" fill="#1d8a82"/>
+      <text x="28" y="8" class="bandtitle">Certified</text>
+      <text x="28" y="28" class="bandbody">Lean proof closes the stated proposition</text>
+    </g>
+    <g transform="translate(344 50)">
+      <circle cx="9" cy="9" r="9" fill="#d7a744"/>
+      <text x="28" y="8" class="bandtitle">Contract</text>
+      <text x="28" y="28" class="bandbody">Fields specify obligations still to be supplied</text>
+    </g>
+    <g transform="translate(684 50)">
+      <circle cx="9" cy="9" r="9" fill="#ef806a"/>
+      <text x="28" y="8" class="bandtitle">Diagnostic</text>
+      <text x="28" y="28" class="bandbody">Finite checks can reject, not generalize</text>
+    </g>
+    <g transform="translate(1000 50)">
+      <circle cx="9" cy="9" r="9" fill="#8a68a8"/>
+      <text x="28" y="8" class="bandtitle">Experimental</text>
+      <text x="28" y="28" class="bandbody">Separated from the default import surface</text>
+    </g>
+  </g>
+</svg>

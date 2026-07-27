@@ -1,5 +1,7 @@
 param(
-  [string]$PythonCommand = "python"
+  [string]$PythonCommand = "python",
+  [string]$LakeCommand = "lake",
+  [string[]]$LakeArguments = @()
 )
 
 $ErrorActionPreference = "Stop"
@@ -9,7 +11,7 @@ Set-Location -LiteralPath $repoRoot
 & $PythonCommand scripts/generate-blueprint-catalog.py --check
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-lake build "ABEISBlueprint.Assembly:olean"
+& $LakeCommand @LakeArguments build "ABEISBlueprint.Assembly:olean"
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 $outputRoot = Join-Path $repoRoot "_out"
@@ -23,12 +25,22 @@ if (Test-Path -LiteralPath $resolvedOutput) {
   Remove-Item -LiteralPath $resolvedOutput -Recurse -Force
 }
 
-lake lean ABEISBlueprintMain.lean -- --run ABEISBlueprintMain.lean --output _out/blueprint
+& $LakeCommand @LakeArguments lean ABEISBlueprintMain.lean -- --run ABEISBlueprintMain.lean --output _out/blueprint
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+$assetOutput = Join-Path $blueprintOutput "html-multi/assets"
+New-Item -ItemType Directory -Path $assetOutput -Force | Out-Null
+Copy-Item -LiteralPath "web/assets/abeis-evidence-pipeline.svg" -Destination $assetOutput
+Copy-Item -LiteralPath "web/assets/abeis-library-map.svg" -Destination $assetOutput
+
+& $PythonCommand scripts/sanitize-blueprint-paths.py _out/blueprint
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 $required = @(
   "_out/blueprint/html-multi/index.html",
   "_out/blueprint/html-multi/xref.json",
+  "_out/blueprint/html-multi/assets/abeis-evidence-pipeline.svg",
+  "_out/blueprint/html-multi/assets/abeis-library-map.svg",
   "_out/blueprint/html-multi/overview/index.html",
   "_out/blueprint/html-multi/foundations/index.html",
   "_out/blueprint/html-multi/routes/index.html",

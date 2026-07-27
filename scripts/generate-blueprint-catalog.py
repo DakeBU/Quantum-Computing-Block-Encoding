@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = ROOT / "QuantumBlockEncoding"
 OUTPUT_ROOT = ROOT / "ABEISBlueprint" / "Catalog"
 REPORT_PATH = ROOT / "docs" / "blueprint-coverage.json"
+EXPLORER_PATH = ROOT / "web" / "library" / "declarations.json"
 GITHUB_BASE = (
     "https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/"
 )
@@ -47,6 +48,7 @@ class Declaration:
     source: str
     line: int
     doc: str
+    source_preview: str
     experimental: bool
 
 
@@ -94,6 +96,41 @@ CATALOGS = [
     ),
 ]
 
+CATALOG_PURPOSES = {
+    "Foundations": (
+        "Core finite matrices, task contracts, resource records, circuit syntax, "
+        "and certificate data structures."
+    ),
+    "Semantics": (
+        "Definitions and lemmas that connect circuit syntax to evaluated matrix "
+        "semantics."
+    ),
+    "ClassicRoutes": (
+        "Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing "
+        "block-encoding routes."
+    ),
+    "CertifiedCases": (
+        "Completed transfer-operator and optimal-control certificates used as "
+        "end-to-end case studies."
+    ),
+    "Cubic": (
+        "State-preparation and exact rational Householder developments for the "
+        "cubic benchmark family."
+    ),
+    "PaperAndExamples": (
+        "Paper-facing backend models and concrete Robin-boundary example "
+        "artifacts."
+    ),
+    "AutomationAndMemory": (
+        "Typed controller state, agent contracts, literature memory, and "
+        "explicit open-problem records."
+    ),
+    "ExperimentalRobinMatrix": (
+        "Historical Robin-matrix research outside the default import surface; "
+        "its open diagnostics are displayed as obligations."
+    ),
+}
+
 
 def relative_source(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
@@ -138,6 +175,27 @@ def qualify(name: str, scopes: list[Scope]) -> str:
     return ".".join([*namespace_parts(scopes), name])
 
 
+def source_preview(lines: list[str], start_line: int, limit: int = 14) -> str:
+    """Return a bounded, deterministic declaration-local source preview."""
+
+    start = start_line - 1
+    preview: list[str] = []
+    for index in range(start, min(len(lines), start + limit)):
+        line = lines[index].rstrip("\r\n")
+        if index > start and DECL_RE.match(line):
+            break
+        if (
+            index > start
+            and not line.startswith((" ", "\t"))
+            and re.match(r"^(?:namespace|section|end)\b", line)
+        ):
+            break
+        preview.append(line.rstrip())
+    while preview and not preview[-1]:
+        preview.pop()
+    return "\n".join(preview)
+
+
 def parse_source(path: Path) -> tuple[list[Declaration], list[dict[str, object]]]:
     text = path.read_text(encoding="utf-8")
     lines = text.splitlines(keepends=True)
@@ -174,6 +232,7 @@ def parse_source(path: Path) -> tuple[list[Declaration], list[dict[str, object]]
                         source=relative_source(path),
                         line=line_no,
                         doc=doc_before(text, offset),
+                        source_preview=source_preview(lines, line_no),
                         experimental=relative_source(path)
                         == "QuantumBlockEncoding/RobinMatrix.lean",
                     )
@@ -207,25 +266,113 @@ def lean_string(text: str) -> str:
     return text.replace("\\", "\\\\").replace('"', '\\"')
 
 
-def render_declaration(decl: Declaration) -> str:
-    directive = "theorem" if decl.kind in THEOREM_KINDS else "definition"
-    if decl.experimental:
-        status = (
-            "This declaration belongs to the experimental Robin-matrix development; "
-            "the chapter header records its proof status."
+def verso_prose(text: str) -> str:
+    """Escape source prose so it cannot become Blueprint markup."""
+
+    escaped = text.replace("\\", "\\\\")
+    for character in ("*", "_", "[", "]", "{", "}"):
+        escaped = escaped.replace(character, "\\" + character)
+    return escaped
+
+
+def humanize_identifier(full_name: str) -> str:
+    leaf = full_name.rsplit(".", maxsplit=1)[-1].strip("«»")
+    text = leaf.replace("_", " ")
+    text = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", text)
+    text = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", " ", text)
+    text = re.sub(r"(?<=[A-Za-z])(?=[0-9])", " ", text)
+    text = re.sub(r"(?<=[0-9])(?=[A-Za-z])", " ", text)
+    return re.sub(r"\s+", " ", text).strip().lower()
+
+
+def first_sentence(text: str, limit: int = 260) -> str:
+    sentence = re.split(r"(?<=[.!?])\s+", text, maxsplit=1)[0].strip()
+    if len(sentence) <= limit:
+        return sentence
+    shortened = sentence[: limit - 1].rsplit(" ", maxsplit=1)[0]
+    return shortened.rstrip(" ,;:") + "…"
+
+
+def plain_english(decl: Declaration) -> str:
+    topic = humanize_identifier(decl.full_name)
+    source_summary = first_sentence(decl.doc) if decl.doc else ""
+    if decl.kind in THEOREM_KINDS:
+        if decl.experimental:
+            lead = (
+                f"This experimental entry states the proposition indexed as "
+                f"“{topic}”; consult its displayed status before treating it as proved."
+            )
+        else:
+            lead = (
+                f"Lean checks the proposition indexed as “{topic}”; the hypotheses "
+                f"and conclusion in the code panel fix its exact scope."
+            )
+    elif decl.kind == "structure":
+        lead = (
+            f"This record groups the data and proof fields needed for “{topic}”. "
+            "A proposition-valued field is a requirement until a constructor supplies it."
+        )
+    elif decl.kind == "inductive":
+        lead = (
+            f"This type lists the allowed alternatives for “{topic}”; its constructors "
+            "are the cases that downstream code must handle."
+        )
+    elif decl.kind == "abbrev":
+        lead = (
+            f"This abbreviation gives a shorter name to the type or expression "
+            f"used for “{topic}”."
+        )
+    elif decl.kind == "opaque":
+        lead = (
+            f"This opaque declaration exposes the interface for “{topic}” while "
+            "keeping its implementation from unfolding automatically."
         )
     else:
-        status = "This declaration is part of the default ABEIS import surface."
+        lead = (
+            f"This definition gives the library's named construction or computation "
+            f"for “{topic}”."
+        )
+    return f"{lead} {source_summary}".strip()
+
+
+def formal_status(decl: Declaration) -> str:
+    if decl.experimental:
+        return (
+            "Outside the default import surface. Read the chapter warning and the "
+            "Lean panel status before using this declaration as evidence."
+        )
+    if decl.kind in THEOREM_KINDS:
+        return (
+            "Compiled theorem in the default ABEIS import surface; the displayed "
+            "Lean signature is the authoritative claim."
+        )
+    if decl.kind == "structure":
+        return (
+            "Data contract in the default import surface; proposition-valued fields "
+            "are obligations, not automatically established facts."
+        )
+    return (
+        "Compiled declaration in the default ABEIS import surface; its kind and "
+        "displayed Lean type determine how it may be used."
+    )
+
+
+def render_declaration(decl: Declaration, catalog_name: str) -> str:
+    directive = "theorem" if decl.kind in THEOREM_KINDS else "definition"
     explanation = decl.doc or (
-        "No source docstring is present yet. The Lean signature below is the "
-        f"authoritative contract for this {decl.kind}."
+        "The source declaration has no docstring. The reader cue above is generated "
+        "from its kind and name and does not replace the Lean signature."
     )
     url = f"{GITHUB_BASE}{decl.source}#L{decl.line}"
     return (
         f':::{directive} "{lean_string(decl.full_name)}" '
         f'(lean := "{lean_string(decl.full_name)}")\n'
-        f"Source documentation: {chr(96)}{explanation}{chr(96)}.\n\n"
-        f"Kind: {decl.kind}. {status}\n\n"
+        f"*Plain-English reading.* {verso_prose(plain_english(decl))}\n\n"
+        f"*Formal status.* {verso_prose(formal_status(decl))}\n\n"
+        f"*Why it is in this chapter.* "
+        f"{verso_prose(CATALOG_PURPOSES[catalog_name])}\n\n"
+        f"*Technical source note.* {verso_prose(explanation)}\n\n"
+        f"*Declaration kind.* {decl.kind}.\n\n"
         f"Source: [{decl.source}:{decl.line}]({url}).\n"
         ":::\n"
     )
@@ -264,6 +411,10 @@ def render_catalog(
         "declaration, and every Lean link is checked during the Blueprint build. Definitions appear",
         "in source order before later results whenever the source module does so.",
         "",
+        f"Reader orientation: {CATALOG_PURPOSES[module_name]} Each card separates an accessible",
+        "reading cue from formal status, the source docstring, and the authoritative Lean panel.",
+        "The standalone Library Explorer adds full-text search and filters across every chapter.",
+        "",
     ]
     if any(decl.experimental for decl in declarations):
         body.extend(
@@ -284,8 +435,73 @@ def render_catalog(
             ]
         )
         for declaration in source_declarations:
-            body.append(render_declaration(declaration))
+            body.append(render_declaration(declaration, module_name))
     return "\n".join(body).rstrip() + "\n"
+
+
+def catalog_for(decl: Declaration) -> tuple[str, str]:
+    source_name = decl.source.removeprefix("QuantumBlockEncoding/")
+    for module_name, slug, source_names in CATALOGS:
+        if source_name in source_names:
+            return module_name, slug
+    raise ValueError(f"declaration is not assigned to a catalog: {decl.full_name}")
+
+
+def blueprint_declaration_url(decl: Declaration, catalog_slug: str) -> str:
+    """Link directly to the generated source subpage and Lean panel."""
+
+    source_route = decl.source.replace("/", "___").replace(".", "___")
+    encoded_name = decl.full_name.replace(".", "___")
+    anchor = (
+        "--informal-external-decl-_FLQQ_"
+        f"{encoded_name}_FLQQ_-{encoded_name}"
+    )
+    return (
+        f"../blueprint/html-multi/{catalog_slug}/{source_route}/"
+        f"#{anchor}"
+    )
+
+
+def render_explorer(declarations: list[Declaration]) -> str:
+    by_catalog: dict[str, int] = {}
+    entries: list[dict[str, object]] = []
+    for decl in declarations:
+        catalog_name, slug = catalog_for(decl)
+        by_catalog[catalog_name] = by_catalog.get(catalog_name, 0) + 1
+        entries.append(
+            {
+                "kind": decl.kind,
+                "name": decl.name,
+                "fullName": decl.full_name,
+                "readerLabel": humanize_identifier(decl.full_name),
+                "plainEnglish": plain_english(decl),
+                "formalStatus": formal_status(decl),
+                "technicalNote": decl.doc,
+                "sourcePreview": decl.source_preview,
+                "source": decl.source,
+                "line": decl.line,
+                "sourceUrl": f"{GITHUB_BASE}{decl.source}#L{decl.line}",
+                "catalog": catalog_name,
+                "catalogPurpose": CATALOG_PURPOSES[catalog_name],
+                "blueprintUrl": blueprint_declaration_url(decl, slug),
+                "experimental": decl.experimental,
+            }
+        )
+    payload = {
+        "schemaVersion": 1,
+        "scope": (
+            "Every explicit public def/abbrev/opaque/inductive/structure/class/"
+            "theorem/lemma declaration in QuantumBlockEncoding"
+        ),
+        "publicDeclarationCount": len(declarations),
+        "sourceDocstringCount": sum(bool(decl.doc) for decl in declarations),
+        "generatedReaderCueCount": len(declarations),
+        "byCatalog": {
+            name: by_catalog.get(name, 0) for name, _, _ in CATALOGS
+        },
+        "declarations": entries,
+    }
+    return json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
 
 
 def collect() -> tuple[list[Declaration], list[dict[str, object]]]:
@@ -313,6 +529,7 @@ def generate(check: bool) -> int:
         outputs[OUTPUT_ROOT / f"{module_name}.lean"] = render_catalog(
             module_name, slug, selected
         )
+    outputs[EXPLORER_PATH] = render_explorer(declarations)
 
     unassigned = [
         declaration
@@ -339,19 +556,24 @@ def generate(check: bool) -> int:
         by_kind[declaration.kind] = by_kind.get(declaration.kind, 0) + 1
         by_source[declaration.source] = by_source.get(declaration.source, 0) + 1
     report = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "scope": (
             "Explicit public def/abbrev/opaque/inductive/structure/class/"
             "theorem/lemma declarations"
         ),
         "publicDeclarationCount": len(declarations),
         "privateDeclarationExclusionCount": len(exclusions),
+        "sourceDocstringCount": sum(bool(decl.doc) for decl in declarations),
+        "generatedReaderCueCount": len(declarations),
         "byKind": dict(sorted(by_kind.items())),
         "bySource": dict(sorted(by_source.items())),
         "excluded": exclusions,
         "generatedCatalogs": [
-            path.relative_to(ROOT).as_posix() for path in outputs
+            path.relative_to(ROOT).as_posix()
+            for path in outputs
+            if path.parent == OUTPUT_ROOT
         ],
+        "libraryExplorer": EXPLORER_PATH.relative_to(ROOT).as_posix(),
     }
     outputs[REPORT_PATH] = (
         json.dumps(report, indent=2, ensure_ascii=False) + "\n"

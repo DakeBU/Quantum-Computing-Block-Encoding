@@ -95,9 +95,139 @@ h3 {
   white-space: nowrap;
 }
 
+.library-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 13px;
+  border: 1px solid #b8c9dc;
+  border-radius: 999px;
+  color: var(--blue-dark);
+  background: #f4f8fc;
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.library-link:hover,
+.library-link:focus-visible {
+  border-color: var(--blue);
+  background: #eaf2fb;
+}
+
 .blueprint-link:hover,
 .blueprint-link:focus-visible {
   background: var(--blue-dark);
+}
+
+.site-overview {
+  width: min(1440px, calc(100% - 40px));
+  margin: 20px auto 0;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 92% 2%, rgba(31, 95, 191, 0.09), transparent 28rem),
+    #fff;
+  box-shadow: 0 16px 38px rgba(21, 31, 50, 0.07);
+}
+
+.overview-head {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(360px, 1.1fr);
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+
+.overview-head h2 {
+  max-width: 700px;
+  font-size: clamp(27px, 3.4vw, 44px);
+  line-height: 1.08;
+}
+
+.overview-head > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.system-map,
+.library-map {
+  margin: 0;
+}
+
+.system-map img,
+.library-map img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.system-map figcaption,
+.library-map figcaption {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.overview-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.overview-links a {
+  padding: 20px;
+  border: 1px solid #c9d6e6;
+  border-left: 5px solid var(--blue);
+  border-radius: 10px;
+  color: var(--ink);
+  background: #f8fbff;
+  text-decoration: none;
+}
+
+.overview-links a:first-child {
+  border-left-color: var(--green);
+  background: #f5fbf8;
+}
+
+.overview-links a:hover,
+.overview-links a:focus-visible {
+  box-shadow: 0 12px 25px rgba(20, 41, 65, 0.08);
+  transform: translateY(-1px);
+}
+
+.overview-links span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.overview-links strong {
+  display: block;
+  font-size: 20px;
+}
+
+.overview-links p {
+  margin: 8px 0 0;
+  color: #4f6074;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.library-map {
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
 }
 
 .layout {
@@ -512,7 +642,21 @@ footer {
   }
 
   .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .panel,
+  input,
+  select,
+  textarea,
+  pre {
+    min-width: 0;
+  }
+
+  .overview-head,
+  .overview-links {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .language-row,
@@ -521,6 +665,23 @@ footer {
   .dashboard-summary,
   .circuit-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-overview,
+  .layout,
+  footer {
+    width: min(100% - 24px, 1440px);
+  }
+
+  .site-overview,
+  .panel {
+    padding: 18px;
+  }
+
+  .header-actions {
+    justify-content: flex-start;
   }
 }
 

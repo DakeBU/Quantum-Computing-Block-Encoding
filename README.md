@@ -40,6 +40,14 @@ A Platform for Lean-validated quantum state-preparation and block-encoding const
   `modern`, and `bold` reading styles are provided by
   [Verso Blueprint](https://github.com/leanprover/verso-blueprint), built on
   [Verso](https://github.com/leanprover/verso).
+* **July 2026 (reader-surface upgrade).** The site now adds a searchable
+  [Lean Library Explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/)
+  and visual system maps for readers who are new to Lean.  One deterministic
+  inventory drives both the Explorer and the Blueprint: it covers all 1,646
+  explicit public declarations, records 177 private exclusions, resolves every
+  Blueprint panel against Lean, and scans the publishable output for local-path
+  leakage.  Each Explorer card separates a plain-English reading cue, formal
+  status, bounded source preview, and authoritative Lean entry point.
 
 
 ---
@@ -112,16 +120,21 @@ exact block-entry equation:
 
 ## Lean Blueprint documentation
 
-The GitHub Pages deployment combines two complementary interfaces:
+The GitHub Pages deployment combines three complementary interfaces:
 
 1. the landing page and task builder at the site root;
-2. the Lean library Blueprint under `blueprint/html-multi/`.
+2. the searchable Lean Library Explorer under `library/`;
+3. the Lean library Blueprint under `blueprint/html-multi/`.
 
 The first four Blueprint chapters are written explanations of the certificate
 model, finite semantics, reusable block-encoding routes, and completed case
 studies.  The catalog chapters are generated from `QuantumBlockEncoding/**/*.lean`.
 The coverage report in `docs/blueprint-coverage.json` records exactly which
 public source declarations are included and which private helpers are excluded.
+The same generator emits `web/library/declarations.json`, so the full-text
+Explorer and the strictly resolved Lean panels share one auditable inventory.
+In the current snapshot this means 1,646 public declarations, 1,299 source
+docstrings, 1,646 conservative reader cues, and 177 private exclusions.
 The experimental `RobinMatrix.lean` development is catalogued separately and
 its open diagnostic proofs are not presented as certified results.
 

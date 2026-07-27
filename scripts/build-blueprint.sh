@@ -9,10 +9,16 @@ rm -rf _out/blueprint
 lake lean ABEISBlueprintMain.lean -- \
   --run ABEISBlueprintMain.lean --output _out/blueprint
 
+mkdir -p _out/blueprint/html-multi/assets
+cp web/assets/abeis-evidence-pipeline.svg _out/blueprint/html-multi/assets/
+cp web/assets/abeis-library-map.svg _out/blueprint/html-multi/assets/
+
 python3 scripts/sanitize-blueprint-paths.py _out/blueprint
 
 test -f _out/blueprint/html-multi/index.html
 test -f _out/blueprint/html-multi/xref.json
+test -f _out/blueprint/html-multi/assets/abeis-evidence-pipeline.svg
+test -f _out/blueprint/html-multi/assets/abeis-library-map.svg
 
 chapters=(
   overview

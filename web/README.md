@@ -2,15 +2,19 @@
 
 This is a browser interface for researchers who do not want to start from raw
 GitHub commands.  The GitHub Pages workflow publishes it together with the
-Verso Lean Blueprint.  The page has two roles:
+Verso Lean Blueprint and searchable Lean Library Explorer.  The public web
+surface has three roles:
 
 1. build an ABEIS task packet and agent profile from a target-state,
    oracle/operator, or matrix description;
 2. render runner outputs such as `dashboard.json`, `evolution.json`,
    certified circuit storyboards, and post-Lean Qiskit/QuantumKatas/QASM
-   status.
+   status;
+3. let readers search every explicit public Lean declaration by name, catalog,
+   kind, explanation, source note, or bounded Lean preview.
 
-The header links to `blueprint/html-multi/`, where users can browse the Lean
+The header links to `library/` for search and to `blueprint/html-multi/`, where
+users can browse the Lean
 contracts, proof routes, case studies, and exhaustive declaration catalog in
 the Blueprint, Modern, or Bold style.  The static task builder itself does not
 certify proofs.  Lean remains the verifier.

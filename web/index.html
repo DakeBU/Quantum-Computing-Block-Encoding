@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ABEIS State-Preparation and Block-Encoding Task Builder</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260727">
   </head>
   <body>
     <header class="topbar">
@@ -13,12 +13,61 @@
         <h1>State-Preparation and Block-Encoding Task Builder</h1>
       </div>
       <div class="header-actions">
+        <a class="library-link" href="library/">
+          Search all 1,646 Lean declarations
+        </a>
         <a class="blueprint-link" href="blueprint/html-multi/index.html">
           Browse the Lean Blueprint
         </a>
         <div class="status-pill">Testing preview</div>
       </div>
     </header>
+
+    <section class="site-overview" aria-labelledby="site-overview-title">
+      <div class="overview-head">
+        <div>
+          <p class="eyebrow">Readable formal evidence</p>
+          <h2 id="site-overview-title">See how the system is organized before reading Lean</h2>
+        </div>
+        <p>
+          ABEIS keeps proposal, proof obligation, compiled theorem, and executable
+          evidence separate. The maps below show where each claim lives and provide
+          two reader paths into the complete formal library.
+        </p>
+      </div>
+      <figure class="system-map">
+        <img
+          src="assets/abeis-evidence-pipeline.svg"
+          alt="ABEIS pipeline from a user contract through search and the Lean gate to public evidence"
+        >
+        <figcaption>
+          The acceptance path: agents explore candidates, but only Lean can promote a
+          formal claim. Public documentation remains downstream of the same checked source.
+        </figcaption>
+      </figure>
+      <div class="overview-links">
+        <a href="library/">
+          <span>Search-first path</span>
+          <strong>Library Explorer</strong>
+          <p>Search every public declaration, filter by module and kind, and inspect a bounded Lean source preview.</p>
+        </a>
+        <a href="blueprint/html-multi/overview/Reader-map/">
+          <span>Concept-first path</span>
+          <strong>Lean Blueprint</strong>
+          <p>Read curated mathematical chapters, checked signatures, dependencies, proof status, and selectable visual themes.</p>
+        </a>
+      </div>
+      <figure class="library-map">
+        <img
+          src="assets/abeis-library-map.svg"
+          alt="ABEIS Lean source inventory flowing to the Blueprint and Library Explorer, with eight catalog groups"
+        >
+        <figcaption>
+          One deterministic inventory generates both reader surfaces, so search coverage
+          and checked Blueprint panels cannot silently drift apart.
+        </figcaption>
+      </figure>
+    </section>
 
     <main class="layout">
       <section class="panel input-panel" aria-labelledby="input-title">
