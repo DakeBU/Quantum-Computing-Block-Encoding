@@ -39,7 +39,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:14](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L14).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:14](../../../../library/modules/blockencoding/#decl-quantumblockencoding-registerlayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.RegisterLayout.auxiliaryQubits" (lean := "QuantumBlockEncoding.RegisterLayout.auxiliaryQubits")
@@ -53,7 +53,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:14](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:27](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L27).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:27](../../../../library/modules/blockencoding/#decl-quantumblockencoding-registerlayout-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingSpec" (lean := "QuantumBlockEncoding.BlockEncodingSpec")
@@ -67,7 +67,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:27](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:33](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L33).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:33](../../../../library/modules/blockencoding/#decl-quantumblockencoding-blockencodingspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingCost" (lean := "QuantumBlockEncoding.BlockEncodingCost")
@@ -81,7 +81,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:33](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:50](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L50).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:50](../../../../library/modules/blockencoding/#decl-quantumblockencoding-blockencodingcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingCost.fromLayoutAndResource" (lean := "QuantumBlockEncoding.BlockEncodingCost.fromLayoutAndResource")
@@ -95,7 +95,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:50](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:59](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L59).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:59](../../../../library/modules/blockencoding/#decl-quantumblockencoding-blockencodingcost-fromlayoutandresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingCost.fromSpec" (lean := "QuantumBlockEncoding.BlockEncodingCost.fromSpec")
@@ -109,7 +109,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:59](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:66](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L66).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:66](../../../../library/modules/blockencoding/#decl-quantumblockencoding-blockencodingcost-fromspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingCost.betterThan" (lean := "QuantumBlockEncoding.BlockEncodingCost.betterThan")
@@ -123,7 +123,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:66](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:70](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L70).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:70](../../../../library/modules/blockencoding/#decl-quantumblockencoding-blockencodingcost-betterthan). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingCost.noWorseThan" (lean := "QuantumBlockEncoding.BlockEncodingCost.noWorseThan")
@@ -137,7 +137,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:70](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:80](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L80).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:80](../../../../library/modules/blockencoding/#decl-quantumblockencoding-blockencodingcost-noworsethan). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.QueryOperatorTarget" (lean := "QuantumBlockEncoding.QueryOperatorTarget")
@@ -151,7 +151,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:80](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:90](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L90).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:90](../../../../library/modules/blockencoding/#decl-quantumblockencoding-queryoperatortarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OperatorBlockEncodingCandidate" (lean := "QuantumBlockEncoding.OperatorBlockEncodingCandidate")
@@ -165,7 +165,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:90](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:103](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L103).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:103](../../../../library/modules/blockencoding/#decl-quantumblockencoding-operatorblockencodingcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OperatorBlockEncodingCandidate.cost" (lean := "QuantumBlockEncoding.OperatorBlockEncodingCandidate.cost")
@@ -179,7 +179,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:103](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:119](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L119).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:119](../../../../library/modules/blockencoding/#decl-quantumblockencoding-operatorblockencodingcandidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.VerifiedOperatorBlockEncoding" (lean := "QuantumBlockEncoding.VerifiedOperatorBlockEncoding")
@@ -193,7 +193,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:119](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:131](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L131).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:131](../../../../library/modules/blockencoding/#decl-quantumblockencoding-verifiedoperatorblockencoding). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate" (lean := "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate")
@@ -207,7 +207,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:131](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:148](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L148).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:148](../../../../library/modules/blockencoding/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.VerifiedApproximateOperatorBlockEncoding" (lean := "QuantumBlockEncoding.VerifiedApproximateOperatorBlockEncoding")
@@ -221,7 +221,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:148](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:159](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L159).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:159](../../../../library/modules/blockencoding/#decl-quantumblockencoding-verifiedapproximateoperatorblockencoding). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.VerifiedOperatorBlockEncoding.asZeroErrorApprox" (lean := "QuantumBlockEncoding.VerifiedOperatorBlockEncoding.asZeroErrorApprox")
@@ -235,7 +235,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:159](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:173](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L173).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:173](../../../../library/modules/blockencoding/#decl-quantumblockencoding-verifiedoperatorblockencoding-aszeroerrorapprox). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AdaptiveBlockEncodingPolicy" (lean := "QuantumBlockEncoding.AdaptiveBlockEncodingPolicy")
@@ -249,7 +249,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:173](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:195](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L195).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:195](../../../../library/modules/blockencoding/#decl-quantumblockencoding-adaptiveblockencodingpolicy). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingSearchPhase" (lean := "QuantumBlockEncoding.BlockEncodingSearchPhase")
@@ -263,7 +263,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:195](https://github.com/DakeBU/
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:207](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L207).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:207](../../../../library/modules/blockencoding/#decl-quantumblockencoding-blockencodingsearchphase). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.VerifiedBlockEncoding" (lean := "QuantumBlockEncoding.VerifiedBlockEncoding")
@@ -277,7 +277,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:207](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:220](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L220).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:220](../../../../library/modules/blockencoding/#decl-quantumblockencoding-verifiedblockencoding). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.VerifiedBlockEncoding.unitary" (lean := "QuantumBlockEncoding.VerifiedBlockEncoding.unitary")
@@ -291,7 +291,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:220](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:231](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L231).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:231](../../../../library/modules/blockencoding/#decl-quantumblockencoding-verifiedblockencoding-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.VerifiedBlockEncoding.correct" (lean := "QuantumBlockEncoding.VerifiedBlockEncoding.correct")
@@ -305,7 +305,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:231](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:235](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L235).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:235](../../../../library/modules/blockencoding/#decl-quantumblockencoding-verifiedblockencoding-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.VerifiedBlockEncoding.resource_ok" (lean := "QuantumBlockEncoding.VerifiedBlockEncoding.resource_ok")
@@ -319,7 +319,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:235](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:239](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L239).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:239](../../../../library/modules/blockencoding/#decl-quantumblockencoding-verifiedblockencoding-resource-ok). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.ConstructionClaim" (lean := "QuantumBlockEncoding.ConstructionClaim")
@@ -333,7 +333,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:239](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncoding.lean:246](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncoding.lean#L246).
+Source: [QuantumBlockEncoding/BlockEncoding.lean:246](../../../../library/modules/blockencoding/#decl-quantumblockencoding-constructionclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Circuit.lean
@@ -351,7 +351,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:246](https://github.com/DakeBU/
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Circuit.lean:13](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L13).
+Source: [QuantumBlockEncoding/Circuit.lean:13](../../../../library/modules/circuit/#decl-quantumblockencoding-gate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Circuit" (lean := "QuantumBlockEncoding.Circuit")
@@ -365,7 +365,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:13](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/Circuit.lean:23](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L23).
+Source: [QuantumBlockEncoding/Circuit.lean:23](../../../../library/modules/circuit/#decl-quantumblockencoding-circuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Gate.resource" (lean := "QuantumBlockEncoding.Gate.resource")
@@ -379,7 +379,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:23](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Circuit.lean:32](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L32).
+Source: [QuantumBlockEncoding/Circuit.lean:32](../../../../library/modules/circuit/#decl-quantumblockencoding-gate-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CircuitLayer" (lean := "QuantumBlockEncoding.CircuitLayer")
@@ -393,7 +393,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:32](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/Circuit.lean:50](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L50).
+Source: [QuantumBlockEncoding/Circuit.lean:50](../../../../library/modules/circuit/#decl-quantumblockencoding-circuitlayer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CircuitLayer.resource" (lean := "QuantumBlockEncoding.CircuitLayer.resource")
@@ -407,7 +407,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:50](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Circuit.lean:54](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L54).
+Source: [QuantumBlockEncoding/Circuit.lean:54](../../../../library/modules/circuit/#decl-quantumblockencoding-circuitlayer-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.LayeredCircuit" (lean := "QuantumBlockEncoding.LayeredCircuit")
@@ -421,7 +421,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:54](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/Circuit.lean:60](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L60).
+Source: [QuantumBlockEncoding/Circuit.lean:60](../../../../library/modules/circuit/#decl-quantumblockencoding-layeredcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.LayeredCircuit.resource" (lean := "QuantumBlockEncoding.LayeredCircuit.resource")
@@ -435,7 +435,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:60](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Circuit.lean:64](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L64).
+Source: [QuantumBlockEncoding/Circuit.lean:64](../../../../library/modules/circuit/#decl-quantumblockencoding-layeredcircuit-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.LayeredCircuit.depth" (lean := "QuantumBlockEncoding.LayeredCircuit.depth")
@@ -449,7 +449,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:64](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Circuit.lean:68](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L68).
+Source: [QuantumBlockEncoding/Circuit.lean:68](../../../../library/modules/circuit/#decl-quantumblockencoding-layeredcircuit-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Circuit.resource" (lean := "QuantumBlockEncoding.Circuit.resource")
@@ -463,7 +463,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:68](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Circuit.lean:75](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L75).
+Source: [QuantumBlockEncoding/Circuit.lean:75](../../../../library/modules/circuit/#decl-quantumblockencoding-circuit-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Circuit.resource_nil" (lean := "QuantumBlockEncoding.Circuit.resource_nil")
@@ -477,7 +477,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:75](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Circuit.lean:79](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L79).
+Source: [QuantumBlockEncoding/Circuit.lean:79](../../../../library/modules/circuit/#decl-quantumblockencoding-circuit-resource-nil). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Circuit.resource_cons" (lean := "QuantumBlockEncoding.Circuit.resource_cons")
@@ -491,7 +491,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:79](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Circuit.lean:81](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L81).
+Source: [QuantumBlockEncoding/Circuit.lean:81](../../../../library/modules/circuit/#decl-quantumblockencoding-circuit-resource-cons). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Circuit.depth" (lean := "QuantumBlockEncoding.Circuit.depth")
@@ -505,7 +505,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:81](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Circuit.lean:84](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Circuit.lean#L84).
+Source: [QuantumBlockEncoding/Circuit.lean:84](../../../../library/modules/circuit/#decl-quantumblockencoding-circuit-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Core.lean
@@ -523,7 +523,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:84](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/Core.lean:15](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L15).
+Source: [QuantumBlockEncoding/Core.lean:15](../../../../library/modules/core/#decl-quantumblockencoding-matrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Matrix.PointwiseEq" (lean := "QuantumBlockEncoding.Matrix.PointwiseEq")
@@ -537,7 +537,7 @@ Source: [QuantumBlockEncoding/Core.lean:15](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:20](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L20).
+Source: [QuantumBlockEncoding/Core.lean:20](../../../../library/modules/core/#decl-quantumblockencoding-matrix-pointwiseeq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Matrix.zero" (lean := "QuantumBlockEncoding.Matrix.zero")
@@ -551,7 +551,7 @@ Source: [QuantumBlockEncoding/Core.lean:20](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:25](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L25).
+Source: [QuantumBlockEncoding/Core.lean:25](../../../../library/modules/core/#decl-quantumblockencoding-matrix-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Matrix.identity" (lean := "QuantumBlockEncoding.Matrix.identity")
@@ -565,7 +565,7 @@ Source: [QuantumBlockEncoding/Core.lean:25](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:29](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L29).
+Source: [QuantumBlockEncoding/Core.lean:29](../../../../library/modules/core/#decl-quantumblockencoding-matrix-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Matrix.mul" (lean := "QuantumBlockEncoding.Matrix.mul")
@@ -579,7 +579,7 @@ Source: [QuantumBlockEncoding/Core.lean:29](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:34](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L34).
+Source: [QuantumBlockEncoding/Core.lean:34](../../../../library/modules/core/#decl-quantumblockencoding-matrix-mul). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.gridSize" (lean := "QuantumBlockEncoding.gridSize")
@@ -593,7 +593,7 @@ Source: [QuantumBlockEncoding/Core.lean:34](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:44](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L44).
+Source: [QuantumBlockEncoding/Core.lean:44](../../../../library/modules/core/#decl-quantumblockencoding-gridsize). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.clog2" (lean := "QuantumBlockEncoding.clog2")
@@ -607,7 +607,7 @@ Source: [QuantumBlockEncoding/Core.lean:44](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:52](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L52).
+Source: [QuantumBlockEncoding/Core.lean:52](../../../../library/modules/core/#decl-quantumblockencoding-clog2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.gridSize_zero" (lean := "QuantumBlockEncoding.gridSize_zero")
@@ -621,7 +621,7 @@ Source: [QuantumBlockEncoding/Core.lean:52](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:55](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L55).
+Source: [QuantumBlockEncoding/Core.lean:55](../../../../library/modules/core/#decl-quantumblockencoding-gridsize-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.clog2_zero" (lean := "QuantumBlockEncoding.clog2_zero")
@@ -635,7 +635,7 @@ Source: [QuantumBlockEncoding/Core.lean:55](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:57](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L57).
+Source: [QuantumBlockEncoding/Core.lean:57](../../../../library/modules/core/#decl-quantumblockencoding-clog2-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.clog2_one" (lean := "QuantumBlockEncoding.clog2_one")
@@ -649,7 +649,7 @@ Source: [QuantumBlockEncoding/Core.lean:57](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:60](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L60).
+Source: [QuantumBlockEncoding/Core.lean:60](../../../../library/modules/core/#decl-quantumblockencoding-clog2-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.log2_pred_two_pow_succ" (lean := "QuantumBlockEncoding.log2_pred_two_pow_succ")
@@ -663,7 +663,7 @@ Source: [QuantumBlockEncoding/Core.lean:60](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:64](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L64).
+Source: [QuantumBlockEncoding/Core.lean:64](../../../../library/modules/core/#decl-quantumblockencoding-log2-pred-two-pow-succ). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.clog2_gridSize" (lean := "QuantumBlockEncoding.clog2_gridSize")
@@ -677,7 +677,7 @@ Source: [QuantumBlockEncoding/Core.lean:64](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:94](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L94).
+Source: [QuantumBlockEncoding/Core.lean:94](../../../../library/modules/core/#decl-quantumblockencoding-clog2-gridsize). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BoundaryKind" (lean := "QuantumBlockEncoding.BoundaryKind")
@@ -691,7 +691,7 @@ Source: [QuantumBlockEncoding/Core.lean:94](https://github.com/DakeBU/Quantum-Co
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Core.lean:103](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L103).
+Source: [QuantumBlockEncoding/Core.lean:103](../../../../library/modules/core/#decl-quantumblockencoding-boundarykind). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Stencil" (lean := "QuantumBlockEncoding.Stencil")
@@ -705,7 +705,7 @@ Source: [QuantumBlockEncoding/Core.lean:103](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Core.lean:111](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L111).
+Source: [QuantumBlockEncoding/Core.lean:111](../../../../library/modules/core/#decl-quantumblockencoding-stencil). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Stencil.width" (lean := "QuantumBlockEncoding.Stencil.width")
@@ -719,7 +719,7 @@ Source: [QuantumBlockEncoding/Core.lean:111](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:121](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L121).
+Source: [QuantumBlockEncoding/Core.lean:121](../../../../library/modules/core/#decl-quantumblockencoding-stencil-width). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Stencil.width_eq" (lean := "QuantumBlockEncoding.Stencil.width_eq")
@@ -733,7 +733,7 @@ Source: [QuantumBlockEncoding/Core.lean:121](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:124](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L124).
+Source: [QuantumBlockEncoding/Core.lean:124](../../../../library/modules/core/#decl-quantumblockencoding-stencil-width-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BulkWindow" (lean := "QuantumBlockEncoding.BulkWindow")
@@ -747,7 +747,7 @@ Source: [QuantumBlockEncoding/Core.lean:124](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Core.lean:134](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L134).
+Source: [QuantumBlockEncoding/Core.lean:134](../../../../library/modules/core/#decl-quantumblockencoding-bulkwindow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BulkWindow.paperBoundaryLines" (lean := "QuantumBlockEncoding.BulkWindow.paperBoundaryLines")
@@ -761,7 +761,7 @@ Source: [QuantumBlockEncoding/Core.lean:134](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:142](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L142).
+Source: [QuantumBlockEncoding/Core.lean:142](../../../../library/modules/core/#decl-quantumblockencoding-bulkwindow-paperboundarylines). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Coeff" (lean := "QuantumBlockEncoding.Coeff")
@@ -775,7 +775,7 @@ Source: [QuantumBlockEncoding/Core.lean:142](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Core.lean:148](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L148).
+Source: [QuantumBlockEncoding/Core.lean:148](../../../../library/modules/core/#decl-quantumblockencoding-coeff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Coeff.sub" (lean := "QuantumBlockEncoding.Coeff.sub")
@@ -789,7 +789,7 @@ Source: [QuantumBlockEncoding/Core.lean:148](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:170](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L170).
+Source: [QuantumBlockEncoding/Core.lean:170](../../../../library/modules/core/#decl-quantumblockencoding-coeff-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Coeff.evalWith" (lean := "QuantumBlockEncoding.Coeff.evalWith")
@@ -803,7 +803,7 @@ Source: [QuantumBlockEncoding/Core.lean:170](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:176](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L176).
+Source: [QuantumBlockEncoding/Core.lean:176](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat")
@@ -817,7 +817,7 @@ Source: [QuantumBlockEncoding/Core.lean:176](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:183](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L183).
+Source: [QuantumBlockEncoding/Core.lean:183](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-rat). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_symbol" (lean := "QuantumBlockEncoding.Coeff.evalWith_symbol")
@@ -831,7 +831,7 @@ Source: [QuantumBlockEncoding/Core.lean:183](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:186](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L186).
+Source: [QuantumBlockEncoding/Core.lean:186](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-symbol). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_add" (lean := "QuantumBlockEncoding.Coeff.evalWith_add")
@@ -845,7 +845,7 @@ Source: [QuantumBlockEncoding/Core.lean:186](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:189](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L189).
+Source: [QuantumBlockEncoding/Core.lean:189](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_mul" (lean := "QuantumBlockEncoding.Coeff.evalWith_mul")
@@ -859,7 +859,7 @@ Source: [QuantumBlockEncoding/Core.lean:189](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:192](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L192).
+Source: [QuantumBlockEncoding/Core.lean:192](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-mul). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_neg" (lean := "QuantumBlockEncoding.Coeff.evalWith_neg")
@@ -873,7 +873,7 @@ Source: [QuantumBlockEncoding/Core.lean:192](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:195](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L195).
+Source: [QuantumBlockEncoding/Core.lean:195](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-neg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.rat_zero" (lean := "QuantumBlockEncoding.Coeff.rat_zero")
@@ -887,7 +887,7 @@ Source: [QuantumBlockEncoding/Core.lean:195](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:199](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L199).
+Source: [QuantumBlockEncoding/Core.lean:199](../../../../library/modules/core/#decl-quantumblockencoding-coeff-rat-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_zero" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_zero")
@@ -901,7 +901,7 @@ Source: [QuantumBlockEncoding/Core.lean:199](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:202](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L202).
+Source: [QuantumBlockEncoding/Core.lean:202](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-rat-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_one" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_one")
@@ -915,7 +915,7 @@ Source: [QuantumBlockEncoding/Core.lean:202](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:206](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L206).
+Source: [QuantumBlockEncoding/Core.lean:206](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-rat-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_add" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_add")
@@ -929,7 +929,7 @@ Source: [QuantumBlockEncoding/Core.lean:206](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:210](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L210).
+Source: [QuantumBlockEncoding/Core.lean:210](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-rat-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_mul" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_mul")
@@ -943,7 +943,7 @@ Source: [QuantumBlockEncoding/Core.lean:210](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:215](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L215).
+Source: [QuantumBlockEncoding/Core.lean:215](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-rat-mul). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_neg" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_neg")
@@ -957,7 +957,7 @@ Source: [QuantumBlockEncoding/Core.lean:215](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:220](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L220).
+Source: [QuantumBlockEncoding/Core.lean:220](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-rat-neg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_eq_zero_of_rat_zero" (lean := "QuantumBlockEncoding.Coeff.evalWith_eq_zero_of_rat_zero")
@@ -971,7 +971,7 @@ Source: [QuantumBlockEncoding/Core.lean:220](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:225](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L225).
+Source: [QuantumBlockEncoding/Core.lean:225](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-eq-zero-of-rat-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_eq_one_of_rat_one" (lean := "QuantumBlockEncoding.Coeff.evalWith_eq_one_of_rat_one")
@@ -985,7 +985,7 @@ Source: [QuantumBlockEncoding/Core.lean:225](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Core.lean:229](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L229).
+Source: [QuantumBlockEncoding/Core.lean:229](../../../../library/modules/core/#decl-quantumblockencoding-coeff-evalwith-eq-one-of-rat-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Coeff.divNat" (lean := "QuantumBlockEncoding.Coeff.divNat")
@@ -999,7 +999,7 @@ Source: [QuantumBlockEncoding/Core.lean:229](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Core.lean:232](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L232).
+Source: [QuantumBlockEncoding/Core.lean:232](../../../../library/modules/core/#decl-quantumblockencoding-coeff-divnat). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.StencilEntry" (lean := "QuantumBlockEncoding.StencilEntry")
@@ -1013,7 +1013,7 @@ Source: [QuantumBlockEncoding/Core.lean:232](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Core.lean:238](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Core.lean#L238).
+Source: [QuantumBlockEncoding/Core.lean:238](../../../../library/modules/core/#decl-quantumblockencoding-stencilentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Resources.lean
@@ -1031,7 +1031,7 @@ Source: [QuantumBlockEncoding/Core.lean:238](https://github.com/DakeBU/Quantum-C
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Resources.lean:21](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L21).
+Source: [QuantumBlockEncoding/Resources.lean:21](../../../../library/modules/resources/#decl-quantumblockencoding-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Resource.gates" (lean := "QuantumBlockEncoding.Resource.gates")
@@ -1045,7 +1045,7 @@ Source: [QuantumBlockEncoding/Resources.lean:21](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:32](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L32).
+Source: [QuantumBlockEncoding/Resources.lean:32](../../../../library/modules/resources/#decl-quantumblockencoding-resource-gates). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Resource.add" (lean := "QuantumBlockEncoding.Resource.add")
@@ -1059,7 +1059,7 @@ Source: [QuantumBlockEncoding/Resources.lean:32](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:34](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L34).
+Source: [QuantumBlockEncoding/Resources.lean:34](../../../../library/modules/resources/#decl-quantumblockencoding-resource-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Resource.parallel" (lean := "QuantumBlockEncoding.Resource.parallel")
@@ -1073,7 +1073,7 @@ Source: [QuantumBlockEncoding/Resources.lean:34](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:45](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L45).
+Source: [QuantumBlockEncoding/Resources.lean:45](../../../../library/modules/resources/#decl-quantumblockencoding-resource-parallel). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Resource.scale" (lean := "QuantumBlockEncoding.Resource.scale")
@@ -1087,7 +1087,7 @@ Source: [QuantumBlockEncoding/Resources.lean:45](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:55](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L55).
+Source: [QuantumBlockEncoding/Resources.lean:55](../../../../library/modules/resources/#decl-quantumblockencoding-resource-scale). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Resource.ofCounts" (lean := "QuantumBlockEncoding.Resource.ofCounts")
@@ -1101,7 +1101,7 @@ Source: [QuantumBlockEncoding/Resources.lean:55](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:62](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L62).
+Source: [QuantumBlockEncoding/Resources.lean:62](../../../../library/modules/resources/#decl-quantumblockencoding-resource-ofcounts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Resource.ofCountsWithDepth" (lean := "QuantumBlockEncoding.Resource.ofCountsWithDepth")
@@ -1115,7 +1115,7 @@ Source: [QuantumBlockEncoding/Resources.lean:62](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:68](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L68).
+Source: [QuantumBlockEncoding/Resources.lean:68](../../../../library/modules/resources/#decl-quantumblockencoding-resource-ofcountswithdepth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.gates_eq" (lean := "QuantumBlockEncoding.Resource.gates_eq")
@@ -1129,7 +1129,7 @@ Source: [QuantumBlockEncoding/Resources.lean:68](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:75](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L75).
+Source: [QuantumBlockEncoding/Resources.lean:75](../../../../library/modules/resources/#decl-quantumblockencoding-resource-gates-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.zero_oneQubit" (lean := "QuantumBlockEncoding.Resource.zero_oneQubit")
@@ -1143,7 +1143,7 @@ Source: [QuantumBlockEncoding/Resources.lean:75](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:77](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L77).
+Source: [QuantumBlockEncoding/Resources.lean:77](../../../../library/modules/resources/#decl-quantumblockencoding-resource-zero-onequbit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.zero_cnot" (lean := "QuantumBlockEncoding.Resource.zero_cnot")
@@ -1157,7 +1157,7 @@ Source: [QuantumBlockEncoding/Resources.lean:77](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:78](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L78).
+Source: [QuantumBlockEncoding/Resources.lean:78](../../../../library/modules/resources/#decl-quantumblockencoding-resource-zero-cnot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.zero_oracleCalls" (lean := "QuantumBlockEncoding.Resource.zero_oracleCalls")
@@ -1171,7 +1171,7 @@ Source: [QuantumBlockEncoding/Resources.lean:78](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:79](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L79).
+Source: [QuantumBlockEncoding/Resources.lean:79](../../../../library/modules/resources/#decl-quantumblockencoding-resource-zero-oraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.zero_pureAncilla" (lean := "QuantumBlockEncoding.Resource.zero_pureAncilla")
@@ -1185,7 +1185,7 @@ Source: [QuantumBlockEncoding/Resources.lean:79](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:80](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L80).
+Source: [QuantumBlockEncoding/Resources.lean:80](../../../../library/modules/resources/#decl-quantumblockencoding-resource-zero-pureancilla). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.zero_depth" (lean := "QuantumBlockEncoding.Resource.zero_depth")
@@ -1199,7 +1199,7 @@ Source: [QuantumBlockEncoding/Resources.lean:80](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:81](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L81).
+Source: [QuantumBlockEncoding/Resources.lean:81](../../../../library/modules/resources/#decl-quantumblockencoding-resource-zero-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.add_oneQubit" (lean := "QuantumBlockEncoding.Resource.add_oneQubit")
@@ -1213,7 +1213,7 @@ Source: [QuantumBlockEncoding/Resources.lean:81](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:82](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L82).
+Source: [QuantumBlockEncoding/Resources.lean:82](../../../../library/modules/resources/#decl-quantumblockencoding-resource-add-onequbit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.add_cnot" (lean := "QuantumBlockEncoding.Resource.add_cnot")
@@ -1227,7 +1227,7 @@ Source: [QuantumBlockEncoding/Resources.lean:82](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:84](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L84).
+Source: [QuantumBlockEncoding/Resources.lean:84](../../../../library/modules/resources/#decl-quantumblockencoding-resource-add-cnot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.add_oracleCalls" (lean := "QuantumBlockEncoding.Resource.add_oracleCalls")
@@ -1241,7 +1241,7 @@ Source: [QuantumBlockEncoding/Resources.lean:84](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:86](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L86).
+Source: [QuantumBlockEncoding/Resources.lean:86](../../../../library/modules/resources/#decl-quantumblockencoding-resource-add-oraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.add_pureAncilla" (lean := "QuantumBlockEncoding.Resource.add_pureAncilla")
@@ -1255,7 +1255,7 @@ Source: [QuantumBlockEncoding/Resources.lean:86](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:88](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L88).
+Source: [QuantumBlockEncoding/Resources.lean:88](../../../../library/modules/resources/#decl-quantumblockencoding-resource-add-pureancilla). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Resource.add_depth" (lean := "QuantumBlockEncoding.Resource.add_depth")
@@ -1269,7 +1269,7 @@ Source: [QuantumBlockEncoding/Resources.lean:88](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Resources.lean:90](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L90).
+Source: [QuantumBlockEncoding/Resources.lean:90](../../../../library/modules/resources/#decl-quantumblockencoding-resource-add-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CostExpr" (lean := "QuantumBlockEncoding.CostExpr")
@@ -1283,7 +1283,7 @@ Source: [QuantumBlockEncoding/Resources.lean:90](https://github.com/DakeBU/Quant
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Resources.lean:96](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L96).
+Source: [QuantumBlockEncoding/Resources.lean:96](../../../../library/modules/resources/#decl-quantumblockencoding-costexpr). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CostExpr.atoms" (lean := "QuantumBlockEncoding.CostExpr.atoms")
@@ -1297,7 +1297,7 @@ Source: [QuantumBlockEncoding/Resources.lean:96](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:116](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L116).
+Source: [QuantumBlockEncoding/Resources.lean:116](../../../../library/modules/resources/#decl-quantumblockencoding-costexpr-atoms). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AsymptoticResource" (lean := "QuantumBlockEncoding.AsymptoticResource")
@@ -1311,7 +1311,7 @@ Source: [QuantumBlockEncoding/Resources.lean:116](https://github.com/DakeBU/Quan
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Resources.lean:122](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L122).
+Source: [QuantumBlockEncoding/Resources.lean:122](../../../../library/modules/resources/#decl-quantumblockencoding-asymptoticresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AsymptoticResource.add" (lean := "QuantumBlockEncoding.AsymptoticResource.add")
@@ -1325,7 +1325,7 @@ Source: [QuantumBlockEncoding/Resources.lean:122](https://github.com/DakeBU/Quan
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:129](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L129).
+Source: [QuantumBlockEncoding/Resources.lean:129](../../../../library/modules/resources/#decl-quantumblockencoding-asymptoticresource-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.bandedSparseAccessResource" (lean := "QuantumBlockEncoding.bandedSparseAccessResource")
@@ -1339,7 +1339,7 @@ Source: [QuantumBlockEncoding/Resources.lean:129](https://github.com/DakeBU/Quan
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:138](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L138).
+Source: [QuantumBlockEncoding/Resources.lean:138](../../../../library/modules/resources/#decl-quantumblockencoding-bandedsparseaccessresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.sparseAmplitudeOracleResource" (lean := "QuantumBlockEncoding.sparseAmplitudeOracleResource")
@@ -1353,7 +1353,7 @@ Source: [QuantumBlockEncoding/Resources.lean:138](https://github.com/DakeBU/Quan
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:145](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L145).
+Source: [QuantumBlockEncoding/Resources.lean:145](../../../../library/modules/resources/#decl-quantumblockencoding-sparseamplitudeoracleresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.indicatorResource" (lean := "QuantumBlockEncoding.indicatorResource")
@@ -1367,7 +1367,7 @@ Source: [QuantumBlockEncoding/Resources.lean:145](https://github.com/DakeBU/Quan
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Resources.lean:149](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Resources.lean#L149).
+Source: [QuantumBlockEncoding/Resources.lean:149](../../../../library/modules/resources/#decl-quantumblockencoding-indicatorresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/StatePreparation.lean
@@ -1385,7 +1385,7 @@ Source: [QuantumBlockEncoding/Resources.lean:149](https://github.com/DakeBU/Quan
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:15](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L15).
+Source: [QuantumBlockEncoding/StatePreparation.lean:15](../../../../library/modules/statepreparation/#decl-quantumblockencoding-zerobasisindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.StatePreparationTarget" (lean := "QuantumBlockEncoding.StatePreparationTarget")
@@ -1399,7 +1399,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:15](https://github.com/DakeB
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:19](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L19).
+Source: [QuantumBlockEncoding/StatePreparation.lean:19](../../../../library/modules/statepreparation/#decl-quantumblockencoding-statepreparationtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.FirstColumnMatches" (lean := "QuantumBlockEncoding.FirstColumnMatches")
@@ -1413,7 +1413,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:19](https://github.com/DakeB
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:25](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L25).
+Source: [QuantumBlockEncoding/StatePreparation.lean:25](../../../../library/modules/statepreparation/#decl-quantumblockencoding-firstcolumnmatches). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.StatePreparationCandidate" (lean := "QuantumBlockEncoding.StatePreparationCandidate")
@@ -1427,7 +1427,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:25](https://github.com/DakeB
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:31](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L31).
+Source: [QuantumBlockEncoding/StatePreparation.lean:31](../../../../library/modules/statepreparation/#decl-quantumblockencoding-statepreparationcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.StatePreparationCandidate.preparesTarget" (lean := "QuantumBlockEncoding.StatePreparationCandidate.preparesTarget")
@@ -1441,7 +1441,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:31](https://github.com/DakeB
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:43](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L43).
+Source: [QuantumBlockEncoding/StatePreparation.lean:43](../../../../library/modules/statepreparation/#decl-quantumblockencoding-statepreparationcandidate-preparestarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.StatePreparationCandidate.cost" (lean := "QuantumBlockEncoding.StatePreparationCandidate.cost")
@@ -1455,7 +1455,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:43](https://github.com/DakeB
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:47](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L47).
+Source: [QuantumBlockEncoding/StatePreparation.lean:47](../../../../library/modules/statepreparation/#decl-quantumblockencoding-statepreparationcandidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.VerifiedStatePreparation" (lean := "QuantumBlockEncoding.VerifiedStatePreparation")
@@ -1469,7 +1469,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:47](https://github.com/DakeB
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:58](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L58).
+Source: [QuantumBlockEncoding/StatePreparation.lean:58](../../../../library/modules/statepreparation/#decl-quantumblockencoding-verifiedstatepreparation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.ApproximateStatePreparationCandidate" (lean := "QuantumBlockEncoding.ApproximateStatePreparationCandidate")
@@ -1483,7 +1483,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:58](https://github.com/DakeB
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:65](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L65).
+Source: [QuantumBlockEncoding/StatePreparation.lean:65](../../../../library/modules/statepreparation/#decl-quantumblockencoding-approximatestatepreparationcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.VerifiedApproximateStatePreparation" (lean := "QuantumBlockEncoding.VerifiedApproximateStatePreparation")
@@ -1497,7 +1497,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:65](https://github.com/DakeB
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:72](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L72).
+Source: [QuantumBlockEncoding/StatePreparation.lean:72](../../../../library/modules/statepreparation/#decl-quantumblockencoding-verifiedapproximatestatepreparation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.VerifiedStatePreparation.asZeroErrorApprox" (lean := "QuantumBlockEncoding.VerifiedStatePreparation.asZeroErrorApprox")
@@ -1511,7 +1511,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:72](https://github.com/DakeB
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:86](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L86).
+Source: [QuantumBlockEncoding/StatePreparation.lean:86](../../../../library/modules/statepreparation/#decl-quantumblockencoding-verifiedstatepreparation-aszeroerrorapprox). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.VerifiedStatePreparation.firstColumn" (lean := "QuantumBlockEncoding.VerifiedStatePreparation.firstColumn")
@@ -1525,5 +1525,5 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:86](https://github.com/DakeB
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/StatePreparation.lean:98](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/StatePreparation.lean#L98).
+Source: [QuantumBlockEncoding/StatePreparation.lean:98](../../../../library/modules/statepreparation/#decl-quantumblockencoding-verifiedstatepreparation-firstcolumn). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

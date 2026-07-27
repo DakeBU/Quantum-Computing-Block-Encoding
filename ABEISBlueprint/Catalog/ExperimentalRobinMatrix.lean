@@ -26,7 +26,7 @@ reading cue from formal status, the source docstring, and the authoritative Lean
 The standalone Library Explorer adds full-text search and filters across every chapter.
 
 *Experimental status.* RobinMatrix.lean is not imported by the default library
-surface. It is catalogued for completeness and currently contains two sorry-guarded
+surface. It is catalogued for completeness and contains explicit sorry-guarded
 diagnostic theorems. Those nodes are visible obligations, not certified facts.
 
 # QuantumBlockEncoding/RobinMatrix.lean
@@ -44,7 +44,7 @@ diagnostic theorems. Those nodes are visible obligations, not certified facts.
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-stencilrowcoeff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.robinRowEntries" (lean := "QuantumBlockEncoding.robinRowEntries")
@@ -58,7 +58,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:37](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L37).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:37](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-robinrowentries). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.buildRobinMatrix" (lean := "QuantumBlockEncoding.buildRobinMatrix")
@@ -72,7 +72,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:37](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:56](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L56).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:56](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-buildrobinmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeMatrix" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeMatrix")
@@ -86,7 +86,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:56](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:68](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L68).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:68](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinderivativematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinAkMatrix" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinAkMatrix")
@@ -100,7 +100,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:68](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:81](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L81).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:81](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinakmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinAkMatrix_apply" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinAkMatrix_apply")
@@ -114,7 +114,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:81](https://github.com/DakeBU/Qua
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:84](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L84).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:84](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinakmatrix-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.matrixRowAbsSum" (lean := "QuantumBlockEncoding.matrixRowAbsSum")
@@ -128,7 +128,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:84](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:96](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L96).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:96](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-matrixrowabssum). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.matrixOneNorm" (lean := "QuantumBlockEncoding.matrixOneNorm")
@@ -142,7 +142,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:96](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:106](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L106).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:106](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-matrixonenorm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeNorm" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeNorm")
@@ -156,7 +156,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:106](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:117](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L117).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:117](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinderivativenorm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinNumericNormalizer" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinNumericNormalizer")
@@ -170,7 +170,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:117](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:125](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L125).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:125](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinnumericnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinNormalizerBound" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinNormalizerBound")
@@ -184,7 +184,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:125](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:133](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L133).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:133](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinnormalizerbound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinNumericNormalizer_eq_eval" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinNumericNormalizer_eq_eval")
@@ -198,7 +198,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:133](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:139](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L139).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:139](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinnumericnormalizer-eq-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinBlockEncodingSpec" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinBlockEncodingSpec")
@@ -212,7 +212,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:139](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:149](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L149).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:149](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinblockencodingspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.robinBlockEncodingSpec_pureAncilla" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinBlockEncodingSpec_pureAncilla")
@@ -226,7 +226,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:149](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:158](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L158).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:158](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinblockencodingspec-pureancilla). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeOracleResource" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeOracleResource")
@@ -240,7 +240,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:158](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:163](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L163).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:163](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinderivativeoracleresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeOracleResource_eq" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeOracleResource_eq")
@@ -254,7 +254,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:163](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:167](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L167).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:167](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinderivativeoracleresource-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeOracleResource_pureAncilla" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinDerivativeOracleResource_pureAncilla")
@@ -268,7 +268,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:167](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:171](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L171).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:171](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinderivativeoracleresource-pureancilla). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinBlockEncodingPredicate" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinBlockEncodingPredicate")
@@ -282,7 +282,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:171](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:181](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L181).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:181](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinblockencodingpredicate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinResourceBoundHolds" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinResourceBoundHolds")
@@ -296,7 +296,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:181](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:188](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L188).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:188](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinresourceboundholds). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinResourceConsistent" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinResourceConsistent")
@@ -310,7 +310,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:188](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:195](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L195).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:195](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinresourceconsistent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.RobinOracleComposition" (lean := "QuantumBlockEncoding.Examples.RobinHeat.RobinOracleComposition")
@@ -324,7 +324,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:195](https://github.com/DakeBU/Qu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:204](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L204).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:204](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinoraclecomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinOracleComposition" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinOracleComposition")
@@ -338,7 +338,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:204](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:215](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L215).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:215](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinoraclecomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.robinOracleComposition_bandwidth" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinOracleComposition_bandwidth")
@@ -352,7 +352,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:215](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:231](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L231).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:231](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinoraclecomposition-bandwidth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.robinOracleComposition_functionPieces" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinOracleComposition_functionPieces")
@@ -366,7 +366,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:231](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:234](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L234).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:234](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinoraclecomposition-functionpieces). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.robinOracleComposition_matrix" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinOracleComposition_matrix")
@@ -380,7 +380,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:234](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:237](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L237).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:237](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinoraclecomposition-matrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinProofObligations" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinProofObligations")
@@ -394,7 +394,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:237](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:242](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L242).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:242](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-robinproofobligations). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinCircuitSemantics" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinCircuitSemantics")
@@ -408,7 +408,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:242](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:252](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L252).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:252](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobincircuitsemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinCircuitDimCompat" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinCircuitDimCompat")
@@ -422,7 +422,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:252](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:275](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L275).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:275](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobincircuitdimcompat). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockExtractionTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockExtractionTarget")
@@ -436,7 +436,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:275](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:296](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L296).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:296](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockextractiontarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinCircuitBlockClaim" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinCircuitBlockClaim")
@@ -450,7 +450,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:296](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:323](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L323).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:323](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobincircuitblockclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim" (lean := "QuantumBlockEncoding.Examples.RobinHeat.defaultOneTermRobinCircuitBlockClaim")
@@ -464,7 +464,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:323](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:344](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L344).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:344](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-defaultonetermrobincircuitblockclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinFiniteBlockCompositionContract" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinFiniteBlockCompositionContract")
@@ -478,7 +478,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:344](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:359](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L359).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:359](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinfiniteblockcompositioncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinFiniteBlockCompositionContract_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinFiniteBlockCompositionContract_transcript")
@@ -492,7 +492,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:359](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:404](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L404).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:404](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinfiniteblockcompositioncontract-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinFiniteCompositionExactTheoremObligation" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinFiniteCompositionExactTheoremObligation")
@@ -506,7 +506,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:404](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:441](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L441).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:441](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinfinitecompositionexacttheoremobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinFiniteCompositionExactTheoremObligation_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinFiniteCompositionExactTheoremObligation_transcript")
@@ -520,7 +520,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:441](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:449](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L449).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:449](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinfinitecompositionexacttheoremobligation-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinBlockEncodingProofRoute" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinBlockEncodingProofRoute")
@@ -534,7 +534,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:449](https://github.com/DakeBU/Qu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:467](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L467).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:467](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute")
@@ -548,7 +548,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:467](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:531](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L531).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:531](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_normalizer" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_normalizer")
@@ -562,7 +562,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:531](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:573](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L573).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:573](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-normalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockTarget")
@@ -576,7 +576,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:573](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:586](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L586).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:586](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-blocktarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockProjectionNormalizerAudit" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockProjectionNormalizerAudit")
@@ -590,7 +590,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:586](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:610](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L610).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:610](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-blockprojectionnormalizeraudit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_circuitProduct" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_circuitProduct")
@@ -604,7 +604,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:610](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:680](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L680).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:680](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-circuitproduct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateUnitaryFlags" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateUnitaryFlags")
@@ -618,7 +618,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:680](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:712](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L712).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:712](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gateunitaryflags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateListAndFlags" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateListAndFlags")
@@ -632,7 +632,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:712](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:740](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L740).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:740](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gatelistandflags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateProjectionFreeze" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gateProjectionFreeze")
@@ -646,7 +646,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:740](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:780](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L780).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:780](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gateprojectionfreeze). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_layoutProjectionAudit" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_layoutProjectionAudit")
@@ -660,7 +660,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:780](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:823](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L823).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:823](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-layoutprojectionaudit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockExtractionTarget_signalZeroBlockIndices" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockExtractionTarget_signalZeroBlockIndices")
@@ -674,7 +674,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:823](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:862](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L862).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:862](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockextractiontarget-signalzeroblockindices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_signalZeroBlockIndices" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_signalZeroBlockIndices")
@@ -688,7 +688,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:862](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:876](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L876).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:876](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-signalzeroblockindices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_claimBlockCorrectFalse" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_claimBlockCorrectFalse")
@@ -702,7 +702,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:876](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:899](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L899).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:899](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-claimblockcorrectfalse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_flags_false" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_flags_false")
@@ -716,7 +716,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:899](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:917](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L917).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:917](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_ofExternalSourceAndFlags")
@@ -730,7 +730,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:917](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:969](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L969).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:969](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-ofexternalsourceandflags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_ofCleanFunctionOracleEntry" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_ofCleanFunctionOracleEntry")
@@ -744,7 +744,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:969](https://github.com/DakeBU/Qu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1076](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1076).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1076](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-ofcleanfunctionoracleentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_derivativeBoundaryContractMap")
@@ -758,7 +758,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1076](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1174](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1174).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1174](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-derivativeboundarycontractmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odtsKetZeroEntry" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odtsKetZeroEntry")
@@ -772,7 +772,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1174](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1320](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1320).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1320](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odtsketzeroentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_boundaryKetZeroEntry" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_boundaryKetZeroEntry")
@@ -786,7 +786,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1320](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1439](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1439).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1439](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-boundaryketzeroentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotBlockers")
@@ -800,7 +800,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1439](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1612](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1612).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1612](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbsactiveglobalslotblockers). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairBlocked" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairBlocked")
@@ -814,7 +814,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1612](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1672](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1672).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1672](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-activeodbsgatepairblocked). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveScopeKeepsFinalFlagsFalse" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveScopeKeepsFinalFlagsFalse")
@@ -828,7 +828,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1672](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1697](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1697).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1697](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbsactivescopekeepsfinalflagsfalse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairWiring" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairWiring")
@@ -842,7 +842,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1697](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1732](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1732).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1732](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-activeodbsgatepairwiring). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairPublicSources" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_activeOdbsGatePairPublicSources")
@@ -856,7 +856,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1732](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1770](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1770).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1770](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-activeodbsgatepairpublicsources). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotGateFreeze" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSlotGateFreeze")
@@ -870,7 +870,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1770](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1786](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1786).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1786](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbsactiveglobalslotgatefreeze). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_projectionSourceFreeze" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_projectionSourceFreeze")
@@ -884,7 +884,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1786](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1838](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1838).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1838](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-projectionsourcefreeze). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_rejectedRowDependentCollisionRegression_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_rejectedRowDependentCollisionRegression_n3")
@@ -898,7 +898,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1838](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1870](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1870).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1870](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-rejectedrowdependentcollisionregression-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_encodedOutOfRangeSparseSlot_n3")
@@ -912,7 +912,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1870](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1901](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1901).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1901](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-encodedoutofrangesparseslot-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_contractDriftColumn8Blocked_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_contractDriftColumn8Blocked_n3")
@@ -926,7 +926,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1901](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1929](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1929).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1929](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-contractdriftcolumn8blocked-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sparseAccessContractIdentity" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_sparseAccessContractIdentity")
@@ -940,7 +940,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1929](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1959](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1959).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1959](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-sparseaccesscontractidentity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsPaperContractTranscript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsPaperContractTranscript")
@@ -954,7 +954,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1959](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:1983](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L1983).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:1983](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbspapercontracttranscript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsRestrictedDaggerColumnIndicator" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsRestrictedDaggerColumnIndicator")
@@ -968,7 +968,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:1983](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2032](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2032).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2032](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbsrestricteddaggercolumnindicator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsCleanupScopeDecision" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsCleanupScopeDecision")
@@ -982,7 +982,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2032](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2116](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2116).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2116](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbscleanupscopedecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsFullCleanDomainImageRuleBlocked" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsFullCleanDomainImageRuleBlocked")
@@ -996,7 +996,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2116](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2173](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2173).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2173](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbsfullcleandomainimageruleblocked). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupInterface" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupInterface")
@@ -1010,7 +1010,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2173](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2233](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2233).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2233](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbsactiveglobalsourcecleanupinterface). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_odbsActiveGlobalSourceCleanupContractMap")
@@ -1024,7 +1024,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2233](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2323](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2323).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2323](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-odbsactiveglobalsourcecleanupcontractmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptDependencies")
@@ -1038,7 +1038,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2323](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2420](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2420).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2420](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-theoremtranscriptdependencies). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptActiveCleanupMap")
@@ -1052,7 +1052,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2420](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2525](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2525).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2525](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-theoremtranscriptactivecleanupmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript")
@@ -1066,7 +1066,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2525](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2615](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2615).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2615](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-robinclarifiedgammatranscript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockProjectionDependencyMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_blockProjectionDependencyMap")
@@ -1080,7 +1080,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2615](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2709](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2709).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2709](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-blockprojectiondependencymap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_fullGateContractLedger" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_fullGateContractLedger")
@@ -1094,7 +1094,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2709](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:2827](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L2827).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:2827](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-fullgatecontractledger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptClosurePacket" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_theoremTranscriptClosurePacket")
@@ -1108,7 +1108,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:2827](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3041](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3041).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3041](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-theoremtranscriptclosurepacket). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_finiteBlockCompositionContractMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_finiteBlockCompositionContractMap")
@@ -1122,7 +1122,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3041](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3195](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3195).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3195](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-finiteblockcompositioncontractmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_finiteCompositionExactTheoremInterface" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_finiteCompositionExactTheoremInterface")
@@ -1136,7 +1136,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3195](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3281](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3281).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3281](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-finitecompositionexacttheoreminterface). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SignalBlockEntryObligation" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SignalBlockEntryObligation")
@@ -1150,7 +1150,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3281](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3420](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3420).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3420](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3signalblockentryobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SignalBlockEntryObligation_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SignalBlockEntryObligation_transcript")
@@ -1164,7 +1164,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3420](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3428](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3428).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3428](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3signalblockentryobligation-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockEntryObligationMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockEntryObligationMap")
@@ -1178,7 +1178,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3428](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3445](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3445).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3445](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3signalblockentryobligationmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3TargetEntryData")
@@ -1192,7 +1192,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3445](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3538](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3538).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3538](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3targetentrydata). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3FactorEntryLedger")
@@ -1206,7 +1206,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3538](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3620](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3620).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3620](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3factorentryledger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SignalBlockProductEntry")
@@ -1220,7 +1220,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3620](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3843](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3843).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3843](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3signalblockproductentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3AkCoefficientEntryContract")
@@ -1234,7 +1234,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3843](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:3980](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L3980).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:3980](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3akcoefficiententrycontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation")
@@ -1248,7 +1248,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:3980](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4218](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4218).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4218](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3producttocoefficientobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProductToCoefficientObligation_transcript")
@@ -1262,7 +1262,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4218](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4226](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4226).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4226](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3producttocoefficientobligation-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProductToCoefficientInterface")
@@ -1276,7 +1276,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4226](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4243](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4243).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4243](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3producttocoefficientinterface). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProjectionPathAudit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProjectionPathAudit_n3")
@@ -1290,7 +1290,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4243](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4415](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4415).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4415](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3projectionpathaudit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3PaperBasisIndex" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3PaperBasisIndex")
@@ -1304,7 +1304,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4415](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4490](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4490).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4490](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3paperbasisindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisLayout_n3")
@@ -1318,7 +1318,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4490](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4505](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4505).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4505](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3paperbasislayout-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisPathAudit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3PaperBasisPathAudit_n3")
@@ -1332,7 +1332,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4505](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4563](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4563).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4563](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3paperbasispathaudit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3SparseSlotAlignment_n3")
@@ -1346,7 +1346,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4563](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4646](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4646).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4646](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3sparseslotalignment-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProjectionSlotConventionObligation" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProjectionSlotConventionObligation")
@@ -1360,7 +1360,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4646](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4715](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4715).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4715](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3projectionslotconventionobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProjectionSlotConventionObligation_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProjectionSlotConventionObligation_transcript")
@@ -1374,7 +1374,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4715](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4723](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4723).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4723](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3projectionslotconventionobligation-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3ProjectionSlotConventionMap_n3")
@@ -1388,7 +1388,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4723](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4740](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4740).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4740](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3projectionslotconventionmap-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5PathAudit_n3")
@@ -1402,7 +1402,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4740](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4809](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4809).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4809](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3slot5pathaudit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3Slot5ProjectionRegisterAuditCheck_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3Slot5ProjectionRegisterAuditCheck_n3")
@@ -1416,7 +1416,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4809](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:4923](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L4923).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:4923](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3slot5projectionregisterauditcheck-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3Slot5ProjectionRegisterAudit_n3")
@@ -1430,7 +1430,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:4923](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5066](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5066).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5066](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3slot5projectionregisteraudit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3ProjectionRegisterConventionDecision" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3ProjectionRegisterConventionDecision")
@@ -1444,7 +1444,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5066](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5098](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5098).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5098](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3projectionregisterconventiondecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProjectionRegisterConventionDecision_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProjectionRegisterConventionDecision_n3")
@@ -1458,7 +1458,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5098](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5119](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5119).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5119](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3projectionregisterconventiondecision-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProjectionRegisterConventionDecision_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3ProjectionRegisterConventionDecision_n3_transcript")
@@ -1472,7 +1472,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5119](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5160](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5160).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5160](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3projectionregisterconventiondecision-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3SparseRegisterSummationConvention" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3SparseRegisterSummationConvention")
@@ -1486,7 +1486,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5160](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5193](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5193).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5193](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3sparseregistersummationconvention). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummationConvention_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummationConvention_n3")
@@ -1500,7 +1500,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5193](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5226](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5226).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5226](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3sparseregistersummationconvention-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummationConvention_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummationConvention_n3_transcript")
@@ -1514,7 +1514,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5226](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5290](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5290).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5290](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3sparseregistersummationconvention-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3SparseRegisterSummation_indicatorGap_n3")
@@ -1528,7 +1528,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5290](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5330](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5330).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5330](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3sparseregistersummation-indicatorgap-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3IndicatorProjectionConvention" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3IndicatorProjectionConvention")
@@ -1542,7 +1542,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5330](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5378](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5378).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5378](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3indicatorprojectionconvention). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3IndicatorProjectionConvention_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3IndicatorProjectionConvention_n3")
@@ -1556,7 +1556,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5378](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5406](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5406).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5406](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3indicatorprojectionconvention-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3IndicatorProjectionConvention_n3_transcript")
@@ -1570,7 +1570,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5406](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5456](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5456).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5456](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3indicatorprojectionconvention-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BulkIndicatorSourceAudit" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BulkIndicatorSourceAudit")
@@ -1584,7 +1584,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5456](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5512](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5512).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5512](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3bulkindicatorsourceaudit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BulkIndicatorSourceAudit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BulkIndicatorSourceAudit_n3")
@@ -1598,7 +1598,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5512](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5542](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5542).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5542](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3bulkindicatorsourceaudit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BulkIndicatorSourceAudit_n3_transcript")
@@ -1612,7 +1612,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5542](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5579](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5579).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5579](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3bulkindicatorsourceaudit-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BranchCorrectSourceMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BranchCorrectSourceMap")
@@ -1626,7 +1626,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5579](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5630](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5630).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5630](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3branchcorrectsourcemap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BranchCorrectSourceMap_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BranchCorrectSourceMap_n3")
@@ -1640,7 +1640,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5630](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5668](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5668).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5668](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3branchcorrectsourcemap-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BranchCorrectSourceMap_n3_transcript")
@@ -1654,7 +1654,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5668](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5729](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5729).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5729](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3branchcorrectsourcemap-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryBranchPathAudit_n3")
@@ -1668,7 +1668,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5729](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5790](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5790).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5790](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundarybranchpathaudit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BulkProductInterface" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BulkProductInterface")
@@ -1682,7 +1682,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5790](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5906](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5906).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5906](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3bulkproductinterface). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3")
@@ -1696,7 +1696,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5906](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:5955](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L5955).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:5955](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3bulkproducttocoefficientinterface-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BulkProductToCoefficientInterface_n3_transcript")
@@ -1710,7 +1710,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:5955](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6052](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6052).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6052](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3bulkproducttocoefficientinterface-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProductInterface" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProductInterface")
@@ -1724,7 +1724,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6052](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6176](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6176).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6176](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryproductinterface). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3")
@@ -1738,7 +1738,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6176](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6216](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6216).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6216](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundaryproducttocoefficientinterface-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductToCoefficientInterface_n3_transcript")
@@ -1752,7 +1752,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6216](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6302](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6302).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6302](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundaryproducttocoefficientinterface-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryUniquePathSupportAudit" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryUniquePathSupportAudit")
@@ -1766,7 +1766,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6302](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6408](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6408).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6408](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryuniquepathsupportaudit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupportAudit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupportAudit_n3")
@@ -1780,7 +1780,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6408](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6447](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6447).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6447](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundaryuniquepathsupportaudit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupport_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryUniquePathSupport_n3")
@@ -1794,7 +1794,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6447](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6519](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6519).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6519](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundaryuniquepathsupport-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixParameters_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixParameters_n3")
@@ -1808,7 +1808,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6519](https://github.com/DakeBU/Q
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6576](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6576).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6576](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixparameters-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixDim_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixDim_n3")
@@ -1822,7 +1822,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6576](https://github.com/DakeBU/Q
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6581](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6581).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6581](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixdim-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixSource_n3")
@@ -1836,7 +1836,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6581](https://github.com/DakeBU/Q
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6586](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6586).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6586](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixsource-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow0_n3")
@@ -1850,7 +1850,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6586](https://github.com/DakeBU/Q
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6591](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6591).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6591](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixrow0-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow1_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow1_n3")
@@ -1864,7 +1864,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6591](https://github.com/DakeBU/Q
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6596](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6596).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6596](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixrow1-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixMatrix_n3")
@@ -1878,7 +1878,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6596](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6605](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6605).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6605](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryduprefixmatrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixMatrix_n3")
@@ -1892,7 +1892,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6605](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6613](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6613).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6613](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrduprefixmatrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixMatrix_n3")
@@ -1906,7 +1906,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6613](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6621](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6621).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6621](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixmatrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixSupport_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixSupport_n3")
@@ -1920,7 +1920,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6621](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6744](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6744).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6744](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryduprefixsupport-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixSupport_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixSupport_n3")
@@ -1934,7 +1934,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6744](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6762](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6762).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6762](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrduprefixsupport-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryPrefixSupport_n3")
@@ -1948,7 +1948,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6762](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6787](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6787).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6787](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundaryprefixsupport-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapMatrix_n3")
@@ -1962,7 +1962,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6787](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6807](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6807).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6807](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryofswapmatrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixMatrix_n3")
@@ -1976,7 +1976,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6807](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6814](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6814).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6814](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysuffixmatrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySevenGateMatrix_n3")
@@ -1990,7 +1990,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6814](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6828](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6828).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6828](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysevengatematrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow0Col1_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapRow0Col1_zero_n3")
@@ -2004,7 +2004,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6828](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6897](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6897).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6897](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryofswaprow0col1-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow32Col1_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixRow32Col1_zero_n3")
@@ -2018,7 +2018,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6897](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6921](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6921).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6921](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysuffixrow32col1-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateSupport_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateSupport_n3")
@@ -2032,7 +2032,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6921](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6945](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6945).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6945](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundarysevengatesupport-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateUniquePath_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateUniquePath_n3")
@@ -2046,7 +2046,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6945](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6970](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6970).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6970](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundarysevengateuniquepath-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixEntryEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixEntryEval_n3")
@@ -2060,7 +2060,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6970](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:6995](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L6995).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:6995](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryduprefixentryeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixEntryEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixEntryEval_n3")
@@ -2074,7 +2074,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:6995](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7045](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7045).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7045](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrduprefixentryeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixEntryEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixEntryEval_n3")
@@ -2088,7 +2088,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7045](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7087](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7087).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7087](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixentryeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapEntryEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryOfSwapEntryEval_n3")
@@ -2102,7 +2102,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7087](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7140](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7140).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7140](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryofswapentryeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixEntryEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySuffixEntryEval_n3")
@@ -2116,7 +2116,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7140](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7191](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7191).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7191](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysuffixentryeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_n3")
@@ -2130,7 +2130,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7191](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7238](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7238).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7238](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundaryproductentryeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol0Support_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol0Support_n3")
@@ -2144,7 +2144,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7238](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7322](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7322).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7322](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryduprefixcol0support-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixCol0Support_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixCol0Support_n3")
@@ -2158,7 +2158,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7322](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7422](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7422).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7422](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrduprefixcol0support-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixCol0Support_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixCol0Support_n3")
@@ -2172,7 +2172,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7422](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7445](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7445).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7445](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixcol0support-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol0EntryEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryDUPrefixCol0EntryEval_n3")
@@ -2186,7 +2186,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7445](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7471](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7471).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7471](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryduprefixcol0entryeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixRow0Col0_eval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixRow0Col0_eval_n3")
@@ -2200,7 +2200,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7471](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7518](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7518).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7518](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrduprefixrow0col0-eval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixRow1Col0_eval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRDUPrefixRow1Col0_eval_n3")
@@ -2214,7 +2214,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7518](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7557](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7557).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7557](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrduprefixrow1col0-eval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow96Col0_eval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow96Col0_eval_n3")
@@ -2228,7 +2228,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7557](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7602](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7602).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7602](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixrow96col0-eval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow97Col0_eval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPrefixRow97Col0_eval_n3")
@@ -2242,7 +2242,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7602](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7659](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7659).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7659](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprefixrow97col0-eval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryCol0SupportAnalysis" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryCol0SupportAnalysis")
@@ -2256,7 +2256,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7659](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7741](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7741).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7741](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycol0supportanalysis). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCol0SupportAnalysis_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCol0SupportAnalysis_n3")
@@ -2270,7 +2270,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7741](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7765](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7765).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7765](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycol0supportanalysis-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateTwoPath_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundarySevenGateTwoPath_n3")
@@ -2284,7 +2284,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7765](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:7838](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L7838).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:7838](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundarysevengatetwopath-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRyCoefficientBridge" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRyCoefficientBridge")
@@ -2298,7 +2298,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:7838](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8564](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8564).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8564](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrycoefficientbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCoefficientBridge_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCoefficientBridge_n3")
@@ -2312,7 +2312,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8564](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8597](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8597).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8597](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrycoefficientbridge-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCoefficientBridge_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCoefficientBridge_n3_transcript")
@@ -2326,7 +2326,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8597](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8651](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8651).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8651](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrycoefficientbridge-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRyAngleConventionDecision" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRyAngleConventionDecision")
@@ -2340,7 +2340,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8651](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8717](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8717).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8717](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryryangleconventiondecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3")
@@ -2354,7 +2354,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8717](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8744](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8744).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8744](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryryangleconventiondecision-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript")
@@ -2368,7 +2368,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8744](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8790](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8790).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8790](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryryangleconventiondecision-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRyLowerPacketGuard" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRyLowerPacketGuard")
@@ -2382,7 +2382,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8790](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8843](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8843).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8843](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrylowerpacketguard). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3")
@@ -2396,7 +2396,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8843](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8867](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8867).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8867](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrylowerpacketguard-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyLowerPacketGuard_n3_transcript")
@@ -2410,7 +2410,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8867](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8903](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8903).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8903](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrylowerpacketguard-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision")
@@ -2424,7 +2424,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8903](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8951](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8951).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8951](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrycorrectedanglesourcedecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3")
@@ -2438,7 +2438,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8951](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:8983](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L8983).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:8983](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrycorrectedanglesourcedecision-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyCorrectedAngleSourceDecision_n3_transcript")
@@ -2452,7 +2452,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:8983](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9029](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9029).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9029](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrycorrectedanglesourcedecision-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryCorrectedCoefficientInterface" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryCorrectedCoefficientInterface")
@@ -2466,7 +2466,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9029](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9070](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9070).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9070](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycorrectedcoefficientinterface). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3")
@@ -2480,7 +2480,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9070](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9090](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9090).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9090](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycorrectedcoefficientinterface-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3_transcript")
@@ -2494,7 +2494,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9090](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9130](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9130).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9130](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycorrectedcoefficientinterface-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedAngle_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedAngle_n3")
@@ -2508,7 +2508,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9130](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9164](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9164).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9164](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundaryproductentryeval-correctedangle-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_gamma3BoundaryProductEntryEval_correctedCoefficientExpanded_n3")
@@ -2522,7 +2522,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9164](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9192](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9192).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9192](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobinblockencodingproofroute-gamma3boundaryproductentryeval-correctedcoefficientexpanded-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryAkEntry_matches_globalSlot2_n3")
@@ -2536,7 +2536,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9192](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9225](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9225).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9225](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryakentry-matches-globalslot2-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProductToCoefficientObstruction" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProductToCoefficientObstruction")
@@ -2550,7 +2550,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9225](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9245](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9245).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9245](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryproducttocoefficientobstruction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3")
@@ -2564,7 +2564,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9245](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9266](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9266).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9266](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryproducttocoefficientobstruction-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductToCoefficientObstruction_n3_transcript")
@@ -2578,7 +2578,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9266](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9316](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9316).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9316](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryproducttocoefficientobstruction-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryNormalizerProjectionConvention" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryNormalizerProjectionConvention")
@@ -2592,7 +2592,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9316](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9360](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9360).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9360](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarynormalizerprojectionconvention). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3")
@@ -2606,7 +2606,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9360](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9395](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9395).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9395](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarynormalizerprojectionconvention-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerProjectionConvention_n3_transcript")
@@ -2620,7 +2620,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9395](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9446](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9446).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9446](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarynormalizerprojectionconvention-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryNormalizerSplitTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryNormalizerSplitTarget")
@@ -2634,7 +2634,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9446](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9530](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9530).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9530](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarynormalizersplittarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3")
@@ -2648,7 +2648,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9530](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9562](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9562).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9562](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarynormalizersplittarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryNormalizerSplitTarget_n3_transcript")
@@ -2662,7 +2662,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9562](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9597](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9597).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9597](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarynormalizersplittarget-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseEval_n3")
@@ -2676,7 +2676,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9597](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9647](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9647).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9647](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysymbolicinverseeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundarySymbolicInverseSemantics" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundarySymbolicInverseSemantics")
@@ -2690,7 +2690,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9647](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9711](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9711).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9711](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysymbolicinversesemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3")
@@ -2704,7 +2704,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9711](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9741](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9741).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9741](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysymbolicinversesemantics-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySymbolicInverseSemantics_n3_transcript")
@@ -2718,7 +2718,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9741](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9777](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9777).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9777](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysymbolicinversesemantics-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUniformSparseRegisterPreparationObligation_n3")
@@ -2732,7 +2732,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9777](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9825](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9825).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9825](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryuniformsparseregisterpreparationobligation-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryKappaProjectionTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryKappaProjectionTarget")
@@ -2746,7 +2746,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9825](https://github.com/DakeBU/Q
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9843](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9843).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9843](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarykappaprojectiontarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3")
@@ -2760,7 +2760,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9843](https://github.com/DakeBU/Q
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9886](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9886).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9886](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarykappaprojectiontarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionTarget_n3_transcript")
@@ -2774,7 +2774,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9886](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:9938](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L9938).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:9938](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarykappaprojectiontarget-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionEval_n3")
@@ -2788,7 +2788,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:9938](https://github.com/DakeBU/Q
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10000](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10000).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10000](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarykappaprojectioneval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryKappaProjectionSemantics" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryKappaProjectionSemantics")
@@ -2802,7 +2802,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10000](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10079](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10079).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10079](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarykappaprojectionsemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3")
@@ -2816,7 +2816,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10079](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10110](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10110).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10110](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarykappaprojectionsemantics-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryKappaProjectionSemantics_n3_transcript")
@@ -2830,7 +2830,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10110](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10148](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10148).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10148](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarykappaprojectionsemantics-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionSourceContract" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionSourceContract")
@@ -2844,7 +2844,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10148](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10198](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10198).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10198](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsourcecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3")
@@ -2858,7 +2858,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10198](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10238](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10238).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10238](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsourcecontract-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSourceContract_n3_transcript")
@@ -2872,7 +2872,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10238](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10289](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10289).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10289](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsourcecontract-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorIndex_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorIndex_n3")
@@ -2886,7 +2886,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10289](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10347](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10347).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10347](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionfactorindex-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionFactorSemantics" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionFactorSemantics")
@@ -2900,7 +2900,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10347](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10379](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10379).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10379](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionfactorsemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3")
@@ -2914,7 +2914,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10379](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10422](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10422).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10422](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionfactorsemantics-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorSemantics_n3_transcript")
@@ -2928,7 +2928,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10422](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10472](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10472).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10472](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionfactorsemantics-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionFactorObstruction" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionFactorObstruction")
@@ -2942,7 +2942,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10472](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10536](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10536).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10536](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionfactorobstruction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3")
@@ -2956,7 +2956,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10536](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10573](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10573).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10573](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionfactorobstruction-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorObstruction_n3_transcript")
@@ -2970,7 +2970,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10573](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10618](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10618).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10618](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionfactorobstruction-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryMatchingProjectionConvention" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryMatchingProjectionConvention")
@@ -2984,7 +2984,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10618](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10677](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10677).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10677](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionconvention). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3")
@@ -2998,7 +2998,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10677](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10717](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10717).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10717](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionconvention-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionConvention_n3_transcript")
@@ -3012,7 +3012,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10717](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10765](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10765).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10765](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionconvention-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionFactorProductEval_n3")
@@ -3026,7 +3026,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10765](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10832](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10832).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10832](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionfactorproducteval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction")
@@ -3040,7 +3040,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10832](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10854](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10854).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10854](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionamplitudeobstruction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3")
@@ -3054,7 +3054,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10854](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10898](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10898).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10898](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionamplitudeobstruction-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeObstruction_n3_transcript")
@@ -3068,7 +3068,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10898](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:10956](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L10956).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:10956](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionamplitudeobstruction-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract")
@@ -3082,7 +3082,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:10956](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11028](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11028).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11028](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionamplitudecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3")
@@ -3096,7 +3096,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11028](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11069](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11069).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11069](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionamplitudecontract-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryMatchingProjectionAmplitudeContract_n3_transcript")
@@ -3110,7 +3110,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11069](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11125](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11125).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11125](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarymatchingprojectionamplitudecontract-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionAmplitudeSemantics" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionAmplitudeSemantics")
@@ -3124,7 +3124,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11125](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11190](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11190).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11190](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionamplitudesemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3")
@@ -3138,7 +3138,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11190](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11237](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11237).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11237](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionamplitudesemantics-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeContractProductEval_n3")
@@ -3152,7 +3152,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11237](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11298](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11298).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11298](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionamplitudecontractproducteval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeSemantics_n3_transcript")
@@ -3166,7 +3166,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11298](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11318](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11318).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11318](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionamplitudesemantics-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorEval_n3")
@@ -3180,7 +3180,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11318](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11394](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11394).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11394](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionamplitudefactoreval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics")
@@ -3194,7 +3194,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11394](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11457](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11457).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11457](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionamplitudefactorsemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3")
@@ -3208,7 +3208,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11457](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11498](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11498).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11498](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionamplitudefactorsemantics-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionAmplitudeFactorSemantics_n3_transcript")
@@ -3222,7 +3222,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11498](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11554](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11554).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11554](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionamplitudefactorsemantics-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryFactorSemanticsContractMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryFactorSemanticsContractMap")
@@ -3236,7 +3236,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11554](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11623](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11623).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11623](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryfactorsemanticscontractmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3")
@@ -3250,7 +3250,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11623](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11664](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11664).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11664](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryfactorsemanticscontractmap-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMapEval_n3")
@@ -3264,7 +3264,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11664](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11719](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11719).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11719](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryfactorsemanticscontractmapeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFactorSemanticsContractMap_n3_transcript")
@@ -3278,7 +3278,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11719](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11744](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11744).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11744](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryfactorsemanticscontractmap-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap")
@@ -3292,7 +3292,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11744](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11816](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11816).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11816](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybraprojectionamplitudesourcemap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3")
@@ -3306,7 +3306,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11816](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11855](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11855).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11855](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybraprojectionamplitudesourcemap-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBraProjectionAmplitudeSourceMap_n3_transcript")
@@ -3320,7 +3320,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11855](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11914](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11914).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11914](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybraprojectionamplitudesourcemap-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract")
@@ -3334,7 +3334,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11914](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:11980](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L11980).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:11980](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggerprojectionentrycontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3")
@@ -3348,7 +3348,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:11980](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12024](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12024).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12024](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggerprojectionentrycontract-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerProjectionEntryContract_n3_transcript")
@@ -3362,7 +3362,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12024](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12087](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12087).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12087](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggerprojectionentrycontract-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface")
@@ -3376,7 +3376,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12087](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12159](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12159).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12159](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggerembeddedentryinterface). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3")
@@ -3390,7 +3390,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12159](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12208](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12208).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12208](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggerembeddedentryinterface-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEmbeddedEntryInterface_n3_transcript")
@@ -3404,7 +3404,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12208](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12269](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12269).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12269](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggerembeddedentryinterface-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromUniformColumn_n3")
@@ -3418,7 +3418,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12269](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12345](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12345).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12345](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggerentryfromuniformcolumn-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract")
@@ -3432,7 +3432,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12345](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12367](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12367).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12367](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggeruniformcolumncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3")
@@ -3446,7 +3446,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12367](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12421](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12421).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12421](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggeruniformcolumncontract-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerUniformColumnContract_n3_transcript")
@@ -3460,7 +3460,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12421](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12502](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12502).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12502](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggeruniformcolumncontract-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeMatrix_n3")
@@ -3474,7 +3474,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12502](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12589](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12589).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12589](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggertransposematrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerTransposeEntryConvention_n3")
@@ -3488,7 +3488,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12589](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12600](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12600).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12600](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggertransposeentryconvention-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerEntryFromTransposeUniformColumn_n3")
@@ -3502,7 +3502,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12600](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12614](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12614).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12614](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggerentryfromtransposeuniformcolumn-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention")
@@ -3516,7 +3516,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12614](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12636](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12636).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12636](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggeradjointentryconvention). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3")
@@ -3530,7 +3530,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12636](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12688](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12688).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12688](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggeradjointentryconvention-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaDaggerAdjointEntryConvention_n3_transcript")
@@ -3544,7 +3544,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12688](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12762](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12762).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12762](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappadaggeradjointentryconvention-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaCleanColumnContract" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryHWKappaCleanColumnContract")
@@ -3558,7 +3558,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12762](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12853](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12853).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12853](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappacleancolumncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3")
@@ -3572,7 +3572,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12853](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12906](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12906).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12906](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappacleancolumncontract-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_feedsTransposeBridge_n3")
@@ -3586,7 +3586,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12906](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:12976](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L12976).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:12976](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappacleancolumncontract-feedstransposebridge-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaCleanColumnContract_n3_transcript")
@@ -3600,7 +3600,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:12976](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13002](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13002).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13002](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappacleancolumncontract-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryCleanColumnBraRouteContract" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryCleanColumnBraRouteContract")
@@ -3614,7 +3614,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13002](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13097](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13097).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13097](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycleancolumnbraroutecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3")
@@ -3628,7 +3628,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13097](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13154](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13154).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13154](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycleancolumnbraroutecontract-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_feedsBraAmplitude_n3")
@@ -3642,7 +3642,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13154](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13226](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13226).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13226](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycleancolumnbraroutecontract-feedsbraamplitude-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnBraRouteContract_n3_transcript")
@@ -3656,7 +3656,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13226](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13252](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13252).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13252](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycleancolumnbraroutecontract-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute")
@@ -3670,7 +3670,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13252](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13362](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13362).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13362](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycleancolumnfactorsemanticsroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3")
@@ -3684,7 +3684,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13362](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13417](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13417).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13417](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycleancolumnfactorsemanticsroute-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRouteEval_n3")
@@ -3698,7 +3698,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13417](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13488](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13488).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13488](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycleancolumnfactorsemanticsrouteeval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCleanColumnFactorSemanticsRoute_n3_transcript")
@@ -3712,7 +3712,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13488](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13532](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13532).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13532](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarycleancolumnfactorsemanticsroute-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProductUnderContractsRoute" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProductUnderContractsRoute")
@@ -3726,7 +3726,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13532](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13630](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13630).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13630](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryproductundercontractsroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3")
@@ -3740,7 +3740,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13630](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13682](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13682).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13682](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryproductundercontractsroute-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsEval_n3")
@@ -3754,7 +3754,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13682](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13749](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13749).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13749](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryproductundercontractseval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProductUnderContractsRoute_n3_transcript")
@@ -3768,7 +3768,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13749](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13788](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13788).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13788](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryproductundercontractsroute-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionBlockEntryIndex_n3")
@@ -3782,7 +3782,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13788](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13877](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13877).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13877](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryfiniteprojectionblockentryindex-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryFiniteProjectionProductBridge" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryFiniteProjectionProductBridge")
@@ -3796,7 +3796,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13877](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13917](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13917).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13917](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryfiniteprojectionproductbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3")
@@ -3810,7 +3810,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13917](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:13963](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L13963).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:13963](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryfiniteprojectionproductbridge-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFiniteProjectionProductBridge_n3_transcript")
@@ -3824,7 +3824,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:13963](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14036](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14036).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14036](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryfiniteprojectionproductbridge-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchDecompositionSlot2" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchDecompositionSlot2")
@@ -3838,7 +3838,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14036](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14112](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14112).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14112](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchdecompositionslot2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3")
@@ -3852,7 +3852,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14112](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14164](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14164).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14164](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchdecompositionslot2-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchDecompositionSlot2_n3_transcript")
@@ -3866,7 +3866,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14164](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14231](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14231).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14231](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchdecompositionslot2-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionSummationTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionSummationTarget")
@@ -3880,7 +3880,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14231](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14308](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14308).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14308](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsummationtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3")
@@ -3894,7 +3894,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14308](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14360](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14360).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14360](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsummationtarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationTarget_n3_transcript")
@@ -3908,7 +3908,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14360](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14467](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14467).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14467](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsummationtarget-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchEntrySelection" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchEntrySelection")
@@ -3922,7 +3922,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14467](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14537](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14537).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14537](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchentryselection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3")
@@ -3936,7 +3936,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14537](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14576](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14576).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14576](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchentryselection-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelectionEval_n3")
@@ -3950,7 +3950,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14576](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14626](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14626).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14626](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchentryselectioneval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchEntrySelection_n3_transcript")
@@ -3964,7 +3964,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14626](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14666](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14666).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14666](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchentryselection-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionSummationObstruction" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryProjectionSummationObstruction")
@@ -3978,7 +3978,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14666](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14739](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14739).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14739](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsummationobstruction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3")
@@ -3992,7 +3992,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14739](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14792](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14792).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14792](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsummationobstruction-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_selectedSlotEval_n3")
@@ -4006,7 +4006,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14792](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14863](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14863).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14863](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsummationobstruction-selectedsloteval-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryProjectionSummationObstruction_n3_transcript")
@@ -4020,7 +4020,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14863](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14892](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14892).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14892](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryprojectionsummationobstruction-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFocusedSlot" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFocusedSlot")
@@ -4034,7 +4034,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14892](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14978](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14978).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14978](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontributionfocusedslot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionSum" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionSum")
@@ -4048,7 +4048,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14978](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:14989](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L14989).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:14989](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontributionsum). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionPlaceholder_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionPlaceholder_n3")
@@ -4062,7 +4062,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:14989](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15001](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15001).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15001](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontributionplaceholder-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchContributionFamily" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchContributionFamily")
@@ -4076,7 +4076,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15001](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15019](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15019).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15019](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontributionfamily). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFamily_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionFamily_n3")
@@ -4090,7 +4090,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15019](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15052](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15052).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15052](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontributionfamily-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContribution_selectedSlot_n3")
@@ -4104,7 +4104,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15052](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15101](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15101).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15101](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontribution-selectedslot-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchContributionObstruction" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBranchContributionObstruction")
@@ -4118,7 +4118,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15101](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15114](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15114).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15114](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontributionobstruction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3")
@@ -4132,7 +4132,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15114](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15139](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15139).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15139](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontributionobstruction-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBranchContributionObstruction_n3_transcript")
@@ -4146,7 +4146,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15139](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15174](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15174).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15174](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybranchcontributionobstruction-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionPredicate_n3")
@@ -4160,7 +4160,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15174](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15233](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15233).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15233](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontributionpredicate-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget")
@@ -4174,7 +4174,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15233](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15250](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15250).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15250](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendprojectionsummationfieldtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationFieldTarget_n3")
@@ -4188,7 +4188,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15250](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15284](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15284).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15284](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendprojectionsummationfieldtarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBranchContributionTarget_n3")
@@ -4202,7 +4202,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15284](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15385](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15385).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15385](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryblockextractionbranchcontributiontarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBlockExtractionBackendGap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBlockExtractionBackendGap")
@@ -4216,7 +4216,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15385](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15467](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15467).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15467](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryblockextractionbackendgap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3")
@@ -4230,7 +4230,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15467](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15517](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15517).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15517](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryblockextractionbackendgap-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBlockExtractionBackendGap_n3_transcript")
@@ -4244,7 +4244,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15517](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15572](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15572).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15572](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryblockextractionbackendgap-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_n3")
@@ -4258,7 +4258,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15572](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15644](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15644).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15644](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchfullindex-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_selected_n3")
@@ -4272,7 +4272,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15644](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15668](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15668).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15668](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchfullindex-selected-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_slotZero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_slotZero_n3")
@@ -4286,7 +4286,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15668](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15683](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15683).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15683](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchfullindex-slotzero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_value_n3")
@@ -4300,7 +4300,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15683](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15698](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15698).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15698](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchfullindex-value-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFullIndex_injective_n3")
@@ -4314,7 +4314,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15698](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15715](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15715).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15715](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchfullindex-injective-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendSlotOneDaggerAfterSwap_zero_n3")
@@ -4328,7 +4328,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15715](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15734](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15734).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15734](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendslotonedaggerafterswap-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendSelectedBranchSummandFormula_n3")
@@ -4342,7 +4342,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15734](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15830](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15830).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15830](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendselectedbranchsummandformula-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction")
@@ -4356,7 +4356,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15830](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15859](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15859).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15859](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchindexmapobstruction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchIndexMapObstruction_n3")
@@ -4370,7 +4370,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15859](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:15905](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L15905).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:15905](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchindexmapobstruction-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_n3")
@@ -4384,7 +4384,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:15905](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:16028](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L16028).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:16028](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_selected_n3")
@@ -4398,7 +4398,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:16028](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:16044](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L16044).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:16044](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-selected-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotZero_n3")
@@ -4412,7 +4412,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:16044](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:16064](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L16064).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:16064](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-slotzero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotZeroEval_zero_n3")
@@ -4426,7 +4426,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:16064](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:16085](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L16085).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:16085](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-slotzeroeval-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotOneEval_zero_n3")
@@ -4440,7 +4440,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:16085](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:16427](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L16427).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:16427](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-slotoneeval-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotThreeEval_zero_n3")
@@ -4454,7 +4454,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:16427](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:16757](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L16757).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:16757](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-slotthreeeval-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotFourEval_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotFourEval_zero_n3")
@@ -4468,7 +4468,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:16757](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:17086](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L17086).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:17086](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-slotfoureval-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotFiveEval_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotFiveEval_zero_n3")
@@ -4482,7 +4482,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:17086](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:17416](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L17416).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:17416](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-slotfiveeval-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotSixEval_zero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContribution_slotSixEval_zero_n3")
@@ -4496,7 +4496,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:17416](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:17746](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L17746).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:17746](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontribution-slotsixeval-zero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFoldEval_eq_selectedSlotContribution_n3")
@@ -4510,7 +4510,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:17746](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:17783](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L17783).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:17783](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchfoldeval-eq-selectedslotcontribution-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFold_expandedSlotZero_n3")
@@ -4524,7 +4524,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:17783](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:17834](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L17834).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:17834](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchfold-expandedslotzero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchFold_expandedAllSlots_n3")
@@ -4538,7 +4538,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:17834](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:17865](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L17865).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:17865](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchfold-expandedallslots-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchContributionTarget_n3")
@@ -4552,7 +4552,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:17865](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18012](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18012).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18012](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchcontributiontarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendAllSlotSummandFormula" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendAllSlotSummandFormula")
@@ -4566,7 +4566,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18012](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18090](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18090).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18090](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendallslotsummandformula). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendAllSlotSummandFormula_n3")
@@ -4580,7 +4580,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18090](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18136](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18136).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18136](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendallslotsummandformula-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendBranchSumClosure" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendBranchSumClosure")
@@ -4594,7 +4594,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18136](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18301](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18301).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18301](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchsumclosure). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3")
@@ -4608,7 +4608,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18301](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18341](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18341).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18341](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchsumclosure-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendBranchSumClosure_n3_transcript")
@@ -4622,7 +4622,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18341](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18398](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18398).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18398](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendbranchsumclosure-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatement_signalEntry_n3")
@@ -4636,7 +4636,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18398](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18476](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18476).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18476](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendprojectionstatement-signalentry-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendProjectionStatementObstruction" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendProjectionStatementObstruction")
@@ -4650,7 +4650,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18476](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18566](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18566).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18566](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendprojectionstatementobstruction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionStatementObstruction_n3")
@@ -4664,7 +4664,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18566](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18605](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18605).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18605](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendprojectionstatementobstruction-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendExpansionBridge" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendExpansionBridge")
@@ -4678,7 +4678,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18605](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18785](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18785).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18785](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendexpansionbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionBridge_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionBridge_n3")
@@ -4692,7 +4692,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18785](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18826](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18826).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18826](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendexpansionbridge-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionBridge_n3_transcript" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionBridge_n3_transcript")
@@ -4706,7 +4706,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18826](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:18879](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L18879).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:18879](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendexpansionbridge-n3-transcript). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget")
@@ -4720,7 +4720,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:18879](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19020](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19020).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19020](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendunitaryentryfoldtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldTarget_n3")
@@ -4734,7 +4734,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19020](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19060](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19060).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19060](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendunitaryentryfoldtarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget")
@@ -4748,7 +4748,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19060](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19190](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19190).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19190](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendunitaryentryfoldsupporttarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendUnitaryEntryFoldSupportTarget_n3")
@@ -4762,7 +4762,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19190](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19237](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19237).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19237](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendunitaryentryfoldsupporttarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedBranchContribution_formula_n3")
@@ -4776,7 +4776,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19237](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19361](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19361).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19361](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedbranchcontribution-formula-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryPreparedBranchExpansionTarget")
@@ -4790,7 +4790,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19361](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19383](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19383).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19383](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedbranchexpansiontarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedBranchExpansionTarget_n3")
@@ -4804,7 +4804,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19383](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19438](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19438).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19438](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedbranchexpansiontarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySparseCleanIndex_n3")
@@ -4818,7 +4818,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19438](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19582](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19582).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19582](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysparsecleanindex-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySparseSlotIndex_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySparseSlotIndex_n3")
@@ -4832,7 +4832,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19582](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19586](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19586).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19586](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysparseslotindex-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3")
@@ -4846,7 +4846,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19586](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19596](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19596).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19596](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryhwkappauniformcolumnallslotsstatement-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichContribution_n3")
@@ -4860,7 +4860,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19596](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19611](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19611).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19611](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedprojectionsandwichcontribution-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichSum_n3")
@@ -4874,7 +4874,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19611](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19625](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19625).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19625](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedprojectionsandwichsum-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget")
@@ -4888,7 +4888,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19625](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19712](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19712).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19712](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedprojectionsandwichbackendtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedProjectionSandwichBackendTarget_n3")
@@ -4902,7 +4902,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19712](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19753](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19753).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19753](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedprojectionsandwichbackendtarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField")
@@ -4916,7 +4916,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19753](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19884](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19884).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19884](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrawentrypreparedsandwichcircuitfield). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRawEntryPreparedSandwichCircuitField_n3")
@@ -4930,7 +4930,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19884](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:19918](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L19918).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:19918](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrawentrypreparedsandwichcircuitfield-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRawUnitaryEntry_contractMatrix_n3")
@@ -4944,7 +4944,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:19918](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20119](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20119).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20119](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryrawunitaryentry-contractmatrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySparsePreparationGates_absent_n3")
@@ -4958,7 +4958,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20119](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20135](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20135).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20135](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysparsepreparationgates-absent-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap")
@@ -4972,7 +4972,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20135](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20154](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20154).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20154](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcircuitsemanticsgap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSemanticsGap_n3")
@@ -4986,7 +4986,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20154](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20188](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20188).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20188](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcircuitsemanticsgap-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitSparseMatrix_n3")
@@ -5000,7 +5000,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20188](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20287](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20287).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20287](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcircuitsparsematrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeGate_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeGate_n3")
@@ -5014,7 +5014,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20287](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20369](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20369).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20369](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcompositegate-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuit_n3")
@@ -5028,7 +5028,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20369](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20384](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20384).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20384](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcompositecircuit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeGateMatchesCircuit_n3")
@@ -5042,7 +5042,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20384](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20389](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20389).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20389](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcompositegatematchescircuit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCompositeCircuitSemantics_n3")
@@ -5056,7 +5056,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20389](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20404](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20404).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20404](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcompositecircuitsemantics-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface")
@@ -5070,7 +5070,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20404](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20486](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20486).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20486](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcircuitmatrixinterface). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryPreparedCircuitMatrixInterface_n3")
@@ -5084,7 +5084,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20486](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20526](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20526).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20526](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarypreparedcircuitmatrixinterface-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveFullDim_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveFullDim_n3")
@@ -5098,7 +5098,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20526](https://github.com/DakeBU/
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20680](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20680).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20680](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivefulldim-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveCleanIndex_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveCleanIndex_n3")
@@ -5112,7 +5112,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20680](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20685](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20685).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20685](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivecleanindex-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedEntryTarget_n3")
@@ -5126,7 +5126,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20685](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:20912](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L20912).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:20912](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivepreparedentrytarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget")
@@ -5140,7 +5140,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:20912](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21087](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21087).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21087](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivepreparedcompositionfieldtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositionFieldTarget_n3")
@@ -5154,7 +5154,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21087](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21124](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21124).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21124](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivepreparedcompositionfieldtarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCompositeEvalStatement_n3")
@@ -5168,7 +5168,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21124](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21540](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21540).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21540](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivepreparedcompositeevalstatement-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastActivePreparedCompositeEvalStatement_n3")
@@ -5182,7 +5182,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21540](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21557](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21557).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21557](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryuncastactivepreparedcompositeevalstatement-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedSparseEvalStatement_n3")
@@ -5196,7 +5196,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21557](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21652](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21652).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21652](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivepreparedsparseevalstatement-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUncastPreparedSandwichEvalStatement_n3")
@@ -5210,7 +5210,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21652](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21785](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21785).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21785](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryuncastpreparedsandwichevalstatement-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitLabels_distinct_n3")
@@ -5224,7 +5224,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21785](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21890](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21890).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21890](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivepreparedcircuitlabels-distinct-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget")
@@ -5238,7 +5238,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21890](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21910](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21910).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21910](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivepreparedcircuitfieldtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActivePreparedCircuitFieldTarget_n3")
@@ -5252,7 +5252,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21910](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:21956](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L21956).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:21956](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactivepreparedcircuitfieldtarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundarySourcePreparedProjectionTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundarySourcePreparedProjectionTarget")
@@ -5266,7 +5266,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:21956](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:22207](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L22207).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:22207](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysourcepreparedprojectiontarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjectionTarget_n3")
@@ -5280,7 +5280,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:22207](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:22250](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L22250).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:22250](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysourcepreparedprojectiontarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3")
@@ -5294,7 +5294,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:22250](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:22491](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L22491).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:22491](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysourcepreparedprojection-to-backendfold-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendFold_to_slot2ProjectedProduct_n3")
@@ -5308,7 +5308,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:22491](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:22514](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L22514).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:22514](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendfold-to-slot2projectedproduct-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjection_slot2_to_projectedBranchProduct_n3")
@@ -5322,7 +5322,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:22514](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:22549](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L22549).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:22549](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysourcepreparedprojection-slot2-to-projectedbranchproduct-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3")
@@ -5336,7 +5336,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:22549](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:22956](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L22956).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:22956](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryevaluatedbackendfoldstatement-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySelectedSlotContribution_allOne_nonzero_n3")
@@ -5350,7 +5350,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:22956](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:23196](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L23196).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:23196](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryselectedslotcontribution-allone-nonzero-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryActiveSelectedSlotIndexSplit_n3")
@@ -5364,7 +5364,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:23196](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:23247](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L23247).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:23247](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryactiveselectedslotindexsplit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3")
@@ -5378,7 +5378,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:23247](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:23637](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L23637).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:23637](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendexpansionstatement-not-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendProjectionSummationStatement_not_n3")
@@ -5392,7 +5392,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:23637](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:23681](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L23681).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:23681](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarybackendprojectionsummationstatement-not-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget")
@@ -5406,7 +5406,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:23681](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:24126](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L24126).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:24126](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryevaluatedbackendfoldtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldTarget_n3")
@@ -5420,7 +5420,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:24126](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:24158](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L24158).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:24158](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryevaluatedbackendfoldtarget-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation")
@@ -5434,7 +5434,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:24158](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:24931](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L24931).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:24931](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysourcepreparedproductprojectionobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProductProjectionObligation_n3")
@@ -5448,7 +5448,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:24931](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:24955](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L24955).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:24955](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysourcepreparedproductprojectionobligation-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge")
@@ -5462,7 +5462,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:24955](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:25219](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L25219).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:25219](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysourcepreparednormalizedprojectionbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedNormalizedProjectionBridge_n3")
@@ -5476,7 +5476,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:25219](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:25269](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L25269).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:25269](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarysourcepreparednormalizedprojectionbridge-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit" (lean := "QuantumBlockEncoding.Examples.RobinHeat.OneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit")
@@ -5490,7 +5490,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:25269](https://github.com/DakeBU/
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:25426](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L25426).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:25426](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarytheoremfacingfiniteblockcontractaudit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockContractAudit_n3")
@@ -5504,7 +5504,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:25426](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:25484](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L25484).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:25484](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarytheoremfacingfiniteblockcontractaudit-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryTheoremFacingFiniteBlockProjectionInterface_n3")
@@ -5518,7 +5518,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:25484](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:25726](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L25726).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:25726](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundarytheoremfacingfiniteblockprojectioninterface-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3")
@@ -5532,13 +5532,13 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:25726](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:26934](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L26934).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:26934](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryevaluatedbackendfoldstatement-diagnostic-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3")
 *Plain-English reading.* This experimental entry states the proposition indexed as “one term robin gamma 3 boundary unitary entry eq backend fold n 3”; consult its displayed status before treating it as proved. QBE-AUTO-002: sorry-guarded obstruction record for the H-free raw Coeff fold (n=3).
 
-*Formal status.* Outside the default import surface. Read the chapter warning and the Lean panel status before using this declaration as evidence.
+*Formal status.* Stated, proof incomplete. This declaration contains an explicit proof hole and is never counted as a compiled result.
 
 *Why it is in this chapter.* Historical Robin-matrix research outside the default import surface; its open diagnostics are displayed as obligations.
 
@@ -5546,7 +5546,7 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:26934](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:26964](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L26964).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:26964](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryunitaryentry-eq-backendfold-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic")
@@ -5560,13 +5560,13 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:26964](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:26977](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L26977).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:26977](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryevaluatedbackendfoldstatement-n3-proof-diagnostic). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3")
 *Plain-English reading.* This experimental entry states the proposition indexed as “one term robin gamma 3 boundary eval gate matrices eq seven gate matrix n 3”; consult its displayed status before treating it as proved. QBE-AUTO-002: matrix equality between 'evalGateMatrices' over the 7 gate placeholders and the seven-gate boundary matrix for the focused 'n = 3' gamma3 packet.
 
-*Formal status.* Outside the default import surface. Read the chapter warning and the Lean panel status before using this declaration as evidence.
+*Formal status.* Stated, proof incomplete. This declaration contains an explicit proof hole and is never counted as a compiled result.
 
 *Why it is in this chapter.* Historical Robin-matrix research outside the default import surface; its open diagnostics are displayed as obligations.
 
@@ -5574,5 +5574,5 @@ Source: [QuantumBlockEncoding/RobinMatrix.lean:26977](https://github.com/DakeBU/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinMatrix.lean:26995](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/RobinMatrix.lean#L26995).
+Source: [QuantumBlockEncoding/RobinMatrix.lean:26995](../../../../library/modules/robinmatrix/#decl-quantumblockencoding-examples-robinheat-onetermrobingamma3boundaryevalgatematrices-eq-sevengatematrix-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

@@ -25,7 +25,7 @@ if (Test-Path -LiteralPath $resolvedOutput) {
   Remove-Item -LiteralPath $resolvedOutput -Recurse -Force
 }
 
-& $LakeCommand @LakeArguments lean ABEISBlueprintMain.lean -- --run ABEISBlueprintMain.lean --output _out/blueprint
+& $LakeCommand @LakeArguments lean ABEISBlueprintMain.lean -- --run ABEISBlueprintMain.lean --without-preview-data --output _out/blueprint
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 $assetOutput = Join-Path $blueprintOutput "html-multi/assets"
@@ -34,6 +34,10 @@ Copy-Item -LiteralPath "web/assets/abeis-evidence-pipeline.svg" -Destination $as
 Copy-Item -LiteralPath "web/assets/abeis-library-map.svg" -Destination $assetOutput
 
 & $PythonCommand scripts/sanitize-blueprint-paths.py _out/blueprint
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/repair_blueprint_fragments.py _out/blueprint/html-multi
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/repair_blueprint_fragments.py --check _out/blueprint/html-multi
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 $required = @(

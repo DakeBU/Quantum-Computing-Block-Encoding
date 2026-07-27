@@ -39,7 +39,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:16](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L16).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:16](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-qubitdim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.SemanticObligation" (lean := "QuantumBlockEncoding.SemanticObligation")
@@ -53,7 +53,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:16](https://github.com/DakeB
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:25](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L25).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:25](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-semanticobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GateMatrix" (lean := "QuantumBlockEncoding.GateMatrix")
@@ -67,7 +67,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:25](https://github.com/DakeB
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:35](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L35).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:35](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-gatematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.gateMatricesMatchCircuit" (lean := "QuantumBlockEncoding.gateMatricesMatchCircuit")
@@ -81,7 +81,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:35](https://github.com/DakeB
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:41](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L41).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:41](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-gatematricesmatchcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.evalGateMatrices" (lean := "QuantumBlockEncoding.evalGateMatrices")
@@ -95,7 +95,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:41](https://github.com/DakeB
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:54](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L54).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:54](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-evalgatematrices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Matrix.evalWith_foldl_add_mul" (lean := "QuantumBlockEncoding.Matrix.evalWith_foldl_add_mul")
@@ -109,7 +109,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:54](https://github.com/DakeB
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:71](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L71).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:71](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-matrix-evalwith-foldl-add-mul). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Matrix.evalWith_mul_apply" (lean := "QuantumBlockEncoding.Matrix.evalWith_mul_apply")
@@ -123,7 +123,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:71](https://github.com/DakeB
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:92](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L92).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:92](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-matrix-evalwith-mul-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Matrix.evalWith_mul_eq_zero_of_all_paths_zero" (lean := "QuantumBlockEncoding.Matrix.evalWith_mul_eq_zero_of_all_paths_zero")
@@ -137,7 +137,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:92](https://github.com/DakeB
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:131](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L131).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:131](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-matrix-evalwith-mul-eq-zero-of-all-paths-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Matrix.evalWith_mul_unique_path" (lean := "QuantumBlockEncoding.Matrix.evalWith_mul_unique_path")
@@ -151,7 +151,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:131](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:304](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L304).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:304](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-matrix-evalwith-mul-unique-path). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Matrix.evalWith_mul_two_path" (lean := "QuantumBlockEncoding.Matrix.evalWith_mul_two_path")
@@ -165,7 +165,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:304](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:328](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L328).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:328](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-matrix-evalwith-mul-two-path). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Matrix.evalWith_mul_identity_right_apply" (lean := "QuantumBlockEncoding.Matrix.evalWith_mul_identity_right_apply")
@@ -179,7 +179,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:328](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:355](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L355).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:355](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-matrix-evalwith-mul-identity-right-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Matrix.cast_square_apply" (lean := "QuantumBlockEncoding.Matrix.cast_square_apply")
@@ -193,7 +193,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:355](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:371](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L371).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:371](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-matrix-cast-square-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalWith_evalGateMatrices_single" (lean := "QuantumBlockEncoding.evalWith_evalGateMatrices_single")
@@ -207,7 +207,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:371](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:389](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L389).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:389](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-evalwith-evalgatematrices-single). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CircuitMatrixSemantics" (lean := "QuantumBlockEncoding.CircuitMatrixSemantics")
@@ -221,7 +221,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:389](https://github.com/Dake
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:404](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L404).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:404](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-circuitmatrixsemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CircuitMatrixSemantics.ofGateMatrices" (lean := "QuantumBlockEncoding.CircuitMatrixSemantics.ofGateMatrices")
@@ -235,7 +235,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:404](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:415](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L415).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:415](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-circuitmatrixsemantics-ofgatematrices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PreparedCircuitEntryTarget" (lean := "QuantumBlockEncoding.PreparedCircuitEntryTarget")
@@ -249,7 +249,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:415](https://github.com/Dake
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:436](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L436).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:436](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-preparedcircuitentrytarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PreparedCircuitEntryTarget.entryEqualityStatement" (lean := "QuantumBlockEncoding.PreparedCircuitEntryTarget.entryEqualityStatement")
@@ -263,7 +263,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:436](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:454](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L454).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:454](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-preparedcircuitentrytarget-entryequalitystatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PreparedCircuitEntryTarget.matrixEntryEqualityStatement" (lean := "QuantumBlockEncoding.PreparedCircuitEntryTarget.matrixEntryEqualityStatement")
@@ -277,7 +277,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:454](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:459](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L459).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:459](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-preparedcircuitentrytarget-matrixentryequalitystatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PreparedCircuitEntryTarget.entryEqualityStatement_iff_matrixEntryEqualityStatement" (lean := "QuantumBlockEncoding.PreparedCircuitEntryTarget.entryEqualityStatement_iff_matrixEntryEqualityStatement")
@@ -291,7 +291,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:459](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:470](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L470).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:470](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-preparedcircuitentrytarget-entryequalitystatement-iff-matrixentryequalitystatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockExtractionTarget" (lean := "QuantumBlockEncoding.BlockExtractionTarget")
@@ -305,7 +305,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:470](https://github.com/Dake
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:502](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L502).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:502](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractiontarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.blockExtractionBranchContributionSum" (lean := "QuantumBlockEncoding.blockExtractionBranchContributionSum")
@@ -319,7 +319,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:502](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:520](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L520).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:520](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributionsum). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockExtractionBranchContributionTarget" (lean := "QuantumBlockEncoding.BlockExtractionBranchContributionTarget")
@@ -333,7 +333,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:520](https://github.com/Dake
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:535](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L535).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:535](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributiontarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.selectedBranchStatement" (lean := "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.selectedBranchStatement")
@@ -347,7 +347,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:535](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:559](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L559).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:559](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributiontarget-selectedbranchstatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.projectionSummationStatement" (lean := "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.projectionSummationStatement")
@@ -361,7 +361,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:559](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:569](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L569).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:569](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributiontarget-projectionsummationstatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.backendExpansionStatement" (lean := "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.backendExpansionStatement")
@@ -375,7 +375,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:569](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:586](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L586).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:586](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributiontarget-backendexpansionstatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.selectedBranchStatement_of_eq" (lean := "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.selectedBranchStatement_of_eq")
@@ -389,7 +389,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:586](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:595](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L595).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:595](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributiontarget-selectedbranchstatement-of-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.projectionSummationStatement_iff_backendExpansionStatement" (lean := "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.projectionSummationStatement_iff_backendExpansionStatement")
@@ -403,7 +403,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:595](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:603](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L603).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:603](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributiontarget-projectionsummationstatement-iff-backendexpansionstatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.projectionSummationStatement_of_backendExpansionStatement" (lean := "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.projectionSummationStatement_of_backendExpansionStatement")
@@ -417,7 +417,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:603](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:629](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L629).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:629](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributiontarget-projectionsummationstatement-of-backendexpansionstatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.backendExpansionStatement_of_projectionSummationStatement" (lean := "QuantumBlockEncoding.BlockExtractionBranchContributionTarget.backendExpansionStatement_of_projectionSummationStatement")
@@ -431,7 +431,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:629](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:640](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L640).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:640](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-blockextractionbranchcontributiontarget-backendexpansionstatement-of-projectionsummationstatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CircuitBlockEncodingClaim" (lean := "QuantumBlockEncoding.CircuitBlockEncodingClaim")
@@ -445,7 +445,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:640](https://github.com/Dake
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:661](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L661).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:661](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-circuitblockencodingclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.FiniteBlockCompositionContract" (lean := "QuantumBlockEncoding.FiniteBlockCompositionContract")
@@ -459,7 +459,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:661](https://github.com/Dake
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:676](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L676).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:676](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-finiteblockcompositioncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.signalSystemBlockRowIndex" (lean := "QuantumBlockEncoding.signalSystemBlockRowIndex")
@@ -473,7 +473,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:676](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:696](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L696).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:696](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-signalsystemblockrowindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.signalSystemBlockColIndex" (lean := "QuantumBlockEncoding.signalSystemBlockColIndex")
@@ -487,7 +487,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:696](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:700](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L700).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:700](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-signalsystemblockcolindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.signalSystemBlockRowIndex_zero" (lean := "QuantumBlockEncoding.signalSystemBlockRowIndex_zero")
@@ -501,7 +501,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:700](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:703](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L703).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:703](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-signalsystemblockrowindex-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.signalSystemBlockColIndex_zero" (lean := "QuantumBlockEncoding.signalSystemBlockColIndex_zero")
@@ -515,7 +515,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:703](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:707](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L707).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:707](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-signalsystemblockcolindex-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.signalSystemBlockRowIndex_lt" (lean := "QuantumBlockEncoding.signalSystemBlockRowIndex_lt")
@@ -529,7 +529,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:707](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:712](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L712).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:712](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-signalsystemblockrowindex-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.signalSystemBlockColIndex_lt" (lean := "QuantumBlockEncoding.signalSystemBlockColIndex_lt")
@@ -543,7 +543,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:712](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:727](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L727).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:727](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-signalsystemblockcolindex-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.signalSystemBlockProjection" (lean := "QuantumBlockEncoding.signalSystemBlockProjection")
@@ -557,7 +557,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:727](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:753](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L753).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:753](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-signalsystemblockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.signalSystemBlockProjection_apply" (lean := "QuantumBlockEncoding.signalSystemBlockProjection_apply")
@@ -571,7 +571,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:753](https://github.com/Dake
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:764](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L764).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:764](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-signalsystemblockprojection-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.totalCircuitQubits" (lean := "QuantumBlockEncoding.totalCircuitQubits")
@@ -585,7 +585,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:764](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:778](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L778).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:778](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-totalcircuitqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CircuitMatrixSemantics.blockExtractionTarget" (lean := "QuantumBlockEncoding.CircuitMatrixSemantics.blockExtractionTarget")
@@ -599,5 +599,5 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:778](https://github.com/Dake
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CircuitSemantics.lean:786](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CircuitSemantics.lean#L786).
+Source: [QuantumBlockEncoding/CircuitSemantics.lean:786](../../../../library/modules/circuitsemantics/#decl-quantumblockencoding-circuitmatrixsemantics-blockextractiontarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

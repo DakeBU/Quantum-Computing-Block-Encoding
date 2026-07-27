@@ -95,7 +95,8 @@ function createCard(declaration) {
   if (declaration.experimental) card.classList.add("experimental");
   card.querySelector(".kind-badge").textContent = declaration.kind;
   card.querySelector(".status-badge").textContent =
-    declaration.experimental ? "experimental" : "default surface";
+    declaration.localStatus ||
+    (declaration.experimental ? "experimental" : "default surface");
   card.querySelector(".catalog-badge").textContent = declaration.catalog;
   card.querySelector("h3").textContent = declaration.fullName;
   card.querySelector(".reader-label").textContent =
@@ -110,8 +111,14 @@ function createCard(declaration) {
   blueprint.setAttribute("aria-label", `Open Blueprint catalog for ${declaration.fullName}`);
 
   const source = card.querySelector(".source-action");
-  source.href = declaration.sourceUrl;
-  source.setAttribute("aria-label", `Open source for ${declaration.fullName}`);
+  if (declaration.sourceUrl) {
+    source.href = declaration.sourceUrl;
+    source.setAttribute("aria-label", `Open source for ${declaration.fullName}`);
+  } else {
+    source.removeAttribute("href");
+    source.textContent = "Commit link added during publication";
+    source.setAttribute("aria-disabled", "true");
+  }
 
   const copy = card.querySelector(".copy-action");
   copy.addEventListener("click", async () => {

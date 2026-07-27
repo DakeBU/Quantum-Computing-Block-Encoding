@@ -39,7 +39,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:12](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L12).
+Source: [QuantumBlockEncoding/Automation.lean:12](../../../../library/modules/automation/#decl-quantumblockencoding-automationstage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.TaskKind" (lean := "QuantumBlockEncoding.TaskKind")
@@ -53,7 +53,7 @@ Source: [QuantumBlockEncoding/Automation.lean:12](https://github.com/DakeBU/Quan
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:22](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L22).
+Source: [QuantumBlockEncoding/Automation.lean:22](../../../../library/modules/automation/#decl-quantumblockencoding-taskkind). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.TaskStatus" (lean := "QuantumBlockEncoding.TaskStatus")
@@ -67,7 +67,7 @@ Source: [QuantumBlockEncoding/Automation.lean:22](https://github.com/DakeBU/Quan
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:33](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L33).
+Source: [QuantumBlockEncoding/Automation.lean:33](../../../../library/modules/automation/#decl-quantumblockencoding-taskstatus). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.ArtifactLanguage" (lean := "QuantumBlockEncoding.ArtifactLanguage")
@@ -81,7 +81,7 @@ Source: [QuantumBlockEncoding/Automation.lean:33](https://github.com/DakeBU/Quan
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:41](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L41).
+Source: [QuantumBlockEncoding/Automation.lean:41](../../../../library/modules/automation/#decl-quantumblockencoding-artifactlanguage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AgentRole" (lean := "QuantumBlockEncoding.AgentRole")
@@ -95,7 +95,7 @@ Source: [QuantumBlockEncoding/Automation.lean:41](https://github.com/DakeBU/Quan
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:49](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L49).
+Source: [QuantumBlockEncoding/Automation.lean:49](../../../../library/modules/automation/#decl-quantumblockencoding-agentrole). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AgentBackendKind" (lean := "QuantumBlockEncoding.AgentBackendKind")
@@ -109,7 +109,7 @@ Source: [QuantumBlockEncoding/Automation.lean:49](https://github.com/DakeBU/Quan
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:56](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L56).
+Source: [QuantumBlockEncoding/Automation.lean:56](../../../../library/modules/automation/#decl-quantumblockencoding-agentbackendkind). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.TrialKind" (lean := "QuantumBlockEncoding.TrialKind")
@@ -123,7 +123,7 @@ Source: [QuantumBlockEncoding/Automation.lean:56](https://github.com/DakeBU/Quan
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:67](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L67).
+Source: [QuantumBlockEncoding/Automation.lean:67](../../../../library/modules/automation/#decl-quantumblockencoding-trialkind). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.TrialStatus" (lean := "QuantumBlockEncoding.TrialStatus")
@@ -137,7 +137,7 @@ Source: [QuantumBlockEncoding/Automation.lean:67](https://github.com/DakeBU/Quan
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:77](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L77).
+Source: [QuantumBlockEncoding/Automation.lean:77](../../../../library/modules/automation/#decl-quantumblockencoding-trialstatus). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.ArtifactSpec" (lean := "QuantumBlockEncoding.ArtifactSpec")
@@ -151,7 +151,7 @@ Source: [QuantumBlockEncoding/Automation.lean:77](https://github.com/DakeBU/Quan
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:87](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L87).
+Source: [QuantumBlockEncoding/Automation.lean:87](../../../../library/modules/automation/#decl-quantumblockencoding-artifactspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AcceptanceGate" (lean := "QuantumBlockEncoding.AcceptanceGate")
@@ -165,7 +165,7 @@ Source: [QuantumBlockEncoding/Automation.lean:87](https://github.com/DakeBU/Quan
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:94](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L94).
+Source: [QuantumBlockEncoding/Automation.lean:94](../../../../library/modules/automation/#decl-quantumblockencoding-acceptancegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AutomationTask" (lean := "QuantumBlockEncoding.AutomationTask")
@@ -179,7 +179,7 @@ Source: [QuantumBlockEncoding/Automation.lean:94](https://github.com/DakeBU/Quan
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:101](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L101).
+Source: [QuantumBlockEncoding/Automation.lean:101](../../../../library/modules/automation/#decl-quantumblockencoding-automationtask). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AgentContract" (lean := "QuantumBlockEncoding.AgentContract")
@@ -193,7 +193,7 @@ Source: [QuantumBlockEncoding/Automation.lean:101](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:113](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L113).
+Source: [QuantumBlockEncoding/Automation.lean:113](../../../../library/modules/automation/#decl-quantumblockencoding-agentcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.TrialRecordSpec" (lean := "QuantumBlockEncoding.TrialRecordSpec")
@@ -207,7 +207,7 @@ Source: [QuantumBlockEncoding/Automation.lean:113](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:120](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L120).
+Source: [QuantumBlockEncoding/Automation.lean:120](../../../../library/modules/automation/#decl-quantumblockencoding-trialrecordspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PostCycleArtifactKind" (lean := "QuantumBlockEncoding.PostCycleArtifactKind")
@@ -221,7 +221,7 @@ Source: [QuantumBlockEncoding/Automation.lean:120](https://github.com/DakeBU/Qua
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:127](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L127).
+Source: [QuantumBlockEncoding/Automation.lean:127](../../../../library/modules/automation/#decl-quantumblockencoding-postcycleartifactkind). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PostCycleArtifactSpec" (lean := "QuantumBlockEncoding.PostCycleArtifactSpec")
@@ -235,7 +235,7 @@ Source: [QuantumBlockEncoding/Automation.lean:127](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:135](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L135).
+Source: [QuantumBlockEncoding/Automation.lean:135](../../../../library/modules/automation/#decl-quantumblockencoding-postcycleartifactspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.WorkflowCheckSpec" (lean := "QuantumBlockEncoding.WorkflowCheckSpec")
@@ -249,7 +249,7 @@ Source: [QuantumBlockEncoding/Automation.lean:135](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:142](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L142).
+Source: [QuantumBlockEncoding/Automation.lean:142](../../../../library/modules/automation/#decl-quantumblockencoding-workflowcheckspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CandidatePool" (lean := "QuantumBlockEncoding.CandidatePool")
@@ -263,7 +263,7 @@ Source: [QuantumBlockEncoding/Automation.lean:142](https://github.com/DakeBU/Qua
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:149](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L149).
+Source: [QuantumBlockEncoding/Automation.lean:149](../../../../library/modules/automation/#decl-quantumblockencoding-candidatepool). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.LexElimSchedulerMode" (lean := "QuantumBlockEncoding.LexElimSchedulerMode")
@@ -277,7 +277,7 @@ Source: [QuantumBlockEncoding/Automation.lean:149](https://github.com/DakeBU/Qua
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:154](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L154).
+Source: [QuantumBlockEncoding/Automation.lean:154](../../../../library/modules/automation/#decl-quantumblockencoding-lexelimschedulermode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.LexObjectiveClass" (lean := "QuantumBlockEncoding.LexObjectiveClass")
@@ -291,7 +291,7 @@ Source: [QuantumBlockEncoding/Automation.lean:154](https://github.com/DakeBU/Qua
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Automation.lean:159](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L159).
+Source: [QuantumBlockEncoding/Automation.lean:159](../../../../library/modules/automation/#decl-quantumblockencoding-lexobjectiveclass). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.LexObjectiveSpec" (lean := "QuantumBlockEncoding.LexObjectiveSpec")
@@ -305,7 +305,7 @@ Source: [QuantumBlockEncoding/Automation.lean:159](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:168](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L168).
+Source: [QuantumBlockEncoding/Automation.lean:168](../../../../library/modules/automation/#decl-quantumblockencoding-lexobjectivespec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.LexElimSchedulerSpec" (lean := "QuantumBlockEncoding.LexElimSchedulerSpec")
@@ -319,7 +319,7 @@ Source: [QuantumBlockEncoding/Automation.lean:168](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:176](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L176).
+Source: [QuantumBlockEncoding/Automation.lean:176](../../../../library/modules/automation/#decl-quantumblockencoding-lexelimschedulerspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AgentPanelSizeSpec" (lean := "QuantumBlockEncoding.AgentPanelSizeSpec")
@@ -333,7 +333,7 @@ Source: [QuantumBlockEncoding/Automation.lean:176](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:185](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L185).
+Source: [QuantumBlockEncoding/Automation.lean:185](../../../../library/modules/automation/#decl-quantumblockencoding-agentpanelsizespec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.AgentBackendProfileSpec" (lean := "QuantumBlockEncoding.AgentBackendProfileSpec")
@@ -347,7 +347,7 @@ Source: [QuantumBlockEncoding/Automation.lean:185](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:195](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L195).
+Source: [QuantumBlockEncoding/Automation.lean:195](../../../../library/modules/automation/#decl-quantumblockencoding-agentbackendprofilespec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.WorkflowInvariantSpec" (lean := "QuantumBlockEncoding.WorkflowInvariantSpec")
@@ -361,7 +361,7 @@ Source: [QuantumBlockEncoding/Automation.lean:195](https://github.com/DakeBU/Qua
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Automation.lean:203](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L203).
+Source: [QuantumBlockEncoding/Automation.lean:203](../../../../library/modules/automation/#decl-quantumblockencoding-workflowinvariantspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.leanBuildGate" (lean := "QuantumBlockEncoding.leanBuildGate")
@@ -375,7 +375,7 @@ Source: [QuantumBlockEncoding/Automation.lean:203](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:211](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L211).
+Source: [QuantumBlockEncoding/Automation.lean:211](../../../../library/modules/automation/#decl-quantumblockencoding-leanbuildgate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.noSorryGate" (lean := "QuantumBlockEncoding.noSorryGate")
@@ -389,7 +389,7 @@ Source: [QuantumBlockEncoding/Automation.lean:211](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:217](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L217).
+Source: [QuantumBlockEncoding/Automation.lean:217](../../../../library/modules/automation/#decl-quantumblockencoding-nosorrygate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.defaultGates" (lean := "QuantumBlockEncoding.defaultGates")
@@ -403,7 +403,7 @@ Source: [QuantumBlockEncoding/Automation.lean:217](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:223](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L223).
+Source: [QuantumBlockEncoding/Automation.lean:223](../../../../library/modules/automation/#decl-quantumblockencoding-defaultgates). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.trialRecordSpec" (lean := "QuantumBlockEncoding.trialRecordSpec")
@@ -417,7 +417,7 @@ Source: [QuantumBlockEncoding/Automation.lean:223](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:226](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L226).
+Source: [QuantumBlockEncoding/Automation.lean:226](../../../../library/modules/automation/#decl-quantumblockencoding-trialrecordspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.postCycleArtifactSpecs" (lean := "QuantumBlockEncoding.postCycleArtifactSpecs")
@@ -431,7 +431,7 @@ Source: [QuantumBlockEncoding/Automation.lean:226](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:243](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L243).
+Source: [QuantumBlockEncoding/Automation.lean:243](../../../../library/modules/automation/#decl-quantumblockencoding-postcycleartifactspecs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.workflowCheckSpecs" (lean := "QuantumBlockEncoding.workflowCheckSpecs")
@@ -445,7 +445,7 @@ Source: [QuantumBlockEncoding/Automation.lean:243](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:271](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L271).
+Source: [QuantumBlockEncoding/Automation.lean:271](../../../../library/modules/automation/#decl-quantumblockencoding-workflowcheckspecs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.blockEncodingLexObjectiveSpecs" (lean := "QuantumBlockEncoding.blockEncodingLexObjectiveSpecs")
@@ -459,7 +459,7 @@ Source: [QuantumBlockEncoding/Automation.lean:271](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:287](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L287).
+Source: [QuantumBlockEncoding/Automation.lean:287](../../../../library/modules/automation/#decl-quantumblockencoding-blockencodinglexobjectivespecs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.lexElimSchedulerSpecs" (lean := "QuantumBlockEncoding.lexElimSchedulerSpecs")
@@ -473,7 +473,7 @@ Source: [QuantumBlockEncoding/Automation.lean:287](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:333](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L333).
+Source: [QuantumBlockEncoding/Automation.lean:333](../../../../library/modules/automation/#decl-quantumblockencoding-lexelimschedulerspecs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.agentPanelSizeSpecs" (lean := "QuantumBlockEncoding.agentPanelSizeSpecs")
@@ -487,7 +487,7 @@ Source: [QuantumBlockEncoding/Automation.lean:333](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:353](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L353).
+Source: [QuantumBlockEncoding/Automation.lean:353](../../../../library/modules/automation/#decl-quantumblockencoding-agentpanelsizespecs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.agentBackendProfileSpecs" (lean := "QuantumBlockEncoding.agentBackendProfileSpecs")
@@ -501,7 +501,7 @@ Source: [QuantumBlockEncoding/Automation.lean:353](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:393](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L393).
+Source: [QuantumBlockEncoding/Automation.lean:393](../../../../library/modules/automation/#decl-quantumblockencoding-agentbackendprofilespecs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.workflowInvariantSpecs" (lean := "QuantumBlockEncoding.workflowInvariantSpecs")
@@ -515,7 +515,7 @@ Source: [QuantumBlockEncoding/Automation.lean:393](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:493](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L493).
+Source: [QuantumBlockEncoding/Automation.lean:493](../../../../library/modules/automation/#decl-quantumblockencoding-workflowinvariantspecs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.threeLayerAgentContracts" (lean := "QuantumBlockEncoding.threeLayerAgentContracts")
@@ -529,7 +529,7 @@ Source: [QuantumBlockEncoding/Automation.lean:493](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:518](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L518).
+Source: [QuantumBlockEncoding/Automation.lean:518](../../../../library/modules/automation/#decl-quantumblockencoding-threelayeragentcontracts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.conversionArtifacts" (lean := "QuantumBlockEncoding.conversionArtifacts")
@@ -543,7 +543,7 @@ Source: [QuantumBlockEncoding/Automation.lean:518](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:546](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L546).
+Source: [QuantumBlockEncoding/Automation.lean:546](../../../../library/modules/automation/#decl-quantumblockencoding-conversionartifacts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.seedAutomationTasks" (lean := "QuantumBlockEncoding.seedAutomationTasks")
@@ -557,7 +557,7 @@ Source: [QuantumBlockEncoding/Automation.lean:546](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:568](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L568).
+Source: [QuantumBlockEncoding/Automation.lean:568](../../../../library/modules/automation/#decl-quantumblockencoding-seedautomationtasks). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.automationTaskCount" (lean := "QuantumBlockEncoding.automationTaskCount")
@@ -571,7 +571,7 @@ Source: [QuantumBlockEncoding/Automation.lean:568](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Automation.lean:605](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Automation.lean#L605).
+Source: [QuantumBlockEncoding/Automation.lean:605](../../../../library/modules/automation/#decl-quantumblockencoding-automationtaskcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Literature.lean
@@ -589,7 +589,7 @@ Source: [QuantumBlockEncoding/Automation.lean:605](https://github.com/DakeBU/Qua
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Literature.lean:11](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Literature.lean#L11).
+Source: [QuantumBlockEncoding/Literature.lean:11](../../../../library/modules/literature/#decl-quantumblockencoding-implementationstatus). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PaperRole" (lean := "QuantumBlockEncoding.PaperRole")
@@ -603,7 +603,7 @@ Source: [QuantumBlockEncoding/Literature.lean:11](https://github.com/DakeBU/Quan
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/Literature.lean:17](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Literature.lean#L17).
+Source: [QuantumBlockEncoding/Literature.lean:17](../../../../library/modules/literature/#decl-quantumblockencoding-paperrole). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PaperEntry" (lean := "QuantumBlockEncoding.PaperEntry")
@@ -617,7 +617,7 @@ Source: [QuantumBlockEncoding/Literature.lean:17](https://github.com/DakeBU/Quan
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/Literature.lean:27](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Literature.lean#L27).
+Source: [QuantumBlockEncoding/Literature.lean:27](../../../../library/modules/literature/#decl-quantumblockencoding-paperentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.literature" (lean := "QuantumBlockEncoding.literature")
@@ -631,7 +631,7 @@ Source: [QuantumBlockEncoding/Literature.lean:27](https://github.com/DakeBU/Quan
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Literature.lean:39](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Literature.lean#L39).
+Source: [QuantumBlockEncoding/Literature.lean:39](../../../../library/modules/literature/#decl-quantumblockencoding-literature). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.literatureCount" (lean := "QuantumBlockEncoding.literatureCount")
@@ -645,7 +645,7 @@ Source: [QuantumBlockEncoding/Literature.lean:39](https://github.com/DakeBU/Quan
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Literature.lean:219](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Literature.lean#L219).
+Source: [QuantumBlockEncoding/Literature.lean:219](../../../../library/modules/literature/#decl-quantumblockencoding-literaturecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.primaryPapers" (lean := "QuantumBlockEncoding.primaryPapers")
@@ -659,7 +659,7 @@ Source: [QuantumBlockEncoding/Literature.lean:219](https://github.com/DakeBU/Qua
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Literature.lean:221](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Literature.lean#L221).
+Source: [QuantumBlockEncoding/Literature.lean:221](../../../../library/modules/literature/#decl-quantumblockencoding-primarypapers). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/OpenProblems.lean
@@ -677,7 +677,7 @@ Source: [QuantumBlockEncoding/Literature.lean:221](https://github.com/DakeBU/Qua
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/OpenProblems.lean:13](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OpenProblems.lean#L13).
+Source: [QuantumBlockEncoding/OpenProblems.lean:13](../../../../library/modules/openproblems/#decl-quantumblockencoding-problemstatus). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OpenProblem" (lean := "QuantumBlockEncoding.OpenProblem")
@@ -691,7 +691,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:13](https://github.com/DakeBU/Qu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/OpenProblems.lean:19](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OpenProblems.lean#L19).
+Source: [QuantumBlockEncoding/OpenProblems.lean:19](../../../../library/modules/openproblems/#decl-quantumblockencoding-openproblem). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.openProblems" (lean := "QuantumBlockEncoding.openProblems")
@@ -705,7 +705,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:19](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OpenProblems.lean:28](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OpenProblems.lean#L28).
+Source: [QuantumBlockEncoding/OpenProblems.lean:28](../../../../library/modules/openproblems/#decl-quantumblockencoding-openproblems). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.problemCount" (lean := "QuantumBlockEncoding.problemCount")
@@ -719,5 +719,5 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:28](https://github.com/DakeBU/Qu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OpenProblems.lean:88](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OpenProblems.lean#L88).
+Source: [QuantumBlockEncoding/OpenProblems.lean:88](../../../../library/modules/openproblems/#decl-quantumblockencoding-problemcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

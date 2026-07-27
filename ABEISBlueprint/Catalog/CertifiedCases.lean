@@ -39,7 +39,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:19](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L19).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:19](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1systemindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1Target" (lean := "QuantumBlockEncoding.coldE1Target")
@@ -53,7 +53,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:19](https://github.com/Da
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:32](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L32).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:32](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1QueryTarget" (lean := "QuantumBlockEncoding.coldE1QueryTarget")
@@ -67,7 +67,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:32](https://github.com/Da
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:41](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L41).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:41](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1querytarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1SignalIndex" (lean := "QuantumBlockEncoding.coldE1SignalIndex")
@@ -81,7 +81,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:41](https://github.com/Da
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:55](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L55).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:55](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1signalindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1BlockProjection" (lean := "QuantumBlockEncoding.coldE1BlockProjection")
@@ -95,7 +95,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:55](https://github.com/Da
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:63](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L63).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:63](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1blockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1ExactNormalizer" (lean := "QuantumBlockEncoding.coldE1ExactNormalizer")
@@ -109,7 +109,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:63](https://github.com/Da
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:70](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L70).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:70](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1exactnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1ExactError" (lean := "QuantumBlockEncoding.coldE1ExactError")
@@ -123,7 +123,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:70](https://github.com/Da
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:73](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L73).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:73](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1exacterror). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1SourceLayout" (lean := "QuantumBlockEncoding.coldE1SourceLayout")
@@ -137,7 +137,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:73](https://github.com/Da
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:76](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L76).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:76](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1sourcelayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1HighLevelSeedCost" (lean := "QuantumBlockEncoding.coldE1HighLevelSeedCost")
@@ -151,7 +151,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:76](https://github.com/Da
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:85](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L85).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:85](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1highlevelseedcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1HighLevelSeedCost_gateCount" (lean := "QuantumBlockEncoding.coldE1HighLevelSeedCost_gateCount")
@@ -165,7 +165,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:85](https://github.com/Da
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:91](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L91).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:91](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1highlevelseedcost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1HighLevelSeedCost_depth" (lean := "QuantumBlockEncoding.coldE1HighLevelSeedCost_depth")
@@ -179,7 +179,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:91](https://github.com/Da
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:94](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L94).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:94](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1highlevelseedcost-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1HighLevelSeedCost_auxiliaryQubits" (lean := "QuantumBlockEncoding.coldE1HighLevelSeedCost_auxiliaryQubits")
@@ -193,7 +193,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:94](https://github.com/Da
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:97](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L97).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:97](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1highlevelseedcost-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1HighLevelSeedCost_oracleCalls" (lean := "QuantumBlockEncoding.coldE1HighLevelSeedCost_oracleCalls")
@@ -207,7 +207,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:97](https://github.com/Da
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:100](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L100).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:100](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1highlevelseedcost-oraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1CandidateImage" (lean := "QuantumBlockEncoding.coldE1CandidateImage")
@@ -221,7 +221,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:100](https://github.com/D
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:109](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L109).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:109](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidateimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1CandidateMatrix" (lean := "QuantumBlockEncoding.coldE1CandidateMatrix")
@@ -235,7 +235,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:109](https://github.com/D
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:129](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L129).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:129](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidatematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1CandidateImage_clean_source_state0" (lean := "QuantumBlockEncoding.coldE1CandidateImage_clean_source_state0")
@@ -249,7 +249,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:129](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:132](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L132).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:132](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidateimage-clean-source-state0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1CandidateImage_clean_source_state1" (lean := "QuantumBlockEncoding.coldE1CandidateImage_clean_source_state1")
@@ -263,7 +263,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:132](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:136](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L136).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:136](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidateimage-clean-source-state1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1CandidateImage_injective_pointwise" (lean := "QuantumBlockEncoding.coldE1CandidateImage_injective_pointwise")
@@ -277,7 +277,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:136](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:140](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L140).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:140](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidateimage-injective-pointwise). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1CandidateImage_injective" (lean := "QuantumBlockEncoding.coldE1CandidateImage_injective")
@@ -291,7 +291,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:140](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:144](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L144).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:144](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidateimage-injective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.coldE1CandidatePreimage" (lean := "QuantumBlockEncoding.coldE1CandidatePreimage")
@@ -305,7 +305,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:144](https://github.com/D
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:150](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L150).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:150](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidatepreimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1CandidateImage_preimage" (lean := "QuantumBlockEncoding.coldE1CandidateImage_preimage")
@@ -319,7 +319,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:150](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:169](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L169).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:169](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidateimage-preimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1CandidateImage_surjective" (lean := "QuantumBlockEncoding.coldE1CandidateImage_surjective")
@@ -333,7 +333,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:169](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:173](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L173).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:173](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidateimage-surjective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1CandidateImage_permutation_certificate" (lean := "QuantumBlockEncoding.coldE1CandidateImage_permutation_certificate")
@@ -347,7 +347,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:173](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:178](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L178).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:178](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidateimage-permutation-certificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1Target_support_state0" (lean := "QuantumBlockEncoding.coldE1Target_support_state0")
@@ -361,7 +361,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:178](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:183](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L183).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:183](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1target-support-state0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1Target_support_state1" (lean := "QuantumBlockEncoding.coldE1Target_support_state1")
@@ -375,7 +375,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:183](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:187](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L187).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:187](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1target-support-state1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1Candidate_blockProjection" (lean := "QuantumBlockEncoding.coldE1Candidate_blockProjection")
@@ -389,7 +389,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:187](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:191](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L191).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:191](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1candidate-blockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1QueryTarget_normalizer" (lean := "QuantumBlockEncoding.coldE1QueryTarget_normalizer")
@@ -403,7 +403,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:191](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:199](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L199).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:199](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1querytarget-normalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.coldE1SourceLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.coldE1SourceLayout_auxiliaryQubits")
@@ -417,7 +417,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:199](https://github.com/D
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:202](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/ColdStartTransferE1.lean#L202).
+Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:202](../../../../library/modules/coldstarttransfere1/#decl-quantumblockencoding-colde1sourcelayout-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/MainCase.lean
@@ -435,7 +435,7 @@ Source: [QuantumBlockEncoding/ColdStartTransferE1.lean:202](https://github.com/D
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:20](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L20).
+Source: [QuantumBlockEncoding/MainCase.lean:20](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprosystemindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProTarget" (lean := "QuantumBlockEncoding.mainCaseProTarget")
@@ -449,7 +449,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:20](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:33](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L33).
+Source: [QuantumBlockEncoding/MainCase.lean:33](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprotarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProQueryTarget" (lean := "QuantumBlockEncoding.mainCaseProQueryTarget")
@@ -463,7 +463,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:33](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:44](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L44).
+Source: [QuantumBlockEncoding/MainCase.lean:44](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproquerytarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProSignalIndex" (lean := "QuantumBlockEncoding.mainCaseProSignalIndex")
@@ -477,7 +477,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:44](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:60](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L60).
+Source: [QuantumBlockEncoding/MainCase.lean:60](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprosignalindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCleanEmbed" (lean := "QuantumBlockEncoding.mainCaseProCleanEmbed")
@@ -491,7 +491,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:60](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:63](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L63).
+Source: [QuantumBlockEncoding/MainCase.lean:63](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocleanembed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProBlockProjection" (lean := "QuantumBlockEncoding.mainCaseProBlockProjection")
@@ -505,7 +505,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:63](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:72](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L72).
+Source: [QuantumBlockEncoding/MainCase.lean:72](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproblockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProExactNormalizer" (lean := "QuantumBlockEncoding.mainCaseProExactNormalizer")
@@ -519,7 +519,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:72](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:79](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L79).
+Source: [QuantumBlockEncoding/MainCase.lean:79](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproexactnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProExactError" (lean := "QuantumBlockEncoding.mainCaseProExactError")
@@ -533,7 +533,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:79](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:82](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L82).
+Source: [QuantumBlockEncoding/MainCase.lean:82](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproexacterror). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProSourceLayout" (lean := "QuantumBlockEncoding.mainCaseProSourceLayout")
@@ -547,7 +547,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:82](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:85](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L85).
+Source: [QuantumBlockEncoding/MainCase.lean:85](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprosourcelayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCircuit" (lean := "QuantumBlockEncoding.mainCaseProCircuit")
@@ -561,7 +561,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:85](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:91](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L91).
+Source: [QuantumBlockEncoding/MainCase.lean:91](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProSchedule" (lean := "QuantumBlockEncoding.mainCaseProSchedule")
@@ -575,7 +575,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:91](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:99](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L99).
+Source: [QuantumBlockEncoding/MainCase.lean:99](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProHighLevelResource" (lean := "QuantumBlockEncoding.mainCaseProHighLevelResource")
@@ -589,7 +589,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:99](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:111](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L111).
+Source: [QuantumBlockEncoding/MainCase.lean:111](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprohighlevelresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProHighLevelSeedCost" (lean := "QuantumBlockEncoding.mainCaseProHighLevelSeedCost")
@@ -603,7 +603,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:111](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:115](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L115).
+Source: [QuantumBlockEncoding/MainCase.lean:115](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprohighlevelseedcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProHighLevelSeedCost_gateCount" (lean := "QuantumBlockEncoding.mainCaseProHighLevelSeedCost_gateCount")
@@ -617,7 +617,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:115](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:119](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L119).
+Source: [QuantumBlockEncoding/MainCase.lean:119](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprohighlevelseedcost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProHighLevelSeedCost_depth" (lean := "QuantumBlockEncoding.mainCaseProHighLevelSeedCost_depth")
@@ -631,7 +631,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:119](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:122](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L122).
+Source: [QuantumBlockEncoding/MainCase.lean:122](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprohighlevelseedcost-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProHighLevelSeedCost_auxiliaryQubits" (lean := "QuantumBlockEncoding.mainCaseProHighLevelSeedCost_auxiliaryQubits")
@@ -645,7 +645,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:122](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:125](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L125).
+Source: [QuantumBlockEncoding/MainCase.lean:125](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprohighlevelseedcost-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProHighLevelSeedCost_oracleCalls" (lean := "QuantumBlockEncoding.mainCaseProHighLevelSeedCost_oracleCalls")
@@ -659,7 +659,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:125](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:128](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L128).
+Source: [QuantumBlockEncoding/MainCase.lean:128](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprohighlevelseedcost-oraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProMatrixTableResource" (lean := "QuantumBlockEncoding.mainCaseProMatrixTableResource")
@@ -673,7 +673,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:128](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:138](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L138).
+Source: [QuantumBlockEncoding/MainCase.lean:138](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasepromatrixtableresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProMatrixTableCircuit" (lean := "QuantumBlockEncoding.mainCaseProMatrixTableCircuit")
@@ -687,7 +687,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:138](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:141](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L141).
+Source: [QuantumBlockEncoding/MainCase.lean:141](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasepromatrixtablecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProMatrixTableSchedule" (lean := "QuantumBlockEncoding.mainCaseProMatrixTableSchedule")
@@ -701,7 +701,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:141](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:143](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L143).
+Source: [QuantumBlockEncoding/MainCase.lean:143](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasepromatrixtableschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCandidateImage" (lean := "QuantumBlockEncoding.mainCaseProCandidateImage")
@@ -715,7 +715,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:143](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:151](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L151).
+Source: [QuantumBlockEncoding/MainCase.lean:151](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCandidateMatrix" (lean := "QuantumBlockEncoding.mainCaseProCandidateMatrix")
@@ -729,7 +729,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:151](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:171](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L171).
+Source: [QuantumBlockEncoding/MainCase.lean:171](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidatematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidateImage_clean_source_state0" (lean := "QuantumBlockEncoding.mainCaseProCandidateImage_clean_source_state0")
@@ -743,7 +743,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:171](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:174](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L174).
+Source: [QuantumBlockEncoding/MainCase.lean:174](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimage-clean-source-state0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidateImage_clean_source_state1" (lean := "QuantumBlockEncoding.mainCaseProCandidateImage_clean_source_state1")
@@ -757,7 +757,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:174](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:178](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L178).
+Source: [QuantumBlockEncoding/MainCase.lean:178](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimage-clean-source-state1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidateImage_injective_pointwise" (lean := "QuantumBlockEncoding.mainCaseProCandidateImage_injective_pointwise")
@@ -771,7 +771,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:178](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:182](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L182).
+Source: [QuantumBlockEncoding/MainCase.lean:182](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimage-injective-pointwise). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidateImage_injective" (lean := "QuantumBlockEncoding.mainCaseProCandidateImage_injective")
@@ -785,7 +785,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:182](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:187](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L187).
+Source: [QuantumBlockEncoding/MainCase.lean:187](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimage-injective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCandidatePreimage" (lean := "QuantumBlockEncoding.mainCaseProCandidatePreimage")
@@ -799,7 +799,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:187](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:193](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L193).
+Source: [QuantumBlockEncoding/MainCase.lean:193](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidatepreimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidateImage_preimage" (lean := "QuantumBlockEncoding.mainCaseProCandidateImage_preimage")
@@ -813,7 +813,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:193](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:212](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L212).
+Source: [QuantumBlockEncoding/MainCase.lean:212](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimage-preimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidateImage_surjective" (lean := "QuantumBlockEncoding.mainCaseProCandidateImage_surjective")
@@ -827,7 +827,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:212](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:217](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L217).
+Source: [QuantumBlockEncoding/MainCase.lean:217](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimage-surjective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCandidateImageIsPermutation" (lean := "QuantumBlockEncoding.mainCaseProCandidateImageIsPermutation")
@@ -841,7 +841,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:217](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:224](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L224).
+Source: [QuantumBlockEncoding/MainCase.lean:224](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimageispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidateImage_permutation_certificate" (lean := "QuantumBlockEncoding.mainCaseProCandidateImage_permutation_certificate")
@@ -855,7 +855,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:224](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:228](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L228).
+Source: [QuantumBlockEncoding/MainCase.lean:228](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidateimage-permutation-certificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidateMatrix_isRationalOrthogonal" (lean := "QuantumBlockEncoding.mainCaseProCandidateMatrix_isRationalOrthogonal")
@@ -869,7 +869,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:228](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:232](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L232).
+Source: [QuantumBlockEncoding/MainCase.lean:232](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidatematrix-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProReducedOfFull" (lean := "QuantumBlockEncoding.mainCaseProReducedOfFull")
@@ -883,7 +883,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:232](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:240](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L240).
+Source: [QuantumBlockEncoding/MainCase.lean:240](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproreducedoffull). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProStateOfFull" (lean := "QuantumBlockEncoding.mainCaseProStateOfFull")
@@ -897,7 +897,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:240](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:244](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L244).
+Source: [QuantumBlockEncoding/MainCase.lean:244](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprostateoffull). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProLiftReducedImage" (lean := "QuantumBlockEncoding.mainCaseProLiftReducedImage")
@@ -911,7 +911,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:244](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:248](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L248).
+Source: [QuantumBlockEncoding/MainCase.lean:248](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproliftreducedimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProRedCCX012" (lean := "QuantumBlockEncoding.mainCaseProRedCCX012")
@@ -925,7 +925,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:248](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:257](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L257).
+Source: [QuantumBlockEncoding/MainCase.lean:257](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproredccx012). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProRedCX21" (lean := "QuantumBlockEncoding.mainCaseProRedCX21")
@@ -939,7 +939,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:257](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:263](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L263).
+Source: [QuantumBlockEncoding/MainCase.lean:263](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproredcx21). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProRedCX20" (lean := "QuantumBlockEncoding.mainCaseProRedCX20")
@@ -953,7 +953,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:263](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:271](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L271).
+Source: [QuantumBlockEncoding/MainCase.lean:271](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproredcx20). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProRedX2" (lean := "QuantumBlockEncoding.mainCaseProRedX2")
@@ -967,7 +967,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:271](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:279](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L279).
+Source: [QuantumBlockEncoding/MainCase.lean:279](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproredx2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCircuitReducedImage" (lean := "QuantumBlockEncoding.mainCaseProCircuitReducedImage")
@@ -981,7 +981,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:279](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:290](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L290).
+Source: [QuantumBlockEncoding/MainCase.lean:290](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitreducedimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCircuitImage" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage")
@@ -995,7 +995,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:290](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:300](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L300).
+Source: [QuantumBlockEncoding/MainCase.lean:300](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_clean_source_state0" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_clean_source_state0")
@@ -1009,7 +1009,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:300](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:303](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L303).
+Source: [QuantumBlockEncoding/MainCase.lean:303](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-clean-source-state0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_clean_source_state1" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_clean_source_state1")
@@ -1023,7 +1023,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:303](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:307](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L307).
+Source: [QuantumBlockEncoding/MainCase.lean:307](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-clean-source-state1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_candidate_mismatch_set" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_candidate_mismatch_set")
@@ -1037,7 +1037,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:307](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:315](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L315).
+Source: [QuantumBlockEncoding/MainCase.lean:315](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-candidate-mismatch-set). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_not_pointwise_candidate" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_not_pointwise_candidate")
@@ -1051,7 +1051,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:315](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:321](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L321).
+Source: [QuantumBlockEncoding/MainCase.lean:321](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-not-pointwise-candidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCircuitMatrix" (lean := "QuantumBlockEncoding.mainCaseProCircuitMatrix")
@@ -1065,7 +1065,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:321](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:331](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L331).
+Source: [QuantumBlockEncoding/MainCase.lean:331](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_injective_pointwise" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_injective_pointwise")
@@ -1079,7 +1079,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:331](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:334](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L334).
+Source: [QuantumBlockEncoding/MainCase.lean:334](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-injective-pointwise). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_injective" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_injective")
@@ -1093,7 +1093,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:334](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:339](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L339).
+Source: [QuantumBlockEncoding/MainCase.lean:339](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-injective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_surjective_pointwise" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_surjective_pointwise")
@@ -1107,7 +1107,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:339](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:344](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L344).
+Source: [QuantumBlockEncoding/MainCase.lean:344](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-surjective-pointwise). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_surjective" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_surjective")
@@ -1121,7 +1121,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:344](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:348](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L348).
+Source: [QuantumBlockEncoding/MainCase.lean:348](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-surjective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCircuitImageIsPermutation" (lean := "QuantumBlockEncoding.mainCaseProCircuitImageIsPermutation")
@@ -1135,7 +1135,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:348](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:353](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L353).
+Source: [QuantumBlockEncoding/MainCase.lean:353](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimageispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitImage_permutation_certificate" (lean := "QuantumBlockEncoding.mainCaseProCircuitImage_permutation_certificate")
@@ -1149,7 +1149,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:353](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:357](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L357).
+Source: [QuantumBlockEncoding/MainCase.lean:357](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitimage-permutation-certificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitMatrix_isRationalOrthogonal" (lean := "QuantumBlockEncoding.mainCaseProCircuitMatrix_isRationalOrthogonal")
@@ -1163,7 +1163,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:357](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:361](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L361).
+Source: [QuantumBlockEncoding/MainCase.lean:361](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitmatrix-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuit_cleanEntry" (lean := "QuantumBlockEncoding.mainCaseProCircuit_cleanEntry")
@@ -1177,7 +1177,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:361](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:369](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L369).
+Source: [QuantumBlockEncoding/MainCase.lean:369](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuit-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuit_blockProjection" (lean := "QuantumBlockEncoding.mainCaseProCircuit_blockProjection")
@@ -1191,7 +1191,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:369](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:379](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L379).
+Source: [QuantumBlockEncoding/MainCase.lean:379](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuit-blockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProTarget_support_state0" (lean := "QuantumBlockEncoding.mainCaseProTarget_support_state0")
@@ -1205,7 +1205,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:379](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:392](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L392).
+Source: [QuantumBlockEncoding/MainCase.lean:392](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprotarget-support-state0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProTarget_support_state1" (lean := "QuantumBlockEncoding.mainCaseProTarget_support_state1")
@@ -1219,7 +1219,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:392](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:398](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L398).
+Source: [QuantumBlockEncoding/MainCase.lean:398](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprotarget-support-state1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidate_cleanEntry" (lean := "QuantumBlockEncoding.mainCaseProCandidate_cleanEntry")
@@ -1233,7 +1233,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:398](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:405](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L405).
+Source: [QuantumBlockEncoding/MainCase.lean:405](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidate-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProExactCleanBlockCertificate" (lean := "QuantumBlockEncoding.mainCaseProExactCleanBlockCertificate")
@@ -1247,7 +1247,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:405](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:419](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L419).
+Source: [QuantumBlockEncoding/MainCase.lean:419](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproexactcleanblockcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProExactCleanBlock_correct" (lean := "QuantumBlockEncoding.mainCaseProExactCleanBlock_correct")
@@ -1261,7 +1261,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:419](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:427](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L427).
+Source: [QuantumBlockEncoding/MainCase.lean:427](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproexactcleanblock-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidate_blockProjection" (lean := "QuantumBlockEncoding.mainCaseProCandidate_blockProjection")
@@ -1275,7 +1275,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:427](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:435](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L435).
+Source: [QuantumBlockEncoding/MainCase.lean:435](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidate-blockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProQueryTarget_normalizer" (lean := "QuantumBlockEncoding.mainCaseProQueryTarget_normalizer")
@@ -1289,7 +1289,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:435](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:444](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L444).
+Source: [QuantumBlockEncoding/MainCase.lean:444](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproquerytarget-normalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProSourceLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.mainCaseProSourceLayout_auxiliaryQubits")
@@ -1303,7 +1303,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:444](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:447](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L447).
+Source: [QuantumBlockEncoding/MainCase.lean:447](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprosourcelayout-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProRationalOrthogonalBridgeObligation" (lean := "QuantumBlockEncoding.mainCaseProRationalOrthogonalBridgeObligation")
@@ -1317,7 +1317,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:447](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:454](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L454).
+Source: [QuantumBlockEncoding/MainCase.lean:454](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprorationalorthogonalbridgeobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCandidate" (lean := "QuantumBlockEncoding.mainCaseProCandidate")
@@ -1331,7 +1331,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:454](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:461](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L461).
+Source: [QuantumBlockEncoding/MainCase.lean:461](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCircuitCandidate" (lean := "QuantumBlockEncoding.mainCaseProCircuitCandidate")
@@ -1345,7 +1345,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:461](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:474](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L474).
+Source: [QuantumBlockEncoding/MainCase.lean:474](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProVerified" (lean := "QuantumBlockEncoding.mainCaseProVerified")
@@ -1359,7 +1359,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:474](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:493](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L493).
+Source: [QuantumBlockEncoding/MainCase.lean:493](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseproverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseProCircuitVerified" (lean := "QuantumBlockEncoding.mainCaseProCircuitVerified")
@@ -1373,7 +1373,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:493](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:503](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L503).
+Source: [QuantumBlockEncoding/MainCase.lean:503](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidate_cost" (lean := "QuantumBlockEncoding.mainCaseProCandidate_cost")
@@ -1387,7 +1387,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:503](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:512](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L512).
+Source: [QuantumBlockEncoding/MainCase.lean:512](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCandidate_uses_matrix_table_metadata" (lean := "QuantumBlockEncoding.mainCaseProCandidate_uses_matrix_table_metadata")
@@ -1401,7 +1401,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:512](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:517](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L517).
+Source: [QuantumBlockEncoding/MainCase.lean:517](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocandidate-uses-matrix-table-metadata). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseProCircuitCandidate_cost" (lean := "QuantumBlockEncoding.mainCaseProCircuitCandidate_cost")
@@ -1415,7 +1415,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:517](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:523](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L523).
+Source: [QuantumBlockEncoding/MainCase.lean:523](../../../../library/modules/maincase/#decl-quantumblockencoding-maincaseprocircuitcandidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdSystemIndex" (lean := "QuantumBlockEncoding.mainCaseColdSystemIndex")
@@ -1429,7 +1429,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:523](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:538](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L538).
+Source: [QuantumBlockEncoding/MainCase.lean:538](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldsystemindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdTarget" (lean := "QuantumBlockEncoding.mainCaseColdTarget")
@@ -1443,7 +1443,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:538](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:551](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L551).
+Source: [QuantumBlockEncoding/MainCase.lean:551](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdExactNormalizer" (lean := "QuantumBlockEncoding.mainCaseColdExactNormalizer")
@@ -1457,7 +1457,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:551](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:562](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L562).
+Source: [QuantumBlockEncoding/MainCase.lean:562](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldexactnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdExactError" (lean := "QuantumBlockEncoding.mainCaseColdExactError")
@@ -1471,7 +1471,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:562](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:565](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L565).
+Source: [QuantumBlockEncoding/MainCase.lean:565](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldexacterror). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdQueryTarget" (lean := "QuantumBlockEncoding.mainCaseColdQueryTarget")
@@ -1485,7 +1485,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:565](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:568](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L568).
+Source: [QuantumBlockEncoding/MainCase.lean:568](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldquerytarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdCleanSignal" (lean := "QuantumBlockEncoding.mainCaseColdCleanSignal")
@@ -1499,7 +1499,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:568](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:584](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L584).
+Source: [QuantumBlockEncoding/MainCase.lean:584](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldcleansignal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdCleanEmbed" (lean := "QuantumBlockEncoding.mainCaseColdCleanEmbed")
@@ -1513,7 +1513,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:584](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:587](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L587).
+Source: [QuantumBlockEncoding/MainCase.lean:587](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldcleanembed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdBlockProjection" (lean := "QuantumBlockEncoding.mainCaseColdBlockProjection")
@@ -1527,7 +1527,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:587](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:596](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L596).
+Source: [QuantumBlockEncoding/MainCase.lean:596](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldblockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdSourceLayout" (lean := "QuantumBlockEncoding.mainCaseColdSourceLayout")
@@ -1541,7 +1541,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:596](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:603](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L603).
+Source: [QuantumBlockEncoding/MainCase.lean:603](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldsourcelayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermImage" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermImage")
@@ -1555,7 +1555,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:603](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:614](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L614).
+Source: [QuantumBlockEncoding/MainCase.lean:614](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermMatrix" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermMatrix")
@@ -1569,7 +1569,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:614](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:634](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L634).
+Source: [QuantumBlockEncoding/MainCase.lean:634](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdReducedOfFull" (lean := "QuantumBlockEncoding.mainCaseColdReducedOfFull")
@@ -1583,7 +1583,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:634](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:638](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L638).
+Source: [QuantumBlockEncoding/MainCase.lean:638](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldreducedoffull). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdStateOfFull" (lean := "QuantumBlockEncoding.mainCaseColdStateOfFull")
@@ -1597,7 +1597,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:638](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:642](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L642).
+Source: [QuantumBlockEncoding/MainCase.lean:642](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldstateoffull). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdLiftReducedImage" (lean := "QuantumBlockEncoding.mainCaseColdLiftReducedImage")
@@ -1611,7 +1611,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:642](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:646](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L646).
+Source: [QuantumBlockEncoding/MainCase.lean:646](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldliftreducedimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdRedXT" (lean := "QuantumBlockEncoding.mainCaseColdRedXT")
@@ -1625,7 +1625,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:646](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:656](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L656).
+Source: [QuantumBlockEncoding/MainCase.lean:656](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldredxt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdRedCCXTauTSignal" (lean := "QuantumBlockEncoding.mainCaseColdRedCCXTauTSignal")
@@ -1639,7 +1639,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:656](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:667](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L667).
+Source: [QuantumBlockEncoding/MainCase.lean:667](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldredccxtautsignal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdRedXTau" (lean := "QuantumBlockEncoding.mainCaseColdRedXTau")
@@ -1653,7 +1653,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:667](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:673](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L673).
+Source: [QuantumBlockEncoding/MainCase.lean:673](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldredxtau). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdRedCXSignalT" (lean := "QuantumBlockEncoding.mainCaseColdRedCXSignalT")
@@ -1667,7 +1667,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:673](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:684](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L684).
+Source: [QuantumBlockEncoding/MainCase.lean:684](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldredcxsignalt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdRedCXTauSignal" (lean := "QuantumBlockEncoding.mainCaseColdRedCXTauSignal")
@@ -1681,7 +1681,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:684](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:692](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L692).
+Source: [QuantumBlockEncoding/MainCase.lean:692](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldredcxtausignal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdEvalReducedGateImages" (lean := "QuantumBlockEncoding.mainCaseColdEvalReducedGateImages")
@@ -1695,7 +1695,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:692](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:700](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L700).
+Source: [QuantumBlockEncoding/MainCase.lean:700](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldevalreducedgateimages). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermReducedImage" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermReducedImage")
@@ -1709,7 +1709,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:700](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:705](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L705).
+Source: [QuantumBlockEncoding/MainCase.lean:705](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermreducedimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdReducedGateImages" (lean := "QuantumBlockEncoding.mainCaseColdReducedGateImages")
@@ -1723,7 +1723,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:705](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:716](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L716).
+Source: [QuantumBlockEncoding/MainCase.lean:716](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldreducedgateimages). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdCircuitReducedImage" (lean := "QuantumBlockEncoding.mainCaseColdCircuitReducedImage")
@@ -1737,7 +1737,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:716](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:725](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L725).
+Source: [QuantumBlockEncoding/MainCase.lean:725](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldcircuitreducedimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdReducedGateImages_eval" (lean := "QuantumBlockEncoding.mainCaseColdReducedGateImages_eval")
@@ -1751,7 +1751,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:725](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:729](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L729).
+Source: [QuantumBlockEncoding/MainCase.lean:729](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldreducedgateimages-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdCircuitImage" (lean := "QuantumBlockEncoding.mainCaseColdCircuitImage")
@@ -1765,7 +1765,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:729](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:736](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L736).
+Source: [QuantumBlockEncoding/MainCase.lean:736](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldcircuitimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdCircuitImage_eq_partialPermImage" (lean := "QuantumBlockEncoding.mainCaseColdCircuitImage_eq_partialPermImage")
@@ -1779,7 +1779,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:736](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:740](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L740).
+Source: [QuantumBlockEncoding/MainCase.lean:740](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldcircuitimage-eq-partialpermimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdGateXT" (lean := "QuantumBlockEncoding.mainCaseColdGateXT")
@@ -1793,7 +1793,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:740](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:746](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L746).
+Source: [QuantumBlockEncoding/MainCase.lean:746](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldgatext). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdGateCCXTauTSignal" (lean := "QuantumBlockEncoding.mainCaseColdGateCCXTauTSignal")
@@ -1807,7 +1807,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:746](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:750](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L750).
+Source: [QuantumBlockEncoding/MainCase.lean:750](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldgateccxtautsignal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdGateXTau" (lean := "QuantumBlockEncoding.mainCaseColdGateXTau")
@@ -1821,7 +1821,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:750](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:754](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L754).
+Source: [QuantumBlockEncoding/MainCase.lean:754](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldgatextau). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdGateCXSignalT" (lean := "QuantumBlockEncoding.mainCaseColdGateCXSignalT")
@@ -1835,7 +1835,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:754](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:758](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L758).
+Source: [QuantumBlockEncoding/MainCase.lean:758](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldgatecxsignalt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdGateCXTauSignal" (lean := "QuantumBlockEncoding.mainCaseColdGateCXTauSignal")
@@ -1849,7 +1849,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:758](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:762](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L762).
+Source: [QuantumBlockEncoding/MainCase.lean:762](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldgatecxtausignal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdCircuit" (lean := "QuantumBlockEncoding.mainCaseColdCircuit")
@@ -1863,7 +1863,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:762](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:766](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L766).
+Source: [QuantumBlockEncoding/MainCase.lean:766](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdSchedule" (lean := "QuantumBlockEncoding.mainCaseColdSchedule")
@@ -1877,7 +1877,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:766](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:775](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L775).
+Source: [QuantumBlockEncoding/MainCase.lean:775](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdHighLevelResource" (lean := "QuantumBlockEncoding.mainCaseColdHighLevelResource")
@@ -1891,7 +1891,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:775](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:788](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L788).
+Source: [QuantumBlockEncoding/MainCase.lean:788](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldhighlevelresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermCost" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermCost")
@@ -1905,7 +1905,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:788](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:792](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L792).
+Source: [QuantumBlockEncoding/MainCase.lean:792](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermCost_gateCount" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermCost_gateCount")
@@ -1919,7 +1919,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:792](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:796](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L796).
+Source: [QuantumBlockEncoding/MainCase.lean:796](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermcost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermCost_depth" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermCost_depth")
@@ -1933,7 +1933,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:796](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:799](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L799).
+Source: [QuantumBlockEncoding/MainCase.lean:799](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermcost-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermCost_auxiliaryQubits" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermCost_auxiliaryQubits")
@@ -1947,7 +1947,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:799](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:802](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L802).
+Source: [QuantumBlockEncoding/MainCase.lean:802](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermcost-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermCost_oracleCalls" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermCost_oracleCalls")
@@ -1961,7 +1961,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:802](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:805](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L805).
+Source: [QuantumBlockEncoding/MainCase.lean:805](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermcost-oraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermImage_injective_pointwise" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermImage_injective_pointwise")
@@ -1975,7 +1975,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:805](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:808](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L808).
+Source: [QuantumBlockEncoding/MainCase.lean:808](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermimage-injective-pointwise). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermImage_injective" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermImage_injective")
@@ -1989,7 +1989,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:808](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:813](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L813).
+Source: [QuantumBlockEncoding/MainCase.lean:813](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermimage-injective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermPreimage" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermPreimage")
@@ -2003,7 +2003,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:813](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:819](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L819).
+Source: [QuantumBlockEncoding/MainCase.lean:819](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermpreimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermImage_preimage" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermImage_preimage")
@@ -2017,7 +2017,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:819](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:838](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L838).
+Source: [QuantumBlockEncoding/MainCase.lean:838](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermimage-preimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermImage_surjective" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermImage_surjective")
@@ -2031,7 +2031,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:838](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:843](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L843).
+Source: [QuantumBlockEncoding/MainCase.lean:843](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermimage-surjective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermImageIsPermutation" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermImageIsPermutation")
@@ -2045,7 +2045,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:843](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:850](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L850).
+Source: [QuantumBlockEncoding/MainCase.lean:850](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermimageispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermImage_bijective" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermImage_bijective")
@@ -2059,7 +2059,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:850](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:854](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L854).
+Source: [QuantumBlockEncoding/MainCase.lean:854](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermimage-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPerm_entry" (lean := "QuantumBlockEncoding.mainCaseColdPartialPerm_entry")
@@ -2073,7 +2073,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:854](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:860](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L860).
+Source: [QuantumBlockEncoding/MainCase.lean:860](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialperm-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermExactCleanBlock" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermExactCleanBlock")
@@ -2087,7 +2087,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:860](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:875](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L875).
+Source: [QuantumBlockEncoding/MainCase.lean:875](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermexactcleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPerm_clean_eq_target" (lean := "QuantumBlockEncoding.mainCaseColdPartialPerm_clean_eq_target")
@@ -2101,7 +2101,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:875](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:883](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L883).
+Source: [QuantumBlockEncoding/MainCase.lean:883](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialperm-clean-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPerm_blockProjection" (lean := "QuantumBlockEncoding.mainCaseColdPartialPerm_blockProjection")
@@ -2115,7 +2115,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:883](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:891](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L891).
+Source: [QuantumBlockEncoding/MainCase.lean:891](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialperm-blockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdQueryTarget_normalizer" (lean := "QuantumBlockEncoding.mainCaseColdQueryTarget_normalizer")
@@ -2129,7 +2129,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:891](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:900](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L900).
+Source: [QuantumBlockEncoding/MainCase.lean:900](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldquerytarget-normalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdSourceLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.mainCaseColdSourceLayout_auxiliaryQubits")
@@ -2143,7 +2143,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:900](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:903](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L903).
+Source: [QuantumBlockEncoding/MainCase.lean:903](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldsourcelayout-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdResourceSchemaObligation" (lean := "QuantumBlockEncoding.mainCaseColdResourceSchemaObligation")
@@ -2157,7 +2157,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:903](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:912](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L912).
+Source: [QuantumBlockEncoding/MainCase.lean:912](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldresourceschemaobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermCandidate" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermCandidate")
@@ -2171,7 +2171,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:912](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:925](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L925).
+Source: [QuantumBlockEncoding/MainCase.lean:925](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.mainCaseColdPartialPermVerified" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermVerified")
@@ -2185,7 +2185,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:925](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/MainCase.lean:942](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L942).
+Source: [QuantumBlockEncoding/MainCase.lean:942](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.mainCaseColdPartialPermCandidate_cost" (lean := "QuantumBlockEncoding.mainCaseColdPartialPermCandidate_cost")
@@ -2199,7 +2199,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:942](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/MainCase.lean:952](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/MainCase.lean#L952).
+Source: [QuantumBlockEncoding/MainCase.lean:952](../../../../library/modules/maincase/#decl-quantumblockencoding-maincasecoldpartialpermcandidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/OptimalControl.lean
@@ -2217,7 +2217,7 @@ Source: [QuantumBlockEncoding/MainCase.lean:952](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:28](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L28).
+Source: [QuantumBlockEncoding/OptimalControl.lean:28](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-ispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.targetState0" (lean := "QuantumBlockEncoding.OptimalControl.targetState0")
@@ -2231,7 +2231,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:28](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:32](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L32).
+Source: [QuantumBlockEncoding/OptimalControl.lean:32](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-targetstate0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.targetState1" (lean := "QuantumBlockEncoding.OptimalControl.targetState1")
@@ -2245,7 +2245,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:32](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:35](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L35).
+Source: [QuantumBlockEncoding/OptimalControl.lean:35](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-targetstate1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.sourceState0" (lean := "QuantumBlockEncoding.OptimalControl.sourceState0")
@@ -2259,7 +2259,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:35](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:38](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L38).
+Source: [QuantumBlockEncoding/OptimalControl.lean:38](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-sourcestate0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.sourceState1" (lean := "QuantumBlockEncoding.OptimalControl.sourceState1")
@@ -2273,7 +2273,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:38](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:41](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L41).
+Source: [QuantumBlockEncoding/OptimalControl.lean:41](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-sourcestate1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleOperator" (lean := "QuantumBlockEncoding.OptimalControl.exampleOperator")
@@ -2287,7 +2287,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:41](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:48](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L48).
+Source: [QuantumBlockEncoding/OptimalControl.lean:48](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleoperator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.cleanIndex" (lean := "QuantumBlockEncoding.OptimalControl.cleanIndex")
@@ -2301,7 +2301,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:48](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:57](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L57).
+Source: [QuantumBlockEncoding/OptimalControl.lean:57](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-cleanindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleTarget" (lean := "QuantumBlockEncoding.OptimalControl.exampleTarget")
@@ -2315,7 +2315,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:57](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:60](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L60).
+Source: [QuantumBlockEncoding/OptimalControl.lean:60](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampletarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleLayout" (lean := "QuantumBlockEncoding.OptimalControl.exampleLayout")
@@ -2329,7 +2329,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:60](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:67](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L67).
+Source: [QuantumBlockEncoding/OptimalControl.lean:67](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-examplelayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleImage" (lean := "QuantumBlockEncoding.OptimalControl.exampleImage")
@@ -2343,7 +2343,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:67](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:82](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L82).
+Source: [QuantumBlockEncoding/OptimalControl.lean:82](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleImageInv" (lean := "QuantumBlockEncoding.OptimalControl.exampleImageInv")
@@ -2357,7 +2357,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:82](https://github.com/DakeBU/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:101](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L101).
+Source: [QuantumBlockEncoding/OptimalControl.lean:101](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleimageinv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.exampleImage_leftInverse" (lean := "QuantumBlockEncoding.OptimalControl.exampleImage_leftInverse")
@@ -2371,7 +2371,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:101](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:119](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L119).
+Source: [QuantumBlockEncoding/OptimalControl.lean:119](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleimage-leftinverse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.exampleImage_rightInverse" (lean := "QuantumBlockEncoding.OptimalControl.exampleImage_rightInverse")
@@ -2385,7 +2385,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:119](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:123](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L123).
+Source: [QuantumBlockEncoding/OptimalControl.lean:123](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleimage-rightinverse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.exampleImage_isPermutation" (lean := "QuantumBlockEncoding.OptimalControl.exampleImage_isPermutation")
@@ -2399,7 +2399,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:123](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:128](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L128).
+Source: [QuantumBlockEncoding/OptimalControl.lean:128](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleimage-ispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedTargetImage" (lean := "QuantumBlockEncoding.OptimalControl.reducedTargetImage")
@@ -2413,7 +2413,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:128](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:149](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L149).
+Source: [QuantumBlockEncoding/OptimalControl.lean:149](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reducedtargetimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.redX0" (lean := "QuantumBlockEncoding.OptimalControl.redX0")
@@ -2427,7 +2427,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:149](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:160](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L160).
+Source: [QuantumBlockEncoding/OptimalControl.lean:160](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-redx0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.redX2" (lean := "QuantumBlockEncoding.OptimalControl.redX2")
@@ -2441,7 +2441,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:160](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:171](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L171).
+Source: [QuantumBlockEncoding/OptimalControl.lean:171](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-redx2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.redX1" (lean := "QuantumBlockEncoding.OptimalControl.redX1")
@@ -2455,7 +2455,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:171](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:182](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L182).
+Source: [QuantumBlockEncoding/OptimalControl.lean:182](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-redx1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.redCX01" (lean := "QuantumBlockEncoding.OptimalControl.redCX01")
@@ -2469,7 +2469,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:182](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:193](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L193).
+Source: [QuantumBlockEncoding/OptimalControl.lean:193](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-redcx01). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.redCX10" (lean := "QuantumBlockEncoding.OptimalControl.redCX10")
@@ -2483,7 +2483,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:193](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:201](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L201).
+Source: [QuantumBlockEncoding/OptimalControl.lean:201](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-redcx10). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.redCX20" (lean := "QuantumBlockEncoding.OptimalControl.redCX20")
@@ -2497,7 +2497,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:201](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:209](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L209).
+Source: [QuantumBlockEncoding/OptimalControl.lean:209](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-redcx20). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.redCX21" (lean := "QuantumBlockEncoding.OptimalControl.redCX21")
@@ -2511,7 +2511,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:209](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:217](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L217).
+Source: [QuantumBlockEncoding/OptimalControl.lean:217](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-redcx21). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.redCCX012" (lean := "QuantumBlockEncoding.OptimalControl.redCCX012")
@@ -2525,7 +2525,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:217](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:225](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L225).
+Source: [QuantumBlockEncoding/OptimalControl.lean:225](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-redccx012). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5Image" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Image")
@@ -2539,7 +2539,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:225](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:239](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L239).
+Source: [QuantumBlockEncoding/OptimalControl.lean:239](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5image). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5Image_eq_target" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Image_eq_target")
@@ -2553,7 +2553,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:239](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:243](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L243).
+Source: [QuantumBlockEncoding/OptimalControl.lean:243](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5image-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedOfFull" (lean := "QuantumBlockEncoding.OptimalControl.reducedOfFull")
@@ -2567,7 +2567,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:243](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:248](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L248).
+Source: [QuantumBlockEncoding/OptimalControl.lean:248](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reducedoffull). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.stateOfFull" (lean := "QuantumBlockEncoding.OptimalControl.stateOfFull")
@@ -2581,7 +2581,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:248](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:252](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L252).
+Source: [QuantumBlockEncoding/OptimalControl.lean:252](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-stateoffull). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.liftReducedImage" (lean := "QuantumBlockEncoding.OptimalControl.liftReducedImage")
@@ -2595,7 +2595,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:252](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:256](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L256).
+Source: [QuantumBlockEncoding/OptimalControl.lean:256](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-liftreducedimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5_lifts_exampleImage" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5_lifts_exampleImage")
@@ -2609,7 +2609,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:256](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:266](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L266).
+Source: [QuantumBlockEncoding/OptimalControl.lean:266](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5-lifts-exampleimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5Full_isPermutation" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Full_isPermutation")
@@ -2623,7 +2623,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:266](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:271](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L271).
+Source: [QuantumBlockEncoding/OptimalControl.lean:271](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5full-ispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.unitaryFromReducedImage" (lean := "QuantumBlockEncoding.OptimalControl.unitaryFromReducedImage")
@@ -2637,7 +2637,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:271](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:280](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L280).
+Source: [QuantumBlockEncoding/OptimalControl.lean:280](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-unitaryfromreducedimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.CleanBlockE1" (lean := "QuantumBlockEncoding.OptimalControl.CleanBlockE1")
@@ -2651,7 +2651,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:280](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:284](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L284).
+Source: [QuantumBlockEncoding/OptimalControl.lean:284](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-cleanblocke1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.columnInner" (lean := "QuantumBlockEncoding.OptimalControl.columnInner")
@@ -2665,7 +2665,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:284](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:290](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L290).
+Source: [QuantumBlockEncoding/OptimalControl.lean:290](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-columninner). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.rowInner" (lean := "QuantumBlockEncoding.OptimalControl.rowInner")
@@ -2679,7 +2679,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:290](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:294](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L294).
+Source: [QuantumBlockEncoding/OptimalControl.lean:294](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-rowinner). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.IsRationalOrthogonal" (lean := "QuantumBlockEncoding.OptimalControl.IsRationalOrthogonal")
@@ -2693,7 +2693,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:294](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:302](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L302).
+Source: [QuantumBlockEncoding/OptimalControl.lean:302](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.exampleOperator_not_rationalOrthogonal" (lean := "QuantumBlockEncoding.OptimalControl.exampleOperator_not_rationalOrthogonal")
@@ -2707,7 +2707,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:302](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:312](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L312).
+Source: [QuantumBlockEncoding/OptimalControl.lean:312](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleoperator-not-rationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5_cleanBlock" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5_cleanBlock")
@@ -2721,7 +2721,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:312](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:322](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L322).
+Source: [QuantumBlockEncoding/OptimalControl.lean:322](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5Unitary" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Unitary")
@@ -2735,7 +2735,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:322](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:327](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L327).
+Source: [QuantumBlockEncoding/OptimalControl.lean:327](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5Unitary_isRationalOrthogonal" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Unitary_isRationalOrthogonal")
@@ -2749,7 +2749,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:327](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:331](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L331).
+Source: [QuantumBlockEncoding/OptimalControl.lean:331](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5unitary-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5Unitary_cleanBlock" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Unitary_cleanBlock")
@@ -2763,7 +2763,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:331](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:339](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L339).
+Source: [QuantumBlockEncoding/OptimalControl.lean:339](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5unitary-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferImage" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferImage")
@@ -2777,7 +2777,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:339](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:354](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L354).
+Source: [QuantumBlockEncoding/OptimalControl.lean:354](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferImage_isPermutation" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferImage_isPermutation")
@@ -2791,7 +2791,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:354](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:358](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L358).
+Source: [QuantumBlockEncoding/OptimalControl.lean:358](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferimage-ispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferFull_isPermutation" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferFull_isPermutation")
@@ -2805,7 +2805,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:358](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:364](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L364).
+Source: [QuantumBlockEncoding/OptimalControl.lean:364](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferfull-ispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransfer_cleanBlock" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransfer_cleanBlock")
@@ -2819,7 +2819,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:364](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:370](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L370).
+Source: [QuantumBlockEncoding/OptimalControl.lean:370](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfer-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferUnitary" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferUnitary")
@@ -2833,7 +2833,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:370](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:375](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L375).
+Source: [QuantumBlockEncoding/OptimalControl.lean:375](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferUnitary_isRationalOrthogonal" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferUnitary_isRationalOrthogonal")
@@ -2847,7 +2847,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:375](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:379](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L379).
+Source: [QuantumBlockEncoding/OptimalControl.lean:379](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferunitary-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferUnitary_cleanBlock" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferUnitary_cleanBlock")
@@ -2861,7 +2861,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:379](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:387](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L387).
+Source: [QuantumBlockEncoding/OptimalControl.lean:387](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferunitary-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipImage" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipImage")
@@ -2875,7 +2875,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:387](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:399](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L399).
+Source: [QuantumBlockEncoding/OptimalControl.lean:399](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipImage_isPermutation" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipImage_isPermutation")
@@ -2889,7 +2889,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:399](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:403](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L403).
+Source: [QuantumBlockEncoding/OptimalControl.lean:403](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipimage-ispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipFull_isPermutation" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipFull_isPermutation")
@@ -2903,7 +2903,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:403](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:409](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L409).
+Source: [QuantumBlockEncoding/OptimalControl.lean:409](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipfull-ispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlip_cleanBlock" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlip_cleanBlock")
@@ -2917,7 +2917,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:409](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:415](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L415).
+Source: [QuantumBlockEncoding/OptimalControl.lean:415](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflip-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.LogicalReversibleCost" (lean := "QuantumBlockEncoding.OptimalControl.LogicalReversibleCost")
@@ -2931,7 +2931,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:415](https://github.com/DakeBU
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:420](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L420).
+Source: [QuantumBlockEncoding/OptimalControl.lean:420](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-logicalreversiblecost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.LogicalReversibleCost.gateCount" (lean := "QuantumBlockEncoding.OptimalControl.LogicalReversibleCost.gateCount")
@@ -2945,7 +2945,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:420](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:431](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L431).
+Source: [QuantumBlockEncoding/OptimalControl.lean:431](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-logicalreversiblecost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.LogicalReversibleCost.betterThan" (lean := "QuantumBlockEncoding.OptimalControl.LogicalReversibleCost.betterThan")
@@ -2959,7 +2959,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:431](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:442](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L442).
+Source: [QuantumBlockEncoding/OptimalControl.lean:442](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-logicalreversiblecost-betterthan). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5Cost" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Cost")
@@ -2973,7 +2973,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:442](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:454](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L454).
+Source: [QuantumBlockEncoding/OptimalControl.lean:454](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5Cost_gateCount" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Cost_gateCount")
@@ -2987,7 +2987,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:454](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:462](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L462).
+Source: [QuantumBlockEncoding/OptimalControl.lean:462](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5cost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5Cost_oracleFree" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Cost_oracleFree")
@@ -3001,7 +3001,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:462](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:466](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L466).
+Source: [QuantumBlockEncoding/OptimalControl.lean:466](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5cost-oraclefree). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferCost" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferCost")
@@ -3015,7 +3015,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:466](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:471](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L471).
+Source: [QuantumBlockEncoding/OptimalControl.lean:471](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfercost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferCost_gateCount" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferCost_gateCount")
@@ -3029,7 +3029,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:471](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:479](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L479).
+Source: [QuantumBlockEncoding/OptimalControl.lean:479](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfercost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferCost_betterThan_depth5" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferCost_betterThan_depth5")
@@ -3043,7 +3043,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:479](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:483](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L483).
+Source: [QuantumBlockEncoding/OptimalControl.lean:483](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfercost-betterthan-depth5). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost")
@@ -3057,7 +3057,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:483](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:489](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L489).
+Source: [QuantumBlockEncoding/OptimalControl.lean:489](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_gateCount" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_gateCount")
@@ -3071,7 +3071,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:489](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:497](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L497).
+Source: [QuantumBlockEncoding/OptimalControl.lean:497](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipcost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_betterThan_pro" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_betterThan_pro")
@@ -3085,7 +3085,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:497](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:501](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L501).
+Source: [QuantumBlockEncoding/OptimalControl.lean:501](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipcost-betterthan-pro). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_betterThan_depth5" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_betterThan_depth5")
@@ -3099,7 +3099,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:501](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:506](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L506).
+Source: [QuantumBlockEncoding/OptimalControl.lean:506](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipcost-betterthan-depth5). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipUnitary" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipUnitary")
@@ -3113,7 +3113,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:506](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:512](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L512).
+Source: [QuantumBlockEncoding/OptimalControl.lean:512](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipUnitary_isRationalOrthogonal" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipUnitary_isRationalOrthogonal")
@@ -3127,7 +3127,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:512](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:519](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L519).
+Source: [QuantumBlockEncoding/OptimalControl.lean:519](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipunitary-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipUnitary_cleanBlock" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipUnitary_cleanBlock")
@@ -3141,7 +3141,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:519](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:527](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L527).
+Source: [QuantumBlockEncoding/OptimalControl.lean:527](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipunitary-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedGateMatrix" (lean := "QuantumBlockEncoding.OptimalControl.reducedGateMatrix")
@@ -3155,7 +3155,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:527](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:534](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L534).
+Source: [QuantumBlockEncoding/OptimalControl.lean:534](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reducedgatematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.gateCCX_type_time_aux" (lean := "QuantumBlockEncoding.OptimalControl.gateCCX_type_time_aux")
@@ -3169,7 +3169,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:534](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:545](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L545).
+Source: [QuantumBlockEncoding/OptimalControl.lean:545](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-gateccx-type-time-aux). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.gateX_type" (lean := "QuantumBlockEncoding.OptimalControl.gateX_type")
@@ -3183,7 +3183,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:545](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:549](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L549).
+Source: [QuantumBlockEncoding/OptimalControl.lean:549](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-gatex-type). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.gateX_time" (lean := "QuantumBlockEncoding.OptimalControl.gateX_time")
@@ -3197,7 +3197,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:549](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:553](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L553).
+Source: [QuantumBlockEncoding/OptimalControl.lean:553](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-gatex-time). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.gateX_aux" (lean := "QuantumBlockEncoding.OptimalControl.gateX_aux")
@@ -3211,7 +3211,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:553](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:557](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L557).
+Source: [QuantumBlockEncoding/OptimalControl.lean:557](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-gatex-aux). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.gateCX_type_time" (lean := "QuantumBlockEncoding.OptimalControl.gateCX_type_time")
@@ -3225,7 +3225,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:557](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:561](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L561).
+Source: [QuantumBlockEncoding/OptimalControl.lean:561](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-gatecx-type-time). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.gateCX_time_type" (lean := "QuantumBlockEncoding.OptimalControl.gateCX_time_type")
@@ -3239,7 +3239,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:561](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:565](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L565).
+Source: [QuantumBlockEncoding/OptimalControl.lean:565](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-gatecx-time-type). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.gateCX_aux_type" (lean := "QuantumBlockEncoding.OptimalControl.gateCX_aux_type")
@@ -3253,7 +3253,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:565](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:569](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L569).
+Source: [QuantumBlockEncoding/OptimalControl.lean:569](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-gatecx-aux-type). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.gateCX_aux_time" (lean := "QuantumBlockEncoding.OptimalControl.gateCX_aux_time")
@@ -3267,7 +3267,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:569](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:573](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L573).
+Source: [QuantumBlockEncoding/OptimalControl.lean:573](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-gatecx-aux-time). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5Circuit" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Circuit")
@@ -3281,7 +3281,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:573](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:577](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L577).
+Source: [QuantumBlockEncoding/OptimalControl.lean:577](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5circuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5Schedule" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Schedule")
@@ -3295,7 +3295,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:577](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:587](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L587).
+Source: [QuantumBlockEncoding/OptimalControl.lean:587](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5schedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5GateMatrices" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5GateMatrices")
@@ -3309,7 +3309,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:587](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:596](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L596).
+Source: [QuantumBlockEncoding/OptimalControl.lean:596](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5gatematrices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5GateMatrices_matchCircuit" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5GateMatrices_matchCircuit")
@@ -3323,7 +3323,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:596](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:606](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L606).
+Source: [QuantumBlockEncoding/OptimalControl.lean:606](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5gatematrices-matchcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evalReducedGateImages" (lean := "QuantumBlockEncoding.OptimalControl.evalReducedGateImages")
@@ -3337,7 +3337,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:606](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:611](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L611).
+Source: [QuantumBlockEncoding/OptimalControl.lean:611](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evalreducedgateimages). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5GateImages" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5GateImages")
@@ -3351,7 +3351,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:611](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:615](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L615).
+Source: [QuantumBlockEncoding/OptimalControl.lean:615](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5gateimages). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5GateImages_eval" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5GateImages_eval")
@@ -3365,7 +3365,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:615](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:619](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L619).
+Source: [QuantumBlockEncoding/OptimalControl.lean:619](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5gateimages-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferCircuit" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferCircuit")
@@ -3379,7 +3379,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:619](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:625](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L625).
+Source: [QuantumBlockEncoding/OptimalControl.lean:625](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfercircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferSchedule" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferSchedule")
@@ -3393,7 +3393,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:625](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:629](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L629).
+Source: [QuantumBlockEncoding/OptimalControl.lean:629](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferGateMatrices" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferGateMatrices")
@@ -3407,7 +3407,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:629](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:633](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L633).
+Source: [QuantumBlockEncoding/OptimalControl.lean:633](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfergatematrices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferGateMatrices_matchCircuit" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferGateMatrices_matchCircuit")
@@ -3421,7 +3421,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:633](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:641](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L641).
+Source: [QuantumBlockEncoding/OptimalControl.lean:641](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfergatematrices-matchcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferGateImages" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferGateImages")
@@ -3435,7 +3435,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:641](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:646](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L646).
+Source: [QuantumBlockEncoding/OptimalControl.lean:646](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfergateimages). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferGateImages_eval" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferGateImages_eval")
@@ -3449,7 +3449,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:646](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:650](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L650).
+Source: [QuantumBlockEncoding/OptimalControl.lean:650](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfergateimages-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCircuit" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCircuit")
@@ -3463,7 +3463,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:650](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:656](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L656).
+Source: [QuantumBlockEncoding/OptimalControl.lean:656](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipSchedule" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipSchedule")
@@ -3477,7 +3477,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:656](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:660](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L660).
+Source: [QuantumBlockEncoding/OptimalControl.lean:660](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateMatrices" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateMatrices")
@@ -3491,7 +3491,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:660](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:664](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L664).
+Source: [QuantumBlockEncoding/OptimalControl.lean:664](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipgatematrices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateMatrices_matchCircuit" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateMatrices_matchCircuit")
@@ -3505,7 +3505,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:664](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:672](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L672).
+Source: [QuantumBlockEncoding/OptimalControl.lean:672](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipgatematrices-matchcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateImages" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateImages")
@@ -3519,7 +3519,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:672](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:677](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L677).
+Source: [QuantumBlockEncoding/OptimalControl.lean:677](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipgateimages). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateImages_eval" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateImages_eval")
@@ -3533,7 +3533,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:677](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:686](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L686).
+Source: [QuantumBlockEncoding/OptimalControl.lean:686](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipgateimages-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateImages_lift_eval" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipGateImages_lift_eval")
@@ -3547,7 +3547,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:686](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:692](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L692).
+Source: [QuantumBlockEncoding/OptimalControl.lean:692](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipgateimages-lift-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5Resource" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Resource")
@@ -3561,7 +3561,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:692](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:703](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L703).
+Source: [QuantumBlockEncoding/OptimalControl.lean:703](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferResource" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferResource")
@@ -3575,7 +3575,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:703](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:711](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L711).
+Source: [QuantumBlockEncoding/OptimalControl.lean:711](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipResource" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipResource")
@@ -3589,7 +3589,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:711](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:719](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L719).
+Source: [QuantumBlockEncoding/OptimalControl.lean:719](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5Candidate" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Candidate")
@@ -3603,7 +3603,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:719](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:723](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L723).
+Source: [QuantumBlockEncoding/OptimalControl.lean:723](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5candidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.reducedDepth5Verified" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Verified")
@@ -3617,7 +3617,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:723](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:739](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L739).
+Source: [QuantumBlockEncoding/OptimalControl.lean:739](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5verified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.reducedDepth5Candidate_cost" (lean := "QuantumBlockEncoding.OptimalControl.reducedDepth5Candidate_cost")
@@ -3631,7 +3631,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:739](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:749](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L749).
+Source: [QuantumBlockEncoding/OptimalControl.lean:749](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-reduceddepth5candidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferCandidate" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferCandidate")
@@ -3645,7 +3645,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:749](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:755](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L755).
+Source: [QuantumBlockEncoding/OptimalControl.lean:755](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfercandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.proEqTransferVerified" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferVerified")
@@ -3659,7 +3659,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:755](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:771](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L771).
+Source: [QuantumBlockEncoding/OptimalControl.lean:771](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransferverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.proEqTransferCandidate_cost" (lean := "QuantumBlockEncoding.OptimalControl.proEqTransferCandidate_cost")
@@ -3673,7 +3673,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:771](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:781](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L781).
+Source: [QuantumBlockEncoding/OptimalControl.lean:781](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-proeqtransfercandidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCandidate" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCandidate")
@@ -3687,7 +3687,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:781](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:792](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L792).
+Source: [QuantumBlockEncoding/OptimalControl.lean:792](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipVerified" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipVerified")
@@ -3701,7 +3701,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:792](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:808](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L808).
+Source: [QuantumBlockEncoding/OptimalControl.lean:808](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.evolvedEqFlipZeroErrorApprox" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipZeroErrorApprox")
@@ -3715,7 +3715,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:808](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:823](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L823).
+Source: [QuantumBlockEncoding/OptimalControl.lean:823](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipzeroerrorapprox). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCandidate_cost" (lean := "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCandidate_cost")
@@ -3729,7 +3729,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:823](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:828](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L828).
+Source: [QuantumBlockEncoding/OptimalControl.lean:828](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-evolvedeqflipcandidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationTarget" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationTarget")
@@ -3743,7 +3743,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:828](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:848](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L848).
+Source: [QuantumBlockEncoding/OptimalControl.lean:848](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.directRouteAblationTarget_eq_exampleOperator" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationTarget_eq_exampleOperator")
@@ -3757,7 +3757,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:848](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:856](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L856).
+Source: [QuantumBlockEncoding/OptimalControl.lean:856](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationtarget-eq-exampleoperator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationCircuit" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationCircuit")
@@ -3771,7 +3771,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:856](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:862](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L862).
+Source: [QuantumBlockEncoding/OptimalControl.lean:862](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationSchedule" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationSchedule")
@@ -3785,7 +3785,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:862](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:866](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L866).
+Source: [QuantumBlockEncoding/OptimalControl.lean:866](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationGateImages" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationGateImages")
@@ -3799,7 +3799,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:866](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:870](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L870).
+Source: [QuantumBlockEncoding/OptimalControl.lean:870](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationgateimages). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationImage" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationImage")
@@ -3813,7 +3813,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:870](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:874](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L874).
+Source: [QuantumBlockEncoding/OptimalControl.lean:874](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.directRouteAblationGateImages_eval" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationGateImages_eval")
@@ -3827,7 +3827,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:874](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:878](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L878).
+Source: [QuantumBlockEncoding/OptimalControl.lean:878](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationgateimages-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.directRouteAblationImage_isPermutation" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationImage_isPermutation")
@@ -3841,7 +3841,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:878](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:884](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L884).
+Source: [QuantumBlockEncoding/OptimalControl.lean:884](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationimage-ispermutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationUnitary" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationUnitary")
@@ -3855,7 +3855,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:884](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:890](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L890).
+Source: [QuantumBlockEncoding/OptimalControl.lean:890](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.directRouteAblationUnitary_isRationalOrthogonal" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationUnitary_isRationalOrthogonal")
@@ -3869,7 +3869,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:890](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:897](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L897).
+Source: [QuantumBlockEncoding/OptimalControl.lean:897](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationunitary-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.directRouteAblation_cleanBlock" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblation_cleanBlock")
@@ -3883,7 +3883,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:897](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:910](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L910).
+Source: [QuantumBlockEncoding/OptimalControl.lean:910](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablation-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationGateMatrices" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationGateMatrices")
@@ -3897,7 +3897,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:910](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:917](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L917).
+Source: [QuantumBlockEncoding/OptimalControl.lean:917](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationgatematrices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.directRouteAblationGateMatrices_matchCircuit" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationGateMatrices_matchCircuit")
@@ -3911,7 +3911,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:917](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:925](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L925).
+Source: [QuantumBlockEncoding/OptimalControl.lean:925](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationgatematrices-matchcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationCost" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationCost")
@@ -3925,7 +3925,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:925](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:931](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L931).
+Source: [QuantumBlockEncoding/OptimalControl.lean:931](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.directRouteAblationResourceTuple" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationResourceTuple")
@@ -3939,7 +3939,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:931](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:940](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L940).
+Source: [QuantumBlockEncoding/OptimalControl.lean:940](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationresourcetuple). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.directRouteAblationResourceTuple_eq" (lean := "QuantumBlockEncoding.OptimalControl.directRouteAblationResourceTuple_eq")
@@ -3953,7 +3953,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:940](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:948](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L948).
+Source: [QuantumBlockEncoding/OptimalControl.lean:948](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-directrouteablationresourcetuple-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleUnitary" (lean := "QuantumBlockEncoding.OptimalControl.exampleUnitary")
@@ -3967,7 +3967,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:948](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:953](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L953).
+Source: [QuantumBlockEncoding/OptimalControl.lean:953](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.example_cleanBlock" (lean := "QuantumBlockEncoding.OptimalControl.example_cleanBlock")
@@ -3981,7 +3981,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:953](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:960](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L960).
+Source: [QuantumBlockEncoding/OptimalControl.lean:960](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-example-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleCircuit" (lean := "QuantumBlockEncoding.OptimalControl.exampleCircuit")
@@ -3995,7 +3995,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:960](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:966](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L966).
+Source: [QuantumBlockEncoding/OptimalControl.lean:966](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-examplecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleSchedule" (lean := "QuantumBlockEncoding.OptimalControl.exampleSchedule")
@@ -4009,7 +4009,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:966](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:969](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L969).
+Source: [QuantumBlockEncoding/OptimalControl.lean:969](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleResource" (lean := "QuantumBlockEncoding.OptimalControl.exampleResource")
@@ -4023,7 +4023,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:969](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:972](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L972).
+Source: [QuantumBlockEncoding/OptimalControl.lean:972](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleCandidate" (lean := "QuantumBlockEncoding.OptimalControl.exampleCandidate")
@@ -4037,7 +4037,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:972](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:975](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L975).
+Source: [QuantumBlockEncoding/OptimalControl.lean:975](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-examplecandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OptimalControl.exampleVerified" (lean := "QuantumBlockEncoding.OptimalControl.exampleVerified")
@@ -4051,7 +4051,7 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:975](https://github.com/DakeBU
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:990](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L990).
+Source: [QuantumBlockEncoding/OptimalControl.lean:990](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-exampleverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.OptimalControl.exampleCandidate_cost" (lean := "QuantumBlockEncoding.OptimalControl.exampleCandidate_cost")
@@ -4065,5 +4065,5 @@ Source: [QuantumBlockEncoding/OptimalControl.lean:990](https://github.com/DakeBU
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OptimalControl.lean:995](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/OptimalControl.lean#L995).
+Source: [QuantumBlockEncoding/OptimalControl.lean:995](../../../../library/modules/optimalcontrol/#decl-quantumblockencoding-optimalcontrol-examplecandidate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

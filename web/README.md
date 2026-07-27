@@ -32,21 +32,22 @@ usually have this shape:
 https://<github-user>.github.io/<repo-name>/
 ```
 
-For other static hosts, first build the Blueprint, copy `web/` to the site
-root, and copy `_out/blueprint/` to the site's `blueprint/` directory.  This is
-the same layout assembled by `.github/workflows/pages.yml`.
+For other static hosts, run `bash scripts/build-all.sh` and publish `_site/`.
+The build reuses this task builder, the declaration inventory, and the Verso
+Blueprint as inputs to the unified website; do not publish `web/` as a separate
+competing documentation root.
 
 ## Development Preview
 
+Build `_site/`, set `ABEIS_PREVIEW_USERNAME` and `ABEIS_PREVIEW_PASSWORD` in the
+process environment, then run:
+
 ```bash
-cd Quantum-Computing-Block-Encoding
-python3 -m http.server 8080 -d web
+python3 website/scripts/serve_preview.py --root _site --port 8765
 ```
 
-Open the URL printed by the development server in VS Code port forwarding or a
-browser.  This local-web mode is a supported user entrypoint: the page prepares
-the task packet, the downloaded checkout runs the generated command, and the
-page renders the resulting JSON reports.
+Open the local URL printed by the server.  This authenticated preview includes
+the unified reading site, Library Explorer, Blueprint, and task builder.
 
 The page turns a pasted target-state/operator/oracle description, baseline construction, constraints, preferred report language, and agent backend preferences into a Markdown task packet that can be given to ABEIS agents.  It is the web equivalent of `python3 tools/qbe.py ingest-user-problem ...`: the raw user language must remain visible as a source artifact, and the generated packet should be runnable by the same local `sleep-run` harness.
 

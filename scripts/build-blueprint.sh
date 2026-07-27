@@ -7,13 +7,15 @@ lake build ABEISBlueprint.Assembly:olean
 
 rm -rf _out/blueprint
 lake lean ABEISBlueprintMain.lean -- \
-  --run ABEISBlueprintMain.lean --output _out/blueprint
+  --run ABEISBlueprintMain.lean --without-preview-data --output _out/blueprint
 
 mkdir -p _out/blueprint/html-multi/assets
 cp web/assets/abeis-evidence-pipeline.svg _out/blueprint/html-multi/assets/
 cp web/assets/abeis-library-map.svg _out/blueprint/html-multi/assets/
 
 python3 scripts/sanitize-blueprint-paths.py _out/blueprint
+python3 website/scripts/repair_blueprint_fragments.py _out/blueprint/html-multi
+python3 website/scripts/repair_blueprint_fragments.py --check _out/blueprint/html-multi
 
 test -f _out/blueprint/html-multi/index.html
 test -f _out/blueprint/html-multi/xref.json

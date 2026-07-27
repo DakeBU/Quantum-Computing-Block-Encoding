@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "web/**"
+      - "website/**"
       - "QuantumBlockEncoding/**"
       - "ABEISBlueprint/**"
       - "ABEISBlueprint.lean"
@@ -12,6 +13,10 @@ on:
       - "scripts/generate-blueprint-catalog.py"
       - "scripts/build-blueprint.sh"
       - "scripts/build-blueprint.ps1"
+      - "scripts/build-website.sh"
+      - "scripts/build-website.ps1"
+      - "scripts/build-all.sh"
+      - "scripts/build-all.ps1"
       - "scripts/sanitize-blueprint-paths.py"
       - "scripts/test-sanitize-blueprint-paths.py"
       - "docs/blueprint-coverage.json"
@@ -20,6 +25,7 @@ on:
       - "lakefile.lean"
       - "lake-manifest.json"
       - "lean-toolchain"
+      - "README.md"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -50,26 +56,28 @@ jobs:
           use-github-cache: false
           use-mathlib-cache: true
 
-      - name: Check generated declaration coverage
+      - name: Build the library and tests
+        run: python3 website/scripts/run_lean_gate.py
+
+      - name: Check declaration inventory and Blueprint catalog
         run: |
           python3 scripts/generate-blueprint-catalog.py --check
           python3 scripts/test-sanitize-blueprint-paths.py
 
-      - name: Build the library and tests
-        run: lake build && lake build Tests
-
       - name: Build the Verso Blueprint
         run: bash scripts/build-blueprint.sh
 
-      - name: Assemble the combined Pages site
-        run: |
-          mkdir -p _site/blueprint
-          rsync -a web/ _site/
-          rsync -a _out/blueprint/ _site/blueprint/
-          touch _site/.nojekyll
+      - name: Build and verify the unified site
+        run: bash scripts/build-website.sh
 
-      - name: Scan the complete publication for local paths
-        run: python3 scripts/sanitize-blueprint-paths.py --scan-only _site
+      - name: Report Pages artifact structure
+        run: |
+          test -f _site/index.html
+          test -f _site/library/index.html
+          test -f _site/blueprint/html-multi/index.html
+          test -f _site/search-index.json
+          test -f _site/build-report.json
+          find _site -maxdepth 2 -type f | sort
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

@@ -18,8 +18,9 @@ in QuantumBlockEncoding. Generated Lean panels are resolved during the documenta
 renamed or missing declaration breaks CI instead of leaving a stale web page.
 
 Readers who already know a declaration name can use the
-[ABEIS Library Explorer](../../library/) to search all 1,646 explicit public declarations by
-name, catalog, kind, source note, or Lean preview. The Explorer and these Blueprint chapters are
+[ABEIS Library Explorer](../../library/) to search every explicit public declaration by
+name, catalog, kind, source note, or Lean preview. The exact count is generated from the current
+source inventory during the website build. The Explorer and these Blueprint chapters are
 generated from the same inventory: the Explorer makes discovery fast, while the Blueprint shows
 the elaborated signature and proof status supplied by Lean.
 
@@ -27,7 +28,7 @@ The words *proved*, *contract*, and *obligation* are used deliberately. A propos
 inside a structure is a contract until a proof field is supplied. An exact clean-block certificate
 does not by itself claim a gate implementation or resource optimality. The experimental
 Robin-matrix module is included for discoverability but is separated from the default import
-surface and its two open diagnostic proofs are stated plainly.
+surface and its open diagnostic proofs are stated plainly.
 
 The organization of this documentation was inspired by Sho Sonoda's
 [Lean Ridgelet project](https://github.com/shosonoda/lean-ridgelet) and its

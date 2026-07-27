@@ -15,9 +15,6 @@ SOURCE_ROOT = ROOT / "QuantumBlockEncoding"
 OUTPUT_ROOT = ROOT / "ABEISBlueprint" / "Catalog"
 REPORT_PATH = ROOT / "docs" / "blueprint-coverage.json"
 EXPLORER_PATH = ROOT / "web" / "library" / "declarations.json"
-GITHUB_BASE = (
-    "https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/"
-)
 
 KINDS = (
     "def",
@@ -50,6 +47,7 @@ class Declaration:
     doc: str
     source_preview: str
     experimental: bool
+    open_proof: bool
 
 
 @dataclass
@@ -196,6 +194,27 @@ def source_preview(lines: list[str], start_line: int, limit: int = 14) -> str:
     return "\n".join(preview)
 
 
+def declaration_slug(full_name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", full_name.lower()).strip("-")
+
+
+def module_slug(source: str) -> str:
+    path = source.removeprefix("QuantumBlockEncoding/").removesuffix(".lean")
+    return re.sub(r"[^a-z0-9]+", "-", path.lower()).strip("-")
+
+
+def contains_proof_hole(preview: str) -> bool:
+    """Recognize an actual sorry term without matching docs, names, or strings."""
+
+    for line in preview.splitlines():
+        stripped = line.strip()
+        if re.match(r"^(?:exact\s+)?sorry(?:\s|$)", stripped):
+            return True
+        if re.search(r":=\s*sorry(?:\s|$)", stripped):
+            return True
+    return False
+
+
 def parse_source(path: Path) -> tuple[list[Declaration], list[dict[str, object]]]:
     text = path.read_text(encoding="utf-8")
     lines = text.splitlines(keepends=True)
@@ -224,6 +243,7 @@ def parse_source(path: Path) -> tuple[list[Declaration], list[dict[str, object]]
                     }
                 )
             else:
+                preview = source_preview(lines, line_no)
                 declarations.append(
                     Declaration(
                         kind=kind,
@@ -232,9 +252,10 @@ def parse_source(path: Path) -> tuple[list[Declaration], list[dict[str, object]]
                         source=relative_source(path),
                         line=line_no,
                         doc=doc_before(text, offset),
-                        source_preview=source_preview(lines, line_no),
+                        source_preview=preview,
                         experimental=relative_source(path)
                         == "QuantumBlockEncoding/RobinMatrix.lean",
+                        open_proof=contains_proof_hole(preview),
                     )
                 )
 
@@ -336,6 +357,11 @@ def plain_english(decl: Declaration) -> str:
 
 
 def formal_status(decl: Declaration) -> str:
+    if decl.open_proof:
+        return (
+            "Stated, proof incomplete. This declaration contains an explicit "
+            "proof hole and is never counted as a compiled result."
+        )
     if decl.experimental:
         return (
             "Outside the default import surface. Read the chapter warning and the "
@@ -357,13 +383,38 @@ def formal_status(decl: Declaration) -> str:
     )
 
 
+def local_status(decl: Declaration) -> str:
+    if decl.open_proof:
+        return "Stated, proof incomplete"
+    if decl.experimental:
+        return "Experimental"
+    return "Compiled"
+
+
+def route_status(decl: Declaration) -> str:
+    if decl.open_proof:
+        return "Blocked"
+    if decl.experimental:
+        return "Experimental"
+    if decl.source.endswith("OpenProblems.lean"):
+        return "Planned"
+    if decl.source.endswith(("GHL2025.lean", "Automation.lean", "Literature.lean")):
+        return "Partial route"
+    if decl.kind in {"structure", "class", "opaque"}:
+        return "Partial route"
+    return "Compiled"
+
+
 def render_declaration(decl: Declaration, catalog_name: str) -> str:
     directive = "theorem" if decl.kind in THEOREM_KINDS else "definition"
     explanation = decl.doc or (
         "The source declaration has no docstring. The reader cue above is generated "
         "from its kind and name and does not replace the Lean signature."
     )
-    url = f"{GITHUB_BASE}{decl.source}#L{decl.line}"
+    local_url = (
+        "../../../../library/modules/"
+        f"{module_slug(decl.source)}/#decl-{declaration_slug(decl.full_name)}"
+    )
     return (
         f':::{directive} "{lean_string(decl.full_name)}" '
         f'(lean := "{lean_string(decl.full_name)}")\n'
@@ -373,7 +424,9 @@ def render_declaration(decl: Declaration, catalog_name: str) -> str:
         f"{verso_prose(CATALOG_PURPOSES[catalog_name])}\n\n"
         f"*Technical source note.* {verso_prose(explanation)}\n\n"
         f"*Declaration kind.* {decl.kind}.\n\n"
-        f"Source: [{decl.source}:{decl.line}]({url}).\n"
+        f"Source: [{decl.source}:{decl.line}]({local_url}). "
+        "A commit-pinned external link is added by the publication build when "
+        "the source exists at the published ref.\n"
         ":::\n"
     )
 
@@ -420,7 +473,7 @@ def render_catalog(
         body.extend(
             [
                 "*Experimental status.* RobinMatrix.lean is not imported by the default library",
-                "surface. It is catalogued for completeness and currently contains two sorry-guarded",
+                "surface. It is catalogued for completeness and contains explicit sorry-guarded",
                 "diagnostic theorems. Those nodes are visible obligations, not certified facts.",
                 "",
             ]
@@ -480,15 +533,22 @@ def render_explorer(declarations: list[Declaration]) -> str:
                 "sourcePreview": decl.source_preview,
                 "source": decl.source,
                 "line": decl.line,
-                "sourceUrl": f"{GITHUB_BASE}{decl.source}#L{decl.line}",
+                "sourceUrl": None,
+                "localSourceUrl": (
+                    f"library/modules/{module_slug(decl.source)}/"
+                    f"#decl-{declaration_slug(decl.full_name)}"
+                ),
                 "catalog": catalog_name,
                 "catalogPurpose": CATALOG_PURPOSES[catalog_name],
                 "blueprintUrl": blueprint_declaration_url(decl, slug),
                 "experimental": decl.experimental,
+                "openProof": decl.open_proof,
+                "localStatus": local_status(decl),
+                "routeStatus": route_status(decl),
             }
         )
     payload = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "scope": (
             "Every explicit public def/abbrev/opaque/inductive/structure/class/"
             "theorem/lemma declaration in QuantumBlockEncoding"

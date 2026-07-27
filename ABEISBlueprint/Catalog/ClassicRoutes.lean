@@ -39,7 +39,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:19](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L19).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:19](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-permmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.columnInner" (lean := "QuantumBlockEncoding.BlockEncodingClassics.columnInner")
@@ -53,7 +53,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:19](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:23](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L23).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:23](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-columninner). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.rowInner" (lean := "QuantumBlockEncoding.BlockEncodingClassics.rowInner")
@@ -67,7 +67,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:23](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:27](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L27).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:27](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-rowinner). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.IsRationalOrthogonal" (lean := "QuantumBlockEncoding.BlockEncodingClassics.IsRationalOrthogonal")
@@ -81,7 +81,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:27](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:34](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L34).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:34](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy" (lean := "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy")
@@ -95,7 +95,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:34](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:39](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L39).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:39](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-cleanblockby). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.productIndex" (lean := "QuantumBlockEncoding.BlockEncodingClassics.productIndex")
@@ -109,7 +109,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:39](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:48](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L48).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:48](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-productindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct" (lean := "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct")
@@ -123,7 +123,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:48](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:60](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L60).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:60](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-cleanblockproduct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy_permMatrix_entry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy_permMatrix_entry")
@@ -137,7 +137,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:60](https://github.com/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:69](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L69).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:69](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-cleanblockby-permmatrix-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct_permMatrix_entry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct_permMatrix_entry")
@@ -151,7 +151,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:69](https://github.com/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:81](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L81).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:81](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-cleanblockproduct-permmatrix-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy_permMatrix_eq_target_of_entry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy_permMatrix_eq_target_of_entry")
@@ -165,7 +165,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:81](https://github.com/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:93](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L93).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:93](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-cleanblockby-permmatrix-eq-target-of-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct_eq_target_of_entry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct_eq_target_of_entry")
@@ -179,7 +179,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:93](https://github.com/
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:104](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L104).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:104](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-cleanblockproduct-eq-target-of-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.kroneckerRat" (lean := "QuantumBlockEncoding.BlockEncodingClassics.kroneckerRat")
@@ -193,7 +193,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:104](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:116](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L116).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:116](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-kroneckerrat). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.oneSparseMatrix" (lean := "QuantumBlockEncoding.BlockEncodingClassics.oneSparseMatrix")
@@ -207,7 +207,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:116](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:123](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L123).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:123](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-onesparsematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.oneSparseMatrix_entry_if" (lean := "QuantumBlockEncoding.BlockEncodingClassics.oneSparseMatrix_entry_if")
@@ -221,7 +221,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:123](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:127](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L127).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:127](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-onesparsematrix-entry-if). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.oneSparse_from_support" (lean := "QuantumBlockEncoding.BlockEncodingClassics.oneSparse_from_support")
@@ -235,7 +235,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:127](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:139](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L139).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:139](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-onesparse-from-support). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.OneSparseCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.OneSparseCertificate")
@@ -249,7 +249,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:139](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:155](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L155).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:155](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-onesparsecertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.OneSparseCertificate.cleanBlock" (lean := "QuantumBlockEncoding.BlockEncodingClassics.OneSparseCertificate.cleanBlock")
@@ -263,7 +263,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:155](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:163](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L163).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:163](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-onesparsecertificate-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.OneSparseCertificate.correct" (lean := "QuantumBlockEncoding.BlockEncodingClassics.OneSparseCertificate.correct")
@@ -277,7 +277,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:163](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:166](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L166).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:166](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-onesparsecertificate-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.sparseColumnCleanEntry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.sparseColumnCleanEntry")
@@ -291,7 +291,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:166](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:177](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L177).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:177](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-sparsecolumncleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.permMatrix_columnInner_of_injective" (lean := "QuantumBlockEncoding.BlockEncodingClassics.permMatrix_columnInner_of_injective")
@@ -305,7 +305,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:177](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:283](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L283).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:283](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-permmatrix-columninner-of-injective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.permMatrix_rowInner_of_bijective" (lean := "QuantumBlockEncoding.BlockEncodingClassics.permMatrix_rowInner_of_bijective")
@@ -319,7 +319,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:283](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:330](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L330).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:330](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-permmatrix-rowinner-of-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective" (lean := "QuantumBlockEncoding.BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective")
@@ -333,7 +333,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:330](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:389](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L389).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:389](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-permmatrix-isrationalorthogonal-of-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.sparseColumnCleanEntry_no_hit" (lean := "QuantumBlockEncoding.BlockEncodingClassics.sparseColumnCleanEntry_no_hit")
@@ -347,7 +347,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:389](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:396](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L396).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:396](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-sparsecolumncleanentry-no-hit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.sparseColumnCleanEntry_unique_slot" (lean := "QuantumBlockEncoding.BlockEncodingClassics.sparseColumnCleanEntry_unique_slot")
@@ -361,7 +361,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:396](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:409](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L409).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:409](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-sparsecolumncleanentry-unique-slot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.rowColumnSparseDeltaEntry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.rowColumnSparseDeltaEntry")
@@ -375,7 +375,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:409](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:434](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L434).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:434](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-rowcolumnsparsedeltaentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.SparseColumnCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.SparseColumnCertificate")
@@ -389,7 +389,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:434](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:456](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L456).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:456](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-sparsecolumncertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.SparseColumnCertificate.correct" (lean := "QuantumBlockEncoding.BlockEncodingClassics.SparseColumnCertificate.correct")
@@ -403,7 +403,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:456](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:466](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L466).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:466](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-sparsecolumncertificate-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.RowColumnSparseCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.RowColumnSparseCertificate")
@@ -417,7 +417,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:466](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:475](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L475).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:475](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-rowcolumnsparsecertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.RowColumnSparseCertificate.correct" (lean := "QuantumBlockEncoding.BlockEncodingClassics.RowColumnSparseCertificate.correct")
@@ -431,7 +431,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:475](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:486](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L486).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:486](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-rowcolumnsparsecertificate-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.ValueToAmplitudeContract" (lean := "QuantumBlockEncoding.BlockEncodingClassics.ValueToAmplitudeContract")
@@ -445,7 +445,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:486](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:498](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L498).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:498](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-valuetoamplitudecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.ValueToAmplitudeContract.correct" (lean := "QuantumBlockEncoding.BlockEncodingClassics.ValueToAmplitudeContract.correct")
@@ -459,7 +459,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:498](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:509](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L509).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:509](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-valuetoamplitudecontract-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.IsSymmetric" (lean := "QuantumBlockEncoding.BlockEncodingClassics.IsSymmetric")
@@ -473,7 +473,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:509](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:516](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L516).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:516](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-issymmetric). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy_symmetric_of_symmetric" (lean := "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy_symmetric_of_symmetric")
@@ -487,7 +487,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:516](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:520](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L520).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:520](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-cleanblockby-symmetric-of-symmetric). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.fin2Zero" (lean := "QuantumBlockEncoding.BlockEncodingClassics.fin2Zero")
@@ -501,7 +501,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:520](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:528](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L528).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:528](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-fin2zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.fin2One" (lean := "QuantumBlockEncoding.BlockEncodingClassics.fin2One")
@@ -515,7 +515,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:528](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:530](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L530).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:530](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-fin2one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation")
@@ -529,7 +529,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:530](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:532](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L532).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:532](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_cleanEntry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_cleanEntry")
@@ -543,7 +543,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:532](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:539](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L539).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:539](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_offdiag01" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_offdiag01")
@@ -557,7 +557,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:539](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:543](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L543).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:543](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-offdiag01). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_offdiag10" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_offdiag10")
@@ -571,7 +571,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:543](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:547](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L547).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:547](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-offdiag10). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_diag11" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_diag11")
@@ -585,7 +585,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:547](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:551](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L551).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:551](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-diag11). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.scalarDilationRowDot" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilationRowDot")
@@ -599,7 +599,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:551](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:556](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L556).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:556](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilationrowdot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_normSq" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_normSq")
@@ -613,7 +613,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:556](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:560](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L560).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:560](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-row0-normsq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row1_normSq" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row1_normSq")
@@ -627,7 +627,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:560](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:564](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L564).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:564](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-row1-normsq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_unit_norm_of" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_unit_norm_of")
@@ -641,7 +641,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:564](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:573](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L573).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:573](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-row0-unit-norm-of). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row1_unit_norm_of" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row1_unit_norm_of")
@@ -655,7 +655,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:573](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:578](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L578).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:578](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-row1-unit-norm-of). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_rows01_orthogonal" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_rows01_orthogonal")
@@ -669,7 +669,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:578](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:583](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L583).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:583](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-rows01-orthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_rows10_orthogonal" (lean := "QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_rows10_orthogonal")
@@ -683,7 +683,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:583](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:590](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L590).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:590](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-scalardilation-rows10-orthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT" (lean := "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT")
@@ -697,7 +697,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:590](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:598](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L598).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:598](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-chebyshevt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_zero" (lean := "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_zero")
@@ -711,7 +711,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:598](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:603](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L603).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:603](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-chebyshevt-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_one" (lean := "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_one")
@@ -725,7 +725,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:603](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:605](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L605).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:605](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-chebyshevt-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_two" (lean := "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_two")
@@ -739,7 +739,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:605](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:607](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L607).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:607](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-chebyshevt-two). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_succ_succ" (lean := "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_succ_succ")
@@ -753,7 +753,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:607](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:609](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L609).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:609](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-chebyshevt-succ-succ). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_three_recurrence" (lean := "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_three_recurrence")
@@ -767,7 +767,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:609](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:613](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L613).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:613](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-chebyshevt-three-recurrence). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_four_recurrence" (lean := "QuantumBlockEncoding.BlockEncodingClassics.chebyshevT_four_recurrence")
@@ -781,7 +781,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:613](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:616](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L616).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:616](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-chebyshevt-four-recurrence). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock" (lean := "QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock")
@@ -795,7 +795,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:616](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:623](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L623).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:623](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-exactcleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock.clean" (lean := "QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock.clean")
@@ -809,7 +809,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:623](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:632](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L632).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:632](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-exactcleanblock-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock.clean_eq_target" (lean := "QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock.clean_eq_target")
@@ -823,7 +823,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:632](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:636](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L636).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:636](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-exactcleanblock-clean-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.QubitizationChebyshevContract" (lean := "QuantumBlockEncoding.BlockEncodingClassics.QubitizationChebyshevContract")
@@ -837,7 +837,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:636](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:648](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L648).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:648](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-qubitizationchebyshevcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.partialPermutationCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.partialPermutationCertificate")
@@ -851,7 +851,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:648](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:662](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L662).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:662](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-partialpermutationcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.oneTermLCU" (lean := "QuantumBlockEncoding.BlockEncodingClassics.oneTermLCU")
@@ -865,7 +865,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:662](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:679](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L679).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:679](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-onetermlcu). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.oneTermLCU_cleanBlock" (lean := "QuantumBlockEncoding.BlockEncodingClassics.oneTermLCU_cleanBlock")
@@ -879,7 +879,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:679](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:682](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L682).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:682](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-onetermlcu-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.matrixScale" (lean := "QuantumBlockEncoding.BlockEncodingClassics.matrixScale")
@@ -893,7 +893,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:682](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:689](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L689).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:689](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-matrixscale). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.matrixAdd" (lean := "QuantumBlockEncoding.BlockEncodingClassics.matrixAdd")
@@ -907,7 +907,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:689](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:693](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L693).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:693](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-matrixadd). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.weightedSum2" (lean := "QuantumBlockEncoding.BlockEncodingClassics.weightedSum2")
@@ -921,7 +921,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:693](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:697](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L697).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:697](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-weightedsum2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.weightedSum2_entry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.weightedSum2_entry")
@@ -935,7 +935,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:697](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:701](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L701).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:701](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-weightedsum2-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.weightedSum2_congr_pointwise" (lean := "QuantumBlockEncoding.BlockEncodingClassics.weightedSum2_congr_pointwise")
@@ -949,7 +949,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:701](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:707](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L707).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:707](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-weightedsum2-congr-pointwise). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.LCUCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.LCUCertificate")
@@ -963,7 +963,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:707](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:722](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L722).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:722](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-lcucertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.LCUCertificate.correct" (lean := "QuantumBlockEncoding.BlockEncodingClassics.LCUCertificate.correct")
@@ -977,7 +977,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:722](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:731](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L731).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:731](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-lcucertificate-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.twoTermLCUCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.twoTermLCUCertificate")
@@ -991,7 +991,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:731](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:743](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L743).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:743](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-twotermlcucertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.twoTermLCUCertificate_cleanBlock_entry" (lean := "QuantumBlockEncoding.BlockEncodingClassics.twoTermLCUCertificate_cleanBlock_entry")
@@ -1005,7 +1005,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:743](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:754](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L754).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:754](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-twotermlcucertificate-cleanblock-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock.toLCUCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock.toLCUCertificate")
@@ -1019,7 +1019,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:754](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:764](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L764).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:764](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-exactcleanblock-tolcucertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.matrix_mul_congr_pointwise" (lean := "QuantumBlockEncoding.BlockEncodingClassics.matrix_mul_congr_pointwise")
@@ -1033,7 +1033,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:764](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:792](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L792).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:792](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-matrix-mul-congr-pointwise). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.productCleanBlockCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.productCleanBlockCertificate")
@@ -1047,7 +1047,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:792](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:800](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L800).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:800](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-productcleanblockcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.productExactCleanBlockCertificate" (lean := "QuantumBlockEncoding.BlockEncodingClassics.productExactCleanBlockCertificate")
@@ -1061,7 +1061,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:800](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:811](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L811).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:811](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-productexactcleanblockcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.tensorResourceCost" (lean := "QuantumBlockEncoding.BlockEncodingClassics.tensorResourceCost")
@@ -1075,7 +1075,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:811](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:819](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L819).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:819](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-tensorresourcecost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.tensorResourceCost_gateCount" (lean := "QuantumBlockEncoding.BlockEncodingClassics.tensorResourceCost_gateCount")
@@ -1089,7 +1089,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:819](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:825](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L825).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:825](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-tensorresourcecost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.tensorResourceCost_depth" (lean := "QuantumBlockEncoding.BlockEncodingClassics.tensorResourceCost_depth")
@@ -1103,7 +1103,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:825](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:828](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L828).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:828](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-tensorresourcecost-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.productResourceCost" (lean := "QuantumBlockEncoding.BlockEncodingClassics.productResourceCost")
@@ -1117,7 +1117,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:828](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:832](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L832).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:832](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-productresourcecost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.productResourceCost_depth" (lean := "QuantumBlockEncoding.BlockEncodingClassics.productResourceCost_depth")
@@ -1131,7 +1131,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:832](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:838](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L838).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:838](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-productresourcecost-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.HermitianDilationContract" (lean := "QuantumBlockEncoding.BlockEncodingClassics.HermitianDilationContract")
@@ -1145,7 +1145,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:838](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:847](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L847).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:847](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-hermitiandilationcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract" (lean := "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract")
@@ -1159,7 +1159,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:847](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:857](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L857).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:857](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-qsvtconsumercontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.ZeroErrorApproxCleanBlock" (lean := "QuantumBlockEncoding.BlockEncodingClassics.ZeroErrorApproxCleanBlock")
@@ -1173,7 +1173,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:857](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:866](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L866).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:866](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-zeroerrorapproxcleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock" (lean := "QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock")
@@ -1187,7 +1187,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:866](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:877](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L877).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:877](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-exactaszeroerrorapproxcleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock_bound" (lean := "QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock_bound")
@@ -1201,5 +1201,5 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:877](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:885](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/BlockEncodingClassics.lean#L885).
+Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:885](../../../../library/modules/blockencodingclassics/#decl-quantumblockencoding-blockencodingclassics-exactaszeroerrorapproxcleanblock-bound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

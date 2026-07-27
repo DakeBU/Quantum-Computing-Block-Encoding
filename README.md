@@ -43,8 +43,8 @@ A Platform for Lean-validated quantum state-preparation and block-encoding const
 * **July 2026 (reader-surface upgrade).** The site now adds a searchable
   [Lean Library Explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/)
   and visual system maps for readers who are new to Lean.  One deterministic
-  inventory drives both the Explorer and the Blueprint: it covers all 1,646
-  explicit public declarations, records 177 private exclusions, resolves every
+  inventory drives both the Explorer and the Blueprint: it covers every
+  explicit public declaration, records private exclusions, resolves every
   Blueprint panel against Lean, and scans the publishable output for local-path
   leakage.  Each Explorer card separates a plain-English reading cue, formal
   status, bounded source preview, and authoritative Lean entry point.
@@ -118,25 +118,37 @@ exact block-entry equation:
 (<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha
 ```
 
-## Lean Blueprint documentation
+## Unified formalization website
 
-The GitHub Pages deployment combines three complementary interfaces:
+The GitHub Pages deployment combines the existing interfaces into one literate
+formalization site without changing the stable Library or Blueprint URLs:
 
-1. the landing page and task builder at the site root;
-2. the searchable Lean Library Explorer under `library/`;
-3. the Lean library Blueprint under `blueprint/html-multi/`.
+1. Overview and the state-preparation-first reading path at the site root;
+2. the Implementation Map under `implementation-map/`;
+3. eight guided chapters under `chapters/`;
+4. the searchable Lean Library Explorer under `library/`;
+5. progress, roadmap, workflow, and attribution pages;
+6. the Lean library Blueprint under `blueprint/html-multi/`;
+7. the existing task builder under `task-builder/`.
 
-The first four Blueprint chapters are written explanations of the certificate
-model, finite semantics, reusable block-encoding routes, and completed case
-studies.  The catalog chapters are generated from `QuantumBlockEncoding/**/*.lean`.
+The Blueprint chapters explain the certificate model, finite semantics,
+reusable block-encoding routes, and completed case studies.  Its catalog
+chapters are generated from `QuantumBlockEncoding/**/*.lean`.
 The coverage report in `docs/blueprint-coverage.json` records exactly which
 public source declarations are included and which private helpers are excluded.
 The same generator emits `web/library/declarations.json`, so the full-text
 Explorer and the strictly resolved Lean panels share one auditable inventory.
-In the current snapshot this means 1,646 public declarations, 1,299 source
-docstrings, 1,646 conservative reader cues, and 177 private exclusions.
+All counts shown on the unified site are read from these generated files at
+build time; `build-report.json` is the publication evidence for a particular
+checkout.
 The experimental `RobinMatrix.lean` development is catalogued separately and
 its open diagnostic proofs are not presented as certified results.
+
+External declaration links are not written against an assumed `main` branch.
+The site builder inspects `origin`, the current commit, remote containment, and
+the source file's worktree status.  It emits a commit-SHA GitHub link only when
+that exact file is available and clean at a published ref; otherwise the local
+module anchor remains the authoritative navigation target.
 
 ### Acknowledgements
 
@@ -150,28 +162,64 @@ The site itself is generated with
 multi-page documentation design, navigation, Lean declaration panels, preview
 runtime, and selectable reading styles used here.
 
-Regenerate and verify the catalog with:
+Regenerate and verify only the declaration inventory with:
 
 ```bash
 python3 scripts/generate-blueprint-catalog.py
 python3 scripts/generate-blueprint-catalog.py --check
 ```
 
-Build the documentation locally with either:
+Build and check the complete Pages artifact on Linux or macOS:
 
 ```bash
-bash scripts/build-blueprint.sh
+bash scripts/build-all.sh
 ```
 
-or on Windows PowerShell:
+The script runs the Lean library build, ABEIS tests, inventory consistency
+check, Verso Blueprint build, unified site build, internal link and fragment
+checks, source-link checks, local-path scan, and artifact-layout checks.
+
+Build the same artifact on Windows PowerShell:
 
 ```powershell
-./scripts/build-blueprint.ps1 -PythonCommand python
+powershell -ExecutionPolicy Bypass -File scripts/build-all.ps1
 ```
 
-The generated site is written below `_out/blueprint/` and is intentionally not
-committed.  All committed configuration and generated catalog paths are
-repository-relative, so another checkout can build and publish the same site.
+The final site is written to `_site/`; intermediate Blueprint and unified-site
+outputs are under `_out/`.  Generated publication artifacts are intentionally
+not committed.
+
+### Private temporary preview
+
+The preview server uses only Python's standard library.  It refuses to start
+unless both Basic Auth values are present in the process environment.
+
+Linux or macOS:
+
+```bash
+read -r -p "Preview username: " ABEIS_PREVIEW_USERNAME
+read -r -s -p "Preview password: " ABEIS_PREVIEW_PASSWORD
+export ABEIS_PREVIEW_USERNAME ABEIS_PREVIEW_PASSWORD
+python3 website/scripts/serve_preview.py --root _site --port 8765
+```
+
+Windows PowerShell:
+
+```powershell
+$env:ABEIS_PREVIEW_USERNAME = Read-Host "Preview username"
+$env:ABEIS_PREVIEW_PASSWORD = Read-Host "Preview password"
+python website/scripts/serve_preview.py --root _site --port 8765
+```
+
+To share that local authenticated server temporarily:
+
+```bash
+cloudflared tunnel --url http://127.0.0.1:8765
+```
+
+Credentials must not be committed, placed in command arguments, or copied into
+logs.  A `trycloudflare.com` URL is an ephemeral review tunnel, not the
+production GitHub Pages deployment.
 
 It may also state an accepted approximation budget:
 

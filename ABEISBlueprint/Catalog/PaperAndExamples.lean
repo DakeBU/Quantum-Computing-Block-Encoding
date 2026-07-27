@@ -39,7 +39,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:18](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L18).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:18](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-fourthordersecondderivative). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.centralBulkEntries" (lean := "QuantumBlockEncoding.Examples.RobinHeat.centralBulkEntries")
@@ -53,7 +53,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:18](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:24](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L24).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:24](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-centralbulkentries). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.A1dx" (lean := "QuantumBlockEncoding.Examples.RobinHeat.A1dx")
@@ -67,7 +67,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:24](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:33](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L33).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:33](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-a1dx). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.B1dx" (lean := "QuantumBlockEncoding.Examples.RobinHeat.B1dx")
@@ -81,7 +81,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:33](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:34](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L34).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:34](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-b1dx). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.leftBoundaryRow0" (lean := "QuantumBlockEncoding.Examples.RobinHeat.leftBoundaryRow0")
@@ -95,7 +95,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:34](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:37](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L37).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:37](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-leftboundaryrow0). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.leftBoundaryRow1" (lean := "QuantumBlockEncoding.Examples.RobinHeat.leftBoundaryRow1")
@@ -109,7 +109,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:37](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:45](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L45).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:45](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-leftboundaryrow1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.rightBoundaryRowNm2" (lean := "QuantumBlockEncoding.Examples.RobinHeat.rightBoundaryRowNm2")
@@ -123,7 +123,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:45](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:54](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L54).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:54](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-rightboundaryrownm2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.rightBoundaryRowNm1" (lean := "QuantumBlockEncoding.Examples.RobinHeat.rightBoundaryRowNm1")
@@ -137,7 +137,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:54](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:63](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L63).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:63](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-rightboundaryrownm1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.robinWindow" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinWindow")
@@ -151,7 +151,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:63](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:70](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L70).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:70](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-robinwindow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Examples.RobinHeat.oneTermParameters" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermParameters")
@@ -165,7 +165,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:70](https://github.com/Dak
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:74](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L74).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:74](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-onetermparameters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.fourthOrderStencilWidth" (lean := "QuantumBlockEncoding.Examples.RobinHeat.fourthOrderStencilWidth")
@@ -179,7 +179,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:74](https://github.com/Dak
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:80](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L80).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:80](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-fourthorderstencilwidth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Examples.RobinHeat.robinHeatAncillas" (lean := "QuantumBlockEncoding.Examples.RobinHeat.robinHeatAncillas")
@@ -193,7 +193,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:80](https://github.com/Dak
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:83](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/Examples/RobinHeat.lean#L83).
+Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:83](../../../../library/modules/examples-robinheat/#decl-quantumblockencoding-examples-robinheat-robinheatancillas). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/GHL2025.lean
@@ -211,7 +211,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:83](https://github.com/Dak
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:18](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L18).
+Source: [QuantumBlockEncoding/GHL2025.lean:18](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinparameters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.isBulkRow" (lean := "QuantumBlockEncoding.GHL2025.isBulkRow")
@@ -225,7 +225,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:18](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:32](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L32).
+Source: [QuantumBlockEncoding/GHL2025.lean:32](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-isbulkrow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.isBoundaryRow" (lean := "QuantumBlockEncoding.GHL2025.isBoundaryRow")
@@ -239,7 +239,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:32](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:39](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L39).
+Source: [QuantumBlockEncoding/GHL2025.lean:39](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-isboundaryrow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinRegisterPartition" (lean := "QuantumBlockEncoding.GHL2025.RobinRegisterPartition")
@@ -253,7 +253,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:39](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:49](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L49).
+Source: [QuantumBlockEncoding/GHL2025.lean:49](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinregisterpartition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinRegisterPartition.totalQubits" (lean := "QuantumBlockEncoding.GHL2025.RobinRegisterPartition.totalQubits")
@@ -267,7 +267,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:49](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:69](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L69).
+Source: [QuantumBlockEncoding/GHL2025.lean:69](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinregisterpartition-totalqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.defaultRobinRegisterPartition" (lean := "QuantumBlockEncoding.GHL2025.defaultRobinRegisterPartition")
@@ -281,7 +281,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:69](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:76](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L76).
+Source: [QuantumBlockEncoding/GHL2025.lean:76](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultrobinregisterpartition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinRegisterPartition.totalPureAncillas" (lean := "QuantumBlockEncoding.GHL2025.RobinRegisterPartition.totalPureAncillas")
@@ -295,7 +295,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:76](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:96](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L96).
+Source: [QuantumBlockEncoding/GHL2025.lean:96](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinregisterpartition-totalpureancillas). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinResourceExpr" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinResourceExpr")
@@ -309,7 +309,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:96](https://github.com/DakeBU/Quantum
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:103](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L103).
+Source: [QuantumBlockEncoding/GHL2025.lean:103](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinresourceexpr). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.deviatingIndices" (lean := "QuantumBlockEncoding.GHL2025.deviatingIndices")
@@ -323,7 +323,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:103](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:112](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L112).
+Source: [QuantumBlockEncoding/GHL2025.lean:112](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-deviatingindices). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinPreciseResourceExpr" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinPreciseResourceExpr")
@@ -337,7 +337,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:112](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:121](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L121).
+Source: [QuantumBlockEncoding/GHL2025.lean:121](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinpreciseresourceexpr). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.deviatingIndices_example" (lean := "QuantumBlockEncoding.GHL2025.deviatingIndices_example")
@@ -351,7 +351,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:121](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:130](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L130).
+Source: [QuantumBlockEncoding/GHL2025.lean:130](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-deviatingindices-example). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinResource" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinResource")
@@ -365,7 +365,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:130](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:134](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L134).
+Source: [QuantumBlockEncoding/GHL2025.lean:134](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobin_pureAncilla" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobin_pureAncilla")
@@ -379,7 +379,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:134](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:140](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L140).
+Source: [QuantumBlockEncoding/GHL2025.lean:140](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobin-pureancilla). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinLayout" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinLayout")
@@ -393,7 +393,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:140](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:149](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L149).
+Source: [QuantumBlockEncoding/GHL2025.lean:149](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinlayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinCircuit" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinCircuit")
@@ -407,7 +407,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:149](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:166](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L166).
+Source: [QuantumBlockEncoding/GHL2025.lean:166](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobincircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinTheoremFacingFig4Circuit" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinTheoremFacingFig4Circuit")
@@ -421,7 +421,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:166](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:185](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L185).
+Source: [QuantumBlockEncoding/GHL2025.lean:185](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobintheoremfacingfig4circuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList")
@@ -435,7 +435,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:185](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:205](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L205).
+Source: [QuantumBlockEncoding/GHL2025.lean:205](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobintheoremfacingfig4circuit-gatelist). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinActiveBackendCircuit_gateList" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinActiveBackendCircuit_gateList")
@@ -449,7 +449,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:205](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:227](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L227).
+Source: [QuantumBlockEncoding/GHL2025.lean:227](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinactivebackendcircuit-gatelist). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinNormalizer" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinNormalizer")
@@ -463,7 +463,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:227](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:239](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L239).
+Source: [QuantumBlockEncoding/GHL2025.lean:239](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinSpec" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinSpec")
@@ -477,7 +477,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:239](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:249](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L249).
+Source: [QuantumBlockEncoding/GHL2025.lean:249](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinspec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinSpec_ancilla" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinSpec_ancilla")
@@ -491,7 +491,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:249](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:260](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L260).
+Source: [QuantumBlockEncoding/GHL2025.lean:260](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinspec-ancilla). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinSpec_circuitCost" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinSpec_circuitCost")
@@ -505,7 +505,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:260](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:269](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L269).
+Source: [QuantumBlockEncoding/GHL2025.lean:269](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinspec-circuitcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinNormalizer_eval" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinNormalizer_eval")
@@ -519,7 +519,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:269](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:274](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L274).
+Source: [QuantumBlockEncoding/GHL2025.lean:274](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinnormalizer-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinClaim" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinClaim")
@@ -533,7 +533,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:274](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:279](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L279).
+Source: [QuantumBlockEncoding/GHL2025.lean:279](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneDimHamiltonianResourceExpr" (lean := "QuantumBlockEncoding.GHL2025.oneDimHamiltonianResourceExpr")
@@ -547,7 +547,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:279](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:288](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L288).
+Source: [QuantumBlockEncoding/GHL2025.lean:288](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onedimhamiltonianresourceexpr). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneDimHamiltonianClaim" (lean := "QuantumBlockEncoding.GHL2025.oneDimHamiltonianClaim")
@@ -561,7 +561,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:288](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:296](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L296).
+Source: [QuantumBlockEncoding/GHL2025.lean:296](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onedimhamiltonianclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.multiDimHamiltonianResourceExpr" (lean := "QuantumBlockEncoding.GHL2025.multiDimHamiltonianResourceExpr")
@@ -575,7 +575,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:296](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:305](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L305).
+Source: [QuantumBlockEncoding/GHL2025.lean:305](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-multidimhamiltonianresourceexpr). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.multiDimHamiltonianClaim" (lean := "QuantumBlockEncoding.GHL2025.multiDimHamiltonianClaim")
@@ -589,7 +589,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:305](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:313](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L313).
+Source: [QuantumBlockEncoding/GHL2025.lean:313](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-multidimhamiltonianclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.ObligationRecord" (lean := "QuantumBlockEncoding.GHL2025.ObligationRecord")
@@ -603,7 +603,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:313](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:324](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L324).
+Source: [QuantumBlockEncoding/GHL2025.lean:324](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-obligationrecord). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinCircuitSkeleton" (lean := "QuantumBlockEncoding.GHL2025.RobinCircuitSkeleton")
@@ -617,7 +617,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:324](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:334](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L334).
+Source: [QuantumBlockEncoding/GHL2025.lean:334](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robincircuitskeleton). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinGamma1" (lean := "QuantumBlockEncoding.GHL2025.RobinGamma1")
@@ -631,7 +631,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:334](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:373](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L373).
+Source: [QuantumBlockEncoding/GHL2025.lean:373](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robingamma1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinGamma2" (lean := "QuantumBlockEncoding.GHL2025.RobinGamma2")
@@ -645,7 +645,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:373](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:396](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L396).
+Source: [QuantumBlockEncoding/GHL2025.lean:396](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robingamma2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinGamma3" (lean := "QuantumBlockEncoding.GHL2025.RobinGamma3")
@@ -659,7 +659,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:396](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:413](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L413).
+Source: [QuantumBlockEncoding/GHL2025.lean:413](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robingamma3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinWavefunctionDecomposition" (lean := "QuantumBlockEncoding.GHL2025.RobinWavefunctionDecomposition")
@@ -673,7 +673,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:413](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:433](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L433).
+Source: [QuantumBlockEncoding/GHL2025.lean:433](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinwavefunctiondecomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.defaultRobinWavefunctionDecomposition" (lean := "QuantumBlockEncoding.GHL2025.defaultRobinWavefunctionDecomposition")
@@ -687,7 +687,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:433](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:452](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L452).
+Source: [QuantumBlockEncoding/GHL2025.lean:452](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultrobinwavefunctiondecomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinProofObligations" (lean := "QuantumBlockEncoding.GHL2025.RobinProofObligations")
@@ -701,7 +701,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:452](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:488](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L488).
+Source: [QuantumBlockEncoding/GHL2025.lean:488](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinproofobligations). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.defaultRobinCircuitSkeleton" (lean := "QuantumBlockEncoding.GHL2025.defaultRobinCircuitSkeleton")
@@ -715,7 +715,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:488](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:553](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L553).
+Source: [QuantumBlockEncoding/GHL2025.lean:553](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultrobincircuitskeleton). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperContract" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperContract")
@@ -729,7 +729,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:553](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:577](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L577).
+Source: [QuantumBlockEncoding/GHL2025.lean:577](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.defaultBandedSparseAccessPaperContract" (lean := "QuantumBlockEncoding.GHL2025.defaultBandedSparseAccessPaperContract")
@@ -743,7 +743,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:577](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:602](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L602).
+Source: [QuantumBlockEncoding/GHL2025.lean:602](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultbandedsparseaccesspapercontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.DerivativeOracleContract" (lean := "QuantumBlockEncoding.GHL2025.DerivativeOracleContract")
@@ -757,7 +757,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:602](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:650](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L650).
+Source: [QuantumBlockEncoding/GHL2025.lean:650](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativeoraclecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.FunctionOracleContract" (lean := "QuantumBlockEncoding.GHL2025.FunctionOracleContract")
@@ -771,7 +771,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:650](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:661](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L661).
+Source: [QuantumBlockEncoding/GHL2025.lean:661](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.derivativeOracleResource" (lean := "QuantumBlockEncoding.GHL2025.derivativeOracleResource")
@@ -785,7 +785,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:661](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:671](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L671).
+Source: [QuantumBlockEncoding/GHL2025.lean:671](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativeoracleresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeOracleResource_pureAncilla" (lean := "QuantumBlockEncoding.GHL2025.derivativeOracleResource_pureAncilla")
@@ -799,7 +799,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:671](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:675](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L675).
+Source: [QuantumBlockEncoding/GHL2025.lean:675](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativeoracleresource-pureancilla). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.OneTermRobinTheoremData" (lean := "QuantumBlockEncoding.GHL2025.OneTermRobinTheoremData")
@@ -813,7 +813,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:675](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:684](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L684).
+Source: [QuantumBlockEncoding/GHL2025.lean:684](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobintheoremdata). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData" (lean := "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData")
@@ -827,7 +827,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:684](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:700](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L700).
+Source: [QuantumBlockEncoding/GHL2025.lean:700](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultonetermrobintheoremdata). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationAngle" (lean := "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationAngle")
@@ -841,7 +841,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:700](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:714](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L714).
+Source: [QuantumBlockEncoding/GHL2025.lean:714](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinboundaryrotationangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationSet" (lean := "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationSet")
@@ -855,7 +855,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:714](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:732](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L732).
+Source: [QuantumBlockEncoding/GHL2025.lean:732](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinboundaryrotationset). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationSet.expectedCount" (lean := "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationSet.expectedCount")
@@ -869,7 +869,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:732](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:752](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L752).
+Source: [QuantumBlockEncoding/GHL2025.lean:752](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinboundaryrotationset-expectedcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.importedClaims" (lean := "QuantumBlockEncoding.GHL2025.importedClaims")
@@ -883,7 +883,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:752](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:755](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L755).
+Source: [QuantumBlockEncoding/GHL2025.lean:755](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-importedclaims). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinTotalQubits" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinTotalQubits")
@@ -897,7 +897,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:755](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:770](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L770).
+Source: [QuantumBlockEncoding/GHL2025.lean:770](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobintotalqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.effectiveRobinSignalQubits" (lean := "QuantumBlockEncoding.GHL2025.effectiveRobinSignalQubits")
@@ -911,7 +911,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:770](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:777](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L777).
+Source: [QuantumBlockEncoding/GHL2025.lean:777](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-effectiverobinsignalqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_signalQubits_eq_layout" (lean := "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_signalQubits_eq_layout")
@@ -925,7 +925,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:777](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:789](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L789).
+Source: [QuantumBlockEncoding/GHL2025.lean:789](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultonetermrobintheoremdata-signalqubits-eq-layout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_layout" (lean := "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_layout")
@@ -939,7 +939,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:789](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:798](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L798).
+Source: [QuantumBlockEncoding/GHL2025.lean:798](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultonetermrobintheoremdata-pureancillas-eq-layout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_resource" (lean := "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_resource")
@@ -953,7 +953,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:798](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:807](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L807).
+Source: [QuantumBlockEncoding/GHL2025.lean:807](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultonetermrobintheoremdata-pureancillas-eq-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.effectiveRobinSignalQubits_eq_layout_signal_plus_visibleWorkspace" (lean := "QuantumBlockEncoding.GHL2025.effectiveRobinSignalQubits_eq_layout_signal_plus_visibleWorkspace")
@@ -967,7 +967,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:807](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:821](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L821).
+Source: [QuantumBlockEncoding/GHL2025.lean:821](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-effectiverobinsignalqubits-eq-layout-signal-plus-visibleworkspace). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.effectiveRobinSignalQubits_eq_theoremData_signal_plus_visibleWorkspace" (lean := "QuantumBlockEncoding.GHL2025.effectiveRobinSignalQubits_eq_theoremData_signal_plus_visibleWorkspace")
@@ -981,7 +981,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:821](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:839](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L839).
+Source: [QuantumBlockEncoding/GHL2025.lean:839](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-effectiverobinsignalqubits-eq-theoremdata-signal-plus-visibleworkspace). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.robinIndicatorBitPosition" (lean := "QuantumBlockEncoding.GHL2025.robinIndicatorBitPosition")
@@ -995,7 +995,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:839](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:852](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L852).
+Source: [QuantumBlockEncoding/GHL2025.lean:852](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinindicatorbitposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.robinSparseColumnMap" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnMap")
@@ -1009,7 +1009,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:852](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:869](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L869).
+Source: [QuantumBlockEncoding/GHL2025.lean:869](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseOffset" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseOffset")
@@ -1023,7 +1023,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:869](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:897](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L897).
+Source: [QuantumBlockEncoding/GHL2025.lean:897](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseoffset). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress")
@@ -1037,7 +1037,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:897](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:915](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L915).
+Source: [QuantumBlockEncoding/GHL2025.lean:915](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseaddress). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_lt_gridSize" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_lt_gridSize")
@@ -1051,7 +1051,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:915](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:919](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L919).
+Source: [QuantumBlockEncoding/GHL2025.lean:919](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseaddress-lt-gridsize). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot")
@@ -1065,7 +1065,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:919](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:934](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L934).
+Source: [QuantumBlockEncoding/GHL2025.lean:934](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseinverseslot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot_lt_eight" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot_lt_eight")
@@ -1079,7 +1079,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:934](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:946](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L946).
+Source: [QuantumBlockEncoding/GHL2025.lean:946](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseinverseslot-lt-eight). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot_lt_seven" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot_lt_seven")
@@ -1093,7 +1093,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:946](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:952](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L952).
+Source: [QuantumBlockEncoding/GHL2025.lean:952](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseinverseslot-lt-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot_involutive_of_lt_seven" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot_involutive_of_lt_seven")
@@ -1107,7 +1107,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:952](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:967](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L967).
+Source: [QuantumBlockEncoding/GHL2025.lean:967](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseinverseslot-involutive-of-lt-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot_injective_of_lt_seven" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseInverseSlot_injective_of_lt_seven")
@@ -1121,7 +1121,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:967](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:985](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L985).
+Source: [QuantumBlockEncoding/GHL2025.lean:985](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseinverseslot-injective-of-lt-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_inverseSlot_address_eq" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_inverseSlot_address_eq")
@@ -1135,7 +1135,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:985](https://github.com/DakeBU/Quantu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1009](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1009).
+Source: [QuantumBlockEncoding/GHL2025.lean:1009](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseaddress-inverseslot-address-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseOffset_lt_gridSize_of_lt_seven" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseOffset_lt_gridSize_of_lt_seven")
@@ -1149,7 +1149,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1009](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1131](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1131).
+Source: [QuantumBlockEncoding/GHL2025.lean:1131](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseoffset-lt-gridsize-of-lt-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_comp_eq_mod_offset_sum" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_comp_eq_mod_offset_sum")
@@ -1163,7 +1163,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1131](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1149](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1149).
+Source: [QuantumBlockEncoding/GHL2025.lean:1149](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseaddress-comp-eq-mod-offset-sum). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseOffset_sum_mod_eq_zero_unique_of_lt_seven" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseOffset_sum_mod_eq_zero_unique_of_lt_seven")
@@ -1177,7 +1177,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1149](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1183](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1183).
+Source: [QuantumBlockEncoding/GHL2025.lean:1183](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseoffset-sum-mod-eq-zero-unique-of-lt-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_inverseSlot_unique_of_lt_seven" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_inverseSlot_unique_of_lt_seven")
@@ -1191,7 +1191,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1183](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1228](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1228).
+Source: [QuantumBlockEncoding/GHL2025.lean:1228](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseaddress-inverseslot-unique-of-lt-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_same_row_injective_of_lt_seven" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGlobalSparseAddress_same_row_injective_of_lt_seven")
@@ -1205,7 +1205,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1228](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1261](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1261).
+Source: [QuantumBlockEncoding/GHL2025.lean:1261](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinglobalsparseaddress-same-row-injective-of-lt-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.robinSparseColumnBranchValid" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnBranchValid")
@@ -1219,7 +1219,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1261](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1295](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1295).
+Source: [QuantumBlockEncoding/GHL2025.lean:1295](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnbranchvalid). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseColumnBranchValid_boundaryUnused_n3" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnBranchValid_boundaryUnused_n3")
@@ -1233,7 +1233,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1295](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1314](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1314).
+Source: [QuantumBlockEncoding/GHL2025.lean:1314](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnbranchvalid-boundaryunused-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_lt_gridSize_of_row_lt" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_lt_gridSize_of_row_lt")
@@ -1247,7 +1247,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1314](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1329](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1329).
+Source: [QuantumBlockEncoding/GHL2025.lean:1329](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnmap-lt-gridsize-of-row-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex")
@@ -1261,7 +1261,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1329](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1386](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1386).
+Source: [QuantumBlockEncoding/GHL2025.lean:1386](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_zero" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_zero")
@@ -1275,7 +1275,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1386](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1396](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1396).
+Source: [QuantumBlockEncoding/GHL2025.lean:1396](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnmap-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_one" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_one")
@@ -1289,7 +1289,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1396](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1401](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1401).
+Source: [QuantumBlockEncoding/GHL2025.lean:1401](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnmap-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_bulk" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_bulk")
@@ -1303,7 +1303,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1401](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1406](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1406).
+Source: [QuantumBlockEncoding/GHL2025.lean:1406](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnmap-bulk). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_rightBoundaryPrev" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_rightBoundaryPrev")
@@ -1317,7 +1317,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1406](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1412](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1412).
+Source: [QuantumBlockEncoding/GHL2025.lean:1412](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnmap-rightboundaryprev). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_rightBoundaryLast" (lean := "QuantumBlockEncoding.GHL2025.robinSparseColumnMap_rightBoundaryLast")
@@ -1331,7 +1331,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1412](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1427](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1427).
+Source: [QuantumBlockEncoding/GHL2025.lean:1427](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsecolumnmap-rightboundarylast). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_zero" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_zero")
@@ -1345,7 +1345,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1427](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1443](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1443).
+Source: [QuantumBlockEncoding/GHL2025.lean:1443](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnindex-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_one" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_one")
@@ -1359,7 +1359,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1443](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1448](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1448).
+Source: [QuantumBlockEncoding/GHL2025.lean:1448](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnindex-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_bulk" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_bulk")
@@ -1373,7 +1373,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1448](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1453](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1453).
+Source: [QuantumBlockEncoding/GHL2025.lean:1453](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnindex-bulk). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_rightBoundaryPrev" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_rightBoundaryPrev")
@@ -1387,7 +1387,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1453](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1461](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1461).
+Source: [QuantumBlockEncoding/GHL2025.lean:1461](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnindex-rightboundaryprev). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_rightBoundaryLast" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_rightBoundaryLast")
@@ -1401,7 +1401,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1461](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1477](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1477).
+Source: [QuantumBlockEncoding/GHL2025.lean:1477](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnindex-rightboundarylast). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnRoundtrip_of_lt_eight" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnRoundtrip_of_lt_eight")
@@ -1415,7 +1415,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1477](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1502](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1502).
+Source: [QuantumBlockEncoding/GHL2025.lean:1502](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnroundtrip-of-lt-eight). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_lt_eight_of_columnMap" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnIndex_lt_eight_of_columnMap")
@@ -1429,7 +1429,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1502](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1715](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1715).
+Source: [QuantumBlockEncoding/GHL2025.lean:1715](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnindex-lt-eight-of-columnmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnRoundtripCheck" (lean := "QuantumBlockEncoding.GHL2025.robinSparseReverseColumnRoundtripCheck")
@@ -1443,7 +1443,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1715](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1875](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1875).
+Source: [QuantumBlockEncoding/GHL2025.lean:1875](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparsereversecolumnroundtripcheck). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperRegisters" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperRegisters")
@@ -1457,7 +1457,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1875](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1890](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1890).
+Source: [QuantumBlockEncoding/GHL2025.lean:1890](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperregisters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters")
@@ -1471,7 +1471,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1890](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1902](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1902).
+Source: [QuantumBlockEncoding/GHL2025.lean:1902](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperregisters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_row_lt_gridSize" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_row_lt_gridSize")
@@ -1485,7 +1485,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1902](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1919](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1919).
+Source: [QuantumBlockEncoding/GHL2025.lean:1919](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperregisters-row-lt-gridsize). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_sparseIndexValue_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_sparseIndexValue_eq")
@@ -1499,7 +1499,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1919](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1928](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1928).
+Source: [QuantumBlockEncoding/GHL2025.lean:1928](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperregisters-sparseindexvalue-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_paddedZeroValue_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_paddedZeroValue_eq")
@@ -1513,7 +1513,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1928](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1936](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1936).
+Source: [QuantumBlockEncoding/GHL2025.lean:1936](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperregisters-paddedzerovalue-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_sparseIndex_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_sparseIndex_lt")
@@ -1527,7 +1527,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1936](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1944](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1944).
+Source: [QuantumBlockEncoding/GHL2025.lean:1944](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperregisters-sparseindex-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_odRegisterValue_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisters_odRegisterValue_lt")
@@ -1541,7 +1541,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1944](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1955](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1955).
+Source: [QuantumBlockEncoding/GHL2025.lean:1955](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperregisters-odregistervalue-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessRowDependentPaperAddress" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessRowDependentPaperAddress")
@@ -1555,7 +1555,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1955](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1971](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1971).
+Source: [QuantumBlockEncoding/GHL2025.lean:1971](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessrowdependentpaperaddress). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress")
@@ -1569,7 +1569,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1971](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1983](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1983).
+Source: [QuantumBlockEncoding/GHL2025.lean:1983](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperaddress). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddressInRange" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddressInRange")
@@ -1583,7 +1583,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1983](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1988](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1988).
+Source: [QuantumBlockEncoding/GHL2025.lean:1988](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperaddressinrange). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddressInRange_iff" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddressInRange_iff")
@@ -1597,7 +1597,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1988](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:1992](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L1992).
+Source: [QuantumBlockEncoding/GHL2025.lean:1992](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperaddressinrange-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress_lt_gridSize_of_two_le" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress_lt_gridSize_of_two_le")
@@ -1611,7 +1611,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1992](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2004](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2004).
+Source: [QuantumBlockEncoding/GHL2025.lean:2004](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperaddress-lt-gridsize-of-two-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddressInRange_eq_true_of_two_le" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddressInRange_eq_true_of_two_le")
@@ -1625,7 +1625,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2004](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2017](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2017).
+Source: [QuantumBlockEncoding/GHL2025.lean:2017](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperaddressinrange-eq-true-of-two-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage")
@@ -1639,7 +1639,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2017](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2031](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2031).
+Source: [QuantumBlockEncoding/GHL2025.lean:2031](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessRowDependentPaperImage" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessRowDependentPaperImage")
@@ -1653,7 +1653,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2031](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2047](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2047).
+Source: [QuantumBlockEncoding/GHL2025.lean:2047](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessrowdependentpaperimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisterValue_eq_mod" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperRegisterValue_eq_mod")
@@ -1667,7 +1667,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2047](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2062](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2062).
+Source: [QuantumBlockEncoding/GHL2025.lean:2062](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperregistervalue-eq-mod). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperHighWidth_le_totalQubits" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperHighWidth_le_totalQubits")
@@ -1681,7 +1681,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2062](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2076](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2076).
+Source: [QuantumBlockEncoding/GHL2025.lean:2076](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperhighwidth-le-totalqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_lowBlock_lt_highBase_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_lowBlock_lt_highBase_of_address_lt")
@@ -1695,7 +1695,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2076](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2087](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2087).
+Source: [QuantumBlockEncoding/GHL2025.lean:2087](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-lowblock-lt-highbase-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_mod_lowBase" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_mod_lowBase")
@@ -1709,7 +1709,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2087](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2133](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2133).
+Source: [QuantumBlockEncoding/GHL2025.lean:2133](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-mod-lowbase). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_div_lowBase_mod_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_div_lowBase_mod_eq")
@@ -1723,7 +1723,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2133](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2172](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2172).
+Source: [QuantumBlockEncoding/GHL2025.lean:2172](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-div-lowbase-mod-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_lt_qubitDim_of_address_lt")
@@ -1737,7 +1737,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2172](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2219](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2219).
+Source: [QuantumBlockEncoding/GHL2025.lean:2219](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-lt-qubitdim-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageFin" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageFin")
@@ -1751,7 +1751,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2219](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2268](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2268).
+Source: [QuantumBlockEncoding/GHL2025.lean:2268](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimagefin). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageFin_val" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageFin_val")
@@ -1765,7 +1765,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2268](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2276](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2276).
+Source: [QuantumBlockEncoding/GHL2025.lean:2276](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimagefin-val). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_rowValue_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_rowValue_eq")
@@ -1779,7 +1779,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2276](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2284](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2284).
+Source: [QuantumBlockEncoding/GHL2025.lean:2284](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-rowvalue-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_odRegisterValue_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_odRegisterValue_eq")
@@ -1793,7 +1793,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2284](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2303](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2303).
+Source: [QuantumBlockEncoding/GHL2025.lean:2303](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-odregistervalue-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperHighTail" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperHighTail")
@@ -1807,7 +1807,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2303](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2315](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2315).
+Source: [QuantumBlockEncoding/GHL2025.lean:2315](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperhightail). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_highTail_eq_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_highTail_eq_of_address_lt")
@@ -1821,7 +1821,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2315](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2326](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2326).
+Source: [QuantumBlockEncoding/GHL2025.lean:2326](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-hightail-eq-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageNoSpill" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageNoSpill")
@@ -1835,7 +1835,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2326](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2361](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2361).
+Source: [QuantumBlockEncoding/GHL2025.lean:2361](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimagenospill). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageNoSpill_iff" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageNoSpill_iff")
@@ -1849,7 +1849,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2361](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2371](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2371).
+Source: [QuantumBlockEncoding/GHL2025.lean:2371](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimagenospill-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_address_lt")
@@ -1863,7 +1863,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2371](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2380](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2380).
+Source: [QuantumBlockEncoding/GHL2025.lean:2380](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimagenospill-eq-true-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImageNoSpill_eq_true_of_two_le")
@@ -1877,7 +1877,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2380](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2391](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2391).
+Source: [QuantumBlockEncoding/GHL2025.lean:2391](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimagenospill-eq-true-of-two-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanInput" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanInput")
@@ -1891,7 +1891,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2391](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2406](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2406).
+Source: [QuantumBlockEncoding/GHL2025.lean:2406](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleaninput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSparseIndexInKappa" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSparseIndexInKappa")
@@ -1905,7 +1905,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2406](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2416](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2416).
+Source: [QuantumBlockEncoding/GHL2025.lean:2416](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapersparseindexinkappa). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource")
@@ -1919,7 +1919,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2416](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2427](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2427).
+Source: [QuantumBlockEncoding/GHL2025.lean:2427](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperglobalslotsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_cleanInput_eq_true" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_cleanInput_eq_true")
@@ -1933,7 +1933,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2427](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2433](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2433).
+Source: [QuantumBlockEncoding/GHL2025.lean:2433](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperglobalslotsource-cleaninput-eq-true). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_sparseIndex_lt_kappa" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_sparseIndex_lt_kappa")
@@ -1947,7 +1947,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2433](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2442](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2442).
+Source: [QuantumBlockEncoding/GHL2025.lean:2442](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperglobalslotsource-sparseindex-lt-kappa). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_inverseSlot_injective" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_inverseSlot_injective")
@@ -1961,7 +1961,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2442](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2461](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2461).
+Source: [QuantumBlockEncoding/GHL2025.lean:2461](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperglobalslotsource-inverseslot-injective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress_same_row_injective_of_globalSlotSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress_same_row_injective_of_globalSlotSource")
@@ -1975,7 +1975,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2461](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2493](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2493).
+Source: [QuantumBlockEncoding/GHL2025.lean:2493](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperaddress-same-row-injective-of-globalslotsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidSparseBranch" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidSparseBranch")
@@ -1989,7 +1989,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2493](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2541](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2541).
+Source: [QuantumBlockEncoding/GHL2025.lean:2541](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapervalidsparsebranch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidCleanSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidCleanSource")
@@ -2003,7 +2003,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2541](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2552](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2552).
+Source: [QuantumBlockEncoding/GHL2025.lean:2552](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapervalidcleansource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidCleanSource_cleanInput_eq_true")
@@ -2017,7 +2017,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2552](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2558](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2558).
+Source: [QuantumBlockEncoding/GHL2025.lean:2558](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapervalidcleansource-cleaninput-eq-true). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidCleanSource_validSparseBranch_eq_true" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidCleanSource_validSparseBranch_eq_true")
@@ -2031,7 +2031,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2558](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2567](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2567).
+Source: [QuantumBlockEncoding/GHL2025.lean:2567](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapervalidcleansource-validsparsebranch-eq-true). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperValidCleanSource_separates_boundaryCollision_n3")
@@ -2045,7 +2045,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2567](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2580](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2580).
+Source: [QuantumBlockEncoding/GHL2025.lean:2580](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapervalidcleansource-separates-boundarycollision-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperUnusedSparseBranch" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperUnusedSparseBranch")
@@ -2059,7 +2059,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2580](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2601](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2601).
+Source: [QuantumBlockEncoding/GHL2025.lean:2601](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperunusedsparsebranch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperUnusedSparseBranch_cleanInput_eq_true")
@@ -2073,7 +2073,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2601](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2607](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2607).
+Source: [QuantumBlockEncoding/GHL2025.lean:2607](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperunusedsparsebranch-cleaninput-eq-true). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperUnusedSparseBranch_validSparseBranch_eq_false")
@@ -2087,7 +2087,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2607](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2616](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2616).
+Source: [QuantumBlockEncoding/GHL2025.lean:2616](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperunusedsparsebranch-validsparsebranch-eq-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanDomainSplit_iff" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanDomainSplit_iff")
@@ -2101,7 +2101,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2616](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2632](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2632).
+Source: [QuantumBlockEncoding/GHL2025.lean:2632](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleandomainsplit-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanDomainSplit_disjoint" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanDomainSplit_disjoint")
@@ -2115,7 +2115,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2632](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2657](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2657).
+Source: [QuantumBlockEncoding/GHL2025.lean:2657](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleandomainsplit-disjoint). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessUnusedBranchImageRuleContract" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessUnusedBranchImageRuleContract")
@@ -2129,7 +2129,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2657](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2680](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2680).
+Source: [QuantumBlockEncoding/GHL2025.lean:2680](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchimagerulecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchImageRuleContract" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchImageRuleContract")
@@ -2143,7 +2143,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2680](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2702](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2702).
+Source: [QuantumBlockEncoding/GHL2025.lean:2702](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchimagerulecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchImageRuleContract_flags_false" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchImageRuleContract_flags_false")
@@ -2157,7 +2157,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2702](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2735](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2735).
+Source: [QuantumBlockEncoding/GHL2025.lean:2735](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchimagerulecontract-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchImageRuleContract_of_unusedBranch" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchImageRuleContract_of_unusedBranch")
@@ -2171,7 +2171,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2735](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2750](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2750).
+Source: [QuantumBlockEncoding/GHL2025.lean:2750](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchimagerulecontract-of-unusedbranch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessUnusedBranchExtensionContract" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessUnusedBranchExtensionContract")
@@ -2185,7 +2185,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2750](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2775](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2775).
+Source: [QuantumBlockEncoding/GHL2025.lean:2775](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchextensioncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchExtensionContract" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchExtensionContract")
@@ -2199,7 +2199,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2775](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2797](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2797).
+Source: [QuantumBlockEncoding/GHL2025.lean:2797](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchextensioncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchExtensionContract_flags_false" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchExtensionContract_flags_false")
@@ -2213,7 +2213,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2797](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2837](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2837).
+Source: [QuantumBlockEncoding/GHL2025.lean:2837](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchextensioncontract-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchExtensionContract_boundaryCollision_n3")
@@ -2227,7 +2227,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2837](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2856](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2856).
+Source: [QuantumBlockEncoding/GHL2025.lean:2856](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchextensioncontract-boundarycollision-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchExtensionContract_of_unusedBranch" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedBranchExtensionContract_of_unusedBranch")
@@ -2241,7 +2241,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2856](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2875](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2875).
+Source: [QuantumBlockEncoding/GHL2025.lean:2875](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedbranchextensioncontract-of-unusedbranch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessFullCleanDomainExtensionContract" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessFullCleanDomainExtensionContract")
@@ -2255,7 +2255,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2875](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2906](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2906).
+Source: [QuantumBlockEncoding/GHL2025.lean:2906](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessfullcleandomainextensioncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessFullCleanDomainExtensionContract" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessFullCleanDomainExtensionContract")
@@ -2269,7 +2269,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2906](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2932](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2932).
+Source: [QuantumBlockEncoding/GHL2025.lean:2932](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessfullcleandomainextensioncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_flags_false" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_flags_false")
@@ -2283,7 +2283,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2932](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:2986](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L2986).
+Source: [QuantumBlockEncoding/GHL2025.lean:2986](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessfullcleandomainextensioncontract-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_of_unusedBranch")
@@ -2297,7 +2297,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2986](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3006](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3006).
+Source: [QuantumBlockEncoding/GHL2025.lean:3006](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessfullcleandomainextensioncontract-of-unusedbranch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessFullCleanDomainExtensionContract_localCleanDomainSplit")
@@ -2311,7 +2311,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3006](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3032](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3032).
+Source: [QuantumBlockEncoding/GHL2025.lean:3032](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessfullcleandomainextensioncontract-localcleandomainsplit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessUnusedZeroBranchSourceDecision" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessUnusedZeroBranchSourceDecision")
@@ -2325,7 +2325,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3032](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3049](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3049).
+Source: [QuantumBlockEncoding/GHL2025.lean:3049](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedzerobranchsourcedecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision")
@@ -2339,7 +2339,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3049](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3064](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3064).
+Source: [QuantumBlockEncoding/GHL2025.lean:3064](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedzerobranchsourcedecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_flags_false" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_flags_false")
@@ -2353,7 +2353,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3064](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3078](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3078).
+Source: [QuantumBlockEncoding/GHL2025.lean:3078](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedzerobranchsourcedecision-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsFullDomainFlagsFalse" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsFullDomainFlagsFalse")
@@ -2367,7 +2367,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3078](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3091](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3091).
+Source: [QuantumBlockEncoding/GHL2025.lean:3091](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedzerobranchsourcedecision-keepsfulldomainflagsfalse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsImageRuleUnspecified" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsImageRuleUnspecified")
@@ -2381,7 +2381,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3091](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3112](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3112).
+Source: [QuantumBlockEncoding/GHL2025.lean:3112](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedzerobranchsourcedecision-keepsimageruleunspecified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsPaperContractFlagsFalse" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessUnusedZeroBranchSourceDecision_keepsPaperContractFlagsFalse")
@@ -2395,7 +2395,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3112](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3134](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3134).
+Source: [QuantumBlockEncoding/GHL2025.lean:3134](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessunusedzerobranchsourcedecision-keepspapercontractflagsfalse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessRobinZeroInclusionSourceContract" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessRobinZeroInclusionSourceContract")
@@ -2409,7 +2409,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3134](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3152](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3152).
+Source: [QuantumBlockEncoding/GHL2025.lean:3152](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessrobinzeroinclusionsourcecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract")
@@ -2423,7 +2423,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3152](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3176](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3176).
+Source: [QuantumBlockEncoding/GHL2025.lean:3176](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessrobinzeroinclusionsourcecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract_blocks_unusedZeroBranch" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract_blocks_unusedZeroBranch")
@@ -2437,7 +2437,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3176](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3211](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3211).
+Source: [QuantumBlockEncoding/GHL2025.lean:3211](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessrobinzeroinclusionsourcecontract-blocks-unusedzerobranch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract_keepsImageRuleUnspecified" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessRobinZeroInclusionSourceContract_keepsImageRuleUnspecified")
@@ -2451,7 +2451,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3211](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3239](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3239).
+Source: [QuantumBlockEncoding/GHL2025.lean:3239](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessrobinzeroinclusionsourcecontract-keepsimageruleunspecified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessPriorPDESourceContract" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessPriorPDESourceContract")
@@ -2465,7 +2465,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3239](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3264](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3264).
+Source: [QuantumBlockEncoding/GHL2025.lean:3264](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspriorpdesourcecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPriorPDESourceContract" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPriorPDESourceContract")
@@ -2479,7 +2479,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3264](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3285](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3285).
+Source: [QuantumBlockEncoding/GHL2025.lean:3285](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspriorpdesourcecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPriorPDESourceContract_blocks_unusedZeroBranch" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPriorPDESourceContract_blocks_unusedZeroBranch")
@@ -2493,7 +2493,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3285](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3310](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3310).
+Source: [QuantumBlockEncoding/GHL2025.lean:3310](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspriorpdesourcecontract-blocks-unusedzerobranch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPriorPDESourceContract_oracleEquation" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPriorPDESourceContract_oracleEquation")
@@ -2507,7 +2507,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3310](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3319](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3319).
+Source: [QuantumBlockEncoding/GHL2025.lean:3319](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspriorpdesourcecontract-oracleequation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPriorPDESourceContract_resource_unproved" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPriorPDESourceContract_resource_unproved")
@@ -2521,7 +2521,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3319](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3324](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3324).
+Source: [QuantumBlockEncoding/GHL2025.lean:3324](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspriorpdesourcecontract-resource-unproved). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanInput_iff" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanInput_iff")
@@ -2535,7 +2535,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3324](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3334](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3334).
+Source: [QuantumBlockEncoding/GHL2025.lean:3334](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleaninput-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperColumnContract" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperColumnContract")
@@ -2549,7 +2549,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3334](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3350](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3350).
+Source: [QuantumBlockEncoding/GHL2025.lean:3350](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract")
@@ -2563,7 +2563,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3350](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3369](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3369).
+Source: [QuantumBlockEncoding/GHL2025.lean:3369](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_inputRegisters_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_inputRegisters_eq")
@@ -2577,7 +2577,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3369](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3393](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3393).
+Source: [QuantumBlockEncoding/GHL2025.lean:3393](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-inputregisters-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_cleanInput_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_cleanInput_eq")
@@ -2591,7 +2591,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3393](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3399](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3399).
+Source: [QuantumBlockEncoding/GHL2025.lean:3399](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-cleaninput-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_cleanInput_iff" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_cleanInput_iff")
@@ -2605,7 +2605,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3399](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3410](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3410).
+Source: [QuantumBlockEncoding/GHL2025.lean:3410](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-cleaninput-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_unitaryExtension_proved_eq_false" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_unitaryExtension_proved_eq_false")
@@ -2619,7 +2619,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3410](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3421](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3421).
+Source: [QuantumBlockEncoding/GHL2025.lean:3421](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-unitaryextension-proved-eq-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_imageIndex_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_imageIndex_eq")
@@ -2633,7 +2633,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3421](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3426](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3426).
+Source: [QuantumBlockEncoding/GHL2025.lean:3426](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-imageindex-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_addressInRange_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_addressInRange_eq")
@@ -2647,7 +2647,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3426](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3432](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3432).
+Source: [QuantumBlockEncoding/GHL2025.lean:3432](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-addressinrange-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_imageNoSpill_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_imageNoSpill_eq")
@@ -2661,7 +2661,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3432](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3438](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3438).
+Source: [QuantumBlockEncoding/GHL2025.lean:3438](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-imagenospill-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_rowPreserved_eq_true" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_rowPreserved_eq_true")
@@ -2675,7 +2675,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3438](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3449](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3449).
+Source: [QuantumBlockEncoding/GHL2025.lean:3449](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-rowpreserved-eq-true). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt")
@@ -2689,7 +2689,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3449](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3459](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3459).
+Source: [QuantumBlockEncoding/GHL2025.lean:3459](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-addresswritten-eq-true-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt")
@@ -2703,7 +2703,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3459](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3467](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3467).
+Source: [QuantumBlockEncoding/GHL2025.lean:3467](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-addressinrange-eq-true-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt")
@@ -2717,7 +2717,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3467](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3475](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3475).
+Source: [QuantumBlockEncoding/GHL2025.lean:3475](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-imagenospill-eq-true-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt")
@@ -2731,7 +2731,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3475](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3487](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3487).
+Source: [QuantumBlockEncoding/GHL2025.lean:3487](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercolumncontract-registersafety-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix")
@@ -2745,7 +2745,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3487](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3509](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3509).
+Source: [QuantumBlockEncoding/GHL2025.lean:3509](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapermatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix_eq_image" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix_eq_image")
@@ -2759,7 +2759,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3509](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3515](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3515).
+Source: [QuantumBlockEncoding/GHL2025.lean:3515](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapermatrix-eq-image). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix_imageFin_eq_one" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix_imageFin_eq_one")
@@ -2773,7 +2773,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3515](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3528](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3528).
+Source: [QuantumBlockEncoding/GHL2025.lean:3528](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapermatrix-imagefin-eq-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperDaggerMatrix" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperDaggerMatrix")
@@ -2787,7 +2787,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3528](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3545](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3545).
+Source: [QuantumBlockEncoding/GHL2025.lean:3545](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperdaggermatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperDaggerMatrix_eq_image" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperDaggerMatrix_eq_image")
@@ -2801,7 +2801,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3545](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3551](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3551).
+Source: [QuantumBlockEncoding/GHL2025.lean:3551](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperdaggermatrix-eq-image). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one")
@@ -2815,7 +2815,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3551](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3563](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3563).
+Source: [QuantumBlockEncoding/GHL2025.lean:3563](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperdaggermatrix-imagefin-eq-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.robinSparseAmplitudeValue" (lean := "QuantumBlockEncoding.GHL2025.robinSparseAmplitudeValue")
@@ -2829,7 +2829,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3563](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3588](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3588).
+Source: [QuantumBlockEncoding/GHL2025.lean:3588](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinsparseamplitudevalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.robinGlobalSparseAmplitudeValue" (lean := "QuantumBlockEncoding.GHL2025.robinGlobalSparseAmplitudeValue")
@@ -2843,7 +2843,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3588](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3645](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3645).
+Source: [QuantumBlockEncoding/GHL2025.lean:3645](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinglobalsparseamplitudevalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3" (lean := "QuantumBlockEncoding.GHL2025.robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3")
@@ -2857,7 +2857,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3645](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3691](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3691).
+Source: [QuantumBlockEncoding/GHL2025.lean:3691](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinglobalsparseamplitudevalue-boundaryslot2-row0-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinGlobalSparseAmplitudeValue_boundarySlot2_differs_rowLocal_n3" (lean := "QuantumBlockEncoding.GHL2025.robinGlobalSparseAmplitudeValue_boundarySlot2_differs_rowLocal_n3")
@@ -2871,7 +2871,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3691](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3703](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3703).
+Source: [QuantumBlockEncoding/GHL2025.lean:3703](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinglobalsparseamplitudevalue-boundaryslot2-differs-rowlocal-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.DerivativeNormalizerNDContract" (lean := "QuantumBlockEncoding.GHL2025.DerivativeNormalizerNDContract")
@@ -2885,7 +2885,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3703](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3721](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3721).
+Source: [QuantumBlockEncoding/GHL2025.lean:3721](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDContract" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDContract")
@@ -2899,7 +2899,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3721](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3745](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3745).
+Source: [QuantumBlockEncoding/GHL2025.lean:3745](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDContract_coefficient" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDContract_coefficient")
@@ -2913,7 +2913,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3745](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3792](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3792).
+Source: [QuantumBlockEncoding/GHL2025.lean:3792](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndcontract-coefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDContract_normalizerND" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDContract_normalizerND")
@@ -2927,7 +2927,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3792](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3797](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3797).
+Source: [QuantumBlockEncoding/GHL2025.lean:3797](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndcontract-normalizernd). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDContract_normalizedCoefficient" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDContract_normalizedCoefficient")
@@ -2941,7 +2941,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3797](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3802](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3802).
+Source: [QuantumBlockEncoding/GHL2025.lean:3802](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndcontract-normalizedcoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.DerivativeNormalizerNDSourceBound" (lean := "QuantumBlockEncoding.GHL2025.DerivativeNormalizerNDSourceBound")
@@ -2955,7 +2955,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3802](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3815](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3815).
+Source: [QuantumBlockEncoding/GHL2025.lean:3815](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsourcebound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound")
@@ -2969,7 +2969,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3815](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3833](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3833).
+Source: [QuantumBlockEncoding/GHL2025.lean:3833](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsourcebound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_sourceCoefficient" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_sourceCoefficient")
@@ -2983,7 +2983,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3833](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3847](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3847).
+Source: [QuantumBlockEncoding/GHL2025.lean:3847](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsourcebound-sourcecoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_normalizerND" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_normalizerND")
@@ -2997,7 +2997,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3847](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3852](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3852).
+Source: [QuantumBlockEncoding/GHL2025.lean:3852](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsourcebound-normalizernd). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_boundFormula" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_boundFormula")
@@ -3011,7 +3011,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3852](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3857](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3857).
+Source: [QuantumBlockEncoding/GHL2025.lean:3857](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsourcebound-boundformula). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_coefficientBound" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_coefficientBound")
@@ -3025,7 +3025,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3857](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3862](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3862).
+Source: [QuantumBlockEncoding/GHL2025.lean:3862](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsourcebound-coefficientbound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_coefficientBound_false" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_coefficientBound_false")
@@ -3039,7 +3039,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3862](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3867](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3867).
+Source: [QuantumBlockEncoding/GHL2025.lean:3867](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsourcebound-coefficientbound-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix")
@@ -3053,7 +3053,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3867](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3880](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3880).
+Source: [QuantumBlockEncoding/GHL2025.lean:3880](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororaclematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGate_U_indic" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_U_indic")
@@ -3067,7 +3067,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3880](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3898](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3898).
+Source: [QuantumBlockEncoding/GHL2025.lean:3898](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-u-indic). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGate_U_indic_dagger" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_U_indic_dagger")
@@ -3081,7 +3081,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3898](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3915](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3915).
+Source: [QuantumBlockEncoding/GHL2025.lean:3915](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-u-indic-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_U_indic_dagger_matrix_eq" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_U_indic_dagger_matrix_eq")
@@ -3095,7 +3095,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3915](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3931](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3931).
+Source: [QuantumBlockEncoding/GHL2025.lean:3931](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-u-indic-dagger-matrix-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTMatrix" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTMatrix")
@@ -3109,7 +3109,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3931](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3949](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3949).
+Source: [QuantumBlockEncoding/GHL2025.lean:3949](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.SparseAmplitudeOracleDTPaperRegisters" (lean := "QuantumBlockEncoding.GHL2025.SparseAmplitudeOracleDTPaperRegisters")
@@ -3123,7 +3123,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3949](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3978](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3978).
+Source: [QuantumBlockEncoding/GHL2025.lean:3978](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtpaperregisters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTPaperRegisters" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTPaperRegisters")
@@ -3137,7 +3137,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3978](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:3991](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L3991).
+Source: [QuantumBlockEncoding/GHL2025.lean:3991](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtpaperregisters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCosHalf" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCosHalf")
@@ -3151,7 +3151,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3991](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4009](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4009).
+Source: [QuantumBlockEncoding/GHL2025.lean:4009](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoshalf). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTSinHalf" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTSinHalf")
@@ -3165,7 +3165,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4009](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4013](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4013).
+Source: [QuantumBlockEncoding/GHL2025.lean:4013](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtsinhalf). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerObligation")
@@ -3179,7 +3179,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4013](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4028](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4028).
+Source: [QuantumBlockEncoding/GHL2025.lean:4028](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.SparseAmplitudeOracleDTCoefficientNormalizerContract" (lean := "QuantumBlockEncoding.GHL2025.SparseAmplitudeOracleDTCoefficientNormalizerContract")
@@ -3193,7 +3193,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4028](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4043](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4043).
+Source: [QuantumBlockEncoding/GHL2025.lean:4043](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizercontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerContract")
@@ -3207,7 +3207,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4043](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4063](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4063).
+Source: [QuantumBlockEncoding/GHL2025.lean:4063](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizercontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTNormalizedCoefficient")
@@ -3221,7 +3221,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4063](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4098](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4098).
+Source: [QuantumBlockEncoding/GHL2025.lean:4098](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtnormalizedcoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.SparseAmplitudeOracleDTCoefficientNormalizerProofRoute" (lean := "QuantumBlockEncoding.GHL2025.SparseAmplitudeOracleDTCoefficientNormalizerProofRoute")
@@ -3235,7 +3235,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4098](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4110](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4110).
+Source: [QuantumBlockEncoding/GHL2025.lean:4110](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute")
@@ -3249,7 +3249,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4110](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4134](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4134).
+Source: [QuantumBlockEncoding/GHL2025.lean:4134](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_coefficient" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_coefficient")
@@ -3263,7 +3263,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4134](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4158](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4158).
+Source: [QuantumBlockEncoding/GHL2025.lean:4158](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute-coefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizerND" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizerND")
@@ -3277,7 +3277,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4158](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4163](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4163).
+Source: [QuantumBlockEncoding/GHL2025.lean:4163](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute-normalizernd). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizedCoefficient" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizedCoefficient")
@@ -3291,7 +3291,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4163](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4168](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4168).
+Source: [QuantumBlockEncoding/GHL2025.lean:4168](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute-normalizedcoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sharedND" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sharedND")
@@ -3305,7 +3305,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4168](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4173](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4173).
+Source: [QuantumBlockEncoding/GHL2025.lean:4173](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute-sharednd). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sourceBound" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sourceBound")
@@ -3319,7 +3319,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4173](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4185](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4185).
+Source: [QuantumBlockEncoding/GHL2025.lean:4185](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute-sourcebound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketZeroEntry" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketZeroEntry")
@@ -3333,7 +3333,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4185](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4195](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4195).
+Source: [QuantumBlockEncoding/GHL2025.lean:4195](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute-ketzeroentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketOneEntry" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketOneEntry")
@@ -3347,7 +3347,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4195](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4200](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4200).
+Source: [QuantumBlockEncoding/GHL2025.lean:4200](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtcoefficientnormalizerproofroute-ketoneentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTRotationMatrix" (lean := "QuantumBlockEncoding.GHL2025.sparseAmplitudeOracleDTRotationMatrix")
@@ -3361,7 +3361,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4200](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4215](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4215).
+Source: [QuantumBlockEncoding/GHL2025.lean:4215](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-sparseamplitudeoracledtrotationmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_DT_S" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_DT_S")
@@ -3375,7 +3375,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4215](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4240](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4240).
+Source: [QuantumBlockEncoding/GHL2025.lean:4240](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-dt-s). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BoundaryRotationPaperRegisters" (lean := "QuantumBlockEncoding.GHL2025.BoundaryRotationPaperRegisters")
@@ -3389,7 +3389,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4240](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4259](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4259).
+Source: [QuantumBlockEncoding/GHL2025.lean:4259](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationpaperregisters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.boundaryRotationPaperRegisters" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationPaperRegisters")
@@ -3403,7 +3403,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4259](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4272](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4272).
+Source: [QuantumBlockEncoding/GHL2025.lean:4272](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationpaperregisters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.boundaryRotationCosHalf" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationCosHalf")
@@ -3417,7 +3417,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4272](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4290](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4290).
+Source: [QuantumBlockEncoding/GHL2025.lean:4290](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationcoshalf). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.boundaryRotationSinHalf" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationSinHalf")
@@ -3431,7 +3431,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4290](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4294](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4294).
+Source: [QuantumBlockEncoding/GHL2025.lean:4294](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationsinhalf). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerObligation" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerObligation")
@@ -3445,7 +3445,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4294](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4306](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4306).
+Source: [QuantumBlockEncoding/GHL2025.lean:4306](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizerobligation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BoundaryRotationAngleNormalizerContract" (lean := "QuantumBlockEncoding.GHL2025.BoundaryRotationAngleNormalizerContract")
@@ -3459,7 +3459,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4306](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4320](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4320).
+Source: [QuantumBlockEncoding/GHL2025.lean:4320](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizercontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerContract" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerContract")
@@ -3473,7 +3473,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4320](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4343](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4343).
+Source: [QuantumBlockEncoding/GHL2025.lean:4343](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizercontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerContract_coefficient" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerContract_coefficient")
@@ -3487,7 +3487,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4343](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4386](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4386).
+Source: [QuantumBlockEncoding/GHL2025.lean:4386](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizercontract-coefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.boundaryRotationNormalizedCoefficient" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationNormalizedCoefficient")
@@ -3501,7 +3501,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4386](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4398](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4398).
+Source: [QuantumBlockEncoding/GHL2025.lean:4398](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationnormalizedcoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BoundaryRotationAngleNormalizerProofRoute" (lean := "QuantumBlockEncoding.GHL2025.BoundaryRotationAngleNormalizerProofRoute")
@@ -3515,7 +3515,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4398](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4411](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4411).
+Source: [QuantumBlockEncoding/GHL2025.lean:4411](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizerproofroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute")
@@ -3529,7 +3529,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4411](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4438](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4438).
+Source: [QuantumBlockEncoding/GHL2025.lean:4438](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizerproofroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute_coefficient" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute_coefficient")
@@ -3543,7 +3543,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4438](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4467](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4467).
+Source: [QuantumBlockEncoding/GHL2025.lean:4467](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizerproofroute-coefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute_arccosArgument" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute_arccosArgument")
@@ -3557,7 +3557,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4467](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4472](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4472).
+Source: [QuantumBlockEncoding/GHL2025.lean:4472](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizerproofroute-arccosargument). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute_sharedND" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute_sharedND")
@@ -3571,7 +3571,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4472](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4477](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4477).
+Source: [QuantumBlockEncoding/GHL2025.lean:4477](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizerproofroute-sharednd). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute_sourceBound" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationAngleNormalizerProofRoute_sourceBound")
@@ -3585,7 +3585,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4477](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4487](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4487).
+Source: [QuantumBlockEncoding/GHL2025.lean:4487](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationanglenormalizerproofroute-sourcebound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_sharedRoutes" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSourceBound_sharedRoutes")
@@ -3599,7 +3599,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4487](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4497](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4497).
+Source: [QuantumBlockEncoding/GHL2025.lean:4497](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsourcebound-sharedroutes). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes" (lean := "QuantumBlockEncoding.GHL2025.robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes")
@@ -3613,7 +3613,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4497](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4514](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4514).
+Source: [QuantumBlockEncoding/GHL2025.lean:4514](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinglobalsparseamplitudevalue-sharednormalizerroutes). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.boundaryRotationMatrix" (lean := "QuantumBlockEncoding.GHL2025.boundaryRotationMatrix")
@@ -3627,7 +3627,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4514](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4541](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4541).
+Source: [QuantumBlockEncoding/GHL2025.lean:4541](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-boundaryrotationmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGate_Ry_boundary" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_Ry_boundary")
@@ -3641,7 +3641,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4541](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4576](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4576).
+Source: [QuantumBlockEncoding/GHL2025.lean:4576](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-ry-boundary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSharedRoute_flags_false" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSharedRoute_flags_false")
@@ -3655,7 +3655,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4576](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4594](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4594).
+Source: [QuantumBlockEncoding/GHL2025.lean:4594](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsharedroute-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSharedRoute_sourceBoundAndFlags" (lean := "QuantumBlockEncoding.GHL2025.derivativeNormalizerNDSharedRoute_sourceBoundAndFlags")
@@ -3669,7 +3669,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4594](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4626](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4626).
+Source: [QuantumBlockEncoding/GHL2025.lean:4626](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-derivativenormalizerndsharedroute-sourceboundandflags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessMatrix" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessMatrix")
@@ -3683,7 +3683,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4626](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4679](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4679).
+Source: [QuantumBlockEncoding/GHL2025.lean:4679](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS")
@@ -3697,7 +3697,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4679](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4702](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4702).
+Source: [QuantumBlockEncoding/GHL2025.lean:4702](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_imageFin_eq_one" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_imageFin_eq_one")
@@ -3711,7 +3711,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4702](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4712](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4712).
+Source: [QuantumBlockEncoding/GHL2025.lean:4712](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-imagefin-eq-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_contractDrift_column8_n3" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_contractDrift_column8_n3")
@@ -3725,7 +3725,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4712](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4732](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4732).
+Source: [QuantumBlockEncoding/GHL2025.lean:4732](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-contractdrift-column8-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3")
@@ -3739,7 +3739,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4732](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4754](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4754).
+Source: [QuantumBlockEncoding/GHL2025.lean:4754](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-boundaryunusedsparsecollision-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_globalSparseBoundaryNoCollision_n3" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_globalSparseBoundaryNoCollision_n3")
@@ -3753,7 +3753,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4754](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4780](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4780).
+Source: [QuantumBlockEncoding/GHL2025.lean:4780](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-globalsparseboundarynocollision-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_boundaryColumns_n3" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_boundaryColumns_n3")
@@ -3767,7 +3767,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4780](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4805](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4805).
+Source: [QuantumBlockEncoding/GHL2025.lean:4805](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperglobalslotsource-boundarycolumns-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_encodedOutOfRange_n3" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperGlobalSlotSource_encodedOutOfRange_n3")
@@ -3781,7 +3781,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4805](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4820](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4820).
+Source: [QuantumBlockEncoding/GHL2025.lean:4820](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperglobalslotsource-encodedoutofrange-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.robinFunctionValue" (lean := "QuantumBlockEncoding.GHL2025.robinFunctionValue")
@@ -3795,7 +3795,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4820](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4837](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4837).
+Source: [QuantumBlockEncoding/GHL2025.lean:4837](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinfunctionvalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.FunctionOraclePaperRegisters" (lean := "QuantumBlockEncoding.GHL2025.FunctionOraclePaperRegisters")
@@ -3809,7 +3809,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4837](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4849](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4849).
+Source: [QuantumBlockEncoding/GHL2025.lean:4849](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperregisters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.functionOraclePaperRegisters" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperRegisters")
@@ -3823,7 +3823,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4849](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4864](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4864).
+Source: [QuantumBlockEncoding/GHL2025.lean:4864](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperregisters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.functionOracleNormalizedValue" (lean := "QuantumBlockEncoding.GHL2025.functionOracleNormalizedValue")
@@ -3837,7 +3837,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4864](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4885](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4885).
+Source: [QuantumBlockEncoding/GHL2025.lean:4885](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclenormalizedvalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.FunctionOraclePaperImage" (lean := "QuantumBlockEncoding.GHL2025.FunctionOraclePaperImage")
@@ -3851,7 +3851,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4885](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4896](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4896).
+Source: [QuantumBlockEncoding/GHL2025.lean:4896](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.functionOraclePaperImage" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperImage")
@@ -3865,7 +3865,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4896](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4920](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4920).
+Source: [QuantumBlockEncoding/GHL2025.lean:4920](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_inputRegisters_eq" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_inputRegisters_eq")
@@ -3879,7 +3879,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4920](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4961](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4961).
+Source: [QuantumBlockEncoding/GHL2025.lean:4961](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperimage-inputregisters-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanBranchBasisIndex_eq" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanBranchBasisIndex_eq")
@@ -3893,7 +3893,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4961](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4967](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4967).
+Source: [QuantumBlockEncoding/GHL2025.lean:4967](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperimage-cleanbranchbasisindex-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanBranchSystemValue_eq" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanBranchSystemValue_eq")
@@ -3907,7 +3907,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4967](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4973](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4973).
+Source: [QuantumBlockEncoding/GHL2025.lean:4973](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperimage-cleanbranchsystemvalue-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanBranchWorkspaceValue_eq" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanBranchWorkspaceValue_eq")
@@ -3921,7 +3921,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4973](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4979](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4979).
+Source: [QuantumBlockEncoding/GHL2025.lean:4979](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperimage-cleanbranchworkspacevalue-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanBranchAmplitude_eq" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanBranchAmplitude_eq")
@@ -3935,7 +3935,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4979](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4987](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4987).
+Source: [QuantumBlockEncoding/GHL2025.lean:4987](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperimage-cleanbranchamplitude-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanWorkspaceBranch_eq" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperImage_cleanWorkspaceBranch_eq")
@@ -3949,7 +3949,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4987](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:4993](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L4993).
+Source: [QuantumBlockEncoding/GHL2025.lean:4993](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepaperimage-cleanworkspacebranch-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.FunctionOracleExternalAmplitudeSourceContract" (lean := "QuantumBlockEncoding.GHL2025.FunctionOracleExternalAmplitudeSourceContract")
@@ -3963,7 +3963,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4993](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5006](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5006).
+Source: [QuantumBlockEncoding/GHL2025.lean:5006](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleexternalamplitudesourcecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.functionOracleExternalAmplitudeSourceContract" (lean := "QuantumBlockEncoding.GHL2025.functionOracleExternalAmplitudeSourceContract")
@@ -3977,7 +3977,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5006](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5031](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5031).
+Source: [QuantumBlockEncoding/GHL2025.lean:5031](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleexternalamplitudesourcecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleExternalAmplitudeSourceContract_sourceAnchor" (lean := "QuantumBlockEncoding.GHL2025.functionOracleExternalAmplitudeSourceContract_sourceAnchor")
@@ -3991,7 +3991,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5031](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5072](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5072).
+Source: [QuantumBlockEncoding/GHL2025.lean:5072](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleexternalamplitudesourcecontract-sourceanchor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleExternalAmplitudeSourceContract_flags_false" (lean := "QuantumBlockEncoding.GHL2025.functionOracleExternalAmplitudeSourceContract_flags_false")
@@ -4005,7 +4005,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5072](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5076](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5076).
+Source: [QuantumBlockEncoding/GHL2025.lean:5076](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleexternalamplitudesourcecontract-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.FunctionOracleAmplitudeProofRoute" (lean := "QuantumBlockEncoding.GHL2025.FunctionOracleAmplitudeProofRoute")
@@ -4019,7 +4019,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5076](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5098](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5098).
+Source: [QuantumBlockEncoding/GHL2025.lean:5098](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute")
@@ -4033,7 +4033,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5098](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5125](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5125).
+Source: [QuantumBlockEncoding/GHL2025.lean:5125](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_sourceAnchor" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_sourceAnchor")
@@ -4047,7 +4047,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5125](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5150](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5150).
+Source: [QuantumBlockEncoding/GHL2025.lean:5150](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-sourceanchor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_sourceFunctionValue" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_sourceFunctionValue")
@@ -4061,7 +4061,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5150](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5155](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5155).
+Source: [QuantumBlockEncoding/GHL2025.lean:5155](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-sourcefunctionvalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_normalizerNf" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_normalizerNf")
@@ -4075,7 +4075,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5155](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5160](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5160).
+Source: [QuantumBlockEncoding/GHL2025.lean:5160](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-normalizernf). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_normalizedAmplitude" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_normalizedAmplitude")
@@ -4089,7 +4089,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5160](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5165](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5165).
+Source: [QuantumBlockEncoding/GHL2025.lean:5165](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-normalizedamplitude). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_paperImage" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_paperImage")
@@ -4103,7 +4103,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5165](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5170](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5170).
+Source: [QuantumBlockEncoding/GHL2025.lean:5170](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-paperimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_obligations_reuse_paperImage" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_obligations_reuse_paperImage")
@@ -4117,7 +4117,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5170](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5180](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5180).
+Source: [QuantumBlockEncoding/GHL2025.lean:5180](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-obligations-reuse-paperimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_externalSourceContract" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_externalSourceContract")
@@ -4131,7 +4131,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5180](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5192](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5192).
+Source: [QuantumBlockEncoding/GHL2025.lean:5192](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-externalsourcecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_flags_false" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_flags_false")
@@ -4145,7 +4145,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5192](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5208](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5208).
+Source: [QuantumBlockEncoding/GHL2025.lean:5208](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_externalSourceAndFlags" (lean := "QuantumBlockEncoding.GHL2025.functionOracleAmplitudeProofRoute_externalSourceAndFlags")
@@ -4159,7 +4159,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5208](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5226](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5226).
+Source: [QuantumBlockEncoding/GHL2025.lean:5226](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleamplitudeproofroute-externalsourceandflags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.functionOracleOrthogonalEntry" (lean := "QuantumBlockEncoding.GHL2025.functionOracleOrthogonalEntry")
@@ -4173,7 +4173,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5226](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5269](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5269).
+Source: [QuantumBlockEncoding/GHL2025.lean:5269](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoracleorthogonalentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.functionOraclePaperMatrix" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperMatrix")
@@ -4187,7 +4187,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5269](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5289](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5289).
+Source: [QuantumBlockEncoding/GHL2025.lean:5289](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepapermatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperMatrix_cleanBranch_entry" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperMatrix_cleanBranch_entry")
@@ -4201,7 +4201,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5289](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5304](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5304).
+Source: [QuantumBlockEncoding/GHL2025.lean:5304](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepapermatrix-cleanbranch-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperMatrix_cleanWorkspace_offBranch_zero" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperMatrix_cleanWorkspace_offBranch_zero")
@@ -4215,7 +4215,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5304](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5314](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5314).
+Source: [QuantumBlockEncoding/GHL2025.lean:5314](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepapermatrix-cleanworkspace-offbranch-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.functionOraclePaperMatrix_nonCleanInput_entry" (lean := "QuantumBlockEncoding.GHL2025.functionOraclePaperMatrix_nonCleanInput_entry")
@@ -4229,7 +4229,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5314](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5324](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5324).
+Source: [QuantumBlockEncoding/GHL2025.lean:5324](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclepapermatrix-noncleaninput-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.functionOracleMatrix" (lean := "QuantumBlockEncoding.GHL2025.functionOracleMatrix")
@@ -4243,7 +4243,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5324](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5349](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5349).
+Source: [QuantumBlockEncoding/GHL2025.lean:5349](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-functionoraclematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_f" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_f")
@@ -4257,7 +4257,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5349](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5368](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5368).
+Source: [QuantumBlockEncoding/GHL2025.lean:5368](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-f). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.swapOracleMatrix" (lean := "QuantumBlockEncoding.GHL2025.swapOracleMatrix")
@@ -4271,7 +4271,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5368](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5394](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5394).
+Source: [QuantumBlockEncoding/GHL2025.lean:5394](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.swapOracleImage" (lean := "QuantumBlockEncoding.GHL2025.swapOracleImage")
@@ -4285,7 +4285,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5394](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5410](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5410).
+Source: [QuantumBlockEncoding/GHL2025.lean:5410](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporacleimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.swapOracleDiff" (lean := "QuantumBlockEncoding.GHL2025.swapOracleDiff")
@@ -4299,7 +4299,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5410](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5425](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5425).
+Source: [QuantumBlockEncoding/GHL2025.lean:5425](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclediff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleImage_eq_xor_diff" (lean := "QuantumBlockEncoding.GHL2025.swapOracleImage_eq_xor_diff")
@@ -4313,7 +4313,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5425](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5433](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5433).
+Source: [QuantumBlockEncoding/GHL2025.lean:5433](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporacleimage-eq-xor-diff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleMatrix_eq_image" (lean := "QuantumBlockEncoding.GHL2025.swapOracleMatrix_eq_image")
@@ -4327,7 +4327,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5433](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5440](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5440).
+Source: [QuantumBlockEncoding/GHL2025.lean:5440](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclematrix-eq-image). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGate_SWAP" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_SWAP")
@@ -4341,7 +4341,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5440](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5452](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5452).
+Source: [QuantumBlockEncoding/GHL2025.lean:5452](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-swap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessDaggerMatrix" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessDaggerMatrix")
@@ -4355,7 +4355,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5452](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5467](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5467).
+Source: [QuantumBlockEncoding/GHL2025.lean:5467](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessdaggermatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_dagger" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_dagger")
@@ -4369,7 +4369,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5467](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5489](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5489).
+Source: [QuantumBlockEncoding/GHL2025.lean:5489](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one")
@@ -4383,7 +4383,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5489](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5499](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5499).
+Source: [QuantumBlockEncoding/GHL2025.lean:5499](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-dagger-imagefin-eq-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage")
@@ -4397,7 +4397,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5499](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5518](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5518).
+Source: [QuantumBlockEncoding/GHL2025.lean:5518](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-dagger-postswap-entry-of-preimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessPostSwapCleanup" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessPostSwapCleanup")
@@ -4411,7 +4411,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5518](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5539](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5539).
+Source: [QuantumBlockEncoding/GHL2025.lean:5539](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspostswapcleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_preimage" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_preimage")
@@ -4425,7 +4425,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5539](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5569](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5569).
+Source: [QuantumBlockEncoding/GHL2025.lean:5569](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspostswapcleanup-of-preimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_imageFin_entrySafety" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_imageFin_entrySafety")
@@ -4439,7 +4439,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5569](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5610](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5610).
+Source: [QuantumBlockEncoding/GHL2025.lean:5610](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-imagefin-entrysafety). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_globalSlotSource_entrySafety" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_O_D_BS_globalSlotSource_entrySafety")
@@ -4453,7 +4453,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5610](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5644](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5644).
+Source: [QuantumBlockEncoding/GHL2025.lean:5644](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-o-d-bs-globalslotsource-entrysafety). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.oneTermRobinGateMatrixPlaceholders" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGateMatrixPlaceholders")
@@ -4467,7 +4467,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5644](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5690](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5690).
+Source: [QuantumBlockEncoding/GHL2025.lean:5690](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingatematrixplaceholders). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinPlaceholdersMatch" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinPlaceholdersMatch")
@@ -4481,7 +4481,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5690](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5706](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5706).
+Source: [QuantumBlockEncoding/GHL2025.lean:5706](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobinplaceholdersmatch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGateMatrixPlaceholders_gateList" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGateMatrixPlaceholders_gateList")
@@ -4495,7 +4495,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5706](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5722](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5722).
+Source: [QuantumBlockEncoding/GHL2025.lean:5722](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingatematrixplaceholders-gatelist). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGateMatrixPlaceholders_unitaryFlags" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGateMatrixPlaceholders_unitaryFlags")
@@ -4509,7 +4509,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5722](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5741](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5741).
+Source: [QuantumBlockEncoding/GHL2025.lean:5741](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingatematrixplaceholders-unitaryflags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.indicatorOracleImage" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage")
@@ -4523,7 +4523,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5741](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5757](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5757).
+Source: [QuantumBlockEncoding/GHL2025.lean:5757](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_eq_image" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_eq_image")
@@ -4537,7 +4537,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5757](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5769](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5769).
+Source: [QuantumBlockEncoding/GHL2025.lean:5769](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororaclematrix-eq-image). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse_n1" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse_n1")
@@ -4551,7 +4551,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5769](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5780](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5780).
+Source: [QuantumBlockEncoding/GHL2025.lean:5780](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-self-inverse-n1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse_n3" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse_n3")
@@ -4565,7 +4565,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5780](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5794](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5794).
+Source: [QuantumBlockEncoding/GHL2025.lean:5794](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-self-inverse-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_injective_n1" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_injective_n1")
@@ -4579,7 +4579,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5794](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5806](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5806).
+Source: [QuantumBlockEncoding/GHL2025.lean:5806](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-injective-n1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_injective_n3" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_injective_n3")
@@ -4593,7 +4593,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5806](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5822](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5822).
+Source: [QuantumBlockEncoding/GHL2025.lean:5822](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-injective-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.shiftLeft_land_mask_eq_zero" (lean := "QuantumBlockEncoding.GHL2025.shiftLeft_land_mask_eq_zero")
@@ -4607,7 +4607,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5822](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5839](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5839).
+Source: [QuantumBlockEncoding/GHL2025.lean:5839](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-shiftleft-land-mask-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.xor_shift_preserve_low" (lean := "QuantumBlockEncoding.GHL2025.xor_shift_preserve_low")
@@ -4621,7 +4621,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5839](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5856](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5856).
+Source: [QuantumBlockEncoding/GHL2025.lean:5856](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-xor-shift-preserve-low). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.xor_shift_preserve_shift_low" (lean := "QuantumBlockEncoding.GHL2025.xor_shift_preserve_shift_low")
@@ -4635,7 +4635,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5856](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5867](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5867).
+Source: [QuantumBlockEncoding/GHL2025.lean:5867](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-xor-shift-preserve-shift-low). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleDiff_lt_two_pow" (lean := "QuantumBlockEncoding.GHL2025.swapOracleDiff_lt_two_pow")
@@ -4649,7 +4649,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5867](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5892](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5892).
+Source: [QuantumBlockEncoding/GHL2025.lean:5892](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclediff-lt-two-pow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleDiff_shiftRight_eq_zero" (lean := "QuantumBlockEncoding.GHL2025.swapOracleDiff_shiftRight_eq_zero")
@@ -4663,7 +4663,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5892](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5910](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5910).
+Source: [QuantumBlockEncoding/GHL2025.lean:5910](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclediff-shiftright-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleDiff_shiftLeft_mask_eq_zero" (lean := "QuantumBlockEncoding.GHL2025.swapOracleDiff_shiftLeft_mask_eq_zero")
@@ -4677,7 +4677,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5910](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5925](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5925).
+Source: [QuantumBlockEncoding/GHL2025.lean:5925](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclediff-shiftleft-mask-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.shiftLeft_lt_two_pow_of_lt" (lean := "QuantumBlockEncoding.GHL2025.shiftLeft_lt_two_pow_of_lt")
@@ -4691,7 +4691,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5925](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5938](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5938).
+Source: [QuantumBlockEncoding/GHL2025.lean:5938](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-shiftleft-lt-two-pow-of-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleImage_lt_qubitDim" (lean := "QuantumBlockEncoding.GHL2025.swapOracleImage_lt_qubitDim")
@@ -4705,7 +4705,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5938](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5956](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5956).
+Source: [QuantumBlockEncoding/GHL2025.lean:5956](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporacleimage-lt-qubitdim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleImage_block1_eq_block2" (lean := "QuantumBlockEncoding.GHL2025.swapOracleImage_block1_eq_block2")
@@ -4719,7 +4719,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5956](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:5987](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L5987).
+Source: [QuantumBlockEncoding/GHL2025.lean:5987](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporacleimage-block1-eq-block2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleImage_block2_eq_block1" (lean := "QuantumBlockEncoding.GHL2025.swapOracleImage_block2_eq_block1")
@@ -4733,7 +4733,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5987](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6015](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6015).
+Source: [QuantumBlockEncoding/GHL2025.lean:6015](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporacleimage-block2-eq-block1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleDiff_preserved" (lean := "QuantumBlockEncoding.GHL2025.swapOracleDiff_preserved")
@@ -4747,7 +4747,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6015](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6049](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6049).
+Source: [QuantumBlockEncoding/GHL2025.lean:6049](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclediff-preserved). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.xor_two_shifted_masks_cancel" (lean := "QuantumBlockEncoding.GHL2025.xor_two_shifted_masks_cancel")
@@ -4761,7 +4761,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6049](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6058](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6058).
+Source: [QuantumBlockEncoding/GHL2025.lean:6058](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-xor-two-shifted-masks-cancel). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleImage_self_inverse" (lean := "QuantumBlockEncoding.GHL2025.swapOracleImage_self_inverse")
@@ -4775,7 +4775,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6058](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6075](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6075).
+Source: [QuantumBlockEncoding/GHL2025.lean:6075](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporacleimage-self-inverse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleImage_injective" (lean := "QuantumBlockEncoding.GHL2025.swapOracleImage_injective")
@@ -4789,7 +4789,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6075](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6086](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6086).
+Source: [QuantumBlockEncoding/GHL2025.lean:6086](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporacleimage-injective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleImage_bijective" (lean := "QuantumBlockEncoding.GHL2025.swapOracleImage_bijective")
@@ -4803,7 +4803,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6086](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6100](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6100).
+Source: [QuantumBlockEncoding/GHL2025.lean:6100](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporacleimage-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleMatrix_col_has_one" (lean := "QuantumBlockEncoding.GHL2025.swapOracleMatrix_col_has_one")
@@ -4817,7 +4817,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6100](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6123](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6123).
+Source: [QuantumBlockEncoding/GHL2025.lean:6123](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclematrix-col-has-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleMatrix_col_unique" (lean := "QuantumBlockEncoding.GHL2025.swapOracleMatrix_col_unique")
@@ -4831,7 +4831,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6123](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6135](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6135).
+Source: [QuantumBlockEncoding/GHL2025.lean:6135](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclematrix-col-unique). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleMatrix_row_has_one" (lean := "QuantumBlockEncoding.GHL2025.swapOracleMatrix_row_has_one")
@@ -4845,7 +4845,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6135](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6145](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6145).
+Source: [QuantumBlockEncoding/GHL2025.lean:6145](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclematrix-row-has-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleMatrix_row_unique" (lean := "QuantumBlockEncoding.GHL2025.swapOracleMatrix_row_unique")
@@ -4859,7 +4859,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6145](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6160](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6160).
+Source: [QuantumBlockEncoding/GHL2025.lean:6160](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclematrix-row-unique). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.swapOracleMatrix_is_permutation" (lean := "QuantumBlockEncoding.GHL2025.swapOracleMatrix_is_permutation")
@@ -4873,7 +4873,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6160](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6178](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6178).
+Source: [QuantumBlockEncoding/GHL2025.lean:6178](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-swaporaclematrix-is-permutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwap_rowValue_eq_address" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwap_rowValue_eq_address")
@@ -4887,7 +4887,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6178](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6205](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6205).
+Source: [QuantumBlockEncoding/GHL2025.lean:6205](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswap-rowvalue-eq-address). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue")
@@ -4901,7 +4901,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6205](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6222](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6222).
+Source: [QuantumBlockEncoding/GHL2025.lean:6222](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswap-odregistervalue-eq-rowvalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt")
@@ -4915,7 +4915,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6222](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6238](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6238).
+Source: [QuantumBlockEncoding/GHL2025.lean:6238](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswapimage-lt-qubitdim-of-address-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister")
@@ -4929,7 +4929,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6238](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6258](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6258).
+Source: [QuantumBlockEncoding/GHL2025.lean:6258](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_eq_splice" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_eq_splice")
@@ -4943,7 +4943,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6258](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6267](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6267).
+Source: [QuantumBlockEncoding/GHL2025.lean:6267](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-eq-splice). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_lowBlock_lt_highBase_of_odValue_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_lowBlock_lt_highBase_of_odValue_lt")
@@ -4957,7 +4957,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6267](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6275](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6275).
+Source: [QuantumBlockEncoding/GHL2025.lean:6275](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-lowblock-lt-highbase-of-odvalue-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_mod_lowBase" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_mod_lowBase")
@@ -4971,7 +4971,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6275](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6313](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6313).
+Source: [QuantumBlockEncoding/GHL2025.lean:6313](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-mod-lowbase). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_div_lowBase_mod_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_div_lowBase_mod_eq")
@@ -4985,7 +4985,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6313](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6348](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6348).
+Source: [QuantumBlockEncoding/GHL2025.lean:6348](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-div-lowbase-mod-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_rowValue_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_rowValue_eq")
@@ -4999,7 +4999,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6348](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6391](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6391).
+Source: [QuantumBlockEncoding/GHL2025.lean:6391](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-rowvalue-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_odRegisterValue_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_odRegisterValue_eq")
@@ -5013,7 +5013,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6391](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6411](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6411).
+Source: [QuantumBlockEncoding/GHL2025.lean:6411](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-odregistervalue-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_div_highBase_eq_of_odValue_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_div_highBase_eq_of_odValue_lt")
@@ -5027,7 +5027,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6411](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6423](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6423).
+Source: [QuantumBlockEncoding/GHL2025.lean:6423](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-div-highbase-eq-of-odvalue-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt")
@@ -5041,7 +5041,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6423](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6455](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6455).
+Source: [QuantumBlockEncoding/GHL2025.lean:6455](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-lt-qubitdim-of-odvalue-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_splice_of_odValue_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_splice_of_odValue_lt")
@@ -5055,7 +5055,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6455](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6499](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6499).
+Source: [QuantumBlockEncoding/GHL2025.lean:6499](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-splice-of-odvalue-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_self" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperSpliceODRegister_self")
@@ -5069,7 +5069,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6499](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6514](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6514).
+Source: [QuantumBlockEncoding/GHL2025.lean:6514](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperspliceodregister-self). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanODValue" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanODValue")
@@ -5083,7 +5083,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6514](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6556](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6556).
+Source: [QuantumBlockEncoding/GHL2025.lean:6556](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleanodvalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanODValue_paddedZero_eq_zero" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanODValue_paddedZero_eq_zero")
@@ -5097,7 +5097,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6556](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6561](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6561).
+Source: [QuantumBlockEncoding/GHL2025.lean:6561](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleanodvalue-paddedzero-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt")
@@ -5111,7 +5111,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6561](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6570](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6570).
+Source: [QuantumBlockEncoding/GHL2025.lean:6570](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleanodvalue-lt-two-pow-of-sparse-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanODValue_sparseIndex_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanODValue_sparseIndex_eq")
@@ -5125,7 +5125,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6570](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6585](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6585).
+Source: [QuantumBlockEncoding/GHL2025.lean:6585](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleanodvalue-sparseindex-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanInput_odRegisterValue_eq_cleanODValue" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperCleanInput_odRegisterValue_eq_cleanODValue")
@@ -5139,7 +5139,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6585](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6605](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6605).
+Source: [QuantumBlockEncoding/GHL2025.lean:6605](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspapercleaninput-odregistervalue-eq-cleanodvalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_injective_on_globalSlotSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperImage_injective_on_globalSlotSource")
@@ -5153,7 +5153,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6605](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6679](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6679).
+Source: [QuantumBlockEncoding/GHL2025.lean:6679](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperimage-injective-on-globalslotsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow")
@@ -5167,7 +5167,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6679](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6806](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6806).
+Source: [QuantumBlockEncoding/GHL2025.lean:6806](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswapreversesparse-lt-two-pow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow")
@@ -5181,7 +5181,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6806](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6821](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6821).
+Source: [QuantumBlockEncoding/GHL2025.lean:6821](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswapcleanodvalue-lt-two-pow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate")
@@ -5195,7 +5195,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6821](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6849](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6849).
+Source: [QuantumBlockEncoding/GHL2025.lean:6849](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks")
@@ -5209,7 +5209,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6849](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6866](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6866).
+Source: [QuantumBlockEncoding/GHL2025.lean:6866](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidatechecks). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource")
@@ -5223,7 +5223,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6866](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6883](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6883).
+Source: [QuantumBlockEncoding/GHL2025.lean:6883](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidatechecks-of-cleansource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource")
@@ -5237,7 +5237,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6883](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:6990](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L6990).
+Source: [QuantumBlockEncoding/GHL2025.lean:6990](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidate-lt-qubitdim-of-cleansource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate")
@@ -5251,7 +5251,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6990](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7039](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7039).
+Source: [QuantumBlockEncoding/GHL2025.lean:7039](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspostswapcleanup-of-cleansourcecandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange")
@@ -5265,7 +5265,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7039](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7080](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7080).
+Source: [QuantumBlockEncoding/GHL2025.lean:7080](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspostswapcleanup-of-cleansourcecandidate-norange). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange")
@@ -5279,7 +5279,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7080](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7128](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7128).
+Source: [QuantumBlockEncoding/GHL2025.lean:7128](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspostswapcleanup-of-validcleansourcecandidate-norange). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_globalSlotSourceCandidate_noRange" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPostSwapCleanup_of_globalSlotSourceCandidate_noRange")
@@ -5293,7 +5293,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7128](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7170](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7170).
+Source: [QuantumBlockEncoding/GHL2025.lean:7170](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspostswapcleanup-of-globalslotsourcecandidate-norange). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_globalSlotSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_globalSlotSource")
@@ -5307,7 +5307,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7170](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7210](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7210).
+Source: [QuantumBlockEncoding/GHL2025.lean:7210](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidatechecks-of-globalslotsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_globalSlotSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_globalSlotSource")
@@ -5321,7 +5321,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7210](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7229](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7229).
+Source: [QuantumBlockEncoding/GHL2025.lean:7229](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidate-lt-qubitdim-of-globalslotsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_sparseIndex_eq" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_sparseIndex_eq")
@@ -5335,7 +5335,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7229](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7251](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7251).
+Source: [QuantumBlockEncoding/GHL2025.lean:7251](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidate-sparseindex-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_globalSlotSource_of_globalSlotSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_globalSlotSource_of_globalSlotSource")
@@ -5349,7 +5349,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7251](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7296](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7296).
+Source: [QuantumBlockEncoding/GHL2025.lean:7296](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidate-globalslotsource-of-globalslotsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_unique_on_globalSlotSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperPostSwapPreimageCandidate_unique_on_globalSlotSource")
@@ -5363,7 +5363,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7296](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7344](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7344).
+Source: [QuantumBlockEncoding/GHL2025.lean:7344](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesspaperpostswappreimagecandidate-unique-on-globalslotsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessGlobalSlotInverseOnRangeContract" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessGlobalSlotInverseOnRangeContract")
@@ -5377,7 +5377,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7344](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7403](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7403).
+Source: [QuantumBlockEncoding/GHL2025.lean:7403](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract")
@@ -5391,7 +5391,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7403](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7427](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7427).
+Source: [QuantumBlockEncoding/GHL2025.lean:7427](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_flags_false" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_flags_false")
@@ -5405,7 +5405,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7427](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7469](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7469).
+Source: [QuantumBlockEncoding/GHL2025.lean:7469](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract-flags-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_of_globalSlotSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_of_globalSlotSource")
@@ -5419,7 +5419,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7469](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7490](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7490).
+Source: [QuantumBlockEncoding/GHL2025.lean:7490](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract-of-globalslotsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_uniquePreimageBridge" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_uniquePreimageBridge")
@@ -5433,7 +5433,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7490](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7525](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7525).
+Source: [QuantumBlockEncoding/GHL2025.lean:7525](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract-uniquepreimagebridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerCleanupBridge" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerCleanupBridge")
@@ -5447,7 +5447,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7525](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7592](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7592).
+Source: [QuantumBlockEncoding/GHL2025.lean:7592](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract-daggercleanupbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_cleanupContractMap" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_cleanupContractMap")
@@ -5461,7 +5461,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7592](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7665](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7665).
+Source: [QuantumBlockEncoding/GHL2025.lean:7665](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract-cleanupcontractmap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.defaultBandedSparseAccessPaperContract_cleanupRouteBridge" (lean := "QuantumBlockEncoding.GHL2025.defaultBandedSparseAccessPaperContract_cleanupRouteBridge")
@@ -5475,7 +5475,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7665](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7759](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7759).
+Source: [QuantumBlockEncoding/GHL2025.lean:7759](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultbandedsparseaccesspapercontract-cleanuproutebridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerOffCandidate_zero" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerOffCandidate_zero")
@@ -5489,7 +5489,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7759](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7804](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7804).
+Source: [QuantumBlockEncoding/GHL2025.lean:7804](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract-daggeroffcandidate-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnCleanup" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnCleanup")
@@ -5503,7 +5503,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7804](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7867](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7867).
+Source: [QuantumBlockEncoding/GHL2025.lean:7867](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract-restricteddaggercolumncleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator")
@@ -5517,7 +5517,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7867](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:7956](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L7956).
+Source: [QuantumBlockEncoding/GHL2025.lean:7956](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccessglobalslotinverseonrangecontract-restricteddaggercolumnindicator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessCleanupScope" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessCleanupScope")
@@ -5531,7 +5531,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7956](https://github.com/DakeBU/Quant
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8043](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8043).
+Source: [QuantumBlockEncoding/GHL2025.lean:8043](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesscleanupscope). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.BandedSparseAccessCleanupScopeDecision" (lean := "QuantumBlockEncoding.GHL2025.BandedSparseAccessCleanupScopeDecision")
@@ -5545,7 +5545,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8043](https://github.com/DakeBU/Quant
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8059](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8059).
+Source: [QuantumBlockEncoding/GHL2025.lean:8059](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesscleanupscopedecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.bandedSparseAccessCleanupScopeDecision" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessCleanupScopeDecision")
@@ -5559,7 +5559,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8059](https://github.com/DakeBU/Quant
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8079](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8079).
+Source: [QuantumBlockEncoding/GHL2025.lean:8079](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesscleanupscopedecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessCleanupScopeDecision_activeGlobalSource" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessCleanupScopeDecision_activeGlobalSource")
@@ -5573,7 +5573,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8079](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8100](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8100).
+Source: [QuantumBlockEncoding/GHL2025.lean:8100](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesscleanupscopedecision-activeglobalsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessCleanupScopeDecision_priorPDESourceTranscriptGuard" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessCleanupScopeDecision_priorPDESourceTranscriptGuard")
@@ -5587,7 +5587,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8100](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8131](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8131).
+Source: [QuantumBlockEncoding/GHL2025.lean:8131](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesscleanupscopedecision-priorpdesourcetranscriptguard). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.bandedSparseAccessCleanupScopeDecision_fullCleanDomainImageRuleBlocked" (lean := "QuantumBlockEncoding.GHL2025.bandedSparseAccessCleanupScopeDecision_fullCleanDomainImageRuleBlocked")
@@ -5601,7 +5601,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8131](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8161](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8161).
+Source: [QuantumBlockEncoding/GHL2025.lean:8161](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-bandedsparseaccesscleanupscopedecision-fullcleandomainimageruleblocked). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.defaultBandedSparseAccessPaperContract_cleanupRouteBridge_boundaryColumn_n3" (lean := "QuantumBlockEncoding.GHL2025.defaultBandedSparseAccessPaperContract_cleanupRouteBridge_boundaryColumn_n3")
@@ -5615,7 +5615,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8161](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8200](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8200).
+Source: [QuantumBlockEncoding/GHL2025.lean:8200](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-defaultbandedsparseaccesspapercontract-cleanuproutebridge-boundarycolumn-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinIndicatorBitPosition_ge" (lean := "QuantumBlockEncoding.GHL2025.robinIndicatorBitPosition_ge")
@@ -5629,7 +5629,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8200](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8249](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8249).
+Source: [QuantumBlockEncoding/GHL2025.lean:8249](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinindicatorbitposition-ge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_systemVal_preserved" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_systemVal_preserved")
@@ -5643,7 +5643,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8249](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8259](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8259).
+Source: [QuantumBlockEncoding/GHL2025.lean:8259](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-systemval-preserved). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_isBulk_preserved" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_isBulk_preserved")
@@ -5657,7 +5657,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8259](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8273](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8273).
+Source: [QuantumBlockEncoding/GHL2025.lean:8273](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-isbulk-preserved). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse")
@@ -5671,7 +5671,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8273](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8288](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8288).
+Source: [QuantumBlockEncoding/GHL2025.lean:8288](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-self-inverse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge" (lean := "QuantumBlockEncoding.GHL2025.oneTermRobinGate_U_indic_dagger_selfInverseBridge")
@@ -5685,7 +5685,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8288](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8303](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8303).
+Source: [QuantumBlockEncoding/GHL2025.lean:8303](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-onetermrobingate-u-indic-dagger-selfinversebridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_injective" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_injective")
@@ -5699,7 +5699,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8303](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8314](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8314).
+Source: [QuantumBlockEncoding/GHL2025.lean:8314](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-injective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.robinIndicatorBitPosition_lt_totalQubits" (lean := "QuantumBlockEncoding.GHL2025.robinIndicatorBitPosition_lt_totalQubits")
@@ -5713,7 +5713,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8314](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8325](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8325).
+Source: [QuantumBlockEncoding/GHL2025.lean:8325](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-robinindicatorbitposition-lt-totalqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_lt" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_lt")
@@ -5727,7 +5727,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8325](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8336](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8336).
+Source: [QuantumBlockEncoding/GHL2025.lean:8336](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-lt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleImage_bijective" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleImage_bijective")
@@ -5741,7 +5741,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8336](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8354](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8354).
+Source: [QuantumBlockEncoding/GHL2025.lean:8354](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororacleimage-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_col_has_one" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_col_has_one")
@@ -5755,7 +5755,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8354](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8377](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8377).
+Source: [QuantumBlockEncoding/GHL2025.lean:8377](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororaclematrix-col-has-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_col_unique" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_col_unique")
@@ -5769,7 +5769,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8377](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8389](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8389).
+Source: [QuantumBlockEncoding/GHL2025.lean:8389](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororaclematrix-col-unique). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_row_has_one" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_row_has_one")
@@ -5783,7 +5783,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8389](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8402](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8402).
+Source: [QuantumBlockEncoding/GHL2025.lean:8402](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororaclematrix-row-has-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_row_unique" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_row_unique")
@@ -5797,7 +5797,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8402](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8420](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8420).
+Source: [QuantumBlockEncoding/GHL2025.lean:8420](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororaclematrix-row-unique). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_is_permutation" (lean := "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_is_permutation")
@@ -5811,5 +5811,5 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8420](https://github.com/DakeBU/Quant
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHL2025.lean:8436](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/GHL2025.lean#L8436).
+Source: [QuantumBlockEncoding/GHL2025.lean:8436](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororaclematrix-is-permutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

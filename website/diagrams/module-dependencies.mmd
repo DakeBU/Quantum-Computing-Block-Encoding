@@ -1,0 +1,15 @@
+flowchart TB
+  Core["Core / Resources"] --> State["StatePreparation"]
+  Core --> Circuit["Circuit"]
+  Circuit --> Sem["CircuitSemantics"]
+  Core --> Block["BlockEncoding"]
+  State --> Classics["BlockEncodingClassics"]
+  Sem --> Classics
+  Block --> Classics
+  Classics --> Case1["ColdStartTransferE1<br/>BE Case 1"]
+  Classics --> Case2["CubicStatePreparation<br/>BE Case 2"]
+  Classics --> Paper["GHL2025 / RobinHeat"]
+  State --> Case2
+  Auto["Automation / Literature<br/>OpenProblems"] --> Case1
+  Auto --> Case2
+

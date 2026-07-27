@@ -1,0 +1,14 @@
+flowchart LR
+  G["Generate candidates"] --> P["Maintain diverse<br/>population"]
+  P --> S["Score resources<br/>lexicographically"]
+  S --> V["Verify dimensions,<br/>unitarity, block"]
+  V --> K{"Lean gate"}
+  K -- "Pass" --> E["Executable export<br/>and Qiskit check"]
+  K -- "Failure record" --> F["Structured feedback"]
+  E --> Q{"Validation pass"}
+  Q -- "Yes" --> A["Accept and store<br/>memory card"]
+  Q -- "No" --> F
+  F --> T{"Upper-layer decision"}
+  T -- "Add agents / recombine" --> P
+  T -- "Relax epsilon by schedule" --> G
+

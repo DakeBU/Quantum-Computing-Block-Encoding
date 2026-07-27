@@ -39,7 +39,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:25](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L25).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:25](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-taskid). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.requestedEpsilon" (lean := "QuantumBlockEncoding.CubicStatePreparation.requestedEpsilon")
@@ -53,7 +53,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:25](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:28](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L28).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:28](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-requestedepsilon). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.gridPoint" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridPoint")
@@ -67,7 +67,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:28](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:31](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L31).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:31](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridpoint). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude")
@@ -81,7 +81,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:31](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:35](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L35).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:35](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicamplitude). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.cubicOperator" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicOperator")
@@ -95,7 +95,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:35](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:43](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L43).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:43](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicoperator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq")
@@ -109,7 +109,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:43](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:51](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L51).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:51](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.conservativeNormalizer" (lean := "QuantumBlockEncoding.CubicStatePreparation.conservativeNormalizer")
@@ -123,7 +123,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:51](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:60](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L60).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:60](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-conservativenormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.cubicTarget" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicTarget")
@@ -137,7 +137,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:60](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:64](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L64).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:64](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubictarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.defaultRequiredCost" (lean := "QuantumBlockEncoding.CubicStatePreparation.defaultRequiredCost")
@@ -151,7 +151,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:64](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:77](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L77).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:77](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-defaultrequiredcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.defaultPolicy" (lean := "QuantumBlockEncoding.CubicStatePreparation.defaultPolicy")
@@ -165,7 +165,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:77](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:89](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L89).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:89](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-defaultpolicy). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicDefaultPrecision" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicDefaultPrecision")
@@ -179,7 +179,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:89](https://github.com/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:100](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L100).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:100](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubicdefaultprecision). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicLayout" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicLayout")
@@ -193,7 +193,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:100](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:110](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L110).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:110](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubiclayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicCircuit" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicCircuit")
@@ -207,7 +207,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:110](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:122](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L122).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:122](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubiccircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResource" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResource")
@@ -221,7 +221,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:122](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:133](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L133).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:133](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubicresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicNormalizer" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicNormalizer")
@@ -235,7 +235,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:133](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:137](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L137).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:137](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubicnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicCost" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicCost")
@@ -249,7 +249,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:137](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:141](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L141).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:141](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubiccost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResourceTuple" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResourceTuple")
@@ -263,7 +263,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:141](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:147](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L147).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:147](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubicresourcetuple). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResource_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResource_eq")
@@ -277,7 +277,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:147](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:155](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L155).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:155](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubicresource-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicLayout_auxiliaryQubits")
@@ -291,7 +291,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:155](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:161](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L161).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:161](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubiclayout-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicClaim" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicClaim")
@@ -305,7 +305,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:161](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:170](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L170).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:170](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticcubicclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicLayout" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicLayout")
@@ -319,7 +319,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:170](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:192](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L192).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:192](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubiclayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCircuit" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCircuit")
@@ -333,7 +333,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:192](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:206](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L206).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:206](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubiccircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResource" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResource")
@@ -347,7 +347,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:206](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:214](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L214).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:214](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubicresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicNormalizer" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicNormalizer")
@@ -361,7 +361,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:214](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:218](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L218).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:218](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubicnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCost" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCost")
@@ -375,7 +375,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:218](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:222](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L222).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:222](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubiccost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResourceTuple" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResourceTuple")
@@ -389,7 +389,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:222](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:228](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L228).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:228](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubicresourcetuple). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResource_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResource_eq")
@@ -403,7 +403,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:228](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:237](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L237).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:237](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubicresource-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicLayout_auxiliaryQubits")
@@ -417,7 +417,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:237](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:243](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L243).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:243](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubiclayout-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResourceTuple_n2_default" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResourceTuple_n2_default")
@@ -431,7 +431,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:243](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:249](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L249).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:249](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubicresourcetuple-n2-default). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicClaim" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicClaim")
@@ -445,7 +445,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:249](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:258](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L258).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:258](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubicclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicWorkspace" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicWorkspace")
@@ -459,7 +459,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:258](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:280](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L280).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:280](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubicworkspace). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicLayout" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicLayout")
@@ -473,7 +473,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:280](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:291](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L291).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:291](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubiclayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCircuit" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCircuit")
@@ -487,7 +487,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:291](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:305](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L305).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:305](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubiccircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCircuit_rejectSignalRepair" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCircuit_rejectSignalRepair")
@@ -501,7 +501,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:305](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:322](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L322).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:322](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubiccircuit-rejectsignalrepair). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResource" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResource")
@@ -515,7 +515,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:322](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:336](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L336).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:336](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubicresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicNormalizer" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicNormalizer")
@@ -529,7 +529,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:336](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:340](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L340).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:340](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubicnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCost" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCost")
@@ -543,7 +543,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:340](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:344](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L344).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:344](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubiccost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResourceTuple" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResourceTuple")
@@ -557,7 +557,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:344](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:350](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L350).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:350](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubicresourcetuple). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResource_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResource_eq")
@@ -571,7 +571,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:350](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:358](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L358).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:358](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubicresource-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicLayout_auxiliaryQubits")
@@ -585,7 +585,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:358](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:364](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L364).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:364](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubiclayout-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResourceTuple_n2" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResourceTuple_n2")
@@ -599,7 +599,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:364](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:370](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L370).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:370](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubicresourcetuple-n2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicClaim" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicClaim")
@@ -613,7 +613,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:370](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:378](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L378).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:378](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubicclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeUpperAgentSchedule" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeUpperAgentSchedule")
@@ -627,7 +627,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:378](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:401](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L401).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:401](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hardmodeupperagentschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeMiddleAgentSchedule" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeMiddleAgentSchedule")
@@ -641,7 +641,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:401](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:403](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L403).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:403](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hardmodemiddleagentschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeLowerAgentSchedule" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeLowerAgentSchedule")
@@ -655,7 +655,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:403](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:405](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L405).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:405](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hardmodeloweragentschedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeExactStallWindow" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeExactStallWindow")
@@ -669,7 +669,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:405](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:408](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L408).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:408](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hardmodeexactstallwindow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeConstructionStallWindow" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeConstructionStallWindow")
@@ -683,7 +683,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:408](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:414](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L414).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:414](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hardmodeconstructionstallwindow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeLevelCycleBudget" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeLevelCycleBudget")
@@ -697,7 +697,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:414](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:417](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L417).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:417](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hardmodelevelcyclebudget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.relaxedEpsilonLadder" (lean := "QuantumBlockEncoding.CubicStatePreparation.relaxedEpsilonLadder")
@@ -711,7 +711,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:417](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:425](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L425).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:425](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-relaxedepsilonladder). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.relaxedEpsilonLadder_startsWithRequested" (lean := "QuantumBlockEncoding.CubicStatePreparation.relaxedEpsilonLadder_startsWithRequested")
@@ -725,7 +725,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:425](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:428](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L428).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:428](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-relaxedepsilonladder-startswithrequested). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hardModeSchedules_have_four_levels" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeSchedules_have_four_levels")
@@ -739,7 +739,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:428](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:432](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L432).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:432](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hardmodeschedules-have-four-levels). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hardModeLowerAgentSchedule_final" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeLowerAgentSchedule_final")
@@ -753,7 +753,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:432](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:439](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L439).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:439](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hardmodeloweragentschedule-final). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.initialExpectedPhase" (lean := "QuantumBlockEncoding.CubicStatePreparation.initialExpectedPhase")
@@ -767,7 +767,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:439](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:448](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L448).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:448](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-initialexpectedphase). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_pos" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_pos")
@@ -781,7 +781,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:448](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:451](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L451).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:451](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridsize-pos). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicOperator_first_column" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicOperator_first_column")
@@ -795,7 +795,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:451](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:454](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L454).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:454](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicoperator-first-column). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicOperator_only_first_column" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicOperator_only_first_column")
@@ -809,7 +809,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:454](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:458](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L458).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:458](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicoperator-only-first-column). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.rankOneCleanBlockContract" (lean := "QuantumBlockEncoding.CubicStatePreparation.rankOneCleanBlockContract")
@@ -823,7 +823,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:458](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:471](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L471).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:471](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-rankonecleanblockcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract")
@@ -837,7 +837,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:471](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:478](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L478).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:478](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubiccleanblockcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.rankOneCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.rankOneCleanBlockContract_pointwise_eq")
@@ -851,7 +851,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:478](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:486](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L486).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:486](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-rankonecleanblockcontract-pointwise-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract_pointwise_eq")
@@ -865,7 +865,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:486](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:506](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L506).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:506](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-arithmeticrankonecubiccleanblockcontract-pointwise-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCleanBlockContract" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCleanBlockContract")
@@ -879,7 +879,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:506](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:515](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L515).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:515](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubiccleanblockcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCleanBlockContract_pointwise_eq")
@@ -893,7 +893,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:515](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:523](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L523).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:523](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubiccleanblockcontract-pointwise-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.rat_cube_sq_eq_sixth" (lean := "QuantumBlockEncoding.CubicStatePreparation.rat_cube_sq_eq_sixth")
@@ -907,7 +907,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:523](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:531](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L531).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:531](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-rat-cube-sq-eq-sixth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_sq_eq_gridPoint_sixth" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_sq_eq_gridPoint_sixth")
@@ -921,7 +921,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:531](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:538](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L538).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:538](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicamplitude-sq-eq-gridpoint-sixth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_sixthPowerFold" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_sixthPowerFold")
@@ -935,7 +935,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:538](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:543](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L543).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:543](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq-sixthpowerfold). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_ne_zero" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_ne_zero")
@@ -949,7 +949,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:543](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:550](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L550).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:550](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridsize-rat-ne-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_pos" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_pos")
@@ -963,7 +963,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:550](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:555](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L555).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:555](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridsize-rat-pos). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.rat_div_cube_div_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.rat_div_cube_div_eq")
@@ -977,7 +977,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:555](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:560](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L560).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:560](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-rat-div-cube-div-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_div_conservativeNormalizer_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_div_conservativeNormalizer_eq")
@@ -991,7 +991,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:560](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:571](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L571).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:571](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicamplitude-div-conservativenormalizer-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_three_mul_eq_cube" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_three_mul_eq_cube")
@@ -1005,7 +1005,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:571](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:579](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L579).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:579](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridsize-three-mul-eq-cube). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_four_mul_eq_fourth" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_four_mul_eq_fourth")
@@ -1019,7 +1019,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:579](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:585](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L585).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:585](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridsize-four-mul-eq-fourth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdCountP_finRange" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdCountP_finRange")
@@ -1033,7 +1033,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:585](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:596](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L596).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:596](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubic-thresholdcountp-finrange). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdFilterLength" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdFilterLength")
@@ -1047,7 +1047,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:596](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:625](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L625).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:625](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubic-thresholdfilterlength). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_threshold_le_pathCapacity" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_threshold_le_pathCapacity")
@@ -1061,7 +1061,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:625](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:632](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L632).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:632](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubic-threshold-le-pathcapacity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdPathCount" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdPathCount")
@@ -1075,7 +1075,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:632](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:645](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L645).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:645](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-hadamardcountingcubic-thresholdpathcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridPoint_nonneg" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridPoint_nonneg")
@@ -1089,7 +1089,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:645](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:653](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L653).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:653](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridpoint-nonneg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridPoint_lt_one" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridPoint_lt_one")
@@ -1103,7 +1103,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:653](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:662](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L662).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:662](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridpoint-lt-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridPoint_le_one" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridPoint_le_one")
@@ -1117,7 +1117,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:662](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:669](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L669).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:669](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridpoint-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.rat_pow_le_one_of_nonneg_le_one" (lean := "QuantumBlockEncoding.CubicStatePreparation.rat_pow_le_one_of_nonneg_le_one")
@@ -1131,7 +1131,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:669](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:673](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L673).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:673](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-rat-pow-le-one-of-nonneg-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_sq_le_one" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_sq_le_one")
@@ -1145,7 +1145,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:673](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:687](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L687).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:687](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicamplitude-sq-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.foldl_add_le_add_length" (lean := "QuantumBlockEncoding.CubicStatePreparation.foldl_add_le_add_length")
@@ -1159,7 +1159,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:687](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:693](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L693).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:693](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-foldl-add-le-add-length). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_gridSize" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_gridSize")
@@ -1173,7 +1173,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:693](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:719](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L719).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:719](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq-le-gridsize). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_le_sq" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_le_sq")
@@ -1187,7 +1187,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:719](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:731](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L731).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:731](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-gridsize-rat-le-sq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_conservativeNormalizer_sq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_conservativeNormalizer_sq")
@@ -1201,7 +1201,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:731](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:743](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L743).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:743](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq-le-conservativenormalizer-sq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_arithmeticCubicNormalizer_sq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_arithmeticCubicNormalizer_sq")
@@ -1215,7 +1215,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:743](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:754](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L754).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:754](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq-le-arithmeticcubicnormalizer-sq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_hadamardCountingCubicNormalizer_sq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_hadamardCountingCubicNormalizer_sq")
@@ -1229,7 +1229,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:754](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:764](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L764).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:764](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq-le-hadamardcountingcubicnormalizer-sq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n1" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n1")
@@ -1243,7 +1243,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:764](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:769](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L769).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:769](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq-n1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n2" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n2")
@@ -1257,7 +1257,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:769](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:773](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L773).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:773](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq-n2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n3" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n3")
@@ -1271,7 +1271,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:773](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:777](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L777).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:777](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicstatepreparation-cubicnormsq-n3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.taskId" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.taskId")
@@ -1285,7 +1285,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:777](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:786](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L786).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:786](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-taskid). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalOperator" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalOperator")
@@ -1299,7 +1299,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:786](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:789](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L789).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:789](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonaloperator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.exactNormalizer" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.exactNormalizer")
@@ -1313,7 +1313,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:789](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:795](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L795).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:795](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-exactnormalizer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalTarget" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalTarget")
@@ -1327,7 +1327,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:795](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:798](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L798).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:798](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonaltarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalOperator" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalOperator")
@@ -1341,7 +1341,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:798](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:819](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L819).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:819](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonaloperator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalTarget" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalTarget")
@@ -1355,7 +1355,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:819](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:825](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L825).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:825](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonaltarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlockContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlockContract")
@@ -1369,7 +1369,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:825](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:840](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L840).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:840](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalcleanblockcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlockContract_pointwise_eq")
@@ -1383,7 +1383,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:840](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:846](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L846).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:846](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalcleanblockcontract-pointwise-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlock_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlock_eq_target")
@@ -1397,7 +1397,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:846](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:853](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L853).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:853](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalcleanblock-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalExactCleanBlockFromPointwise" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalExactCleanBlockFromPointwise")
@@ -1411,7 +1411,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:853](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:867](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L867).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:867](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalexactcleanblockfrompointwise). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalExactCleanBlockFromPointwise_clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalExactCleanBlockFromPointwise_clean_eq_target")
@@ -1425,7 +1425,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:867](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:881](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L881).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:881](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalexactcleanblockfrompointwise-clean-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract")
@@ -1439,7 +1439,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:881](https://github.com
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:904](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L904).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:904](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalinputbecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract.exactPayload" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract.exactPayload")
@@ -1453,7 +1453,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:904](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:926](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L926).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:926](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalinputbecontract-exactpayload). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract.clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract.clean_eq_target")
@@ -1467,7 +1467,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:926](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:932](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L932).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:932](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalinputbecontract-clean-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.householderZero" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householderZero")
@@ -1481,7 +1481,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:932](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:944](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L944).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:944](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-householderzero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.dot8" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.dot8")
@@ -1495,7 +1495,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:944](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:947](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L947).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:947](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-dot8). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus")
@@ -1509,7 +1509,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:947](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:952](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L952).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:952](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-householder8e0minus). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.householder8" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8")
@@ -1523,7 +1523,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:952](https://github.com
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:961](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L961).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:961](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-householder8). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus_normSq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus_normSq")
@@ -1537,7 +1537,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:961](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:968](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L968).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:968](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-householder8e0minus-normsq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus_normSq_ne_zero" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus_normSq_ne_zero")
@@ -1551,7 +1551,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:968](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:977](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L977).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:977](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-householder8e0minus-normsq-ne-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.householder8_clean_entry" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8_clean_entry")
@@ -1565,7 +1565,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:977](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:989](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L989).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:989](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-householder8-clean-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.householder8_isRationalOrthogonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8_isRationalOrthogonal")
@@ -1579,7 +1579,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:989](https://github.com
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1132](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1132).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1132](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-householder8-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8SystemIndex" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8SystemIndex")
@@ -1593,7 +1593,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1132](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1146](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1146).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1146](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8systemindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8AncillaIndex" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8AncillaIndex")
@@ -1607,7 +1607,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1146](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1151](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1151).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1151](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8ancillaindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8Embed" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8Embed")
@@ -1621,7 +1621,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1151](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1160](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1160).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1160](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8embed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum")
@@ -1635,7 +1635,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1160](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1165](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1165).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1165](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8directsum). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8_branchNontrivial_of_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8_branchNontrivial_of_clean")
@@ -1649,7 +1649,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1165](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1268](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1268).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1268](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8-branchnontrivial-of-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_clean_entry" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_clean_entry")
@@ -1663,7 +1663,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1268](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1286](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1286).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1286](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8directsum-clean-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_eq_identity_of_system_ne" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_eq_identity_of_system_ne")
@@ -1677,7 +1677,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1286](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1360](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1360).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1360](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8directsum-columninner-eq-identity-of-system-ne). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_eq_branch" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_eq_branch")
@@ -1691,7 +1691,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1360](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1799](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1799).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1799](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8directsum-columninner-eq-branch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_eq_branch" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_eq_branch")
@@ -1705,7 +1705,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1799](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1918](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1918).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1918](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8directsum-rowinner-eq-branch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_eq_identity_of_system_ne" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_eq_identity_of_system_ne")
@@ -1719,7 +1719,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1918](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1972](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L1972).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1972](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8directsum-rowinner-eq-identity-of-system-ne). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_isRationalOrthogonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_isRationalOrthogonal")
@@ -1733,7 +1733,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1972](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2012](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2012).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2012](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8directsum-isrationalorthogonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalRationalCompletion" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalRationalCompletion")
@@ -1747,7 +1747,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2012](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2061](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2061).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2061](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalrationalcompletion). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector")
@@ -1761,7 +1761,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2061](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2074](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2074).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2074](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalfoursquarebranchvector). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector_clean")
@@ -1775,7 +1775,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2074](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2084](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2084).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2084](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalfoursquarebranchvector-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector_unit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector_unit")
@@ -1789,7 +1789,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2084](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2091](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2091).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2091](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalfoursquarebranchvector-unit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_of_fourSquareWitnesses" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_of_fourSquareWitnesses")
@@ -1803,7 +1803,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2091](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2114](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2114).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2114](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalrationalcompletion-of-foursquarewitnesses). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_exists" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_exists")
@@ -1817,7 +1817,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2114](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2134](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2134).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2134](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalrationalcompletion-exists). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_branchData" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_branchData")
@@ -1831,7 +1831,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2134](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2156](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2156).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2156](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalrationalcompletion-branchdata). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_backendSupport" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_backendSupport")
@@ -1845,7 +1845,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2156](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2176](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2176).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2176](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalrationalcompletion-backendsupport). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderCircuit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderCircuit")
@@ -1859,7 +1859,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2176](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2198](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2198).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2198](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalhouseholdercircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderResource" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderResource")
@@ -1873,7 +1873,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2198](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2201](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2201).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2201](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalhouseholderresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderResource_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderResource_eq")
@@ -1887,7 +1887,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2201](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2204](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2204).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2204](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalhouseholderresource-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract")
@@ -1901,7 +1901,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2204](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2217](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2217).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2217](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalhouseholderinputbecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_clean_eq_target")
@@ -1915,7 +1915,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2217](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2248](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2248).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2248](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalhouseholderinputbecontract-clean-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete")
@@ -1929,7 +1929,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2248](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2261](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2261).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2261](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalhouseholderinputbecontract-complete). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator")
@@ -1943,7 +1943,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2261](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2284](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2284).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2284](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-approxdiagonaloperator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratAbs" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratAbs")
@@ -1957,7 +1957,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2284](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2289](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2289).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2289](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-ratabs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.IsDiagonalRatMatrix" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.IsDiagonalRatMatrix")
@@ -1971,7 +1971,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2289](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2292](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2292).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2292](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-isdiagonalratmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.DiagonalRatOperatorNormBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.DiagonalRatOperatorNormBridge")
@@ -1985,7 +1985,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2292](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2303](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2303).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2303](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-diagonalratoperatornormbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratSquaredEuclideanNorm" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratSquaredEuclideanNorm")
@@ -1999,7 +1999,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2303](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2314](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2314).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2314](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-ratsquaredeuclideannorm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratMatrixErrorAction" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratMatrixErrorAction")
@@ -2013,7 +2013,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2314](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2318](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2318).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2318](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-ratmatrixerroraction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanOperatorNormErrorAtMost" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanOperatorNormErrorAtMost")
@@ -2027,7 +2027,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2318](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2331](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2331).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2331](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rateuclideanoperatornormerroratmost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.ratMatrixErrorAction_eq_diagonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratMatrixErrorAction_eq_diagonal")
@@ -2041,7 +2041,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2331](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2453](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2453).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2453](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-ratmatrixerroraction-eq-diagonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.ratAbs_nonneg" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratAbs_nonneg")
@@ -2055,7 +2055,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2453](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2468](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2468).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2468](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-ratabs-nonneg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_eq_ratAbs_mul_self" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_eq_ratAbs_mul_self")
@@ -2069,7 +2069,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2468](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2472](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2472).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2472](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rat-mul-self-eq-ratabs-mul-self). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_nonneg" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_nonneg")
@@ -2083,7 +2083,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2472](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2477](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2477).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2477](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rat-mul-self-nonneg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_le_of_abs_le" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_le_of_abs_le")
@@ -2097,7 +2097,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2477](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2481](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2481).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2481](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rat-mul-self-le-of-abs-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_vector_le_of_abs_le" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_vector_le_of_abs_le")
@@ -2111,7 +2111,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2481](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2499](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2499).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2499](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rat-mul-self-vector-le-of-abs-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanDiagonalOperatorNormBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanDiagonalOperatorNormBridge")
@@ -2125,7 +2125,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2499](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2509](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2509).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2509](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rateuclideandiagonaloperatornormbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanOperatorNormErrorAtMost_not_vacuous" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanOperatorNormErrorAtMost_not_vacuous")
@@ -2139,7 +2139,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2509](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2525](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2525).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2525](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rateuclideanoperatornormerroratmost-not-vacuous). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_isDiagonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_isDiagonal")
@@ -2153,7 +2153,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2525](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2539](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2539).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2539](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-approxdiagonaloperator-isdiagonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalOperator_isDiagonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalOperator_isDiagonal")
@@ -2167,7 +2167,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2539](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2546](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2546).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2546](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonaloperator-isdiagonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalEntrywiseErrorAtMost" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalEntrywiseErrorAtMost")
@@ -2181,7 +2181,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2546](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2558](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2558).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2558](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-approxdiagonalentrywiseerroratmost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_entrywise_error" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_entrywise_error")
@@ -2195,7 +2195,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2558](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2570](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2570).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2570](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-approxdiagonaloperator-entrywise-error). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_operatorNorm_error_of_contract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_operatorNorm_error_of_contract")
@@ -2209,7 +2209,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2570](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2597](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2597).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2597](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-approxdiagonaloperator-operatornorm-error-of-contract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_operatorNorm_error" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_operatorNorm_error")
@@ -2223,7 +2223,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2597](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2619](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2619).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2619](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-approxdiagonaloperator-operatornorm-error). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector")
@@ -2237,7 +2237,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2619](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2635](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2635).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2635](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rationalcirclebranchvector). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector_clean")
@@ -2251,7 +2251,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2635](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2641](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2641).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2641](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rationalcirclebranchvector-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector_unit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector_unit")
@@ -2265,7 +2265,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2641](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2645](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2645).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2645](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-rationalcirclebranchvector-unit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_clean_entry_of_branchValue" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_clean_entry_of_branchValue")
@@ -2279,7 +2279,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2645](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2661](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2661).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2661](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-controlledhouseholder8directsum-clean-entry-of-branchvalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector")
@@ -2293,7 +2293,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2661](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2709](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2709).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2709](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalfoursquarebranchvector). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector_clean")
@@ -2307,7 +2307,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2709](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2719](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2719).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2719](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalfoursquarebranchvector-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector_unit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector_unit")
@@ -2321,7 +2321,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2719](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2728](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2728).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2728](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalfoursquarebranchvector-unit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.CubicDiagonalRationalCompletion" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicDiagonalRationalCompletion")
@@ -2335,7 +2335,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2728](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2746](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2746).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2746](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalrationalcompletion). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_of_fourSquareWitnesses" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_of_fourSquareWitnesses")
@@ -2349,7 +2349,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2746](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2752](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2752).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2752](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalrationalcompletion-of-foursquarewitnesses). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists")
@@ -2363,7 +2363,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2752](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2767](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2767).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2767](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalrationalcompletion-exists). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_lt_one" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_lt_one")
@@ -2377,7 +2377,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2767](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2784](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2784).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2784](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicamplitude-lt-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_backendSupport" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_backendSupport")
@@ -2391,7 +2391,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2784](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2800](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2800).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2800](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalrationalcompletion-backendsupport). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.CubicDiagonalExactBEContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicDiagonalExactBEContract")
@@ -2405,7 +2405,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2800](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2828](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2828).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2828](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalexactbecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract")
@@ -2419,7 +2419,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2828](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2838](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2838).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2838](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalhouseholderexactbecontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_clean_eq_target")
@@ -2433,7 +2433,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2838](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2867](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2867).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2867](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalhouseholderexactbecontract-clean-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete")
@@ -2447,7 +2447,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2867](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2879](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L2879).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2879](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicdiagonalhouseholderexactbecontract-complete). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_cube_eq_cubicDiagonalOperator" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_cube_eq_cubicDiagonalOperator")
@@ -2461,7 +2461,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2879](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3001](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3001).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3001](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonal-cube-eq-cubicdiagonaloperator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate")
@@ -2475,7 +2475,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3001](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3022](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3022).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3022](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalcubicproductcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate_target_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate_target_eq")
@@ -2489,7 +2489,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3022](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3030](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3030).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3030](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalcubicproductcertificate-target-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate_clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate_clean_eq_target")
@@ -2503,7 +2503,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3030](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3040](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3040).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3040](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalcubicproductcertificate-clean-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTPolynomial" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTPolynomial")
@@ -2517,7 +2517,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3040](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3050](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3050).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3050](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicqsvtpolynomial). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTPolynomial_gridPoint_abs_le_one" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTPolynomial_gridPoint_abs_le_one")
@@ -2531,7 +2531,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3050](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3053](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3053).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3053](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicqsvtpolynomial-gridpoint-abs-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTLocalSideConditions" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTLocalSideConditions")
@@ -2545,7 +2545,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3053](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3064](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3064).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3064](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicqsvtlocalsideconditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTLocalSideConditions" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTLocalSideConditions")
@@ -2559,7 +2559,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3064](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3073](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3073).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3073](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicqsvtlocalsideconditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics")
@@ -2573,7 +2573,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3073](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3091](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3091).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3091](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicqsvtexternalsemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics.output_eq_cubic_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics.output_eq_cubic_target")
@@ -2587,7 +2587,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3091](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3112](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3112).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3112](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicqsvtexternalsemantics-output-eq-cubic-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics.consumerContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics.consumerContract")
@@ -2601,7 +2601,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3112](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3120](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3120).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3120](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicqsvtexternalsemantics-consumercontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleLayout" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleLayout")
@@ -2615,7 +2615,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3120](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3138](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3138).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3138](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-amplitudeoraclelayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleCircuit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleCircuit")
@@ -2629,7 +2629,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3138](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3144](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3144).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3144](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-amplitudeoraclecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResource" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResource")
@@ -2643,7 +2643,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3144](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3148](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3148).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3148](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-amplitudeoracleresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleCost" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleCost")
@@ -2657,7 +2657,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3148](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3152](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3152).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3152](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-amplitudeoraclecost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResourceTuple" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResourceTuple")
@@ -2671,7 +2671,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3152](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3157](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3157).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3157](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-amplitudeoracleresourcetuple). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResource_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResource_eq")
@@ -2685,7 +2685,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3157](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3164](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3164).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3164](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-amplitudeoracleresource-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResourceTuple_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResourceTuple_eq")
@@ -2699,7 +2699,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3164](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3168](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3168).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3168](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-amplitudeoracleresourcetuple-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.diagonalCleanBlockContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.diagonalCleanBlockContract")
@@ -2713,7 +2713,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3168](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3175](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3175).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3175](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-diagonalcleanblockcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.diagonalCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.diagonalCleanBlockContract_pointwise_eq")
@@ -2727,7 +2727,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3175](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3181](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3181).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3181](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-diagonalcleanblockcontract-pointwise-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveOracleCleanBlock_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveOracleCleanBlock_eq_target")
@@ -2741,7 +2741,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3181](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3188](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3188).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3188](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveoraclecleanblock-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_le_one" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_le_one")
@@ -2755,7 +2755,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3188](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3196](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3196).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3196](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicamplitude-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_nonneg" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_nonneg")
@@ -2769,7 +2769,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3196](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3203](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3203).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3203](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-cubicamplitude-nonneg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleDimension" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleDimension")
@@ -2783,7 +2783,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3203](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3210](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3210).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3210](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoracledimension). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleUnitary" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleUnitary")
@@ -2797,7 +2797,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3210](https://github.co
 
 *Declaration kind.* opaque.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3219](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3219).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3219](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoracleunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleIsUnitary" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleIsUnitary")
@@ -2811,7 +2811,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3219](https://github.co
 
 *Declaration kind.* opaque.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3224](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3224).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3224](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoracleisunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCleanBlockExtracts" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCleanBlockExtracts")
@@ -2825,7 +2825,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3224](https://github.co
 
 *Declaration kind.* opaque.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3229](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3229).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3229](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoraclecleanblockextracts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract")
@@ -2839,7 +2839,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3229](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3241](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3241).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3241](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoraclesemanticcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract_unitary" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract_unitary")
@@ -2853,7 +2853,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3241](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3248](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3248).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3248](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoraclesemanticcontract-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target")
@@ -2867,7 +2867,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3248](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3253](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3253).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3253](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoraclesemanticcontract-cleanblock-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleLayout" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleLayout")
@@ -2881,7 +2881,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3253](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3268](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3268).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3268](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclelayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleLayout_auxiliaryQubits")
@@ -2895,7 +2895,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3268](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3273](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3273).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3273](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclelayout-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleNormalizer_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleNormalizer_eq")
@@ -2909,7 +2909,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3273](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3280](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3280).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3280](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclenormalizer-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.StandardRyCleanEntryScalarTier" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.StandardRyCleanEntryScalarTier")
@@ -2923,7 +2923,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3280](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3293](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3293).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3293](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-standardrycleanentryscalartier). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedRyCleanEntryForCubicAmplitudes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedRyCleanEntryForCubicAmplitudes")
@@ -2937,7 +2937,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3293](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3308](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3308).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3308](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedrycleanentryforcubicamplitudes). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedRyCleanEntryForCubicAmplitudes_of_standardTier" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedRyCleanEntryForCubicAmplitudes_of_standardTier")
@@ -2951,7 +2951,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3308](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3321](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3321).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3321](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedrycleanentryforcubicamplitudes-of-standardtier). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude")
@@ -2965,7 +2965,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3321](https://github.co
 
 *Declaration kind.* opaque.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3334](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3334).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3334](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedarithmeticcomputescubicamplitude). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ExpandedCubicArithmeticBackend" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ExpandedCubicArithmeticBackend")
@@ -2979,7 +2979,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3334](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3346](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3346).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3346](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedcubicarithmeticbackend). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend")
@@ -2993,7 +2993,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3346](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3361](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3361).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3361](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-symbolicexpandedcubicarithmeticbackend). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendComputesCubicAmplitude" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendComputesCubicAmplitude")
@@ -3007,7 +3007,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3361](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3377](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3377).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3377](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedarithmeticbackendcomputescubicamplitude). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend_computes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend_computes")
@@ -3021,7 +3021,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3377](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3391](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3391).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3391](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-symbolicexpandedcubicarithmeticbackend-computes). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendBridge")
@@ -3035,7 +3035,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3391](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3406](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3406).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3406](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedarithmeticbackendbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_backendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_backendBridge")
@@ -3049,7 +3049,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3406](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3412](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3412).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3412](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedarithmeticcomputescubicamplitude-of-backendbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendBridge_iff_of_computes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendBridge_iff_of_computes")
@@ -3063,7 +3063,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3412](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3427](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3427).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3427](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedarithmeticbackendbridge-iff-of-computes). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge")
@@ -3077,7 +3077,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3427](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3448](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3448).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3448](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedarithmeticcomputescubicamplitude-of-symbolicbackendbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend_bridge_iff" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend_bridge_iff")
@@ -3091,7 +3091,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3448](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3468](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3468).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3468](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-symbolicexpandedcubicarithmeticbackend-bridge-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicPayload_lt_capacity" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicPayload_lt_capacity")
@@ -3105,7 +3105,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3468](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3481](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3481).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3481](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubicpayload-lt-capacity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicAmplitude_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicAmplitude_eq")
@@ -3119,7 +3119,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3481](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3493](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3493).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3493](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubicamplitude-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend")
@@ -3133,7 +3133,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3493](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3509](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3509).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3509](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubicarithmeticbackend). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_computes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_computes")
@@ -3147,7 +3147,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3509](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3527](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3527).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3527](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubicarithmeticbackend-computes). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitudeTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitudeTransparent")
@@ -3161,7 +3161,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3527](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3546](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3546).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3546](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedarithmeticcomputescubicamplitudetransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticRouteTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticRouteTransparent")
@@ -3175,7 +3175,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3546](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3558](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3558).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3558](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubicarithmeticroutetransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_bridge_iff" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_bridge_iff")
@@ -3189,7 +3189,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3558](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3572](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3572).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3572](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubicarithmeticbackend-bridge-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle")
@@ -3203,7 +3203,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3572](https://github.co
 
 *Declaration kind.* opaque.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3586](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3586).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3586](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedcontrolledryusescubicangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngleTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngleTransparent")
@@ -3217,7 +3217,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3586](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3597](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3597).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3597](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedcontrolledryusescubicangletransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomControlledRyRouteTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomControlledRyRouteTransparent")
@@ -3231,7 +3231,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3597](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3608](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3608).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3608](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcontrolledryroutetransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyBackendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyBackendBridge")
@@ -3245,7 +3245,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3608](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3622](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3622).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3622](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedcontrolledrybackendbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle_of_backendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle_of_backendBridge")
@@ -3259,7 +3259,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3622](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3628](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3628).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3628](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedcontrolledryusescubicangle-of-backendbridge). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyBackendBridge_iff_of_standardTier" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyBackendBridge_iff_of_standardTier")
@@ -3273,7 +3273,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3628](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3644](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3644).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3644](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedcontrolledrybackendbridge-iff-of-standardtier). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ExpandedControlledRyWorkspaceReadonlyWitness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ExpandedControlledRyWorkspaceReadonlyWitness")
@@ -3287,7 +3287,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3644](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3666](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3666).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3666](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedcontrolledryworkspacereadonlywitness). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyWorkspaceReadonlyTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyWorkspaceReadonlyTransparent")
@@ -3301,7 +3301,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3666](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3686](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3686).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3686](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedcontrolledryworkspacereadonlytransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputed" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputed")
@@ -3315,7 +3315,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3686](https://github.co
 
 *Declaration kind.* opaque.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3691](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3691).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3691](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedworkspacecleanuncomputed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ExpandedArithmeticCleanUncomputeWitness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ExpandedArithmeticCleanUncomputeWitness")
@@ -3329,7 +3329,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3691](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3703](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3703).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3703](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedarithmeticcleanuncomputewitness). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputedTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputedTransparent")
@@ -3343,7 +3343,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3703](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3731](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3731).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3731](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedworkspacecleanuncomputedtransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputedTransparent_of_witness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputedTransparent_of_witness")
@@ -3357,7 +3357,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3731](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3735](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3735).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3735](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedworkspacecleanuncomputedtransparent-of-witness). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicComputeStep" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicComputeStep")
@@ -3371,7 +3371,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3735](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3783](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3783).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3783](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubiccomputestep). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicUncomputeStep" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicUncomputeStep")
@@ -3385,7 +3385,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3783](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3791](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3791).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3791](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubicuncomputestep). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicComputeStep_matches_backend_on_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicComputeStep_matches_backend_on_clean")
@@ -3399,7 +3399,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3791](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3798](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3798).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3798](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubiccomputestep-matches-backend-on-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicUncomputeStep_after_compute" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicUncomputeStep_after_compute")
@@ -3413,7 +3413,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3798](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3807](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3807).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3807](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomcubicuncomputestep-after-compute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomExpandedArithmeticCleanUncomputeWitness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomExpandedArithmeticCleanUncomputeWitness")
@@ -3427,7 +3427,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3807](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3827](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3827).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3827](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomexpandedarithmeticcleanuncomputewitness). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomWorkspaceCleanUncomputedTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomWorkspaceCleanUncomputedTransparent")
@@ -3441,7 +3441,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3827](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3846](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3846).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3846](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomworkspacecleanuncomputedtransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalValueBackend" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalValueBackend")
@@ -3455,7 +3455,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3846](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3860](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3860).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3860](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalvaluebackend). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalValueBackendComputesGridPoint" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalValueBackendComputesGridPoint")
@@ -3469,7 +3469,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3860](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3874](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3874).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3874](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalvaluebackendcomputesgridpoint). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalValueBackend" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalValueBackend")
@@ -3483,7 +3483,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3874](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3889](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3889).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3889](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomlineardiagonalvaluebackend). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalValueBackend_computes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalValueBackend_computes")
@@ -3497,7 +3497,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3889](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3901](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3901).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3901](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomlineardiagonalvaluebackend-computes). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalValueCleanUncomputeWitness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalValueCleanUncomputeWitness")
@@ -3511,7 +3511,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3901](https://github.co
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3919](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3919).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3919](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalvaluecleanuncomputewitness). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalWorkspaceCleanUncomputedTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalWorkspaceCleanUncomputedTransparent")
@@ -3525,7 +3525,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3919](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3941](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3941).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3941](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalworkspacecleanuncomputedtransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalWorkspaceCleanUncomputedTransparent_of_witness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalWorkspaceCleanUncomputedTransparent_of_witness")
@@ -3539,7 +3539,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3941](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3945](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3945).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3945](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-lineardiagonalworkspacecleanuncomputedtransparent-of-witness). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalComputeStep" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalComputeStep")
@@ -3553,7 +3553,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3945](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3952](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3952).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3952](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomlineardiagonalcomputestep). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalUncomputeStep" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalUncomputeStep")
@@ -3567,7 +3567,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3952](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3960](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3960).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3960](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomlineardiagonaluncomputestep). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalComputeStep_matches_backend_on_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalComputeStep_matches_backend_on_clean")
@@ -3581,7 +3581,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3960](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3967](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3967).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3967](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomlineardiagonalcomputestep-matches-backend-on-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalUncomputeStep_after_compute" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalUncomputeStep_after_compute")
@@ -3595,7 +3595,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3967](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3976](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3976).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3976](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomlineardiagonaluncomputestep-after-compute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalCleanUncomputeWitness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalCleanUncomputeWitness")
@@ -3609,7 +3609,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3976](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3997](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L3997).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3997](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomlineardiagonalcleanuncomputewitness). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalWorkspaceCleanUncomputedTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalWorkspaceCleanUncomputedTransparent")
@@ -3623,7 +3623,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3997](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4016](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4016).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4016](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-fixeddenomlineardiagonalworkspacecleanuncomputedtransparent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockExtracts" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockExtracts")
@@ -3637,7 +3637,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4016](https://github.co
 
 *Declaration kind.* opaque.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4023](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4023).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4023](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclecleanblockextracts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract")
@@ -3651,7 +3651,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4023](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4035](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4035).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4035](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclecleanblockcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract_diagonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract_diagonal")
@@ -3665,7 +3665,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4035](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4044](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4044).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4044](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclecleanblockcontract-diagonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract_eq_target")
@@ -3679,7 +3679,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4044](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4051](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4051).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4051](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclecleanblockcontract-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleSemanticContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleSemanticContract")
@@ -3693,7 +3693,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4051](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4063](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4063).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4063](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclesemanticcontract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target")
@@ -3707,7 +3707,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4063](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4068](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4068).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4068](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-expandedamplitudeoraclesemanticcontract-cleanblock-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate")
@@ -3721,7 +3721,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4068](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4080](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4080).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4080](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoraclecandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_costTuple_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_costTuple_eq")
@@ -3735,7 +3735,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4080](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4097](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4097).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4097](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoraclecandidate-costtuple-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_unitary_from_contract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_unitary_from_contract")
@@ -3749,7 +3749,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4097](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4108](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4108).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4108](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoraclecandidate-unitary-from-contract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_block_from_contract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_block_from_contract")
@@ -3763,7 +3763,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4108](https://github.co
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4114](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4114).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4114](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoraclecandidate-block-from-contract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleVerified" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleVerified")
@@ -3777,7 +3777,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4114](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4128](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4128).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4128](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-primitiveamplitudeoracleverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleClaim" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleClaim")
@@ -3791,5 +3791,5 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4128](https://github.co
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4136](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/QuantumBlockEncoding/CubicStatePreparation.lean#L4136).
+Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4136](../../../../library/modules/cubicstatepreparation/#decl-quantumblockencoding-cubicdiagonaloracle-amplitudeoracleclaim). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

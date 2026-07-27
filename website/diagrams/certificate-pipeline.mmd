@@ -1,0 +1,11 @@
+flowchart LR
+  M["Mathematical target"] --> C["Natural-language<br/>contract"]
+  C --> O["Typed proof<br/>obligations"]
+  O --> P["Candidate<br/>population"]
+  P --> R["Resource<br/>ranking"]
+  R --> L["Lean<br/>certificate"]
+  L --> X["Executable<br/>validation"]
+  X --> A{"Accept?"}
+  A -- "No: feedback" --> P
+  A -- "Yes" --> D["Documented result"]
+
