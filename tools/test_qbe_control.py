@@ -34,12 +34,32 @@ except ModuleNotFoundError:
     )
 
 try:
-    from qbe import changed_snapshot_delta, lean_index_files_for_task, reusable_memory_card_rows
+    from qbe import (
+        changed_snapshot_delta,
+        infer_evaluation_mode,
+        lean_index_files_for_task,
+        reusable_memory_card_rows,
+    )
 except ModuleNotFoundError:
-    from tools.qbe import changed_snapshot_delta, lean_index_files_for_task, reusable_memory_card_rows
+    from tools.qbe import (
+        changed_snapshot_delta,
+        infer_evaluation_mode,
+        lean_index_files_for_task,
+        reusable_memory_card_rows,
+    )
 
 
 class CurrentStateParsingTests(unittest.TestCase):
+    def test_evaluation_mode_defaults_and_aliases(self) -> None:
+        self.assertEqual(infer_evaluation_mode("Mode: `statePreparation`"), "full-abeis")
+        self.assertEqual(
+            infer_evaluation_mode("Evaluation mode: `task-only`"), "task-only"
+        )
+        self.assertEqual(infer_evaluation_mode("Evaluation mode: LAD"), "lad")
+        self.assertEqual(
+            infer_evaluation_mode("Evaluation mode: full_abeis"), "full-abeis"
+        )
+
     def test_latest_obligation_table_wins_and_closed_rows_disappear(self) -> None:
         text = """
 | Obligation | Lean declaration or target | Dependency class | Status |
@@ -132,6 +152,71 @@ Current obligation state:
 
 
 class CycleDecisionTests(unittest.TestCase):
+    def test_task_only_is_one_bounded_nonadaptive_attempt(self) -> None:
+        row = "L1: benchmark theorem; status: active next; Lean: targetTheorem"
+        first = decide_cycle(
+            task_id="BENCH",
+            cycle=1,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=[],
+            evidence_digest="lean-a",
+            population_gate_required=True,
+            evaluation_mode="task-only",
+        )
+        self.assertEqual(first.evaluation_mode, "task-only")
+        self.assertEqual(first.prompt_plan, ("lower2", "reviewer"))
+        self.assertFalse(first.population_gate_required)
+        second = decide_cycle(
+            task_id="BENCH",
+            cycle=2,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=[],
+            evidence_digest="lean-a",
+            previous_state={**first.to_dict(), "execution_started": True},
+            population_gate_required=True,
+            evaluation_mode="task-only",
+        )
+        self.assertTrue(second.stop)
+        self.assertEqual(second.mode, "benchmark_complete")
+
+    def test_lad_rejects_adaptive_capacity_and_tolerance(self) -> None:
+        row = "L1: benchmark theorem; status: active next; Lean: targetTheorem"
+        baseline = decide_cycle(
+            task_id="BENCH",
+            cycle=1,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=[],
+            evidence_digest="lean-a",
+            evaluation_mode="lad",
+        )
+        decision = decide_cycle(
+            task_id="BENCH",
+            cycle=1,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=[
+                {
+                    "leaf": "L1",
+                    "role": "upper",
+                    "leaf_signature": baseline.leaf_signature,
+                    "evidence_digest": baseline.evidence_digest,
+                    "capacity_decision": "increase_lower",
+                    "tolerance_decision": "open_approximate",
+                    "epsilon_next": "1e-6",
+                }
+            ],
+            evidence_digest="lean-a",
+            task_kind="operatorBlockEncoding",
+            epsilon_ladder=("1e-6",),
+            evaluation_mode="lad",
+        )
+        self.assertEqual(decision.prompt_plan, ("lower2", "reviewer"))
+        self.assertEqual(decision.capacity_authorizations, ())
+        self.assertEqual(decision.epsilon_index, -1)
+
     def test_compiled_root_certificate_closes_stale_open_queue(self) -> None:
         decision = decide_cycle(
             task_id="T",
@@ -269,6 +354,111 @@ class CycleDecisionTests(unittest.TestCase):
         )
         self.assertTrue(third.stop)
         self.assertEqual(third.unchanged_cycles, 2)
+
+    def test_structural_gap_freezes_lower_capacity_and_tolerance(self) -> None:
+        row = "BRIDGE: opaque interface; status: active next; Lean: bridgeLemma"
+        initial = decide_cycle(
+            task_id="BE",
+            cycle=1,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=[],
+            evidence_digest="lean-a",
+            task_kind="operatorBlockEncoding",
+            epsilon_ladder=("1e-10", "1e-9"),
+            population_gate_required=True,
+        )
+        feedback = [
+            {
+                "trial_id": "review-structural-gap",
+                "leaf": "BRIDGE",
+                "role": "reviewer",
+                "error_class": "symbolic_bridge_gap",
+                "closed_theorem_ok": False,
+                "leaf_signature": initial.leaf_signature,
+                "evidence_digest": initial.evidence_digest,
+                "capacity_decision": "increase_upper increase_lower",
+                "tolerance_decision": "open_approximate",
+                "epsilon_next": "1e-10",
+            }
+        ]
+        decision = decide_cycle(
+            task_id="BE",
+            cycle=2,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=feedback,
+            evidence_digest="lean-a",
+            previous_state={**initial.to_dict(), "execution_started": True},
+            task_kind="operatorBlockEncoding",
+            epsilon_ladder=("1e-10", "1e-9"),
+            population_gate_required=True,
+        )
+        self.assertEqual(decision.mode, "prerequisite")
+        self.assertEqual(decision.search_phase, "dependency")
+        self.assertEqual(decision.effective_epsilon, "n/a")
+        self.assertNotIn("lower2", decision.prompt_plan)
+        self.assertEqual(decision.upper_capacity_level, 0)
+        self.assertEqual(decision.lower_capacity_level, 0)
+        self.assertEqual(decision.epsilon_index, -1)
+        self.assertEqual(decision.prerequisite_leaf_ids, ("BRIDGE",))
+        self.assertEqual(
+            decision.prerequisite_error_classes, ("symbolic_bridge_gap",)
+        )
+        self.assertTrue(decision.policy_rejections)
+
+    def test_unchanged_structural_prerequisite_pass_stops(self) -> None:
+        row = "BRIDGE: opaque interface; status: active next; Lean: bridgeLemma"
+        feedback = [
+            {
+                "trial_id": "lower-gap",
+                "leaf": "BRIDGE",
+                "role": "lower",
+                "error_class": "shape_or_register_gap",
+                "closed_theorem_ok": False,
+            }
+        ]
+        first = decide_cycle(
+            task_id="SP",
+            cycle=1,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=feedback,
+            evidence_digest="lean-a",
+        )
+        self.assertEqual(first.mode, "prerequisite")
+        second = decide_cycle(
+            task_id="SP",
+            cycle=2,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=feedback,
+            evidence_digest="lean-a",
+            previous_state={**first.to_dict(), "execution_started": True},
+        )
+        self.assertTrue(second.stop)
+        self.assertEqual(second.mode, "human_blocked")
+        self.assertNotIn("lower2", second.prompt_plan)
+
+    def test_tactic_gap_remains_a_lower_proof_task(self) -> None:
+        row = "ALGEBRA: local arithmetic; status: active next; Lean: algebraLemma"
+        decision = decide_cycle(
+            task_id="BE",
+            cycle=1,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=[
+                {
+                    "leaf": "ALGEBRA",
+                    "role": "reviewer",
+                    "error_class": "lean_tactic_gap",
+                    "closed_theorem_ok": False,
+                }
+            ],
+            evidence_digest="lean-a",
+        )
+        self.assertEqual(decision.mode, "execute")
+        self.assertIn("lower2", decision.prompt_plan)
 
     def test_capacity_increase_requires_current_signed_feedback(self) -> None:
         row = "L1: local bridge; status: active next; Lean: localBridge"

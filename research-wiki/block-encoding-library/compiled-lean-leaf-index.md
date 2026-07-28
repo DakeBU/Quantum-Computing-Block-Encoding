@@ -4,7 +4,7 @@ This generated index backs `abeis_lean_leaf_module_graph.svg` and its PNG copy.
 It lists ABEIS declarations by file so upper/middle agents can
 retrieve existing leaves before asking lower workers to reprove them.
 
-Total declarations indexed: **1084**.
+Total declarations indexed: **1103**.
 
 | File | Count | Role |
 | --- | ---: | --- |
@@ -13,6 +13,7 @@ Total declarations indexed: **1084**.
 | `QuantumBlockEncoding/Circuit.lean` | 12 | gate/circuit syntax |
 | `QuantumBlockEncoding/BlockEncoding.lean` | 22 | target, candidate, verified records |
 | `QuantumBlockEncoding/StatePreparation.lean` | 11 | first-column state-preparation certificates |
+| `QuantumBlockEncoding/ConcreteSemantics.lean` | 19 | finite state action and product-register bridges |
 | `QuantumBlockEncoding/CircuitSemantics.lean` | 42 | evaluated matrix/path and extraction lemmas |
 | `QuantumBlockEncoding/BlockEncodingClassics.lean` | 84 | classic reusable block-encoding leaves |
 | `QuantumBlockEncoding/MainCase.lean` | 127 | main transfer-operator certificates |
@@ -155,6 +156,30 @@ Total declarations indexed: **1084**.
 | 72 | `structure` | `VerifiedApproximateStatePreparation` |
 | 86 | `def` | `asZeroErrorApprox` |
 | 98 | `theorem` | `firstColumn` |
+
+## `QuantumBlockEncoding/ConcreteSemantics.lean`
+
+| Line | Kind | Declaration |
+| ---: | --- | --- |
+| 25 | `abbrev` | `FiniteMatrix` |
+| 29 | `abbrev` | `StateVector` |
+| 33 | `def` | `basisKet` |
+| 38 | `def` | `zeroKet` |
+| 43 | `def` | `applyVec` |
+| 52 | `structure` | `ComplexUnitaryGate` |
+| 58 | `theorem` | `applyVec_basisKet` |
+| 65 | `theorem` | `applyVec_zeroKet` |
+| 76 | `theorem` | `firstColumnMatches_iff_applyVec_zeroKet` |
+| 95 | `structure` | `ComplexStatePreparationCertificate` |
+| 105 | `def` | `candidate` |
+| 124 | `def` | `verified` |
+| 137 | `theorem` | `preparesVector` |
+| 145 | `abbrev` | `ProductRegisterMatrix` |
+| 152 | `def` | `flatToProductRegister` |
+| 163 | `def` | `productRegisterBlockProjection` |
+| 172 | `theorem` | `productRegisterBlockProjection_flatToProductRegister` |
+| 182 | `theorem` | `productIndex_val_eq_signalSystemBlockRowIndex` |
+| 194 | `theorem` | `signalSystemBlockProjection_eq_cleanBlockProduct` |
 
 ## `QuantumBlockEncoding/CircuitSemantics.lean`
 

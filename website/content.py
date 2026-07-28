@@ -106,7 +106,10 @@ CHAPTERS = [
             "Start from the concrete contract that a unitary sends the all-zero "
             "basis state to a normalized target state."
         ),
-        "modules": ["QuantumBlockEncoding/StatePreparation.lean"],
+        "modules": [
+            "QuantumBlockEncoding/StatePreparation.lean",
+            "QuantumBlockEncoding/ConcreteSemantics.lean",
+        ],
         "diagram": "learning-path",
         "results": [
             result(
@@ -145,6 +148,26 @@ CHAPTERS = [
                 "Compiled",
                 "Compiled",
             ),
+            result(
+                "QuantumBlockEncoding.ConcreteSemantics.firstColumnMatches_iff_applyVec_zeroKet",
+                "First column equals concrete state action",
+                "The first-column contract is exactly matrix action on the all-zero ket.",
+                r"\operatorname{column}_0(U)=\psi\iff U\lvert0^n\rangle=\lvert\psi\rangle.",
+                "The reader's ket equation and the finite matrix certificate are connected by a compiled equivalence.",
+                "Agents should retrieve this adapter instead of reconstructing basis-vector multiplication in each task.",
+                [
+                    "QuantumBlockEncoding.FirstColumnMatches",
+                    "QuantumBlockEncoding.ConcreteSemantics.applyVec_zeroKet",
+                ],
+                "Reduce matrix action on a basis ket to column selection and use function extensionality.",
+                [
+                    ("Select column zero.", "applyVec_zeroKet"),
+                    ("Translate pointwise equality.", "funext / congrFun"),
+                ],
+                "Compiled",
+                "Partial route",
+                "Normalization and unitarity remain independent candidate obligations.",
+            ),
         ],
     },
     {
@@ -158,6 +181,7 @@ CHAPTERS = [
         "modules": [
             "QuantumBlockEncoding/Circuit.lean",
             "QuantumBlockEncoding/CircuitSemantics.lean",
+            "QuantumBlockEncoding/ConcreteSemantics.lean",
         ],
         "diagram": "certificate-pipeline",
         "results": [
@@ -176,6 +200,26 @@ CHAPTERS = [
                 ],
                 "Compiled",
                 "Compiled",
+            ),
+            result(
+                "QuantumBlockEncoding.ConcreteSemantics.signalSystemBlockProjection_eq_cleanBlockProduct",
+                "Flat and product-register clean blocks agree",
+                "The two ABEIS block-projection views are pointwise equal under the shared register order.",
+                r"\Pi_s U\Pi_s^\dagger=\operatorname{cleanBlockProduct}(s,U).",
+                "A circuit-semantics proof can be consumed by classic block-encoding arithmetic without index reconstruction.",
+                "Register-shape mismatches were a repeated historical failure class.",
+                [
+                    "QuantumBlockEncoding.signalSystemBlockProjection",
+                    "QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct",
+                ],
+                "Both definitions use the same signal-major flattened index, so the pointwise proof is definitional.",
+                [
+                    ("Fix system row and column.", "intro row col"),
+                    ("Unfold the shared index.", "rfl"),
+                ],
+                "Compiled",
+                "Partial route",
+                "This representation bridge does not prove candidate unitarity or target equality.",
             ),
             result(
                 "QuantumBlockEncoding.CircuitMatrixSemantics.blockExtractionTarget",
@@ -519,6 +563,16 @@ IMPLEMENTATION_MAP = [
         "chapter": "state-preparation",
     },
     {
+        "goal": "Read first-column evidence as state action",
+        "contract": r"\operatorname{column}_0(U)=\psi\iff U|0^n\rangle=|\psi\rangle",
+        "obligation": "Finite basis-ket matrix-action bridge",
+        "declaration": "QuantumBlockEncoding.ConcreteSemantics.firstColumnMatches_iff_applyVec_zeroKet",
+        "dependencies": "FirstColumnMatches; applyVec_zeroKet",
+        "status": "Compiled",
+        "missing": "Candidate normalization and unitarity remain separate",
+        "chapter": "state-preparation",
+    },
+    {
         "goal": "Evaluate a gate list",
         "contract": r"\llbracket C\rrbracket=G_m\cdots G_1",
         "obligation": "Fixed fold and register order",
@@ -536,6 +590,16 @@ IMPLEMENTATION_MAP = [
         "dependencies": "CircuitMatrixSemantics; signalSystemBlockProjection",
         "status": "Partial route",
         "missing": "Concrete circuit unitarity and entry proof",
+        "chapter": "circuit-semantics",
+    },
+    {
+        "goal": "Move between flat and product-register block views",
+        "contract": r"\Pi_s U\Pi_s^\dagger=\operatorname{cleanBlockProduct}(s,U)",
+        "obligation": "Shared register-order projection equality",
+        "declaration": "QuantumBlockEncoding.ConcreteSemantics.signalSystemBlockProjection_eq_cleanBlockProduct",
+        "dependencies": "signalSystemBlockProjection; cleanBlockProduct",
+        "status": "Compiled",
+        "missing": "Candidate-level block and unitarity proofs remain separate",
         "chapter": "circuit-semantics",
     },
     {
@@ -668,4 +732,3 @@ WORKFLOW_STAGES = [
         "Run applicable circuit or matrix exports, including Qiskit checks, after the formal certificate gate.",
     ),
 ]
-

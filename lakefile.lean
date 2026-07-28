@@ -15,7 +15,7 @@ require mathlib from git
 lean_lib QuantumBlockEncoding
 
 lean_lib Tests where
-  roots := #[`Tests, `ABEISTests.Basic]
+  roots := #[`Tests, `ABEISTests.Basic, `ABEISTests.QBenchIntegration]
 
 lean_lib ABEISBlueprint
 

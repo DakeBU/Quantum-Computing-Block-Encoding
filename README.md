@@ -376,6 +376,7 @@ declaration index below supplies exact theorem locations.
 | Family | Main Lean surface | Representative compiled leaves | Why it matters |
 | --- | --- | --- | --- |
 | State-preparation core | `StatePreparation.lean` | `StatePreparationTarget`, `FirstColumnMatches`, exact/approximate verified records, zero-error promotion | makes the first-column application a generic library contract rather than a cubic-task convention |
+| Concrete semantic bridges | `ConcreteSemantics.lean` | `applyVec_zeroKet`, `firstColumnMatches_iff_applyVec_zeroKet`, `productRegisterBlockProjection_flatToProductRegister`, `signalSystemBlockProjection_eq_cleanBlockProduct` | connects first-column and flattened-register contracts to finite matrix action and explicit product-register projection without claiming candidate-level unitarity |
 | Finite matrix core | `Core.lean`, `CircuitSemantics.lean` | `Matrix`, `PointwiseEq`, `evalWith_mul_apply`, `evalWith_mul_unique_path`, `evalWith_mul_two_path` | keeps circuit products and branch sums small enough for one-agent leaves |
 | Clean-block/projector extraction | `BlockEncodingClassics.lean` | `cleanBlockBy_permMatrix_entry`, `cleanBlockProduct_permMatrix_entry`, `cleanBlockBy_permMatrix_eq_target_of_entry`, `ExactCleanBlock.clean_eq_target` | turns a block-encoding theorem into entrywise matrix equalities |
 | Permutation and unitarity | `BlockEncodingClassics.lean`, `MainCase.lean` | `permMatrix`, `columnInner`, `rowInner`, `permMatrix_isRationalOrthogonal_of_bijective`, `partialPermutationCertificate` | proves exact reversible completions and BE Case 1 transfer operators |
@@ -390,6 +391,7 @@ into ABEIS proofs.  The relevant cards are:
 - [`quantum-computing-lean`](research-wiki/external-lean-libraries/quantum-computing-lean.md): finite matrices, states, gates, projectors, gate actions, and unitarity proof organization.
 - [`Lean-QuantumInfo`](research-wiki/external-lean-libraries/lean-quantuminfo.md): finite-dimensional quantum-information proof style.
 - [`lean-quantum`](research-wiki/external-lean-libraries/lean-quantum.md): channels, qudits, trace/norm, and operator-oriented conventions.
+- [Lean-QAlg-Bench][lean-qalg-bench] and [Lean-QIT-Bench][lean-qit-bench]: audited benchmark-local Base/Definitions APIs for finite operator action, projected blocks, tensors, states, and channels.  Their Statement theorems are unresolved benchmark targets and are never imported as proof memory.
 - [`research-wiki/mathlib-lemmas/`](research-wiki/mathlib-lemmas/): Mathlib hits that should be reused or adapted before inventing local infrastructure.
 
 Machine-readable and human-readable retrieval files:
@@ -419,6 +421,12 @@ python3 tools/qbe.py mathlib-search "Matrix.mul_apply"
 If the theorem exists but cannot be imported directly yet, the proof packet
 should still name the Mathlib module and assign only the smallest ABEIS adapter
 as local work.
+
+The promoted technical-lemma registry is
+[`research-wiki/technical-lemmas/registry.json`](research-wiki/technical-lemmas/registry.json).
+It distinguishes a compiled local declaration from completion of its broader
+construction route and is checked by
+`python3 tools/check_technical_lemma_registry.py`.
 
 Human interaction is a first-class upper-layer input, not an out-of-band chat.
 ABEIS records three human-facing intervention moments: scheduled 6h closeout,
@@ -920,6 +928,7 @@ gate-level quantum block-encoding certificates.
 | [EAGER-style failure traces][eager-paper] | Reasoning-trace failure representation and failure-scope retrieval. | `failure-memory/` packets that distinguish fine proof-leaf failures from coarse route/source failures. |
 | [MADE-style judge evolution][made-paper] | Decomposed requirement judging for evolutionary search. | Reviewer vectors over target, unitarity, clean block, normalizer/error, resources, proof reuse, source faithfulness, and exportability. |
 | [quantum-computing-lean][quantum-computing-lean], [Lean-QuantumInfo][lean-quantuminfo], [lean-quantum][lean-quantum] | Quantum formalization references: finite matrices, states, gates, projectors, quantum-information semantics. | Leaf-atlas references for small gate/action lemmas, clean-projector APIs, and future semantic alignment. |
+| [Zhang et al. (2026), *Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information*, arXiv:2607.21533][qbench-paper], [Lean-QAlg-Bench][lean-qalg-bench], [Lean-QIT-Bench][lean-qit-bench] | Task-only and library-assisted evaluation surfaces for quantum-algorithm and quantum-information proving. | Audited Base/Definitions declarations inform small local adapters; unresolved Statement files are excluded. ABEIS reports `task-only`, `LAD`, and `full-abeis` separately. |
 | [QASM-Eval][qasm-eval], [Qiskit QuantumKatas][qiskit-quantumkatas] | Typed circuit/test feedback and executable Qiskit/QASM checks. | ABEIS distinguishes inspired feedback, optional exact finite Qiskit checks, and Lean-certified theorem closure. |
 | [QUASAR][quasar-paper], [AI-Mandel][ai-mandel-paper] | Tool-feedback loops for quantum artifacts. | Search signals only; not proof certificates. |
 | [LLM4AD_Next][llm4ad-next] | Low-entry-barrier web interface. | Static oracle-to-task-packet builder. |
@@ -928,6 +937,41 @@ gate-level quantum block-encoding certificates.
 
 More detail is in [`docs/automation_deployment.md`](docs/automation_deployment.md),
 [`docs/attribution.md`](docs/attribution.md), and [`NOTICE.md`](NOTICE.md).
+
+The QBench paper authors are Lei Zhang, Yusheng Zhao, Yimeng Cao, Ranyiliu
+Chen, Mingrui Jing, Jizhe Lai, Ziao Tang, Jingu Xie, Hongshun Yao, Xuanqiang
+Zhao, Guocheng Zhen, Chengkai Zhu, and Xin Wang.
+
+### QBench evaluation boundary
+
+Task files may declare one of three non-comparable evaluation modes:
+
+| Mode | Available context | Adaptive behavior |
+| --- | --- | --- |
+| `task-only` | fixed task statement and imported theorem environment | one `lower2` attempt plus deterministic review; no ABEIS memory |
+| `lad` | task plus curated library-assistance retrieval | one bounded attempt; no trials, failure history, population, capacity growth, or epsilon change |
+| `full-abeis` | audited memory cards, proof DAG, verifier feedback, and population | prerequisite routing and the signed adaptive controller are enabled |
+
+Existing tasks default to `full-abeis`.  Cross-mode solve rates, token use, and
+wall time must not be combined.  The audited QBench repositories use Lean
+4.30/4.31 while this checkout uses Lean 4.29.1, so they remain isolated
+references rather than direct dependencies.  Their full lexical declaration
+inventory and exact commits are recorded in
+[`qbench-external-declarations.json`](reports/QBE-OP-CUBIC-DIAGONAL-001/qbench-external-declarations.json).
+
+### Current semantic limits
+
+- The new complex certificate uses Mathlib's finite unitary-group predicate,
+  but legacy symbolic/rational candidates are not silently promoted to it.
+- Existing zero-error approximate block encodings are pointwise exact
+  statements.  A general operator-norm approximation layer is not yet proved.
+- Current LCU declarations cover arithmetic, clean-block interfaces, and small
+  finite certificates.  They do not yet establish a general unitary
+  PREPARE--SELECT--PREPARE construction; unused SELECT labels require an
+  identity completion before such a claim is valid.
+- Resource records are proof-carrying annotations only where a named theorem
+  connects them to circuit syntax.  No global resource-optimality theorem is
+  claimed.
 
 ## Literature Roadmap
 
@@ -988,6 +1032,9 @@ approximate dense/structured synthesis.
 [quantum-computing-lean]: https://github.com/duckki/quantum-computing-lean
 [lean-quantuminfo]: https://github.com/Timeroot/Lean-QuantumInfo
 [lean-quantum]: https://github.com/Hayata-Yamasaki-Group/lean-quantum
+[qbench-paper]: https://arxiv.org/abs/2607.21533
+[lean-qalg-bench]: https://github.com/QudeLeap/Lean-QuantumAlg-Bench
+[lean-qit-bench]: https://github.com/QuAIR/Lean-QIT-Bench
 [leansearch-v2]: https://github.com/frenzymath/LeanSearch-v2
 [real-prover]: https://github.com/frenzymath/REAL-Prover
 [matlas-paper]: https://arxiv.org/abs/2604.17484

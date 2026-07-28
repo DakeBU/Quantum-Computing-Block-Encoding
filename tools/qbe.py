@@ -1183,6 +1183,7 @@ def task_template(args: argparse.Namespace) -> str:
 Task id: `{args.id}`
 Kind: `{args.kind}`
 Mode: `{args.mode}`
+Evaluation mode: `full-abeis`
 Status: `planned`
 Created: `{now}`
 
@@ -3703,7 +3704,10 @@ def recent_trial_rows(task_id: str, limit: int = 8) -> list[dict[str, object]]:
 def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, object]:
     title, task_text = task_context(task_id)
     blueprint = blueprint_status_state(task_id)
-    if is_ghl_case_task(task_id):
+    evaluation_mode = infer_evaluation_mode(task_text)
+    library_assistance = evaluation_mode in {"lad", "full-abeis"}
+    adaptive_memory = evaluation_mode == "full-abeis"
+    if is_ghl_case_task(task_id) and library_assistance:
         ghl_rows = ghl_contribution_rows()
         technical_rows = technical_lemma_rows()
     else:
@@ -3735,6 +3739,12 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
     ]
     if not controller_state.get("ready_leaf_ids"):
         lower_tasks = []
+    elif evaluation_mode in {"task-only", "lad"}:
+        lower_tasks = [
+            row
+            for row in lower_tasks
+            if row["role"] == "lower-2-lean-implementation-worker"
+        ]
     return {
         "task_id": task_id,
         "title": title,
@@ -3743,6 +3753,7 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
         "run_dir": rel(run_dir),
         "source_main_tex": display_path(source) if source else "",
         "mode": blueprint.get("mode", ""),
+        "evaluation_mode": evaluation_mode,
         "stage": blueprint.get("stage", ""),
         "card_memory_protocol": {
             "idea_cards": "route inspiration only; mutate/recombine and reject when hypotheses do not fit",
@@ -3755,12 +3766,18 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
         "ghl_contributions": ghl_rows,
         "open_ghl_contribution_obligations": open_ghl,
         "technical_lemmas": technical_rows,
-        "reusable_memory_cards": reusable_memory_card_rows(task_text),
+        "reusable_memory_cards": (
+            reusable_memory_card_rows(task_text) if library_assistance else []
+        ),
         "open_external_technical_lemma_obligations": open_technical,
-        "recent_verifier_feedback": recent_verifier_feedback(task_id, limit=10),
-        "recent_trials": recent_trial_rows(task_id, limit=10),
-        "recent_proof_attempts": latest_proof_attempts(task_id, limit=10),
-        "controller_state": controller_state,
+        "recent_verifier_feedback": (
+            recent_verifier_feedback(task_id, limit=10) if adaptive_memory else []
+        ),
+        "recent_trials": recent_trial_rows(task_id, limit=10) if adaptive_memory else [],
+        "recent_proof_attempts": (
+            latest_proof_attempts(task_id, limit=10) if adaptive_memory else []
+        ),
+        "controller_state": controller_state if adaptive_memory else {},
         "next_lower_tasks": lower_tasks,
     }
 
@@ -6537,6 +6554,30 @@ def infer_task_mode(task_text: str) -> str:
     return "unspecified"
 
 
+def infer_evaluation_mode(task_text: str) -> str:
+    """Return the declared proof-agent evaluation boundary."""
+
+    match = re.search(
+        r"^Evaluation mode:\s*`?([A-Za-z0-9_-]+)`?",
+        task_text,
+        flags=re.M | re.I,
+    )
+    if not match:
+        return "full-abeis"
+    value = match.group(1).lower().replace("_", "-")
+    aliases = {
+        "task": "task-only",
+        "taskonly": "task-only",
+        "task-only": "task-only",
+        "lad": "lad",
+        "library-assisted": "lad",
+        "full": "full-abeis",
+        "abeis": "full-abeis",
+        "full-abeis": "full-abeis",
+    }
+    return aliases.get(value, "full-abeis")
+
+
 def infer_task_kind(task_text: str) -> str:
     kind_match = re.search(r"^Kind:\s*`?([A-Za-z0-9_-]+)`?", task_text, flags=re.M)
     if kind_match and kind_match.group(1) in {"statePreparation", "operatorBlockEncoding"}:
@@ -6972,12 +7013,23 @@ def role_prompt(
 ) -> str:
     trial_memory = recent_trial_text(task_id, limit=12)
     mode = infer_task_mode(task_text)
+    evaluation_mode = infer_evaluation_mode(task_text)
     strategy = strategy_for_mode(mode)
     paper_sources = local_paper_source_context(task_text)
     verifier_feedback = verifier_feedback_contract(task_id, task_text)
     blueprint = blueprint_context(task_id)
     mathlib_context = mathlib_retrieval_context()
     failure_judge_context = failure_trace_and_judge_context()
+    if evaluation_mode == "task-only":
+        trial_memory = ""
+        paper_sources = ""
+        blueprint = ""
+        mathlib_context = ""
+        failure_judge_context = ""
+    elif evaluation_mode == "lad":
+        trial_memory = ""
+        blueprint = ""
+        failure_judge_context = ""
     displayed_task_text = task_text.strip() if context_mode == "full" else focused_task_contract(task_text)
     context_note = (
         "Full task context."
@@ -7017,9 +7069,12 @@ def role_prompt(
   process bug for this cycle because it can import stale paper-benchmark
   context into an operator-construction task.
 """
+    if evaluation_mode in {"task-only", "lad"}:
+        operator_scoped_retrieval = ""
     controller_cmd = f'QBE_ROOT="{ROOT}" python3 "{Path(__file__).resolve()}"'
     shared = f"""Task: {task_id} - {title}
 Mode: {mode}
+Evaluation mode: {evaluation_mode}
 Cycle: {cycle}
 Run directory: {rel(run_dir)}
 Context mode: {context_mode} ({context_note})
@@ -7046,6 +7101,11 @@ Recent trial memory:
 ```text
 {trial_memory}
 ```
+
+Evaluation boundary: `task-only` receives no historical ABEIS memory or
+library-assistance packet; `lad` may use curated library retrieval but receives
+no trials, population, or failure history; `full-abeis` enables the adaptive
+controller and all audited memory layers.  Do not cross the declared boundary.
 
 Proof blueprint snapshot:
 
@@ -9172,9 +9232,11 @@ def verified_closed_lean_leaf_ids(
 
 def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecision:
     state = blueprint_status_state(args.id)
-    feedback = recent_verifier_feedback(args.id, limit=100)
+    all_feedback = recent_verifier_feedback(args.id, limit=100)
     previous = load_control_state(control_state_path(args.id))
     _, task_text = task_context(args.id)
+    evaluation_mode = infer_evaluation_mode(task_text)
+    feedback = all_feedback if evaluation_mode == "full-abeis" else []
     frontier_rows = state.get("dynamic_leaf_queue", [])
     obligation_rows = state.get("open_obligation_signals", [])
     allowed_routes, forbidden_routes = infer_route_lock(task_text)
@@ -9206,7 +9268,7 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
         allowed_leaf_prefixes=allowed_routes,
         forbidden_leaf_prefixes=forbidden_routes,
         verified_closed_leaf_ids=verified_closed_lean_leaf_ids(
-            args.id, frontier_rows, obligation_rows, feedback
+            args.id, frontier_rows, obligation_rows, all_feedback
         ),
         verified_root_anchors=verified_task_acceptance_anchors(
             args.id, task_text=task_text
@@ -9217,7 +9279,10 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
         ),
         executable_acceptance_command=executable.command,
         executable_acceptance_artifacts=executable.artifacts,
-        population_gate_required=infer_population_gate(task_text),
+        population_gate_required=(
+            evaluation_mode == "full-abeis" and infer_population_gate(task_text)
+        ),
+        evaluation_mode=evaluation_mode,
     )
     write_control_state(control_state_path(args.id), decision)
     population_path = ROOT / "candidate-populations" / args.id / "population-state.json"
@@ -9227,6 +9292,7 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
             {
                 "task_id": args.id,
                 "cycle": cycle,
+                "evaluation_mode": decision.evaluation_mode,
                 "gate_required": decision.population_gate_required,
                 "digest": decision.population_digest,
                 "active_candidate_ids": list(decision.population_active_candidate_ids),
@@ -9248,7 +9314,8 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
 
 def control_policy_note(decision: CycleDecision) -> str:
     note = (
-        f"Controller mode: `{decision.mode}`. Status: `{decision.status}`. "
+        f"Controller mode: `{decision.mode}`. Evaluation mode: "
+        f"`{decision.evaluation_mode}`. Status: `{decision.status}`. "
         f"Leaf signature: `{decision.leaf_signature}`. Evidence digest: "
         f"`{decision.evidence_digest}`. Ready leaves: "
         f"{', '.join(decision.ready_leaf_ids) or 'none'}. Reason: {decision.reason} "
@@ -9290,6 +9357,14 @@ def control_policy_note(decision: CycleDecision) -> str:
         )
     if decision.policy_rejections:
         note += " Rejected policy request: " + " ".join(decision.policy_rejections)
+    if decision.prerequisite_leaf_ids:
+        note += (
+            " Frozen structural prerequisites: "
+            + ", ".join(decision.prerequisite_leaf_ids)
+            + "; classes: "
+            + (", ".join(decision.prerequisite_error_classes) or "unspecified")
+            + "."
+        )
     return note
 
 
@@ -9312,6 +9387,7 @@ Choose exactly one route before resuming:
         f"""# ABEIS control intervention: {task_id}
 
 - mode: `{decision.mode}`
+- evaluation mode: `{decision.evaluation_mode}`
 - status: `{decision.status}`
 - cycle: `{decision.cycle}`
 - leaf signature: `{decision.leaf_signature}`
@@ -9326,6 +9402,8 @@ Choose exactly one route before resuming:
 - ready leaves: `{', '.join(decision.ready_leaf_ids) or 'none'}`
 - external leaves: `{', '.join(decision.external_leaf_ids) or 'none'}`
 - unresolved leaves: `{', '.join(decision.unresolved_leaf_ids) or 'none'}`
+- structural prerequisite leaves: `{', '.join(decision.prerequisite_leaf_ids) or 'none'}`
+- structural error classes: `{', '.join(decision.prerequisite_error_classes) or 'none'}`
 
 ## Stop reason
 
@@ -9388,6 +9466,9 @@ def runtime_stop_decision(decision: CycleDecision, reason: str) -> CycleDecision
         population_selected_candidate_ids=decision.population_selected_candidate_ids,
         population_direction=decision.population_direction,
         population_invalid_packets=decision.population_invalid_packets,
+        prerequisite_leaf_ids=decision.prerequisite_leaf_ids,
+        prerequisite_error_classes=decision.prerequisite_error_classes,
+        evaluation_mode=decision.evaluation_mode,
     )
 
 

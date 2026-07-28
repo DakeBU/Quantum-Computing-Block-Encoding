@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "generated_from": "curated, build-checked ABEIS declarations",
+  "entries": [
+    {
+      "id": "tl-concrete-apply-basis-ket",
+      "theorem": "applyVec_basisKet",
+      "fully_qualified_name": "QuantumBlockEncoding.ConcreteSemantics.applyVec_basisKet",
+      "source_file": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "required_imports": [
+        "Mathlib.Data.Matrix.Mul"
+      ],
+      "category": "state-action",
+      "semantic_layer": "concrete finite matrix semantics",
+      "assumptions": "A finite matrix over a NonAssocSemiring and a valid basis index.",
+      "conclusion": "Matrix action on a basis ket equals the selected matrix column.",
+      "exact_signature": "applyVec operator (basisKet cols index) = operator.col index",
+      "related_leaves": [
+        "state-preparation first-column/action bridge"
+      ],
+      "compatible_shapes": [
+        "rows x cols finite matrix",
+        "rectangular matrices"
+      ],
+      "known_successful_uses": [
+        "applyVec_zeroKet"
+      ],
+      "failed_uses": [],
+      "external_source": "Mathlib Matrix.mulVec_single_one; Lean-QAlg-Bench Base API audited as a design comparison",
+      "license_attribution": "ABEIS proof; Mathlib dependency. Lean-QAlg-Bench was consulted under Apache-2.0; no benchmark source was copied.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "reusable prerequisite only"
+    },
+    {
+      "id": "tl-concrete-apply-zero-ket",
+      "theorem": "applyVec_zeroKet",
+      "fully_qualified_name": "QuantumBlockEncoding.ConcreteSemantics.applyVec_zeroKet",
+      "source_file": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.ConcreteSemantics"
+      ],
+      "category": "state-action",
+      "semantic_layer": "concrete finite matrix semantics",
+      "assumptions": "A square finite matrix over a NonAssocSemiring.",
+      "conclusion": "Matrix action on the all-zero ket equals its zero-index column.",
+      "exact_signature": "applyVec operator (zeroKet qubits) = operator.col (zeroBasisIndex qubits)",
+      "related_leaves": [
+        "state-preparation first-column/action bridge"
+      ],
+      "compatible_shapes": [
+        "2^n x 2^n finite matrix"
+      ],
+      "known_successful_uses": [
+        "firstColumnMatches_iff_applyVec_zeroKet",
+        "complex identity certificate test",
+        "bit-flip state preparation test"
+      ],
+      "failed_uses": [],
+      "external_source": "Mathlib Matrix.mulVec_single_one; Lean-QAlg-Bench Base API audited as a design comparison",
+      "license_attribution": "ABEIS proof; Mathlib dependency. Lean-QAlg-Bench was consulted under Apache-2.0; no benchmark source was copied.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "reusable prerequisite only"
+    },
+    {
+      "id": "tl-stateprep-first-column-action",
+      "theorem": "firstColumnMatches_iff_applyVec_zeroKet",
+      "fully_qualified_name": "QuantumBlockEncoding.ConcreteSemantics.firstColumnMatches_iff_applyVec_zeroKet",
+      "source_file": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.StatePreparation",
+        "Mathlib.Data.Matrix.Mul"
+      ],
+      "category": "state-preparation",
+      "semantic_layer": "contract-to-concrete-action bridge",
+      "assumptions": "A square 2^n-dimensional finite matrix and an ABEIS state-preparation target.",
+      "conclusion": "The first-column contract is equivalent to U|0^n> = |psi> under finite matrix-vector action.",
+      "exact_signature": "FirstColumnMatches operator target ↔ applyVec operator (zeroKet qubits) = target.amplitudes",
+      "related_leaves": [
+        "QBench H1",
+        "state-preparation semantic acceptance"
+      ],
+      "compatible_shapes": [
+        "2^n x 2^n finite matrix",
+        "any NonAssocSemiring coefficient type"
+      ],
+      "known_successful_uses": [
+        "bitFlip_firstColumnMatches",
+        "cubicOperator_firstColumnMatches",
+        "ComplexStatePreparationCertificate.verified"
+      ],
+      "failed_uses": [
+        "Does not prove candidate unitarity or target normalization."
+      ],
+      "external_source": "Independently proved after auditing Lean-QAlg-Bench finite operator action and Lean-QIT-Bench state APIs",
+      "license_attribution": "ABEIS proof. Lean-QAlg-Bench and Lean-QIT-Bench were design references under Apache-2.0; no benchmark source was copied.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "partial route: semantic bridge closed; each candidate still owes normalization and unitarity"
+    },
+    {
+      "id": "tl-stateprep-concrete-certificate-action",
+      "theorem": "preparesVector",
+      "fully_qualified_name": "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.preparesVector",
+      "source_file": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.ConcreteSemantics",
+        "Mathlib.LinearAlgebra.UnitaryGroup"
+      ],
+      "category": "state-preparation",
+      "semantic_layer": "verified concrete certificate",
+      "assumptions": "A ComplexStatePreparationCertificate carrying Mathlib unitarity, normalization, and state-action evidence.",
+      "conclusion": "The certificate's gate prepares its target from the all-zero ket.",
+      "exact_signature": "applyVec certificate.gate.matrix (zeroKet qubits) = certificate.target.amplitudes",
+      "related_leaves": [
+        "concrete state-preparation acceptance"
+      ],
+      "compatible_shapes": [
+        "complex 2^n x 2^n unitary matrices"
+      ],
+      "known_successful_uses": [
+        "complexIdentityCertificate test"
+      ],
+      "failed_uses": [
+        "Cannot promote rational or symbolic candidates without a complex-unitary bridge."
+      ],
+      "external_source": "Mathlib Matrix.unitaryGroup",
+      "license_attribution": "ABEIS proof over Mathlib.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "partial route: optional concrete acceptance layer, not yet used by every legacy candidate"
+    },
+    {
+      "id": "tl-register-flat-product-projection",
+      "theorem": "productRegisterBlockProjection_flatToProductRegister",
+      "fully_qualified_name": "QuantumBlockEncoding.ConcreteSemantics.productRegisterBlockProjection_flatToProductRegister",
+      "source_file": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.CircuitSemantics"
+      ],
+      "category": "register-indexing",
+      "semantic_layer": "flat/product representation bridge",
+      "assumptions": "A flattened signal-system matrix and a valid signal index.",
+      "conclusion": "Explicit product-register projection equals the existing flattened signal-system block projection.",
+      "exact_signature": "productRegisterBlockProjection (flatToProductRegister operator) signalIndex = signalSystemBlockProjection signalDim rows cols operator signalIndex",
+      "related_leaves": [
+        "QBench H2",
+        "register-order prerequisite"
+      ],
+      "compatible_shapes": [
+        "signalDim*rows x signalDim*cols",
+        "rectangular system blocks"
+      ],
+      "known_successful_uses": [
+        "2x3 to 2x5 projection test",
+        "4x2 to 4x7 projection test"
+      ],
+      "failed_uses": [],
+      "external_source": "Independently proved after auditing QAlg projected-block APIs",
+      "license_attribution": "ABEIS proof. Lean-QAlg-Bench was a design reference under Apache-2.0; no benchmark source was copied.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "reusable prerequisite only"
+    },
+    {
+      "id": "tl-register-product-index-value",
+      "theorem": "productIndex_val_eq_signalSystemBlockRowIndex",
+      "fully_qualified_name": "QuantumBlockEncoding.ConcreteSemantics.productIndex_val_eq_signalSystemBlockRowIndex",
+      "source_file": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.BlockEncodingClassics",
+        "QuantumBlockEncoding.CircuitSemantics"
+      ],
+      "category": "register-indexing",
+      "semantic_layer": "index arithmetic bridge",
+      "assumptions": "Valid signal and system finite indices.",
+      "conclusion": "The classic product-index value equals the circuit-semantics flattened row index.",
+      "exact_signature": "(BlockEncodingClassics.productIndex signalIndex systemIndex).val = signalSystemBlockRowIndex systemDim signalIndex.val systemIndex.val",
+      "related_leaves": [
+        "clean-block representation bridge"
+      ],
+      "compatible_shapes": [
+        "all finite signal/system dimensions"
+      ],
+      "known_successful_uses": [
+        "signalSystemBlockProjection_eq_cleanBlockProduct"
+      ],
+      "failed_uses": [],
+      "external_source": "ABEIS register conventions",
+      "license_attribution": "ABEIS proof.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "reusable prerequisite only"
+    },
+    {
+      "id": "tl-clean-block-flat-product-equivalence",
+      "theorem": "signalSystemBlockProjection_eq_cleanBlockProduct",
+      "fully_qualified_name": "QuantumBlockEncoding.ConcreteSemantics.signalSystemBlockProjection_eq_cleanBlockProduct",
+      "source_file": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.BlockEncodingClassics",
+        "QuantumBlockEncoding.CircuitSemantics"
+      ],
+      "category": "block-encoding",
+      "semantic_layer": "clean-block representation bridge",
+      "assumptions": "A square rational signal-system matrix and a valid clean signal index.",
+      "conclusion": "Circuit-semantics projection and the classic rational clean block are pointwise equal under the shared register order.",
+      "exact_signature": "Matrix.PointwiseEq (signalSystemBlockProjection signalDim systemDim systemDim operator signalIndex) (BlockEncodingClassics.cleanBlockProduct signalIndex operator)",
+      "related_leaves": [
+        "QBench H2",
+        "BE Case 1 clean-block interoperability"
+      ],
+      "compatible_shapes": [
+        "signalDim*systemDim square rational matrices"
+      ],
+      "known_successful_uses": [
+        "2x2 product projection test",
+        "3x4 product projection test",
+        "mainCaseCold_cleanBlockProduct_eq_target"
+      ],
+      "failed_uses": [
+        "Does not prove unitarity, normalization, or approximation error."
+      ],
+      "external_source": "Independently proved after auditing QAlg projectedBlock and ExactBlockEncoding APIs",
+      "license_attribution": "ABEIS proof. Lean-QAlg-Bench was a design reference under Apache-2.0; no benchmark source was copied.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "partial route: representation prerequisite closed; candidate-level block encoding obligations remain separate"
+    }
+  ]
+}

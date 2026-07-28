@@ -69,7 +69,11 @@ CATALOGS = [
             "TechnicalLemmas.lean",
         },
     ),
-    ("Semantics", "catalog-semantics", {"CircuitSemantics.lean"}),
+    (
+        "Semantics",
+        "catalog-semantics",
+        {"CircuitSemantics.lean", "ConcreteSemantics.lean"},
+    ),
     ("ClassicRoutes", "catalog-classic-routes", {"BlockEncodingClassics.lean"}),
     (
         "CertifiedCases",
@@ -101,7 +105,7 @@ CATALOG_PURPOSES = {
     ),
     "Semantics": (
         "Definitions and lemmas that connect circuit syntax to evaluated matrix "
-        "semantics."
+        "semantics, finite state action, and explicit product-register projection."
     ),
     "ClassicRoutes": (
         "Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing "

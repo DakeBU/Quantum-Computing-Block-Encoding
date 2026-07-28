@@ -1,0 +1,20 @@
+{
+  "id": "tl-stateprep-first-column-action",
+  "category": "state-preparation",
+  "queries": [
+    "first column",
+    "U |0^n> = |psi>",
+    "matrix vector action",
+    "state preparation semantic bridge"
+  ],
+  "lean_declaration": "QuantumBlockEncoding.ConcreteSemantics.firstColumnMatches_iff_applyVec_zeroKet",
+  "registry": "research-wiki/technical-lemmas/registry.json",
+  "status": {
+    "local_declaration": "complete",
+    "broader_route": "partial route"
+  },
+  "exclusions": [
+    "unitarity",
+    "normalization"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "tl-clean-block-flat-product-equivalence",
+  "category": "block-encoding",
+  "queries": [
+    "clean block projection",
+    "product register",
+    "flattened register order",
+    "shape or register gap"
+  ],
+  "lean_declaration": "QuantumBlockEncoding.ConcreteSemantics.signalSystemBlockProjection_eq_cleanBlockProduct",
+  "registry": "research-wiki/technical-lemmas/registry.json",
+  "status": {
+    "local_declaration": "complete",
+    "broader_route": "partial route"
+  },
+  "exclusions": [
+    "unitarity",
+    "normalization",
+    "operator norm approximation"
+  ]
+}

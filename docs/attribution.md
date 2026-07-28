@@ -146,6 +146,18 @@ Lean/Markdown/LaTeX correspondence must be tracked explicitly.
   quantum channels, partial traces, entropy, trace inequalities, and
   operator-theoretic Lean conventions. It is not currently imported as a QBE
   dependency.
+- Lei Zhang, Yusheng Zhao, Yimeng Cao, Ranyiliu Chen, Mingrui Jing, Jizhe Lai,
+  Ziao Tang, Jingu Xie, Hongshun Yao, Xuanqiang Zhao, Guocheng Zhen, Chengkai
+  Zhu, and Xin Wang,
+  [Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information](https://arxiv.org/abs/2607.21533)
+  (2026, arXiv:2607.21533),
+  [Lean-QuantumAlg-Bench](https://github.com/QudeLeap/Lean-QuantumAlg-Bench),
+  and [Lean-QIT-Bench](https://github.com/QuAIR/Lean-QIT-Bench).
+  The repositories are Apache-2.0 and were compiled only in isolated
+  checkouts at their pinned Lean 4.31/4.30 toolchains.  Statement files are
+  unresolved benchmark targets and are excluded from ABEIS proof memory.
+  `ConcreteSemantics.lean` contains independent ABEIS proofs over Mathlib and
+  existing ABEIS definitions; no benchmark implementation was copied.
 - [teorth/optimizationproblems](https://github.com/teorth/optimizationproblems).
   Used as a style reference for concise open-problem registries.
 

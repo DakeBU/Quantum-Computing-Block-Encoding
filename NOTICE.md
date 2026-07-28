@@ -88,5 +88,20 @@ This project also references:
     target-review before proof discharge, dynamic proof-DAG leaves,
     worker/refiner scoping, and deterministic CI gates.
   - QBE adaptation: local proof-blueprint snapshots, source-contract review,
-    dynamic leaf queues, and proof-discharge prompts specialized to quantum
-    oracle/block-encoding circuit matrices.
+  dynamic leaf queues, and proof-discharge prompts specialized to quantum
+  oracle/block-encoding circuit matrices.
+- Lei Zhang, Yusheng Zhao, Yimeng Cao, Ranyiliu Chen, Mingrui Jing, Jizhe Lai,
+  Ziao Tang, Jingu Xie, Hongshun Yao, Xuanqiang Zhao, Guocheng Zhen, Chengkai
+  Zhu, Xin Wang, Benchmarking Agents for Proving Theorems in Quantum Algorithms
+  and Quantum Information (2026), arXiv:2607.21533
+  - Paper: https://arxiv.org/abs/2607.21533
+  - Lean-QuantumAlg-Bench:
+    https://github.com/QudeLeap/Lean-QuantumAlg-Bench
+  - Lean-QIT-Bench: https://github.com/QuAIR/Lean-QIT-Bench
+  - License for both benchmark repositories: Apache-2.0
+  - Audited commits: `7f964d2b34a63c8ea7cae87937ede7740abe7dda`
+    and `e4f0230e14c35da9c658b58c8663b3e6825e6663`
+  - ABEIS adaptation: Base APIs were consulted as design references for
+    independently proved finite matrix-action and register-projection bridges.
+    No benchmark source or unresolved Statement proof was copied.  The
+    different Lean toolchains remain isolated from the ABEIS dependency graph.

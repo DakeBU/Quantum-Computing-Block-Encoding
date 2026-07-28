@@ -1,0 +1,23 @@
+{
+  "task": "QBE-OP-CUBIC-DIAGONAL-001",
+  "leaf": "opaque semantic and register-representation bridges",
+  "trace_scope": "coarse",
+  "failure_class": "symbolic_bridge_gap",
+  "local_symptom": "Seventy-three verifier packets repeated a symbolic bridge gap while lower, middle, and upper agents continued to run.",
+  "root_cause": "The missing object was a named semantic prerequisite or a transparent replacement API, not a tactic-level proof leaf.",
+  "rejected_route": "Increase lower-agent capacity or relax epsilon while the same opaque proposition and Lean evidence remain unchanged.",
+  "repair_route": "Freeze lower execution and policy transitions; run one upper/middle prerequisite pass that must produce a named independently compilable adapter or replace the opaque interface; stop if the evidence digest is unchanged.",
+  "reusable_lesson": "Representation, source-translation, and semantic bridge gaps are library/API work. They must precede proof search and cannot be repaired by population growth or approximation.",
+  "mathlib_queries": [
+    "Matrix.mulVec_single_one",
+    "Matrix.unitaryGroup",
+    "Matrix.mul_apply"
+  ],
+  "promote_to_card": true,
+  "promoted_cards": [
+    "tl-stateprep-first-column-action",
+    "tl-clean-block-flat-product-equivalence"
+  ],
+  "local_repair_status": "controller and semantic adapters compiled",
+  "broader_route_status": "old cubic arithmetic/rotation route remains incomplete"
+}

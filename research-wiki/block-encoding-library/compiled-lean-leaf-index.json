@@ -1,5 +1,5 @@
 {
-  "total": 1084,
+  "total": 1103,
   "files": [
     {
       "file": "QuantumBlockEncoding/Core.lean",
@@ -558,6 +558,107 @@
           "kind": "theorem",
           "name": "firstColumn",
           "line": 98
+        }
+      ]
+    },
+    {
+      "file": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "count": 19,
+      "declarations": [
+        {
+          "kind": "abbrev",
+          "name": "FiniteMatrix",
+          "line": 25
+        },
+        {
+          "kind": "abbrev",
+          "name": "StateVector",
+          "line": 29
+        },
+        {
+          "kind": "def",
+          "name": "basisKet",
+          "line": 33
+        },
+        {
+          "kind": "def",
+          "name": "zeroKet",
+          "line": 38
+        },
+        {
+          "kind": "def",
+          "name": "applyVec",
+          "line": 43
+        },
+        {
+          "kind": "structure",
+          "name": "ComplexUnitaryGate",
+          "line": 52
+        },
+        {
+          "kind": "theorem",
+          "name": "applyVec_basisKet",
+          "line": 58
+        },
+        {
+          "kind": "theorem",
+          "name": "applyVec_zeroKet",
+          "line": 65
+        },
+        {
+          "kind": "theorem",
+          "name": "firstColumnMatches_iff_applyVec_zeroKet",
+          "line": 76
+        },
+        {
+          "kind": "structure",
+          "name": "ComplexStatePreparationCertificate",
+          "line": 95
+        },
+        {
+          "kind": "def",
+          "name": "candidate",
+          "line": 105
+        },
+        {
+          "kind": "def",
+          "name": "verified",
+          "line": 124
+        },
+        {
+          "kind": "theorem",
+          "name": "preparesVector",
+          "line": 137
+        },
+        {
+          "kind": "abbrev",
+          "name": "ProductRegisterMatrix",
+          "line": 145
+        },
+        {
+          "kind": "def",
+          "name": "flatToProductRegister",
+          "line": 152
+        },
+        {
+          "kind": "def",
+          "name": "productRegisterBlockProjection",
+          "line": 163
+        },
+        {
+          "kind": "theorem",
+          "name": "productRegisterBlockProjection_flatToProductRegister",
+          "line": 172
+        },
+        {
+          "kind": "theorem",
+          "name": "productIndex_val_eq_signalSystemBlockRowIndex",
+          "line": 182
+        },
+        {
+          "kind": "theorem",
+          "name": "signalSystemBlockProjection_eq_cleanBlockProduct",
+          "line": 194
         }
       ]
     },

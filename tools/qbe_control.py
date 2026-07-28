@@ -17,10 +17,15 @@ from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
 
-CONTROL_VERSION = 5
+CONTROL_VERSION = 6
 CONTROL_STOP_EXIT_CODE = 75
 MAX_CAPACITY_LEVEL = 3
 POLICY_TASK_KINDS = {"statePreparation", "operatorBlockEncoding"}
+STRUCTURAL_PREREQUISITE_ERRORS = {
+    "shape_or_register_gap",
+    "source_translation_gap",
+    "symbolic_bridge_gap",
+}
 
 CLOSED_MARKERS = (
     "formalized",
@@ -755,6 +760,9 @@ class CycleDecision:
     population_selected_candidate_ids: tuple[str, ...] = ()
     population_direction: str = ""
     population_invalid_packets: tuple[str, ...] = ()
+    prerequisite_leaf_ids: tuple[str, ...] = ()
+    prerequisite_error_classes: tuple[str, ...] = ()
+    evaluation_mode: str = "full-abeis"
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -784,7 +792,14 @@ def decide_cycle(
     executable_acceptance_command: str = "",
     executable_acceptance_artifacts: Sequence[str] = (),
     population_gate_required: bool = False,
+    evaluation_mode: str = "full-abeis",
 ) -> CycleDecision:
+    normalized_evaluation_mode = _lower(evaluation_mode).replace("_", "-")
+    if normalized_evaluation_mode not in {"task-only", "lad", "full-abeis"}:
+        normalized_evaluation_mode = "full-abeis"
+    benchmark_limited = normalized_evaluation_mode != "full-abeis"
+    if benchmark_limited:
+        population_gate_required = False
     leaves = classify_leaves(frontier_rows, obligation_rows)
     verified_closed = {_lower(value) for value in verified_closed_leaf_ids if _lower(value)}
     auto_retired = [
@@ -810,6 +825,7 @@ def decide_cycle(
 
     route_rejected = [leaf for leaf in pending if not route_allowed(leaf)]
     eligible = [leaf for leaf in pending if route_allowed(leaf)]
+    eligible_ids = {_lower(leaf.leaf_id) for leaf in eligible}
     ready = [leaf for leaf in eligible if leaf.ready_for_lean]
     external = [leaf for leaf in eligible if leaf.external]
     unresolved = [
@@ -828,6 +844,29 @@ def decide_cycle(
         }
         for leaf in sorted(pending, key=lambda item: item.leaf_id)
     ]
+    prerequisite_feedback = [
+        row
+        for row in feedback
+        if _lower(row.get("leaf", "")) in eligible_ids
+        and _lower(row.get("error_class", "")) in STRUCTURAL_PREREQUISITE_ERRORS
+        and row.get("closed_theorem_ok") is not True
+    ]
+    prerequisite_leaf_ids = tuple(
+        dict.fromkeys(
+            _normalized(row.get("leaf", ""))
+            for row in prerequisite_feedback
+            if _normalized(row.get("leaf", ""))
+        )
+    )
+    prerequisite_error_classes = tuple(
+        sorted(
+            {
+                _lower(row.get("error_class", ""))
+                for row in prerequisite_feedback
+                if _lower(row.get("error_class", ""))
+            }
+        )
+    )
     population = summarize_candidate_population(feedback)
     leaf_signature = content_digest(
         [leaf_payload, evidence_digest, population.digest if population_gate_required else ""]
@@ -844,6 +883,8 @@ def decide_cycle(
         else 0
     )
     request = _feedback_policy_request(feedback, leaf_signature, evidence_digest)
+    if benchmark_limited:
+        request = PolicyRequest((), False, "", "")
     previous_signature = _normalized(previous.get("leaf_signature", ""))
     previous_evidence = _normalized(previous.get("evidence_digest", ""))
     if (
@@ -866,6 +907,11 @@ def decide_cycle(
     lower_level = min(capacity_limit, max(0, int(previous.get("lower_capacity_level", 0) or 0)))
     policy_applied = False
     policy_rejections: list[str] = []
+    if new_policy_request and prerequisite_feedback:
+        policy_rejections.append(
+            "Capacity and tolerance changes are disabled while a structural "
+            "prerequisite gap is unresolved."
+        )
 
     ladder = tuple(_normalized(value) for value in epsilon_ladder if _normalized(value))
     previous_index_raw = previous.get("epsilon_index", -1)
@@ -931,7 +977,7 @@ def decide_cycle(
     )
     if verified_root_anchors and executable_acceptance_required and not executable_acceptance_complete:
         search_phase = "post_lean_export"
-    elif external and not ready:
+    elif prerequisite_feedback or (external and not ready):
         search_phase = "dependency"
     effective_epsilon = "n/a" if search_phase == "dependency" else active_epsilon
     policy_digest = (
@@ -992,6 +1038,9 @@ def decide_cycle(
             population_selected_candidate_ids=population.selected_candidate_ids,
             population_direction=population.direction,
             population_invalid_packets=population.invalid_packets,
+            prerequisite_leaf_ids=prerequisite_leaf_ids,
+            prerequisite_error_classes=prerequisite_error_classes,
+            evaluation_mode=normalized_evaluation_mode,
         )
 
     if verified_root_anchors:
@@ -1019,6 +1068,32 @@ def decide_cycle(
             (),
             (),
             True,
+        )
+    if prerequisite_feedback:
+        if same_signature and _lower(previous.get("mode", "")) == "prerequisite":
+            return make_decision(
+                "human_blocked",
+                "blocked",
+                "The structural prerequisite pass did not change Lean evidence; "
+                "lower retries, capacity growth, and epsilon relaxation remain frozen.",
+                (),
+                tuple(leaf.leaf_id for leaf in external),
+                tuple(leaf.leaf_id for leaf in unresolved + ready),
+                (),
+                True,
+            )
+        return make_decision(
+            "prerequisite",
+            "running",
+            "Verifier feedback identifies a representation or semantic bridge "
+            "gap. One bounded upper/middle pass must expose a named, independently "
+            "compilable prerequisite lemma or replace the opaque interface before "
+            "lower proof search can resume.",
+            (),
+            tuple(leaf.leaf_id for leaf in external),
+            tuple(leaf.leaf_id for leaf in unresolved + ready),
+            ("upper", "middle", "reviewer"),
+            False,
         )
     if population_gate_required and not population.direction:
         return make_decision(
@@ -1114,6 +1189,19 @@ def decide_cycle(
                 False,
             )
     if ready:
+        if benchmark_limited and same_signature:
+            return make_decision(
+                "benchmark_complete",
+                "blocked",
+                "The bounded benchmark attempt has already executed against this "
+                "unchanged theorem and evidence. Evaluation modes task-only and "
+                "LAD do not adapt capacity, tolerance, population, or route history.",
+                tuple(leaf.leaf_id for leaf in ready),
+                tuple(leaf.leaf_id for leaf in external),
+                tuple(leaf.leaf_id for leaf in unresolved),
+                (),
+                True,
+            )
         if (
             population_gate_required
             and same_signature
@@ -1140,6 +1228,18 @@ def decide_cycle(
                 tuple(leaf.leaf_id for leaf in unresolved),
                 (),
                 True,
+            )
+        if benchmark_limited:
+            return make_decision(
+                "execute",
+                "running",
+                "The bounded benchmark mode exposes one Lean implementation "
+                "attempt and deterministic review without adaptive ABEIS state.",
+                tuple(leaf.leaf_id for leaf in ready),
+                tuple(leaf.leaf_id for leaf in external),
+                tuple(leaf.leaf_id for leaf in unresolved),
+                ("lower2", "reviewer"),
+                False,
             )
         plan: list[str] = []
         if not same_signature or policy_applied:

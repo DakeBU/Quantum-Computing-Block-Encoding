@@ -1,5 +1,6 @@
 import QuantumBlockEncoding.BlockEncoding
 import QuantumBlockEncoding.CircuitSemantics
+import QuantumBlockEncoding.ConcreteSemantics
 import QuantumBlockEncoding.Literature
 import QuantumBlockEncoding.Resources
 
@@ -9,9 +10,9 @@ import QuantumBlockEncoding.Resources
 This module is the stable Lean-side import surface for reusable technical
 lemmas, external primitive contracts, and standard block-encoding definitions.
 
-The retrieval memory lives in `research-wiki/technical-lemmas/`.  This file is
-deliberately thin for now: it re-exports the existing declarations without
-moving proofs out of their current files.
+The retrieval memory lives in `research-wiki/technical-lemmas/`.  Concrete
+representation bridges are proved in `ConcreteSemantics`; this module re-exports
+them without moving established proofs out of their owning files.
 -/
 
 namespace QuantumBlockEncoding
