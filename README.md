@@ -746,6 +746,17 @@ The mandatory acceptance gate is:
 lake build && lake build Tests
 ```
 
+`python3 tools/qbe.py check` also runs the deterministic harness suite before
+the Lean gates.  For a read-only lifecycle and memory replay, run:
+
+```bash
+python3 tools/qbe.py harness-audit
+```
+
+The audit resolves completion from current Lean roots plus declared executable
+artifacts, reports stale `HUMAN_STATUS.md` state, and compares full-log size
+with the latest ten task-specific records. It never reopens or edits a task.
+
 ## Use ABEIS
 
 ABEIS has three equivalent user entrypoints.  All three must produce the same kind of task packet, agent profile, run logs, Lean gate, human-language summary, Pro-prompt, and optional post-Lean executable exports.  The intended rule is: if the same model backend and prompt profile are used, the CLI template, an AI chat window, and the website should differ only in convenience, not in scientific target or acceptance criteria.
@@ -811,6 +822,19 @@ per task; middle agents replace that table instead of stacking contradictory
 human intervention.  Exit code 78 means the configured model provider rejected
 usage, authentication, permission, or model access, so launchers stop instead
 of spending time in an unattended retry loop.
+
+Controller-owned files serialize mutations by canonical path. A task-keyed OS
+lease prevents two `sleep-run`
+processes from dispatching the same task at once; the kernel releases that
+lease if a process or screen is killed. Shared JSON is replaced atomically and
+JSONL appends are lock-protected. Each compact memory packet includes an
+authoritative state capsule for the contract, dimensions, register/ancilla
+conventions, `alpha`, tolerance phase, compiled declarations, route
+fingerprints, and executable evidence; generated prose cannot override it.
+Panel and auxiliary-lower execution is sequential by default because arbitrary
+external agent edits cannot be intercepted by the file coordinator. Enable
+`--parallel-panels` or `--parallel-lower` only for isolated worktrees or
+declared disjoint mutation scopes.
 
 Tasks may additionally declare `Executable acceptance command` and
 `Executable acceptance artifacts`.  In that case a compiled Lean root enters

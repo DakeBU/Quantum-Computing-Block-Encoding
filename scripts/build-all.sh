@@ -2,6 +2,7 @@
 
 set -euo pipefail
 
+python3 tools/qbe.py harness-check
 python3 tools/test_proof_trust.py
 python3 tools/check_proof_trust.py
 python3 tools/check_technical_lemma_registry.py

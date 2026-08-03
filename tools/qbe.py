@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as _dt
+import io
 import importlib.metadata as importlib_metadata
 import json
 import os
@@ -31,6 +32,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
+from typing import Callable
 
 try:
     from qbe_control import (
@@ -71,6 +73,37 @@ except ModuleNotFoundError:
         reduce_latest_feedback,
         summarize_candidate_population,
         write_control_state,
+    )
+
+try:
+    from qbe_lifecycle import shadow_replay, shadow_replay_markdown
+    from qbe_runtime import (
+        LockUnavailable,
+        append_jsonl_locked,
+        append_text_locked,
+        atomic_write_json,
+        atomic_write_text,
+        file_lock,
+        semantic_route_fingerprint,
+        update_json_locked,
+        update_text_locked,
+        write_text_exclusive,
+        write_text_if_missing,
+    )
+except ModuleNotFoundError:
+    from tools.qbe_lifecycle import shadow_replay, shadow_replay_markdown
+    from tools.qbe_runtime import (
+        LockUnavailable,
+        append_jsonl_locked,
+        append_text_locked,
+        atomic_write_json,
+        atomic_write_text,
+        file_lock,
+        semantic_route_fingerprint,
+        update_json_locked,
+        update_text_locked,
+        write_text_exclusive,
+        write_text_if_missing,
     )
 
 
@@ -152,8 +185,8 @@ DEFAULT_ADAPTIVE_EXPANDED_LOWER_COUNT = 3
 DEFAULT_EXACT_STALL_CYCLES = 2
 DEFAULT_UPPER_PANEL = True
 DEFAULT_MIDDLE_PANEL = True
-DEFAULT_PARALLEL_LOWER = True
-DEFAULT_PARALLEL_PANELS = True
+DEFAULT_PARALLEL_LOWER = False
+DEFAULT_PARALLEL_PANELS = False
 DEFAULT_GAME_HARNESS = False
 DEFAULT_NATURAL_LOWER_COUNT = 2
 DEFAULT_LEAN_LOWER_COUNT = 2
@@ -233,33 +266,30 @@ def approx_token_count(text: str) -> int:
 
 
 def write_new(path: Path, text: str) -> None:
-    if path.exists():
-        raise SystemExit(f"refusing to overwrite existing file: {path}")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    try:
+        write_text_exclusive(path, text)
+    except FileExistsError:
+        raise SystemExit(f"refusing to overwrite existing file: {path}") from None
     print(f"wrote {path.relative_to(ROOT)}")
 
 
 def write_if_missing(path: Path, text: str) -> bool:
-    if path.exists():
+    if not write_text_if_missing(path, text):
         return False
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
     print(f"initialized {path.relative_to(ROOT)}")
     return True
 
 
 def append_line(path: Path, line: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as handle:
-        handle.write(line + "\n")
+    append_text_locked(path, line + "\n")
 
 
 def append_jsonl(path: Path, record: dict) -> None:
+    record = dict(record)
+    record.setdefault("runtime_schema_version", 1)
     changed_files = record.get("changed_files")
     if isinstance(changed_files, list):
         unique_files = sorted({str(item) for item in changed_files})
-        record = dict(record)
         record["changed_files_count"] = len(unique_files)
         record["changed_files_digest"] = record.get(
             "changed_files_digest", content_digest(unique_files)
@@ -270,16 +300,19 @@ def append_jsonl(path: Path, record: dict) -> None:
             ]
         else:
             record["changed_files"] = unique_files
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(record, sort_keys=True, ensure_ascii=False) + "\n")
+    fingerprint = semantic_route_fingerprint(record)
+    if fingerprint:
+        record.setdefault("route_fingerprint", fingerprint)
+    append_jsonl_locked(path, record)
 
 
 def load_jsonl(path: Path) -> list[dict]:
     if not path.exists():
         return []
+    with file_lock(path):
+        lines = path.read_text(encoding="utf-8").splitlines()
     records = []
-    for line in path.read_text(encoding="utf-8").splitlines():
+    for line in lines:
         if not line.strip():
             continue
         try:
@@ -304,13 +337,14 @@ def load_recent_jsonl(
 
     if not path.exists():
         return []
-    size = path.stat().st_size
-    with path.open("rb") as handle:
-        start = max(0, size - max_bytes)
-        handle.seek(start)
-        if start:
-            handle.readline()
-        data = handle.read()
+    with file_lock(path):
+        size = path.stat().st_size
+        with path.open("rb") as handle:
+            start = max(0, size - max_bytes)
+            handle.seek(start)
+            if start:
+                handle.readline()
+            data = handle.read()
     records: list[dict] = []
     for raw in data.splitlines():
         if not raw.strip():
@@ -409,8 +443,7 @@ def latex_escape(value: object) -> str:
 
 
 def write_text(path: Path, text: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    atomic_write_text(path, text)
     print(f"wrote {display_path(path)}")
 
 
@@ -596,9 +629,10 @@ def load_state() -> dict:
     return json.loads(read_text(STATE_FILE))
 
 
-def save_state(state: dict) -> None:
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
-    STATE_FILE.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+def update_state(
+    update: Callable[[dict[str, object]], dict[str, object]],
+) -> dict[str, object]:
+    return update_json_locked(STATE_FILE, update)
 
 
 def ensure_manifest() -> None:
@@ -953,11 +987,13 @@ def cmd_init(_: argparse.Namespace) -> int:
     manifest_existed = MANIFEST.exists()
     ensure_manifest()
     created_any = created_any or not manifest_existed
-    state = load_state()
-    state.setdefault("version", 1)
-    state.setdefault("active_task", None)
-    state["initialized_at"] = state.get("initialized_at") or now_stamp()
-    save_state(state)
+    def initialize_state(state: dict[str, object]) -> dict[str, object]:
+        state.setdefault("version", 1)
+        state.setdefault("active_task", None)
+        state["initialized_at"] = state.get("initialized_at") or now_stamp()
+        return state
+
+    update_state(initialize_state)
     if created_any:
         add_manifest("qbe.py init", QBE_DASHBOARD, "init", "Initialized QBE workflow files")
     return 0
@@ -980,17 +1016,34 @@ def lean_workspace_digest() -> str:
 
 
 def cmd_check(_: argparse.Namespace) -> int:
-    code = run(["lake", "build"])
+    code = cmd_harness_check(argparse.Namespace())
+    if code == 0:
+        code = run(["lake", "build"])
     if code == 0:
         code = run(["lake", "build", "Tests"])
-    state = load_state()
-    state["last_check"] = {
-        "timestamp": now_stamp(),
-        "exit_code": code,
-        "lean_workspace_digest": lean_workspace_digest(),
-    }
-    save_state(state)
+    def record_check(state: dict[str, object]) -> dict[str, object]:
+        state["last_check"] = {
+            "timestamp": now_stamp(),
+            "exit_code": code,
+            "lean_workspace_digest": lean_workspace_digest(),
+        }
+        return state
+
+    update_state(record_check)
     return code
+
+
+def cmd_harness_check(_: argparse.Namespace) -> int:
+    return run(
+        [
+            sys.executable,
+            "-m",
+            "unittest",
+            "tools.test_qbe_runtime",
+            "tools.test_qbe_lifecycle",
+            "tools.test_qbe_control",
+        ]
+    )
 
 
 def cmd_mathlib_search(args: argparse.Namespace) -> int:
@@ -1074,6 +1127,29 @@ def cmd_status(_: argparse.Namespace) -> int:
         return code
     print("acceptance gate:")
     return cmd_check(_)
+
+
+def cmd_harness_audit(args: argparse.Namespace) -> int:
+    """Replay lifecycle and memory selection without changing harness state."""
+
+    defaults = [
+        "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001",
+        "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001",
+    ]
+    report = shadow_replay(ROOT, args.task or defaults)
+    rendered = (
+        json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
+        if args.json
+        else shadow_replay_markdown(report)
+    )
+    if args.output:
+        output = Path(args.output)
+        if not output.is_absolute():
+            output = ROOT / output
+        write_text(output, rendered)
+    else:
+        print(rendered, end="")
+    return 1 if args.fail_on_stale and report.get("human_status_stale") else 0
 
 
 def cmd_list_literature(_: argparse.Namespace) -> int:
@@ -1412,16 +1488,22 @@ interpretation step.  Lower agents must not prove a different target.
         write_text(task_path, task_text)
         action = "Created"
     else:
-        append_line(task_path, "")
-        append_line(task_path, f"## Additional Raw User Input: {now_stamp()}")
-        append_line(task_path, "")
-        append_line(task_path, f"- Language: `{lang}`")
-        append_line(task_path, f"- Artifact: `{rel(prompt_path)}`")
+        append_text_locked(
+            task_path,
+            "\n".join(
+                [
+                    "",
+                    f"## Additional Raw User Input: {now_stamp()}",
+                    "",
+                    f"- Language: `{lang}`",
+                    f"- Artifact: `{rel(prompt_path)}`",
+                    "",
+                ]
+            ),
+        )
         action = "Updated"
     if args.active:
-        state = load_state()
-        state["active_task"] = safe_id
-        save_state(state)
+        update_state(lambda state: {**state, "active_task": safe_id})
     add_manifest("qbe.py ingest-user-problem", prompt_path, "task", f"Ingested raw user problem for {safe_id}")
     add_manifest("qbe.py ingest-user-problem", task_path, "task", f"{action} task from raw user problem {safe_id}")
     print(f"ingested: {display_path(prompt_path)}")
@@ -1433,16 +1515,21 @@ def cmd_update_task(args: argparse.Namespace) -> int:
     path = ROOT / "tasks" / f"{slugify(args.id)}.md"
     if not path.exists():
         raise SystemExit(f"task not found: {path.relative_to(ROOT)}")
-    text = read_text(path)
-    if re.search(r"^Status:", text, flags=re.M):
-        text = re.sub(r"^Status:\s*`?[^`\n]+`?", f"Status: `{args.status}`", text, count=1, flags=re.M)
-    else:
-        text = text + f"\nStatus: `{args.status}`\n"
-    path.write_text(text, encoding="utf-8")
-    state = load_state()
+
+    def update_status(text: str) -> str:
+        if re.search(r"^Status:", text, flags=re.M):
+            return re.sub(
+                r"^Status:\s*`?[^`\n]+`?",
+                f"Status: `{args.status}`",
+                text,
+                count=1,
+                flags=re.M,
+            )
+        return text + f"\nStatus: `{args.status}`\n"
+
+    update_text_locked(path, update_status)
     if args.active:
-        state["active_task"] = args.id
-        save_state(state)
+        update_state(lambda state: {**state, "active_task": args.id})
     add_manifest("qbe.py update-task", path, "task", f"Updated {args.id} to {args.status}")
     print(f"updated {path.relative_to(ROOT)}")
     return 0
@@ -2122,8 +2209,7 @@ Recent task-relevant declarations:
   process memory.  Lean plus explicit proof-map correspondence is the gate.
 """
     path = blueprint_path(task_id)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    atomic_write_text(path, text)
     add_manifest("qbe.py blueprint-refresh", path, "blueprint", f"Refreshed proof blueprint for {task_id}")
     return path
 
@@ -2597,9 +2683,16 @@ def ghl2025_source_main_tex(task_text: str) -> Path | None:
 
 def lean_sorry_lines(limit: int = 20) -> list[str]:
     pattern_text = r"(^\s*sorry\s*$|:=\s*sorry\b|by\s+sorry\b)"
+    scan_roots = [
+        path
+        for path in [ROOT / "QuantumBlockEncoding", ROOT / "Tests", ROOT / "ABEISTests"]
+        if path.exists()
+    ]
     rg = shutil.which("rg")
     if rg:
-        code, output = run_capture([rg, "-n", pattern_text, "QuantumBlockEncoding", "Tests"])
+        code, output = run_capture(
+            [rg, "-n", pattern_text, *[rel(path) for path in scan_roots]]
+        )
         if code not in (0, 1):
             return [f"rg failed: {output.strip()}"]
         lines = [
@@ -2611,12 +2704,10 @@ def lean_sorry_lines(limit: int = 20) -> list[str]:
 
     pattern = re.compile(pattern_text)
     lines: list[str] = []
-    for root in [ROOT / "QuantumBlockEncoding", ROOT / "Tests"]:
-        if not root.exists():
-            continue
+    for root in scan_roots:
         for path in sorted(root.rglob("*.lean")):
-            rel = path.relative_to(ROOT).as_posix()
-            if rel == "QuantumBlockEncoding/RobinMatrix.lean":
+            relative_path = path.relative_to(ROOT).as_posix()
+            if relative_path == "QuantumBlockEncoding/RobinMatrix.lean":
                 continue
             try:
                 text = path.read_text(encoding="utf-8")
@@ -2624,7 +2715,7 @@ def lean_sorry_lines(limit: int = 20) -> list[str]:
                 text = path.read_text(encoding="utf-8", errors="replace")
             for line_no, line in enumerate(text.splitlines(), start=1):
                 if pattern.search(line):
-                    lines.append(f"{rel}:{line_no}:{line.strip()}")
+                    lines.append(f"{relative_path}:{line_no}:{line.strip()}")
                     if len(lines) >= limit:
                         return lines
     return lines
@@ -3701,6 +3792,89 @@ def recent_trial_rows(task_id: str, limit: int = 8) -> list[dict[str, object]]:
     return rows
 
 
+def task_contract_capsule(
+    task_id: str,
+    task_text: str,
+    controller_state: dict[str, object],
+    memory_cards: list[dict[str, object]],
+    feedback_rows: list[dict[str, object]],
+) -> dict[str, object]:
+    """Build deterministic proof state that prose compaction cannot override."""
+
+    target = extract_preferred_section(
+        task_text,
+        [r"^## Lean-Checkable Target.*?$", r"^## Target.*?$", r"^## Raw User Problem.*?$"],
+    )
+    if len(target) > 5000:
+        target = target[:2500] + "\n...[contract compacted]...\n" + target[-2500:]
+
+    def matching_lines(pattern: str, limit: int = 8) -> list[str]:
+        return [
+            line.strip()
+            for line in task_text.splitlines()
+            if re.search(pattern, line, flags=re.I)
+        ][:limit]
+
+    alpha_values = re.findall(r"\balpha\s*=\s*`?([^`\s,.;]+)", task_text, flags=re.I)
+    compiled_anchors = sorted(
+        {
+            str(anchor)
+            for card in memory_cards
+            for anchor in card.get("compiled_lean_anchors", [])
+            if isinstance(card.get("compiled_lean_anchors", []), list)
+        }
+    )
+    failed_fingerprints = sorted(
+        {
+            semantic_route_fingerprint(
+                {"task_id": task_id, "verifier_feedback": feedback}
+            )
+            for feedback in feedback_rows
+            if feedback.get("error_class")
+        }
+        - {""}
+    )
+    route_record = {
+        "task_id": task_id,
+        "leaf_signature": controller_state.get("leaf_signature"),
+        "evidence_digest": controller_state.get("evidence_digest"),
+        "ready_leaf_ids": controller_state.get("ready_leaf_ids"),
+        "search_phase": controller_state.get("search_phase"),
+        "effective_epsilon": controller_state.get("effective_epsilon"),
+    }
+    superseded = re.search(
+        r"^Superseded by:\s*`?([^`\n]+)`?",
+        task_text,
+        flags=re.M | re.I,
+    )
+    return {
+        "schema_version": 1,
+        "task_id": task_id,
+        "task_kind": infer_task_kind(task_text),
+        "contract_text": target.strip(),
+        "contract_digest": content_digest([target.strip()]),
+        "dimensions": matching_lines(r"\b(?:dimension|dimensions|N\s*=|2\^n|qubits?)\b"),
+        "register_order": matching_lines(r"register order|register layout|low-order|high-order"),
+        "ancilla_convention": matching_lines(r"ancilla|clean block|projector", limit=10),
+        "normalization_alpha": alpha_values[:4],
+        "search_phase": controller_state.get("search_phase", "exact"),
+        "effective_epsilon": controller_state.get("effective_epsilon", "0"),
+        "epsilon_ladder": list(infer_epsilon_ladder(task_text)),
+        "compiled_lean_declarations": compiled_anchors,
+        "ready_leaf_ids": controller_state.get("ready_leaf_ids", []),
+        "certified_root_anchors": controller_state.get("certified_root_anchors", []),
+        "executable_acceptance": {
+            "required": controller_state.get("executable_acceptance_required", False),
+            "complete": controller_state.get("executable_acceptance_complete", False),
+            "command": controller_state.get("executable_acceptance_command", ""),
+            "artifacts": controller_state.get("executable_acceptance_artifacts", []),
+        },
+        "active_route_fingerprint": semantic_route_fingerprint(route_record),
+        "failed_route_fingerprints": failed_fingerprints,
+        "superseded_by": superseded.group(1).strip() if superseded else "",
+    }
+
+
 def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, object]:
     title, task_text = task_context(task_id)
     blueprint = blueprint_status_state(task_id)
@@ -3720,6 +3894,8 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
     open_technical = [row for row in technical_rows if row.get("lean_status") != "formalized"]
     source = ghl2025_source_main_tex(task_text)
     controller_state = load_control_state(control_state_path(task_id))
+    memory_cards = reusable_memory_card_rows(task_text) if library_assistance else []
+    feedback_rows = recent_verifier_feedback(task_id, limit=10) if adaptive_memory else []
     lower_tasks = [
         {
             "role": "lower-1-natural-language-proof-architect",
@@ -3766,13 +3942,12 @@ def memory_snapshot_state(task_id: str, cycle: int, run_dir: Path) -> dict[str, 
         "ghl_contributions": ghl_rows,
         "open_ghl_contribution_obligations": open_ghl,
         "technical_lemmas": technical_rows,
-        "reusable_memory_cards": (
-            reusable_memory_card_rows(task_text) if library_assistance else []
+        "state_capsule": task_contract_capsule(
+            task_id, task_text, controller_state, memory_cards, feedback_rows
         ),
+        "reusable_memory_cards": memory_cards,
         "open_external_technical_lemma_obligations": open_technical,
-        "recent_verifier_feedback": (
-            recent_verifier_feedback(task_id, limit=10) if adaptive_memory else []
-        ),
+        "recent_verifier_feedback": feedback_rows,
         "recent_trials": recent_trial_rows(task_id, limit=10) if adaptive_memory else [],
         "recent_proof_attempts": (
             latest_proof_attempts(task_id, limit=10) if adaptive_memory else []
@@ -4148,6 +4323,8 @@ def memory_digest_markdown(snapshot: dict[str, object]) -> str:
         ],
         limit=8,
     )
+    capsule = snapshot.get("state_capsule", {})
+    capsule_text = json.dumps(capsule, indent=2, sort_keys=True, ensure_ascii=False)
     return f"""# Memory Digest: {snapshot.get('task_id')} cycle {snapshot.get('cycle')}
 
 Generated: `{snapshot.get('generated')}`
@@ -4159,6 +4336,15 @@ Task title: {snapshot.get('title')}
 This is the compact retrieval packet for the next upper/middle cycle.  It keeps
 the long log, paper-source map, typed verifier feedback, and Lean `sorry` scan
 separate from the next lower-agent task package.
+
+## Deterministic state capsule
+
+This JSON is authoritative for contract, route, tolerance, certificate, and
+executable state.  Agent-written prose may explain it but may not replace it.
+
+```json
+{capsule_text}
+```
 
 ## Plain-language status
 
@@ -6134,6 +6320,7 @@ def write_sleep_closeout_export(args: argparse.Namespace, cycle: int, run_dir: P
     project-paper update is maintainer infrastructure and is written only when
     explicitly requested.
     """
+    write_human_status(args.id, run_dir, getattr(args, "report_language", None))
     if args.project_article_update or args.article_update_each_cycle:
         write_project_article_update(args.id, cycle, run_dir)
     else:
@@ -6356,9 +6543,7 @@ def write_trial_summary(records: list[dict]) -> list[dict]:
                 "notes": record.get("notes", ""),
             }
         )
-    TRIAL_SUMMARY.parent.mkdir(parents=True, exist_ok=True)
-    with TRIAL_SUMMARY.open("w", newline="", encoding="utf-8") as handle:
-        fieldnames = [
+    fieldnames = [
             "index",
             "timestamp",
             "trial_id",
@@ -6387,10 +6572,15 @@ def write_trial_summary(records: list[dict]) -> list[dict]:
             "prompt_chars",
             "estimated_input_tokens",
             "notes",
-        ]
+    ]
+    handle = io.StringIO(newline="")
+    try:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
+        atomic_write_text(TRIAL_SUMMARY, handle.getvalue())
+    finally:
+        handle.close()
     return rows
 
 
@@ -8910,6 +9100,7 @@ def log_agent_attempt(
         "exact_token_accounting": False,
         "detail": "Agent wall time and local prompt-token proxy; provider token usage is not inferred.",
     }
+    control = load_control_state(control_state_path(task_id))
     append_jsonl(
         TRIAL_LOG,
         {
@@ -8927,6 +9118,11 @@ def log_agent_attempt(
             "command": command,
             "notes": f"External agent command exit code {code}.",
             "harness_metrics": harness_metrics,
+            "leaf_signature": control.get("leaf_signature", ""),
+            "evidence_digest": control.get("evidence_digest", ""),
+            "ready_leaf_ids": control.get("ready_leaf_ids", []),
+            "search_phase": control.get("search_phase", ""),
+            "effective_epsilon": control.get("effective_epsilon", ""),
         },
     )
     refresh_trial_summary_if_bounded()
@@ -9052,8 +9248,7 @@ def verified_task_executable_acceptance(
         "stdout_tail": stdout[-8000:],
         "stderr_tail": stderr[-8000:],
     }
-    state_path.parent.mkdir(parents=True, exist_ok=True)
-    state_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    atomic_write_json(state_path, payload)
     append_jsonl(
         TRIAL_LOG,
         {
@@ -9285,10 +9480,10 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
         evaluation_mode=evaluation_mode,
     )
     write_control_state(control_state_path(args.id), decision)
-    population_path = ROOT / "candidate-populations" / args.id / "population-state.json"
-    population_path.parent.mkdir(parents=True, exist_ok=True)
-    population_path.write_text(
-        json.dumps(
+    if not decision.stop:
+        population_path = ROOT / "candidate-populations" / args.id / "population-state.json"
+        atomic_write_json(
+            population_path,
             {
                 "task_id": args.id,
                 "cycle": cycle,
@@ -9300,12 +9495,7 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
                 "direction": decision.population_direction,
                 "invalid_packets": list(decision.population_invalid_packets),
             },
-            indent=2,
-            sort_keys=True,
         )
-        + "\n",
-        encoding="utf-8",
-    )
     intervention = CONTROL_DIR / f"{slugify(args.id)}-intervention.md"
     if not decision.stop and intervention.exists():
         intervention.unlink()
@@ -9383,7 +9573,8 @@ Choose exactly one route before resuming:
 3. record an explicit theorem-facing contract and remove it from the local proof queue; or
 4. provide the missing mathematical/source decision as human input.
 """
-    path.write_text(
+    atomic_write_text(
+        path,
         f"""# ABEIS control intervention: {task_id}
 
 - mode: `{decision.mode}`
@@ -9480,6 +9671,7 @@ def controlled_prompt_stages(
     upper_panel: bool,
     middle_panel: bool,
     parallel_panels: bool,
+    parallel_lower: bool,
     include_reviewer: bool,
 ) -> list[tuple[list[Path], bool]]:
     """Translate a controller plan into dependency-ordered prompt stages."""
@@ -9515,7 +9707,7 @@ def controlled_prompt_stages(
         elif item == "lower_aux" and not game_harness:
             prompts = sorted(run_dir.glob("30_lower_searcher_*.md"))[4:]
             if prompts:
-                stages.append((prompts, True))
+                stages.append((prompts, parallel_lower))
         elif item == "exporter":
             path = run_dir / "30_lower_exporter.md"
             if path.exists():
@@ -9815,6 +10007,7 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
             upper_panel=cycle_upper_panel,
             middle_panel=cycle_middle_panel,
             parallel_panels=cycle_parallel_panels,
+            parallel_lower=bool(args.parallel_lower),
             include_reviewer=include_reviewer,
         )
         upper_due = args.upper_every > 0 and (cycle - 1) % args.upper_every == 0
@@ -9836,20 +10029,15 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
             run_tokens_used=run_tokens_used,
             max_run_tokens=max(0, int(args.max_run_input_tokens)),
         )
-        (run_dir / "control_decision.json").write_text(
-            json.dumps(
-                {
-                    **decision.to_dict(),
-                    "selected_prompt_tokens": prompt_tokens,
-                    "estimated_cycle_input_tokens": sum(prompt_tokens.values()),
-                    "estimated_run_input_tokens_before_cycle": run_tokens_used,
-                    "budget_issue": budget_issue,
-                },
-                indent=2,
-                sort_keys=True,
-            )
-            + "\n",
-            encoding="utf-8",
+        atomic_write_json(
+            run_dir / "control_decision.json",
+            {
+                **decision.to_dict(),
+                "selected_prompt_tokens": prompt_tokens,
+                "estimated_cycle_input_tokens": sum(prompt_tokens.values()),
+                "estimated_run_input_tokens_before_cycle": run_tokens_used,
+                "budget_issue": budget_issue,
+            },
         )
         if budget_issue:
             stopped = runtime_stop_decision(decision, budget_issue)
@@ -9966,7 +10154,17 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
     for signum in previous_handlers:
         signal.signal(signum, interrupt_handler)
     try:
-        return _cmd_sleep_run_impl(args)
+        lease_path = CONTROL_DIR / f"{slugify(args.id)}-sleep-run.lease"
+        try:
+            with file_lock(lease_path, timeout=0):
+                return _cmd_sleep_run_impl(args)
+        except LockUnavailable:
+            print(
+                f"another sleep-run already owns task {args.id}; "
+                "duplicate dispatch was not started",
+                file=sys.stderr,
+            )
+            return CONTROL_STOP_EXIT_CODE
     except (KeyboardInterrupt, InterruptedError) as exc:
         state_path = control_state_path(args.id)
         state = load_control_state(state_path)
@@ -9978,8 +10176,7 @@ def cmd_sleep_run(args: argparse.Namespace) -> int:
                 "interrupted_at": now_stamp(),
             }
         )
-        state_path.parent.mkdir(parents=True, exist_ok=True)
-        state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        atomic_write_json(state_path, state)
         print(str(exc), file=sys.stderr)
         return 130
     finally:
@@ -10004,10 +10201,10 @@ def cmd_agent_note(args: argparse.Namespace) -> int:
     if not message:
         raise SystemExit("agent-note requires --message or --file")
     board = run_dir / "dialogue.md"
-    append_line(board, "")
-    append_line(board, f"## {now_stamp()} - {args.role}")
-    append_line(board, "")
-    append_line(board, message.strip())
+    append_text_locked(
+        board,
+        f"\n## {now_stamp()} - {args.role}\n\n{message.strip()}\n",
+    )
     add_manifest("qbe.py agent-note", board, "dialogue", f"Appended {args.role} note")
     print(f"updated {rel(board)}")
     return 0
@@ -10019,7 +10216,24 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("init", help="initialize QBE workflow files").set_defaults(func=cmd_init)
     sub.add_parser("check", help="run Lean build gates").set_defaults(func=cmd_check)
+    sub.add_parser(
+        "harness-check",
+        help="run deterministic lifecycle, concurrency, memory, and controller tests",
+    ).set_defaults(func=cmd_harness_check)
     sub.add_parser("status", help="show git status and run build gates").set_defaults(func=cmd_status)
+    p_audit = sub.add_parser(
+        "harness-audit",
+        help="read-only lifecycle and task-scoped-memory shadow replay",
+    )
+    p_audit.add_argument("--task", action="append", help="task id to include; repeatable")
+    p_audit.add_argument("--json", action="store_true", help="emit structured JSON")
+    p_audit.add_argument("--output", default="", help="optional report path")
+    p_audit.add_argument(
+        "--fail-on-stale",
+        action="store_true",
+        help="return nonzero when HUMAN_STATUS does not match the active task",
+    )
+    p_audit.set_defaults(func=cmd_harness_audit)
     p_mathlib = sub.add_parser("mathlib-search", help="search available local Mathlib checkouts for reusable lemmas")
     p_mathlib.add_argument("query")
     p_mathlib.add_argument("--limit", type=int, default=40)
@@ -10428,7 +10642,7 @@ def build_parser() -> argparse.ArgumentParser:
         dest="parallel_panels",
         action="store_true",
         default=DEFAULT_PARALLEL_PANELS,
-        help="execute independent upper/middle panel prompts concurrently before synthesis; enabled by default",
+        help="execute independent upper/middle panel prompts concurrently; use only with isolated or disjoint mutation scopes",
     )
     p_sleep.add_argument(
         "--sequential-panels",
@@ -10464,7 +10678,7 @@ def build_parser() -> argparse.ArgumentParser:
         dest="parallel_lower",
         action="store_true",
         default=DEFAULT_PARALLEL_LOWER,
-        help="execute lower-agent prompts concurrently after upper/middle complete; enabled by default",
+        help="execute eligible lower prompts concurrently; use only with isolated or disjoint mutation scopes",
     )
     p_sleep.add_argument(
         "--sequential-lower",

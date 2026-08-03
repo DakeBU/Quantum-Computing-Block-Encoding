@@ -13,6 +13,13 @@ mathematical shortcuts.  Upper and middle may use only the task packet, current
 Lean source, trial memory, verifier feedback, candidate populations, and
 standard ABEIS retrieval artifacts.
 
+Requested tolerance: `epsilon = 1e-10`. The controller may relax only one
+decade at a time through `1e-9`, `1e-8`, `1e-7`, and `1e-6`, and only after a
+current signed upper/reviewer decision records why the preceding exact or
+approximate rung is stalled.
+
+Population gate: `required`
+
 If exact certification stalls under the default budget, upper should record the
 stall reason and move the task into the approximate Scenario 2 route using the
 configured epsilon and resource constraints.  Any increase in upper, middle, or

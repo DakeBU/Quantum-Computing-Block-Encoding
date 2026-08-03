@@ -36,16 +36,22 @@ except ModuleNotFoundError:
 try:
     from qbe import (
         changed_snapshot_delta,
+        build_parser,
         infer_evaluation_mode,
         lean_index_files_for_task,
+        lean_sorry_lines,
         reusable_memory_card_rows,
+        task_contract_capsule,
     )
 except ModuleNotFoundError:
     from tools.qbe import (
         changed_snapshot_delta,
+        build_parser,
         infer_evaluation_mode,
         lean_index_files_for_task,
+        lean_sorry_lines,
         reusable_memory_card_rows,
+        task_contract_capsule,
     )
 
 
@@ -1005,6 +1011,11 @@ class PromptBudgetTests(unittest.TestCase):
 
 
 class AgentChangeAccountingTests(unittest.TestCase):
+    def test_external_agent_parallelism_requires_explicit_opt_in(self) -> None:
+        args = build_parser().parse_args(["sleep-run", "T", "--dry-run"])
+        self.assertFalse(args.parallel_panels)
+        self.assertFalse(args.parallel_lower)
+
     def test_preexisting_dirty_files_are_not_repeated_in_agent_trial(self) -> None:
         before = {
             "old.md": (" M", 100, 10),
@@ -1022,6 +1033,40 @@ class AgentChangeAccountingTests(unittest.TestCase):
 
 
 class ReusableMemoryRoutingTests(unittest.TestCase):
+    def test_sorry_scan_uses_only_existing_test_roots(self) -> None:
+        self.assertFalse(any(line.startswith("rg failed:") for line in lean_sorry_lines()))
+
+    def test_state_capsule_preserves_contract_and_executable_evidence(self) -> None:
+        task_text = """
+Kind: `operatorBlockEncoding`
+## Lean-Checkable Target
+For N = 2^n, encode D with alpha = 1.
+Register order: ancilla then system.
+The clean block uses one ancilla projector.
+Requested tolerance: epsilon = 1e-10
+"""
+        capsule = task_contract_capsule(
+            "T",
+            task_text,
+            {
+                "leaf_signature": "leaf",
+                "evidence_digest": "evidence",
+                "ready_leaf_ids": ["L1"],
+                "search_phase": "exact",
+                "effective_epsilon": "0",
+                "executable_acceptance_required": True,
+                "executable_acceptance_complete": True,
+                "executable_acceptance_artifacts": ["acceptance.json"],
+            },
+            [{"compiled_lean_anchors": ["D.complete"]}],
+            [],
+        )
+        self.assertEqual(capsule["normalization_alpha"], ["1"])
+        self.assertIn("Register order", capsule["register_order"][0])
+        self.assertEqual(capsule["compiled_lean_declarations"], ["D.complete"])
+        self.assertTrue(capsule["executable_acceptance"]["complete"])
+        self.assertEqual(len(capsule["active_route_fingerprint"]), 64)
+
     def test_cubic_index_includes_product_and_state_preparation_modules(self) -> None:
         names = {path.name for path in lean_index_files_for_task("cubic diagonal x^3")}
         self.assertIn("BlockEncodingClassics.lean", names)

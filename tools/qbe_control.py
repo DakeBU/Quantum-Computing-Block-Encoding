@@ -16,6 +16,11 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
+try:
+    from qbe_runtime import update_json_locked
+except ModuleNotFoundError:
+    from tools.qbe_runtime import update_json_locked
+
 
 CONTROL_VERSION = 6
 CONTROL_STOP_EXIT_CODE = 75
@@ -1323,22 +1328,20 @@ def write_control_state(
     *,
     estimated_input_tokens: int | None = None,
 ) -> dict[str, object]:
-    previous = load_control_state(path)
-    payload = decision.to_dict()
-    payload["control_version"] = CONTROL_VERSION
-    previous_total = int(previous.get("estimated_run_input_tokens", 0) or 0)
-    if estimated_input_tokens is None:
-        payload["execution_started"] = False
-        payload["estimated_run_input_tokens"] = previous_total
-    else:
-        payload["execution_started"] = estimated_input_tokens > 0
-        payload["estimated_cycle_input_tokens"] = estimated_input_tokens
-        payload["estimated_run_input_tokens"] = previous_total + estimated_input_tokens
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    temporary.replace(path)
-    return payload
+    def update(previous: dict[str, object]) -> dict[str, object]:
+        payload = decision.to_dict()
+        payload["control_version"] = CONTROL_VERSION
+        previous_total = int(previous.get("estimated_run_input_tokens", 0) or 0)
+        if estimated_input_tokens is None:
+            payload["execution_started"] = False
+            payload["estimated_run_input_tokens"] = previous_total
+        else:
+            payload["execution_started"] = estimated_input_tokens > 0
+            payload["estimated_cycle_input_tokens"] = estimated_input_tokens
+            payload["estimated_run_input_tokens"] = previous_total + estimated_input_tokens
+        return payload
+
+    return update_json_locked(path, update)
 
 
 def prompt_budget_violation(
