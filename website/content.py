@@ -52,7 +52,8 @@ CHAPTERS = [
     {
         "slug": "linear-algebra",
         "number": 1,
-        "title": "Linear algebra and finite matrices",
+        "track": "Shared foundations",
+        "title": "Vectors, matrices, and basis states",
         "summary": (
             "Fix the finite matrix model, pointwise equality, dimensions, and "
             "resource records used by every later certificate."
@@ -100,17 +101,18 @@ CHAPTERS = [
     },
     {
         "slug": "state-preparation",
-        "number": 2,
-        "title": "Quantum states and state preparation",
+        "number": 3,
+        "track": "State preparation",
+        "title": "The state-preparation problem",
         "summary": (
-            "Start from the concrete contract that a unitary sends the all-zero "
-            "basis state to a normalized target state."
+            "Ask one concrete question: which unitary sends the all-zero basis "
+            "state to the normalized state we want?"
         ),
         "modules": [
             "QuantumBlockEncoding/StatePreparation.lean",
             "QuantumBlockEncoding/ConcreteSemantics.lean",
         ],
-        "diagram": "learning-path",
+        "diagram": "state-preparation-flow",
         "results": [
             result(
                 "QuantumBlockEncoding.StatePreparationCandidate.preparesTarget",
@@ -118,62 +120,96 @@ CHAPTERS = [
                 "The candidate unitary prepares the target from the zero basis state.",
                 r"U\lvert 0^n\rangle=\lvert\psi\rangle.",
                 "The target amplitudes are the first column of the unitary matrix.",
-                "This is the smallest end-to-end quantum synthesis contract and later supplies block-encoding ingredients.",
+                "It gives state preparation its own acceptance test, independent of any later use in block encoding.",
                 [
                     "QuantumBlockEncoding.StatePreparationTarget",
                     "QuantumBlockEncoding.StatePreparationCandidate",
                 ],
                 "Unfold the candidate action on the zero basis vector and compare every amplitude.",
                 [
-                    ("Select the zero input column.", "candidate.matrix i target.zeroIndex"),
-                    ("Match it with the target amplitude.", "= target.amplitude i"),
+                    ("Select the all-zero input column.", "candidate.unitary row (zeroBasisIndex qubits)"),
+                    ("Match it with the requested amplitude.", "= candidate.target.amplitudes row"),
                 ],
                 "Compiled",
                 "Partial route",
                 "Only concrete candidates whose unitary and amplitude obligations are supplied complete the broader route.",
             ),
+        ],
+    },
+    {
+        "slug": "state-preparation-certificates",
+        "number": 4,
+        "track": "State preparation",
+        "title": "Reading and reusing a preparation certificate",
+        "summary": (
+            "Connect the ket equation to a matrix column, package the proof, "
+            "and reuse exact preparation where an approximate interface is expected."
+        ),
+        "modules": [
+            "QuantumBlockEncoding/StatePreparation.lean",
+            "QuantumBlockEncoding/ConcreteSemantics.lean",
+        ],
+        "diagram": "state-preparation-flow",
+        "results": [
+            result(
+                "QuantumBlockEncoding.ConcreteSemantics.firstColumnMatches_iff_applyVec_zeroKet",
+                "The ket equation is a first-column statement",
+                "Matrix action on the all-zero ket selects exactly the first column of the unitary.",
+                r"\operatorname{column}_0(U)=\psi\iff U\lvert0^n\rangle=\lvert\psi\rangle.",
+                "There are two common ways to say the same fact: physicists write a ket equation, while the finite Lean model compares indexed amplitudes.",
+                "This bridge keeps proofs and circuit explanations in the same convention.",
+                [
+                    "QuantumBlockEncoding.FirstColumnMatches",
+                    "QuantumBlockEncoding.ConcreteSemantics.applyVec_zeroKet",
+                ],
+                "Acting on a basis vector selects one matrix column; function extensionality then turns vector equality into entrywise equality.",
+                [
+                    ("Apply the matrix to the zero basis ket.", "applyVec_zeroKet"),
+                    ("Compare every output amplitude.", "funext / congrFun"),
+                ],
+                "Compiled",
+                "Partial route",
+                "A concrete candidate must still provide normalization and unitarity proofs.",
+            ),
             result(
                 "QuantumBlockEncoding.VerifiedStatePreparation.firstColumn",
-                "A verified preparer exposes its first column",
-                "A verified state-preparation certificate can be consumed directly as a first-column identity.",
+                "A verified preparer exposes its amplitudes",
+                "Once the certificate is built, downstream proofs can read its first-column identity directly.",
                 r"U_{i,0}=\psi_i.",
-                "The familiar matrix-column view and the ket equation are the same certificate interface.",
-                "Downstream block constructions often consume amplitudes entry by entry.",
+                "The certificate hides the packaging work but does not weaken the statement.",
+                "Prepared amplitudes are often the input to later LCU or oracle constructions.",
                 ["QuantumBlockEncoding.VerifiedStatePreparation"],
-                "Project the stored preparation proof onto an arbitrary output index.",
+                "Project the stored preparation proof from the verified record.",
                 [
-                    ("Read the certificate field.", "verified.correct"),
-                    ("Specialize at an output index.", "verified.firstColumn i"),
+                    ("Read the certified state-action field.", "verified.preparationProof"),
+                    ("Expose it through the public theorem.", "verified.firstColumn"),
                 ],
                 "Compiled",
                 "Compiled",
             ),
             result(
-                "QuantumBlockEncoding.ConcreteSemantics.firstColumnMatches_iff_applyVec_zeroKet",
-                "First column equals concrete state action",
-                "The first-column contract is exactly matrix action on the all-zero ket.",
-                r"\operatorname{column}_0(U)=\psi\iff U\lvert0^n\rangle=\lvert\psi\rangle.",
-                "The reader's ket equation and the finite matrix certificate are connected by a compiled equivalence.",
-                "Agents should retrieve this adapter instead of reconstructing basis-vector multiplication in each task.",
+                "QuantumBlockEncoding.VerifiedStatePreparation.asZeroErrorApprox",
+                "Exact preparation can enter an approximate interface",
+                "An exact certificate is also an approximate certificate with error zero.",
+                r"\varepsilon=0.",
+                "The tolerance ladder can reuse exact work instead of changing certificate formats.",
+                "Exact and approximate searches need one stable consumer boundary.",
+                ["QuantumBlockEncoding.VerifiedStatePreparation"],
+                "Reuse normalization, unitarity, and preparation proofs while setting the approximation field to the exact predicate.",
                 [
-                    "QuantumBlockEncoding.FirstColumnMatches",
-                    "QuantumBlockEncoding.ConcreteSemantics.applyVec_zeroKet",
-                ],
-                "Reduce matrix action on a basis ket to column selection and use function extensionality.",
-                [
-                    ("Select column zero.", "applyVec_zeroKet"),
-                    ("Translate pointwise equality.", "funext / congrFun"),
+                    ("Keep the same candidate and proofs.", "verified.candidate / normalizationProof / unitaryProof"),
+                    ("Set the error to zero.", "epsilon := 0"),
                 ],
                 "Compiled",
-                "Partial route",
-                "Normalization and unitarity remain independent candidate obligations.",
+                "Compiled",
             ),
         ],
     },
     {
         "slug": "circuit-semantics",
-        "number": 3,
-        "title": "Unitaries, gates, and circuit semantics",
+        "number": 2,
+        "track": "Shared foundations",
+        "title": "Gates, unitaries, and circuit meaning",
         "summary": (
             "Separate gate syntax from matrix evaluation and make register order "
             "an explicit part of the semantic boundary."
@@ -245,14 +281,15 @@ CHAPTERS = [
     },
     {
         "slug": "block-encoding",
-        "number": 4,
-        "title": "Block encoding, ancillas, and projection",
+        "number": 5,
+        "track": "Block encoding",
+        "title": "The block-encoding contract",
         "summary": (
             "State the block contract with normalization, explicit register "
             "layout, and a verifier-facing certificate record."
         ),
         "modules": ["QuantumBlockEncoding/BlockEncoding.lean"],
-        "diagram": "register-projection",
+        "diagram": "block-encoding-flow",
         "results": [
             result(
                 "QuantumBlockEncoding.OperatorBlockEncodingCandidate.cost",
@@ -298,8 +335,9 @@ CHAPTERS = [
     },
     {
         "slug": "classic-routes",
-        "number": 5,
-        "title": "Classical constructions and composition rules",
+        "number": 6,
+        "track": "Block encoding",
+        "title": "Construction routes and composition rules",
         "summary": (
             "Reuse permutation, one-sparse, LCU, product, dilation, and QSVT "
             "interfaces instead of rediscovering each route per benchmark."
@@ -363,8 +401,9 @@ CHAPTERS = [
     },
     {
         "slug": "certified-cases",
-        "number": 6,
-        "title": "Certified cases and paper reproduction",
+        "number": 7,
+        "track": "Block encoding",
+        "title": "Certified block-encoding cases",
         "summary": (
             "Distinguish completed local certificates from paper-facing contract "
             "models and historical experiments."
@@ -439,8 +478,9 @@ CHAPTERS = [
     },
     {
         "slug": "resources-and-exports",
-        "number": 7,
-        "title": "Resources, candidate selection, and exports",
+        "number": 8,
+        "track": "System and evidence",
+        "title": "Candidate comparison and executable exports",
         "summary": (
             "Keep formal validity lexicographically ahead of resource quality, "
             "then expose accepted candidates to executable tooling."
@@ -489,8 +529,9 @@ CHAPTERS = [
     },
     {
         "slug": "automation-and-roadmap",
-        "number": 8,
-        "title": "Automation harness, open problems, and future routes",
+        "number": 9,
+        "track": "System and evidence",
+        "title": "Search control, evidence, and open work",
         "summary": (
             "Show how typed stages, agent layers, candidate populations, proof "
             "gates, and explicit open problems coordinate without overstating evidence."
@@ -540,6 +581,8 @@ CHAPTERS = [
     },
 ]
 
+CHAPTERS.sort(key=lambda chapter: int(chapter["number"]))
+
 
 IMPLEMENTATION_MAP = [
     {
@@ -560,7 +603,7 @@ IMPLEMENTATION_MAP = [
         "dependencies": "VerifiedStatePreparation",
         "status": "Compiled",
         "missing": "None locally",
-        "chapter": "state-preparation",
+        "chapter": "state-preparation-certificates",
     },
     {
         "goal": "Read first-column evidence as state action",
@@ -570,7 +613,7 @@ IMPLEMENTATION_MAP = [
         "dependencies": "FirstColumnMatches; applyVec_zeroKet",
         "status": "Compiled",
         "missing": "Candidate normalization and unitarity remain separate",
-        "chapter": "state-preparation",
+        "chapter": "state-preparation-certificates",
     },
     {
         "goal": "Evaluate a gate list",

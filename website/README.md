@@ -14,6 +14,18 @@ declaration inventory.
 - `website/content.py`: curated teaching order and broader route statuses.
 - `website/diagrams/*.mmd`: editable ABEIS-specific diagrams.
 
+The generated site treats the two applications as separate reader paths:
+
+- `state-preparation/` starts from `U |0^n> = |psi>` and follows
+  normalization, unitarity, state action, and first-column certificates;
+- `block-encoding/` starts from the projected-block contract and follows
+  ancilla layout, register order, normalization, exact/approximate error, and
+  composition routes.
+
+A state-preparation certificate may be linked as a dependency of a later
+PREPARE-based construction, but the site does not collapse the two acceptance
+flows into one diagram or status.
+
 Every declaration name in `content.py` is checked against the generated
 inventory before HTML is written.
 
@@ -30,6 +42,7 @@ preview cache when a downstream consumer explicitly needs it.
 then assembles that output with `_out/blueprint/` into `_site/`, preserving:
 
 - `library/`;
+- `state-preparation/` and `block-encoding/`;
 - `blueprint/html-multi/`;
 - the task builder at `task-builder/`.
 

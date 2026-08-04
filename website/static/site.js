@@ -31,6 +31,17 @@
     menuButton.addEventListener("click", () => {
       const open = nav.classList.toggle("is-open");
       menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute(
+        "aria-label",
+        open ? "Close navigation" : "Open navigation",
+      );
+    });
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation");
+      });
     });
   }
 
@@ -96,6 +107,16 @@
       if (!event.target.closest(".search-shell")) searchResults.hidden = true;
     });
   }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (searchResults) searchResults.hidden = true;
+    if (nav && menuButton) {
+      nav.classList.remove("is-open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation");
+    }
+  });
 
   const libraryRoot = document.querySelector("[data-library]");
   if (libraryRoot) {

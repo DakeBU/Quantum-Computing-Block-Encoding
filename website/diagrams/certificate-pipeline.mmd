@@ -1,11 +1,17 @@
 flowchart LR
-  M["Mathematical target"] --> C["Natural-language<br/>contract"]
-  C --> O["Typed proof<br/>obligations"]
-  O --> P["Candidate<br/>population"]
-  P --> R["Resource<br/>ranking"]
-  R --> L["Lean<br/>certificate"]
-  L --> X["Executable<br/>validation"]
-  X --> A{"Accept?"}
-  A -- "No: feedback" --> P
-  A -- "Yes" --> D["Documented result"]
+  C["Fixed mathematical<br/>contract"] --> O["Named proof<br/>obligations"]
+  O --> P["Candidate routes<br/>with provenance"]
+  P --> L{"Lean gate"}
+  L -- "proof fails" --> F["Classified failure<br/>and next local lemma"]
+  F --> P
+  L -- "certificate compiles" --> X["Finite export<br/>and circuit check"]
+  X --> D["Documented result<br/>with stated scope"]
 
+  classDef contract fill:#f8f5ee,stroke:#826a32,color:#222222,stroke-width:1.5px;
+  classDef process fill:#ffffff,stroke:#64747a,color:#222222,stroke-width:1.25px;
+  classDef gate fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
+  classDef feedback fill:#fff2ef,stroke:#a44b3f,color:#4a2520,stroke-width:1.25px;
+  class C contract;
+  class O,P,X,D process;
+  class L gate;
+  class F feedback;

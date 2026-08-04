@@ -54,18 +54,19 @@ A Platform for Lean-validated quantum state-preparation and block-encoding const
 ABEIS (Auto-Block-Encoding-In-Sleep) is a Lean 4 project and multi-agent
 harness for turning a requested quantum construction into concrete unitary
 candidates, gate-level circuit matrices, resource scores, and Lean-checked
-certificates.  It now exposes two application directions, ordered by difficulty:
+certificates. It exposes two application directions with separate contracts
+and acceptance flows:
 
 1. **State Preparation.**  Given a normalized target state `|psi>`, synthesize
    a unitary `U` such that `U |0^n> = |psi>`.  Equivalently, in the standard
    computational basis, the first column of `U` is the target state.  This is
-   the minimal concrete quantum-construction task and a useful PREPARE
-   primitive for later algorithms.
+   a concrete quantum-construction task and a useful PREPARE primitive for
+   later algorithms.
 2. **Block Encoding.**  Given a non-unitary operator `A`, synthesize a larger
    unitary whose clean ancilla block equals `A / alpha`.  This is the original
-   ABEIS target and is more general, but also more abstract.
-
-![ABEIS application overview](docs/assets/abeis_application_overview.svg)
+   ABEIS target and introduces ancilla, projection, register-order, and
+   normalization obligations that do not belong to the state-preparation
+   contract.
 
 
 Basic gates make the state-preparation target concrete:
@@ -78,8 +79,18 @@ X |0> = |1>,   X |1> = |0>
 So the user's intuition is right: Hadamard maps the zero state to an equal
 superposition, and the Pauli-X gate swaps the computational-basis states.
 
-The project is built around two related contracts.  The state-preparation
-contract is:
+The state-preparation flow is kept independent:
+
+```text
+normalized target |psi>
+-> candidate circuit or unitary completion
+-> prove unitarity
+-> prove U |0^n> = |psi>
+-> Lean state-preparation certificate
+-> finite executable export
+```
+
+Its contract is:
 
 ```text
 U |0^n> = |psi>
@@ -95,7 +106,7 @@ For unnormalized vectors, ABEIS requires the task to say whether the target is
 the normalized state `|psi / ||psi||>` or the rank-one operator `|v><0^n|`.
 The latter becomes a block-encoding-style operator target.
 
-The block-encoding contract is:
+The block-encoding flow begins from a different contract:
 
 ```text
 operator/query-oracle contract A
@@ -123,13 +134,15 @@ exact block-entry equation:
 The GitHub Pages deployment combines the existing interfaces into one literate
 formalization site without changing the stable Library or Blueprint URLs:
 
-1. Overview and the state-preparation-first reading path at the site root;
-2. the Implementation Map under `implementation-map/`;
-3. eight guided chapters under `chapters/`;
-4. the searchable Lean Library Explorer under `library/`;
-5. progress, roadmap, workflow, and attribution pages;
-6. the Lean library Blueprint under `blueprint/html-multi/`;
-7. the existing task builder under `task-builder/`.
+1. an overview that presents the two applications side by side;
+2. independent guides under `state-preparation/` and `block-encoding/`;
+3. the Implementation Map under `implementation-map/`;
+4. nine guided chapters grouped into foundations, state preparation, block
+   encoding, and system/evidence tracks;
+5. the searchable Lean Library Explorer under `library/`;
+6. progress, roadmap, workflow, and attribution pages;
+7. the Lean library Blueprint under `blueprint/html-multi/`;
+8. the existing task builder under `task-builder/`.
 
 The Blueprint chapters explain the certificate model, finite semantics,
 reusable block-encoding routes, and completed case studies.  Its catalog

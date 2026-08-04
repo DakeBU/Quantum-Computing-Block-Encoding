@@ -1,8 +1,23 @@
-flowchart LR
-  A["Finite vectors<br/>and matrices"] --> B["Normalized target<br/>state |psi>"]
-  B --> C["State preparation<br/>U|0^n> = |psi>"]
-  C --> D["First-column<br/>certificate"]
-  D --> E["Ancilla and<br/>register layout"]
-  E --> F["Projected block<br/>Pi U Pi^dagger = A/alpha"]
-  F --> G["Composition,<br/>dilation, QSVT"]
+flowchart TB
+  F["Shared foundations<br/>finite matrices, basis states, circuits"]
 
+  F --> S1["State preparation"]
+  S1 --> S2["State action and<br/>first-column certificates"]
+  S2 --> S3["Prepared-state routes<br/>and reusable PREPARE components"]
+
+  F --> B1["Block encoding"]
+  B1 --> B2["Ancillas, register order,<br/>normalization and projection"]
+  B2 --> B3["Composition, dilation,<br/>LCU and QSVT interfaces"]
+
+  S3 -. "may supply a PREPARE component" .-> B3
+  S3 --> H["ABEIS search,<br/>verification and exports"]
+  B3 --> H
+
+  classDef shared fill:#f8f5ee,stroke:#826a32,color:#222222,stroke-width:1.5px;
+  classDef state fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
+  classDef block fill:#eef3f7,stroke:#49677d,color:#1f2e39,stroke-width:1.5px;
+  classDef system fill:#ffffff,stroke:#64747a,color:#222222,stroke-width:1.25px;
+  class F shared;
+  class S1,S2,S3 state;
+  class B1,B2,B3 block;
+  class H system;

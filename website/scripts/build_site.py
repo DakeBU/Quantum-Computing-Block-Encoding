@@ -32,11 +32,11 @@ from content import (  # noqa: E402
 
 NAVIGATION = [
     ("Overview", ""),
-    ("Implementation Map", "implementation-map/"),
-    ("Chapters", "learning/"),
+    ("State preparation", "state-preparation/"),
+    ("Block encoding", "block-encoding/"),
+    ("Learning", "learning/"),
     ("Library", "library/"),
-    ("Roadmap", "roadmap/"),
-    ("Workflow", "workflow/"),
+    ("Progress", "roadmap/"),
 ]
 
 
@@ -203,8 +203,8 @@ def site_header(prefix: str, current: str) -> str:
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="{page_url(prefix, '')}">
-      <span class="brand-mark" aria-hidden="true">U/A</span>
-      <span>ABEIS Formalization</span>
+      <span class="brand-word">ABEIS</span>
+      <span class="brand-subtitle">Formal quantum constructions</span>
     </a>
     <nav class="top-nav" data-main-nav aria-label="Primary">
       {''.join(links)}
@@ -213,13 +213,13 @@ def site_header(prefix: str, current: str) -> str:
       <div class="search-shell">
         <label class="visually-hidden" for="global-search">Search declarations and chapters</label>
         <input id="global-search" class="global-search" type="search"
-               placeholder="Search Lean declarations" data-global-search>
+               placeholder="Search the Lean library" data-global-search>
         <div class="search-results" data-search-results hidden></div>
       </div>
       <div class="theme-switcher" aria-label="Reading style">
         <button type="button" data-theme-choice="blueprint" aria-pressed="true">Blueprint</button>
-        <button type="button" data-theme-choice="modern" aria-pressed="false">Modern</button>
-        <button type="button" data-theme-choice="bold" aria-pressed="false">Bold</button>
+        <button type="button" data-theme-choice="modern" aria-pressed="false">Reading</button>
+        <button type="button" data-theme-choice="bold" aria-pressed="false">Contrast</button>
       </div>
       <button class="icon-button mobile-menu" type="button" data-menu-button
               aria-label="Open navigation" aria-expanded="false">&#9776;</button>
@@ -237,11 +237,10 @@ def verification_strip(
     return f"""
 <div class="verification-strip">
   <div class="verification-inner">
-    <strong>Lean gate passed</strong>
+    <strong>Checked on this commit</strong>
     <span>{int(coverage['publicDeclarationCount']):,} public declarations</span>
-    <span>{int(coverage['privateDeclarationExclusionCount']):,} private/internal declarations excluded</span>
     <span>commit <code>{html.escape(str(context['shortCommit']))}</code></span>
-    <a href="{prefix}build-report.json">build evidence</a>
+    <a href="{prefix}build-report.json">Build record</a>
   </div>
 </div>"""
 
@@ -296,12 +295,22 @@ def page_template(
     {toc_html}
   </div>
   <footer class="site-footer">
-    ABEIS formalization documentation. Generated from the current Lean inventory and commit.
-    <a href="{page_url(prefix, 'attribution/')}">Attribution</a>.
+    <div><strong>ABEIS formalization</strong> · Generated from the current Lean inventory.</div>
+    <nav aria-label="Footer">
+      <a href="{page_url(prefix, 'implementation-map/')}">Implementation map</a>
+      <a href="{page_url(prefix, 'workflow/')}">ABEIS workflow</a>
+      <a href="{page_url(prefix, 'blueprint/')}">Verso Blueprint</a>
+      <a href="{page_url(prefix, 'attribution/')}">Attribution</a>
+    </nav>
   </footer>
   <script src="{prefix}static/site.js"></script>
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    if (window.matchMedia("(max-width: 760px)").matches) {{
+      document.querySelectorAll(".mermaid").forEach((node) => {{
+        node.textContent = node.textContent.replace(/^flowchart LR/m, "flowchart TB");
+      }});
+    }}
     mermaid.initialize({{
       startOnLoad: true,
       securityLevel: "strict",
@@ -314,7 +323,7 @@ def page_template(
         lineColor: "#71868e",
         secondaryColor: "#ffffff",
         tertiaryColor: "#f4f7f8",
-        fontFamily: "Inter, system-ui, sans-serif"
+        fontFamily: "system-ui, sans-serif"
       }}
     }});
   </script>
@@ -335,23 +344,53 @@ def diagram(prefix: str, name: str, title: str) -> str:
 </figure>"""
 
 
-def render_contracts() -> str:
-    return """
-<div class="contract-grid">
-  <article class="contract">
-    <h3>State preparation</h3>
-    <div class="math-block">\\[U|0^n\\rangle=|\\psi\\rangle\\]</div>
-    <p>The first column of a unitary is the normalized target state.</p>
+TRACK_ORDER = (
+    "Shared foundations",
+    "State preparation",
+    "Block encoding",
+    "System and evidence",
+)
+
+
+def render_chapter_groups(
+    link_prefix: str, tracks: tuple[str, ...] = TRACK_ORDER
+) -> str:
+    groups: list[str] = []
+    for track in tracks:
+        chapters = [chapter for chapter in CHAPTERS if chapter["track"] == track]
+        links = "".join(
+            f"""
+<a class="chapter-link" href="{link_prefix}chapters/{chapter['slug']}/index.html">
+  <span class="chapter-number">{int(chapter['number']):02d}</span>
+  <span class="chapter-copy">
+    <strong>{html.escape(str(chapter['title']))}</strong>
+    <span>{html.escape(str(chapter['summary']))}</span>
+  </span>
+  <span class="chapter-arrow" aria-hidden="true">&#8594;</span>
+</a>"""
+            for chapter in chapters
+        )
+        groups.append(
+            f'<section class="reading-track"><h3>{html.escape(track)}</h3>'
+            f'<div class="chapter-list">{links}</div></section>'
+        )
+    return '<div class="reading-tracks">' + "".join(groups) + "</div>"
+
+
+def render_gate_examples() -> str:
+    return r"""
+<div class="gate-example-grid" aria-label="One-qubit state-preparation examples">
+  <article class="gate-example state-example">
+    <div class="wire" aria-hidden="true"><span>|0&gt;</span><b>H</b><span>|+&gt;</span></div>
+    <h3>Hadamard prepares a superposition</h3>
+    <div class="example-math">\(H|0\rangle=(|0\rangle+|1\rangle)/\sqrt{2}\)</div>
+    <p>The two computational-basis amplitudes have equal magnitude.</p>
   </article>
-  <article class="contract">
-    <h3>Block encoding</h3>
-    <div class="math-block">\\[\\Pi U\\Pi^\\dagger=A/\\alpha\\]</div>
-    <p>Ancilla-zero projection selects a scaled block of a larger unitary.</p>
-  </article>
-  <article class="contract">
-    <h3>Acceptance</h3>
-    <div class="math-block">\\[\\text{candidate}\\to\\text{proof}\\to\\text{check}\\]</div>
-    <p>Resource quality is ranked only after the mathematical obligations are explicit.</p>
+  <article class="gate-example x-example">
+    <div class="wire" aria-hidden="true"><span>|0&gt;</span><b>X</b><span>|1&gt;</span></div>
+    <h3>Pauli X swaps the basis states</h3>
+    <div class="example-math">\(X|0\rangle=|1\rangle,\quad X|1\rangle=|0\rangle\)</div>
+    <p>This is a basis-state preparation, not an arbitrary superposition.</p>
   </article>
 </div>"""
 
@@ -366,79 +405,122 @@ def render_home(
     declarations = inventory["declarations"]
     experimental = sum(bool(item["experimental"]) for item in declarations)
     open_proofs = sum(bool(item.get("openProof")) for item in declarations)
-    chapter_links = "".join(
-        f"""
-<a class="chapter-link" href="chapters/{chapter['slug']}/index.html">
-  <span class="chapter-number">Chapter {chapter['number']}</span>
-  <h3>{html.escape(str(chapter['title']))}</h3>
-  <p>{html.escape(str(chapter['summary']))}</p>
-</a>"""
-        for chapter in CHAPTERS
-    )
-    body = f"""
-<section class="hero">
-  <p class="eyebrow">Literate formalization of quantum construction contracts</p>
-  <h1>ABEIS: state preparation before block encoding</h1>
-  <p class="lede">Read the quantum objective in ordinary language, inspect its exact
-  matrix contract, follow the proof obligations into Lean, and separate a locally
-  compiled declaration from completion of the broader algorithmic route.</p>
+    body = rf"""
+<section class="hero home-hero">
+  <p class="eyebrow">A literate Lean library for quantum circuit construction</p>
+  <h1>ABEIS formalization</h1>
+  <p class="lede">ABEIS studies two different construction problems. State preparation
+  asks a unitary to produce one target state. Block encoding asks a larger unitary
+  to expose a target operator through a clean ancilla block. This site keeps their
+  contracts, proof routes, and completion status separate.</p>
   <div class="hero-actions">
-    <a class="button" href="learning/index.html">Start the guided path</a>
-    <a class="button secondary" href="implementation-map/index.html">Audit implementation status</a>
-    <a class="button secondary" href="library/index.html">Search Lean declarations</a>
+    <a class="button state-button" href="state-preparation/index.html">Start with state preparation</a>
+    <a class="button block-button" href="block-encoding/index.html">Study block encoding</a>
+    <a class="text-link" href="learning/index.html">See the full reading guide &#8594;</a>
   </div>
 </section>
-<section class="content-section" id="contracts">
-  <h2>Two application directions, one certificate discipline</h2>
-  <p>State preparation is the concrete entry point. Block encoding generalizes the
-  same unitary reasoning to a projected matrix block, with ancillas, register order,
-  and normalization made explicit.</p>
-  {render_contracts()}
-  {diagram(prefix, "learning-path", "Recommended mathematical learning path")}
+<section class="content-section" id="applications">
+  <div class="section-heading">
+    <p class="eyebrow">Choose the problem first</p>
+    <h2>Two applications, two acceptance contracts</h2>
+    <p>The problems share finite matrix foundations and the same proof discipline,
+    but neither is presented as a special case of the other.</p>
+  </div>
+  <div class="application-paths">
+    <article class="application-path state-path">
+      <p class="path-label">Application 1</p>
+      <h3>State preparation</h3>
+      <div class="contract-equation">\[U|0^n\rangle=|\psi\rangle\]</div>
+      <p>Fix a normalized target state, construct a unitary, and prove that its
+      action on the all-zero state gives exactly those amplitudes.</p>
+      <a href="state-preparation/index.html">Read the state-preparation route &#8594;</a>
+    </article>
+    <article class="application-path block-path">
+      <p class="path-label">Application 2</p>
+      <h3>Block encoding</h3>
+      <div class="contract-equation">\[\Pi U\Pi^\dagger=A/\alpha\]</div>
+      <p>Fix an operator, normalization, ancilla convention, and register order;
+      then prove that the projected block of a larger unitary has the requested value.</p>
+      <a href="block-encoding/index.html">Read the block-encoding route &#8594;</a>
+    </article>
+  </div>
+</section>
+<section class="content-section process-section state-section" id="state-process">
+  <div class="section-heading">
+    <p class="eyebrow">State-preparation workflow</p>
+    <h2>From a target vector to a preparation certificate</h2>
+    <p>Normalization, unitarity, and state action are separate obligations. The
+    first-column identity is the matrix form of the same state-action equation.</p>
+  </div>
+  {diagram(prefix, "state-preparation-flow", "State-preparation proof and export flow")}
+</section>
+<section class="content-section process-section block-section" id="block-process">
+  <div class="section-heading">
+    <p class="eyebrow">Block-encoding workflow</p>
+    <h2>From an operator contract to a clean-block certificate</h2>
+    <p>This route introduces choices that state preparation does not need: ancilla
+    count, a clean projector, register layout, normalization \(\alpha\), and an
+    exact or approximate block norm.</p>
+  </div>
+  {diagram(prefix, "block-encoding-flow", "Block-encoding proof and export flow")}
 </section>
 <section class="content-section" id="evidence">
-  <h2>Evidence in this build</h2>
-  <div class="metric-grid">
+  <div class="section-heading">
+    <p class="eyebrow">Current checkout</p>
+    <h2>What this build actually certifies</h2>
+  </div>
+  <div class="metric-strip">
     <div class="metric"><strong>{int(coverage['publicDeclarationCount']):,}</strong><span>explicit public declarations</span></div>
     <div class="metric"><strong>{int(coverage['sourceDocstringCount']):,}</strong><span>source docstrings</span></div>
     <div class="metric"><strong>{experimental:,}</strong><span>experimental declarations</span></div>
     <div class="metric"><strong>{open_proofs:,}</strong><span>explicit incomplete proofs</span></div>
     <div class="metric"><strong>{len(CHAPTERS)}</strong><span>guided learning chapters</span></div>
-    <div class="metric"><strong>{len(coverage['bySource'])}</strong><span>source modules with public declarations</span></div>
   </div>
-  <div class="callout"><strong>Status rule.</strong> “Compiled” on this site is emitted
-  only because the Lean and test gates certified commit
-  <code>{html.escape(str(context['shortCommit']))}</code>. A structure or contract may
-  compile while its broader construction route remains partial.</div>
+  <p class="evidence-note"><strong>Compiled</strong> means the Lean and test gates
+  passed on commit <code>{html.escape(str(context['shortCommit']))}</code>. A contract
+  record may compile even when a concrete construction route is still partial; the
+  site shows those two statuses separately.</p>
 </section>
 <section class="content-section" id="pipeline">
-  <h2>From mathematical target to accepted artifact</h2>
-  <p>ABEIS separates automation policy, candidate exploration, formal verification,
-  and executable checks. A Qiskit result can corroborate an export; it does not replace
-  the Lean certificate.</p>
-  {diagram(prefix, "certificate-pipeline", "Mathematical contract to Lean certificate")}
+  <div class="section-heading">
+    <p class="eyebrow">Shared evidence discipline</p>
+    <h2>What happens after either contract is fixed</h2>
+    <p>ABEIS explores candidates, records why routes fail, and lets Lean decide
+    formal promotion. A Qiskit check is useful finite evidence after certification;
+    it does not prove a symbolic family.</p>
+  </div>
+  {diagram(prefix, "certificate-pipeline", "Shared certification and feedback loop")}
 </section>
 <section class="content-section" id="chapters">
-  <h2>Recommended reading order</h2>
-  <div class="chapter-grid">{chapter_links}</div>
+  <div class="section-heading">
+    <p class="eyebrow">Reading guide</p>
+    <h2>Follow one application without losing the shared foundations</h2>
+  </div>
+  {render_chapter_groups('')}
 </section>
 <section class="content-section" id="navigation">
-  <h2>One site, three evidence views</h2>
-  <p>The guided chapters explain; the Library Explorer inventories every explicit
-  declaration; the Verso Blueprint checks Lean references and remains available at
-  its stable URL.</p>
-  {diagram(prefix, "navigation", "Overview, Library, Blueprint, and source navigation")}
+  <div class="section-heading">
+    <p class="eyebrow">Audit the source</p>
+    <h2>Explanation, inventory, and checked Blueprint</h2>
+    <p>The chapters teach selected results. The Library Explorer inventories every
+    explicit public declaration. The Verso Blueprint resolves its Lean references
+    during the build.</p>
+  </div>
   <div class="link-row">
-    <a class="button secondary" href="blueprint/html-multi/index.html">Open Verso Blueprint</a>
-    <a class="button secondary" href="task-builder/index.html">Open task builder</a>
+    <a class="button secondary" href="implementation-map/index.html">Implementation map</a>
+    <a class="button secondary" href="library/index.html">Library Explorer</a>
+    <a class="button secondary" href="blueprint/html-multi/index.html">Verso Blueprint</a>
+    <a class="text-link" href="task-builder/index.html">Task builder &#8594;</a>
   </div>
 </section>"""
     toc = [
-        ("contracts", "Core contracts"),
+        ("applications", "Two applications"),
+        ("state-process", "State preparation"),
+        ("block-process", "Block encoding"),
         ("evidence", "Build evidence"),
-        ("pipeline", "Certificate pipeline"),
+        ("pipeline", "Shared verification"),
         ("chapters", "Learning chapters"),
-        ("navigation", "Evidence views"),
+        ("navigation", "Source views"),
     ]
     return page_template(
         title="Overview",
@@ -449,6 +531,143 @@ def render_home(
         gate=gate,
         context=context,
         toc=toc,
+    )
+
+
+def render_state_preparation(
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    body = rf"""
+<section class="hero application-hero state-hero">
+  <p class="eyebrow">Application 1</p>
+  <h1>State preparation</h1>
+  <p class="lede">Given a normalized target \(|\psi\rangle\), construct a unitary
+  \(U\) that sends the all-zero state to it. ABEIS treats this as its own synthesis
+  and proof problem, with its own exact and approximate acceptance predicates.</p>
+  <div class="hero-contract">\[U|0^n\rangle=|\psi\rangle\]</div>
+</section>
+<section class="content-section" id="first-example">
+  <div class="section-heading">
+    <p class="eyebrow">One qubit is enough to see the contract</p>
+    <h2>Two familiar gates, two concrete targets</h2>
+    <p>The Hadamard statement is correct: it prepares the equal superposition from
+    \(|0\rangle\). Pauli \(X\) exchanges \(|0\rangle\) and \(|1\rangle\).</p>
+  </div>
+  {render_gate_examples()}
+</section>
+<section class="content-section" id="preparation-flow">
+  <div class="section-heading">
+    <p class="eyebrow">Independent proof route</p>
+    <h2>What ABEIS has to establish</h2>
+    <p>The target must be normalized. The proposed matrix must be unitary. Finally,
+    its action on the zero ket, equivalently its first column, must match every
+    target amplitude.</p>
+  </div>
+  {diagram('../', 'state-preparation-flow', 'State-preparation proof and export flow')}
+</section>
+<section class="content-section" id="certificate-anatomy">
+  <div class="section-heading">
+    <p class="eyebrow">Certificate anatomy</p>
+    <h2>Three facts travel together</h2>
+  </div>
+  <dl class="concept-list">
+    <div><dt>Normalized target</dt><dd>The requested amplitude vector has unit norm.</dd></div>
+    <div><dt>Unitary candidate</dt><dd>The circuit matrix preserves inner products, not merely the first column.</dd></div>
+    <div><dt>State action</dt><dd>Applying the candidate to \(|0^n\rangle\) returns the requested vector.</dd></div>
+  </dl>
+  <p>A preparation circuit may later become a PREPARE component in an LCU or
+  purification construction. That downstream block-encoding theorem remains a
+  separate proof obligation.</p>
+</section>
+<section class="content-section" id="state-reading">
+  <div class="section-heading">
+    <p class="eyebrow">Continue reading</p>
+    <h2>State-preparation chapters</h2>
+  </div>
+  {render_chapter_groups('../', ('State preparation',))}
+</section>"""
+    return page_template(
+        title="State preparation",
+        route="state-preparation/",
+        current="state-preparation/",
+        body=body,
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=[
+            ("first-example", "One-qubit examples"),
+            ("preparation-flow", "Proof route"),
+            ("certificate-anatomy", "Certificate anatomy"),
+            ("state-reading", "Chapters"),
+        ],
+    )
+
+
+def render_block_encoding(
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    body = rf"""
+<section class="hero application-hero block-hero">
+  <p class="eyebrow">Application 2</p>
+  <h1>Block encoding</h1>
+  <p class="lede">Given an operator \(A\), place the scaled operator inside a
+  larger unitary. The contract says exactly which ancilla block is selected and
+  how normalization and approximation are interpreted.</p>
+  <div class="hero-contract">\[\left\|A-\alpha\Pi U\Pi^\dagger\right\|\le\varepsilon\]</div>
+</section>
+<section class="content-section" id="block-contract">
+  <div class="section-heading">
+    <p class="eyebrow">Read the notation before the circuit</p>
+    <h2>Four choices determine the contract</h2>
+  </div>
+  <dl class="concept-list block-concepts">
+    <div><dt>Ancillas</dt><dd>Extra qubits make room for the larger unitary and are projected onto a declared clean state.</dd></div>
+    <div><dt>Register order</dt><dd>The index convention identifies which matrix rows and columns form the signal block.</dd></div>
+    <div><dt>Normalization \(\alpha\)</dt><dd>The selected block represents \(A/\alpha\), so the scale is part of correctness.</dd></div>
+    <div><dt>Error \(\varepsilon\)</dt><dd>Exact encoding has zero error; approximate routes must name both a norm and a tolerance.</dd></div>
+  </dl>
+</section>
+<section class="content-section" id="encoding-flow">
+  <div class="section-heading">
+    <p class="eyebrow">Independent proof route</p>
+    <h2>What ABEIS has to establish</h2>
+    <p>A candidate is not accepted because one small matrix looks right. The layout,
+    unitarity, projected block, scale, and declared resource record are checked as
+    separate obligations.</p>
+  </div>
+  {diagram('../', 'block-encoding-flow', 'Block-encoding proof and export flow')}
+</section>
+<section class="content-section" id="connection">
+  <div class="section-heading">
+    <p class="eyebrow">A useful connection, not an identification</p>
+    <h2>Where prepared states can help</h2>
+  </div>
+  <p>A certified state-preparation circuit can supply a PREPARE oracle for an LCU,
+  Gram, or purification-based construction. Its first-column theorem becomes a
+  dependency; it does not by itself prove the clean-block identity.</p>
+  <div class="link-row">
+    <a class="button block-button" href="../chapters/block-encoding/index.html">Read the block contract</a>
+    <a class="button secondary" href="../chapters/classic-routes/index.html">Compare construction routes</a>
+    <a class="text-link" href="../chapters/certified-cases/index.html">See certified cases &#8594;</a>
+  </div>
+</section>"""
+    return page_template(
+        title="Block encoding",
+        route="block-encoding/",
+        current="block-encoding/",
+        body=body,
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=[
+            ("block-contract", "Contract terms"),
+            ("encoding-flow", "Proof route"),
+            ("connection", "Prepared-state inputs"),
+        ],
     )
 
 
@@ -477,35 +696,45 @@ def result_card(
 <article class="result" id="{declaration_anchor(str(result['declaration']))}">
   <div class="result-header">
     <div>
-      <p class="eyebrow">Important result</p>
+      <p class="eyebrow">Lean result</p>
       <h3>{html.escape(str(result['title']))}</h3>
-      <code>{html.escape(str(result['declaration']))}</code>
+      <code class="declaration-name">{html.escape(str(result['declaration']))}</code>
     </div>
     <div class="status-pair">
-      <span title="Local declaration completion">{badge(str(result['local_status']))}</span>
-      <span title="Broader construction route">{badge(str(result['route_status']))}</span>
+      <span><small>Declaration</small>{badge(str(result['local_status']))}</span>
+      <span><small>Full route</small>{badge(str(result['route_status']))}</span>
     </div>
   </div>
   <div class="math-block">\\[{html.escape(str(result['math']))}\\]</div>
-  <dl class="result-grid">
-    <div><dt>Plain-English statement</dt><dd>{html.escape(str(result['plain']))}</dd></div>
-    <div><dt>Intuition</dt><dd>{html.escape(str(result['intuition']))}</dd></div>
-    <div><dt>Why it is needed</dt><dd>{html.escape(str(result['why']))}</dd></div>
-    <div><dt>Dependencies</dt><dd>{'; '.join(dependencies)}</dd></div>
-    <div><dt>Proof idea</dt><dd>{html.escape(str(result['proof_idea']))}</dd></div>
-    <div><dt>Missing route steps</dt><dd>{html.escape(str(result['missing']))}</dd></div>
+  <div class="result-story">
+    <section>
+      <h4>What it says</h4>
+      <p>{html.escape(str(result['plain']))}</p>
+    </section>
+    <section>
+      <h4>Why it matters</h4>
+      <p>{html.escape(str(result['intuition']))} {html.escape(str(result['why']))}</p>
+    </section>
+    <section>
+      <h4>How the proof goes</h4>
+      <p>{html.escape(str(result['proof_idea']))}</p>
+    </section>
+  </div>
+  <dl class="result-notes">
+    <div><dt>Uses</dt><dd>{'; '.join(dependencies)}</dd></div>
+    <div><dt>Still outside this result</dt><dd>{html.escape(str(result['missing']))}</dd></div>
   </dl>
-  <h4>Lean proof correspondence</h4>
+  <h4 class="proof-heading">Natural-language steps and Lean objects</h4>
   <table class="proof-steps">
-    <thead><tr><th>Natural-language step</th><th>Lean object or step</th></tr></thead>
+    <thead><tr><th>Mathematical step</th><th>Lean object or step</th></tr></thead>
     <tbody>{steps}</tbody>
   </table>
   <details class="source-panel">
-    <summary>Lean statement and source</summary>
+    <summary>Open the Lean statement and source links</summary>
     <pre><code>{html.escape(source_statement(str(declaration['sourcePreview'])))}</code></pre>
     <p>
-      <a href="{module_url(prefix, declaration)}">local declaration anchor</a> |
-      <a href="{blueprint_url(prefix, declaration)}">Verso Blueprint panel</a> |
+      <a href="{module_url(prefix, declaration)}">Local declaration</a> ·
+      <a href="{blueprint_url(prefix, declaration)}">Verso Blueprint</a> ·
       {source_links}
     </p>
   </details>
@@ -522,7 +751,7 @@ def render_chapter(
     route = f"chapters/{chapter['slug']}/"
     prefix = prefix_for(route)
     result_html = []
-    toc = [("orientation", "Orientation"), ("dependency-view", "Dependency view")]
+    toc = [("orientation", "Orientation"), ("dependency-view", "Route at a glance")]
     for item in chapter["results"]:
         declaration = declarations[str(item["declaration"])]
         result_html.append(result_card(item, declaration, prefix))
@@ -530,20 +759,28 @@ def render_chapter(
     modules = "".join(f"<li><code>{html.escape(module)}</code></li>" for module in chapter["modules"])
     body = f"""
 <section class="hero" id="orientation">
-  <p class="eyebrow">Guided chapter {chapter['number']} of {len(CHAPTERS)}</p>
+  <p class="eyebrow">{html.escape(str(chapter['track']))} · Chapter {chapter['number']} of {len(CHAPTERS)}</p>
   <h1>{html.escape(str(chapter['title']))}</h1>
   <p class="lede">{html.escape(str(chapter['summary']))}</p>
-  <p><strong>Primary modules</strong></p>
-  <ul>{modules}</ul>
+  <details class="module-list">
+    <summary>Lean modules used in this chapter</summary>
+    <ul>{modules}</ul>
+  </details>
 </section>
 <section class="content-section" id="dependency-view">
-  <h2>Route view</h2>
-  {diagram(prefix, str(chapter['diagram']), str(chapter['title']))}
+  <div class="section-heading">
+    <p class="eyebrow">Route at a glance</p>
+    <h2>Where these results sit</h2>
+  </div>
+  {diagram(prefix, str(chapter['diagram']), f"{chapter['track']}: {chapter['title']}")}
 </section>
 <section class="content-section" id="important-results">
-  <h2>Important results</h2>
-  <p>Each entry separates the status of the Lean declaration from the status of the
-  broader construction route.</p>
+  <div class="section-heading">
+    <p class="eyebrow">Selected declarations</p>
+    <h2>Read the mathematics beside the Lean statement</h2>
+    <p>The declaration badge reports what compiles locally. The route badge reports
+    whether the larger construction is complete.</p>
+  </div>
   {''.join(result_html)}
 </section>"""
     return page_template(
@@ -564,25 +801,29 @@ def render_learning(
     gate: dict[str, object],
     context: dict[str, object],
 ) -> str:
-    cards = "".join(
-        f"""
-<a class="chapter-link" href="../chapters/{chapter['slug']}/index.html">
-  <span class="chapter-number">Chapter {chapter['number']}</span>
-  <h3>{html.escape(str(chapter['title']))}</h3>
-  <p>{html.escape(str(chapter['summary']))}</p>
-</a>"""
-        for chapter in CHAPTERS
-    )
     body = f"""
 <section class="hero">
-  <p class="eyebrow">Guided learning chapters</p>
-  <h1>Read from a prepared state to an accepted block encoding</h1>
-  <p class="lede">The order is deliberate: first understand how a unitary prepares one
-  target vector, then add ancillas and projection to encode a general operator.</p>
+  <p class="eyebrow">Guided reading</p>
+  <h1>One foundation, two application tracks</h1>
+  <p class="lede">Learn the finite matrix and circuit conventions once. Then follow
+  State Preparation or Block Encoding as a separate construction problem. The final
+  chapters explain how ABEIS searches, verifies, exports, and reports both.</p>
+  <div class="hero-actions">
+    <a class="button state-button" href="../state-preparation/index.html">State-preparation guide</a>
+    <a class="button block-button" href="../block-encoding/index.html">Block-encoding guide</a>
+  </div>
 </section>
-<section class="content-section">
-  {diagram("../", "learning-path", "State preparation to block encoding")}
-  <div class="chapter-grid">{cards}</div>
+<section class="content-section" id="reading-map">
+  <div class="section-heading">
+    <p class="eyebrow">Reading map</p>
+    <h2>The tracks meet only where the mathematics really meets</h2>
+    <p>A prepared state can supply a component to some block-encoding routes. The
+    acceptance contracts remain distinct.</p>
+  </div>
+  {diagram("../", "learning-path", "Shared foundations and separate application tracks")}
+</section>
+<section class="content-section" id="chapter-list">
+  {render_chapter_groups('../')}
 </section>"""
     return page_template(
         title="Guided learning",
@@ -592,6 +833,7 @@ def render_learning(
         coverage=coverage,
         gate=gate,
         context=context,
+        toc=[("reading-map", "Reading map"), ("chapter-list", "All chapters")],
     )
 
 
@@ -602,10 +844,14 @@ def render_implementation_map(
     context: dict[str, object],
 ) -> str:
     prefix = "../"
-    rows = []
+    chapter_tracks = {
+        str(chapter["slug"]): str(chapter["track"]) for chapter in CHAPTERS
+    }
+    grouped_rows: dict[str, list[str]] = {track: [] for track in TRACK_ORDER}
     for item in IMPLEMENTATION_MAP:
         declaration = declarations[str(item["declaration"])]
-        rows.append(
+        track = chapter_tracks[str(item["chapter"])]
+        grouped_rows[track].append(
             f"""<tr>
   <td>{html.escape(str(item['goal']))}</td>
   <td>\\({html.escape(str(item['contract']))}\\)</td>
@@ -619,15 +865,14 @@ def render_implementation_map(
       <a href="{blueprint_url(prefix, declaration)}">Blueprint</a></td>
 </tr>"""
         )
-    body = f"""
-<section class="hero">
-  <p class="eyebrow">Generated links, curated route status</p>
-  <h1>Implementation Map</h1>
-  <p class="lede">Every row connects a mathematical goal to a contract, proof
-  obligation, exact Lean declaration, module line, dependencies, current status,
-  missing work, and its reader-facing evidence.</p>
-</section>
-<section class="content-section">
+    tables = []
+    for track in TRACK_ORDER:
+        if not grouped_rows[track]:
+            continue
+        tables.append(
+            f"""
+<section class="map-group">
+  <h2>{html.escape(track)}</h2>
   <div class="table-wrap">
     <table class="data-table">
       <thead><tr>
@@ -635,9 +880,21 @@ def render_implementation_map(
         <th>Lean declaration</th><th>Module / line</th><th>Dependencies</th>
         <th>Status</th><th>Missing step</th><th>Reader links</th>
       </tr></thead>
-      <tbody>{''.join(rows)}</tbody>
+      <tbody>{''.join(grouped_rows[track])}</tbody>
     </table>
   </div>
+</section>"""
+        )
+    body = f"""
+<section class="hero">
+  <p class="eyebrow">Generated links · Curated route status</p>
+  <h1>Implementation Map</h1>
+  <p class="lede">Trace a mathematical statement to the exact Lean declaration,
+  source line, dependencies, current status, and work that remains. The map is
+  grouped by the same learning tracks used throughout the site.</p>
+</section>
+<section class="content-section map-groups">
+  {''.join(tables)}
 </section>"""
     return page_template(
         title="Implementation Map",
@@ -973,6 +1230,8 @@ def build_search_index(
         )
     page_entries = [
         ("Overview", "Core contracts, evidence, and recommended reading order", "index.html"),
+        ("State preparation", "Prepare a normalized target state from the all-zero basis state", "state-preparation/index.html"),
+        ("Block encoding", "Encode a scaled operator in the clean block of a larger unitary", "block-encoding/index.html"),
         ("Implementation Map", "Mathematical goals connected to exact Lean declarations", "implementation-map/index.html"),
         ("Lean Library Explorer", "Search the complete public declaration inventory", "library/index.html"),
         ("Progress and Roadmap", "Compiled, partial, experimental, planned, and blocked routes", "roadmap/index.html"),
@@ -1060,6 +1319,16 @@ def build(args: argparse.Namespace) -> None:
     shutil.copytree(WEBSITE_ROOT / "diagrams", output / "diagrams")
 
     write_page(output, "", render_home(inventory, coverage, gate, context))
+    write_page(
+        output,
+        "state-preparation",
+        render_state_preparation(coverage, gate, context),
+    )
+    write_page(
+        output,
+        "block-encoding",
+        render_block_encoding(coverage, gate, context),
+    )
     write_page(
         output,
         "implementation-map",
