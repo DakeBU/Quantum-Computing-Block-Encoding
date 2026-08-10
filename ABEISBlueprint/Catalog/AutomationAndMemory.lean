@@ -31,7 +31,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 :::definition "QuantumBlockEncoding.AutomationStage" (lean := "QuantumBlockEncoding.AutomationStage")
 *Plain-English reading.* This type lists the allowed alternatives for “automation stage”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -45,7 +45,7 @@ Source: [QuantumBlockEncoding/Automation.lean:12](../../../../library/modules/au
 :::definition "QuantumBlockEncoding.TaskKind" (lean := "QuantumBlockEncoding.TaskKind")
 *Plain-English reading.* This type lists the allowed alternatives for “task kind”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -59,7 +59,7 @@ Source: [QuantumBlockEncoding/Automation.lean:22](../../../../library/modules/au
 :::definition "QuantumBlockEncoding.TaskStatus" (lean := "QuantumBlockEncoding.TaskStatus")
 *Plain-English reading.* This type lists the allowed alternatives for “task status”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -73,7 +73,7 @@ Source: [QuantumBlockEncoding/Automation.lean:33](../../../../library/modules/au
 :::definition "QuantumBlockEncoding.ArtifactLanguage" (lean := "QuantumBlockEncoding.ArtifactLanguage")
 *Plain-English reading.* This type lists the allowed alternatives for “artifact language”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -87,7 +87,7 @@ Source: [QuantumBlockEncoding/Automation.lean:41](../../../../library/modules/au
 :::definition "QuantumBlockEncoding.AgentRole" (lean := "QuantumBlockEncoding.AgentRole")
 *Plain-English reading.* This type lists the allowed alternatives for “agent role”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -101,7 +101,7 @@ Source: [QuantumBlockEncoding/Automation.lean:49](../../../../library/modules/au
 :::definition "QuantumBlockEncoding.AgentBackendKind" (lean := "QuantumBlockEncoding.AgentBackendKind")
 *Plain-English reading.* This type lists the allowed alternatives for “agent backend kind”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -115,7 +115,7 @@ Source: [QuantumBlockEncoding/Automation.lean:56](../../../../library/modules/au
 :::definition "QuantumBlockEncoding.TrialKind" (lean := "QuantumBlockEncoding.TrialKind")
 *Plain-English reading.* This type lists the allowed alternatives for “trial kind”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -129,7 +129,7 @@ Source: [QuantumBlockEncoding/Automation.lean:67](../../../../library/modules/au
 :::definition "QuantumBlockEncoding.TrialStatus" (lean := "QuantumBlockEncoding.TrialStatus")
 *Plain-English reading.* This type lists the allowed alternatives for “trial status”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -213,7 +213,7 @@ Source: [QuantumBlockEncoding/Automation.lean:120](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.PostCycleArtifactKind" (lean := "QuantumBlockEncoding.PostCycleArtifactKind")
 *Plain-English reading.* This type lists the allowed alternatives for “post cycle artifact kind”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -255,7 +255,7 @@ Source: [QuantumBlockEncoding/Automation.lean:142](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.CandidatePool" (lean := "QuantumBlockEncoding.CandidatePool")
 *Plain-English reading.* This type lists the allowed alternatives for “candidate pool”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -269,7 +269,7 @@ Source: [QuantumBlockEncoding/Automation.lean:149](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.LexElimSchedulerMode" (lean := "QuantumBlockEncoding.LexElimSchedulerMode")
 *Plain-English reading.* This type lists the allowed alternatives for “lex elim scheduler mode”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -283,7 +283,7 @@ Source: [QuantumBlockEncoding/Automation.lean:154](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.LexObjectiveClass" (lean := "QuantumBlockEncoding.LexObjectiveClass")
 *Plain-English reading.* This type lists the allowed alternatives for “lex objective class”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -367,7 +367,7 @@ Source: [QuantumBlockEncoding/Automation.lean:203](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.leanBuildGate" (lean := "QuantumBlockEncoding.leanBuildGate")
 *Plain-English reading.* This definition gives the library's named construction or computation for “lean build gate”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -381,7 +381,7 @@ Source: [QuantumBlockEncoding/Automation.lean:211](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.noSorryGate" (lean := "QuantumBlockEncoding.noSorryGate")
 *Plain-English reading.* This definition gives the library's named construction or computation for “no sorry gate”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -395,7 +395,7 @@ Source: [QuantumBlockEncoding/Automation.lean:217](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.defaultGates" (lean := "QuantumBlockEncoding.defaultGates")
 *Plain-English reading.* This definition gives the library's named construction or computation for “default gates”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -409,7 +409,7 @@ Source: [QuantumBlockEncoding/Automation.lean:223](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.trialRecordSpec" (lean := "QuantumBlockEncoding.trialRecordSpec")
 *Plain-English reading.* This definition gives the library's named construction or computation for “trial record spec”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -423,7 +423,7 @@ Source: [QuantumBlockEncoding/Automation.lean:226](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.postCycleArtifactSpecs" (lean := "QuantumBlockEncoding.postCycleArtifactSpecs")
 *Plain-English reading.* This definition gives the library's named construction or computation for “post cycle artifact specs”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -437,7 +437,7 @@ Source: [QuantumBlockEncoding/Automation.lean:243](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.workflowCheckSpecs" (lean := "QuantumBlockEncoding.workflowCheckSpecs")
 *Plain-English reading.* This definition gives the library's named construction or computation for “workflow check specs”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -451,7 +451,7 @@ Source: [QuantumBlockEncoding/Automation.lean:271](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.blockEncodingLexObjectiveSpecs" (lean := "QuantumBlockEncoding.blockEncodingLexObjectiveSpecs")
 *Plain-English reading.* This definition gives the library's named construction or computation for “block encoding lex objective specs”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -465,7 +465,7 @@ Source: [QuantumBlockEncoding/Automation.lean:287](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.lexElimSchedulerSpecs" (lean := "QuantumBlockEncoding.lexElimSchedulerSpecs")
 *Plain-English reading.* This definition gives the library's named construction or computation for “lex elim scheduler specs”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -479,7 +479,7 @@ Source: [QuantumBlockEncoding/Automation.lean:333](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.agentPanelSizeSpecs" (lean := "QuantumBlockEncoding.agentPanelSizeSpecs")
 *Plain-English reading.* This definition gives the library's named construction or computation for “agent panel size specs”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -493,7 +493,7 @@ Source: [QuantumBlockEncoding/Automation.lean:353](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.agentBackendProfileSpecs" (lean := "QuantumBlockEncoding.agentBackendProfileSpecs")
 *Plain-English reading.* This definition gives the library's named construction or computation for “agent backend profile specs”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -507,7 +507,7 @@ Source: [QuantumBlockEncoding/Automation.lean:393](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.workflowInvariantSpecs" (lean := "QuantumBlockEncoding.workflowInvariantSpecs")
 *Plain-English reading.* This definition gives the library's named construction or computation for “workflow invariant specs”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -521,7 +521,7 @@ Source: [QuantumBlockEncoding/Automation.lean:493](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.threeLayerAgentContracts" (lean := "QuantumBlockEncoding.threeLayerAgentContracts")
 *Plain-English reading.* This definition gives the library's named construction or computation for “three layer agent contracts”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -535,7 +535,7 @@ Source: [QuantumBlockEncoding/Automation.lean:518](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.conversionArtifacts" (lean := "QuantumBlockEncoding.conversionArtifacts")
 *Plain-English reading.* This definition gives the library's named construction or computation for “conversion artifacts”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -549,7 +549,7 @@ Source: [QuantumBlockEncoding/Automation.lean:546](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.seedAutomationTasks" (lean := "QuantumBlockEncoding.seedAutomationTasks")
 *Plain-English reading.* This definition gives the library's named construction or computation for “seed automation tasks”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -563,7 +563,7 @@ Source: [QuantumBlockEncoding/Automation.lean:568](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.automationTaskCount" (lean := "QuantumBlockEncoding.automationTaskCount")
 *Plain-English reading.* This definition gives the library's named construction or computation for “automation task count”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -581,7 +581,7 @@ Source: [QuantumBlockEncoding/Automation.lean:605](../../../../library/modules/a
 :::definition "QuantumBlockEncoding.ImplementationStatus" (lean := "QuantumBlockEncoding.ImplementationStatus")
 *Plain-English reading.* This type lists the allowed alternatives for “implementation status”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -595,7 +595,7 @@ Source: [QuantumBlockEncoding/Literature.lean:11](../../../../library/modules/li
 :::definition "QuantumBlockEncoding.PaperRole" (lean := "QuantumBlockEncoding.PaperRole")
 *Plain-English reading.* This type lists the allowed alternatives for “paper role”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -623,7 +623,7 @@ Source: [QuantumBlockEncoding/Literature.lean:27](../../../../library/modules/li
 :::definition "QuantumBlockEncoding.literature" (lean := "QuantumBlockEncoding.literature")
 *Plain-English reading.* This definition gives the library's named construction or computation for “literature”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -637,7 +637,7 @@ Source: [QuantumBlockEncoding/Literature.lean:39](../../../../library/modules/li
 :::definition "QuantumBlockEncoding.literatureCount" (lean := "QuantumBlockEncoding.literatureCount")
 *Plain-English reading.* This definition gives the library's named construction or computation for “literature count”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -651,7 +651,7 @@ Source: [QuantumBlockEncoding/Literature.lean:219](../../../../library/modules/l
 :::definition "QuantumBlockEncoding.primaryPapers" (lean := "QuantumBlockEncoding.primaryPapers")
 *Plain-English reading.* This definition gives the library's named construction or computation for “primary papers”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -669,7 +669,7 @@ Source: [QuantumBlockEncoding/Literature.lean:221](../../../../library/modules/l
 :::definition "QuantumBlockEncoding.ProblemStatus" (lean := "QuantumBlockEncoding.ProblemStatus")
 *Plain-English reading.* This type lists the allowed alternatives for “problem status”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -697,7 +697,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:19](../../../../library/modules/
 :::definition "QuantumBlockEncoding.openProblems" (lean := "QuantumBlockEncoding.openProblems")
 *Plain-English reading.* This definition gives the library's named construction or computation for “open problems”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
@@ -711,7 +711,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:28](../../../../library/modules/
 :::definition "QuantumBlockEncoding.problemCount" (lean := "QuantumBlockEncoding.problemCount")
 *Plain-English reading.* This definition gives the library's named construction or computation for “problem count”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantumlib.example/schemas/translation-response.schema.json",
+  "title": "Quantumlib local translation response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "plain"],
+  "properties": {
+    "code": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A reviewable Lean 4 draft, including imports."
+    },
+    "plain": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A concise explanation of the proposition and every exposed assumption."
+    }
+  }
+}

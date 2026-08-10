@@ -68,7 +68,7 @@ original finite-index calculation.
 :::
 
 :::definition "four certificate layers"
-ABEIS distinguishes four layers: (1) clean-entry or clean-block equality, (2) unitarity,
+ASPBE distinguishes four layers: (1) clean-entry or clean-block equality, (2) unitarity,
 permutation, or inverse correctness, (3) circuit realization and gate-matrix alignment, and
 (4) a resource score at a named implementation level. Claims are compared only after their layer
 is made explicit.

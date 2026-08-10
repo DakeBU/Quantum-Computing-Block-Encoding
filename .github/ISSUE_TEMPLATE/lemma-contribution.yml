@@ -1,0 +1,57 @@
+name: Quantumlib lemma contribution
+description: Propose a sourced statement, Lean mapping, or checked ASPBE lemma.
+title: "[Quantumlib lemma] "
+labels: ["contribution", "formalization"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep the mathematical statement, Lean claim, assumptions, provenance, and compiler status aligned. A compiling placeholder such as `True` is not a formalization of the submitted mathematics.
+  - type: textarea
+    id: mathematics
+    attributes:
+      label: Mathematical statement
+      description: Give a plain-language statement and the corresponding LaTeX.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source or provenance
+      description: URL, DOI, book locator, upstream Lean declaration, or “original result”.
+    validations:
+      required: true
+  - type: textarea
+    id: assumptions
+    attributes:
+      label: Assumptions and conventions
+      description: Include dimensions, scalar domain, normalization, register order, norm, and tolerance where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: lean
+    attributes:
+      label: Lean draft and imports
+      render: lean
+    validations:
+      required: true
+  - type: textarea
+    id: compiler
+    attributes:
+      label: Compiler evidence
+      description: State whether the exact submitted text compiled under the pinned ASPBE toolchain and include diagnostics.
+    validations:
+      required: true
+  - type: input
+    id: credit
+    attributes:
+      label: Preferred contributor credit
+    validations:
+      required: true
+  - type: checkboxes
+    id: license
+    attributes:
+      label: Contribution license
+      options:
+        - label: I have the right to submit this material and agree to license my contribution under this repository's MIT License.
+          required: true

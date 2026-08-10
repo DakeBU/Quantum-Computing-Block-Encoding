@@ -38,4 +38,4 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand scripts/sanitize-blueprint-paths.py --scan-only _site
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-Write-Host "Unified ABEIS site assembled at _site/index.html"
+Write-Host "Quantumlib assembled at _site/index.html"

@@ -45,7 +45,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:14](../../../../library/modules
 :::definition "QuantumBlockEncoding.RegisterLayout.auxiliaryQubits" (lean := "QuantumBlockEncoding.RegisterLayout.auxiliaryQubits")
 *Plain-English reading.* This definition gives the library's named construction or computation for “auxiliary qubits”. The auxiliary qubit count used by the block-encoding score.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -87,7 +87,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:50](../../../../library/modules
 :::definition "QuantumBlockEncoding.BlockEncodingCost.fromLayoutAndResource" (lean := "QuantumBlockEncoding.BlockEncodingCost.fromLayoutAndResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “from layout and resource”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -101,7 +101,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:59](../../../../library/modules
 :::definition "QuantumBlockEncoding.BlockEncodingCost.fromSpec" (lean := "QuantumBlockEncoding.BlockEncodingCost.fromSpec")
 *Plain-English reading.* This definition gives the library's named construction or computation for “from spec”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -115,7 +115,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:66](../../../../library/modules
 :::definition "QuantumBlockEncoding.BlockEncodingCost.betterThan" (lean := "QuantumBlockEncoding.BlockEncodingCost.betterThan")
 *Plain-English reading.* This definition gives the library's named construction or computation for “better than”. Strict lexicographic improvement used by candidate-population selection.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -129,7 +129,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:70](../../../../library/modules
 :::definition "QuantumBlockEncoding.BlockEncodingCost.noWorseThan" (lean := "QuantumBlockEncoding.BlockEncodingCost.noWorseThan")
 *Plain-English reading.* This definition gives the library's named construction or computation for “no worse than”. Non-strict version for accepting a candidate as no worse than a baseline.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -171,7 +171,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:103](../../../../library/module
 :::definition "QuantumBlockEncoding.OperatorBlockEncodingCandidate.cost" (lean := "QuantumBlockEncoding.OperatorBlockEncodingCandidate.cost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cost”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -227,7 +227,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:159](../../../../library/module
 :::definition "QuantumBlockEncoding.VerifiedOperatorBlockEncoding.asZeroErrorApprox" (lean := "QuantumBlockEncoding.VerifiedOperatorBlockEncoding.asZeroErrorApprox")
 *Plain-English reading.* This definition gives the library's named construction or computation for “as zero error approx”. Package an exact certificate as a zero-error approximate certificate when the chosen approximate proposition is the same exact block predicate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -255,7 +255,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:195](../../../../library/module
 :::definition "QuantumBlockEncoding.BlockEncodingSearchPhase" (lean := "QuantumBlockEncoding.BlockEncodingSearchPhase")
 *Plain-English reading.* This type lists the allowed alternatives for “block encoding search phase”; its constructors are the cases that downstream code must handle. High-level phase labels used by the candidate-population ledger.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -283,7 +283,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:220](../../../../library/module
 :::theorem "QuantumBlockEncoding.VerifiedBlockEncoding.unitary" (lean := "QuantumBlockEncoding.VerifiedBlockEncoding.unitary")
 *Plain-English reading.* Lean checks the proposition indexed as “unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -297,7 +297,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:231](../../../../library/module
 :::theorem "QuantumBlockEncoding.VerifiedBlockEncoding.correct" (lean := "QuantumBlockEncoding.VerifiedBlockEncoding.correct")
 *Plain-English reading.* Lean checks the proposition indexed as “correct”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -311,7 +311,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:235](../../../../library/module
 :::theorem "QuantumBlockEncoding.VerifiedBlockEncoding.resource_ok" (lean := "QuantumBlockEncoding.VerifiedBlockEncoding.resource_ok")
 *Plain-English reading.* Lean checks the proposition indexed as “resource ok”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -343,7 +343,7 @@ Source: [QuantumBlockEncoding/BlockEncoding.lean:246](../../../../library/module
 :::definition "QuantumBlockEncoding.Gate" (lean := "QuantumBlockEncoding.Gate")
 *Plain-English reading.* This type lists the allowed alternatives for “gate”; its constructors are the cases that downstream code must handle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -357,7 +357,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:13](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.Circuit" (lean := "QuantumBlockEncoding.Circuit")
 *Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “circuit”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -371,7 +371,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:23](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.Gate.resource" (lean := "QuantumBlockEncoding.Gate.resource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “resource”. Conservative elementary-resource estimate for the current IR.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -385,7 +385,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:32](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.CircuitLayer" (lean := "QuantumBlockEncoding.CircuitLayer")
 *Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “circuit layer”. A layer is a list of gates intended to be scheduled in parallel.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -399,7 +399,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:50](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.CircuitLayer.resource" (lean := "QuantumBlockEncoding.CircuitLayer.resource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “resource”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -413,7 +413,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:54](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.LayeredCircuit" (lean := "QuantumBlockEncoding.LayeredCircuit")
 *Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “layered circuit”. A layered circuit is the schedule used for depth comparisons.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -427,7 +427,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:60](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.LayeredCircuit.resource" (lean := "QuantumBlockEncoding.LayeredCircuit.resource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “resource”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -441,7 +441,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:64](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.LayeredCircuit.depth" (lean := "QuantumBlockEncoding.LayeredCircuit.depth")
 *Plain-English reading.* This definition gives the library's named construction or computation for “depth”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -455,7 +455,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:68](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.Circuit.resource" (lean := "QuantumBlockEncoding.Circuit.resource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “resource”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -469,7 +469,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:75](../../../../library/modules/circu
 :::theorem "QuantumBlockEncoding.Circuit.resource_nil" (lean := "QuantumBlockEncoding.Circuit.resource_nil")
 *Plain-English reading.* Lean checks the proposition indexed as “resource nil”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -483,7 +483,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:79](../../../../library/modules/circu
 :::theorem "QuantumBlockEncoding.Circuit.resource_cons" (lean := "QuantumBlockEncoding.Circuit.resource_cons")
 *Plain-English reading.* Lean checks the proposition indexed as “resource cons”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -497,7 +497,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:81](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.Circuit.depth" (lean := "QuantumBlockEncoding.Circuit.depth")
 *Plain-English reading.* This definition gives the library's named construction or computation for “depth”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -515,7 +515,7 @@ Source: [QuantumBlockEncoding/Circuit.lean:84](../../../../library/modules/circu
 :::definition "QuantumBlockEncoding.Matrix" (lean := "QuantumBlockEncoding.Matrix")
 *Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “matrix”. A finite matrix represented by its entries.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -529,7 +529,7 @@ Source: [QuantumBlockEncoding/Core.lean:15](../../../../library/modules/core/#de
 :::definition "QuantumBlockEncoding.Matrix.PointwiseEq" (lean := "QuantumBlockEncoding.Matrix.PointwiseEq")
 *Plain-English reading.* This definition gives the library's named construction or computation for “pointwise eq”. Pointwise equality for finite matrices.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -543,7 +543,7 @@ Source: [QuantumBlockEncoding/Core.lean:20](../../../../library/modules/core/#de
 :::definition "QuantumBlockEncoding.Matrix.zero" (lean := "QuantumBlockEncoding.Matrix.zero")
 *Plain-English reading.* This definition gives the library's named construction or computation for “zero”. The zero finite matrix.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -557,7 +557,7 @@ Source: [QuantumBlockEncoding/Core.lean:25](../../../../library/modules/core/#de
 :::definition "QuantumBlockEncoding.Matrix.identity" (lean := "QuantumBlockEncoding.Matrix.identity")
 *Plain-English reading.* This definition gives the library's named construction or computation for “identity”. The identity finite matrix.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -571,7 +571,7 @@ Source: [QuantumBlockEncoding/Core.lean:29](../../../../library/modules/core/#de
 :::definition "QuantumBlockEncoding.Matrix.mul" (lean := "QuantumBlockEncoding.Matrix.mul")
 *Plain-English reading.* This definition gives the library's named construction or computation for “mul”. Finite matrix multiplication with the project-local 'Matrix' representation.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -585,7 +585,7 @@ Source: [QuantumBlockEncoding/Core.lean:34](../../../../library/modules/core/#de
 :::definition "QuantumBlockEncoding.gridSize" (lean := "QuantumBlockEncoding.gridSize")
 *Plain-English reading.* This definition gives the library's named construction or computation for “grid size”. Number of grid points in an 'n'-qubit register.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -599,7 +599,7 @@ Source: [QuantumBlockEncoding/Core.lean:44](../../../../library/modules/core/#de
 :::definition "QuantumBlockEncoding.clog2" (lean := "QuantumBlockEncoding.clog2")
 *Plain-English reading.* This definition gives the library's named construction or computation for “clog 2”. Small ceiling-log helper for resource bookkeeping.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -613,7 +613,7 @@ Source: [QuantumBlockEncoding/Core.lean:52](../../../../library/modules/core/#de
 :::theorem "QuantumBlockEncoding.gridSize_zero" (lean := "QuantumBlockEncoding.gridSize_zero")
 *Plain-English reading.* Lean checks the proposition indexed as “grid size zero”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -627,7 +627,7 @@ Source: [QuantumBlockEncoding/Core.lean:55](../../../../library/modules/core/#de
 :::theorem "QuantumBlockEncoding.clog2_zero" (lean := "QuantumBlockEncoding.clog2_zero")
 *Plain-English reading.* Lean checks the proposition indexed as “clog 2 zero”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -641,7 +641,7 @@ Source: [QuantumBlockEncoding/Core.lean:57](../../../../library/modules/core/#de
 :::theorem "QuantumBlockEncoding.clog2_one" (lean := "QuantumBlockEncoding.clog2_one")
 *Plain-English reading.* Lean checks the proposition indexed as “clog 2 one”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -655,7 +655,7 @@ Source: [QuantumBlockEncoding/Core.lean:60](../../../../library/modules/core/#de
 :::theorem "QuantumBlockEncoding.log2_pred_two_pow_succ" (lean := "QuantumBlockEncoding.log2_pred_two_pow_succ")
 *Plain-English reading.* Lean checks the proposition indexed as “log 2 pred two pow succ”; the hypotheses and conclusion in the code panel fix its exact scope. 'log2 (2^(n+1)-1) = n', the arithmetic fact behind 'clog2\_gridSize'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -669,7 +669,7 @@ Source: [QuantumBlockEncoding/Core.lean:64](../../../../library/modules/core/#de
 :::theorem "QuantumBlockEncoding.clog2_gridSize" (lean := "QuantumBlockEncoding.clog2_gridSize")
 *Plain-English reading.* Lean checks the proposition indexed as “clog 2 grid size”; the hypotheses and conclusion in the code panel fix its exact scope. The bit-width of an 'n'-qubit grid is 'n'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -683,7 +683,7 @@ Source: [QuantumBlockEncoding/Core.lean:94](../../../../library/modules/core/#de
 :::definition "QuantumBlockEncoding.BoundaryKind" (lean := "QuantumBlockEncoding.BoundaryKind")
 *Plain-English reading.* This type lists the allowed alternatives for “boundary kind”; its constructors are the cases that downstream code must handle. Boundary conditions tracked by this library.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -711,7 +711,7 @@ Source: [QuantumBlockEncoding/Core.lean:111](../../../../library/modules/core/#d
 :::definition "QuantumBlockEncoding.Stencil.width" (lean := "QuantumBlockEncoding.Stencil.width")
 *Plain-English reading.* This definition gives the library's named construction or computation for “width”. The number of columns touched by a stencil row before boundary corrections.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -725,7 +725,7 @@ Source: [QuantumBlockEncoding/Core.lean:121](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Stencil.width_eq" (lean := "QuantumBlockEncoding.Stencil.width_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “width eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -753,7 +753,7 @@ Source: [QuantumBlockEncoding/Core.lean:134](../../../../library/modules/core/#d
 :::definition "QuantumBlockEncoding.BulkWindow.paperBoundaryLines" (lean := "QuantumBlockEncoding.BulkWindow.paperBoundaryLines")
 *Plain-English reading.* This definition gives the library's named construction or computation for “paper boundary lines”. Number of boundary-side rows outside the bulk, using the paper's convention.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -767,7 +767,7 @@ Source: [QuantumBlockEncoding/Core.lean:142](../../../../library/modules/core/#d
 :::definition "QuantumBlockEncoding.Coeff" (lean := "QuantumBlockEncoding.Coeff")
 *Plain-English reading.* This type lists the allowed alternatives for “coeff”; its constructors are the cases that downstream code must handle. A lightweight symbolic coefficient language for stencil entries.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -781,7 +781,7 @@ Source: [QuantumBlockEncoding/Core.lean:148](../../../../library/modules/core/#d
 :::definition "QuantumBlockEncoding.Coeff.sub" (lean := "QuantumBlockEncoding.Coeff.sub")
 *Plain-English reading.* This definition gives the library's named construction or computation for “sub”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -795,7 +795,7 @@ Source: [QuantumBlockEncoding/Core.lean:170](../../../../library/modules/core/#d
 :::definition "QuantumBlockEncoding.Coeff.evalWith" (lean := "QuantumBlockEncoding.Coeff.evalWith")
 *Plain-English reading.* This definition gives the library's named construction or computation for “eval with”. Evaluate a symbolic 'Coeff' to a concrete 'Rat' given an environment.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -809,7 +809,7 @@ Source: [QuantumBlockEncoding/Core.lean:176](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with rat”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -823,7 +823,7 @@ Source: [QuantumBlockEncoding/Core.lean:183](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_symbol" (lean := "QuantumBlockEncoding.Coeff.evalWith_symbol")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with symbol”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -837,7 +837,7 @@ Source: [QuantumBlockEncoding/Core.lean:186](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_add" (lean := "QuantumBlockEncoding.Coeff.evalWith_add")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with add”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -851,7 +851,7 @@ Source: [QuantumBlockEncoding/Core.lean:189](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_mul" (lean := "QuantumBlockEncoding.Coeff.evalWith_mul")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with mul”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -865,7 +865,7 @@ Source: [QuantumBlockEncoding/Core.lean:192](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_neg" (lean := "QuantumBlockEncoding.Coeff.evalWith_neg")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with neg”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -879,7 +879,7 @@ Source: [QuantumBlockEncoding/Core.lean:195](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.rat_zero" (lean := "QuantumBlockEncoding.Coeff.rat_zero")
 *Plain-English reading.* Lean checks the proposition indexed as “rat zero”; the hypotheses and conclusion in the code panel fix its exact scope. Trivial reflexivity lemma for the zero rational coefficient.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -893,7 +893,7 @@ Source: [QuantumBlockEncoding/Core.lean:199](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_zero" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_zero")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with rat zero”; the hypotheses and conclusion in the code panel fix its exact scope. Evaluating 'Coeff.rat 0' yields '0' under any environment.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -907,7 +907,7 @@ Source: [QuantumBlockEncoding/Core.lean:202](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_one" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_one")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with rat one”; the hypotheses and conclusion in the code panel fix its exact scope. Evaluating 'Coeff.rat 1' yields '1' under any environment.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -921,7 +921,7 @@ Source: [QuantumBlockEncoding/Core.lean:206](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_add" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_add")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with rat add”; the hypotheses and conclusion in the code panel fix its exact scope. Evaluating 'Coeff.add (Coeff.rat a) (Coeff.rat b)' yields 'a + b'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -935,7 +935,7 @@ Source: [QuantumBlockEncoding/Core.lean:210](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_mul" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_mul")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with rat mul”; the hypotheses and conclusion in the code panel fix its exact scope. Evaluating 'Coeff.mul (Coeff.rat a) (Coeff.rat b)' yields 'a \* b'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -949,7 +949,7 @@ Source: [QuantumBlockEncoding/Core.lean:215](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_rat_neg" (lean := "QuantumBlockEncoding.Coeff.evalWith_rat_neg")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with rat neg”; the hypotheses and conclusion in the code panel fix its exact scope. Evaluating 'Coeff.neg (Coeff.rat a)' yields '-a'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -963,7 +963,7 @@ Source: [QuantumBlockEncoding/Core.lean:220](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_eq_zero_of_rat_zero" (lean := "QuantumBlockEncoding.Coeff.evalWith_eq_zero_of_rat_zero")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with eq zero of rat zero”; the hypotheses and conclusion in the code panel fix its exact scope. If a Coeff value is 'Coeff.rat 0', it evaluates to '0' under any environment.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -977,7 +977,7 @@ Source: [QuantumBlockEncoding/Core.lean:225](../../../../library/modules/core/#d
 :::theorem "QuantumBlockEncoding.Coeff.evalWith_eq_one_of_rat_one" (lean := "QuantumBlockEncoding.Coeff.evalWith_eq_one_of_rat_one")
 *Plain-English reading.* Lean checks the proposition indexed as “eval with eq one of rat one”; the hypotheses and conclusion in the code panel fix its exact scope. If a Coeff value is 'Coeff.rat 1', it evaluates to '1' under any environment.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -991,7 +991,7 @@ Source: [QuantumBlockEncoding/Core.lean:229](../../../../library/modules/core/#d
 :::definition "QuantumBlockEncoding.Coeff.divNat" (lean := "QuantumBlockEncoding.Coeff.divNat")
 *Plain-English reading.* This definition gives the library's named construction or computation for “div nat”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1037,7 +1037,7 @@ Source: [QuantumBlockEncoding/Resources.lean:21](../../../../library/modules/res
 :::definition "QuantumBlockEncoding.Resource.gates" (lean := "QuantumBlockEncoding.Resource.gates")
 *Plain-English reading.* This definition gives the library's named construction or computation for “gates”. Gate count used by the search score before an oracle call is expanded.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1051,7 +1051,7 @@ Source: [QuantumBlockEncoding/Resources.lean:32](../../../../library/modules/res
 :::definition "QuantumBlockEncoding.Resource.add" (lean := "QuantumBlockEncoding.Resource.add")
 *Plain-English reading.* This definition gives the library's named construction or computation for “add”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1065,7 +1065,7 @@ Source: [QuantumBlockEncoding/Resources.lean:34](../../../../library/modules/res
 :::definition "QuantumBlockEncoding.Resource.parallel" (lean := "QuantumBlockEncoding.Resource.parallel")
 *Plain-English reading.* This definition gives the library's named construction or computation for “parallel”. Resource combination for one parallel layer.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1079,7 +1079,7 @@ Source: [QuantumBlockEncoding/Resources.lean:45](../../../../library/modules/res
 :::definition "QuantumBlockEncoding.Resource.scale" (lean := "QuantumBlockEncoding.Resource.scale")
 *Plain-English reading.* This definition gives the library's named construction or computation for “scale”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1093,7 +1093,7 @@ Source: [QuantumBlockEncoding/Resources.lean:55](../../../../library/modules/res
 :::definition "QuantumBlockEncoding.Resource.ofCounts" (lean := "QuantumBlockEncoding.Resource.ofCounts")
 *Plain-English reading.* This definition gives the library's named construction or computation for “of counts”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1107,7 +1107,7 @@ Source: [QuantumBlockEncoding/Resources.lean:62](../../../../library/modules/res
 :::definition "QuantumBlockEncoding.Resource.ofCountsWithDepth" (lean := "QuantumBlockEncoding.Resource.ofCountsWithDepth")
 *Plain-English reading.* This definition gives the library's named construction or computation for “of counts with depth”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1121,7 +1121,7 @@ Source: [QuantumBlockEncoding/Resources.lean:68](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.gates_eq" (lean := "QuantumBlockEncoding.Resource.gates_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “gates eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1135,7 +1135,7 @@ Source: [QuantumBlockEncoding/Resources.lean:75](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.zero_oneQubit" (lean := "QuantumBlockEncoding.Resource.zero_oneQubit")
 *Plain-English reading.* Lean checks the proposition indexed as “zero one qubit”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1149,7 +1149,7 @@ Source: [QuantumBlockEncoding/Resources.lean:77](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.zero_cnot" (lean := "QuantumBlockEncoding.Resource.zero_cnot")
 *Plain-English reading.* Lean checks the proposition indexed as “zero cnot”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1163,7 +1163,7 @@ Source: [QuantumBlockEncoding/Resources.lean:78](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.zero_oracleCalls" (lean := "QuantumBlockEncoding.Resource.zero_oracleCalls")
 *Plain-English reading.* Lean checks the proposition indexed as “zero oracle calls”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1177,7 +1177,7 @@ Source: [QuantumBlockEncoding/Resources.lean:79](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.zero_pureAncilla" (lean := "QuantumBlockEncoding.Resource.zero_pureAncilla")
 *Plain-English reading.* Lean checks the proposition indexed as “zero pure ancilla”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1191,7 +1191,7 @@ Source: [QuantumBlockEncoding/Resources.lean:80](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.zero_depth" (lean := "QuantumBlockEncoding.Resource.zero_depth")
 *Plain-English reading.* Lean checks the proposition indexed as “zero depth”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1205,7 +1205,7 @@ Source: [QuantumBlockEncoding/Resources.lean:81](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.add_oneQubit" (lean := "QuantumBlockEncoding.Resource.add_oneQubit")
 *Plain-English reading.* Lean checks the proposition indexed as “add one qubit”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1219,7 +1219,7 @@ Source: [QuantumBlockEncoding/Resources.lean:82](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.add_cnot" (lean := "QuantumBlockEncoding.Resource.add_cnot")
 *Plain-English reading.* Lean checks the proposition indexed as “add cnot”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1233,7 +1233,7 @@ Source: [QuantumBlockEncoding/Resources.lean:84](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.add_oracleCalls" (lean := "QuantumBlockEncoding.Resource.add_oracleCalls")
 *Plain-English reading.* Lean checks the proposition indexed as “add oracle calls”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1247,7 +1247,7 @@ Source: [QuantumBlockEncoding/Resources.lean:86](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.add_pureAncilla" (lean := "QuantumBlockEncoding.Resource.add_pureAncilla")
 *Plain-English reading.* Lean checks the proposition indexed as “add pure ancilla”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1261,7 +1261,7 @@ Source: [QuantumBlockEncoding/Resources.lean:88](../../../../library/modules/res
 :::theorem "QuantumBlockEncoding.Resource.add_depth" (lean := "QuantumBlockEncoding.Resource.add_depth")
 *Plain-English reading.* Lean checks the proposition indexed as “add depth”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1275,7 +1275,7 @@ Source: [QuantumBlockEncoding/Resources.lean:90](../../../../library/modules/res
 :::definition "QuantumBlockEncoding.CostExpr" (lean := "QuantumBlockEncoding.CostExpr")
 *Plain-English reading.* This type lists the allowed alternatives for “cost expr”; its constructors are the cases that downstream code must handle. A small expression language for big-O resource formulas.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1289,7 +1289,7 @@ Source: [QuantumBlockEncoding/Resources.lean:96](../../../../library/modules/res
 :::definition "QuantumBlockEncoding.CostExpr.atoms" (lean := "QuantumBlockEncoding.CostExpr.atoms")
 *Plain-English reading.* This definition gives the library's named construction or computation for “atoms”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1317,7 +1317,7 @@ Source: [QuantumBlockEncoding/Resources.lean:122](../../../../library/modules/re
 :::definition "QuantumBlockEncoding.AsymptoticResource.add" (lean := "QuantumBlockEncoding.AsymptoticResource.add")
 *Plain-English reading.* This definition gives the library's named construction or computation for “add”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1331,7 +1331,7 @@ Source: [QuantumBlockEncoding/Resources.lean:129](../../../../library/modules/re
 :::definition "QuantumBlockEncoding.bandedSparseAccessResource" (lean := "QuantumBlockEncoding.bandedSparseAccessResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “banded sparse access resource”. Lemma 1 resource count from Guseynov-Huang-Liu 2025.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1345,7 +1345,7 @@ Source: [QuantumBlockEncoding/Resources.lean:138](../../../../library/modules/re
 :::definition "QuantumBlockEncoding.sparseAmplitudeOracleResource" (lean := "QuantumBlockEncoding.sparseAmplitudeOracleResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “sparse amplitude oracle resource”. Lemma 3 resource count for the sparse-amplitude oracle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1359,7 +1359,7 @@ Source: [QuantumBlockEncoding/Resources.lean:145](../../../../library/modules/re
 :::definition "QuantumBlockEncoding.indicatorResource" (lean := "QuantumBlockEncoding.indicatorResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “indicator resource”. Appendix comparator/indicator resource count.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1377,7 +1377,7 @@ Source: [QuantumBlockEncoding/Resources.lean:149](../../../../library/modules/re
 :::definition "QuantumBlockEncoding.zeroBasisIndex" (lean := "QuantumBlockEncoding.zeroBasisIndex")
 *Plain-English reading.* This definition gives the library's named construction or computation for “zero basis index”. The computational all-zero basis index in an 'n'-qubit register.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1405,7 +1405,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:19](../../../../library/modu
 :::definition "QuantumBlockEncoding.FirstColumnMatches" (lean := "QuantumBlockEncoding.FirstColumnMatches")
 *Plain-English reading.* This definition gives the library's named construction or computation for “first column matches”. The matrix-level first-column acceptance predicate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1433,7 +1433,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:31](../../../../library/modu
 :::definition "QuantumBlockEncoding.StatePreparationCandidate.preparesTarget" (lean := "QuantumBlockEncoding.StatePreparationCandidate.preparesTarget")
 *Plain-English reading.* This definition gives the library's named construction or computation for “prepares target”. The candidate's fixed semantic target; callers cannot replace it by a flag.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1447,7 +1447,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:43](../../../../library/modu
 :::definition "QuantumBlockEncoding.StatePreparationCandidate.cost" (lean := "QuantumBlockEncoding.StatePreparationCandidate.cost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cost”. Reuse the block-encoding resource order for state-preparation candidates.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1503,7 +1503,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:72](../../../../library/modu
 :::definition "QuantumBlockEncoding.VerifiedStatePreparation.asZeroErrorApprox" (lean := "QuantumBlockEncoding.VerifiedStatePreparation.asZeroErrorApprox")
 *Plain-English reading.* This definition gives the library's named construction or computation for “as zero error approx”. Package an exact state-preparation certificate as a zero-error approximate certificate when the backend uses the exact first-column predicate as its zero-error proposition.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 
@@ -1517,7 +1517,7 @@ Source: [QuantumBlockEncoding/StatePreparation.lean:86](../../../../library/modu
 :::theorem "QuantumBlockEncoding.VerifiedStatePreparation.firstColumn" (lean := "QuantumBlockEncoding.VerifiedStatePreparation.firstColumn")
 *Plain-English reading.* Lean checks the proposition indexed as “first column”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Core finite matrices, task contracts, resource records, circuit syntax, and certificate data structures.
 

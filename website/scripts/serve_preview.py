@@ -11,8 +11,10 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 
-USERNAME_ENV = "ABEIS_PREVIEW_USERNAME"
-PASSWORD_ENV = "ABEIS_PREVIEW_PASSWORD"
+USERNAME_ENV = "ASPBE_PREVIEW_USERNAME"
+PASSWORD_ENV = "ASPBE_PREVIEW_PASSWORD"
+LEGACY_USERNAME_ENV = "ABEIS_PREVIEW_USERNAME"
+LEGACY_PASSWORD_ENV = "ABEIS_PREVIEW_PASSWORD"
 
 
 class PreviewHandler(SimpleHTTPRequestHandler):
@@ -30,7 +32,7 @@ class PreviewHandler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:
         if not self.authenticated():
             self.send_response(401)
-            self.send_header("WWW-Authenticate", 'Basic realm="ABEIS preview"')
+            self.send_header("WWW-Authenticate", 'Basic realm="Quantumlib preview"')
             self.end_headers()
             self.wfile.write(b"Authentication required.\n")
             return
@@ -39,7 +41,7 @@ class PreviewHandler(SimpleHTTPRequestHandler):
     def do_HEAD(self) -> None:
         if not self.authenticated():
             self.send_response(401)
-            self.send_header("WWW-Authenticate", 'Basic realm="ABEIS preview"')
+            self.send_header("WWW-Authenticate", 'Basic realm="Quantumlib preview"')
             self.end_headers()
             return
         super().do_HEAD()
@@ -74,8 +76,8 @@ def main() -> int:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8765)
     args = parser.parse_args()
-    username = os.environ.get(USERNAME_ENV)
-    password = os.environ.get(PASSWORD_ENV)
+    username = os.environ.get(USERNAME_ENV) or os.environ.get(LEGACY_USERNAME_ENV)
+    password = os.environ.get(PASSWORD_ENV) or os.environ.get(LEGACY_PASSWORD_ENV)
     if not username or not password:
         raise SystemExit(
             f"Set {USERNAME_ENV} and {PASSWORD_ENV}; credentials are never read from files."
@@ -90,7 +92,7 @@ def main() -> int:
         *handler_args, directory=str(root), **kwargs
     )
     server = ThreadingHTTPServer((args.host, args.port), handler)
-    print(f"Serving private ABEIS preview at http://{args.host}:{args.port}/")
+    print(f"Serving private Quantumlib preview at http://{args.host}:{args.port}/")
     print("Authentication is required; credentials came from environment variables.")
     try:
         server.serve_forever()

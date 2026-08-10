@@ -29,12 +29,12 @@ class PreviewTest(unittest.TestCase):
     def test_basic_auth_and_security_headers(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "index.html").write_text("ABEIS preview", encoding="utf-8")
+            (root / "index.html").write_text("Quantumlib preview", encoding="utf-8")
             port = free_port()
             env = {
                 **os.environ,
-                "ABEIS_PREVIEW_USERNAME": "reviewer",
-                "ABEIS_PREVIEW_PASSWORD": "test-only-secret",
+                "ASPBE_PREVIEW_USERNAME": "reviewer",
+                "ASPBE_PREVIEW_PASSWORD": "test-only-secret",
             }
             process = subprocess.Popen(
                 [
@@ -79,7 +79,7 @@ class PreviewTest(unittest.TestCase):
                     self.assertEqual(response.status, 200)
                     self.assertEqual(response.headers["Cache-Control"], "no-store")
                     self.assertEqual(response.headers["X-Frame-Options"], "DENY")
-                    self.assertIn(b"ABEIS preview", response.read())
+                    self.assertIn(b"Quantumlib preview", response.read())
             finally:
                 process.terminate()
                 process.wait(timeout=5)

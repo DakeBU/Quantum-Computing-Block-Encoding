@@ -1,7 +1,7 @@
 import Lake
 open Lake DSL
 
-package quantum_block_encoding where
+package aspbe where
   version := v!"0.1.0"
 
 require VersoBlueprint from git

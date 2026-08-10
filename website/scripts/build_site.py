@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the unified ABEIS literate formalization website."""
+"""Build Quantumlib from the ASPBE Lean inventory and teaching content."""
 
 from __future__ import annotations
 
@@ -31,12 +31,15 @@ from content import (  # noqa: E402
 
 
 NAVIGATION = [
-    ("Overview", ""),
-    ("State preparation", "state-preparation/"),
-    ("Block encoding", "block-encoding/"),
-    ("Learning", "learning/"),
-    ("Library", "library/"),
+    ("Home", ""),
+    ("Book map", "learning/"),
+    ("Lean library", "library/"),
+    ("Implementation map", "implementation-map/"),
+    ("Live workspace", "ide/"),
+    ("Quantum ecosystem", "ecosystem/"),
     ("Progress", "roadmap/"),
+    ("Contribute", "community/"),
+    ("Organizers", "organizers/"),
 ]
 
 
@@ -192,40 +195,63 @@ def source_statement(preview: str) -> str:
 
 
 def site_header(prefix: str, current: str) -> str:
-    links = []
+    links: list[str] = []
     for label, route in NAVIGATION:
         current_attr = ' aria-current="page"' if current == route else ""
         links.append(
             f'<a href="{page_url(prefix, route)}"{current_attr}>{html.escape(label)}</a>'
         )
+    chapter_links = []
+    for chapter in CHAPTERS:
+        route = f"chapters/{chapter['slug']}/"
+        current_attr = ' aria-current="page"' if current == route else ""
+        chapter_links.append(
+            f'<a href="{page_url(prefix, route)}"{current_attr}>'
+            f'<span>{int(chapter["number"]):02d}</span>'
+            f'{html.escape(str(chapter["title"]))}</a>'
+        )
     return f"""
 <a class="skip-link" href="#main-content">Skip to content</a>
-<header class="site-header">
-  <div class="header-inner">
+<header class="mobile-header">
     <a class="brand" href="{page_url(prefix, '')}">
-      <span class="brand-word">ABEIS</span>
-      <span class="brand-subtitle">Formal quantum constructions</span>
+      <span class="brand-word">Quantumlib</span>
+      <span class="brand-subtitle">learn · inspect · formalize</span>
     </a>
-    <nav class="top-nav" data-main-nav aria-label="Primary">
-      {''.join(links)}
-    </nav>
-    <div class="header-tools">
-      <div class="search-shell">
-        <label class="visually-hidden" for="global-search">Search declarations and chapters</label>
-        <input id="global-search" class="global-search" type="search"
-               placeholder="Search the Lean library" data-global-search>
-        <div class="search-results" data-search-results hidden></div>
-      </div>
-      <div class="theme-switcher" aria-label="Reading style">
-        <button type="button" data-theme-choice="blueprint" aria-pressed="true">Blueprint</button>
-        <button type="button" data-theme-choice="modern" aria-pressed="false">Reading</button>
-        <button type="button" data-theme-choice="bold" aria-pressed="false">Contrast</button>
-      </div>
-      <button class="icon-button mobile-menu" type="button" data-menu-button
-              aria-label="Open navigation" aria-expanded="false">&#9776;</button>
+    <button class="icon-button mobile-menu" type="button" data-menu-button
+            aria-label="Open book navigation" aria-expanded="false">&#9776;</button>
+</header>
+<aside class="site-sidebar" data-main-nav aria-label="Quantumlib book navigation">
+  <div class="sidebar-head">
+    <a class="brand" href="{page_url(prefix, '')}">
+      <span class="brand-word">Quantumlib</span>
+      <span class="brand-subtitle">A formal quantum computing textbook</span>
+    </a>
+    <p><strong>ASPBE</strong><br>Automatic State Preparation and Block Encoding for Quantum Computing</p>
+  </div>
+  <div class="sidebar-search search-shell">
+    <label class="visually-hidden" for="global-search">Search declarations and chapters</label>
+    <input id="global-search" class="global-search" type="search"
+           placeholder="Search Quantumlib" data-global-search>
+    <div class="search-results" data-search-results hidden></div>
+  </div>
+  <nav class="book-nav">
+    <strong class="nav-group-label">Explore</strong>
+    {''.join(links)}
+    <strong class="nav-group-label">Chapters</strong>
+    <div class="chapter-nav">{''.join(chapter_links)}</div>
+    <strong class="nav-group-label">Reference</strong>
+    <a href="{page_url(prefix, 'workflow/')}">ASPBE harness</a>
+    <a href="{page_url(prefix, 'blueprint/')}">Verso Blueprint</a>
+    <a href="{page_url(prefix, 'task-builder/')}">Task builder</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="theme-switcher" aria-label="Reading style">
+      <button type="button" data-theme-choice="blueprint" aria-pressed="true">Book</button>
+      <button type="button" data-theme-choice="modern" aria-pressed="false">Sans</button>
+      <button type="button" data-theme-choice="bold" aria-pressed="false">High contrast</button>
     </div>
   </div>
-</header>"""
+</aside>"""
 
 
 def verification_strip(
@@ -255,7 +281,8 @@ def page_template(
     gate: dict[str, object],
     context: dict[str, object],
     toc: list[tuple[str, str]] | None = None,
-    description: str = "ABEIS state-preparation and block-encoding formalization",
+    description: str = "Quantumlib: a formal quantum computing textbook and the ASPBE Lean library",
+    extra_scripts: tuple[str, ...] = (),
 ) -> str:
     prefix = prefix_for(route)
     toc_html = ""
@@ -271,13 +298,17 @@ def page_template(
         )
     else:
         shell_class += " no-toc"
+    extra_script_html = "".join(
+        f'<script src="{prefix}{html.escape(path)}"></script>' for path in extra_scripts
+    )
     return f"""<!doctype html>
 <html lang="en" data-theme="blueprint">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{html.escape(description)}">
-  <title>{html.escape(title)} | ABEIS Formalization</title>
+  <title>{html.escape(title)} | Quantumlib</title>
+  <link rel="icon" href="{prefix}static/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{prefix}static/site.css">
   <script>
     window.MathJax = {{
@@ -295,15 +326,16 @@ def page_template(
     {toc_html}
   </div>
   <footer class="site-footer">
-    <div><strong>ABEIS formalization</strong> · Generated from the current Lean inventory.</div>
+    <div><strong>Quantumlib</strong> · Generated from the current ASPBE Lean inventory.</div>
     <nav aria-label="Footer">
       <a href="{page_url(prefix, 'implementation-map/')}">Implementation map</a>
-      <a href="{page_url(prefix, 'workflow/')}">ABEIS workflow</a>
+      <a href="{page_url(prefix, 'workflow/')}">ASPBE harness</a>
       <a href="{page_url(prefix, 'blueprint/')}">Verso Blueprint</a>
       <a href="{page_url(prefix, 'attribution/')}">Attribution</a>
     </nav>
   </footer>
   <script src="{prefix}static/site.js"></script>
+  {extra_script_html}
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
     if (window.matchMedia("(max-width: 760px)").matches) {{
@@ -407,9 +439,10 @@ def render_home(
     open_proofs = sum(bool(item.get("openProof")) for item in declarations)
     body = rf"""
 <section class="hero home-hero">
-  <p class="eyebrow">A literate Lean library for quantum circuit construction</p>
-  <h1>ABEIS formalization</h1>
-  <p class="lede">ABEIS studies two different construction problems. State preparation
+  <p class="eyebrow">Formal quantum computing, read alongside Lean</p>
+  <h1>Quantumlib</h1>
+  <p class="lede">Quantumlib is the textbook and declaration browser for ASPBE.
+  ASPBE studies two different construction problems. State preparation
   asks a unitary to produce one target state. Block encoding asks a larger unitary
   to expose a target operator through a clean ancilla block. This site keeps their
   contracts, proof routes, and completion status separate.</p>
@@ -485,7 +518,7 @@ def render_home(
   <div class="section-heading">
     <p class="eyebrow">Shared evidence discipline</p>
     <h2>What happens after either contract is fixed</h2>
-    <p>ABEIS explores candidates, records why routes fail, and lets Lean decide
+    <p>ASPBE explores candidates, records why routes fail, and lets Lean decide
     formal promotion. A Qiskit check is useful finite evidence after certification;
     it does not prove a symbolic family.</p>
   </div>
@@ -544,7 +577,7 @@ def render_state_preparation(
   <p class="eyebrow">Application 1</p>
   <h1>State preparation</h1>
   <p class="lede">Given a normalized target \(|\psi\rangle\), construct a unitary
-  \(U\) that sends the all-zero state to it. ABEIS treats this as its own synthesis
+  \(U\) that sends the all-zero state to it. ASPBE treats this as its own synthesis
   and proof problem, with its own exact and approximate acceptance predicates.</p>
   <div class="hero-contract">\[U|0^n\rangle=|\psi\rangle\]</div>
 </section>
@@ -560,7 +593,7 @@ def render_state_preparation(
 <section class="content-section" id="preparation-flow">
   <div class="section-heading">
     <p class="eyebrow">Independent proof route</p>
-    <h2>What ABEIS has to establish</h2>
+    <h2>What ASPBE has to establish</h2>
     <p>The target must be normalized. The proposed matrix must be unitary. Finally,
     its action on the zero ket, equivalently its first column, must match every
     target amplitude.</p>
@@ -634,7 +667,7 @@ def render_block_encoding(
 <section class="content-section" id="encoding-flow">
   <div class="section-heading">
     <p class="eyebrow">Independent proof route</p>
-    <h2>What ABEIS has to establish</h2>
+    <h2>What ASPBE has to establish</h2>
     <p>A candidate is not accepted because one small matrix looks right. The layout,
     unitarity, projected block, scale, and declared resource record are checked as
     separate obligations.</p>
@@ -786,7 +819,7 @@ def render_chapter(
     return page_template(
         title=str(chapter["title"]),
         route=route,
-        current="learning/",
+        current=route,
         body=body,
         coverage=coverage,
         gate=gate,
@@ -807,7 +840,7 @@ def render_learning(
   <h1>One foundation, two application tracks</h1>
   <p class="lede">Learn the finite matrix and circuit conventions once. Then follow
   State Preparation or Block Encoding as a separate construction problem. The final
-  chapters explain how ABEIS searches, verifies, exports, and reports both.</p>
+  chapters explain how ASPBE searches, verifies, exports, and reports both.</p>
   <div class="hero-actions">
     <a class="button state-button" href="../state-preparation/index.html">State-preparation guide</a>
     <a class="button block-button" href="../block-encoding/index.html">Block-encoding guide</a>
@@ -1093,7 +1126,7 @@ def render_workflow(
     )
     body = f"""
 <section class="hero">
-  <p class="eyebrow">ABEIS Workflow</p>
+  <p class="eyebrow">ASPBE harness</p>
   <h1>Search, prove, validate, and retain evidence</h1>
   <p class="lede">The upper layer controls decomposition and budget; the middle
   layer maintains a diverse population and feedback; focused workers discharge
@@ -1108,13 +1141,294 @@ def render_workflow(
   remain engineering evidence attached after the Lean gate.</div>
 </section>"""
     return page_template(
-        title="ABEIS Workflow",
+        title="ASPBE harness",
         route="workflow/",
         current="workflow/",
         body=body,
         coverage=coverage,
         gate=gate,
         context=context,
+    )
+
+
+def render_organizers(
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    people = (
+        ("Dake Bu", "City University of Hong Kong · A*STAR"),
+        ("Xiajie Huang", "Shanghai Jiao Tong University"),
+        ("Nana Liu", "Shanghai Jiao Tong University"),
+        ("Atsushi Nitanda", "A*STAR · Nanyang Technological University"),
+        ("Hau-san Wong", "City University of Hong Kong"),
+        ("Qingfu Zhang", "City University of Hong Kong"),
+    )
+    cards = "".join(
+        f'<article class="person-row"><h3>{html.escape(name)}</h3>'
+        f'<p>{html.escape(affiliation)}</p></article>'
+        for name, affiliation in people
+    )
+    body = f"""
+<section class="hero" id="organizers">
+  <p class="eyebrow">People</p>
+  <h1>Organizers</h1>
+  <p class="lede">Quantumlib is maintained with ASPBE by the current project
+  authors. Contributor credit is recorded separately and follows each accepted
+  lemma or teaching contribution.</p>
+</section>
+<section class="content-section" id="team">
+  <div class="people-list">{cards}</div>
+</section>
+<section class="content-section" id="credits">
+  <h2>Contributor credit</h2>
+  <p>New contributors choose a preferred public credit line in their lemma
+  packet. Integration keeps the mathematical source, compiler evidence, and
+  contributor attribution together.</p>
+  <a class="button secondary" href="../community/index.html">Submit a contribution</a>
+</section>"""
+    return page_template(
+        title="Organizers",
+        route="organizers/",
+        current="organizers/",
+        body=body,
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=[("organizers", "Organizers"), ("team", "Current authors"), ("credits", "Contributor credit")],
+    )
+
+
+def render_ecosystem(
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    body = """
+<section class="hero" id="ecosystem">
+  <p class="eyebrow">Quantum Lean ecosystem</p>
+  <h1>One reading map, honest dependency boundaries</h1>
+  <p class="lede">Quantumlib brings ASPBE declarations, selected external
+  quantum-formalization references, and textbook explanations into one map.
+  “Indexed” does not mean “imported”: every row states how the source is used.</p>
+</section>
+<section class="content-section" id="catalog">
+  <h2>Libraries represented in Quantumlib</h2>
+  <div class="ecosystem-list">
+    <article><div><h3>ASPBE</h3><p>State preparation, block encoding, finite circuit semantics, construction routes, resource records, automation, and certified cases.</p></div><span class="status status-compiled">Built here</span></article>
+    <article><div><h3>Mathlib</h3><p>Finite types, matrices, algebra, norms, finite sums, and proof infrastructure used by the local Lean package.</p></div><span class="status status-compiled">Imported</span></article>
+    <article><div><h3><a href="https://github.com/duckki/quantum-computing-lean">quantum-computing-lean</a></h3><p>Named states, gates, projectors, gate actions, decompositions, and compact finite-dimensional module organization.</p></div><span class="status status-partial-route">Reference atlas</span></article>
+    <article><div><h3><a href="https://github.com/Timeroot/Lean-QuantumInfo">Lean-QuantumInfo</a></h3><p>Finite-dimensional quantum and classical information, channels, distributions, entropy, and capacity.</p></div><span class="status status-partial-route">Reference atlas</span></article>
+    <article><div><h3><a href="https://github.com/Hayata-Yamasaki-Group/lean-quantum">lean-quantum</a></h3><p>Quantum states, channels, qudits, operator conventions, and higher-level quantum-information semantics.</p></div><span class="status status-partial-route">Reference atlas</span></article>
+  </div>
+</section>
+<section class="content-section" id="policy">
+  <h2>How an external result enters the library</h2>
+  <ol class="numbered-reading">
+    <li><strong>Reference.</strong> Record the upstream repository, license, module, and exact declaration.</li>
+    <li><strong>Adapter.</strong> State the narrow ASPBE bridge without copying incompatible APIs.</li>
+    <li><strong>Compile.</strong> Import or prove the adapter under the pinned toolchain.</li>
+    <li><strong>Teach.</strong> Add the formula, plain-language reading, assumptions, and source link.</li>
+  </ol>
+  <p>This prevents a survey entry or theorem card from appearing as a locally
+  compiled result.</p>
+</section>"""
+    return page_template(
+        title="Quantum Lean ecosystem",
+        route="ecosystem/",
+        current="ecosystem/",
+        body=body,
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=[("ecosystem", "Ecosystem"), ("catalog", "Libraries"), ("policy", "Import policy")],
+    )
+
+
+def render_community(
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    repository = context.get("repository") or "DakeBU/Quantum-Computing-Block-Encoding"
+    issue_url = f"https://github.com/{repository}/issues/new?template=lemma-contribution.yml"
+    body = f"""
+<section class="hero" id="contribute">
+  <p class="eyebrow">Contribute to Quantumlib</p>
+  <h1>Bring one sourced statement to one checked Lean declaration</h1>
+  <p class="lede">Submit teaching corrections, external-library mappings, or
+  new state-preparation and block-encoding lemmas. Large changes begin with a
+  proposal so assumptions and module ownership are agreed before proof work.</p>
+  <div class="hero-actions">
+    <a class="button state-button" href="../ide/index.html">Draft in the live workspace</a>
+    <a class="button secondary" href="{html.escape(issue_url)}">Open a lemma proposal</a>
+  </div>
+</section>
+<section class="content-section" id="paths">
+  <h2>Three useful contribution paths</h2>
+  <div class="contribution-paths">
+    <article><span>01</span><h3>Improve a chapter</h3><p>Correct an explanation, notation choice, example, source, or dependency link.</p></article>
+    <article><span>02</span><h3>Map an existing theorem</h3><p>Name the upstream Lean declaration and explain the adapter needed by Quantumlib.</p></article>
+    <article><span>03</span><h3>Submit a new lemma</h3><p>Provide source provenance, LaTeX, Lean code, imports, compiler diagnostics, and preferred credit.</p></article>
+  </div>
+</section>
+<section class="content-section" id="contract">
+  <h2>The review packet</h2>
+  <p>The workspace exports a versioned JSON packet. It does not mark itself
+  integrated: maintainers check mathematical equivalence, visible assumptions,
+  API fit, provenance, license, and the full ASPBE gate.</p>
+  <p><a href="contribution.schema.json">Read the machine-readable schema</a> ·
+  <a href="{html.escape(issue_url)}">Start a reviewed submission</a></p>
+  <pre class="lean-code"><code>mathematical source + plain statement + LaTeX
+→ proposed Lean statement and dependencies
+→ local compiler evidence
+→ contributor request
+→ maintainer review and full ASPBE gate
+→ indexed Quantumlib declaration</code></pre>
+</section>
+<section class="content-section" id="status">
+  <h2>Status words are not interchangeable</h2>
+  <div class="status-key">
+    <p><span class="status status-planned">Proposed</span> statement or code awaits review.</p>
+    <p><span class="status status-partial-route">Lean checked</span> the submitted snippet compiled locally.</p>
+    <p><span class="status status-compiled">Integrated</span> the declaration passed the repository gate and entered the generated inventory.</p>
+  </div>
+</section>"""
+    return page_template(
+        title="Contribute",
+        route="community/",
+        current="community/",
+        body=body,
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=[("contribute", "Contribute"), ("paths", "Paths"), ("contract", "Review packet"), ("status", "Statuses")],
+    )
+
+
+def workspace_items(
+    declarations: dict[str, dict[str, object]],
+) -> list[dict[str, object]]:
+    items: list[dict[str, object]] = []
+    for chapter in CHAPTERS:
+        for result in chapter["results"]:
+            declaration = declarations[str(result["declaration"])]
+            dependencies = []
+            for name in result["dependencies"]:
+                dependency = declarations.get(str(name))
+                dependencies.append(
+                    {
+                        "name": str(name),
+                        "url": module_url("../", dependency) if dependency else "",
+                    }
+                )
+            local_url = module_url("../", declaration)
+            items.append(
+                {
+                    "name": str(declaration["fullName"]),
+                    "chapter": str(chapter["title"]),
+                    "plain": str(result["plain"]),
+                    "latex": rf"\[{result['math']}\]",
+                    "statement": source_statement(str(declaration["sourcePreview"])),
+                    "module": str(declaration["source"])
+                    .removesuffix(".lean")
+                    .replace("/", "."),
+                    "url": local_url,
+                    "source_url": declaration.get("sourceUrl") or local_url,
+                    "dependencies": dependencies,
+                    "compile_source": (
+                        "import QuantumBlockEncoding\n\n"
+                        "-- Ask Lean for the reviewed declaration's exact type.\n"
+                        f"#check {declaration['fullName']}\n"
+                    ),
+                }
+            )
+    return items
+
+
+def render_ide(
+    declarations: dict[str, dict[str, object]],
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    body = """
+<section class="hero" id="formalization-workspace">
+  <p class="eyebrow">Live formalization workspace</p>
+  <h1>Read the formula, inspect the Lean statement, then compile</h1>
+  <p class="lede">Load a reviewed Quantumlib mapping or edit your own snippet.
+  Formula rendering and declaration navigation work on the static site. Real
+  compilation is available only through the loopback companion server.</p>
+</section>
+<section class="content-section" id="execution-boundary">
+  <div class="workspace-mode" data-ide-mode>
+    <span class="mode-dot" aria-hidden="true"></span>
+    <div><strong data-ide-mode-title>Checking the local Lean service</strong>
+    <p data-ide-mode-detail>The teaching workspace remains available without code execution.</p></div>
+  </div>
+  <p class="security-note"><strong>Execution boundary.</strong> GitHub Pages never
+  runs submitted code. <code>ide_server.py</code> binds only to loopback, compiles
+  temporary files under the pinned ASPBE toolchain, and never edits project source.</p>
+</section>
+<section class="content-section" id="workspace">
+  <div class="workspace-toolbar">
+    <label>Reviewed mapping<select data-ide-declaration><option>Loading declarations</option></select></label>
+    <button class="button secondary" type="button" data-ide-load>Reload mapping</button>
+    <button class="button secondary" type="button" data-ide-translate>Translate with local agent</button>
+    <button class="button secondary" type="button" data-ide-scaffold>Start an honest draft</button>
+    <label class="auto-check"><input type="checkbox" data-ide-auto> Compile after edits</label>
+  </div>
+  <div class="workspace-grid" data-ide-app data-ide-data="../ide-data.json">
+    <article class="workspace-pane math-pane">
+      <header><span>01</span><h2>Mathematical statement</h2><b data-translation-status>Reviewed mapping</b></header>
+      <label for="ide-latex">LaTeX</label>
+      <textarea id="ide-latex" data-ide-latex spellcheck="false"></textarea>
+      <h3>Rendered statement</h3>
+      <div class="math-preview" data-ide-math-preview></div>
+      <p data-ide-plain></p>
+    </article>
+    <article class="workspace-pane lean-pane">
+      <header><span>02</span><h2>Lean source</h2><button class="button state-button" type="button" data-ide-compile>Compile</button></header>
+      <label for="ide-lean">Editable snippet</label>
+      <textarea id="ide-lean" data-ide-lean spellcheck="false"></textarea>
+      <p class="source-actions"><a data-ide-declaration-link href="#">Declaration page</a> · <a data-ide-source-link href="#">Source</a></p>
+    </article>
+  </div>
+  <div class="workspace-output">
+    <article class="workspace-pane"><header><span>03</span><h2>Lean diagnostics</h2><b data-ide-duration></b></header><pre data-ide-diagnostics aria-live="polite">Local compiler not contacted.</pre></article>
+    <article class="workspace-pane"><header><span>04</span><h2>Dependencies</h2><b data-ide-tree-summary></b></header><div class="dependency-tree" data-ide-tree></div></article>
+  </div>
+</section>
+<section class="content-section" id="submit">
+  <h2>Request review without overstating the result</h2>
+  <div class="submit-fields">
+    <label>Name<input type="text" data-contributor-name placeholder="Required for submission"></label>
+    <label>Preferred credit<input type="text" data-contributor-credit placeholder="How Quantumlib should credit you"></label>
+    <label>Source or citation<input type="text" data-contributor-source placeholder="URL, DOI, book, or original result"></label>
+  </div>
+  <div class="hero-actions">
+    <button class="button secondary" type="button" data-ide-export>Download lemma packet</button>
+    <button class="button block-button" type="button" data-ide-submit>Request submission on GitHub</button>
+  </div>
+  <p class="submission-note" data-ide-export-note>Only the exact Lean text most
+  recently accepted by the local compiler is labeled Lean checked. Editing it
+  invalidates that status.</p>
+</section>"""
+    return page_template(
+        title="Live formalization workspace",
+        route="ide/",
+        current="ide/",
+        body=body,
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=[
+            ("formalization-workspace", "Workspace"),
+            ("execution-boundary", "Execution boundary"),
+            ("workspace", "Editors"),
+            ("submit", "Submit"),
+        ],
+        extra_scripts=("static/workspace.js",),
     )
 
 
@@ -1127,7 +1441,7 @@ def render_attribution(
 <section class="hero">
   <p class="eyebrow">Attribution</p>
   <h1>Tools, libraries, and project boundaries</h1>
-  <p class="lede">ABEIS documentation is generated from this repository's Lean
+  <p class="lede">Quantumlib is generated from this repository's ASPBE Lean
   source and curated quantum-computing explanations.</p>
 </section>
 <section class="content-section">
@@ -1145,9 +1459,21 @@ def render_attribution(
         an executable validation route requests it; it is not a substitute for Lean.</li>
   </ul>
   <h2>Content boundary</h2>
-  <p>This site is tailored to ABEIS state preparation, block encoding, circuit
+  <p>This site is tailored to ASPBE state preparation, block encoding, circuit
   semantics, resource evaluation, and automation records. It does not import
   unrelated application terminology or status data from reference documentation.</p>
+  <h2>Interface inspiration</h2>
+  <p><a href="https://statsmllib.github.io/">StatsMLlib</a> demonstrates a useful
+  textbook organization: a persistent book map, selected formulas, natural-language
+  readings, source locations, organizers, and a visible contribution path.
+  Quantumlib uses independently written templates, CSS, JavaScript, diagrams, and
+  quantum-computing content.</p>
+  <p>The local-compiler boundary and reviewed LaTeX-to-Lean workspace follow the
+  proven design used by
+  <a href="https://github.com/DakeBU/Auto-Bandit-RL-Proof-In-Sleep">Auto-Bandit-RL-Proof-In-Sleep</a>:
+  the public site is static, while a loopback-only companion server may invoke the
+  pinned Lean toolchain on temporary snippets. No bandit chapters, declarations,
+  statuses, or theorem data are copied into Quantumlib.</p>
 </section>"""
     return page_template(
         title="Attribution",
@@ -1168,7 +1494,7 @@ def render_blueprint_entry(
     body = """
 <section class="hero">
   <p class="eyebrow">Stable Blueprint entry</p>
-  <h1>ABEIS Verso Blueprint</h1>
+  <h1>ASPBE Verso Blueprint</h1>
   <p class="lede">The Blueprint resolves Lean declaration references during its
   own build. The unified site adds guided chapters and implementation status while
   retaining the existing multi-page Blueprint URL.</p>
@@ -1229,13 +1555,17 @@ def build_search_index(
             }
         )
     page_entries = [
-        ("Overview", "Core contracts, evidence, and recommended reading order", "index.html"),
+        ("Quantumlib", "Formal quantum computing chapters, declarations, and tools", "index.html"),
         ("State preparation", "Prepare a normalized target state from the all-zero basis state", "state-preparation/index.html"),
         ("Block encoding", "Encode a scaled operator in the clean block of a larger unitary", "block-encoding/index.html"),
         ("Implementation Map", "Mathematical goals connected to exact Lean declarations", "implementation-map/index.html"),
         ("Lean Library Explorer", "Search the complete public declaration inventory", "library/index.html"),
         ("Progress and Roadmap", "Compiled, partial, experimental, planned, and blocked routes", "roadmap/index.html"),
-        ("ABEIS Workflow", "Candidate generation, resource scoring, proof, and validation", "workflow/index.html"),
+        ("ASPBE harness", "Candidate generation, resource scoring, proof, and validation", "workflow/index.html"),
+        ("Live formalization workspace", "Compare LaTeX with Lean and compile through the local companion server", "ide/index.html"),
+        ("Quantum Lean ecosystem", "ASPBE and selected external formalization libraries", "ecosystem/index.html"),
+        ("Contribute", "Submit a sourced teaching correction or Lean lemma packet", "community/index.html"),
+        ("Organizers", "Current ASPBE authors and contributor credit policy", "organizers/index.html"),
     ]
     page_entries.extend(
         (
@@ -1317,6 +1647,8 @@ def build(args: argparse.Namespace) -> None:
     output.mkdir(parents=True)
     shutil.copytree(WEBSITE_ROOT / "static", output / "static")
     shutil.copytree(WEBSITE_ROOT / "diagrams", output / "diagrams")
+    if (WEBSITE_ROOT / "community").exists():
+        shutil.copytree(WEBSITE_ROOT / "community", output / "community")
 
     write_page(output, "", render_home(inventory, coverage, gate, context))
     write_page(
@@ -1355,6 +1687,23 @@ def build(args: argparse.Namespace) -> None:
         )
     write_page(output, "roadmap", render_roadmap(inventory, coverage, gate, context))
     write_page(output, "workflow", render_workflow(coverage, gate, context))
+    write_page(output, "ecosystem", render_ecosystem(coverage, gate, context))
+    write_page(output, "community", render_community(coverage, gate, context))
+    write_page(output, "organizers", render_organizers(coverage, gate, context))
+    write_page(
+        output,
+        "ide",
+        render_ide(declaration_map, coverage, gate, context),
+    )
+    (output / "ide-data.json").write_text(
+        json.dumps(
+            {"schemaVersion": 1, "items": workspace_items(declaration_map)},
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     write_page(output, "attribution", render_attribution(coverage, gate, context))
     write_page(
         output,

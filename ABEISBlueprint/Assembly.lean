@@ -72,7 +72,7 @@ private opaque catalogAutomationAndMemoryPart : Part Manual :=
 private opaque catalogExperimentalRobinMatrixPart : Part Manual :=
   (%doc ABEISBlueprint.Catalog.ExperimentalRobinMatrix)
 
-/-- The complete public Verso document tree for ABEIS. -/
+/-- The complete public Verso document tree for ASPBE. -/
 opaque assembledBlueprint : Part Manual :=
   { (%doc ABEISBlueprint.Blueprint) with
     subParts := #[overviewPart, foundationsPart, routesPart, caseStudiesPart,

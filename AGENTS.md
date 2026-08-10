@@ -1,6 +1,12 @@
-# Agent Guide for Quantum Block Encoding
+# Agent Guide for ASPBE
 
 This repository is a Lean-first proof and circuit-construction project.
+
+The public system name is **ASPBE: Automatic State Preparation and Block
+Encoding for Quantum Computing**. The generated teaching website is
+**Quantumlib**. Historical `QBE-*` task IDs, `ABEISBlueprint` module names, and
+paths remain stable for reproducibility; do not introduce new public prose that
+expands ABEIS or describes the website as ABEIS.
 
 ## Mission
 

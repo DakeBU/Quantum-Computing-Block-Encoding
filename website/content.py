@@ -1,4 +1,4 @@
-"""Curated ABEIS teaching content.
+"""Curated Quantumlib teaching content for ASPBE.
 
 Declaration names in this file are validated against the generated inventory by
 ``website/scripts/build_site.py``.  The prose may explain a broader route, but it
@@ -240,7 +240,7 @@ CHAPTERS = [
             result(
                 "QuantumBlockEncoding.ConcreteSemantics.signalSystemBlockProjection_eq_cleanBlockProduct",
                 "Flat and product-register clean blocks agree",
-                "The two ABEIS block-projection views are pointwise equal under the shared register order.",
+                "The two ASPBE block-projection views are pointwise equal under the shared register order.",
                 r"\Pi_s U\Pi_s^\dagger=\operatorname{cleanBlockProduct}(s,U).",
                 "A circuit-semantics proof can be consumed by classic block-encoding arithmetic without index reconstruction.",
                 "Register-shape mismatches were a repeated historical failure class.",
@@ -424,7 +424,7 @@ CHAPTERS = [
                 "The selected transfer-operator candidate has the required projected block.",
                 r"\Pi U_{\mathrm{E1}}\Pi^\dagger=A_{\mathrm{E1}}/\alpha.",
                 "The benchmark closes from a concrete candidate to the exact block identity.",
-                "It is a compact reproducible example of the complete ABEIS acceptance path.",
+                "It is a compact reproducible example of the complete ASPBE acceptance path.",
                 [
                     "QuantumBlockEncoding.coldE1CandidateImage_permutation_certificate",
                     "QuantumBlockEncoding.BlockEncodingClassics.partialPermutationCertificate",

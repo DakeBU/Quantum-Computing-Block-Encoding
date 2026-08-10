@@ -1,4 +1,7 @@
-# QBE Dashboard
+# ASPBE Operator Dashboard
+
+`QBE-*` remains the stable prefix for historical and active task records. It is
+an internal identifier, not the public project name.
 
 ## Status
 

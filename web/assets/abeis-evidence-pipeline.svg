@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 620" role="img" aria-labelledby="title desc">
-  <title id="title">ABEIS evidence pipeline</title>
+  <title id="title">ASPBE evidence pipeline</title>
   <desc id="desc">Five stages connect a user contract to search, Lean verification, a certified library object, and public evidence.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">

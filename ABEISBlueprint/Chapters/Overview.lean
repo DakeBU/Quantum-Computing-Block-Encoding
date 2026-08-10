@@ -16,13 +16,13 @@ set_option verso.blueprint.externalCode.strictResolve true
 file := "overview"
 %%%
 
-ABEIS begins with either a normalized target state or an operator together with its access model.
+ASPBE begins with either a normalized target state or an operator together with its access model.
 It does not identify a plausible circuit with a proof. The library separates the requested
 mathematical object, a candidate implementation, the semantic proof, and the resource record.
 
 # Reader map
 
-![Map of the ABEIS Lean library and its two synchronized reader surfaces](assets/abeis-library-map.svg)
+![Map of the ASPBE Lean library and its two synchronized reader surfaces](assets/abeis-library-map.svg)
 
 There are three useful ways into the formal library:
 
@@ -42,7 +42,7 @@ result.
 
 # Evidence pipeline
 
-![ABEIS evidence pipeline from user contract to public formal evidence](assets/abeis-evidence-pipeline.svg)
+![ASPBE evidence pipeline from user contract to public formal evidence](assets/abeis-evidence-pipeline.svg)
 
 The diagram makes the promotion boundary explicit. Search agents may propose or repair a
 candidate, and finite execution can reveal a counterexample, but neither action establishes a

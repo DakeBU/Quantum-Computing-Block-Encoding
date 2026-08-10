@@ -119,6 +119,13 @@ def main() -> int:
         "library/index.html",
         "roadmap/index.html",
         "workflow/index.html",
+        "ide/index.html",
+        "ide-data.json",
+        "ecosystem/index.html",
+        "community/index.html",
+        "community/contribution.schema.json",
+        "community/translation-response.schema.json",
+        "organizers/index.html",
         "attribution/index.html",
         "blueprint/index.html",
         "task-builder/index.html",
@@ -128,6 +135,8 @@ def main() -> int:
         "build-report.json",
         "static/site.css",
         "static/site.js",
+        "static/workspace.js",
+        "static/favicon.svg",
     ]
     for item in required:
         require(site / item, errors)
@@ -166,6 +175,8 @@ def main() -> int:
         site / "library" / "index.html",
         site / "roadmap" / "index.html",
         site / "workflow" / "index.html",
+        site / "ide" / "index.html",
+        site / "community" / "index.html",
     ]
     combined = "\n".join(path.read_text(encoding="utf-8") for path in unified_pages)
     for marker in (
@@ -175,6 +186,9 @@ def main() -> int:
         'data-theme-choice="modern"',
         'data-theme-choice="bold"',
         'name="viewport"',
+        'class="site-sidebar"',
+        "Quantumlib",
+        "ASPBE",
     ):
         if marker not in combined:
             errors.append(f"missing frontend marker: {marker}")
@@ -184,6 +198,8 @@ def main() -> int:
         ':root[data-theme="bold"]',
         "@media (max-width: 760px)",
         "@media (prefers-reduced-motion: reduce)",
+        ".site-sidebar",
+        ".workspace-grid",
     ):
         if marker not in css:
             errors.append(f"missing CSS marker: {marker}")

@@ -1,11 +1,11 @@
-# ABEIS Web Task Builder
+# Quantumlib Task Builder
 
 This is a browser interface for researchers who do not want to start from raw
 GitHub commands.  The GitHub Pages workflow publishes it together with the
 Verso Lean Blueprint and searchable Lean Library Explorer.  The public web
 surface has three roles:
 
-1. build an ABEIS task packet and agent profile from a target-state,
+1. build an ASPBE task packet and agent profile from a target-state,
    oracle/operator, or matrix description;
 2. render runner outputs such as `dashboard.json`, `evolution.json`,
    certified circuit storyboards, and post-Lean Qiskit/QuantumKatas/QASM
@@ -39,7 +39,7 @@ competing documentation root.
 
 ## Development Preview
 
-Build `_site/`, set `ABEIS_PREVIEW_USERNAME` and `ABEIS_PREVIEW_PASSWORD` in the
+Build `_site/`, set `ASPBE_PREVIEW_USERNAME` and `ASPBE_PREVIEW_PASSWORD` in the
 process environment, then run:
 
 ```bash
@@ -49,9 +49,9 @@ python3 website/scripts/serve_preview.py --root _site --port 8765
 Open the local URL printed by the server.  This authenticated preview includes
 the unified reading site, Library Explorer, Blueprint, and task builder.
 
-The page turns a pasted target-state/operator/oracle description, baseline construction, constraints, preferred report language, and agent backend preferences into a Markdown task packet that can be given to ABEIS agents.  It is the web equivalent of `python3 tools/qbe.py ingest-user-problem ...`: the raw user language must remain visible as a source artifact, and the generated packet should be runnable by the same local `sleep-run` harness.
+The page turns a pasted target-state/operator/oracle description, baseline construction, constraints, preferred report language, and agent backend preferences into a Markdown task packet that can be given to ASPBE agents. It is the web equivalent of `python3 tools/qbe.py ingest-user-problem ...`: the raw user language must remain visible as a source artifact, and the generated packet should be runnable by the same local `sleep-run` harness.
 
-The deployed website should follow the same practical model as low-entry automated-design web front ends: users can prepare a task without installing the repository, but model execution must use a configured backend owned by the user or by the deployment operator.  ABEIS should not silently change models between web, CLI, and chat-window modes.  To make runs comparable, use the same agent profile, report language, active-time budget, adaptive scaling policy, and Lean gate across all entrypoints.
+The deployed website should follow the same practical model as low-entry automated-design web front ends: users can prepare a task without installing the repository, but model execution must use a configured backend owned by the user or by the deployment operator. ASPBE should not silently change models between web, CLI, and chat-window modes. To make runs comparable, use the same agent profile, report language, active-time budget, adaptive scaling policy, and Lean gate across all entrypoints.
 
 Progress for a web-created task is inspected in the same artifacts as local
 runs: `runs/<run-id>/dialogue.md`, selected-language summary files,

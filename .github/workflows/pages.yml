@@ -1,4 +1,4 @@
-name: Build and deploy ABEIS website and Lean Blueprint
+name: Build and deploy Quantumlib and the ASPBE Lean Blueprint
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
     paths:
       - "web/**"
       - "website/**"
+      - ".github/ISSUE_TEMPLATE/**"
       - "QuantumBlockEncoding/**"
       - "ABEISBlueprint/**"
       - "ABEISBlueprint.lean"
@@ -74,6 +75,10 @@ jobs:
         run: |
           test -f _site/index.html
           test -f _site/library/index.html
+          test -f _site/ide/index.html
+          test -f _site/community/index.html
+          test -f _site/ecosystem/index.html
+          test -f _site/organizers/index.html
           test -f _site/blueprint/html-multi/index.html
           test -f _site/search-index.json
           test -f _site/build-report.json

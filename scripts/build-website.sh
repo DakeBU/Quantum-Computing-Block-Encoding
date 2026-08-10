@@ -26,4 +26,4 @@ test -f _site/blueprint/html-multi/index.html
 test -f _site/search-index.json
 test -f _site/.nojekyll
 
-echo "Unified ABEIS site assembled at _site/index.html"
+echo "Quantumlib assembled at _site/index.html"

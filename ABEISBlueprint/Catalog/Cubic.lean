@@ -31,7 +31,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 :::definition "QuantumBlockEncoding.CubicStatePreparation.taskId" (lean := "QuantumBlockEncoding.CubicStatePreparation.taskId")
 *Plain-English reading.* This definition gives the library's named construction or computation for “task id”. Task identifier used by the retrieval and verifier ledgers.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -45,7 +45,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:25](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.requestedEpsilon" (lean := "QuantumBlockEncoding.CubicStatePreparation.requestedEpsilon")
 *Plain-English reading.* This definition gives the library's named construction or computation for “requested epsilon”. User-requested error tolerance '1e-10'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -59,7 +59,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:28](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.gridPoint" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridPoint")
 *Plain-English reading.* This definition gives the library's named construction or computation for “grid point”. Grid point 'x\_j = j / 2^n'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -73,7 +73,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:31](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic amplitude”. Cubic amplitude 'f(x\_j) = x\_j^3'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -87,7 +87,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:35](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.cubicOperator" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicOperator")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic operator”. The rank-one operator 'O\_n = |v\_n><0^n|'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -101,7 +101,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:43](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic norm sq”. Exact rational squared norm of the unnormalized target vector.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -115,7 +115,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:51](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.conservativeNormalizer" (lean := "QuantumBlockEncoding.CubicStatePreparation.conservativeNormalizer")
 *Plain-English reading.* This definition gives the library's named construction or computation for “conservative normalizer”. A conservative rational normalizer.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -129,7 +129,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:60](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.cubicTarget" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicTarget")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic target”. Operator-first target record used by the ABEIS harness.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -143,7 +143,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:64](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.defaultRequiredCost" (lean := "QuantumBlockEncoding.CubicStatePreparation.defaultRequiredCost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “default required cost”. Resource floor used for the first Scenario 2 run.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -157,7 +157,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:77](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.defaultPolicy" (lean := "QuantumBlockEncoding.CubicStatePreparation.defaultPolicy")
 *Plain-English reading.* This definition gives the library's named construction or computation for “default policy”. Adaptive search policy for the cubic benchmark.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -171,7 +171,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:89](../../../../library
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicDefaultPrecision" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicDefaultPrecision")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic cubic default precision”. First arithmetic-route precision seed for Scenario 2.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -185,7 +185,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:100](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicLayout" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicLayout")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic cubic layout”. Register layout for the first arithmetic-transduction candidate route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -199,7 +199,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:110](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicCircuit" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicCircuit")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic cubic circuit”. Oracle-level transcript for the scalable cubic route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -213,7 +213,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:122](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResource" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic cubic resource”. Local resource count for the unexpanded oracle-level transcript.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -227,7 +227,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:133](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicNormalizer" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicNormalizer")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic cubic normalizer”. Normalizer used by the first arithmetic-transduction route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -241,7 +241,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:137](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicCost" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicCost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic cubic cost”. Candidate score extracted from the arithmetic-route layout and transcript.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -255,7 +255,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:141](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResourceTuple" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResourceTuple")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic cubic resource tuple”. Resource tuple in QBE candidate-population order.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -269,7 +269,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:147](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResource_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicResource_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “arithmetic cubic resource eq”; the hypotheses and conclusion in the code panel fix its exact scope. The oracle-level transcript has seven unresolved calls and depth seven.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -283,7 +283,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:155](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicLayout_auxiliaryQubits")
 *Plain-English reading.* Lean checks the proposition indexed as “arithmetic cubic layout auxiliary qubits”; the hypotheses and conclusion in the code panel fix its exact scope. The first arithmetic route records one signal qubit plus pure workspace.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -297,7 +297,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:161](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicClaim" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticCubicClaim")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic cubic claim”. Human-facing construction claim for the first scalable route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -311,7 +311,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:170](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicLayout" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicLayout")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic rank one cubic layout”. Rank-one wrapper layout for the arithmetic cubic route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -325,7 +325,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:192](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCircuit" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCircuit")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic rank one cubic circuit”. Rank-one candidate transcript around the arithmetic middle block.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -339,7 +339,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:206](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResource" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic rank one cubic resource”. Oracle-level resource count for the rank-one wrapped transcript.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -353,7 +353,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:214](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicNormalizer" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicNormalizer")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic rank one cubic normalizer”. Normalizer used by the rank-one wrapped arithmetic route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -367,7 +367,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:218](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCost" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic rank one cubic cost”. Candidate score for the rank-one wrapped arithmetic route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -381,7 +381,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:222](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResourceTuple" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResourceTuple")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic rank one cubic resource tuple”. Resource tuple in QBE candidate-population order for the wrapped route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -395,7 +395,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:228](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResource_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResource_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “arithmetic rank one cubic resource eq”; the hypotheses and conclusion in the code panel fix its exact scope. The rank-one wrapper adds three oracle-level calls to the middle block.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -409,7 +409,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:237](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicLayout_auxiliaryQubits")
 *Plain-English reading.* Lean checks the proposition indexed as “arithmetic rank one cubic layout auxiliary qubits”; the hypotheses and conclusion in the code panel fix its exact scope. Auxiliary qubits for the wrapped route include the zero-test workspace.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -423,7 +423,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:243](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResourceTuple_n2_default" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicResourceTuple_n2_default")
 *Plain-English reading.* Lean checks the proposition indexed as “arithmetic rank one cubic resource tuple n 2 default”; the hypotheses and conclusion in the code panel fix its exact scope. Default small diagnostic score for the wrapped route at 'n = 2', 'p = 40'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -437,7 +437,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:249](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicClaim" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicClaim")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic rank one cubic claim”. Human-facing construction claim for the rank-one wrapped scalable route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -451,7 +451,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:258](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicWorkspace" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicWorkspace")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic workspace”. Workspace seed for the Hadamard-counting mutation.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -465,7 +465,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:280](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicLayout" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicLayout")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic layout”. Register layout for the exact Hadamard-counting candidate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -479,7 +479,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:291](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCircuit" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCircuit")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic circuit”. Oracle-level transcript for the Hadamard-counting route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -493,7 +493,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:305](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCircuit_rejectSignalRepair" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCircuit_rejectSignalRepair")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic circuit reject signal repair”; the hypotheses and conclusion in the code panel fix its exact scope. The repaired transcript records a separate nonzero-column reject signal before the final 'nz' cleanup.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -507,7 +507,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:322](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResource" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic resource”. Oracle-level resource count for the Hadamard-counting route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -521,7 +521,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:336](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicNormalizer" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicNormalizer")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic normalizer”. Normalizer used by the Hadamard-counting route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -535,7 +535,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:340](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCost" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic cost”. Candidate score for the Hadamard-counting route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -549,7 +549,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:344](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResourceTuple" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResourceTuple")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic resource tuple”. Resource tuple in QBE candidate-population order.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -563,7 +563,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:350](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResource_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResource_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic resource eq”; the hypotheses and conclusion in the code panel fix its exact scope. The Hadamard-counting interface has eight unresolved oracle-level calls.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -577,7 +577,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:358](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicLayout_auxiliaryQubits")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic layout auxiliary qubits”; the hypotheses and conclusion in the code panel fix its exact scope. Auxiliary qubits for the counting route include reject, 'nz', path, and workspace registers.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -591,7 +591,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:364](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResourceTuple_n2" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicResourceTuple_n2")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic resource tuple n 2”; the hypotheses and conclusion in the code panel fix its exact scope. Default small diagnostic score for the counting route at 'n = 2'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -605,7 +605,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:370](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicClaim" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicClaim")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic claim”. Human-facing construction claim for the Hadamard-counting exact route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -619,7 +619,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:378](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeUpperAgentSchedule" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeUpperAgentSchedule")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hard mode upper agent schedule”. Hard Mode panel escalation schedule.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -633,7 +633,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:401](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeMiddleAgentSchedule" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeMiddleAgentSchedule")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hard mode middle agent schedule”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -647,7 +647,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:403](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeLowerAgentSchedule" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeLowerAgentSchedule")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hard mode lower agent schedule”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -661,7 +661,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:405](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeExactStallWindow" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeExactStallWindow")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hard mode exact stall window”. Number of consecutive cycles without a closed leaf before the first escalation.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -675,7 +675,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:408](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeConstructionStallWindow" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeConstructionStallWindow")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hard mode construction stall window”. Number of consecutive cycles without an improving certified or finite candidate before the next Hard Mode level is considered.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -689,7 +689,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:414](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hardModeLevelCycleBudget" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeLevelCycleBudget")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hard mode level cycle budget”. Per-level cycle budgets before the upper panel must explicitly review progress.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -703,7 +703,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:417](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.relaxedEpsilonLadder" (lean := "QuantumBlockEncoding.CubicStatePreparation.relaxedEpsilonLadder")
 *Plain-English reading.* This definition gives the library's named construction or computation for “relaxed epsilon ladder”. Scenario 2 epsilon ladder.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -717,7 +717,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:425](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.relaxedEpsilonLadder_startsWithRequested" (lean := "QuantumBlockEncoding.CubicStatePreparation.relaxedEpsilonLadder_startsWithRequested")
 *Plain-English reading.* Lean checks the proposition indexed as “relaxed epsilon ladder starts with requested”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -731,7 +731,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:428](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hardModeSchedules_have_four_levels" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeSchedules_have_four_levels")
 *Plain-English reading.* Lean checks the proposition indexed as “hard mode schedules have four levels”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -745,7 +745,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:432](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hardModeLowerAgentSchedule_final" (lean := "QuantumBlockEncoding.CubicStatePreparation.hardModeLowerAgentSchedule_final")
 *Plain-English reading.* Lean checks the proposition indexed as “hard mode lower agent schedule final”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -759,7 +759,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:439](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.initialExpectedPhase" (lean := "QuantumBlockEncoding.CubicStatePreparation.initialExpectedPhase")
 *Plain-English reading.* This definition gives the library's named construction or computation for “initial expected phase”. Current expected phase.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -773,7 +773,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:448](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_pos" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_pos")
 *Plain-English reading.* Lean checks the proposition indexed as “grid size pos”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -787,7 +787,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:451](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicOperator_first_column" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicOperator_first_column")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic operator first column”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -801,7 +801,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:454](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicOperator_only_first_column" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicOperator_only_first_column")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic operator only first column”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -815,7 +815,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:458](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.rankOneCleanBlockContract" (lean := "QuantumBlockEncoding.CubicStatePreparation.rankOneCleanBlockContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “rank one clean block contract”. Entrywise clean-block contract for a rank-one cubic candidate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -829,7 +829,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:471](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “arithmetic rank one cubic clean block contract”. Candidate-specific clean-block contract for the repaired rank-one route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -843,7 +843,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:478](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.rankOneCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.rankOneCleanBlockContract_pointwise_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “rank one clean block contract pointwise eq”; the hypotheses and conclusion in the code panel fix its exact scope. The rank-one clean-block contract is exactly the target matrix, entry by entry, after multiplying by its normalizer.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -857,7 +857,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:486](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.arithmeticRankOneCubicCleanBlockContract_pointwise_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “arithmetic rank one cubic clean block contract pointwise eq”; the hypotheses and conclusion in the code panel fix its exact scope. Candidate-specific bridge from the repaired wrapper's clean-block contract to the fixed cubic target.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -871,7 +871,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:506](../../../../librar
 :::definition "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCleanBlockContract" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCleanBlockContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “hadamard counting cubic clean block contract”. Candidate-specific clean-block contract for the Hadamard-counting route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -885,7 +885,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:515](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubicCleanBlockContract_pointwise_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic clean block contract pointwise eq”; the hypotheses and conclusion in the code panel fix its exact scope. Candidate-specific bridge from the Hadamard-counting clean-block contract to the fixed cubic target.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -899,7 +899,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:523](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.rat_cube_sq_eq_sixth" (lean := "QuantumBlockEncoding.CubicStatePreparation.rat_cube_sq_eq_sixth")
 *Plain-English reading.* Lean checks the proposition indexed as “rat cube sq eq sixth”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -913,7 +913,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:531](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_sq_eq_gridPoint_sixth" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_sq_eq_gridPoint_sixth")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic amplitude sq eq grid point sixth”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -927,7 +927,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:538](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_sixthPowerFold" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_sixthPowerFold")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic norm sq sixth power fold”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -941,7 +941,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:543](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_ne_zero" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_ne_zero")
 *Plain-English reading.* Lean checks the proposition indexed as “grid size rat ne zero”; the hypotheses and conclusion in the code panel fix its exact scope. The rational grid dimension is nonzero, for denominator side conditions.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -955,7 +955,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:550](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_pos" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_pos")
 *Plain-English reading.* Lean checks the proposition indexed as “grid size rat pos”; the hypotheses and conclusion in the code panel fix its exact scope. The rational grid dimension is positive.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -969,7 +969,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:555](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.rat_div_cube_div_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.rat_div_cube_div_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “rat div cube div eq”; the hypotheses and conclusion in the code panel fix its exact scope. Core rational normalization for the Hadamard-counting path ratio.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -983,7 +983,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:560](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_div_conservativeNormalizer_eq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_div_conservativeNormalizer_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic amplitude div conservative normalizer eq”; the hypotheses and conclusion in the code panel fix its exact scope. Arithmetic bridge for the Hadamard-counting path formula.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -997,7 +997,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:571](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_three_mul_eq_cube" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_three_mul_eq_cube")
 *Plain-English reading.* Lean checks the proposition indexed as “grid size three mul eq cube”; the hypotheses and conclusion in the code panel fix its exact scope. Path-register capacity identity for the Hadamard-counting route.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1011,7 +1011,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:579](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_four_mul_eq_fourth" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_four_mul_eq_fourth")
 *Plain-English reading.* Lean checks the proposition indexed as “grid size four mul eq fourth”; the hypotheses and conclusion in the code panel fix its exact scope. Four-register path-space identity for the Hadamard-counting denominator.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1025,7 +1025,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:585](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdCountP_finRange" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdCountP_finRange")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic threshold count p fin range”; the hypotheses and conclusion in the code panel fix its exact scope. Reusable threshold count over 'List.finRange'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1039,7 +1039,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:596](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdFilterLength" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdFilterLength")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic threshold filter length”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1053,7 +1053,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:625](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_threshold_le_pathCapacity" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_threshold_le_pathCapacity")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic threshold le path capacity”; the hypotheses and conclusion in the code panel fix its exact scope. The cubic threshold for row 'j' fits in the '3\*n'-qubit path register.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1067,7 +1067,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:632](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdPathCount" (lean := "QuantumBlockEncoding.CubicStatePreparation.hadamardCountingCubic_thresholdPathCount")
 *Plain-English reading.* Lean checks the proposition indexed as “hadamard counting cubic threshold path count”; the hypotheses and conclusion in the code panel fix its exact scope. Symbolic accepted-path count for the Hadamard-counting threshold register.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1081,7 +1081,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:645](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridPoint_nonneg" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridPoint_nonneg")
 *Plain-English reading.* Lean checks the proposition indexed as “grid point nonneg”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1095,7 +1095,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:653](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridPoint_lt_one" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridPoint_lt_one")
 *Plain-English reading.* Lean checks the proposition indexed as “grid point lt one”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1109,7 +1109,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:662](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridPoint_le_one" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridPoint_le_one")
 *Plain-English reading.* Lean checks the proposition indexed as “grid point le one”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1123,7 +1123,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:669](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.rat_pow_le_one_of_nonneg_le_one" (lean := "QuantumBlockEncoding.CubicStatePreparation.rat_pow_le_one_of_nonneg_le_one")
 *Plain-English reading.* Lean checks the proposition indexed as “rat pow le one of nonneg le one”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1137,7 +1137,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:673](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_sq_le_one" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicAmplitude_sq_le_one")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic amplitude sq le one”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1151,7 +1151,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:687](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.foldl_add_le_add_length" (lean := "QuantumBlockEncoding.CubicStatePreparation.foldl_add_le_add_length")
 *Plain-English reading.* Lean checks the proposition indexed as “foldl add le add length”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1165,7 +1165,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:693](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_gridSize" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_gridSize")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic norm sq le grid size”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1179,7 +1179,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:719](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_le_sq" (lean := "QuantumBlockEncoding.CubicStatePreparation.gridSize_rat_le_sq")
 *Plain-English reading.* Lean checks the proposition indexed as “grid size rat le sq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1193,7 +1193,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:731](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_conservativeNormalizer_sq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_conservativeNormalizer_sq")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic norm sq le conservative normalizer sq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1207,7 +1207,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:743](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_arithmeticCubicNormalizer_sq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_arithmeticCubicNormalizer_sq")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic norm sq le arithmetic cubic normalizer sq”; the hypotheses and conclusion in the code panel fix its exact scope. Candidate-specific normalizer bridge for the first arithmetic route.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1221,7 +1221,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:754](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_hadamardCountingCubicNormalizer_sq" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_le_hadamardCountingCubicNormalizer_sq")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic norm sq le hadamard counting cubic normalizer sq”; the hypotheses and conclusion in the code panel fix its exact scope. Candidate-specific normalizer bridge for the Hadamard-counting route.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1235,7 +1235,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:764](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n1" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n1")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic norm sq n 1”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1249,7 +1249,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:769](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n2" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n2")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic norm sq n 2”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1263,7 +1263,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:773](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n3" (lean := "QuantumBlockEncoding.CubicStatePreparation.cubicNormSq_n3")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic norm sq n 3”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1277,7 +1277,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:777](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.taskId" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.taskId")
 *Plain-English reading.* This definition gives the library's named construction or computation for “task id”. Task identifier used by the retrieval and verifier ledgers.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1291,7 +1291,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:786](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalOperator" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalOperator")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic diagonal operator”. The diagonal cubic oracle target 'D\_n\[row,col\] = (row/2^n)^3' if 'row=col', else zero.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1305,7 +1305,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:789](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.exactNormalizer" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.exactNormalizer")
 *Plain-English reading.* This definition gives the library's named construction or computation for “exact normalizer”. Exact normalizer for the diagonal target at the primitive amplitude-oracle tier.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1319,7 +1319,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:795](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalTarget" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalTarget")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic diagonal target”. Operator-first target record for the diagonal cubic oracle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1333,7 +1333,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:798](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalOperator" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalOperator")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal operator”. Hinted linear diagonal target 'O\_0\[row,col\] = row/2^n' if 'row=col', else zero.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1347,7 +1347,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:819](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalTarget" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalTarget")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal target”. Operator-first target record for the hinted linear diagonal input 'O\_0'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1361,7 +1361,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:825](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlockContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlockContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal clean block contract”. Clean-block contract for the hinted linear diagonal input target.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1375,7 +1375,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:840](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlockContract_pointwise_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal clean block contract pointwise eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1389,7 +1389,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:846](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlock_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCleanBlock_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal clean block eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1403,7 +1403,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:853](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalExactCleanBlockFromPointwise" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalExactCleanBlockFromPointwise")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal exact clean block from pointwise”. Package a supplied clean-block equality for the hinted linear diagonal target as an 'ExactCleanBlock' payload.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1417,7 +1417,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:867](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalExactCleanBlockFromPointwise_clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalExactCleanBlockFromPointwise_clean_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal exact clean block from pointwise clean eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1445,7 +1445,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:904](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract.exactPayload" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract.exactPayload")
 *Plain-English reading.* This definition gives the library's named construction or computation for “exact payload”. Extract the reusable exact clean-block payload from a concrete linear-diagonal input contract.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1459,7 +1459,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:926](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract.clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalInputBEContract.clean_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “clean eq target”; the hypotheses and conclusion in the code panel fix its exact scope. The extracted clean block equals the hinted linear diagonal target.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1473,7 +1473,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:932](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.householderZero" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householderZero")
 *Plain-English reading.* This definition gives the library's named construction or computation for “householder zero”. Clean basis index for the 8-dimensional rational Householder signal block.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1487,7 +1487,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:944](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.dot8" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.dot8")
 *Plain-English reading.* This definition gives the library's named construction or computation for “dot 8”. Explicit rational dot product for the 8-dimensional Householder support leaf.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1501,7 +1501,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:947](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus")
 *Plain-English reading.* This definition gives the library's named construction or computation for “householder 8 e 0 minus”. Vector 'e\_0 - v' used in the rational Householder reflection.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1515,7 +1515,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:952](../../../../librar
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.householder8" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8")
 *Plain-English reading.* This definition gives the library's named construction or computation for “householder 8”. Rational 8-by-8 Householder block used by the hinted 'O\_0' backend route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1529,7 +1529,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:961](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus_normSq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus_normSq")
 *Plain-English reading.* Lean checks the proposition indexed as “householder 8 e 0 minus norm sq”; the hypotheses and conclusion in the code panel fix its exact scope. Norm identity for 'e\_0 - v' under the rational unit-vector hypothesis.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1543,7 +1543,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:968](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus_normSq_ne_zero" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8E0Minus_normSq_ne_zero")
 *Plain-English reading.* Lean checks the proposition indexed as “householder 8 e 0 minus norm sq ne zero”; the hypotheses and conclusion in the code panel fix its exact scope. The Householder denominator is nonzero when the clean coordinate is not one.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1557,7 +1557,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:977](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.householder8_clean_entry" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8_clean_entry")
 *Plain-English reading.* Lean checks the proposition indexed as “householder 8 clean entry”; the hypotheses and conclusion in the code panel fix its exact scope. Active leaf 'HINT-HOUSEHOLDER8-CLEAN-ENTRY': the clean entry of the rational Householder block is the first coordinate of the supplied unit vector.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1571,7 +1571,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:989](../../../../librar
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.householder8_isRationalOrthogonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.householder8_isRationalOrthogonal")
 *Plain-English reading.* Lean checks the proposition indexed as “householder 8 is rational orthogonal”; the hypotheses and conclusion in the code panel fix its exact scope. Active leaf 'HINT-HOUSEHOLDER8-ORTHO': the rational 8-dimensional Householder block is orthogonal whenever the input vector has 'dot8 v v = 1' and does not equal the clean basis vector.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1585,7 +1585,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1132](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8SystemIndex" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8SystemIndex")
 *Plain-English reading.* This definition gives the library's named construction or computation for “controlled householder 8 system index”. System component for the task-local 'ancilla × system' direct-sum matrix.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1599,7 +1599,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1146](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8AncillaIndex" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8AncillaIndex")
 *Plain-English reading.* This definition gives the library's named construction or computation for “controlled householder 8 ancilla index”. Ancilla component for the task-local 'ancilla × system' direct-sum matrix.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1613,7 +1613,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1151](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8Embed" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8Embed")
 *Plain-English reading.* This definition gives the library's named construction or computation for “controlled householder 8 embed”. Clean embedding for the controlled Householder direct sum.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1627,7 +1627,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1160](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum")
 *Plain-English reading.* This definition gives the library's named construction or computation for “controlled householder 8 direct sum”. Task-local controlled direct sum of supplied Householder blocks over system branches.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1641,7 +1641,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1165](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8_branchNontrivial_of_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8_branchNontrivial_of_clean")
 *Plain-English reading.* Lean checks the proposition indexed as “controlled householder 8 branch nontrivial of clean”; the hypotheses and conclusion in the code panel fix its exact scope. Grid branches for the linear diagonal input never have clean Householder coordinate equal to one.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1655,7 +1655,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1268](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_clean_entry" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_clean_entry")
 *Plain-English reading.* Lean checks the proposition indexed as “controlled householder 8 direct sum clean entry”; the hypotheses and conclusion in the code panel fix its exact scope. Active leaf 'HINT-CONTROLLED-DIRECT-SUM': the clean block of the controlled Householder direct sum is the hinted linear diagonal operator.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1669,7 +1669,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1286](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_eq_identity_of_system_ne" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_eq_identity_of_system_ne")
 *Plain-English reading.* Lean checks the proposition indexed as “controlled householder 8 direct sum column inner eq identity of system ne”; the hypotheses and conclusion in the code panel fix its exact scope. Column-inner bridge for the controlled Householder direct sum in the cross-branch case.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1683,7 +1683,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1360](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_eq_branch" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_columnInner_eq_branch")
 *Plain-English reading.* Lean checks the proposition indexed as “controlled householder 8 direct sum column inner eq branch”; the hypotheses and conclusion in the code panel fix its exact scope. Support leaf 'CDS-COL-FOLD': inside one decoded system branch, the column inner product of the controlled direct sum is the column inner product of that branch's Householder block.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1697,7 +1697,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1799](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_eq_branch" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_eq_branch")
 *Plain-English reading.* Lean checks the proposition indexed as “controlled householder 8 direct sum row inner eq branch”; the hypotheses and conclusion in the code panel fix its exact scope. Support leaf 'CDS-ROW-FOLD': inside one decoded system branch, the row inner product of the controlled direct sum is the row inner product of that branch's Householder block.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1711,7 +1711,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1918](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_eq_identity_of_system_ne" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_rowInner_eq_identity_of_system_ne")
 *Plain-English reading.* Lean checks the proposition indexed as “controlled householder 8 direct sum row inner eq identity of system ne”; the hypotheses and conclusion in the code panel fix its exact scope. Row-inner bridge for the controlled Householder direct sum in the cross-branch case.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1725,7 +1725,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:1972](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_isRationalOrthogonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_isRationalOrthogonal")
 *Plain-English reading.* Lean checks the proposition indexed as “controlled householder 8 direct sum is rational orthogonal”; the hypotheses and conclusion in the code panel fix its exact scope. Active leaf 'HINT-CONTROLLED-DIRECT-SUM-ORTHO': branchwise rational orthogonality for the controlled direct sum of supplied 8-dimensional Householder blocks.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1739,7 +1739,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2012](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalRationalCompletion" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.LinearDiagonalRationalCompletion")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal rational completion”. Branch-vector completion contract for the rational Householder backend of the hinted linear diagonal input 'O\_0'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1753,7 +1753,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2061](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal four square branch vector”. Branch vector obtained from a four-square completion of the residual '(2^n)^2 - j^2'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1767,7 +1767,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2074](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector_clean")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal four square branch vector clean”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1781,7 +1781,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2084](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector_unit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalFourSquareBranchVector_unit")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal four square branch vector unit”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1795,7 +1795,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2091](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_of_fourSquareWitnesses" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_of_fourSquareWitnesses")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal rational completion of four square witnesses”; the hypotheses and conclusion in the code panel fix its exact scope. Adapter from explicit four-square witnesses to the rational-completion predicate.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1809,7 +1809,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2114](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_exists" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_exists")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal rational completion exists”; the hypotheses and conclusion in the code panel fix its exact scope. Every dyadic grid value has an unconditional rational unit-vector completion.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1823,7 +1823,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2134](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_branchData" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_branchData")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal rational completion branch data”; the hypotheses and conclusion in the code panel fix its exact scope. Adapter leaf for 'HINT-O0-RATIONAL-COMPLETION': a rational-completion witness also supplies the nontrivial clean-coordinate side condition needed by the Householder block.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1837,7 +1837,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2156](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_backendSupport" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalRationalCompletion_backendSupport")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal rational completion backend support”; the hypotheses and conclusion in the code panel fix its exact scope. A rational-completion witness supplies the clean-block equality and rational orthogonality facts for the controlled Householder direct sum.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1851,7 +1851,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2176](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderCircuit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderCircuit")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal householder circuit”. Oracle-label circuit for the proved rational Householder realization of 'O\_0'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1865,7 +1865,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2198](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderResource" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal householder resource”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1879,7 +1879,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2201](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderResource_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderResource_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal householder resource eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1893,7 +1893,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2204](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal householder input be contract”. Unconditional exact matrix-level block encoding of the hinted input 'O\_0'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1907,7 +1907,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2217](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_clean_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal householder input be contract clean eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1921,7 +1921,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2248](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal householder input be contract complete”; the hypotheses and conclusion in the code panel fix its exact scope. Root certificate for the hinted input operator 'O\_0'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1935,7 +1935,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2261](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator")
 *Plain-English reading.* This definition gives the library's named construction or computation for “approx diagonal operator”. Supplied diagonal matrix for the first Scenario 2 approximate route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1949,7 +1949,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2284](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratAbs" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratAbs")
 *Plain-English reading.* This definition gives the library's named construction or computation for “rat abs”. Task-local rational absolute value used before a project norm API exists.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1963,7 +1963,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2289](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.IsDiagonalRatMatrix" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.IsDiagonalRatMatrix")
 *Plain-English reading.* This definition gives the library's named construction or computation for “is diagonal rat matrix”. Project-local rational matrices whose off-diagonal entries are zero.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -1991,7 +1991,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2303](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratSquaredEuclideanNorm" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratSquaredEuclideanNorm")
 *Plain-English reading.* This definition gives the library's named construction or computation for “rat squared euclidean norm”. Squared Euclidean norm on project-local finite rational vectors.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2005,7 +2005,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2314](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratMatrixErrorAction" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratMatrixErrorAction")
 *Plain-English reading.* This definition gives the library's named construction or computation for “rat matrix error action”. Action of the matrix error 'A - B' on a finite rational vector.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2019,7 +2019,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2318](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanOperatorNormErrorAtMost" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanOperatorNormErrorAtMost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “rat euclidean operator norm error at most”. Non-vacuous squared Euclidean induced operator-norm error semantics.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2033,7 +2033,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2331](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.ratMatrixErrorAction_eq_diagonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratMatrixErrorAction_eq_diagonal")
 *Plain-English reading.* Lean checks the proposition indexed as “rat matrix error action eq diagonal”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2047,7 +2047,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2453](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.ratAbs_nonneg" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratAbs_nonneg")
 *Plain-English reading.* Lean checks the proposition indexed as “rat abs nonneg”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2061,7 +2061,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2468](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_eq_ratAbs_mul_self" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_eq_ratAbs_mul_self")
 *Plain-English reading.* Lean checks the proposition indexed as “rat mul self eq rat abs mul self”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2075,7 +2075,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2472](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_nonneg" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_nonneg")
 *Plain-English reading.* Lean checks the proposition indexed as “rat mul self nonneg”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2089,7 +2089,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2477](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_le_of_abs_le" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_le_of_abs_le")
 *Plain-English reading.* Lean checks the proposition indexed as “rat mul self le of abs le”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2103,7 +2103,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2481](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_vector_le_of_abs_le" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rat_mul_self_vector_le_of_abs_le")
 *Plain-English reading.* Lean checks the proposition indexed as “rat mul self vector le of abs le”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2117,7 +2117,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2499](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanDiagonalOperatorNormBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanDiagonalOperatorNormBridge")
 *Plain-English reading.* This definition gives the library's named construction or computation for “rat euclidean diagonal operator norm bridge”. Concrete proof that diagonal entrywise bounds imply the squared Euclidean bound.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2131,7 +2131,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2509](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanOperatorNormErrorAtMost_not_vacuous" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.ratEuclideanOperatorNormErrorAtMost_not_vacuous")
 *Plain-English reading.* Lean checks the proposition indexed as “rat euclidean operator norm error at most not vacuous”; the hypotheses and conclusion in the code panel fix its exact scope. The local Euclidean error predicate is observably non-vacuous.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2145,7 +2145,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2525](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_isDiagonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_isDiagonal")
 *Plain-English reading.* Lean checks the proposition indexed as “approx diagonal operator is diagonal”; the hypotheses and conclusion in the code panel fix its exact scope. The supplied approximate diagonal matrix has zero off-diagonal entries.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2159,7 +2159,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2539](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalOperator_isDiagonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalOperator_isDiagonal")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic diagonal operator is diagonal”; the hypotheses and conclusion in the code panel fix its exact scope. The exact cubic diagonal target has zero off-diagonal entries.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2173,7 +2173,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2546](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalEntrywiseErrorAtMost" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalEntrywiseErrorAtMost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “approx diagonal entrywise error at most”. Entrywise scalar-error predicate for the Scenario 2 approximate diagonal route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2187,7 +2187,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2558](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_entrywise_error" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_entrywise_error")
 *Plain-English reading.* Lean checks the proposition indexed as “approx diagonal operator entrywise error”; the hypotheses and conclusion in the code panel fix its exact scope. Local entrywise bridge for 'APPROX-DIAG-NORM': diagonal scalar errors transfer to every matrix entry of the supplied diagonal operator.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2201,7 +2201,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2570](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_operatorNorm_error_of_contract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_operatorNorm_error_of_contract")
 *Plain-English reading.* Lean checks the proposition indexed as “approx diagonal operator operator norm error of contract”; the hypotheses and conclusion in the code panel fix its exact scope. Conditional adapter from the compiled diagonal entrywise theorem to the task-local operator-norm contract.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2215,7 +2215,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2597](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_operatorNorm_error" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.approxDiagonalOperator_operatorNorm_error")
 *Plain-English reading.* Lean checks the proposition indexed as “approx diagonal operator operator norm error”; the hypotheses and conclusion in the code panel fix its exact scope. Unconditional local Euclidean operator-norm bound for the supplied diagonal approximation.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2229,7 +2229,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2619](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector")
 *Plain-English reading.* This definition gives the library's named construction or computation for “rational circle branch vector”. Two-coordinate rational unit-circle branch vector for the approximate controlled-Householder route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2243,7 +2243,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2635](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector_clean")
 *Plain-English reading.* Lean checks the proposition indexed as “rational circle branch vector clean”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2257,7 +2257,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2641](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector_unit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.rationalCircleBranchVector_unit")
 *Plain-English reading.* Lean checks the proposition indexed as “rational circle branch vector unit”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2271,7 +2271,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2645](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_clean_entry_of_branchValue" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.controlledHouseholder8DirectSum_clean_entry_of_branchValue")
 *Plain-English reading.* Lean checks the proposition indexed as “controlled householder 8 direct sum clean entry of branch value”; the hypotheses and conclusion in the code panel fix its exact scope. Approximate-route support leaf 'APPROX-CDS-CLEAN': if each controlled Householder branch has clean coordinate 'q j', then the clean block is the supplied diagonal matrix 'diag(q)'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2285,7 +2285,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2661](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic diagonal four square branch vector”. Rational branch vector whose clean coordinate is '(j / 2^n)^3'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2299,7 +2299,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2709](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector_clean")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic diagonal four square branch vector clean”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2313,7 +2313,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2719](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector_unit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalFourSquareBranchVector_unit")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic diagonal four square branch vector unit”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2327,7 +2327,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2728](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.CubicDiagonalRationalCompletion" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicDiagonalRationalCompletion")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic diagonal rational completion”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2341,7 +2341,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2746](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_of_fourSquareWitnesses" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_of_fourSquareWitnesses")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic diagonal rational completion of four square witnesses”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2355,7 +2355,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2752](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic diagonal rational completion exists”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2369,7 +2369,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2767](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_lt_one" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_lt_one")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic amplitude lt one”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2383,7 +2383,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2784](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_backendSupport" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_backendSupport")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic diagonal rational completion backend support”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2411,7 +2411,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2828](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic diagonal householder exact be contract”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2425,7 +2425,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2838](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_clean_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic diagonal householder exact be contract clean eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2439,7 +2439,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2867](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic diagonal householder exact be contract complete”; the hypotheses and conclusion in the code panel fix its exact scope. Unconditional exact root certificate for the cubic diagonal operator.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2453,7 +2453,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:2879](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_cube_eq_cubicDiagonalOperator" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonal_cube_eq_cubicDiagonalOperator")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal cube eq cubic diagonal operator”; the hypotheses and conclusion in the code panel fix its exact scope. Target-identification leaf for the hinted route: the project-local matrix cube of 'O\_0' is the cubic diagonal target 'D\_n'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2467,7 +2467,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3001](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal cubic product certificate”. The compiled non-QSVT polynomial consumer for the human hint.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2481,7 +2481,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3022](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate_target_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate_target_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal cubic product certificate target eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2495,7 +2495,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3030](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate_clean_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalCubicProductCertificate_clean_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal cubic product certificate clean eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2509,7 +2509,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3040](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTPolynomial" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTPolynomial")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic qsvt polynomial”. The polynomial selected by the human-hinted QSVT route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2523,7 +2523,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3050](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTPolynomial_gridPoint_abs_le_one" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTPolynomial_gridPoint_abs_le_one")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic qsvt polynomial grid point abs le one”; the hypotheses and conclusion in the code panel fix its exact scope. The cubic QSVT polynomial is bounded on every spectral value used by 'O\_0'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2551,7 +2551,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3064](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTLocalSideConditions" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicQSVTLocalSideConditions")
 *Plain-English reading.* This definition gives the library's named construction or computation for “cubic qsvt local side conditions”.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2579,7 +2579,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3091](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics.output_eq_cubic_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics.output_eq_cubic_target")
 *Plain-English reading.* Lean checks the proposition indexed as “output eq cubic target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2593,7 +2593,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3112](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics.consumerContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.CubicQSVTExternalSemantics.consumerContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “consumer contract”. Instantiate the generic consumer boundary without reopening QSVT search.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2607,7 +2607,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3120](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleLayout" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleLayout")
 *Plain-English reading.* This definition gives the library's named construction or computation for “amplitude oracle layout”. One signal qubit and no pure workspace at the oracle-label tier.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2621,7 +2621,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3138](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleCircuit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleCircuit")
 *Plain-English reading.* This definition gives the library's named construction or computation for “amplitude oracle circuit”. Oracle-level exact diagonal amplitude transcript.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2635,7 +2635,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3144](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResource" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “amplitude oracle resource”. Resource of the oracle-label diagonal candidate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2649,7 +2649,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3148](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleCost" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleCost")
 *Plain-English reading.* This definition gives the library's named construction or computation for “amplitude oracle cost”. Candidate score for the oracle-label diagonal candidate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2663,7 +2663,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3152](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResourceTuple" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResourceTuple")
 *Plain-English reading.* This definition gives the library's named construction or computation for “amplitude oracle resource tuple”. Tuple in the QBE score order '(gateCount, depth, auxiliaryQubits, oracleCalls)'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2677,7 +2677,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3157](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResource_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResource_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “amplitude oracle resource eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2691,7 +2691,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3164](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResourceTuple_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleResourceTuple_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “amplitude oracle resource tuple eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2705,7 +2705,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3168](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.diagonalCleanBlockContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.diagonalCleanBlockContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “diagonal clean block contract”. Clean-block contract for the diagonal cubic candidate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2719,7 +2719,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3175](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.diagonalCleanBlockContract_pointwise_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.diagonalCleanBlockContract_pointwise_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “diagonal clean block contract pointwise eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2733,7 +2733,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3181](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveOracleCleanBlock_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveOracleCleanBlock_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “primitive oracle clean block eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2747,7 +2747,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3188](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_le_one" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_le_one")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic amplitude le one”; the hypotheses and conclusion in the code panel fix its exact scope. Amplitude range needed by the one-signal diagonal construction.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2761,7 +2761,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3196](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_nonneg" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicAmplitude_nonneg")
 *Plain-English reading.* Lean checks the proposition indexed as “cubic amplitude nonneg”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2775,7 +2775,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3203](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleDimension" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleDimension")
 *Plain-English reading.* This definition gives the library's named construction or computation for “primitive amplitude oracle dimension”. Full matrix dimension of the unexpanded one-signal primitive oracle.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2789,7 +2789,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3210](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleUnitary" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleUnitary")
 *Plain-English reading.* This opaque declaration exposes the interface for “primitive amplitude oracle unitary” while keeping its implementation from unfolding automatically. External primitive matrix supplied by the oracle-label tier.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2803,7 +2803,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3219](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleIsUnitary" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleIsUnitary")
 *Plain-English reading.* This opaque declaration exposes the interface for “primitive amplitude oracle is unitary” while keeping its implementation from unfolding automatically. Explicit unitarity obligation for the primitive oracle-label matrix.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2817,7 +2817,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3224](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCleanBlockExtracts" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCleanBlockExtracts")
 *Plain-English reading.* This opaque declaration exposes the interface for “primitive amplitude oracle clean block extracts” while keeping its implementation from unfolding automatically. Explicit clean-block extraction obligation for the primitive oracle-label matrix.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2831,7 +2831,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3229](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “primitive amplitude oracle semantic contract”. Primitive one-signal amplitude-oracle semantic contract.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2845,7 +2845,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3241](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract_unitary" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract_unitary")
 *Plain-English reading.* Lean checks the proposition indexed as “primitive amplitude oracle semantic contract unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2859,7 +2859,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3248](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleSemanticContract_cleanBlock_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “primitive amplitude oracle semantic contract clean block eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2873,7 +2873,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3253](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleLayout" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleLayout")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded amplitude oracle layout”. Expanded arithmetic route layout.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2887,7 +2887,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3268](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleLayout_auxiliaryQubits" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleLayout_auxiliaryQubits")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded amplitude oracle layout auxiliary qubits”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2901,7 +2901,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3273](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleNormalizer_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleNormalizer_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded amplitude oracle normalizer eq”; the hypotheses and conclusion in the code panel fix its exact scope. The expanded route targets the same exact normalizer 'alpha = 1'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2929,7 +2929,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3293](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedRyCleanEntryForCubicAmplitudes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedRyCleanEntryForCubicAmplitudes")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded ry clean entry for cubic amplitudes”. Indexwise clean-entry obligation for the cubic diagonal amplitudes in a chosen standard-'R\_y' scalar tier.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2943,7 +2943,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3308](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedRyCleanEntryForCubicAmplitudes_of_standardTier" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedRyCleanEntryForCubicAmplitudes_of_standardTier")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded ry clean entry for cubic amplitudes of standard tier”; the hypotheses and conclusion in the code panel fix its exact scope. 'DIAG-EXP-RY-001': the standard scalar-tier 'R\_y' clean-entry contract applies to every cubic grid amplitude because the existing Lean range lemmas prove '0 <= (j / 2^n)^3 <= 1'.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2957,7 +2957,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3321](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude")
 *Plain-English reading.* This opaque declaration exposes the interface for “expanded arithmetic computes cubic amplitude” while keeping its implementation from unfolding automatically. Semantic obligation that the expanded reversible arithmetic computes 'a\_j = (j / 2^n)^3' into the named workspace.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2985,7 +2985,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3346](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend")
 *Plain-English reading.* This definition gives the library's named construction or computation for “symbolic expanded cubic arithmetic backend”. Symbolic compute-phase backend for 'DIAG-EXP-ARITH-BACKEND-001'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -2999,7 +2999,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3361](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendComputesCubicAmplitude" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendComputesCubicAmplitude")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded arithmetic backend computes cubic amplitude”. Pointwise arithmetic-backend semantics for 'DIAG-EXP-ARITH-001'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3013,7 +3013,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3377](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend_computes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend_computes")
 *Plain-English reading.* Lean checks the proposition indexed as “symbolic expanded cubic arithmetic backend computes”; the hypotheses and conclusion in the code panel fix its exact scope. The symbolic backend satisfies the pointwise compute contract for every system index.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3027,7 +3027,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3391](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendBridge")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded arithmetic backend bridge”. Bridge obligation from a concrete arithmetic backend to the expanded route predicate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3041,7 +3041,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3406](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_backendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_backendBridge")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded arithmetic computes cubic amplitude of backend bridge”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3055,7 +3055,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3412](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendBridge_iff_of_computes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticBackendBridge_iff_of_computes")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded arithmetic backend bridge iff of computes”; the hypotheses and conclusion in the code panel fix its exact scope. General normal form for arithmetic backend bridge proof search.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3069,7 +3069,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3427](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude_of_symbolicBackendBridge")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded arithmetic computes cubic amplitude of symbolic backend bridge”; the hypotheses and conclusion in the code panel fix its exact scope. Specialized conditional closure for the symbolic arithmetic backend.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3083,7 +3083,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3448](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend_bridge_iff" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.symbolicExpandedCubicArithmeticBackend_bridge_iff")
 *Plain-English reading.* Lean checks the proposition indexed as “symbolic expanded cubic arithmetic backend bridge iff”; the hypotheses and conclusion in the code panel fix its exact scope. Normal form for the symbolic arithmetic bridge obligation.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3097,7 +3097,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3468](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicPayload_lt_capacity" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicPayload_lt_capacity")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom cubic payload lt capacity”; the hypotheses and conclusion in the code panel fix its exact scope. 'DIAG-ARITH-FIXED-DENOM-CAP-001': the fixed-denominator cubic payload fits in the '3 \* n'-qubit workspace register.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3111,7 +3111,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3481](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicAmplitude_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicAmplitude_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom cubic amplitude eq”; the hypotheses and conclusion in the code panel fix its exact scope. 'DIAG-ARITH-FIXED-DENOM-ALG-001': projecting the fixed-denominator payload 'j.val ^ 3' by the '3 \* n'-qubit denominator recovers the cubic grid amplitude.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3125,7 +3125,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3493](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend")
 *Plain-English reading.* This definition gives the library's named construction or computation for “fixed denom cubic arithmetic backend”. 'DIAG-ARITH-FIXED-DENOM-BACKEND-001': concrete compute-phase backend whose '3 \* n'-qubit workspace stores the fixed-denominator payload 'j.val ^ 3'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3139,7 +3139,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3509](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_computes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_computes")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom cubic arithmetic backend computes”; the hypotheses and conclusion in the code panel fix its exact scope. Pointwise compute contract for the fixed-denominator arithmetic backend.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3153,7 +3153,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3527](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitudeTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitudeTransparent")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded arithmetic computes cubic amplitude transparent”. Transparent arithmetic-route interface for 'DIAG-ARITH-ROUTE-TRANSPARENT-001'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3167,7 +3167,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3546](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticRouteTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticRouteTransparent")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom cubic arithmetic route transparent”; the hypotheses and conclusion in the code panel fix its exact scope. Fixed-denominator witness for the transparent arithmetic route interface.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3181,7 +3181,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3558](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_bridge_iff" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicArithmeticBackend_bridge_iff")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom cubic arithmetic backend bridge iff”; the hypotheses and conclusion in the code panel fix its exact scope. Fixed-denominator normal form for the arithmetic bridge obligation.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3195,7 +3195,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3572](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle")
 *Plain-English reading.* This opaque declaration exposes the interface for “expanded controlled ry uses cubic angle” while keeping its implementation from unfolding automatically. Semantic obligation for the standard 'R\_y' convention on the signal qubit: for each basis index 'j', the route uses 'theta\_j = 2 \* arccos ((j / 2^n)^3)', so the clean entry is 'cos (theta\_j / 2) = (j / 2^n)^3'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3209,7 +3209,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3586](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngleTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngleTransparent")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded controlled ry uses cubic angle transparent”. Transparent controlled-'R\_y' angle-convention interface for 'DIAG-RY-TRANSPARENT-INTERFACE-001'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3223,7 +3223,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3597](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomControlledRyRouteTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomControlledRyRouteTransparent")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom controlled ry route transparent”; the hypotheses and conclusion in the code panel fix its exact scope. Fixed-denominator wrapper for the transparent controlled-'R\_y' route.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3237,7 +3237,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3608](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyBackendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyBackendBridge")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded controlled ry backend bridge”. Backend bridge obligation from the scalar-tier 'R\_y' clean-entry interface to the expanded route predicate.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3251,7 +3251,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3622](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle_of_backendBridge" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle_of_backendBridge")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded controlled ry uses cubic angle of backend bridge”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3265,7 +3265,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3628](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyBackendBridge_iff_of_standardTier" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyBackendBridge_iff_of_standardTier")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded controlled ry backend bridge iff of standard tier”; the hypotheses and conclusion in the code panel fix its exact scope. Normal form for controlled-rotation backend-bridge proof search.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3293,7 +3293,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3666](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyWorkspaceReadonlyTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyWorkspaceReadonlyTransparent")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded controlled ry workspace readonly transparent”. Transparent predicate for a controlled-rotation step that preserves the arithmetic workspace.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3307,7 +3307,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3686](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputed" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputed")
 *Plain-English reading.* This opaque declaration exposes the interface for “expanded workspace clean uncomputed” while keeping its implementation from unfolding automatically. Semantic obligation that the arithmetic workspace is returned clean.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3335,7 +3335,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3703](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputedTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputedTransparent")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded workspace clean uncomputed transparent”. Transparent cleanup predicate backed by an explicit reversible witness.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3349,7 +3349,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3731](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputedTransparent_of_witness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputedTransparent_of_witness")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded workspace clean uncomputed transparent of witness”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3363,7 +3363,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3735](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicComputeStep" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicComputeStep")
 *Plain-English reading.* This definition gives the library's named construction or computation for “fixed denom cubic compute step”. Fixed-denominator reversible compute lift for 'DIAG-EXP-UNCOMP-FIXED-DENOM-WITNESS-001'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3377,7 +3377,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3783](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicUncomputeStep" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicUncomputeStep")
 *Plain-English reading.* This definition gives the library's named construction or computation for “fixed denom cubic uncompute step”. Modular-subtract inverse for 'fixedDenomCubicComputeStep'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3391,7 +3391,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3791](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicComputeStep_matches_backend_on_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicComputeStep_matches_backend_on_clean")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom cubic compute step matches backend on clean”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3405,7 +3405,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3798](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicUncomputeStep_after_compute" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomCubicUncomputeStep_after_compute")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom cubic uncompute step after compute”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3419,7 +3419,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3807](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomExpandedArithmeticCleanUncomputeWitness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomExpandedArithmeticCleanUncomputeWitness")
 *Plain-English reading.* This definition gives the library's named construction or computation for “fixed denom expanded arithmetic clean uncompute witness”. Fixed-denominator witness for the transparent clean-uncompute interface.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3433,7 +3433,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3827](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomWorkspaceCleanUncomputedTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomWorkspaceCleanUncomputedTransparent")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom workspace clean uncomputed transparent”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3461,7 +3461,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3860](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalValueBackendComputesGridPoint" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalValueBackendComputesGridPoint")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal value backend computes grid point”. Pointwise value-computation contract for a linear diagonal backend.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3475,7 +3475,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3874](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalValueBackend" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalValueBackend")
 *Plain-English reading.* This definition gives the library's named construction or computation for “fixed denom linear diagonal value backend”. Fixed-denominator value backend for 'O\_0'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3489,7 +3489,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3889](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalValueBackend_computes" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalValueBackend_computes")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom linear diagonal value backend computes”; the hypotheses and conclusion in the code panel fix its exact scope. The fixed-denominator linear backend computes 'x\_j = j / 2^n' on clean workspace.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3517,7 +3517,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3919](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalWorkspaceCleanUncomputedTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalWorkspaceCleanUncomputedTransparent")
 *Plain-English reading.* This definition gives the library's named construction or computation for “linear diagonal workspace clean uncomputed transparent”. Transparent predicate for honest compute/uncompute cleanup of an 'O\_0' value backend.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3531,7 +3531,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3941](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalWorkspaceCleanUncomputedTransparent_of_witness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalWorkspaceCleanUncomputedTransparent_of_witness")
 *Plain-English reading.* Lean checks the proposition indexed as “linear diagonal workspace clean uncomputed transparent of witness”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3545,7 +3545,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3945](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalComputeStep" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalComputeStep")
 *Plain-English reading.* This definition gives the library's named construction or computation for “fixed denom linear diagonal compute step”. Modular-add compute step for the fixed-denominator linear backend.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3559,7 +3559,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3952](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalUncomputeStep" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalUncomputeStep")
 *Plain-English reading.* This definition gives the library's named construction or computation for “fixed denom linear diagonal uncompute step”. Modular-subtract inverse for 'fixedDenomLinearDiagonalComputeStep'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3573,7 +3573,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3960](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalComputeStep_matches_backend_on_clean" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalComputeStep_matches_backend_on_clean")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom linear diagonal compute step matches backend on clean”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3587,7 +3587,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3967](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalUncomputeStep_after_compute" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalUncomputeStep_after_compute")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom linear diagonal uncompute step after compute”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3601,7 +3601,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3976](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalCleanUncomputeWitness" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalCleanUncomputeWitness")
 *Plain-English reading.* This definition gives the library's named construction or computation for “fixed denom linear diagonal clean uncompute witness”. Fixed-denominator cleanup witness for the hinted 'O\_0' value backend.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3615,7 +3615,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:3997](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalWorkspaceCleanUncomputedTransparent" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.fixedDenomLinearDiagonalWorkspaceCleanUncomputedTransparent")
 *Plain-English reading.* Lean checks the proposition indexed as “fixed denom linear diagonal workspace clean uncomputed transparent”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3629,7 +3629,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4016](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockExtracts" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockExtracts")
 *Plain-English reading.* This opaque declaration exposes the interface for “expanded amplitude oracle clean block extracts” while keeping its implementation from unfolding automatically. Clean-block extraction obligation for the expanded arithmetic/rotation route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3643,7 +3643,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4023](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded amplitude oracle clean block contract”. Expanded-route clean-block contract for 'DIAG-EXPANDED-CONTRACT-001'.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3657,7 +3657,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4035](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract_diagonal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract_diagonal")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded amplitude oracle clean block contract diagonal”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3671,7 +3671,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4044](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockContract_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded amplitude oracle clean block contract eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3685,7 +3685,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4051](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleSemanticContract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleSemanticContract")
 *Plain-English reading.* This definition gives the library's named construction or computation for “expanded amplitude oracle semantic contract”. Conditional semantic interface for an expanded arithmetic/rotation route with an explicit workspace size.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3699,7 +3699,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4063](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleSemanticContract_cleanBlock_eq_target")
 *Plain-English reading.* Lean checks the proposition indexed as “expanded amplitude oracle semantic contract clean block eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3713,7 +3713,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4068](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate")
 *Plain-English reading.* This definition gives the library's named construction or computation for “primitive amplitude oracle candidate”. Conditional candidate at the primitive oracle-label tier.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3727,7 +3727,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4080](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_costTuple_eq" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_costTuple_eq")
 *Plain-English reading.* Lean checks the proposition indexed as “primitive amplitude oracle candidate cost tuple eq”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3741,7 +3741,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4097](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_unitary_from_contract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_unitary_from_contract")
 *Plain-English reading.* Lean checks the proposition indexed as “primitive amplitude oracle candidate unitary from contract”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3755,7 +3755,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4108](../../../../libra
 :::theorem "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_block_from_contract" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCandidate_block_from_contract")
 *Plain-English reading.* Lean checks the proposition indexed as “primitive amplitude oracle candidate block from contract”; the hypotheses and conclusion in the code panel fix its exact scope.
 
-*Formal status.* Compiled theorem in the default ABEIS import surface; the displayed Lean signature is the authoritative claim.
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3769,7 +3769,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4114](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleVerified" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleVerified")
 *Plain-English reading.* This definition gives the library's named construction or computation for “primitive amplitude oracle verified”. Conditional exact certificate for the primitive oracle-label tier.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 
@@ -3783,7 +3783,7 @@ Source: [QuantumBlockEncoding/CubicStatePreparation.lean:4128](../../../../libra
 :::definition "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleClaim" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.amplitudeOracleClaim")
 *Plain-English reading.* This definition gives the library's named construction or computation for “amplitude oracle claim”. Human-facing construction claim for the first exact diagonal route.
 
-*Formal status.* Compiled declaration in the default ABEIS import surface; its kind and displayed Lean type determine how it may be used.
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
 

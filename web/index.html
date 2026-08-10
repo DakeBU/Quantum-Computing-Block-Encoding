@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ABEIS State-Preparation and Block-Encoding Task Builder</title>
+    <title>ASPBE State-Preparation and Block-Encoding Task Builder</title>
     <link rel="stylesheet" href="styles.css?v=20260727">
   </head>
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">Auto-Block-Encoding-In-Sleep (ABEIS)</p>
+        <p class="eyebrow">Quantumlib workspace</p>
         <h1>State-Preparation and Block-Encoding Task Builder</h1>
       </div>
       <div class="header-actions">
@@ -30,7 +30,7 @@
           <h2 id="site-overview-title">See how the system is organized before reading Lean</h2>
         </div>
         <p>
-          ABEIS keeps proposal, proof obligation, compiled theorem, and executable
+          ASPBE keeps proposal, proof obligation, compiled theorem, and executable
           evidence separate. The maps below show where each claim lives and provide
           two reader paths into the complete formal library.
         </p>
@@ -38,7 +38,7 @@
       <figure class="system-map">
         <img
           src="assets/abeis-evidence-pipeline.svg"
-          alt="ABEIS pipeline from a user contract through search and the Lean gate to public evidence"
+          alt="ASPBE pipeline from a user contract through search and the Lean gate to public evidence"
         >
         <figcaption>
           The acceptance path: agents explore candidates, but only Lean can promote a
@@ -60,7 +60,7 @@
       <figure class="library-map">
         <img
           src="assets/abeis-library-map.svg"
-          alt="ABEIS Lean source inventory flowing to the Blueprint and Library Explorer, with eight catalog groups"
+          alt="ASPBE Lean source inventory flowing to the Blueprint and Library Explorer, with eight catalog groups"
         >
         <figcaption>
           One deterministic inventory generates both reader surfaces, so search coverage
@@ -74,7 +74,7 @@
         <h2 id="input-title">Target State or Operator</h2>
         <p class="hint">
           Paste a target state, LaTeX operator, matrix formula, or natural-language oracle requirement.
-          This testing preview creates a task packet for ABEIS agents; Lean is still the final verifier.
+          This testing preview creates a task packet for ASPBE agents; Lean is still the final verifier.
         </p>
 
         <label>
@@ -227,7 +227,7 @@
         <fieldset class="export-grid">
           <legend>Executable exports after Lean certification</legend>
           <p class="hint compact">
-            ABEIS treats Lean as the proof authority.  These options request
+            ASPBE treats Lean as the proof authority.  These options request
             runnable artifacts after the matching Lean theorem is accepted.
           </p>
           <label class="check-row">
@@ -251,7 +251,7 @@
         <fieldset class="agent-grid">
           <legend>Agent backend preferences</legend>
           <p class="hint compact">
-            These preferences are written into the generated ABEIS packet.  The website
+            These preferences are written into the generated ASPBE packet.  The website
             does not call model APIs; your local harness or server runner maps
             them to installed CLIs or wrappers.  In Game Harness mode, the
             Natural-Language Team and Lean Team each have upper/middle/lower
@@ -346,7 +346,7 @@
         </div>
 
         <div class="score-card">
-          <h3>ABEIS acceptance and ranking</h3>
+          <h3>ASPBE acceptance and ranking</h3>
           <ol>
             <li>Correctness is accepted only after Lean proves unitarity and the requested state-action or block-entry theorem.</li>
             <li>Compare asymptotic tiers first: polylogarithmic growth beats polynomial growth.</li>
@@ -375,7 +375,7 @@
             </div>
           </div>
           <p class="hint compact">
-            Local mode: run ABEIS in the downloaded repository and paste
+            Local mode: run ASPBE in the downloaded repository and paste
             `reports/&lt;task-id&gt;/dashboard.json` or `evolution.json` here.
             Hosted mode: connect this page to a user-owned runner endpoint or
             API-backed service, then render the same JSON outputs.
@@ -389,7 +389,7 @@
     </main>
 
     <footer>
-      Static website for preparing ABEIS task packets.  Inspired by user-friendly
+      Quantumlib workspace for preparing ASPBE task packets. Inspired by user-friendly
       automated algorithm design front ends such as LLM4AD_Next, but specialized
       to Lean-checked quantum construction certificates.  The Lean documentation
       organization was inspired by

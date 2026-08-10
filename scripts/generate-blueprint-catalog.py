@@ -373,7 +373,7 @@ def formal_status(decl: Declaration) -> str:
         )
     if decl.kind in THEOREM_KINDS:
         return (
-            "Compiled theorem in the default ABEIS import surface; the displayed "
+            "Compiled theorem in the default ASPBE import surface; the displayed "
             "Lean signature is the authoritative claim."
         )
     if decl.kind == "structure":
@@ -382,7 +382,7 @@ def formal_status(decl: Declaration) -> str:
             "are obligations, not automatically established facts."
         )
     return (
-        "Compiled declaration in the default ABEIS import surface; its kind and "
+        "Compiled declaration in the default ASPBE import surface; its kind and "
         "displayed Lean type determine how it may be used."
     )
 

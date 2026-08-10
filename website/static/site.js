@@ -5,13 +5,13 @@
   const body = document.body;
   const siteRoot = body.dataset.siteRoot || "./";
   const themes = ["blueprint", "modern", "bold"];
-  const savedTheme = localStorage.getItem("abeis-theme");
+  const savedTheme = localStorage.getItem("quantumlib-theme");
   const requestedTheme = new URLSearchParams(window.location.search).get("theme");
 
   function setTheme(theme) {
     const selected = themes.includes(theme) ? theme : "blueprint";
     root.dataset.theme = selected;
-    localStorage.setItem("abeis-theme", selected);
+    localStorage.setItem("quantumlib-theme", selected);
     document.querySelectorAll("[data-theme-choice]").forEach((button) => {
       button.setAttribute(
         "aria-pressed",
@@ -33,14 +33,14 @@
       menuButton.setAttribute("aria-expanded", String(open));
       menuButton.setAttribute(
         "aria-label",
-        open ? "Close navigation" : "Open navigation",
+        open ? "Close book navigation" : "Open book navigation",
       );
     });
     nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("is-open");
         menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Open navigation");
+        menuButton.setAttribute("aria-label", "Open book navigation");
       });
     });
   }
@@ -114,7 +114,7 @@
     if (nav && menuButton) {
       nav.classList.remove("is-open");
       menuButton.setAttribute("aria-expanded", "false");
-      menuButton.setAttribute("aria-label", "Open navigation");
+      menuButton.setAttribute("aria-label", "Open book navigation");
     }
   });
 

@@ -1,1085 +1,261 @@
-<div align=center>
+<div align="center">
 
-# ABEIS: State Preparation and Block Encoding for Quantum Computing
+# ASPBE
 
-<h3 align="center">
-A Platform for Lean-validated quantum state-preparation and block-encoding construction.
-</h3>
+### Automatic State Preparation and Block Encoding for Quantum Computing
 
-[![Github][Github-image]][Github-url]
-[![License][License-image]][License-url]
+Lean-checked quantum construction search, executable validation, and the
+[Quantumlib](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) textbook.
 
-
-[Github-image]: https://img.shields.io/badge/github-12100E.svg?style=flat-square
-[License-image]: https://img.shields.io/badge/License-MIT-orange?style=flat-square
-
-
-
-
-[Github-url]: https://github.com/DakeBU/Quantum-Computing-Block-Encoding
-[License-url]: https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/main/LICENSE
-
+[![Lean 4](https://img.shields.io/badge/Lean-4-6f42c1?style=flat-square)](https://lean-lang.org/)
+[![Mathlib](https://img.shields.io/badge/Mathlib-pinned-2f705c?style=flat-square)](https://github.com/leanprover-community/mathlib4)
+[![License: MIT](https://img.shields.io/badge/License-MIT-35657d?style=flat-square)](LICENSE)
 
 </div>
 
-## News 🔥
+ASPBE searches for quantum constructions and admits a result only through a
+named Lean certificate. It supports two applications with different contracts:
 
-* **June 2026.** ABEIS is now public as a testing preview for Lean-certified
-  quantum construction.  The library now presents two application directions:
-  state preparation first, then block encoding.  The API-user website
-  placeholder is available at https://dakebu.github.io/Quantum-Computing-Block-Encoding/
-  while the hosted workflow is still being tested.  Feedback, issue reports,
-  and suggested state/operator/oracle benchmarks are welcome.
-* **July 2026.** The public site now includes an ABEIS Lean Blueprint at
-  [`/blueprint/html-multi/`](https://dakebu.github.io/Quantum-Computing-Block-Encoding/blueprint/html-multi/).
-  Curated chapters explain ABEIS contracts, proof routes, and case studies;
-  generated catalog chapters cover every explicit public Lean declaration and
-  link each entry to its source.  Its organization was inspired by Sho
-  Sonoda's [Lean Ridgelet Blueprint](https://shosonoda.github.io/lean-ridgelet/),
-  while the multi-page renderer, Lean declaration panels, and `blueprint`,
-  `modern`, and `bold` reading styles are provided by
-  [Verso Blueprint](https://github.com/leanprover/verso-blueprint), built on
-  [Verso](https://github.com/leanprover/verso).
-* **July 2026 (reader-surface upgrade).** The site now adds a searchable
-  [Lean Library Explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/)
-  and visual system maps for readers who are new to Lean.  One deterministic
-  inventory drives both the Explorer and the Blueprint: it covers every
-  explicit public declaration, records private exclusions, resolves every
-  Blueprint panel against Lean, and scans the publishable output for local-path
-  leakage.  Each Explorer card separates a plain-English reading cue, formal
-  status, bounded source preview, and authoritative Lean entry point.
+| Application | Contract | What must be certified |
+| --- | --- | --- |
+| **State Preparation** | `U |0^n> = |psi>` | target normalization, unitarity, state action, circuit/resources |
+| **Block Encoding** | `||A - alpha Pi U Pi†|| <= epsilon` | register layout, clean projection, normalization, unitarity, error, circuit/resources |
 
+A state-preparation theorem may supply a `PREPARE` component to a later
+block-encoding route. It does not by itself prove a clean projected block.
 
----
-ABEIS (Auto-Block-Encoding-In-Sleep) is a Lean 4 project and multi-agent
-harness for turning a requested quantum construction into concrete unitary
-candidates, gate-level circuit matrices, resource scores, and Lean-checked
-certificates. It exposes two application directions with separate contracts
-and acceptance flows:
+![The two ASPBE application contracts](docs/assets/abeis_application_overview.svg)
 
-1. **State Preparation.**  Given a normalized target state `|psi>`, synthesize
-   a unitary `U` such that `U |0^n> = |psi>`.  Equivalently, in the standard
-   computational basis, the first column of `U` is the target state.  This is
-   a concrete quantum-construction task and a useful PREPARE primitive for
-   later algorithms.
-2. **Block Encoding.**  Given a non-unitary operator `A`, synthesize a larger
-   unitary whose clean ancilla block equals `A / alpha`.  This is the original
-   ABEIS target and introduces ancilla, projection, register-order, and
-   normalization obligations that do not belong to the state-preparation
-   contract.
+## Quantumlib
 
+**Quantumlib** is the website built from this repository. It is organized as a
+formal quantum-computing textbook rather than a project dashboard:
 
-Basic gates make the state-preparation target concrete:
+- a persistent chapter map on the left;
+- formulas beside plain-language readings and exact Lean statements;
+- separate State Preparation and Block Encoding learning tracks;
+- an exhaustive declaration catalog and implementation map;
+- an atlas of ASPBE, Mathlib, and selected external quantum Lean libraries;
+- organizers, contribution guidance, and a versioned lemma-packet contract;
+- a Live Formalization Workspace for LaTeX, Lean, dependency navigation, and
+  local compiler diagnostics;
+- the existing Verso Blueprint at `/blueprint/html-multi/`.
 
-```text
-H |0> = (|0> + |1>) / sqrt(2)
-X |0> = |1>,   X |1> = |0>
-```
+The site distinguishes **built here**, **imported**, and **reference atlas**.
+External projects are not presented as local proofs merely because Quantumlib
+links or explains them.
 
-So the user's intuition is right: Hadamard maps the zero state to an equal
-superposition, and the Pauli-X gate swaps the computational-basis states.
+## Formalization workspace
 
-The state-preparation flow is kept independent:
-
-```text
-normalized target |psi>
--> candidate circuit or unitary completion
--> prove unitarity
--> prove U |0^n> = |psi>
--> Lean state-preparation certificate
--> finite executable export
-```
-
-Its contract is:
-
-```text
-U |0^n> = |psi>
-```
-
-or, equivalently:
-
-```text
-column_0(U) = |psi>
-```
-
-For unnormalized vectors, ABEIS requires the task to say whether the target is
-the normalized state `|psi / ||psi||>` or the rank-one operator `|v><0^n|`.
-The latter becomes a block-encoding-style operator target.
-
-The block-encoding flow begins from a different contract:
-
-```text
-operator/query-oracle contract A
--> candidate unitary U_A and circuit schedule
--> Lean-checked block-entry and unitarity certificate
--> resource-ranked construction
--> post-Lean executable exports such as Qiskit, QuantumKatas, and QASM
-```
-
-
-
-
-
-
-ABEIS does not stop at "assume an oracle exists".  A task should state the
-operator `A`, normalizer `alpha`, clean ancilla projector, and the desired
-exact block-entry equation:
-
-```text
-(<0^a| ⊗ I) U_A (|0^a> ⊗ I) = A / alpha
-```
-
-## Unified formalization website
-
-The GitHub Pages deployment combines the existing interfaces into one literate
-formalization site without changing the stable Library or Blueprint URLs:
-
-1. an overview that presents the two applications side by side;
-2. independent guides under `state-preparation/` and `block-encoding/`;
-3. the Implementation Map under `implementation-map/`;
-4. nine guided chapters grouped into foundations, state preparation, block
-   encoding, and system/evidence tracks;
-5. the searchable Lean Library Explorer under `library/`;
-6. progress, roadmap, workflow, and attribution pages;
-7. the Lean library Blueprint under `blueprint/html-multi/`;
-8. the existing task builder under `task-builder/`.
-
-The Blueprint chapters explain the certificate model, finite semantics,
-reusable block-encoding routes, and completed case studies.  Its catalog
-chapters are generated from `QuantumBlockEncoding/**/*.lean`.
-The coverage report in `docs/blueprint-coverage.json` records exactly which
-public source declarations are included and which private helpers are excluded.
-The same generator emits `web/library/declarations.json`, so the full-text
-Explorer and the strictly resolved Lean panels share one auditable inventory.
-All counts shown on the unified site are read from these generated files at
-build time; `build-report.json` is the publication evidence for a particular
-checkout.
-The experimental `RobinMatrix.lean` development is catalogued separately and
-its open diagnostic proofs are not presented as certified results.
-
-External declaration links are not written against an assumed `main` branch.
-The site builder inspects `origin`, the current commit, remote containment, and
-the source file's worktree status.  It emits a commit-SHA GitHub link only when
-that exact file is available and clean at a published ref; otherwise the local
-module anchor remains the authoritative navigation target.
-
-### Acknowledgements
-
-The organization of this documentation was inspired by Sho Sonoda's
-[Lean Ridgelet project](https://github.com/shosonoda/lean-ridgelet) and its
-[public Blueprint](https://shosonoda.github.io/lean-ridgelet/).  We thank Sho
-Sonoda for making that clear, readable example available to the Lean community.
-The site itself is generated with
-[Verso Blueprint](https://github.com/leanprover/verso-blueprint), built on
-[Verso](https://github.com/leanprover/verso); those projects provide the
-multi-page documentation design, navigation, Lean declaration panels, preview
-runtime, and selectable reading styles used here.
-
-Regenerate and verify only the declaration inventory with:
-
-```bash
-python3 scripts/generate-blueprint-catalog.py
-python3 scripts/generate-blueprint-catalog.py --check
-```
-
-Build and check the complete Pages artifact on Linux or macOS:
+Build the site, then start the loopback-only companion server:
 
 ```bash
 bash scripts/build-all.sh
+python3 website/scripts/ide_server.py --directory _site
 ```
 
-The script runs the Lean library build, ABEIS tests, inventory consistency
-check, Verso Blueprint build, unified site build, internal link and fragment
-checks, source-link checks, local-path scan, and artifact-layout checks.
+Open <http://127.0.0.1:8000/ide/>. The static page always renders mathematics,
+reviewed LaTeX↔Lean mappings, and dependency links. The companion server adds
+real `lake env lean` compilation in temporary files and never edits repository
+source.
 
-Build the same artifact on Windows PowerShell:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/build-all.ps1
-```
-
-The final site is written to `_site/`; intermediate Blueprint and unified-site
-outputs are under `_out/`.  Generated publication artifacts are intentionally
-not committed.
-
-### Private temporary preview
-
-The preview server uses only Python's standard library.  It refuses to start
-unless both Basic Auth values are present in the process environment.
-
-Linux or macOS:
+An optional local AI adapter can propose Lean drafts:
 
 ```bash
-read -r -p "Preview username: " ABEIS_PREVIEW_USERNAME
-read -r -s -p "Preview password: " ABEIS_PREVIEW_PASSWORD
-export ABEIS_PREVIEW_USERNAME ABEIS_PREVIEW_PASSWORD
-python3 website/scripts/serve_preview.py --root _site --port 8765
+python3 website/scripts/ide_server.py \
+  --directory _site \
+  --translator-command "python3 website/scripts/codex_translator.py"
+```
+
+The bundled adapter starts the locally authenticated Codex CLI in an ephemeral,
+read-only session and instructs it to inspect current declarations and proof
+memory when the local sandbox supports repository reads. Agent output is
+labeled as a draft. Compilation proves only that Lean accepts
+the submitted code; mathematical equivalence to the LaTeX still receives review.
+The workspace can download a contribution packet or open a prefilled GitHub
+lemma request. Public GitHub Pages never runs untrusted Lean code.
+
+## What the harness actually does
+
+ASPBE is a file-backed controller around the Lean project. The durable state is
+the task contract, candidate population, proof DAG, source correspondence,
+typed feedback, trial memory, and compiled declarations. Chat transcripts are
+not treated as the system of record.
+
+![One ASPBE control cycle](docs/assets/abeis_agent_cycle_detail.svg)
+
+### Roles and owned artifacts
+
+| Role | Decision boundary | Primary artifacts |
+| --- | --- | --- |
+| **Upper** | freezes the target; chooses a construction family; authorizes one adjacent capacity or tolerance transition | `tasks/`, `run-presets/`, `runs/*/10_upper_*` |
+| **Middle** | maintains candidate populations, retrieves proof memory, refreshes the DAG, and assigns dependency-ordered leaves | `candidate-populations/`, `proof-blueprints/`, `proof-obligations/`, `conversion-windows/` |
+| **Lower architect** | states one local mathematical argument and its prerequisites | `proof-attempts/`, current leaf packet |
+| **Lower Lean worker** | implements one ready declaration and runs the relevant gate | `QuantumBlockEncoding/`, `ABEISTests/`, verifier feedback |
+| **Necessary-condition verifier** | rejects wrong dimensions, register order, matrix entries, normalization, or finite circuit behavior before expensive proof search | diagnostics and `executable-exports/` |
+| **Reviewer** | rejects target drift, stale evidence, hidden assumptions, invalid promotion, and unsupported resource claims | `reviews/`, signed feedback, intervention packet |
+
+One worker may fill several roles for a small task. Parallelism increases only
+when a current signed decision identifies independent ready leaves or a
+specific layer bottleneck.
+
+### One controlled cycle
+
+```text
+1  Freeze and hash the application contract
+2  Retrieve compatible compiled lemmas and memory cards
+3  Choose one candidate and record propose/retain/retire/mutate/crossover
+4  Assign the smallest ready proof-DAG leaf
+5  Run necessary-condition diagnostics when they can reject the route cheaply
+6  Compile the named Lean declaration and tests
+7  Run declared Qiskit/QASM/finite exports after the symbolic gate
+8  Promote, mutate, change one policy rung, or stop with an intervention packet
+```
+
+The next cycle must change at least one of:
+
+- the compiled proof frontier;
+- the typed candidate-population action;
+- the signed capacity level;
+- the adjacent tolerance rung.
+
+Repeating the same leaf against the same Lean-evidence digest is bounded. A
+stalled representation bridge is assigned as a prerequisite instead of being
+retried by more tactic workers.
+
+### Candidate and evidence policy
+
+Candidates live in three separate populations:
+
+1. **Certified:** all required named Lean declarations compile.
+2. **Finite executable:** Qiskit, NumPy, QASM, or exact finite checks pass, but
+   the matching symbolic certificate is incomplete.
+3. **Insight:** constructions, external suggestions, failed routes, and partial
+   arguments that can guide another proposal.
+
+Within one semantic and implementation tier, certified candidates are compared
+lexicographically by gate count, depth, auxiliary qubits, and unresolved oracle
+calls. Correctness and target fidelity are gates, not weighted score terms. An
+opaque oracle and an expanded logical circuit are never ranked as equal-cost
+implementations.
+
+### Adaptive capacity and tolerance
+
+The controller stores upper, middle, and lower capacity levels. A privileged
+upper/reviewer packet may increase exactly one named layer by one level. Replay
+of the same packet is idempotent.
+
+Exact search starts at `epsilon = 0`. Approximation may open only after the
+configured exact-stall condition or an explicit external-contract boundary,
+then advances one task-declared epsilon rung at a time. It cannot change:
+
+- the target state or operator;
+- block-encoding normalization `alpha`;
+- register order or clean-state convention;
+- the declared state-vector or operator norm.
+
+See [agent orchestration](docs/agent_orchestration.md),
+[the proof blueprint](docs/agent_blueprint_formalization.md), and the
+[sleep-run guide](docs/sleep_run_guide.md) for the operational protocol.
+
+## Lean library
+
+```text
+QuantumBlockEncoding/
+├── Core.lean                    finite matrices and basic contracts
+├── StatePreparation.lean        state targets, candidates, exact/approx certificates
+├── Circuit.lean                 gate and circuit syntax
+├── CircuitSemantics.lean        circuit evaluation and register semantics
+├── ConcreteSemantics.lean       ket/column and projection bridges
+├── BlockEncoding.lean           operator targets and verified block encodings
+├── BlockEncodingClassics.lean   permutation, sparse, LCU, product, dilation, QSVT contracts
+├── Resources.lean               deterministic resource records and comparison
+├── TechnicalLemmas.lean         reusable proof leaves
+├── MainCase.lean                BE Case 1 certificates
+├── CubicStatePreparation.lean   active state-preparation benchmark
+├── ColdStartTransferE1.lean     isolated cold-start construction
+├── OptimalControl.lean          candidate evolution and resource comparison
+├── GHL2025.lean                 paper-reproduction surface
+├── Automation.lean              compiled harness contracts
+└── OpenProblems.lean            typed unfinished routes
+```
+
+![ASPBE Lean lemma tree](docs/assets/abeis_lean_lemma_tree.svg)
+
+The external quantum Lean atlas currently records Mathlib,
+[quantum-computing-lean](https://github.com/duckki/quantum-computing-lean),
+[Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo), and
+[lean-quantum](https://github.com/Hayata-Yamasaki-Group/lean-quantum). Exact
+modules, licenses, and adapter rules are under
+[`research-wiki/external-lean-libraries/`](research-wiki/external-lean-libraries/).
+
+## Case studies
+
+### BE Case 1: transfer operator
+
+The search retains only candidates in the same implementation tier before
+resource comparison. Certified logical candidates improve from resource tuple
+`(6, 5, 1, 0)` to `(4, 2, 1, 0)`.
+
+| Certified candidates | Convergence |
+| --- | --- |
+| ![BE Case 1 candidates](docs/assets/be_case1_candidates.svg) | ![BE Case 1 convergence](docs/assets/be_case1_convergence.svg) |
+
+### BE Case 2: cubic diagonal operator
+
+Cold and hinted runs close the same exact family through a rational
+Householder construction. The hinted diagonal/product route remains recorded
+as reusable clean-block arithmetic; QSVT is not presented as implemented when
+only its consumer contract exists.
+
+| Candidate route | Cold and hinted progress |
+| --- | --- |
+| ![BE Case 2 candidates](docs/assets/be_case2_candidates.svg) | ![BE Case 2 progress](docs/assets/be_case2_cold_hinted.svg) |
+
+The normalized cubic **state-preparation** benchmark is tracked separately and
+is not reported as solved merely because the cubic block-encoding family is
+certified.
+
+## Build and verify
+
+Linux/macOS:
+
+```bash
+python3 tools/qbe.py check
+bash scripts/build-all.sh
 ```
 
 Windows PowerShell:
 
 ```powershell
-$env:ABEIS_PREVIEW_USERNAME = Read-Host "Preview username"
-$env:ABEIS_PREVIEW_PASSWORD = Read-Host "Preview password"
-python website/scripts/serve_preview.py --root _site --port 8765
+python tools/qbe.py check
+powershell -ExecutionPolicy Bypass -File scripts/build-all.ps1
 ```
 
-To share that local authenticated server temporarily:
-
-```bash
-cloudflared tunnel --url http://127.0.0.1:8765
-```
-
-Credentials must not be committed, placed in command arguments, or copied into
-logs.  A `trycloudflare.com` URL is an ephemeral review tunnel, not the
-production GitHub Pages deployment.
-
-It may also state an accepted approximation budget:
-
-```text
-|| A - alpha * ((<0^a| ⊗ I) U_A (|0^a> ⊗ I)) || <= epsilon
-```
-
-Among Lean-certified candidates, ABEIS ranks constructions by asymptotic tier
-first.  Inside the same tier it compares:
-
-```text
-(gateCount, depth, auxiliaryQubits, oracleCalls)
-```
-
-Paper constructions are treated as baselines and training data.  Once a paper
-baseline is formalized, the same system can try to improve the construction
-for the same fixed operator target.
-
-ABEIS currently exposes two harness profiles.  Users can run either profile, or
-run both in isolated workspaces and compare the certified population curves.
-
-![Hierarchical Harness](docs/assets/hierarchical_harness.svg)
-
-![Game Harness](docs/assets/game_harness.svg)
-
-## Core Workflow
-
-1. Fix the state or operator contract, normalization, error metric, and
-   resource order.
-2. Retrieve reusable leaves, choose a candidate family, and expose a proof DAG.
-3. Run ordered lower work: proof design, relevant diagnostics, one Lean leaf,
-   then failure-specific refinement when needed.
-4. Promote only through the Lean build gate; rank only within the certified
-   population.
-5. Export Qiskit, QuantumKatas-style, or QASM artifacts for the certified
-   finite instantiation.
-
-![ABEIS evolution and acceptance pipeline](docs/assets/abeis_evolution_acceptance.svg)
-
-The detailed cycle view makes the authority boundary explicit:
-
-![One controlled ABEIS cycle](docs/assets/abeis_agent_cycle_detail.svg)
-
-For exploratory tasks that declare `Population gate: required`, middle must
-write typed candidate actions (`propose`, `retain`, `retire`, `mutate`, or
-`crossover`) and upper/reviewer must select one active candidate before lower
-proof work runs.  A mutation names one parent; a crossover names two.  If the
-selected route leaves Lean evidence unchanged, the next cycle returns to
-population maintenance before another lower call.
-
-The deterministic cold-start audit replays this transition for both state
-preparation and operator block encoding. It checks that no lower worker runs
-before selection, stagnation returns to typed evolution, and a changed
-population reopens exactly one ordered lower attempt; see
-[`cold-start-population-audit.json`](reports/ABEIS-CONTROL-V5/cold-start-population-audit.json).
-This is a controller invariant test, not a claim that arbitrary synthesis
-problems are mathematically complete.
-
-![Gradual ABEIS controller](docs/assets/abeis_control_ladder.svg)
-
-The controller starts small.  An upper or reviewer packet may increase the
-upper, middle, or lower layer by one level when current signed evidence names
-that bottleneck.  Exact search moves to the task's requested epsilon only after
-its stall budget; later relaxations move one adjacent rung at a time.  Replayed,
-stale, premature, and rung-skipping decisions are rejected before another
-agent call.
-
-## State-Preparation Memory
-
-State preparation is the first ABEIS application direction because it asks for
-one concrete action:
-
-```text
-prepare |psi> from |0^n>
-```
-
-The main invariant is simple and useful for agents: the candidate unitary's
-first column must be the target state.  Upper agents should first normalize or
-classify the target vector, middle agents should expose a small proof DAG for
-`U |0^n> = |psi>`, and lower agents should avoid turning an unnormalized
-vector into a unitary-output claim.  If the target vector is unnormalized, the
-task must either normalize it or switch to the rank-one operator
-`|v><0^n|`, which is then a block-encoding target.
-
-Classic routes exposed to users and agents:
-
-| Route | Natural case | Core proof move | Where to read |
-| --- | --- | --- | --- |
-| Single-qubit gate anchor | teaching examples such as `H` and `X` | prove the first column/action on `|0>` directly | [`SP.SingleQubitGates`](research-wiki/state-preparation-library/route-selector.md) |
-| Recursive amplitude split | explicit normalized vector | split mass into a rotation plus conditional sub-preparations | [`SP.RecursiveAmplitudeSplit`](research-wiki/state-preparation-library/route-selector.md) |
-| Reversible arithmetic amplitude | formula-defined amplitudes such as grid polynomials | compute value, rotate/load amplitude, then uncompute workspace | [`SP.ArithmeticAmplitude`](research-wiki/state-preparation-library/route-selector.md) |
-| Dense fallback | small fixed dimension | synthesize a full unitary whose first column is the target | [`SP.DenseCompletion`](research-wiki/state-preparation-library/route-selector.md) |
-| PREPARE primitive for BE | LCU weights, sparse/Gram routes, or density/purification | certify state preparation first, then consume it inside a clean-block proof | [`SP.ToBlockEncoding`](research-wiki/state-preparation-library/route-selector.md) |
-
-## Block-Encoding Textbook Memory
-
-ABEIS keeps a small textbook-style memory library for block-encoding
-construction.  Its backbone is Lin Lin's lecture notes
-([arXiv:2201.08309](https://arxiv.org/abs/2201.08309)), together with the
-standard LCU, sparse-access, dilation, qubitization, and QSVT proof patterns.
-The library is not a rigid detector and it is not meant to make agents
-memorize recipes.  Block-encoding construction is often closer to technical
-design search than to routine theorem replay.  Upper agents use these memories
-as inspiration: recall several plausible constructions, keep a diverse
-candidate population, and let middle agents split promising routes into small
-Lean leaves.  Only compiled Lean leaves are reusable proof tools; route cards
-that are not compiled remain ideas, contracts, or obligations.
-
-A useful mental model is:
-
-```text
-operator/oracle target
--> textbook memories suggest route hypotheses, not mandatory recipes
--> middle layer maintains an insight pool and proof DAG
--> lower Lean/natural-language workers attack one leaf at a time
--> reviewer promotes only Lean-certified claims
-```
-
-Use the memory library in two different ways:
-
-| Layer | Role in search | What agents may do |
-| --- | --- | --- |
-| Idea cards | brainstorming and population diversity | mutate, recombine, compare, or reject a route after upper/middle discussion |
-| Compiled Lean leaves | reusable proof infrastructure | import, instantiate, or write a narrow adapter instead of reproving the theorem |
-| Contract-only cards | safe high-level dependency markers | use as a proof-DAG node only when the task accepts that external contract status |
-
-For example, if a task calls for a polynomial transform and a proved input
-block encoding is already available, agents should first retrieve the QSVT
-consumer memory and any compiled `QSVTConsumerContract`/Chebyshev leaves.  They
-should not spend a lower-worker cycle trying to reprove the whole QSVT theorem
-unless the active task explicitly asks for that foundational formalization.
-
-Classic routes exposed to users and agents:
-
-| Route | Natural case | Core proof move | Where to read |
-| --- | --- | --- | --- |
-| Entrywise clean block | explicit finite candidate | prove `U(clean,row)(clean,col)=A(row,col)/alpha` | [`BE.EntrywiseExact.CleanBlock`](research-wiki/block-encoding-library/cards/BE.EntrywiseExact.CleanBlock.md) |
-| Partial permutation | `|dst><src| \otimes I`, reset maps, basis injections | complete a partial map to a permutation; non-target branches leave the clean block | [`BE.PartialPermutation.MatrixUnitTensorId`](research-wiki/block-encoding-library/cards/BE.PartialPermutation.MatrixUnitTensorId.md) |
-| One-sparse support | one possible nonzero row per column | support permutation plus a Kronecker-delta entry proof | [`BE.Sparse.OneSparsePermutation`](research-wiki/block-encoding-library/cards/BE.Sparse.OneSparsePermutation.md) |
-| Sparse access | row/column location and value oracles | uniform slot preparation and finite delta-sum collapse | [`BE.Sparse.ColumnOracle`](research-wiki/block-encoding-library/cards/BE.Sparse.ColumnOracle.md), [`BE.Sparse.RowColumnOracle`](research-wiki/block-encoding-library/cards/BE.Sparse.RowColumnOracle.md) |
-| LCU / PREPARE--SELECT | finite sums of known blocks | prepare weights, select a block, project back | [`BE.LCU.PrepareSelect`](research-wiki/block-encoding-library/cards/BE.LCU.PrepareSelect.md) |
-| Dilation fallback | dense contraction or small seed | 2-by-2 contraction rotations give an exact fallback unitary | [`BE.Contraction.SVDDilation`](research-wiki/block-encoding-library/cards/BE.Contraction.SVDDilation.md) |
-| Qubitization / QSVT consumer | polynomial transform after a BE exists | consume a proved BE; do not hide the original oracle construction inside QSVT | [`BE.QSVT.ConsumerContract`](research-wiki/block-encoding-library/cards/BE.QSVT.ConsumerContract.md), [`qsvt-hard-hint-route.md`](research-wiki/block-encoding-library/qsvt-hard-hint-route.md) |
-
-The table below is the public Lean module map.  External Lean libraries remain
-searchable references unless they are added as audited dependencies.
-
-The domain-oriented lemma tree is the fastest entry point for researchers. It
-shows mathematical dependency rather than file-import order; the generated
-declaration index below supplies exact theorem locations.
-
-![ABEIS Lean lemma tree](docs/assets/abeis_lean_lemma_tree.svg)
-
-| Family | Main Lean surface | Representative compiled leaves | Why it matters |
-| --- | --- | --- | --- |
-| State-preparation core | `StatePreparation.lean` | `StatePreparationTarget`, `FirstColumnMatches`, exact/approximate verified records, zero-error promotion | makes the first-column application a generic library contract rather than a cubic-task convention |
-| Concrete semantic bridges | `ConcreteSemantics.lean` | `applyVec_zeroKet`, `firstColumnMatches_iff_applyVec_zeroKet`, `productRegisterBlockProjection_flatToProductRegister`, `signalSystemBlockProjection_eq_cleanBlockProduct` | connects first-column and flattened-register contracts to finite matrix action and explicit product-register projection without claiming candidate-level unitarity |
-| Finite matrix core | `Core.lean`, `CircuitSemantics.lean` | `Matrix`, `PointwiseEq`, `evalWith_mul_apply`, `evalWith_mul_unique_path`, `evalWith_mul_two_path` | keeps circuit products and branch sums small enough for one-agent leaves |
-| Clean-block/projector extraction | `BlockEncodingClassics.lean` | `cleanBlockBy_permMatrix_entry`, `cleanBlockProduct_permMatrix_entry`, `cleanBlockBy_permMatrix_eq_target_of_entry`, `ExactCleanBlock.clean_eq_target` | turns a block-encoding theorem into entrywise matrix equalities |
-| Permutation and unitarity | `BlockEncodingClassics.lean`, `MainCase.lean` | `permMatrix`, `columnInner`, `rowInner`, `permMatrix_isRationalOrthogonal_of_bijective`, `partialPermutationCertificate` | proves exact reversible completions and BE Case 1 transfer operators |
-| Sparse and value-oracle routes | `BlockEncodingClassics.lean` | `oneSparseMatrix_entry_if`, `oneSparse_from_support`, `sparseColumnCleanEntry_unique_slot`, `rowColumnSparseDeltaEntry`, `ValueToAmplitudeContract.correct` | formalizes the textbook sparse-access and compute-rotate-uncompute patterns |
-| LCU/product/dilation/QSVT | `BlockEncodingClassics.lean` | `oneTermLCU_cleanBlock`, `weightedSum2_entry`, `productExactCleanBlockCertificate`, `scalarDilation_cleanEntry`, `chebyshevT_*`, `QSVTConsumerContract` | gives route skeletons for composition, fallback seeds, and polynomial consumers |
-| Approximate/resource layer | `BlockEncoding.lean`, `Resources.lean`, `Circuit.lean`, `BlockEncodingClassics.lean` | approximate-BE records, `exactAsZeroErrorApproxCleanBlock_bound`, resource tuple/depth/gate leaves | separates correctness from the optimization objective |
-| Task consumers | `MainCase.lean`, `CubicStatePreparation.lean`, `GHL2025.lean` | task-local verified candidates and paper/source wrappers | examples should consume generic leaves rather than redefine them |
-
-External Lean code is kept as memory/reference material, not silently copied
-into ABEIS proofs.  The relevant cards are:
-
-- [`quantum-computing-lean`](research-wiki/external-lean-libraries/quantum-computing-lean.md): finite matrices, states, gates, projectors, gate actions, and unitarity proof organization.
-- [`Lean-QuantumInfo`](research-wiki/external-lean-libraries/lean-quantuminfo.md): finite-dimensional quantum-information proof style.
-- [`lean-quantum`](research-wiki/external-lean-libraries/lean-quantum.md): channels, qudits, trace/norm, and operator-oriented conventions.
-- [Lean-QAlg-Bench][lean-qalg-bench] and [Lean-QIT-Bench][lean-qit-bench]: audited benchmark-local Base/Definitions APIs for finite operator action, projected blocks, tensors, states, and channels.  Their Statement theorems are unresolved benchmark targets and are never imported as proof memory.
-- [`research-wiki/mathlib-lemmas/`](research-wiki/mathlib-lemmas/): Mathlib hits that should be reused or adapted before inventing local infrastructure.
-
-Machine-readable and human-readable retrieval files:
-
-- [`compiled-lean-leaf-index.md`](research-wiki/block-encoding-library/compiled-lean-leaf-index.md) and [`compiled-lean-leaf-index.json`](research-wiki/block-encoding-library/compiled-lean-leaf-index.json): generated declaration ledger.
-- [`lean-leaf-module-graph.md`](research-wiki/block-encoding-library/lean-leaf-module-graph.md): textual ledger behind the graph.
-- [`lean-lemma-tree.md`](research-wiki/block-encoding-library/lean-lemma-tree.md): domain-oriented dependency paths for State Preparation, BE Case 1, and BE Case 2.
-- [`quantum-lean-leaf-atlas.md`](research-wiki/block-encoding-library/quantum-lean-leaf-atlas.md): relationship between ABEIS leaves, Mathlib, and nearby quantum Lean projects.
-- [`route-selector.md`](research-wiki/block-encoding-library/route-selector.md): route-intuition guide for upper/middle agents.
-- [`proof-network.md`](research-wiki/block-encoding-library/proof-network.md): proof-DAG view of reusable textbook leaves.
-- [`classic_leaves.tex`](paper-notes/block-encoding-library/classic_leaves.tex): human-facing LaTeX proof templates.
-
-Harness proof-engineering rules:
-
-1. Decompose aggressively: each active theorem should fit one agent context and one stable local API.
-2. Specify more than the theorem: include intended definitions, proof route, parent theorem, and Mathlib search terms.
-3. Treat persistent failure as mathematical signal: recheck the statement, missing assumptions, or counterexamples before retrying tactics.
-4. Make hidden regularity reusable: cleanup, boundedness, nonemptiness, injectivity, support uniqueness, and norm bounds become named contracts.
-5. Do not frequently change the proof route once reviewer accepts a well-typed leaf; if the route changes, write a failure-memory packet.
-
-Before adding generic Lean infrastructure, agents should search Mathlib:
-
-```bash
-python3 tools/qbe.py mathlib-search "Matrix.mul_apply"
-```
-
-If the theorem exists but cannot be imported directly yet, the proof packet
-should still name the Mathlib module and assign only the smallest ABEIS adapter
-as local work.
-
-The promoted technical-lemma registry is
-[`research-wiki/technical-lemmas/registry.json`](research-wiki/technical-lemmas/registry.json).
-It distinguishes a compiled local declaration from completion of its broader
-construction route and is checked by
-`python3 tools/check_technical_lemma_registry.py`.
-
-Human interaction is a first-class upper-layer input, not an out-of-band chat.
-ABEIS records three human-facing intervention moments: scheduled 6h closeout,
-direct user questions, and user status checks followed by new top-level
-instructions.  Upper and middle agents should treat those interventions as
-strategy updates, then translate them into task packets, proof obligations, or
-candidate-population changes before lower agents continue.
-
-If exact search fails to meet the user-specified resource floor within the
-configured budget, a privileged upper/reviewer role may request approximate BE
-search.  Capacity or exploration changes take effect only through typed
-feedback signed with the current proof-leaf and Lean-evidence digests.  Plain
-"stalled" log text never expands panels.  If the current state is unchanged
-for its bounded decision/proof budget, the controller stops and writes
-`runs/control/<task>-intervention.md` instead of continuing to spend tokens.
-Once Scenario 2 approximate search is opened, that is a phase lock: old exact
-leaves may remain as bounded dependencies or negative evidence, but the active
-objective must name an epsilon tier, an error budget, and a Lean-checkable
-approximate statement.
-
-## BE Case 1: Transfer Operator
-
-The first block-encoding case is the transfer-operator task. The user-facing
-case name is now **BE Case 1**. The existing Lean module
-`MainCase.lean` is retained as a compatibility surface so downstream imports
-and theorem names do not break.
-
-```text
-E_k = |0><k|_time ⊗ |0><1|_type ⊗ I
-```
-
-ABEIS records two parallel attempts for the concrete `r = 1, k = 1` instance.
-Both report only Lean-certified candidates as achieved points, and both include
-a post-Lean Qiskit export check.
-
-| Run | Harness and inputs | Certified result | Score |
-| --- | --- | --- | --- |
-| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | no-Pro Hierarchical Harness attempt | `coldE1Candidate_blockProjection`, `coldE1CandidateImage_permutation_certificate` | `(4,4,1,0)`; Qiskit export passed |
-| `QBE-OP-OPTCTRL-001` | Pro-assisted evolution attempt | `OptimalControl.evolvedEqFlipVerified`, `OptimalControl.evolvedEqFlipZeroErrorApprox` | `(4,2,1,0)`; Qiskit export passed |
-
-The no-Pro attempt shows the base harness recovering a correct finite
-permutation block encoding from the operator contract.  The Pro-assisted
-attempt injects an external Pro construction/proof packet after the run has
-already started, just like a human intervention; the packet affects planning
-only after the task-local Lean proof obligations are generated and discharged.
-
-The three figures below use the same visual grammar as BE Case 2: first the
-certified construction sequence, then convergence by certified proof step,
-then the lexicographic selection table.
-
-![BE Case 1 certified candidate sequence](docs/assets/be_case1_candidates.svg)
-
-The oracle-labelled seed is intentionally separated from the expanded logical
-gate tier.  Within the expanded tier, the certified frontier improves from
-`(6,5,1,0)` to `(4,4,1,0)` and then `(4,2,1,0)`.
-
-![BE Case 1 certified frontier by proof step](docs/assets/be_case1_convergence.svg)
-
-![BE Case 1 lexicographic selection table](docs/assets/be_case1_score_table.svg)
-
-This is a concrete `r = 1, k = 1` logical reversible permutation-matrix
-certificate.  It is not claimed as a hardware-decomposed theorem, a general
-arbitrary-register theorem, or a Lean-proved global optimality theorem.
-
-Detailed human-readable status:
-
-```text
-reports/QBE-OP-OPTCTRL-COLD-CLEAN-001/latest.md
-reports/QBE-OP-OPTCTRL-COLD-CLEAN-001/zh_summary.md
-paper-notes/problem-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/latest.tex
-reports/QBE-OP-OPTCTRL-001/latest.md
-paper-notes/problem-exports/QBE-OP-OPTCTRL-001/latest.tex
-executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py
-executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py
-```
-
-## Active State-Preparation Benchmark
-
-`QBE-OP-CUBIC-STATEPREP-001` is the first hard state-preparation-style
-benchmark:
-
-```text
-O_n |0^n> = sum_j (j / 2^n)^3 |j>
-```
-
-The vector on the right is not normalized.  The task therefore records the
-user-level state-preparation intention and the Lean-checkable fallback
-operator `O_n = |v_n><0^n|`.  A normalized state-preparation target would be
-`|v_n / ||v_n||>`, while the rank-one fallback can feed the block-encoding
-pipeline.  ABEIS should try exact candidates briefly, then switch to
-approximate search with the requested tolerance `epsilon = 1e-10`.
-
-Current status:
-
-- Lean target declarations compile in `QuantumBlockEncoding.CubicStatePreparation`;
-- the task, proof blueprint, proof obligations, candidate population, and
-  verifier feedback are initialized;
-- dense executable checks are treated as small-instance diagnostics, while the
-  intended scalable route is symbolic arithmetic plus Lean family proof;
-- no final approximate state-preparation or block-encoding candidate has been
-  promoted yet.
-
-State-preparation diagnostics:
-
-```text
-reports/cubic-stateprep/latest.md
-reports/cubic-stateprep/zh_summary.md
-```
-
-## BE Case 2: Cubic Diagonal Operator
-
-The separate operator target
-
-```text
-D_n = sum_j (j / 2^n)^3 |j><j|
-```
-
-is now closed symbolically by the rational Householder family.  The hinted arm
-also certifies the linear input `O_0 = diag(j / 2^n)` and proves the local
-identity `O_0^3 = D_n`; QSVT remains an optional resource-optimization backend,
-not an open correctness dependency.  Final task completion requires both the
-Lean roots and the declared finite executable gate.
-
-| Arm | Lean roots | Finite Qiskit/QASM3 acceptance (`n=2`) |
-| --- | --- | --- |
-| cold | exact cubic clean block, rational orthogonality, `alpha=1`, resource tuple | passed; clean-block error `0`, unitarity error `2.3e-16`, parsed QASM3 |
-| hinted | exact linear `O_0` root plus exact cubic root | passed; both clean-block errors `0`, maximum unitarity error `2.3e-16`, parsed QASM3 |
-
-![BE Case 2: isolated cold and hinted arms](docs/assets/be_case2_cold_hinted.svg)
-
-BE Case 2 uses the same three reader views as BE Case 1.  Its middle product
-object is deliberately shown in amber: `LCUCertificate` proves the cubic clean
-block, but does not itself package a unitary completion.  The conditional
-primitive amplitude-oracle candidate is likewise excluded from the winning
-population until its semantic contract is closed.
-
-![BE Case 2 certified construction milestones](docs/assets/be_case2_candidates.svg)
-
-The next plot shows proof-closure order, not wall-clock time or a reconstructed
-token trace.  Both isolated arms reach the full cubic root and executable
-acceptance; the hinted arm additionally closes the linear supplier and cubic
-product clean-block card.
-
-![BE Case 2 certified closure by proof milestone](docs/assets/be_case2_convergence.svg)
-
-![BE Case 2 eligibility and lexicographic score table](docs/assets/be_case2_score_table.svg)
-
-For the complete Householder roots, the displayed logical tuple is
-`(1,1,3,1)`: the `8N` matrix dimension contributes three auxiliary qubits,
-while the compiled resource theorem records one oracle label at depth one.
-The finite `n=2` QASM counts (`638` gates, depth `465` for the cubic export)
-belong to a lower compilation tier and are not mixed into that logical score.
-
-The mathematical path is not a monolithic tactic trace.  The proof DAG exposes
-the reusable number-theory, rational-vector, Householder, controlled-direct-sum,
-clean-block, and orthogonality leaves.  The hinted `O_0` path remains visible,
-while the direct cubic root makes QSVT optional for correctness.
-
-![BE Case 2 exact proof DAG](docs/assets/be_case2_proof_dag.svg)
-
-Reproducible closeout artifacts:
-
-```text
-tasks/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001.md
-tasks/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001.md
-executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001/
-executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001/
-reports/ABEIS-CONTROL-V5/cold-start-population-audit.json
-reports/BE-CASE-2/frozen-acceptance.json
-```
-
-## Why Lean For State Preparation And Block Encodings
-
-Executable quantum tooling such as Qiskit, QuantumKatas, and QASM evaluators is
-very useful for small concrete circuits: it can run a statevector, materialize
-a unitary, or check a sample OpenQASM program.  That is not enough for many
-state-preparation and block-encoding tasks, where the real claim is a symbolic
-family of circuits indexed by register sizes, amplitude formulas,
-sparse-access promises, normalizers, and ancilla cleanup conditions.
-
-For an `r`-qubit time register, dense statevector/unitary validation pays the
-Hilbert-space dimension directly.  Even a structurally simple family like
-
-```text
-E_k = |0><k|_time ⊗ |0><1|_type ⊗ I_state
-```
-
-requires a dense `2^(r+3) × 2^(r+3)` matrix if we insist on checking it by
-materializing the full unitary.  ABEIS instead aims to prove symbolic Lean
-theorems about the circuit family.  The proof checker follows the proof
-structure; it does not need to enumerate the whole Hilbert space for every
-larger `r`.
-
-![Dense verifier memory forecast](docs/assets/verifier_hard_scaling_forecast.png)
-
-At `r = 20`, a full dense complex128 unitary for this simple family would
-already require about `1 PiB` of memory.  At `r = 32`, it is about `16 ZiB`.
-This is where ABEIS should stop asking a simulator to materialize the whole
-matrix and instead ask Lean for a symbolic theorem about the circuit family.
-
-ABEIS still uses finite executable checks when they help.  They are useful as
-small-instance checks, counterexample generators, and necessary-condition
-diagnostics.  They are not promoted to scientific claims until the
-advertised block-entry, unitarity, cleanup, and resource statements are closed
-by Lean.
-
-After a Lean certificate closes, ABEIS can emit runnable artifacts for users:
-Qiskit Python circuits with exact finite assertions, QuantumKatas-style task
-and test files, and OpenQASM transcripts with parser and fixed-instance checks.  These
-exports are engineering deliverables, not replacements for the Lean theorem.
-For symbolic families, the exported code records the concrete instantiation it
-implements; the Lean theorem remains the reusable, parameterized certificate.
-
-Current Qiskit exports:
-
-- `executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py`: exported from a
-  Lean-certified exact concrete champion.
-- `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py`:
-  exported from the no-Pro Lean-certified cold-clean checkpoint.
-- `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py`: finite
-  dense baseline for small `n`; useful evidence, not a symbolic certificate.
-- `tools/export_hard_cubic_householder.py`: deterministic post-Lean exporter
-  shared by the cold and hinted BE Case 2 arms.
-
-Current executable-export self-tests:
-
-| Task | Qiskit artifact | Status | What it checks |
-| --- | --- | --- | --- |
-| `QBE-OP-OPTCTRL-001` | `executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py` | passed: clean block error `0`, unitary error `0` | the exported four-qubit Qiskit circuit matches the Lean-certified concrete clean block and resources `(4,2,1,0)` |
-| `QBE-OP-OPTCTRL-COLD-CLEAN-001` | `executable-exports/QBE-OP-OPTCTRL-COLD-CLEAN-001/qiskit/export.py` | passed: clean block error `0`, unitary error `0`, export error `0` | the no-Pro finite permutation export matches the Lean-certified clean block and resources `(4,4,1,0)` |
-| `QBE-OP-CUBIC-STATEPREP-001` | `executable-exports/QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py` | passed for finite `n=3`; clean block error about `2.8e-17` | a dense fixed-instance baseline only; not a symbolic family certificate |
-| `QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001` | generated Qiskit acceptance JSON and parsed QASM3 | passed for finite `n=2`; clean block error `0` | post-Lean check of the direct rational Householder family |
-| `QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001` | generated linear/cubic Qiskit acceptance JSON and parsed QASM3 | passed for finite `n=2`; both clean block errors `0` | checks the hinted `O_0` supplier, the cubic output, and `diag(x)^3=diag(x^3)` |
-
-## Why The ABEIS Harness
-
-Qiskit QuantumKatas and QASM-Eval are good at testing submitted executable
-artifacts.  QUASAR and AI-Mandel are useful examples of tool-feedback loops
-for quantum artifacts.  Local public artifacts checked so far do not expose a
-direct generic constructor for "given a target state or operator `A`,
-synthesize and prove a symbolic unitary family."  ABEIS targets that stricter
-task:
-
-```text
-given a state-preparation or oracle/operator requirement,
-construct a candidate unitary U,
-prove the state-action or block-entry theorem in Lean,
-rank certified candidates by resources,
-and then export runnable circuits for users.
-```
-
-ABEIS currently tests two compatible harness profiles.  Neither is declared
-better in advance.
-
-| Harness | Organization | When it may help |
-| --- | --- | --- |
-| **Hierarchical Harness** | One upper/middle/lower/reviewer stack, with human and ChatGPT Pro as upper-level intervention channels.  The lower layer has a natural-language architect, a Lean worker, and a necessary-condition verifier.  Middle agents coordinate their handoffs and maintain the insight population. | Targets where one coherent planner can keep the natural-language and Lean tracks synchronized without much duplicated strategy work. |
-| **Game Harness** | Two semi-independent hierarchical teams plus a Game Council.  The Natural-Language Team has its own upper/middle/lower stack and competes by producing reviewer-plausible human proofs.  The Lean Team has its own upper/middle/lower stack and competes by producing compiled Lean certificates.  The independent team directors and middle curators can run in parallel; the Game Council then transfers insights both ways, decides capacity increases, and controls exact-to-approximate phase switches. | Targets where strategic diversity matters, or where natural-language insight and Lean formalization keep failing to reuse each other. |
-
-Both harnesses use the same acceptance rule: only Lean-certified constructions
-enter the certified population or appear as achieved points in evolution
-curves.  Natural-language sketches, simulator checks, Qiskit tests, and Pro
-answers can guide search, but they are not final certificates.
-
-Both harnesses also have the same user-facing closeout and external-input rule.  Users may inject their own strategy notes, ChatGPT Pro answers, external AI suggestions, candidate block encodings, or natural-language proofs.  These inputs enter the run as explicit intervention packets.  The harness may route them into the active plan, the insight population, or rejected-route memory; in the Game Harness, the Game Council decides whether to send them to the Natural-Language Team, the Lean Team, or both.  They are never accepted, plotted, or exported as achieved solutions until Lean certifies them.
-
-If the Lean Team closes a certificate, the Natural-Language Team translates it into a human-readable proof note.  If the Natural-Language Team finds a reviewer-plausible construction first, the Game Council sends it to the Lean Team for formalization.  After a Lean certificate closes, ABEIS should export:
-
-- a step-by-step LaTeX block-encoding statement and proof that a user can copy
-  into a paper;
-- circuit diagrams and evolution curves for every Lean-certified exact or
-  approximate candidate used in BE Case 1;
-- checked executable artifacts such as Qiskit, QuantumKatas-style tests, or
-  QASM for the certified construction.
-- a proof-DAG figure showing the root target, dependencies, verified leaves,
-  rejected leaves, and postponed external contracts such as QSVT.
-
-Detailed timing, route-ablation, external-verifier records, and harness-profile
-comparisons are kept in `reports/` and run directories.  The README states the
-scientific contract and the user workflow; the detailed evidence belongs in the
-technical report and generated case-study summaries.
-
-## Benchmark Paper Cases
-
-Paper reproduction remains important, but as benchmark data for the core
-operator-construction system.
-
-The first active paper benchmark is:
-
-- Guseynov--Huang--Liu,
-  [Quantum framework for simulating linear PDEs with Robin boundary conditions](https://arxiv.org/abs/2506.20478).
-
-The benchmark Lean file is:
-
-```text
-QuantumBlockEncoding/GHL2025.lean
-```
-
-Paper-benchmark mode should reproduce the paper construction and resource
-score first.  Any improvement search belongs in a separate operator task with
-the same target operator.
-
-## Quick Start
-
-```bash
-cd Quantum-Computing-Block-Encoding
-
-python3 tools/qbe.py init
-python3 tools/qbe.py list-literature
-python3 tools/qbe.py next-task
-python3 tools/qbe.py check
-```
-
-The mandatory acceptance gate is:
-
-```bash
-lake build && lake build Tests
-```
-
-`python3 tools/qbe.py check` also runs the deterministic harness suite before
-the Lean gates.  For a read-only lifecycle and memory replay, run:
-
-```bash
-python3 tools/qbe.py harness-audit
-```
-
-The audit resolves completion from current Lean roots plus declared executable
-artifacts, reports stale `HUMAN_STATUS.md` state, and compares full-log size
-with the latest ten task-specific records. It never reopens or edits a task.
-
-## Use ABEIS
-
-ABEIS has three equivalent user entrypoints.  All three must produce the same kind of task packet, agent profile, run logs, Lean gate, human-language summary, Pro-prompt, and optional post-Lean executable exports.  The intended rule is: if the same model backend and prompt profile are used, the CLI template, an AI chat window, and the website should differ only in convenience, not in scientific target or acceptance criteria.
-
-1. **Local CLI template.**  Download the repository, replace the state or operator text in a template command, and run `tools/qbe.py`.
-2. **AI chat window.**  Download the repository and tell Codex, Claude, GLM, Gemini, Minimax, or another coding agent: “Use the ABEIS system in this repository to solve the following state-preparation or block-encoding problem.”  The agent should call the same `ingest-user-problem`, `sleep-run`, and `check` commands as the CLI template.
-3. **Website task builder and dashboard.**  Use the website in `web/` in either
-   local mode or hosted mode.  Local mode means: download the repository, serve
-   `web/` in a browser, paste the oracle description, then run the generated
-   local CLI/runner command with Codex, Claude, GLM, Gemini, Minimax, or a
-   custom wrapper installed on that machine.  Hosted mode means: use the public
-   page without downloading first, but provide a user-owned API key or
-   self-hosted runner endpoint.  In both modes, the page generates the same task
-   packet and renders the same dashboard artifacts: exact/approximate curves,
-   certified circuit storyboards, selected-language summaries, Pro prompts, and
-   post-Lean Qiskit/QuantumKatas/QASM export status.
-
-Main local CLI workflow for the simpler state-preparation direction:
-
-```bash
-python3 tools/qbe.py new-task QBE-SP-001 \
-  --kind statePreparation \
-  --mode statePreparation \
-  --title "Prepare my target quantum state" \
-  --target-lean "QuantumBlockEncoding/MyStatePreparation.lean"
-
-python3 tools/qbe.py sleep-run QBE-SP-001 \
-  --cycles 2 \
-  --agent-profile codex-parallel.example.json \
-  --execute \
-  --check-each-cycle
-```
-
-Main local CLI workflow for block encoding:
-
-```bash
-python3 tools/qbe.py new-task QBE-OP-001 \
-  --kind operatorBlockEncoding \
-  --mode operatorBlockEncoding \
-  --title "Construct a block encoding for my query operator" \
-  --target-lean "QuantumBlockEncoding/MyOperator.lean"
-
-python3 tools/qbe.py sleep-run QBE-OP-001 \
-  --cycles 2 \
-  --agent-profile codex-parallel.example.json \
-  --execute \
-  --check-each-cycle
-```
-
-`sleep-run` uses adaptive capacity by default: it starts with a small queue
-(upper director, middle coordinator, one lower worker, reviewer/build gate) and
-expands upper, middle, or lower capacity only after a current signed
-upper/reviewer decision identifies that layer's bottleneck.  For
-state-preparation and operator-construction tasks, the default
-`--exact-stall-cycles 2` allows the controller to open Scenario 2 approximate
-search after a short exact-search patience budget when no Lean-certified exact
-candidate exists.  Add `--fixed-capacity` only for ablation runs where every
-cycle should consume the requested full panel and lower-agent counts.
-
-The scheduler reads one canonical `## Current Obligation State [ACTIVE]` table
-per task; middle agents replace that table instead of stacking contradictory
-"current" sections.  Exit code 75 means the deterministic controller needs
-human intervention.  Exit code 78 means the configured model provider rejected
-usage, authentication, permission, or model access, so launchers stop instead
-of spending time in an unattended retry loop.
-
-Controller-owned files serialize mutations by canonical path. A task-keyed OS
-lease prevents two `sleep-run`
-processes from dispatching the same task at once; the kernel releases that
-lease if a process or screen is killed. Shared JSON is replaced atomically and
-JSONL appends are lock-protected. Each compact memory packet includes an
-authoritative state capsule for the contract, dimensions, register/ancilla
-conventions, `alpha`, tolerance phase, compiled declarations, route
-fingerprints, and executable evidence; generated prose cannot override it.
-Panel and auxiliary-lower execution is sequential by default because arbitrary
-external agent edits cannot be intercepted by the file coordinator. Enable
-`--parallel-panels` or `--parallel-lower` only for isolated worktrees or
-declared disjoint mutation scopes.
-
-Tasks may additionally declare `Executable acceptance command` and
-`Executable acceptance artifacts`.  In that case a compiled Lean root enters
-`post_lean_export`; `complete` is unreachable until the command exits zero and
-all artifacts exist under the same command/artifact digest.  An unchanged
-failed exporter is not rerun.
-
-Choose a harness profile explicitly when you want controlled comparisons:
-
-```bash
-# Hierarchical Harness, the default
-python3 tools/qbe.py sleep-run QBE-OP-001 \
-  --cycles 2 \
-  --hierarchical-harness \
-  --agent-profile codex-parallel.example.json \
-  --execute \
-  --check-each-cycle
-
-# Game Harness
-python3 tools/qbe.py sleep-run QBE-OP-001 \
-  --cycles 2 \
-  --game-harness \
-  --natural-lower-count 2 \
-  --lean-lower-count 2 \
-  --agent-profile codex-parallel.example.json \
-  --execute \
-  --check-each-cycle
-```
-
-The harness-specific lower counts above are maxima under adaptive capacity, not
-a promise to run every listed agent in every cycle.  The controller starts
-small, expands only on recorded stagnation, and writes the effective capacity
-policy into each run's `00_context.md`.
-
-Case-study hyperparameters are recorded under `run-presets/`.  In particular,
-`run-presets/main_case_hierarchical_reproduction.md` is the current public
-entry point for replaying BE Case 1 with isolated no-Pro
-and mid-run Pro-assisted Hierarchical Harness arms.  The cubic-diagonal hard case is
-recorded in `run-presets/hard_hier_hinted_exact_to_approx.md`.
-
-For a fair profile comparison, run both harnesses in isolated worktrees with
-the same task packet, model profile, report language, active-time budget, and
-Lean gate.  Both profiles must produce the same closeout artifacts: selected-
-language summaries, ChatGPT Pro prompt if unresolved, a user-copyable LaTeX BE
-proof after Lean closure, and checked executable exports such as Qiskit,
-QuantumKatas-style tests, or QASM.
-
-The harness is vendor-neutral: a profile under `agent-profiles/` can dispatch roles to Codex, Claude, GPT/OpenAI wrappers, Gemini, GLM, Minimax, or local tools.  The web page is not a public model-credit service.  In local-web mode it helps a downloaded checkout run local CLIs and then renders runner JSON.  In hosted-web mode it uses the user's API key or self-hosted runner endpoint.  For comparable results across the three entrypoints, keep the same task id, raw source artifact, report language, agent profile, active-budget policy, and Lean gate.  Long runs write summaries in the user's chosen language and export a problem-specific LaTeX proof note at `paper-notes/problem-exports/<task-id>/latest.tex`.
-
-Users can also request post-certification executable outputs.  The static web
-builder and task packets support Qiskit, QuantumKatas-style exercises, and
-OpenQASM/QASM exports.  The harness should generate and check those artifacts
-only after the corresponding Lean certificate is accepted, unless a task
-explicitly marks them as pre-Lean diagnostics.  See
-[`docs/executable_exports.md`](docs/executable_exports.md).
-
-Progress during a run is visible in these files:
-
-- `runs/<run-id>/dialogue.md`: role-tagged upper/middle/lower/reviewer handoffs.
-- `runs/<run-id>/summary.md` and `zh_summary.md` or the selected-language equivalent: human-readable closeout.
-- `runs/<run-id>/chatgpt_pro_prompt.md`: self-contained prompt for external deep reasoning if unresolved leaves remain.
-- `runs/<run-id>/todo.md` and `memory_digest.md`: compact next-cycle state.
-- `runs/logs/*.log`: raw execution log.
-- `paper-notes/problem-exports/<task-id>/latest.tex`: user-copyable proof note after closeout.
-- `reports/<task-id>/dashboard.json`, `evolution.json`, and
-  `circuit_storyboard.json`: optional web-dashboard inputs for rendering
-  champion status, exact/approximate curves, BE diagrams, and executable export
-  checks.
-- `reports/<task-id>/figures/`: reader-facing PNGs for the same information:
-  evolution curve, certified-circuit storyboard, Qiskit/export status, and
-  proof-DAG blueprint.  Only Lean-certified candidates may be plotted as
-  achieved solutions.
-
-Project layout:
-
-- `QuantumBlockEncoding/`: Lean definitions, circuits, resources, and theorem
-  certificates.
-- `tasks/`: operator or paper-benchmark contracts.
-- `candidate-populations/`: Lean-certified candidates and rejected routes.
-- `failure-memory/`: compact typed failure packets and rejected-route lessons.
-- `research-wiki/block-encoding-library/`: reusable construction memory cards
-  and route selector for partial permutations, LCU, product/tensor arithmetic,
-  sparse-access, dilation, QSVT consumers, and approximate dense/structured
-  block encodings.
-- `research-wiki/state-preparation-library/`: state-preparation route memory,
-  including first-column checks, gate anchors, arithmetic amplitude loading,
-  dense completion, and PREPARE-to-block-encoding handoffs.
-- `conversion-windows/`, `proof-blueprints/`, `proof-obligations/`: compact
-  proof state and Lean/natural-language correspondence.
-- `executable-exports/`: post-Lean Qiskit, QuantumKatas, QASM, and related
-  runnable artifacts for certified constructions.
-- `tools/qbe.py`: orchestration CLI.
-- `docs/`: deployment and long-run guides.
-
-## Related Work And Similar Patterns
-
-ABEIS adapts patterns from adjacent systems, but specializes them to
-gate-level quantum block-encoding certificates.
-
-| Work | Similar pattern | ABEIS counterpart design |
-| --- | --- | --- |
-| [ARIS][aris] | Plain-file autonomous research workflow and review. | Task files, skills, manifests, reviews, run logs. |
-| [Learning Beyond Gradients][lbg] | Layered feedback and trial memory. | Upper/middle/lower/reviewer loops and compact summaries. |
-| [EoH][eoh] | Evolutionary candidate populations. | Mutate/recombine candidate block-encoding circuits under a fixed target. |
-| [LeanMarathon][leanmarathon] | Proof blueprint, dynamic leaves, CI gates. | Proof-blueprint snapshots and focused theorem-closure work. |
-| [LeanSearch v2][leansearch-v2], [REAL-Prover][real-prover] | Global premise retrieval and retrieval-augmented Lean proof search. | Before inventing a block-encoding proof leaf, retrieve Mathlib/external premises and pass them to lower Lean workers with the intended route. |
-| [Matlas][matlas-paper] | Semantic mathematical statement retrieval with dependency context. | Upper/middle agents use it as source-discovery inspiration for analogous block-encoding constructions, never as a proof certificate. |
-| [Rethlas][rethlas-repo], [Archon][archon-repo], [Automated Conjecture Resolution][acr-paper] | Natural-language exploration paired with Lean formalization. | Game/Hierarchical harnesses keep NL construction and Lean construction cooperating, but Lean clean-block/unitarity certificates remain final. |
-| [Chain-of-States][chain-of-states-paper], [Herald][herald-paper] | Intermediate proof-state chains and NL annotations of Lean declarations. | Middle agents translate candidate circuit proofs into explicit state chains and human-readable proof packets before assigning leaves. |
-| [Iteris][iteris-paper] | Explore--plan--execute loops with durable project-local state. | ABEIS keeps operator targets, candidate populations, cost curves, verifier feedback, and exports as inspectable state. |
-| [AlphaProof Nexus][alphaproof-paper], [repo][alphaproof-repo] | Independent Lean subagents plus evolutionary coordination for hard proof search. | Evidence for ABEIS's evolve/recombine candidate population, but ABEIS adds block-encoding cost metrics and Qiskit export. |
-| [MathCode][mathcode] | Proof diagnostics and theorem reuse. | Hidden-assumption scans and reusable proof-attempt memory. |
-| [Visored][visored-paper], [repo][visored-repo] | Controlled-natural-language proof surface with localized diagnostics and optional Lean emission. | Structured proof packets as a two-way exchange format between natural-language construction, Lean proof work, and human proof exports. |
-| [Lean4Agent][lean4agent-paper] | Workflow/trajectory verification. | Lean-side process contracts in `Automation.lean`. |
-| [EAGER-style failure traces][eager-paper] | Reasoning-trace failure representation and failure-scope retrieval. | `failure-memory/` packets that distinguish fine proof-leaf failures from coarse route/source failures. |
-| [MADE-style judge evolution][made-paper] | Decomposed requirement judging for evolutionary search. | Reviewer vectors over target, unitarity, clean block, normalizer/error, resources, proof reuse, source faithfulness, and exportability. |
-| [quantum-computing-lean][quantum-computing-lean], [Lean-QuantumInfo][lean-quantuminfo], [lean-quantum][lean-quantum] | Quantum formalization references: finite matrices, states, gates, projectors, quantum-information semantics. | Leaf-atlas references for small gate/action lemmas, clean-projector APIs, and future semantic alignment. |
-| [Zhang et al. (2026), *Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information*, arXiv:2607.21533][qbench-paper], [Lean-QAlg-Bench][lean-qalg-bench], [Lean-QIT-Bench][lean-qit-bench] | Task-only and library-assisted evaluation surfaces for quantum-algorithm and quantum-information proving. | Audited Base/Definitions declarations inform small local adapters; unresolved Statement files are excluded. ABEIS reports `task-only`, `LAD`, and `full-abeis` separately. |
-| [QASM-Eval][qasm-eval], [Qiskit QuantumKatas][qiskit-quantumkatas] | Typed circuit/test feedback and executable Qiskit/QASM checks. | ABEIS distinguishes inspired feedback, optional exact finite Qiskit checks, and Lean-certified theorem closure. |
-| [QUASAR][quasar-paper], [AI-Mandel][ai-mandel-paper] | Tool-feedback loops for quantum artifacts. | Search signals only; not proof certificates. |
-| [LLM4AD_Next][llm4ad-next] | Low-entry-barrier web interface. | Static oracle-to-task-packet builder. |
-| [Lexicographic bandits][lexelim-bandits] | Lexicographic active-set filtering. | Prioritize correctness, diagnostics, asymptotic tier, and cost tuple. |
-| [Hierarchical provers][hierarchical-provers], [statistical provability][statistical-provability] | Reusable proof cuts and finite-budget proof progress. | Named proof-DAG nodes and run-efficiency metrics. |
-
-More detail is in [`docs/automation_deployment.md`](docs/automation_deployment.md),
-[`docs/attribution.md`](docs/attribution.md), and [`NOTICE.md`](NOTICE.md).
-
-The QBench paper authors are Lei Zhang, Yusheng Zhao, Yimeng Cao, Ranyiliu
-Chen, Mingrui Jing, Jizhe Lai, Ziao Tang, Jingu Xie, Hongshun Yao, Xuanqiang
-Zhao, Guocheng Zhen, Chengkai Zhu, and Xin Wang.
-
-### QBench evaluation boundary
-
-Task files may declare one of three non-comparable evaluation modes:
-
-| Mode | Available context | Adaptive behavior |
-| --- | --- | --- |
-| `task-only` | fixed task statement and imported theorem environment | one `lower2` attempt plus deterministic review; no ABEIS memory |
-| `lad` | task plus curated library-assistance retrieval | one bounded attempt; no trials, failure history, population, capacity growth, or epsilon change |
-| `full-abeis` | audited memory cards, proof DAG, verifier feedback, and population | prerequisite routing and the signed adaptive controller are enabled |
-
-Existing tasks default to `full-abeis`.  Cross-mode solve rates, token use, and
-wall time must not be combined.  The audited QBench repositories use Lean
-4.30/4.31 while this checkout uses Lean 4.29.1, so they remain isolated
-references rather than direct dependencies.  Their full lexical declaration
-inventory and exact commits are recorded in
-[`qbench-external-declarations.json`](reports/QBE-OP-CUBIC-DIAGONAL-001/qbench-external-declarations.json).
-
-### Current semantic limits
-
-- The new complex certificate uses Mathlib's finite unitary-group predicate,
-  but legacy symbolic/rational candidates are not silently promoted to it.
-- Existing zero-error approximate block encodings are pointwise exact
-  statements.  A general operator-norm approximation layer is not yet proved.
-- Current LCU declarations cover arithmetic, clean-block interfaces, and small
-  finite certificates.  They do not yet establish a general unitary
-  PREPARE--SELECT--PREPARE construction; unused SELECT labels require an
-  identity completion before such a claim is valid.
-- Resource records are proof-carrying annotations only where a named theorem
-  connects them to circuit syntax.  No global resource-optimality theorem is
-  claimed.
-
-## Literature Roadmap
-
-The source of truth is `QuantumBlockEncoding/Literature.lean`.
-
-Selected block-encoding and oracle-construction targets:
-
-| Status | Paper | Target |
-| --- | --- | --- |
-| `active` | Guseynov--Huang--Liu, [Quantum framework for simulating linear PDEs with Robin boundary conditions](https://arxiv.org/abs/2506.20478) | `QuantumBlockEncoding/GHL2025.lean` |
-| `planned` | Guseynov--Huang--Liu, [Efficient explicit gate construction of block-encoding for Hamiltonians needed for simulating partial differential equations](https://arxiv.org/abs/2405.12855) | `QuantumBlockEncoding/GHL2025.lean` |
-| `planned` | Camps--Lin--Van Beeumen--Yang, [Explicit quantum circuits for block encodings of certain sparse matrices](https://arxiv.org/abs/2203.10236) | `QuantumBlockEncoding/Circuit.lean` |
-| `planned` | Camps--Van Beeumen, [FABLE: Fast Approximate Quantum Circuits for Block-Encodings](https://arxiv.org/abs/2205.00081) | `QuantumBlockEncoding/Circuit.lean` |
-| `planned` | Gilyen--Su--Low--Wiebe, [Quantum singular value transformation and beyond](https://arxiv.org/abs/1806.01838) | `QuantumBlockEncoding/BlockEncoding.lean` |
-| `planned` | Childs--Wiebe, [Hamiltonian simulation using linear combinations of unitary operations](https://arxiv.org/abs/1202.5822) | `QuantumBlockEncoding/BlockEncoding.lean` |
-| `planned` | Low--Chuang, [Hamiltonian Simulation by Qubitization](https://quantum-journal.org/papers/q-2019-07-12-163/) | `QuantumBlockEncoding/BlockEncoding.lean` |
-| `planned` | Sunderhauf--Campbell--Camps, [Block-encoding structured matrices for data input in quantum computing](https://arxiv.org/abs/2302.10949) | `QuantumBlockEncoding/Circuit.lean` |
-
-The construction memory library is in
-`research-wiki/state-preparation-library/` and
-`research-wiki/block-encoding-library/`.  The state-preparation memory records
-first-column checks, gate anchors, dense completion, and arithmetic amplitude
-loading.  The block-encoding memory is organized as a route selector plus
-theorem cards, so an agent can recognize when a target should be solved by
-partial permutation, LCU, product/tensor arithmetic, sparse-access Gram
-construction, density/purification, dilation, QSVT consumer contracts, or
-approximate dense/structured synthesis.
-
-## Citation
-
-```bibtex
-@misc{abeis2026,
-  author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
-  title = {{ABEIS: State Preparation and Block Encoding for Quantum Computing}},
-  year = {2026},
-  note = {Project page: \url{https://github.com/DakeBU/Quantum-Computing-Block-Encoding}}
-}
-```
-
-[aris]: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
-[lbg]: https://github.com/Trinkle23897/learning-beyond-gradients
-[eoh]: https://github.com/FeiLiu36/EoH
-[leanmarathon]: https://github.com/YuanheZ/LeanMarathon
-[mathcode]: https://github.com/math-ai-org/mathcode
-[visored-paper]: https://arxiv.org/abs/2606.17581
-[visored-repo]: https://github.com/xiyuzhai-husky-lang/visored
-[llm4ad-next]: https://github.com/Optima-CityU/LLM4AD_Next
-[lexelim-bandits]: https://xueb1996.github.io/pdf/AAAI-2026-Xue.pdf
-[lean4agent-paper]: https://arxiv.org/abs/2606.06523
-[eager-paper]: https://arxiv.org/abs/2603.21522
-[made-paper]: https://arxiv.org/abs/2511.19489
-[quasar-paper]: https://arxiv.org/abs/2510.00967
-[qasm-eval]: https://github.com/fuzhenxiao/QASM-Eval
-[qiskit-quantumkatas]: https://github.com/qiskit-community/Qiskit-QuantumKatas
-[ai-mandel-paper]: https://arxiv.org/abs/2511.11752
-[hierarchical-provers]: https://arxiv.org/abs/2602.10512
-[statistical-provability]: https://arxiv.org/abs/2602.10538
-[quantum-computing-lean]: https://github.com/duckki/quantum-computing-lean
-[lean-quantuminfo]: https://github.com/Timeroot/Lean-QuantumInfo
-[lean-quantum]: https://github.com/Hayata-Yamasaki-Group/lean-quantum
-[qbench-paper]: https://arxiv.org/abs/2607.21533
-[lean-qalg-bench]: https://github.com/QudeLeap/Lean-QuantumAlg-Bench
-[lean-qit-bench]: https://github.com/QuAIR/Lean-QIT-Bench
-[leansearch-v2]: https://github.com/frenzymath/LeanSearch-v2
-[real-prover]: https://github.com/frenzymath/REAL-Prover
-[matlas-paper]: https://arxiv.org/abs/2604.17484
-[rethlas-repo]: https://github.com/frenzymath/Rethlas
-[archon-repo]: https://github.com/frenzymath/Archon
-[acr-paper]: https://arxiv.org/abs/2604.03789
-[chain-of-states-paper]: https://arxiv.org/abs/2512.10317
-[herald-paper]: https://arxiv.org/abs/2410.10878
-[iteris-paper]: https://arxiv.org/abs/2606.02484
-[alphaproof-paper]: https://arxiv.org/abs/2605.22763
-[alphaproof-repo]: https://github.com/google-deepmind/alphaproof-nexus-results
+The full site build runs the Lean library and tests, declaration inventory,
+proof-trust checks, Blueprint consistency, Verso build, Quantumlib generation,
+internal link and fragment checks, source-link checks, and local-path leakage
+scan. Generated counts are written to `_site/build-report.json`; this README
+does not hard-code declaration totals.
+
+## Contribute
+
+Use the [Quantumlib contribution page](https://dakebu.github.io/Quantum-Computing-Block-Encoding/community/)
+or the Live Formalization Workspace. A substantial contribution should provide:
+
+- mathematical source and exact locator;
+- plain-language and LaTeX statements;
+- explicit conventions and assumptions;
+- Lean imports, code, and named dependencies;
+- diagnostics for the exact submitted text;
+- preferred contributor credit and MIT license consent.
+
+Historical `QBE-*` task IDs, `ABEISBlueprint` module names, and existing URLs
+remain unchanged for reproducibility and compatibility. New public prose uses
+**ASPBE** for the system and **Quantumlib** for the website.
+
+## License
+
+[MIT](LICENSE). External libraries and cited results retain their own licenses
+and attribution; linking or indexing them does not transfer authorship or
+proof status.

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dakebu.github.io/Quantum-Computing-Block-Encoding/community/contribution.schema.json",
+  "title": "Quantumlib lemma contribution packet",
+  "description": "A reviewable handoff from sourced quantum mathematics to an ASPBE Lean contribution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "domain",
+    "status",
+    "mathematics",
+    "lean",
+    "provenance",
+    "contributor",
+    "verification",
+    "license"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 3,
+      "maxLength": 96
+    },
+    "title": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "domain": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "status": { "enum": ["proposed", "in-review", "lean-checked", "integrated"] },
+    "mathematics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["plain", "latex"],
+      "properties": {
+        "plain": { "type": "string", "minLength": 1 },
+        "latex": { "type": "string", "minLength": 1 }
+      }
+    },
+    "lean": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["imports", "code", "proposed_name", "dependencies"],
+      "properties": {
+        "imports": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Za-z0-9_.]+$" },
+          "uniqueItems": true
+        },
+        "code": { "type": "string", "minLength": 1 },
+        "proposed_name": { "type": "string", "maxLength": 500 },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 500 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "locator", "notes"],
+      "properties": {
+        "source": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "locator": { "type": "string", "maxLength": 1000 },
+        "notes": { "type": "string", "maxLength": 5000 }
+      }
+    },
+    "contributor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "credit", "contact"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "credit": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "contact": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["compiler", "accepted", "diagnostics"],
+      "properties": {
+        "compiler": { "type": "string", "maxLength": 500 },
+        "accepted": { "type": "boolean" },
+        "diagnostics": { "type": "string", "maxLength": 20000 }
+      }
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["spdx", "agreed"],
+      "properties": {
+        "spdx": { "const": "MIT" },
+        "agreed": { "type": "boolean" }
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "draft_missing_fields": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  }
+}

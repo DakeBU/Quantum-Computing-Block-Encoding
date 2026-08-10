@@ -17,7 +17,7 @@ file := "case-studies"
 %%%
 
 These examples show the difference between a seed, a clean-block proof, and a complete verified
-candidate. They also illustrate how ABEIS can evolve a correct unitary completion while preserving
+candidate. They also illustrate how ASPBE can evolve a correct unitary completion while preserving
 the user-visible block.
 
 # Cold-start transfer operator
