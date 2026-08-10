@@ -1,6 +1,6 @@
-# Quantumlib website
+# QuantumComputinglib website
 
-Quantumlib is the textbook and browsing surface for **ASPBE: Automatic State
+QuantumComputinglib is the textbook and browsing surface for **ASPBE: Automatic State
 Preparation and Block Encoding for Quantum Computing**. It is generated from
 the repository's current Lean inventory; it is not a second theorem database.
 
@@ -12,14 +12,16 @@ preserved, including `library/`, `blueprint/html-multi/`, and `task-builder/`.
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Quantumlib overview and the two ASPBE contracts |
+| `/` | QuantumComputinglib overview and the two ASPBE contracts |
 | `/learning/` | Book map and reading order |
 | `/chapters/<slug>/` | Formula, natural-language reading, proof idea, Lean statement, and source |
 | `/library/` | Exhaustive generated ASPBE declaration inventory |
 | `/implementation-map/` | Mathematical goal → declaration → source → status → missing work |
 | `/ecosystem/` | Honest atlas of local, imported, and reference-only quantum Lean libraries |
 | `/ide/` | LaTeX/Lean workspace and local compiler client |
+| `/task-builder/` | User-facing task builder and user-owned API runner client |
 | `/community/` | Contribution guide and packet contract |
+| `/contributors/` | Integrated external contributions and precise public credit |
 | `/organizers/` | Current authors and contributor-credit policy |
 | `/blueprint/html-multi/` | Existing Verso Blueprint |
 
@@ -58,7 +60,7 @@ and time limits, removes temporary snippets, and never writes project source.
 Do not expose this compiler endpoint through a public tunnel.
 
 An optional local AI translator can be connected without baking a provider or
-credential into Quantumlib:
+credential into QuantumComputinglib:
 
 ```bash
 python3 website/scripts/ide_server.py \
@@ -77,6 +79,28 @@ and receive mathematical review. Without an adapter, the workspace offers an
 explicit `True` scaffold that is labeled as a placeholder, never as a semantic
 translation.
 
+## User-owned API runner
+
+The left navigation exposes **Run with your API**. To make its execution button
+active on a local checkout, start the companion with the bundled bridge:
+
+```bash
+python3 website/scripts/ide_server.py \
+  --directory _site \
+  --runner-command "python3 website/scripts/qbe_task_runner.py --execute --cycles 1"
+```
+
+Open `http://127.0.0.1:8000/task-builder/`. The client sends a versioned task,
+agent profile, and packet to `/api/run-task`. A supplied API key travels in the
+Authorization header and is exposed to the selected child process only through
+the provider-specific environment variable. It is not included in server logs
+or written by the bridge. The bridge itself may create normal ASPBE task,
+profile, run, and report artifacts.
+
+Static GitHub Pages cannot run the harness. It can either generate/download the
+packet or call a user-owned HTTPS endpoint that implements the same response
+contract: `{ "ok": true, "output": "...", "dashboard": { ... } }`.
+
 ## Contribution boundary
 
 The browser exports one versioned lemma packet containing:
@@ -90,6 +114,12 @@ The browser exports one versioned lemma packet containing:
 The GitHub button opens a review request; it does not write to the repository or
 mark a result integrated. Only maintainers assign `integrated` after the exact
 declaration enters the inventory and passes the full ASPBE gate.
+
+The complete route is documented in [`CONTRIBUTING.md`](../CONTRIBUTING.md):
+scope, development in the owning module, whole-repository verification, and a
+focused pull request. Accepted work is added to
+`website/community/contributors.json`; the generated Contributors page never
+lists an open proposal or a local draft as integrated.
 
 ## Build
 

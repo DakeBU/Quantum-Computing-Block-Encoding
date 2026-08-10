@@ -224,13 +224,13 @@
   };
 
   const packetId = () => {
-    const base = current?.name || "quantumlib-lemma";
+    const base = current?.name || "quantumcomputinglib-lemma";
     return base
       .replace(/^QuantumBlockEncoding\./, "")
       .replace(/[^A-Za-z0-9]+/g, "-")
       .replace(/^-|-$/g, "")
       .toLowerCase()
-      .slice(0, 96) || "quantumlib-lemma";
+      .slice(0, 96) || "quantumcomputinglib-lemma";
   };
 
   const makePacket = () => {
@@ -246,7 +246,7 @@
     return {
       schema_version: "1.0",
       id: packetId(),
-      title: current?.plain || "Quantumlib lemma proposal",
+      title: current?.plain || "QuantumComputinglib lemma proposal",
       domain: current?.chapter || "Unclassified quantum computing",
       status: accepted ? "lean-checked" : "proposed",
       mathematics: { plain: plain?.textContent || "", latex: latex?.value || "" },
@@ -312,7 +312,7 @@
       "I will confirm the MIT contribution license in the issue checklist.",
     ].filter(Boolean).join("\n");
     const params = new URLSearchParams({
-      title: `[Quantumlib lemma] ${packet.id}`,
+      title: `[QuantumComputinglib lemma] ${packet.id}`,
       body,
     });
     window.open(`https://github.com/DakeBU/Quantum-Computing-Block-Encoding/issues/new?${params}`, "_blank", "noopener");

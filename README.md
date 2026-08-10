@@ -5,7 +5,7 @@
 ### Automatic State Preparation and Block Encoding for Quantum Computing
 
 Lean-checked quantum construction search, executable validation, and the
-[Quantumlib](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) textbook.
+[QuantumComputinglib](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) textbook and formalization workspace.
 
 [![Lean 4](https://img.shields.io/badge/Lean-4-6f42c1?style=flat-square)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-pinned-2f705c?style=flat-square)](https://github.com/leanprover-community/mathlib4)
@@ -13,22 +13,58 @@ Lean-checked quantum construction search, executable validation, and the
 
 </div>
 
+## News
+
+- **10 August 2026.** The project is now named **ASPBE: Automatic State
+  Preparation and Block Encoding for Quantum Computing**. Its public teaching,
+  declaration, and contribution site is **QuantumComputinglib**. The site now
+  keeps the two application contracts separate, includes a local-compilation
+  workspace, and provides a reviewable contributor path.
+- **July 2026.** The public site gained the Verso
+  [Lean Blueprint](https://dakebu.github.io/Quantum-Computing-Block-Encoding/blueprint/html-multi/),
+  the searchable [Lean Library Explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/),
+  and a deterministic declaration inventory shared by both views.
+- **June 2026.** The public testing preview introduced separate State
+  Preparation and Block Encoding directions and the user-facing task builder.
+- **17 May 2026.** The repository's auditable priority record begins with the
+  [initial automation commit](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521)
+  and the timestamped [`MANIFEST.md`](MANIFEST.md). This is the earliest date
+  supported by the repository history; the project does not claim an earlier
+  date without a corresponding public record.
+
+The News dates record project milestones, not the proof status of every route.
+Current mathematical status is generated from the checkout and shown in the
+Implementation Map.
+
 ASPBE searches for quantum constructions and admits a result only through a
 named Lean certificate. It supports two applications with different contracts:
 
-| Application | Contract | What must be certified |
-| --- | --- | --- |
-| **State Preparation** | `U |0^n> = |psi>` | target normalization, unitarity, state action, circuit/resources |
-| **Block Encoding** | `||A - alpha Pi U Pi†|| <= epsilon` | register layout, clean projection, normalization, unitarity, error, circuit/resources |
+<table>
+  <thead>
+    <tr><th>Application</th><th>Contract</th><th>What must be certified</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>State Preparation</strong></td>
+      <td><code>U|0ⁿ⟩ = |ψ⟩</code></td>
+      <td>Target normalization, unitarity, state action, and circuit resources.</td>
+    </tr>
+    <tr>
+      <td><strong>Block Encoding</strong></td>
+      <td><code>‖A − αΠUΠ†‖ ≤ ε</code></td>
+      <td>Register layout, clean projection, normalization, unitarity, error, and circuit resources.</td>
+    </tr>
+  </tbody>
+</table>
 
 A state-preparation theorem may supply a `PREPARE` component to a later
 block-encoding route. It does not by itself prove a clean projected block.
 
 ![The two ASPBE application contracts](docs/assets/abeis_application_overview.svg)
 
-## Quantumlib
+## QuantumComputinglib
 
-**Quantumlib** is the website built from this repository. It is organized as a
+**QuantumComputinglib** is the website built from this repository. It is organized as a
 formal quantum-computing textbook rather than a project dashboard:
 
 - a persistent chapter map on the left;
@@ -42,7 +78,7 @@ formal quantum-computing textbook rather than a project dashboard:
 - the existing Verso Blueprint at `/blueprint/html-multi/`.
 
 The site distinguishes **built here**, **imported**, and **reference atlas**.
-External projects are not presented as local proofs merely because Quantumlib
+External projects are not presented as local proofs merely because QuantumComputinglib
 links or explains them.
 
 ## Formalization workspace
@@ -75,6 +111,23 @@ the submitted code; mathematical equivalence to the LaTeX still receives review.
 The workspace can download a contribution packet or open a prefilled GitHub
 lemma request. Public GitHub Pages never runs untrusted Lean code.
 
+The **Run with your API** entry is a separate user-owned execution path. Start
+the loopback companion with the bundled ASPBE runner bridge:
+
+```bash
+python3 website/scripts/ide_server.py \
+  --directory _site \
+  --runner-command "python3 website/scripts/qbe_task_runner.py --execute --cycles 1"
+```
+
+Then open <http://127.0.0.1:8000/task-builder/>. The browser sends the task and
+API key to that loopback runner; the key is placed only in the selected child
+process environment and is not written to the task packet, repository, or
+access log. The runner may write normal ASPBE task, profile, run, and report
+artifacts. A public Pages deployment can instead target a user-owned HTTPS
+runner implementing the same JSON contract; it does not spend project-owned
+model credits.
+
 ## What the harness actually does
 
 ASPBE is a file-backed controller around the Lean project. The durable state is
@@ -82,7 +135,7 @@ the task contract, candidate population, proof DAG, source correspondence,
 typed feedback, trial memory, and compiled declarations. Chat transcripts are
 not treated as the system of record.
 
-![One ASPBE control cycle](docs/assets/abeis_agent_cycle_detail.svg)
+![ASPBE control loop from two separate contracts to checked evidence](docs/assets/aspbe_harness_flow.svg)
 
 ### Roles and owned artifacts
 
@@ -233,26 +286,70 @@ powershell -ExecutionPolicy Bypass -File scripts/build-all.ps1
 ```
 
 The full site build runs the Lean library and tests, declaration inventory,
-proof-trust checks, Blueprint consistency, Verso build, Quantumlib generation,
+proof-trust checks, Blueprint consistency, Verso build, QuantumComputinglib generation,
 internal link and fragment checks, source-link checks, and local-path leakage
 scan. Generated counts are written to `_site/build-report.json`; this README
 does not hard-code declaration totals.
 
 ## Contribute
 
-Use the [Quantumlib contribution page](https://dakebu.github.io/Quantum-Computing-Block-Encoding/community/)
-or the Live Formalization Workspace. A substantial contribution should provide:
+QuantumComputinglib supports two contribution routes:
 
-- mathematical source and exact locator;
-- plain-language and LaTeX statements;
-- explicit conventions and assumptions;
-- Lean imports, code, and named dependencies;
-- diagnostics for the exact submitted text;
-- preferred contributor credit and MIT license consent.
+- use the [Live Formalization Workspace](https://dakebu.github.io/Quantum-Computing-Block-Encoding/ide/)
+  to prepare a versioned lemma packet and open a proposal;
+- develop a focused branch and submit a pull request under
+  [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+The contribution process has four visible stages: agree on scope, develop in
+the owning module, run the pinned whole-repository gates, and submit a focused
+PR with provenance and preferred credit. Accepted work is listed on the
+QuantumComputinglib Contributors page. A locally compiling snippet is not
+listed as integrated until maintainer review and the full repository gate pass.
 
 Historical `QBE-*` task IDs, `ABEISBlueprint` module names, and existing URLs
 remain unchanged for reproducibility and compatibility. New public prose uses
-**ASPBE** for the system and **Quantumlib** for the website.
+**ASPBE** for the system and **QuantumComputinglib** for the website.
+
+## Related systems and design lineage
+
+ASPBE adapts useful mechanisms from adjacent systems, but its acceptance
+contracts and proof status remain specific to this repository.
+
+| Work | Relevant design pattern | ASPBE use and boundary |
+| --- | --- | --- |
+| [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) | Durable file-based research state and review | Task packets, manifests, run logs, and reviews; chat is not the system of record. |
+| [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients) | Layered feedback and trial memory | Typed upper/middle/lower feedback and bounded policy transitions. |
+| [EoH](https://github.com/FeiLiu36/EoH) | Population maintenance, mutation, and recombination | Candidate routes are retained, retired, mutated, or crossed over under one frozen contract. |
+| [LeanMarathon](https://github.com/YuanheZ/LeanMarathon) | Proof blueprints and dependency-ordered leaves | Middle agents maintain a proof DAG and assign only ready Lean obligations. |
+| [Rethlas](https://github.com/frenzymath/Rethlas) and [Archon](https://github.com/frenzymath/Archon) | Natural-language reasoning paired with formal proof | Natural-language proposals guide search; only named Lean declarations certify results. |
+| [QBench](https://arxiv.org/abs/2607.21533) | Quantum theorem-proving evaluation | External task/library declarations are audited and kept isolated by toolchain and evidence class. |
+| [quantum-computing-lean](https://github.com/duckki/quantum-computing-lean), [Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo), and [lean-quantum](https://github.com/Hayata-Yamasaki-Group/lean-quantum) | Quantum formalization APIs | Recorded in the external atlas; a reference becomes local evidence only through an explicit compiled adapter. |
+| [StatsMLlib](https://statsmllib.github.io/) | Textbook navigation and contributor onboarding | Inspires the left-side book map and four-stage contribution path, not theorem content or status data. |
+| [Lean Ridgelet](https://shosonoda.github.io/lean-ridgelet/) and [Verso Blueprint](https://github.com/leanprover/verso-blueprint) | Readable formal blueprints | Provide documentation inspiration and rendering infrastructure. |
+
+See [`docs/attribution.md`](docs/attribution.md) and [`NOTICE.md`](NOTICE.md)
+for the fuller attribution and evidence boundary.
+
+## Citation
+
+```bibtex
+@misc{abeis2026,
+  author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
+  title = {{ASPBE: Automatic State Preparation and Block Encoding for Quantum Computing}},
+  year = {2026},
+  note = {QuantumComputinglib and project source: \url{https://github.com/DakeBU/Quantum-Computing-Block-Encoding}}
+}
+```
+
+## Acknowledgements
+
+The project thanks Sho Sonoda for the public Lean Ridgelet Blueprint, which
+demonstrated a clear way to connect mathematical exposition with formal source.
+The documentation uses Verso Blueprint and Verso. The harness comparison above
+credits ARIS, Learning Beyond Gradients, EoH, LeanMarathon, Rethlas, Archon,
+QBench, and the cited quantum Lean libraries for the specific patterns or
+reference APIs studied here. Attribution does not imply that their results are
+locally proved or that their licenses transfer to ASPBE.
 
 ## License
 

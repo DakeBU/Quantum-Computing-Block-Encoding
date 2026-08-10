@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
-  <title id="title">ASPBE Lean library and Quantumlib documentation map</title>
+  <title id="title">ASPBE Lean library and QuantumComputinglib documentation map</title>
   <desc id="desc">The Lean source inventory flows through one strict generator into the Blueprint and Library Explorer, followed by eight catalog groups with declaration counts.</desc>
   <defs>
     <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">

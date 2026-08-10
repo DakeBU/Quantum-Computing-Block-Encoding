@@ -5,6 +5,12 @@ set -euo pipefail
 test -f _out/lean-gate.json
 test -f _out/blueprint/html-multi/index.html
 
+python3 -m py_compile \
+  website/scripts/build_site.py \
+  website/scripts/check_site.py \
+  website/scripts/ide_server.py \
+  website/scripts/qbe_task_runner.py
+
 python3 website/scripts/build_site.py \
   --lean-gate-report _out/lean-gate.json \
   --output _out/site
@@ -26,4 +32,4 @@ test -f _site/blueprint/html-multi/index.html
 test -f _site/search-index.json
 test -f _site/.nojekyll
 
-echo "Quantumlib assembled at _site/index.html"
+echo "QuantumComputinglib assembled at _site/index.html"

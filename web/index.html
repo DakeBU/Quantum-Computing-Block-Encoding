@@ -9,10 +9,13 @@
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">Quantumlib workspace</p>
+        <p class="eyebrow">QuantumComputinglib workspace</p>
         <h1>State-Preparation and Block-Encoding Task Builder</h1>
       </div>
       <div class="header-actions">
+        <a class="library-link" href="../index.html">
+          Back to QuantumComputinglib
+        </a>
         <a class="library-link" href="library/">
           Search Lean declarations
         </a>
@@ -37,7 +40,7 @@
       </div>
       <figure class="system-map">
         <img
-          src="assets/abeis-evidence-pipeline.svg"
+          src="assets/aspbe-harness-flow.svg"
           alt="ASPBE pipeline from a user contract through search and the Lean gate to public evidence"
         >
         <figcaption>
@@ -133,7 +136,7 @@
           </label>
           <label>
             Runner endpoint
-            <input id="runnerEndpoint" value="http://localhost:8088" autocomplete="off">
+            <input id="runnerEndpoint" value="/api/run-task" autocomplete="off">
           </label>
           <label>
             User API key
@@ -142,6 +145,10 @@
           <label class="check-row">
             <input id="redactApiKey" type="checkbox" checked>
             <span>Redact API key from generated Markdown</span>
+          </label>
+          <label class="check-row">
+            <input id="oneProviderAllRoles" type="checkbox" checked>
+            <span>Use this API provider for every agent role</span>
           </label>
         </fieldset>
 
@@ -251,9 +258,10 @@
         <fieldset class="agent-grid">
           <legend>Agent backend preferences</legend>
           <p class="hint compact">
-            These preferences are written into the generated ASPBE packet.  The website
-            does not call model APIs; your local harness or server runner maps
-            them to installed CLIs or wrappers.  In Game Harness mode, the
+            These preferences are written into the generated ASPBE packet. The
+            <strong>Run with my API</strong> button sends the packet to the runner
+            endpoint above; that user-owned runner maps the roles to installed
+            CLIs or API wrappers. In Game Harness mode, the
             Natural-Language Team and Lean Team each have upper/middle/lower
             layers.  They compete in their own language, then exchange useful
             insights through the Game Council.
@@ -334,9 +342,11 @@
 
         <div class="actions">
           <button id="buildPacket" type="button">Build Task Packet</button>
+          <button id="runWithApi" type="button">Run with my API</button>
           <button id="copyPacket" type="button" class="secondary">Copy Markdown</button>
           <button id="downloadPacket" type="button" class="secondary">Download .md</button>
         </div>
+        <p id="runnerStatus" class="runner-status" aria-live="polite"></p>
       </section>
 
       <section class="panel output-panel" aria-labelledby="output-title">
@@ -389,7 +399,7 @@
     </main>
 
     <footer>
-      Quantumlib workspace for preparing ASPBE task packets. Inspired by user-friendly
+      QuantumComputinglib workspace for preparing ASPBE task packets. Inspired by user-friendly
       automated algorithm design front ends such as LLM4AD_Next, but specialized
       to Lean-checked quantum construction certificates.  The Lean documentation
       organization was inspired by

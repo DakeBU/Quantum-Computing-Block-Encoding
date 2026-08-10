@@ -123,6 +123,8 @@ def main() -> int:
         "ide-data.json",
         "ecosystem/index.html",
         "community/index.html",
+        "contributors/index.html",
+        "CONTRIBUTING.md",
         "community/contribution.schema.json",
         "community/translation-response.schema.json",
         "organizers/index.html",
@@ -187,7 +189,7 @@ def main() -> int:
         'data-theme-choice="bold"',
         'name="viewport"',
         'class="site-sidebar"',
-        "Quantumlib",
+        "QuantumComputinglib",
         "ASPBE",
     ):
         if marker not in combined:
@@ -203,6 +205,14 @@ def main() -> int:
     ):
         if marker not in css:
             errors.append(f"missing CSS marker: {marker}")
+    task_builder = (site / "task-builder" / "index.html").read_text(encoding="utf-8")
+    task_script = (site / "task-builder" / "app.js").read_text(encoding="utf-8")
+    for marker in ("Run with my API", 'id="runnerEndpoint"'):
+        if marker not in task_builder:
+            errors.append(f"missing user API task-builder marker: {marker}")
+    for marker in ("/api/run-task", "Authorization", "runWithApi"):
+        if marker not in task_script:
+            errors.append(f"missing user API runner client marker: {marker}")
     if re.search(r"(?:file://|/home/|[A-Za-z]:\\\\Users\\\\)", combined):
         errors.append("local filesystem path leaked into unified HTML")
 

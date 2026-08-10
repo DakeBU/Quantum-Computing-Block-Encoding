@@ -9,7 +9,7 @@ open Informal
 #doc (Manual) "ASPBE Lean Blueprint" =>
 
 This Blueprint is the checked declaration map for ASPBE: Automatic State Preparation and Block
-Encoding for Quantum Computing. It connects the Quantumlib reading path to exact Lean definitions,
+Encoding for Quantum Computing. It connects the QuantumComputinglib reading path to exact Lean definitions,
 theorem statements, proof dependencies, and source locations.
 
 The first four chapters explain the contracts, reusable construction routes, and completed case
@@ -18,7 +18,7 @@ in QuantumBlockEncoding. Generated Lean panels are resolved during the documenta
 renamed or missing declaration breaks CI instead of leaving a stale web page.
 
 Readers who already know a declaration name can use the
-[Quantumlib Library Explorer](../../library/) to search every explicit public declaration by
+[QuantumComputinglib Library Explorer](../../library/) to search every explicit public declaration by
 name, catalog, kind, source note, or Lean preview. The exact count is generated from the current
 source inventory during the website build. The Explorer and these Blueprint chapters are
 generated from the same inventory: the Explorer makes discovery fast, while the Blueprint shows

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Serve Quantumlib with loopback-only Lean and optional translation APIs."""
+"""Serve QuantumComputinglib with loopback-only Lean and optional translation APIs."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import shlex
 import subprocess
 import tempfile
@@ -42,11 +43,13 @@ def tool_version() -> str:
 
 
 class WorkspaceHandler(SimpleHTTPRequestHandler):
-    server_version = "QuantumlibWorkspace/0.1"
+    server_version = "QuantumComputinglibWorkspace/0.1"
     lean_version_text = "Lean version not checked"
     compile_timeout = 120
     translator_timeout = 180
+    runner_timeout = 1800
     translator_command: list[str] | None = None
+    runner_command: list[str] | None = None
 
     def end_headers(self) -> None:
         self.send_header("Cache-Control", "no-store")
@@ -99,7 +102,9 @@ class WorkspaceHandler(SimpleHTTPRequestHandler):
                     "mode": "loopback-local",
                     "lean_version": self.lean_version_text,
                     "translator_available": bool(self.translator_command),
-                    "source_writes": False,
+                    "runner_available": bool(self.runner_command),
+                    "workspace_source_writes": False,
+                    "runner_may_write_repository": bool(self.runner_command),
                 },
             )
             return
@@ -107,7 +112,7 @@ class WorkspaceHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self) -> None:  # noqa: N802
         endpoint = urlsplit(self.path).path
-        if endpoint not in {"/api/compile", "/api/translate"}:
+        if endpoint not in {"/api/compile", "/api/translate", "/api/run-task"}:
             self.send_json(HTTPStatus.NOT_FOUND, {"ok": False, "output": "Unknown API endpoint."})
             return
         payload = self.read_payload()
@@ -122,8 +127,10 @@ class WorkspaceHandler(SimpleHTTPRequestHandler):
         try:
             if endpoint == "/api/compile":
                 self.compile_snippet(payload)
-            else:
+            elif endpoint == "/api/translate":
                 self.translate_statement(payload)
+            else:
+                self.run_task(payload)
         finally:
             EXECUTION_LOCK.release()
 
@@ -233,6 +240,64 @@ class WorkspaceHandler(SimpleHTTPRequestHandler):
             {"ok": True, "code": code, "plain": str(response.get("plain", ""))},
         )
 
+    def run_task(self, payload: dict[str, object]) -> None:
+        if not self.runner_command:
+            self.send_json(
+                HTTPStatus.SERVICE_UNAVAILABLE,
+                {"ok": False, "output": "No user-owned task runner command is configured."},
+            )
+            return
+        task = payload.get("task")
+        provider = payload.get("provider")
+        if not isinstance(task, dict) or not isinstance(task.get("id"), str):
+            self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": "`task.id` is required."})
+            return
+        if provider not in {"openai", "anthropic", "gemini", "glm", "minimax", "custom"}:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": "Unknown API provider."})
+            return
+        child_env = os.environ.copy()
+        authorization = self.headers.get("Authorization", "")
+        if authorization.startswith("Bearer "):
+            key_name = {
+                "openai": "OPENAI_API_KEY",
+                "anthropic": "ANTHROPIC_API_KEY",
+                "gemini": "GEMINI_API_KEY",
+                "glm": "GLM_API_KEY",
+                "minimax": "MINIMAX_API_KEY",
+                "custom": "CUSTOM_LLM_API_KEY",
+            }[str(provider)]
+            child_env[key_name] = authorization.removeprefix("Bearer ").strip()
+        child_env["ASPBE_API_PROVIDER"] = str(provider)
+        try:
+            result = subprocess.run(
+                self.runner_command,
+                cwd=ROOT,
+                env=child_env,
+                input=json.dumps(payload, ensure_ascii=False),
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=self.runner_timeout,
+                check=False,
+            )
+        except subprocess.TimeoutExpired:
+            self.send_json(HTTPStatus.REQUEST_TIMEOUT, {"ok": False, "output": "Task runner timed out."})
+            return
+        except OSError as error:
+            self.send_json(HTTPStatus.SERVICE_UNAVAILABLE, {"ok": False, "output": f"Could not start task runner: {error}"})
+            return
+        try:
+            response = json.loads(result.stdout)
+        except json.JSONDecodeError:
+            response = None
+        if result.returncode != 0 or not isinstance(response, dict):
+            detail = (result.stderr or result.stdout or "Task runner failed.").strip()
+            self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": detail[:20000]})
+            return
+        response.setdefault("ok", True)
+        self.send_json(HTTPStatus.OK, response)
+
     def log_message(self, format: str, *args: object) -> None:
         # The access log receives request metadata only, never submitted source.
         super().log_message(format, *args)
@@ -245,28 +310,38 @@ def main() -> int:
     parser.add_argument("--directory", type=Path, default=DEFAULT_SITE)
     parser.add_argument("--compile-timeout", type=int, default=120)
     parser.add_argument("--translator-timeout", type=int, default=180)
+    parser.add_argument("--runner-timeout", type=int, default=1800)
     parser.add_argument(
         "--translator-command",
         help="Optional local command that reads request JSON on stdin and returns {code, plain} JSON.",
+    )
+    parser.add_argument(
+        "--runner-command",
+        help="Optional user-owned command that reads a task JSON object and returns dashboard JSON.",
     )
     args = parser.parse_args()
     if args.host not in {"127.0.0.1", "localhost", "::1"}:
         raise SystemExit("The workspace server is intentionally loopback-only.")
     directory = args.directory.resolve()
     if not (directory / "index.html").is_file():
-        raise SystemExit(f"Built site not found at {directory}; build Quantumlib first.")
+        raise SystemExit(f"Built site not found at {directory}; build QuantumComputinglib first.")
     WorkspaceHandler.lean_version_text = tool_version()
     WorkspaceHandler.compile_timeout = max(1, args.compile_timeout)
     WorkspaceHandler.translator_timeout = max(1, args.translator_timeout)
+    WorkspaceHandler.runner_timeout = max(1, args.runner_timeout)
     WorkspaceHandler.translator_command = (
         shlex.split(args.translator_command) if args.translator_command else None
     )
+    WorkspaceHandler.runner_command = (
+        shlex.split(args.runner_command) if args.runner_command else None
+    )
     handler = partial(WorkspaceHandler, directory=str(directory))
     server = ThreadingHTTPServer((args.host, args.port), handler)
-    print(f"Quantumlib workspace: http://{args.host}:{args.port}/ide/")
+    print(f"QuantumComputinglib workspace: http://{args.host}:{args.port}/ide/")
     print(f"Lean service: {WorkspaceHandler.lean_version_text}")
     print(f"Local translator: {'enabled' if WorkspaceHandler.translator_command else 'disabled'}")
-    print("Security: loopback only; temporary snippets are deleted after compilation.")
+    print(f"User-owned task runner: {'enabled' if WorkspaceHandler.runner_command else 'disabled'}")
+    print("Security: loopback only; temporary Lean snippets are deleted. A configured task runner may write ASPBE run artifacts.")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

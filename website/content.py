@@ -1,4 +1,4 @@
-"""Curated Quantumlib teaching content for ASPBE.
+"""Curated QuantumComputinglib teaching content for ASPBE.
 
 Declaration names in this file are validated against the generated inventory by
 ``website/scripts/build_site.py``.  The prose may explain a broader route, but it

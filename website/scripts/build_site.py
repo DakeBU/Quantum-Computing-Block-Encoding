@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Quantumlib from the ASPBE Lean inventory and teaching content."""
+"""Build QuantumComputinglib from the ASPBE Lean inventory and teaching content."""
 
 from __future__ import annotations
 
@@ -36,9 +36,11 @@ NAVIGATION = [
     ("Lean library", "library/"),
     ("Implementation map", "implementation-map/"),
     ("Live workspace", "ide/"),
+    ("Run with your API", "task-builder/"),
     ("Quantum ecosystem", "ecosystem/"),
     ("Progress", "roadmap/"),
     ("Contribute", "community/"),
+    ("Contributors", "contributors/"),
     ("Organizers", "organizers/"),
 ]
 
@@ -214,16 +216,16 @@ def site_header(prefix: str, current: str) -> str:
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="mobile-header">
     <a class="brand" href="{page_url(prefix, '')}">
-      <span class="brand-word">Quantumlib</span>
+      <span class="brand-word">QuantumComputinglib</span>
       <span class="brand-subtitle">learn · inspect · formalize</span>
     </a>
     <button class="icon-button mobile-menu" type="button" data-menu-button
             aria-label="Open book navigation" aria-expanded="false">&#9776;</button>
 </header>
-<aside class="site-sidebar" data-main-nav aria-label="Quantumlib book navigation">
+<aside class="site-sidebar" data-main-nav aria-label="QuantumComputinglib book navigation">
   <div class="sidebar-head">
     <a class="brand" href="{page_url(prefix, '')}">
-      <span class="brand-word">Quantumlib</span>
+      <span class="brand-word">QuantumComputinglib</span>
       <span class="brand-subtitle">A formal quantum computing textbook</span>
     </a>
     <p><strong>ASPBE</strong><br>Automatic State Preparation and Block Encoding for Quantum Computing</p>
@@ -231,7 +233,7 @@ def site_header(prefix: str, current: str) -> str:
   <div class="sidebar-search search-shell">
     <label class="visually-hidden" for="global-search">Search declarations and chapters</label>
     <input id="global-search" class="global-search" type="search"
-           placeholder="Search Quantumlib" data-global-search>
+           placeholder="Search QuantumComputinglib" data-global-search>
     <div class="search-results" data-search-results hidden></div>
   </div>
   <nav class="book-nav">
@@ -242,7 +244,6 @@ def site_header(prefix: str, current: str) -> str:
     <strong class="nav-group-label">Reference</strong>
     <a href="{page_url(prefix, 'workflow/')}">ASPBE harness</a>
     <a href="{page_url(prefix, 'blueprint/')}">Verso Blueprint</a>
-    <a href="{page_url(prefix, 'task-builder/')}">Task builder</a>
   </nav>
   <div class="sidebar-footer">
     <div class="theme-switcher" aria-label="Reading style">
@@ -281,7 +282,7 @@ def page_template(
     gate: dict[str, object],
     context: dict[str, object],
     toc: list[tuple[str, str]] | None = None,
-    description: str = "Quantumlib: a formal quantum computing textbook and the ASPBE Lean library",
+    description: str = "QuantumComputinglib: a formal quantum computing textbook and the ASPBE Lean library",
     extra_scripts: tuple[str, ...] = (),
 ) -> str:
     prefix = prefix_for(route)
@@ -307,7 +308,7 @@ def page_template(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{html.escape(description)}">
-  <title>{html.escape(title)} | Quantumlib</title>
+  <title>{html.escape(title)} | QuantumComputinglib</title>
   <link rel="icon" href="{prefix}static/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{prefix}static/site.css">
   <script>
@@ -326,7 +327,7 @@ def page_template(
     {toc_html}
   </div>
   <footer class="site-footer">
-    <div><strong>Quantumlib</strong> · Generated from the current ASPBE Lean inventory.</div>
+    <div><strong>QuantumComputinglib</strong> · Generated from the current ASPBE Lean inventory.</div>
     <nav aria-label="Footer">
       <a href="{page_url(prefix, 'implementation-map/')}">Implementation map</a>
       <a href="{page_url(prefix, 'workflow/')}">ASPBE harness</a>
@@ -440,8 +441,8 @@ def render_home(
     body = rf"""
 <section class="hero home-hero">
   <p class="eyebrow">Formal quantum computing, read alongside Lean</p>
-  <h1>Quantumlib</h1>
-  <p class="lede">Quantumlib is the textbook and declaration browser for ASPBE.
+  <h1>QuantumComputinglib</h1>
+  <p class="lede">QuantumComputinglib is the textbook and declaration browser for ASPBE.
   ASPBE studies two different construction problems. State preparation
   asks a unitary to produce one target state. Block encoding asks a larger unitary
   to expose a target operator through a clean ancilla block. This site keeps their
@@ -524,6 +525,34 @@ def render_home(
   </div>
   {diagram(prefix, "certificate-pipeline", "Shared certification and feedback loop")}
 </section>
+<section class="content-section" id="use">
+  <div class="section-heading">
+    <p class="eyebrow">Use the project</p>
+    <h2>Read, formalize, or submit a construction</h2>
+    <p>The public site is not only a declaration catalog. It keeps the original
+    user-facing task builder, the local-compilation workspace, and the reviewed
+    contribution route beside the textbook.</p>
+  </div>
+  <div class="use-paths">
+    <article><span>Read</span><h3>Learn from a checked chapter</h3><p>Follow a formula from its physical meaning to the exact Lean declaration.</p><a href="learning/index.html">Open the book map &#8594;</a></article>
+    <article><span>Formalize</span><h3>Compare LaTeX and Lean</h3><p>Edit a theorem, inspect dependencies, and compile temporary code with the local companion.</p><a href="ide/index.html">Open the workspace &#8594;</a></article>
+    <article><span>Run</span><h3>Build an ASPBE task packet</h3><p>Describe a target state or operator, choose a harness, and export a reproducible task packet.</p><a href="task-builder/index.html">Open the task builder &#8594;</a></article>
+  </div>
+</section>
+<section class="content-section" id="news">
+  <div class="section-heading">
+    <p class="eyebrow">Project record</p>
+    <h2>News and auditable priority</h2>
+    <p>The dates below are repository milestones. They do not replace the
+    generated proof-status pages.</p>
+  </div>
+  <ol class="milestone-list">
+    <li><time datetime="2026-08-10">10 August 2026</time><div><strong>ASPBE and QuantumComputinglib.</strong><p>The two application tracks, local workspace, task builder, and contributor review path are presented in one site.</p></div></li>
+    <li><time datetime="2026-07">July 2026</time><div><strong>Blueprint and Library Explorer.</strong><p>One generated inventory now drives the checked Blueprint catalog and searchable declaration browser.</p></div></li>
+    <li><time datetime="2026-06">June 2026</time><div><strong>Public testing preview.</strong><p>The site exposed separate State Preparation and Block Encoding directions and the user task builder.</p></div></li>
+    <li><time datetime="2026-05-17">17 May 2026</time><div><strong>Earliest repository record.</strong><p>The <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521">initial commit</a> and <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/af59b03c58c2cedec52b14a80b4d909031d62521/MANIFEST.md">timestamped manifest</a> begin the public, auditable project history. No earlier date is asserted without evidence.</p></div></li>
+  </ol>
+</section>
 <section class="content-section" id="chapters">
   <div class="section-heading">
     <p class="eyebrow">Reading guide</p>
@@ -552,6 +581,8 @@ def render_home(
         ("block-process", "Block encoding"),
         ("evidence", "Build evidence"),
         ("pipeline", "Shared verification"),
+        ("use", "Use the project"),
+        ("news", "News"),
         ("chapters", "Learning chapters"),
         ("navigation", "Source views"),
     ]
@@ -1173,7 +1204,7 @@ def render_organizers(
 <section class="hero" id="organizers">
   <p class="eyebrow">People</p>
   <h1>Organizers</h1>
-  <p class="lede">Quantumlib is maintained with ASPBE by the current project
+  <p class="lede">QuantumComputinglib is maintained with ASPBE by the current project
   authors. Contributor credit is recorded separately and follows each accepted
   lemma or teaching contribution.</p>
 </section>
@@ -1208,12 +1239,12 @@ def render_ecosystem(
 <section class="hero" id="ecosystem">
   <p class="eyebrow">Quantum Lean ecosystem</p>
   <h1>One reading map, honest dependency boundaries</h1>
-  <p class="lede">Quantumlib brings ASPBE declarations, selected external
+  <p class="lede">QuantumComputinglib brings ASPBE declarations, selected external
   quantum-formalization references, and textbook explanations into one map.
   “Indexed” does not mean “imported”: every row states how the source is used.</p>
 </section>
 <section class="content-section" id="catalog">
-  <h2>Libraries represented in Quantumlib</h2>
+  <h2>Libraries represented in QuantumComputinglib</h2>
   <div class="ecosystem-list">
     <article><div><h3>ASPBE</h3><p>State preparation, block encoding, finite circuit semantics, construction routes, resource records, automation, and certified cases.</p></div><span class="status status-compiled">Built here</span></article>
     <article><div><h3>Mathlib</h3><p>Finite types, matrices, algebra, norms, finite sums, and proof infrastructure used by the local Lean package.</p></div><span class="status status-compiled">Imported</span></article>
@@ -1252,9 +1283,10 @@ def render_community(
 ) -> str:
     repository = context.get("repository") or "DakeBU/Quantum-Computing-Block-Encoding"
     issue_url = f"https://github.com/{repository}/issues/new?template=lemma-contribution.yml"
+    pull_url = f"https://github.com/{repository}/compare"
     body = f"""
 <section class="hero" id="contribute">
-  <p class="eyebrow">Contribute to Quantumlib</p>
+  <p class="eyebrow">Contribute to QuantumComputinglib</p>
   <h1>Bring one sourced statement to one checked Lean declaration</h1>
   <p class="lede">Submit teaching corrections, external-library mappings, or
   new state-preparation and block-encoding lemmas. Large changes begin with a
@@ -1262,29 +1294,43 @@ def render_community(
   <div class="hero-actions">
     <a class="button state-button" href="../ide/index.html">Draft in the live workspace</a>
     <a class="button secondary" href="{html.escape(issue_url)}">Open a lemma proposal</a>
+    <a class="text-link" href="{html.escape(pull_url)}">Prepare a pull request &#8594;</a>
   </div>
 </section>
-<section class="content-section" id="paths">
-  <h2>Three useful contribution paths</h2>
+<section class="content-section" id="before">
+  <h2>Before writing Lean</h2>
+  <p>A small correction or isolated lemma can go directly to a pull request.
+  Start with a proposal when the work adds a module, dependency, public API,
+  mathematical contract, or substantial construction route.</p>
   <div class="contribution-paths">
-    <article><span>01</span><h3>Improve a chapter</h3><p>Correct an explanation, notation choice, example, source, or dependency link.</p></article>
-    <article><span>02</span><h3>Map an existing theorem</h3><p>Name the upstream Lean declaration and explain the adapter needed by Quantumlib.</p></article>
-    <article><span>03</span><h3>Submit a new lemma</h3><p>Provide source provenance, LaTeX, Lean code, imports, compiler diagnostics, and preferred credit.</p></article>
+    <article><span>01</span><h3>Fix the scope</h3><p>Record the source, exact statement, conventions, owning module, and whether the wider route is complete.</p></article>
+    <article><span>02</span><h3>Reuse before adding</h3><p>Search the declaration catalog and external atlas. Prefer a narrow adapter to a duplicate API.</p></article>
+    <article><span>03</span><h3>Choose the evidence class</h3><p>Separate a Lean certificate, finite executable check, imported contract, and exploratory argument.</p></article>
   </div>
 </section>
-<section class="content-section" id="contract">
-  <h2>The review packet</h2>
-  <p>The workspace exports a versioned JSON packet. It does not mark itself
-  integrated: maintainers check mathematical equivalence, visible assumptions,
-  API fit, provenance, license, and the full ASPBE gate.</p>
-  <p><a href="contribution.schema.json">Read the machine-readable schema</a> ·
-  <a href="{html.escape(issue_url)}">Start a reviewed submission</a></p>
-  <pre class="lean-code"><code>mathematical source + plain statement + LaTeX
-→ proposed Lean statement and dependencies
-→ local compiler evidence
-→ contributor request
-→ maintainer review and full ASPBE gate
-→ indexed Quantumlib declaration</code></pre>
+<section class="content-section" id="steps">
+  <h2>Four steps from idea to an indexed contribution</h2>
+  <ol class="contributor-steps">
+    <li><span>1</span><div><h3>Scope</h3><p>Agree on the mathematical boundary, source, conventions, owner module, and public API.</p></div></li>
+    <li><span>2</span><div><h3>Develop</h3><p>Add the smallest focused declaration. Do not use <code>sorry</code>, <code>admit</code>, a new <code>axiom</code>, or a weakened placeholder proposition.</p></div></li>
+    <li><span>3</span><div><h3>Verify</h3><pre><code>lake build
+lake build ABEISTests
+python3 tools/qbe.py check
+bash scripts/build-all.sh</code></pre><p>Report a gate you could not run; do not mark it passed.</p></div></li>
+    <li><span>4</span><div><h3>Submit and receive credit</h3><p>Open a focused PR with source, API choices, local and route status, exact gate results, and preferred public credit.</p></div></li>
+  </ol>
+  <p>Read the repository-wide <a href="../CONTRIBUTING.md">contribution policy</a>
+  and <a href="../contributors/index.html">integrated contributor record</a>.</p>
+</section>
+<section class="content-section" id="packet">
+  <h2>Workspace packet and pull request serve different stages</h2>
+  <p>The workspace exports a versioned JSON packet for discussion and review.
+  A pull request carries the implementation. Neither marks itself integrated:
+  maintainers check mathematical equivalence, assumptions, API fit, provenance,
+  license, and the complete ASPBE gate.</p>
+  <p><a href="contribution.schema.json">Machine-readable packet schema</a> ·
+  <a href="{html.escape(issue_url)}">Open a proposal</a> ·
+  <a href="{html.escape(pull_url)}">Open a pull request</a></p>
 </section>
 <section class="content-section" id="status">
   <h2>Status words are not interchangeable</h2>
@@ -1302,7 +1348,66 @@ def render_community(
         coverage=coverage,
         gate=gate,
         context=context,
-        toc=[("contribute", "Contribute"), ("paths", "Paths"), ("contract", "Review packet"), ("status", "Statuses")],
+        toc=[("contribute", "Contribute"), ("before", "Before you begin"), ("steps", "Four steps"), ("packet", "Packet and PR"), ("status", "Statuses")],
+    )
+
+
+def render_contributors(
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    data = load_json(WEBSITE_ROOT / "community" / "contributors.json")
+    contributors = data.get("contributors", [])
+    records = []
+    for contributor in contributors:
+        items = "".join(
+            f"<li>{html.escape(str(item))}</li>"
+            for item in contributor.get("contributions", [])
+        )
+        records.append(
+            '<article class="contributor-record">'
+            f'<h3>{html.escape(str(contributor["name"]))}</h3>'
+            f'<p>{html.escape(str(contributor.get("credit", "")))}</p>'
+            f'<ul>{items}</ul></article>'
+        )
+    if not records:
+        records.append(
+            '<article class="contributor-record contributor-invitation">'
+            '<p class="eyebrow">Your name here</p>'
+            '<h3>The first external integrated contribution is open</h3>'
+            '<p>Accepted theorem, adapter, chapter, validation, and tooling work '
+            'will be listed with a precise contribution summary and preferred credit.</p>'
+            '<a href="../community/index.html">Read the contribution process &#8594;</a>'
+            '</article>'
+        )
+    body = f"""
+<section class="hero" id="contributors">
+  <p class="eyebrow">People whose work has entered the repository</p>
+  <h1>Contributors</h1>
+  <p class="lede">This page lists integrated external contributions, not open
+  proposals or locally compiling drafts. Organizers are listed separately.</p>
+</section>
+<section class="content-section" id="accepted-work">
+  <h2>Integrated work</h2>
+  <div class="contributor-list">{''.join(records)}</div>
+</section>
+<section class="content-section" id="recognition">
+  <h2>How credit is recorded</h2>
+  <p>Each accepted entry names the contributor and the concrete theorem,
+  chapter, adapter, executable check, or tool improvement that entered the
+  repository. Commit authorship and co-authorship are preserved in Git.</p>
+  <a class="button secondary" href="../community/index.html">Become a contributor</a>
+</section>"""
+    return page_template(
+        title="Contributors",
+        route="contributors/",
+        current="contributors/",
+        body=body,
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=[("contributors", "Contributors"), ("accepted-work", "Integrated work"), ("recognition", "Credit")],
     )
 
 
@@ -1356,7 +1461,7 @@ def render_ide(
 <section class="hero" id="formalization-workspace">
   <p class="eyebrow">Live formalization workspace</p>
   <h1>Read the formula, inspect the Lean statement, then compile</h1>
-  <p class="lede">Load a reviewed Quantumlib mapping or edit your own snippet.
+  <p class="lede">Load a reviewed QuantumComputinglib mapping or edit your own snippet.
   Formula rendering and declaration navigation work on the static site. Real
   compilation is available only through the loopback companion server.</p>
 </section>
@@ -1403,7 +1508,7 @@ def render_ide(
   <h2>Request review without overstating the result</h2>
   <div class="submit-fields">
     <label>Name<input type="text" data-contributor-name placeholder="Required for submission"></label>
-    <label>Preferred credit<input type="text" data-contributor-credit placeholder="How Quantumlib should credit you"></label>
+    <label>Preferred credit<input type="text" data-contributor-credit placeholder="How QuantumComputinglib should credit you"></label>
     <label>Source or citation<input type="text" data-contributor-source placeholder="URL, DOI, book, or original result"></label>
   </div>
   <div class="hero-actions">
@@ -1441,7 +1546,7 @@ def render_attribution(
 <section class="hero">
   <p class="eyebrow">Attribution</p>
   <h1>Tools, libraries, and project boundaries</h1>
-  <p class="lede">Quantumlib is generated from this repository's ASPBE Lean
+  <p class="lede">QuantumComputinglib is generated from this repository's ASPBE Lean
   source and curated quantum-computing explanations.</p>
 </section>
 <section class="content-section">
@@ -1466,14 +1571,14 @@ def render_attribution(
   <p><a href="https://statsmllib.github.io/">StatsMLlib</a> demonstrates a useful
   textbook organization: a persistent book map, selected formulas, natural-language
   readings, source locations, organizers, and a visible contribution path.
-  Quantumlib uses independently written templates, CSS, JavaScript, diagrams, and
+  QuantumComputinglib uses independently written templates, CSS, JavaScript, diagrams, and
   quantum-computing content.</p>
   <p>The local-compiler boundary and reviewed LaTeX-to-Lean workspace follow the
   proven design used by
   <a href="https://github.com/DakeBU/Auto-Bandit-RL-Proof-In-Sleep">Auto-Bandit-RL-Proof-In-Sleep</a>:
   the public site is static, while a loopback-only companion server may invoke the
   pinned Lean toolchain on temporary snippets. No bandit chapters, declarations,
-  statuses, or theorem data are copied into Quantumlib.</p>
+  statuses, or theorem data are copied into QuantumComputinglib.</p>
 </section>"""
     return page_template(
         title="Attribution",
@@ -1534,6 +1639,10 @@ def copy_task_builder(output: Path) -> None:
     assets = ROOT / "web" / "assets"
     if assets.exists():
         shutil.copytree(assets, destination / "assets", dirs_exist_ok=True)
+    shutil.copy2(
+        ROOT / "docs" / "assets" / "aspbe_harness_flow.svg",
+        destination / "assets" / "aspbe-harness-flow.svg",
+    )
 
 
 def build_search_index(
@@ -1555,7 +1664,7 @@ def build_search_index(
             }
         )
     page_entries = [
-        ("Quantumlib", "Formal quantum computing chapters, declarations, and tools", "index.html"),
+        ("QuantumComputinglib", "Formal quantum computing chapters, declarations, and tools", "index.html"),
         ("State preparation", "Prepare a normalized target state from the all-zero basis state", "state-preparation/index.html"),
         ("Block encoding", "Encode a scaled operator in the clean block of a larger unitary", "block-encoding/index.html"),
         ("Implementation Map", "Mathematical goals connected to exact Lean declarations", "implementation-map/index.html"),
@@ -1564,7 +1673,8 @@ def build_search_index(
         ("ASPBE harness", "Candidate generation, resource scoring, proof, and validation", "workflow/index.html"),
         ("Live formalization workspace", "Compare LaTeX with Lean and compile through the local companion server", "ide/index.html"),
         ("Quantum Lean ecosystem", "ASPBE and selected external formalization libraries", "ecosystem/index.html"),
-        ("Contribute", "Submit a sourced teaching correction or Lean lemma packet", "community/index.html"),
+        ("Contribute", "Develop and submit a sourced teaching, theorem, adapter, or validation contribution", "community/index.html"),
+        ("Contributors", "Integrated external contributions and public credit", "contributors/index.html"),
         ("Organizers", "Current ASPBE authors and contributor credit policy", "organizers/index.html"),
     ]
     page_entries.extend(
@@ -1647,6 +1757,7 @@ def build(args: argparse.Namespace) -> None:
     output.mkdir(parents=True)
     shutil.copytree(WEBSITE_ROOT / "static", output / "static")
     shutil.copytree(WEBSITE_ROOT / "diagrams", output / "diagrams")
+    shutil.copy2(ROOT / "CONTRIBUTING.md", output / "CONTRIBUTING.md")
     if (WEBSITE_ROOT / "community").exists():
         shutil.copytree(WEBSITE_ROOT / "community", output / "community")
 
@@ -1689,6 +1800,7 @@ def build(args: argparse.Namespace) -> None:
     write_page(output, "workflow", render_workflow(coverage, gate, context))
     write_page(output, "ecosystem", render_ecosystem(coverage, gate, context))
     write_page(output, "community", render_community(coverage, gate, context))
+    write_page(output, "contributors", render_contributors(coverage, gate, context))
     write_page(output, "organizers", render_organizers(coverage, gate, context))
     write_page(
         output,

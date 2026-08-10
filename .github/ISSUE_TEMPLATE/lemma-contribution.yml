@@ -1,12 +1,26 @@
-name: Quantumlib lemma contribution
-description: Propose a sourced statement, Lean mapping, or checked ASPBE lemma.
-title: "[Quantumlib lemma] "
+name: QuantumComputinglib contribution proposal
+description: Propose a sourced theorem, library adapter, chapter correction, or checked ASPBE lemma.
+title: "[Contribution proposal] "
 labels: ["contribution", "formalization"]
 body:
   - type: markdown
     attributes:
       value: |
         Keep the mathematical statement, Lean claim, assumptions, provenance, and compiler status aligned. A compiling placeholder such as `True` is not a formalization of the submitted mathematics.
+        Small, implementation-ready changes may proceed directly to a pull request. Use this proposal before adding a module, dependency, public API, or substantial theorem route.
+  - type: dropdown
+    id: contribution_type
+    attributes:
+      label: Contribution type
+      options:
+        - State Preparation formalization
+        - Block Encoding formalization
+        - Shared linear algebra or circuit semantics
+        - External Lean library adapter
+        - Teaching chapter or documentation correction
+        - Harness, executable export, or resource validation
+    validations:
+      required: true
   - type: textarea
     id: mathematics
     attributes:
@@ -31,7 +45,7 @@ body:
   - type: textarea
     id: lean
     attributes:
-      label: Lean draft and imports
+      label: Proposed owning module, Lean draft, and imports
       render: lean
     validations:
       required: true
@@ -48,6 +62,15 @@ body:
       label: Preferred contributor credit
     validations:
       required: true
+  - type: checkboxes
+    id: trust
+    attributes:
+      label: Proof and status boundary
+      options:
+        - label: The proposed formal result does not use `sorry`, `admit`, a new `axiom`, or a weakened placeholder proposition.
+          required: true
+        - label: I understand that local compilation is not the same as integration or completion of a broader route.
+          required: true
   - type: checkboxes
     id: license
     attributes:

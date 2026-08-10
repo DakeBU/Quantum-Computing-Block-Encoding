@@ -1,4 +1,4 @@
-# Quantumlib Task Builder
+# QuantumComputinglib Task Builder
 
 This is a browser interface for researchers who do not want to start from raw
 GitHub commands.  The GitHub Pages workflow publishes it together with the
@@ -21,6 +21,21 @@ certify proofs.  Lean remains the verifier.
 Model execution either happens in a downloaded local checkout through Codex,
 Claude, GLM, Gemini, Minimax, or custom wrappers, or through a user-owned
 self-hosted runner/API endpoint.
+
+For an operational local button rather than packet generation alone, build the
+unified site and run:
+
+```bash
+python3 website/scripts/ide_server.py \
+  --directory _site \
+  --runner-command "python3 website/scripts/qbe_task_runner.py --execute --cycles 1"
+```
+
+Open `http://127.0.0.1:8000/task-builder/` and choose **Run with my API**. The
+loopback server passes the key to the selected runner process through the
+provider-specific environment variable and does not log or persist it. The
+runner writes normal ASPBE task/run artifacts, so this mode should be enabled
+only in a checkout where the user intends those writes.
 
 ## Deploy As A Normal Website
 

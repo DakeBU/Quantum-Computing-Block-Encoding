@@ -50,10 +50,14 @@ def setup(width: float, height: float):
     return fig, ax
 
 
-def save_figure(fig, stem: str, *, svg: bool = True):
+def save_figure(fig, stem: str, *, svg: bool = True, pdf: bool = False):
     """Write the same reader-facing figure to the paper and README trees."""
 
-    suffixes = ("png", "svg") if svg else ("png",)
+    suffixes = ["png"]
+    if svg:
+        suffixes.append("svg")
+    if pdf:
+        suffixes.append("pdf")
     for directory in (ARTICLE_FIG, README_FIG):
         directory.mkdir(parents=True, exist_ok=True)
         for suffix in suffixes:
@@ -974,67 +978,59 @@ def draw_evolution_acceptance_pipeline():
     plt.close(fig)
 
 
-def draw_abeis_agent_cycle_detail():
-    """Show who is allowed to change each part of one controlled cycle."""
+def draw_aspbe_harness_flow():
+    """Draw the shared controller without merging its two input contracts."""
 
-    fig, ax = setup(18.0, 8.2)
-    label(ax, 4, 95, "One ABEIS cycle | authority, execution, and persistent state", fs=22, weight="bold", color=NAVY, ha="left")
-    label(
-        ax,
-        4,
-        90.5,
-        "The controller schedules narrow work only after the target, population direction, and current proof leaf are machine-readable.",
-        fs=11.2,
-        color=MUTED,
-        ha="left",
-    )
+    fig, ax = setup(18.0, 7.0)
+    label(ax, 4, 94, "ASPBE turns a fixed quantum contract into checked evidence", fs=21, weight="bold", color=NAVY, ha="left")
+    label(ax, 4, 89, "State Preparation and Block Encoding enter separately; search infrastructure is shared only after the contract is frozen.", fs=11, color=MUTED, ha="left")
 
-    group_box(ax, 4, 66, 92, 17, "Control authority", BLUE, "#F7FAFF")
-    box(ax, 8, 70, 19, 8, "Upper", "fix contract; authorize\ncapacity / epsilon", fc=BLUE_L, ec=BLUE, fs=12.2, subfs=8.1)
-    box(ax, 31, 70, 22, 8, "Middle", "retrieve memory; maintain\npopulation + proof DAG", fc=PURPLE_L, ec=PURPLE, fs=12.2, subfs=8.1)
-    box(ax, 57, 70, 17, 8, "Selection", "one active route +\none ready leaf", fc=AMBER_L, ec=AMBER, fs=12.2, subfs=8.1)
-    box(ax, 78, 70, 14, 8, "Reviewer", "sign decision;\naudit fidelity", fc=RED_L, ec=RED, fs=12.2, subfs=8.1)
-    for x1, x2 in [(27.3, 30.7), (53.3, 56.7), (74.3, 77.7)]:
-        arrow(ax, x1, 74, x2, 74, color="#475569", lw=2.0)
+    box(ax, 4, 64, 18, 13, "State Preparation", r"$U|0^n\rangle=|\psi\rangle$", fc="#F7FCF9", ec=GREEN, fs=12, subfs=10)
+    box(ax, 4, 43, 18, 13, "Block Encoding", r"$\|A-\alpha\Pi U\Pi^\dagger\|\leq\varepsilon$", fc="#F8F7FC", ec=PURPLE, fs=12, subfs=9.1)
 
-    group_box(ax, 4, 36, 92, 22, "Ordered lower execution", GREEN, "#F8FFF9")
-    lower_nodes = [
-        (8, "Proof architect", "state one local\nmathematical move"),
-        (29, "Diagnostic", "dimension / support /\nfinite counterexample"),
-        (50, "Lean worker", "close one named\ndeclaration"),
-        (71, "Build gate", "lake build +\nroot anchor"),
+    stages = [
+        (29, "Freeze", "hash target +\nconventions"),
+        (44, "Retrieve", "compiled lemmas +\nmemory cards"),
+        (59, "Select", "population route +\nready DAG leaf"),
+        (74, "Prove", "diagnostic + one\nnamed Lean leaf"),
+        (89, "Accept", "Lean root, then\nQiskit / QASM"),
     ]
-    for x, title, sub in lower_nodes:
-        color = GREEN if title in {"Lean worker", "Build gate"} else BLUE
-        fill = GREEN_L if color == GREEN else "#FFFFFF"
-        box(ax, x, 42, 17, 9, title, sub, fc=fill, ec=color, fs=11.3, subfs=7.8)
-    for x1, x2 in [(25.3, 28.7), (46.3, 49.7), (67.3, 70.7)]:
-        arrow(ax, x1, 46.5, x2, 46.5, color="#475569", lw=2.0)
+    for x, title, note in stages:
+        edge = GREEN if title == "Accept" else "#64748B"
+        face = GREEN_L if title == "Accept" else "#FFFFFF"
+        box(ax, x - 6, 52, 12, 16, title, note, fc=face, ec=edge, fs=11.5, subfs=7.8, lw=1.8)
+    arrow(ax, 22, 70.5, 23, 62, color=GREEN, lw=1.8)
+    arrow(ax, 22, 49.5, 23, 58, color=PURPLE, lw=1.8)
+    for left, right in zip(stages, stages[1:]):
+        arrow(ax, left[0] + 6.3, 60, right[0] - 6.3, 60, color="#475569", lw=1.8)
 
-    group_box(ax, 4, 9, 92, 19, "Durable state and next transition", "#94A3B8", "#FFFFFF")
-    state_nodes = [
-        (7, "Task", "fixed target"),
-        (25, "Population", "typed actions"),
-        (43, "Proof DAG", "leaf status"),
-        (61, "Feedback", "failure class"),
-        (79, "Evidence", "digest + roots"),
+    label(ax, 29, 75, "UPPER", fs=8.5, weight="bold", color=MUTED)
+    label(ax, 51.5, 75, "MIDDLE", fs=8.5, weight="bold", color=MUTED)
+    label(ax, 74, 75, "LOWER", fs=8.5, weight="bold", color=MUTED)
+    label(ax, 89, 75, "REVIEW + GATES", fs=8.5, weight="bold", color=MUTED)
+
+    ax.plot([29, 89], [35, 35], color="#CBD5E1", linewidth=1.5)
+    durable = [
+        (29, "contract", "fixed"),
+        (44, "memory", "typed reuse"),
+        (59, "population + DAG", "propose / retain / retire"),
+        (74, "feedback", "classified failure"),
+        (89, "evidence", "digest + artifacts"),
     ]
-    for x, title, sub in state_nodes:
-        box(ax, x, 14, 14, 7, title, sub, fc="#F8FAFC", ec="#64748B", fs=10.8, subfs=7.5)
-    for x1, x2 in [(21.3, 24.7), (39.3, 42.7), (57.3, 60.7), (75.3, 78.7)]:
-        arrow(ax, x1, 17.5, x2, 17.5, color="#64748B", lw=1.7)
-    arrow(ax, 79.5, 41.5, 86, 21.5, color=GREEN, lw=1.8, dashed=True, rad=0.10)
-    arrow(ax, 68, 21.5, 42, 69.5, color=RED, lw=1.6, dashed=True, rad=-0.20)
-    label(ax, 50, 4.5, "Unchanged evidence returns to population/control or stops; it never silently buys another lower call.", fs=10.5, weight="bold", color=NAVY)
+    for x, title, note in durable:
+        ax.scatter([x], [35], s=42, facecolor="white", edgecolor="#64748B", linewidth=1.3, zorder=3)
+        label(ax, x, 29.5, title, fs=9.3, weight="bold", color=TEXT)
+        label(ax, x, 25.5, note, fs=7.8, color=MUTED)
+    label(ax, 23, 35, "DURABLE STATE", fs=8.3, weight="bold", color=MUTED, ha="right")
 
-    for path in [
-        ARTICLE_FIG / "abeis_agent_cycle_detail.png",
-        ARTICLE_FIG / "abeis_agent_cycle_detail.svg",
-        README_FIG / "abeis_agent_cycle_detail.png",
-        README_FIG / "abeis_agent_cycle_detail.svg",
-    ]:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(path, bbox_inches="tight", facecolor=BG)
+    arrow(ax, 80, 52, 53, 38, color=RED, lw=1.6, dashed=True, rad=0.16)
+    label(ax, 68, 41.5, "typed failure updates the route", fs=8.4, weight="bold", color=RED)
+    arrow(ax, 59, 24, 29, 18, color=BLUE, lw=1.4, dashed=True, rad=-0.08)
+    label(ax, 44, 14.5, "upper may change one capacity level or one adjacent epsilon rung", fs=8.4, color=BLUE)
+    label(ax, 4, 7.5, "STOP RULE", fs=9, weight="bold", color=RED, ha="left")
+    label(ax, 14, 7.5, "same leaf + same evidence digest + no typed population or policy change  ->  stop before another model call", fs=9.3, weight="bold", color=NAVY, ha="left")
+
+    save_figure(fig, "aspbe_harness_flow", pdf=True)
     plt.close(fig)
 
 
@@ -1523,6 +1519,7 @@ def normalize_svg_whitespace():
 
     names = (
         "abeis_agent_cycle_detail.svg",
+        "aspbe_harness_flow.svg",
         "abeis_lean_lemma_tree.svg",
         "be_case1_candidates.svg",
         "be_case1_convergence.svg",
@@ -1562,7 +1559,7 @@ def main():
     draw_be_case2_convergence()
     draw_be_case2_score_table()
     draw_evolution_acceptance_pipeline()
-    draw_abeis_agent_cycle_detail()
+    draw_aspbe_harness_flow()
     draw_be_case2_summary()
     draw_be_case2_proof_dag()
     draw_abeis_lean_lemma_tree()

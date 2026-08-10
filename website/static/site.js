@@ -5,13 +5,13 @@
   const body = document.body;
   const siteRoot = body.dataset.siteRoot || "./";
   const themes = ["blueprint", "modern", "bold"];
-  const savedTheme = localStorage.getItem("quantumlib-theme");
+  const savedTheme = localStorage.getItem("quantumcomputinglib-theme");
   const requestedTheme = new URLSearchParams(window.location.search).get("theme");
 
   function setTheme(theme) {
     const selected = themes.includes(theme) ? theme : "blueprint";
     root.dataset.theme = selected;
-    localStorage.setItem("quantumlib-theme", selected);
+    localStorage.setItem("quantumcomputinglib-theme", selected);
     document.querySelectorAll("[data-theme-choice]").forEach((button) => {
       button.setAttribute(
         "aria-pressed",

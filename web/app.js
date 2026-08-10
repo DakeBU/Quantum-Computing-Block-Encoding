@@ -7,6 +7,7 @@ const defaultModel = document.getElementById("defaultModel");
 const runnerEndpoint = document.getElementById("runnerEndpoint");
 const apiKey = document.getElementById("apiKey");
 const redactApiKey = document.getElementById("redactApiKey");
+const oneProviderAllRoles = document.getElementById("oneProviderAllRoles");
 const languagePreset = document.getElementById("languagePreset");
 const languageCustom = document.getElementById("languageCustom");
 const oracleDescription = document.getElementById("oracleDescription");
@@ -31,8 +32,34 @@ const lower3Backend = document.getElementById("lower3Backend");
 const reviewerBackend = document.getElementById("reviewerBackend");
 const packet = document.getElementById("packet");
 const copyStatus = document.getElementById("copyStatus");
+const runnerStatus = document.getElementById("runnerStatus");
 const dashboardJson = document.getElementById("dashboardJson");
 const dashboardView = document.getElementById("dashboardView");
+
+const roleBackendControls = [
+  upperBackend,
+  middleBackend,
+  lower1Backend,
+  lower2Backend,
+  lower3Backend,
+  reviewerBackend,
+];
+
+function synchronizeProviderRoles() {
+  const backend = {
+    openai: "gpt",
+    anthropic: "claude",
+    gemini: "gemini",
+    glm: "glm",
+    minimax: "minimax",
+    custom: "custom",
+  }[apiProvider.value];
+  roleBackendControls.forEach((control) => {
+    if (oneProviderAllRoles.checked && backend) control.value = backend;
+    control.disabled = oneProviderAllRoles.checked;
+  });
+  buildPacket();
+}
 
 const sampleDashboard = {
   task: "QBE-OP-OPTCTRL-COLD-CLEAN-001",
@@ -291,7 +318,7 @@ Environment template for local CLI or a self-hosted web runner:
 ${runnerEnvTemplate()}
 \`\`\`
 
-The public Quantumlib website should not spend project-owned model credits for users.
+The public QuantumComputinglib website should not spend project-owned model credits for users.
 Users either run the CLI locally, connect the page to their own self-hosted
 runner, or paste this task packet into their preferred AI coding agent.
 
@@ -598,6 +625,66 @@ function downloadPacket() {
   URL.revokeObjectURL(url);
 }
 
+function resolvedRunnerEndpoint() {
+  const configured = runnerEndpoint.value.trim() || "/api/run-task";
+  return new URL(configured, window.location.href).toString();
+}
+
+async function runWithApi() {
+  buildPacket();
+  const button = document.getElementById("runWithApi");
+  const payload = {
+    schemaVersion: 1,
+    task: {
+      id: taskName.value.trim() || "operator-block-encoding-task",
+      mode: mode.value,
+      harness: harnessMode.value,
+      language: selectedLanguage(),
+      target: oracleDescription.value.trim(),
+      normalizer: normalizer.value.trim(),
+      projector: projector.value.trim(),
+      exportTargets: selectedExportTargets(),
+    },
+    provider: apiProvider.value,
+    defaultModel: defaultModel.value.trim(),
+    profile: JSON.parse(backendProfileJson()),
+    packet: packet.textContent,
+  };
+  const headers = { "Content-Type": "application/json" };
+  if (apiKey.value.trim()) {
+    headers.Authorization = `Bearer ${apiKey.value.trim()}`;
+  }
+  button.disabled = true;
+  runnerStatus.className = "runner-status";
+  runnerStatus.textContent = "Submitting to your runner. Keep this page open.";
+  try {
+    const response = await fetch(resolvedRunnerEndpoint(), {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload),
+      cache: "no-store",
+    });
+    const data = await response.json().catch(() => ({
+      ok: false,
+      output: `Runner returned HTTP ${response.status} without JSON.`,
+    }));
+    if (!response.ok || data.ok === false) {
+      throw new Error(data.output || `Runner returned HTTP ${response.status}.`);
+    }
+    if (data.dashboard && typeof data.dashboard === "object") {
+      dashboardJson.value = JSON.stringify(data.dashboard, null, 2);
+      renderDashboardFromJson();
+    }
+    runnerStatus.classList.add("runner-status-ok");
+    runnerStatus.textContent = data.output || "Runner accepted the task.";
+  } catch (error) {
+    runnerStatus.classList.add("runner-status-error");
+    runnerStatus.textContent = `${error.message} Start the local companion with a configured runner command, or enter your own HTTPS runner endpoint.`;
+  } finally {
+    button.disabled = false;
+  }
+}
+
 languagePreset.addEventListener("change", () => {
   languageCustom.disabled = languagePreset.value !== "custom";
   buildPacket();
@@ -613,6 +700,7 @@ languagePreset.addEventListener("change", () => {
   runnerEndpoint,
   apiKey,
   redactApiKey,
+  oneProviderAllRoles,
   languageCustom,
   oracleDescription,
   normalizer,
@@ -640,6 +728,7 @@ languagePreset.addEventListener("change", () => {
 });
 
 document.getElementById("buildPacket").addEventListener("click", buildPacket);
+document.getElementById("runWithApi").addEventListener("click", runWithApi);
 document.getElementById("copyPacket").addEventListener("click", copyPacket);
 document.getElementById("downloadPacket").addEventListener("click", downloadPacket);
 document.getElementById("renderDashboard").addEventListener("click", renderDashboardFromJson);
@@ -648,6 +737,10 @@ document.getElementById("sampleDashboard").addEventListener("click", () => {
   renderDashboardFromJson();
 });
 
+apiProvider.addEventListener("change", synchronizeProviderRoles);
+oneProviderAllRoles.addEventListener("change", synchronizeProviderRoles);
+
+synchronizeProviderRoles();
 buildPacket();
 dashboardJson.value = JSON.stringify(sampleDashboard, null, 2);
 renderDashboardFromJson();

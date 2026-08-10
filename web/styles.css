@@ -392,6 +392,26 @@ button.secondary:hover {
   min-height: 18px;
 }
 
+.runner-status {
+  min-height: 22px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.runner-status-ok {
+  color: var(--green);
+}
+
+.runner-status-error {
+  color: #a33f37;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
 .score-card {
   border: 1px solid #c8d5e6;
   border-radius: 8px;

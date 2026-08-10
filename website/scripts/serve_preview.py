@@ -32,7 +32,7 @@ class PreviewHandler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:
         if not self.authenticated():
             self.send_response(401)
-            self.send_header("WWW-Authenticate", 'Basic realm="Quantumlib preview"')
+            self.send_header("WWW-Authenticate", 'Basic realm="QuantumComputinglib preview"')
             self.end_headers()
             self.wfile.write(b"Authentication required.\n")
             return
@@ -41,7 +41,7 @@ class PreviewHandler(SimpleHTTPRequestHandler):
     def do_HEAD(self) -> None:
         if not self.authenticated():
             self.send_response(401)
-            self.send_header("WWW-Authenticate", 'Basic realm="Quantumlib preview"')
+            self.send_header("WWW-Authenticate", 'Basic realm="QuantumComputinglib preview"')
             self.end_headers()
             return
         super().do_HEAD()
@@ -92,7 +92,7 @@ def main() -> int:
         *handler_args, directory=str(root), **kwargs
     )
     server = ThreadingHTTPServer((args.host, args.port), handler)
-    print(f"Serving private Quantumlib preview at http://{args.host}:{args.port}/")
+    print(f"Serving private QuantumComputinglib preview at http://{args.host}:{args.port}/")
     print("Authentication is required; credentials came from environment variables.")
     try:
         server.serve_forever()

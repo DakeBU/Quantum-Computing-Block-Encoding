@@ -15,6 +15,13 @@ foreach ($required in @(
   }
 }
 
+& $PythonCommand -m py_compile `
+  website/scripts/build_site.py `
+  website/scripts/check_site.py `
+  website/scripts/ide_server.py `
+  website/scripts/qbe_task_runner.py
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
 & $PythonCommand website/scripts/build_site.py `
   --lean-gate-report _out/lean-gate.json `
   --output _out/site
@@ -38,4 +45,4 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand scripts/sanitize-blueprint-paths.py --scan-only _site
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-Write-Host "Quantumlib assembled at _site/index.html"
+Write-Host "QuantumComputinglib assembled at _site/index.html"

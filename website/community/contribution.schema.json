@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://dakebu.github.io/Quantum-Computing-Block-Encoding/community/contribution.schema.json",
-  "title": "Quantumlib lemma contribution packet",
+  "title": "QuantumComputinglib lemma contribution packet",
   "description": "A reviewable handoff from sourced quantum mathematics to an ASPBE Lean contribution.",
   "type": "object",
   "additionalProperties": false,
