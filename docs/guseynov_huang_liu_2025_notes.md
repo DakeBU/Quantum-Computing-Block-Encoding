@@ -36,7 +36,11 @@ complexity to explicit gate-level construction for PDE block encodings.
 - `GHL2025.oneDimHamiltonianClaim`
 - `GHL2025.multiDimHamiltonianClaim`
 
-These are currently Lean data and resource formulas.  The next step is to give
-the circuit IR concrete matrix semantics and replace the placeholder proof
-obligations in `VerifiedBlockEncoding` with actual unitary and block-correctness
-predicates.
+The finite model, gate order, many support lemmas, and explicit counterexamples
+now compile in `RobinMatrix.lean` with zero proof holes. In particular, the
+historical H-free raw fold has been formally rejected rather than left as a
+search target. The paper-wide route is still experimental: the cited
+sparse-access, amplitude-oracle, cleanup, analytic-normalizer, and final
+composition contracts must be discharged before constructing a full verified
+block encoding. Those external boundaries must not be promoted merely because
+the research module itself compiles.

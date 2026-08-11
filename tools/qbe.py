@@ -5115,23 +5115,25 @@ def ghl_fig4_visual_audit_markdown(task_id: str, run_dir: Path) -> str:
 | `GHL2025.oneTermRobinTheoremFacingFig4Circuit` | 完整 Fig. 4 transcript guard | `H_W^(kappa)`, `U_indic`, `O_DT^S`, `Ry_boundary`, `O_DT^BS`, `U_indic^dagger`, `O_f`, `SWAP`, `(O_D^BS)^dagger`, `(H_W^(kappa))^dagger` | 目前只是 transcript guard，不等于完整 semantic proof |
 | `GHL2025.oneTermRobinCircuit` | active seven-gate backend 子组件 | `U_indic`, `O_DT^S`, `Ry_boundary`, `O_D^BS`, `O_f`, `SWAP`, `(O_D^BS)^dagger` | 不能叫完整 Fig. 4，也不能用它直接替代 source-prepared route |
 
-## 当前没解决的真正 Lean 问题
+## 当前 Lean 结论
 
-现在不是“看不懂原文有没有证明”。问题更具体：
+1. `RobinMatrix.lean` 已纳入整库编译门，仓库不再允许历史 `sorry`。
+2. H-free raw entry/backend-fold 目标已由
+   `oneTermRobinGamma3BoundaryUnitaryEntry_ne_backendFold_n3` 证明为假。
+3. `oneTermRobinGamma3BoundaryGateMatrixList_n3` 记录七门组件的准确顺序，
+   但不把不同括号的 symbolic expression tree 冒充为相同构造子。
+4. 完整 Fig. 4 的外部 sparse preparation、oracle、cleanup 和 analytic
+   normalizer 仍是显式 contract；它们与已关闭的错误 raw 目标分开管理。
 
-1. 完整 Fig. 4 要通过 `H_W` prepared route 进入 clean sparse branch。
-2. 当前 Lean 已经有很多 feeder，能把目标化到 active seven-gate evaluated entry / prepared sparse clean entry / backend fold 之间。
-3. 还缺一个语义矩阵 entry bridge：在 `Coeff.evalWith` 后证明这个 active entry 等于 backend fold，或等价地证明 source-prepared active entry 等于 prepared sparse clean entry。
-4. 不能继续证明 raw `Coeff` expression tree 的 constructor equality，因为那不是论文语义，且已被 verifier 记录为 `symbolic_bridge_gap`。
+## 后续 agent 任务约束
 
-## 下一轮 agent 任务约束
-
-- upper：只选择一个 leaf：`semantic_eval_product_bridge` 或 `evaluated_backend_fold_leaf`。
-- middle：必须先引用本文件，声明完整 Fig. 4 和 seven-gate backend 的区别。
-- lower1 natural-language proof architect：把 Fig. 4 视觉路径写成依赖 DAG，不写 Lean。
-- lower2 Lean worker：只在 `QuantumBlockEncoding/RobinMatrix.lean` 证明一个 `Coeff.evalWith` semantic entry lemma。
-- lower3 necessary-condition verifier：先做 finite matrix/path/support 诊断，确认 active entry、branch vanish、register shape 没有反例，再把 typed feedback 写进 `verifier-feedback/`。
-- reviewer：拒绝任何把 seven-gate backend 当完整 Fig. 4、把 external oracle contract 当 proved、或重试 raw `Coeff` equality 的路线。
+- upper：不得重新派发已反证的 H-free raw equality；只能选择一个尚未实现的
+  external-contract adapter 或完整 Fig. 4 composition leaf。
+- middle：检索并引用反例 theorem，把该父路线标为 retired。
+- lower：每次只实现一个明确的 oracle/cleanup/normalizer contract，不得改 gate
+  order、normalizer 或 clean-register convention。
+- reviewer：拒绝任何把 seven-gate backend 当完整 Fig. 4、把 external oracle
+  contract 当 proved、或重试 raw `Coeff` equality 的路线。
 
 """
     return (
@@ -5165,24 +5167,25 @@ def ghl_failure_map_markdown(task_id: str, run_dir: Path) -> str:
 ## 先读结论
 
 - GHL2025 的 one-term Robin block-encoding 还没有完整 Lean 复现完成。
-- 当前没有完成的是 Fig. 4 / Eq. ROBIN clarified / one-term theorem 之间的最后矩阵条目桥接：论文说线路的 clean branch 会留下目标系数；Lean 需要我们把具体门矩阵相乘，并证明指定 entry 正好等于这个系数。
+- `QuantumBlockEncoding/RobinMatrix.lean` 已进入完整 Lean gate，当前没有 `sorry`；这表示该模块中的局部命题都已检查，不表示整篇论文已从底层门语义闭环。
 - 视觉审计已确认：完整 Fig. 4 包含左右两侧 `H_W^(kappa)` / `(H_W^(kappa))^T` 和显式 `U_indic^dagger`。当前 active seven-gate backend 只是子组件，不能被当成完整 Fig. 4 theorem。
-- 现在剩下的主要失败不是“论文没有写证明”，而是 ABEIS 当前 Lean 表达层级还差一个语义桥：不能继续强证 raw `Coeff` symbolic matrix 的构造子相等，应该在 `Coeff.evalWith` 后的矩阵语义层证明 entry equality。
+- 历史 H-free raw fold 不是“尚未搜到证明”，而是一个错误命题：仓库已用有限反例编译证明其否定。正确的 seven-gate 顺序有独立结构证书；后续工作必须从论文的具名 oracle / preparation contract 出发，不能把错误目标换个 tactic 再搜索。
 - 外部 oracle、$H_W$ sparse-register preparation、$O_f$、QSVT 等还没有都从零 formalize；当前它们被明确记录为 contract 或 external technical lemma，不应冒充为已经由 GHL 本文贡献证明。
 
 ## 当前 Lean 明确未闭合处
 
 {sorry_text}
 
-这两个 `sorry` 是显式诊断 blocker，不是隐藏在文字里的假设。它们阻止我们声称 GHL one-term Robin theorem 已经闭合。
+仓库当前不再允许 Robin `sorry`。历史 H-free raw fold 已作为错误目标被
+编译反证；剩余 paper-wide 工作是具名 external contract，不是隐藏证明洞。
 
 ## GHL 原文到 Lean 失败地图
 
 | GHL 原文位置 | 原文在说什么 | Lean/ABEIS 对应位置 | 当前状态 | 失败或未完成原因（普通话） | 失败记录在哪里 | 下一步 |
 | --- | --- | --- | --- | --- | --- | --- |
-| `main.tex:1098-1109` | one-term Robin block-encoding theorem：最终要证明 Fig. 4 的 circuit 是 $A_k=f(x)\\partial_x^m$ 的 block-encoding。 | `QuantumBlockEncoding/RobinMatrix.lean`；目标链包含 `oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env` 和 source-prepared theorem-facing wrapper。 | 未完成。 | 最后还没证明 active clean branch 的矩阵 entry 等于论文需要的 block-encoding 系数。已有很多局部 feeder，但最终 theorem 不能因为 feeder 编译就算完成。 | `{rel(latest_summary)}`；`{rel(latest_memory)}`；`proof-attempts/QBE-AUTO-002/post-lower2-evaluated-fold-semantic-bridge-middle-packet-20260611-2352.md` | 只攻击一个最小 leaf：`semantic_eval_product_bridge` 或 `evaluated_backend_fold_leaf`，证明 evalWith 后的矩阵乘积 entry 等于 backend fold。 |
-| `main.tex:1111-1119` | Eq. ROBIN clarified：给出 $\\gamma_1,\\gamma_2,\\gamma_3$，其中关键 clean branch 是 $f(x_i)D_i^{(s)}/(N_DN_f\\kappa)$。 | `oneTermRobinGamma3BoundaryBackendBranchContribution_n3`；backend branch fold；selected slot `2`。 | 部分完成。 | backend 侧很多 branch vanish/support lemma 已编译，但还没把 active evaluated entry 和 backend fold 完全接上。也就是说，论文里的“这个分支留下目标系数”还没被 Lean 证明成最终等式。 | `verifier-feedback/QBE-AUTO-002/evaluated-backend-fold-lower2-20260611-2348.md`；`proof-attempts/QBE-AUTO-002/evaluated-backend-fold-lower2-blocked-20260611-2348.md` | 用 `Matrix.evalWith_mul_apply`、`Matrix.evalWith_mul_unique_path`、`Matrix.evalWith_mul_two_path` 这一类语义引理，不再走 raw constructor equality。 |
-| `main.tex:1122-1164` | Fig. 4 circuit caption：完整线路顺序，包括左侧 $H_W^{(\\kappa)}$、`U_indic`、boundary $R_y$、$O_f$、SWAP、$(O_D^{BS})^\\dagger$、右侧 $H_W^T$。 | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`；另有 H-free active backend seven-gate component。 | 图的 transcript guard 已有；最终语义 theorem 未完成。 | ABEIS 已经把“图里应出现哪些门”守住了，但“这些门相乘后的目标 entry 正确”还没完全证明。七门 backend 是中间组件，不等于完整 Fig. 4 theorem。 | `{rel(latest_summary)}` 的 `FigRobin` 行；`conversion-windows/QBE-AUTO-002.md`；`proof-obligations/QBE-AUTO-002.md` | 保持图的门顺序不变；把 H-free 七门 backend 当作组件，不把它误报为完整线路。 |
+| `main.tex:1098-1109` | one-term Robin block-encoding theorem：最终要证明 Fig. 4 的 circuit 是 $A_k=f(x)\\partial_x^m$ 的 block-encoding。 | `QuantumBlockEncoding/RobinMatrix.lean` 中的 theorem-facing wrapper 和局部 backend 定理。 | 局部宣言已编译；paper-wide route 仍是 experimental。 | 不完整处是具名外部原语 contract，包括 sparse preparation、oracle 和 cleanup；不是隐藏的 Lean proof hole。历史 raw fold 已被反例否定。 | `{rel(latest_summary)}`；`{rel(latest_memory)}`；`QuantumBlockEncoding/RobinMatrix.lean` | 选择一个外部 contract，明确它的语义、引用来源和单独验收定理；不再派发已否定的 raw fold。 |
+| `main.tex:1111-1119` | Eq. ROBIN clarified：给出 $\\gamma_1,\\gamma_2,\\gamma_3$，其中关键 clean branch 是 $f(x_i)D_i^{(s)}/(N_DN_f\\kappa)$。 | `oneTermRobinGamma3BoundaryBackendBranchContribution_n3`；backend branch fold；selected slot `2`。 | 局部分支和 support/vanish 引理已编译。 | 这些引理精确描述 active backend 组件。它们不自动实现完整 Fig. 4 中的外部 preparation/oracle contract。 | `QuantumBlockEncoding/RobinMatrix.lean`；历史失败仍保留在 `proof-attempts/QBE-AUTO-002/` 作为审计记录。 | 只在所选外部 contract 具体化后证明对应语义 entry；先做小维度反例检查。 |
+| `main.tex:1122-1164` | Fig. 4 circuit caption：完整线路顺序，包括左侧 $H_W^{(\\kappa)}$、`U_indic`、boundary $R_y$、$O_f$、SWAP、$(O_D^{BS})^\\dagger$、右侧 $H_W^T$。 | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`；`oneTermRobinGamma3BoundaryGateMatrixList_n3` 证明 H-free seven-gate component 的确切顺序。 | 两个 gate-list 结构证书已编译；完整 gate-level 语义仍依赖外部 contract。 | ABEIS 已经守住门顺序，并明确区分七门 backend 与完整 Fig. 4。缺失的是原语实现，不是 transcript 或未证明等式。 | `{rel(latest_summary)}` 的 `FigRobin` 行；`conversion-windows/QBE-AUTO-002.md`；`proof-obligations/QBE-AUTO-002.md` | 保持图与子组件的边界；为每个外部原语建立独立 certificate，再做完整 composition。 |
 | `main.tex:1077-1085` | Robin boundary 的 controlled $R_y$ 旋转，论文写 $\\theta_j^s=\\arccos(D_j^{(s)}/N_D)$。 | boundary rotation convention lemmas；`tl-ry-boundary-amplitude-convention`。 | 仍是 obligation。 | 标准量子计算里的 `R_y(\\theta)` 振幅常出现半角 $\\cos(\\theta/2)$。如果论文采用不同 convention 或隐含 doubled-angle，Lean 必须明确桥接，不能硬改公式。 | `research-wiki/technical-lemmas/todo.md`；`research-wiki/paper-contributions/GHL2025/todo.md` | 查论文定义和引用文献，确认 convention 后写成 Lean lemma；不能自己加新假设。 |
 | `main.tex:948-955` | $H_W^{(\\kappa)}$ 制备 sparse register 的 uniform superposition。 | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`。 | contract-only。 | 这是论文引用的已有 state-preparation primitive，不是当前 GHL 自己新证明的核心。为了先复现 GHL 主线，可以把它作为显式 contract，但不能说 gate-level proof 已完成。 | `research-wiki/technical-lemmas/todo.md`；`{rel(latest_summary)}` 的 `HW` 行 | 先保持 theorem-facing contract；若以后做资源定理或完整 gate-level primitive，再 formalize 引用文献。 |
 | `main.tex:784-798` | Lemma 1：banded-sparse-access oracle $\\hat O_D^{BS}$。 | `tl-ghl-lemma1-banded-sparse-access`；sparse-access oracle contract。 | contract/backlog。 | 论文引用前人 PDE block-encoding 构造；ABEIS 还没有从零证明 reversible extension、injectivity、dagger cleanup、unitarity。 | `research-wiki/technical-lemmas/todo.md`；`research-wiki/cited-results/GHL2025.md` | 保持为 external technical lemma；后续做 oracle library 时补完整证明。 |
@@ -5192,7 +5195,7 @@ def ghl_failure_map_markdown(task_id: str, run_dir: Path) -> str:
 | `main.tex:1596-1649` | 多维推广。 | planned。 | 未开始主体证明。 | 依赖 one-term、1D Hamiltonian 和 LCU generalization。 | `{rel(latest_summary)}` 的 `MultiD` 行 | 暂不分配 lower agent。 |
 | `main.tex:1676-1694` | Hamiltonian simulation / QSVT 引用。 | `tl-qsvt-blockencoding-simulation`。 | paper-cited/backlog。 | 这是把 block-encoding 用于 simulation 的外部 theorem application，不是 Fig. 4 gate-level closure。 | `research-wiki/technical-lemmas/todo.md` | 等 block-encoding theorem 完成后再接 QSVT。 |
 
-## 最近一次失败到底失败在哪里？
+## 历史失败如何被关闭？
 
 最近 lower2 试图证明：
 
@@ -5206,7 +5209,7 @@ oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3
 maximum recursion depth has been reached
 ```
 
-普通解释是：这不是单纯算不过去，而是路线不对。我们现在的 `Coeff` 是 symbolic expression tree；同一个数学矩阵乘法，如果括号嵌套不同，raw constructor 级别不一定长得完全一样。论文需要的是“矩阵语义相等”，不是“Lean 表达式树长得一模一样”。所以正确路线是先用 `Coeff.evalWith` 把 symbolic coefficient 解释成语义值，再证明对应 entry 相等。
+普通解释是：这不是单纯算不过去，而是目标本身需要先审计。我们的 `Coeff` 是 symbolic expression tree；矩阵乘法的不同括号结构在 raw constructor 层不必相等。更关键的是，随后使用 all-one environment 做有限语义检查，已经得到父命题的反例。因此这条历史任务现在以“已编译反证”关闭，而不是继续等待一个 semantic bridge。`Coeff.evalWith` 仍可用于其他真实的语义义务，但不能用来挽救这个已被否定的父命题。
 
 对应失败记录：
 
@@ -5216,12 +5219,13 @@ maximum recursion depth has been reached
 
 ## 现在真正应该派给 lower agent 的任务
 
-不要再派 raw `Coeff` matrix equality。下一步应该派一个更小、更符合论文证明含义的 leaf：
+不要再派 raw `Coeff` matrix equality。该目标已经由反例永久关闭。下一步只能派
+一个具名外部合同的实现或完整 Fig. 4 composition leaf：
 
-1. 目标：证明 active seven-gate evaluated entry 等于 backend branch fold。
+1. 目标：实现一个当前标为 contract-only 的 sparse preparation、oracle、cleanup 或 normalizer 组件。
 2. 文件：`QuantumBlockEncoding/RobinMatrix.lean`。
-3. 优先引理层级：`Coeff.evalWith` 后的语义矩阵 entry。
-4. 可用工具：`Matrix.evalWith_mul_apply`、`Matrix.evalWith_mul_unique_path`、`Matrix.evalWith_mul_two_path`、`Matrix.evalWith_mul_eq_zero_of_all_paths_zero`。
+3. 优先顺序：先检查目标是否是论文合同的必要结论，并用最小维度环境排除反例；通过后再选择 raw 结构层、`Coeff.evalWith` 语义层或抽象 contract 层。
+4. 可用工具由具体合同决定；语义矩阵义务可以使用 `Matrix.evalWith_mul_apply`、`Matrix.evalWith_mul_unique_path`、`Matrix.evalWith_mul_two_path` 和零路径引理。
 5. 不允许：改 gate order、改 normalizer、给 oracle 加论文没有的假设、把 contract-only external primitive 标成 proved。
 
 ## 人类最快查看命令

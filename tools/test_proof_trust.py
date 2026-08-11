@@ -41,13 +41,13 @@ def safe : String := "sorry admit axiom"
         )[0]
         self.assertFalse(is_approved(finding))
 
-    def test_only_named_robin_sorry_is_approved(self) -> None:
+    def test_historical_robin_sorry_is_no_longer_approved(self) -> None:
         finding = scan_lean_source(
             Path("QuantumBlockEncoding/RobinMatrix.lean"),
             "theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3 : True := by\n"
             "  sorry\n",
         )[0]
-        self.assertTrue(is_approved(finding))
+        self.assertFalse(is_approved(finding))
 
 
 if __name__ == "__main__":

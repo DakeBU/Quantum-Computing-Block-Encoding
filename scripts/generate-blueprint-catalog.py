@@ -72,7 +72,11 @@ CATALOGS = [
     (
         "Semantics",
         "catalog-semantics",
-        {"CircuitSemantics.lean", "ConcreteSemantics.lean"},
+        {
+            "CircuitSemantics.lean",
+            "ConcreteSemantics.lean",
+            "TextbookStatePreparation.lean",
+        },
     ),
     ("ClassicRoutes", "catalog-classic-routes", {"BlockEncodingClassics.lean"}),
     (
@@ -128,8 +132,8 @@ CATALOG_PURPOSES = {
         "explicit open-problem records."
     ),
     "ExperimentalRobinMatrix": (
-        "Historical Robin-matrix research outside the default import surface; "
-        "its open diagnostics are displayed as obligations."
+        "Compiled Robin-matrix research included in the full ASPBE gate; local "
+        "results are separated from the broader paper route and external contracts."
     ),
 }
 
@@ -324,8 +328,8 @@ def plain_english(decl: Declaration) -> str:
     if decl.kind in THEOREM_KINDS:
         if decl.experimental:
             lead = (
-                f"This experimental entry states the proposition indexed as "
-                f"“{topic}”; consult its displayed status before treating it as proved."
+                f"Lean checks the research-module proposition indexed as “{topic}”; "
+                "its local proof does not by itself complete the broader paper route."
             )
         else:
             lead = (
@@ -368,8 +372,9 @@ def formal_status(decl: Declaration) -> str:
         )
     if decl.experimental:
         return (
-            "Outside the default import surface. Read the chapter warning and the "
-            "Lean panel status before using this declaration as evidence."
+            "Compiled by the full ASPBE gate in a research-level module. The "
+            "displayed theorem is checked, but it does not promote a broader "
+            "paper route or an external oracle contract."
         )
     if decl.kind in THEOREM_KINDS:
         return (
@@ -390,8 +395,6 @@ def formal_status(decl: Declaration) -> str:
 def local_status(decl: Declaration) -> str:
     if decl.open_proof:
         return "Stated, proof incomplete"
-    if decl.experimental:
-        return "Experimental"
     return "Compiled"
 
 
@@ -476,9 +479,10 @@ def render_catalog(
     if any(decl.experimental for decl in declarations):
         body.extend(
             [
-                "*Experimental status.* RobinMatrix.lean is not imported by the default library",
-                "surface. It is catalogued for completeness and contains explicit sorry-guarded",
-                "diagnostic theorems. Those nodes are visible obligations, not certified facts.",
+                "*Research-module status.* RobinMatrix.lean is compiled by the full ASPBE gate",
+                "with zero proof holes. Its declarations include proved helper lemmas, explicit",
+                "counterexamples, and typed external contracts. A compiled local declaration does",
+                "not by itself certify the complete paper construction.",
                 "",
             ]
         )

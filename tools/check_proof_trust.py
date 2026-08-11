@@ -12,16 +12,7 @@ except ModuleNotFoundError:
     from tools.proof_trust import TrustFinding, scan_repository
 
 
-APPROVED_SORRIES = {
-    (
-        Path("QuantumBlockEncoding/RobinMatrix.lean"),
-        "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
-    ),
-    (
-        Path("QuantumBlockEncoding/RobinMatrix.lean"),
-        "oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3",
-    ),
-}
+APPROVED_SORRIES: set[tuple[Path, str]] = set()
 
 
 def is_approved(finding: TrustFinding) -> bool:
@@ -55,7 +46,7 @@ def main() -> int:
         return 1
     print(
         "proof-trust gate passed: "
-        f"{len(approved)} approved experimental sorry occurrence(s), "
+        f"{len(approved)} approved sorry occurrence(s), "
         "0 unapproved holes, 0 source-level axioms"
     )
     return 0

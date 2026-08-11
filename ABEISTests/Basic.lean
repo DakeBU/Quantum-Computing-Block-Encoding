@@ -42,6 +42,22 @@ def testVerifiedIdentityStatePreparation : VerifiedStatePreparation Rat 1 where
 example : testIdentityStatePreparation.cost.gateCount = 0 := rfl
 
 example :
+    TextbookStatePreparation.pauliXVerified.candidate.preparesTarget :=
+  TextbookStatePreparation.pauliXVerified.firstColumn
+
+example :
+    TextbookStatePreparation.hadamardVerified.candidate.preparesTarget :=
+  TextbookStatePreparation.hadamardVerified.firstColumn
+
+example :
+    TextbookStatePreparation.pauliXVerified.candidate.cost.gateCount = 1 := by
+  rw [TextbookStatePreparation.pauliXVerified_cost]
+
+example :
+    TextbookStatePreparation.hadamardVerified.candidate.cost.depth = 1 := by
+  rw [TextbookStatePreparation.hadamardVerified_cost]
+
+example :
     (testVerifiedIdentityStatePreparation.asZeroErrorApprox).approxCandidate.epsilon = 0 :=
   rfl
 

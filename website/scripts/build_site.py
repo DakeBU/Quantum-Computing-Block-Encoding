@@ -24,6 +24,7 @@ sys.path.insert(0, str(WEBSITE_ROOT))
 from content import (  # noqa: E402
     CHAPTERS,
     IMPLEMENTATION_MAP,
+    LESSONS,
     ROADMAP,
     STATUS_ORDER,
     WORKFLOW_STAGES,
@@ -805,6 +806,43 @@ def result_card(
 </article>"""
 
 
+def render_textbook_lesson(slug: str) -> str:
+    lesson = LESSONS[slug]
+    objectives = "".join(
+        f"<li>{html.escape(str(item))}</li>" for item in lesson["objectives"]
+    )
+    sections = "".join(
+        f"""<article class="lesson-step">
+  <h3>{html.escape(str(title))}</h3>
+  <div class="lesson-equation">\\[{html.escape(str(math))}\\]</div>
+  <p>{html.escape(str(explanation))}</p>
+</article>"""
+        for title, math, explanation in lesson["sections"]
+    )
+    return f"""
+<section class="content-section textbook-lesson" id="lesson">
+  <div class="lesson-opening">
+    <div>
+      <p class="eyebrow">Textbook lesson</p>
+      <h2>Build the idea before opening the proof</h2>
+      <p class="lesson-lead">{html.escape(str(lesson['lead']))}</p>
+    </div>
+    <aside class="lesson-objectives" aria-label="Learning objectives">
+      <h3>By the end</h3>
+      <ul>{objectives}</ul>
+    </aside>
+  </div>
+  <div class="lesson-steps">{sections}</div>
+  <div class="lesson-checkpoint">
+    <strong>Check your understanding</strong>
+    <p>{html.escape(str(lesson['checkpoint']))}</p>
+  </div>
+  <p class="source-note">Mathematical order and conventions adapted from Lin,
+  <a href="https://arxiv.org/abs/2201.08309">Lecture Notes on Quantum Algorithms for Scientific Computation</a>.
+  The formal checkpoints and ASPBE status distinctions are specific to this library.</p>
+</section>"""
+
+
 def render_chapter(
     chapter: dict[str, object],
     declarations: dict[str, dict[str, object]],
@@ -815,7 +853,11 @@ def render_chapter(
     route = f"chapters/{chapter['slug']}/"
     prefix = prefix_for(route)
     result_html = []
-    toc = [("orientation", "Orientation"), ("dependency-view", "Route at a glance")]
+    toc = [
+        ("orientation", "Orientation"),
+        ("lesson", "Textbook lesson"),
+        ("dependency-view", "Route at a glance"),
+    ]
     for item in chapter["results"]:
         declaration = declarations[str(item["declaration"])]
         result_html.append(result_card(item, declaration, prefix))
@@ -831,6 +873,7 @@ def render_chapter(
     <ul>{modules}</ul>
   </details>
 </section>
+{render_textbook_lesson(str(chapter['slug']))}
 <section class="content-section" id="dependency-view">
   <div class="section-heading">
     <p class="eyebrow">Route at a glance</p>

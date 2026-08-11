@@ -959,6 +959,99 @@ dd {
   font-weight: 700;
 }
 
+.textbook-lesson {
+  border-top: 1px solid var(--line-strong);
+}
+
+.lesson-opening {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.8fr);
+  gap: 52px;
+  align-items: start;
+}
+
+.lesson-opening h2 {
+  max-width: 18ch;
+}
+
+.lesson-lead {
+  max-width: var(--measure);
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+.lesson-objectives {
+  border-left: 3px solid var(--state);
+  padding: 2px 0 2px 22px;
+}
+
+.lesson-objectives h3 {
+  margin: 0 0 10px;
+  font-family: var(--ui-font);
+  font-size: 15px;
+}
+
+.lesson-objectives ul {
+  margin: 0;
+  padding-left: 19px;
+  color: var(--muted);
+}
+
+.lesson-steps {
+  margin-top: 48px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.lesson-step {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.55fr) minmax(250px, 1fr) minmax(270px, 1.25fr);
+  gap: 30px;
+  align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.lesson-step h3 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.lesson-step p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.lesson-equation {
+  min-width: 0;
+  overflow-x: auto;
+  color: var(--ink);
+  font-size: 17px;
+}
+
+.lesson-checkpoint {
+  margin-top: 30px;
+  border-left: 3px solid var(--warm);
+  padding: 4px 0 4px 20px;
+}
+
+.lesson-checkpoint strong {
+  font-family: var(--ui-font);
+  font-size: 14px;
+}
+
+.lesson-checkpoint p,
+.source-note {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.source-note {
+  margin-top: 24px;
+  font-family: var(--ui-font);
+  font-size: 13px;
+}
+
 .status {
   min-height: 24px;
   display: inline-flex;
@@ -1451,10 +1544,21 @@ code {
   .reading-tracks,
   .concept-list,
   .block-concepts,
+  .lesson-opening,
+  .lesson-step,
   .result-notes,
   .workflow-list,
   .metric-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lesson-opening,
+  .lesson-step {
+    gap: 18px;
+  }
+
+  .lesson-step {
+    align-items: start;
   }
 
   .application-path {

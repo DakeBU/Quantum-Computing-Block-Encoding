@@ -26941,61 +26941,44 @@ theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_diagnostic_n3
   oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3 env hRaw
 
 /--
-QBE-AUTO-002: sorry-guarded obstruction record for the H-free raw Coeff fold (n=3).
+The historical H-free raw fold is false for the current symbolic target.
 
-This is the DIAGNOSTIC H-free route, not the source-correct prepared projection route.
-The source-correct route is
-`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`,
-which routes through the prepared singleton clean entry under the `H_W^(kappa)`
-clean-column contract.
-
-The raw Coeff equality `signalUnitaryEntry = blockExtractionBranchContributionSum`
-is the missing finite projection theorem.  Approaches tried:
-- `rfl`: hits maxRecDepth (even at 4096)
-- `native_decide`: OOM/timeout (19GB RSS, killed after 780s)
-- Both sides unfold to deeply nested Coeff expressions involving 7 gate matrices.
-
-After rewriting via `oneTermRobinGamma3BoundarySignalUnitaryEntry_evalGateMatrices_n3`,
-the LHS reduces to `(evalGateMatrices gates) [0,0]`.  The RHS is the seven-slot
-backend fold `Sum_{s:Fin 7} sevenGateMatrix[idx(s),idx(s)] * projFactor`.
-These are structurally different Coeff expressions whose equality encodes the
-finite projection/summation theorem for the 1-term Robin boundary branch.
+This closes the old diagnostic route by rejection rather than by an axiom.  It
+combines the compiled equivalence to the backend-expansion statement with the
+explicit all-one counterexample above.  The source-prepared route remains a
+separate conditional interface and is never allowed to reuse this rejected
+parent.
 -/
-theorem oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3 :
-    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry =
+theorem oneTermRobinGamma3BoundaryUnitaryEntry_ne_backendFold_n3 :
+    oneTermRobinGamma3BoundaryProjectionSummationTarget_n3.signalUnitaryEntry ≠
       blockExtractionBranchContributionSum
         oneTermRobinGamma3BoundaryBackendBranchContribution_n3 := by
-  sorry
+  intro hFold
+  exact oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3
+    ((oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3).2
+      hFold)
 
 /--
-QBE-AUTO-002: sorry-dependent diagnostic proof of the evaluated backend fold.
+The seven active gate matrices have the exact paper-facing order recorded by
+the circuit semantics layer.
 
-This uses the H-free raw Coeff fold and is diagnostic/recovery only.
-The source-correct route is
-`oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_of_activePreparedEval_n3`.
+The project-local symbolic `Coeff` matrix multiplication stores syntax trees,
+so differently parenthesized products are not definitionally equal.  This
+structural theorem is the correct raw certificate; algebraic regrouping must
+be stated after `Coeff.evalWith`, where rational associativity is available.
 -/
-theorem oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3_proof_diagnostic
-    (env : String → Rat) :
-    oneTermRobinGamma3BoundaryEvaluatedBackendFoldStatement_n3 env :=
-  oneTermRobinGamma3BoundaryEvaluatedBackendFold_of_unitaryEntryFold_n3 env
-    oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3
-
-/--
-QBE-AUTO-002: matrix equality between `evalGateMatrices` over the 7 gate placeholders
-and the seven-gate boundary matrix for the focused `n = 3` gamma3 packet.
-
-Both sides represent the same 7-gate product by matrix associativity:
-  - `evalGateMatrices [G1,...,G7]` folds to `G7 * G6 * ... * G1` (left-nested `Matrix.mul`)
-  - `oneTermRobinGamma3BoundarySevenGateMatrix_n3 = suffixMatrix * prefixMatrix`
-    where suffix = `(O_D^BS)^dagger * (SWAP * O_f)` and prefix = `O_D^BS * (Ry * (O_DT^S * U_indic))`
-
-The equality holds by `Matrix.mul_assoc`.  This theorem is a diagnostic bridge
-connecting the circuit-semantics fold to the explicit boundary product.
--/
-theorem oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3 :
-    evalGateMatrices (GHL2025.oneTermRobinGateMatrixPlaceholders (oneTermParameters 3)) =
-      oneTermRobinGamma3BoundarySevenGateMatrix_n3 := by
-  sorry
+theorem oneTermRobinGamma3BoundaryGateMatrixList_n3 :
+    (GHL2025.oneTermRobinGateMatrixPlaceholders
+      (oneTermParameters 3)).map (fun gateMatrix => gateMatrix.matrix) =
+      [ GHL2025.indicatorOracleMatrix (oneTermParameters 3)
+      , GHL2025.sparseAmplitudeOracleDTRotationMatrix (oneTermParameters 3)
+      , GHL2025.boundaryRotationMatrix (oneTermParameters 3)
+      , GHL2025.bandedSparseAccessPaperMatrix (oneTermParameters 3)
+      , GHL2025.functionOraclePaperMatrix (oneTermParameters 3)
+      , GHL2025.swapOracleMatrix (oneTermParameters 3)
+      , GHL2025.bandedSparseAccessPaperDaggerMatrix (oneTermParameters 3)
+      ] := by
+  rfl
 
 end Examples.RobinHeat
 

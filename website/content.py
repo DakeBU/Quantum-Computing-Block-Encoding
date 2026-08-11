@@ -111,9 +111,52 @@ CHAPTERS = [
         "modules": [
             "QuantumBlockEncoding/StatePreparation.lean",
             "QuantumBlockEncoding/ConcreteSemantics.lean",
+            "QuantumBlockEncoding/TextbookStatePreparation.lean",
         ],
         "diagram": "state-preparation-flow",
         "results": [
+            result(
+                "QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate_prepares_plus",
+                "Hadamard prepares the plus state",
+                "The standard Hadamard matrix is proved unitary and maps the zero ket to the normalized equal superposition.",
+                r"H|0\rangle=(|0\rangle+|1\rangle)/\sqrt{2}.",
+                "The first column of H contains the two target amplitudes, both equal to one over square root two.",
+                "This is the smallest complete example where normalization is genuinely more than a basis-vector check.",
+                [
+                    "QuantumBlockEncoding.TextbookStatePreparation.hadamard_unitary",
+                    "QuantumBlockEncoding.TextbookStatePreparation.plusTarget_normalized",
+                ],
+                "Prove the square-root identity, check H times its conjugate transpose is identity, and identify column zero with the target vector.",
+                [
+                    ("Prove the target has norm one.", "plusTarget_normalized"),
+                    ("Prove the matrix is unitary.", "hadamard_unitary"),
+                    ("Evaluate H on the zero ket.", "hadamard_prepares_plus"),
+                    ("Package all three facts.", "hadamardCertificate"),
+                ],
+                "Compiled",
+                "Compiled",
+            ),
+            result(
+                "QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate_prepares_one",
+                "Pauli X prepares the one state",
+                "The Pauli X permutation is proved unitary and sends the zero basis state to the one basis state.",
+                r"X|0\rangle=|1\rangle,\qquad X|1\rangle=|0\rangle.",
+                "X swaps the two basis columns; selecting its first column therefore gives the one-state amplitudes.",
+                "It gives beginners a complete certificate without irrational amplitudes or hidden analytic assumptions.",
+                [
+                    "QuantumBlockEncoding.TextbookStatePreparation.pauliX_unitary",
+                    "QuantumBlockEncoding.TextbookStatePreparation.oneTarget_normalized",
+                ],
+                "Use Mathlib's swap matrix, its self-inverse theorem, and the basis-ket column-selection lemma.",
+                [
+                    ("Represent X as a swap matrix.", "pauliX"),
+                    ("Use self-inverse to prove unitarity.", "pauliX_unitary"),
+                    ("Select the zero-input column.", "pauliX_prepares_one"),
+                    ("Package the certificate and cost.", "pauliXVerified"),
+                ],
+                "Compiled",
+                "Compiled",
+            ),
             result(
                 "QuantumBlockEncoding.StatePreparationCandidate.preparesTarget",
                 "The state-preparation contract",
@@ -148,6 +191,7 @@ CHAPTERS = [
         "modules": [
             "QuantumBlockEncoding/StatePreparation.lean",
             "QuantumBlockEncoding/ConcreteSemantics.lean",
+            "QuantumBlockEncoding/TextbookStatePreparation.lean",
         ],
         "diagram": "state-preparation-flow",
         "results": [
@@ -458,21 +502,25 @@ CHAPTERS = [
                 "Compiled",
             ),
             result(
-                "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
-                "Historical Robin raw-fold obstruction",
-                "The historical module states a finite seven-gate coefficient equality but leaves its proof open.",
-                r"U_{00}=\sum_{s=0}^{6} B_s.",
-                "The statement compares structurally different deep coefficient expressions and is a diagnostic route.",
-                "It must remain visible so readers do not confuse paper-model coverage with a completed backend fold.",
-                ["QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryEvalGateMatrices_eq_sevenGateMatrix_n3"],
-                "A successful route would bridge evaluated gate-list semantics to the explicit product before proving the finite projection sum.",
+                "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntry_ne_backendFold_n3",
+                "Robin raw-fold route is rejected",
+                "The historical H-free symbolic entry is proved not equal to the proposed seven-slot backend fold.",
+                r"U_{00}\ne\sum_{s=0}^{6} B_s.",
+                "The all-one coefficient environment exposes a nonzero selected contribution that the old equality would force to zero.",
+                "A proved counterexample closes this search branch and prevents future agents from spending budget on a false target.",
                 [
-                    ("Normalize the seven-gate product.", "evalGateMatrices"),
-                    ("Prove the projection sum.", "oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3"),
+                    "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_not_n3",
+                    "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryBackendExpansionStatement_equivUnitaryEntryFold_n3",
                 ],
-                "Stated, proof incomplete",
-                "Blocked",
-                "The raw finite projection theorem is open; the default library uses a source-correct prepared route instead.",
+                "Assume the raw fold, convert it to the equivalent backend-expansion statement, and contradict the compiled all-one counterexample.",
+                [
+                    ("Assume the historical raw equality.", "intro hFold"),
+                    ("Move to the equivalent expansion target.", "equivUnitaryEntryFold_n3.mpr"),
+                    ("Apply the counterexample.", "BackendExpansionStatement_not_n3"),
+                ],
+                "Compiled",
+                "Compiled",
+                "The rejected branch is closed. The broader Robin paper reproduction remains experimental because several cited oracle contracts are not local gate-level certificates.",
             ),
         ],
     },
@@ -584,7 +632,159 @@ CHAPTERS = [
 CHAPTERS.sort(key=lambda chapter: int(chapter["number"]))
 
 
+# Continuous teaching prose sits beside, rather than inside, declaration cards.
+# The quantum-computing exposition follows the order and conventions of Lin's
+# lecture notes (arXiv:2201.08309), with ASPBE-specific formal checkpoints.
+LESSONS = {
+    "linear-algebra": {
+        "lead": "A quantum state is a complex column vector. For n qubits its dimension is 2^n, so every basis label is a finite index from 0 to 2^n-1.",
+        "objectives": [
+            "Read ket notation as an ordinary finite vector.",
+            "Check dimensions before manipulating a circuit or matrix.",
+            "Distinguish vector normalization from matrix unitarity.",
+        ],
+        "sections": [
+            ("States are normalized vectors", r"|\psi\rangle=\sum_{j=0}^{2^n-1}\psi_j|j\rangle,\qquad \sum_j|\psi_j|^2=1.", "The amplitudes are complex numbers and the squared magnitudes sum to one. An unnormalized data vector must be rescaled before it can be the exact output of a unitary."),
+            ("Matrices act on columns", r"(U|\psi\rangle)_i=\sum_j U_{ij}\psi_j.", "ASPBE fixes column-vector, left-action semantics. This convention determines gate order, first-column state preparation, and clean-block indices."),
+            ("Equality becomes finite obligations", r"A=B\iff \forall i,j,\ A_{ij}=B_{ij}.", "Lean does not accept a diagram as evidence. It checks each finite index, or a reusable theorem that implies all of those entry equalities."),
+        ],
+        "checkpoint": "Before continuing, be able to explain why a one-qubit gate is a 2 by 2 matrix and a two-qubit gate is a 4 by 4 matrix.",
+    },
+    "circuit-semantics": {
+        "lead": "A circuit is an ordered program; its denotation is one unitary matrix. The list order and multiplication order must be stated once and then reused everywhere.",
+        "objectives": [
+            "Read a gate list from input to output.",
+            "Relate sequential gates to a matrix product.",
+            "Track which bits belong to each register.",
+        ],
+        "sections": [
+            ("Unitary evolution", r"U^\dagger U=I,\qquad |\psi'\rangle=U|\psi\rangle.", "A gate preserves norm. ASPBE's concrete certificates use Mathlib's unitary group, while symbolic paper models keep unproved oracle unitarity as an explicit contract."),
+            ("Composition order", r"[g_1,g_2,\ldots,g_m]\mapsto G_m\cdots G_2G_1.", "The rightmost matrix acts first. Reversing this convention can preserve dimensions while changing the algorithm, so the evaluator is a named library definition."),
+            ("Registers are part of meaning", r"|a\rangle|i\rangle\leftrightarrow a\,2^n+i.", "Flattening ancilla and system registers requires one fixed order. Projection lemmas prove that the flat index and product-register views select the same entries."),
+        ],
+        "checkpoint": "Given gates G then V, write the final state and the combined matrix without reversing their order.",
+    },
+    "state-preparation": {
+        "lead": "State preparation asks for one observable action: start in the all-zero basis state and end at a specified normalized target.",
+        "objectives": [
+            "State the target contract independently of block encoding.",
+            "Verify normalization, unitarity, and state action separately.",
+            "Follow the X and Hadamard examples through complete Lean certificates.",
+        ],
+        "sections": [
+            ("The contract", r"U|0^n\rangle=|\psi\rangle.", "The input is fixed, but U must still be a unitary on the whole 2^n-dimensional space. Specifying only the desired output vector is not yet a circuit."),
+            ("Pauli X", r"X=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad X|0\rangle=|1\rangle.", "X exchanges the two computational-basis states. The formal example represents X as Mathlib's swap matrix and obtains unitarity from self-invertibility."),
+            ("Hadamard", r"H=\frac1{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix},\qquad H|0\rangle=|+\rangle.", "The plus state has two equal amplitudes. Lean separately proves the square-root normalization, H's unitary equation, and the zero-state action."),
+        ],
+        "checkpoint": "Open both complete certificates below and identify the exact line that proves normalization, unitarity, and preparation.",
+    },
+    "state-preparation-certificates": {
+        "lead": "A certificate is useful because later code can consume one trusted object instead of repeating the matrix calculation.",
+        "objectives": [
+            "See why the zero-state equation is a first-column equation.",
+            "Read the fields of a verified preparation record.",
+            "Reuse exact evidence in a zero-error approximate interface.",
+        ],
+        "sections": [
+            ("Why column zero appears", r"U|0^n\rangle=\operatorname{column}_0(U).", "The zero ket has one nonzero amplitude at index zero. Matrix-vector multiplication therefore discards every column except the first."),
+            ("What the record stores", r"\text{normalized target}+\text{unitary U}+\text{first-column proof}.", "Each field has a different failure mode. Keeping them separate prevents a correct first column from hiding a nonunitary completion."),
+            ("Exact before approximate", r"\varepsilon=0\Rightarrow \|U|0^n\rangle-|\psi\rangle\|=0.", "An exact certificate can enter an approximate search unchanged. Positive error needs a declared metric and a new bound."),
+        ],
+        "checkpoint": "Explain why matching column zero alone does not prove that a candidate is physically implementable.",
+    },
+    "block-encoding": {
+        "lead": "Block encoding is an input model for a generally nonunitary matrix: a larger unitary exposes the desired operator when clean ancillas are projected onto zero.",
+        "objectives": [
+            "Read the roles of U, the ancillas, alpha, and epsilon.",
+            "Translate the projector equation into indexed matrix entries.",
+            "Understand why a very large alpha is mathematically valid but operationally costly.",
+        ],
+        "sections": [
+            ("Exact clean block", r"(\langle0^a|\otimes I)U(|0^a\rangle\otimes I)=A/\alpha.", "The upper-left wording is safe only after register order is fixed. ASPBE therefore records the clean index and layout as part of the contract."),
+            ("Approximate form", r"\|A-\alpha(\langle0^a|\otimes I)U(|0^a\rangle\otimes I)\|\le\varepsilon.", "The norm and tolerance must be named. Approximation is a controlled relaxation, not permission to change the target matrix."),
+            ("Normalization affects success", r"p(0^a)=\|A|b\rangle\|^2/\alpha^2.", "A larger alpha can make unitary completion easier but lowers clean-ancilla success probability. Resource comparisons must report it."),
+        ],
+        "checkpoint": "For a proposed U, write the exact row and column indices selected when every ancilla is zero.",
+    },
+    "classic-routes": {
+        "lead": "Most useful proofs follow a small number of constructions. Route selection should happen before expanding a large circuit product.",
+        "objectives": [
+            "Recognize permutation, sparse, LCU, product, and dilation routes.",
+            "Reuse a completed leaf instead of reproving finite-sum algebra.",
+            "Treat QSVT as a consumer of a valid block encoding.",
+        ],
+        "sections": [
+            ("Sparse routing", r"O_c|j\rangle=|c(j)\rangle.", "When support is a reversible finite map, the proof reduces to routed basis indices and vanishing off-support entries."),
+            ("Composition", r"\operatorname{block}(U_BU_A)=BA.", "Compatible clean-block certificates compose. Register compatibility and normalizers still have to match."),
+            ("Consumer boundary", r"U_A\leadsto p^{(\mathrm{SV})}(A/\alpha).", "QSVT does not repair an invalid source encoding. The source certificate and the polynomial approximation are separate proof obligations."),
+        ],
+        "checkpoint": "Choose one route for a diagonal matrix and state which oracle or finite map must still be implemented.",
+    },
+    "certified-cases": {
+        "lead": "Case studies show both successful certificates and rejected routes. A refutation is a completed result when it prevents reuse of a false premise.",
+        "objectives": [
+            "Trace BE Case 1 and BE Case 2 to their accepted roots.",
+            "Separate a compiled paper-model lemma from a paper-wide reproduction.",
+            "Read the Robin counterexample as reusable failure memory.",
+        ],
+        "sections": [
+            ("Accepted cases", r"\text{candidate}\rightarrow\text{unitary proof}\rightarrow\text{clean block}\rightarrow\text{cost}.", "BE Case 1 uses finite permutation structure. BE Case 2 uses an exact rational Householder completion. Both end at named compiled roots."),
+            ("Robin audit closure", r"U_{00}\ne\sum_s B_s\quad\text{for the historical H-free target}.", "The raw symbolic route is not merely slow: the current target is false. Lean proves the contradiction through a concrete coefficient environment."),
+            ("What remains experimental", r"\text{paper theorem}=\text{local semantics}+\text{cited oracle contracts}.", "The research module now has zero proof holes, but several external oracle constructions are still typed assumptions rather than local gate-level certificates."),
+        ],
+        "checkpoint": "Check both badges: a local theorem may compile while a larger paper route remains experimental.",
+    },
+    "resources-and-exports": {
+        "lead": "Correctness is a gate; resource quality ranks only candidates that pass it.",
+        "objectives": [
+            "Read a lexicographic cost tuple.",
+            "Distinguish logical-gate and backend-transpiled costs.",
+            "Understand what executable validation can and cannot certify.",
+        ],
+        "sections": [
+            ("Lexicographic ranking", r"(g,d,a,o)_1<_{\rm lex}(g,d,a,o)_2.", "The first differing coordinate decides. A low-depth invalid circuit never outranks a valid certificate."),
+            ("Executable checks", r"\text{Lean certificate}+\text{finite export}+\text{backend report}.", "Qiskit or QASM tests catch convention and implementation errors, but numerical agreement is not substituted for the symbolic theorem."),
+        ],
+        "checkpoint": "Identify which cost coordinates are proved from the logical circuit and which depend on a selected hardware backend.",
+    },
+    "automation-and-roadmap": {
+        "lead": "ASPBE treats proof search as a controlled scientific process: freeze the contract, retrieve memory, test distinct routes, and promote only verified evidence.",
+        "objectives": [
+            "Understand upper, middle, lower, verifier, and reviewer responsibilities.",
+            "See how failed routes become searchable memory.",
+            "Interpret roadmap statuses without confusing plans with theorems.",
+        ],
+        "sections": [
+            ("Decompose before scaling", r"\text{goal}\rightarrow\text{proof DAG}\rightarrow\text{ready leaves}.", "Parallel agents are added only when there are independent ready obligations or meaningfully different construction families."),
+            ("Feedback changes the next action", r"\text{counterexample}\Rightarrow\text{retire parent route}.", "Repeated identical failures do not justify more budget. The middle layer records the obstruction, updates the population, and chooses a new route or an adjacent tolerance tier."),
+            ("Status is evidence", r"\text{Compiled}\ne\text{paper-wide complete}.", "The site reports local compilation and broader route completion independently. CI regenerates counts and rejects proof holes."),
+        ],
+        "checkpoint": "For any roadmap item, locate its declaration, its current evidence, and the one missing step before assigning another agent.",
+    },
+}
+
+
 IMPLEMENTATION_MAP = [
+    {
+        "goal": "Prepare the one-qubit plus state",
+        "contract": r"H|0\rangle=(|0\rangle+|1\rangle)/\sqrt2",
+        "obligation": "Normalization, Mathlib unitarity, state action, and logical cost",
+        "declaration": "QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate_prepares_plus",
+        "dependencies": "hadamard_unitary; plusTarget_normalized; hadamard_prepares_plus",
+        "status": "Compiled",
+        "missing": "None for this textbook route",
+        "chapter": "state-preparation",
+    },
+    {
+        "goal": "Prepare the one-qubit basis state one",
+        "contract": r"X|0\rangle=|1\rangle",
+        "obligation": "Permutation unitarity, state action, and logical cost",
+        "declaration": "QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate_prepares_one",
+        "dependencies": "pauliX_unitary; oneTarget_normalized; pauliX_prepares_one",
+        "status": "Compiled",
+        "missing": "None for this textbook route",
+        "chapter": "state-preparation",
+    },
     {
         "goal": "Prepare a finite target state",
         "contract": r"U|0^n\rangle=|\psi\rangle",
@@ -716,13 +916,13 @@ IMPLEMENTATION_MAP = [
         "chapter": "classic-routes",
     },
     {
-        "goal": "Repair historical Robin raw fold",
-        "contract": r"U_{00}=\sum_s B_s",
-        "obligation": "Seven-gate semantic bridge and finite projection sum",
-        "declaration": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntry_eq_backendFold_n3",
-        "dependencies": "Historical RobinMatrix module",
-        "status": "Blocked",
-        "missing": "Two explicit proof holes remain outside the default import",
+        "goal": "Close the historical Robin raw-fold branch",
+        "contract": r"U_{00}\ne\sum_s B_s",
+        "obligation": "Convert the raw fold to the refuted backend expansion",
+        "declaration": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntry_ne_backendFold_n3",
+        "dependencies": "Equivalence bridge; all-one counterexample",
+        "status": "Compiled",
+        "missing": "None for the rejected branch; cited oracle implementations remain experimental",
         "chapter": "certified-cases",
     },
 ]
@@ -730,6 +930,7 @@ IMPLEMENTATION_MAP = [
 
 ROADMAP = [
     ("State-preparation contracts and first-column consumer", "Compiled"),
+    ("Textbook Pauli X and Hadamard certificates", "Compiled"),
     ("Circuit syntax to matrix semantics", "Compiled"),
     ("Reusable exact block-encoding routes", "Compiled"),
     ("BE Case 1 transfer-operator certificate", "Compiled"),
@@ -737,7 +938,7 @@ ROADMAP = [
     ("Primitive amplitude-oracle cost record", "Partial route"),
     ("Concrete QSVT polynomial realization", "Planned"),
     ("Paper-wide Robin backend reproduction", "Experimental"),
-    ("Historical seven-gate raw-fold diagnostics", "Blocked"),
+    ("Historical Robin H-free raw-fold rejection", "Compiled"),
 ]
 
 

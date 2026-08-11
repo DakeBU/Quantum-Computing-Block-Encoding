@@ -114,3 +114,18 @@ The root theorem combines the unitary predicate, exact clean-block target, norma
 identity. It closes the direct exact construction without treating a clean-block-only wrapper as a
 full operator certificate.
 :::
+
+# Robin-boundary audit
+
+:::theorem "historical H-free fold is rejected" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntry_ne_backendFold_n3")
+The former raw symbolic target is not a missing associativity proof. It is false for the current
+H-free backend model. The theorem converts the proposed equality to the equivalent backend
+expansion and applies a compiled all-one coefficient counterexample. This closes that search
+branch while leaving the paper-wide external oracle contracts visibly experimental.
+:::
+
+:::theorem "Robin active gate order" (lean := "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryGateMatrixList_n3")
+The seven active matrices are listed in exactly the circuit order used by the finite semantics.
+Because symbolic coefficients retain expression-tree parentheses, algebraic regrouping belongs
+after evaluation and is not asserted as raw constructor equality.
+:::

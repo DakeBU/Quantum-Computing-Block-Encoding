@@ -871,3 +871,413 @@ Source: [QuantumBlockEncoding/ConcreteSemantics.lean:182](../../../../library/mo
 
 Source: [QuantumBlockEncoding/ConcreteSemantics.lean:194](../../../../library/modules/concretesemantics/#decl-quantumblockencoding-concretesemantics-signalsystemblockprojection-eq-cleanblockproduct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
+
+# QuantumBlockEncoding/TextbookStatePreparation.lean
+
+29 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.zeroIndex" (lean := "QuantumBlockEncoding.TextbookStatePreparation.zeroIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “zero index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:20](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-zeroindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.oneIndex" (lean := "QuantumBlockEncoding.TextbookStatePreparation.oneIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “one index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:22](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-oneindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.pauliX" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliX")
+*Plain-English reading.* This definition gives the library's named construction or computation for “pauli x”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:24](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.pauliX_unitary" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliX_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “pauli x unitary”; the hypotheses and conclusion in the code panel fix its exact scope. The Pauli X matrix is unitary in Mathlib's standard unitary group.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The Pauli X matrix is unitary in Mathlib's standard unitary group.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:28](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulix-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.oneState" (lean := "QuantumBlockEncoding.TextbookStatePreparation.oneState")
+*Plain-English reading.* This definition gives the library's named construction or computation for “one state”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:35](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-onestate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.oneTarget" (lean := "QuantumBlockEncoding.TextbookStatePreparation.oneTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “one target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:38](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-onetarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.oneTarget_normalized" (lean := "QuantumBlockEncoding.TextbookStatePreparation.oneTarget_normalized")
+*Plain-English reading.* Lean checks the proposition indexed as “one target normalized”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:43](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-onetarget-normalized). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.pauliX_prepares_one" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliX_prepares_one")
+*Plain-English reading.* Lean checks the proposition indexed as “pauli x prepares one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:49](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulix-prepares-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.pauliXGate" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliXGate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “pauli x gate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:62](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulixgate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “pauli x certificate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:66](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulixcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.pauliXCircuit" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliXCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “pauli x circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:72](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulixcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.pauliXVerified" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliXVerified")
+*Plain-English reading.* This definition gives the library's named construction or computation for “pauli x verified”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:74](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulixverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.pauliXVerified_cost" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliXVerified_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “pauli x verified cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:78](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulixverified-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.invSqrtTwo" (lean := "QuantumBlockEncoding.TextbookStatePreparation.invSqrtTwo")
+*Plain-English reading.* This definition gives the library's named construction or computation for “inv sqrt two”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:83](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-invsqrttwo). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.invSqrtTwo_mul_self" (lean := "QuantumBlockEncoding.TextbookStatePreparation.invSqrtTwo_mul_self")
+*Plain-English reading.* Lean checks the proposition indexed as “inv sqrt two mul self”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:86](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-invsqrttwo-mul-self). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.hadamard" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamard")
+*Plain-English reading.* This definition gives the library's named construction or computation for “hadamard”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:94](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamard). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.star_hadamard" (lean := "QuantumBlockEncoding.TextbookStatePreparation.star_hadamard")
+*Plain-English reading.* Lean checks the proposition indexed as “star hadamard”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:99](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-star-hadamard). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.hadamard_unitary" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamard_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “hadamard unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:104](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamard-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.plusState" (lean := "QuantumBlockEncoding.TextbookStatePreparation.plusState")
+*Plain-English reading.* This definition gives the library's named construction or computation for “plus state”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:113](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-plusstate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.plusTarget" (lean := "QuantumBlockEncoding.TextbookStatePreparation.plusTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “plus target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:116](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-plustarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.plusTarget_normalized" (lean := "QuantumBlockEncoding.TextbookStatePreparation.plusTarget_normalized")
+*Plain-English reading.* Lean checks the proposition indexed as “plus target normalized”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:121](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-plustarget-normalized). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.hadamard_prepares_plus" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamard_prepares_plus")
+*Plain-English reading.* Lean checks the proposition indexed as “hadamard prepares plus”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:128](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamard-prepares-plus). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.hadamardGate" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamardGate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “hadamard gate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:139](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamardgate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “hadamard certificate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:143](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamardcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.hadamardCircuit" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamardCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “hadamard circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:150](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamardcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.TextbookStatePreparation.hadamardVerified" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamardVerified")
+*Plain-English reading.* This definition gives the library's named construction or computation for “hadamard verified”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:152](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamardverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.hadamardVerified_cost" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamardVerified_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “hadamard verified cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:156](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamardverified-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate_prepares_one" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate_prepares_one")
+*Plain-English reading.* Lean checks the proposition indexed as “pauli x certificate prepares one”; the hypotheses and conclusion in the code panel fix its exact scope. The certified Pauli X example states the familiar textbook equation.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The certified Pauli X example states the familiar textbook equation.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:162](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-paulixcertificate-prepares-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate_prepares_plus" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate_prepares_plus")
+*Plain-English reading.* Lean checks the proposition indexed as “hadamard certificate prepares plus”; the hypotheses and conclusion in the code panel fix its exact scope. The certified Hadamard example prepares the equal superposition.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The certified Hadamard example prepares the equal superposition.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:168](../../../../library/modules/textbookstatepreparation/#decl-quantumblockencoding-textbookstatepreparation-hadamardcertificate-prepares-plus). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::

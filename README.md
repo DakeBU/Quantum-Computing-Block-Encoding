@@ -15,6 +15,11 @@ Lean-checked quantum construction search, executable validation, and the
 
 ## News
 
+- **12 August 2026.** The textbook track now includes complete Mathlib-backed
+  Pauli X and Hadamard state-preparation certificates. The full Lean gate also
+  covers `RobinMatrix.lean` with zero proof holes: the historical H-free raw
+  fold is closed by a compiled counterexample, while paper-wide oracle
+  assumptions remain labeled as research contracts.
 - **10 August 2026.** The project is now named **ASPBE: Automatic State
   Preparation and Block Encoding for Quantum Computing**. Its public teaching,
   declaration, and contribution site is **QuantumComputinglib**. The site now
@@ -69,6 +74,8 @@ formal quantum-computing textbook rather than a project dashboard:
 
 - a persistent chapter map on the left;
 - formulas beside plain-language readings and exact Lean statements;
+- continuous lessons adapted from the saved quantum-algorithms lecture notes,
+  with learning objectives, hand calculations, checkpoints, and one-click Lean;
 - separate State Preparation and Block Encoding learning tracks;
 - an exhaustive declaration catalog and implementation map;
 - an atlas of ASPBE, Mathlib, and selected external quantum Lean libraries;
@@ -220,6 +227,7 @@ QuantumBlockEncoding/
 ├── Circuit.lean                 gate and circuit syntax
 ├── CircuitSemantics.lean        circuit evaluation and register semantics
 ├── ConcreteSemantics.lean       ket/column and projection bridges
+├── TextbookStatePreparation.lean complete Pauli X and Hadamard certificates
 ├── BlockEncoding.lean           operator targets and verified block encodings
 ├── BlockEncodingClassics.lean   permutation, sparse, LCU, product, dilation, QSVT contracts
 ├── Resources.lean               deterministic resource records and comparison
@@ -229,6 +237,7 @@ QuantumBlockEncoding/
 ├── ColdStartTransferE1.lean     isolated cold-start construction
 ├── OptimalControl.lean          candidate evolution and resource comparison
 ├── GHL2025.lean                 paper-reproduction surface
+├── RobinMatrix.lean             compiled Robin model, counterexamples, and contracts
 ├── Automation.lean              compiled harness contracts
 └── OpenProblems.lean            typed unfinished routes
 ```
@@ -268,6 +277,17 @@ only its consumer contract exists.
 The normalized cubic **state-preparation** benchmark is tracked separately and
 is not reported as solved merely because the cubic block-encoding family is
 certified.
+
+### Textbook state preparation and Robin audit
+
+The one-qubit textbook routes are complete certificates, not interface-only
+examples: `pauliXVerified` and `hadamardVerified` each contain a normalized
+target, Mathlib unitary-group proof, state-action proof, circuit, schedule, and
+resource record. The historical Robin H-free raw fold is also closed, but as a
+refutation: `oneTermRobinGamma3BoundaryUnitaryEntry_ne_backendFold_n3` proves
+that the proposed symbolic equality is false. This removes the two former
+proof holes without claiming that external sparse-access, amplitude-oracle,
+and paper-wide composition contracts have been implemented at gate level.
 
 ## Build and verify
 

@@ -62,6 +62,18 @@ unitarity, and first-column equality. Thus the user-level condition is
 $$`U|0^n\rangle=|\psi\rangle.`
 :::
 
+:::theorem "Pauli X prepares one" (lean := "QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate_prepares_one") (uses := "verified state preparation")
+The Mathlib swap matrix supplies the Pauli X gate. Its self-inverse property proves unitarity,
+and its zero-input column is $`|1\rangle`. The resulting certificate includes the logical circuit,
+schedule, and one-gate resource record.
+:::
+
+:::theorem "Hadamard prepares plus" (lean := "QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate_prepares_plus") (uses := "verified state preparation")
+The standard Hadamard matrix is proved unitary over $`\mathbb C`, its equal-superposition target
+is proved normalized, and concrete matrix-vector action gives
+$$`H|0\rangle=(|0\rangle+|1\rangle)/\sqrt 2.`
+:::
+
 :::definition "operator query target" (lean := "QuantumBlockEncoding.QueryOperatorTarget")
 An operator task records a finite matrix $`A`, a normalizer $`\alpha`, its provenance, its semantic
 contract, and any free parameters. The access model and normalization remain visible inputs rather
@@ -102,6 +114,6 @@ previews, and catalog assignments are displayed by the unified website rather th
 this prose. Structure-generated projections are accessible through their parent structure but
 are not double-counted as source declarations.
 
-The default library modules are expected to build without open proofs. RobinMatrix.lean is an
-optional historical research module with explicitly visible sorry-guarded diagnostics; it has
-its own catalog chapter so its status cannot be confused with the certified public surface.
+The full library, including RobinMatrix.lean, is expected to build with zero open proofs.
+RobinMatrix has its own research catalog because a compiled counterexample, interface, or
+conditional theorem must not be confused with an end-to-end certificate of the cited paper.
