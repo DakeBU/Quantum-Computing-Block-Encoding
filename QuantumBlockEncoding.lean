@@ -20,6 +20,7 @@ import QuantumBlockEncoding.Robin.FixedN3Data
 import QuantumBlockEncoding.Robin.SourceBaseline
 import QuantumBlockEncoding.Robin.WeightedPermutation
 import QuantumBlockEncoding.Robin.EvolvedCandidates
+import QuantumBlockEncoding.Robin.SymmetryFourSlot
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas

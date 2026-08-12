@@ -35,6 +35,7 @@ jobs:
           lake build QuantumBlockEncoding.Robin.FixedN3Data
           lake build QuantumBlockEncoding.Robin.WeightedPermutation
           lake build QuantumBlockEncoding.Robin.EvolvedCandidates
+          lake build QuantumBlockEncoding.Robin.SymmetryFourSlot
           lake build QuantumBlockEncoding.Robin.ResourceComparison
 
       - name: Build new Robin semantic modules when present
@@ -45,8 +46,11 @@ jobs:
           if test -f QuantumBlockEncoding/Robin/Hadamard8Verified.lean; then
             lake build QuantumBlockEncoding.Robin.Hadamard8Verified
           fi
-          if test -f QuantumBlockEncoding/Robin/SymmetryFourSlot.lean; then
-            lake build QuantumBlockEncoding.Robin.SymmetryFourSlot
+          if test -f QuantumBlockEncoding/Robin/SymmetryFourSlotVerified.lean; then
+            lake build QuantumBlockEncoding.Robin.SymmetryFourSlotVerified
+          fi
+          if test -f QuantumBlockEncoding/Robin/SixSlotOptimal.lean; then
+            lake build QuantumBlockEncoding.Robin.SixSlotOptimal
           fi
 
       - name: Run focused exporter
