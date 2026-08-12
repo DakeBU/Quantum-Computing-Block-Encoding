@@ -18,6 +18,8 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand website/scripts/run_lean_gate.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand tools/replay_public_cases.py
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand scripts/generate-blueprint-catalog.py --check
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand scripts/test-sanitize-blueprint-paths.py

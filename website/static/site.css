@@ -1220,6 +1220,26 @@ dd {
   margin-top: 20px;
 }
 
+.paper-correspondence .declaration-list {
+  display: grid;
+  gap: 8px;
+  padding-left: 20px;
+}
+
+.paper-correspondence .declaration-list a {
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+
+.paper-reading {
+  max-width: 850px;
+}
+
+.paper-latex {
+  border-left: 3px solid var(--warm);
+  padding-left: 16px;
+}
+
 pre {
   overflow: auto;
   border-radius: 3px;

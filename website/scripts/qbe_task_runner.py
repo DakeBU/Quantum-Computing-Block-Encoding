@@ -51,6 +51,64 @@ def main() -> int:
     target = str(task.get("target", "")).strip()
     if not target:
         return fail("Task target is empty.")
+    reproduction_preset = str(task.get("reproductionPreset", "custom"))
+    if reproduction_preset in {"robin-cold", "robin-warm"}:
+        arm = "cold" if reproduction_preset == "robin-cold" else "warm"
+        expected_id = f"QBE-ROBIN-BE-{arm.upper()}-001"
+        if task_id != expected_id:
+            return fail(
+                f"Preset {reproduction_preset} requires task id {expected_id}."
+            )
+        prepared = run(
+            [sys.executable, "tools/run_robin_repro.py", "prepare", "--arm", arm]
+        )
+        if prepared.returncode != 0:
+            return fail((prepared.stderr or prepared.stdout).strip())
+        if not args.execute:
+            print(
+                json.dumps(
+                    {
+                        "ok": True,
+                        "output": f"Prepared the frozen Robin {arm} arm; execution was not requested.",
+                        "task": task_id,
+                    },
+                    ensure_ascii=False,
+                )
+            )
+            return 0
+        evolved = run(
+            [
+                sys.executable,
+                "tools/run_robin_repro.py",
+                "run",
+                "--arm",
+                arm,
+                "--cycles",
+                str(max(1, args.cycles)),
+            ]
+        )
+        audited = run([sys.executable, "tools/run_robin_repro.py", "audit"])
+        audit_path = ROOT / "experiments" / "robin-be" / "results" / "audit-summary.json"
+        audit = json.loads(audit_path.read_text(encoding="utf-8")) if audit_path.is_file() else None
+        combined = "\n".join(
+            part
+            for part in (
+                evolved.stdout.strip(),
+                evolved.stderr.strip(),
+                audited.stdout.strip(),
+                audited.stderr.strip(),
+            )
+            if part
+        )
+        response = {
+            "ok": evolved.returncode == 0 and audited.returncode == 0,
+            "output": f"Robin {arm} reproduction finished with exit code {evolved.returncode}.",
+            "task": task_id,
+            "log_tail": combined[-4000:],
+            "audit": audit,
+        }
+        print(json.dumps(response, ensure_ascii=False))
+        return 0 if response["ok"] else (evolved.returncode or audited.returncode or 1)
     profile = payload.get("profile")
     if not isinstance(profile, dict) or not isinstance(profile.get("commands"), dict):
         return fail("Request profile has no command map.")
@@ -86,7 +144,9 @@ def main() -> int:
         "--create-task",
         "--active",
     ]
-    ingested = run(ingest, input_text=target)
+    packet = payload.get("packet")
+    raw_input = packet if isinstance(packet, str) and packet.strip() else target
+    ingested = run(ingest, input_text=raw_input)
     if ingested.returncode != 0:
         return fail((ingested.stderr or ingested.stdout or "Task ingestion failed.").strip())
 

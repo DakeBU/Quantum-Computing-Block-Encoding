@@ -12,6 +12,13 @@ The current paper-facing presets are:
 | `main_hier_high_to_low.md` | No-Pro Hierarchical Harness for the transfer-operator main case.  It starts with a high-capacity exact search, then switches to an adaptive low-capacity closeout for Qiskit/export/report synchronization. |
 | `hard_hier_hinted_exact_to_approx.md` | Hinted Hierarchical Harness for the cubic diagonal operator.  It starts with high-capacity exact search using the human hint, then switches to adaptive approximate search after exact stagnation. |
 | `pro_assisted_optctrl.md` | Pro-assisted transfer-operator evolution.  The ChatGPT Pro answer enters as an insight packet; Lean still decides acceptance. |
+| `robin_cold_warm_reproduction.md` | Frozen Robin paper benchmark with physically isolated cold and paper-seeded warm arms, one Lean/Qiskit acceptance contract, and website/API replay. |
+
+For a model-free replay of the current public certificate surface, run
+`python3 tools/replay_public_cases.py`. It rebuilds the relevant modules,
+replays the typed population controller, and reruns the State Preparation,
+BE Case 1, and BE Case 2 executable gates. It is not an isolated synthesis
+experiment and therefore does not replace the recorded cold/warm presets.
 
 All commands assume the repository root is the current directory and the agent
 profile has access to the selected model backend.  Use `--fixed-capacity` only

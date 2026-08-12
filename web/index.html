@@ -81,6 +81,19 @@
         </p>
 
         <label>
+          Reproducible benchmark preset
+          <select id="benchmarkPreset">
+            <option value="custom">Custom task</option>
+            <option value="robin-cold">Robin block encoding: isolated cold start</option>
+            <option value="robin-warm">Robin block encoding: paper-seeded warm start</option>
+          </select>
+        </label>
+        <p class="hint compact">The Robin presets freeze the same 8 by 8 target,
+          normalizer, clean block, score order, Lean gate, and Qiskit gate. The
+          cold preset hides all Robin-specific source; the warm preset supplies
+          the paper construction and compiled Robin memory.</p>
+
+        <label>
           Task name
           <input id="taskName" value="state-preparation-task" autocomplete="off">
         </label>

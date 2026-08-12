@@ -629,6 +629,9 @@ def summarize_candidate_population(
                     "reason": evidence or _normalized(row.get("selection_reason", "")),
                 }
             )
+        elif role in {"upper", "reviewer"} and action == "reject":
+            if not evidence:
+                invalid.append(f"{packet}: rejected candidate requires fitness_evidence")
         else:
             invalid.append(f"{packet}: role {role or 'unknown'} cannot apply population action {action}")
 
@@ -796,13 +799,16 @@ def decide_cycle(
     executable_acceptance_complete: bool = False,
     executable_acceptance_command: str = "",
     executable_acceptance_artifacts: Sequence[str] = (),
+    lean_acceptance_required: bool = False,
     population_gate_required: bool = False,
     evaluation_mode: str = "full-abeis",
 ) -> CycleDecision:
     normalized_evaluation_mode = _lower(evaluation_mode).replace("_", "-")
-    if normalized_evaluation_mode not in {"task-only", "lad", "full-abeis"}:
+    if normalized_evaluation_mode not in {
+        "task-only", "lad", "isolated-abeis", "full-abeis"
+    }:
         normalized_evaluation_mode = "full-abeis"
-    benchmark_limited = normalized_evaluation_mode != "full-abeis"
+    benchmark_limited = normalized_evaluation_mode in {"task-only", "lad"}
     if benchmark_limited:
         population_gate_required = False
     leaves = classify_leaves(frontier_rows, obligation_rows)
@@ -1108,6 +1114,23 @@ def decide_cycle(
             (),
             tuple(leaf.leaf_id for leaf in external),
             tuple(leaf.leaf_id for leaf in unresolved + ready),
+            ("upper", "middle", "reviewer"),
+            False,
+        )
+    if not pending and (lean_acceptance_required or executable_acceptance_required):
+        missing = []
+        if lean_acceptance_required:
+            missing.append("declared Lean root acceptance anchor")
+        if executable_acceptance_required:
+            missing.append("deterministic executable acceptance gate")
+        return make_decision(
+            "decompose",
+            "running",
+            "No proof-DAG leaf was parsed, but the " + " and ".join(missing) +
+            " remain unsatisfied. Upper and middle must initialize a concrete root-to-leaf DAG.",
+            (),
+            (),
+            ("ROOT-INITIALIZATION",),
             ("upper", "middle", "reviewer"),
             False,
         )

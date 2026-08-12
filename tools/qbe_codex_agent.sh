@@ -77,6 +77,12 @@ while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
   echo "[$(date)] qbe codex attempt ${attempt}/${MAX_ATTEMPTS} prompt=${PROMPT}" >&2
   attempt_started_at=$(date +%s)
   attempt_log="$(mktemp "${TMPDIR:-/tmp}/qbe-codex-attempt.XXXXXX")"
+  scope_before=""
+  if [ -n "${QBE_MUTATION_ALLOWLIST:-}" ]; then
+    scope_before="$(mktemp "${TMPDIR:-/tmp}/qbe-scope-before.XXXXXX")"
+    python3 tools/enforce_mutation_scope.py snapshot \
+      --root "$ROOT" --output "$scope_before"
+  fi
   read -r -a codex_args <<< "$CODEX_ARGS"
   QBE_ATTEMPT_LOG="$attempt_log" QBE_STREAM_FULL_OUTPUT="$STREAM_FULL_OUTPUT" setsid bash -c \
     'if [ "$QBE_STREAM_FULL_OUTPUT" = 1 ]; then
@@ -88,8 +94,24 @@ while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
     qbe-codex "$CODEX_BIN" exec --model "$CODEX_MODEL" "${codex_args[@]}" - \
     < "$PROMPT" &
   child_pid=$!
-  if wait "$child_pid"; then
-    child_pid=""
+  attempt_status=0
+  wait "$child_pid" || attempt_status=$?
+  child_pid=""
+  if [ -n "$scope_before" ]; then
+    IFS=':' read -r -a mutation_paths <<< "$QBE_MUTATION_ALLOWLIST"
+    scope_args=()
+    for mutation_path in "${mutation_paths[@]}"; do
+      scope_args+=(--allow "$mutation_path")
+    done
+    if ! python3 tools/enforce_mutation_scope.py check \
+        --root "$ROOT" --before "$scope_before" "${scope_args[@]}"; then
+      rm -f "$scope_before" "$attempt_log"
+      echo "[$(date)] qbe codex mutation scope rejected" >&2
+      exit 79
+    fi
+    rm -f "$scope_before"
+  fi
+  if [ "$attempt_status" -eq 0 ]; then
     attempt_finished_at=$(date +%s)
     active_seconds_total=$((active_seconds_total + attempt_finished_at - attempt_started_at))
     elapsed_seconds=$((attempt_finished_at - started_at))
@@ -98,7 +120,6 @@ while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
     echo "[$(date)] qbe codex success" >&2
     exit 0
   fi
-  child_pid=""
   attempt_finished_at=$(date +%s)
   active_seconds_total=$((active_seconds_total + attempt_finished_at - attempt_started_at))
 

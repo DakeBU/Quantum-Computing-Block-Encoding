@@ -31,6 +31,10 @@ on:
       - "tools/**"
       - "research-wiki/**"
       - "paper-notes/**"
+      - "tasks/**"
+      - "run-presets/**"
+      - "executable-exports/**"
+      - "requirements-executable.txt"
       - "lakefile.lean"
       - "lake-manifest.json"
       - "lean-toolchain"
@@ -65,8 +69,21 @@ jobs:
           use-github-cache: false
           use-mathlib-cache: true
 
+      - name: Install executable-verification dependencies
+        run: python3 -m pip install -r requirements-executable.txt
+
       - name: Build the library and tests
         run: python3 website/scripts/run_lean_gate.py
+
+      - name: Test the ASPBE harness
+        run: python3 tools/qbe.py harness-check
+
+      - name: Check proof trust and replay public certificates
+        run: |
+          python3 tools/test_proof_trust.py
+          python3 tools/check_proof_trust.py
+          python3 tools/check_technical_lemma_registry.py
+          python3 tools/replay_public_cases.py
 
       - name: Check declaration inventory and Blueprint catalog
         run: |
@@ -87,6 +104,9 @@ jobs:
           test -f _site/community/index.html
           test -f _site/contributors/index.html
           test -f _site/task-builder/index.html
+          test -f _site/case-studies/robin/index.html
+          test -f _site/sources/ghl2025-robin-excerpts.tex
+          test -f _site/data/public-case-replay.json
           test -f _site/CONTRIBUTING.md
           test -f _site/ecosystem/index.html
           test -f _site/organizers/index.html

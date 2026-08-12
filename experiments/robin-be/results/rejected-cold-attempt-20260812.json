@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "date": "2026-08-12",
+  "arm": "cold",
+  "accepted_as_result": false,
+  "effective_cycles": 2,
+  "estimated_run_input_tokens": 37727,
+  "certified_root_anchors": [],
+  "qiskit_acceptance": false,
+  "useful_artifact": "compiled target-contract skeleton only",
+  "rejection_reasons": [
+    "The first attempt used repository-wide source discovery and contaminated the cold-start boundary.",
+    "A later middle-agent pass rebuilt Blueprint and website artifacts instead of proving the selected decomposition leaf.",
+    "No named Lean root certificate or executable acceptance artifact was produced."
+  ],
+  "harness_repairs_triggered": [
+    "physical removal of Robin-specific source and generated indexes from the cold worktree",
+    "isolated-abeis evaluation mode with task-local population memory",
+    "content-hashed mutation allowlist with automatic rollback",
+    "provider-blocked pause without cycle or token-proxy advancement",
+    "task-local Lean gates during inner evolution cycles"
+  ]
+}

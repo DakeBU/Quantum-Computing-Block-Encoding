@@ -1,0 +1,68 @@
+% Source excerpts used by the QuantumComputinglib Robin correspondence page.
+% Source: Guseynov--Huang--Liu (2025), arXiv:2506.20478.
+% These statements are paper inputs, not Lean certificates.
+
+\subsection*{Banded sparse access}
+\[
+\hat{O}^{BS}_D\ket{0}^{n-l}\ket{s}^l\ket{i}^n
+  := \ket{r_{si}}^n\ket{i}^n,
+\qquad
+r_{si}=r_{s0}+i \bmod 2^n.
+\]
+
+\subsection*{Bulk indicator}
+\[
+\begin{aligned}
+U_{\mathrm{indic}}(K_1,K_2)
+  \sum_{i=0}^{2^n-1}\sigma_i\ket{i}^n\ket{0}
+={}&
+\sum_{i=0}^{K_1-1}\sigma_i\ket{i}^n\ket{0}\\
+&+\sum_{i=K_1}^{K_2}\sigma_i\ket{i}^n\ket{1}
++\sum_{i=K_2+1}^{2^n-1}\sigma_i\ket{i}^n\ket{0}.
+\end{aligned}
+\]
+
+\subsection*{Boundary rotations}
+\[
+\theta_j^s =
+\arccos\left(\frac{D_j^{(s)}}{\mathcal{N}_D}\right),
+\quad
+s=0,\ldots,\kappa-1,
+\quad
+j\in[0,K_1)\cup(K_2,2^n).
+\]
+
+\subsection*{One-term theorem}
+For a piecewise-continuous \(f\) and a discretized \(\kappa\)-sparse Robin
+derivative matrix \(D\), the paper states a
+\[
+\left(
+  \mathcal{N}_D\mathcal{N}_f\kappa,\;
+  \left\lceil\log_2 n\right\rceil+
+  \left\lceil\log_2 G_f\right\rceil+
+  \left\lceil\log_2\kappa\right\rceil+4,\;
+  0
+\right)
+\]
+block encoding of
+\[
+A_k\sim f(x)\frac{\partial^m}{\partial x^m},
+\]
+with gate complexity
+\[
+\mathcal{O}\left(\sum_{g=1}^{G}Q_g n\log n+\kappa n\right)
+\]
+and \(2n\) pure ancillas.
+
+\subsection*{The clean gamma-three coefficient}
+\[
+\ket{\gamma_3}
+=
+\frac{1}{\mathcal{N}_D\mathcal{N}_f\kappa}
+\sum_{\substack{s=0,\ldots,\kappa-1\\
+0\le j<K_1\ \cup\ K_2<j<2^n}}
+f(x_i)D_i^{(s)}\sigma^{(s)}
+\ket{0}^{m_f+1}\ket{s}
+\ket{0}^{n-\lceil\log_2\kappa\rceil}\ket{j}\ket{0}
++\cdots.
+\]

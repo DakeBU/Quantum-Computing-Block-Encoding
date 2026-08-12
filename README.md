@@ -93,6 +93,7 @@ links or explains them.
 Build the site, then start the loopback-only companion server:
 
 ```bash
+python3 -m pip install -r requirements-executable.txt
 bash scripts/build-all.sh
 python3 website/scripts/ide_server.py --directory _site
 ```
@@ -274,6 +275,21 @@ only its consumer contract exists.
 | --- | --- |
 | ![BE Case 2 candidates](docs/assets/be_case2_candidates.svg) | ![BE Case 2 progress](docs/assets/be_case2_cold_hinted.svg) |
 
+These figures show certified candidate and proof milestones, not elapsed time
+or model-token curves. Replay the current certificate surface with:
+
+```bash
+python3 tools/replay_public_cases.py
+```
+
+The machine-readable result is
+[`reports/public-case-replay/latest.json`](reports/public-case-replay/latest.json).
+It rebuilds the relevant Lean modules, replays the controller population gate,
+and reruns the State Preparation, BE Case 1, and BE Case 2 Qiskit/QASM checks.
+It does not claim a new isolated cold-start discovery. Historical figures
+change only after a fresh controlled search fixes the model, task, memory
+policy, budget, and acceptance gate.
+
 The normalized cubic **state-preparation** benchmark is tracked separately and
 is not reported as solved merely because the cubic block-encoding family is
 certified.
@@ -289,11 +305,48 @@ that the proposed symbolic equality is false. This removes the two former
 proof holes without claiming that external sparse-access, amplitude-oracle,
 and paper-wide composition contracts have been implemented at gate level.
 
+### Robin paper reproduction: cold and warm evolution
+
+The Robin benchmark now has one frozen finite target and two reproducible
+arms. The cold arm receives only the matrix contract and generic ASPBE modules;
+Robin-specific source, old runs, paper notes, and generated declaration indexes
+are physically removed from its detached worktree. The warm arm receives the
+same target plus the paper construction and compiled Robin memory. Both require
+the same named Lean root, exact Qiskit clean-block check, semantic tier, and
+score order before a candidate can appear in a figure.
+
+```bash
+python3 tools/run_robin_repro.py prepare
+python3 tools/run_robin_repro.py run --arm cold --cycles 1
+python3 tools/run_robin_repro.py run --arm warm --cycles 1
+python3 tools/run_robin_repro.py audit
+```
+
+The same arms are available in **Run with your API** through the `Robin cold`
+and `Robin warm` presets. A provider rejection pauses the attempted cycle
+without advancing the population, charging the prompt proxy, or running the
+whole Lean gate. At this checkout the fresh `gpt-5.6-sol` calls are
+provider-blocked, so no Robin resource improvement is claimed yet. The earlier
+pilot is retained only as a discarded-run audit because it produced no root
+certificate and spent work on generated website files.
+The complete replay contract is in
+[`run-presets/robin_cold_warm_reproduction.md`](run-presets/robin_cold_warm_reproduction.md).
+
+Because neither fresh evolution arm entered agent execution, the published
+baseline is the paper construction already represented in Lean, not a
+manufactured optimization curve. The
+[Robin paper map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/case-studies/robin/)
+places the source theorem, equations, and circuit transcript beside their
+exact `GHL2025.lean` and `RobinMatrix.lean` declarations. It distinguishes
+compiled local structure, partial paper routes, and the blocked boundary
+rotation convention.
+
 ## Build and verify
 
 Linux/macOS:
 
 ```bash
+python3 -m pip install -r requirements-executable.txt
 python3 tools/qbe.py check
 bash scripts/build-all.sh
 ```
@@ -301,15 +354,18 @@ bash scripts/build-all.sh
 Windows PowerShell:
 
 ```powershell
+python -m pip install -r requirements-executable.txt
 python tools/qbe.py check
 powershell -ExecutionPolicy Bypass -File scripts/build-all.ps1
 ```
 
 The full site build runs the Lean library and tests, declaration inventory,
-proof-trust checks, Blueprint consistency, Verso build, QuantumComputinglib generation,
-internal link and fragment checks, source-link checks, and local-path leakage
-scan. Generated counts are written to `_site/build-report.json`; this README
-does not hard-code declaration totals.
+proof-trust checks, the model-free Lean/Qiskit public-case replay, Blueprint
+consistency, Verso build, QuantumComputinglib generation, internal link and
+fragment checks, source-link checks, and local-path leakage scan. Generated
+counts are written to `_site/build-report.json`; the replay record is published
+at `_site/data/public-case-replay.json`. This README does not hard-code
+declaration totals.
 
 ## Contribute
 

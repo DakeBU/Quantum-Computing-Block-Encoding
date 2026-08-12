@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "title": "Explicit quantum circuits for block encodings of differential operators with Robin boundaries",
+    "shortName": "Guseynov-Huang-Liu 2025",
+    "url": "https://arxiv.org/abs/2506.20478",
+    "sourceNote": "paper-notes/GHL2025/source-excerpts.tex"
+  },
+  "rows": [
+    {
+      "id": "sparse-access",
+      "paperAnchor": "Lemma 1, banded sparse access",
+      "plain": "Write the banded sparse column address into an n-qubit register while preserving the row register.",
+      "latex": "\\\\hat{O}^{BS}_D\\\\ket{0}^{n-l}\\\\ket{s}^l\\\\ket{i}^n := \\\\ket{r_{si}}^n\\\\ket{i}^n,\\\\qquad r_{si}=r_{s0}+i\\\\bmod 2^n.",
+      "declarations": [
+        "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperContract",
+        "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress_lt_gridSize_of_two_le",
+        "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix_eq_image"
+      ],
+      "localStatus": "Compiled",
+      "routeStatus": "Partial route",
+      "reading": "The register extraction, address range, row preservation, clean-source split, and matrix image are compiled. A full unitary extension over every non-clean padded input and the corresponding dagger cleanup remain explicit contracts."
+    },
+    {
+      "id": "indicator",
+      "paperAnchor": "Bulk indicator U_indic",
+      "plain": "Flip one indicator qubit exactly on rows in the bulk window K1 through K2.",
+      "latex": "U_{\\\\mathrm{indic}}(K_1,K_2)|i\\\\rangle|0\\\\rangle=|i\\\\rangle|\\\\mathbf{1}_{K_1\\\\le i\\\\le K_2}\\\\rangle.",
+      "declarations": [
+        "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse",
+        "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_is_permutation"
+      ],
+      "localStatus": "Compiled",
+      "routeStatus": "Partial route",
+      "reading": "Lean proves the finite image is self-inverse, hence bijective, and that the corresponding matrix is a permutation matrix. This closes the local unitary, not the whole Robin block encoding."
+    },
+    {
+      "id": "boundary-rotation",
+      "paperAnchor": "Boundary controlled Ry angles",
+      "plain": "Encode each exceptional Robin-boundary coefficient with a controlled y rotation.",
+      "latex": "\\\\theta_j^s=\\\\arccos\\\\!\\\\left(D_j^{(s)}/\\\\mathcal N_D\\\\right).",
+      "declarations": [
+        "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationAngle",
+        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript",
+        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3_transcript"
+      ],
+      "localStatus": "Compiled",
+      "routeStatus": "Blocked",
+      "reading": "The source formula and both angle conventions are represented and audited. With the standard Ry(theta) matrix, the clean amplitude is cos(theta/2), not cos(theta). The source-faithful gate-level route therefore needs a convention clarification or a cited doubled-angle correction."
+    },
+    {
+      "id": "theorem-data",
+      "paperAnchor": "One-term block-encoding theorem",
+      "plain": "The theorem fixes the target operator, normalizer, signal width, zero error, gate scaling, and pure-ancilla count.",
+      "latex": "(\\\\mathcal N_D\\\\mathcal N_f\\\\kappa,\\\\;\\\\lceil\\\\log_2n\\\\rceil+\\\\lceil\\\\log_2G_f\\\\rceil+\\\\lceil\\\\log_2\\\\kappa\\\\rceil+4,\\\\;0)\\\\text{-block encoding of }A_k.",
+      "declarations": [
+        "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData",
+        "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_signalQubits_eq_layout",
+        "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_resource"
+      ],
+      "localStatus": "Compiled",
+      "routeStatus": "Partial route",
+      "reading": "The theorem statement and resource/layout equalities compile as typed data. The final projected-block equality is still conditional on the named sparse-access, amplitude-oracle, boundary-rotation, cleanup, and composition contracts."
+    },
+    {
+      "id": "gamma-three",
+      "paperAnchor": "Equation ROBIN clarified, gamma_3",
+      "plain": "After derivative, coefficient, swap, and cleanup operations, the clean branch should contain f(x_i) D_i^(s) divided by the three normalizers.",
+      "latex": "\\\\gamma_3\\\\supset(\\\\mathcal N_D\\\\mathcal N_f\\\\kappa)^{-1}\\\\sum_{s,j}f(x_i)D_i^{(s)}\\\\sigma^{(s)}|0\\\\cdots0,s,j,0\\\\rangle.",
+      "declarations": [
+        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript",
+        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3",
+        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryUnitaryEntry_ne_backendFold_n3"
+      ],
+      "localStatus": "Compiled",
+      "routeStatus": "Partial route",
+      "reading": "Lean records the gamma transcript and several finite projection bridges. It also proves that a historical H-free raw-entry equality is false, so that route is retired rather than promoted as the paper theorem."
+    },
+    {
+      "id": "circuit-transcript",
+      "paperAnchor": "Figure 1-term ROBIN",
+      "plain": "The theorem-facing circuit keeps sparse preparation, the indicator and its inverse, derivative amplitudes, boundary rotations, sparse access, coefficient loading, swap, and cleanup in source order.",
+      "latex": "H_W\\\\to U_{\\\\mathrm{indic}}\\\\to(O^S_{D^T},R_y)\\\\to O^{BS}_{D^T}\\\\to U_{\\\\mathrm{indic}}^\\\\dagger\\\\to O_f\\\\to\\\\mathrm{SWAP}\\\\to(O_D^{BS})^\\\\dagger\\\\to H_W^\\\\dagger.",
+      "declarations": [
+        "QuantumBlockEncoding.GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList",
+        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryGateMatrixList_n3"
+      ],
+      "localStatus": "Compiled",
+      "routeStatus": "Partial route",
+      "reading": "The labeled circuit transcript and the active seven-gate backend order compile. Compiling an ordered list does not establish that every labeled oracle has the paper semantics or that their product satisfies the final block contract."
+    }
+  ]
+}

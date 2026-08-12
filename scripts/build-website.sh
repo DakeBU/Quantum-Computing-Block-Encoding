@@ -9,7 +9,8 @@ python3 -m py_compile \
   website/scripts/build_site.py \
   website/scripts/check_site.py \
   website/scripts/ide_server.py \
-  website/scripts/qbe_task_runner.py
+  website/scripts/qbe_task_runner.py \
+  tools/replay_public_cases.py
 
 python3 website/scripts/build_site.py \
   --lean-gate-report _out/lean-gate.json \

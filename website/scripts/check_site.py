@@ -135,6 +135,9 @@ def main() -> int:
         "library/declarations.json",
         "site-metadata.json",
         "build-report.json",
+        "case-studies/robin/index.html",
+        "sources/ghl2025-robin-excerpts.tex",
+        "data/public-case-replay.json",
         "static/site.css",
         "static/site.js",
         "static/workspace.js",
@@ -154,6 +157,9 @@ def main() -> int:
     )
     search = json.loads((site / "search-index.json").read_text(encoding="utf-8"))
     metadata = json.loads((site / "site-metadata.json").read_text(encoding="utf-8"))
+    replay = json.loads(
+        (site / "data" / "public-case-replay.json").read_text(encoding="utf-8")
+    )
     declaration_count = int(inventory["publicDeclarationCount"])
     if search["declarationEntryCount"] != declaration_count:
         errors.append("search declarationEntryCount differs from inventory")
@@ -166,6 +172,14 @@ def main() -> int:
         errors.append("search entryCount differs from entries length")
     if metadata["declarationCount"] != declaration_count:
         errors.append("site metadata declarationCount differs from inventory")
+    if replay.get("passed") is not True:
+        errors.append("public-case replay did not pass")
+    if replay.get("cold_start_claim") is not False:
+        errors.append("public-case replay incorrectly claims cold-start discovery")
+    if metadata.get("publicCaseReplay", {}).get("sourceDigest") != replay.get(
+        "source_digest"
+    ):
+        errors.append("site metadata public-case replay digest differs from report")
 
     diagrams = sorted((site / "diagrams").glob("*.mmd"))
     if len(diagrams) < 7:

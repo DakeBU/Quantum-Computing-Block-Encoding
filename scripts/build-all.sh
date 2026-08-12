@@ -7,6 +7,7 @@ python3 tools/test_proof_trust.py
 python3 tools/check_proof_trust.py
 python3 tools/check_technical_lemma_registry.py
 python3 website/scripts/run_lean_gate.py
+python3 tools/replay_public_cases.py
 python3 scripts/generate-blueprint-catalog.py --check
 python3 scripts/test-sanitize-blueprint-paths.py
 bash scripts/build-blueprint.sh

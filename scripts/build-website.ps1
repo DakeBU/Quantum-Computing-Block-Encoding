@@ -19,7 +19,8 @@ foreach ($required in @(
   website/scripts/build_site.py `
   website/scripts/check_site.py `
   website/scripts/ide_server.py `
-  website/scripts/qbe_task_runner.py
+  website/scripts/qbe_task_runner.py `
+  tools/replay_public_cases.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 & $PythonCommand website/scripts/build_site.py `

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-12T07:59:00.412096+00:00",
+  "suite": "20260812-robin-v1",
+  "arms": [
+    {
+      "arm": "cold",
+      "task": "QBE-ROBIN-BE-COLD-001",
+      "worktree": "COLD",
+      "model": "gpt-5.6-sol",
+      "latest_run": "runs/20260812-041427-QBE-ROBIN-BE-COLD-001-cycle01",
+      "controller_status": "provider-blocked",
+      "controller_mode": "population",
+      "attempted_cycles": 1,
+      "effective_cycles": 0,
+      "estimated_run_input_tokens": 0,
+      "certified_root_anchors": [],
+      "population": "present",
+      "population_active_candidate_ids": [],
+      "population_selected_candidate_ids": [],
+      "provider_blocked": true,
+      "cold_isolation_passed": true,
+      "contamination": []
+    },
+    {
+      "arm": "warm",
+      "task": "QBE-ROBIN-BE-WARM-001",
+      "worktree": "WARM",
+      "model": "gpt-5.6-sol",
+      "latest_run": "runs/20260812-041431-QBE-ROBIN-BE-WARM-001-cycle01",
+      "controller_status": "provider-blocked",
+      "controller_mode": "population",
+      "attempted_cycles": 1,
+      "effective_cycles": 0,
+      "estimated_run_input_tokens": 0,
+      "certified_root_anchors": [],
+      "population": "present",
+      "population_active_candidate_ids": [],
+      "population_selected_candidate_ids": [],
+      "provider_blocked": true,
+      "cold_isolation_passed": true,
+      "contamination": []
+    }
+  ]
+}

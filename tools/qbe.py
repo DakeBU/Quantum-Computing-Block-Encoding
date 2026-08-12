@@ -34,6 +34,33 @@ import time
 from pathlib import Path
 from typing import Callable
 
+
+# Reserved by qbe_codex_agent.sh for authentication, entitlement, and quota
+# failures that cannot be repaired by another agent retry.
+PROVIDER_BLOCKED_EXIT_CODE = 78
+
+
+def provider_blocked_control_state(
+    state: dict[str, object], *, previous_cycle: int, run_tokens_used: int
+) -> dict[str, object]:
+    blocked = dict(state)
+    blocked.update(
+        {
+            "cycle": previous_cycle,
+            "status": "provider-blocked",
+            "stop": False,
+            "reason": (
+                "The configured model provider rejected the request before agent "
+                "work began. Resume the same cycle after access is restored."
+            ),
+            "execution_started": False,
+            "estimated_cycle_input_tokens": 0,
+            "estimated_run_input_tokens": run_tokens_used,
+            "provider_blocked_at": now_stamp(),
+        }
+    )
+    return blocked
+
 try:
     from qbe_control import (
         CONTROL_STOP_EXIT_CODE,
@@ -1042,6 +1069,7 @@ def cmd_harness_check(_: argparse.Namespace) -> int:
             "tools.test_qbe_runtime",
             "tools.test_qbe_lifecycle",
             "tools.test_qbe_control",
+            "tools.test_enforce_mutation_scope",
         ]
     )
 
@@ -1459,32 +1487,18 @@ Ingested: `{now_stamp()}`
     write_text(prompt_path, prompt_text)
     task_path = ROOT / "tasks" / f"{safe_id}.md"
     if args.create_task or not task_path.exists():
-        task_text = f"""# {title}
-
-Task id: `{safe_id}`
-Kind: `{args.kind}`
-Mode: `{args.mode}`
-Status: `active`
-
-## Source Input
-
-- Raw user language: `{lang}`
-- Raw input artifact: `{rel(prompt_path)}`
-- Source: `{args.source}`
-- Requested tolerance: `{args.epsilon}`
-- Requested executable exports: `{args.export_targets}`
-
-## Raw User Problem
-
-{raw}
-
-## Agent Contract
-
-Upper agents must first translate this user-facing target into a precise
-operator, normalizer, clean-block projector, error tolerance, and resource
-metric.  Middle agents must preserve the raw-language source and explain any
-interpretation step.  Lower agents must not prove a different target.
-"""
+        task_text = user_problem_task_template(
+            safe_id=safe_id,
+            title=title,
+            kind=args.kind,
+            mode=args.mode,
+            language=lang,
+            prompt_path=rel(prompt_path),
+            source=args.source,
+            epsilon=args.epsilon,
+            export_targets=args.export_targets,
+            raw=raw,
+        )
         write_text(task_path, task_text)
         action = "Created"
     else:
@@ -1509,6 +1523,59 @@ interpretation step.  Lower agents must not prove a different target.
     print(f"ingested: {display_path(prompt_path)}")
     print(f"task: {display_path(task_path)}")
     return 0
+
+
+def user_problem_task_template(
+    *,
+    safe_id: str,
+    title: str,
+    kind: str,
+    mode: str,
+    language: str,
+    prompt_path: str,
+    source: str,
+    epsilon: str,
+    export_targets: str,
+    raw: str,
+) -> str:
+    lean_root = (
+        "UserSubmission."
+        + re.sub(r"[^A-Za-z0-9_]", "_", safe_id)
+        + "_rootCertificate"
+    )
+    return f"""# {title}
+
+Task id: `{safe_id}`
+Kind: `{kind}`
+Mode: `{mode}`
+Status: `active`
+Lean acceptance anchors: `{lean_root}`
+
+## Source Input
+
+- Raw user language: `{language}`
+- Raw input artifact: `{prompt_path}`
+- Source: `{source}`
+- Requested tolerance: `{epsilon}`
+- Requested executable exports: `{export_targets}`
+
+## Raw User Problem
+
+{raw}
+
+## Agent Contract
+
+Upper agents must first translate this user-facing target into a precise
+operator, normalizer, clean-block projector, error tolerance, and resource
+metric.  Middle agents must preserve the raw-language source and explain any
+interpretation step.  Lower agents must not prove a different target.
+
+## Current Proof-DAG Frontier
+
+| Node | Interface | Status | Lean |
+| --- | --- | --- | --- |
+| `ROOT-INITIALIZATION` | Freeze dimensions, normalization, register order, tolerance, and the exact acceptance theorem before candidate search. | active next | `{lean_root}` |
+"""
 
 
 def cmd_update_task(args: argparse.Namespace) -> int:
@@ -1837,6 +1904,15 @@ def lean_index_files_for_task(task_text: str) -> list[Path]:
     """
 
     haystack = task_text.lower()
+    evaluation_mode = infer_evaluation_mode(task_text)
+    if evaluation_mode in {"task-only", "isolated-abeis"} and "forbidden" in haystack:
+        return [
+            ROOT / "QuantumBlockEncoding" / "BlockEncoding.lean",
+            ROOT / "QuantumBlockEncoding" / "BlockEncodingClassics.lean",
+            ROOT / "QuantumBlockEncoding" / "CircuitSemantics.lean",
+            ROOT / "QuantumBlockEncoding" / "Core.lean",
+            ROOT / "QuantumBlockEncoding" / "Circuit.lean",
+        ]
     if any(marker in task_text for marker in ["GHL2025", "Guseynov", "Robin", "QBE-AUTO-002"]):
         return [
             ROOT / "QuantumBlockEncoding" / "GHL2025.lean",
@@ -2281,6 +2357,13 @@ def blueprint_status_state(task_id: str) -> dict:
     if any(row["exists"] for row in source_rows):
         source_rows = [row for row in source_rows if row["exists"]]
     acceptance_anchors = infer_acceptance_anchors(task_text)
+    verified_anchors = verified_task_acceptance_anchors(task_id, task_text=task_text)
+    if not leaves and acceptance_anchors and not verified_anchors:
+        root = acceptance_anchors[0]
+        leaves = [
+            f"ROOT-INITIALIZATION: construct the certificate DAG for the declared root; "
+            f"status: active next; Lean: {root}"
+        ]
     return {
         "task_id": task_id,
         "title": title,
@@ -2296,9 +2379,7 @@ def blueprint_status_state(task_id: str) -> dict:
         "lean_declarations": declarations,
         "reusable_memory_cards": reusable_memory_card_rows(task_text),
         "acceptance_anchors": list(acceptance_anchors),
-        "verified_acceptance_anchors": list(
-            verified_task_acceptance_anchors(task_id, task_text=task_text)
-        ),
+        "verified_acceptance_anchors": list(verified_anchors),
         "trial_counts_by_role": role_counts,
         "trial_counts_by_status": status_counts,
         "local_paper_sources": source_rows,
@@ -4053,9 +4134,12 @@ def plain_language_status_en() -> str:
 
 
 def is_ghl_case_task(task_id: str) -> bool:
-    title, task_text = task_context(task_id)
-    haystack = f"{task_id}\n{title}\n{task_text}"
-    return "GHL" in haystack or "Guseynov" in haystack or task_id in {"QBE-AUTO-001", "QBE-AUTO-002"}
+    _title, task_text = task_context(task_id)
+    explicit = re.search(
+        r"(?im)^\s*Paper report template\s*:\s*`?GHL2025`?\s*$",
+        task_text,
+    )
+    return bool(explicit) or task_id in {"QBE-AUTO-001", "QBE-AUTO-002"}
 
 
 def is_main_case_task(task_id: str) -> bool:
@@ -6765,6 +6849,9 @@ def infer_evaluation_mode(task_text: str) -> str:
         "task-only": "task-only",
         "lad": "lad",
         "library-assisted": "lad",
+        "isolated": "isolated-abeis",
+        "isolated-abeis": "isolated-abeis",
+        "cold-abeis": "isolated-abeis",
         "full": "full-abeis",
         "abeis": "full-abeis",
         "full-abeis": "full-abeis",
@@ -7220,6 +7307,13 @@ def role_prompt(
         blueprint = ""
         mathlib_context = ""
         failure_judge_context = ""
+    elif evaluation_mode == "isolated-abeis":
+        # Keep only this fresh task's evolving ledger and blueprint.  Do not
+        # inject literature sources, curated proof memory, or cross-task
+        # failure packets into a cold-start benchmark.
+        paper_sources = ""
+        mathlib_context = ""
+        failure_judge_context = ""
     elif evaluation_mode == "lad":
         trial_memory = ""
         blueprint = ""
@@ -7263,7 +7357,22 @@ def role_prompt(
   process bug for this cycle because it can import stale paper-benchmark
   context into an operator-construction task.
 """
-    if evaluation_mode in {"task-only", "lad"}:
+    if evaluation_mode == "isolated-abeis":
+        operator_scoped_retrieval = f"""Cold-start command boundary:
+
+- Do not run repository-wide `rg`, `grep`, `find`, declaration inventory, or
+  library search.  Do not inspect generated declaration indexes outside the
+  allowlist below.
+- Allowed inputs are `tasks/{task_id}.md`,
+  `proof-blueprints/{task_id}.md`, `proof-obligations/{task_id}.md`,
+  `candidate-populations/{task_id}/`, `verifier-feedback/{task_id}/`, and
+  these generic modules only: `BlockEncoding.lean`,
+  `BlockEncodingClassics.lean`, `CircuitSemantics.lean`, `Core.lean`, and
+  `Circuit.lean`.
+- Any source discovery outside this allowlist invalidates the arm.  Stop and
+  record `invalid_route` rather than reading a paper-specific declaration.
+"""
+    elif evaluation_mode in {"task-only", "lad"}:
         operator_scoped_retrieval = ""
     controller_cmd = f'QBE_ROOT="{ROOT}" python3 "{Path(__file__).resolve()}"'
     shared = f"""Task: {task_id} - {title}
@@ -7296,10 +7405,19 @@ Recent trial memory:
 {trial_memory}
 ```
 
-Evaluation boundary: `task-only` receives no historical ABEIS memory or
-library-assistance packet; `lad` may use curated library retrieval but receives
-no trials, population, or failure history; `full-abeis` enables the adaptive
-controller and all audited memory layers.  Do not cross the declared boundary.
+Evaluation boundary: `task-only` receives one bounded non-adaptive attempt;
+`isolated-abeis` enables the adaptive controller and task-local population but
+injects no historical ABEIS memory or library-assistance packet; `lad` may use
+curated library retrieval but receives no trials, population, or failure
+history; `full-abeis` enables the adaptive controller and all audited memory
+layers.  Do not cross the declared boundary.
+
+For `isolated-abeis` inner cycles, the required gate is exactly the controller
+test suite plus `lake build` and `lake build Tests`.  Do not run `build-all`,
+regenerate Blueprint catalogs, rebuild the website/library inventory, or edit
+website/generated documentation.  Those surfaces intentionally describe the
+full repository and are synchronized only after an accepted experiment is
+merged back into the full checkout.
 
 Proof blueprint snapshot:
 
@@ -8050,6 +8168,11 @@ Use `retain`, `retire`, `mutate`, or `crossover` on later cycles.  Mutation must
 name one `parent_ids` value and crossover must name two.  Do not keep every
 candidate alive merely to show activity.
 
+This command is a return gate, not optional documentation.  Before the middle
+agent returns, it must execute the task-local `trial-log` command and verify
+that it prints `logged ...`.  Writing a candidate only in Markdown leaves the
+authoritative population empty and the reviewer must reject the cycle.
+
 Before assigning lower work, search for existing Lean declarations and
 paper-note definitions to reuse.  Do not create a second definition for a
 matrix, normalizer, register layout, or theorem statement when a reference to
@@ -8344,6 +8467,10 @@ Selection is also typed, using `population_action=select`, the same
 `candidate_id`, and `fitness_evidence` or `selection_reason`.  Never select an id
 that middle has not proposed, retained, mutated, or crossed in the current
 ledger.
+
+The reviewer must execute its typed `trial-log` selection or rejection before
+returning and verify the command's `logged ...` output.  A prose-only review is
+not controller state and cannot authorize lower work.
 
 For unattended construction runs, the review is incomplete without a typed
 controller decision.  Copy the current `leaf_signature` and `evidence_digest`
@@ -9435,7 +9562,11 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
     previous = load_control_state(control_state_path(args.id))
     _, task_text = task_context(args.id)
     evaluation_mode = infer_evaluation_mode(task_text)
-    feedback = all_feedback if evaluation_mode == "full-abeis" else []
+    feedback = (
+        all_feedback
+        if evaluation_mode in {"full-abeis", "isolated-abeis"}
+        else []
+    )
     frontier_rows = state.get("dynamic_leaf_queue", [])
     obligation_rows = state.get("open_obligation_signals", [])
     allowed_routes, forbidden_routes = infer_route_lock(task_text)
@@ -9478,8 +9609,10 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
         ),
         executable_acceptance_command=executable.command,
         executable_acceptance_artifacts=executable.artifacts,
+        lean_acceptance_required=bool(infer_acceptance_anchors(task_text)),
         population_gate_required=(
-            evaluation_mode == "full-abeis" and infer_population_gate(task_text)
+            evaluation_mode in {"full-abeis", "isolated-abeis"}
+            and infer_population_gate(task_text)
         ),
         evaluation_mode=evaluation_mode,
     )
@@ -9921,7 +10054,8 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
     def active_budget_reached() -> bool:
         return active_budget_s > 0 and (time.perf_counter() - batch_started) >= active_budget_s
 
-    for cycle in range(1, args.cycles + 1):
+    previous_cycle = int(load_control_state(control_state_path(args.id)).get("cycle", 0))
+    for cycle in range(previous_cycle + 1, previous_cycle + args.cycles + 1):
         if args.blueprint_refresh:
             refresh_blueprint(args.id)
         if verified_task_acceptance_anchors(args.id, task_text=task_text):
@@ -10079,6 +10213,26 @@ def _cmd_sleep_run_impl(args: argparse.Namespace) -> int:
             )
             if cycle_code != 0:
                 break
+        if cycle_code == PROVIDER_BLOCKED_EXIT_CODE:
+            blocked_state = provider_blocked_control_state(
+                load_control_state(control_state_path(args.id)),
+                previous_cycle=previous_cycle,
+                run_tokens_used=run_tokens_used,
+            )
+            atomic_write_json(control_state_path(args.id), blocked_state)
+            atomic_write_json(
+                run_dir / "provider-blocked.json",
+                {
+                    "task_id": args.id,
+                    "attempted_cycle": cycle,
+                    "exit_code": cycle_code,
+                    "model_work_accepted": False,
+                    "build_gate_skipped": True,
+                    "reason": blocked_state["reason"],
+                },
+            )
+            print(blocked_state["reason"], file=sys.stderr)
+            return cycle_code
         if cycle_code != 0:
             final_code = cycle_code
         if args.check_each_cycle:

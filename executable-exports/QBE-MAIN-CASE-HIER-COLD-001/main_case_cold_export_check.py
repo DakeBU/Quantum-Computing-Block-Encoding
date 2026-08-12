@@ -88,14 +88,17 @@ def build_feedback() -> dict[str, Any]:
         "gate_count": 5,
         "depth": 5,
         "oracle_calls": 0,
-        "closed_theorem_ok": False,
+        # This is a post-Lean executable checker.  The repository Lean gate
+        # certifies the named theorem; absence of that gate inside this process
+        # is unknown, not a negative theorem result.
+        "closed_theorem_ok": None,
         "lean_certificate": "mainCaseColdPartialPermVerified",
         "lean_cost_theorem": "mainCaseColdPartialPermCandidate_cost",
         "basis_action": action,
         "observed_clean_support": [list(pair) for pair in sorted(clean_support(action))],
         "error_class": None if source_correspondence_ok else "source_translation_gap",
         "next_route": (
-            "Reviewer should audit the post-Lean executable artifacts against the named Lean certificate."
+            "Pair this executable result with the repository Lean gate for the named certificate."
             if source_correspondence_ok
             else "Repair the generated export artifacts before review."
         ),

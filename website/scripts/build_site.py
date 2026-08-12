@@ -36,6 +36,7 @@ NAVIGATION = [
     ("Book map", "learning/"),
     ("Lean library", "library/"),
     ("Implementation map", "implementation-map/"),
+    ("Robin paper map", "case-studies/robin/"),
     ("Live workspace", "ide/"),
     ("Run with your API", "task-builder/"),
     ("Quantum ecosystem", "ecosystem/"),
@@ -170,6 +171,30 @@ def blueprint_url(prefix: str, declaration: dict[str, object]) -> str:
 
 def load_json(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def parse_literature_registry() -> list[dict[str, str]]:
+    source = (ROOT / "QuantumBlockEncoding" / "Literature.lean").read_text(
+        encoding="utf-8"
+    )
+    entries: list[dict[str, str]] = []
+    for block in re.findall(r"\{\s*key := .*?\n\s*\}", source, flags=re.S):
+        item: dict[str, str] = {}
+        for field in ("key", "title", "authors", "targetFile", "url", "note"):
+            match = re.search(field + r' := "([^"]*)"', block)
+            if match:
+                item[field] = match.group(1)
+        for field, pattern in (
+            ("year", r"year := ([0-9]+)"),
+            ("role", r"role := PaperRole\.([A-Za-z]+)"),
+            ("status", r"status := ImplementationStatus\.([A-Za-z]+)"),
+        ):
+            match = re.search(pattern, block)
+            if match:
+                item[field] = match.group(1)
+        if "key" in item:
+            entries.append(item)
+    return entries
 
 
 def load_gate_report(path: Path, context: dict[str, object]) -> dict[str, object]:
@@ -806,6 +831,144 @@ def result_card(
 </article>"""
 
 
+def load_robin_paper_map(
+    declarations: dict[str, dict[str, object]],
+) -> dict[str, object]:
+    data = load_json(WEBSITE_ROOT / "robin-paper-map.json")
+    missing: list[str] = []
+    for row in data["rows"]:
+        for status_key in ("localStatus", "routeStatus"):
+            if row[status_key] not in STATUS_ORDER:
+                raise SystemExit(
+                    f"Unknown Robin paper-map status: {row[status_key]}"
+                )
+        for name in row["declarations"]:
+            if name not in declarations:
+                missing.append(str(name))
+    if missing:
+        raise SystemExit(
+            "Robin paper map names declarations absent from inventory:\n  "
+            + "\n  ".join(sorted(set(missing)))
+        )
+    return data
+
+
+def render_robin_paper_map(
+    data: dict[str, object],
+    declarations: dict[str, dict[str, object]],
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    route = "case-studies/robin/"
+    prefix = prefix_for(route)
+    paper = data["paper"]
+    rows: list[str] = []
+    toc = [
+        ("paper-contract", "Paper contract"),
+        ("how-to-read", "How to read the map"),
+    ]
+    for row in data["rows"]:
+        row_id = str(row["id"])
+        toc.append((row_id, str(row["paperAnchor"])))
+        declaration_links: list[str] = []
+        statement_panels: list[str] = []
+        for name in row["declarations"]:
+            declaration = declarations[str(name)]
+            declaration_links.append(
+                f'<li><a href="{module_url(prefix, declaration)}">'
+                f'<code>{html.escape(str(name))}</code></a></li>'
+            )
+            statement_panels.append(
+                f"""<details class="source-panel">
+  <summary>{html.escape(str(name))}</summary>
+  <pre><code>{html.escape(source_statement(str(declaration['sourcePreview'])))}</code></pre>
+  <p><a href="{module_url(prefix, declaration)}">Open local declaration</a> ·
+  <a href="{blueprint_url(prefix, declaration)}">Open in the Verso Blueprint</a></p>
+</details>"""
+            )
+        rows.append(
+            f"""<article class="result paper-correspondence" id="{html.escape(row_id)}">
+  <div class="result-header">
+    <div>
+      <p class="eyebrow">{html.escape(str(row['paperAnchor']))}</p>
+      <h3>{html.escape(str(row['plain']))}</h3>
+    </div>
+    <div class="status-pair">
+      <span><small>Local declarations</small>{badge(str(row['localStatus']))}</span>
+      <span><small>Paper-wide route</small>{badge(str(row['routeStatus']))}</span>
+    </div>
+  </div>
+  <div class="math-block">\\[{html.escape(str(row['latex']))}\\]</div>
+  <div class="paper-reading">
+    <h4>What Lean currently establishes</h4>
+    <p>{html.escape(str(row['reading']))}</p>
+  </div>
+  <h4>Corresponding declarations</h4>
+  <ul class="declaration-list">{''.join(declaration_links)}</ul>
+  <details class="source-panel paper-latex">
+    <summary>Show the paper-side LaTeX</summary>
+    <pre><code>{html.escape(str(row['latex']))}</code></pre>
+  </details>
+  {''.join(statement_panels)}
+</article>"""
+        )
+    body = f"""
+<section class="hero" id="paper-contract">
+  <p class="eyebrow">Paper reproduction · source-to-Lean reading map</p>
+  <h1>Robin one-term block encoding</h1>
+  <p class="lede">Read the construction in the paper's order, then inspect the
+  exact Lean structures used to represent each step. This page presents the
+  compiled baseline before any claim of resource evolution.</p>
+  <div class="link-row">
+    <a class="button" href="{html.escape(str(paper['url']))}">Open the source paper</a>
+    <a class="button secondary" href="{prefix}sources/ghl2025-robin-excerpts.tex">Download the LaTeX excerpts</a>
+  </div>
+</section>
+<section class="content-section" id="how-to-read">
+  <div class="section-heading">
+    <p class="eyebrow">Status discipline</p>
+    <h2>A compiled declaration is not automatically the paper theorem</h2>
+  </div>
+  <p>The left badge says that the named Lean object compiles in this checkout.
+  The right badge says whether the entire paper route is closed. Contract
+  records, transcript equalities, finite diagnostics, and counterexamples are
+  valuable formal results, but they do not replace the final projected-block
+  theorem.</p>
+  <div class="callout warning">
+    <strong>Current conclusion.</strong>
+    The register model, theorem data, indicator unitary, circuit transcript,
+    many finite projection lemmas, and a decisive counterexample compile.
+    The paper-wide gate-level construction remains partial because several
+    oracle semantics and the boundary rotation convention are still external
+    or blocked.
+  </div>
+</section>
+<section class="content-section paper-map" id="correspondence">
+  <div class="section-heading">
+    <p class="eyebrow">{html.escape(str(paper['shortName']))}</p>
+    <h2>Paper statement to Lean structure</h2>
+    <p>Expand a row to compare the source LaTeX, the exact Lean statement, and
+    its location in the Library Explorer and Blueprint.</p>
+  </div>
+  {''.join(rows)}
+</section>"""
+    return page_template(
+        title="Robin paper map",
+        route=route,
+        current=route,
+        body=body,
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=toc,
+        description=(
+            "Guseynov-Huang-Liu Robin block-encoding statements mapped to "
+            "compiled ASPBE Lean declarations and open paper-route obligations."
+        ),
+    )
+
+
 def render_textbook_lesson(slug: str) -> str:
     lesson = LESSONS[slug]
     objectives = "".join(
@@ -1160,6 +1323,20 @@ def render_roadmap(
         f'<div class="metric"><strong>{route_counts.get(status, 0):,}</strong><span>{html.escape(status)} route labels</span></div>'
         for status in STATUS_ORDER
     )
+    literature_status = {
+        "formalized": "Compiled",
+        "skeleton": "Partial route",
+        "planned": "Planned",
+    }
+    literature_rows = "".join(
+        f"""<tr>
+  <td>{badge(literature_status.get(item.get('status', ''), 'Experimental'))}</td>
+  <td><a href="{html.escape(item.get('url', ''), quote=True)}">{html.escape(item.get('title', 'Untitled'))}</a><br><span class="muted">{html.escape(item.get('authors', ''))} ({html.escape(item.get('year', ''))})</span></td>
+  <td><code>{html.escape(item.get('role', ''))}</code></td>
+  <td><code>{html.escape(item.get('targetFile', ''))}</code><br>{html.escape(item.get('note', ''))}</td>
+</tr>"""
+        for item in parse_literature_registry()
+    )
     body = f"""
 <section class="hero">
   <p class="eyebrow">Progress and Roadmap</p>
@@ -1177,6 +1354,33 @@ def render_roadmap(
       <tbody>{rows}</tbody>
     </table>
   </div>
+</section>
+<section class="content-section" id="paper-reproduction-queue">
+  <div class="section-heading">
+    <p class="eyebrow">Paper reproduction queue</p>
+    <h2>What has been reproduced, and what has not</h2>
+    <p>This table is generated from the Lean-compiled literature registry. A
+    compiled local lemma does not promote a paper-wide route unless its circuit,
+    oracle, projection, normalization, and resource obligations are all closed.</p>
+  </div>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Status</th><th>Paper</th><th>Role</th><th>Target and next step</th></tr></thead>
+      <tbody>{literature_rows}</tbody>
+    </table>
+  </div>
+</section>
+<section class="content-section" id="memory-transfer-protocol">
+  <div class="section-heading">
+    <p class="eyebrow">Planned longitudinal experiment</p>
+    <h2>Does a larger certified memory actually help?</h2>
+  </div>
+  <p>Each newly reproduced paper adds memory cards only after its named Lean
+  roots compile. Earlier cold and warm benchmarks are then replayed in fresh,
+  isolated worktrees with the same model, prompt budget, target, tolerance
+  ladder, and acceptance gates. We compare solve rate, accepted-cycle count,
+  token proxy, wall time, and invalid-route count. Historical run artifacts are
+  never injected into the cold arm.</p>
 </section>"""
     return page_template(
         title="Progress and Roadmap",
@@ -1711,6 +1915,7 @@ def build_search_index(
         ("State preparation", "Prepare a normalized target state from the all-zero basis state", "state-preparation/index.html"),
         ("Block encoding", "Encode a scaled operator in the clean block of a larger unitary", "block-encoding/index.html"),
         ("Implementation Map", "Mathematical goals connected to exact Lean declarations", "implementation-map/index.html"),
+        ("Robin paper map", "Original Robin construction statements mapped to compiled Lean structures and open obligations", "case-studies/robin/index.html"),
         ("Lean Library Explorer", "Search the complete public declaration inventory", "library/index.html"),
         ("Progress and Roadmap", "Compiled, partial, experimental, planned, and blocked routes", "roadmap/index.html"),
         ("ASPBE harness", "Candidate generation, resource scoring, proof, and validation", "workflow/index.html"),
@@ -1793,6 +1998,14 @@ def build(args: argparse.Namespace) -> None:
     declarations = enrich_inventory(inventory, context)
     declaration_map = {str(item["fullName"]): item for item in declarations}
     validate_curated_declarations(declaration_map)
+    robin_paper_map = load_robin_paper_map(declaration_map)
+    replay_report = load_json(
+        ROOT / "reports" / "public-case-replay" / "latest.json"
+    )
+    if replay_report.get("passed") is not True:
+        raise SystemExit("The public-case replay report is missing or did not pass.")
+    if replay_report.get("cold_start_claim") is not False:
+        raise SystemExit("Public-case replay must not be labeled as cold-start search.")
 
     output: Path = args.output
     if output.exists():
@@ -1801,6 +2014,18 @@ def build(args: argparse.Namespace) -> None:
     shutil.copytree(WEBSITE_ROOT / "static", output / "static")
     shutil.copytree(WEBSITE_ROOT / "diagrams", output / "diagrams")
     shutil.copy2(ROOT / "CONTRIBUTING.md", output / "CONTRIBUTING.md")
+    sources = output / "sources"
+    sources.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(
+        ROOT / "paper-notes" / "GHL2025" / "source-excerpts.tex",
+        sources / "ghl2025-robin-excerpts.tex",
+    )
+    data = output / "data"
+    data.mkdir(parents=True, exist_ok=True)
+    (data / "public-case-replay.json").write_text(
+        json.dumps(replay_report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     if (WEBSITE_ROOT / "community").exists():
         shutil.copytree(WEBSITE_ROOT / "community", output / "community")
 
@@ -1819,6 +2044,13 @@ def build(args: argparse.Namespace) -> None:
         output,
         "implementation-map",
         render_implementation_map(declaration_map, coverage, gate, context),
+    )
+    write_page(
+        output,
+        "case-studies/robin",
+        render_robin_paper_map(
+            robin_paper_map, declaration_map, coverage, gate, context
+        ),
     )
     write_page(output, "learning", render_learning(coverage, gate, context))
     for chapter in CHAPTERS:
@@ -1892,6 +2124,12 @@ def build(args: argparse.Namespace) -> None:
         "routeStatusCounts": dict(sorted(route_counts.items())),
         "searchEntryCount": search["entryCount"],
         "leanGate": gate,
+        "publicCaseReplay": {
+            "passed": replay_report["passed"],
+            "scope": replay_report["replay_scope"],
+            "coldStartClaim": replay_report["cold_start_claim"],
+            "sourceDigest": replay_report["source_digest"],
+        },
     }
     (output / "site-metadata.json").write_text(
         json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",

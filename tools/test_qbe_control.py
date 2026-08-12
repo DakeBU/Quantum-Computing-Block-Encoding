@@ -40,8 +40,10 @@ try:
         infer_evaluation_mode,
         lean_index_files_for_task,
         lean_sorry_lines,
+        provider_blocked_control_state,
         reusable_memory_card_rows,
         task_contract_capsule,
+        user_problem_task_template,
     )
 except ModuleNotFoundError:
     from tools.qbe import (
@@ -50,8 +52,10 @@ except ModuleNotFoundError:
         infer_evaluation_mode,
         lean_index_files_for_task,
         lean_sorry_lines,
+        provider_blocked_control_state,
         reusable_memory_card_rows,
         task_contract_capsule,
+        user_problem_task_template,
     )
 
 
@@ -62,6 +66,10 @@ class CurrentStateParsingTests(unittest.TestCase):
             infer_evaluation_mode("Evaluation mode: `task-only`"), "task-only"
         )
         self.assertEqual(infer_evaluation_mode("Evaluation mode: LAD"), "lad")
+        self.assertEqual(
+            infer_evaluation_mode("Evaluation mode: isolated-abeis"),
+            "isolated-abeis",
+        )
         self.assertEqual(
             infer_evaluation_mode("Evaluation mode: full_abeis"), "full-abeis"
         )
@@ -158,6 +166,36 @@ Current obligation state:
 
 
 class CycleDecisionTests(unittest.TestCase):
+    def test_missing_declared_root_never_closes_empty_frontier(self) -> None:
+        decision = decide_cycle(
+            task_id="NEW",
+            cycle=1,
+            frontier_rows=[],
+            obligation_rows=[],
+            feedback=[],
+            evidence_digest="lean-a",
+            lean_acceptance_required=True,
+            executable_acceptance_required=True,
+        )
+        self.assertFalse(decision.stop)
+        self.assertEqual(decision.mode, "decompose")
+        self.assertEqual(decision.unresolved_leaf_ids, ("ROOT-INITIALIZATION",))
+
+    def test_isolated_abeis_keeps_population_control(self) -> None:
+        row = "L1: root construction; status: active next; Lean: rootTheorem"
+        decision = decide_cycle(
+            task_id="COLD",
+            cycle=1,
+            frontier_rows=[row],
+            obligation_rows=[],
+            feedback=[],
+            evidence_digest="lean-a",
+            population_gate_required=True,
+            evaluation_mode="isolated-abeis",
+        )
+        self.assertEqual(decision.mode, "population")
+        self.assertTrue(decision.population_gate_required)
+
     def test_task_only_is_one_bounded_nonadaptive_attempt(self) -> None:
         row = "L1: benchmark theorem; status: active next; Lean: targetTheorem"
         first = decide_cycle(
@@ -823,6 +861,30 @@ class CycleDecisionTests(unittest.TestCase):
 
 
 class PostLeanAndPopulationTests(unittest.TestCase):
+    def test_reviewer_rejection_is_typed_without_selecting(self) -> None:
+        population = summarize_candidate_population(
+            [
+                {
+                    "trial_id": "middle-propose",
+                    "role": "middle",
+                    "candidate_id": "c1",
+                    "candidate_family": "lcu",
+                    "population_action": "propose",
+                    "fitness_evidence": "finite decomposition",
+                },
+                {
+                    "trial_id": "review-reject",
+                    "role": "reviewer",
+                    "candidate_id": "c1",
+                    "population_action": "reject",
+                    "fitness_evidence": "normalization lift missing",
+                },
+            ]
+        )
+        self.assertEqual(population.active_candidate_ids, ("c1",))
+        self.assertEqual(population.selected_candidate_ids, ())
+        self.assertEqual(population.invalid_packets, ())
+
     def test_lean_root_waits_for_declared_executable_gate(self) -> None:
         waiting = decide_cycle(
             task_id="HARD",
@@ -1011,6 +1073,39 @@ class PromptBudgetTests(unittest.TestCase):
 
 
 class AgentChangeAccountingTests(unittest.TestCase):
+    def test_user_ingestion_starts_with_named_active_root(self) -> None:
+        task = user_problem_task_template(
+            safe_id="WEB-TASK-1",
+            title="Web task",
+            kind="statePreparation",
+            mode="statePreparation",
+            language="en",
+            prompt_path="task-inbox/WEB-TASK-1/user_prompt.en.md",
+            source="web",
+            epsilon="0",
+            export_targets="qiskit",
+            raw="Prepare |1>.",
+        )
+        self.assertEqual(
+            infer_acceptance_anchors(task),
+            ("UserSubmission.WEB_TASK_1_rootCertificate",),
+        )
+        frontier = latest_frontier_rows(task)
+        self.assertEqual(len(frontier), 1)
+        self.assertIn("ROOT-INITIALIZATION", frontier[0])
+
+    def test_provider_block_does_not_advance_cycle_or_token_budget(self) -> None:
+        state = provider_blocked_control_state(
+            {"cycle": 4, "estimated_run_input_tokens": 9000},
+            previous_cycle=3,
+            run_tokens_used=7000,
+        )
+        self.assertEqual(state["cycle"], 3)
+        self.assertEqual(state["estimated_run_input_tokens"], 7000)
+        self.assertEqual(state["estimated_cycle_input_tokens"], 0)
+        self.assertEqual(state["status"], "provider-blocked")
+        self.assertFalse(state["stop"])
+
     def test_external_agent_parallelism_requires_explicit_opt_in(self) -> None:
         args = build_parser().parse_args(["sleep-run", "T", "--dry-run"])
         self.assertFalse(args.parallel_panels)
