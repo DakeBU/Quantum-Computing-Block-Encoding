@@ -39,6 +39,48 @@ open scoped Kronecker
             permutation column.2.1 column.2.2)) then 1 else 0 := by
   rfl
 
+/-- A selector lift has one coefficient/system delta on a clean input column. -/
+@[simp] theorem selectorLift_cleanColumn_apply
+    {coefficient selector system : Type*}
+    [Fintype coefficient] [DecidableEq coefficient]
+    [Fintype selector] [DecidableEq selector]
+    [Fintype system] [DecidableEq system]
+    (prepare : _root_.Matrix selector selector ℂ)
+    (cleanCoefficient : coefficient) (cleanSelector : selector)
+    (systemColumn : system)
+    (row : LCUIndex coefficient selector system) :
+    selectorLift (coefficient := coefficient) (system := system) prepare
+        row (cleanCoefficient, (cleanSelector, systemColumn)) =
+      if row.1 = cleanCoefficient ∧ row.2.2 = systemColumn then
+        prepare row.2.1 cleanSelector
+      else 0 := by
+  rcases row with ⟨coefficientRow, ⟨selectorRow, systemRow⟩⟩
+  by_cases coefficientMatch : coefficientRow = cleanCoefficient <;>
+    by_cases systemMatch : systemRow = systemColumn <;>
+    simp [selectorLift, coefficientMatch, systemMatch,
+      _root_.Matrix.one_apply]
+
+/-- The clean PREPARE bra has the conjugate selector entry and two deltas. -/
+@[simp] theorem star_selectorLift_cleanRow_apply
+    {coefficient selector system : Type*}
+    [Fintype coefficient] [DecidableEq coefficient]
+    [Fintype selector] [DecidableEq selector]
+    [Fintype system] [DecidableEq system]
+    (prepare : _root_.Matrix selector selector ℂ)
+    (cleanCoefficient : coefficient) (cleanSelector : selector)
+    (systemRow : system)
+    (column : LCUIndex coefficient selector system) :
+    star (selectorLift (coefficient := coefficient) (system := system) prepare)
+        (cleanCoefficient, (cleanSelector, systemRow)) column =
+      if column.1 = cleanCoefficient ∧ column.2.2 = systemRow then
+        star (prepare column.2.1 cleanSelector)
+      else 0 := by
+  rcases column with ⟨coefficientColumn, ⟨selectorColumn, systemColumn⟩⟩
+  by_cases coefficientMatch : coefficientColumn = cleanCoefficient <;>
+    by_cases systemMatch : systemColumn = systemRow <;>
+    simp [selectorLift, coefficientMatch, systemMatch,
+      _root_.Matrix.one_apply]
+
 /-- Amplitude followed by selector preparation, evaluated on a clean input. -/
 theorem amplitudeLift_mul_selectorLift_clean
     {coefficient selector system : Type*}
@@ -59,13 +101,9 @@ theorem amplitudeLift_mul_selectorLift_clean
           prepare row.2.1 cleanSelector
       else 0 := by
   classical
-  rcases row with ⟨coefficientRow, ⟨selectorRow, systemRow⟩⟩
-  by_cases systemMatch : systemRow = systemColumn
-  · subst systemRow
-    simp [amplitudeLift, selectorLift, _root_.Matrix.mul_apply,
-      Fintype.sum_prod_type, _root_.Matrix.one_apply]
-  · simp [amplitudeLift, selectorLift, _root_.Matrix.mul_apply,
-      Fintype.sum_prod_type, _root_.Matrix.one_apply, systemMatch]
+  rw [_root_.Matrix.mul_apply]
+  rw [Fintype.sum_prod_type]
+  simp [Fintype.sum_prod_type, amplitudeLift_apply]
 
 /-- SELECT applied after amplitude and PREPARE, on one clean input column. -/
 theorem selectLift_mul_amplitudeLift_mul_selectorLift_clean
@@ -90,7 +128,11 @@ theorem selectLift_mul_amplitudeLift_mul_selectorLift_clean
       else 0 := by
   unfold selectLift
   rw [equivPermutationMatrix_mul_apply]
-  simp [controlledSystemEquiv, amplitudeLift_mul_selectorLift_clean]
+  rw [amplitudeLift_mul_selectorLift_clean]
+  by_cases inverseMatch :
+      (permutation row.2.1).symm row.2.2 = systemColumn
+  · simp [inverseMatch]
+  · simp [inverseMatch]
 
 /-- Project an arbitrary right factor through the clean PREPARE bra. -/
 theorem star_selectorLift_mul_clean
@@ -111,8 +153,9 @@ theorem star_selectorLift_mul_clean
         star (prepare selectorIndex cleanSelector) *
           operator (cleanCoefficient, (selectorIndex, systemRow)) column := by
   classical
-  simp [selectorLift, _root_.Matrix.mul_apply, Fintype.sum_prod_type,
-    _root_.Matrix.one_apply]
+  rw [_root_.Matrix.mul_apply]
+  rw [Fintype.sum_prod_type]
+  simp [Fintype.sum_prod_type]
 
 /-- Exact projected clean entry of PREPARE/amplitude/SELECT/unprepare. -/
 theorem prepareAmplitudeSelectUnprepare_cleanEntry
