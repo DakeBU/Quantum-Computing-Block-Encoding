@@ -43,10 +43,16 @@ jobs:
 
           if grep -q '^QuantumBlockEncoding/Robin/ComplexLCU\.lean$' <<<"$changed"; then
             lake build QuantumBlockEncoding.Robin.ComplexLCU
+            test ! -f QuantumBlockEncoding/Robin/ComplexLCUProjection.lean || \
+              lake build QuantumBlockEncoding.Robin.ComplexLCUProjection
             test ! -f QuantumBlockEncoding/Robin/Hadamard8Verified.lean || \
               lake build QuantumBlockEncoding.Robin.Hadamard8Verified
             test ! -f QuantumBlockEncoding/Robin/SymmetryFourSlotVerified.lean || \
               lake build QuantumBlockEncoding.Robin.SymmetryFourSlotVerified
+          fi
+
+          if grep -q '^QuantumBlockEncoding/Robin/ComplexLCUProjection\.lean$' <<<"$changed"; then
+            lake build QuantumBlockEncoding.Robin.ComplexLCUProjection
           fi
 
           if grep -q '^QuantumBlockEncoding/Robin/SymmetryFourSlot\.lean$' <<<"$changed"; then
@@ -69,21 +75,20 @@ jobs:
             lake build QuantumBlockEncoding.Robin.ResourceComparison
           fi
 
-      - name: Full Robin regression when exporter or test surface changes
+      - name: Full Robin regression when requested
         if: contains(github.event.head_commit.message, '[full-robin]')
         run: |
           lake build QuantumBlockEncoding.Robin.FixedN3Data
           lake build QuantumBlockEncoding.Robin.WeightedPermutation
           lake build QuantumBlockEncoding.Robin.EvolvedCandidates
           lake build QuantumBlockEncoding.Robin.SymmetryFourSlot
+          lake build QuantumBlockEncoding.Robin.SixSlotOptimal
           lake build QuantumBlockEncoding.Robin.ResourceComparison
-          test ! -f QuantumBlockEncoding/Robin/ComplexLCU.lean || \
-            lake build QuantumBlockEncoding.Robin.ComplexLCU
+          lake build QuantumBlockEncoding.Robin.ComplexLCU
+          lake build QuantumBlockEncoding.Robin.ComplexLCUProjection
           test ! -f QuantumBlockEncoding/Robin/Hadamard8Verified.lean || \
             lake build QuantumBlockEncoding.Robin.Hadamard8Verified
           test ! -f QuantumBlockEncoding/Robin/SymmetryFourSlotVerified.lean || \
             lake build QuantumBlockEncoding.Robin.SymmetryFourSlotVerified
-          test ! -f QuantumBlockEncoding/Robin/SixSlotOptimal.lean || \
-            lake build QuantumBlockEncoding.Robin.SixSlotOptimal
           python3 -m pip install -r requirements-executable.txt
           python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
