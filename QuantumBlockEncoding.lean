@@ -21,6 +21,7 @@ import QuantumBlockEncoding.Robin.SourceBaseline
 import QuantumBlockEncoding.Robin.WeightedPermutation
 import QuantumBlockEncoding.Robin.EvolvedCandidates
 import QuantumBlockEncoding.Robin.SymmetryFourSlot
+import QuantumBlockEncoding.Robin.SixSlotOptimal
 import QuantumBlockEncoding.Robin.ComplexLCU
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
