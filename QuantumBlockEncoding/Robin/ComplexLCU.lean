@@ -127,10 +127,18 @@ theorem blockDiagonal_unitary
     _root_.Matrix.blockDiagonal blocks ∈
       _root_.Matrix.unitaryGroup (ι × κ) ℂ := by
   rw [_root_.Matrix.mem_unitaryGroup_iff']
-  rw [star_eq_conjTranspose, _root_.Matrix.blockDiagonal_conjTranspose,
-    ← _root_.Matrix.blockDiagonal_mul]
+  have star_blockDiagonal :
+      star (_root_.Matrix.blockDiagonal blocks) =
+        _root_.Matrix.blockDiagonal (fun k => star (blocks k)) := by
+    ext ⟨row, blockRow⟩ ⟨column, blockColumn⟩
+    by_cases h : blockRow = blockColumn
+    · subst blockColumn
+      simp [_root_.Matrix.blockDiagonal_apply]
+    · have h' : blockColumn ≠ blockRow := Ne.symm h
+      simp [_root_.Matrix.blockDiagonal_apply, h, h']
+  rw [star_blockDiagonal, ← _root_.Matrix.blockDiagonal_mul]
   have pointwise :
-      (fun k => (blocks k)ᴴ * blocks k) =
+      (fun k => star (blocks k) * blocks k) =
         (1 : κ → _root_.Matrix ι ι ℂ) := by
     funext k
     exact _root_.Matrix.mem_unitaryGroup_iff'.mp (unitary k)
@@ -152,9 +160,8 @@ theorem equivPermutationMatrix_unitary
   by_cases equal : row = column
   · subst column
     simp [equivPermutationMatrix, _root_.Matrix.mul_apply]
-  · have image_ne : equiv row ≠ equiv column := by
-      exact fun h => equal (equiv.injective h)
-    simp [equivPermutationMatrix, _root_.Matrix.mul_apply, equal, image_ne]
+  · have reverse_ne : column ≠ row := Ne.symm equal
+    simp [equivPermutationMatrix, _root_.Matrix.mul_apply, equal, reverse_ne]
 
 /-- Multiplication by a permutation matrix applies the inverse permutation to rows. -/
 theorem equivPermutationMatrix_mul_apply
@@ -164,7 +171,20 @@ theorem equivPermutationMatrix_mul_apply
     (equivPermutationMatrix equiv * operator) row column =
       operator (equiv.symm row) column := by
   classical
-  simp [equivPermutationMatrix, _root_.Matrix.mul_apply]
+  rw [_root_.Matrix.mul_apply]
+  rw [Finset.sum_eq_single (equiv.symm row)]
+  · simp [equivPermutationMatrix]
+  · intro candidate _ candidate_ne
+    have miss : row ≠ equiv candidate := by
+      intro hit
+      apply candidate_ne
+      apply equiv.injective
+      calc
+        equiv candidate = row := hit.symm
+        _ = equiv (equiv.symm row) :=
+          (equiv.apply_symm_apply row).symm
+    simp [equivPermutationMatrix, miss]
+  · simp
 
 /-- Product-register index for coefficient, selector, and system registers. -/
 abbrev LCUIndex (coefficient selector system : Type*) :=
@@ -269,7 +289,7 @@ theorem selectLift_unitary
   equivPermutationMatrix_unitary _
 
 /-- PREPARE → amplitude → SELECT → unprepare logical matrix. -/
-def prepareAmplitudeSelectUnprepare
+noncomputable def prepareAmplitudeSelectUnprepare
     {coefficient selector system : Type*}
     [Fintype coefficient] [DecidableEq coefficient]
     [Fintype selector] [DecidableEq selector]
