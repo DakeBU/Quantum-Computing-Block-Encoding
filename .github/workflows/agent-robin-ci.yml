@@ -1,0 +1,55 @@
+name: Agent Robin semantic verification
+
+on:
+  push:
+    branches:
+      - "agent/robin-t2-verified"
+    paths:
+      - "QuantumBlockEncoding/**"
+      - "QuantumBlockEncoding.lean"
+      - "Tests.lean"
+      - "website/scripts/run_lean_gate.py"
+      - "tools/export_robin_evolution.py"
+      - ".github/workflows/agent-robin-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: false
+          use-mathlib-cache: true
+
+      - name: Build current Robin baseline
+        run: |
+          lake build QuantumBlockEncoding.Robin.FixedN3Data
+          lake build QuantumBlockEncoding.Robin.WeightedPermutation
+          lake build QuantumBlockEncoding.Robin.EvolvedCandidates
+          lake build QuantumBlockEncoding.Robin.ResourceComparison
+
+      - name: Build new Robin semantic modules when present
+        run: |
+          if test -f QuantumBlockEncoding/Robin/ComplexLCU.lean; then
+            lake build QuantumBlockEncoding.Robin.ComplexLCU
+          fi
+          if test -f QuantumBlockEncoding/Robin/Hadamard8Verified.lean; then
+            lake build QuantumBlockEncoding.Robin.Hadamard8Verified
+          fi
+          if test -f QuantumBlockEncoding/Robin/SymmetryFourSlot.lean; then
+            lake build QuantumBlockEncoding.Robin.SymmetryFourSlot
+          fi
+
+      - name: Run focused exporter
+        run: |
+          python3 -m pip install -r requirements-executable.txt
+          python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
