@@ -57,8 +57,7 @@ open scoped Kronecker
   rcases row with ⟨coefficientRow, ⟨selectorRow, systemRow⟩⟩
   by_cases coefficientMatch : coefficientRow = cleanCoefficient <;>
     by_cases systemMatch : systemRow = systemColumn <;>
-    simp [selectorLift, coefficientMatch, systemMatch,
-      _root_.Matrix.one_apply]
+    simp [selectorLift, coefficientMatch, systemMatch]
 
 /-- The clean PREPARE bra has the conjugate selector entry and two deltas. -/
 @[simp] theorem star_selectorLift_cleanRow_apply
@@ -78,8 +77,7 @@ open scoped Kronecker
   rcases column with ⟨coefficientColumn, ⟨selectorColumn, systemColumn⟩⟩
   by_cases coefficientMatch : coefficientColumn = cleanCoefficient <;>
     by_cases systemMatch : systemColumn = systemRow <;>
-    simp [selectorLift, coefficientMatch, systemMatch,
-      _root_.Matrix.one_apply]
+    simp [selectorLift, coefficientMatch, systemMatch]
 
 /-- Amplitude followed by selector preparation, evaluated on a clean input. -/
 theorem amplitudeLift_mul_selectorLift_clean
@@ -101,9 +99,14 @@ theorem amplitudeLift_mul_selectorLift_clean
           prepare row.2.1 cleanSelector
       else 0 := by
   classical
+  rcases row with ⟨coefficientRow, ⟨selectorRow, systemRow⟩⟩
   rw [_root_.Matrix.mul_apply]
-  rw [Fintype.sum_prod_type]
-  simp [Fintype.sum_prod_type, amplitudeLift_apply]
+  simp_rw [Fintype.sum_prod_type]
+  simp_rw [selectorLift_cleanColumn_apply, amplitudeLift_apply]
+  by_cases systemMatch : systemRow = systemColumn
+  · subst systemRow
+    simp [Prod.mk.injEq]
+  · simp [Prod.mk.injEq, systemMatch]
 
 /-- SELECT applied after amplitude and PREPARE, on one clean input column. -/
 theorem selectLift_mul_amplitudeLift_mul_selectorLift_clean
@@ -129,6 +132,11 @@ theorem selectLift_mul_amplitudeLift_mul_selectorLift_clean
   unfold selectLift
   rw [equivPermutationMatrix_mul_apply]
   rw [amplitudeLift_mul_selectorLift_clean]
+  change
+    (if (permutation row.2.1).symm row.2.2 = systemColumn then
+      rotation row.2.1 ((permutation row.2.1).symm row.2.2)
+          row.1 cleanCoefficient * prepare row.2.1 cleanSelector
+    else 0) = _
   by_cases inverseMatch :
       (permutation row.2.1).symm row.2.2 = systemColumn
   · simp [inverseMatch]
@@ -154,8 +162,9 @@ theorem star_selectorLift_mul_clean
           operator (cleanCoefficient, (selectorIndex, systemRow)) column := by
   classical
   rw [_root_.Matrix.mul_apply]
-  rw [Fintype.sum_prod_type]
-  simp [Fintype.sum_prod_type]
+  simp_rw [star_selectorLift_cleanRow_apply]
+  simp_rw [Fintype.sum_prod_type]
+  simp
 
 /-- Exact projected clean entry of PREPARE/amplitude/SELECT/unprepare. -/
 theorem prepareAmplitudeSelectUnprepare_cleanEntry
