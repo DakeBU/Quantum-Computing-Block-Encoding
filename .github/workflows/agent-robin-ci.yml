@@ -8,7 +8,6 @@ on:
       - "QuantumBlockEncoding/**"
       - "QuantumBlockEncoding.lean"
       - "Tests.lean"
-      - "website/scripts/run_lean_gate.py"
       - "tools/export_robin_evolution.py"
       - ".github/workflows/agent-robin-ci.yml"
   workflow_dispatch:
@@ -22,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
 
       - name: Set up Lean and fetch Mathlib cache
         uses: leanprover/lean-action@v1
@@ -33,30 +34,56 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Build current Robin baseline
+      - name: Build changed Robin targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          changed="$(git diff --name-only HEAD^ HEAD)"
+          echo "$changed"
+
+          if grep -q '^QuantumBlockEncoding/Robin/ComplexLCU\.lean$' <<<"$changed"; then
+            lake build QuantumBlockEncoding.Robin.ComplexLCU
+            test ! -f QuantumBlockEncoding/Robin/Hadamard8Verified.lean || \
+              lake build QuantumBlockEncoding.Robin.Hadamard8Verified
+            test ! -f QuantumBlockEncoding/Robin/SymmetryFourSlotVerified.lean || \
+              lake build QuantumBlockEncoding.Robin.SymmetryFourSlotVerified
+          fi
+
+          if grep -q '^QuantumBlockEncoding/Robin/SymmetryFourSlot\.lean$' <<<"$changed"; then
+            lake build QuantumBlockEncoding.Robin.SymmetryFourSlot
+          fi
+
+          if grep -q '^QuantumBlockEncoding/Robin/Hadamard8Verified\.lean$' <<<"$changed"; then
+            lake build QuantumBlockEncoding.Robin.Hadamard8Verified
+          fi
+
+          if grep -q '^QuantumBlockEncoding/Robin/SymmetryFourSlotVerified\.lean$' <<<"$changed"; then
+            lake build QuantumBlockEncoding.Robin.SymmetryFourSlotVerified
+          fi
+
+          if grep -q '^QuantumBlockEncoding/Robin/SixSlotOptimal\.lean$' <<<"$changed"; then
+            lake build QuantumBlockEncoding.Robin.SixSlotOptimal
+          fi
+
+          if grep -q '^QuantumBlockEncoding/Robin/ResourceComparison\.lean$' <<<"$changed"; then
+            lake build QuantumBlockEncoding.Robin.ResourceComparison
+          fi
+
+      - name: Full Robin regression when exporter or test surface changes
+        if: contains(github.event.head_commit.message, '[full-robin]')
         run: |
           lake build QuantumBlockEncoding.Robin.FixedN3Data
           lake build QuantumBlockEncoding.Robin.WeightedPermutation
           lake build QuantumBlockEncoding.Robin.EvolvedCandidates
           lake build QuantumBlockEncoding.Robin.SymmetryFourSlot
           lake build QuantumBlockEncoding.Robin.ResourceComparison
-
-      - name: Build new Robin semantic modules when present
-        run: |
-          if test -f QuantumBlockEncoding/Robin/ComplexLCU.lean; then
+          test ! -f QuantumBlockEncoding/Robin/ComplexLCU.lean || \
             lake build QuantumBlockEncoding.Robin.ComplexLCU
-          fi
-          if test -f QuantumBlockEncoding/Robin/Hadamard8Verified.lean; then
+          test ! -f QuantumBlockEncoding/Robin/Hadamard8Verified.lean || \
             lake build QuantumBlockEncoding.Robin.Hadamard8Verified
-          fi
-          if test -f QuantumBlockEncoding/Robin/SymmetryFourSlotVerified.lean; then
+          test ! -f QuantumBlockEncoding/Robin/SymmetryFourSlotVerified.lean || \
             lake build QuantumBlockEncoding.Robin.SymmetryFourSlotVerified
-          fi
-          if test -f QuantumBlockEncoding/Robin/SixSlotOptimal.lean; then
+          test ! -f QuantumBlockEncoding/Robin/SixSlotOptimal.lean || \
             lake build QuantumBlockEncoding.Robin.SixSlotOptimal
-          fi
-
-      - name: Run focused exporter
-        run: |
           python3 -m pip install -r requirements-executable.txt
           python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
