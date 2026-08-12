@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Set up Lean and fetch Mathlib cache
+      - name: Set up Lean and restore project cache
         uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -32,7 +32,7 @@ jobs:
           test: false
           lint: false
           use-github-cache: true
-          use-mathlib-cache: true
+          use-mathlib-cache: false
 
       - name: Build changed Robin targets
         shell: bash
