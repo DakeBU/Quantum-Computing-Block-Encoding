@@ -6,22 +6,55 @@ import Mathlib.Tactic
 # Reusable complex-unitary LCU semantics
 
 This module begins the concrete semantic bridge required by the Robin T2
-candidates.  The first proof block is an exact two-dimensional real rotation,
-viewed as a complex unitary matrix.  Later declarations build controlled
+candidates. The first proof block is an exact two-dimensional real rotation,
+viewed as a complex unitary matrix. Later declarations build controlled
 families, permutation SELECT gates, and PREPARE/amplitude/SELECT composition on
 this kernel.
 -/
 
 namespace QuantumBlockEncoding.Robin.ComplexLCU
 
-/-- A real planar rotation, embedded entrywise in the complex numbers. -/
-noncomputable def realRotation (angle : Real) :
+/-- A real planar rotation with explicit cosine and sine entries, embedded in `ℂ`. -/
+noncomputable def realOrthogonalRotation (cosine sine : Real) :
     _root_.Matrix (Fin 2) (Fin 2) ℂ := fun row column =>
   match row.val, column.val with
-  | 0, 0 => (Real.cos angle : ℂ)
-  | 0, _ => -(Real.sin angle : ℂ)
-  | _, 0 => (Real.sin angle : ℂ)
-  | _, _ => (Real.cos angle : ℂ)
+  | 0, 0 => (cosine : ℂ)
+  | 0, _ => -(sine : ℂ)
+  | _, 0 => (sine : ℂ)
+  | _, _ => (cosine : ℂ)
+
+/-- A real planar rotation is unitary whenever its two entries lie on the unit circle. -/
+theorem realOrthogonalRotation_unitary
+    (cosine sine : Real) (normalization : cosine * cosine + sine * sine = 1) :
+    realOrthogonalRotation cosine sine ∈
+      _root_.Matrix.unitaryGroup (Fin 2) ℂ := by
+  rw [_root_.Matrix.mem_unitaryGroup_iff']
+  ext row column
+  fin_cases row <;> fin_cases column
+  · have hcast : (((cosine * cosine + sine * sine : Real) : ℂ)) = 1 := by
+      exact_mod_cast normalization
+    simpa [realOrthogonalRotation, _root_.Matrix.mul_apply,
+      Fin.sum_univ_two] using hcast
+  · simp [realOrthogonalRotation, _root_.Matrix.mul_apply,
+      Fin.sum_univ_two]
+    ring
+  · simp [realOrthogonalRotation, _root_.Matrix.mul_apply,
+      Fin.sum_univ_two]
+    ring
+  · have normalization' : sine * sine + cosine * cosine = 1 := by
+      calc
+        sine * sine + cosine * cosine =
+            cosine * cosine + sine * sine := by ring
+        _ = 1 := normalization
+    have hcast : (((sine * sine + cosine * cosine : Real) : ℂ)) = 1 := by
+      exact_mod_cast normalization'
+    simpa [realOrthogonalRotation, _root_.Matrix.mul_apply,
+      Fin.sum_univ_two] using hcast
+
+/-- A real planar rotation, parameterized by an angle. -/
+noncomputable def realRotation (angle : Real) :
+    _root_.Matrix (Fin 2) (Fin 2) ℂ :=
+  realOrthogonalRotation (Real.cos angle) (Real.sin angle)
 
 @[simp] theorem realRotation_zero_zero (angle : Real) :
     realRotation angle 0 0 = (Real.cos angle : ℂ) := by
@@ -43,11 +76,8 @@ noncomputable def realRotation (angle : Real) :
 theorem realRotation_unitary (angle : Real) :
     realRotation angle ∈
       _root_.Matrix.unitaryGroup (Fin 2) ℂ := by
-  rw [_root_.Matrix.mem_unitaryGroup_iff']
-  ext row column
-  fin_cases row <;> fin_cases column <;>
-    simp [realRotation, _root_.Matrix.mul_apply, Fin.sum_univ_two,
-      _root_.Matrix.one_apply, Real.sin_sq_add_cos_sq] <;> ring
+  apply realOrthogonalRotation_unitary
+  nlinarith [Real.sin_sq_add_cos_sq angle]
 
 /-- Rotation whose clean entry is intended to encode `coefficient`. -/
 noncomputable def amplitudeRotation (coefficient : Real) :
