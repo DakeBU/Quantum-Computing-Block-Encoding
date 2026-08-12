@@ -1,0 +1,34 @@
+{
+  "candidates": [
+    {
+      "basisPermutationChecks": 40,
+      "cleanBlockMaxEntryError": 1.1102230246251565e-16,
+      "cleanBlockOperatorNormError": 1.769911968528648e-16,
+      "executableSemanticTier": "experimental dense composition of PREPARE, amplitude, SELECT, unprepare",
+      "identity": "five-shift-weighted-permutation",
+      "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula_eq_target",
+      "leanSemanticTier": "T1 exact finite structural LCU",
+      "promotionBlockedBy": "matching Lean complex-unitary circuit semantics and primitive synthesis",
+      "qiskitOperatorError": 0.0,
+      "qiskitPrimitiveResource": null,
+      "qiskitVersion": "2.4.2",
+      "selectorSlots": 5,
+      "unitaryError": 8.859694521532909e-16
+    },
+    {
+      "basisPermutationChecks": 64,
+      "cleanBlockMaxEntryError": 8.326672684688674e-17,
+      "cleanBlockOperatorNormError": 1.5682158042015002e-16,
+      "executableSemanticTier": "experimental dense composition of PREPARE, amplitude, SELECT, unprepare",
+      "identity": "hadamard-eight-weighted-permutation",
+      "leanRoot": "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target",
+      "leanSemanticTier": "T1 exact finite structural LCU",
+      "promotionBlockedBy": "matching Lean complex-unitary circuit semantics and primitive synthesis",
+      "qiskitOperatorError": 0.0,
+      "qiskitPrimitiveResource": null,
+      "qiskitVersion": "2.4.2",
+      "selectorSlots": 8,
+      "unitaryError": 1.7625701818922639e-15
+    }
+  ]
+}

@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as _dt
+import hashlib
 import io
 import importlib.metadata as importlib_metadata
 import json
@@ -10385,6 +10386,133 @@ def cmd_agent_note(args: argparse.Namespace) -> int:
     return 0
 
 
+CASE_STATES = {"draft", "pendingReview", "verified", "rejected"}
+SECRET_FIELD = re.compile(r"(?:api[_-]?key|authorization|cookie|password|token)", re.I)
+
+
+def _case_contains_secret(value: object, path: str = "") -> str | None:
+    if isinstance(value, dict):
+        for key, item in value.items():
+            child = f"{path}.{key}" if path else str(key)
+            if SECRET_FIELD.search(str(key)):
+                return child
+            found = _case_contains_secret(item, child)
+            if found:
+                return found
+    elif isinstance(value, list):
+        for index, item in enumerate(value):
+            found = _case_contains_secret(item, f"{path}[{index}]")
+            if found:
+                return found
+    return None
+
+
+def canonical_case_hash(packet: dict[str, object]) -> str:
+    mathematics = packet.get("mathematics", {})
+    identity = {
+        "kind": packet.get("kind"),
+        "target": str(mathematics.get("target", "")).strip(),
+        "normalizer": str(mathematics.get("normalizer", "")).strip(),
+        "projector": str(mathematics.get("projector", "")).strip(),
+        "epsilon": str(mathematics.get("epsilon", "")).strip(),
+        "semantic_tier": str(mathematics.get("semantic_tier", "")).strip(),
+    }
+    encoded = json.dumps(identity, sort_keys=True, separators=(",", ":")).encode()
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def validate_case_packet(packet: dict[str, object], *, promotion: bool = False) -> None:
+    required = {
+        "schema_version", "id", "title", "kind", "status", "mathematics",
+        "lean", "provenance", "contributor", "verification", "executable",
+        "resource", "license", "reuse_consent", "case_hash",
+    }
+    missing = sorted(required - packet.keys())
+    if missing:
+        raise ValueError(f"missing required fields: {', '.join(missing)}")
+    if packet["schema_version"] != "2.0":
+        raise ValueError("only contribution schema 2.0 is accepted")
+    if packet["status"] not in CASE_STATES:
+        raise ValueError(f"invalid integration state: {packet['status']}")
+    if packet["kind"] not in {"statePreparation", "operatorBlockEncoding"}:
+        raise ValueError("kind must be statePreparation or operatorBlockEncoding")
+    secret = _case_contains_secret(packet)
+    if secret:
+        raise ValueError(f"credential-like field is forbidden: {secret}")
+    if packet.get("case_hash") != canonical_case_hash(packet):
+        raise ValueError("case_hash differs from canonical mathematical identity")
+    if packet.get("license") != {"spdx": "MIT", "agreed": True}:
+        raise ValueError("MIT license consent is required")
+    consent = packet.get("reuse_consent", {})
+    if consent.get("public_repository") is not True:
+        raise ValueError("public repository consent is required")
+    if promotion:
+        if packet["status"] != "pendingReview":
+            raise ValueError("only pendingReview cases can be promoted")
+        if packet["verification"].get("accepted") is not True:
+            raise ValueError("promotion requires accepted compiler evidence")
+        executable = packet["executable"]
+        if executable.get("advertised") and executable.get("accepted") is not True:
+            raise ValueError("advertised executable evidence has not passed")
+
+
+def cmd_ingest_case(args: argparse.Namespace) -> int:
+    if not args.review_only:
+        print("ingest-case is review-only; pass --review-only", file=sys.stderr)
+        return 2
+    source = Path(args.path).expanduser().resolve()
+    packet = json.loads(source.read_text(encoding="utf-8"))
+    try:
+        validate_case_packet(packet)
+    except ValueError as error:
+        print(f"case packet rejected: {error}", file=sys.stderr)
+        return 1
+    packet["status"] = "pendingReview"
+    destination = ROOT / "reports" / "case-review" / f"{slugify(str(packet['id']))}.json"
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    atomic_write_json(destination, packet)
+    print(f"review packet created: {rel(destination)}")
+    print("not added to public retrieval memory")
+    return 0
+
+
+def cmd_promote_case(args: argparse.Namespace) -> int:
+    source = ROOT / "reports" / "case-review" / f"{slugify(args.case_id)}.json"
+    if not source.exists():
+        print(f"review packet not found: {rel(source)}", file=sys.stderr)
+        return 1
+    packet = json.loads(source.read_text(encoding="utf-8"))
+    try:
+        validate_case_packet(packet, promotion=True)
+    except ValueError as error:
+        print(f"promotion refused: {error}", file=sys.stderr)
+        return 1
+    if packet["lean"].get("root") != args.lean_root:
+        print("promotion refused: --lean-root differs from packet root", file=sys.stderr)
+        return 1
+    for command in (
+        ["lake", "build"],
+        ["lake", "build", "ABEISTests"],
+        [sys.executable, "tools/replay_public_cases.py"],
+        [sys.executable, "scripts/generate-blueprint-catalog.py"],
+    ):
+        result = subprocess.run(command, cwd=ROOT, check=False)
+        if result.returncode:
+            print(f"promotion refused: gate failed: {shlex.join(command)}", file=sys.stderr)
+            return result.returncode
+    inventory = json.loads((ROOT / "web/library/declarations.json").read_text(encoding="utf-8"))
+    names = {item["fullName"] for item in inventory["declarations"]}
+    if args.lean_root not in names:
+        print("promotion refused: Lean root absent from generated inventory", file=sys.stderr)
+        return 1
+    packet["status"] = "verified"
+    destination = ROOT / "website" / "community" / "verified-cases" / source.name
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    atomic_write_json(destination, packet)
+    print(f"verified case staged for repository review: {rel(destination)}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="ABEIS quantum construction project helper")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -10420,6 +10548,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sub.add_parser("list-tasks", help="list task files").set_defaults(func=cmd_list_tasks)
     sub.add_parser("next-task", help="suggest the next task").set_defaults(func=cmd_next_task)
+    p_case = sub.add_parser("ingest-case", help="validate a contributed SP/BE case and create a review packet")
+    p_case.add_argument("path")
+    p_case.add_argument("--review-only", action="store_true")
+    p_case.set_defaults(func=cmd_ingest_case)
+    p_promote = sub.add_parser("promote-case", help="promote a reviewed case only after full repository gates")
+    p_promote.add_argument("case_id")
+    p_promote.add_argument("--lean-root", required=True)
+    p_promote.set_defaults(func=cmd_promote_case)
 
     p_task = sub.add_parser("new-task", help="create a task contract in tasks/")
     p_task.add_argument("id")

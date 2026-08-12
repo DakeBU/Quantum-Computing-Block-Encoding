@@ -80,10 +80,12 @@ jobs:
 
       - name: Check proof trust and replay public certificates
         run: |
+          python3 -m unittest website.scripts.test_site_contracts tools.test_case_memory tools.test_robin_export
           python3 tools/test_proof_trust.py
           python3 tools/check_proof_trust.py
           python3 tools/check_technical_lemma_registry.py
           python3 tools/replay_public_cases.py
+          python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
 
       - name: Check declaration inventory and Blueprint catalog
         run: |
@@ -104,6 +106,8 @@ jobs:
           test -f _site/community/index.html
           test -f _site/contributors/index.html
           test -f _site/task-builder/index.html
+          test -f _site/example-cases/index.html
+          test -f _site/data/example-cases.json
           test -f _site/case-studies/robin/index.html
           test -f _site/sources/ghl2025-robin-excerpts.tex
           test -f _site/data/public-case-replay.json

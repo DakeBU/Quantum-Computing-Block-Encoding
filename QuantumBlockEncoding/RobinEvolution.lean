@@ -88,9 +88,21 @@ def warmRobinSourceLayout : RegisterLayout :=
 def warmRobinVisiblePartition : GHL2025.RobinRegisterPartition :=
   GHL2025.defaultRobinRegisterPartition warmRobinParameters
 
-/-- The source-ordered ten-block circuit transcript for the warm instance. -/
+/-- The source-ordered ten-label paper transcript for the warm instance.
+The register SWAP remains a label here; executable semantics live in
+`Robin.SourceBaseline.warmRobinRegisterSwapCircuit`. -/
 def warmRobinSourceCircuit : Circuit :=
-  GHL2025.oneTermRobinTheoremFacingFig4Circuit
+  [ Gate.oracleCall "H_W^(kappa)"
+  , Gate.oracleCall "U_indic"
+  , Gate.oracleCall "O_DT^S"
+  , Gate.oracleCall "Ry_boundary"
+  , Gate.oracleCall "O_DT^BS"
+  , Gate.oracleCall "U_indic^dagger"
+  , Gate.oracleCall "O_f"
+  , Gate.oracleCall "SWAP(two n-qubit registers; paper label only)"
+  , Gate.oracleCall "(O_D^BS)^dagger"
+  , Gate.oracleCall "(H_W^(kappa))^dagger"
+  ]
 
 /-- The warm adapter preserves the exact source order of all ten blocks. -/
 theorem warmRobinSourceCircuit_gateList :
@@ -102,11 +114,11 @@ theorem warmRobinSourceCircuit_gateList :
       , Gate.oracleCall "O_DT^BS"
       , Gate.oracleCall "U_indic^dagger"
       , Gate.oracleCall "O_f"
-      , Gate.swap 0 0
+      , Gate.oracleCall "SWAP(two n-qubit registers; paper label only)"
       , Gate.oracleCall "(O_D^BS)^dagger"
       , Gate.oracleCall "(H_W^(kappa))^dagger"
       ] := by
-  exact GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList
+  rfl
 
 /-- The source-facing warm transcript contains exactly ten blocks. -/
 theorem warmRobinSourceCircuit_length :

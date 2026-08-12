@@ -16,6 +16,11 @@ import QuantumBlockEncoding.OptimalControl
 import QuantumBlockEncoding.Resources
 import QuantumBlockEncoding.RobinMatrix
 import QuantumBlockEncoding.RobinEvolution
+import QuantumBlockEncoding.Robin.FixedN3Data
+import QuantumBlockEncoding.Robin.SourceBaseline
+import QuantumBlockEncoding.Robin.WeightedPermutation
+import QuantumBlockEncoding.Robin.EvolvedCandidates
+import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas
 import QuantumBlockEncoding.TextbookStatePreparation

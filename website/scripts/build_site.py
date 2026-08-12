@@ -12,6 +12,7 @@ import re
 import shutil
 import subprocess
 import sys
+import unicodedata
 from collections import Counter
 from pathlib import Path
 from urllib.parse import quote
@@ -45,6 +46,21 @@ NAVIGATION = [
     ("Contributors", "contributors/"),
     ("Organizers", "organizers/"),
 ]
+
+EXAMPLE_CASE_NAV: list[tuple[str, str]] = []
+DOUBLE_TEX_COMMAND = re.compile(r"\\\\(?=[A-Za-z])")
+
+
+def render_math_tex(tex: str) -> str:
+    """Render canonical TeX after rejecting corrupt or pre-escaped input."""
+    if "\x00" in tex:
+        raise ValueError("MathJax source contains NUL")
+    normalized = unicodedata.normalize("NFC", tex)
+    if "\ufffd" in normalized:
+        raise ValueError("MathJax source contains U+FFFD")
+    if DOUBLE_TEX_COMMAND.search(normalized):
+        raise ValueError(f"MathJax source contains doubled TeX command: {tex!r}")
+    return f'<div class="math-block">\\[{html.escape(normalized, quote=False)}\\]</div>'
 
 
 def run_git(*args: str) -> str:
@@ -238,6 +254,14 @@ def site_header(prefix: str, current: str) -> str:
             f'<span>{int(chapter["number"]):02d}</span>'
             f'{html.escape(str(chapter["title"]))}</a>'
         )
+    example_links = []
+    for label, case_slug in EXAMPLE_CASE_NAV:
+        route = f"example-cases/{case_slug}/"
+        current_attr = ' aria-current="page"' if current == route else ""
+        example_links.append(
+            f'<a href="{page_url(prefix, route)}"{current_attr}>'
+            f'{html.escape(label)}</a>'
+        )
     return f"""
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="mobile-header">
@@ -267,6 +291,9 @@ def site_header(prefix: str, current: str) -> str:
     {''.join(links)}
     <strong class="nav-group-label">Chapters</strong>
     <div class="chapter-nav">{''.join(chapter_links)}</div>
+    <strong class="nav-group-label">Example Cases</strong>
+    <a href="{page_url(prefix, 'example-cases/')}">All examples</a>
+    <div class="example-nav">{''.join(example_links)}</div>
     <strong class="nav-group-label">Reference</strong>
     <a href="{page_url(prefix, 'workflow/')}">ASPBE harness</a>
     <a href="{page_url(prefix, 'blueprint/')}">Verso Blueprint</a>
@@ -899,7 +926,7 @@ def render_robin_paper_map(
       <span><small>Paper-wide route</small>{badge(str(row['routeStatus']))}</span>
     </div>
   </div>
-  <div class="math-block">\\[{html.escape(str(row['latex']))}\\]</div>
+  {render_math_tex(str(row['latex']))}
   <div class="paper-reading">
     <h4>What Lean currently establishes</h4>
     <p>{html.escape(str(row['reading']))}</p>
@@ -937,13 +964,31 @@ def render_robin_paper_map(
   theorem.</p>
   <div class="callout warning">
     <strong>Current conclusion.</strong>
-    The warm run compiles the fixed target equality, source-ordered ten-block
-    transcript and layout guards, and the indicator permutation certificate.
-    The paper-wide gate-level construction remains partial because several
-    oracle semantics and the boundary rotation convention are still external
-    or blocked. No Lean root, Qiskit export, or lexicographic resource
-    improvement is currently reported.
+    The source paper route remains T1: several oracle matrices, transported
+    cleanup, and the final unitary theorem are open. This checkout separately
+    compiles exact fixed-N scaling, five-shift, seven-slot, and Hadamard-8
+    weighted-permutation decompositions and clean-branch formulas. Their finite
+    exporter is experimental until the same composed circuit has a Lean
+    complex-unitary root. Source and candidate therefore have no same-tier
+    primitive resource comparison, and no improvement is reported.
   </div>
+</section>
+<section class="content-section" id="structural-candidates">
+  <div class="section-heading"><p class="eyebrow">Fixed N=8 repair</p>
+  <h2>What is now exact, and what is still missing</h2></div>
+  {render_math_tex(r"A/(56/3)=M/224")}
+  <div class="case-grid">
+    <article class="case-card"><h3>Five shifts</h3><p>Five cyclic system
+    permutations carry column-dependent boundary weights. Lean checks all 64
+    entries and the bound <code>|5w/224| &lt;= 5/7</code>.</p></article>
+    <article class="case-card"><h3>Hadamard eight</h3><p>Eight labels use an
+    exact three-Hadamard selector and provide an independently checked finite
+    control decomposition.</p></article>
+  </div>
+  <div class="callout warning"><strong>Blocked promotion leaf.</strong>
+  Construct one complex-unitary PREPARE/amplitude/SELECT/unprepare semantics,
+  prove that its clean projection is the compiled formula, and expand both the
+  source and candidate under the same primitive accounting convention.</div>
 </section>
 <section class="content-section paper-map" id="correspondence">
   <div class="section-heading">
@@ -1867,35 +1912,137 @@ def render_blueprint_entry(
     )
 
 
+def replay_record(
+    replay: dict[str, object], selector: dict[str, str]
+) -> dict[str, object] | None:
+    for group in replay.get("cases", []):
+        if group.get("case") != selector.get("case"):
+            continue
+        name = selector.get("name")
+        if name is None:
+            return group
+        for case in group.get("cases", []):
+            if case.get("name") == name:
+                return {**case, "semantic_tier": group.get("semantic_tier")}
+        acceptance = group.get("acceptance", {})
+        for route in acceptance.get("routes", []):
+            if route.get("name") == name:
+                return {**route, "semantic_tier": acceptance.get("semantic_tier")}
+    return None
+
+
+def load_example_cases(
+    declarations: dict[str, dict[str, object]], replay: dict[str, object]
+) -> list[dict[str, object]]:
+    data = load_json(WEBSITE_ROOT / "example-cases.json")
+    if data.get("schemaVersion") != 1 or not isinstance(data.get("cases"), list):
+        raise SystemExit("website/example-cases.json has an unsupported schema")
+    seen: set[str] = set()
+    cases: list[dict[str, object]] = []
+    for case in data["cases"]:
+        case_slug = str(case.get("slug", ""))
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", case_slug):
+            raise SystemExit(f"Invalid example-case slug: {case_slug!r}")
+        if case_slug in seen:
+            raise SystemExit(f"Duplicate example-case slug: {case_slug}")
+        seen.add(case_slug)
+        missing = [name for name in case.get("leanAnchors", []) if name not in declarations]
+        if missing:
+            raise SystemExit(
+                f"Example case {case_slug} names declarations absent from inventory: {missing}"
+            )
+        evidence = None
+        selector = case.get("replaySelector")
+        if selector:
+            evidence = replay_record(replay, selector)
+        if case.get("status") == "certified":
+            if not case.get("semanticTier") or not case.get("source"):
+                raise SystemExit(f"Certified example {case_slug} lacks tier or provenance")
+            if not evidence or evidence.get("passed") is not True:
+                raise SystemExit(f"Certified example {case_slug} lacks passing replay evidence")
+        cases.append({**case, "executionEvidence": evidence})
+    return cases
+
+
+def compact_json(value: object) -> str:
+    return html.escape(json.dumps(value, ensure_ascii=False, separators=(",", ":")))
+
+
+def render_example_case_index(
+    cases: list[dict[str, object]], coverage: dict[str, object],
+    gate: dict[str, object], context: dict[str, object]
+) -> str:
+    cards = []
+    for case in cases:
+        cards.append(f"""<article class="case-card">
+  <p class="eyebrow">{html.escape(str(case['kind']))}</p>
+  <h2><a href="{html.escape(str(case['slug']))}/index.html">{html.escape(str(case['title']))}</a></h2>
+  <p>{html.escape(str(case['summary']))}</p>
+  <div class="case-meta">{badge('Compiled' if case['status'] == 'certified' else 'Partial route')}<span>{html.escape(str(case['semanticTier']))}</span></div>
+</article>""")
+    body = f"""<section class="hero"><p class="eyebrow">Reproducible reading paths</p>
+<h1>Example cases</h1><p class="lede">Each page ties one mathematical contract to named Lean declarations and separate executable evidence. A replay validates an existing certificate; it does not claim that a model rediscovered the proof.</p></section>
+<section class="content-section"><div class="case-grid">{''.join(cards)}</div></section>
+<section class="content-section contribution-callout"><h2>Contribute a checked variant</h2><p>Generated drafts are welcome. Public retrieval begins only after review, a repository declaration, and the advertised gates pass.</p><div class="link-row"><a class="button" href="../task-builder/index.html">Share a State Preparation example</a><a class="button secondary" href="../community/index.html">Share a Block Encoding example</a></div></section>"""
+    return page_template(title="Example cases", route="example-cases/", current="example-cases/", body=body, coverage=coverage, gate=gate, context=context)
+
+
+def render_example_case(
+    case: dict[str, object], declarations: dict[str, dict[str, object]],
+    coverage: dict[str, object], gate: dict[str, object], context: dict[str, object]
+) -> str:
+    route = f"example-cases/{case['slug']}/"
+    prefix = prefix_for(route)
+    anchors = "".join(
+        f'<li><a href="{module_url(prefix, declarations[name])}"><code>{html.escape(name)}</code></a></li>'
+        for name in case["leanAnchors"]
+    )
+    evidence = case.get("executionEvidence")
+    evidence_html = (
+        f'<pre><code>{html.escape(json.dumps(evidence, ensure_ascii=False, indent=2))}</code></pre>'
+        if evidence else '<p>No executable acceptance row is advertised at this tier.</p>'
+    )
+    preset = compact_json(case["preset"])
+    body = f"""<article class="case-detail">
+<header class="hero"><p class="eyebrow">{html.escape(str(case['kind']))} · {html.escape(str(case['semanticTier']))}</p><h1>{html.escape(str(case['title']))}</h1><p class="lede">{html.escape(str(case['summary']))}</p></header>
+<section class="content-section"><h2>Contract and status</h2><dl class="definition-list"><dt>Status</dt><dd>{badge('Compiled' if case['status'] == 'certified' else 'Partial route')}</dd><dt>Target</dt><dd><code>{html.escape(str(case['preset']['target']))}</code></dd><dt>Normalization / projector</dt><dd><code>{html.escape(str(case['preset']['normalizer']))}</code>; {html.escape(str(case['preset']['projector']))}</dd><dt>Source and contributor</dt><dd>{html.escape(str(case['source']))}; {html.escape(str(case['contributor']))}</dd><dt>Current limitation</dt><dd>{html.escape(str(case['limitations']))}</dd></dl></section>
+<section class="content-section"><h2>Named Lean root</h2><ul class="declaration-list">{anchors}</ul></section>
+<section class="content-section"><h2>Executable evidence</h2>{evidence_html}</section>
+<section class="content-section"><div class="link-row"><a class="button" href="{prefix}task-builder/index.html?case={html.escape(str(case['slug']))}">Load in task builder</a><a class="button secondary" href="{prefix}community/index.html?case={html.escape(str(case['slug']))}">Contribute a variant</a></div><details><summary>Run locally</summary><pre><code>python3 tools/replay_public_cases.py</code></pre></details></section>
+<script type="application/json" data-example-preset>{preset}</script></article>"""
+    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context)
+
+
+def render_task_builder(
+    coverage: dict[str, object], gate: dict[str, object], context: dict[str, object]
+) -> str:
+    body = """<section class="hero task-builder-intro"><p class="eyebrow">User-owned execution</p>
+<h1>Build an ASPBE task</h1><p class="lede">Describe a state or operator, inspect the generated contract, and send it only to a runner you control. Lean remains the proof gate; Qiskit remains an executable cross-check.</p></section>
+<div class="task-builder" data-task-builder>
+<section class="builder-panel"><h2>Target and acceptance contract</h2>
+<label>Example preset<select id="benchmarkPreset"><option value="custom">Custom task</option></select></label>
+<label>Task name<input id="taskName" value="state-preparation-task" autocomplete="off"></label>
+<div class="form-grid"><label>Application<select id="mode"><option value="statePreparation">State Preparation</option><option value="operatorBlockEncoding">Block Encoding</option><option value="paperBenchmark">Paper reproduction</option><option value="exploratoryConstruction">Certified improvement</option></select></label><label>Harness<select id="harnessMode"><option value="hierarchical">Hierarchical</option><option value="game">Game</option><option value="parallel">Compare both</option></select></label></div>
+<label>Target state, operator, or oracle<textarea id="oracleDescription">Prepare (|0> + |1>) / sqrt(2) from |0></textarea></label>
+<div class="form-grid"><label>Normalizer alpha / state norm<input id="normalizer" value="1"></label><label>Initial or clean state<input id="projector" value="|0^n>"></label></div>
+<label>Constraints<textarea id="constraints" placeholder="Register order, exact or approximate tolerance, allowed gates, and non-goals."></textarea></label>
+<fieldset><legend>API ownership</legend><div class="form-grid"><label>Run location<select id="runLocation"><option value="localCli">Local CLI</option><option value="selfHostedRunner">My self-hosted runner</option><option value="browserPacketOnly">Packet only</option></select></label><label>Provider<select id="apiProvider"><option value="openai">OpenAI</option><option value="anthropic">Anthropic</option><option value="gemini">Gemini</option><option value="custom">Custom endpoint</option></select></label><label>Model<input id="defaultModel" value="use profile default"></label><label>Runner endpoint<input id="runnerEndpoint" value="/api/run-task"></label></div><label>Session-only API key<input id="apiKey" type="password" autocomplete="off" data-never-persist></label><p class="hint">The key is never stored, exported, logged, or placed in a contribution URL.</p></fieldset>
+<details><summary>Advanced search and export fields</summary><label>Known baseline<textarea id="baseline"></textarea></label><label>User insight<textarea id="userInsight"></textarea></label><label>Proposed construction or proof<textarea id="proposedProof"></textarea></label><label class="check-row"><input id="exportQiskit" type="checkbox" checked> Qiskit cross-check</label><label class="check-row"><input id="exportQasm3" type="checkbox"> OpenQASM 3 export</label></details>
+<div class="builder-actions"><button id="buildPacket" type="button">Build task packet</button><button id="runWithApi" type="button">Run with my API</button><button id="copyPacket" class="secondary" type="button">Copy</button><button id="downloadPacket" class="secondary" type="button">Download</button></div><p id="runnerStatus" aria-live="polite"></p></section>
+<section class="builder-panel"><h2>Generated packet</h2><pre id="packet" class="packet" tabindex="0"></pre><div class="memory-actions"><button id="savePrivateCase" type="button">Save privately</button><button id="forgetPrivateCase" class="secondary" type="button">Forget</button><button id="exportPrivateCases" class="secondary" type="button">Export JSON</button><label class="file-button">Import JSON<input id="importPrivateCases" type="file" accept="application/json"></label><button id="submitCase" class="secondary" type="button">Submit for review</button></div><p id="memoryStatus" aria-live="polite"></p><details><summary>Runner dashboard JSON</summary><textarea id="dashboardJson"></textarea><button id="renderDashboard" type="button">Render JSON</button><div id="dashboardView"></div></details></section></div>"""
+    return page_template(title="Task builder", route="task-builder/", current="task-builder/", body=body, coverage=coverage, gate=gate, context=context, extra_scripts=("static/case-memory.js", "static/task-builder.js"))
+
+
 def write_page(output: Path, route: str, content: str) -> None:
     destination = output / route / "index.html" if route else output / "index.html"
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(content, encoding="utf-8", newline="\n")
 
 
-def copy_task_builder(output: Path) -> None:
-    destination = output / "task-builder"
-    destination.mkdir(parents=True, exist_ok=True)
-    source_html = (ROOT / "web" / "index.html").read_text(encoding="utf-8")
-    source_html = source_html.replace('href="library/', 'href="../library/')
-    source_html = source_html.replace('href="blueprint/', 'href="../blueprint/')
-    (destination / "index.html").write_text(
-        source_html, encoding="utf-8", newline="\n"
-    )
-    for name in ("styles.css", "app.js"):
-        shutil.copy2(ROOT / "web" / name, destination / name)
-    assets = ROOT / "web" / "assets"
-    if assets.exists():
-        shutil.copytree(assets, destination / "assets", dirs_exist_ok=True)
-    shutil.copy2(
-        ROOT / "docs" / "assets" / "aspbe_harness_flow.svg",
-        destination / "assets" / "aspbe-harness-flow.svg",
-    )
-
-
 def build_search_index(
     output: Path,
     declarations: list[dict[str, object]],
+    cases: list[dict[str, object]],
 ) -> dict[str, object]:
     entries: list[dict[str, str]] = []
     for declaration in declarations:
@@ -1909,6 +2056,16 @@ def build_search_index(
                     f"library/modules/{module_slug(str(declaration['source']))}/"
                     f"index.html#{declaration_anchor(str(declaration['fullName']))}"
                 ),
+            }
+        )
+    for case in cases:
+        entries.append(
+            {
+                "type": "exampleCase",
+                "kind": str(case["kind"]),
+                "title": str(case["title"]),
+                "summary": str(case["summary"]),
+                "url": f"example-cases/{case['slug']}/index.html",
             }
         )
     page_entries = [
@@ -2007,6 +2164,11 @@ def build(args: argparse.Namespace) -> None:
         raise SystemExit("The public-case replay report is missing or did not pass.")
     if replay_report.get("cold_start_claim") is not False:
         raise SystemExit("Public-case replay must not be labeled as cold-start search.")
+    example_cases = load_example_cases(declaration_map, replay_report)
+    global EXAMPLE_CASE_NAV
+    EXAMPLE_CASE_NAV = [
+        (str(case["title"]), str(case["slug"])) for case in example_cases
+    ]
 
     output: Path = args.output
     if output.exists():
@@ -2036,6 +2198,15 @@ def build(args: argparse.Namespace) -> None:
         "state-preparation",
         render_state_preparation(coverage, gate, context),
     )
+    write_page(
+        output, "example-cases",
+        render_example_case_index(example_cases, coverage, gate, context),
+    )
+    for case in example_cases:
+        write_page(
+            output, f"example-cases/{case['slug']}",
+            render_example_case(case, declaration_map, coverage, gate, context),
+        )
     write_page(
         output,
         "block-encoding",
@@ -2098,9 +2269,22 @@ def build(args: argparse.Namespace) -> None:
         "blueprint",
         render_blueprint_entry(coverage, gate, context),
     )
-    copy_task_builder(output)
+    write_page(
+        output, "task-builder",
+        render_task_builder(coverage, gate, context),
+    )
+    (output / "data" / "example-cases.json").write_text(
+        json.dumps(
+            {"schemaVersion": 1, "cases": [
+                {key: value for key, value in case.items() if key != "executionEvidence"}
+                for case in example_cases
+            ]},
+            ensure_ascii=False, indent=2,
+        ) + "\n",
+        encoding="utf-8",
+    )
 
-    search = build_search_index(output, declarations)
+    search = build_search_index(output, declarations, example_cases)
     inventory_path = output / "library" / "declarations.json"
     inventory_path.write_text(
         json.dumps(inventory, ensure_ascii=False, indent=2) + "\n",
@@ -2118,6 +2302,7 @@ def build(args: argparse.Namespace) -> None:
         "publishedRef": context["publishedRef"],
         "declarationCount": len(declarations),
         "chapterCount": len(CHAPTERS),
+        "exampleCaseCount": len(example_cases),
         "diagramCount": len(list((WEBSITE_ROOT / "diagrams").glob("*.mmd"))),
         "modulePageCount": len(by_source),
         "sourceLinkCount": source_link_count,

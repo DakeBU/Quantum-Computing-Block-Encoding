@@ -15,6 +15,12 @@ Lean-checked quantum construction search, executable validation, and the
 
 ## News
 
+- **12 August 2026.** The fixed `N=8` Robin audit now freezes `M=12A` and
+  `A/(56/3)=M/224` in Lean. Five-shift, source-like seven-slot, and
+  Hadamard-8 weighted-permutation decompositions compile entrywise, including
+  permutation and amplitude guards. These are exact structural certificates,
+  not yet primitive-circuit block encodings; no resource improvement is
+  claimed across unlike semantic tiers.
 - **12 August 2026.** The textbook track now includes complete Mathlib-backed
   Pauli X and Hadamard state-preparation certificates. The full Lean gate also
   covers `RobinMatrix.lean` with zero proof holes: the historical H-free raw
@@ -80,6 +86,8 @@ formal quantum-computing textbook rather than a project dashboard:
 - an exhaustive declaration catalog and implementation map;
 - an atlas of ASPBE, Mathlib, and selected external quantum Lean libraries;
 - organizers, contribution guidance, and a versioned lemma-packet contract;
+- generated Example Cases whose status joins named Lean roots to replay
+  evidence, with one-click Task Builder presets;
 - a Live Formalization Workspace for LaTeX, Lean, dependency navigation, and
   local compiler diagnostics;
 - the existing Verso Blueprint at `/blueprint/html-multi/`.
@@ -320,13 +328,19 @@ python3 tools/run_robin_repro.py run --arm warm --cycles 7 --minutes 100
 python3 tools/run_robin_repro.py audit --arm warm
 ```
 
-The same arms are available in **Run with your API** through the `Robin cold`
-and `Robin warm` presets. The reported run used `gpt-5.6-sol` with Codex CLI
+The warm arm is available in **Run with your API** through the generated Robin
+example preset. The reported run used `gpt-5.6-sol` with Codex CLI
 0.145.0. Six cycles completed; a seventh was stopped when the upper agent
 repeated the same source-contract scan. The run compiled the fixed target,
 ten-block source transcript and layout guards, and indicator permutation
-certificate. It produced no Lean root, Qiskit export, or same-tier resource
-point, so no Robin resource improvement is claimed.
+certificate. It produced no verified block-encoding root or same-tier resource
+point. The subsequent deterministic repair added exact fixed-data and
+weighted-permutation structural roots, an explicit three-wire register SWAP,
+and a standard-`Ry` factor-of-two convention theorem. A deterministic exporter
+checks the corresponding finite composed matrices, but labels that evidence
+experimental until Lean connects the same PREPARE/SELECT/amplitude circuit to
+one complex-unitary clean-block theorem. Therefore no Robin resource
+improvement is claimed.
 The complete replay contract is in
 [`run-presets/robin_cold_warm_reproduction.md`](run-presets/robin_cold_warm_reproduction.md).
 
@@ -378,6 +392,20 @@ the owning module, run the pinned whole-repository gates, and submit a focused
 PR with provenance and preferred credit. Accepted work is listed on the
 QuantumComputinglib Contributors page. A locally compiling snippet is not
 listed as integrated until maintainer review and the full repository gate pass.
+
+Complete State Preparation and Block Encoding case packets use the exact
+states `draft`, `pendingReview`, `verified`, and `rejected`. Browser saves are
+explicit opt-in IndexedDB records and never include API credentials. Repository
+ingestion is also explicit:
+
+```bash
+python3 tools/qbe.py ingest-case path/to/case.json --review-only
+python3 tools/qbe.py promote-case case-id --lean-root Namespace.declaration
+```
+
+The promotion command refuses unpublished review states, missing consent,
+unknown Lean roots, failed full gates, or missing advertised executable
+evidence. Only `verified` packets can enter public positive retrieval memory.
 
 Historical `QBE-*` task IDs, `ABEISBlueprint` module names, and existing URLs
 remain unchanged for reproducibility and compatibility. New public prose uses

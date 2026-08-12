@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "slug": "pauli-x-state-preparation",
+      "title": "Pauli X prepares |1>",
+      "kind": "statePreparation",
+      "status": "certified",
+      "semanticTier": "exact one-qubit circuit",
+      "leanAnchors": ["QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate_prepares_one"],
+      "replaySelector": {"case": "Textbook state preparation", "name": "pauli_x"},
+      "preset": {"taskName": "SP-PAULI-X-001", "mode": "statePreparation", "target": "X |0> = |1>", "normalizer": "1", "projector": "|0>"},
+      "summary": "The smallest complete state-preparation example: one X gate, exact unitary semantics, and an exact state-action theorem.",
+      "source": "ASPBE textbook example",
+      "contributor": "ASPBE authors",
+      "limitations": "One qubit; no synthesis search is needed."
+    },
+    {
+      "slug": "hadamard-plus-state-preparation",
+      "title": "Hadamard prepares |+>",
+      "kind": "statePreparation",
+      "status": "certified",
+      "semanticTier": "exact one-qubit circuit",
+      "leanAnchors": ["QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate_prepares_plus"],
+      "replaySelector": {"case": "Textbook state preparation", "name": "hadamard"},
+      "preset": {"taskName": "SP-HADAMARD-PLUS-001", "mode": "statePreparation", "target": "H |0> = (|0> + |1>) / sqrt(2)", "normalizer": "1", "projector": "|0>"},
+      "summary": "A one-gate preparation of the equal superposition, linked to the complex-unitary certificate used by Lean.",
+      "source": "ASPBE textbook example",
+      "contributor": "ASPBE authors",
+      "limitations": "One qubit; numerical replay is supporting evidence, not the proof."
+    },
+    {
+      "slug": "be-case-1-champion",
+      "title": "BE Case 1 champion",
+      "kind": "operatorBlockEncoding",
+      "status": "certified",
+      "semanticTier": "Lean-certified exact finite instance",
+      "leanAnchors": ["QuantumBlockEncoding.OptimalControl.evolvedEqFlipVerified"],
+      "replaySelector": {"case": "BE Case 1 champion"},
+      "preset": {"taskName": "QBE-OP-OPTCTRL-001", "mode": "operatorBlockEncoding", "target": "Finite transfer operator from BE Case 1", "normalizer": "1", "projector": "clean signal |0>"},
+      "summary": "The accepted exact descendant for the finite transfer-operator benchmark.",
+      "source": "ASPBE BE Case 1",
+      "contributor": "ASPBE authors",
+      "limitations": "The resource row applies only to the declared finite primitive convention."
+    },
+    {
+      "slug": "be-case-1-isolated-baseline",
+      "title": "BE Case 1 isolated baseline",
+      "kind": "operatorBlockEncoding",
+      "status": "certified",
+      "semanticTier": "Lean-certified exact finite instance",
+      "leanAnchors": ["QuantumBlockEncoding.mainCaseColdPartialPermVerified"],
+      "replaySelector": {"case": "BE Case 1 isolated baseline"},
+      "preset": {"taskName": "QBE-MAIN-CASE-HIER-COLD-001", "mode": "operatorBlockEncoding", "target": "Isolated finite partial-permutation benchmark", "normalizer": "1", "projector": "clean signal |0>"},
+      "summary": "A cold, isolated finite baseline with an exact permutation and projected-block certificate.",
+      "source": "ASPBE BE Case 1 isolated replay",
+      "contributor": "ASPBE authors",
+      "limitations": "Certificate replay does not claim fresh cold-start discovery."
+    },
+    {
+      "slug": "cubic-diagonal-cold",
+      "title": "Cubic diagonal cold replay",
+      "kind": "operatorBlockEncoding",
+      "status": "certified",
+      "semanticTier": "symbolic Lean family plus finite executable validation",
+      "leanAnchors": ["QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"],
+      "replaySelector": {"case": "BE Case 2 cold", "name": "cubic_householder"},
+      "preset": {"taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001", "mode": "operatorBlockEncoding", "target": "Block encode diag(x)^3 on a finite grid", "normalizer": "1", "projector": "three clean Householder ancillas"},
+      "summary": "An exact rational Householder family theorem with deterministic finite Qiskit and OpenQASM replay.",
+      "source": "ASPBE BE Case 2 cold replay",
+      "contributor": "ASPBE authors",
+      "limitations": "The replay is certificate validation, not a new model search."
+    },
+    {
+      "slug": "cubic-diagonal-hinted",
+      "title": "Cubic diagonal hinted replay",
+      "kind": "operatorBlockEncoding",
+      "status": "certified",
+      "semanticTier": "symbolic Lean family plus finite executable validation",
+      "leanAnchors": ["QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete", "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"],
+      "replaySelector": {"case": "BE Case 2 hinted", "name": "cubic_householder"},
+      "preset": {"taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001", "mode": "operatorBlockEncoding", "target": "Use diag(x)^3 = diag(x^3) with exact Householder leaves", "normalizer": "1", "projector": "three clean Householder ancillas"},
+      "summary": "The hinted route exposes both the linear input block and the cubic output block as named Lean roots.",
+      "source": "ASPBE BE Case 2 hinted replay",
+      "contributor": "ASPBE authors",
+      "limitations": "The polynomial identity is guidance; each accepted block still has its own Lean theorem."
+    },
+    {
+      "slug": "robin-ghl-one-term",
+      "title": "Robin boundary block encoding",
+      "kind": "operatorBlockEncoding",
+      "status": "partial",
+      "semanticTier": "T1 exact finite structure",
+      "leanAnchors": ["QuantumBlockEncoding.RobinEvolution.warmRobinTarget_eq_eval_robinDerivativeMatrix"],
+      "preset": {"taskName": "QBE-ROBIN-BE-WARM-001", "mode": "exploratoryConstruction", "target": "Fixed N=8 homogeneous-Robin fourth-order derivative matrix", "normalizer": "56/3", "projector": "clean signal index 0; system Fin 8"},
+      "summary": "The paper contract and fixed finite decomposition are formalized, while the source circuit remains below a full gate-level certificate.",
+      "source": "Guseynov-Huang-Liu construction and ASPBE fixed-N audit",
+      "contributor": "ASPBE authors",
+      "limitations": "No T3 source baseline or same-tier improvement claim is currently published."
+    }
+  ]
+}

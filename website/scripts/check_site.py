@@ -38,7 +38,7 @@ class PageParser(HTMLParser):
 
 def parse_page(path: Path) -> PageParser:
     parser = PageParser()
-    parser.feed(path.read_text(encoding="utf-8", errors="replace"))
+    parser.feed(path.read_text(encoding="utf-8"))
     return parser
 
 
@@ -104,6 +104,30 @@ def require(path: Path, errors: list[str]) -> None:
         errors.append(f"missing required artifact: {path}")
 
 
+MOJIBAKE_MARKERS = ("\ufffd", "ï¿½", "Ã", "Â", "â€", "ðŸ")
+
+
+def check_encoding(site: Path) -> list[str]:
+    errors: list[str] = []
+    doubled_tex = re.compile(r'<div class="math-block">.*?\\\\[A-Za-z]', re.S)
+    for path in sorted(site.rglob("*")):
+        if not path.is_file() or path.suffix.lower() not in {".html", ".json", ".js", ".css", ".tex", ".md"}:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError as error:
+            errors.append(f"{relative_url(path, site)}: invalid UTF-8: {error}")
+            continue
+        for marker in MOJIBAKE_MARKERS:
+            if marker in text:
+                errors.append(f"{relative_url(path, site)}: mojibake marker {marker!r}")
+        if any(0x80 <= ord(character) <= 0x9F for character in text):
+            errors.append(f"{relative_url(path, site)}: C1 control character")
+        if path.suffix == ".html" and doubled_tex.search(text):
+            errors.append(f"{relative_url(path, site)}: doubled TeX command in MathJax container")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=ROOT / "_site")
@@ -131,6 +155,8 @@ def main() -> int:
         "attribution/index.html",
         "blueprint/index.html",
         "task-builder/index.html",
+        "example-cases/index.html",
+        "data/example-cases.json",
         "search-index.json",
         "library/declarations.json",
         "site-metadata.json",
@@ -140,6 +166,8 @@ def main() -> int:
         "data/public-case-replay.json",
         "static/site.css",
         "static/site.js",
+        "static/task-builder.js",
+        "static/case-memory.js",
         "static/workspace.js",
         "static/favicon.svg",
     ]
@@ -220,16 +248,43 @@ def main() -> int:
         if marker not in css:
             errors.append(f"missing CSS marker: {marker}")
     task_builder = (site / "task-builder" / "index.html").read_text(encoding="utf-8")
-    task_script = (site / "task-builder" / "app.js").read_text(encoding="utf-8")
-    for marker in ("Run with my API", 'id="runnerEndpoint"'):
+    task_script = (site / "static" / "task-builder.js").read_text(encoding="utf-8")
+    for marker in ("Run with my API", 'id="runnerEndpoint"', 'class="site-sidebar"', "Example Cases"):
         if marker not in task_builder:
             errors.append(f"missing user API task-builder marker: {marker}")
-    for marker in ("/api/run-task", "Authorization", "runWithApi"):
+    for marker in ("Authorization", "runWithApi"):
         if marker not in task_script:
             errors.append(f"missing user API runner client marker: {marker}")
+    if "/api/run-task" not in task_builder:
+        errors.append("missing default user API runner endpoint")
+    for forbidden in ("topbar", "Testing preview", "aspbe-harness-flow.svg", "abeis-library-map.svg", "redactApiKey"):
+        if forbidden in task_builder or forbidden in task_script:
+            errors.append(f"forbidden standalone task-builder marker: {forbidden}")
+    memory_script = (site / "static" / "case-memory.js").read_text(encoding="utf-8")
+    for marker in ("indexedDB", "pendingReview", "verified", "rejected", "apiKey"):
+        if marker not in memory_script:
+            errors.append(f"missing private case-memory marker: {marker}")
+    generated_pages = [
+        path for path in site.rglob("*.html")
+        if "blueprint/html" not in path.relative_to(site).as_posix()
+    ]
+    for page in generated_pages:
+        page_text = page.read_text(encoding="utf-8")
+        if 'class="site-sidebar"' not in page_text or "Example Cases" not in page_text:
+            errors.append(f"{relative_url(page, site)}: common navigation is incomplete")
+    cases = json.loads((site / "data" / "example-cases.json").read_text(encoding="utf-8"))["cases"]
+    if metadata.get("exampleCaseCount") != len(cases):
+        errors.append("site metadata exampleCaseCount differs from generated cases")
+    for case in cases:
+        route = site / "example-cases" / case["slug"] / "index.html"
+        if not route.exists():
+            errors.append(f"missing example case route: {case['slug']}")
+        if f"?case={case['slug']}" not in route.read_text(encoding="utf-8"):
+            errors.append(f"example case lacks task-builder preset link: {case['slug']}")
     if re.search(r"(?:file://|/home/|[A-Za-z]:\\\\Users\\\\)", combined):
         errors.append("local filesystem path leaked into unified HTML")
 
+    errors.extend(check_encoding(site))
     errors.extend(check_links(site))
     if errors:
         print("Site checks failed:")

@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.32934,
+      "elapsed_seconds": 0.322584,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.043485,
+      "elapsed_seconds": 0.042714,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.691911,
+      "elapsed_seconds": 0.715352,
       "passed": true
     },
     {
@@ -160,14 +160,14 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.97619,
+      "elapsed_seconds": 0.942099,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 3.012609,
-    "population_controller": 0.059939,
-    "total": 5.126803
+    "lean_modules": 2.998751,
+    "population_controller": 0.05819,
+    "total": 5.090614
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -177,8 +177,8 @@
     "qiskit": "2.4.2"
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
-  "git_branch": "main",
-  "git_commit": "fb4bbc86612a653c6c36ba9a2b99ba0982c0ad00",
+  "git_branch": "fix/robin-ghl-example-cases",
+  "git_commit": "cf32d3518090953b08ac993c1377c4515975fb9a",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -186,7 +186,8 @@
     "QuantumBlockEncoding.CubicStatePreparation",
     "QuantumBlockEncoding.GHL2025",
     "QuantumBlockEncoding.RobinMatrix",
-    "QuantumBlockEncoding.RobinEvolution"
+    "QuantumBlockEncoding.RobinEvolution",
+    "QuantumBlockEncoding.Robin.ResourceComparison"
   ],
   "lean_passed": true,
   "passed": true,
@@ -219,9 +220,9 @@
     },
     "evolution_replayed": true,
     "included_in_lean_gate": true,
-    "reason": "The audited warm run completed 6 controller cycles and produced no certified root or resource point. No resource-improvement claim is available.",
-    "status": "compiled local structure; broader paper route partial"
+    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic fixed-N structural roots were added after the run; no resource-improvement claim is available.",
+    "status": "T1 exact finite structural LCU; full unitary route partial"
   },
   "schema_version": 1,
-  "source_digest": "8df9e33464987febc6fc1a6da350f67da15214c42b62d460a972e8c304c101db"
+  "source_digest": "8fb180e8cbdc5d7b2fd193b29df6528a2e100ef721d8d2655cdfdec49b3c365a"
 }

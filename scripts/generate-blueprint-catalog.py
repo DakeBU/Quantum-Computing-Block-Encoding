@@ -93,6 +93,11 @@ CATALOGS = [
             "Papers/GHL2025.lean",
             "Examples/RobinHeat.lean",
             "RobinEvolution.lean",
+            "Robin/FixedN3Data.lean",
+            "Robin/SourceBaseline.lean",
+            "Robin/WeightedPermutation.lean",
+            "Robin/EvolvedCandidates.lean",
+            "Robin/ResourceComparison.lean",
         },
     ),
     (

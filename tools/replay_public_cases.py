@@ -34,6 +34,7 @@ LEAN_MODULES = (
     "QuantumBlockEncoding.GHL2025",
     "QuantumBlockEncoding.RobinMatrix",
     "QuantumBlockEncoding.RobinEvolution",
+    "QuantumBlockEncoding.Robin.ResourceComparison",
 )
 
 HASHED_INPUTS = (
@@ -51,6 +52,12 @@ HASHED_INPUTS = (
     "QuantumBlockEncoding/GHL2025.lean",
     "QuantumBlockEncoding/RobinMatrix.lean",
     "QuantumBlockEncoding/RobinEvolution.lean",
+    "QuantumBlockEncoding/Robin/FixedN3Data.lean",
+    "QuantumBlockEncoding/Robin/SourceBaseline.lean",
+    "QuantumBlockEncoding/Robin/WeightedPermutation.lean",
+    "QuantumBlockEncoding/Robin/EvolvedCandidates.lean",
+    "QuantumBlockEncoding/Robin/ResourceComparison.lean",
+    "tools/export_robin_evolution.py",
 )
 
 
@@ -271,13 +278,14 @@ def main() -> None:
         },
         "cases": case_results,
         "robin": {
-            "status": "compiled local structure; broader paper route partial",
+            "status": "T1 exact finite structural LCU; full unitary route partial",
             "included_in_lean_gate": True,
             "evolution_replayed": completed_robin_cycles > 0,
             "reason": (
                 f"The audited warm run completed {completed_robin_cycles} controller "
-                "cycles and produced no certified root or resource point. No "
-                "resource-improvement claim is available."
+                "cycles and produced no verified block-encoding root or resource "
+                "point. Deterministic fixed-N structural roots were added after "
+                "the run; no resource-improvement claim is available."
                 if robin_audit
                 else "No audited warm evolution result is available."
             ),

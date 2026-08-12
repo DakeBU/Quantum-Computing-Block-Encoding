@@ -11,7 +11,7 @@
       "id": "sparse-access",
       "paperAnchor": "Lemma 1, banded sparse access",
       "plain": "Write the banded sparse column address into an n-qubit register while preserving the row register.",
-      "latex": "\\\\hat{O}^{BS}_D\\\\ket{0}^{n-l}\\\\ket{s}^l\\\\ket{i}^n := \\\\ket{r_{si}}^n\\\\ket{i}^n,\\\\qquad r_{si}=r_{s0}+i\\\\bmod 2^n.",
+      "latex": "\\hat{O}^{BS}_D\\ket{0}^{n-l}\\ket{s}^l\\ket{i}^n := \\ket{r_{si}}^n\\ket{i}^n,\\qquad r_{si}=r_{s0}+i\\bmod 2^n.",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperContract",
         "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress_lt_gridSize_of_two_le",
@@ -25,7 +25,7 @@
       "id": "indicator",
       "paperAnchor": "Bulk indicator U_indic",
       "plain": "Flip one indicator qubit exactly on rows in the bulk window K1 through K2.",
-      "latex": "U_{\\\\mathrm{indic}}(K_1,K_2)|i\\\\rangle|0\\\\rangle=|i\\\\rangle|\\\\mathbf{1}_{K_1\\\\le i\\\\le K_2}\\\\rangle.",
+      "latex": "U_{\\mathrm{indic}}(K_1,K_2)|i\\rangle|0\\rangle=|i\\rangle|\\mathbf{1}_{K_1\\le i\\le K_2}\\rangle.",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse",
         "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_is_permutation",
@@ -39,7 +39,7 @@
       "id": "boundary-rotation",
       "paperAnchor": "Boundary controlled Ry angles",
       "plain": "Encode each exceptional Robin-boundary coefficient with a controlled y rotation.",
-      "latex": "\\\\theta_j^s=\\\\arccos\\\\!\\\\left(D_j^{(s)}/\\\\mathcal N_D\\\\right).",
+      "latex": "\\theta_j^s=\\arccos\\!\\left(D_j^{(s)}/\\mathcal N_D\\right).",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationAngle",
         "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript",
@@ -53,7 +53,7 @@
       "id": "theorem-data",
       "paperAnchor": "One-term block-encoding theorem",
       "plain": "The theorem fixes the target operator, normalizer, signal width, zero error, gate scaling, and pure-ancilla count.",
-      "latex": "(\\\\mathcal N_D\\\\mathcal N_f\\\\kappa,\\\\;\\\\lceil\\\\log_2n\\\\rceil+\\\\lceil\\\\log_2G_f\\\\rceil+\\\\lceil\\\\log_2\\\\kappa\\\\rceil+4,\\\\;0)\\\\text{-block encoding of }A_k.",
+      "latex": "(\\mathcal N_D\\mathcal N_f\\kappa,\\;\\lceil\\log_2n\\rceil+\\lceil\\log_2G_f\\rceil+\\lceil\\log_2\\kappa\\rceil+4,\\;0)\\text{-block encoding of }A_k.",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData",
         "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_signalQubits_eq_layout",
@@ -68,7 +68,7 @@
       "id": "gamma-three",
       "paperAnchor": "Equation ROBIN clarified, gamma_3",
       "plain": "After derivative, coefficient, swap, and cleanup operations, the clean branch should contain f(x_i) D_i^(s) divided by the three normalizers.",
-      "latex": "\\\\gamma_3\\\\supset(\\\\mathcal N_D\\\\mathcal N_f\\\\kappa)^{-1}\\\\sum_{s,j}f(x_i)D_i^{(s)}\\\\sigma^{(s)}|0\\\\cdots0,s,j,0\\\\rangle.",
+      "latex": "\\gamma_3\\supset(\\mathcal N_D\\mathcal N_f\\kappa)^{-1}\\sum_{s,j}f(x_i)D_i^{(s)}\\sigma^{(s)}|0\\cdots0,s,j,0\\rangle.",
       "declarations": [
         "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinBlockEncodingProofRoute_robinClarifiedGammaTranscript",
         "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundarySourcePreparedProjection_to_backendFold_n3",
@@ -82,16 +82,31 @@
       "id": "circuit-transcript",
       "paperAnchor": "Figure 1-term ROBIN",
       "plain": "The theorem-facing circuit keeps sparse preparation, the indicator and its inverse, derivative amplitudes, boundary rotations, sparse access, coefficient loading, swap, and cleanup in source order.",
-      "latex": "H_W\\\\to U_{\\\\mathrm{indic}}\\\\to(O^S_{D^T},R_y)\\\\to O^{BS}_{D^T}\\\\to U_{\\\\mathrm{indic}}^\\\\dagger\\\\to O_f\\\\to\\\\mathrm{SWAP}\\\\to(O_D^{BS})^\\\\dagger\\\\to H_W^\\\\dagger.",
+      "latex": "H_W\\to U_{\\mathrm{indic}}\\to(O^S_{D^T},R_y)\\to O^{BS}_{D^T}\\to U_{\\mathrm{indic}}^\\dagger\\to O_f\\to\\mathrm{SWAP}\\to(O_D^{BS})^\\dagger\\to H_W^\\dagger.",
       "declarations": [
-        "QuantumBlockEncoding.GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList",
-        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryGateMatrixList_n3",
         "QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_gateList",
-        "QuantumBlockEncoding.RobinEvolution.warmRobinSourceLayout_spec"
+        "QuantumBlockEncoding.RobinEvolution.warmRobinSourceLayout_spec",
+        "QuantumBlockEncoding.Robin.warmRobinRegisterSwapCircuit_gateList"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",
       "reading": "The labeled circuit transcript and the active seven-gate backend order compile. Compiling an ordered list does not establish that every labeled oracle has the paper semantics or that their product satisfies the final block contract."
+    },
+    {
+      "id": "fixed-n-structural-routes",
+      "paperAnchor": "ASPBE fixed-N follow-up",
+      "plain": "Freeze the normalized N=8 matrix, then check independent five-shift and Hadamard-8 weighted-permutation decompositions entry by entry.",
+      "latex": "A/(56/3)=M/224,\\qquad M_{ij}=\\sum_s\\mathbf{1}[\\pi_s(j)=i]w_s(j).",
+      "declarations": [
+        "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224",
+        "QuantumBlockEncoding.Robin.warmRobinFiveShiftDecomposition",
+        "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula_eq_target",
+        "QuantumBlockEncoding.Robin.warmRobinEightSlotDecomposition",
+        "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target"
+      ],
+      "localStatus": "Compiled",
+      "routeStatus": "Partial route",
+      "reading": "These are exact finite structural certificates. They are not promoted to a verified block encoding until one matching complex-unitary PREPARE/amplitude/SELECT/unprepare circuit and its primitive expansion are proved."
     }
   ]
 }
