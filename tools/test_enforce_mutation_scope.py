@@ -125,6 +125,51 @@ class MutationRollbackTests(unittest.TestCase):
             self.assertEqual(completed.returncode, 79)
             self.assertEqual(path.read_text(), "human edit\n")
 
+    def test_atomic_cli_reverts_allowed_edits_with_a_scope_violation(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            for name in ("allowed.txt", "tracked.txt"):
+                (root / name).write_text("baseline\n", encoding="utf-8")
+            subprocess.run(["git", "add", "."], cwd=root, check=True)
+            subprocess.run(
+                [
+                    "git",
+                    "-c",
+                    "user.name=scope-test",
+                    "-c",
+                    "user.email=scope-test@invalid.local",
+                    "commit",
+                    "-qm",
+                    "baseline",
+                ],
+                cwd=root,
+                check=True,
+            )
+            before = root / "before.json"
+            before.write_text(json.dumps({"entries": snapshot(root)}), encoding="utf-8")
+            (root / "allowed.txt").write_text("agent edit\n", encoding="utf-8")
+            (root / "forbidden.txt").write_text("remove\n", encoding="utf-8")
+            script = Path(__file__).with_name("enforce_mutation_scope.py")
+            completed = subprocess.run(
+                [
+                    "python3",
+                    str(script),
+                    "check",
+                    "--root",
+                    str(root),
+                    "--before",
+                    str(before),
+                    "--allow",
+                    "allowed.txt",
+                    "--atomic",
+                ],
+                check=False,
+            )
+            self.assertEqual(completed.returncode, 79)
+            self.assertEqual((root / "allowed.txt").read_text(), "baseline\n")
+            self.assertFalse((root / "forbidden.txt").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

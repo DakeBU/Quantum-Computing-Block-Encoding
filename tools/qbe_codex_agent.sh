@@ -23,6 +23,11 @@ attempt_log=""
 
 cd "$ROOT" || exit 2
 
+# Publication builds are a maintainer/CI closeout concern. Agent subprocesses
+# inherit this marker so repository scripts can reject accidental inner-cycle
+# Blueprint or website rebuilds without affecting ordinary local and CI use.
+export QBE_AGENT_INNER_CYCLE=1
+
 terminate_child() {
   if [ -z "$child_pid" ]; then
     return 0
@@ -103,6 +108,12 @@ while [ "$attempt" -le "$MAX_ATTEMPTS" ]; do
     for mutation_path in "${mutation_paths[@]}"; do
       scope_args+=(--allow "$mutation_path")
     done
+    prompt_name="$(basename "$PROMPT")"
+    case "$prompt_name" in
+      10_upper_director.md|20_middle_formalizer.md|40_reviewer.md)
+        scope_args+=(--atomic)
+        ;;
+    esac
     if ! python3 tools/enforce_mutation_scope.py check \
         --root "$ROOT" --before "$scope_before" "${scope_args[@]}"; then
       rm -f "$scope_before" "$attempt_log"

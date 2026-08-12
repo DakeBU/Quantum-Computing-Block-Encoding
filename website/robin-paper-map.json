@@ -28,7 +28,8 @@
       "latex": "U_{\\\\mathrm{indic}}(K_1,K_2)|i\\\\rangle|0\\\\rangle=|i\\\\rangle|\\\\mathbf{1}_{K_1\\\\le i\\\\le K_2}\\\\rangle.",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.indicatorOracleImage_self_inverse",
-        "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_is_permutation"
+        "QuantumBlockEncoding.GHL2025.indicatorOracleMatrix_is_permutation",
+        "QuantumBlockEncoding.RobinEvolution.warmRobinIndicatorCertificate"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",
@@ -56,7 +57,8 @@
       "declarations": [
         "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData",
         "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_signalQubits_eq_layout",
-        "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_resource"
+        "QuantumBlockEncoding.GHL2025.defaultOneTermRobinTheoremData_pureAncillas_eq_resource",
+        "QuantumBlockEncoding.RobinEvolution.warmRobinTarget_eq_eval_robinDerivativeMatrix"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",
@@ -83,7 +85,9 @@
       "latex": "H_W\\\\to U_{\\\\mathrm{indic}}\\\\to(O^S_{D^T},R_y)\\\\to O^{BS}_{D^T}\\\\to U_{\\\\mathrm{indic}}^\\\\dagger\\\\to O_f\\\\to\\\\mathrm{SWAP}\\\\to(O_D^{BS})^\\\\dagger\\\\to H_W^\\\\dagger.",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList",
-        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryGateMatrixList_n3"
+        "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryGateMatrixList_n3",
+        "QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_gateList",
+        "QuantumBlockEncoding.RobinEvolution.warmRobinSourceLayout_spec"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",

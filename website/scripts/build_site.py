@@ -937,11 +937,12 @@ def render_robin_paper_map(
   theorem.</p>
   <div class="callout warning">
     <strong>Current conclusion.</strong>
-    The register model, theorem data, indicator unitary, circuit transcript,
-    many finite projection lemmas, and a decisive counterexample compile.
+    The warm run compiles the fixed target equality, source-ordered ten-block
+    transcript and layout guards, and the indicator permutation certificate.
     The paper-wide gate-level construction remains partial because several
     oracle semantics and the boundary rotation convention are still external
-    or blocked.
+    or blocked. No Lean root, Qiskit export, or lexicographic resource
+    improvement is currently reported.
   </div>
 </section>
 <section class="content-section paper-map" id="correspondence">

@@ -131,6 +131,20 @@ Current obligation state:
         self.assertIn("new_leaf", rows[0])
         self.assertNotIn("old_leaf", rows[0])
 
+    def test_proof_translation_dag_is_a_schedulable_frontier(self) -> None:
+        text = """
+## Proof translation and DAG
+
+| Node | Interface | Dependencies | Lean declaration | Status |
+|---|---|---|---|---|
+| TARGET | fixed matrix adapter | none | targetLemma | exact; proved |
+| CIRCUIT | source transcript adapter | TARGET | circuitLemma | exact; active next Lean leaf |
+"""
+        rows = latest_frontier_rows(text)
+        self.assertEqual(len(rows), 1)
+        self.assertIn("CIRCUIT", rows[0])
+        self.assertIn("circuitLemma", rows[0])
+
     def test_latest_feedback_wins(self) -> None:
         rows = reduce_latest_feedback(
             [
@@ -166,6 +180,44 @@ Current obligation state:
 
 
 class CycleDecisionTests(unittest.TestCase):
+    def test_compiled_leaf_adapter_skips_redundant_architect(self) -> None:
+        decision = decide_cycle(
+            task_id="BE",
+            cycle=1,
+            frontier_rows=[
+                "ADAPTER: specialize compiled theorem; class: internal compiled-leaf adapter; "
+                "status: active next; Lean: taskLocalAdapter"
+            ],
+            obligation_rows=[],
+            feedback=[],
+            evidence_digest="lean-a",
+        )
+        self.assertEqual(decision.mode, "execute")
+        self.assertEqual(decision.prompt_plan, ("lower2", "reviewer"))
+
+    def test_stale_setup_gap_does_not_mask_a_new_ready_child(self) -> None:
+        decision = decide_cycle(
+            task_id="BE",
+            cycle=2,
+            frontier_rows=[],
+            obligation_rows=[
+                "ROOT-INITIALIZATION: setup; status: blocked internal; Lean: rootTheorem",
+                "CIRCUIT: source adapter; status: active next; Lean: circuitLemma",
+            ],
+            feedback=[
+                {
+                    "leaf": "ROOT-INITIALIZATION",
+                    "role": "upper",
+                    "error_class": "source_translation_gap",
+                    "closed_theorem_ok": False,
+                }
+            ],
+            evidence_digest="lean-b",
+        )
+        self.assertEqual(decision.mode, "execute")
+        self.assertEqual(decision.ready_leaf_ids, ("CIRCUIT",))
+        self.assertIn("lower2", decision.prompt_plan)
+
     def test_missing_declared_root_never_closes_empty_frontier(self) -> None:
         decision = decide_cycle(
             task_id="NEW",
@@ -1054,6 +1106,13 @@ Forbidden leaf prefixes: `APPROX-RAT-`, `RATIONAL-CIRCLE-`
 Requested tolerance: epsilon = 1e-10
 relaxedEpsilonLadder = [1e-10, 1e-8, 1e-6]
 """
+        self.assertEqual(
+            infer_epsilon_ladder(text),
+            ("1e-10", "1e-9", "1e-8", "1e-7", "1e-6"),
+        )
+
+    def test_markdown_line_ladder_is_parsed(self) -> None:
+        text = "Tolerance ladder: `0`, `1e-10`, `1e-9`, `1e-8`, `1e-7`, `1e-6`\n"
         self.assertEqual(
             infer_epsilon_ladder(text),
             ("1e-10", "1e-9", "1e-8", "1e-7", "1e-6"),

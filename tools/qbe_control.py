@@ -325,7 +325,11 @@ def latest_frontier_rows(text: str, limit: int = 8) -> list[str]:
     candidates = []
     for start, heading, section in _markdown_sections(text):
         lowered = heading.lower()
-        if "proof-dag frontier" not in lowered and "proof dag frontier" not in lowered:
+        is_frontier = "proof-dag frontier" in lowered or "proof dag frontier" in lowered
+        is_translation_dag = (
+            "proof" in lowered and "translation" in lowered and "dag" in lowered
+        )
+        if not is_frontier and not is_translation_dag:
             continue
         priority = 2 if "current" in lowered else 1 if "updated" in lowered else 0
         candidates.append((priority, start, section))
@@ -435,11 +439,13 @@ def infer_epsilon_ladder(task_text: str, max_rungs: int = 7) -> tuple[str, ...]:
 
     values: list[Decimal] = []
     ladder_matches = re.findall(
-        r"(?:epsilon|tolerance)[^\n]{0,80}(?:ladder|levels?)[^\[]*\[([^\]]+)\]",
+        r"(?:epsilon|tolerance)[^\n]{0,80}(?:ladder|levels?)"
+        r"(?:[^\n]*?\[([^\]]+)\]|\s*:\s*([^\n]+))",
         task_text,
         flags=re.I,
     )
-    for body in ladder_matches:
+    for bracket_body, line_body in ladder_matches:
+        body = bracket_body or line_body
         for raw in re.findall(r"(?<![A-Za-z0-9_])(?:\d+(?:\.\d*)?|\.\d+)[eE][+-]?\d+", body):
             try:
                 value = Decimal(raw)
@@ -859,6 +865,11 @@ def decide_cycle(
         row
         for row in feedback
         if _lower(row.get("leaf", "")) in eligible_ids
+        and (
+            not ready
+            or _lower(row.get("leaf", ""))
+            in {_lower(leaf.leaf_id) for leaf in ready}
+        )
         and _lower(row.get("error_class", "")) in STRUCTURAL_PREREQUISITE_ERRORS
         and row.get("closed_theorem_ok") is not True
     ]
@@ -1270,7 +1281,12 @@ def decide_cycle(
                 False,
             )
         plan: list[str] = []
-        if not same_signature or policy_applied:
+        compiled_leaf_adapter = all(
+            "compiled-leaf adapter" in _lower(leaf.dependency_class)
+            or "compiled leaf adapter" in _lower(leaf.dependency_class)
+            for leaf in ready
+        )
+        if (not same_signature or policy_applied) and not compiled_leaf_adapter:
             plan.append("lower1")
             if any(leaf.diagnostic_ready for leaf in ready):
                 plan.append("lower3")

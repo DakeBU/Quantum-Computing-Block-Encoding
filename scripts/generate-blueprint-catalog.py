@@ -88,7 +88,12 @@ CATALOGS = [
     (
         "PaperAndExamples",
         "catalog-paper-and-examples",
-        {"GHL2025.lean", "Papers/GHL2025.lean", "Examples/RobinHeat.lean"},
+        {
+            "GHL2025.lean",
+            "Papers/GHL2025.lean",
+            "Examples/RobinHeat.lean",
+            "RobinEvolution.lean",
+        },
     ),
     (
         "AutomationAndMemory",
@@ -405,7 +410,9 @@ def route_status(decl: Declaration) -> str:
         return "Experimental"
     if decl.source.endswith("OpenProblems.lean"):
         return "Planned"
-    if decl.source.endswith(("GHL2025.lean", "Automation.lean", "Literature.lean")):
+    if decl.source.endswith(
+        ("GHL2025.lean", "RobinEvolution.lean", "Automation.lean", "Literature.lean")
+    ):
         return "Partial route"
     if decl.kind in {"structure", "class", "opaque"}:
         return "Partial route"

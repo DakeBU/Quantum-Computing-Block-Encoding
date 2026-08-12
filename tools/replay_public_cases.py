@@ -24,6 +24,7 @@ from qiskit.quantum_info import Operator
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "reports" / "public-case-replay" / "latest.json"
+ROBIN_AUDIT = ROOT / "experiments" / "robin-be" / "results" / "audit-summary.json"
 
 LEAN_MODULES = (
     "QuantumBlockEncoding.TextbookStatePreparation",
@@ -32,6 +33,7 @@ LEAN_MODULES = (
     "QuantumBlockEncoding.CubicStatePreparation",
     "QuantumBlockEncoding.GHL2025",
     "QuantumBlockEncoding.RobinMatrix",
+    "QuantumBlockEncoding.RobinEvolution",
 )
 
 HASHED_INPUTS = (
@@ -48,6 +50,7 @@ HASHED_INPUTS = (
     "QuantumBlockEncoding/CubicStatePreparation.lean",
     "QuantumBlockEncoding/GHL2025.lean",
     "QuantumBlockEncoding/RobinMatrix.lean",
+    "QuantumBlockEncoding/RobinEvolution.lean",
 )
 
 
@@ -229,6 +232,14 @@ def main() -> None:
 
     lean_passed = bool(not args.skip_lean and checks[0]["passed"])
     controller_payload = parse_last_json(controller)
+    robin_audit: dict[str, Any] = {}
+    if ROBIN_AUDIT.is_file():
+        audit_payload = json.loads(ROBIN_AUDIT.read_text(encoding="utf-8"))
+        audit_arms = audit_payload.get("arms", [])
+        robin_audit = next(
+            (arm for arm in audit_arms if arm.get("arm") == "warm"), {}
+        )
+    completed_robin_cycles = int(robin_audit.get("completed_cycles", 0) or 0)
     payload = {
         "schema_version": 1,
         "replay_scope": "certificate-and-executable acceptance; no synthesis model",
@@ -262,11 +273,15 @@ def main() -> None:
         "robin": {
             "status": "compiled local structure; broader paper route partial",
             "included_in_lean_gate": True,
-            "evolution_replayed": False,
+            "evolution_replayed": completed_robin_cycles > 0,
             "reason": (
-                "The current provider rejected both isolated model calls before "
-                "agent execution. No resource-improvement claim is available."
+                f"The audited warm run completed {completed_robin_cycles} controller "
+                "cycles and produced no certified root or resource point. No "
+                "resource-improvement claim is available."
+                if robin_audit
+                else "No audited warm evolution result is available."
             ),
+            "audit": robin_audit,
         },
     }
     payload["passed"] = bool(

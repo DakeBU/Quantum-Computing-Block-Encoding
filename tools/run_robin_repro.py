@@ -73,6 +73,7 @@ def prepare_arm(suite: Path, arm: str, *, force: bool) -> None:
         "tools/enforce_mutation_scope.py",
         "tools/test_qbe_control.py",
         "tools/test_enforce_mutation_scope.py",
+        "scripts/build-all.sh",
     ):
         source = ROOT / relative
         destination_file = destination / relative
@@ -212,10 +213,12 @@ def run_arm(suite: Path, arm: str, cycles: int, minutes: int) -> int:
         f"tasks/{task_id}.md",
         f"proof-obligations/{task_id}.md",
         f"proof-blueprints/{task_id}.md",
+        f"proof-blueprints/{task_id}-*",
         f"conversion-windows/{task_id}.md",
         f"candidate-populations/{task_id}/",
         f"verifier-feedback/{task_id}/",
         f"proof-attempts/{task_id}/",
+        f"proof-attempts/{task_id}-*",
         f"reviews/{task_id}-*",
         f"paper-notes/{task_id}/",
         f"paper-notes/problem-exports/{task_id}/",
@@ -239,7 +242,35 @@ def run_arm(suite: Path, arm: str, cycles: int, minutes: int) -> int:
             ]
         )
     environment["QBE_MUTATION_ALLOWLIST"] = ":".join(shared_scope)
-    completed = subprocess.run(args, cwd=root, env=environment, check=False)
+    status_path = root / "experiments" / "robin-be" / "run-status.json"
+    status = {
+        "schema_version": 1,
+        "arm": arm,
+        "task": task_id,
+        "state": "started",
+        "model": environment["CODEX_MODEL"],
+        "requested_cycles": cycles,
+        "active_budget_minutes": minutes,
+        "started_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+    }
+    status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
+    try:
+        completed = subprocess.run(args, cwd=root, env=environment, check=False)
+    except KeyboardInterrupt:
+        status.update(
+            state="interrupted",
+            stopped_at=dt.datetime.now(dt.timezone.utc).isoformat(),
+            reason="operator_interrupt",
+            returncode=130,
+        )
+        status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
+        return 130
+    status.update(
+        state="completed",
+        stopped_at=dt.datetime.now(dt.timezone.utc).isoformat(),
+        returncode=completed.returncode,
+    )
+    status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
     return completed.returncode
 
 
@@ -289,17 +320,44 @@ def audit_arm(suite: Path, arm: str) -> dict[str, object]:
         population_data = json.loads(population.read_text(encoding="utf-8"))
     metadata_path = root / "experiments" / "robin-be" / "run-metadata.json"
     metadata = json.loads(metadata_path.read_text(encoding="utf-8")) if metadata_path.is_file() else {}
+    run_status_path = root / "experiments" / "robin-be" / "run-status.json"
+    run_status = (
+        json.loads(run_status_path.read_text(encoding="utf-8"))
+        if run_status_path.is_file()
+        else {}
+    )
+    controller_status = control.get("status", "not-started")
+    if controller_status == "running" and run_status.get("state") == "interrupted":
+        controller_status = "interrupted"
     attempted_cycles = len(list((root / "runs").glob(f"*{task_id}-cycle*")))
+    completed_cycle_ids: set[str] = set()
+    trials_path = root / "runs" / "trials.jsonl"
+    if trials_path.is_file():
+        for line in trials_path.read_text(encoding="utf-8", errors="replace").splitlines():
+            try:
+                trial = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            trial_id = str(trial.get("trial_id", ""))
+            if (
+                trial.get("task_id") == task_id
+                and trial.get("role") == "reviewer"
+                and trial.get("status") == "compiled"
+                and trial_id.endswith("-build-gate")
+            ):
+                completed_cycle_ids.add(trial_id.removesuffix("-build-gate"))
     result = {
         "arm": arm,
         "task": task_id,
         "worktree": arm.upper(),
         "model": metadata.get("model", "unknown"),
         "latest_run": str(run.relative_to(root)) if run else None,
-        "controller_status": control.get("status", "not-started"),
+        "controller_status": controller_status,
         "controller_mode": control.get("mode"),
+        "runner_state": run_status.get("state", "unknown"),
+        "runner_stop_reason": run_status.get("reason"),
         "attempted_cycles": attempted_cycles,
-        "effective_cycles": control.get("cycles_completed", control.get("cycle", 0)),
+        "completed_cycles": len(completed_cycle_ids),
         "estimated_run_input_tokens": control.get("estimated_run_input_tokens", 0),
         "certified_root_anchors": control.get("certified_root_anchors", []),
         "population": population_status,
@@ -312,8 +370,9 @@ def audit_arm(suite: Path, arm: str) -> dict[str, object]:
     return result
 
 
-def write_audit(suite: Path) -> int:
-    results = [audit_arm(suite, arm) for arm in ARMS]
+def write_audit(suite: Path, selected_arm: str | None = None) -> int:
+    arms = (selected_arm,) if selected_arm else tuple(ARMS)
+    results = [audit_arm(suite, arm) for arm in arms]
     output = ROOT / "experiments" / "robin-be" / "results"
     output.mkdir(parents=True, exist_ok=True)
     payload = {
@@ -347,7 +406,7 @@ def main() -> int:
         if not args.arm:
             parser.error("run requires --arm")
         return run_arm(suite, args.arm, max(1, args.cycles), max(1, args.minutes))
-    return write_audit(suite)
+    return write_audit(suite, args.arm)
 
 
 if __name__ == "__main__":

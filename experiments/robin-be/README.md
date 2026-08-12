@@ -1,7 +1,7 @@
 # Robin block-encoding evolution benchmark
 
-This experiment compares two isolated ASPBE runs against one frozen finite
-Robin-boundary operator contract.
+This benchmark freezes one finite Robin-boundary operator contract. The
+reported August 2026 experiment is the paper-seeded `warm` arm only.
 
 - `cold`: receives the operator entries and acceptance contract, but not the
   paper construction or any Robin-specific proof memory.
@@ -14,14 +14,19 @@ Qiskit acceptance checks, and score order.  A result is not an improvement when
 it changes semantic tier or replaces an expanded circuit with an unresolved
 oracle call.
 
-Run both arms from isolated worktrees:
+Reproduce the reported warm protocol with the pinned model family:
 
 ```bash
-python3 tools/run_robin_repro.py prepare
-python3 tools/run_robin_repro.py run --arm cold
-python3 tools/run_robin_repro.py run --arm warm
-python3 tools/run_robin_repro.py audit
+export CODEX_MODEL=gpt-5.6-sol
+python3 tools/run_robin_repro.py prepare --arm warm --force
+python3 tools/run_robin_repro.py run --arm warm --cycles 7 --minutes 100
+python3 tools/run_robin_repro.py audit --arm warm
 ```
+
+The recorded run used Codex CLI 0.145.0. Model sampling is not bitwise
+deterministic, so reproduction means replaying the same frozen contract,
+controller policy, gates, and model identifier; every promoted result must
+still pass the local Lean and executable acceptance gates.
 
 The task builder exposes the same two presets.  Its local API runner creates
 the corresponding task packet; users supply their own agent profile and API
@@ -31,11 +36,19 @@ Generated run data belongs under `experiments/robin-be/results/`.  Figures and
 paper tables must be generated from the audited summary there.  An empty or
 non-certified population is a reported outcome, not a plotting error.
 
-The current outcome is therefore presented as a source-faithful formalization
-baseline. `website/robin-paper-map.json` maps the paper's LaTeX statements to
+The current warm run completed six controller cycles and was stopped during a
+seventh after the upper agent repeated the same source-contract scan. It
+produced compiled certificates for the fixed target, the source-ordered
+ten-block transcript and register arithmetic, and the indicator permutation.
+It did not produce `RobinEvolution.warmRobinBestVerified`, a deterministic
+Qiskit export, or a same-tier resource tuple. Consequently, no lexicographic
+improvement is claimed. `website/robin-paper-map.json` maps the paper's LaTeX statements to
 the compiled `GHL2025.lean` and `RobinMatrix.lean` structures and labels the
 paper-wide route separately. The generated website page is
 `/case-studies/robin/`.
+
+The cold arm remains defined for a future controlled comparison, but it is not
+part of the paper result reported here.
 
 ## Discarded pilot runs
 

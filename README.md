@@ -305,36 +305,33 @@ that the proposed symbolic equality is false. This removes the two former
 proof holes without claiming that external sparse-access, amplitude-oracle,
 and paper-wide composition contracts have been implemented at gate level.
 
-### Robin paper reproduction: cold and warm evolution
+### Robin paper reproduction: audited warm evolution
 
-The Robin benchmark now has one frozen finite target and two reproducible
-arms. The cold arm receives only the matrix contract and generic ASPBE modules;
-Robin-specific source, old runs, paper notes, and generated declaration indexes
-are physically removed from its detached worktree. The warm arm receives the
-same target plus the paper construction and compiled Robin memory. Both require
-the same named Lean root, exact Qiskit clean-block check, semantic tier, and
-score order before a candidate can appear in a figure.
+The current paper experiment uses the warm arm: one frozen finite target plus
+the paper construction and compiled Robin memory. The cold arm remains defined
+for a later controlled comparison. Both arms require the same named Lean root,
+exact Qiskit clean-block check, semantic tier, and score order before a
+candidate can appear as an improved resource point.
 
 ```bash
-python3 tools/run_robin_repro.py prepare
-python3 tools/run_robin_repro.py run --arm cold --cycles 1
-python3 tools/run_robin_repro.py run --arm warm --cycles 1
-python3 tools/run_robin_repro.py audit
+export CODEX_MODEL=gpt-5.6-sol
+python3 tools/run_robin_repro.py prepare --arm warm --force
+python3 tools/run_robin_repro.py run --arm warm --cycles 7 --minutes 100
+python3 tools/run_robin_repro.py audit --arm warm
 ```
 
 The same arms are available in **Run with your API** through the `Robin cold`
-and `Robin warm` presets. A provider rejection pauses the attempted cycle
-without advancing the population, charging the prompt proxy, or running the
-whole Lean gate. At this checkout the fresh `gpt-5.6-sol` calls are
-provider-blocked, so no Robin resource improvement is claimed yet. The earlier
-pilot is retained only as a discarded-run audit because it produced no root
-certificate and spent work on generated website files.
+and `Robin warm` presets. The reported run used `gpt-5.6-sol` with Codex CLI
+0.145.0. Six cycles completed; a seventh was stopped when the upper agent
+repeated the same source-contract scan. The run compiled the fixed target,
+ten-block source transcript and layout guards, and indicator permutation
+certificate. It produced no Lean root, Qiskit export, or same-tier resource
+point, so no Robin resource improvement is claimed.
 The complete replay contract is in
 [`run-presets/robin_cold_warm_reproduction.md`](run-presets/robin_cold_warm_reproduction.md).
 
-Because neither fresh evolution arm entered agent execution, the published
-baseline is the paper construction already represented in Lean, not a
-manufactured optimization curve. The
+The published baseline remains the paper construction represented in Lean,
+not a manufactured optimization curve. The
 [Robin paper map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/case-studies/robin/)
 places the source theorem, equations, and circuit transcript beside their
 exact `GHL2025.lean` and `RobinMatrix.lean` declarations. It distinguishes

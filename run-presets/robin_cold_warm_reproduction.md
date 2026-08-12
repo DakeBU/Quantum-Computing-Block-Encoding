@@ -1,4 +1,4 @@
-# Preset: Robin cold/warm paper reproduction
+# Preset: Robin paper reproduction
 
 Tasks: `QBE-ROBIN-BE-COLD-001` and `QBE-ROBIN-BE-WARM-001`
 
@@ -15,19 +15,26 @@ paper construction and compiled Robin memory. A cross-arm comparison is invalid
 if any target, projector, normalizer, tolerance, semantic tier, model, or gate
 accounting convention differs.
 
-## CLI replay
+## Reported warm replay
 
 ```bash
-python3 tools/run_robin_repro.py prepare
-python3 tools/run_robin_repro.py run --arm cold --cycles 1 --minutes 90
-python3 tools/run_robin_repro.py run --arm warm --cycles 1 --minutes 90
-python3 tools/run_robin_repro.py audit
+export CODEX_MODEL=gpt-5.6-sol
+python3 tools/run_robin_repro.py prepare --arm warm --force
+python3 tools/run_robin_repro.py run --arm warm --cycles 7 --minutes 100
+python3 tools/run_robin_repro.py audit --arm warm
 ```
 
-`CODEX_MODEL` defaults to `gpt-5.6-sol`. A provider authentication, entitlement,
+The recorded run used Codex CLI 0.145.0. `CODEX_MODEL` defaults to
+`gpt-5.6-sol`. A provider authentication, entitlement,
 or quota rejection exits with code `78`, leaves the effective cycle at its prior
 value, charges zero prompt-proxy tokens, and skips the Lean gate. Re-run the same
 arm after access is restored; do not reset its accepted task-local population.
+
+The August 2026 run completed six cycles and was interrupted during cycle
+seven after a repeated source-contract scan. Its accepted Lean milestones are
+the fixed target equality, source transcript and layout guards, and indicator
+permutation certificate. No root/export/resource point was accepted. The cold
+arm is retained for a later comparison and is not part of this reported run.
 
 ## Website/API replay
 

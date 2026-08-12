@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.335289,
+      "elapsed_seconds": 0.32934,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.043311,
+      "elapsed_seconds": 0.043485,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.716763,
+      "elapsed_seconds": 0.691911,
       "passed": true
     },
     {
@@ -160,14 +160,14 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.998512,
+      "elapsed_seconds": 0.97619,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 2.382765,
-    "population_controller": 0.06243,
-    "total": 4.550455
+    "lean_modules": 3.012609,
+    "population_controller": 0.059939,
+    "total": 5.126803
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -178,24 +178,50 @@
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
   "git_branch": "main",
-  "git_commit": "dc587310007b13a208cd07831cad5783ccb9fcb2",
+  "git_commit": "fb4bbc86612a653c6c36ba9a2b99ba0982c0ad00",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
     "QuantumBlockEncoding.MainCase",
     "QuantumBlockEncoding.CubicStatePreparation",
     "QuantumBlockEncoding.GHL2025",
-    "QuantumBlockEncoding.RobinMatrix"
+    "QuantumBlockEncoding.RobinMatrix",
+    "QuantumBlockEncoding.RobinEvolution"
   ],
   "lean_passed": true,
   "passed": true,
   "replay_scope": "certificate-and-executable acceptance; no synthesis model",
   "robin": {
-    "evolution_replayed": false,
+    "audit": {
+      "arm": "warm",
+      "attempted_cycles": 7,
+      "certified_root_anchors": [],
+      "cold_isolation_passed": true,
+      "completed_cycles": 6,
+      "contamination": [],
+      "controller_mode": "population",
+      "controller_status": "interrupted",
+      "estimated_run_input_tokens": 85038,
+      "latest_run": "runs/20260812-200519-QBE-ROBIN-BE-WARM-001-cycle07",
+      "model": "gpt-5.6-sol",
+      "population": "present",
+      "population_active_candidate_ids": [
+        "warm-paper-seed-v1"
+      ],
+      "population_selected_candidate_ids": [
+        "warm-paper-seed-v1"
+      ],
+      "provider_blocked": false,
+      "runner_state": "interrupted",
+      "runner_stop_reason": "operator_interrupt_after_repeated_source-contract_scan",
+      "task": "QBE-ROBIN-BE-WARM-001",
+      "worktree": "WARM"
+    },
+    "evolution_replayed": true,
     "included_in_lean_gate": true,
-    "reason": "The current provider rejected both isolated model calls before agent execution. No resource-improvement claim is available.",
+    "reason": "The audited warm run completed 6 controller cycles and produced no certified root or resource point. No resource-improvement claim is available.",
     "status": "compiled local structure; broader paper route partial"
   },
   "schema_version": 1,
-  "source_digest": "f8fb274554fdcc5d701b1ae2fbf591dd135043ff1a106fa3fcb21eab5932c849"
+  "source_digest": "8df9e33464987febc6fc1a6da350f67da15214c42b62d460a972e8c304c101db"
 }

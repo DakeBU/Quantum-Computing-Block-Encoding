@@ -124,6 +124,11 @@ def main() -> int:
     check_parser.add_argument("--root", type=Path, required=True)
     check_parser.add_argument("--before", type=Path, required=True)
     check_parser.add_argument("--allow", action="append", default=[])
+    check_parser.add_argument(
+        "--atomic",
+        action="store_true",
+        help="revert every mutation made since the snapshot when any path is out of scope",
+    )
     args = parser.parse_args()
     root = args.root.resolve()
 
@@ -137,10 +142,9 @@ def main() -> int:
     before = json.loads(args.before.read_text(encoding="utf-8")).get("entries", {})
     after_status = git_status(root)
     prefixes = tuple(value for value in args.allow if value)
-    violations: list[tuple[str, str]] = []
-    for path, status in after_status.items():
-        if allowed(path, prefixes):
-            continue
+    changed: list[tuple[str, str]] = []
+    for path in sorted(set(before) | set(after_status)):
+        status = after_status.get(path, "")
         current = {"status": status, "fingerprint": fingerprint(root / path)}
         prior = before.get(path)
         prior_signature = (
@@ -149,14 +153,17 @@ def main() -> int:
             else None
         )
         if prior_signature != current:
-            violations.append((path, status))
+            changed.append((path, status))
+    violations = [entry for entry in changed if not allowed(entry[0], prefixes)]
     if not violations:
         return 0
 
-    for path, status in violations:
+    reverted = changed if args.atomic else violations
+    for path, status in reverted:
         restore_violation(root, path, status, before.get(path))
-    print("mutation scope violation; reverted files:")
-    for path, _status in violations:
+    label = "agent transaction" if args.atomic else "files"
+    print(f"mutation scope violation; reverted {label}:")
+    for path, _status in reverted:
         print(f"- {path}")
     return 79
 

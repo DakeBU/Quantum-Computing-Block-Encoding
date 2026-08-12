@@ -7412,6 +7412,15 @@ curated library retrieval but receives no trials, population, or failure
 history; `full-abeis` enables the adaptive controller and all audited memory
 layers.  Do not cross the declared boundary.
 
+Inner-cycle gate rule for every evaluation mode: run only the mandatory
+`{controller_cmd} check` shown above unless the active leaf itself changes Lean.
+The outer `--check-each-cycle` controller owns `lake build` and `lake build
+Tests`.  Never run `scripts/build-all.sh`, Blueprint/catalog generation, or a
+website build from an upper, middle, lower, or reviewer prompt.  Those
+publication gates run once after accepted experiment artifacts are merged into
+the main checkout.  Repeating a full repository or publication build without a
+relevant source digest change is not progress.
+
 For `isolated-abeis` inner cycles, the required gate is exactly the controller
 test suite plus `lake build` and `lake build Tests`.  Do not run `build-all`,
 regenerate Blueprint catalogs, rebuild the website/library inventory, or edit
@@ -8079,9 +8088,16 @@ Maintain:
    optional `Dependency class`, and `Status`.  Every open row must say `exact`
    or `approximate`, and an executable row must say `active next Lean leaf`;
    otherwise the deterministic controller will not schedule lower work.
+   `ROOT-INITIALIZATION` is setup, not the final root theorem: once concrete
+   child rows freeze its dimensions, normalizer, register order, tolerance,
+   and acceptance anchor, mark it `exact; discharged` and keep the unproved
+   certificate in a separate `<TASK>-ROOT` row.
 8. Verifier-feedback memory: for each lower attempt, record the leaf id, typed
    success/failure fields, error class, and next route in `runs/trials.jsonl`
-   and, when useful, under `verifier-feedback/`.
+    and, when useful, under `verifier-feedback/`.
+   Store every task-local proof packet below
+   `proof-attempts/<task-id>/`; never create a flat
+   `proof-attempts/<task-id>-*.md` packet.
 8a. Textbook-memory and insight-pool bridge: when upper names a classic
     block-encoding route, do not treat it as a fixed recipe.  Translate it into
     (i) one or more Lean proof leaves, (ii) one natural-language proof sketch
@@ -8572,7 +8588,7 @@ Expected output:
    existing declarations should be reused.
 5. A failure analysis if the current target is mathematically wrong or should
    be routed through a different equivalent theorem.
-6. A short handoff in `proof-attempts/` or the dialogue board.
+6. A short handoff in `proof-attempts/<task-id>/` or the dialogue board.
 
 You may edit Markdown proof-attempt, conversion-window, or proof-obligation
 files.  Avoid Lean edits unless the proof design exposes a very small
@@ -8594,7 +8610,8 @@ Expected output:
 2. No new `sorry`, `admit`, hidden axiom, or theorem-flag promotion.
 3. Run the mandatory controller check shown above after Lean edits.
 4. A handoff naming the exact theorem closed or the exact remaining Lean goal.
-5. If the proof blocks, store the useful failed route under `proof-attempts/`.
+5. If the proof blocks, store the useful failed route under
+   `proof-attempts/<task-id>/`.
 
 Do not spend the cycle on broad prose polish.  The natural-language proof
 agent owns proof design; you own compiled declarations and gate checks.

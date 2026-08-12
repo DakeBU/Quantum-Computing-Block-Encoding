@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+if [[ "${QBE_AGENT_INNER_CYCLE:-0}" == "1" ]]; then
+  echo "build-all is disabled inside an ASPBE agent cycle; use the controller gate" >&2
+  exit 64
+fi
+
 python3 tools/qbe.py harness-check
 python3 tools/test_proof_trust.py
 python3 tools/check_proof_trust.py
