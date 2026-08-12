@@ -27,7 +27,10 @@ jobs:
         uses: leanprover/lean-action@v1
         with:
           auto-config: false
-          use-github-cache: false
+          build: false
+          test: false
+          lint: false
+          use-github-cache: true
           use-mathlib-cache: true
 
       - name: Build current Robin baseline
