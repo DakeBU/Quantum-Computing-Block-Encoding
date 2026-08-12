@@ -5,7 +5,7 @@ import Mathlib.Tactic
 # Clean projection for the logical LCU kernel
 
 This module proves the exact clean-entry formula for the logical
-`PREPARE† · SELECT · AMPLITUDE · PREPARE` matrix.  It is the reusable bridge
+`PREPARE† · SELECT · AMPLITUDE · PREPARE` matrix. It is the reusable bridge
 from local complex-unitary gates to the structural weighted-permutation sums
 already certified for the Robin candidates.
 -/
@@ -60,8 +60,12 @@ theorem amplitudeLift_mul_selectorLift_clean
       else 0 := by
   classical
   rcases row with ⟨coefficientRow, ⟨selectorRow, systemRow⟩⟩
-  simp [amplitudeLift, selectorLift, _root_.Matrix.mul_apply,
-    _root_.Matrix.blockDiagonal_apply, Fintype.sum_prod_type]
+  by_cases systemMatch : systemRow = systemColumn
+  · subst systemRow
+    simp [amplitudeLift, selectorLift, _root_.Matrix.mul_apply,
+      Fintype.sum_prod_type, _root_.Matrix.one_apply]
+  · simp [amplitudeLift, selectorLift, _root_.Matrix.mul_apply,
+      Fintype.sum_prod_type, _root_.Matrix.one_apply, systemMatch]
 
 /-- SELECT applied after amplitude and PREPARE, on one clean input column. -/
 theorem selectLift_mul_amplitudeLift_mul_selectorLift_clean
@@ -84,9 +88,9 @@ theorem selectLift_mul_amplitudeLift_mul_selectorLift_clean
         rotation row.2.1 systemColumn row.1 cleanCoefficient *
           prepare row.2.1 cleanSelector
       else 0 := by
+  unfold selectLift
   rw [equivPermutationMatrix_mul_apply]
-  simp [selectLift, controlledSystemEquiv,
-    amplitudeLift_mul_selectorLift_clean]
+  simp [controlledSystemEquiv, amplitudeLift_mul_selectorLift_clean]
 
 /-- Project an arbitrary right factor through the clean PREPARE bra. -/
 theorem star_selectorLift_mul_clean
@@ -107,7 +111,8 @@ theorem star_selectorLift_mul_clean
         star (prepare selectorIndex cleanSelector) *
           operator (cleanCoefficient, (selectorIndex, systemRow)) column := by
   classical
-  simp [selectorLift, _root_.Matrix.mul_apply, Fintype.sum_prod_type]
+  simp [selectorLift, _root_.Matrix.mul_apply, Fintype.sum_prod_type,
+    _root_.Matrix.one_apply]
 
 /-- Exact projected clean entry of PREPARE/amplitude/SELECT/unprepare. -/
 theorem prepareAmplitudeSelectUnprepare_cleanEntry

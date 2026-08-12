@@ -53,6 +53,10 @@ jobs:
 
           if grep -q '^QuantumBlockEncoding/Robin/ComplexLCUProjection\.lean$' <<<"$changed"; then
             lake build QuantumBlockEncoding.Robin.ComplexLCUProjection
+            test ! -f QuantumBlockEncoding/Robin/Hadamard8Verified.lean || \
+              lake build QuantumBlockEncoding.Robin.Hadamard8Verified
+            test ! -f QuantumBlockEncoding/Robin/SymmetryFourSlotVerified.lean || \
+              lake build QuantumBlockEncoding.Robin.SymmetryFourSlotVerified
           fi
 
           if grep -q '^QuantumBlockEncoding/Robin/SymmetryFourSlot\.lean$' <<<"$changed"; then
