@@ -1,33 +1,33 @@
 {
-  "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+  "circuitDigest": "1e535fd4af40ee0dd016884ff41ccaa9482885ee498b6ee7ba2b4a2440505864",
   "exactProofAuthority": false,
   "reports": {
     "internalCanonicalEvaluator": {
       "backend": "internalCanonicalMatrix",
-      "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "circuitDigest": "1e535fd4af40ee0dd016884ff41ccaa9482885ee498b6ee7ba2b4a2440505864",
+      "cleanBlockMaxEntryError": 5.049717357560489e-16,
+      "cleanBlockOperatorNormError": 7.628051070026943e-16,
       "evidenceClasses": [
         "numericUnitary",
         "numericCleanBlock"
       ],
       "fullOperatorError": 0.0,
       "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
-      "qubitCount": 6,
+      "qubitCount": 9,
       "resource": {
-        "depth": 96,
-        "gateCount": 106,
+        "depth": 674,
+        "gateCount": 881,
         "oracleCalls": 0
       },
       "status": "passed",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 8.74598821652762e-15
     },
     "openqasm3RoundTrip": {
       "backend": "openqasm3RoundTrip",
       "canonicalRoundTrip": true,
-      "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "circuitDigest": "1e535fd4af40ee0dd016884ff41ccaa9482885ee498b6ee7ba2b4a2440505864",
+      "cleanBlockMaxEntryError": 5.049717357560489e-16,
+      "cleanBlockOperatorNormError": 7.628051070026943e-16,
       "decimalPrecisionDigits": 17,
       "evidenceClasses": [
         "syntaxOnly",
@@ -38,34 +38,36 @@
       "fullOperatorError": 0.0,
       "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
       "openqasm3Version": "1.0.1",
-      "qubitCount": 6,
+      "qubitCount": 9,
       "roundingMode": "Python format round-to-nearest",
       "status": "passed",
       "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 8.74598821652762e-15
     },
     "qiskitOperator": {
       "backend": "qiskitOperator",
-      "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
-      "depth": 96,
+      "circuitDigest": "1e535fd4af40ee0dd016884ff41ccaa9482885ee498b6ee7ba2b4a2440505864",
+      "cleanBlockMaxEntryError": 5.835825797489702e-16,
+      "cleanBlockOperatorNormError": 7.721488787657455e-16,
+      "depth": 674,
       "evidenceClasses": [
         "numericUnitary",
         "numericCleanBlock"
       ],
-      "fullOperatorError": 0.0,
-      "gateCount": 106,
+      "fullOperatorError": 4.438552011094872e-15,
+      "gateCount": 881,
       "gateCounts": {
-        "cx": 68,
-        "ry": 38
+        "cx": 454,
+        "ry": 204,
+        "rz": 207,
+        "x": 16
       },
       "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
       "qiskitVersion": "2.4.2",
-      "qubitCount": 6,
+      "qubitCount": 9,
       "status": "passed",
       "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 7.439534648195002e-15
     }
   },
   "requestedBackend": "both",

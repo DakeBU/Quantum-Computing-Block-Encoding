@@ -23,6 +23,7 @@ from tools.backends import internal_matrix_backend, openqasm3_backend, qiskit_ba
 from tools.executable_ir import (
     CircuitIR, angle_neg, compile_uniformly_controlled_ry, pi_rational,
     primitive_resource, rational, sha256_json, twice_arccos_rational,
+    twice_arccos_sqrt_rational,
 )
 from tools.executable_manifest import default_executable_policy
 from tools.executable_runner import run_policy, write_artifacts
@@ -252,13 +253,250 @@ def robin_xor_four_slot_ir(commit: str) -> CircuitIR:
     )
 
 
+def _dagger(instructions: list[dict[str, object]]) -> list[dict[str, object]]:
+    result: list[dict[str, object]] = []
+    for gate in reversed(instructions):
+        copied = dict(gate)
+        if copied["op"] in {"ry", "rz"}:
+            copied["angle"] = angle_neg(copied["angle"])  # type: ignore[arg-type]
+        result.append(copied)
+    return result
+
+
+def _ccx(control0: int, control1: int, target: int) -> list[dict[str, object]]:
+    """Exact chronology of Lean's primitiveCCXProgram."""
+    h = lambda: [
+        {"op": "rz", "target": target, "angle": pi_rational(1)},
+        {"op": "ry", "target": target, "angle": pi_rational(1, 2)},
+    ]
+    return h() + [
+        {"op": "cx", "control": control1, "target": target},
+        {"op": "rz", "target": target, "angle": pi_rational(-1, 4)},
+        {"op": "cx", "control": control0, "target": target},
+        {"op": "rz", "target": target, "angle": pi_rational(1, 4)},
+        {"op": "cx", "control": control1, "target": target},
+        {"op": "rz", "target": target, "angle": pi_rational(-1, 4)},
+        {"op": "cx", "control": control0, "target": target},
+        {"op": "rz", "target": control1, "angle": pi_rational(1, 4)},
+        {"op": "rz", "target": target, "angle": pi_rational(1, 4)},
+        {"op": "cx", "control": control0, "target": control1},
+        {"op": "rz", "target": control0, "angle": pi_rational(1, 4)},
+        {"op": "rz", "target": control1, "angle": pi_rational(-1, 4)},
+        {"op": "cx", "control": control0, "target": control1},
+    ] + h()
+
+
+def _compile_reversible(
+    program: list[tuple[str, int, int | None, int | None]],
+) -> tuple[list[dict[str, object]], Fraction]:
+    instructions: list[dict[str, object]] = []
+    ccx_count = 0
+    for operation, first, second, third in program:
+        if operation == "x":
+            instructions.append({"op": "x", "target": first})
+        elif operation == "cx":
+            instructions.append({"op": "cx", "control": first, "target": second})
+        elif operation == "ccx":
+            instructions.extend(_ccx(first, int(second), int(third)))
+            ccx_count += 1
+        else:
+            raise ValueError(f"unsupported reversible operation {operation}")
+    # Each exact CCX macro carries two H phases plus its T/Tdg phase sum.
+    return instructions, Fraction(9 * ccx_count, 8)
+
+
+def _uniform_seven_prepare(wires: tuple[int, int, int]) -> list[dict[str, object]]:
+    low, middle, high = wires
+    middle_angles = {
+        (0,): pi_rational(1, 2),
+        (1,): twice_arccos_sqrt_rational(2, 3),
+    }
+    low_angles = {
+        (low_bit, middle_bit):
+            rational(0) if low_bit == 1 and middle_bit == 1 else pi_rational(1, 2)
+        for low_bit in (0, 1) for middle_bit in (0, 1)
+    }
+    return (
+        [{"op": "ry", "target": high,
+          "angle": twice_arccos_sqrt_rational(4, 7)}]
+        + compile_uniformly_controlled_ry((high,), middle, middle_angles)
+        + compile_uniformly_controlled_ry((middle, high), low, low_angles)
+    )
+
+
+def _source_dt_row(slot: int, column: int) -> int:
+    return (column + (slot ^ 3)) % N
+
+
+def _source_coefficient(slot: int, column: int) -> Fraction:
+    if slot == 7:
+        return Fraction(1)
+    return Fraction(M[_source_dt_row(slot, column)][column], 32)
+
+
+def robin_paper_seven_ir(commit: str) -> CircuitIR:
+    prepare = _uniform_seven_prepare((3, 4, 5))
+    amplitude_angles = {
+        tuple((flat >> wire) & 1 for wire in range(6)):
+            twice_arccos_rational(
+                _source_coefficient((flat >> 3) & 7, flat & 7).numerator,
+                _source_coefficient((flat >> 3) & 7, flat & 7).denominator,
+            )
+        for flat in range(64)
+    }
+    amplitude = compile_uniformly_controlled_ry(tuple(range(6)), 6, amplitude_angles)
+    select_reversible = [
+        ("x", 3, None, None), ("x", 4, None, None),
+        ("ccx", 3, 0, 7), ("ccx", 7, 1, 2), ("ccx", 3, 0, 7),
+        ("ccx", 3, 0, 1), ("cx", 3, 0, None),
+        ("ccx", 4, 1, 2), ("cx", 4, 1, None), ("cx", 5, 2, None),
+        ("x", 3, None, None), ("x", 4, None, None),
+    ]
+    select, phase = _compile_reversible(select_reversible)
+    instructions = prepare + amplitude + select + _dagger(prepare)
+    target_payload = {
+        "matrix": M, "operator": "A=M/12", "normalizer": "56/3",
+        "cleanBlock": "M/224",
+    }
+    return CircuitIR(
+        qubit_count=8,
+        registers=(
+            {"name": "system", "qubits": [0, 1, 2]},
+            {"name": "selector", "qubits": [3, 4, 5]},
+            {"name": "coefficient", "qubits": [6]},
+            {"name": "adder-workspace", "qubits": [7]},
+        ),
+        instructions=tuple(instructions), source_commit=commit,
+        lean_roots=(
+            "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical",
+            "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveCircuit_cleanBlock",
+            "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding",
+        ),
+        target_digest=sha256_json(target_payload), global_phase=pi_rational(phase.numerator, phase.denominator),
+        metadata={
+            "artifact": "warm-robin-paper-seven-t3",
+            "target": target_payload,
+            "sourceConvention": "true padded-seven sparse source; slot 7 has zero PREPARE probability",
+            "wireOrder": "q0-q2 system; q3-q5 selector; q6 coefficient; q7 clean adder workspace",
+        },
+    )
+
+
+def _clean_c3x(control0: int, control1: int, control2: int,
+                target: int, work: int) -> list[tuple[str, int, int | None, int | None]]:
+    return [
+        ("ccx", control0, control1, work),
+        ("ccx", work, control2, target),
+        ("ccx", control0, control1, work),
+    ]
+
+
+def _figure4_indicator() -> list[tuple[str, int, int | None, int | None]]:
+    return (
+        [("x", 5, None, None)] + _clean_c3x(3, 4, 5, 7, 8)
+        + [("x", 5, None, None), ("x", 3, None, None), ("x", 4, None, None)]
+        + _clean_c3x(3, 4, 5, 7, 8)
+        + [("x", 4, None, None), ("x", 3, None, None)]
+    )
+
+
+def _figure4_dt_access() -> list[tuple[str, int, int | None, int | None]]:
+    return [
+        ("x", 0, None, None), ("x", 1, None, None),
+        ("ccx", 3, 0, 8), ("ccx", 8, 1, 2), ("ccx", 3, 0, 8),
+        ("ccx", 3, 0, 1), ("cx", 3, 0, None),
+        ("ccx", 4, 1, 2), ("cx", 4, 1, None), ("cx", 5, 2, None),
+    ]
+
+
+def _figure4_d_access() -> list[tuple[str, int, int | None, int | None]]:
+    return [
+        ("ccx", 0, 1, 2), ("cx", 0, 1, None),
+        ("x", 0, None, None), ("x", 2, None, None),
+        ("ccx", 3, 0, 8), ("ccx", 8, 1, 2), ("ccx", 3, 0, 8),
+        ("ccx", 3, 0, 1), ("cx", 3, 0, None),
+        ("ccx", 4, 1, 2), ("cx", 4, 1, None), ("cx", 5, 2, None),
+    ]
+
+
+def robin_figure4_ir(commit: str) -> CircuitIR:
+    prepare = _uniform_seven_prepare((0, 1, 2))
+    indicator, indicator_phase = _compile_reversible(_figure4_indicator())
+    bulk_values = (0, -1, 16, -30, 16, -1, 0, 0)
+    bulk_angles = {}
+    for flat in range(16):
+        bits = tuple((flat >> wire) & 1 for wire in range(4))
+        value = Fraction(bulk_values[flat & 7], 32)
+        bulk_angles[bits] = (
+            twice_arccos_rational(value.numerator, value.denominator)
+            if bits[3] == 1 else rational(0)
+        )
+    bulk = compile_uniformly_controlled_ry((0, 1, 2, 7), 6, bulk_angles)
+    boundary_angles = {}
+    for flat in range(128):
+        bits = tuple((flat >> wire) & 1 for wire in range(7))
+        slot = flat & 7
+        column = (flat >> 3) & 7
+        active = bits[6] == 0 and column not in (3, 4)
+        value = Fraction(M[_source_dt_row(slot, column)][column], 32)
+        boundary_angles[bits] = (
+            twice_arccos_rational(value.numerator, value.denominator)
+            if active else rational(0)
+        )
+    boundary = compile_uniformly_controlled_ry(
+        (0, 1, 2, 3, 4, 5, 7), 6, boundary_angles
+    )
+    dt_access, dt_phase = _compile_reversible(_figure4_dt_access())
+    d_access, d_phase = _compile_reversible(_figure4_d_access())
+    swap = [
+        {"op": "cx", "control": 0, "target": 3},
+        {"op": "cx", "control": 3, "target": 0},
+        {"op": "cx", "control": 0, "target": 3},
+        {"op": "cx", "control": 1, "target": 4},
+        {"op": "cx", "control": 4, "target": 1},
+        {"op": "cx", "control": 1, "target": 4},
+        {"op": "cx", "control": 2, "target": 5},
+        {"op": "cx", "control": 5, "target": 2},
+        {"op": "cx", "control": 2, "target": 5},
+    ]
+    instructions = (
+        prepare + indicator + bulk + boundary + dt_access + _dagger(indicator)
+        + swap + _dagger(d_access) + _dagger(prepare)
+    )
+    phase = indicator_phase + dt_phase - indicator_phase - d_phase
+    target_payload = {
+        "matrix": M, "operator": "A=M/12", "normalizer": "56/3",
+        "cleanBlock": "M/224",
+    }
+    return CircuitIR(
+        qubit_count=9,
+        registers=(
+            {"name": "address", "qubits": [0, 1, 2]},
+            {"name": "system", "qubits": [3, 4, 5]},
+            {"name": "coefficient", "qubits": [6]},
+            {"name": "dt-bulk-indicator", "qubits": [7]},
+            {"name": "reversible-workspace", "qubits": [8]},
+        ),
+        instructions=tuple(instructions), source_commit=commit,
+        lean_roots=(
+            "QuantumBlockEncoding.Robin.warmRobinFigure4Primitive_eval_eq_logical",
+            "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanBlock",
+            "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding",
+        ),
+        target_digest=sha256_json(target_payload), global_phase=pi_rational(phase.numerator, phase.denominator),
+        metadata={
+            "artifact": "warm-robin-figure4-fixed-n8-t3",
+            "target": target_payload,
+            "sourceConvention": "fixed-N8, f=1, standard-RY-corrected Figure-4 realization",
+            "wireOrder": "q0-q2 address; q3-q5 system; q6 coefficient; q7 D-transpose bulk indicator; q8 clean workspace",
+        },
+    )
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", default="QBE-ROBIN-BE-WARM-001")
     parser.add_argument("--arm", choices=("warm",), default="warm")
     args = parser.parse_args()
     commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, check=True, capture_output=True, text=True).stdout.strip()
-    primitive_ir = robin_xor_four_slot_ir(commit)
     clean_target = np.asarray(M, dtype=float) / 224.0
     policy = default_executable_policy()
     policy["intermediateCheck"]["backend"] = "both"
@@ -266,16 +504,47 @@ def main() -> int:
         "canonicalIrJson", "qiskitPython", "openqasm3", "metricsJson",
         "circuitText",
     ]
-    executable_report = run_policy(
-        primitive_ir, policy, target=clean_target,
-        system_qubits=(0, 1, 2), clean_qubits=(3, 4, 5),
-    )
-    if executable_report["status"] != "passed":
-        raise AssertionError(f"Robin primitive backend gate failed: {executable_report}")
     export_root = ROOT / "executable-exports" / args.task
-    written_artifacts = write_artifacts(
-        export_root, primitive_ir, policy, executable_report
+    artifact_specs = (
+        (
+            "xorFourSlot", robin_xor_four_slot_ir(commit), export_root,
+            (0, 1, 2), (3, 4, 5),
+        ),
+        (
+            "paperSeven", robin_paper_seven_ir(commit), export_root / "paper-seven",
+            (0, 1, 2), (3, 4, 5, 6, 7),
+        ),
+        (
+            "figure4FixedN8", robin_figure4_ir(commit), export_root / "figure4-fixed-n8",
+            (3, 4, 5), (0, 1, 2, 6, 7, 8),
+        ),
     )
+    artifact_reports: dict[str, dict[str, object]] = {}
+    for identity, primitive_ir, artifact_root, system_qubits, clean_qubits in artifact_specs:
+        executable_report = run_policy(
+            primitive_ir, policy, target=clean_target,
+            system_qubits=system_qubits, clean_qubits=clean_qubits,
+        )
+        if executable_report["status"] != "passed":
+            raise AssertionError(
+                f"Robin {identity} primitive backend gate failed: {executable_report}"
+            )
+        written = write_artifacts(
+            artifact_root, primitive_ir, policy, executable_report
+        )
+        artifact_reports[identity] = {
+            "identity": primitive_ir.metadata["artifact"],
+            "leanRoots": list(primitive_ir.lean_roots),
+            "sourceConvention": primitive_ir.metadata.get("sourceConvention"),
+            "wireOrder": primitive_ir.metadata.get("wireOrder"),
+            "globalPhase": primitive_ir.global_phase,
+            "primitiveResource": primitive_resource(primitive_ir.instructions),
+            "circuitDigest": primitive_ir.circuit_digest,
+            "targetDigest": primitive_ir.target_digest,
+            "artifactRoot": str(artifact_root.relative_to(ROOT)),
+            "writtenArtifacts": written,
+            "checkBackends": executable_report["reports"],
+        }
     candidates = [
         candidate_result("five-shift-weighted-permutation", 5, five_perm, five_weight, 224 / 5, "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula_eq_target"),
         candidate_result(
@@ -290,33 +559,34 @@ def main() -> int:
         ),
     ]
     baseline = {
-        "identity": "source-standard-Ry-fixed-N8",
-        "status": "partial",
-        "leanSemanticTier": "T1 paper transcript and local finite contracts",
-        "resource": None,
-        "blockedContracts": [
-            "source amplitude and sparse-access unitary semantics",
-            "transported post-SWAP cleanup",
-            "whole-circuit clean-block theorem",
-            "common primitive expansion",
-        ],
+        "identity": "fixed-N8-f1-standard-Ry-corrected-Figure-4",
+        "status": "complete",
+        "leanSemanticTier": "T3 exact primitive verified block encoding",
+        "resource": artifact_reports["figure4FixedN8"]["primitiveResource"],
+        "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding",
+        "blockedContracts": [],
     }
     comparison = {
         "task": args.task,
         "alpha": "56/3",
         "target": "A=M/12; A/alpha=M/224",
         "semanticTierCompatible": True,
-        "conclusion": "four-slot strictly better than Hadamard-8 at T2",
-        "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8",
-        "baseline": {"identity": "hadamard-eight", "cost": [8, 4, 4, 2]},
-        "candidate": {"identity": "symmetry-four-slot", "cost": [8, 4, 3, 2]},
-        "reason": "gate count and depth tie; four-slot uses one fewer auxiliary qubit",
-        "t3PrimitiveComparisonCertified": False,
+        "conclusion": "XOR four-slot is strictly better than both formalized source realizations under the declared exact primitive compiler",
+        "leanRoots": [
+            "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven",
+            "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4",
+        ],
+        "paperSeven": {"identity": "paper-seven", "cost": [312, 266, 5, 0]},
+        "figure4": {"identity": "fixed-N8-Figure-4", "cost": [881, 674, 6, 0]},
+        "candidate": {"identity": "XOR-four-slot", "cost": [106, 96, 3, 0]},
+        "reason": "the candidate has fewer gates, the first lexicographic score field",
+        "t3PrimitiveComparisonCertified": True,
     }
     result_root = ROOT / "experiments" / "robin-be" / "results"
     write_json(result_root / "baseline.json", baseline)
     write_json(result_root / "candidates.json", {"candidates": candidates})
     write_json(result_root / "comparison.json", comparison)
+    xor_report = artifact_reports["xorFourSlot"]
     manifest = {
         "schemaVersion": 2,
         "task": args.task,
@@ -332,7 +602,7 @@ def main() -> int:
         "primitiveBasis": ["x", "ry", "rz", "cx"],
         "connectivity": "all-to-all",
         "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
-        "checkBackends": executable_report["reports"],
+        "checkBackends": xor_report["checkBackends"],
         "t3PrerequisiteRoots": [
             "QuantumBlockEncoding.Robin.warmRobinXorFourSlotAmplitudeProgram_eval",
             "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveMiddle_eval",
@@ -340,27 +610,30 @@ def main() -> int:
         ],
         "remainingT3Root": None,
         "verifiedBlockEncodingRoot": "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding",
-        "primitiveResource": primitive_resource(primitive_ir.instructions),
-        "circuitDigest": primitive_ir.circuit_digest,
-        "writtenArtifacts": written_artifacts,
-        "paperLevelWinnerCertified": False,
-        "paperLevelComparisonBlockedBy": [
-            "paper-seven T3 primitive root",
-            "fixed-N Figure-4 T3 primitive root",
-            "same-tier T3 comparison",
-        ],
+        "primitiveResource": xor_report["primitiveResource"],
+        "circuitDigest": xor_report["circuitDigest"],
+        "writtenArtifacts": xor_report["writtenArtifacts"],
+        "artifacts": artifact_reports,
+        "paperLevelWinnerCertified": True,
+        "paperLevelWinnerRoot": "QuantumBlockEncoding.Robin.warmRobinBestVerified",
+        "sameTierComparisonRoots": comparison["leanRoots"],
+        "paperLevelComparisonBlockedBy": [],
         "candidates": candidates,
     }
     write_json(export_root / "manifest.json", manifest)
-    qiskit_report = executable_report["reports"]["qiskitOperator"]
-    qasm_report = executable_report["reports"]["openqasm3RoundTrip"]
     print(json.dumps({
         "passed": True,
-        "highestTier": "T3-exact-primitive-xor-four-slot",
+        "highestTier": "T3-exact-primitive-same-tier-comparison",
         "certifiedExecutable": True,
-        "qiskitFullOperatorError": qiskit_report["fullOperatorError"],
-        "openqasmCanonicalRoundTrip": qasm_report["canonicalRoundTrip"],
-        "paperLevelWinnerCertified": False,
+        "artifacts": {
+            identity: {
+                "qiskitFullOperatorError": report["checkBackends"]["qiskitOperator"]["fullOperatorError"],
+                "openqasmCanonicalRoundTrip": report["checkBackends"]["openqasm3RoundTrip"]["canonicalRoundTrip"],
+                "resource": report["primitiveResource"],
+            }
+            for identity, report in artifact_reports.items()
+        },
+        "paperLevelWinnerCertified": True,
     }))
     return 0
 

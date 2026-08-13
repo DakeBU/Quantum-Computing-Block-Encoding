@@ -1,28 +1,40 @@
 {
   "alpha": "56/3",
-  "baseline": {
-    "cost": [
-      8,
-      4,
-      4,
-      2
-    ],
-    "identity": "hadamard-eight"
-  },
   "candidate": {
     "cost": [
-      8,
-      4,
+      106,
+      96,
       3,
-      2
+      0
     ],
-    "identity": "symmetry-four-slot"
+    "identity": "XOR-four-slot"
   },
-  "conclusion": "four-slot strictly better than Hadamard-8 at T2",
-  "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8",
-  "reason": "gate count and depth tie; four-slot uses one fewer auxiliary qubit",
+  "conclusion": "XOR four-slot is strictly better than both formalized source realizations under the declared exact primitive compiler",
+  "figure4": {
+    "cost": [
+      881,
+      674,
+      6,
+      0
+    ],
+    "identity": "fixed-N8-Figure-4"
+  },
+  "leanRoots": [
+    "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven",
+    "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"
+  ],
+  "paperSeven": {
+    "cost": [
+      312,
+      266,
+      5,
+      0
+    ],
+    "identity": "paper-seven"
+  },
+  "reason": "the candidate has fewer gates, the first lexicographic score field",
   "semanticTierCompatible": true,
-  "t3PrimitiveComparisonCertified": false,
+  "t3PrimitiveComparisonCertified": true,
   "target": "A=M/12; A/alpha=M/224",
   "task": "QBE-ROBIN-BE-WARM-001"
 }

@@ -20,7 +20,10 @@ from tools.executable_manifest import (
     default_executable_policy, migrate_task_packet, validate_executable_policy,
 )
 from tools.executable_runner import run_policy, write_artifacts
-from tools.export_robin_evolution import M, robin_xor_four_slot_ir
+from tools.export_robin_evolution import (
+    M, _compile_reversible, _dagger, _figure4_dt_access, robin_figure4_ir,
+    robin_paper_seven_ir, robin_xor_four_slot_ir,
+)
 
 
 def bell_ir() -> CircuitIR:
@@ -195,6 +198,147 @@ class ExecutableBackendTests(unittest.TestCase):
             )
 
         changed_endianness = copy.deepcopy(ir.payload(include_digest=False))
+        changed_endianness["endianness"] = "big-endian"
+        with self.assertRaisesRegex(ValueError, "endianness"):
+            CircuitIR.from_payload(changed_endianness)
+
+    def test_robin_source_t3_resources_match_lean_circuit_lists(self) -> None:
+        from collections import Counter
+        from tools.executable_ir import primitive_resource
+
+        expected = (
+            (robin_xor_four_slot_ir("test"), 106, 96, {"ry": 38, "cx": 68}),
+            (
+                robin_paper_seven_ir("test"), 312, 266,
+                {"x": 4, "ry": 88, "rz": 45, "cx": 175},
+            ),
+            (
+                robin_figure4_ir("test"), 881, 674,
+                {"x": 16, "ry": 204, "rz": 207, "cx": 454},
+            ),
+        )
+        for ir, gates, depth, counts in expected:
+            self.assertEqual(
+                primitive_resource(ir.instructions),
+                {"gateCount": gates, "depth": depth, "oracleCalls": 0},
+            )
+            self.assertEqual(Counter(gate["op"] for gate in ir.instructions), counts)
+
+    def test_robin_paper_and_figure4_all_backends(self) -> None:
+        target = np.asarray(M, dtype=float) / 224.0
+        policy = default_executable_policy()
+        policy["intermediateCheck"]["backend"] = "both"
+        cases = (
+            (robin_paper_seven_ir("test"), (0, 1, 2), (3, 4, 5, 6, 7)),
+            (robin_figure4_ir("test"), (3, 4, 5), (0, 1, 2, 6, 7, 8)),
+        )
+        for ir, system, clean in cases:
+            report = run_policy(
+                ir, policy, target=target,
+                system_qubits=system, clean_qubits=clean,
+            )
+            self.assertEqual(report["status"], "passed")
+            self.assertTrue(
+                report["reports"]["openqasm3RoundTrip"]["canonicalRoundTrip"]
+            )
+            self.assertLess(
+                float(report["reports"]["qiskitOperator"]["fullOperatorError"]),
+                1e-12,
+            )
+
+    def test_figure4_source_mutations_fail_the_executable_gate(self) -> None:
+        original = robin_figure4_ir("test")
+        target = np.asarray(M, dtype=float) / 224.0
+        policy = default_executable_policy()
+        policy["intermediateCheck"]["backend"] = "none"
+        policy["intermediateCheck"]["required"] = False
+
+        def rebuild(instructions, *, phase=None):
+            payload = copy.deepcopy(original.payload(include_digest=False))
+            payload["instructions"] = instructions
+            if phase is not None:
+                payload["globalPhase"] = phase
+            return CircuitIR.from_payload(payload)
+
+        original_instructions = list(original.instructions)
+        mutations = []
+
+        changed_loader = copy.deepcopy(original_instructions)
+        loader = next(
+            index for index in range(15 + 108, len(changed_loader))
+            if changed_loader[index]["op"] == "ry"
+        )
+        changed_loader[loader]["angle"] = pi_rational(1, 3)
+        mutations.append(("loader-angle", rebuild(changed_loader)))
+
+        deleted_cx = copy.deepcopy(original_instructions)
+        del deleted_cx[next(
+            index for index, gate in enumerate(deleted_cx) if gate["op"] == "cx"
+        )]
+        mutations.append(("deleted-cx", rebuild(deleted_cx)))
+
+        # The first two gates of the D-transpose access encode XOR-with-three.
+        dt_start = 15 + 108 + 46 + 382
+        changed_offset = copy.deepcopy(original_instructions)
+        changed_offset[dt_start] = {"op": "x", "target": 2}
+        mutations.append(("dt-offset", rebuild(changed_offset)))
+
+        # Reintroduce the historical row window (2..5) in both compute and
+        # uncompute positions; it is wrong for the D-transpose column test.
+        indicator_start = 15
+        indicator_end = indicator_start + 108
+        indicator_cleanup_start = dt_start + 90
+        indicator_cleanup_end = indicator_cleanup_start + 108
+        old_indicator = [
+            {"op": "cx", "control": 4, "target": 7},
+            {"op": "cx", "control": 5, "target": 7},
+        ]
+        old_window = (
+            original_instructions[:indicator_start] + old_indicator
+            + original_instructions[indicator_end:indicator_cleanup_start]
+            + _dagger(old_indicator)
+            + original_instructions[indicator_cleanup_end:]
+        )
+        mutations.append(("old-row-indicator", rebuild(old_window)))
+
+        # After the register swap, cleanup must be D inverse, not D^T inverse.
+        cleanup_start = indicator_cleanup_end + 9
+        cleanup_end = cleanup_start + 108
+        dt_instructions, _ = _compile_reversible(_figure4_dt_access())
+        wrong_cleanup = (
+            original_instructions[:cleanup_start] + _dagger(dt_instructions)
+            + original_instructions[cleanup_end:]
+        )
+        wrong_cleanup_ir = rebuild(wrong_cleanup, phase=pi_rational(0))
+
+        for name, mutation in mutations:
+            with self.subTest(mutation=name):
+                report = run_policy(
+                    mutation, policy, target=target,
+                    system_qubits=(3, 4, 5), clean_qubits=(0, 1, 2, 6, 7, 8),
+                )
+                self.assertEqual(report["status"], "failed")
+                self.assertGreater(
+                    float(report["reports"]["internalCanonicalEvaluator"]
+                          ["cleanBlockOperatorNormError"]),
+                    1e-6,
+                )
+
+        # This mutation preserves the clean projection but changes the chosen
+        # full-space reversible extension on dirty work states.  It is rejected
+        # against the frozen full operator rather than misreported as a block
+        # error.
+        self.assertGreater(
+            np.linalg.norm(
+                evaluate_ir(wrong_cleanup_ir) - evaluate_ir(original), ord=2
+            ),
+            1e-6,
+        )
+        self.assertNotEqual(
+            canonicalize_ir(wrong_cleanup_ir), canonicalize_ir(original)
+        )
+
+        changed_endianness = copy.deepcopy(original.payload(include_digest=False))
         changed_endianness["endianness"] = "big-endian"
         with self.assertRaisesRegex(ValueError, "endianness"):
             CircuitIR.from_payload(changed_endianness)

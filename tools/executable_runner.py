@@ -39,10 +39,20 @@ def run_policy(
     required = bool(check["required"])
     unitary_tolerance = float(check["unitarityTolerance"])
     block_tolerance = float(check["cleanBlockTolerance"])
+    internal_report = internal_matrix_backend.verify(
+        ir, target=target, system_qubits=system_qubits, clean_qubits=clean_qubits
+    )
+    internal_errors = [float(internal_report.get("unitarityError", 0.0))]
+    internal_block_errors = [float(internal_report[key]) for key in (
+        "cleanBlockMaxEntryError", "cleanBlockOperatorNormError"
+    ) if key in internal_report]
+    internal_passed = all(error <= unitary_tolerance for error in internal_errors)
+    internal_passed = internal_passed and all(
+        error <= block_tolerance for error in internal_block_errors
+    )
+    internal_report["status"] = "passed" if internal_passed else "failed"
     reports: dict[str, object] = {
-        "internalCanonicalEvaluator": internal_matrix_backend.verify(
-            ir, target=target, system_qubits=system_qubits, clean_qubits=clean_qubits
-        )
+        "internalCanonicalEvaluator": internal_report
     }
     selected = _selected_backends(backend_name)
     for backend in selected:
@@ -75,7 +85,9 @@ def run_policy(
                 "evidenceClasses": [],
             }
     statuses = [str(reports[name]["status"]) for name in selected]  # type: ignore[index]
-    passed = not selected or all(status == "passed" for status in statuses)
+    passed = internal_passed and (
+        not selected or all(status == "passed" for status in statuses)
+    )
     unavailable = any(status == "unavailable" for status in statuses)
     blocked = required and unavailable
     return {

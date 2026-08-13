@@ -1,12 +1,12 @@
 {
-  "blockedContracts": [
-    "source amplitude and sparse-access unitary semantics",
-    "transported post-SWAP cleanup",
-    "whole-circuit clean-block theorem",
-    "common primitive expansion"
-  ],
-  "identity": "source-standard-Ry-fixed-N8",
-  "leanSemanticTier": "T1 paper transcript and local finite contracts",
-  "resource": null,
-  "status": "partial"
+  "blockedContracts": [],
+  "identity": "fixed-N8-f1-standard-Ry-corrected-Figure-4",
+  "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding",
+  "leanSemanticTier": "T3 exact primitive verified block encoding",
+  "resource": {
+    "depth": 674,
+    "gateCount": 881,
+    "oracleCalls": 0
+  },
+  "status": "complete"
 }
