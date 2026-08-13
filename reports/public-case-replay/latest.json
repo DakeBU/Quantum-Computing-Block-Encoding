@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.33272,
+      "elapsed_seconds": 0.326119,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.043631,
+      "elapsed_seconds": 0.045646,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.698949,
+      "elapsed_seconds": 0.712188,
       "passed": true
     },
     {
@@ -160,27 +160,54 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.972394,
+      "elapsed_seconds": 0.957959,
       "passed": true
     },
     {
       "acceptance": {
+        "artifacts": {
+          "figure4FixedN8": {
+            "openqasmCanonicalRoundTrip": true,
+            "qiskitFullOperatorError": 4.438552011094872e-15,
+            "resource": {
+              "depth": 674,
+              "gateCount": 881,
+              "oracleCalls": 0
+            }
+          },
+          "paperSeven": {
+            "openqasmCanonicalRoundTrip": true,
+            "qiskitFullOperatorError": 2.0210396888605207e-15,
+            "resource": {
+              "depth": 266,
+              "gateCount": 312,
+              "oracleCalls": 0
+            }
+          },
+          "xorFourSlot": {
+            "openqasmCanonicalRoundTrip": true,
+            "qiskitFullOperatorError": 0.0,
+            "resource": {
+              "depth": 96,
+              "gateCount": 106,
+              "oracleCalls": 0
+            }
+          }
+        },
         "certifiedExecutable": true,
-        "highestTier": "T3-exact-primitive-xor-four-slot",
-        "openqasmCanonicalRoundTrip": true,
-        "paperLevelWinnerCertified": false,
-        "passed": true,
-        "qiskitFullOperatorError": 8.494648800000633e-16
+        "highestTier": "T3-exact-primitive-same-tier-comparison",
+        "paperLevelWinnerCertified": true,
+        "passed": true
       },
       "case": "Robin XOR four-slot T3",
-      "elapsed_seconds": 1.249865,
+      "elapsed_seconds": 19.812468,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 2.971948,
-    "population_controller": 0.062534,
-    "total": 6.347022
+    "lean_modules": 3.756515,
+    "population_controller": 0.061093,
+    "total": 25.685101
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -191,7 +218,7 @@
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
   "git_branch": "agent/robin-t3-executable-backends",
-  "git_commit": "9b8b7b63f011a7cda1f96f1a270b38f7028365c8",
+  "git_commit": "fc10b5065029d2d5caf3f52462237a8991e47e92",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -212,8 +239,20 @@
     "QuantumBlockEncoding.Robin.SystemConjugation",
     "QuantumBlockEncoding.Robin.SymmetryXorFourSlotLogicalUnitary",
     "QuantumBlockEncoding.Robin.SymmetryXorFourSlotPrimitive",
+    "QuantumBlockEncoding.Robin.SourceSevenSparseData",
+    "QuantumBlockEncoding.Robin.PaperSevenPrepare",
+    "QuantumBlockEncoding.Robin.PaperSevenLogicalUnitary",
     "QuantumBlockEncoding.Robin.PaperSevenPrimitive",
-    "QuantumBlockEncoding.Robin.Figure4Primitive"
+    "QuantumBlockEncoding.Robin.PaperSevenAmplitudePrimitive",
+    "QuantumBlockEncoding.Robin.PaperSevenPreparePrimitive",
+    "QuantumBlockEncoding.Robin.PaperSevenT3",
+    "QuantumBlockEncoding.Robin.Figure4SourceData",
+    "QuantumBlockEncoding.Robin.Figure4Primitive",
+    "QuantumBlockEncoding.Robin.Figure4Loaders",
+    "QuantumBlockEncoding.Robin.Figure4PreparePrimitive",
+    "QuantumBlockEncoding.Robin.Figure4MiddlePrimitive",
+    "QuantumBlockEncoding.Robin.Figure4T3",
+    "QuantumBlockEncoding.Robin.T3ResourceComparison"
   ],
   "lean_passed": true,
   "passed": true,
@@ -246,9 +285,9 @@
     },
     "evolution_replayed": true,
     "included_in_lean_gate": true,
-    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic proof completion after the run produced an exact XOR four-slot {X,RY,RZ,CX} refinement and verified block encoding. Gate-by-gate Qiskit and OpenQASM checks replay that Lean-owned artifact. Paper-seven and fixed Figure-4 primitive roots remain partial, so no source-level T3 winner is claimed.",
-    "status": "XOR four-slot T3 exact primitive block encoding; source Figure-4 remains partial"
+    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic proof completion after the run produced an exact XOR four-slot {X,RY,RZ,CX} refinement, then separately closed the true paper-seven normal form and the fixed-N8, f=1, standard-RY-corrected Figure-4 realization. Lean now proves the same-tier winner under the frozen compiler. Gate-by-gate Qiskit and OpenQASM checks replay all three Lean-owned artifacts; they do not retroactively turn the interrupted search log into a successful synthesis run.",
+    "status": "Three exact primitive block encodings; frozen same-tier winner certified"
   },
   "schema_version": 1,
-  "source_digest": "831e42eba976a214d688b7ea5cca6a693350ac118822549ed867dbe2cc4f4952"
+  "source_digest": "c1b404e3a7d9e30d01843ae3f9dd02da171dfa70a2b13f6a8e4b2f77e5725225"
 }

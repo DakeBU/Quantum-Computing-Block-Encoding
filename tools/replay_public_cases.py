@@ -46,8 +46,20 @@ LEAN_MODULES = (
     "QuantumBlockEncoding.Robin.SystemConjugation",
     "QuantumBlockEncoding.Robin.SymmetryXorFourSlotLogicalUnitary",
     "QuantumBlockEncoding.Robin.SymmetryXorFourSlotPrimitive",
+    "QuantumBlockEncoding.Robin.SourceSevenSparseData",
+    "QuantumBlockEncoding.Robin.PaperSevenPrepare",
+    "QuantumBlockEncoding.Robin.PaperSevenLogicalUnitary",
     "QuantumBlockEncoding.Robin.PaperSevenPrimitive",
+    "QuantumBlockEncoding.Robin.PaperSevenAmplitudePrimitive",
+    "QuantumBlockEncoding.Robin.PaperSevenPreparePrimitive",
+    "QuantumBlockEncoding.Robin.PaperSevenT3",
+    "QuantumBlockEncoding.Robin.Figure4SourceData",
     "QuantumBlockEncoding.Robin.Figure4Primitive",
+    "QuantumBlockEncoding.Robin.Figure4Loaders",
+    "QuantumBlockEncoding.Robin.Figure4PreparePrimitive",
+    "QuantumBlockEncoding.Robin.Figure4MiddlePrimitive",
+    "QuantumBlockEncoding.Robin.Figure4T3",
+    "QuantumBlockEncoding.Robin.T3ResourceComparison",
 )
 
 HASHED_INPUTS = (
@@ -81,8 +93,20 @@ HASHED_INPUTS = (
     "QuantumBlockEncoding/Robin/SystemConjugation.lean",
     "QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean",
     "QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean",
+    "QuantumBlockEncoding/Robin/SourceSevenSparseData.lean",
+    "QuantumBlockEncoding/Robin/PaperSevenPrepare.lean",
+    "QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean",
     "QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean",
+    "QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean",
+    "QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean",
+    "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+    "QuantumBlockEncoding/Robin/Figure4SourceData.lean",
     "QuantumBlockEncoding/Robin/Figure4Primitive.lean",
+    "QuantumBlockEncoding/Robin/Figure4Loaders.lean",
+    "QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean",
+    "QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean",
+    "QuantumBlockEncoding/Robin/Figure4T3.lean",
+    "QuantumBlockEncoding/Robin/T3ResourceComparison.lean",
     "tools/executable_ir.py",
     "tools/backends/internal_matrix_backend.py",
     "tools/backends/qiskit_backend.py",
@@ -315,17 +339,20 @@ def main() -> None:
         },
         "cases": case_results,
         "robin": {
-            "status": "XOR four-slot T3 exact primitive block encoding; source Figure-4 remains partial",
+            "status": "Three exact primitive block encodings; frozen same-tier winner certified",
             "included_in_lean_gate": True,
             "evolution_replayed": completed_robin_cycles > 0,
             "reason": (
                 f"The audited warm run completed {completed_robin_cycles} controller "
                 "cycles and produced no verified block-encoding root or resource "
                 "point. Deterministic proof completion after the run produced an "
-                "exact XOR four-slot {X,RY,RZ,CX} refinement and verified block "
-                "encoding. Gate-by-gate Qiskit and OpenQASM checks replay that "
-                "Lean-owned artifact. Paper-seven and fixed Figure-4 primitive "
-                "roots remain partial, so no source-level T3 winner is claimed."
+                "exact XOR four-slot {X,RY,RZ,CX} refinement, then separately "
+                "closed the true paper-seven normal form and the fixed-N8, f=1, "
+                "standard-RY-corrected Figure-4 realization. Lean now proves the "
+                "same-tier winner under the frozen compiler. Gate-by-gate Qiskit "
+                "and OpenQASM checks replay all three Lean-owned artifacts; they "
+                "do not retroactively turn the interrupted search log into a "
+                "successful synthesis run."
                 if robin_audit
                 else "No audited warm evolution result is available."
             ),
