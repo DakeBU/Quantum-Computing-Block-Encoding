@@ -908,13 +908,13 @@ def render_robin_paper_map(
     prefix = prefix_for(route)
     paper = data["paper"]
     robin_tiers = (
-        ("T2 exact logical unitary", "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding"),
-        ("Pair-coordinate primitive CX refinement", "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_eval_eq"),
-        ("Exact standard-RY loader angles", "QuantumBlockEncoding.Robin.warmRobinFourSlotExactRy_eq_rotation"),
-        ("T3 four-slot primitive refinement", "QuantumBlockEncoding.Robin.warmRobinFourSlotPrimitive_eval_eq_flatUnitary"),
-        ("T3 paper-seven primitive baseline", "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical"),
-        ("T3 Figure-4 source reproduction", "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanBlock"),
-        ("Same-tier paper comparison", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"),
+        ("Candidate exact primitive certificate", "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding"),
+        ("True source sparse-slot decomposition", "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"),
+        ("Paper-seven exact primitive normal form", "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"),
+        ("Figure-4 fixed-N8 exact primitive realization", "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding"),
+        ("Candidate better than paper-seven", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven"),
+        ("Candidate better than Figure 4", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"),
+        ("Frozen benchmark winner", "QuantumBlockEncoding.Robin.warmRobinBestVerified"),
     )
     tier_rows = []
     for label, root in robin_tiers:
@@ -933,7 +933,8 @@ def render_robin_paper_map(
         ("paper-contract", "Paper contract"),
         ("fixed-benchmark", "Fixed benchmark"),
         ("how-to-read", "How to read the map"),
-        ("structural-candidates", "T2 evolution"),
+        ("source-interpretation", "Source decisions"),
+        ("structural-candidates", "Primitive evolution"),
     ]
     for row in data["rows"]:
         row_id = str(row["id"])
@@ -986,8 +987,8 @@ def render_robin_paper_map(
   <h1>Robin boundary block encoding</h1>
   <p class="lede">The source paper proposes a general circuit family for
   differential operators with Robin boundaries. ASPBE separates that general
-  route from a fixed (N=8) benchmark, where complete exact high-level unitary
-  certificates and a same-level resource comparison now compile.</p>
+  route from a fixed (N=8) benchmark, where three exact primitive block
+  encodings and their same-tier resource comparison now compile.</p>
   <div class="link-row">
     <a class="button" href="{html.escape(str(paper['url']))}">Open the source paper</a>
     <a class="button secondary" href="{prefix}sources/ghl2025-robin-excerpts.tex">Download the LaTeX excerpts</a>
@@ -1015,36 +1016,43 @@ def render_robin_paper_map(
   theorem.</p>
   <div class="callout warning">
     <strong>Current conclusion.</strong>
-    The general paper route remains partial: several oracle semantics, transported
-    cleanup, and its final theorem still need to be connected. The fixed (N=8)
-    benchmark is stronger and separate. Lean certifies both the Hadamard-8 and
-    centrosymmetric four-slot constructions as exact high-level logical-unitary
-    block encodings (internally, T2), and proves the four-slot cost strictly
-    better under that shared convention. Primitive <code>{{X, RY, RZ, CX}}</code>
-    refinement is a separate gate-level result (internally, T3).
+    The arbitrary-size paper theorem remains partial. The fixed (N=8),
+    homogeneous <code>f=1</code> benchmark is closed separately: Lean certifies
+    paper-seven, the standard-RY-corrected Figure-4 realization, and the XOR
+    four-slot candidate in the exact <code>{{X, RY, RZ, CX}}</code> basis. It
+    proves the candidate strictly better than both source realizations under
+    the frozen compiler and lexicographic score. This is not a global
+    optimality theorem.
   </div>
   <table class="proof-steps"><thead><tr><th>Verification layer</th><th>Status in this build</th><th>Required root</th></tr></thead><tbody>{''.join(tier_rows)}</tbody></table>
 </section>
+<section class="content-section" id="source-interpretation">
+  <div class="section-heading"><p class="eyebrow">Source audit</p>
+  <h2>Source interpretation decisions</h2><p>The fixed circuit is explicit
+  about choices that cannot safely remain hidden in a transcription.</p></div>
+  <ol class="reading-steps">{''.join(f'<li>{html.escape(str(item))}</li>' for item in data.get('sourceInterpretation', []))}</ol>
+</section>
 <section class="content-section" id="structural-candidates">
   <div class="section-heading"><p class="eyebrow">Fixed N=8 evolution</p>
-  <h2>Two comparable logical unitaries</h2></div>
+  <h2>Three comparable primitive circuits</h2><p>Every tuple is ordered as
+  gates, depth, auxiliary qubits, and oracle calls.</p></div>
   {render_math_tex(r"A/(56/3)=M/224")}
   <div class="case-grid">
-    <article class="case-card"><p class="eyebrow">Logical baseline · (8,4,4,2)</p><h3>Hadamard eight</h3><p>Three selector
-    Hadamards, an exact controlled amplitude unitary, SELECT, and unprepare form
-    a complete complex unitary whose clean block is (M/224).</p></article>
-    <article class="case-card"><p class="eyebrow">Logical evolved · (8,4,3,2)</p><h3>Four symmetry slots</h3><p>A reversal-symmetry
-    basis change splits the system into two four-dimensional sectors. Gate count
-    and depth tie while the selector width falls by one qubit.</p></article>
+    <article class="case-card"><p class="eyebrow">Source Figure 4 · (881,674,6,0)</p><h3>Fixed-N8 circuit</h3><p>Indicator,
+    bulk and boundary loaders, two distinct sparse transports, register swap,
+    and clean uncomputation follow the corrected source order.</p></article>
+    <article class="case-card"><p class="eyebrow">Source normal form · (312,266,5,0)</p><h3>Paper seven</h3><p>A true padded-seven
+    sparse table compiles directly through PREPARE, amplitude loading, modular
+    SELECT, and unprepare.</p></article>
+    <article class="case-card"><p class="eyebrow">Certified winner · (106,96,3,0)</p><h3>XOR four slot</h3><p>Robin centrosymmetry
+    reduces the selector and turns SELECT into two CX gates. Lean proves both
+    strict same-tier comparisons.</p></article>
   </div>
   <p><a class="button" href="{prefix}example-cases/robin-ghl-one-term/index.html">Open the theorem-linked evolution visualization</a></p>
-  <div class="callout warning"><strong>Do we need the primitive level?</strong>
-  Not to prove that this block encoding exists: the exact unitary and clean block
-  are already certified. It is needed before claiming primitive
-  <code>{{X, RY, RZ, CX}}</code> gate counts, transpiled depth, or end-to-end verified
-  backend code. That stronger result requires an exact primitive gate list, its
-  matrix semantics, and a Lean theorem equating the primitive product with the
-  high-level unitary.</div>
+  <div class="callout"><strong>Executable replicas.</strong> Canonical IR,
+  gate-by-gate Qiskit, and strict OpenQASM 3 files are generated separately for
+  all three circuits. Their numerical checks are debugging evidence; the Lean
+  refinement and projected-block declarations above are the proof authority.</div>
 </section>
 <section class="content-section paper-map" id="correspondence">
   <div class="section-heading">
@@ -2145,6 +2153,36 @@ def render_case_evolution(
 <div class="evolution-track">{''.join(points)}</div>"""
 
 
+def render_case_verification_status(
+    case: dict[str, object], declarations: dict[str, dict[str, object]], prefix: str
+) -> str:
+    rows = case.get("verificationStatus", [])
+    if not rows:
+        return ""
+    rendered = []
+    for label, status, root in rows:
+        declaration = declarations[str(root)]
+        rendered.append(
+            f"<tr><th>{html.escape(str(label))}</th><td>{badge(str(status))}</td>"
+            f'<td><a href="{module_url(prefix, declaration)}"><code>{html.escape(str(root))}</code></a></td></tr>'
+        )
+    return f"""<section class="content-section" id="verification-status">
+<div class="section-heading"><p class="eyebrow">Machine-checked status</p><h2>What is closed in this checkout</h2></div>
+<table class="proof-steps"><thead><tr><th>Obligation</th><th>Status</th><th>Lean authority</th></tr></thead><tbody>{''.join(rendered)}</tbody></table>
+</section>"""
+
+
+def render_source_interpretation(case: dict[str, object]) -> str:
+    decisions = case.get("sourceInterpretation", [])
+    if not decisions:
+        return ""
+    items = "".join(f"<li>{html.escape(str(item))}</li>" for item in decisions)
+    return f"""<section class="content-section" id="source-interpretation">
+<div class="section-heading"><p class="eyebrow">Source audit</p><h2>Source interpretation decisions</h2><p>These choices are part of the formal benchmark contract, not silent implementation details.</p></div>
+<ol class="reading-steps">{items}</ol>
+</section>"""
+
+
 def render_example_case_index(
     cases: list[dict[str, object]], coverage: dict[str, object],
     gate: dict[str, object], context: dict[str, object]
@@ -2188,11 +2226,19 @@ def render_example_case(
 <section class="content-section case-problem" id="mathematical-target"><div class="section-heading"><p class="eyebrow">Mathematical target</p><h2>The equation being studied</h2></div>{render_math_tex(str(case['formula']))}<p class="contract-reading">{html.escape(str(case['contract']))}</p><dl class="symbol-key">{symbols}</dl></section>
 <section class="content-section" id="circuit"><div class="section-heading"><p class="eyebrow">Circuit anatomy</p><h2>How the candidate acts</h2><p>These blocks show logical stages and register responsibilities. They do not pretend an unresolved logical oracle is already a primitive hardware gate.</p></div>{render_case_circuit(case)}</section>
 <section class="content-section" id="evolution"><div class="section-heading"><p class="eyebrow">Auditable evolution</p><h2>Candidate and proof progression</h2></div>{render_case_evolution(case, declarations, prefix)}</section>
+{render_case_verification_status(case, declarations, prefix)}
+{render_source_interpretation(case)}
 <section class="content-section" id="lean-certificate"><div class="section-heading"><p class="eyebrow">Proof authority</p><h2>Named Lean certificates</h2><p>These declarations, compiled by the current Lean gate, support the mathematical and resource claims above.</p></div><ul class="case-declaration-list">{anchors}</ul></section>
 <section class="content-section export-section" id="executable-evidence"><div class="section-heading"><p class="eyebrow">Optional executable checks and outputs</p><h2>Executable verification and exports</h2><p>Checking and artifact selection are independent. A user may screen with Qiskit, OpenQASM round-trip, both, or neither, then request a different set of output files.</p></div>{render_executable_evidence(case, prefix)}<p>{html.escape(str(qiskit['role']))}</p><dl class="definition-list"><dt>Current runnable artifact</dt><dd><code>{html.escape(str(qiskit['path']))}</code></dd><dt>Command</dt><dd><pre><code>{html.escape(str(qiskit['command']))}</code></pre></dd></dl><div class="callout warning"><strong>Trust boundary.</strong> Fast executable checks may reject, rank, or queue a route for formalization. Floating-point tolerances do not replace the exact Lean roots above; an external exact certificate contributes only after a Lean checker verifies it.</div></section>
 <section class="content-section"><dl class="definition-list"><dt>Source</dt><dd>{html.escape(str(case['source']))}</dd><dt>Contributor</dt><dd>{html.escape(str(case['contributor']))}</dd><dt>Current boundary</dt><dd>{html.escape(str(case['limitations']))}</dd></dl><div class="link-row"><a class="button" href="{prefix}task-builder/index.html?case={html.escape(str(case['slug']))}">Load in task builder</a><a class="button secondary" href="{prefix}community/index.html?case={html.escape(str(case['slug']))}">Contribute a variant</a></div></section>
 <script type="application/json" data-example-preset>{preset}</script></article>"""
-    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context, toc=[("mathematical-target", "Mathematical target"), ("circuit", "Circuit anatomy"), ("evolution", "Evolution"), ("lean-certificate", "Lean certificates"), ("executable-evidence", "Executable evidence")])
+    toc = [("mathematical-target", "Mathematical target"), ("circuit", "Circuit anatomy"), ("evolution", "Evolution")]
+    if case.get("verificationStatus"):
+        toc.append(("verification-status", "Verification status"))
+    if case.get("sourceInterpretation"):
+        toc.append(("source-interpretation", "Source decisions"))
+    toc.extend([("lean-certificate", "Lean certificates"), ("executable-evidence", "Executable evidence")])
+    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context, toc=toc)
 
 
 def render_task_builder(

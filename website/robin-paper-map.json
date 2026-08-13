@@ -6,6 +6,14 @@
     "url": "https://arxiv.org/abs/2506.20478",
     "sourceNote": "paper-notes/GHL2025/source-excerpts.tex"
   },
+  "sourceInterpretation": [
+    "The historical split-seven weighted-permutation LCU is not used as a sparse enumeration because distinct nonzero slots can address the same matrix entry.",
+    "The Figure-4 indicator is applied to a row of D-transpose, so the fixed source circuit selects columns 3 and 4 of D rather than the row window 2 through 5.",
+    "The exact executable circuit uses 2 arccos(c) for the repository's standard RY convention; the paper-literal arccos(c) record remains visible as an audited source convention.",
+    "The unexplained literal gamma-1 normalization is not assumed. The fixed realization proves its actual executable stage states and final projected block.",
+    "The full-space unitary uses the compiler's actual reversible behavior on dirty workspace states, while the block contract projects every declared workspace to zero.",
+    "The fixed benchmark has f=1, and Lean proves that coefficient stage is identity before it is constant-folded."
+  ],
   "rows": [
     {
       "id": "sparse-access",
@@ -111,12 +119,25 @@
         "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
         "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding",
         "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8",
+        "QuantumBlockEncoding.Robin.warmRobinSplitSeven_duplicate_nonzero_access",
+        "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4TransposeBulk_matches_periodic",
+        "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical",
+        "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_cleanBlock",
+        "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4TransportedPostSwapCleanup",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4Primitive_eval_eq_logical",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanBlock",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding",
         "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary",
-        "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding"
+        "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven",
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4",
+        "QuantumBlockEncoding.Robin.warmRobinBestVerified"
       ],
       "localStatus": "Compiled",
-      "routeStatus": "Partial route",
-      "reading": "Hadamard-8 and four-slot high-level logical unitaries are exact T2 roots. The evolved XOR four-slot route additionally has an exact `{X,RY(theta),RZ(theta),CX}` T3 refinement and verified block encoding. This does not close the distinct paper-seven/Figure-4 source route or prove a same-tier source comparison."
+      "routeStatus": "Compiled",
+      "reading": "For the fixed N=8, homogeneous f=1 benchmark, Lean now closes the true padded-seven sparse source, the paper-seven exact primitive normal form, the standard-RY-corrected Figure-4 realization, and the evolved XOR four-slot circuit. Two same-tier betterThan theorems certify the XOR route under the declared compiler. This remains distinct from the paper's arbitrary-n theorem."
     }
   ]
 }

@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 2227,
-  "privateDeclarationExclusionCount": 189,
-  "sourceDocstringCount": 1581,
-  "generatedReaderCueCount": 2227,
+  "publicDeclarationCount": 2608,
+  "privateDeclarationExclusionCount": 196,
+  "sourceDocstringCount": 1635,
+  "generatedReaderCueCount": 2608,
   "byKind": {
-    "abbrev": 22,
-    "def": 897,
-    "inductive": 25,
+    "abbrev": 26,
+    "def": 1065,
+    "inductive": 26,
     "opaque": 7,
-    "structure": 176,
-    "theorem": 1100
+    "structure": 178,
+    "theorem": 1306
   },
   "bySource": {
     "QuantumBlockEncoding/Automation.lean": 39,
@@ -27,24 +27,38 @@
     "QuantumBlockEncoding/GHL2025.lean": 401,
     "QuantumBlockEncoding/Literature.lean": 6,
     "QuantumBlockEncoding/MainCase.lean": 127,
+    "QuantumBlockEncoding/ModularAdder3.lean": 22,
     "QuantumBlockEncoding/OpenProblems.lean": 4,
     "QuantumBlockEncoding/OptimalControl.lean": 133,
-    "QuantumBlockEncoding/PrimitiveBasisLE.lean": 4,
+    "QuantumBlockEncoding/PrimitiveBasisLE.lean": 8,
     "QuantumBlockEncoding/PrimitiveCircuit.lean": 39,
-    "QuantumBlockEncoding/PrimitiveRefinement.lean": 2,
-    "QuantumBlockEncoding/PrimitiveSemantics.lean": 53,
+    "QuantumBlockEncoding/PrimitiveMacros.lean": 43,
+    "QuantumBlockEncoding/PrimitiveRefinement.lean": 5,
+    "QuantumBlockEncoding/PrimitiveSemantics.lean": 54,
     "QuantumBlockEncoding/Resources.lean": 25,
+    "QuantumBlockEncoding/ReversibleClassical.lean": 7,
     "QuantumBlockEncoding/Robin/ComplexLCU.lean": 29,
     "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean": 8,
-    "QuantumBlockEncoding/Robin/EvolvedCandidates.lean": 13,
-    "QuantumBlockEncoding/Robin/Figure4Primitive.lean": 16,
+    "QuantumBlockEncoding/Robin/EvolvedCandidates.lean": 14,
+    "QuantumBlockEncoding/Robin/Figure4Loaders.lean": 33,
+    "QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean": 35,
+    "QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean": 23,
+    "QuantumBlockEncoding/Robin/Figure4Primitive.lean": 52,
+    "QuantumBlockEncoding/Robin/Figure4SourceData.lean": 15,
+    "QuantumBlockEncoding/Robin/Figure4T3.lean": 19,
     "QuantumBlockEncoding/Robin/FixedN3Data.lean": 6,
     "QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean": 24,
     "QuantumBlockEncoding/Robin/Hadamard8Verified.lean": 16,
-    "QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean": 17,
+    "QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean": 16,
+    "QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean": 27,
+    "QuantumBlockEncoding/Robin/PaperSevenPrepare.lean": 20,
+    "QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean": 19,
+    "QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean": 29,
+    "QuantumBlockEncoding/Robin/PaperSevenT3.lean": 19,
     "QuantumBlockEncoding/Robin/ResourceComparison.lean": 10,
     "QuantumBlockEncoding/Robin/SixSlotOptimal.lean": 20,
     "QuantumBlockEncoding/Robin/SourceBaseline.lean": 12,
+    "QuantumBlockEncoding/Robin/SourceSevenSparseData.lean": 18,
     "QuantumBlockEncoding/Robin/SymmetryFourSlot.lean": 21,
     "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean": 50,
     "QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean": 29,
@@ -52,12 +66,13 @@
     "QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean": 28,
     "QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean": 75,
     "QuantumBlockEncoding/Robin/SystemConjugation.lean": 10,
+    "QuantumBlockEncoding/Robin/T3ResourceComparison.lean": 7,
     "QuantumBlockEncoding/Robin/WeightedPermutation.lean": 15,
     "QuantumBlockEncoding/RobinEvolution.lean": 17,
     "QuantumBlockEncoding/RobinMatrix.lean": 395,
     "QuantumBlockEncoding/StatePreparation.lean": 11,
     "QuantumBlockEncoding/TextbookStatePreparation.lean": 29,
-    "QuantumBlockEncoding/UniformlyControlledRy.lean": 10
+    "QuantumBlockEncoding/UniformlyControlledRy.lean": 11
   },
   "excluded": [
     {
@@ -499,6 +514,55 @@
       "name": "QuantumBlockEncoding.GHL2025.eq_zero_or_eq_base_of_mod_eq_zero_of_lt_two_mul",
       "source": "QuantumBlockEncoding/GHL2025.lean",
       "line": 1115,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.Robin.PreservesPaperSevenWorkspace",
+      "source": "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+      "line": 131,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.PreservesPaperSevenWorkspace.mul",
+      "source": "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+      "line": 138,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.PreservesPaperSevenWorkspace.star",
+      "source": "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+      "line": 158,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorLift_preservesWorkspace",
+      "source": "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+      "line": 169,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeLift_preservesWorkspace",
+      "source": "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+      "line": 182,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectLift_preservesWorkspace",
+      "source": "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+      "line": 199,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceLogicalUnitary_preservesWorkspace",
+      "source": "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+      "line": 214,
       "reason": "private declaration"
     },
     {
@@ -1352,35 +1416,35 @@
       "kind": "theorem",
       "name": "QuantumBlockEncoding.kronecker_one_eq_blockDiagonal",
       "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
-      "line": 51,
+      "line": 67,
       "reason": "private declaration"
     },
     {
       "kind": "theorem",
       "name": "QuantumBlockEncoding.evalPrimitiveRy_eq_controlledRyBlockMatrix_zero",
       "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
-      "line": 62,
+      "line": 78,
       "reason": "private declaration"
     },
     {
       "kind": "def",
       "name": "QuantumBlockEncoding.controlledXBlock",
       "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
-      "line": 76,
+      "line": 92,
       "reason": "private declaration"
     },
     {
       "kind": "theorem",
       "name": "QuantumBlockEncoding.xMatrix_flipBit",
       "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
-      "line": 81,
+      "line": 97,
       "reason": "private declaration"
     },
     {
       "kind": "theorem",
       "name": "QuantumBlockEncoding.evalPrimitiveCx_eq_controlledXBlock",
       "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
-      "line": 85,
+      "line": 101,
       "reason": "private declaration"
     }
   ],

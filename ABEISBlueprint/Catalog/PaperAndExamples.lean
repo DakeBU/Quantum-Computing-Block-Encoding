@@ -6342,7 +6342,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:172](../../../../l
 
 # QuantumBlockEncoding/Robin/EvolvedCandidates.lean
 
-13 explicit public declarations, in source order.
+14 explicit public declarations, in source order.
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula" (lean := "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula")
 *Plain-English reading.* This definition gives the library's named construction or computation for “warm robin five shift clean formula”. Clean branch predicted by the uniform-five LCU construction.
@@ -6456,6 +6456,20 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:50](../../../../libra
 Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:55](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotdecomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSplitSeven_duplicate_nonzero_access" (lean := "QuantumBlockEncoding.Robin.warmRobinSplitSeven_duplicate_nonzero_access")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin split seven duplicate nonzero access”; the hypotheses and conclusion in the code panel fix its exact scope. The historical split-seven route is a weighted-permutation LCU, not a sparse-access enumeration: two nonzero terms can address the same entry.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The historical split-seven route is a weighted-permutation LCU, not a sparse-access enumeration: two nonzero terms can address the same entry.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:65](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsplitseven-duplicate-nonzero-access). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 :::definition "QuantumBlockEncoding.Robin.warmRobinSevenSlotAmplitude" (lean := "QuantumBlockEncoding.Robin.warmRobinSevenSlotAmplitude")
 *Plain-English reading.* This definition gives the library's named construction or computation for “warm robin seven slot amplitude”.
 
@@ -6467,7 +6481,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:55](../../../../libra
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:63](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotamplitude). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:72](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotamplitude). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinSevenSlotAmplitude_bounded" (lean := "QuantumBlockEncoding.Robin.warmRobinSevenSlotAmplitude_bounded")
@@ -6481,7 +6495,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:63](../../../../libra
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:66](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotamplitude-bounded). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:75](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotamplitude-bounded). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinSevenSlotCleanFormula" (lean := "QuantumBlockEncoding.Robin.warmRobinSevenSlotCleanFormula")
@@ -6495,7 +6509,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:66](../../../../libra
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:70](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotcleanformula). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:79](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotcleanformula). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinSevenSlotCleanFormula_eq_target" (lean := "QuantumBlockEncoding.Robin.warmRobinSevenSlotCleanFormula_eq_target")
@@ -6509,7 +6523,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:70](../../../../libra
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:76](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotcleanformula-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:85](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinsevenslotcleanformula-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinStructuralCandidateBlockedLeaf" (lean := "QuantumBlockEncoding.Robin.warmRobinStructuralCandidateBlockedLeaf")
@@ -6523,29 +6537,1315 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:76](../../../../libra
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:83](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinstructuralcandidateblockedleaf). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:92](../../../../library/modules/robin-evolvedcandidates/#decl-quantumblockencoding-robin-warmrobinstructuralcandidateblockedleaf). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/Figure4Loaders.lean
+
+33 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperLiteralBoundaryAngle" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperLiteralBoundaryAngle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper literal boundary angle”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:13](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinpaperliteralboundaryangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinExecutableStandardRyBoundaryAngle" (lean := "QuantumBlockEncoding.Robin.warmRobinExecutableStandardRyBoundaryAngle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin executable standard ry boundary angle”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:17](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinexecutablestandardryboundaryangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinBoundaryAngle_zero_guard" (lean := "QuantumBlockEncoding.Robin.warmRobinBoundaryAngle_zero_guard")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin boundary angle zero guard”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:21](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinboundaryangle-zero-guard). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BulkCoefficient_abs_le_one" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkCoefficient_abs_le_one")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bulk coefficient abs le one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:29](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkcoefficient-abs-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4SourceCoefficient_abs_le_one" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SourceCoefficient_abs_le_one")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 source coefficient abs le one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:35](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4sourcecoefficient-abs-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlWires" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bulk control wires”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:43](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkcontrolwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlWires_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bulk control wires ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:49](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkcontrolwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlSlot" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlSlot")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bulk control slot”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:54](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkcontrolslot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderAngle" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderAngle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bulk loader angle”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:57](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkloaderangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderRy" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderRy")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bulk loader ry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:66](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkloaderry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderCircuit" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bulk loader circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:88](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkloadercircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bulk loader program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:93](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkloaderprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkLoaderProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bulk loader program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:97](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkloaderprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlWires" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 boundary control wires”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:110](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycontrolwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlWires_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 boundary control wires ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:119](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycontrolwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlSlot" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlSlot")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 boundary control slot”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:124](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycontrolslot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlColumn" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlColumn")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 boundary control column”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:127](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycontrolcolumn). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderAngle" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderAngle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 boundary loader angle”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:130](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundaryloaderangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderRy" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderRy")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 boundary loader ry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:142](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundaryloaderry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderCircuit" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 boundary loader circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:170](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundaryloadercircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 boundary loader program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:175](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundaryloaderprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryLoaderProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 boundary loader program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:179](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundaryloaderprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoaderProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoaderProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 derivative loader program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:192](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4derivativeloaderprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoaderProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoaderProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 derivative loader program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:196](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4derivativeloaderprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorValue" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorValue")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 indicator value”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:209](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4indicatorvalue). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlInput" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlInput")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bulk control input”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:212](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkcontrolinput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlInput" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlInput")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 boundary control input”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:219](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycontrolinput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlSlot_input" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlSlot_input")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bulk control slot input”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:229](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkcontrolslot-input). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlInput_indicator" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkControlInput_indicator")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bulk control input indicator”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:235](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4bulkcontrolinput-indicator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlSlot_input" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlSlot_input")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 boundary control slot input”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:240](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycontrolslot-input). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlColumn_input" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlColumn_input")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 boundary control column input”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:246](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycontrolcolumn-input). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlInput_indicator" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryControlInput_indicator")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 boundary control input indicator”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:252](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycontrolinput-indicator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoader_cleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoader_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 derivative loader clean entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:257](../../../../library/modules/robin-figure4loaders/#decl-quantumblockencoding-robin-warmrobinfigure4derivativeloader-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean
+
+35 explicit public declarations, in source order.
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorBasisEquiv_clean" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorBasisEquiv_clean")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 indicator basis equiv clean”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:17](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4indicatorbasisequiv-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BulkAssignment_transportInput" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkAssignment_transportInput")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bulk assignment transport input”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:25](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4bulkassignment-transportinput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryAssignment_transportInput" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryAssignment_transportInput")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 boundary assignment transport input”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:34](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4boundaryassignment-transportinput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoader_physicalCleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoader_physicalCleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 derivative loader physical clean entry”; the hypotheses and conclusion in the code panel fix its exact scope. The physical loader's clean coefficient entry is the exact source coefficient.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The physical loader's clean coefficient entry is the exact source coefficient. The proof reduces the two nine-wire block diagonals to their single two-dimensional standard-RY product.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:46](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4derivativeloader-physicalcleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_splitCoefficient_fst" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_splitCoefficient_fst")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transport input split coefficient fst”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:65](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput-splitcoefficient-fst). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_splitCoefficient_context" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_splitCoefficient_context")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transport input split coefficient context”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:72](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput-splitcoefficient-context). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_splitCoefficient_context_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_splitCoefficient_context_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transport input split coefficient context iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:80](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput-splitcoefficient-context-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoader_entry" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DerivativeLoader_entry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 derivative loader entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:93](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4derivativeloader-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4FullRegisterSwapPrimitiveProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4FullRegisterSwapPrimitiveProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 full register swap primitive program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:158](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4fullregisterswapprimitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapProgram_eval_full" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapProgram_eval_full")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 register swap program eval full”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:162](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapprogram-eval-full). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4HomogeneousProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4HomogeneousProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 homogeneous program”. The homogeneous 'f=1' stage is constant-folded to the exact identity.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The homogeneous 'f=1' stage is constant-folded to the exact identity.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:169](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4homogeneousprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4HomogeneousProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4HomogeneousProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 homogeneous program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:172](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4homogeneousprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoaderProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoaderProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 post loader program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:176](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4postloaderprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoaderBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoaderBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 post loader basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:183](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4postloaderbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoaderProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoaderProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 post loader program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:190](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4postloaderprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoader_cleanAction" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoader_cleanAction")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 post loader clean action”; the hypotheses and conclusion in the code panel fix its exact scope. The post-loader basis permutation restores both work wires and the physical selector, while transporting the selected source row into the system register.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The post-loader basis permutation restores both work wires and the physical selector, while transporting the selected source row into the system register.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:213](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4postloader-cleanaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4SourceDTColumn" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SourceDTColumn")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 source dt column”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:248](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4sourcedtcolumn). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4SourceDTColumn_inverse" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SourceDTColumn_inverse")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 source dt column inverse”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:252](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4sourcedtcolumn-inverse). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4SourceDTColumn_eq_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SourceDTColumn_eq_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 source dt column eq iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:257](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4sourcedtcolumn-eq-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoader_inverseCleanAction" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PostLoader_inverseCleanAction")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 post loader inverse clean action”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:263](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4postloader-inversecleanaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4MiddleProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4MiddleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 middle program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:275](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4middleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4MiddleProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4MiddleProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 middle program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:280](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4middleprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4MiddleProgram_cleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4MiddleProgram_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 middle program clean entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:291](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4middleprogram-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughIndicator" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughIndicator")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 through indicator”. The post-loader basis permutation restores both work wires and the physical selector, while transporting the selected source row into the system register.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The post-loader basis permutation restores both work wires and the physical selector, while transporting the selected source row into the system register. -/ theorem warmRobinFigure4PostLoader\_cleanAction (slot column : Fin 8) (coefficient : Fin 2) : warmRobinFigure4PostLoaderBasisEquiv (warmRobinFigure4TransportInput slot column coefficient (warmRobinFigure4IndicatorValue column)) = warmRobinFigure4TransportInput slot (warmRobinSourceDTRow slot column) coefficient 0 := by rw \[warmRobinFigure4PostLoaderBasisEquiv\] simp only \[Equiv.trans\_apply\] rw \[warmRobinFigure4DTSparseAccess\_transportInput\] have indicatorForward := warmRobinFigure4IndicatorBasisEquiv\_clean (warmRobinSourceDTRow slot column) column coefficient have indicatorCleanup : warmRobinFigure4DTIndicatorBasisEquiv.symm (warmRobinFigure4TransportInput (warmRobinSourceDTRow slot column) column coefficient (warmRobinFigure4IndicatorValue column)) = warmRobinFigure4TransportInput (warmRobinSourceDTRow slot column) column coefficient 0 := by rw \[← indicatorForward, Equiv.symm\_apply\_apply\] rw \[indicatorCleanup\] rw \[warmRobinFigure4RegisterSwap\_transportInput\] let sourceRow := warmRobinSourceDTRow slot column have dForward : warmRobinFigure4DSparseAccessBasisEquiv (warmRobinFigure4TransportInput slot sourceRow coefficient 0) = warmRobinFigure4TransportInput column sourceRow coefficient 0 := by rw \[warmRobinFigure4DSparseAccess\_transportInput\] rw \[show (⟨(sourceRow.val + (warmRobinFigure4DOffset slot).val) % 8, Nat.mod\_lt \_ (by decide)⟩ : Fin 8) = column by exact warmRobinFigure4DOffset\_after\_DT slot column\] rw \[← dForward, Equiv.symm\_apply\_apply\] def warmRobinFigure4SourceDTColumn (slot row : Fin 8) : Fin 8 := ⟨(row.val + 8 - (warmRobinSourceDTOffset slot).val) % 8, Nat.mod\_lt \_ (by decide)⟩ theorem warmRobinFigure4SourceDTColumn\_inverse (slot row : Fin 8) : warmRobinSourceDTRow slot (warmRobinFigure4SourceDTColumn slot row) = row := by fin\_cases slot <;> fin\_cases row <;> native\_decide theorem warmRobinFigure4SourceDTColumn\_eq\_iff (slot row column : Fin 8) : warmRobinFigure4SourceDTColumn slot row = column ↔ warmRobinSourceDTRow slot column = row := by fin\_cases slot <;> fin\_cases row <;> fin\_cases column <;> native\_decide theorem warmRobinFigure4PostLoader\_inverseCleanAction (slot row : Fin 8) (coefficient : Fin 2) : warmRobinFigure4PostLoaderBasisEquiv.symm (warmRobinFigure4TransportInput slot row coefficient 0) = warmRobinFigure4TransportInput slot (warmRobinFigure4SourceDTColumn slot row) coefficient (warmRobinFigure4IndicatorValue (warmRobinFigure4SourceDTColumn slot row)) := by apply warmRobinFigure4PostLoaderBasisEquiv.injective rw \[Equiv.apply\_symm\_apply, warmRobinFigure4PostLoader\_cleanAction, warmRobinFigure4SourceDTColumn\_inverse\] noncomputable def warmRobinFigure4MiddleProgram : PrimitiveProgram 9 := PrimitiveProgram.seq warmRobinFigure4DTIndicatorProgram (PrimitiveProgram.seq warmRobinFigure4DerivativeLoaderProgram warmRobinFigure4PostLoaderProgram) theorem warmRobinFigure4MiddleProgram\_eval : evalPrimitiveProgram warmRobinFigure4MiddleProgram = ComplexLCU.equivPermutationMatrix warmRobinFigure4PostLoaderBasisEquiv \* evalPrimitiveProgram warmRobinFigure4DerivativeLoaderProgram \* ComplexLCU.equivPermutationMatrix warmRobinFigure4DTIndicatorBasisEquiv := by unfold warmRobinFigure4MiddleProgram rw \[evalPrimitiveProgram\_seq, evalPrimitiveProgram\_seq, warmRobinFigure4DTIndicatorProgram\_eval, warmRobinFigure4PostLoaderProgram\_eval\] theorem warmRobinFigure4MiddleProgram\_cleanEntry (coefficientRow coefficientColumn : Fin 2) (leftSlot rightSlot row column : Fin 8) : evalPrimitiveProgram warmRobinFigure4MiddleProgram (warmRobinFigure4TransportInput leftSlot row coefficientRow 0) (warmRobinFigure4TransportInput rightSlot column coefficientColumn 0) = if leftSlot = rightSlot ∧ warmRobinSourceDTRow rightSlot column = row then ComplexLCU.amplitudeRotation (((warmRobinFigure4SourceCoefficient rightSlot column : Rat) : Real)) coefficientRow coefficientColumn else 0 := by rw \[warmRobinFigure4MiddleProgram\_eval\] rw \[ComplexLCU.mul\_equivPermutationMatrix\_apply, ComplexLCU.equivPermutationMatrix\_mul\_apply\] rw \[warmRobinFigure4IndicatorBasisEquiv\_clean\] rw \[warmRobinFigure4PostLoader\_inverseCleanAction, warmRobinFigure4DerivativeLoader\_entry\] by\_cases slots : leftSlot = rightSlot · subst leftSlot simp only \[true\_and\] simp only \[warmRobinFigure4SourceDTColumn\_eq\_iff\] · simp \[slots\] /-! Named chronological stage roots used by the generated documentation.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:317](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4throughindicator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_after_indicator" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_after_indicator")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 after indicator”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:321](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4-after-indicator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughDerivative" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughDerivative")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 through derivative”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:327](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4throughderivative). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_after_derivative_loader" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_after_derivative_loader")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 after derivative loader”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:331](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4-after-derivative-loader). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughDTAccess" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughDTAccess")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 through dt access”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:337](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4throughdtaccess). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_after_DT_sparse_access" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_after_DT_sparse_access")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 after dt sparse access”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:341](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4-after-dt-sparse-access). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughIndicatorCleanup" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughIndicatorCleanup")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 through indicator cleanup”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:347](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4throughindicatorcleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_after_indicator_cleanup" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_after_indicator_cleanup")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 after indicator cleanup”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:351](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4-after-indicator-cleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughSwap" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughSwap")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 through swap”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:357](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4throughswap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_after_swap" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_after_swap")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 after swap”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:361](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4-after-swap). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughTransportedCleanup" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4ThroughTransportedCleanup")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 through transported cleanup”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:367](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4throughtransportedcleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_after_transported_cleanup" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_after_transported_cleanup")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 after transported cleanup”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:371](../../../../library/modules/robin-figure4middleprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4-after-transported-cleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean
+
+23 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.WarmRobinFigure4FullSystem" (lean := "QuantumBlockEncoding.Robin.WarmRobinFigure4FullSystem")
+*Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “warm robin figure 4 full system”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* abbrev.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:15](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4fullsystem). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4EncodeBits" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4EncodeBits")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 encode bits”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:17](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4encodebits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BitsIndex" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BitsIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bits index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:30](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4bitsindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BitsIndex_bijective" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BitsIndex_bijective")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bits index bijective”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:35](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4bitsindex-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BitsEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BitsEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bits equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:39](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4bitsequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BitsEquiv_apply" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BitsEquiv_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bits equiv apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:45](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4bitsequiv-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4BitsEquiv_encode" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BitsEquiv_encode")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 bits equiv encode”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:48](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4bitsequiv-encode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareMiddleWires" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareMiddleWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 prepare middle wires”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:57](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparemiddlewires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareMiddleWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareMiddleWires_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 prepare middle wires ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:59](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparemiddlewires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareLowWires" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareLowWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 prepare low wires”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:64](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparelowwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareLowWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareLowWires_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 prepare low wires ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:68](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparelowwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4SelectorBits_decode" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SelectorBits_decode")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 selector bits decode”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:72](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4selectorbits-decode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareHighContext_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareHighContext_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 prepare high context iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:78](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparehighcontext-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareHighPhysical_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareHighPhysical_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 prepare high physical eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:91](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparehighphysical-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareMiddleContext_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareMiddleContext_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 prepare middle context iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:125](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparemiddlecontext-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareMiddlePhysical_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareMiddlePhysical_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 prepare middle physical eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:138](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparemiddlephysical-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareLowContext_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareLowContext_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 prepare low context iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:184](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparelowcontext-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareLowPhysical_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrepareLowPhysical_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 prepare low physical eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:197](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4preparelowphysical-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4SelectorPrepareCircuit" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SelectorPrepareCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 selector prepare circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:243](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4selectorpreparecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4SelectorPrepareProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SelectorPrepareProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 selector prepare program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:252](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4selectorprepareprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_after_prepare" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_after_prepare")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 after prepare”; the hypotheses and conclusion in the code panel fix its exact scope. Required stage root: the physical first stage is the exact selector lift.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Required stage root: the physical first stage is the exact selector lift.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:257](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4-after-prepare). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4SelectorUnprepareProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SelectorUnprepareProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 selector unprepare program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:288](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4selectorunprepareprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_after_unprepare" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_after_unprepare")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 after unprepare”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:291](../../../../library/modules/robin-figure4prepareprimitive/#decl-quantumblockencoding-robin-warmrobinfigure4-after-unprepare). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Robin/Figure4Primitive.lean
 
-16 explicit public declarations, in source order.
+52 explicit public declarations, in source order.
 
-:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorProgram")
-*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 indicator program”. For the fixed fourth-order 'N=8' instance, bulk rows are 2 through 5.
+:::definition "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin row bulk indicator program”. Historical row-bulk indicator for rows 2 through 5 of 'D'.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
 *Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
 
-*Technical source note.* For the fixed fourth-order 'N=8' instance, bulk rows are 2 through 5. On three little-endian system bits this predicate is 'q1 XOR q2'.
+*Technical source note.* Historical row-bulk indicator for rows 2 through 5 of 'D'. Figure 4 acts on 'D^T', so this circuit is retained only as a source-audit guard.
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:18](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4indicatorprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:19](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinrowbulkindicatorprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
-:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorBasisEquiv")
-*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 indicator basis equiv”.
+:::definition "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin row bulk indicator basis equiv”.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
@@ -6555,11 +7855,11 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:18](../../../../librar
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:21](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4indicatorbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:22](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinrowbulkindicatorbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
-:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorBasisAction" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorBasisAction")
-*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 indicator basis action”; the hypotheses and conclusion in the code panel fix its exact scope.
+:::theorem "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorBasisAction" (lean := "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorBasisAction")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin row bulk indicator basis action”; the hypotheses and conclusion in the code panel fix its exact scope.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
@@ -6569,11 +7869,11 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:21](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:26](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4indicatorbasisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:27](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinrowbulkindicatorbasisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
-:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorProgram_eval")
-*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 indicator program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+:::theorem "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin row bulk indicator program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
@@ -6583,7 +7883,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:26](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:36](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4indicatorprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:37](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinrowbulkindicatorprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.primitiveSwapCircuit" (lean := "QuantumBlockEncoding.Robin.primitiveSwapCircuit")
@@ -6597,7 +7897,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:36](../../../../librar
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:45](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-primitiveswapcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:46](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-primitiveswapcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.primitiveSwapBasisEquiv" (lean := "QuantumBlockEncoding.Robin.primitiveSwapBasisEquiv")
@@ -6611,7 +7911,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:45](../../../../librar
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:50](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-primitiveswapbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:51](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-primitiveswapbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.primitiveSwapCircuit_eval" (lean := "QuantumBlockEncoding.Robin.primitiveSwapCircuit_eval")
@@ -6625,7 +7925,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:50](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:56](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-primitiveswapcircuit-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:57](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-primitiveswapcircuit-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapProgram")
@@ -6639,7 +7939,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:56](../../../../librar
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:68](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:69](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapBasisEquiv")
@@ -6653,7 +7953,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:68](../../../../librar
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:73](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:74](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapProgram_eval")
@@ -6667,7 +7967,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:73](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:79](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:80](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapBasisAction" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapBasisAction")
@@ -6681,7 +7981,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:79](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:91](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapbasisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:92](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapbasisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapProgram_counts" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapProgram_counts")
@@ -6695,7 +7995,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:91](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:98](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapprogram-counts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:99](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapprogram-counts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinHomogeneousCoefficientOracle" (lean := "QuantumBlockEncoding.Robin.warmRobinHomogeneousCoefficientOracle")
@@ -6709,7 +8009,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:98](../../../../librar
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:104](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinhomogeneouscoefficientoracle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:105](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinhomogeneouscoefficientoracle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinHomogeneousCoefficientOracle_eq_identity" (lean := "QuantumBlockEncoding.Robin.warmRobinHomogeneousCoefficientOracle_eq_identity")
@@ -6723,11 +8023,11 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:104](../../../../libra
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:106](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinhomogeneouscoefficientoracle-eq-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:107](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinhomogeneouscoefficientoracle-eq-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
-:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorCleanup" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4IndicatorCleanup")
-*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 indicator cleanup”; the hypotheses and conclusion in the code panel fix its exact scope.
+:::theorem "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorCleanup" (lean := "QuantumBlockEncoding.Robin.warmRobinRowBulkIndicatorCleanup")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin row bulk indicator cleanup”; the hypotheses and conclusion in the code panel fix its exact scope.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
@@ -6737,7 +8037,511 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:106](../../../../libra
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:110](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4indicatorcleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:111](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinrowbulkindicatorcleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorReversibleProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 dt indicator reversible program”. Two disjoint pattern-controlled flips: '011' and '100'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Two disjoint pattern-controlled flips: '011' and '100'. Wires 'q3-q5' hold the system column, 'q7' is the indicator, and 'q8' is reusable clean workspace.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:125](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtindicatorreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 dt indicator basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:134](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtindicatorbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4SystemBits" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SystemBits")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 system bits”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:138](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4systembits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram_basisAction" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram_basisAction")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 dt indicator program basis action”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:141](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtindicatorprogram-basisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram_workspaceClean" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram_workspaceClean")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 dt indicator program workspace clean”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:151](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtindicatorprogram-workspaceclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 dt indicator program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:156](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtindicatorprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 dt indicator program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:159](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtindicatorprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram_noOracleCalls" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTIndicatorProgram_noOracleCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 dt indicator program no oracle calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:165](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtindicatorprogram-nooraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4AddressBits" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4AddressBits")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 address bits”. Two disjoint pattern-controlled flips: '011' and '100'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Two disjoint pattern-controlled flips: '011' and '100'. Wires 'q3-q5' hold the system column, 'q7' is the indicator, and 'q8' is reusable clean workspace. -/ def warmRobinFigure4DTIndicatorReversibleProgram : ReversibleProgram 9 := \[ .x 5 \] ++ cleanC3XReversibleProgram 3 4 5 7 8 (by decide) (by decide) (by decide) (by decide) (by decide) (by decide) ++ \[ .x 5, .x 3, .x 4 \] ++ cleanC3XReversibleProgram 3 4 5 7 8 (by decide) (by decide) (by decide) (by decide) (by decide) (by decide) ++ \[ .x 4, .x 3 \] def warmRobinFigure4DTIndicatorBasisEquiv : PrimitiveBasis 9 ≃ PrimitiveBasis 9 := evalReversibleProgram warmRobinFigure4DTIndicatorReversibleProgram def warmRobinFigure4SystemBits (bits : PrimitiveBasis 9) : Fin 8 := ⟨(bits 3).val + 2 \* (bits 4).val + 4 \* (bits 5).val, by omega⟩ theorem warmRobinFigure4DTIndicatorProgram\_basisAction (bits : PrimitiveBasis 9) (workspaceClean : bits 8 = 0) : let output := warmRobinFigure4DTIndicatorBasisEquiv bits output 7 = (if warmRobinFigure4TransposeBulk (warmRobinFigure4SystemBits bits) then flipBit (bits 7) else bits 7) ∧ output 8 = 0 ∧ (∀ wire : Fin 9, wire ≠ 7 → wire ≠ 8 → output wire = bits wire) := by native\_decide +revert theorem warmRobinFigure4DTIndicatorProgram\_workspaceClean (bits : PrimitiveBasis 9) (workspaceClean : bits 8 = 0) : warmRobinFigure4DTIndicatorBasisEquiv bits 8 = 0 := (warmRobinFigure4DTIndicatorProgram\_basisAction bits workspaceClean).2.1 noncomputable def warmRobinFigure4DTIndicatorProgram : PrimitiveProgram 9 := compileReversibleProgram warmRobinFigure4DTIndicatorReversibleProgram theorem warmRobinFigure4DTIndicatorProgram\_eval : evalPrimitiveProgram warmRobinFigure4DTIndicatorProgram = ComplexLCU.equivPermutationMatrix warmRobinFigure4DTIndicatorBasisEquiv := by exact compileReversibleProgram\_eval \_ theorem warmRobinFigure4DTIndicatorProgram\_noOracleCalls : warmRobinFigure4DTIndicatorProgram.resource.oracleCalls = 0 := PrimitiveCircuit.resource\_oracleCalls\_eq\_zero \_ /-! number number  Distinct D-transpose and D sparse-access programs
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:171](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4addressbits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessReversibleProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 dt sparse access reversible program”. Convert slot 's' to 's XOR 3', then add the system column modulo eight.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Convert slot 's' to 's XOR 3', then add the system column modulo eight.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:175](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtsparseaccessreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 dt sparse access basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:187](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtsparseaccessbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessProgram_cleanAction" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessProgram_cleanAction")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 dt sparse access program clean action”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:191](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtsparseaccessprogram-cleanaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 dt sparse access program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:201](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtsparseaccessprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccessProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 dt sparse access program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:204](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtsparseaccessprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessReversibleProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 d sparse access reversible program”. Convert slot 's' to 's+5', then add the second register modulo eight.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Convert slot 's' to 's+5', then add the second register modulo eight.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:211](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dsparseaccessreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 d sparse access basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:226](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dsparseaccessbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessProgram_cleanAction" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessProgram_cleanAction")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 d sparse access program clean action”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:230](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dsparseaccessprogram-cleanaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 d sparse access program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:241](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dsparseaccessprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccessProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 d sparse access program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:244](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dsparseaccessprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 transport input”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:250](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_workspace" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_workspace")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transport input workspace”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:263](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput-workspace). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_address" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_address")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transport input address”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:268](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput-address). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_system" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_system")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transport input system”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:275](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput-system). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_coefficient" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_coefficient")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transport input coefficient”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:282](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput-coefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_indicator" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportInput_indicator")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transport input indicator”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:288](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportinput-indicator). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapReversibleProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 register swap reversible program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:294](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapFullBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwapFullBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 register swap full basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:300](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswapfullbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4AddressBits_decode" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4AddressBits_decode")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 address bits decode”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:304](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4addressbits-decode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4SystemBits_decode" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SystemBits_decode")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 system bits decode”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:310](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4systembits-decode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4Basis_ext" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4Basis_ext")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 basis ext”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:316](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4basis-ext). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccess_transportInput" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DTSparseAccess_transportInput")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 dt sparse access transport input”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:337](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dtsparseaccess-transportinput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwap_transportInput" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4RegisterSwap_transportInput")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 register swap transport input”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:355](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4registerswap-transportinput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DOffset_after_DT" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DOffset_after_DT")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 d offset after dt”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:362](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4doffset-after-dt). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccess_transportInput" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DSparseAccess_transportInput")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 d sparse access transport input”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:369](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4dsparseaccess-transportinput). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransportedPostSwapCleanup" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransportedPostSwapCleanup")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transported post swap cleanup”; the hypotheses and conclusion in the code panel fix its exact scope. Central cleanup root: D-transpose access, register transport, and inverse D access restore the original slot while leaving the transported row in the system register and returning 'q8' to zero.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Central cleanup root: D-transpose access, register transport, and inverse D access restore the original slot while leaving the transported row in the system register and returning 'q8' to zero.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:391](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4transportedpostswapcleanup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4SparseWorkspaceClean" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SparseWorkspaceClean")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 sparse workspace clean”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:430](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4sparseworkspaceclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinFigure4OpenPrimitiveContracts" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4OpenPrimitiveContracts")
@@ -6751,7 +8555,491 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:110](../../../../libra
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:120](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4openprimitivecontracts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:440](../../../../library/modules/robin-figure4primitive/#decl-quantumblockencoding-robin-warmrobinfigure4openprimitivecontracts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/Figure4SourceData.lean
+
+15 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4DOffset" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DOffset")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 d offset”. Offset table for the non-transposed sparse access used after register transport.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Offset table for the non-transposed sparse access used after register transport.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:16](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4doffset). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DOffset_table" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DOffset_table")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 d offset table”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:19](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4doffset-table). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4DT_D_offsets_cancel" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4DT_D_offsets_cancel")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 dt d offsets cancel”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:23](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4dt-d-offsets-cancel). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPeriodicIntegerReference" (lean := "QuantumBlockEncoding.Robin.warmRobinPeriodicIntegerReference")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin periodic integer reference”. Periodic fourth-order integer stencil indexed by cyclic row offset.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Periodic fourth-order integer stencil indexed by cyclic row offset.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:29](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinperiodicintegerreference). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPeriodic_rows_two_through_five" (lean := "QuantumBlockEncoding.Robin.warmRobinPeriodic_rows_two_through_five")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin periodic rows two through five”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:36](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinperiodic-rows-two-through-five). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPeriodic_columns_three_and_four" (lean := "QuantumBlockEncoding.Robin.warmRobinPeriodic_columns_three_and_four")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin periodic columns three and four”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:43](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinperiodic-columns-three-and-four). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4TransposeBulk" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransposeBulk")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 transpose bulk”. Figure 4 acts on a row of 'D^T', equivalently a column of 'D'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Figure 4 acts on a row of 'D^T', equivalently a column of 'D'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:50](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4transposebulk). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4TransposeBulk_matches_periodic" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4TransposeBulk_matches_periodic")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 transpose bulk matches periodic”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:58](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4transposebulk-matches-periodic). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_column_two_not_transpose_bulk" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_column_two_not_transpose_bulk")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 column two not transpose bulk”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:64](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4-column-two-not-transpose-bulk). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4_column_five_not_transpose_bulk" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4_column_five_not_transpose_bulk")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 column five not transpose bulk”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:69](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4-column-five-not-transpose-bulk). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BulkCoefficient" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BulkCoefficient")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 bulk coefficient”. Interior derivative coefficients by physical selector slot.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Interior derivative coefficients by physical selector slot.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:75](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4bulkcoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryCoefficient" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4BoundaryCoefficient")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 boundary coefficient”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:85](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4boundarycoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4SourceCoefficient" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SourceCoefficient")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 source coefficient”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:88](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4sourcecoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4SourceCoefficient_eq_weight" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SourceCoefficient_eq_weight")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 source coefficient eq weight”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:91](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4sourcecoefficient-eq-weight). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4SourceCoefficient_branch" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4SourceCoefficient_branch")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 source coefficient branch”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:96](../../../../library/modules/robin-figure4sourcedata/#decl-quantumblockencoding-robin-warmrobinfigure4sourcecoefficient-branch). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/Figure4T3.lean
+
+19 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:18](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4AllWorkspaceClean" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4AllWorkspaceClean")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 all workspace clean”; the hypotheses and conclusion in the code panel fix its exact scope. Both Figure-4 work wires return clean on every selector/system branch.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Both Figure-4 work wires return clean on every selector/system branch. The coefficient loader may superpose 'q6', but it does not alter this classical context, so the statement is quantified over both coefficient basis values.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:26](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4allworkspaceclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4LogicalMiddle" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4LogicalMiddle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 logical middle”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:37](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4logicalmiddle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4LogicalMiddle_apply" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4LogicalMiddle_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 logical middle apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:44](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4logicalmiddle-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4LogicalMiddle_cleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4LogicalMiddle_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 logical middle clean entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:53](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4logicalmiddle-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4Primitive_eval_eq_logical" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4Primitive_eval_eq_logical")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 primitive eval eq logical”; the hypotheses and conclusion in the code panel fix its exact scope. Exact physical-program semantics, including all macro compiler phases.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Exact physical-program semantics, including all macro compiler phases.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:88](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitive-eval-eq-logical). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4Logical_cleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4Logical_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 logical clean entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:136](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4logical-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveFlatUnitary" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveFlatUnitary")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive flat unitary”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:226](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitiveflatunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_unitary" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 primitive circuit unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:231](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitivecircuit-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCleanIndex" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCleanIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive clean index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:237](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitivecleanindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 primitive circuit clean entry”; the hypotheses and conclusion in the code panel fix its exact scope. Required whole-circuit clean entry; this is symbolic, not numerical.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Required whole-circuit clean entry; this is symbolic, not numerical.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:243](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitivecircuit-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanBlock" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanBlock")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 primitive circuit clean block”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:267](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitivecircuit-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveBlockContainsTarget" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveBlockContainsTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive block contains target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:276](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitiveblockcontainstarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveBlockContainsTarget_proof" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveBlockContainsTarget_proof")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 primitive block contains target proof”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:284](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitiveblockcontainstarget-proof). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitivePresentation" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitivePresentation")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive presentation”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:290](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitivepresentation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveResource" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveResource")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive resource”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:298](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitiveresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveOperatorCandidate" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveOperatorCandidate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive operator candidate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:301](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitiveoperatorcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveRefinement" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveRefinement")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive refinement”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:318](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitiverefinement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin figure 4 primitive verified block encoding”. Fixed-N8, f=1, standard-RY-corrected Figure-4 realization.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Fixed-N8, f=1, standard-RY-corrected Figure-4 realization.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:333](../../../../library/modules/robin-figure4t3/#decl-quantumblockencoding-robin-warmrobinfigure4primitiveverifiedblockencoding). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Robin/FixedN3Data.lean
@@ -7410,9 +9698,619 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:102](../../../../libr
 Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:112](../../../../library/modules/robin-hadamard8verified/#decl-quantumblockencoding-robin-warmrobinhadamard8logicalunitary-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
-# QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean
+# QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean
 
-17 explicit public declarations, in source order.
+16 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeControlWires" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeControlWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven amplitude control wires”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:14](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudecontrolwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeControlWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeControlWires_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven amplitude control wires ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:17](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudecontrolwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeSystem" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeSystem")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven amplitude system”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:24](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudesystem). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeSelector" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeSelector")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven amplitude selector”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:28](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudeselector). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeAngle" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeAngle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven amplitude angle”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:32](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudeangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeRy_eq_rotation" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeRy_eq_rotation")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven amplitude ry eq rotation”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:44](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudery-eq-rotation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeContextIndex" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeContextIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven amplitude context index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:58](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudecontextindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeContextIndex_bijective" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeContextIndex_bijective")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven amplitude context index bijective”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:70](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudecontextindex-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeContextEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeContextEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven amplitude context equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:74](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudecontextequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeContextEquiv_apply" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeContextEquiv_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven amplitude context equiv apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:80](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudecontextequiv-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitude_context_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitude_context_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven amplitude context iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:85](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitude-context-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenControlledRy_eq_amplitudeLift" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenControlledRy_eq_amplitudeLift")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven controlled ry eq amplitude lift”; the hypotheses and conclusion in the code panel fix its exact scope. Exact equality between the physical six-control RY block and the logical amplitude lift, including the otherwise dirty 'q7' workspace coordinate.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Exact equality between the physical six-control RY block and the logical amplitude lift, including the otherwise dirty 'q7' workspace coordinate.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:100](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevencontrolledry-eq-amplitudelift). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeCircuit" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven amplitude circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:135](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven amplitude program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:140](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudeprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven amplitude program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:144](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudeprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeProgram_noOracleCalls" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenAmplitudeProgram_noOracleCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven amplitude program no oracle calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:158](../../../../library/modules/robin-papersevenamplitudeprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenamplitudeprogram-nooraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean
+
+27 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemPerm" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemPerm")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven system perm”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:20](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevensystemperm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemPerm_bijective" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemPerm_bijective")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven system perm bijective”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:23](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevensystemperm-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven system equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:27](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevensystemequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemEquiv_apply" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemEquiv_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven system equiv apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:32](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevensystemequiv-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenCoefficientRat" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenCoefficientRat")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven coefficient rat”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:37](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevencoefficientrat). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenCoefficientRat_abs_le_one" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenCoefficientRat_abs_le_one")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven coefficient rat abs le one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:40](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevencoefficientrat-abs-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenCoefficient" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenCoefficient")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven coefficient”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:45](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevencoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenCoefficient_abs_le_one" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenCoefficient_abs_le_one")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven coefficient abs le one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:48](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevencoefficient-abs-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenRotation" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenRotation")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven rotation”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:57](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenrotation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenRotation_unitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenRotation_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven rotation unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:61](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenrotation-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenRotation_cleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenRotation_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven rotation clean entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:66](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenrotation-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenLogicalUnitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenLogicalUnitary")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven logical unitary”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:73](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenlogicalunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenLogicalUnitary_unitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenLogicalUnitary_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven logical unitary unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:82](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenlogicalunitary-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenLogicalUnitary_cleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenLogicalUnitary_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven logical unitary clean entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:90](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenlogicalunitary-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenLogicalUnitary_cleanBlock" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenLogicalUnitary_cleanBlock")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven logical unitary clean block”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:135](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenlogicalunitary-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenIndexEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenIndexEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven index equiv”. Flatten coefficient, selector, and system registers to seven qubits.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Flatten coefficient, selector, and system registers to seven qubits.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:147](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenindexequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenCleanIndex" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenCleanIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven clean index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:152](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevencleanindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenFlatUnitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFlatUnitary")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven flat unitary”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:156](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenflatunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenFlatUnitary_unitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFlatUnitary_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven flat unitary unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:161](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenflatunitary-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenFlatUnitary_cleanBlock" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFlatUnitary_cleanBlock")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven flat unitary clean block”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:167](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenflatunitary-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenBlockContainsTarget" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenBlockContainsTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven block contains target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:183](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenblockcontainstarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenBlockContainsTarget_proof" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenBlockContainsTarget_proof")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven block contains target proof”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:191](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenblockcontainstarget-proof). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenT2Schedule" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenT2Schedule")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven t 2 schedule”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:197](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevent2schedule). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenT2Circuit" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenT2Circuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven t 2 circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:203](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevent2circuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenT2Resource" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenT2Resource")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven t 2 resource”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:206](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevent2resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenOperatorCandidate" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenOperatorCandidate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven operator candidate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:209](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenoperatorcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenVerifiedBlockEncoding" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenVerifiedBlockEncoding")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven verified block encoding”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:227](../../../../library/modules/robin-papersevenlogicalunitary/#decl-quantumblockencoding-robin-warmrobinpapersevenverifiedblockencoding). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/PaperSevenPrepare.lean
+
+20 explicit public declarations, in source order.
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenHighAngle" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenHighAngle")
 *Plain-English reading.* This definition gives the library's named construction or computation for “warm robin uniform seven high angle”.
@@ -7425,7 +10323,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:112](../../../../libr
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:16](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenhighangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:17](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenhighangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenTailAngle" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenTailAngle")
@@ -7439,7 +10337,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:16](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:19](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformseventailangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:20](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformseventailangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenMiddleAngles" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenMiddleAngles")
@@ -7453,7 +10351,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:19](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:22](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenmiddleangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:23](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenmiddleangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenLowAngles" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenLowAngles")
@@ -7467,7 +10365,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:22](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:27](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenlowangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:28](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenlowangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenMiddleWires" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenMiddleWires")
@@ -7481,7 +10379,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:27](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:32](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenmiddlewires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:33](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenmiddlewires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinUniformSevenMiddleWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenMiddleWires_ne_target")
@@ -7495,7 +10393,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:32](../../../../lib
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:34](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenmiddlewires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:35](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenmiddlewires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenLowWires" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenLowWires")
@@ -7509,7 +10407,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:34](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:39](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenlowwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:40](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenlowwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinUniformSevenLowWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenLowWires_ne_target")
@@ -7523,7 +10421,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:39](../../../../lib
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:43](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenlowwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:44](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenlowwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepareCircuit" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepareCircuit")
@@ -7537,7 +10435,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:43](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:47](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenpreparecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:48](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenpreparecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepareProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepareProgram")
@@ -7551,7 +10449,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:47](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:55](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepareprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:56](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepareprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepareMatrix" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepareMatrix")
@@ -7565,7 +10463,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:55](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:60](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenpreparematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:61](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenpreparematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepareProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepareProgram_eval")
@@ -7579,7 +10477,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:60](../../../../lib
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:69](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepareprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:70](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepareprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepare_unitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepare_unitary")
@@ -7593,7 +10491,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:69](../../../../lib
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:83](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorprepare-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:84](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorprepare-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepare_noOracleCalls" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepare_noOracleCalls")
@@ -7607,7 +10505,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:83](../../../../lib
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:89](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepare-nooraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:90](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepare-nooraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepare_counts" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepare_counts")
@@ -7621,7 +10519,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:89](../../../../lib
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:93](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepare-counts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:94](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepare-counts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPaddedSlot" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPaddedSlot")
@@ -7635,7 +10533,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:93](../../../../lib
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:110](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenpaddedslot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:111](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinpapersevenpaddedslot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPaddedSlot_seven" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPaddedSlot_seven")
@@ -7649,7 +10547,999 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:110](../../../../li
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:113](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenpaddedslot-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:114](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinpapersevenpaddedslot-seven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepare" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepare")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven selector prepare”. The physical three-qubit PREPARE, flattened with the repository's declared little-endian convention.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The physical three-qubit PREPARE, flattened with the repository's declared little-endian convention.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:119](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorprepare). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepare_unitary_flat" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepare_unitary_flat")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven selector prepare unitary flat”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:124](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorprepare-unitary-flat). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepare_probability" (lean := "QuantumBlockEncoding.Robin.warmRobinUniformSevenPrepare_probability")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin uniform seven prepare probability”; the hypotheses and conclusion in the code panel fix its exact scope. The theorem uses probabilities directly, so no arbitrary clean-column phase convention for '1 / sqrt 7' enters the LCU proof.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The theorem uses probabilities directly, so no arbitrary clean-column phase convention for '1 / sqrt 7' enters the LCU proof.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:134](../../../../library/modules/robin-papersevenprepare/#decl-quantumblockencoding-robin-warmrobinuniformsevenprepare-probability). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean
+
+19 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorHighMatrix" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorHighMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven selector high matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:13](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorhighmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorMiddleMatrix" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorMiddleMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven selector middle matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:18](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectormiddlematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorLowMatrix" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorLowMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven selector low matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:25](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorlowmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorStages_eq_prepare" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorStages_eq_prepare")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven selector stages eq prepare”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:31](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorstages-eq-prepare). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenMiddlePhysicalWires" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenMiddlePhysicalWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven middle physical wires”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:43](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenmiddlephysicalwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenMiddlePhysicalWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenMiddlePhysicalWires_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven middle physical wires ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:45](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenmiddlephysicalwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenLowPhysicalWires" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenLowPhysicalWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven low physical wires”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:51](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenlowphysicalwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenLowPhysicalWires_ne_target" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenLowPhysicalWires_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven low physical wires ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:55](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenlowphysicalwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorBits_decode" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorBits_decode")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven selector bits decode”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:60](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorbits-decode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenHighContext_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenHighContext_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven high context iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:66](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenhighcontext-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenHighPhysical_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenHighPhysical_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven high physical eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:79](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenhighphysical-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenMiddleContext_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenMiddleContext_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven middle context iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:113](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenmiddlecontext-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenMiddlePhysical_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenMiddlePhysical_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven middle physical eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:126](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenmiddlephysical-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenLowContext_iff" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenLowContext_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven low context iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:173](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenlowcontext-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenLowPhysical_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenLowPhysical_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven low physical eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:186](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenlowphysical-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepareCircuit" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepareCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven selector prepare circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:233](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorpreparecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepareCircuit_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepareCircuit_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven selector prepare circuit eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:243](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorpreparecircuit-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorUnprepareCircuit" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorUnprepareCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven selector unprepare circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:270](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorunpreparecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorUnprepareCircuit_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorUnprepareCircuit_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven selector unprepare circuit eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:273](../../../../library/modules/robin-papersevenprepareprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorunpreparecircuit-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean
+
+29 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectReversibleProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven select reversible program”. Physical SELECT in the declared eight-wire order.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Physical SELECT in the declared eight-wire order. CCX remains only in the proof IR and is compiled away by 'compileReversibleProgram'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:19](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectBasisEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven select basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:34](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemBits" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSystemBits")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven system bits”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:38](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevensystembits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorBits" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorBits")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven selector bits”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:41](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorbits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_cleanAction" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_cleanAction")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven select program clean action”; the hypotheses and conclusion in the code panel fix its exact scope. Clean-workspace action of the source SELECT.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Clean-workspace action of the source SELECT.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:45](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectprogram-cleanaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_workspaceClean" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_workspaceClean")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven select program workspace clean”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:56](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectprogram-workspaceclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven select program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:61](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven select program eval”; the hypotheses and conclusion in the code panel fix its exact scope. Exact primitive matrix for source SELECT, including its exact compiler phase.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Exact primitive matrix for source SELECT, including its exact compiler phase.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:66](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_noOracleCalls" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_noOracleCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven select program no oracle calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:72](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectprogram-nooraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.WarmRobinPaperSevenFullSystem" (lean := "QuantumBlockEncoding.Robin.WarmRobinPaperSevenFullSystem")
+*Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “warm robin paper seven full system”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* abbrev.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:76](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenfullsystem). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenEncodeBits" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenEncodeBits")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven encode bits”. Encode the declared register product into the physical wire order.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Encode the declared register product into the physical wire order.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:79](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenencodebits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsIndex" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven bits index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:91](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenbitsindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsIndex_bijective" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsIndex_bijective")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven bits index bijective”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:96](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenbitsindex-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven bits equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:100](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenbitsequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsEquiv_apply" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsEquiv_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven bits equiv apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:106](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenbitsequiv-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinBitXor" (lean := "QuantumBlockEncoding.Robin.warmRobinBitXor")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin bit xor”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:110](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinbitxor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinBitAnd" (lean := "QuantumBlockEncoding.Robin.warmRobinBitAnd")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin bit and”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:113](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinbitand). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemPerm" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemPerm")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven full system perm”. Explicit full-space action of the reversible adder.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Explicit full-space action of the reversible adder. On dirty workspace this records the actual extension instead of claiming tensor identity.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:118](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenfullsystemperm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemPerm_bijective" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemPerm_bijective")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven full system perm bijective”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:133](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenfullsystemperm-bijective). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemEquiv" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven full system equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:137](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenfullsystemequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemEquiv_apply" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemEquiv_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven full system equiv apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:142](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenfullsystemequiv-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemEquiv_clean" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemEquiv_clean")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven full system equiv clean”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:147](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenfullsystemequiv-clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectBasisAction_index" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectBasisAction_index")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven select basis action index”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:154](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectbasisaction-index). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_eval_reindexed" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectProgram_eval_reindexed")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven select program eval reindexed”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:173](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenselectprogram-eval-reindexed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceRotation" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceRotation")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven workspace rotation”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:196](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenworkspacerotation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceRotation_unitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceRotation_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven workspace rotation unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:201](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenworkspacerotation-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceLogicalUnitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceLogicalUnitary")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven workspace logical unitary”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:207](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenworkspacelogicalunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceLogicalUnitary_unitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceLogicalUnitary_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven workspace logical unitary unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:218](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenworkspacelogicalunitary-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceLogicalUnitary_cleanEntry" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenWorkspaceLogicalUnitary_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven workspace logical unitary clean entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:227](../../../../library/modules/robin-papersevenprimitive/#decl-quantumblockencoding-robin-warmrobinpapersevenworkspacelogicalunitary-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/PaperSevenT3.lean
+
+19 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepareProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepareProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven selector prepare program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:13](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorprepareprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepareProgram_eval" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenSelectorPrepareProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven selector prepare program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:18](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenselectorprepareprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveProgram" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive program”. Chronological exact primitive source program.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Chronological exact primitive source program.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:33](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven primitive eval eq logical”; the hypotheses and conclusion in the code panel fix its exact scope. Required T3 semantic root.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Required T3 semantic root. Equality includes the exact accumulated global phase and uses the actual reversible extension on dirty 'q7'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:41](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitive-eval-eq-logical). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsEquiv_encode" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenBitsEquiv_encode")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven bits equiv encode”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:71](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenbitsequiv-encode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveFlatUnitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveFlatUnitary")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive flat unitary”. Flat eight-qubit unitary used by the operator-first block-encoding API.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Flat eight-qubit unitary used by the operator-first block-encoding API.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:81](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveflatunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveFlatUnitary_unitary" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveFlatUnitary_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven primitive flat unitary unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:86](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveflatunitary-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveCleanIndex" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveCleanIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive clean index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:92](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitivecleanindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_cleanBlock" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_cleanBlock")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven primitive clean block”; the hypotheses and conclusion in the code panel fix its exact scope. The physical primitive program has the exact 'M/224 = A/(56/3)' clean block; no numerical matrix comparison is used.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The physical primitive program has the exact 'M/224 = A/(56/3)' clean block; no numerical matrix comparison is used.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:99](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitive-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveBlockContainsTarget" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveBlockContainsTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive block contains target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:117](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveblockcontainstarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveBlockContainsTarget_proof" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveBlockContainsTarget_proof")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven primitive block contains target proof”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:125](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveblockcontainstarget-proof). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemEquiv_workspace" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenFullSystemEquiv_workspace")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven full system equiv workspace”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:193](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenfullsystemequiv-workspace). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_workspaceClean" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_workspaceClean")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven primitive workspace clean”; the hypotheses and conclusion in the code panel fix its exact scope. Matrix-level workspace restoration: a clean input column has no amplitude on a dirty workspace output row.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Matrix-level workspace restoration: a clean input column has no amplitude on a dirty workspace output row.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:227](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitive-workspaceclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitivePresentation" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitivePresentation")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive presentation”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:239](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitivepresentation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveResource" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveResource")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive resource”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:247](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_resource_faithful" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_resource_faithful")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven primitive resource faithful”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:250](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitive-resource-faithful). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveOperatorCandidate" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveOperatorCandidate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive operator candidate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:254](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveoperatorcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveRefinement" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveRefinement")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive refinement”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:271](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiverefinement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin paper seven primitive verified block encoding”. Exact primitive verified block encoding for the paper-seven source route.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Exact primitive verified block encoding for the paper-seven source route.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:280](../../../../library/modules/robin-papersevent3/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveverifiedblockencoding). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Robin/ResourceComparison.lean
@@ -8250,6 +12140,262 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:66](../../../../library/
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:76](../../../../library/modules/robin-sourcebaseline/#decl-quantumblockencoding-robin-warmrobinsourceopencontracts-nonempty). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/SourceSevenSparseData.lean
+
+18 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceDTOffset" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceDTOffset")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source dt offset”. The source 'D^T' offset ordering, expressed in the physical selector.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source 'D^T' offset ordering, expressed in the physical selector.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:16](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcedtoffset). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceDTOffset_table" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceDTOffset_table")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source dt offset table”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:19](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcedtoffset-table). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceDTRow" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceDTRow")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source dt row”. Sparse row addressed by one physical slot at a fixed source column.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Sparse row addressed by one physical slot at a fixed source column.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:24](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcedtrow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceSevenWeight" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceSevenWeight")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source seven weight”. Exact integer value returned by the source sparse-value oracle.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Exact integer value returned by the source sparse-value oracle.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:29](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcesevenweight). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceSevenWeight_slot7_zero" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceSevenWeight_slot7_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source seven weight slot 7 zero”; the hypotheses and conclusion in the code panel fix its exact scope. Slot seven is the zero diagonal used only for physical padding.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Slot seven is the zero diagonal used only for physical padding.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:33](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcesevenweight-slot7-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceDTRow_bijective_in_slot" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceDTRow_bijective_in_slot")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source dt row bijective in slot”; the hypotheses and conclusion in the code panel fix its exact scope. At a fixed column, the eight physical slots enumerate eight distinct rows.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* At a fixed column, the eight physical slots enumerate eight distinct rows.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:38](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcedtrow-bijective-in-slot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceDTRow_bijective_in_column" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceDTRow_bijective_in_column")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source dt row bijective in column”; the hypotheses and conclusion in the code panel fix its exact scope. At a fixed slot, cyclic sparse access is a permutation of the columns.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* At a fixed slot, cyclic sparse access is a permutation of the columns.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:43](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcedtrow-bijective-in-column). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source seven sparse decomposition”; the hypotheses and conclusion in the code panel fix its exact scope. Exact sparse-access decomposition with seven active physical states.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Exact sparse-access decomposition with seven active physical states.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:48](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcesevensparsedecomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceND" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceND")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source nd”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:56](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcend). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceNf" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceNf")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source nf”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:57](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcenf). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceKappa" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceKappa")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source kappa”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:58](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcekappa). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceAmplitude_eq_integer_div_32" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceAmplitude_eq_integer_div_32")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source amplitude eq integer div 32”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:60](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourceamplitude-eq-integer-div-32). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceAlpha_eq" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceAlpha_eq")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source alpha eq”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:67](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcealpha-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceSevenSelectorProbability" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceSevenSelectorProbability")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source seven selector probability”. Selector probability in the clean column of padded-seven PREPARE.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Selector probability in the clean column of padded-seven PREPARE.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:72](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcesevenselectorprobability). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceSevenPaddedCoefficient" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceSevenPaddedCoefficient")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source seven padded coefficient”. Coefficient loaded by an active sparse slot.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Coefficient loaded by an active sparse slot. The padded slot is assigned the identity coefficient because its clean PREPARE probability is zero.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:77](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcesevenpaddedcoefficient). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinSourceSevenCleanFormula" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceSevenCleanFormula")
+*Plain-English reading.* This definition gives the library's named construction or computation for “warm robin source seven clean formula”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:80](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcesevencleanformula). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceSevenCleanFormula_eq_integer_div_224" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceSevenCleanFormula_eq_integer_div_224")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source seven clean formula eq integer div 224”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:87](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcesevencleanformula-eq-integer-div-224). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinSourceSevenCleanFormula_eq_target" (lean := "QuantumBlockEncoding.Robin.warmRobinSourceSevenCleanFormula_eq_target")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin source seven clean formula eq target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:93](../../../../library/modules/robin-sourcesevensparsedata/#decl-quantumblockencoding-robin-warmrobinsourcesevencleanformula-eq-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Robin/SymmetryFourSlot.lean
@@ -11400,6 +15546,108 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:182](../../../../libr
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:209](../../../../library/modules/robin-systemconjugation/#decl-quantumblockencoding-robin-complexlcu-cleansystemblock-conjugatesystem). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/Robin/T3ResourceComparison.lean
+
+7 explicit public declarations, in source order.
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveResource_exact" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveResource_exact")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven primitive resource exact”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:18](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinpapersevenprimitiveresource-exact). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveResource_exact" (lean := "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveResource_exact")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin xor four slot primitive resource exact”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:28](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinxorfourslotprimitiveresource-exact). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveResource_exact" (lean := "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveResource_exact")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin figure 4 primitive resource exact”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:38](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinfigure4primitiveresource-exact). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven" (lean := "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin four slot t 3 cost better than paper seven”; the hypotheses and conclusion in the code panel fix its exact scope. The accepted XOR route uses 106 gates versus the source normal form's 312; the later score fields therefore do not decide this comparison.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The accepted XOR route uses 106 gates versus the source normal form's 312; the later score fields therefore do not decide this comparison.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:50](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinfourslott3cost-betterthan-paperseven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4" (lean := "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin four slot t 3 cost better than figure 4”; the hypotheses and conclusion in the code panel fix its exact scope. Under the fixed exact primitive convention, the XOR four-slot route uses 106 gates while the fixed-N8 Figure-4 realization uses 881.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Under the fixed exact primitive convention, the XOR four-slot route uses 106 gates while the fixed-N8 Figure-4 realization uses 881. This theorem does not assert optimality outside that declared compiler and score convention.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:64](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinfourslott3cost-betterthan-figure4). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.warmRobinBestVerified" (lean := "QuantumBlockEncoding.Robin.warmRobinBestVerified")
+*Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “warm robin best verified”. The best fully verified Robin candidate under the frozen T3 comparison.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The best fully verified Robin candidate under the frozen T3 comparison.
+
+*Declaration kind.* abbrev.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:76](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinbestverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.Robin.paperLevelWinnerCertified" (lean := "QuantumBlockEncoding.Robin.paperLevelWinnerCertified")
+*Plain-English reading.* This definition gives the library's named construction or computation for “paper level winner certified”. Machine-readable publication guard, enabled only after both source-side same-tier comparisons have compiled.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Machine-readable publication guard, enabled only after both source-side same-tier comparisons have compiled.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:82](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-paperlevelwinnercertified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Robin/WeightedPermutation.lean

@@ -872,9 +872,321 @@ Source: [QuantumBlockEncoding/ConcreteSemantics.lean:182](../../../../library/mo
 Source: [QuantumBlockEncoding/ConcreteSemantics.lean:194](../../../../library/modules/concretesemantics/#decl-quantumblockencoding-concretesemantics-signalsystemblockprojection-eq-cleanblockproduct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/ModularAdder3.lean
+
+22 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.primitiveXProgram" (lean := "QuantumBlockEncoding.primitiveXProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive x program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:16](../../../../library/modules/modularadder3/#decl-quantumblockencoding-primitivexprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveXProgram_eval" (lean := "QuantumBlockEncoding.primitiveXProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive x program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:21](../../../../library/modules/modularadder3/#decl-quantumblockencoding-primitivexprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.compileReversibleGate" (lean := "QuantumBlockEncoding.compileReversibleGate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “compile reversible gate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:31](../../../../library/modules/modularadder3/#decl-quantumblockencoding-compilereversiblegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.compileReversibleGate_eval" (lean := "QuantumBlockEncoding.compileReversibleGate_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “compile reversible gate eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:40](../../../../library/modules/modularadder3/#decl-quantumblockencoding-compilereversiblegate-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.compileReversibleProgram" (lean := "QuantumBlockEncoding.compileReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “compile reversible program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:52](../../../../library/modules/modularadder3/#decl-quantumblockencoding-compilereversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.compileReversibleProgram_eval" (lean := "QuantumBlockEncoding.compileReversibleProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “compile reversible program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:58](../../../../library/modules/modularadder3/#decl-quantumblockencoding-compilereversibleprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.cleanC3XReversibleProgram" (lean := "QuantumBlockEncoding.cleanC3XReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “clean c 3 x reversible program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:75](../../../../library/modules/modularadder3/#decl-quantumblockencoding-cleanc3xreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.cleanC3XBasisEquiv" (lean := "QuantumBlockEncoding.cleanC3XBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “clean c 3 x basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:88](../../../../library/modules/modularadder3/#decl-quantumblockencoding-cleanc3xbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.c3xBasisAction" (lean := "QuantumBlockEncoding.c3xBasisAction")
+*Plain-English reading.* This definition gives the library's named construction or computation for “c 3 x basis action”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:102](../../../../library/modules/modularadder3/#decl-quantumblockencoding-c3xbasisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.cleanC3XBasisAction" (lean := "QuantumBlockEncoding.cleanC3XBasisAction")
+*Plain-English reading.* Lean checks the proposition indexed as “clean c 3 x basis action”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:109](../../../../library/modules/modularadder3/#decl-quantumblockencoding-cleanc3xbasisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.cleanC3XWorkspaceClean" (lean := "QuantumBlockEncoding.cleanC3XWorkspaceClean")
+*Plain-English reading.* Lean checks the proposition indexed as “clean c 3 x workspace clean”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:143](../../../../library/modules/modularadder3/#decl-quantumblockencoding-cleanc3xworkspaceclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.cleanC3XPrimitiveProgram" (lean := "QuantumBlockEncoding.cleanC3XPrimitiveProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “clean c 3 x primitive program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:165](../../../../library/modules/modularadder3/#decl-quantumblockencoding-cleanc3xprimitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.cleanC3XPrimitiveProgram_eval" (lean := "QuantumBlockEncoding.cleanC3XPrimitiveProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “clean c 3 x primitive program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:178](../../../../library/modules/modularadder3/#decl-quantumblockencoding-cleanc3xprimitiveprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.littleEndian3Value" (lean := "QuantumBlockEncoding.littleEndian3Value")
+*Plain-English reading.* This definition gives the library's named construction or computation for “little endian 3 value”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:198](../../../../library/modules/modularadder3/#decl-quantumblockencoding-littleendian3value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.modularAdd3ReversibleProgram" (lean := "QuantumBlockEncoding.modularAdd3ReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “modular add 3 reversible program”. Wire order is 'a0,a1,a2,b0,b1,b2,work'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Wire order is 'a0,a1,a2,b0,b1,b2,work'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:203](../../../../library/modules/modularadder3/#decl-quantumblockencoding-modularadd3reversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.modularAdd3BasisEquiv" (lean := "QuantumBlockEncoding.modularAdd3BasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “modular add 3 basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:214](../../../../library/modules/modularadder3/#decl-quantumblockencoding-modularadd3basisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.modularAdd3_cleanAction" (lean := "QuantumBlockEncoding.modularAdd3_cleanAction")
+*Plain-English reading.* Lean checks the proposition indexed as “modular add 3 clean action”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:217](../../../../library/modules/modularadder3/#decl-quantumblockencoding-modularadd3-cleanaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.modularAdd3PrimitiveProgram" (lean := "QuantumBlockEncoding.modularAdd3PrimitiveProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “modular add 3 primitive program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:227](../../../../library/modules/modularadder3/#decl-quantumblockencoding-modularadd3primitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.modularAdd3Primitive_eval" (lean := "QuantumBlockEncoding.modularAdd3Primitive_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “modular add 3 primitive eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:230](../../../../library/modules/modularadder3/#decl-quantumblockencoding-modularadd3primitive-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.modularAdd3Primitive_workspaceClean" (lean := "QuantumBlockEncoding.modularAdd3Primitive_workspaceClean")
+*Plain-English reading.* Lean checks the proposition indexed as “modular add 3 primitive workspace clean”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:235](../../../../library/modules/modularadder3/#decl-quantumblockencoding-modularadd3primitive-workspaceclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.modularAdd3Primitive_resource_faithful" (lean := "QuantumBlockEncoding.modularAdd3Primitive_resource_faithful")
+*Plain-English reading.* Lean checks the proposition indexed as “modular add 3 primitive resource faithful”; the hypotheses and conclusion in the code panel fix its exact scope. The resource is definitionally computed from the emitted primitive list.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The resource is definitionally computed from the emitted primitive list.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:241](../../../../library/modules/modularadder3/#decl-quantumblockencoding-modularadd3primitive-resource-faithful). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.modularAdd3Primitive_oracleCalls_eq_zero" (lean := "QuantumBlockEncoding.modularAdd3Primitive_oracleCalls_eq_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “modular add 3 primitive oracle calls eq zero”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ModularAdder3.lean:245](../../../../library/modules/modularadder3/#decl-quantumblockencoding-modularadd3primitive-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/PrimitiveBasisLE.lean
 
-4 explicit public declarations, in source order.
+8 explicit public declarations, in source order.
 
 :::definition "QuantumBlockEncoding.primitiveBasisLEEquiv" (lean := "QuantumBlockEncoding.primitiveBasisLEEquiv")
 *Plain-English reading.* This definition gives the library's named construction or computation for “primitive basis le equiv”. Convert named primitive bits to a flat little-endian matrix index.
@@ -930,6 +1242,62 @@ Source: [QuantumBlockEncoding/PrimitiveBasisLE.lean:33](../../../../library/modu
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/PrimitiveBasisLE.lean:41](../../../../library/modules/primitivebasisle/#decl-quantumblockencoding-primitivebasisleequiv-six-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveBits3LE" (lean := "QuantumBlockEncoding.primitiveBits3LE")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive bits 3 le”. Explicit inverse used by finite three-wire compiler proofs.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Explicit inverse used by finite three-wire compiler proofs.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveBasisLE.lean:48](../../../../library/modules/primitivebasisle/#decl-quantumblockencoding-primitivebits3le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm" (lean := "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive basis le equiv three symm”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveBasisLE.lean:53](../../../../library/modules/primitivebasisle/#decl-quantumblockencoding-primitivebasisleequiv-three-symm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveBits3LEWithout" (lean := "QuantumBlockEncoding.primitiveBits3LEWithout")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive bits 3 le without”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveBasisLE.lean:57](../../../../library/modules/primitivebasisle/#decl-quantumblockencoding-primitivebits3lewithout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.splitPrimitiveWire_primitiveBits3LE_context_eq" (lean := "QuantumBlockEncoding.splitPrimitiveWire_primitiveBits3LE_context_eq")
+*Plain-English reading.* Lean checks the proposition indexed as “split primitive wire primitive bits 3 le context eq”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveBasisLE.lean:63](../../../../library/modules/primitivebasisle/#decl-quantumblockencoding-splitprimitivewire-primitivebits3le-context-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/PrimitiveCircuit.lean
@@ -1482,9 +1850,657 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:203](../../../../library/mod
 Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:208](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/PrimitiveMacros.lean
+
+43 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.hadamardMatrix" (lean := "QuantumBlockEncoding.hadamardMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “hadamard matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:15](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-hadamardmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.phaseMatrix" (lean := "QuantumBlockEncoding.phaseMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “phase matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:19](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-phasematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.hadamardMatrix_apply" (lean := "QuantumBlockEncoding.hadamardMatrix_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “hadamard matrix apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:24](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-hadamardmatrix-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.phaseMatrix_apply" (lean := "QuantumBlockEncoding.phaseMatrix_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “phase matrix apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:41](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-phasematrix-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveHProgram" (lean := "QuantumBlockEncoding.primitiveHProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive h program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:76](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivehprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveTProgram" (lean := "QuantumBlockEncoding.primitiveTProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive t program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:82](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivetprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveTdgProgram" (lean := "QuantumBlockEncoding.primitiveTdgProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive tdg program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:87](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivetdgprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.evalGlobalPhase_pi_div_two" (lean := "QuantumBlockEncoding.evalGlobalPhase_pi_div_two")
+*Plain-English reading.* Lean checks the proposition indexed as “eval global phase pi div two”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:92](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-evalglobalphase-pi-div-two). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.liftPrimitiveOneQubit_mul" (lean := "QuantumBlockEncoding.liftPrimitiveOneQubit_mul")
+*Plain-English reading.* Lean checks the proposition indexed as “lift primitive one qubit mul”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:98](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-liftprimitiveonequbit-mul). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.smul_liftPrimitiveOneQubit" (lean := "QuantumBlockEncoding.smul_liftPrimitiveOneQubit")
+*Plain-English reading.* Lean checks the proposition indexed as “smul lift primitive one qubit”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:108](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-smul-liftprimitiveonequbit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveHProgram_eval" (lean := "QuantumBlockEncoding.primitiveHProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive h program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:117](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivehprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveTProgram_eval" (lean := "QuantumBlockEncoding.primitiveTProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive t program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:132](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivetprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveTdgProgram_eval" (lean := "QuantumBlockEncoding.primitiveTdgProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive tdg program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:152](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivetdgprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.phasePermutationMatrix" (lean := "QuantumBlockEncoding.phasePermutationMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “phase permutation matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:174](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-phasepermutationmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.phasePermutationMatrix_mul" (lean := "QuantumBlockEncoding.phasePermutationMatrix_mul")
+*Plain-English reading.* Lean checks the proposition indexed as “phase permutation matrix mul”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:180](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-phasepermutationmatrix-mul). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.evalPrimitiveCx_eq_phasePermutationMatrix" (lean := "QuantumBlockEncoding.evalPrimitiveCx_eq_phasePermutationMatrix")
+*Plain-English reading.* Lean checks the proposition indexed as “eval primitive cx eq phase permutation matrix”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:198](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-evalprimitivecx-eq-phasepermutationmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.liftPhaseMatrix_eq_phasePermutationMatrix" (lean := "QuantumBlockEncoding.liftPhaseMatrix_eq_phasePermutationMatrix")
+*Plain-English reading.* Lean checks the proposition indexed as “lift phase matrix eq phase permutation matrix”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:206](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-liftphasematrix-eq-phasepermutationmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveCxProgram" (lean := "QuantumBlockEncoding.primitiveCxProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive cx program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:232](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivecxprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveCxProgram_eval" (lean := "QuantumBlockEncoding.primitiveCxProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive cx program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:237](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivecxprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveTProgram_eval_monomial" (lean := "QuantumBlockEncoding.primitiveTProgram_eval_monomial")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive t program eval monomial”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:249](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivetprogram-eval-monomial). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveTdgProgram_eval_monomial" (lean := "QuantumBlockEncoding.primitiveTdgProgram_eval_monomial")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive tdg program eval monomial”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:258](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitivetdgprogram-eval-monomial). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.MonomialProgram" (lean := "QuantumBlockEncoding.MonomialProgram")
+*Plain-English reading.* This record groups the data and proof fields needed for “monomial program”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:267](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-monomialprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.MonomialProgram.seq" (lean := "QuantumBlockEncoding.MonomialProgram.seq")
+*Plain-English reading.* This definition gives the library's named construction or computation for “seq”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:276](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-monomialprogram-seq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.MonomialProgram.cx" (lean := "QuantumBlockEncoding.MonomialProgram.cx")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cx”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:285](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-monomialprogram-cx). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.MonomialProgram.t" (lean := "QuantumBlockEncoding.MonomialProgram.t")
+*Plain-English reading.* This definition gives the library's named construction or computation for “t”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:292](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-monomialprogram-t). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.MonomialProgram.tdg" (lean := "QuantumBlockEncoding.MonomialProgram.tdg")
+*Plain-English reading.* This definition gives the library's named construction or computation for “tdg”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:299](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-monomialprogram-tdg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveCCXMiddle" (lean := "QuantumBlockEncoding.primitiveCCXMiddle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive ccx middle”. The phase-only middle of the standard exact Toffoli decomposition.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The phase-only middle of the standard exact Toffoli decomposition.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:309](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitiveccxmiddle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveCCXProgram" (lean := "QuantumBlockEncoding.primitiveCCXProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive ccx program”. The exact primitive program uses the requested H/T/Tdg/CX chronology.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The exact primitive program uses the requested H/T/Tdg/CX chronology.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:330](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitiveccxprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveCCXMiddle_permutation_eq_refl" (lean := "QuantumBlockEncoding.primitiveCCXMiddle_permutation_eq_refl")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive ccx middle permutation eq refl”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:339](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitiveccxmiddle-permutation-eq-refl). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveCCXMiddle_phase_eq_ccz" (lean := "QuantumBlockEncoding.primitiveCCXMiddle_phase_eq_ccz")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive ccx middle phase eq ccz”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:363](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitiveccxmiddle-phase-eq-ccz). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.cczMatrix" (lean := "QuantumBlockEncoding.cczMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ccz matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:384](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-cczmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveCCXMiddle_eval" (lean := "QuantumBlockEncoding.primitiveCCXMiddle_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive ccx middle eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:392](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitiveccxmiddle-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.zMatrix" (lean := "QuantumBlockEncoding.zMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “z matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:407](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-zmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.hadamard_mul_hadamard" (lean := "QuantumBlockEncoding.hadamard_mul_hadamard")
+*Plain-English reading.* Lean checks the proposition indexed as “hadamard mul hadamard”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:410](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-hadamard-mul-hadamard). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.hadamard_mul_z_mul_hadamard" (lean := "QuantumBlockEncoding.hadamard_mul_z_mul_hadamard")
+*Plain-English reading.* Lean checks the proposition indexed as “hadamard mul z mul hadamard”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:419](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-hadamard-mul-z-mul-hadamard). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.liftPrimitiveOneQubit_eq_blockDiagonal" (lean := "QuantumBlockEncoding.liftPrimitiveOneQubit_eq_blockDiagonal")
+*Plain-English reading.* Lean checks the proposition indexed as “lift primitive one qubit eq block diagonal”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:430](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-liftprimitiveonequbit-eq-blockdiagonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.cczTargetBlock" (lean := "QuantumBlockEncoding.cczTargetBlock")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ccz target block”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:440](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-ccztargetblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.cczMatrix_eq_blockDiagonal" (lean := "QuantumBlockEncoding.cczMatrix_eq_blockDiagonal")
+*Plain-English reading.* Lean checks the proposition indexed as “ccz matrix eq block diagonal”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:448](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-cczmatrix-eq-blockdiagonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ccxTargetBlock" (lean := "QuantumBlockEncoding.ccxTargetBlock")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ccx target block”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:500](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-ccxtargetblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.equivPermutationMatrix_ccx_eq_blockDiagonal" (lean := "QuantumBlockEncoding.equivPermutationMatrix_ccx_eq_blockDiagonal")
+*Plain-English reading.* Lean checks the proposition indexed as “equiv permutation matrix ccx eq block diagonal”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:508](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-equivpermutationmatrix-ccx-eq-blockdiagonal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.hadamard_conjugates_ccz" (lean := "QuantumBlockEncoding.hadamard_conjugates_ccz")
+*Plain-English reading.* Lean checks the proposition indexed as “hadamard conjugates ccz”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:580](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-hadamard-conjugates-ccz). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.primitiveCCXProgram_eval" (lean := "QuantumBlockEncoding.primitiveCCXProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive ccx program eval”; the hypotheses and conclusion in the code panel fix its exact scope. The requested H/T/Tdg/CX decomposition is exactly Toffoli, including its global phase.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The requested H/T/Tdg/CX decomposition is exactly Toffoli, including its global phase.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:611](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitiveccxprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.primitiveCCXProgramRefinement" (lean := "QuantumBlockEncoding.primitiveCCXProgramRefinement")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive ccx program refinement”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveMacros.lean:624](../../../../library/modules/primitivemacros/#decl-quantumblockencoding-primitiveccxprogramrefinement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/PrimitiveRefinement.lean
 
-2 explicit public declarations, in source order.
+5 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.PrimitiveProgramRefinement" (lean := "QuantumBlockEncoding.PrimitiveProgramRefinement")
+*Plain-English reading.* This record groups the data and proof fields needed for “primitive program refinement”. A proposition-valued field is a requirement until a constructor supplies it. Exact refinement for a primitive program, including its declared global phase.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Exact refinement for a primitive program, including its declared global phase. This is the acceptance record used by phase-sensitive macro compilers.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:15](../../../../library/modules/primitiverefinement/#decl-quantumblockencoding-primitiveprogramrefinement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PrimitiveProgramRefinement.resource" (lean := "QuantumBlockEncoding.PrimitiveProgramRefinement.resource")
+*Plain-English reading.* This definition gives the library's named construction or computation for “resource”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:20](../../../../library/modules/primitiverefinement/#decl-quantumblockencoding-primitiveprogramrefinement-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveProgramRefinement.oracleCalls_eq_zero" (lean := "QuantumBlockEncoding.PrimitiveProgramRefinement.oracleCalls_eq_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “oracle calls eq zero”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:24](../../../../library/modules/primitiverefinement/#decl-quantumblockencoding-primitiveprogramrefinement-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
 
 :::definition "QuantumBlockEncoding.PrimitiveRefinement.resource" (lean := "QuantumBlockEncoding.PrimitiveRefinement.resource")
 *Plain-English reading.* This definition gives the library's named construction or computation for “resource”.
@@ -1497,7 +2513,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:208](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:13](../../../../library/modules/primitiverefinement/#decl-quantumblockencoding-primitiverefinement-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:29](../../../../library/modules/primitiverefinement/#decl-quantumblockencoding-primitiverefinement-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveRefinement.oracleCalls_eq_zero" (lean := "QuantumBlockEncoding.PrimitiveRefinement.oracleCalls_eq_zero")
@@ -1511,12 +2527,12 @@ Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:13](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:17](../../../../library/modules/primitiverefinement/#decl-quantumblockencoding-primitiverefinement-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:33](../../../../library/modules/primitiverefinement/#decl-quantumblockencoding-primitiverefinement-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/PrimitiveSemantics.lean
 
-53 explicit public declarations, in source order.
+54 explicit public declarations, in source order.
 
 :::definition "QuantumBlockEncoding.standardRyMatrix" (lean := "QuantumBlockEncoding.standardRyMatrix")
 *Plain-English reading.* This definition gives the library's named construction or computation for “standard ry matrix”. Standard 'RY(theta)' in the convention used by Qiskit and OpenQASM 3.
@@ -1896,6 +2912,20 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:166](../../../../library/m
 Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:169](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-splitprimitivewire). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+:::theorem "QuantumBlockEncoding.splitPrimitiveWire_other_apply" (lean := "QuantumBlockEncoding.splitPrimitiveWire_other_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “split primitive wire other apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:188](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-splitprimitivewire-other-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 :::definition "QuantumBlockEncoding.liftPrimitiveOneQubit" (lean := "QuantumBlockEncoding.liftPrimitiveOneQubit")
 *Plain-English reading.* This definition gives the library's named construction or computation for “lift primitive one qubit”. Lift a one-qubit matrix to a named wire, leaving every other wire fixed.
 
@@ -1907,7 +2937,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:169](../../../../library/m
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:189](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-liftprimitiveonequbit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:194](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-liftprimitiveonequbit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.liftPrimitiveOneQubit_apply" (lean := "QuantumBlockEncoding.liftPrimitiveOneQubit_apply")
@@ -1921,7 +2951,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:189](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:197](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-liftprimitiveonequbit-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:202](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-liftprimitiveonequbit-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.liftPrimitiveOneQubit_unitary" (lean := "QuantumBlockEncoding.liftPrimitiveOneQubit_unitary")
@@ -1935,7 +2965,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:197](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:215](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-liftprimitiveonequbit-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:220](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-liftprimitiveonequbit-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.standardRzMatrix" (lean := "QuantumBlockEncoding.standardRzMatrix")
@@ -1949,7 +2979,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:215](../../../../library/m
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:227](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-standardrzmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:232](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-standardrzmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.standardRzMatrix_unitary" (lean := "QuantumBlockEncoding.standardRzMatrix_unitary")
@@ -1963,7 +2993,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:227](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:236](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-standardrzmatrix-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:241](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-standardrzmatrix-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.standardRzMatrix_neg" (lean := "QuantumBlockEncoding.standardRzMatrix_neg")
@@ -1977,7 +3007,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:236](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:258](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-standardrzmatrix-neg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:263](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-standardrzmatrix-neg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.star_equivPermutationMatrix" (lean := "QuantumBlockEncoding.star_equivPermutationMatrix")
@@ -1991,7 +3021,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:258](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:281](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-star-equivpermutationmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:286](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-star-equivpermutationmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.star_liftPrimitiveOneQubit" (lean := "QuantumBlockEncoding.star_liftPrimitiveOneQubit")
@@ -2005,7 +3035,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:281](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:301](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-star-liftprimitiveonequbit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:306](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-star-liftprimitiveonequbit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.evalPrimitiveGate" (lean := "QuantumBlockEncoding.evalPrimitiveGate")
@@ -2019,7 +3049,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:301](../../../../library/m
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:318](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:323](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveGate_unitary" (lean := "QuantumBlockEncoding.evalPrimitiveGate_unitary")
@@ -2033,7 +3063,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:318](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:326](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivegate-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:331](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivegate-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.xBasisEquiv_symm" (lean := "QuantumBlockEncoding.xBasisEquiv_symm")
@@ -2047,7 +3077,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:326](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:337](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-xbasisequiv-symm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:342](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-xbasisequiv-symm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.cxBasisEquiv_symm" (lean := "QuantumBlockEncoding.cxBasisEquiv_symm")
@@ -2061,7 +3091,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:337](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:341](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-cxbasisequiv-symm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:346](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-cxbasisequiv-symm). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveGate_dagger" (lean := "QuantumBlockEncoding.evalPrimitiveGate_dagger")
@@ -2075,7 +3105,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:341](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:347](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivegate-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:352](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivegate-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.evalPrimitiveCircuit" (lean := "QuantumBlockEncoding.evalPrimitiveCircuit")
@@ -2089,7 +3119,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:347](../../../../library/m
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:369](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:374](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveCircuit_unitary" (lean := "QuantumBlockEncoding.evalPrimitiveCircuit_unitary")
@@ -2103,7 +3133,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:369](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:374](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivecircuit-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:379](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivecircuit-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveCircuit_append" (lean := "QuantumBlockEncoding.evalPrimitiveCircuit_append")
@@ -2117,7 +3147,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:374](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:384](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivecircuit-append). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:389](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivecircuit-append). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveCircuit_dagger" (lean := "QuantumBlockEncoding.evalPrimitiveCircuit_dagger")
@@ -2131,7 +3161,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:384](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:395](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivecircuit-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:400](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitivecircuit-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.evalGlobalPhase" (lean := "QuantumBlockEncoding.evalGlobalPhase")
@@ -2145,7 +3175,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:395](../../../../library/m
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:408](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalglobalphase). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:413](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalglobalphase). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalGlobalPhase_unitary" (lean := "QuantumBlockEncoding.evalGlobalPhase_unitary")
@@ -2159,7 +3189,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:408](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:411](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalglobalphase-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:416](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalglobalphase-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalGlobalPhase_neg" (lean := "QuantumBlockEncoding.evalGlobalPhase_neg")
@@ -2173,7 +3203,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:411](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:425](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalglobalphase-neg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:430](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalglobalphase-neg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.evalPrimitiveProgram" (lean := "QuantumBlockEncoding.evalPrimitiveProgram")
@@ -2187,7 +3217,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:425](../../../../library/m
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:434](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:439](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveProgram_identity" (lean := "QuantumBlockEncoding.evalPrimitiveProgram_identity")
@@ -2201,7 +3231,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:434](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:439](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:444](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveProgram_seq" (lean := "QuantumBlockEncoding.evalPrimitiveProgram_seq")
@@ -2215,7 +3245,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:439](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:444](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram-seq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:449](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram-seq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveProgram_unitary" (lean := "QuantumBlockEncoding.evalPrimitiveProgram_unitary")
@@ -2229,7 +3259,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:444](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:458](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:463](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.evalPrimitiveProgram_dagger" (lean := "QuantumBlockEncoding.evalPrimitiveProgram_dagger")
@@ -2243,7 +3273,7 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:458](../../../../library/m
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:465](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:470](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-evalprimitiveprogram-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveRefinement" (lean := "QuantumBlockEncoding.PrimitiveRefinement")
@@ -2257,7 +3287,109 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:465](../../../../library/m
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:477](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-primitiverefinement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:482](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-primitiverefinement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/ReversibleClassical.lean
+
+7 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.ReversibleGate" (lean := "QuantumBlockEncoding.ReversibleGate")
+*Plain-English reading.* This type lists the allowed alternatives for “reversible gate”; its constructors are the cases that downstream code must handle.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* inductive.
+
+Source: [QuantumBlockEncoding/ReversibleClassical.lean:14](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-reversiblegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ReversibleProgram" (lean := "QuantumBlockEncoding.ReversibleProgram")
+*Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “reversible program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* abbrev.
+
+Source: [QuantumBlockEncoding/ReversibleClassical.lean:22](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-reversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ccxBasisAction" (lean := "QuantumBlockEncoding.ccxBasisAction")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ccx basis action”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ReversibleClassical.lean:24](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-ccxbasisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ccxBasisAction_involutive" (lean := "QuantumBlockEncoding.ccxBasisAction_involutive")
+*Plain-English reading.* Lean checks the proposition indexed as “ccx basis action involutive”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ReversibleClassical.lean:30](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-ccxbasisaction-involutive). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ccxBasisEquiv" (lean := "QuantumBlockEncoding.ccxBasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ccx basis equiv”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ReversibleClassical.lean:52](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-ccxbasisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.evalReversibleGate" (lean := "QuantumBlockEncoding.evalReversibleGate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “eval reversible gate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ReversibleClassical.lean:63](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-evalreversiblegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.evalReversibleProgram" (lean := "QuantumBlockEncoding.evalReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “eval reversible program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ReversibleClassical.lean:70](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-evalreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/TextbookStatePreparation.lean
@@ -2672,7 +3804,7 @@ Source: [QuantumBlockEncoding/TextbookStatePreparation.lean:168](../../../../lib
 
 # QuantumBlockEncoding/UniformlyControlledRy.lean
 
-10 explicit public declarations, in source order.
+11 explicit public declarations, in source order.
 
 :::definition "QuantumBlockEncoding.primitiveControlAssignment" (lean := "QuantumBlockEncoding.primitiveControlAssignment")
 *Plain-English reading.* This definition gives the library's named construction or computation for “primitive control assignment”.
@@ -2702,6 +3834,20 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:34](../../../../library
 Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:42](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-controlledryblockmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+:::theorem "QuantumBlockEncoding.controlledRyBlockMatrix_apply" (lean := "QuantumBlockEncoding.controlledRyBlockMatrix_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “controlled ry block matrix apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:51](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-controlledryblockmatrix-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 :::definition "QuantumBlockEncoding.compileUniformlyControlledRy" (lean := "QuantumBlockEncoding.compileUniformlyControlledRy")
 *Plain-English reading.* This definition gives the library's named construction or computation for “compile uniformly controlled ry”. Reference recursive compiler.
 
@@ -2713,7 +3859,7 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:42](../../../../library
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:176](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:192](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.uniformlyControlledRyMatrix" (lean := "QuantumBlockEncoding.uniformlyControlledRyMatrix")
@@ -2727,7 +3873,7 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:176](../../../../librar
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:201](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-uniformlycontrolledrymatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:217](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-uniformlycontrolledrymatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.compileUniformlyControlledRy_eval" (lean := "QuantumBlockEncoding.compileUniformlyControlledRy_eval")
@@ -2741,7 +3887,7 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:201](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:224](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:240](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.compileUniformlyControlledRy_eval_controlledRyBlockMatrix" (lean := "QuantumBlockEncoding.compileUniformlyControlledRy_eval_controlledRyBlockMatrix")
@@ -2755,7 +3901,7 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:224](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:243](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-eval-controlledryblockmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:259](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-eval-controlledryblockmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.compileUniformlyControlledRy_ryCount" (lean := "QuantumBlockEncoding.compileUniformlyControlledRy_ryCount")
@@ -2769,7 +3915,7 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:243](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:354](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-rycount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:370](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-rycount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.compileUniformlyControlledRy_cxCount" (lean := "QuantumBlockEncoding.compileUniformlyControlledRy_cxCount")
@@ -2783,7 +3929,7 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:354](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:370](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-cxcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:386](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-cxcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.compileUniformlyControlledRy_oracleCalls_eq_zero" (lean := "QuantumBlockEncoding.compileUniformlyControlledRy_oracleCalls_eq_zero")
@@ -2797,7 +3943,7 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:370](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:387](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:403](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.compileUniformlyControlledRy_five_control_counts" (lean := "QuantumBlockEncoding.compileUniformlyControlledRy_five_control_counts")
@@ -2811,5 +3957,5 @@ Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:387](../../../../librar
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:395](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-five-control-counts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/UniformlyControlledRy.lean:411](../../../../library/modules/uniformlycontrolledry/#decl-quantumblockencoding-compileuniformlycontrolledry-five-control-counts). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

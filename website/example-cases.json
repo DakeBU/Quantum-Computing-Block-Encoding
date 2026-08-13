@@ -295,22 +295,29 @@
       "shortTitle": "Robin benchmark",
       "kind": "operatorBlockEncoding",
       "status": "certified",
-      "semanticTier": "Exact XOR four-slot primitive block encoding (T3); source route partial",
+      "semanticTier": "Exact primitive source reproductions and certified same-tier winner",
       "leanAnchors": [
         "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224",
-      "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
-      "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding",
-      "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8",
-      "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_eval_eq",
-      "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_image",
-      "QuantumBlockEncoding.Robin.warmRobinFourSlotExactRy_eq_rotation",
-      "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary",
-      "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_cleanBlock",
-      "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding"
+        "QuantumBlockEncoding.Robin.warmRobinSplitSeven_duplicate_nonzero_access",
+        "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4TransposeBulk_matches_periodic",
+        "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical",
+        "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_cleanBlock",
+        "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4TransportedPostSwapCleanup",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4Primitive_eval_eq_logical",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanBlock",
+        "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary",
+        "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_cleanBlock",
+        "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven",
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4",
+        "QuantumBlockEncoding.Robin.warmRobinBestVerified"
       ],
       "problem": "For the fixed homogeneous-Robin fourth-derivative discretization with N=8, construct an exact logical unitary whose clean block is the scaled non-unitary matrix A.",
       "formula": "A=\\frac1{12}\\begin{pmatrix}-30&32&-2&0&0&0&0&0\\\\16&-31&16&-1&0&0&0&0\\\\-1&16&-30&16&-1&0&0&0\\\\0&-1&16&-30&16&-1&0&0\\\\0&0&-1&16&-30&16&-1&0\\\\0&0&0&-1&16&-30&16&-1\\\\0&0&0&0&-1&16&-31&16\\\\0&0&0&0&0&-2&32&-30\\end{pmatrix},\\qquad \\Pi U\\Pi^\\dagger=\\frac{A}{56/3}=\\frac{M}{224}.",
-      "contract": "Lean proves the exact normalization identity, the high-level logical matrices, and an XOR four-slot primitive circuit whose exact matrix equals the logical unitary after the explicit little-endian reindexing. Qiskit and OpenQASM replay that gate list; they do not replace the Lean equality. The source paper-seven and full Figure-4 routes remain partial.",
+      "contract": "Lean proves three exact primitive block encodings under one frozen convention: the padded paper-seven normal form, a fixed-N8 and f=1 standard-RY-corrected realization of Figure 4, and the evolved XOR four-slot candidate. It then proves the XOR route strictly better than both source realizations in lexicographic order (gate count, depth, auxiliary qubits, oracle calls). Qiskit and OpenQASM replay all three gate lists; they do not replace the Lean equalities.",
       "symbols": [
         ["A", "the fixed N=8 homogeneous-Robin finite-difference operator"],
         ["M=12A", "the integer matrix used by the exact decomposition proofs"],
@@ -319,33 +326,48 @@
         ["T3", "every logical stage is expanded into the frozen exact basis {X, RY(theta), RZ(theta), CX}, and Lean proves that the primitive product equals the T2 unitary"]
       ],
       "circuit": {
-        "registers": "q0-q2 system | q3-q4 selector | q5 coefficient signal",
+        "registers": "Each route declares its own wire order; all use exact {X, RY(theta), RZ(theta), CX} gates and clean workspaces",
         "stages": [
-          {"label": "Source seed", "detail": "paper theorem-7 normal form", "gates": ["PREPARE", "amplitude", "sparse SELECT", "cleanup"]},
-          {"label": "Logical baseline (T2)", "detail": "eight selector labels with H tensor H tensor H", "gates": ["H^3", "amplitude", "SELECT", "H^3"]},
-          {"label": "Logical evolved circuit (T2)", "detail": "centrosymmetric basis split with four slots", "gates": ["basis change", "4-slot block", "basis change dagger"]},
-          {"label": "Primitive XOR circuit (T3)", "detail": "exact little-endian six-wire refinement", "gates": ["pair CX", "RY", "5-control UCRY", "XOR SELECT", "uncompute"]}
+          {"label": "Paper-seven normal form", "detail": "8 wires; 312 gates; depth 266", "gates": ["padded-seven PREPARE", "6-control RY", "sparse SELECT", "unprepare"]},
+          {"label": "Fixed-N8 Figure 4", "detail": "9 wires; 881 gates; depth 674", "gates": ["PREPARE", "D-transpose indicator", "bulk/boundary RY", "D-transpose access", "SWAP", "D inverse", "unprepare"]},
+          {"label": "Evolved XOR four-slot", "detail": "6 wires; 106 gates; depth 96", "gates": ["pair basis CX", "sector RY", "5-control UCRY", "XOR SELECT", "uncompute"]}
         ]
       },
       "evolution": {
-        "caption": "The first comparison is at the shared high-level T2 convention. The final point closes the evolved route at T3 with 106 primitive gates and depth 96. No paper-level T3 comparison is shown because the source Figure-4 route is not yet closed at that tier.",
+        "caption": "All scored points below use the same exact primitive basis, normalizer 56/3, zero error, all-to-all connectivity, little-endian indexing, clean workspaces, and score order (gates, depth, auxiliary qubits, oracle calls). The comparison is benchmark- and compiler-specific, not a global optimality theorem.",
         "stages": [
-          {"iteration": "seed", "name": "Paper theorem-7 route", "score": null, "status": "T1 source route", "description": "The source transcript motivates the benchmark but lacks the T2 logical-unitary root needed for comparison.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224"},
-          {"iteration": "0", "name": "Hadamard-8", "score": [8, 4, 4, 2], "status": "Lean-certified logical circuit", "description": "An exact PREPARE/amplitude/SELECT/unprepare logical unitary closes the clean block.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding"},
-          {"iteration": "1", "name": "Centrosymmetric four-slot", "score": [8, 4, 3, 2], "status": "Strictly better at the same level", "description": "A symmetry basis change splits the matrix into two four-by-four sectors and removes one selector qubit.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"},
-          {"iteration": "2", "name": "XOR four-slot primitive", "score": [106, 96, 3, 0], "status": "Lean-certified primitive circuit", "description": "Lean composes pair-coordinate CX gates, exact RY stages, the reference UCRY compiler, and two-CX XOR SELECT into the flat logical unitary.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary"}
+          {"iteration": "audit", "name": "Sparse-source correction", "score": null, "status": "Source interpretation certified", "description": "Lean detects duplicate nonzero accesses in the historical split-seven LCU and replaces it with a true padded-seven sparse enumeration.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"},
+          {"iteration": "0", "name": "Fixed-N8 Figure-4 realization", "score": [881, 674, 6, 0], "status": "Lean-certified source circuit", "description": "The full source order uses the corrected D-transpose bulk window, standard-RY doubled angles, transported cleanup, and f=1 constant folding.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding"},
+          {"iteration": "1", "name": "Paper-seven normal form", "score": [312, 266, 5, 0], "status": "Lean-certified source normal form", "description": "The equivalent sparse source contract compiles directly as PREPARE, amplitude loading, modular-add SELECT, and unprepare.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"},
+          {"iteration": "2", "name": "XOR four-slot primitive", "score": [106, 96, 3, 0], "status": "Certified same-tier winner", "description": "Two compiled betterThan theorems establish the strict gate-count improvement over both source realizations.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinBestVerified"}
         ]
       },
+      "verificationStatus": [
+        ["Candidate exact primitive certificate", "Complete", "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding"],
+        ["Source sparse-slot audit", "Complete", "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"],
+        ["Paper-seven exact primitive normal form", "Complete", "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"],
+        ["Figure-4 fixed-N8 exact primitive realization", "Complete", "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding"],
+        ["Same-tier primitive comparison", "Complete", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"],
+        ["Winner for the frozen benchmark/compiler", "Certified", "QuantumBlockEncoding.Robin.warmRobinBestVerified"]
+      ],
+      "sourceInterpretation": [
+        "The historical split-seven weighted-permutation LCU is retained as structural evidence, but it is not a sparse-access enumeration because two nonzero slots can address the same entry.",
+        "Bulk rows of D and bulk rows of D-transpose are different tests. The Figure-4 indicator acts on D-transpose and therefore selects source columns 3 and 4.",
+        "The paper prints arccos(c), while the standard Qiskit and ASPBE RY convention needs 2 arccos(c) to place c in the clean matrix entry.",
+        "The literal gamma-1 intermediate normalization is not inferred from gates that precede it; the certified route proves the executable stage states instead.",
+        "Dirty-workspace behavior is the actual reversible extension produced by the compiler. Only the declared clean projection is the block-encoding contract.",
+        "The coefficient function is f=1 in this fixed benchmark, so its oracle is proved equal to identity and constant-folded."
+      ],
       "qiskit": {
         "path": "executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/circuit.py",
         "command": "python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm",
-        "role": "Regenerates canonical IR, a gate-by-gate Qiskit circuit, strict OpenQASM, and backend reports from the same primitive route certified in Lean."
+        "role": "Regenerates three separate canonical artifacts: the XOR candidate at the task root, paper-seven under paper-seven/, and the fixed-N8 Figure-4 realization under figure4-fixed-n8/. Each receives an internal matrix check, gate-by-gate Qiskit Operator check, and strict OpenQASM 3 round-trip."
       },
       "preset": {"taskName": "QBE-ROBIN-BE-WARM-001", "mode": "exploratoryConstruction", "target": "fixed N=8 homogeneous-Robin matrix A with clean block A/(56/3)", "normalizer": "56/3", "projector": "selector=0 and coefficient=0; system Fin 8"},
-      "summary": "The evolved XOR four-slot route now has an exact primitive Lean refinement and reproducible Qiskit/OpenQASM exports; the source paper circuit is still tracked separately.",
+      "summary": "Lean closes both source realizations and the evolved candidate at the exact primitive level, then certifies the candidate's same-tier lexicographic improvement.",
       "source": "Guseynov-Huang-Liu construction and ASPBE fixed-N audit",
       "contributor": "ASPBE authors",
-      "limitations": "The XOR four-slot candidate is complete at T3. Paper-seven PREPARE, the fixed Figure-4 indicator, register swaps, and f=1 identity compile as local leaves, but the source derivative/boundary loaders, transported cleanup, full clean block, and same-tier source comparison remain open."
+      "limitations": "The result is fixed to N=8, homogeneous f=1, alpha=56/3, the standard-RY correction, the declared exact compiler, and all-to-all resource accounting. It does not prove the arbitrary-n paper theorem or global circuit optimality."
     }
   ]
 }
