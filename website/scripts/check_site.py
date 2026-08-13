@@ -287,7 +287,8 @@ def main() -> int:
             "Candidate and proof progression",
             "Named Lean certificates",
             "Run the construction with Qiskit",
-            "Qiskit output may reveal implementation mistakes",
+            "may reject, rank, or provisionally promote a route",
+            "floating-point norm tolerance does not replace the exact Lean root",
         ):
             if marker not in case_page:
                 errors.append(f"example case lacks teaching marker {marker!r}: {case['slug']}")
