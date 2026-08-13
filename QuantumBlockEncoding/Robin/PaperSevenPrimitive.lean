@@ -260,12 +260,17 @@ theorem warmRobinUniformSevenPrepare_probability (slot : Fin 8) :
     try rw [complexPiQuarter]
     try simp_rw [← Complex.ofReal_cos]
     try simp_rw [← Complex.ofReal_sin]
+    try simp only [Complex.conj_ofReal]
     rw [complexSevenInv]
     norm_cast
     ring_nf at quarterCosSquare quarterSinSquare highCosSquare highSinSquare tailCosSquare tailSinSquare headCosProbability headMixedProbability headSinProbability tailCosProbability tailSinProbability lastProbability ⊢
-    nlinarith [headCosProbability, headMixedProbability,
-      headSinProbability, tailCosProbability, tailSinProbability,
-      lastProbability]
+    first
+    | exact headCosProbability
+    | exact headMixedProbability
+    | exact headSinProbability
+    | exact tailCosProbability
+    | exact tailSinProbability
+    | exact lastProbability
 
 set_option maxHeartbeats 200000
 

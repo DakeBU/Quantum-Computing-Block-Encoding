@@ -43,6 +43,7 @@ import QuantumBlockEncoding.Robin.SymmetryFourSlotPrimitive
 import QuantumBlockEncoding.Robin.SymmetryXorFourSlotLogicalUnitary
 import QuantumBlockEncoding.Robin.SymmetryXorFourSlotPrimitive
 import QuantumBlockEncoding.Robin.PaperSevenPrimitive
+import QuantumBlockEncoding.Robin.PaperSevenLogicalUnitary
 import QuantumBlockEncoding.Robin.Figure4Primitive
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
