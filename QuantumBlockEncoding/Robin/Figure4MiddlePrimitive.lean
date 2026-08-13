@@ -92,28 +92,28 @@ theorem warmRobinFigure4TransportInput_splitCoefficient_context_iff
 
 theorem warmRobinFigure4DerivativeLoader_entry
     (coefficientRow coefficientColumn : Fin 2)
-    (slot leftColumn rightColumn : Fin 8) :
+    (leftSlot rightSlot leftColumn rightColumn : Fin 8) :
     evalPrimitiveProgram warmRobinFigure4DerivativeLoaderProgram
-        (warmRobinFigure4TransportInput slot leftColumn coefficientRow
+        (warmRobinFigure4TransportInput leftSlot leftColumn coefficientRow
           (warmRobinFigure4IndicatorValue leftColumn))
-        (warmRobinFigure4TransportInput slot rightColumn coefficientColumn
+        (warmRobinFigure4TransportInput rightSlot rightColumn coefficientColumn
           (warmRobinFigure4IndicatorValue rightColumn)) =
-      if leftColumn = rightColumn then
+      if leftSlot = rightSlot ∧ leftColumn = rightColumn then
         ComplexLCU.amplitudeRotation
-          (((warmRobinFigure4SourceCoefficient slot rightColumn : Rat) : Real))
+          (((warmRobinFigure4SourceCoefficient rightSlot rightColumn : Rat) : Real))
           coefficientRow coefficientColumn
       else 0 := by
-  by_cases equal : leftColumn = rightColumn
-  · subst leftColumn
-    simp only [if_pos rfl]
+  by_cases equal : leftSlot = rightSlot ∧ leftColumn = rightColumn
+  · obtain ⟨rfl, rfl⟩ := equal
+    simp only [and_self, if_true]
     rw [warmRobinFigure4DerivativeLoaderProgram_eval]
     unfold controlledRyBlockMatrix
     rw [← _root_.Matrix.reindexAlgEquiv_mul,
       ← _root_.Matrix.blockDiagonal_mul]
     have contextsEqual :=
-      warmRobinFigure4TransportInput_splitCoefficient_context slot rightColumn
+      warmRobinFigure4TransportInput_splitCoefficient_context leftSlot leftColumn
         coefficientRow coefficientColumn
-        (warmRobinFigure4IndicatorValue rightColumn)
+        (warmRobinFigure4IndicatorValue leftColumn)
     simp only [_root_.Matrix.reindexAlgEquiv_apply,
       _root_.Matrix.reindex_apply, _root_.Matrix.submatrix_apply,
       Equiv.symm_symm, _root_.Matrix.blockDiagonal_apply,
@@ -127,7 +127,7 @@ theorem warmRobinFigure4DerivativeLoader_entry
       warmRobinFigure4BoundaryControlSlot_input,
       warmRobinFigure4BoundaryControlColumn_input,
       warmRobinFigure4TransportInput_splitCoefficient_fst]
-    by_cases bulk : warmRobinFigure4TransposeBulk rightColumn
+    by_cases bulk : warmRobinFigure4TransposeBulk leftColumn
     · simp [warmRobinFigure4IndicatorValue, bulk,
         warmRobinFigure4SourceCoefficient_branch]
     · simp [warmRobinFigure4IndicatorValue, bulk]
@@ -138,17 +138,18 @@ theorem warmRobinFigure4DerivativeLoader_entry
       ← _root_.Matrix.blockDiagonal_mul]
     have contextsDifferent :
         (splitPrimitiveWire (6 : Fin 9)
-          (warmRobinFigure4TransportInput slot leftColumn coefficientRow
+          (warmRobinFigure4TransportInput leftSlot leftColumn coefficientRow
             (warmRobinFigure4IndicatorValue leftColumn))).2 ≠
         (splitPrimitiveWire (6 : Fin 9)
-          (warmRobinFigure4TransportInput slot rightColumn coefficientColumn
+          (warmRobinFigure4TransportInput rightSlot rightColumn coefficientColumn
             (warmRobinFigure4IndicatorValue rightColumn))).2 := by
       intro contextsEqual
-      exact equal
-        ((warmRobinFigure4TransportInput_splitCoefficient_context_iff
-          slot slot leftColumn rightColumn coefficientRow coefficientColumn
+      have decoded :=
+        (warmRobinFigure4TransportInput_splitCoefficient_context_iff
+          leftSlot rightSlot leftColumn rightColumn coefficientRow coefficientColumn
           (warmRobinFigure4IndicatorValue leftColumn)
-          (warmRobinFigure4IndicatorValue rightColumn)).mp contextsEqual).2.1
+          (warmRobinFigure4IndicatorValue rightColumn)).mp contextsEqual
+      exact equal ⟨decoded.1, decoded.2.1⟩
     simp only [_root_.Matrix.reindexAlgEquiv_apply,
       _root_.Matrix.reindex_apply, _root_.Matrix.submatrix_apply,
       Equiv.symm_symm, _root_.Matrix.blockDiagonal_apply,
@@ -289,13 +290,14 @@ theorem warmRobinFigure4MiddleProgram_eval :
 
 theorem warmRobinFigure4MiddleProgram_cleanEntry
     (coefficientRow coefficientColumn : Fin 2)
-    (slot row column : Fin 8) :
+    (leftSlot rightSlot row column : Fin 8) :
     evalPrimitiveProgram warmRobinFigure4MiddleProgram
-        (warmRobinFigure4TransportInput slot row coefficientRow 0)
-        (warmRobinFigure4TransportInput slot column coefficientColumn 0) =
-      if warmRobinSourceDTRow slot column = row then
+        (warmRobinFigure4TransportInput leftSlot row coefficientRow 0)
+        (warmRobinFigure4TransportInput rightSlot column coefficientColumn 0) =
+      if leftSlot = rightSlot ∧
+          warmRobinSourceDTRow rightSlot column = row then
         ComplexLCU.amplitudeRotation
-          (((warmRobinFigure4SourceCoefficient slot column : Rat) : Real))
+          (((warmRobinFigure4SourceCoefficient rightSlot column : Rat) : Real))
           coefficientRow coefficientColumn
       else 0 := by
   rw [warmRobinFigure4MiddleProgram_eval]
@@ -304,7 +306,11 @@ theorem warmRobinFigure4MiddleProgram_cleanEntry
   rw [warmRobinFigure4IndicatorBasisEquiv_clean]
   rw [warmRobinFigure4PostLoader_inverseCleanAction,
     warmRobinFigure4DerivativeLoader_entry]
-  simp only [warmRobinFigure4SourceDTColumn_eq_iff]
+  by_cases slots : leftSlot = rightSlot
+  · subst leftSlot
+    simp only [true_and]
+    simp only [warmRobinFigure4SourceDTColumn_eq_iff]
+  · simp [slots]
 
 /-! Named chronological stage roots used by the generated documentation. -/
 

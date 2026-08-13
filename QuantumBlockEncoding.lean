@@ -53,6 +53,7 @@ import QuantumBlockEncoding.Robin.Figure4Primitive
 import QuantumBlockEncoding.Robin.Figure4Loaders
 import QuantumBlockEncoding.Robin.Figure4PreparePrimitive
 import QuantumBlockEncoding.Robin.Figure4MiddlePrimitive
+import QuantumBlockEncoding.Robin.Figure4T3
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas
