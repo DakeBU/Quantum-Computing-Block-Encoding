@@ -51,6 +51,11 @@ noncomputable def warmRobinPairSystemEquiv :
     warmRobinPairSystemEquiv index = warmRobinPairSystemToOriginal index := by
   rfl
 
+@[simp] theorem warmRobinPairSystemToOriginal_symm (system : Fin 8) :
+    warmRobinPairSystemToOriginal (warmRobinPairSystemEquiv.symm system) = system := by
+  rw [← warmRobinPairSystemEquiv_apply]
+  exact warmRobinPairSystemEquiv.apply_symm_apply system
+
 /-- The symmetry-sector-to-pair basis change: one exact Hadamard-like rotation. -/
 noncomputable def warmRobinSymmetryBasisChange :
     _root_.Matrix WarmRobinSymmetrySystem WarmRobinSymmetrySystem ℂ :=
@@ -74,7 +79,9 @@ theorem warmRobinSymmetryBasisChange_unitary :
   have realSquare :
       (Real.sqrt 2 / 2) * (Real.sqrt 2 / 2) = (1 / 2 : Real) := by
     nlinarith
-  exact_mod_cast realSquare
+  apply Complex.ext
+  · simpa using realSquare
+  · simp
 
 /-- Lower-left pair block equals the upper-right pair block by centrosymmetry. -/
 theorem warmRobinIntegerTarget_pair_high_low
@@ -154,18 +161,29 @@ theorem warmRobinSymmetryBasisChange_conjugates_target :
   classical
   ext ⟨rowSide, rowPair⟩ ⟨columnSide, columnPair⟩
   fin_cases rowSide <;> fin_cases columnSide <;>
-    simp [warmRobinSymmetryBasisChange,
+    fin_cases rowPair <;> fin_cases columnPair <;>
+    norm_num [warmRobinSymmetryBasisChange,
       warmRobinFourSlotSectorTargetComplex,
       warmRobinPairNormalizedTargetComplex,
+      warmRobinPairNormalizedTargetRat,
       warmRobinFourSlotSectorTarget,
       warmRobinUniformBitPrepare,
       realOrthogonalRotation,
       _root_.Matrix.mul_apply,
+      _root_.Matrix.one_apply,
       Fintype.sum_prod_type,
       Fin.sum_univ_two,
+      Fin.sum_univ_succ,
       warmRobinSymmetryPlusBlock,
-      warmRobinSymmetryMinusBlock] <;>
-    ring
+      warmRobinSymmetryMinusBlock,
+      warmRobinIntegerTargetRat,
+      warmRobinIntegerTarget,
+      warmRobinPairSystemToOriginal,
+      warmRobinPairLow,
+      warmRobinPairHigh,
+      warmRobinReverse8] <;>
+    ring_nf <;>
+    norm_num [Real.sq_sqrt]
 
 /-- Conjugate the sector logical unitary back to reversal-pair coordinates. -/
 noncomputable def warmRobinFourSlotPairLogicalUnitary :
@@ -204,7 +222,7 @@ theorem warmRobinFourSlotPairLogicalUnitary_cleanEntry
   exact congr_fun (congr_fun matrixEquality row) column
 
 /-- Reindex only the system component from pair order to original `Fin 8`. -/
-def warmRobinFourSlotProductSystemEquiv :
+noncomputable def warmRobinFourSlotProductSystemEquiv :
     LCUIndex (Fin 2) (Fin 4) WarmRobinSymmetrySystem ≃
       LCUIndex (Fin 2) (Fin 4) (Fin 8) :=
   Equiv.prodCongr (Equiv.refl (Fin 2))
@@ -217,14 +235,14 @@ def warmRobinFourSlotOriginalIndexEquiv :
     finProdFinEquiv
 
 /-- Combined system reindexing and six-qubit flattening. -/
-def warmRobinFourSlotIndexEquiv :
+noncomputable def warmRobinFourSlotIndexEquiv :
     LCUIndex (Fin 2) (Fin 4) WarmRobinSymmetrySystem ≃
       Fin (gridSize 6) :=
   warmRobinFourSlotProductSystemEquiv.trans
     warmRobinFourSlotOriginalIndexEquiv
 
 /-- Flat clean index for an original Robin system basis state. -/
-def warmRobinFourSlotCleanIndex (system : Fin 8) : Fin (gridSize 6) :=
+noncomputable def warmRobinFourSlotCleanIndex (system : Fin 8) : Fin (gridSize 6) :=
   warmRobinFourSlotIndexEquiv
     (0, (0, warmRobinPairSystemEquiv.symm system))
 
@@ -251,6 +269,16 @@ theorem warmRobinFourSlotFlatUnitary_unitary :
       warmRobinFourSlotPairLogicalUnitary row column := by
   simp [warmRobinFourSlotFlatUnitary]
 
+/-- Pair-ordered target at inverse-reindexed indices is the original target. -/
+theorem warmRobinPairNormalizedTargetComplex_symm
+    (row column : Fin 8) :
+    warmRobinPairNormalizedTargetComplex
+        (warmRobinPairSystemEquiv.symm row)
+        (warmRobinPairSystemEquiv.symm column) =
+      ((warmRobinIntegerTargetRat row column / 224 : Rat) : ℂ) := by
+  simp [warmRobinPairNormalizedTargetComplex,
+    warmRobinPairNormalizedTargetRat]
+
 /-- The flat clean block is exactly the original fixed Robin target. -/
 theorem warmRobinFourSlotFlatUnitary_cleanBlock
     (row column : Fin 8) :
@@ -262,8 +290,7 @@ theorem warmRobinFourSlotFlatUnitary_cleanBlock
   unfold warmRobinFourSlotCleanIndex
   rw [warmRobinFourSlotFlatUnitary_reindex]
   rw [warmRobinFourSlotPairLogicalUnitary_cleanEntry]
-  change
-    ((warmRobinIntegerTargetRat row column / 224 : Rat) : ℂ) = _
+  rw [warmRobinPairNormalizedTargetComplex_symm]
   have normalizedIdentity := congr_fun
     (congr_fun warmRobin_normalized_eq_integer_div_224 row) column
   exact_mod_cast normalizedIdentity.symm
@@ -282,7 +309,7 @@ def warmRobinFourSlotT2Schedule : LayeredCircuit :=
 
 /-- The corresponding logical gate list. -/
 def warmRobinFourSlotT2Circuit : Circuit :=
-  warmRobinFourSlotT2Schedule.join
+  warmRobinFourSlotT2Schedule.flatten
 
 /-- Exact resource row under the declared T2 logical-stage convention. -/
 def warmRobinFourSlotT2Resource : Resource :=
