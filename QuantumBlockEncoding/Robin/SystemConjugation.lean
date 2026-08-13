@@ -77,11 +77,13 @@ theorem systemLift_unitary
       if row.1 = column.1 ∧ row.2.1 = column.2.1 then
         star (operator column.2.2 row.2.2)
       else 0 := by
-  rcases row with ⟨coefficientRow, ⟨selectorRow, systemRow⟩⟩
-  rcases column with ⟨coefficientColumn, ⟨selectorColumn, systemColumn⟩⟩
-  by_cases coefficientMatch : coefficientRow = coefficientColumn <;>
-    by_cases selectorMatch : selectorRow = selectorColumn <;>
-    simp [systemLift, coefficientMatch, selectorMatch]
+  change star
+      (systemLift (coefficient := coefficient) (selector := selector) operator
+        column row) = _
+  rw [systemLift_apply]
+  by_cases coefficientMatch : row.1 = column.1 <;>
+    by_cases selectorMatch : row.2.1 = column.2.1 <;>
+    simp [coefficientMatch, selectorMatch, eq_comm]
 
 /-- Left multiplication by a lifted system matrix on a clean row. -/
 theorem systemLift_mul_cleanRow
@@ -103,7 +105,6 @@ theorem systemLift_mul_cleanRow
           operator (cleanCoefficient, (cleanSelector, intermediate)) column := by
   classical
   rw [_root_.Matrix.mul_apply]
-  simp_rw [Fintype.sum_prod_type]
   simp_rw [Fintype.sum_prod_type]
   simp [systemLift_apply]
 
@@ -129,11 +130,10 @@ theorem mul_star_systemLift_cleanColumn
   classical
   rw [_root_.Matrix.mul_apply]
   simp_rw [Fintype.sum_prod_type]
-  simp_rw [Fintype.sum_prod_type]
   simp [star_systemLift_apply]
 
 /-- Extract the coefficient/selector clean block as a system matrix. -/
-def cleanSystemBlock
+noncomputable def cleanSystemBlock
     {coefficient selector system : Type*}
     (operator : _root_.Matrix
       (LCUIndex coefficient selector system)
@@ -212,5 +212,6 @@ theorem cleanSystemBlock_conjugateSystem
   apply Finset.sum_congr rfl
   intro intermediate _
   rw [_root_.Matrix.mul_apply]
+  simp
 
 end QuantumBlockEncoding.Robin.ComplexLCU
