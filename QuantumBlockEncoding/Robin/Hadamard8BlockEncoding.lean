@@ -45,6 +45,15 @@ theorem warmRobinHadamard8FlatUnitary_unitary :
   apply reindex_unitary
   exact warmRobinHadamard8LogicalUnitary_unitary
 
+/-- Applying the reindexed matrix at reindexed indices recovers the product entry. -/
+@[simp] theorem warmRobinHadamard8FlatUnitary_reindex
+    (row column : LCUIndex (Fin 2) (Fin 8) (Fin 8)) :
+    warmRobinHadamard8FlatUnitary
+        (warmRobinHadamard8IndexEquiv row)
+        (warmRobinHadamard8IndexEquiv column) =
+      warmRobinHadamard8LogicalUnitary row column := by
+  simp [warmRobinHadamard8FlatUnitary]
+
 /-- Every row of the one-bit PREPARE has the same clean-column amplitude. -/
 @[simp] theorem warmRobinUniformBitPrepare_cleanColumn (bit : Fin 2) :
     warmRobinUniformBitPrepare bit 0 =
@@ -60,6 +69,7 @@ theorem warmRobinHadamard8FlatUnitary_unitary :
         ((Real.sqrt 2 / 2 : Real) : ℂ)) := by
   rcases bits with ⟨first, ⟨second, third⟩⟩
   simp [warmRobinHadamardBitsPrepare]
+  ring
 
 /-- The flattened selector PREPARE still has a uniform clean column. -/
 @[simp] theorem warmRobinHadamard8SelectorPrepare_cleanColumn (slot : Fin 8) :
@@ -92,10 +102,9 @@ theorem warmRobinHadamard8FlatUnitary_unitary :
       (c * c * c) * (c * c * c) = (c * c) * (c * c) * (c * c) := by ring
       _ = (1 / 2 : Real) * (1 / 2 : Real) * (1 / 2 : Real) := by rw [cSquare]
       _ = 1 / 8 := by norm_num
-  have complexProbability :
-      ((((c * c * c) * (c * c * c) : Real) : ℂ)) = (1 / 8 : ℂ) := by
-    exact_mod_cast realProbability
-  simpa [c] using complexProbability
+  apply Complex.ext
+  · simpa [c, mul_assoc] using realProbability
+  · simp [c]
 
 /-- Rational and real-complex views of a slot coefficient agree. -/
 theorem warmRobinHadamard8Coefficient_complex
@@ -110,15 +119,32 @@ theorem warmRobinHadamard8LogicalUnitary_cleanEntry
     warmRobinHadamard8LogicalUnitary
         (0, (0, row)) (0, (0, column)) =
       (warmRobinHadamard8CleanFormula row column : ℂ) := by
+  unfold warmRobinHadamard8LogicalUnitary
   rw [prepareAmplitudeSelectUnprepare_cleanEntry]
-  simp_rw [warmRobinHadamard8SelectorPrepare_probability]
-  simp_rw [warmRobinHadamard8Rotation_cleanEntry]
-  simp_rw [warmRobinHadamard8Coefficient_complex]
-  fin_cases row <;> fin_cases column <;>
-    norm_num [warmRobinHadamard8CleanFormula,
-      warmRobinHadamard8SystemEquiv, warmRobinEightSlotPerm,
-      warmRobinEightSlotAmplitude, warmRobinEightSlotWeight,
-      Fin.sum_univ_succ]
+  change
+    (∑ slot : Fin 8,
+      if warmRobinEightSlotPerm slot column = row then
+        star (warmRobinHadamard8SelectorPrepare slot 0) *
+          warmRobinHadamard8Rotation slot column 0 0 *
+          warmRobinHadamard8SelectorPrepare slot 0
+      else 0) = _
+  have castFormula :
+      (warmRobinHadamard8CleanFormula row column : ℂ) =
+        (1 / 8 : ℂ) * ∑ slot : Fin 8,
+          if warmRobinEightSlotPerm slot column = row then
+            (warmRobinEightSlotAmplitude slot column : ℂ)
+          else 0 := by
+    norm_num [warmRobinHadamard8CleanFormula]
+  rw [castFormula, Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro slot _
+  by_cases selected : warmRobinEightSlotPerm slot column = row
+  · simp only [selected, if_pos]
+    rw [warmRobinHadamard8Rotation_cleanEntry]
+    rw [warmRobinHadamard8Coefficient_complex]
+    rw [← warmRobinHadamard8SelectorPrepare_probability slot]
+    ring
+  · simp [selected]
 
 /-- The product-register clean entry is the normalized fixed Robin target. -/
 theorem warmRobinHadamard8LogicalUnitary_cleanEntry_eq_target
@@ -138,8 +164,7 @@ theorem warmRobinHadamard8FlatUnitary_cleanBlock
         (warmRobinHadamard8CleanIndex column) =
       ((RobinEvolution.warmRobinTarget row column /
         RobinEvolution.warmRobinNormalizer : Rat) : ℂ) := by
-  change warmRobinHadamard8LogicalUnitary
-      (0, (0, row)) (0, (0, column)) = _
+  rw [warmRobinHadamard8FlatUnitary_reindex]
   exact warmRobinHadamard8LogicalUnitary_cleanEntry_eq_target row column
 
 /-- Complex view of the fixed Robin target used by the operator-first API. -/
