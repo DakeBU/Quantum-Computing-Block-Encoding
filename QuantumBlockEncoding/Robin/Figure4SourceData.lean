@@ -11,6 +11,20 @@ of `D`. This module fixes that distinction before circuit compilation.
 
 namespace QuantumBlockEncoding.Robin
 
+/-- Offset table for the non-transposed sparse access used after register
+transport. -/
+def warmRobinFigure4DOffset (slot : Fin 8) : Fin 8 :=
+  ⟨(slot.val + 5) % 8, Nat.mod_lt _ (by decide)⟩
+
+theorem warmRobinFigure4DOffset_table :
+    List.ofFn warmRobinFigure4DOffset = [5, 6, 7, 0, 1, 2, 3, 4] := by
+  native_decide
+
+theorem warmRobinFigure4DT_D_offsets_cancel (slot : Fin 8) :
+    (warmRobinSourceDTOffset slot).val +
+        (warmRobinFigure4DOffset slot).val ≡ 0 [MOD 8] := by
+  fin_cases slot <;> native_decide
+
 /-- Periodic fourth-order integer stencil indexed by cyclic row offset. -/
 def warmRobinPeriodicIntegerReference : Matrix 8 8 Int := fun row column =>
   match (row.val + 8 - column.val) % 8 with
