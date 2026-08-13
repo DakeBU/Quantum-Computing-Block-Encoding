@@ -25,6 +25,7 @@ import QuantumBlockEncoding.Robin.SixSlotOptimal
 import QuantumBlockEncoding.Robin.ComplexLCU
 import QuantumBlockEncoding.Robin.ComplexLCUProjection
 import QuantumBlockEncoding.Robin.Hadamard8Verified
+import QuantumBlockEncoding.Robin.Hadamard8BlockEncoding
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas
