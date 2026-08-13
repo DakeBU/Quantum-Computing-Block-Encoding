@@ -369,7 +369,7 @@ def robin_paper_seven_ir(commit: str) -> CircuitIR:
         instructions=tuple(instructions), source_commit=commit,
         lean_roots=(
             "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical",
-            "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveCircuit_cleanBlock",
+            "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_cleanBlock",
             "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding",
         ),
         target_digest=sha256_json(target_payload), global_phase=pi_rational(phase.numerator, phase.denominator),

@@ -1,5 +1,5 @@
 {
-  "circuitDigest": "c4dfb0878e5441bf4cb29eb2d5dca8f54a5a142c20c50a16d1616b3949069ae7",
+  "circuitDigest": "d1cd361521a686b8ce363f0b2634b74a0318946d37b0966b385c2e499937f03c",
   "endianness": "little-endian: qubit 0 is the least-significant basis bit",
   "globalPhase": {
     "denominator": 8,
@@ -69109,7 +69109,7 @@
   ],
   "leanRoots": [
     "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical",
-    "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveCircuit_cleanBlock",
+    "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_cleanBlock",
     "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"
   ],
   "metadata": {
@@ -69242,6 +69242,6 @@
     }
   ],
   "schemaVersion": 1,
-  "sourceCommit": "bdc4415a28bea099b285d85bed569c0433d112c0",
+  "sourceCommit": "8e1381b80d512350e6dff73f6d87b0e685e7e166",
   "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f"
 }

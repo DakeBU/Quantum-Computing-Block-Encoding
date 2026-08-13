@@ -6,7 +6,7 @@
       "checkBackends": {
         "internalCanonicalEvaluator": {
           "backend": "internalCanonicalMatrix",
-          "circuitDigest": "1e535fd4af40ee0dd016884ff41ccaa9482885ee498b6ee7ba2b4a2440505864",
+          "circuitDigest": "fed00e0fbc711c331ae59af6674c302216bd4ccf01f5c3b87654abb442a5f242",
           "cleanBlockMaxEntryError": 5.049717357560489e-16,
           "cleanBlockOperatorNormError": 7.628051070026943e-16,
           "evidenceClasses": [
@@ -27,7 +27,7 @@
         "openqasm3RoundTrip": {
           "backend": "openqasm3RoundTrip",
           "canonicalRoundTrip": true,
-          "circuitDigest": "1e535fd4af40ee0dd016884ff41ccaa9482885ee498b6ee7ba2b4a2440505864",
+          "circuitDigest": "fed00e0fbc711c331ae59af6674c302216bd4ccf01f5c3b87654abb442a5f242",
           "cleanBlockMaxEntryError": 5.049717357560489e-16,
           "cleanBlockOperatorNormError": 7.628051070026943e-16,
           "decimalPrecisionDigits": 17,
@@ -48,7 +48,7 @@
         },
         "qiskitOperator": {
           "backend": "qiskitOperator",
-          "circuitDigest": "1e535fd4af40ee0dd016884ff41ccaa9482885ee498b6ee7ba2b4a2440505864",
+          "circuitDigest": "fed00e0fbc711c331ae59af6674c302216bd4ccf01f5c3b87654abb442a5f242",
           "cleanBlockMaxEntryError": 5.835825797489702e-16,
           "cleanBlockOperatorNormError": 7.721488787657455e-16,
           "depth": 674,
@@ -72,7 +72,7 @@
           "unitarityError": 7.439534648195002e-15
         }
       },
-      "circuitDigest": "1e535fd4af40ee0dd016884ff41ccaa9482885ee498b6ee7ba2b4a2440505864",
+      "circuitDigest": "fed00e0fbc711c331ae59af6674c302216bd4ccf01f5c3b87654abb442a5f242",
       "globalPhase": {
         "denominator": 8,
         "kind": "piRational",
@@ -105,7 +105,7 @@
       "checkBackends": {
         "internalCanonicalEvaluator": {
           "backend": "internalCanonicalMatrix",
-          "circuitDigest": "c4dfb0878e5441bf4cb29eb2d5dca8f54a5a142c20c50a16d1616b3949069ae7",
+          "circuitDigest": "d1cd361521a686b8ce363f0b2634b74a0318946d37b0966b385c2e499937f03c",
           "cleanBlockMaxEntryError": 3.1697486653591155e-16,
           "cleanBlockOperatorNormError": 3.775505073266725e-16,
           "evidenceClasses": [
@@ -126,7 +126,7 @@
         "openqasm3RoundTrip": {
           "backend": "openqasm3RoundTrip",
           "canonicalRoundTrip": true,
-          "circuitDigest": "c4dfb0878e5441bf4cb29eb2d5dca8f54a5a142c20c50a16d1616b3949069ae7",
+          "circuitDigest": "d1cd361521a686b8ce363f0b2634b74a0318946d37b0966b385c2e499937f03c",
           "cleanBlockMaxEntryError": 3.1697486653591155e-16,
           "cleanBlockOperatorNormError": 3.775505073266725e-16,
           "decimalPrecisionDigits": 17,
@@ -147,7 +147,7 @@
         },
         "qiskitOperator": {
           "backend": "qiskitOperator",
-          "circuitDigest": "c4dfb0878e5441bf4cb29eb2d5dca8f54a5a142c20c50a16d1616b3949069ae7",
+          "circuitDigest": "d1cd361521a686b8ce363f0b2634b74a0318946d37b0966b385c2e499937f03c",
           "cleanBlockMaxEntryError": 2.298380017448157e-16,
           "cleanBlockOperatorNormError": 3.9223289976482477e-16,
           "depth": 266,
@@ -171,7 +171,7 @@
           "unitarityError": 4.386363924348323e-15
         }
       },
-      "circuitDigest": "c4dfb0878e5441bf4cb29eb2d5dca8f54a5a142c20c50a16d1616b3949069ae7",
+      "circuitDigest": "d1cd361521a686b8ce363f0b2634b74a0318946d37b0966b385c2e499937f03c",
       "globalPhase": {
         "denominator": 8,
         "kind": "piRational",
@@ -180,7 +180,7 @@
       "identity": "warm-robin-paper-seven-t3",
       "leanRoots": [
         "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical",
-        "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveCircuit_cleanBlock",
+        "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_cleanBlock",
         "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"
       ],
       "primitiveResource": {
@@ -204,7 +204,7 @@
       "checkBackends": {
         "internalCanonicalEvaluator": {
           "backend": "internalCanonicalMatrix",
-          "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+          "circuitDigest": "981ce42c1d9d38cd9524569d081ace847517e644557f82f7caad2f8c8df2eb1d",
           "cleanBlockMaxEntryError": 1.6653345369377348e-16,
           "cleanBlockOperatorNormError": 2.5392461204043276e-16,
           "evidenceClasses": [
@@ -225,7 +225,7 @@
         "openqasm3RoundTrip": {
           "backend": "openqasm3RoundTrip",
           "canonicalRoundTrip": true,
-          "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+          "circuitDigest": "981ce42c1d9d38cd9524569d081ace847517e644557f82f7caad2f8c8df2eb1d",
           "cleanBlockMaxEntryError": 1.6653345369377348e-16,
           "cleanBlockOperatorNormError": 2.5392461204043276e-16,
           "decimalPrecisionDigits": 17,
@@ -246,7 +246,7 @@
         },
         "qiskitOperator": {
           "backend": "qiskitOperator",
-          "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+          "circuitDigest": "981ce42c1d9d38cd9524569d081ace847517e644557f82f7caad2f8c8df2eb1d",
           "cleanBlockMaxEntryError": 1.6653345369377348e-16,
           "cleanBlockOperatorNormError": 2.5392461204043276e-16,
           "depth": 96,
@@ -268,7 +268,7 @@
           "unitarityError": 3.478116716525296e-15
         }
       },
-      "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+      "circuitDigest": "981ce42c1d9d38cd9524569d081ace847517e644557f82f7caad2f8c8df2eb1d",
       "globalPhase": {
         "denominator": 1,
         "kind": "rational",
@@ -341,7 +341,7 @@
   "checkBackends": {
     "internalCanonicalEvaluator": {
       "backend": "internalCanonicalMatrix",
-      "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+      "circuitDigest": "981ce42c1d9d38cd9524569d081ace847517e644557f82f7caad2f8c8df2eb1d",
       "cleanBlockMaxEntryError": 1.6653345369377348e-16,
       "cleanBlockOperatorNormError": 2.5392461204043276e-16,
       "evidenceClasses": [
@@ -362,7 +362,7 @@
     "openqasm3RoundTrip": {
       "backend": "openqasm3RoundTrip",
       "canonicalRoundTrip": true,
-      "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+      "circuitDigest": "981ce42c1d9d38cd9524569d081ace847517e644557f82f7caad2f8c8df2eb1d",
       "cleanBlockMaxEntryError": 1.6653345369377348e-16,
       "cleanBlockOperatorNormError": 2.5392461204043276e-16,
       "decimalPrecisionDigits": 17,
@@ -383,7 +383,7 @@
     },
     "qiskitOperator": {
       "backend": "qiskitOperator",
-      "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+      "circuitDigest": "981ce42c1d9d38cd9524569d081ace847517e644557f82f7caad2f8c8df2eb1d",
       "cleanBlockMaxEntryError": 1.6653345369377348e-16,
       "cleanBlockOperatorNormError": 2.5392461204043276e-16,
       "depth": 96,
@@ -405,7 +405,7 @@
       "unitarityError": 3.478116716525296e-15
     }
   },
-  "circuitDigest": "f21878513d4b6583bf4546e2a5ca4fc2b112c0f45bbab672bec73eeb45f770a1",
+  "circuitDigest": "981ce42c1d9d38cd9524569d081ace847517e644557f82f7caad2f8c8df2eb1d",
   "cleanQubits": {
     "coefficient": 0,
     "selector": 0
@@ -436,7 +436,7 @@
     "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"
   ],
   "schemaVersion": 2,
-  "sourceCommit": "bdc4415a28bea099b285d85bed569c0433d112c0",
+  "sourceCommit": "8e1381b80d512350e6dff73f6d87b0e685e7e166",
   "systemQubits": 3,
   "t3PrerequisiteRoots": [
     "QuantumBlockEncoding.Robin.warmRobinXorFourSlotAmplitudeProgram_eval",
