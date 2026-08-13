@@ -54,10 +54,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  verify:
     runs-on: ubuntu-latest
 
     steps:
@@ -125,11 +122,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v6
         with:
-          # Normal runs use GITHUB_TOKEN after the Pages site exists.
-          # First-time enablement needs a repo secret PAT named PAGES_TOKEN
-          # with Pages:write and Administration:write permission, or a classic
-          # PAT with repo scope. If the secret is absent, this falls back to
-          # the standard GitHub-token configuration.
           token: ${{ secrets.PAGES_TOKEN || github.token }}
           enablement: ${{ secrets.PAGES_TOKEN != '' }}
 
@@ -139,7 +131,14 @@ jobs:
         with:
           path: _site
 
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: verify
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
-        if: github.ref == 'refs/heads/main'
         id: deployment
         uses: actions/deploy-pages@v4
