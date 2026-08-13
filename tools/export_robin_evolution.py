@@ -3,9 +3,10 @@
 
 Lean independently proves the Hadamard-8 and four-slot T2 logical-unitary block
 encodings and their same-tier resource comparison.  This script exports a dense
-Qiskit realization of the fixed benchmark and records diagnostics; no floating-
-point result here promotes a candidate or discharges the open T3 primitive
-refinement theorem.
+Qiskit realization of the fixed benchmark and records diagnostics.  A passing
+result can promote a route into the executable-validated search population and
+prioritize its Lean obligations.  It cannot, by itself, discharge an exact
+Lean block-encoding theorem or the open T3 primitive refinement theorem.
 """
 
 from __future__ import annotations

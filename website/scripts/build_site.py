@@ -948,8 +948,8 @@ def render_robin_paper_map(
   <h1>Robin boundary block encoding</h1>
   <p class="lede">The source paper proposes a general circuit family for
   differential operators with Robin boundaries. ASPBE separates that general
-  route from a fixed (N=8) benchmark, where complete T2 logical-unitary
-  certificates and an exact resource comparison now compile.</p>
+  route from a fixed (N=8) benchmark, where complete exact high-level unitary
+  certificates and a same-level resource comparison now compile.</p>
   <div class="link-row">
     <a class="button" href="{html.escape(str(paper['url']))}">Open the source paper</a>
     <a class="button secondary" href="{prefix}sources/ghl2025-robin-excerpts.tex">Download the LaTeX excerpts</a>
@@ -980,9 +980,10 @@ def render_robin_paper_map(
     The general paper route remains partial: several oracle semantics, transported
     cleanup, and its final theorem still need to be connected. The fixed (N=8)
     benchmark is stronger and separate. Lean certifies both the Hadamard-8 and
-    centrosymmetric four-slot constructions as exact T2 logical-unitary block
-    encodings, and proves the four-slot cost strictly better under their shared
-    T2 convention. Exact primitive <code>{{u,cx}}</code> refinement remains T3 work.
+    centrosymmetric four-slot constructions as exact high-level logical-unitary
+    block encodings (internally, T2), and proves the four-slot cost strictly
+    better under that shared convention. Primitive <code>{{u,cx}}</code>
+    refinement is a separate gate-level result (internally, T3).
   </div>
 </section>
 <section class="content-section" id="structural-candidates">
@@ -990,18 +991,21 @@ def render_robin_paper_map(
   <h2>Two comparable logical unitaries</h2></div>
   {render_math_tex(r"A/(56/3)=M/224")}
   <div class="case-grid">
-    <article class="case-card"><p class="eyebrow">T2 baseline · (8,4,4,2)</p><h3>Hadamard eight</h3><p>Three selector
+    <article class="case-card"><p class="eyebrow">Logical baseline · (8,4,4,2)</p><h3>Hadamard eight</h3><p>Three selector
     Hadamards, an exact controlled amplitude unitary, SELECT, and unprepare form
     a complete complex unitary whose clean block is (M/224).</p></article>
-    <article class="case-card"><p class="eyebrow">T2 evolved · (8,4,3,2)</p><h3>Four symmetry slots</h3><p>A reversal-symmetry
+    <article class="case-card"><p class="eyebrow">Logical evolved · (8,4,3,2)</p><h3>Four symmetry slots</h3><p>A reversal-symmetry
     basis change splits the system into two four-dimensional sectors. Gate count
     and depth tie while the selector width falls by one qubit.</p></article>
   </div>
   <p><a class="button" href="{prefix}example-cases/robin-ghl-one-term/index.html">Open the theorem-linked evolution visualization</a></p>
-  <div class="callout warning"><strong>Remaining boundary.</strong>
-  Neither T2 resource row is advertised as a primitive <code>{{u,cx}}</code>
-  count. T3 requires an exact primitive gate list, its matrix semantics, and a
-  refinement theorem equating the primitive product with the T2 logical unitary.</div>
+  <div class="callout warning"><strong>Do we need the primitive level?</strong>
+  Not to prove that this block encoding exists: the exact unitary and clean block
+  are already certified. It is needed before claiming primitive
+  <code>{{u,cx}}</code> gate counts, transpiled depth, or end-to-end verified
+  backend code. That stronger result requires an exact primitive gate list, its
+  matrix semantics, and a Lean theorem equating the primitive product with the
+  high-level unitary.</div>
 </section>
 <section class="content-section paper-map" id="correspondence">
   <div class="section-heading">
@@ -2092,7 +2096,7 @@ def render_example_case_index(
   <div class="case-meta">{badge('Lean certified' if case['status'] == 'certified' else 'Partial route')}<span>{html.escape(str(case['semanticTier']))}</span></div>
 </article>""")
     body = f"""<section class="hero"><p class="eyebrow">Reproducible reading paths</p>
-<h1>Case studies, from equation to circuit</h1><p class="lede">Each case begins with the operator or target state, fixes the acceptance contract, and then shows the circuit and resource trace. “Certified” means a named Lean root compiled in this checkout. Qiskit is a runnable export, never the proof gate.</p></section>
+<h1>Case studies, from equation to circuit</h1><p class="lede">Each case begins with the operator or target state, fixes the acceptance contract, and then shows the circuit and resource trace. “Certified” means a named Lean root compiled in this checkout. Qiskit and other fast backends may screen and prioritize routes; a floating-point match alone is not the final exact proof.</p></section>
 <section class="content-section case-reading-key"><h2>How to read a score</h2><p>The tuple is ordered lexicographically as <strong>(gate count, parallel depth, auxiliary qubits, oracle calls)</strong>. A page says “strictly better” only when it links the corresponding Lean <code>betterThan</code> theorem. Routes at different semantic tiers are not compared.</p></section>
 <section class="content-section"><div class="case-grid">{''.join(cards)}</div></section>
 <section class="content-section contribution-callout"><h2>Contribute a checked variant</h2><p>Generated drafts are welcome. Public retrieval begins only after review, a repository declaration, and the advertised gates pass.</p><div class="link-row"><a class="button" href="../task-builder/index.html">Share a State Preparation example</a><a class="button secondary" href="../community/index.html">Share a Block Encoding example</a></div></section>"""
@@ -2122,7 +2126,7 @@ def render_example_case(
 <section class="content-section" id="circuit"><div class="section-heading"><p class="eyebrow">Circuit anatomy</p><h2>How the candidate acts</h2><p>These blocks show logical stages and register responsibilities. They do not pretend an unresolved logical oracle is already a primitive hardware gate.</p></div>{render_case_circuit(case)}</section>
 <section class="content-section" id="evolution"><div class="section-heading"><p class="eyebrow">Auditable evolution</p><h2>Candidate and proof progression</h2></div>{render_case_evolution(case, declarations, prefix)}</section>
 <section class="content-section" id="lean-certificate"><div class="section-heading"><p class="eyebrow">Proof authority</p><h2>Named Lean certificates</h2><p>These declarations, compiled by the current Lean gate, support the mathematical and resource claims above.</p></div><ul class="case-declaration-list">{anchors}</ul></section>
-<section class="content-section export-section" id="qiskit-export"><div class="section-heading"><p class="eyebrow">Optional executable output</p><h2>Run the construction with Qiskit</h2></div><p>{html.escape(str(qiskit['role']))}</p><dl class="definition-list"><dt>Repository path</dt><dd><code>{html.escape(str(qiskit['path']))}</code></dd><dt>Command</dt><dd><pre><code>{html.escape(str(qiskit['command']))}</code></pre></dd></dl><div class="callout warning"><strong>Trust boundary.</strong> Qiskit output may reveal implementation mistakes at a concrete size, but no norm tolerance or sampled matrix equality can replace the symbolic Lean root shown above.</div></section>
+<section class="content-section export-section" id="qiskit-export"><div class="section-heading"><p class="eyebrow">Optional executable output</p><h2>Run the construction with Qiskit</h2></div><p>{html.escape(str(qiskit['role']))}</p><dl class="definition-list"><dt>Repository path</dt><dd><code>{html.escape(str(qiskit['path']))}</code></dd><dt>Command</dt><dd><pre><code>{html.escape(str(qiskit['command']))}</code></pre></dd></dl><div class="callout warning"><strong>Trust boundary.</strong> A fast Qiskit check may reject, rank, or provisionally promote a route before formalization. A floating-point norm tolerance does not replace the exact Lean root shown above; an external exact certificate contributes to final proof only when a Lean checker verifies it.</div></section>
 <section class="content-section"><dl class="definition-list"><dt>Source</dt><dd>{html.escape(str(case['source']))}</dd><dt>Contributor</dt><dd>{html.escape(str(case['contributor']))}</dd><dt>Current boundary</dt><dd>{html.escape(str(case['limitations']))}</dd></dl><div class="link-row"><a class="button" href="{prefix}task-builder/index.html?case={html.escape(str(case['slug']))}">Load in task builder</a><a class="button secondary" href="{prefix}community/index.html?case={html.escape(str(case['slug']))}">Contribute a variant</a></div></section>
 <script type="application/json" data-example-preset>{preset}</script></article>"""
     return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context, toc=[("mathematical-target", "Mathematical target"), ("circuit", "Circuit anatomy"), ("evolution", "Evolution"), ("lean-certificate", "Lean certificates"), ("qiskit-export", "Qiskit export")])

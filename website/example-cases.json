@@ -295,7 +295,7 @@
       "shortTitle": "Robin benchmark",
       "kind": "operatorBlockEncoding",
       "status": "certified",
-      "semanticTier": "T2 exact logical-unitary block encoding",
+      "semanticTier": "Exact logical-unitary block encoding (T2)",
       "leanAnchors": [
         "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224",
         "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
@@ -304,39 +304,40 @@
       ],
       "problem": "For the fixed homogeneous-Robin fourth-derivative discretization with N=8, construct an exact logical unitary whose clean block is the scaled non-unitary matrix A.",
       "formula": "A=\\frac1{12}\\begin{pmatrix}-30&32&-2&0&0&0&0&0\\\\16&-31&16&-1&0&0&0&0\\\\-1&16&-30&16&-1&0&0&0\\\\0&-1&16&-30&16&-1&0&0\\\\0&0&-1&16&-30&16&-1&0\\\\0&0&0&-1&16&-30&16&-1\\\\0&0&0&0&-1&16&-31&16\\\\0&0&0&0&0&-2&32&-30\\end{pmatrix},\\qquad \\Pi U\\Pi^\\dagger=\\frac{A}{56/3}=\\frac{M}{224}.",
-      "contract": "Lean proves the exact normalization identity, complex unitarity of each T2 logical matrix, the original-basis clean-block equality, and a same-tier lexicographic comparison. Qiskit transpilation is not used to promote either candidate.",
+      "contract": "Lean proves the exact normalization identity, complex unitarity of each high-level logical matrix, the original-basis clean-block equality, and a same-level lexicographic comparison. In this recorded comparison Qiskit did not establish the two proof roots; future runs may use it to screen and provisionally promote routes before Lean.",
       "symbols": [
         ["A", "the fixed N=8 homogeneous-Robin finite-difference operator"],
         ["M=12A", "the integer matrix used by the exact decomposition proofs"],
         ["alpha=56/3", "the frozen block-encoding normalizer"],
-        ["T2", "logical-unitary semantics before primitive {u,cx} refinement"]
+        ["T2", "the exact high-level unitary and clean block are proved; named loaders and SELECT operations may remain logical stages"],
+        ["T3", "every logical stage is expanded into primitive gates such as {u,cx}, and Lean proves that the primitive product equals the T2 unitary"]
       ],
       "circuit": {
         "registers": "selector | coefficient signal | three-qubit system",
         "stages": [
           {"label": "Source seed", "detail": "paper theorem-7 normal form", "gates": ["PREPARE", "amplitude", "sparse SELECT", "cleanup"]},
-          {"label": "T2 baseline", "detail": "eight selector labels with H tensor H tensor H", "gates": ["H^3", "amplitude", "SELECT", "H^3"]},
-          {"label": "T2 evolved", "detail": "centrosymmetric basis split with four slots", "gates": ["basis change", "4-slot block", "basis change dagger"]}
+          {"label": "Logical baseline (T2)", "detail": "eight selector labels with H tensor H tensor H", "gates": ["H^3", "amplitude", "SELECT", "H^3"]},
+          {"label": "Logical evolved circuit (T2)", "detail": "centrosymmetric basis split with four slots", "gates": ["basis change", "4-slot block", "basis change dagger"]}
         ]
       },
       "evolution": {
-        "caption": "Only the last two points share the exact T2 cost convention. Lean proves the four-slot point strictly better because gate count and depth tie while one auxiliary qubit is removed.",
+        "caption": "Only the last two points share the same exact high-level cost convention (called T2 internally). Lean proves the four-slot point strictly better because gate count and depth tie while one auxiliary qubit is removed.",
         "stages": [
           {"iteration": "seed", "name": "Paper theorem-7 route", "score": null, "status": "T1 source route", "description": "The source transcript motivates the benchmark but lacks the T2 logical-unitary root needed for comparison.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224"},
-          {"iteration": "0", "name": "Hadamard-8", "score": [8, 4, 4, 2], "status": "Lean certified T2", "description": "An exact PREPARE/amplitude/SELECT/unprepare logical unitary closes the clean block.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding"},
-          {"iteration": "1", "name": "Centrosymmetric four-slot", "score": [8, 4, 3, 2], "status": "Strictly better at T2", "description": "A symmetry basis change splits the matrix into two four-by-four sectors and removes one selector qubit.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"}
+          {"iteration": "0", "name": "Hadamard-8", "score": [8, 4, 4, 2], "status": "Lean-certified logical circuit", "description": "An exact PREPARE/amplitude/SELECT/unprepare logical unitary closes the clean block.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding"},
+          {"iteration": "1", "name": "Centrosymmetric four-slot", "score": [8, 4, 3, 2], "status": "Strictly better at the same level", "description": "A symmetry basis change splits the matrix into two four-by-four sectors and removes one selector qubit.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"}
         ]
       },
       "qiskit": {
         "path": "executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/export.py",
         "command": "python3 executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/export.py",
-        "role": "Exports the fixed logical benchmark and its runnable Qiskit evidence. T3 primitive {u,cx} refinement remains an explicit open theorem."
+        "role": "Exports the fixed logical benchmark as runnable Qiskit code. This fast check can screen future routes and prioritize their Lean proofs. A separate primitive-gate refinement is needed only for certified {u,cx} counts and end-to-end gate-level correctness."
       },
       "preset": {"taskName": "QBE-ROBIN-BE-WARM-001", "mode": "exploratoryConstruction", "target": "fixed N=8 homogeneous-Robin matrix A with clean block A/(56/3)", "normalizer": "56/3", "projector": "selector=0 and coefficient=0; system Fin 8"},
-      "summary": "Two exact T2 logical-unitary block encodings compile, and Lean proves the four-slot symmetry route improves auxiliary width from four to three.",
+      "summary": "Two exact high-level logical-unitary block encodings compile, and Lean proves the four-slot symmetry route improves auxiliary width from four to three.",
       "source": "Guseynov-Huang-Liu construction and ASPBE fixed-N audit",
       "contributor": "ASPBE authors",
-      "limitations": "The fixed benchmark is complete at T2. Exact primitive {u,cx} circuit refinement remains T3 work."
+      "limitations": "The mathematical block encoding is complete at the logical-unitary level. Exact primitive {u,cx} refinement is needed only for primitive-resource or end-to-end gate-level claims."
     }
   ]
 }

@@ -12,8 +12,10 @@ reported August 2026 experiment is the paper-seeded `warm` arm only.
 The two arms use the same normalizer, projector, register order, Lean gate,
 Qiskit export convention, and score order. A result is not an improvement when
 it changes semantic tier or replaces an expanded circuit with an unresolved
-oracle call. Qiskit diagnostics never promote a candidate; a named Lean
-certificate and a same-tier Lean comparison theorem are required.
+oracle call. Qiskit diagnostics may reject, rank, and promote a route into the
+provisional executable-validated population. A named Lean certificate and a
+same-tier Lean comparison theorem are still required before the route is
+reported as a certified improvement.
 
 Reproduce the reported warm protocol with the pinned model family:
 
@@ -52,7 +54,8 @@ Lean theorem
 proves the second score strictly better in their shared logical-stage
 convention. This is deterministic proof completion after the recorded search,
 not a retroactive claim that cycle seven discovered the theorem. The Qiskit
-export remains separate executable evidence, and T3 primitive `{u,cx}`
+export is executable evidence and, in future runs, a fast pre-Lean selection
+signal. It is not the proof of the two exact roots. T3 primitive `{u,cx}`
 refinement remains open.
 
 `website/robin-paper-map.json` maps the paper's LaTeX statements to compiled

@@ -7024,9 +7024,9 @@ def strategy_for_mode(mode: str) -> str:
   rank-one operator for block encoding.
 - Maintain the first-column invariant: in the computational basis, the first
   column of candidate unitary `U` must equal `|psi>`.
-- Keep two pools distinct: the certified population contains only candidates
-  with named Lean certificates for unitarity, `U |0^n> = |psi>` or
-  first-column equality, and resource score; the insight pool contains Pro
+- Keep three pools distinct: certified candidates have named Lean certificates;
+  executable-validated candidates pass the declared exact/finite/Qiskit checks
+  and are prioritized for proof; the insight pool contains unchecked Pro
   suggestions, Python searches, simulator traces, and reviewer ideas.
 - Use simple anchors first when teaching or debugging: `H |0> = (|0> + |1>) /
   sqrt(2)` and `X |0> = |1>`, `X |1> = |0>`.
@@ -7053,16 +7053,21 @@ def strategy_for_mode(mode: str) -> str:
   Each candidate must name its unitary/circuit family, auxiliary qubits `a`,
   gate count, depth/layer schedule, unresolved oracle calls, and current Lean
   obligations.
-- Keep two pools distinct: the certified population contains only candidates
+- Keep three pools distinct.  The certified population contains candidates
   with named Lean certificates for the required semantic tier, clean-block
-  equality, and resource score; the insight pool contains Pro suggestions,
-  Python searches, simulator traces, and reviewer ideas.  Mutation, crossover,
-  recombination, champion selection, and final plots may use certified parents
-  only.  An insight-pool idea must first be promoted by a Lean proof task.
+  equality, and resource score.  The executable-validated population contains
+  candidates that pass the declared exact/finite/Qiskit checks but still have
+  open Lean obligations.  The insight pool contains unchecked suggestions and
+  partial routes. Mutation and crossover may use certified or explicitly
+  labelled executable-validated parents; champion claims and achieved plots use
+  certified candidates only.
 - Use necessary-condition feedback before expensive Lean proof search:
   dimension checks, unitarity checks on small symbolic/numeric instances,
   block-entry extraction checks, ancilla-cleanup checks, and schedule/depth
-  checks.  These diagnostics may reject a candidate but do not prove it.
+  checks.  These diagnostics may reject, rank, or provisionally promote a
+  candidate and thereby decide where Lean effort goes. A floating-point check
+  does not prove an exact theorem; an exact external witness may discharge an
+  obligation only through a Lean-checked certificate bridge.
 - Use the Learning-Beyond-Gradients-like loop to update compact memory after
   every attempt: which construction family improved, which failed by
   dimension/unitarity/block-entry/resource mismatch, and which proof leaf is
@@ -7513,9 +7518,10 @@ Local paper-source archive for agent work:
   record its asymptotic tier plus concrete `BlockEncodingCost`, ordered as
   `(gateCount, depth, auxiliaryQubits, oracleCalls)` inside one tier, and Lean
   obligations.  Necessary-condition simulators and
-  finite checks may reject bad candidates; only Lean proves acceptance.  Keep
-  unproved ideas in an insight pool.  Only Lean-certified candidates may be
-  used as evolutionary parents or plotted as achieved solutions.
+  finite checks may reject bad candidates, rank survivors, and promote them to
+  an executable-validated population. Such candidates may be evolutionary
+  parents but must remain marked provisional. Only Lean-certified candidates
+  may be plotted as achieved solutions or used for final mathematical claims.
 - In `paperBenchmark` or `faithfulPaper` mode, reproduce the cited paper's
   construction as a baseline candidate.  Do not
   invent a replacement oracle or block encoding, and do not add assumptions,
@@ -7662,14 +7668,15 @@ Human-facing correspondence rule:
   rejected, or postponed as external contracts.  If no Lean-certified
   candidate exists, the figure must say "no certified candidate yet" rather
   than plotting an achieved point.
-- Post-Lean executable-export cadence: when a task asks for Qiskit,
-  QuantumKatas-style, OpenQASM/QASM, or another executable target, do not use
-  that artifact as the final proof unless the task explicitly declares a finite
-  executable semantic tier.  First close the named Lean certificate for the
-  advertised theorem.  Then middle should translate the Lean declarations,
-  register map, normalizer, projector, resource tuple, and concrete
-  instantiation into an export packet under `executable-exports/<task-id>/`;
-  lower export/verifier work may generate runnable code and record its checks.
+- Executable-verifier cadence: when a task asks for Qiskit,
+  QuantumKatas-style, OpenQASM/QASM, or another executable target, use a cheap
+  instance early when it can reject, rank, or provisionally promote routes.
+  Record the tested size, tolerance, register map, and semantic tier.  For the
+  advertised exact theorem, close a named Lean certificate before certified
+  promotion; an external exact witness counts only after a Lean checker verifies
+  it.  After certification, emit the reproducible export packet under
+  `executable-exports/<task-id>/` with the Lean root, normalizer, projector,
+  resource tuple, and concrete instantiation.
 - Project-paper cadence: the paper-specific LaTeX export is an appendix input
   to the larger article "Auto-Lean-in-Sleep: Block Encoding for Quantum
   Computing".  During Lean-heavy cycles, do not spend lower-agent effort on

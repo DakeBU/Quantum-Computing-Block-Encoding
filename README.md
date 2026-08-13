@@ -178,9 +178,9 @@ specific layer bottleneck.
 2  Retrieve compatible compiled lemmas and memory cards
 3  Choose one candidate and record propose/retain/retire/mutate/crossover
 4  Assign the smallest ready proof-DAG leaf
-5  Run necessary-condition diagnostics when they can reject the route cheaply
+5  Run cheap exact or Qiskit diagnostics and promote passing routes for proof
 6  Compile the named Lean declaration and tests
-7  Run declared Qiskit/QASM/finite exports after the symbolic gate
+7  Export the certified construction to the requested executable backends
 8  Promote, mutate, change one policy rung, or stop with an intervention packet
 ```
 
@@ -207,12 +207,21 @@ artifacts for the accepted finite instance. Depending on the task, ASPBE emits:
 - a manifest recording normalization, qubit layout, semantic tier, and output
   files.
 
-These outputs expose code that users can inspect, modify, or run on a compatible
-backend. For state preparation they construct the requested preparation
-circuit. For block encoding they expose the declared register order and clean
-ancilla block. Optional floating-point diagnostics can catch an export bug at a
-fixed size, but are never used to certify the mathematical claim, establish a
-lexicographic improvement, or promote a T2 logical unitary to T3.
+These backends are useful both during search and after certification. For state
+preparation they construct and test the requested preparation circuit. For
+block encoding they expose the declared register order and clean ancilla block.
+A fast finite check may reject a bad route, rank surviving exploratory routes,
+and promote one into the executable-validated population before Lean effort is
+allocated. The current logs justify this ordering: individual finite checks
+take roughly `0.04--0.95 s`, while the cached multi-module Lean replay takes
+about `2.75 s`, and agent-led proof search is much more expensive.
+
+A floating-point match is nevertheless not, by itself, a proof of an exact or
+symbolic-family theorem. Final `Lean-certified` promotion requires a named Lean
+root. An external backend may participate directly in mathematical
+certification when it emits an exact witness or proof certificate that a small
+Lean checker verifies; the trusted conclusion still enters through Lean rather
+than an unverified tolerance comparison.
 
 ```bash
 python3 -m pip install -r requirements-executable.txt
@@ -240,6 +249,8 @@ Candidates live in three separate populations:
 3. **Insight:** constructions, external suggestions, failed routes, and partial
    arguments that can guide another proposal.
 
+Finite-executable candidates may be selected as evolutionary parents and may
+receive priority for formalization, but must remain visibly provisional.
 Within one semantic and implementation tier, certified candidates are compared
 lexicographically by gate count, depth, auxiliary qubits, and unresolved oracle
 calls. Correctness and target fidelity are gates, not weighted score terms. An
@@ -374,10 +385,10 @@ and paper-wide composition contracts have been implemented at gate level.
 
 The current paper experiment uses the warm arm: one frozen finite target plus
 the paper construction and compiled Robin memory. The cold arm remains defined
-for a later controlled comparison. A candidate can appear as an improved
+for a later controlled comparison. Qiskit may reject, rank, or provisionally
+promote exploratory candidates. A candidate appears as a certified improved
 resource point only after a named Lean block-encoding root and same-tier Lean
-`betterThan` theorem compile. Qiskit is an export gate, not mathematical
-acceptance.
+`betterThan` theorem compile.
 
 ```bash
 export CODEX_MODEL=gpt-5.6-sol
@@ -403,6 +414,18 @@ improvement: gate count and depth tie, while the four-slot route uses one fewer
 auxiliary qubit. This is not a primitive `{u,cx}` claim. Exact primitive gate
 semantics, circuit-product equality with the T2 unitary, and primitive resource
 counts remain the separate T3 refinement obligation.
+
+In plain terms, **T2** proves that the complete high-level unitary matrix is
+exactly unitary and has exactly the requested clean block. Operations such as a
+controlled amplitude loader or `SELECT` may still be counted as named logical
+stages. **T3** expands those stages into a fixed primitive gate basis such as
+`{u,cx}`, defines the exact matrix semantics of every primitive, and proves in
+Lean that their ordered product is the T2 unitary. T3 is required for claims
+about primitive gate counts, transpiled depth, or end-to-end verified hardware-
+level code; it is not required merely to establish that the mathematical block
+encoding exists. ASPBE therefore treats Robin T2 as a complete exact logical
+block-encoding result and T3 as a valuable backend-refinement target, not as a
+precondition for publishing the current mathematical certificate.
 The complete replay contract is in
 [`run-presets/robin_cold_warm_reproduction.md`](run-presets/robin_cold_warm_reproduction.md).
 
