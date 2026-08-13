@@ -52,7 +52,28 @@ class SiteContractTests(unittest.TestCase):
         self.assertEqual(data["schemaVersion"], 2)
         slugs = [case["slug"] for case in data["cases"]]
         self.assertEqual(len(slugs), len(set(slugs)))
-        self.assertIn("Example Cases", build_site.site_header("./", ""))
+        previous = build_site.EXAMPLE_CASE_NAV
+        try:
+            build_site.EXAMPLE_CASE_NAV = [
+                (case["shortTitle"], case["slug"]) for case in data["cases"]
+            ]
+            navigation = build_site.site_header("./", "")
+        finally:
+            build_site.EXAMPLE_CASE_NAV = previous
+        self.assertIn("Example Cases", navigation)
+        self.assertIn("<span>01</span>", navigation)
+        self.assertIn("<span>07</span>", navigation)
+        self.assertIn("State prep: Pauli X", navigation)
+        self.assertNotIn("Preparing the basis state |1&gt;", navigation)
+
+    def test_footer_names_repository_and_all_organizers(self) -> None:
+        source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
+        self.assertIn("DakeBU/Quantum-Computing-Block-Encoding", source)
+        for name in (
+            "Dake Bu", "Xiajie Huang", "Nana Liu", "Atsushi Nitanda",
+            "Hau-san Wong", "Qingfu Zhang",
+        ):
+            self.assertIn(name, source)
 
     def test_every_case_has_formula_lean_evolution_and_executable_output(self) -> None:
         data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))

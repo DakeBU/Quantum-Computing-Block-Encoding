@@ -47,6 +47,17 @@ NAVIGATION = [
     ("Organizers", "organizers/"),
 ]
 
+PROJECT_REPOSITORY = "DakeBU/Quantum-Computing-Block-Encoding"
+PROJECT_REPOSITORY_URL = f"https://github.com/{PROJECT_REPOSITORY}"
+ORGANIZERS = (
+    ("Dake Bu", "City University of Hong Kong · A*STAR"),
+    ("Xiajie Huang", "Shanghai Jiao Tong University"),
+    ("Nana Liu", "Shanghai Jiao Tong University"),
+    ("Atsushi Nitanda", "A*STAR · Nanyang Technological University"),
+    ("Hau-san Wong", "City University of Hong Kong"),
+    ("Qingfu Zhang", "City University of Hong Kong"),
+)
+
 EXAMPLE_CASE_NAV: list[tuple[str, str]] = []
 DOUBLE_TEX_COMMAND = re.compile(r"\\\\(?=[A-Za-z])")
 
@@ -255,12 +266,13 @@ def site_header(prefix: str, current: str) -> str:
             f'{html.escape(str(chapter["title"]))}</a>'
         )
     example_links = []
-    for label, case_slug in EXAMPLE_CASE_NAV:
+    for index, (label, case_slug) in enumerate(EXAMPLE_CASE_NAV, start=1):
         route = f"example-cases/{case_slug}/"
         current_attr = ' aria-current="page"' if current == route else ""
         example_links.append(
             f'<a href="{page_url(prefix, route)}"{current_attr}>'
-            f'{html.escape(label)}</a>'
+            f'<span>{index:02d}</span>'
+            f'<span>{html.escape(label)}</span></a>'
         )
     return f"""
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -380,8 +392,13 @@ def page_template(
     {toc_html}
   </div>
   <footer class="site-footer">
-    <div><strong>QuantumComputinglib</strong> · Generated from the current ASPBE Lean inventory.</div>
+    <div class="footer-provenance">
+      <div><strong>QuantumComputinglib</strong> is generated from the ASPBE Lean inventory in
+        <a href="{PROJECT_REPOSITORY_URL}"><code>{PROJECT_REPOSITORY}</code></a>.</div>
+      <div><strong>Organizers:</strong> {html.escape(', '.join(name for name, _ in ORGANIZERS))}.</div>
+    </div>
     <nav aria-label="Footer">
+      <a href="{page_url(prefix, 'organizers/')}">Organizers</a>
       <a href="{page_url(prefix, 'implementation-map/')}">Implementation map</a>
       <a href="{page_url(prefix, 'workflow/')}">ASPBE harness</a>
       <a href="{page_url(prefix, 'blueprint/')}">Verso Blueprint</a>
@@ -1519,18 +1536,10 @@ def render_organizers(
     gate: dict[str, object],
     context: dict[str, object],
 ) -> str:
-    people = (
-        ("Dake Bu", "City University of Hong Kong · A*STAR"),
-        ("Xiajie Huang", "Shanghai Jiao Tong University"),
-        ("Nana Liu", "Shanghai Jiao Tong University"),
-        ("Atsushi Nitanda", "A*STAR · Nanyang Technological University"),
-        ("Hau-san Wong", "City University of Hong Kong"),
-        ("Qingfu Zhang", "City University of Hong Kong"),
-    )
     cards = "".join(
         f'<article class="person-row"><h3>{html.escape(name)}</h3>'
         f'<p>{html.escape(affiliation)}</p></article>'
-        for name, affiliation in people
+        for name, affiliation in ORGANIZERS
     )
     body = f"""
 <section class="hero" id="organizers">
@@ -2350,7 +2359,7 @@ def build(args: argparse.Namespace) -> None:
     example_cases = load_example_cases(declaration_map, replay_report)
     global EXAMPLE_CASE_NAV
     EXAMPLE_CASE_NAV = [
-        (str(case["title"]), str(case["slug"])) for case in example_cases
+        (str(case["shortTitle"]), str(case["slug"])) for case in example_cases
     ]
 
     output: Path = args.output

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="650" viewBox="0 0 1400 650" role="img" aria-labelledby="title desc">
+  <title id="title">Qiskit circuit view for the Lean-certified BE Case 1 export</title>
+  <desc id="desc">A four-qubit circuit. Layer one is a Toffoli controlled by the type and time qubits and targeting the clean ancilla. Layer two applies X gates to the type, time, and clean ancilla qubits. The circuit has depth two and zero clean-block and unitarity error in its finite Qiskit check.</desc>
+  <rect width="1400" height="650" fill="#ffffff"/>
+  <style>
+    .sans { font-family: Inter, IBM Plex Sans, Arial, sans-serif; fill: #161616; }
+    .mono { font-family: IBM Plex Mono, SFMono-Regular, Consolas, monospace; fill: #161616; }
+    .muted { fill: #525252; }
+    .quiet { fill: #6f6f6f; }
+    .wire { stroke: #8d8d8d; stroke-width: 2; }
+  </style>
+
+  <text class="sans" x="60" y="66" font-size="33" font-weight="700">Executable circuit view</text>
+  <text class="sans muted" x="60" y="104" font-size="19">BE Case 1 · rendered from the repository's runnable Qiskit gate list</text>
+
+  <g transform="translate(60 122)">
+    <rect width="126" height="34" rx="17" fill="#edf5ff" stroke="#0f62fe"/>
+    <text class="sans" x="63" y="23" text-anchor="middle" font-size="14" font-weight="600">Qiskit 2.4.2</text>
+    <rect x="138" width="104" height="34" rx="17" fill="#f6f2ff" stroke="#6929c4"/>
+    <text class="sans" x="190" y="23" text-anchor="middle" font-size="14" font-weight="600">4 qubits</text>
+    <rect x="254" width="104" height="34" rx="17" fill="#e5f6ff" stroke="#1192e8"/>
+    <text class="sans" x="306" y="23" text-anchor="middle" font-size="14" font-weight="600">depth 2</text>
+    <rect x="370" width="142" height="34" rx="17" fill="#defbe6" stroke="#198038"/>
+    <text class="sans" x="441" y="23" text-anchor="middle" font-size="14" font-weight="600">exact target</text>
+  </g>
+
+  <rect x="60" y="178" width="930" height="355" rx="8" fill="#fafafa" stroke="#c6c6c6"/>
+  <text class="sans quiet" x="490" y="207" font-size="14" text-anchor="middle">LAYER 1</text>
+  <text class="sans quiet" x="710" y="207" font-size="14" text-anchor="middle">LAYER 2</text>
+
+  <g>
+    <text class="mono" x="88" y="238" font-size="16" font-weight="600">q0</text>
+    <text class="sans muted" x="128" y="238" font-size="15">state</text>
+    <line class="wire" x1="260" y1="232" x2="940" y2="232"/>
+
+    <text class="mono" x="88" y="308" font-size="16" font-weight="600">q1</text>
+    <text class="sans muted" x="128" y="308" font-size="15">type</text>
+    <line class="wire" x1="260" y1="302" x2="940" y2="302"/>
+
+    <text class="mono" x="88" y="378" font-size="16" font-weight="600">q2</text>
+    <text class="sans muted" x="128" y="378" font-size="15">time</text>
+    <line class="wire" x1="260" y1="372" x2="940" y2="372"/>
+
+    <text class="mono" x="88" y="448" font-size="16" font-weight="600">q3</text>
+    <text class="sans muted" x="128" y="448" font-size="15">clean ancilla</text>
+    <line class="wire" x1="260" y1="442" x2="940" y2="442"/>
+  </g>
+
+  <g aria-label="Toffoli gate with controls q1 and q2 and target q3">
+    <line x1="490" y1="302" x2="490" y2="442" stroke="#0f62fe" stroke-width="3"/>
+    <circle cx="490" cy="302" r="8" fill="#0f62fe"/>
+    <circle cx="490" cy="372" r="8" fill="#0f62fe"/>
+    <circle cx="490" cy="442" r="19" fill="#ffffff" stroke="#0f62fe" stroke-width="3"/>
+    <line x1="478" y1="442" x2="502" y2="442" stroke="#0f62fe" stroke-width="3"/>
+    <line x1="490" y1="430" x2="490" y2="454" stroke="#0f62fe" stroke-width="3"/>
+    <rect x="439" y="474" width="102" height="30" rx="4" fill="#edf5ff"/>
+    <text class="mono" x="490" y="494" font-size="14" text-anchor="middle">CCX 1,2→3</text>
+  </g>
+
+  <g aria-label="Parallel X gates on q1 q2 and q3">
+    <rect x="684" y="276" width="52" height="52" rx="3" fill="#6929c4"/>
+    <rect x="684" y="346" width="52" height="52" rx="3" fill="#6929c4"/>
+    <rect x="684" y="416" width="52" height="52" rx="3" fill="#6929c4"/>
+    <text x="710" y="310" font-family="IBM Plex Sans, Arial, sans-serif" font-size="21" font-weight="700" fill="#ffffff" text-anchor="middle">X</text>
+    <text x="710" y="380" font-family="IBM Plex Sans, Arial, sans-serif" font-size="21" font-weight="700" fill="#ffffff" text-anchor="middle">X</text>
+    <text x="710" y="450" font-family="IBM Plex Sans, Arial, sans-serif" font-size="21" font-weight="700" fill="#ffffff" text-anchor="middle">X</text>
+    <rect x="654" y="474" width="112" height="30" rx="4" fill="#f6f2ff"/>
+    <text class="mono" x="710" y="494" font-size="14" text-anchor="middle">X 1 · X 2 · X 3</text>
+  </g>
+
+  <g>
+    <path d="M828 222 h24 v220 h-24" fill="none" stroke="#8d8d8d" stroke-width="2"/>
+    <text class="sans quiet" x="870" y="329" font-size="14">q0 is preserved</text>
+    <text class="sans quiet" x="870" y="351" font-size="14">by both layers</text>
+  </g>
+
+  <rect x="1028" y="178" width="312" height="355" rx="8" fill="#f4f4f4" stroke="#c6c6c6"/>
+  <text class="sans" x="1060" y="220" font-size="19" font-weight="700">Checked evidence</text>
+  <line x1="1060" y1="238" x2="1308" y2="238" stroke="#c6c6c6"/>
+
+  <text class="sans quiet" x="1060" y="273" font-size="13" font-weight="700">LEAN CERTIFICATE</text>
+  <text class="mono" x="1060" y="302" font-size="14">OptimalControl.</text>
+  <text class="mono" x="1060" y="324" font-size="14">evolvedEqFlipVerified</text>
+
+  <text class="sans quiet" x="1060" y="370" font-size="13" font-weight="700">LEXICOGRAPHIC SCORE</text>
+  <text class="mono" x="1060" y="401" font-size="24" font-weight="700">(4, 2, 1, 0)</text>
+  <text class="sans muted" x="1060" y="424" font-size="13">gates · depth · aux · oracle</text>
+
+  <circle cx="1070" cy="465" r="8" fill="#24a148"/>
+  <text class="sans" x="1090" y="471" font-size="15">clean-block error = 0</text>
+  <circle cx="1070" cy="500" r="8" fill="#24a148"/>
+  <text class="sans" x="1090" y="506" font-size="15">unitarity error = 0</text>
+
+  <rect x="60" y="566" width="1280" height="54" rx="6" fill="#e5f6ff" stroke="#1192e8"/>
+  <text class="sans" x="700" y="589" font-size="16" font-weight="700" text-anchor="middle">One construction, two complementary views</text>
+  <text class="sans muted" x="700" y="610" font-size="14" text-anchor="middle">Lean certifies the exact matrix claim; Qiskit gives users runnable code and an independently inspectable finite circuit.</text>
+</svg>

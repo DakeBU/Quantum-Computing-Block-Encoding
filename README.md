@@ -1,33 +1,32 @@
 <div align="center">
 
-# ASPBE
+# ASPBE ⚛️
 
-### Automatic State Preparation and Block Encoding for Quantum Computing
+### Automatic State Preparation and Block Encoding for Quantum Computing 🔬
 
 Lean-checked quantum construction search, executable validation, and the
 [QuantumComputinglib](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) textbook and formalization workspace.
 
 [![Lean 4](https://img.shields.io/badge/Lean-4-6f42c1?style=flat-square)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-pinned-2f705c?style=flat-square)](https://github.com/leanprover-community/mathlib4)
+[![Qiskit](https://img.shields.io/badge/Qiskit-executable_exports-6929c4?style=flat-square)](https://www.ibm.com/quantum/qiskit)
+[![QuantumComputinglib](https://img.shields.io/badge/QuantumComputinglib-read_online-0f62fe?style=flat-square)](https://dakebu.github.io/Quantum-Computing-Block-Encoding/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-35657d?style=flat-square)](LICENSE)
+
+[**Read the textbook**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) ·
+[**Explore Lean declarations**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/) ·
+[**Open the formalization workspace**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/ide/) ·
+[**Contribute a lemma**](CONTRIBUTING.md)
 
 </div>
 
-## News
+---
 
-- **12 August 2026.** The fixed `N=8` Robin audit now freezes `M=12A` and
-  `A/(56/3)=M/224` in Lean. Five-shift, source-like seven-slot, and
-  Hadamard-8 weighted-permutation decompositions compile entrywise, including
-  permutation and amplitude guards. A reusable complex LCU kernel now proves
-  PREPARE/amplitude/SELECT/unprepare unitarity and clean-entry expansion. The
-  audited fixed benchmark now has exact Hadamard-8 and four-slot T2 block-
-  encoding roots plus a same-tier Lean comparison; primitive `{X,RY,RZ,CX}`
-  refinement remains a separate T3 obligation.
-- **12 August 2026.** The textbook track now includes complete Mathlib-backed
-  Pauli X and Hadamard state-preparation certificates. The full Lean gate also
-  covers `RobinMatrix.lean` with zero proof holes: the historical H-free raw
-  fold is closed by a compiled counterexample, while paper-wide oracle
-  assumptions remain labeled as research contracts.
+## News 🔥
+
+- **12 August 2026.** The textbook track gained complete Mathlib-backed Pauli X
+  and Hadamard state-preparation certificates, including normalization,
+  unitarity, state action, circuit, schedule, and resource records.
 - **10 August 2026.** The project is now named **ASPBE: Automatic State
   Preparation and Block Encoding for Quantum Computing**. Its public teaching,
   declaration, and contribution site is **QuantumComputinglib**. The site now
@@ -75,7 +74,7 @@ block-encoding route. It does not by itself prove a clean projected block.
 
 ![The two ASPBE application contracts](docs/assets/abeis_application_overview.svg)
 
-## QuantumComputinglib
+## QuantumComputinglib 📚
 
 **QuantumComputinglib** is the website built from this repository. It is organized as a
 formal quantum-computing textbook rather than a project dashboard:
@@ -99,7 +98,7 @@ The site distinguishes **built here**, **imported**, and **reference atlas**.
 External projects are not presented as local proofs merely because QuantumComputinglib
 links or explains them.
 
-## Formalization workspace
+## Formalization workspace 🧪
 
 Build the site, then start the loopback-only companion server:
 
@@ -147,7 +146,7 @@ artifacts. A public Pages deployment can instead target a user-owned HTTPS
 runner implementing the same JSON contract; it does not spend project-owned
 model credits.
 
-## What the harness actually does
+## What the harness actually does 🧭
 
 ASPBE is a file-backed controller around the Lean project. The durable state is
 the task contract, candidate population, proof DAG, source correspondence,
@@ -156,7 +155,7 @@ not treated as the system of record.
 
 ![ASPBE control loop from two separate contracts to checked evidence](docs/assets/aspbe_harness_flow.svg)
 
-### Roles and owned artifacts
+### Roles and owned artifacts 🗂️
 
 | Role | Decision boundary | Primary artifacts |
 | --- | --- | --- |
@@ -171,7 +170,7 @@ One worker may fill several roles for a small task. Parallelism increases only
 when a current signed decision identifies independent ready leaves or a
 specific layer bottleneck.
 
-### One controlled cycle
+### One controlled cycle 🔁
 
 ```text
 1  Freeze and hash the application contract
@@ -195,7 +194,7 @@ Repeating the same leaf against the same Lean-evidence digest is bounded. A
 stalled representation bridge is assigned as a prerequisite instead of being
 retried by more tactic workers.
 
-### Optional executable outputs
+### Optional executable outputs ⚛️
 
 Lean is the symbolic acceptance gate, but executable checks can screen a
 candidate before proof and users can independently choose final artifacts.
@@ -242,15 +241,21 @@ python3 tools/replay_public_cases.py
 python3 executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py
 python3 executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py
 python3 executable-exports/SP-TEXTBOOK-001/qiskit/export.py --case hadamard
-python3 executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/export.py
 ```
+
+The following circuit view is generated from the certified BE Case 1 export.
+It shows the actual Qiskit gate order: one Toffoli layer followed by three
+parallel `X` gates. The clean-block and unitarity errors are both zero for this
+finite executable instance.
+
+![Qiskit circuit view for the Lean-certified BE Case 1 export](docs/assets/qiskit_circuit_view.svg)
 
 Generated code and reports live under
 [`executable-exports/`](executable-exports/). Task packets may select any
 supported subset of `qiskit`, `qasm3`, and other registered executable targets,
 or disable post-Lean export when only the formal certificate is required.
 
-### Candidate and evidence policy
+### Candidate and evidence policy 🧾
 
 Candidates live in three separate populations:
 
@@ -268,7 +273,7 @@ calls. Correctness and target fidelity are gates, not weighted score terms. An
 opaque oracle and an expanded logical circuit are never ranked as equal-cost
 implementations.
 
-### Adaptive capacity and tolerance
+### Adaptive capacity and tolerance 🎚️
 
 The controller stores upper, middle, and lower capacity levels. A privileged
 upper/reviewer packet may increase exactly one named layer by one level. Replay
@@ -287,7 +292,7 @@ See [agent orchestration](docs/agent_orchestration.md),
 [the proof blueprint](docs/agent_blueprint_formalization.md), and the
 [sleep-run guide](docs/sleep_run_guide.md) for the operational protocol.
 
-## Lean library
+## Lean library 🧩
 
 ```text
 QuantumBlockEncoding/
@@ -308,8 +313,6 @@ QuantumBlockEncoding/
 ├── CubicStatePreparation.lean   active state-preparation benchmark
 ├── ColdStartTransferE1.lean     isolated cold-start construction
 ├── OptimalControl.lean          candidate evolution and resource comparison
-├── GHL2025.lean                 paper-reproduction surface
-├── RobinMatrix.lean             compiled Robin model, counterexamples, and contracts
 ├── Automation.lean              compiled harness contracts
 └── OpenProblems.lean            typed unfinished routes
 ```
@@ -323,9 +326,9 @@ The external quantum Lean atlas currently records Mathlib,
 modules, licenses, and adapter rules are under
 [`research-wiki/external-lean-libraries/`](research-wiki/external-lean-libraries/).
 
-## Case studies
+## Case studies 🔬
 
-### BE Case 1: transfer operator
+### BE Case 1: transfer operator 🔄
 
 The target is the concrete non-unitary transfer
 
@@ -343,7 +346,7 @@ candidates improve `(6,5,1,0) -> (4,4,1,0) -> (4,2,1,0)`.
 | --- | --- |
 | ![BE Case 1 candidates](docs/assets/be_case1_candidates.svg) | ![BE Case 1 convergence](docs/assets/be_case1_convergence.svg) |
 
-### BE Case 2: cubic diagonal operator
+### BE Case 2: cubic diagonal operator 📐
 
 For every `n`, the target is
 
@@ -384,77 +387,16 @@ The normalized cubic **state-preparation** benchmark is tracked separately and
 is not reported as solved merely because the cubic block-encoding family is
 certified.
 
-### Textbook state preparation and Robin audit
+### Textbook state preparation ⚛️
 
 The one-qubit textbook routes are complete certificates, not interface-only
 examples: `pauliXVerified` and `hadamardVerified` each contain a normalized
 target, Mathlib unitary-group proof, state-action proof, circuit, schedule, and
-resource record. The historical Robin H-free raw fold is also closed, but as a
-refutation: `oneTermRobinGamma3BoundaryUnitaryEntry_ne_backendFold_n3` proves
-that the proposed symbolic equality is false. This removes the two former
-proof holes without claiming that external sparse-access, amplitude-oracle,
-and paper-wide composition contracts have been implemented at gate level.
+resource record. Their runnable Qiskit exports provide the same gate-level
+examples used in the introductory chapters, while the named Lean roots remain
+the proof authority.
 
-### Robin paper reproduction: audited warm evolution
-
-The current paper experiment uses the warm arm: one frozen finite target plus
-the paper construction and compiled Robin memory. The cold arm remains defined
-for a later controlled comparison. Qiskit may reject, rank, or provisionally
-promote exploratory candidates. A candidate appears as a certified improved
-resource point only after a named Lean block-encoding root and same-tier Lean
-`betterThan` theorem compile.
-
-```bash
-export CODEX_MODEL=gpt-5.6-sol
-python3 tools/run_robin_repro.py prepare --arm warm --force
-python3 tools/run_robin_repro.py run --arm warm --cycles 7 --minutes 100
-python3 tools/run_robin_repro.py audit --arm warm
-```
-
-The warm arm is available in **Run with your API** through the generated Robin
-example preset. The reported run used `gpt-5.6-sol` with Codex CLI
-0.145.0. Six cycles completed; a seventh was stopped when the upper agent
-repeated the same source-contract scan. The run compiled the fixed target,
-ten-block source transcript and layout guards, and indicator permutation
-certificate. It produced no verified block-encoding root or same-tier resource
-point. The subsequent deterministic completion added exact fixed data, a
-reusable complex-unitary LCU kernel, and two complete T2 certificates:
-`warmRobinHadamard8VerifiedBlockEncoding` and
-`warmRobinFourSlotVerifiedBlockEncoding`. Both prove the original-basis clean
-block equals the fixed target divided by `56/3`. Under one declared T2
-logical-stage convention,
-`warmRobinFourSlotT2Cost_betterThan_hadamard8` proves strict lexicographic
-improvement: gate count and depth tie, while the four-slot route uses one fewer
-auxiliary qubit. This is not a primitive `{X,RY,RZ,CX}` claim. The typed
-primitive language, exact gate semantics, two-CX pair-coordinate transform,
-and exact standard-RY angle bridge now compile. The 32-branch uniformly
-controlled-RY product equality, full circuit equality with the T2 unitary, and
-primitive resource comparison remain the separate T3 obligations.
-
-In plain terms, **T2** proves that the complete high-level unitary matrix is
-exactly unitary and has exactly the requested clean block. Operations such as a
-controlled amplitude loader or `SELECT` may still be counted as named logical
-stages. **T3** expands those stages into the frozen exact basis
-`{X,RY(theta),RZ(theta),CX}`, defines every primitive's matrix semantics, and proves in
-Lean that their ordered product is the T2 unitary. T3 is required for claims
-about primitive gate counts, transpiled depth, or end-to-end verified hardware-
-level code; it is not required merely to establish that the mathematical block
-encoding exists. ASPBE therefore treats Robin T2 as a complete exact logical
-block-encoding result and T3 as a valuable backend-refinement target, not as a
-precondition for publishing the current mathematical certificate.
-The complete replay contract is in
-[`run-presets/robin_cold_warm_reproduction.md`](run-presets/robin_cold_warm_reproduction.md).
-
-The published source baseline remains the paper construction represented in
-Lean, not a manufactured optimization curve. The fixed benchmark additionally
-reports the theorem-backed T2 evolution `(8,4,4,2) -> (8,4,3,2)`. The
-[Robin paper map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/case-studies/robin/)
-places the source theorem, equations, and circuit transcript beside their
-exact `GHL2025.lean` and `RobinMatrix.lean` declarations. It distinguishes
-compiled local structure, partial paper routes, and the blocked boundary
-rotation convention.
-
-## Build and verify
+## Build and verify 🛠️
 
 Linux/macOS:
 
@@ -480,7 +422,7 @@ counts are written to `_site/build-report.json`; the replay record is published
 at `_site/data/public-case-replay.json`. This README does not hard-code
 declaration totals.
 
-## Contribute
+## Contribute 🤝
 
 QuantumComputinglib supports two contribution routes:
 
@@ -513,7 +455,7 @@ Historical `QBE-*` task IDs, `ABEISBlueprint` module names, and existing URLs
 remain unchanged for reproducibility and compatibility. New public prose uses
 **ASPBE** for the system and **QuantumComputinglib** for the website.
 
-## Related systems and design lineage
+## Related systems and design lineage 🧬
 
 ASPBE adapts useful mechanisms from adjacent systems, but its acceptance
 contracts and proof status remain specific to this repository.
@@ -533,7 +475,7 @@ contracts and proof status remain specific to this repository.
 See [`docs/attribution.md`](docs/attribution.md) and [`NOTICE.md`](NOTICE.md)
 for the fuller attribution and evidence boundary.
 
-## Citation
+## Citation 📝
 
 ```bibtex
 @misc{abeis2026,
@@ -544,7 +486,7 @@ for the fuller attribution and evidence boundary.
 }
 ```
 
-## Acknowledgements
+## Acknowledgements 🙏
 
 The project thanks Sho Sonoda for the public Lean Ridgelet Blueprint, which
 demonstrated a clear way to connect mathematical exposition with formal source.
@@ -554,7 +496,7 @@ QBench, and the cited quantum Lean libraries for the specific patterns or
 reference APIs studied here. Attribution does not imply that their results are
 locally proved or that their licenses transfer to ASPBE.
 
-## License
+## License 📄
 
 [MIT](LICENSE). External libraries and cited results retain their own licenses
 and attribution; linking or indexing them does not transfer authorship or
